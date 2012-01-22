@@ -45,112 +45,111 @@ protected class ThisRootNode extends RootToken {
 			case 11: return new OpaqueTypeSpecification_KindAssignment(this, this, 11, inst);
 			case 12: return new StringValueSpecification_ValueAssignment(this, this, 12, inst);
 			case 13: return new MscriptValueSpecification_ExpressionAssignment(this, this, 13, inst);
-			case 14: return new MscriptBehaviorSpecification_DeclarationsAssignment(this, this, 14, inst);
-			case 15: return new MscriptSystemInterface_Group(this, this, 15, inst);
-			case 16: return new Inlet_Group(this, this, 16, inst);
-			case 17: return new Outlet_Group(this, this, 17, inst);
-			case 18: return new MscriptDataTypeSpecification_SpecifierAssignment(this, this, 18, inst);
-			case 19: return new Module_Group(this, this, 19, inst);
-			case 20: return new ImportDeclaration_Group(this, this, 20, inst);
-			case 21: return new Declaration_Alternatives(this, this, 21, inst);
-			case 22: return new DataTypeDeclaration_Alternatives(this, this, 22, inst);
-			case 23: return new EnumerationDeclaration_Group(this, this, 23, inst);
-			case 24: return new EnumerationLiteralDeclaration_NameAssignment(this, this, 24, inst);
-			case 25: return new TypedefDeclaration_Group(this, this, 25, inst);
-			case 26: return new StructDeclaration_Group(this, this, 26, inst);
-			case 27: return new StructMemberDeclaration_Group(this, this, 27, inst);
-			case 28: return new FunctionDeclaration_Group(this, this, 28, inst);
-			case 29: return new TemplateParameterDeclaration_NameAssignment(this, this, 29, inst);
-			case 30: return new InputParameterDeclaration_NameAssignment(this, this, 30, inst);
-			case 31: return new OutputParameterDeclaration_NameAssignment(this, this, 31, inst);
-			case 32: return new Check_Group(this, this, 32, inst);
-			case 33: return new Assertion_Group(this, this, 33, inst);
-			case 34: return new StateVariableDeclaration_Group(this, this, 34, inst);
-			case 35: return new ConstantDeclaration_Group(this, this, 35, inst);
-			case 36: return new FunctionObjectDeclaration_Group(this, this, 36, inst);
-			case 37: return new Equation_Group(this, this, 37, inst);
-			case 38: return new DataTypeSpecifier_Alternatives(this, this, 38, inst);
-			case 39: return new PrimitiveType_Alternatives(this, this, 39, inst);
-			case 40: return new NumericType_Alternatives(this, this, 40, inst);
-			case 41: return new RealType_Group(this, this, 41, inst);
-			case 42: return new IntegerType_Group(this, this, 42, inst);
-			case 43: return new ComplexType_Group(this, this, 43, inst);
-			case 44: return new GaussianType_Group(this, this, 44, inst);
-			case 45: return new BooleanType_Group(this, this, 45, inst);
-			case 46: return new StringType_Group(this, this, 46, inst);
-			case 47: return new ArrayType_Alternatives(this, this, 47, inst);
-			case 48: return new TensorType_Group(this, this, 48, inst);
-			case 49: return new ArrayDimension_Group(this, this, 49, inst);
-			case 50: return new Expression_Alternatives(this, this, 50, inst);
-			case 51: return new LetExpression_Group(this, this, 51, inst);
-			case 52: return new LetExpressionAssignment_Group(this, this, 52, inst);
-			case 53: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 53, inst);
-			case 54: return new IfExpression_Group(this, this, 54, inst);
-			case 55: return new SwitchExpression_Group(this, this, 55, inst);
-			case 56: return new SwitchCase_Group(this, this, 56, inst);
-			case 57: return new RangeExpression_Group(this, this, 57, inst);
-			case 58: return new ImpliesExpression_Group(this, this, 58, inst);
-			case 59: return new LogicalOrExpression_Group(this, this, 59, inst);
-			case 60: return new LogicalAndExpression_Group(this, this, 60, inst);
-			case 61: return new EqualityExpression_Group(this, this, 61, inst);
-			case 62: return new RelationalExpression_Group(this, this, 62, inst);
-			case 63: return new AdditiveExpression_Group(this, this, 63, inst);
-			case 64: return new MultiplicativeExpression_Group(this, this, 64, inst);
-			case 65: return new PowerExpression_Group(this, this, 65, inst);
-			case 66: return new UnaryExpression_Alternatives(this, this, 66, inst);
-			case 67: return new PostfixExpression_Group(this, this, 67, inst);
-			case 68: return new ArrayElementAccess_Group(this, this, 68, inst);
-			case 69: return new MemberFeatureCall_Group(this, this, 69, inst);
-			case 70: return new AssignableMemberFeatureCall_Group(this, this, 70, inst);
-			case 71: return new IterationAccumulator_Group(this, this, 71, inst);
-			case 72: return new IterationVariableDeclaration_NameAssignment(this, this, 72, inst);
-			case 73: return new ArraySubscript_Alternatives(this, this, 73, inst);
-			case 74: return new PrimaryExpression_Alternatives(this, this, 74, inst);
-			case 75: return new AssignablePrimaryExpression_Alternatives(this, this, 75, inst);
-			case 76: return new Literal_Alternatives(this, this, 76, inst);
-			case 77: return new NumericLiteral_Alternatives(this, this, 77, inst);
-			case 78: return new RealLiteral_Group(this, this, 78, inst);
-			case 79: return new IntegerLiteral_Group(this, this, 79, inst);
-			case 80: return new BooleanLiteral_Group(this, this, 80, inst);
-			case 81: return new StringLiteral_ValueAssignment(this, this, 81, inst);
-			case 82: return new FeatureCall_Alternatives(this, this, 82, inst);
-			case 83: return new VariableReference_Group(this, this, 83, inst);
-			case 84: return new FunctionCall_Group(this, this, 84, inst);
-			case 85: return new QualifiedFeatureCall_Alternatives(this, this, 85, inst);
-			case 86: return new QualifiedVariableReference_Group(this, this, 86, inst);
-			case 87: return new QualifiedFunctionCall_Group(this, this, 87, inst);
-			case 88: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 88, inst);
-			case 89: return new RangeStepExpression_Group(this, this, 89, inst);
-			case 90: return new AdditiveStepExpression_Group(this, this, 90, inst);
-			case 91: return new NegateStepExpression_Alternatives(this, this, 91, inst);
-			case 92: return new PrimitiveStepExpression_Alternatives(this, this, 92, inst);
-			case 93: return new StepLiteral_ValueAssignment(this, this, 93, inst);
-			case 94: return new StepN_Group(this, this, 94, inst);
-			case 95: return new ArrayConstructionOperator_Group(this, this, 95, inst);
-			case 96: return new ArrayConstructionIterationClause_Group(this, this, 96, inst);
-			case 97: return new ArrayConcatenationOperator_Group(this, this, 97, inst);
-			case 98: return new ExpressionList_Group(this, this, 98, inst);
-			case 99: return new UnitConstructionOperator_Group(this, this, 99, inst);
-			case 100: return new ParenthesizedExpression_Group(this, this, 100, inst);
-			case 101: return new EndExpression_Group(this, this, 101, inst);
-			case 102: return new AlgorithmExpression_Group(this, this, 102, inst);
-			case 103: return new Compound_Group(this, this, 103, inst);
-			case 104: return new Statement_Alternatives(this, this, 104, inst);
-			case 105: return new Assignment_Group(this, this, 105, inst);
-			case 106: return new LocalVariableDeclaration_Group(this, this, 106, inst);
-			case 107: return new IfStatement_Group(this, this, 107, inst);
-			case 108: return new WhileStatement_Group(this, this, 108, inst);
-			case 109: return new ForStatement_Group(this, this, 109, inst);
-			case 110: return new DoWhileStatement_Group(this, this, 110, inst);
-			case 111: return new ContinueStatement_Group(this, this, 111, inst);
-			case 112: return new BreakStatement_Group(this, this, 112, inst);
-			case 113: return new ReturnStatement_Group(this, this, 113, inst);
-			case 114: return new Unit_Group(this, this, 114, inst);
-			case 115: return new ExplicitUnit_Group(this, this, 115, inst);
-			case 116: return new UnitNumerator_Alternatives(this, this, 116, inst);
-			case 117: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 117, inst);
-			case 118: return new UnitDenominator_Alternatives(this, this, 118, inst);
-			case 119: return new UnitFactor_Group(this, this, 119, inst);
+			case 14: return new MscriptSystemInterface_Group(this, this, 14, inst);
+			case 15: return new Inlet_Group(this, this, 15, inst);
+			case 16: return new Outlet_Group(this, this, 16, inst);
+			case 17: return new MscriptDataTypeSpecification_SpecifierAssignment(this, this, 17, inst);
+			case 18: return new Module_Group(this, this, 18, inst);
+			case 19: return new ImportDeclaration_Group(this, this, 19, inst);
+			case 20: return new Declaration_Alternatives(this, this, 20, inst);
+			case 21: return new DataTypeDeclaration_Alternatives(this, this, 21, inst);
+			case 22: return new EnumerationDeclaration_Group(this, this, 22, inst);
+			case 23: return new EnumerationLiteralDeclaration_NameAssignment(this, this, 23, inst);
+			case 24: return new TypedefDeclaration_Group(this, this, 24, inst);
+			case 25: return new StructDeclaration_Group(this, this, 25, inst);
+			case 26: return new StructMemberDeclaration_Group(this, this, 26, inst);
+			case 27: return new FunctionDeclaration_Group(this, this, 27, inst);
+			case 28: return new TemplateParameterDeclaration_NameAssignment(this, this, 28, inst);
+			case 29: return new InputParameterDeclaration_NameAssignment(this, this, 29, inst);
+			case 30: return new OutputParameterDeclaration_NameAssignment(this, this, 30, inst);
+			case 31: return new Check_Group(this, this, 31, inst);
+			case 32: return new Assertion_Group(this, this, 32, inst);
+			case 33: return new StateVariableDeclaration_Group(this, this, 33, inst);
+			case 34: return new ConstantDeclaration_Group(this, this, 34, inst);
+			case 35: return new FunctionObjectDeclaration_Group(this, this, 35, inst);
+			case 36: return new Equation_Group(this, this, 36, inst);
+			case 37: return new DataTypeSpecifier_Alternatives(this, this, 37, inst);
+			case 38: return new PrimitiveType_Alternatives(this, this, 38, inst);
+			case 39: return new NumericType_Alternatives(this, this, 39, inst);
+			case 40: return new RealType_Group(this, this, 40, inst);
+			case 41: return new IntegerType_Group(this, this, 41, inst);
+			case 42: return new ComplexType_Group(this, this, 42, inst);
+			case 43: return new GaussianType_Group(this, this, 43, inst);
+			case 44: return new BooleanType_Group(this, this, 44, inst);
+			case 45: return new StringType_Group(this, this, 45, inst);
+			case 46: return new ArrayType_Alternatives(this, this, 46, inst);
+			case 47: return new TensorType_Group(this, this, 47, inst);
+			case 48: return new ArrayDimension_Group(this, this, 48, inst);
+			case 49: return new Expression_Alternatives(this, this, 49, inst);
+			case 50: return new LetExpression_Group(this, this, 50, inst);
+			case 51: return new LetExpressionAssignment_Group(this, this, 51, inst);
+			case 52: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 52, inst);
+			case 53: return new IfExpression_Group(this, this, 53, inst);
+			case 54: return new SwitchExpression_Group(this, this, 54, inst);
+			case 55: return new SwitchCase_Group(this, this, 55, inst);
+			case 56: return new RangeExpression_Group(this, this, 56, inst);
+			case 57: return new ImpliesExpression_Group(this, this, 57, inst);
+			case 58: return new LogicalOrExpression_Group(this, this, 58, inst);
+			case 59: return new LogicalAndExpression_Group(this, this, 59, inst);
+			case 60: return new EqualityExpression_Group(this, this, 60, inst);
+			case 61: return new RelationalExpression_Group(this, this, 61, inst);
+			case 62: return new AdditiveExpression_Group(this, this, 62, inst);
+			case 63: return new MultiplicativeExpression_Group(this, this, 63, inst);
+			case 64: return new PowerExpression_Group(this, this, 64, inst);
+			case 65: return new UnaryExpression_Alternatives(this, this, 65, inst);
+			case 66: return new PostfixExpression_Group(this, this, 66, inst);
+			case 67: return new ArrayElementAccess_Group(this, this, 67, inst);
+			case 68: return new MemberFeatureCall_Group(this, this, 68, inst);
+			case 69: return new AssignableMemberFeatureCall_Group(this, this, 69, inst);
+			case 70: return new IterationAccumulator_Group(this, this, 70, inst);
+			case 71: return new IterationVariableDeclaration_NameAssignment(this, this, 71, inst);
+			case 72: return new ArraySubscript_Alternatives(this, this, 72, inst);
+			case 73: return new PrimaryExpression_Alternatives(this, this, 73, inst);
+			case 74: return new AssignablePrimaryExpression_Alternatives(this, this, 74, inst);
+			case 75: return new Literal_Alternatives(this, this, 75, inst);
+			case 76: return new NumericLiteral_Alternatives(this, this, 76, inst);
+			case 77: return new RealLiteral_Group(this, this, 77, inst);
+			case 78: return new IntegerLiteral_Group(this, this, 78, inst);
+			case 79: return new BooleanLiteral_Group(this, this, 79, inst);
+			case 80: return new StringLiteral_ValueAssignment(this, this, 80, inst);
+			case 81: return new FeatureCall_Alternatives(this, this, 81, inst);
+			case 82: return new VariableReference_Group(this, this, 82, inst);
+			case 83: return new FunctionCall_Group(this, this, 83, inst);
+			case 84: return new QualifiedFeatureCall_Alternatives(this, this, 84, inst);
+			case 85: return new QualifiedVariableReference_Group(this, this, 85, inst);
+			case 86: return new QualifiedFunctionCall_Group(this, this, 86, inst);
+			case 87: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 87, inst);
+			case 88: return new RangeStepExpression_Group(this, this, 88, inst);
+			case 89: return new AdditiveStepExpression_Group(this, this, 89, inst);
+			case 90: return new NegateStepExpression_Alternatives(this, this, 90, inst);
+			case 91: return new PrimitiveStepExpression_Alternatives(this, this, 91, inst);
+			case 92: return new StepLiteral_ValueAssignment(this, this, 92, inst);
+			case 93: return new StepN_Group(this, this, 93, inst);
+			case 94: return new ArrayConstructionOperator_Group(this, this, 94, inst);
+			case 95: return new ArrayConstructionIterationClause_Group(this, this, 95, inst);
+			case 96: return new ArrayConcatenationOperator_Group(this, this, 96, inst);
+			case 97: return new ExpressionList_Group(this, this, 97, inst);
+			case 98: return new UnitConstructionOperator_Group(this, this, 98, inst);
+			case 99: return new ParenthesizedExpression_Group(this, this, 99, inst);
+			case 100: return new EndExpression_Group(this, this, 100, inst);
+			case 101: return new AlgorithmExpression_Group(this, this, 101, inst);
+			case 102: return new Compound_Group(this, this, 102, inst);
+			case 103: return new Statement_Alternatives(this, this, 103, inst);
+			case 104: return new Assignment_Group(this, this, 104, inst);
+			case 105: return new LocalVariableDeclaration_Group(this, this, 105, inst);
+			case 106: return new IfStatement_Group(this, this, 106, inst);
+			case 107: return new WhileStatement_Group(this, this, 107, inst);
+			case 108: return new ForStatement_Group(this, this, 108, inst);
+			case 109: return new DoWhileStatement_Group(this, this, 109, inst);
+			case 110: return new ContinueStatement_Group(this, this, 110, inst);
+			case 111: return new BreakStatement_Group(this, this, 111, inst);
+			case 112: return new ReturnStatement_Group(this, this, 112, inst);
+			case 113: return new Unit_Group(this, this, 113, inst);
+			case 114: return new ExplicitUnit_Group(this, this, 114, inst);
+			case 115: return new UnitNumerator_Alternatives(this, this, 115, inst);
+			case 116: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 116, inst);
+			case 117: return new UnitDenominator_Alternatives(this, this, 117, inst);
+			case 118: return new UnitFactor_Group(this, this, 118, inst);
 			default: return null;
 		}	
 	}	
@@ -288,13 +287,13 @@ protected class Root_SystemInterfacesAssignment_1 extends AssignmentToken  {
  * MscriptBlockType:
  * 	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
  * 	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
- * 	behavior=MscriptBehaviorSpecification? "}";
+ * 	declarations+=Declaration* "}";
  *
  **/
 
 // "package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
 // "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-// behavior=MscriptBehaviorSpecification? "}"
+// declarations+=Declaration* "}"
 protected class MscriptBlockType_Group extends GroupToken {
 	
 	public MscriptBlockType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -684,35 +683,35 @@ protected class MscriptBlockType_ParametersAssignment_9 extends AssignmentToken 
 	}	
 }
 
-// behavior=MscriptBehaviorSpecification?
-protected class MscriptBlockType_BehaviorAssignment_10 extends AssignmentToken  {
+// declarations+=Declaration*
+protected class MscriptBlockType_DeclarationsAssignment_10 extends AssignmentToken  {
 	
-	public MscriptBlockType_BehaviorAssignment_10(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public MscriptBlockType_DeclarationsAssignment_10(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMscriptBlockTypeAccess().getBehaviorAssignment_10();
+		return grammarAccess.getMscriptBlockTypeAccess().getDeclarationsAssignment_10();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new MscriptBehaviorSpecification_DeclarationsAssignment(this, this, 0, inst);
+			case 0: return new Declaration_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("behavior",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("behavior");
+		if((value = eObjectConsumer.getConsumable("declarations",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("declarations");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getMscriptBehaviorSpecificationRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getDeclarationRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getMscriptBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0(); 
+				element = grammarAccess.getMscriptBlockTypeAccess().getDeclarationsDeclarationParserRuleCall_10_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -724,10 +723,11 @@ protected class MscriptBlockType_BehaviorAssignment_10 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new MscriptBlockType_ParametersAssignment_9(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new MscriptBlockType_OutputDefinitionsAssignment_8(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new MscriptBlockType_InputDefinitionsAssignment_7(lastRuleCallOrigin, next, actIndex, consumed);
-			case 3: return new MscriptBlockType_LeftCurlyBracketKeyword_6(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new MscriptBlockType_DeclarationsAssignment_10(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new MscriptBlockType_ParametersAssignment_9(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new MscriptBlockType_OutputDefinitionsAssignment_8(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new MscriptBlockType_InputDefinitionsAssignment_7(lastRuleCallOrigin, next, actIndex, consumed);
+			case 4: return new MscriptBlockType_LeftCurlyBracketKeyword_6(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -748,7 +748,7 @@ protected class MscriptBlockType_RightCurlyBracketKeyword_11 extends KeywordToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new MscriptBlockType_BehaviorAssignment_10(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new MscriptBlockType_DeclarationsAssignment_10(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new MscriptBlockType_ParametersAssignment_9(lastRuleCallOrigin, this, 1, inst);
 			case 2: return new MscriptBlockType_OutputDefinitionsAssignment_8(lastRuleCallOrigin, this, 2, inst);
 			case 3: return new MscriptBlockType_InputDefinitionsAssignment_7(lastRuleCallOrigin, this, 3, inst);
@@ -3651,62 +3651,6 @@ protected class MscriptValueSpecification_ExpressionAssignment extends Assignmen
 }
 
 /************ end Rule MscriptValueSpecification ****************/
-
-
-/************ begin Rule MscriptBehaviorSpecification ****************
- *
- * MscriptBehaviorSpecification:
- * 	declarations+=Declaration+;
- *
- **/
-
-// declarations+=Declaration+
-protected class MscriptBehaviorSpecification_DeclarationsAssignment extends AssignmentToken  {
-	
-	public MscriptBehaviorSpecification_DeclarationsAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Declaration_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("declarations",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("declarations");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDeclarationRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsDeclarationParserRuleCall_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new MscriptBehaviorSpecification_DeclarationsAssignment(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index - 1, consumed);
-		}	
-	}	
-}
-
-/************ end Rule MscriptBehaviorSpecification ****************/
 
 
 /************ begin Rule MscriptSystemInterface ****************

@@ -27,7 +27,6 @@ import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -265,8 +264,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateCategorizedElement((CategorizedElement)value, diagnostics, context);
 			case DMLPackage.CATEGORY:
 				return validateCategory((Category)value, diagnostics, context);
-			case DMLPackage.BEHAVIOR_SPECIFICATION:
-				return validateBehaviorSpecification((BehaviorSpecification)value, diagnostics, context);
 			case DMLPackage.BLOCK:
 				return validateBlock((Block)value, diagnostics, context);
 			case DMLPackage.MODEL:
@@ -1069,15 +1066,6 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateCategory(Category category, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(category, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBehaviorSpecification(BehaviorSpecification behaviorSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(behaviorSpecification, diagnostics, context);
 	}
 
 	/**

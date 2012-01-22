@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.System;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 
 /**
  * @author Andreas Unger

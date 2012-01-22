@@ -275,7 +275,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMscriptBlockTypeAccess().getInputDefinitionsAssignment_7(), "rule__MscriptBlockType__InputDefinitionsAssignment_7");
 					put(grammarAccess.getMscriptBlockTypeAccess().getOutputDefinitionsAssignment_8(), "rule__MscriptBlockType__OutputDefinitionsAssignment_8");
 					put(grammarAccess.getMscriptBlockTypeAccess().getParametersAssignment_9(), "rule__MscriptBlockType__ParametersAssignment_9");
-					put(grammarAccess.getMscriptBlockTypeAccess().getBehaviorAssignment_10(), "rule__MscriptBlockType__BehaviorAssignment_10");
+					put(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsAssignment_10(), "rule__MscriptBlockType__DeclarationsAssignment_10");
 					put(grammarAccess.getInputDefinitionAccess().getSocketAssignment_0_0(), "rule__InputDefinition__SocketAssignment_0_0");
 					put(grammarAccess.getInputDefinitionAccess().getTestPointAssignment_0_1(), "rule__InputDefinition__TestPointAssignment_0_1");
 					put(grammarAccess.getInputDefinitionAccess().getNameAssignment_2(), "rule__InputDefinition__NameAssignment_2");
@@ -310,7 +310,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOpaqueTypeSpecificationAccess().getKindAssignment(), "rule__OpaqueTypeSpecification__KindAssignment");
 					put(grammarAccess.getStringValueSpecificationAccess().getValueAssignment(), "rule__StringValueSpecification__ValueAssignment");
 					put(grammarAccess.getMscriptValueSpecificationAccess().getExpressionAssignment(), "rule__MscriptValueSpecification__ExpressionAssignment");
-					put(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment(), "rule__MscriptBehaviorSpecification__DeclarationsAssignment");
 					put(grammarAccess.getMscriptSystemInterfaceAccess().getPackageNameAssignment_1(), "rule__MscriptSystemInterface__PackageNameAssignment_1");
 					put(grammarAccess.getMscriptSystemInterfaceAccess().getImportDeclarationsAssignment_2(), "rule__MscriptSystemInterface__ImportDeclarationsAssignment_2");
 					put(grammarAccess.getMscriptSystemInterfaceAccess().getNameAssignment_4(), "rule__MscriptSystemInterface__NameAssignment_4");

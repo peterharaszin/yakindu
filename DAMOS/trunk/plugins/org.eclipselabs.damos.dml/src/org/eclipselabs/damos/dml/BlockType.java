@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EModelElement;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getOutputDefinitions <em>Output Definitions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getTiming <em>Timing</em>}</li>
  * </ul>
  * </p>
@@ -60,59 +59,6 @@ public interface BlockType extends EModelElement, QualifiedElement, CategorizedE
 	 * @generated
 	 */
 	EList<OutputDefinition> getOutputDefinitions();
-
-	/**
-	 * Returns the value of the '<em><b>Behavior</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Behavior</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behavior</em>' containment reference.
-	 * @see #isSetBehavior()
-	 * @see #unsetBehavior()
-	 * @see #setBehavior(BehaviorSpecification)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getBlockType_Behavior()
-	 * @model containment="true" unsettable="true" ordered="false"
-	 * @generated
-	 */
-	BehaviorSpecification getBehavior();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Behavior</em>' containment reference.
-	 * @see #isSetBehavior()
-	 * @see #unsetBehavior()
-	 * @see #getBehavior()
-	 * @generated
-	 */
-	void setBehavior(BehaviorSpecification value);
-
-	/**
-	 * Unsets the value of the '{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBehavior()
-	 * @see #getBehavior()
-	 * @see #setBehavior(BehaviorSpecification)
-	 * @generated
-	 */
-	void unsetBehavior();
-
-	/**
-	 * Returns whether the value of the '{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}' containment reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Behavior</em>' containment reference is set.
-	 * @see #unsetBehavior()
-	 * @see #getBehavior()
-	 * @see #setBehavior(BehaviorSpecification)
-	 * @generated
-	 */
-	boolean isSetBehavior();
 
 	/**
 	 * Returns the value of the '<em><b>Timing</b></em>' attribute.

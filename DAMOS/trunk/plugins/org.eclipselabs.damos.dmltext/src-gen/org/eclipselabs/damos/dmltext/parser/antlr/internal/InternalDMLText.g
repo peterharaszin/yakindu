@@ -277,22 +277,22 @@ ruleMscriptBlockType returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMscriptBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0()); 
+	        newCompositeNode(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsDeclarationParserRuleCall_10_0()); 
 	    }
-		lv_behavior_10_0=ruleMscriptBehaviorSpecification		{
+		lv_declarations_10_0=ruleDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMscriptBlockTypeRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"behavior",
-        		lv_behavior_10_0, 
-        		"MscriptBehaviorSpecification");
+       			"declarations",
+        		lv_declarations_10_0, 
+        		"Declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?	otherlv_11='}' 
+)*	otherlv_11='}' 
     {
     	newLeafNode(otherlv_11, grammarAccess.getMscriptBlockTypeAccess().getRightCurlyBracketKeyword_11());
     }
@@ -1421,45 +1421,6 @@ ruleMscriptValueSpecification returns [EObject current=null]
 
 )
 )
-;
-
-
-
-
-
-// Entry rule entryRuleMscriptBehaviorSpecification
-entryRuleMscriptBehaviorSpecification returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getMscriptBehaviorSpecificationRule()); }
-	 iv_ruleMscriptBehaviorSpecification=ruleMscriptBehaviorSpecification 
-	 { $current=$iv_ruleMscriptBehaviorSpecification.current; } 
-	 EOF 
-;
-
-// Rule MscriptBehaviorSpecification
-ruleMscriptBehaviorSpecification returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsDeclarationParserRuleCall_0()); 
-	    }
-		lv_declarations_0_0=ruleDeclaration		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMscriptBehaviorSpecificationRule());
-	        }
-       		add(
-       			$current, 
-       			"declarations",
-        		lv_declarations_0_0, 
-        		"Declaration");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)+
 ;
 
 
@@ -9410,7 +9371,9 @@ RULE_IJ : ('i'|'j');
 
 RULE_E : ('e'|'E');
 
-RULE_EXPIJ : RULE_E ('0'..'9')+ RULE_IJ?;
+RULE_EXP : RULE_E ('0'..'9')+;
+
+RULE_EXPIJ : RULE_EXP RULE_IJ;
 
 RULE_ONE : '1';
 

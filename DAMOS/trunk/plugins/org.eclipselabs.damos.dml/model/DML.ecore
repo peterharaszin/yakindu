@@ -250,8 +250,6 @@
         eType="#//InputDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputDefinitions" upperBound="-1"
         eType="#//OutputDefinition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
-        eType="#//BehaviorSpecification" unsettable="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timing" lowerBound="1"
         eType="#//TimingKind"/>
   </eClassifiers>
@@ -279,7 +277,6 @@
         upperBound="-1" eType="#//Category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Component #//ParameterizedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
         eType="#//BlockType"/>

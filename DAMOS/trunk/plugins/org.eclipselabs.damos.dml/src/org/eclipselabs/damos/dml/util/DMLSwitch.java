@@ -14,7 +14,6 @@ import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -442,12 +441,6 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCategorizedElement(category);
 				if (result == null) result = caseParameterableElement(category);
 				if (result == null) result = caseINamedElement(category);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.BEHAVIOR_SPECIFICATION: {
-				BehaviorSpecification behaviorSpecification = (BehaviorSpecification)theEObject;
-				T result = caseBehaviorSpecification(behaviorSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1439,21 +1432,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCategory(Category object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBehaviorSpecification(BehaviorSpecification object) {
 		return null;
 	}
 

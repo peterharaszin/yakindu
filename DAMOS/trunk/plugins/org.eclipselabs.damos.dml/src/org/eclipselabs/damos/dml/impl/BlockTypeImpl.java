@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.CategorizedElement;
@@ -53,7 +52,6 @@ import org.eclipselabs.damos.dml.internal.util.URIUtil;
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getOutputDefinitions <em>Output Definitions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getTiming <em>Timing</em>}</li>
  * </ul>
  * </p>
@@ -150,25 +148,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * @ordered
 	 */
 	protected EList<OutputDefinition> outputDefinitions;
-
-	/**
-	 * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehavior()
-	 * @generated
-	 * @ordered
-	 */
-	protected BehaviorSpecification behavior;
-
-	/**
-	 * This is true if the Behavior containment reference has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean behaviorESet;
 
 	/**
 	 * The default value of the '{@link #getTiming() <em>Timing</em>}' attribute.
@@ -322,101 +301,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehaviorSpecification getBehavior() {
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetBehavior(BehaviorSpecification newBehavior, NotificationChain msgs) {
-		BehaviorSpecification oldBehavior = behavior;
-		behavior = newBehavior;
-		boolean oldBehaviorESet = behaviorESet;
-		behaviorESet = true;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__BEHAVIOR, oldBehavior, newBehavior, !oldBehaviorESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBehavior(BehaviorSpecification newBehavior) {
-		if (newBehavior != behavior) {
-			NotificationChain msgs = null;
-			if (behavior != null)
-				msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.BLOCK_TYPE__BEHAVIOR, null, msgs);
-			if (newBehavior != null)
-				msgs = ((InternalEObject)newBehavior).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.BLOCK_TYPE__BEHAVIOR, null, msgs);
-			msgs = basicSetBehavior(newBehavior, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldBehaviorESet = behaviorESet;
-			behaviorESet = true;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__BEHAVIOR, newBehavior, newBehavior, !oldBehaviorESet));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicUnsetBehavior(NotificationChain msgs) {
-		BehaviorSpecification oldBehavior = behavior;
-		behavior = null;
-		boolean oldBehaviorESet = behaviorESet;
-		behaviorESet = false;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DMLPackage.BLOCK_TYPE__BEHAVIOR, oldBehavior, null, oldBehaviorESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetBehavior() {
-		if (behavior != null) {
-			NotificationChain msgs = null;
-			msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.BLOCK_TYPE__BEHAVIOR, null, msgs);
-			msgs = basicUnsetBehavior(msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldBehaviorESet = behaviorESet;
-			behaviorESet = false;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.BLOCK_TYPE__BEHAVIOR, null, null, oldBehaviorESet));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-		return behaviorESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TimingKind getTiming() {
 		return timing;
 	}
@@ -474,8 +358,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return ((InternalEList<?>)getInputDefinitions()).basicRemove(otherEnd, msgs);
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
 				return ((InternalEList<?>)getOutputDefinitions()).basicRemove(otherEnd, msgs);
-			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
-				return basicUnsetBehavior(msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -502,8 +384,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return getInputDefinitions();
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
 				return getOutputDefinitions();
-			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
-				return getBehavior();
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				return getTiming();
 		}
@@ -544,9 +424,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				getOutputDefinitions().clear();
 				getOutputDefinitions().addAll((Collection<? extends OutputDefinition>)newValue);
 				return;
-			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
-				setBehavior((BehaviorSpecification)newValue);
-				return;
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				setTiming((TimingKind)newValue);
 				return;
@@ -583,9 +460,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
 				getOutputDefinitions().clear();
 				return;
-			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
-				unsetBehavior();
-				return;
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				setTiming(TIMING_EDEFAULT);
 				return;
@@ -615,8 +489,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return inputDefinitions != null && !inputDefinitions.isEmpty();
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
 				return outputDefinitions != null && !outputDefinitions.isEmpty();
-			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
-				return isSetBehavior();
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				return timing != TIMING_EDEFAULT;
 		}

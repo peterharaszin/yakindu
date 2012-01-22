@@ -8,13 +8,13 @@ public class NewBlockTypeWizard extends AbstractNewFileWizard {
 	
 	private WizardNewFileCreationPage newFileCreationPage;
 	
-	private static final String CONTENTS = 
-			"blockType org.example.MyBlockType\n\n" +
-			"input x\n" +
-			"output y\n\n" +
-			"parameter gain = 1\n\n" +
-			"behavior {\n\n" +
-			"\tfunc main<gain>(x) -> y {\n" +
+	private static final String CONTENTS =
+			"package org.example\n\n" +
+			"blockType MyBlockType {\n\n" +
+			"\tinput x\n" +
+			"\toutput y\n\n" +
+			"\tparameter gain = 1\n\n" +
+			"\tfunction main<gain>(x) -> y {\n" +
 			"\t\tcheck<1>(real) -> real\n\n" +		
 			"\t\tstatic assert gain is real() :\n" +
 			"\t\t\terror \"Gain must be real value\"\n\n" +

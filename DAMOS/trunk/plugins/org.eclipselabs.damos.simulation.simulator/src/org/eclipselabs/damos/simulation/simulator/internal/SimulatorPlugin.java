@@ -3,18 +3,18 @@ package org.eclipselabs.damos.simulation.simulator.internal;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-public class SimulationEnginePlugin extends Plugin {
+public class SimulatorPlugin extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation.simulator";
 
 	// The shared instance
-	private static SimulationEnginePlugin plugin;
+	private static SimulatorPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public SimulationEnginePlugin() {
+	public SimulatorPlugin() {
 	}
 
 	/*
@@ -40,7 +40,7 @@ public class SimulationEnginePlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static SimulationEnginePlugin getDefault() {
+	public static SimulatorPlugin getDefault() {
 		return plugin;
 	}
 

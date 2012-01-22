@@ -23,7 +23,7 @@ import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.Task;
 
 /**
@@ -41,10 +41,10 @@ public class LatchSimulationObject extends AbstractSimulationObject {
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		Latch latch = (Latch) getComponent();
 		if (latch.getInitialValue() == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No initial value set"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No initial value set"));
 		}
 		if (!(latch.getInitialValue() instanceof MscriptValueSpecification)) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid initial value"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Invalid initial value"));
 		}
 		value = ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression());
 	}

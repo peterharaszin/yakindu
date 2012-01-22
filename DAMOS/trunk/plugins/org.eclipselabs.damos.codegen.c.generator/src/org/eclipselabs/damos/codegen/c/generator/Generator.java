@@ -35,6 +35,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.codegen.AbstractGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
@@ -91,7 +92,7 @@ import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
  * @author Andreas Unger
  *
  */
-public class Generator {
+public class Generator extends AbstractGenerator {
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 
@@ -109,17 +110,8 @@ public class Generator {
 		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
 		String headerFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
 		
-		String defaultSourceFile = contextFragment.getName();
-		if (defaultSourceFile == null || defaultSourceFile.trim().length() == 0) {
-			defaultSourceFile = "main.c";
-		} else {
-			defaultSourceFile.replaceAll("\\W", "_");
-			defaultSourceFile += ".c";
-		}
-		String mainSourceFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/mainSourceFile", defaultSourceFile);
-
-		String defaultHeaderFile = mainSourceFile.replaceAll("\\.c\\z", ".h");
-		String mainHeaderFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/mainHeaderFile", defaultHeaderFile);
+		String mainSourceFile = getSystemSourceFile(configuration);
+		String mainHeaderFile = getSystemHeaderFile(configuration);
 
 		IProject project = getProject(projectName, monitor);
 		IContainer sourceContainer = getContainer(monitor, project, sourceFolder);
@@ -156,6 +148,23 @@ public class Generator {
 			}
 			
 		}.write(sourceFile, monitor);
+	}
+
+	private String getSystemSourceFile(final Configuration configuration) {
+		Fragment contextFragment = configuration.getContextFragment();
+		String defaultSourceFile = contextFragment.getName();
+		if (defaultSourceFile == null || defaultSourceFile.trim().length() == 0) {
+			defaultSourceFile = "main.c";
+		} else {
+			defaultSourceFile.replaceAll("\\W", "_");
+			defaultSourceFile += ".c";
+		}
+		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemSourceFile", defaultSourceFile);
+	}
+
+	private String getSystemHeaderFile(final Configuration configuration) {
+		String defaultHeaderFile = getSystemSourceFile(configuration).replaceAll("\\.c\\z", ".h");
+		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
 	}
 
 	/**
@@ -244,7 +253,7 @@ public class Generator {
 	}
 	
 	private void generateHeaderFile(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
-		String headerFileName = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "mainHeaderFile", "");
+		String headerFileName = getSystemHeaderFile(configuration);
 		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase() + "_";
 		
 		String prefix = getPrefix(configuration);
@@ -527,7 +536,7 @@ public class Generator {
 		}
 		
 		writer.println();
-		writer.printf("#include \"%s\"\n", GeneratorConfigurationUtil.getPropertyStringValue(configuration, "mainHeaderFile", ""));
+		writer.printf("#include \"%s\"\n", getSystemHeaderFile(configuration));
 	}
 
 	/**

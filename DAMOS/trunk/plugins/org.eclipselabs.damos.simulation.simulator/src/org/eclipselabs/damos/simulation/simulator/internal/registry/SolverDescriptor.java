@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.dml.DMLPlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.registry.ISolverDescriptor;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
 
@@ -122,8 +122,8 @@ public class SolverDescriptor implements ISolverDescriptor {
 	}
 	
 	private void log(String msg) {
-		DMLPlugin.getPlugin().getLog().log(
-				new Status(IStatus.ERROR, DMLPlugin.PLUGIN_ID,
+		SimulatorPlugin.getDefault().getLog().log(
+				new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID,
 						"Failed to load class '"
 						+ className
 						+ "' in plug-in '"

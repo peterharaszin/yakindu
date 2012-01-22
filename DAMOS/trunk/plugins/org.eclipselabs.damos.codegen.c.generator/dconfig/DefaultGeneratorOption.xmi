@@ -15,12 +15,12 @@
       <definedType xsi:type="mscript:StringType"/>
     </typeSpecifier>
   </propertyDeclarations>
-  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="mainSourceFile">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemSourceFile">
     <typeSpecifier>
       <definedType xsi:type="mscript:StringType"/>
     </typeSpecifier>
   </propertyDeclarations>
-  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="mainHeaderFile">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemHeaderFile">
     <typeSpecifier>
       <definedType xsi:type="mscript:StringType"/>
     </typeSpecifier>

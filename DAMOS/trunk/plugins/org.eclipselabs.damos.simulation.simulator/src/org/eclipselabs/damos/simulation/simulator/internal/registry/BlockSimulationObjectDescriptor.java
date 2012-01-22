@@ -15,8 +15,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 
 public class BlockSimulationObjectDescriptor {
 	
@@ -102,8 +102,8 @@ public class BlockSimulationObjectDescriptor {
 	}
 	
 	private void log(String msg) {
-		DMLPlugin.getPlugin().getLog().log(
-				new Status(IStatus.ERROR, DMLPlugin.PLUGIN_ID,
+		SimulatorPlugin.getDefault().getLog().log(
+				new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID,
 						"Failed to load class '"
 						+ className
 						+ "' in plug-in '"

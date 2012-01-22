@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.codegen.c.ui;
+package org.eclipselabs.damos.codegen.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -6,18 +6,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class CodegenCUIPlugin extends AbstractUIPlugin {
+public class CodegenUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.codegen.c.ui";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.codegen.ui";
 
 	// The shared instance
-	private static CodegenCUIPlugin plugin;
+	private static CodegenUIPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public CodegenCUIPlugin() {
+	public CodegenUIPlugin() {
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class CodegenCUIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static CodegenCUIPlugin getDefault() {
+	public static CodegenUIPlugin getDefault() {
 		return plugin;
 	}
 

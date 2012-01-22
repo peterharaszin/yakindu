@@ -19,8 +19,15 @@
 
    <requires>
       <import feature="org.eclipse.cdt" version="6.0.0" match="greaterOrEqual"/>
-      <import feature="org.eclipselabs.damos" version="0.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipselabs.damos" version="0.3.0" match="greaterOrEqual"/>
    </requires>
+
+   <plugin
+         id="org.eclipselabs.damos.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="org.eclipselabs.damos.codegen.c.generator"
@@ -30,7 +37,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.c.ui"
+         id="org.eclipselabs.damos.codegen.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

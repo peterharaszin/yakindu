@@ -25,5 +25,13 @@
             uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/DefaultGeneratorOption.xmi">
       </resource>
    </extension>
+   <extension
+         point="org.eclipselabs.damos.codegen.generators">
+      <generator
+            class="org.eclipselabs.damos.codegen.c.generator.Generator"
+            id="damos.codegen.c.DefaultGenerator"
+            name="Default Generator">
+      </generator>
+   </extension>
 
 </plugin>

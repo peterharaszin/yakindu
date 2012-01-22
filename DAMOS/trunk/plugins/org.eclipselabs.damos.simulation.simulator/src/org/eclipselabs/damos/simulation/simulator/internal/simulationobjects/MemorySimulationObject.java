@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 
 /**
  * @author Andreas Unger
@@ -46,7 +46,7 @@ public class MemorySimulationObject extends AbstractSimulationObject {
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		if (value == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
 		}
 		outputValue = value;
 	}

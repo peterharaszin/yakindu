@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 
 /**
  * @author Andreas Unger
@@ -41,7 +41,7 @@ public class JoinSimulationObject extends AbstractSimulationObject {
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		if (outputValue == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No Join input available"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No Join input available"));
 		}
 	}
 	

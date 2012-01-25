@@ -32,14 +32,19 @@ public class GenerateCodeHandler extends AbstractHandler {
 	private static final String MESSAGE_DIALOG_TITLE = "Code Generation";
 	private static final String ERROR_MESSAGE = "Code Generation failed";
 
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		final ISelection selection = HandlerUtil.getCurrentSelection(event);
+		if (!(selection instanceof IStructuredSelection)) {
+			return null;
+		}
+		
 		ProgressMonitorDialog d = new ProgressMonitorDialog(HandlerUtil.getActiveShell(event));
 		try {
 			d.run(true, true, new IRunnableWithProgress() {
 				
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
-						Configuration configuration = getConfiguration(event);
+						Configuration configuration = getConfiguration((IStructuredSelection) selection);
 						
 						if (configuration == null) {
 							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Selected object must contain configuration model"));
@@ -82,23 +87,19 @@ public class GenerateCodeHandler extends AbstractHandler {
 		return null;
 	}
 	
-	private Configuration getConfiguration(ExecutionEvent event) {
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			Object firstElement = structuredSelection.getFirstElement();
-			if (firstElement instanceof Configuration) {
-				return (Configuration) firstElement;
-			}
-			if (firstElement instanceof IFile) {
-				IFile file = (IFile) firstElement;
-				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-				ResourceSet resourceSet = new ResourceSetImpl();
-				Resource resource = resourceSet.getResource(uri, true);
-				for (EObject o : resource.getContents()) {
-					if (o instanceof Configuration) {
-						return (Configuration) o;
-					}
+	private Configuration getConfiguration(IStructuredSelection selection) {
+		Object firstElement = selection.getFirstElement();
+		if (firstElement instanceof Configuration) {
+			return (Configuration) firstElement;
+		}
+		if (firstElement instanceof IFile) {
+			IFile file = (IFile) firstElement;
+			URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			ResourceSet resourceSet = new ResourceSetImpl();
+			Resource resource = resourceSet.getResource(uri, true);
+			for (EObject o : resource.getContents()) {
+				if (o instanceof Configuration) {
+					return (Configuration) o;
 				}
 			}
 		}

@@ -39,7 +39,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 				
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
-						Configuration configuration = getGenModel(event);
+						Configuration configuration = getConfiguration(event);
 						
 						if (configuration == null) {
 							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Selected object must contain configuration model"));
@@ -82,7 +82,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 		return null;
 	}
 	
-	private Configuration getGenModel(ExecutionEvent event) {
+	private Configuration getConfiguration(ExecutionEvent event) {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;

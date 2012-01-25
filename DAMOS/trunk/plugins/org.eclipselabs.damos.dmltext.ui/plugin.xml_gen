@@ -71,19 +71,6 @@
         </page>
     </extension>
     <extension
-            point="org.eclipse.ui.propertyPages">
-        <page
-            class="org.eclipselabs.damos.dmltext.ui.DMLTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipselabs.damos.dmltext.DMLText"
-            name="DMLText">
-            <keywordReference id="org.eclipselabs.damos.dmltext.ui.keyword_DMLText"/>
-            <enabledWhen>
-	            <adapt type="org.eclipse.core.resources.IProject"/>
-			</enabledWhen>
-	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
-        </page>
-    </extension>
-    <extension
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipselabs.damos.dmltext.ui.keyword_DMLText"

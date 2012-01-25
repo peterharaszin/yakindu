@@ -3,16 +3,16 @@
 */
 package org.eclipselabs.damos.dmltext;
 
-import org.eclipse.xtext.junit4.GlobalRegistries;
-import org.eclipse.xtext.junit4.GlobalRegistries.GlobalStateMemento;
+import org.eclipse.xtext.junit.GlobalRegistries;
+import org.eclipse.xtext.junit.GlobalRegistries.GlobalStateMemento;
 import org.eclipse.xtext.junit4.IInjectorProvider;
 import org.eclipse.xtext.junit4.IRegistryConfigurator;
 
 import com.google.inject.Injector;
 
 public class DMLTextInjectorProvider implements IInjectorProvider, IRegistryConfigurator {
-	protected GlobalStateMemento globalStateMemento;
-	protected Injector injector;
+	private GlobalStateMemento globalStateMemento;
+	private Injector injector;
 
 	static {
 		GlobalRegistries.initializeDefaults();
@@ -31,8 +31,6 @@ public class DMLTextInjectorProvider implements IInjectorProvider, IRegistryConf
 
 	public void setupRegistry() {
 		globalStateMemento = GlobalRegistries.makeCopyOfGlobalState();
-		if (injector != null)
-			new DMLTextStandaloneSetup().register(injector);
 	}
 	
 }

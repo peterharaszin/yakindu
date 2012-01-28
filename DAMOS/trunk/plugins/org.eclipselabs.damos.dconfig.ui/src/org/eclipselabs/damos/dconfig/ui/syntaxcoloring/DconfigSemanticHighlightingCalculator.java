@@ -30,7 +30,7 @@ public class DconfigSemanticHighlightingCalculator extends MscriptSemanticHighli
 		if (eObject instanceof SelectionProperty) {
 			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, DconfigPackage.eINSTANCE.getSelectionProperty_Declaration());
 			for (INode node : nodes) {
-				acceptor.addPosition(node.getOffset(), node.getLength(), DconfigHighlightingConfiguration.PROPERTY_CLASS_ID);
+				acceptor.addPosition(node.getOffset(), node.getLength(), DconfigHighlightingConfiguration.SELECTION_PROPERTY_ID);
 			}
 		} else if (eObject instanceof RootSystemConfiguration) {
 			provideHighlightingForModelElement(eObject, DconfigPackage.eINSTANCE.getRootSystemConfiguration_ContextFragment(), acceptor);

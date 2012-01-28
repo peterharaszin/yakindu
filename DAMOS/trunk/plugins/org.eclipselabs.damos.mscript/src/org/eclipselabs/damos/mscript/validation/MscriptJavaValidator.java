@@ -152,7 +152,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 			IStatus status = new StaticFunctionEvaluator().evaluate(context, functionDeclaration);
 			
-			if (status.isOK()) {
+			if (status.getSeverity() < IStatus.ERROR) {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (DataTypeSpecifier dataTypeSpecifier : check.getOutputParameterTypes()) {
 					IValue value = context.getValue(outputParameterIt.next());

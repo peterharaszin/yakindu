@@ -12,16 +12,16 @@ import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptHighlightingConfig
  */
 public class DconfigHighlightingConfiguration extends MscriptHighlightingConfiguration {
 
-	public static final String PROPERTY_CLASS_ID = "propertyClass";
+	public static final String SELECTION_PROPERTY_ID = "selectionProperty";
 	public static final String MODEL_ELEMENT_ID = "modelElement";
 
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
-		acceptor.acceptDefaultHighlighting(PROPERTY_CLASS_ID, "Property Class", propertyClassTextStyle());
-		acceptor.acceptDefaultHighlighting(MODEL_ELEMENT_ID, "Model Element", modelElementTextStyle());
+		acceptor.acceptDefaultHighlighting(SELECTION_PROPERTY_ID, "Selection property", selectionPropertyTextStyle());
+		acceptor.acceptDefaultHighlighting(MODEL_ELEMENT_ID, "Model element", modelElementTextStyle());
 	}
 
-	public TextStyle propertyClassTextStyle() {
+	public TextStyle selectionPropertyTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(0x3a, 0x39, 0x35));
 		textStyle.setStyle(SWT.BOLD);

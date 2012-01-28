@@ -61,7 +61,7 @@ public class ConfigurationOperations {
 	}
 
 	public static Expression getPropertyValue(Configuration configuration, String propertyId) {
-		Property property = getProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
 		if (property instanceof SimpleProperty) {
 			return ((SimpleProperty) property).getValue();
 		}
@@ -77,7 +77,7 @@ public class ConfigurationOperations {
 	}
 
 	public static String getPropertySelectionName(Configuration configuration, String propertyId) {
-		Property property = getProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
 		if (property instanceof SelectionProperty) {
 			return ((SelectionProperty) property).getSelection().getQualifiedName();
 		}
@@ -100,10 +100,10 @@ public class ConfigurationOperations {
 		return null;
 	}
 
-	private static Property getProperty(Configuration configuration, String[] propertyIdentifierSegments) {
+	private static Property getConfigurationProperty(Configuration configuration, String[] propertyIdentifierSegments) {
 		Configuration c = configuration;
 		while (c != null) {
-			Property property = getProperty(c, propertyIdentifierSegments, 0);
+			Property property = getProperty(c, propertyIdentifierSegments);
 			if (property != null) {
 				return property;
 			}
@@ -124,7 +124,7 @@ public class ConfigurationOperations {
 			while (c != null) {
 				ComponentConfiguration componentConfiguration = getComponentConfiguration(c, path);
 				if (componentConfiguration != null && componentConfiguration.getBody() != null) {
-					Property property = getProperty(componentConfiguration.getBody(), propertyIdentifierSegments, 0);
+					Property property = getProperty(componentConfiguration.getBody(), propertyIdentifierSegments);
 					if (property != null) {
 						return property;
 					}
@@ -140,7 +140,7 @@ public class ConfigurationOperations {
 			while (c != null) {
 				FragmentConfiguration fragmentConfiguration = getFragmentConfiguration(c, path);
 				if (fragmentConfiguration != null && fragmentConfiguration.getBody() != null) {
-					Property property = getProperty(fragmentConfiguration.getBody(), propertyIdentifierSegments, 0);
+					Property property = getProperty(fragmentConfiguration.getBody(), propertyIdentifierSegments);
 					if (property != null) {
 						return property;
 					}
@@ -155,12 +155,9 @@ public class ConfigurationOperations {
 		
 		c = configuration;
 		while (c != null) {
-			SystemConfiguration systemConfiguration = getSystemConfiguration(c, path);
-			if (systemConfiguration != null && systemConfiguration.getBody() != null) {
-				Property property = getProperty(systemConfiguration.getBody(), propertyIdentifierSegments, 0);
-				if (property != null) {
-					return property;
-				}
+			Property property = getSystemConfigurationProperty(c, path, propertyIdentifierSegments);
+			if (property != null) {
+				return property;
 			}
 			c = c.getBaseConfiguration();
 			if (c == configuration) {
@@ -201,7 +198,17 @@ public class ConfigurationOperations {
 		return null;
 	}
 
+	private static Property getSystemConfigurationProperty(Configuration configuration, SystemPath path, String[] propertyIdentifierSegments) {
+		PropertiesSystemConfigurationVisitor visitor = new PropertiesSystemConfigurationVisitor(path, propertyIdentifierSegments);
+		getSystemConfiguration(configuration, path, visitor);
+		return visitor.property;
+	}
+
 	private static SystemConfiguration getSystemConfiguration(Configuration configuration, SystemPath path) {
+		return getSystemConfiguration(configuration, path, null);
+	}
+	
+	private static SystemConfiguration getSystemConfiguration(Configuration configuration, SystemPath path, ISystemConfigurationVisitor visitor) {
 		RootSystemConfiguration rootSystemConfiguration = configuration.getRootSystemConfiguration();
 		if (rootSystemConfiguration == null) {
 			return null;
@@ -226,34 +233,52 @@ public class ConfigurationOperations {
 		}
 		
 		SystemConfiguration systemConfiguration = rootSystemConfiguration;
+		
+		if (visitor != null) {
+			visitor.visit(systemConfiguration, contextFragment, pathContextFragment, !pathIt.hasNext());
+		}
 
-		while (pathIt.hasNext() && locked) {
+		while (pathIt.hasNext()) {
 			Subsystem pathSubsystem = pathIt.next();
+
+			contextFragment = getRealizingFragment(pathSubsystem, contextFragment);
+			if (contextFragment == null) {
+				return null;
+			}
 
 			pathContextFragment = getRealizingFragment(pathSubsystem, pathContextFragment);
 			if (pathContextFragment == null) {
 				return null;
 			}
 			
-			if (systemConfiguration.getBody() != null) {
-				for (SubsystemConfiguration subsystemConfiguration : systemConfiguration.getBody().getSubsystemConfigurations()) {
-					if (subsystemConfiguration.getSubsystem() == pathSubsystem) {
-						contextFragment = getRealizingFragment(subsystemConfiguration.getSubsystem(),contextFragment);
-						if (contextFragment == null) {
-							return null;
+			if (!DMLUtil.areFragmentsRelated(contextFragment, pathContextFragment)) {
+				return null;
+			}
+			
+			if (systemConfiguration != null) {
+				boolean found = false;
+				if (systemConfiguration.getBody() != null) {
+					for (SubsystemConfiguration subsystemConfiguration : systemConfiguration.getBody().getSubsystemConfigurations()) {
+						if (subsystemConfiguration.getSubsystem() == pathSubsystem) {
+							systemConfiguration = subsystemConfiguration;
+							found = true;
+							break;
 						}
-						break;
 					}
+				}
+				if (!found) {
+					if (visitor == null) {
+						return null;
+					}
+					systemConfiguration = null;
 				}
 			}
 			
-			locked = DMLUtil.areFragmentsRelated(contextFragment, pathContextFragment);
+			if (visitor != null) {
+				visitor.visit(systemConfiguration, contextFragment, pathContextFragment, !pathIt.hasNext());
+			}
 		}
 
-		if (!locked) {
-			return null;
-		}
-		
 		Component component = path.getComponent();
 		if (component != null && !DMLUtil.isSameOrChildFragment(contextFragment, component.getEnclosingFragment())) {
 			return null;
@@ -270,7 +295,8 @@ public class ConfigurationOperations {
 		return realization.getRealizingFragment();
 	}
 	
-	private static Property getProperty(PropertyContainer propertyContainer, String[] propertyIdentifierSegments, int index) {
+	private static Property getProperty(PropertyContainer propertyContainer, String[] propertyIdentifierSegments) {
+		int index = 0;
 		boolean found;
 		do {
 			found = false;
@@ -281,8 +307,9 @@ public class ConfigurationOperations {
 						return property;
 					}
 					if (property instanceof SelectionProperty) {
-						propertyContainer = ((SelectionProperty) property).getBody();
-						if (propertyContainer != null) {
+						SelectionProperty selectionProperty = (SelectionProperty) property;
+						if (selectionProperty.getBody() != null) {
+							propertyContainer = selectionProperty.getBody();
 							++index;
 							found = true;
 							break;
@@ -294,6 +321,48 @@ public class ConfigurationOperations {
 			}
 		} while (found);
 		return null;
+	}
+	
+	private static interface ISystemConfigurationVisitor {
+		
+		void visit(SystemConfiguration systemConfiguration, Fragment contextFragment, Fragment pathContextFragment, boolean last);
+		
+	}
+	
+	private static class PropertiesSystemConfigurationVisitor implements ISystemConfigurationVisitor {
+
+		private SystemPath systemPath;
+		private String[] propertyIdentifierSegments;
+		private Property property;
+		
+		/**
+		 * @param systemPath
+		 * @param propertyIdentifierSegments
+		 */
+		public PropertiesSystemConfigurationVisitor(SystemPath systemPath, String[] propertyIdentifierSegments) {
+			this.systemPath = systemPath;
+			this.propertyIdentifierSegments = propertyIdentifierSegments;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.dconfig.internal.operations.ConfigurationOperations.ISystemConfigurationVisitor#visit(org.eclipselabs.damos.dconfig.SystemConfiguration, org.eclipselabs.damos.dml.Fragment, org.eclipselabs.damos.dml.Fragment)
+		 */
+		public void visit(SystemConfiguration systemConfiguration, Fragment contextFragment,
+				Fragment pathContextFragment, boolean last) {
+			if (systemConfiguration != null && systemConfiguration.getBody() != null) {
+				Property property = getProperty(systemConfiguration.getBody(), propertyIdentifierSegments);
+				if (property != null && (last || property.isPropagate())) {
+					this.property = property;
+				}
+			}
+			if (last && this.property != null) {
+				Component component = systemPath.getComponent();
+				if (component != null && !DMLUtil.isSameOrChildFragment(contextFragment, component.getEnclosingFragment())) {
+					this.property = null;
+				}
+			}
+		}
+		
 	}
 
 }

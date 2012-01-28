@@ -33,9 +33,9 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(FUNCTION_ID, "Function", functionTextStyle());
 		acceptor.acceptDefaultHighlighting(ITERATION_ID, "Iteration", iterationTextStyle());
-		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in Symbol", builtinTextStyle());
+		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in symbol", builtinTextStyle());
 		acceptor.acceptDefaultHighlighting(UNIT_ID, "Unit", unitTextStyle());
-		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_ID, "Step Expression", stepExpressionTextStyle());
+		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_ID, "Step expression", stepExpressionTextStyle());
 	}
 
 	public TextStyle numberTextStyle() {

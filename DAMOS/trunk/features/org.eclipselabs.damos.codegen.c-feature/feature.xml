@@ -30,6 +30,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipselabs.damos.codegen.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipselabs.damos.codegen.c.generator"
          download-size="0"
          install-size="0"
@@ -37,7 +44,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.ui"
+         id="org.eclipselabs.damos.codegen.c.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

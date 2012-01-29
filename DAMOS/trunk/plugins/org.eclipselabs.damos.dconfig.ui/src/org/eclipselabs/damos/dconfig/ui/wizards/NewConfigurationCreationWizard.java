@@ -86,9 +86,10 @@ public abstract class NewConfigurationCreationWizard extends Wizard implements I
 				writeImports("", sb);
 				sb.append("\n");
 			}
-			if (!mainPage.getPackageName().equals(mainPage.getFragment().getPackageName())) {
+			String fragmentPackageName = mainPage.getFragment().getPackageName();
+			if (fragmentPackageName != null && fragmentPackageName.trim().length() > 0 && !mainPage.getPackageName().equals(fragmentPackageName)) {
 				sb.append("import ");
-				sb.append(mainPage.getFragment().getPackageName());
+				sb.append(fragmentPackageName);
 				sb.append(".");
 				sb.append(mainPage.getFragment().getName());
 				sb.append("\n\n");

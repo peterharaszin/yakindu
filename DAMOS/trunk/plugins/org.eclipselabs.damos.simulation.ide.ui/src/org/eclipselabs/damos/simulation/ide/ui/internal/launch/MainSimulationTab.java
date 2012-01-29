@@ -256,7 +256,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		label.setLayoutData(gridData);
 		
 		realTimeSimulationButton = new Button(composite, SWT.CHECK);
-		realTimeSimulationButton.setText("Simulate in real-time");
+		realTimeSimulationButton.setText("Perform real-time simulation");
 		gridData = new GridData(GridData.BEGINNING, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
 		realTimeSimulationButton.setLayoutData(gridData);

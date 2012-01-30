@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.execution.executionflow.internal.build;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,11 +70,40 @@ public class TimingContraintPropagationHelper {
 		
 		executionFlow.setAsynchronousZoneCount(asynchronousZone);
 
+		checkFailedComponentNodes(inheritingNodes);
+	}
+
+	/**
+	 * @param inheritingNodes
+	 * @throws CoreException
+	 */
+	private void checkFailedComponentNodes(List<ComponentNode> inheritingNodes) throws CoreException {
+		List<ComponentNode> failedComponentNodes = null;
 		for (ComponentNode inheritingNode : inheritingNodes) {
 			if (inheritingNode.getSampleTime() == INHERITED) {
-				throw new CoreException(new Status(
-						IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, "Resolving sample times failed", null));
+				if (failedComponentNodes == null) {
+					failedComponentNodes = new ArrayList<ComponentNode>();
+				}
+				failedComponentNodes.add(inheritingNode);
 			}
+		}
+		
+		if (failedComponentNodes != null) {
+			StringBuilder message = new StringBuilder("Resolving sample times failed for ");
+			boolean first = true;
+			for (ComponentNode node : failedComponentNodes) {
+				String name = node.getComponent().getName();
+				if (name != null) {
+					if (first) {
+						first = false;
+					} else {
+						message.append(", ");
+					}
+					message.append(name);
+				}
+			}
+			throw new CoreException(new Status(
+					IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, message.toString(), null));
 		}
 	}
 	

@@ -13,6 +13,16 @@
       </view>
    </extension>
    <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
+            class="org.eclipselabs.damos.simulation.ui.internal.wizards.NewSimulationConfigurationCreationWizard"
+            icon="icons/Simulation.gif"
+            id="org.eclipselabs.damos.simulation.ui.newSimulationConfigurationCreationWizard"
+            name="Simulation Configuration">
+      </wizard>
+   </extension>
+   <extension
          point="org.eclipselabs.damos.simulation.core.simulationListeners">
       <listener
             class="org.eclipselabs.damos.simulation.ui.internal.parts.SimulationListener">

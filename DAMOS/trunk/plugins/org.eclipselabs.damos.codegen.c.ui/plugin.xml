@@ -5,8 +5,8 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
-            class="rg.eclipselabs.damos.codegen.c.ui.wizards.NewCodegenConfigurationCreationWizard"
-            icon="icons/full/obj16/settings_obj.gif"
+            class="org.eclipselabs.damos.codegen.c.ui.internal.wizards.NewCodegenConfigurationCreationWizard"
+            icon="icons/MscriptCodegen.png"
             id="org.eclipselabs.damos.codegen.c.ui.newCodegenConfigurationCreationWizard"
             name="C Code Generator Configuration">
       </wizard>

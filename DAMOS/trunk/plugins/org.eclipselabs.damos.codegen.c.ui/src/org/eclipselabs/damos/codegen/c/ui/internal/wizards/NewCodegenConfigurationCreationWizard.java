@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package rg.eclipselabs.damos.codegen.c.ui.wizards;
+package org.eclipselabs.damos.codegen.c.ui.internal.wizards;
 
 import java.io.IOException;
 import java.util.Collection;

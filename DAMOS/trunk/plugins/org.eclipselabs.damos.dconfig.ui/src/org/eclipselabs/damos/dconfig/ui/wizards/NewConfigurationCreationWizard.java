@@ -104,7 +104,7 @@ public abstract class NewConfigurationCreationWizard extends Wizard implements I
 			sb.append("\tsystem ");
 			sb.append(mainPage.getFragment().getName());
 			if (contributesSystemProperties()) {
-				sb.append(" {\n\n");
+				sb.append(" {\n");
 				writeSystemProperties("\t\t", sb);
 				sb.append("\t}\n");
 			} else {

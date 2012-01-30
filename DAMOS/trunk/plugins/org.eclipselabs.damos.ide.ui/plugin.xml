@@ -14,7 +14,7 @@
             contributorClass="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockDiagramActionBarContributor"
             default="true"
             extensions="blockdiagram"
-            icon="icons/blockdiagram.gif"
+            icon="icons/BlockDiagram.png"
             id="org.eclipselabs.damos.ide.ui.blockDiagramEditor"
             matchingStrategy="org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditorMatchingStrategy"
             name="Block Diagram Editor">
@@ -57,22 +57,15 @@
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
             class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.wizards.BlockDiagramEditorCreationWizard"
-            icon="icons/blockdiagram.gif"
+            icon="icons/BlockDiagram.png"
             id="org.eclipselabs.damos.ide.ui.blockDiagramWizard"
             name="Block Diagram">
-      </wizard>
-      <wizard
-            category="org.eclipselabs.damos.ide.ui.damosCategory"
-            class="org.eclipselabs.damos.ide.ui.wizards.NewBlockTypeWizard"
-            icon="icons/full/obj16/BlockTypeFile.gif"
-            id="org.eclipselabs.damos.ide.ui.newBlockTypeWizard"
-            name="Block Type">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.ide.projectNatureImages">
       <image
-            icon="icons/DamosProjectNature.gif"
+            icon="icons/DamosProjectNature.png"
             id="org.eclipselabs.damos.ide.ui.damosNatureImage"
             natureId="org.eclipselabs.damos.ide.core.damosNature">
       </image>

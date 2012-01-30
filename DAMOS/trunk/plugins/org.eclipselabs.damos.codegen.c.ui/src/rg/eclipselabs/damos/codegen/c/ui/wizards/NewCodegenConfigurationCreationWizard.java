@@ -12,11 +12,19 @@
 package rg.eclipselabs.damos.codegen.c.ui.wizards;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 import org.eclipselabs.damos.dconfig.ui.wizards.NewConfigurationCreationWizard;
 import org.eclipselabs.damos.dconfig.ui.wizards.WizardNewConfigurationCreationPage;
+import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemRealization;
 
 /**
  * @author Andreas Unger
@@ -71,8 +79,110 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 			appendable.append("\"\n");
 		}
 
+		String fragmentName = getMainPage().getFragment().getName();
+		if (fragmentName != null && fragmentName.trim().length() > 0) {
+			appendable.append(indent);
+			appendable.append("\tsystemSourceFile = \"");
+			appendable.append(fragmentName.trim());
+			appendable.append(".c\"\n");
+		}
+
 		appendable.append(indent);
 		appendable.append("}\n");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dconfig.ui.wizards.NewConfigurationCreationWizard#contributesSystemProperties()
+	 */
+	@Override
+	protected boolean contributesSystemProperties() {
+		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dconfig.ui.wizards.NewConfigurationCreationWizard#writeSystemProperties(java.lang.String, java.lang.Appendable)
+	 */
+	@Override
+	protected void writeSystemProperties(String indent, Appendable appendable) throws IOException {
+		Set<String> prefixes = new HashSet<String>();
+
+		Fragment fragment = getMainPage().getFragment();
+		
+		String fragmentName = fragment.getName();
+		if (fragmentName != null && fragmentName.trim().length() > 0) {
+			String prefix = createPrefix(fragmentName, prefixes);
+			writePrefixProperty(indent, prefix, appendable);
+		}
+		
+		writeSubsystemProperties(indent, fragment, prefixes, appendable);
+
+		appendable.append(indent);
+		appendable.append("//propagate computation {\n");
+		appendable.append(indent);
+		appendable.append("//\tmap real() to float64\n");
+		appendable.append(indent);
+		appendable.append("//\tmap int() to int32\n");
+		appendable.append(indent);
+		appendable.append("//}\n");
+	}
+
+	/**
+	 * @param indent
+	 * @param fragment
+	 * @param prefixes
+	 * @param appendable
+	 * @throws IOException
+	 */
+	private void writeSubsystemProperties(String indent, Fragment fragment, Set<String> prefixes, Appendable appendable) throws IOException {
+		Collection<Subsystem> subsystems = EcoreUtil.getObjectsByType(fragment.getAllComponents(), DMLPackage.eINSTANCE.getSubsystem());
+		for (Subsystem subsystem : subsystems) {
+			writeSubsystemProperties(indent, fragment, subsystem, prefixes, appendable);
+		}
+	}
+
+	private void writeSubsystemProperties(String indent, Fragment contextFragment, Subsystem subsystem, Set<String> prefixes, Appendable appendable) throws IOException {
+		String subindent = indent + "\t";
+		
+		appendable.append(indent);
+		appendable.append("subsystem ");
+		appendable.append(subsystem.getName());
+		appendable.append(" {\n");
+		
+		String prefix = createPrefix(subsystem.getName(), prefixes);
+		writePrefixProperty(subindent, prefix, appendable);
+
+		SubsystemRealization realization = subsystem.getRealization(contextFragment);
+		if (realization != null) {
+			Fragment realizingFragment = realization.getRealizingFragment();
+			if (realizingFragment != null) {
+				writeSubsystemProperties(subindent, realizingFragment, prefixes, appendable);
+			}
+		}
+
+		appendable.append(indent);
+		appendable.append("}\n");
+	}
+
+	/**
+	 * @param indent
+	 * @param prefix
+	 * @param appendable
+	 * @throws IOException
+	 */
+	private void writePrefixProperty(String indent, String prefix, Appendable appendable) throws IOException {
+		appendable.append(indent);
+		appendable.append("prefix = \"");
+		appendable.append(prefix);
+		appendable.append("_\"\n");
+	}
+	
+	private String createPrefix(String preferredPrefix, Set<String> prefixes) {
+		String prefix = preferredPrefix;
+		int i = 2;
+		while (!prefixes.add(prefix)) {
+			prefix = preferredPrefix + i++;
+		}
+		return prefix;
 	}
 	
 }

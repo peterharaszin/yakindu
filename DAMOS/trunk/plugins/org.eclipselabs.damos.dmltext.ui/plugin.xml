@@ -6,18 +6,20 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipselabs.damos.dmltext.ui.BlockTypeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="blocktype"
-            id="org.eclipselabs.damos.dmltext.blockType"
-            name="Block Type Editor">
+              class="org.eclipselabs.damos.dmltext.ui.BlockTypeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="true"
+              extensions="blocktype"
+              icon="icons/BlockType.png"
+              id="org.eclipselabs.damos.dmltext.blockType"
+              name="Block Type Editor">
         </editor>
         <editor
               class="org.eclipselabs.damos.dmltext.ui.SystemInterfaceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
               contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
               default="true"
               extensions="systeminterface"
+              icon="icons/SystemInterface.png"
               id="org.eclipselabs.damos.dmltext.systemInterface"
               name="System Interface Editor">
         </editor>
@@ -199,6 +201,16 @@
       <markerResolutionGenerator
             class="org.eclipselabs.damos.dmltext.ui.DMLTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
+            class="org.eclipselabs.damos.dmltext.ui.internal.wizards.NewBlockTypeWizard"
+            icon="icons/BlockType.png"
+            id="org.eclipselabs.damos.dmltext.ui.newBlockTypeWizard"
+            name="Block Type">
+      </wizard>
    </extension>
 
 

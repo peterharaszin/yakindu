@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.ide.ui.wizards;
+package org.eclipselabs.damos.dmltext.ui.internal.wizards;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;

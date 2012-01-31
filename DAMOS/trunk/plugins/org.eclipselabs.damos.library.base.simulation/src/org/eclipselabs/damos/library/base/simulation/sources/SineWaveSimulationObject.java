@@ -19,7 +19,6 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
@@ -44,6 +43,8 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	
 	private IValue outputValue;
 	
+	private double minimalStepSize;
+	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		defaultComputationContext = new ComputationContext();
@@ -55,6 +56,8 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 		bias = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__BIAS);
 		frequency = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__FREQUENCY).doubleValue();
 		phase = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__PHASE).doubleValue();
+		
+		minimalStepSize = 0.01 / frequency;
 	}
 
 	@Override
@@ -64,9 +67,18 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
-		INumericValue sineValue = Values.valueOf(defaultComputationContext, sineDataType,
+		System.out.println(t);
+		ISimpleNumericValue sineValue = Values.valueOf(defaultComputationContext, sineDataType,
 				Math.sin(2 * Math.PI * frequency * t + Math.toRadians(phase)));
 		outputValue = Values.transform(getComputationContext(), amplitude.multiply(sineValue).add(bias));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#computeZeroCrossingTime(double)
+	 */
+	@Override
+	public double computeZeroCrossingTime(double t) {
+		return t + minimalStepSize;
 	}
 	
 }

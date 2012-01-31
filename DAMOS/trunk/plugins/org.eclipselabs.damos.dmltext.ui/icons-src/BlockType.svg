@@ -56,7 +56,8 @@
        y1="3.5"
        x2="7.5"
        y2="11.5"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,1)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -97,7 +98,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -111,14 +112,14 @@
        width="9"
        height="8"
        x="3.5"
-       y="3.5" />
+       y="4.5" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#b30077;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 0.5,5.5 L 2.5,7.5 L 0.5,9.5 L 0.5,9.5 L 0.5,9.5"
+       style="fill:none;stroke:#b30077;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 0.5,6.5 2,2 -2,2 0,0 0,0"
        id="path3733" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#b30077;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 13.5,5.5 L 15.5,7.5 L 13.5,9.5 L 13.5,9.5 L 13.5,9.5"
+       style="fill:none;stroke:#b30077;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 13.5,6.5 2,2 -2,2 0,0 0,0"
        id="path3735" />
   </g>
 </svg>

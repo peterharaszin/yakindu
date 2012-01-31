@@ -67,7 +67,6 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
-		System.out.println(t);
 		ISimpleNumericValue sineValue = Values.valueOf(defaultComputationContext, sineDataType,
 				Math.sin(2 * Math.PI * frequency * t + Math.toRadians(phase)));
 		outputValue = Values.transform(getComputationContext(), amplitude.multiply(sineValue).add(bias));

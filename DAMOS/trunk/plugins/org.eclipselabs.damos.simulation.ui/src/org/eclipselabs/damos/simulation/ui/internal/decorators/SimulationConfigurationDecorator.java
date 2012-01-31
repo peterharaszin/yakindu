@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dconfig.ui.internal.decorators;
+package org.eclipselabs.damos.simulation.ui.internal.decorators;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +37,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator;
+import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -66,7 +67,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 							fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
 						}
 					} catch (CoreException e) {
-						DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, DconfigUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));
+						DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, SimulationUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));
 					}
 				}
 	
@@ -91,7 +92,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		
 		Configuration configuration = (Configuration) EcoreUtil.getObjectByType(resource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
 		if (configuration != null && configuration.getPropertySelectionName(SOLVER_PROPERTY_NAME) != null) {
-			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(DconfigUIPlugin.PLUGIN_ID, SIMULATION_OVERLAY_IMAGE));
+			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(SimulationUIPlugin.PLUGIN_ID, SIMULATION_OVERLAY_IMAGE));
 		}
 	}
 	

@@ -193,23 +193,5 @@
             class="org.eclipselabs.damos.dconfig.ui.DconfigExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
-   <extension
-         point="org.eclipse.ui.decorators">
-      <decorator
-            adaptable="true"
-            class="org.eclipselabs.damos.dconfig.ui.internal.decorators.SimulationConfigurationDecorator"
-            id="org.eclipselabs.damos.dconfig.ui.simulationConfigurationDecorator"
-            label="Simulation Configuration"
-            lightweight="true"
-            location="TOP_RIGHT"
-            state="true">
-         <enablement>
-            <objectClass
-                  name="org.eclipse.core.resources.IFile">
-            </objectClass>
-         </enablement>
-      </decorator>
-   </extension>
-
 
 </plugin>

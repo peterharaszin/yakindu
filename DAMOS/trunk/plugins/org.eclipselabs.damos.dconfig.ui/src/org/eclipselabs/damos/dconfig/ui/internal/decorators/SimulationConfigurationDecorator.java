@@ -11,11 +11,19 @@
 
 package org.eclipselabs.damos.dconfig.ui.internal.decorators;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -28,6 +36,7 @@ import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
+import org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator;
 
 /**
  * @author Andreas Unger
@@ -35,8 +44,9 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
  */
 public class SimulationConfigurationDecorator extends BaseLabelProvider implements ILightweightLabelDecorator {
 
-	private static final String PLUGIN_ID = "org.eclipselabs.damos.dconfig.ui";
+	private static final String DCONFIG_FILE_EXTENSION = "dconfig";
 	private static final String SOLVER_PROPERTY_NAME = "damos.simulation.solver";
+	private static final String SIMULATION_OVERLAY_IMAGE = "icons/SimulationOverlay.png";
 	
 	private IResourceChangeListener resourceChangeListener;
 
@@ -48,7 +58,16 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 			resourceChangeListener = new IResourceChangeListener() {
 	
 				public void resourceChanged(IResourceChangeEvent event) {
-					fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this));
+					try {
+						ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+						event.getDelta().accept(visitor);
+						IFile[] files = visitor.getFiles();
+						if (files != null) {
+							fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
+						}
+					} catch (CoreException e) {
+						DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, DconfigUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));
+					}
 				}
 	
 			};
@@ -62,7 +81,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		if (file == null && element instanceof IAdaptable) {
 			file = (IFile) ((IAdaptable) element).getAdapter(IFile.class);
 		}
-		if (file == null || !"dconfig".equals(file.getFileExtension())) {
+		if (file == null || !DCONFIG_FILE_EXTENSION.equals(file.getFileExtension())) {
 			return;
 		}
 		
@@ -72,7 +91,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		
 		Configuration configuration = (Configuration) EcoreUtil.getObjectByType(resource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
 		if (configuration != null && configuration.getPropertySelectionName(SOLVER_PROPERTY_NAME) != null) {
-			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, "icons/SimulationOverlay.png"));
+			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(DconfigUIPlugin.PLUGIN_ID, SIMULATION_OVERLAY_IMAGE));
 		}
 	}
 	
@@ -85,6 +104,36 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 			ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 		}
 		super.dispose();
+	}
+	
+	private static class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+
+		private List<IFile> files;
+		
+		/* (non-Javadoc)
+		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse.core.resources.IResourceDelta)
+		 */
+		public boolean visit(IResourceDelta delta) throws CoreException {
+			if (delta.getResource() instanceof IFile) {
+				IFile file = (IFile) delta.getResource();
+				if (DCONFIG_FILE_EXTENSION.equals(file.getFileExtension())) {
+					if (files == null) {
+						files = new ArrayList<IFile>();
+					}
+					files.add(file);
+				}
+				return false;
+			}
+			return true;
+		}
+		
+		/**
+		 * @return the files
+		 */
+		public IFile[] getFiles() {
+			return files != null ? files.toArray(new IFile[files.size()]) : null;
+		}
+		
 	}
 
 }

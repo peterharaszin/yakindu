@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dconfig.ui.wizards;
+package org.eclipselabs.damos.dmltext.ui.internal.wizards;
 
 import java.util.regex.Pattern;
 
@@ -25,10 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -42,9 +39,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
-import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
-import org.eclipselabs.damos.common.ui.viewers.FragmentLabelProvider;
-import org.eclipselabs.damos.common.ui.viewers.FragmentListContentProvider;
+import org.eclipse.xtext.util.Strings;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 
@@ -52,35 +47,36 @@ import org.eclipselabs.damos.dml.Fragment;
  * @author Andreas Unger
  *
  */
-public class WizardNewConfigurationCreationPage extends WizardPage {
+public class WizardNewDMLTextCreationPage extends WizardPage {
 	
-	private static final String DCONFIG_FILE_EXTENSION = "dconfig";
 	private static final String BLOCK_DIAGRAM_FILE_EXTENSION = "blockdiagram";
 	
 	private static final Pattern PACKAGE_NAME_PATTERN = Pattern.compile("\\A([a-zA-Z]\\w*)(\\.[a-zA-Z]\\w*)*\\z");
-	private static final Pattern CONFIGURATION_NAME_PATTERN = Pattern.compile("\\A[a-zA-Z]\\w*\\z");
+	private static final Pattern MODEL_NAME_PATTERN = Pattern.compile("\\A[a-zA-Z]\\w*\\z");
 
 	private IStructuredSelection selection;
 	
-	private String configurationNamePrefix = "";
+	private String fileExtension;
+	private String modelKind;
+	private String initialModelName;
 	
 	private Text parentFolderText;
 	private Text packageNameText;
-	private Text configurationNameText;
-	private Text blockDiagramPathText;
-	private ComboViewer fragmentViewer;
+	private Text modelNameText;
 
-	public WizardNewConfigurationCreationPage(String pageName, String title, ImageDescriptor titleImage, IStructuredSelection selection) {
+	public WizardNewDMLTextCreationPage(String pageName, String title, ImageDescriptor titleImage, String modelKind, String fileExtension, IStructuredSelection selection) {
 		super(pageName, title, titleImage);
+		this.modelKind = modelKind;
+		this.fileExtension = fileExtension;
 		this.selection = selection;
 		setPageComplete(false);
 	}
 	
 	/**
-	 * @param configurationNamePrefix the configurationNamePrefix to set
+	 * @param initialModelName the initialModelName to set
 	 */
-	public void setConfigurationNamePrefix(String configurationNamePrefix) {
-		this.configurationNamePrefix = configurationNamePrefix;
+	public void setInitialModelName(String initialModelName) {
+		this.initialModelName = initialModelName;
 	}
 	
 	/**
@@ -94,8 +90,8 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		return null;
 	}
 	
-	public IFile getConfigurationFile() {
-		return getParentFolder().getFile(new Path(getConfigurationName() + "." + DCONFIG_FILE_EXTENSION));
+	public IFile getModelFile() {
+		return getParentFolder().getFile(new Path(getModelName() + "." + fileExtension));
 	}
 	
 	/**
@@ -105,14 +101,10 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		return packageNameText.getText();
 	}
 	
-	public String getConfigurationName() {
-		return configurationNameText.getText();
+	public String getModelName() {
+		return modelNameText.getText();
 	}
 	
-	public Fragment getFragment() {
-		return (Fragment) ((IStructuredSelection) fragmentViewer.getSelection()).getFirstElement();
-	}
-
 	/* (non-Javadoc)
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
@@ -186,71 +178,23 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		label = new Label(topLevel, SWT.NONE);
 		label.setText("Name:");
 
-		configurationNameText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
-		configurationNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+		modelNameText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
+		modelNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
 		
-		if (fragment != null && fragment.getName() != null) {
-			String configurationName = createDefaultConfigurationName(fragment.getName().trim());
+		if (initialModelName != null) {
+			modelNameText.setText(initialModelName);
+		} else if (fragment != null && fragment.getName() != null) {
+			String modelName = fragment.getName().trim();
 			IContainer parentFolder = getParentFolder();
 			if (parentFolder != null) {
-				configurationName = findAvailableConfigurationName(parentFolder, configurationName);
+				modelName = findAvailableModelName(parentFolder, modelName);
 			}
-			configurationNameText.setText(configurationName);
+			modelNameText.setText(modelName);
 		}
 		
-		configurationNameText.addModifyListener(new ModifyListener() {
+		modelNameText.addModifyListener(new ModifyListener() {
 			
 			public void modifyText(ModifyEvent event) {
-				validatePage();
-			}
-			
-		});
-
-		new Label(topLevel, SWT.NONE);
-
-		label = new Label(topLevel, SWT.NONE);
-		label.setText("Block diagram:");
-
-		blockDiagramPathText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
-		blockDiagramPathText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
-		
-		IFile blockDiagramFile = getSelectedBlockDiagramFile();
-		if (blockDiagramFile != null) {
-			blockDiagramPathText.setText(blockDiagramFile.getFullPath().makeRelative().toString());
-		}
-
-		blockDiagramPathText.addModifyListener(new ModifyListener() {
-			
-			public void modifyText(ModifyEvent event) {
-				updateBlockDiagramPath();
-			}
-			
-		});
-		
-		Button browseBlockDiagramButton = new Button(topLevel, SWT.PUSH);
-		browseBlockDiagramButton.setText("Browse...");
-		browseBlockDiagramButton.addSelectionListener(new SelectionAdapter() {
-			
-			public void widgetSelected(SelectionEvent e) {
-				browseBlockDiagram();
-			}
-			
-		});
-
-		label = new Label(topLevel, SWT.NONE);
-		label.setText("Fragment:");
-
-		fragmentViewer = new ComboViewer(topLevel, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
-		fragmentViewer.getCombo().setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
-		fragmentViewer.setLabelProvider(new FragmentLabelProvider());
-		fragmentViewer.setContentProvider(new FragmentListContentProvider());
-		if (fragment != null) {
-			fragmentViewer.setInput(fragment.eResource().getResourceSet());
-			fragmentViewer.getCombo().select(0);
-		}
-		fragmentViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			
-			public void selectionChanged(SelectionChangedEvent event) {
 				validatePage();
 			}
 			
@@ -265,22 +209,13 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		setControl(topLevel);
 	}
 
-	/**
-	 * @param parentFolder
-	 * @param configurationName
-	 * @return
-	 */
-	private String findAvailableConfigurationName(IContainer parentFolder, String configurationName) {
-		String name = configurationName;
+	private String findAvailableModelName(IContainer parentFolder, String modelName) {
+		String name = modelName;
 		int i = 2;
-		while (configurationExists(parentFolder, name)) {
-			name = configurationName + i++;
+		while (modelExists(parentFolder, name)) {
+			name = modelName + i++;
 		}
 		return name;
-	}
-
-	private String createDefaultConfigurationName(String name) {
-		return configurationNamePrefix + name;
 	}
 
 	private boolean validatePage() {
@@ -291,22 +226,16 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 			errorMessage = "No parent folder specified";
 		} else if (packageNameText.getText().trim().length() == 0) {
 			errorMessage = "No package specified";
-		} else if (configurationNameText.getText().trim().length() == 0) {
+		} else if (modelNameText.getText().trim().length() == 0) {
 			errorMessage = "No name specified";
-		} else if (blockDiagramPathText.getText().trim().length() == 0) {
-			errorMessage = "No block diagram specified";
 		} else if (parentFolder == null) {
 			errorMessage = "Invalid parent folder";
 		} else if (!PACKAGE_NAME_PATTERN.matcher(packageNameText.getText()).matches()) {
 			errorMessage = "Invalid package name";
-		} else if (!CONFIGURATION_NAME_PATTERN.matcher(configurationNameText.getText()).matches()) {
+		} else if (!MODEL_NAME_PATTERN.matcher(modelNameText.getText()).matches()) {
 			errorMessage = "Invalid name";
-		} else if (configurationExists(parentFolder, configurationNameText.getText())) {
-			errorMessage = "Configuration already exists";
-		} else if (fragmentViewer.getCombo().getItemCount() == 0) {
-			errorMessage = "Invalid block diagram";
-		} else if (fragmentViewer.getSelection().isEmpty()) {
-			errorMessage = "No fragment selected";
+		} else if (modelExists(parentFolder, modelNameText.getText())) {
+			errorMessage = Strings.toFirstUpper(modelKind) + " already exists";
 		}
 
 		setErrorMessage(errorMessage);
@@ -319,8 +248,8 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		return valid;
 	}
 	
-	private boolean configurationExists(IContainer parentFolder, String configurationName) {
-		return parentFolder.findMember(configurationName + "." + DCONFIG_FILE_EXTENSION) != null;
+	private boolean modelExists(IContainer parentFolder, String modelName) {
+		return parentFolder.findMember(modelName + "." + fileExtension) != null;
 	}
 	
 	private IContainer getSelectedContainer() {
@@ -343,7 +272,7 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		return null;
 	}
 
-	private Fragment getSelectedFragment() {
+	public Fragment getSelectedFragment() {
 		IFile file = getSelectedBlockDiagramFile();
 		if (file != null) {
 			URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
@@ -389,31 +318,4 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		}
 	}
 
-	private void updateBlockDiagramPath() {
-		try {
-			ResourceSet rs = new ResourceSetImpl();
-			URI uri = URI.createPlatformResourceURI(blockDiagramPathText.getText(), false);
-			rs.getResource(uri, true);
-			fragmentViewer.setInput(rs);
-			fragmentViewer.getCombo().select(0);
-		} catch (Exception e) {
-			fragmentViewer.setInput(null);
-		}
-		validatePage();
-	}
-
-	private void browseBlockDiagram() {
-		FilteredResourcesSelectionDialog d = new FilteredResourcesSelectionDialog(
-				getShell(),
-				false,
-				ResourcesPlugin.getWorkspace().getRoot(),
-				IResource.FILE);
-		d.setInitialPattern("*." + BLOCK_DIAGRAM_FILE_EXTENSION);
-		d.open();
-		Object firstResult = d.getFirstResult();
-		if (firstResult instanceof IFile) {
-			blockDiagramPathText.setText(((IFile) firstResult).getFullPath().makeRelative().toString());
-		}
-	}
-	
 }

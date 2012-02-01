@@ -51,7 +51,7 @@ import com.google.common.collect.Iterables;
  */
 public class DconfigScopeProvider extends MscriptScopeProvider {
 	
-	public IScope scope_Configuration_extendedConfiguration(Configuration context, EReference reference) {
+	public IScope scope_Configuration_baseConfiguration(Configuration context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
 				DconfigPackage.eINSTANCE.getConfiguration()));
 	}

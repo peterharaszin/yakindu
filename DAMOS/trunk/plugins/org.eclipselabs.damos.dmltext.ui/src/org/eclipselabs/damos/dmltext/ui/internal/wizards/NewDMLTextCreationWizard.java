@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dconfig.ui.wizards;
+package org.eclipselabs.damos.dmltext.ui.internal.wizards;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,16 +28,15 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
-import org.eclipselabs.damos.dconfig.ui.wizards.WizardNewConfigurationCreationPage;
 
 /**
  * @author Andreas Unger
  *
  */
-public abstract class NewConfigurationCreationWizard extends Wizard implements INewWizard {
+public abstract class NewDMLTextCreationWizard extends Wizard implements INewWizard {
 
 	private IStructuredSelection selection;
-	private WizardNewConfigurationCreationPage mainPage;
+	private WizardNewDMLTextCreationPage mainPage;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
@@ -50,19 +49,19 @@ public abstract class NewConfigurationCreationWizard extends Wizard implements I
 		return selection;
 	}
 
-	protected abstract WizardNewConfigurationCreationPage createMainPage();
+	protected abstract WizardNewDMLTextCreationPage createMainPage();
 
 	/**
 	 * @return the mainPage
 	 */
-	protected WizardNewConfigurationCreationPage getMainPage() {
+	protected WizardNewDMLTextCreationPage getMainPage() {
 		return mainPage;
 	}
 
 	/**
 	 * @param mainPage the mainPage to set
 	 */
-	protected void setMainPage(WizardNewConfigurationCreationPage mainPage) {
+	protected void setMainPage(WizardNewDMLTextCreationPage mainPage) {
 		this.mainPage = mainPage;
 	}
 
@@ -90,38 +89,14 @@ public abstract class NewConfigurationCreationWizard extends Wizard implements I
 				writeImports("", sb);
 				sb.append("\n");
 			}
-			String fragmentPackageName = mainPage.getFragment().getPackageName();
-			if (fragmentPackageName != null && fragmentPackageName.trim().length() > 0 && !mainPage.getPackageName().equals(fragmentPackageName)) {
-				sb.append("import ");
-				sb.append(fragmentPackageName);
-				sb.append(".");
-				sb.append(mainPage.getFragment().getName());
-				sb.append("\n\n");
-			}
-			sb.append("configuration ");
-			sb.append(mainPage.getConfigurationName());
-			sb.append(" {\n\n");
-			if (contributesGlobalProperties()) {
-				writeGlobalProperties("\t", sb);
-				sb.append("\n");
-			}
-			sb.append("\tsystem ");
-			sb.append(mainPage.getFragment().getName());
-			if (contributesSystemProperties()) {
-				sb.append(" {\n");
-				writeSystemProperties("\t\t", sb);
-				sb.append("\t}\n");
-			} else {
-				sb.append("\n");
-			}
-			sb.append("\n}\n");
+			writeBody(sb);
 		} catch (IOException e) {
 			MessageDialog.openError(getShell(), getWindowTitle(), e.getMessage());
 			return false;
 		}
 		
 		IProgressMonitor monitor = new NullProgressMonitor();
-		IFile file = mainPage.getConfigurationFile();
+		IFile file = mainPage.getModelFile();
 		try {
 			file.create(new ByteArrayInputStream(sb.toString().getBytes(file.getCharset())), true, monitor);
 		} catch (CoreException e) {
@@ -148,18 +123,7 @@ public abstract class NewConfigurationCreationWizard extends Wizard implements I
 	protected void writeImports(String indent, Appendable appendable) throws IOException {
 	}
 
-	protected boolean contributesGlobalProperties() {
-		return false;
-	}
-
-	protected void writeGlobalProperties(String indent, Appendable appendable) throws IOException {
-	}
-	
-	protected boolean contributesSystemProperties() {
-		return false;
-	}
-
-	protected void writeSystemProperties(String indent, Appendable appendable) throws IOException {
+	protected void writeBody(Appendable appendable) throws IOException {
 	}
 
 }

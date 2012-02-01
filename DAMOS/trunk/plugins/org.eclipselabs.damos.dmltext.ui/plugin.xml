@@ -206,10 +206,17 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
-            class="org.eclipselabs.damos.dmltext.ui.internal.wizards.NewBlockTypeWizard"
+            class="org.eclipselabs.damos.dmltext.ui.internal.wizards.NewBlockTypeCreationWizard"
             icon="icons/BlockType.png"
             id="org.eclipselabs.damos.dmltext.ui.newBlockTypeWizard"
             name="Block Type">
+      </wizard>
+      <wizard
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
+            class="org.eclipselabs.damos.dmltext.ui.internal.wizards.NewSystemInterfaceCreationWizard"
+            icon="icons/SystemInterface.png"
+            id="org.eclipselabs.damos.dmltext.ui.newSystemInterfaceWizard"
+            name="System Interface">
       </wizard>
    </extension>
 

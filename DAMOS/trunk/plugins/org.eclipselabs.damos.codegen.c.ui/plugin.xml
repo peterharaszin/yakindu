@@ -6,7 +6,7 @@
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
             class="org.eclipselabs.damos.codegen.c.ui.internal.wizards.NewCodegenConfigurationCreationWizard"
-            icon="icons/MscriptCodegen.png"
+            icon="icons/NewCodegenConfiguration.png"
             id="org.eclipselabs.damos.codegen.c.ui.newCodegenConfigurationCreationWizard"
             name="C Code Generator Configuration">
       </wizard>

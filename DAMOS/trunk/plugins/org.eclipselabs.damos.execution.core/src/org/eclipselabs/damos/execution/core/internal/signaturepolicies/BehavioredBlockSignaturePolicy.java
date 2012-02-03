@@ -142,7 +142,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		@Override
-		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
+		protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
@@ -155,7 +155,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
-			return super.getGlobalTemplateArgument(name);
+			return super.getGlobalTemplateArgumentValue(name);
 		}
 		
 	}

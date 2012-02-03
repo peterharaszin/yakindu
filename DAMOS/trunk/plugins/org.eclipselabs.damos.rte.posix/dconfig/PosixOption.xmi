@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dconfig:SelectionPropertyOption xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" qualifiedName="damos.rte.runtimes.Posix">
+  <target href="../../org.eclipselabs.damos.rte/dconfig/RTE.xmi#//@members.0"/>
+</dconfig:SelectionPropertyOption>

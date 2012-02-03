@@ -5,7 +5,7 @@
          point="org.eclipselabs.damos.codegen.c.generator.runtimeEnvironmentAPIs">
       <runtimeEnvironmentAPI
             class="org.eclipselabs.damos.rte.posix.codegen.c.RuntimeEnvironmentAPI"
-            runtimeEnvironment="org.eclipselabs.damos.rte.posix">
+            runtimeEnvironment="damos.rte.runtimes.Posix">
       </runtimeEnvironmentAPI>
    </extension>
 

@@ -8,5 +8,11 @@
             name="POSIX">
       </runtimeEnvironment>
    </extension>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.rte.posix/dconfig/PosixOption.xmi">
+      </resource>
+   </extension>
 
 </plugin>

@@ -20,7 +20,7 @@ package org.eclipselabs.damos.dml;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getBlock()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContainsAllInputs ContainsAllOutputs ContainsAllParameters'"
  * @generated
  */
 public interface Block extends Component, ParameterizedElement {

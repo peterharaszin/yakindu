@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
+<!--   <extension
          id="damosBuilder"
          name="Damos Project Builder"
          point="org.eclipse.core.resources.builders">
@@ -17,23 +17,19 @@
                   value="Damos Project Builder">
             </parameter>
          </run></builder>
-   </extension>
-   <extension
-         id="damosNature"
-         name="Damos Project Nature"
-         point="org.eclipse.core.resources.natures">
-      <runtime>
-         <run
-               class="org.eclipselabs.damos.ide.core.natures.DamosProjectNature">
-         </run>
-      </runtime>
-   </extension>
+   </extension> -->
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
             class="org.eclipselabs.damos.ide.core.IDECoreExecutableExtensionFactory:org.eclipselabs.damos.ide.core.resource.BlockDiagramResourceFactory"
             type="blockdiagram">
       </parser>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="org.eclipselabs.damos.ide.core.builders.DamosBuilderParticipant">
+      </participant>
    </extension>
    <extension
          point="org.eclipselabs.damos.dml.languages">

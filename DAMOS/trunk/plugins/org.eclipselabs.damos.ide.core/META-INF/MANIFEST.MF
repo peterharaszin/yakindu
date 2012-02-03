@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.core;bundle-version="1.4.1",
+ org.eclipse.xtext.builder;bundle-version="2.0.1",
  org.eclipselabs.damos.common;bundle-version="0.3.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
  org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
@@ -20,5 +21,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.damos.mscript;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.ide.core,
- org.eclipselabs.damos.ide.core.natures
+Export-Package: org.eclipselabs.damos.ide.core

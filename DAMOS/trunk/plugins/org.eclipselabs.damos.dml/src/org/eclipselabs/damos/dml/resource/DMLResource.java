@@ -81,6 +81,10 @@ public class DMLResource extends XMIResourceImpl {
 				} else if ("targetPort".equals(name)) {
 					name = "target";
 				}
+			} else if (DMLPackage.eINSTANCE.getSubsystem().isSuperTypeOf(eClass)) {
+				if ("providedInterface".equals(name)) {
+					name = "interface";
+				}
 			}
 			return super.getFeature(eClass, namespaceURI, name);
 		}

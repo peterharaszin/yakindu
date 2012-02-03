@@ -43,24 +43,24 @@ public class ConfigureSubsystemCommand extends ConfigureElementCommand {
 			return CommandResult.newErrorCommandResult("No system interface provider supplied");
 		}
 
-		SystemInterface providedInterface = provider.getSystemInterface();
-		if (providedInterface == null) {
+		SystemInterface interface_ = provider.getSystemInterface();
+		if (interface_ == null) {
 			return CommandResult.newCancelledCommandResult();
 		}
 
 		ConfigureRequest request = (ConfigureRequest) getRequest();
 		Subsystem subsystem = (Subsystem) request.getElementToConfigure();
     	    	
-    	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getEnclosingFragment(), providedInterface.getName()));
-		subsystem.setProvidedInterface(providedInterface);
-		for (Inlet inlet : providedInterface.getInlets()) {
+    	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getEnclosingFragment(), interface_.getName()));
+		subsystem.setInterface(interface_);
+		for (Inlet inlet : interface_.getInlets()) {
 			SubsystemInput input = DMLFactory.eINSTANCE.createSubsystemInput();
 			input.setInlet(inlet);
 			InputPort inputPort = DMLFactory.eINSTANCE.createInputPort();
 			input.getPorts().add(inputPort);
 			subsystem.getInputs().add(input);
 		}
-		for (Outlet outlet : providedInterface.getOutlets()) {
+		for (Outlet outlet : interface_.getOutlets()) {
 			SubsystemOutput output = DMLFactory.eINSTANCE.createSubsystemOutput();
 			output.setOutlet(outlet);
 			OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();

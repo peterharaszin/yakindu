@@ -8,6 +8,7 @@ package org.eclipselabs.damos.dml.util;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -469,11 +470,11 @@ public class DMLValidator extends EObjectValidator {
 			}
 		} else if (eObject instanceof Subsystem) {
 			Subsystem subsystem = (Subsystem) eObject;
-				if (!isResolved(subsystem.getProvidedInterface())) {
+				if (!isResolved(subsystem.getInterface())) {
 					if (diagnostics != null) {
 						String path = "";
-						if (subsystem.getProvidedInterface() != null) {
-							URI uri = EcoreUtil.getURI(subsystem.getProvidedInterface());
+						if (subsystem.getInterface() != null) {
+							URI uri = EcoreUtil.getURI(subsystem.getInterface());
 							if (uri != null && uri.isPlatformResource()) {
 								path = " defined in " + uri.toPlatformString(true);
 							}
@@ -496,7 +497,7 @@ public class DMLValidator extends EObjectValidator {
 				if (diagnostics != null) {
 					Subsystem subsystem = DMLUtil.getOwner(inoutput, Subsystem.class);
 					String subsystemName = subsystem.getName() != null ? " of subsystem " + subsystem.getName() : "";
-					String systemInterfaceName = getName(subsystem.getProvidedInterface(), "UNNAMED");
+					String systemInterfaceName = getName(subsystem.getInterface(), "UNNAMED");
 					String kind = inoutput instanceof Input ? "inlet" : "outlet";
 					
 					String message = null;
@@ -1084,7 +1085,164 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(block, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(block, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ContainsAllInputs(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ContainsAllOutputs(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ContainsAllParameters(block, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the ContainsAllInputs constraint of '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateBlock_ContainsAllInputs(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		BlockType blockType = block.getType();
+		if (blockType == null) {
+			return true;
+		}
+		
+		Set<InputDefinition> inputDefinitions = new LinkedHashSet<InputDefinition>();
+		for (InputDefinition inputDefinition : blockType.getInputDefinitions()) {
+			inputDefinitions.add(inputDefinition);
+		}
+		
+		for (Input input : block.getInputs()) {
+			if (input instanceof BlockInput) {
+				inputDefinitions.remove(((BlockInput) input).getDefinition());	
+			}
+		}
+		
+		if (!inputDefinitions.isEmpty()) {
+			if (diagnostics != null) {
+				StringBuilder sb = new StringBuilder("Missing input");
+				if (inputDefinitions.size() > 1) {
+					sb.append("s");
+				}
+				sb.append(" ");
+				boolean first = true;
+				for (InputDefinition inputDefinition : inputDefinitions) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(inputDefinition.getName());
+				}
+				sb.append(" on block ");
+				sb.append(block.getName());
+				
+				diagnostics.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						sb.toString(), new Object[] { block }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the ContainsAllOutputs constraint of '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateBlock_ContainsAllOutputs(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		BlockType blockType = block.getType();
+		if (blockType == null) {
+			return true;
+		}
+		
+		Set<OutputDefinition> outputDefinitions = new LinkedHashSet<OutputDefinition>();
+		for (OutputDefinition outputDefinition : blockType.getOutputDefinitions()) {
+			outputDefinitions.add(outputDefinition);
+		}
+		
+		for (Output output : block.getOutputs()) {
+			if (output instanceof BlockOutput) {
+				outputDefinitions.remove(((BlockOutput) output).getDefinition());	
+			}
+		}
+		
+		if (!outputDefinitions.isEmpty()) {
+			if (diagnostics != null) {
+				StringBuilder sb = new StringBuilder("Missing output");
+				if (outputDefinitions.size() > 1) {
+					sb.append("s");
+				}
+				sb.append(" ");
+				boolean first = true;
+				for (OutputDefinition outputDefinition : outputDefinitions) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(outputDefinition.getName());
+				}
+				sb.append(" on block ");
+				sb.append(block.getName());
+				
+				diagnostics.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						sb.toString(), new Object[] { block }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the ContainsAllParameters constraint of '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateBlock_ContainsAllParameters(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		BlockType blockType = block.getType();
+		if (blockType == null) {
+			return true;
+		}
+		
+		Set<Parameter> parameters = new LinkedHashSet<Parameter>();
+		for (Parameter parameter : blockType.getParameters()) {
+			parameters.add(parameter);
+		}
+		
+		for (Argument argument : block.getArguments()) {
+			parameters.remove(argument.getParameter());	
+		}
+		
+		if (!parameters.isEmpty() && diagnostics != null) {
+			StringBuilder sb = new StringBuilder("Missing parameter");
+			if (parameters.size() > 1) {
+				sb.append("s");
+			}
+			sb.append(" ");
+			boolean first = true;
+			for (Parameter parameter : parameters) {
+				if (first) {
+					first = false;
+				} else {
+					sb.append(", ");
+				}
+				sb.append(parameter.getName());
+			}
+			sb.append(" on block ");
+			sb.append(block.getName());
+			
+			diagnostics.add(new BasicDiagnostic(
+					Diagnostic.WARNING,
+					DIAGNOSTIC_SOURCE,
+					0,
+					sb.toString(), new Object[] { block }));
+		}
+		return true;
 	}
 
 	/**
@@ -1170,7 +1328,115 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(subsystem, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(subsystem, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSubsystem_ContainsAllInlets(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSubsystem_ContainsAllOutlets(subsystem, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the ContainsAllInlets constraint of '<em>Subsystem</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateSubsystem_ContainsAllInlets(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		SystemInterface interface_ = subsystem.getInterface();
+		if (interface_ == null) {
+			return true;
+		}
+		
+		Set<Inlet> inlets = new LinkedHashSet<Inlet>();
+		for (Inlet inlet : interface_.getInlets()) {
+			inlets.add(inlet);
+		}
+		
+		for (Input input : subsystem.getInputs()) {
+			if (input instanceof SubsystemInput) {
+				inlets.remove(((SubsystemInput) input).getInlet());	
+			}
+		}
+		
+		if (!inlets.isEmpty()) {
+			if (diagnostics != null) {
+				StringBuilder sb = new StringBuilder("Missing input");
+				if (inlets.size() > 1) {
+					sb.append("s");
+				}
+				sb.append(" ");
+				boolean first = true;
+				for (Inlet inlet : inlets) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(inlet.getName());
+				}
+				sb.append(" on subsystem ");
+				sb.append(subsystem.getName());
+				
+				diagnostics.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						sb.toString(), new Object[] { subsystem }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the ContainsAllOutlets constraint of '<em>Subsystem</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateSubsystem_ContainsAllOutlets(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		SystemInterface interface_ = subsystem.getInterface();
+		if (interface_ == null) {
+			return true;
+		}
+		
+		Set<Outlet> outlets = new LinkedHashSet<Outlet>();
+		for (Outlet outlet : interface_.getOutlets()) {
+			outlets.add(outlet);
+		}
+		
+		for (Output output : subsystem.getOutputs()) {
+			if (output instanceof SubsystemOutput) {
+				outlets.remove(((SubsystemOutput) output).getOutlet());	
+			}
+		}
+		
+		if (!outlets.isEmpty()) {
+			if (diagnostics != null) {
+				StringBuilder sb = new StringBuilder("Missing input");
+				if (outlets.size() > 1) {
+					sb.append("s");
+				}
+				sb.append(" ");
+				boolean first = true;
+				for (Outlet outlet : outlets) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(outlet.getName());
+				}
+				sb.append(" on subsystem ");
+				sb.append(subsystem.getName());
+				
+				diagnostics.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						sb.toString(), new Object[] { subsystem }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -1247,8 +1513,8 @@ public class DMLValidator extends EObjectValidator {
 			return result;
 		}
 		
-		SystemInterface providedInterface = realizedSubsystem.getProvidedInterface();
-		if (!isResolved(providedInterface)) {
+		SystemInterface interface_ = realizedSubsystem.getInterface();
+		if (!isResolved(interface_)) {
 			return result;
 		}
 		
@@ -1259,7 +1525,7 @@ public class DMLValidator extends EObjectValidator {
 		
 		Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
 		
-		for (Inlet inlet : providedInterface.getInlets()) {
+		for (Inlet inlet : interface_.getInlets()) {
 			if (inlet.getName() == null || inlet.getDataType() == null) {
 				return result;
 			}
@@ -1313,7 +1579,7 @@ public class DMLValidator extends EObjectValidator {
 		
 		Map<String, Outport> outports = DMLUtil.getComponentMap(subsystemRealization.getRealizingFragment(), Outport.class);
 		
-		for (Outlet outlet : providedInterface.getOutlets()) {
+		for (Outlet outlet : interface_.getOutlets()) {
 			if (outlet.getName() == null || outlet.getDataType() == null) {
 				return result;
 			}

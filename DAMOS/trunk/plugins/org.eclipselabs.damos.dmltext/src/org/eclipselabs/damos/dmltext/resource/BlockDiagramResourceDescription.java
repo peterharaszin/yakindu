@@ -28,7 +28,23 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.impl.AbstractResourceDescription;
+import org.eclipse.xtext.resource.impl.DefaultReferenceDescription;
+import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.Inlet;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputDefinition;
+import org.eclipselabs.damos.dml.Outlet;
+import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputDefinition;
+import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemInput;
+import org.eclipselabs.damos.dml.SubsystemOutput;
 
 import com.google.inject.Inject;
 
@@ -36,7 +52,7 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 
 	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;
-
+	
 	private final Resource resource;
 
 	private final URI uri;
@@ -71,7 +87,68 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 	}
 
 	public Iterable<IReferenceDescription> getReferenceDescriptions() {
-		return Collections.emptyList();
+		List<IReferenceDescription> references = new ArrayList<IReferenceDescription>();
+		for (EObject element : resource.getContents()) {
+			if (!(element instanceof Fragment)) {
+				continue;
+			}
+			for (FragmentElement fragmentElement : ((Fragment) element).getAllFragmentElements()) {
+				if (fragmentElement instanceof Block) {
+					getBlockReferenceDescriptions((Block) fragmentElement, references);
+				} else if (fragmentElement instanceof Subsystem) {
+					getSubsystemReferenceDescriptions((Subsystem) fragmentElement, references);
+				}
+			}
+		}
+		return references;
+	}
+
+	private void getBlockReferenceDescriptions(Block block, List<IReferenceDescription> references) {
+		references.add(new DefaultReferenceDescription(block, block.getType(), DMLPackage.eINSTANCE.getBlock_Type(), -1, null));
+		
+		for (Input input : block.getInputs()) {
+			if (!(input instanceof BlockInput)) {
+				continue;
+			}
+			BlockInput blockInput = (BlockInput) input;
+			InputDefinition definition = blockInput.getDefinition();
+			references.add(new DefaultReferenceDescription(input, definition, DMLPackage.eINSTANCE.getBlockInput_Definition(), -1, null));
+		}
+
+		for (Output output : block.getOutputs()) {
+			if (!(output instanceof BlockOutput)) {
+				continue;
+			}
+			BlockOutput blockOutput = (BlockOutput) output;
+			OutputDefinition definition = blockOutput.getDefinition();
+			references.add(new DefaultReferenceDescription(output, definition, DMLPackage.eINSTANCE.getBlockOutput_Definition(), -1, null));
+		}
+		
+		for (Argument argument : block.getArguments()) {
+			references.add(new DefaultReferenceDescription(argument, argument.getParameter(), DMLPackage.eINSTANCE.getArgument_Parameter(), -1, null));
+		}
+	}
+
+	private void getSubsystemReferenceDescriptions(Subsystem subsystem, List<IReferenceDescription> references) {
+		references.add(new DefaultReferenceDescription(subsystem, subsystem.getInterface(), DMLPackage.eINSTANCE.getSubsystem_Interface(), -1, null));
+		
+		for (Input input : subsystem.getInputs()) {
+			if (!(input instanceof SubsystemInput)) {
+				continue;
+			}
+			SubsystemInput subsystemInput = (SubsystemInput) input;
+			Inlet inlet = subsystemInput.getInlet();
+			references.add(new DefaultReferenceDescription(input, inlet, DMLPackage.eINSTANCE.getSubsystemInput_Inlet(), -1, null));
+		}
+
+		for (Output output : subsystem.getOutputs()) {
+			if (!(output instanceof SubsystemOutput)) {
+				continue;
+			}
+			SubsystemOutput blockOutput = (SubsystemOutput) output;
+			Outlet outlet = blockOutput.getOutlet();
+			references.add(new DefaultReferenceDescription(output, outlet, DMLPackage.eINSTANCE.getSubsystemOutput_Outlet(), -1, null));
+		}
 	}
 
 }

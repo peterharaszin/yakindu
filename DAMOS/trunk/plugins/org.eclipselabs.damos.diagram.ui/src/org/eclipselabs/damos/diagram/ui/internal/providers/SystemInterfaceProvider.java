@@ -63,9 +63,9 @@ public class SystemInterfaceProvider implements ISystemInterfaceProvider {
 					ResourceSet resourceSet = editingDomain.getResourceSet();
 					try {
 						Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), false), true);
-						SystemInterface providedInterface = (SystemInterface) EcoreUtil.getObjectByType(resource.getContents(), DMLPackage.Literals.SYSTEM_INTERFACE);
-						if (providedInterface != null) {
-							cachedSystemInterface = providedInterface;
+						SystemInterface interface_ = (SystemInterface) EcoreUtil.getObjectByType(resource.getContents(), DMLPackage.Literals.SYSTEM_INTERFACE);
+						if (interface_ != null) {
+							cachedSystemInterface = interface_;
 						} else {
 							showError("'" + file.getFullPath().toString() + "' does not contain a valid system interface");
 						}

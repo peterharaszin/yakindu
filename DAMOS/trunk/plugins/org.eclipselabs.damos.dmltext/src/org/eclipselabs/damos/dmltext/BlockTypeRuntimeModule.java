@@ -11,8 +11,12 @@
 
 package org.eclipselabs.damos.dmltext;
 
+import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.dmltext.parser.antlr.BlockTypeParser;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * @author Andreas Unger
@@ -28,4 +32,8 @@ public class BlockTypeRuntimeModule extends DMLTextRuntimeModule {
 		return BlockTypeParser.class;
 	}
 	
+	public void configureFileExtensions(Binder binder) {
+		binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("blocktype");
+	}
+
 }

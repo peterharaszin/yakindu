@@ -3,7 +3,6 @@
 <plugin>
    <extension-point id="componentSignaturePolicyProviders" name="Component Signature Policy Providers" schema="schema/componentSignaturePolicyProviders.exsd"/>
    <extension-point id="blockSignaturePolicies" name="Block Signature Policies" schema="schema/blockSignaturePolicies.exsd"/>
-   <extension-point id="runtimeEnvironments" name="Runtime Environments" schema="schema/runtimeEnvironments.exsd"/>
    <extension
          point="org.eclipselabs.damos.execution.core.componentSignaturePolicyProviders">
       <provider

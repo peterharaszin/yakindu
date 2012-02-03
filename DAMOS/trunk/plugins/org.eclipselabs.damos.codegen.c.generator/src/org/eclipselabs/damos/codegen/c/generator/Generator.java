@@ -39,6 +39,7 @@ import org.eclipselabs.damos.codegen.AbstractGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.generator.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
@@ -112,15 +113,20 @@ public class Generator extends AbstractGenerator {
 		
 		String mainSourceFile = getSystemSourceFile(configuration);
 		String mainHeaderFile = getSystemHeaderFile(configuration);
+		
+		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
+
+		if (executionFlow.getAsynchronousZoneCount() > 0 && getRuntimeEnvironmentAPI(configuration) == null) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
+		}
+
+		initializeExecutionFlow(configuration, executionFlow, monitor);
 
 		IProject project = getProject(projectName, monitor);
 		IContainer sourceContainer = getContainer(monitor, project, sourceFolder);
 		IContainer headerContainer = getContainer(monitor, project, headerFolder);
 
 		IFile headerFile = headerContainer.getFile(new Path(mainHeaderFile));
-
-		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
-		initializeExecutionFlow(configuration, executionFlow, monitor);
 		
 		new FileWriter() {
 			
@@ -1007,10 +1013,10 @@ public class Generator extends AbstractGenerator {
 	}
 
 	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(Configuration configuration) {
-//		String runtimeEnvironmentId = configuration.getExecutionModel().getRuntimeEnvironmentId();
-//		if (runtimeEnvironmentId != null) {
-//			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
-//		}
+		String runtimeId = configuration.getPropertySelectionName("damos.rte.runtime");
+		if (runtimeId != null) {
+			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
+		}
 		return null;
 	}
 

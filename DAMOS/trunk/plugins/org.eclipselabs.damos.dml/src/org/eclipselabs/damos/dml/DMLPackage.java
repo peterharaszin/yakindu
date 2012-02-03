@@ -2213,13 +2213,13 @@ public interface DMLPackage extends EPackage {
 	int SUBSYSTEM__TIMING_CONSTRAINT = COMPONENT__TIMING_CONSTRAINT;
 
 	/**
-	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
+	 * The feature id for the '<em><b>Interface</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSYSTEM__PROVIDED_INTERFACE = COMPONENT_FEATURE_COUNT + 0;
+	int SUBSYSTEM__INTERFACE = COMPONENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Subsystem</em>' class.
@@ -4950,15 +4950,15 @@ public interface DMLPackage extends EPackage {
 	EClass getSubsystem();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Subsystem#getInterface <em>Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Provided Interface</em>'.
-	 * @see org.eclipselabs.damos.dml.Subsystem#getProvidedInterface()
+	 * @return the meta object for the reference '<em>Interface</em>'.
+	 * @see org.eclipselabs.damos.dml.Subsystem#getInterface()
 	 * @see #getSubsystem()
 	 * @generated
 	 */
-	EReference getSubsystem_ProvidedInterface();
+	EReference getSubsystem_Interface();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SystemInterface <em>System Interface</em>}'.
@@ -6480,12 +6480,12 @@ public interface DMLPackage extends EPackage {
 		EClass SUBSYSTEM = eINSTANCE.getSubsystem();
 
 		/**
-		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBSYSTEM__PROVIDED_INTERFACE = eINSTANCE.getSubsystem_ProvidedInterface();
+		EReference SUBSYSTEM__INTERFACE = eINSTANCE.getSubsystem_Interface();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl <em>System Interface</em>}' class.

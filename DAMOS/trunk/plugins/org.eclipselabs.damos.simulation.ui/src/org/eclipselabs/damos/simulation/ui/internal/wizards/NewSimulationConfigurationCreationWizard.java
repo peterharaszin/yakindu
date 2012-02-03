@@ -56,6 +56,9 @@ public class NewSimulationConfigurationCreationWizard extends NewConfigurationCr
 
 	protected void writeGlobalProperties(String indent, Appendable appendable) throws IOException {
 		appendable.append(indent);
+		appendable.append("simulationTime = 10(s) // comment out to perform real-time simulation\n\n");
+
+		appendable.append(indent);
 		appendable.append("select solver DormandPrince54 {\n");
 		
 		appendable.append(indent);

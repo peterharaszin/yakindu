@@ -56,22 +56,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 		if (resourceChangeListener == null) {
-			resourceChangeListener = new IResourceChangeListener() {
-	
-				public void resourceChanged(IResourceChangeEvent event) {
-					try {
-						ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-						event.getDelta().accept(visitor);
-						IFile[] files = visitor.getFiles();
-						if (files != null) {
-							fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
-						}
-					} catch (CoreException e) {
-						DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, SimulationUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));
-					}
-				}
-	
-			};
+			resourceChangeListener = new ResourceChangeListener();
 			ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener);
 		}
 
@@ -94,6 +79,10 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		if (configuration != null && configuration.getPropertySelectionName(SOLVER_PROPERTY_NAME) != null) {
 			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(SimulationUIPlugin.PLUGIN_ID, SIMULATION_OVERLAY_IMAGE));
 		}
+		
+		for (Resource r : resourceSet.getResources()) {
+			r.unload();
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -107,6 +96,23 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		super.dispose();
 	}
 	
+	private class ResourceChangeListener implements IResourceChangeListener {
+		
+		public void resourceChanged(IResourceChangeEvent event) {
+			try {
+				ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+				event.getDelta().accept(visitor);
+				IFile[] files = visitor.getFiles();
+				if (files != null) {
+					fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
+				}
+			} catch (CoreException e) {
+				DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, SimulationUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));
+			}
+		}
+
+	}
+	
 	private static class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 
 		private List<IFile> files;
@@ -115,17 +121,22 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse.core.resources.IResourceDelta)
 		 */
 		public boolean visit(IResourceDelta delta) throws CoreException {
-			if (delta.getResource() instanceof IFile) {
-				IFile file = (IFile) delta.getResource();
-				if (DCONFIG_FILE_EXTENSION.equals(file.getFileExtension())) {
-					if (files == null) {
-						files = new ArrayList<IFile>();
+			switch (delta.getKind()) {
+			case IResourceDelta.ADDED:
+			case IResourceDelta.CHANGED:
+				if (delta.getResource() instanceof IFile) {
+					IFile file = (IFile) delta.getResource();
+					if (DCONFIG_FILE_EXTENSION.equals(file.getFileExtension())) {
+						if (files == null) {
+							files = new ArrayList<IFile>();
+						}
+						files.add(file);
 					}
-					files.add(file);
+					return false;
 				}
-				return false;
+				return true;
 			}
-			return true;
+			return false;
 		}
 		
 		/**

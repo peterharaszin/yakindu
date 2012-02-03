@@ -17,41 +17,41 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Subsystem#getInterface <em>Interface</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContainsAllInlets ContainsAllOutlets'"
  * @generated
  */
 public interface Subsystem extends Component {
 
 	/**
-	 * Returns the value of the '<em><b>Provided Interface</b></em>' reference.
+	 * Returns the value of the '<em><b>Interface</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Used Interfaces</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provided Interface</em>' reference.
-	 * @see #setProvidedInterface(SystemInterface)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem_ProvidedInterface()
+	 * @return the value of the '<em>Interface</em>' reference.
+	 * @see #setInterface(SystemInterface)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem_Interface()
 	 * @model required="true"
 	 * @generated
 	 */
-	SystemInterface getProvidedInterface();
+	SystemInterface getInterface();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Subsystem#getInterface <em>Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Provided Interface</em>' reference.
-	 * @see #getProvidedInterface()
+	 * @param value the new value of the '<em>Interface</em>' reference.
+	 * @see #getInterface()
 	 * @generated
 	 */
-	void setProvidedInterface(SystemInterface value);
+	void setInterface(SystemInterface value);
 
 	/**
 	 * <!-- begin-user-doc -->

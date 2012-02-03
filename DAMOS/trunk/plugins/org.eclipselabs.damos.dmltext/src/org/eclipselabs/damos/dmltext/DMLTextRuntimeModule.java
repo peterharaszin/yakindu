@@ -10,10 +10,10 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
+import org.eclipselabs.damos.dmltext.naming.DMLTextQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
-import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
 /**
@@ -51,7 +51,7 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 	 */
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return MscriptQualifiedNameProvider.class;
+		return DMLTextQualifiedNameProvider.class;
 	}
 	
 }

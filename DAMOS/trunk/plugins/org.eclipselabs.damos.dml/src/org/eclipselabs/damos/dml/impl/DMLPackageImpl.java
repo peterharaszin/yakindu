@@ -1661,7 +1661,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubsystem_ProvidedInterface() {
+	public EReference getSubsystem_Interface() {
 		return (EReference)subsystemEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2376,7 +2376,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockOutputPortEClass = createEClass(BLOCK_OUTPUT_PORT);
 
 		subsystemEClass = createEClass(SUBSYSTEM);
-		createEReference(subsystemEClass, SUBSYSTEM__PROVIDED_INTERFACE);
+		createEReference(subsystemEClass, SUBSYSTEM__INTERFACE);
 
 		systemInterfaceEClass = createEClass(SYSTEM_INTERFACE);
 		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__INLETS);
@@ -2850,7 +2850,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockOutputPortEClass, BlockOutputPort.class, "BlockOutputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(subsystemEClass, Subsystem.class, "Subsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSubsystem_ProvidedInterface(), this.getSystemInterface(), null, "providedInterface", null, 1, 1, Subsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubsystem_Interface(), this.getSystemInterface(), null, "interface", null, 1, 1, Subsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(subsystemEClass, this.getSubsystemRealization(), "getRealizations", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
@@ -3007,6 +3007,18 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ValidCompoundConnection"
+		   });		
+		addAnnotation
+		  (blockEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ContainsAllInputs ContainsAllOutputs ContainsAllParameters"
+		   });		
+		addAnnotation
+		  (subsystemEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ContainsAllInlets ContainsAllOutlets"
 		   });		
 		addAnnotation
 		  (subsystemRealizationEClass, 

@@ -229,7 +229,7 @@
     <genClasses ecoreClass="DML.ecore#//BlockInputPort"/>
     <genClasses ecoreClass="DML.ecore#//BlockOutputPort"/>
     <genClasses ecoreClass="DML.ecore#//Subsystem">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Subsystem/providedInterface"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Subsystem/interface"/>
       <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealizations"/>
       <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealization">
         <genParameters ecoreParameter="DML.ecore#//Subsystem/getRealization/context"/>

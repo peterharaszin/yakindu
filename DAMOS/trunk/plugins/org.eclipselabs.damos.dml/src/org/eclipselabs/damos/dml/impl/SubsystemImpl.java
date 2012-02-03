@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dml.internal.operations.SubsystemOperations;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.impl.SubsystemImpl#getProvidedInterface <em>Provided Interface</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.SubsystemImpl#getInterface <em>Interface</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,14 +33,14 @@ import org.eclipselabs.damos.dml.internal.operations.SubsystemOperations;
  */
 public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	/**
-	 * The cached value of the '{@link #getProvidedInterface() <em>Provided Interface</em>}' reference.
+	 * The cached value of the '{@link #getInterface() <em>Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvidedInterface()
+	 * @see #getInterface()
 	 * @generated
 	 * @ordered
 	 */
-	protected SystemInterface providedInterface;
+	protected SystemInterface interface_;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,16 +65,16 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SystemInterface getProvidedInterface() {
-		if (providedInterface != null && providedInterface.eIsProxy()) {
-			InternalEObject oldProvidedInterface = (InternalEObject)providedInterface;
-			providedInterface = (SystemInterface)eResolveProxy(oldProvidedInterface);
-			if (providedInterface != oldProvidedInterface) {
+	public SystemInterface getInterface() {
+		if (interface_ != null && interface_.eIsProxy()) {
+			InternalEObject oldInterface = (InternalEObject)interface_;
+			interface_ = (SystemInterface)eResolveProxy(oldInterface);
+			if (interface_ != oldInterface) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE, oldProvidedInterface, providedInterface));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DMLPackage.SUBSYSTEM__INTERFACE, oldInterface, interface_));
 			}
 		}
-		return providedInterface;
+		return interface_;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SystemInterface basicGetProvidedInterface() {
-		return providedInterface;
+	public SystemInterface basicGetInterface() {
+		return interface_;
 	}
 
 	/**
@@ -91,11 +91,11 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProvidedInterface(SystemInterface newProvidedInterface) {
-		SystemInterface oldProvidedInterface = providedInterface;
-		providedInterface = newProvidedInterface;
+	public void setInterface(SystemInterface newInterface) {
+		SystemInterface oldInterface = interface_;
+		interface_ = newInterface;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE, oldProvidedInterface, providedInterface));
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM__INTERFACE, oldInterface, interface_));
 	}
 
 	/**
@@ -124,9 +124,9 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE:
-				if (resolve) return getProvidedInterface();
-				return basicGetProvidedInterface();
+			case DMLPackage.SUBSYSTEM__INTERFACE:
+				if (resolve) return getInterface();
+				return basicGetInterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,8 +139,8 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE:
-				setProvidedInterface((SystemInterface)newValue);
+			case DMLPackage.SUBSYSTEM__INTERFACE:
+				setInterface((SystemInterface)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,8 +154,8 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE:
-				setProvidedInterface((SystemInterface)null);
+			case DMLPackage.SUBSYSTEM__INTERFACE:
+				setInterface((SystemInterface)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -169,8 +169,8 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DMLPackage.SUBSYSTEM__PROVIDED_INTERFACE:
-				return providedInterface != null;
+			case DMLPackage.SUBSYSTEM__INTERFACE:
+				return interface_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

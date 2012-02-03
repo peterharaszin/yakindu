@@ -278,6 +278,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Component #//ParameterizedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ContainsAllInputs ContainsAllOutputs ContainsAllParameters"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
         eType="#//BlockType"/>
   </eClassifiers>
@@ -287,11 +290,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="BlockInputPort" eSuperTypes="#//BlockPort #//InputPort"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockOutputPort" eSuperTypes="#//OutputPort #//BlockPort"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subsystem" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ContainsAllInlets ContainsAllOutlets"/>
+    </eAnnotations>
     <eOperations name="getRealizations" ordered="false" upperBound="-1" eType="#//SubsystemRealization"/>
     <eOperations name="getRealization" ordered="false" eType="#//SubsystemRealization">
       <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterface" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
         eType="#//SystemInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemInterface" eSuperTypes="#//QualifiedElement">

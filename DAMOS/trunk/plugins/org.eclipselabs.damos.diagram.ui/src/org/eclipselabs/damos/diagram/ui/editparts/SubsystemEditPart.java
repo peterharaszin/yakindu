@@ -193,9 +193,9 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		EObject element = resolveSemanticElement();
 		if (element instanceof Subsystem) {
 			SubsystemFigure figure = (SubsystemFigure) getMainFigure();
-			SystemInterface providedInterface = ((Subsystem) element).getProvidedInterface();
-			if (providedInterface != null) {
-				figure.setSystemInterfaceName(DMLUtil.safeFormatName(providedInterface));
+			SystemInterface interface_ = ((Subsystem) element).getInterface();
+			if (interface_ != null) {
+				figure.setSystemInterfaceName(DMLUtil.safeFormatName(interface_));
 			} else {
 				figure.setSystemInterfaceName("");
 			}

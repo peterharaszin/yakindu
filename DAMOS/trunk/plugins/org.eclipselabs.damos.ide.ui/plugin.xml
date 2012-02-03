@@ -63,14 +63,6 @@
       </wizard>
    </extension>
    <extension
-         point="org.eclipse.ui.ide.projectNatureImages">
-      <image
-            icon="icons/DamosProjectNature.png"
-            id="org.eclipselabs.damos.ide.ui.damosNatureImage"
-            natureId="org.eclipselabs.damos.ide.core.damosNature">
-      </image>
-   </extension>
-   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="toolbar:org.eclipselabs.damos.ide.ui.fragmentExplorerView">

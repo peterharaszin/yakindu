@@ -57,25 +57,25 @@ public class SubsystemItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProvidedInterfacePropertyDescriptor(object);
+			addInterfacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Provided Interface feature.
+	 * This adds a property descriptor for the Interface feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProvidedInterfacePropertyDescriptor(Object object) {
+	protected void addInterfacePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Subsystem_providedInterface_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subsystem_providedInterface_feature", "_UI_Subsystem_type"),
-				 DMLPackage.Literals.SUBSYSTEM__PROVIDED_INTERFACE,
+				 getString("_UI_Subsystem_interface_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Subsystem_interface_feature", "_UI_Subsystem_type"),
+				 DMLPackage.Literals.SUBSYSTEM__INTERFACE,
 				 true,
 				 false,
 				 true,

@@ -39,6 +39,9 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 		case GREATER_THAN_OR_EQUAL_TO:
 		case EQUAL_TO:
 		case NOT_EQUAL_TO:
+			if (!integerType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false)) {
+				return MscriptFactory.eINSTANCE.createInvalidDataType();
+			}
 			return MscriptFactory.eINSTANCE.createBooleanType();
 		case ADD:
 		case SUBTRACT:

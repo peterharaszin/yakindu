@@ -20,9 +20,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.xtext.ui.XtextProjectHelper;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.ide.core.natures.DamosProjectNature;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
+import org.eclipselabs.damos.ide.ui.internal.util.DamosProjectUtil;
 
 public class NatureCheckingDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
@@ -47,7 +48,7 @@ public class NatureCheckingDecoratorProvider extends AbstractProvider implements
 		final IProject project = getProject(decoratorTarget);
 		if (project != null) {
 			try {
-				IProjectNature nature = project.getNature(DamosProjectNature.NATURE_ID);
+				IProjectNature nature = project.getNature(XtextProjectHelper.NATURE_ID);
 				if (nature == null) {
 					final Shell shell = getShell(decoratorTarget);
 					if (shell != null) {
@@ -55,10 +56,10 @@ public class NatureCheckingDecoratorProvider extends AbstractProvider implements
 							
 							public void run() {
 								if (!shell.isDisposed()) {
-									String message = "The project '%s' does not have a Damos project nature applied. Various features like model validation will not work without the project nature. It is strongly recommended to add the project nature.\n\nDo you want to add the Damos project nature?";
+									String message = "The project '%s' does not have a required project nature applied. Various features like model validation will not work without the project nature. It is strongly recommended to add the project nature.\n\nDo you want to add the required project nature?";
 									if (MessageDialog.openQuestion(shell, "Damos", String.format(message, project.getName()))) {
 										try {
-											DamosProjectNature.applyProjectNature(project);
+											DamosProjectUtil.applyProjectNature(project, XtextProjectHelper.NATURE_ID);
 										} catch (CoreException e) {
 											ErrorDialog.openError(shell, "Damos", "Adding project nature failed", e.getStatus());
 										}

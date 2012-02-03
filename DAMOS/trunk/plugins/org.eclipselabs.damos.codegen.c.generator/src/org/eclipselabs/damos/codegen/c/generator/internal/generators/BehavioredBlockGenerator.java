@@ -357,7 +357,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 
 		@Override
-		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
+		protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
@@ -372,7 +372,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}
-			return super.getGlobalTemplateArgument(name);
+			return super.getGlobalTemplateArgumentValue(name);
 		}
 		
 	}

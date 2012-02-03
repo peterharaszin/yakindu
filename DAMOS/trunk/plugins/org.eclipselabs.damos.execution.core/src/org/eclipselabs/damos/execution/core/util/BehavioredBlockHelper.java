@@ -25,6 +25,8 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
@@ -127,27 +129,20 @@ public class BehavioredBlockHelper {
 		List<IValue> templateArguments = new ArrayList<IValue>();
 		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
 			String parameterName = parameterDeclaration.getName();
-			Argument argument = block.getArgument(parameterName);
-			if (argument == null) {
-				try {
-					IValue templateArgument = getInputTemplateArgumentValue(parameterName);
-					if (templateArgument == null) {
-						templateArgument = getGlobalTemplateArgument(parameterName);
-					}
-					if (templateArgument != null) {
-						templateArguments.add(templateArgument);
-					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
-					}
-				} catch (CoreException e) {
-					status.add(e.getStatus());
-				}
-				continue;
-			}
-
 			try {
-				IValue value = evaluateArgumentValue(argument);
-				templateArguments.add(value);
+				IValue value = getParameterTemplateArgumentValue(parameterName);
+				if (value == null) {
+					value = getInputTemplateArgumentValue(parameterName);
+				}
+				if (value == null) {
+					value = getGlobalTemplateArgumentValue(parameterName);
+				}
+				if (value != null) {
+					templateArguments.add(value);
+				} else {
+					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Block parameter '"
+							+ parameterName + "' not found"));
+				}
 			} catch (CoreException e) {
 				status.add(e.getStatus());
 			}
@@ -211,6 +206,20 @@ public class BehavioredBlockHelper {
 		return dataTypes;
 	}
 	
+	private IValue getParameterTemplateArgumentValue(String parameterName) throws CoreException {
+		Argument argument = block.getArgument(parameterName);
+		if (argument != null) {
+			return evaluateParameterValue(argument.getParameter(), argument.getValue());
+		}
+		if (block.getType() != null) {
+			Parameter parameter = block.getType().getParameter(parameterName);
+			if (parameter != null) {
+				return evaluateParameterValue(parameter, parameter.getDefaultValue());
+			}
+		}
+		return null;
+	}
+
 	private IValue getInputTemplateArgumentValue(String name) throws CoreException {
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
@@ -223,7 +232,7 @@ public class BehavioredBlockHelper {
 					if (argument == null) {
 						throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No argument for input parameter '" + name + "' found"));
 					}
-					IValue value = evaluateArgumentValue(argument);
+					IValue value = evaluateParameterValue(argument.getParameter(), argument.getValue());
 					if (elementType == null) {
 						elementType = value.getDataType();
 					} else {
@@ -244,20 +253,20 @@ public class BehavioredBlockHelper {
 		return null;
 	}
 	
-	protected IValue getGlobalTemplateArgument(String name) throws CoreException {
+	protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
 		return null;
 	}
 	
-	private IValue evaluateArgumentValue(Argument argument) throws CoreException {
-		if (argument.getValue() instanceof MscriptValueSpecification) {
-			Expression expression = ((MscriptValueSpecification) argument.getValue()).getExpression();
+	private IValue evaluateParameterValue(Parameter parameter, ValueSpecification valueSpecification) throws CoreException {
+		if (valueSpecification instanceof MscriptValueSpecification) {
+			Expression expression = ((MscriptValueSpecification) valueSpecification).getExpression();
 			IStatus status = staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
 			if (status.getSeverity() > IStatus.WARNING) {
 				throw new CoreException(status);
 			}
 			return staticEvaluationContext.getValue(expression);
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Argument value of parameter '" + argument.getParameter() + "' must be expression"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' must be an expression"));
 	}
 
 }

@@ -2,13 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.execution.core.runtimeEnvironments">
-      <runtimeEnvironment
-            id="org.eclipselabs.damos.rte.posix"
-            name="POSIX">
-      </runtimeEnvironment>
-   </extension>
-   <extension
          point="org.eclipselabs.damos.dconfig.definitions">
       <resource
             uri="platform:/plugin/org.eclipselabs.damos.rte.posix/dconfig/PosixOption.xmi">

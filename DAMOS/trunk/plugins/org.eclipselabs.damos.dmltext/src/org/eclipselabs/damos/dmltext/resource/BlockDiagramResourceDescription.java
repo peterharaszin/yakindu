@@ -45,6 +45,7 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
+import org.eclipselabs.damos.dml.SubsystemRealization;
 
 import com.google.inject.Inject;
 
@@ -97,6 +98,8 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 					getBlockReferenceDescriptions((Block) fragmentElement, references);
 				} else if (fragmentElement instanceof Subsystem) {
 					getSubsystemReferenceDescriptions((Subsystem) fragmentElement, references);
+				} else if (fragmentElement instanceof SubsystemRealization) {
+					getSubsystemRealizationReferenceDescriptions((SubsystemRealization) fragmentElement, references);
 				}
 			}
 		}
@@ -149,6 +152,10 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 			Outlet outlet = blockOutput.getOutlet();
 			references.add(new DefaultReferenceDescription(output, outlet, DMLPackage.eINSTANCE.getSubsystemOutput_Outlet(), -1, null));
 		}
+	}
+
+	private void getSubsystemRealizationReferenceDescriptions(SubsystemRealization subsystemRealization, List<IReferenceDescription> references) {
+		references.add(new DefaultReferenceDescription(subsystemRealization, subsystemRealization.getRealizingFragment(), DMLPackage.eINSTANCE.getSubsystemRealization_RealizingFragment(), -1, null));
 	}
 
 }

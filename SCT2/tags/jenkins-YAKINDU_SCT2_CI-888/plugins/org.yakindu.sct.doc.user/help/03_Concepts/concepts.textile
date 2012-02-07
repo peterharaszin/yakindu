@@ -1,0 +1,16 @@
+h1. Yakindu Statechart tool concepts
+
+h2. Model, Validate, Simulate, Generate
+
+h2. SText
+
+h2. SGraph
+
+h2. SExec
+
+h2. SGen
+
+
+
+
+

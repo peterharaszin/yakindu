@@ -40,6 +40,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 
 	private final String contributorId;
 	private final PreferencesHint preferencesHint;
+	private WorkspaceSynchronizer workspaceSynchronizer;
 	
 	/**
 	 * 
@@ -88,7 +89,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		new WorkspaceSynchronizer(getEditingDomain(), createWorkspaceSynchronizerDelegate());
+		workspaceSynchronizer = new WorkspaceSynchronizer(getEditingDomain(), createWorkspaceSynchronizerDelegate());
 	}
 	
 	/* (non-Javadoc)
@@ -150,6 +151,18 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 		IFileEditorInput input = (IFileEditorInput) getEditorInput();
 		IFile file = input.getFile();
 		return file;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (workspaceSynchronizer != null) {
+			workspaceSynchronizer.dispose();
+			workspaceSynchronizer = null;
+		}
+		super.dispose();
 	}
 	
 }

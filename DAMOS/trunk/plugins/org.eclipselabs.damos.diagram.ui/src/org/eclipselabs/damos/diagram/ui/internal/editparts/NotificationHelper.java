@@ -18,35 +18,34 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipselabs.damos.dml.Argument;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ArgumentNotificationHelper {
+public class NotificationHelper {
 
-	GraphicalEditPart editPart;
-	List<EObject> registry;
+	private GraphicalEditPart editPart;
+	private List<EObject> registry;
 	
 	/**
 	 * 
 	 */
-	public ArgumentNotificationHelper(GraphicalEditPart editPart) {
+	public NotificationHelper(GraphicalEditPart editPart) {
 		this.editPart = editPart;
 	}
 	
-	public void addSemanticListeners(List<Argument> arguments) {
-		if (arguments.size() > 0) {
+	public void addSemanticListeners(List<? extends EObject> targets) {
+		if (targets.size() > 0) {
 			if (registry != null) {
 				removeSemanticListeners();
 			}
 			DiagramEventBroker diagramEventBroker = getDiagramEventBroker();
 			if (diagramEventBroker != null) {
 				registry = new ArrayList<EObject>();
-				for (Argument a : arguments) {
-					diagramEventBroker.addNotificationListener(a, editPart);
-					registry.add(a);
+				for (EObject target : targets) {
+					diagramEventBroker.addNotificationListener(target, editPart);
+					registry.add(target);
 				}
 			}
 		}
@@ -65,9 +64,9 @@ public class ArgumentNotificationHelper {
 	}
 
     private DiagramEventBroker getDiagramEventBroker() {
-        TransactionalEditingDomain theEditingDomain = editPart.getEditingDomain();
-        if (theEditingDomain != null) {
-        	return DiagramEventBroker.getInstance(theEditingDomain);
+        TransactionalEditingDomain editingDomain = editPart.getEditingDomain();
+        if (editingDomain != null) {
+        	return DiagramEventBroker.getInstance(editingDomain);
         }
         return null;
     }

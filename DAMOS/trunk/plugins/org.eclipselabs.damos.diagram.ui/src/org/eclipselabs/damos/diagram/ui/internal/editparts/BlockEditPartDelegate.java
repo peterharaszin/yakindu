@@ -34,26 +34,26 @@ import org.eclipselabs.damos.dml.Block;
  */
 public class BlockEditPartDelegate extends ComponentEditPartDelegate {
 
-	private ArgumentNotificationHelper argumentNotificationHelper;
+	private NotificationHelper notificationHelper;
 	
 	/**
 	 * 
 	 */
 	public BlockEditPartDelegate(ComponentEditPart componentEditPart) {
 		super(componentEditPart);
-		argumentNotificationHelper = new ArgumentNotificationHelper(componentEditPart);
+		notificationHelper = new NotificationHelper(componentEditPart);
 	}
 	
 	public void addSemanticListeners() {
 		super.addSemanticListeners();
 		EObject o = editPart.resolveSemanticElement();
 		if (o instanceof Block) {
-			argumentNotificationHelper.addSemanticListeners(((Block) o).getArguments());
+			notificationHelper.addSemanticListeners(((Block) o).getArguments());
 		}
 	}
 	
 	public void removeSemanticListeners() {
-		argumentNotificationHelper.removeSemanticListeners();
+		notificationHelper.removeSemanticListeners();
 		super.removeSemanticListeners();
 	}
 	

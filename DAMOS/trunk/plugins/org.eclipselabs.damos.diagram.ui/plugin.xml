@@ -245,15 +245,6 @@
       </editpartProvider>
    </extension>
    <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <decoratorProvider
-            class="org.eclipselabs.damos.diagram.ui.internal.providers.ProblemMarkerDecoratorProvider">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </decoratorProvider>
-   </extension>
-   <extension
          point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
       <modelingAssistantProvider
             class="org.eclipselabs.damos.diagram.ui.internal.providers.ModelingAssistantProvider">

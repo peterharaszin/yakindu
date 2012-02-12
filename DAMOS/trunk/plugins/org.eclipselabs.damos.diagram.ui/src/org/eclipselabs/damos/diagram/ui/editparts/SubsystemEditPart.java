@@ -285,5 +285,16 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		}
 		return null;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		if (notification.getFeature() == DMLPackage.eINSTANCE.getSubsystem_Interface()) {
+			refreshName();
+		}
+		super.handleNotificationEvent(notification);
+	}
 
 }

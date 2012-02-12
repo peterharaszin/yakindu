@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContainsAllInlets ContainsAllOutlets'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidInletReferences ValidOutletReferences'"
  * @generated
  */
 public interface Subsystem extends Component {

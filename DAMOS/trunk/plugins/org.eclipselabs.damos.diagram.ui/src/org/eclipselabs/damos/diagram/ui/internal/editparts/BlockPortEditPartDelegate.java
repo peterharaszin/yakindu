@@ -21,14 +21,14 @@ import org.eclipselabs.damos.dml.BlockPort;
  */
 public class BlockPortEditPartDelegate extends PortEditPartDelegate {
 
-	private ArgumentNotificationHelper parameterNotificationHelper;
+	private final NotificationHelper argumentNotificationHelper;
 
 	/**
 	 * @param editPart
 	 */
 	public BlockPortEditPartDelegate(PortEditPart editPart) {
 		super(editPart);
-		this.parameterNotificationHelper = new ArgumentNotificationHelper(editPart);
+		this.argumentNotificationHelper = new NotificationHelper(editPart);
 	}
 	
 	/* (non-Javadoc)
@@ -36,11 +36,12 @@ public class BlockPortEditPartDelegate extends PortEditPartDelegate {
 	 */
 	@Override
 	public void addSemanticListeners() {
+		super.addSemanticListeners();
 		EObject o = editPart.resolveSemanticElement();
 		if (o instanceof BlockPort) {
-			parameterNotificationHelper.addSemanticListeners(((BlockPort) o).getArguments());
+			BlockPort blockPort = (BlockPort) o;
+			argumentNotificationHelper.addSemanticListeners(blockPort.getArguments());
 		}
-		super.addSemanticListeners();
 	}
 	
 	/* (non-Javadoc)
@@ -48,7 +49,7 @@ public class BlockPortEditPartDelegate extends PortEditPartDelegate {
 	 */
 	@Override
 	public void removeSemanticListeners() {
-		parameterNotificationHelper.removeSemanticListeners();
+		argumentNotificationHelper.removeSemanticListeners();
 		super.removeSemanticListeners();
 	}
 

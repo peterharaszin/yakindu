@@ -6,9 +6,11 @@
  */
 package org.eclipselabs.damos.dml.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -145,17 +147,33 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
+	public static final int FRAGMENT__WELL_FORMED_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 100;
+	public static final int FRAGMENT__UNIQUE_COMPONENT_NAMES = GENERATED_DIAGNOSTIC_CODE_COUNT + 101;
+
+	public static final int COMPONENT__WELL_FORMED_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 200;
+	
+	public static final int BLOCK__VALID_BLOCK_TYPE_REFERENCE = GENERATED_DIAGNOSTIC_CODE_COUNT + 300;
+	public static final int BLOCK__VALID_INPUT_DEFINITION_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 301;
+	public static final int BLOCK__VALID_OUTPUT_DEFINITION_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 302;
+	public static final int BLOCK__VALID_PARAMETER_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 303;
+	
+	public static final int SUBSYSTEM__VALID_INTERFACE_REFERENCE = GENERATED_DIAGNOSTIC_CODE_COUNT + 400;
+	public static final int SUBSYSTEM__VALID_INLET_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 401;
+	public static final int SUBSYSTEM__VALID_OUTLET_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 402;
+
+	public static final int SUBSYSTEM_REALIZATION__VALID_REALIZING_FRAGMENT_REFERENCE = GENERATED_DIAGNOSTIC_CODE_COUNT + 500;
+	
+	public static final int INOUTPORT__HAS_DATA_TYPE = GENERATED_DIAGNOSTIC_CODE_COUNT + 600;
+	
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
+	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT + 10000;
 
 	private static final Pattern IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z]\\w*");
-	
-	private static final Pattern URI_LAST_ELEMENT_NAME_PATTERN = Pattern.compile("~\\w+\\.\\w+\\z");
 	
 	/**
 	 * Creates an instance of the switch.
@@ -380,76 +398,16 @@ public class DMLValidator extends EObjectValidator {
 					}
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 							DIAGNOSTIC_SOURCE,
-							0,
+							BLOCK__VALID_BLOCK_TYPE_REFERENCE,
 							String.format("The block type of %s%s could not be resolved", block.getName(), path),
 							new Object[] { block }));
 				}
 				return false;
 			}
 		} else if (eObject instanceof BlockInoutput) {
-			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
-				return true;
-			}
-			BlockInoutput inoutput = (BlockInoutput) eObject;
-			InoutputDefinition definition = inoutput.getDefinition();
-			if (!isResolved(definition)) {
-				if (diagnostics != null) {
-					Block block = DMLUtil.getOwner(inoutput, Block.class);
-					String blockName = block.getName() != null ? " of block " + block.getName() : "";
-					String blockTypeName = getName(block.getType(), "UNNAMED");
-					String kind = inoutput instanceof Input ? "input" : "output";
-					
-					String message = null;
-					if (definition != null) {
-						String name = extractElementName(EcoreUtil.getURI(definition));
-						if (name != null) {
-							message = String.format("The %s %s%s is undefined for block type %s",
-									kind, name, blockName, blockTypeName);
-						}
-					}
-					
-					if (message == null) {
-						message = String.format("The %d. %s%s is undefined for block type %s",
-								DMLUtil.indexOf(inoutput) + 1, kind, blockName, blockTypeName);
-					}
-					
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
-							new Object[] { inoutput }));
-				}
-				return false;
-			}
+			return true;
 		} else if (eObject instanceof Argument) {
-			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
-				return true;
-			}
-			Argument argument = (Argument) eObject;
-			Parameter parameter = argument.getParameter();
-			if (!isResolved(parameter)) {
-				if (diagnostics != null) {
-					Block block = DMLUtil.getOwner(argument, Block.class);
-					String blockName = block.getName() != null ? " of block " + block.getName() : "";
-					String blockTypeName = getName(block.getType(), "UNNAMED");
-
-					String message = null;
-					
-					if (parameter != null) {
-						String name = extractElementName(EcoreUtil.getURI(parameter));
-						if (name != null) {
-							message = String.format("The parameter %s%s is undefined for block type %s",
-									name, blockName, blockTypeName);
-						}
-					}
-					
-					if (message == null) {
-						message = String.format("The %d. parameter%s is undefined for block type %s",
-								DMLUtil.indexOf(argument) + 1, blockName, blockTypeName);
-					}
-					
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
-							new Object[] { argument }));
-				}
-				return false;
-			}
+			return true;
 		} else if (eObject instanceof SubsystemRealization) {
 			SubsystemRealization subsystemRealization = (SubsystemRealization) eObject;
 			if (!isResolved(subsystemRealization.getRealizingFragment())) {
@@ -463,7 +421,7 @@ public class DMLValidator extends EObjectValidator {
 					}
 					String message = String.format("Realizing fragment%s could not be resolved for subsystem %s", path,
 							subsystemRealization.getRealizedSubsystem().getName());
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, SUBSYSTEM_REALIZATION__VALID_REALIZING_FRAGMENT_REFERENCE, message,
 							new Object[] { subsystemRealization.getRealizedSubsystem() }));
 				}
 				return false;
@@ -481,44 +439,14 @@ public class DMLValidator extends EObjectValidator {
 						}
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 								DIAGNOSTIC_SOURCE,
-								0,
+								SUBSYSTEM__VALID_INTERFACE_REFERENCE,
 								String.format("The system interface of %s%s could not be resolved", subsystem.getName(), path),
 								new Object[] { subsystem }));
 					}
 					return false;
 				}
 		} else if (eObject instanceof SubsystemInoutput) {
-			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
-				return true;
-			}
-			SubsystemInoutput inoutput = (SubsystemInoutput) eObject;
-			Inoutlet inoutlet = inoutput.getInoutlet();
-			if (!isResolved(inoutlet)) {
-				if (diagnostics != null) {
-					Subsystem subsystem = DMLUtil.getOwner(inoutput, Subsystem.class);
-					String subsystemName = subsystem.getName() != null ? " of subsystem " + subsystem.getName() : "";
-					String systemInterfaceName = getName(subsystem.getInterface(), "UNNAMED");
-					String kind = inoutput instanceof Input ? "inlet" : "outlet";
-					
-					String message = null;
-					if (inoutlet != null) {
-						String name = extractElementName(EcoreUtil.getURI(inoutlet));
-						if (name != null) {
-							message = String.format("The %s %s%s is undefined for system interface %s",
-									kind, name, subsystemName, systemInterfaceName);
-						}
-					}
-					
-					if (message == null) {
-						message = String.format("The %d. %s%s is undefined for system interface %s",
-								DMLUtil.indexOf(inoutput) + 1, kind, subsystemName, systemInterfaceName);
-					}
-					
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
-							new Object[] { inoutput }));
-				}
-				return false;
-			}
+			return true;
 		} else {
 			return super.validate_EveryProxyResolves(eObject, diagnostics, context);
 		}
@@ -540,6 +468,25 @@ public class DMLValidator extends EObjectValidator {
 							0,
 							"Choice component must have at least two action links",
 							new Object[] { choice }));
+				}
+				return false;
+			}
+			return true;
+		} else if (eStructuralFeature == DMLPackage.eINSTANCE.getInoutport_DataType() && eObject instanceof Inoutport) {
+			Inoutport inoutport = (Inoutport) eObject;
+			if (inoutport.getDataType() == null) {
+				if (diagnostics != null) {
+					String message;
+					if (inoutport.getName() != null) {
+						message = "No data type specified for " + inoutport.getName();
+					} else {
+						message = "No data type specified";
+					}
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							DIAGNOSTIC_SOURCE,
+							INOUTPORT__HAS_DATA_TYPE,
+							message,
+							new Object[] { inoutport }));
 				}
 				return false;
 			}
@@ -1085,51 +1032,83 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(block, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(block, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(block, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBlock_ContainsAllInputs(block, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBlock_ContainsAllOutputs(block, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBlock_ContainsAllParameters(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ValidInputDefinitionReferences(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ValidOutputDefinitionReferences(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBlock_ValidParameterReferences(block, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ContainsAllInputs constraint of '<em>Block</em>'.
+	 * Validates the ValidInputDefinitionReferences constraint of '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateBlock_ContainsAllInputs(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBlock_ValidInputDefinitionReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (blockType == null) {
+		if (!isResolved(blockType)) {
 			return true;
 		}
 		
-		Set<InputDefinition> inputDefinitions = new LinkedHashSet<InputDefinition>();
-		for (InputDefinition inputDefinition : blockType.getInputDefinitions()) {
-			inputDefinitions.add(inputDefinition);
+		List<String> undefinedDefinitions = new ArrayList<String>();
+		Set<InputDefinition> missingDefinitions = new LinkedHashSet<InputDefinition>();
+		for (InputDefinition definition : blockType.getInputDefinitions()) {
+			missingDefinitions.add(definition);
 		}
 		
 		for (Input input : block.getInputs()) {
 			if (input instanceof BlockInput) {
-				inputDefinitions.remove(((BlockInput) input).getDefinition());	
+				InputDefinition definition = ((BlockInput) input).getDefinition();
+				if (isResolved(definition)) {
+					missingDefinitions.remove(definition);
+				} else {
+					undefinedDefinitions.add(extractElementName(definition));
+				}
 			}
 		}
 		
-		if (!inputDefinitions.isEmpty()) {
+		if (!undefinedDefinitions.isEmpty() || !missingDefinitions.isEmpty()) {
 			if (diagnostics != null) {
-				StringBuilder sb = new StringBuilder("Missing input");
-				if (inputDefinitions.size() > 1) {
-					sb.append("s");
-				}
-				sb.append(" ");
-				boolean first = true;
-				for (InputDefinition inputDefinition : inputDefinitions) {
-					if (first) {
-						first = false;
-					} else {
-						sb.append(", ");
+				StringBuilder sb = new StringBuilder();
+	
+				if (!undefinedDefinitions.isEmpty()) {
+					sb.append("Undefined input");
+					if (undefinedDefinitions.size() > 1) {
+						sb.append("s");
 					}
-					sb.append(inputDefinition.getName());
+					sb.append(" ");
+					boolean first = true;
+					for (String definition : undefinedDefinitions) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(definition);
+					}
 				}
+				
+				if (!missingDefinitions.isEmpty()) {
+					if (undefinedDefinitions.isEmpty()) {
+						sb.append("Missing input");
+					} else {
+						sb.append(" and missing input");
+					}
+					if (missingDefinitions.size() > 1) {
+						sb.append("s");
+					}
+					sb.append(" ");
+					boolean first = true;
+					for (InputDefinition definition : missingDefinitions) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(definition.getName());
+					}
+				}
+	
 				sb.append(" on block ");
 				sb.append(block.getName());
 				
@@ -1141,48 +1120,81 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
 	/**
-	 * Validates the ContainsAllOutputs constraint of '<em>Block</em>'.
+	 * Validates the ValidOutputDefinitionReferences constraint of '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateBlock_ContainsAllOutputs(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBlock_ValidOutputDefinitionReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (blockType == null) {
+		if (!isResolved(blockType)) {
 			return true;
 		}
 		
-		Set<OutputDefinition> outputDefinitions = new LinkedHashSet<OutputDefinition>();
-		for (OutputDefinition outputDefinition : blockType.getOutputDefinitions()) {
-			outputDefinitions.add(outputDefinition);
+		List<String> undefinedDefinitions = new ArrayList<String>();
+		Set<OutputDefinition> missingDefinitions = new LinkedHashSet<OutputDefinition>();
+		for (OutputDefinition definition : blockType.getOutputDefinitions()) {
+			missingDefinitions.add(definition);
 		}
 		
 		for (Output output : block.getOutputs()) {
 			if (output instanceof BlockOutput) {
-				outputDefinitions.remove(((BlockOutput) output).getDefinition());	
+				OutputDefinition definition = ((BlockOutput) output).getDefinition();
+				if (isResolved(definition)) {
+					missingDefinitions.remove(definition);
+				} else {
+					undefinedDefinitions.add(extractElementName(definition));
+				}
 			}
 		}
 		
-		if (!outputDefinitions.isEmpty()) {
+		if (!undefinedDefinitions.isEmpty() || !missingDefinitions.isEmpty()) {
 			if (diagnostics != null) {
-				StringBuilder sb = new StringBuilder("Missing output");
-				if (outputDefinitions.size() > 1) {
-					sb.append("s");
-				}
-				sb.append(" ");
-				boolean first = true;
-				for (OutputDefinition outputDefinition : outputDefinitions) {
-					if (first) {
-						first = false;
-					} else {
-						sb.append(", ");
+				StringBuilder sb = new StringBuilder();
+	
+				if (!undefinedDefinitions.isEmpty()) {
+					sb.append("Undefined output");
+					if (undefinedDefinitions.size() > 1) {
+						sb.append("s");
 					}
-					sb.append(outputDefinition.getName());
+					sb.append(" ");
+					boolean first = true;
+					for (String definition : undefinedDefinitions) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(definition);
+					}
 				}
+				
+				if (!missingDefinitions.isEmpty()) {
+					if (undefinedDefinitions.isEmpty()) {
+						sb.append("Missing output");
+					} else {
+						sb.append(" and missing output");
+					}
+					if (missingDefinitions.size() > 1) {
+						sb.append("s");
+					}
+					sb.append(" ");
+					boolean first = true;
+					for (OutputDefinition definition : missingDefinitions) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(definition.getName());
+					}
+				}
+	
 				sb.append(" on block ");
 				sb.append(block.getName());
 				
@@ -1194,55 +1206,89 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
 	/**
-	 * Validates the ContainsAllParameters constraint of '<em>Block</em>'.
+	 * Validates the ValidParameterReferences constraint of '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateBlock_ContainsAllParameters(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBlock_ValidParameterReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (blockType == null) {
+		if (!isResolved(blockType)) {
 			return true;
 		}
 		
-		Set<Parameter> parameters = new LinkedHashSet<Parameter>();
+		List<String> undefinedParameters = new ArrayList<String>();
+		Set<Parameter> missingParameters = new LinkedHashSet<Parameter>();
 		for (Parameter parameter : blockType.getParameters()) {
-			parameters.add(parameter);
+			missingParameters.add(parameter);
 		}
 		
 		for (Argument argument : block.getArguments()) {
-			parameters.remove(argument.getParameter());	
+			Parameter parameter = argument.getParameter();
+			if (isResolved(parameter)) {
+				missingParameters.remove(parameter);
+			} else {
+				undefinedParameters.add(extractElementName(parameter));
+			}
 		}
 		
-		if (!parameters.isEmpty() && diagnostics != null) {
-			StringBuilder sb = new StringBuilder("Missing parameter");
-			if (parameters.size() > 1) {
-				sb.append("s");
-			}
-			sb.append(" ");
-			boolean first = true;
-			for (Parameter parameter : parameters) {
-				if (first) {
-					first = false;
-				} else {
-					sb.append(", ");
+		if (!undefinedParameters.isEmpty() || !missingParameters.isEmpty() && diagnostics != null) {
+			StringBuilder sb = new StringBuilder();
+
+			if (!undefinedParameters.isEmpty()) {
+				sb.append("Undefined parameter");
+				if (undefinedParameters.size() > 1) {
+					sb.append("s");
 				}
-				sb.append(parameter.getName());
+				sb.append(" ");
+				boolean first = true;
+				for (String parameter : undefinedParameters) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(parameter);
+				}
 			}
+			
+			if (!missingParameters.isEmpty()) {
+				if (undefinedParameters.isEmpty()) {
+					sb.append("Missing parameter");
+				} else {
+					sb.append(" and missing parameter");
+				}
+				if (missingParameters.size() > 1) {
+					sb.append("s");
+				}
+				sb.append(" ");
+				boolean first = true;
+				for (Parameter parameter : missingParameters) {
+					if (first) {
+						first = false;
+					} else {
+						sb.append(", ");
+					}
+					sb.append(parameter.getName());
+				}
+			}
+
 			sb.append(" on block ");
 			sb.append(block.getName());
 			
 			diagnostics.add(new BasicDiagnostic(
-					Diagnostic.WARNING,
+					!undefinedParameters.isEmpty() ? Diagnostic.ERROR : Diagnostic.WARNING,
 					DIAGNOSTIC_SOURCE,
 					0,
 					sb.toString(), new Object[] { block }));
 		}
-		return true;
+		
+		return undefinedParameters.isEmpty();
 	}
 
 	/**
@@ -1328,50 +1374,82 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(subsystem, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(subsystem, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(subsystem, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSubsystem_ContainsAllInlets(subsystem, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSubsystem_ContainsAllOutlets(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSubsystem_ValidInletReferences(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSubsystem_ValidOutletReferences(subsystem, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ContainsAllInlets constraint of '<em>Subsystem</em>'.
+	 * Validates the ValidInletReferences constraint of '<em>Subsystem</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateSubsystem_ContainsAllInlets(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSubsystem_ValidInletReferences(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		SystemInterface interface_ = subsystem.getInterface();
-		if (interface_ == null) {
+		if (!isResolved(interface_)) {
 			return true;
 		}
 		
-		Set<Inlet> inlets = new LinkedHashSet<Inlet>();
+		List<String> undefinedInlets = new ArrayList<String>();
+		Set<Inlet> missingInlets = new LinkedHashSet<Inlet>();
 		for (Inlet inlet : interface_.getInlets()) {
-			inlets.add(inlet);
+			missingInlets.add(inlet);
 		}
 		
 		for (Input input : subsystem.getInputs()) {
 			if (input instanceof SubsystemInput) {
-				inlets.remove(((SubsystemInput) input).getInlet());	
+				Inlet inlet = ((SubsystemInput) input).getInlet();
+				if (isResolved(inlet)) {
+					missingInlets.remove(inlet);
+				} else {
+					undefinedInlets.add(extractElementName(inlet));
+				}
 			}
 		}
 		
-		if (!inlets.isEmpty()) {
+		if (!undefinedInlets.isEmpty() || !missingInlets.isEmpty()) {
 			if (diagnostics != null) {
-				StringBuilder sb = new StringBuilder("Missing input");
-				if (inlets.size() > 1) {
-					sb.append("s");
-				}
-				sb.append(" ");
-				boolean first = true;
-				for (Inlet inlet : inlets) {
-					if (first) {
-						first = false;
-					} else {
-						sb.append(", ");
+				StringBuilder sb = new StringBuilder();
+	
+				if (!undefinedInlets.isEmpty()) {
+					sb.append("Undefined inlet");
+					if (undefinedInlets.size() > 1) {
+						sb.append("s");
 					}
-					sb.append(inlet.getName());
+					sb.append(" ");
+					boolean first = true;
+					for (String inlet : undefinedInlets) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(inlet);
+					}
 				}
+				
+				if (!missingInlets.isEmpty()) {
+					if (undefinedInlets.isEmpty()) {
+						sb.append("Missing inlet");
+					} else {
+						sb.append(" and missing inlet");
+					}
+					if (missingInlets.size() > 1) {
+						sb.append("s");
+					}
+					sb.append(" ");
+					boolean first = true;
+					for (Inlet inlet : missingInlets) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(inlet.getName());
+					}
+				}
+	
 				sb.append(" on subsystem ");
 				sb.append(subsystem.getName());
 				
@@ -1383,48 +1461,81 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
 	/**
-	 * Validates the ContainsAllOutlets constraint of '<em>Subsystem</em>'.
+	 * Validates the ValidOutletReferences constraint of '<em>Subsystem</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateSubsystem_ContainsAllOutlets(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSubsystem_ValidOutletReferences(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		SystemInterface interface_ = subsystem.getInterface();
-		if (interface_ == null) {
+		if (!isResolved(interface_)) {
 			return true;
 		}
 		
-		Set<Outlet> outlets = new LinkedHashSet<Outlet>();
+		List<String> undefinedOutlets = new ArrayList<String>();
+		Set<Outlet> missingOutlets = new LinkedHashSet<Outlet>();
 		for (Outlet outlet : interface_.getOutlets()) {
-			outlets.add(outlet);
+			missingOutlets.add(outlet);
 		}
 		
 		for (Output output : subsystem.getOutputs()) {
 			if (output instanceof SubsystemOutput) {
-				outlets.remove(((SubsystemOutput) output).getOutlet());	
+				Outlet outlet = ((SubsystemOutput) output).getOutlet();
+				if (isResolved(outlet)) {
+					missingOutlets.remove(outlet);
+				} else {
+					undefinedOutlets.add(extractElementName(outlet));
+				}
 			}
 		}
 		
-		if (!outlets.isEmpty()) {
+		if (!undefinedOutlets.isEmpty() || !missingOutlets.isEmpty()) {
 			if (diagnostics != null) {
-				StringBuilder sb = new StringBuilder("Missing input");
-				if (outlets.size() > 1) {
-					sb.append("s");
-				}
-				sb.append(" ");
-				boolean first = true;
-				for (Outlet outlet : outlets) {
-					if (first) {
-						first = false;
-					} else {
-						sb.append(", ");
+				StringBuilder sb = new StringBuilder();
+	
+				if (!undefinedOutlets.isEmpty()) {
+					sb.append("Undefined outlet");
+					if (undefinedOutlets.size() > 1) {
+						sb.append("s");
 					}
-					sb.append(outlet.getName());
+					sb.append(" ");
+					boolean first = true;
+					for (String outlet : undefinedOutlets) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(outlet);
+					}
 				}
+				
+				if (!missingOutlets.isEmpty()) {
+					if (undefinedOutlets.isEmpty()) {
+						sb.append("Missing outlet");
+					} else {
+						sb.append(" and missing outlet");
+					}
+					if (missingOutlets.size() > 1) {
+						sb.append("s");
+					}
+					sb.append(" ");
+					boolean first = true;
+					for (Outlet outlet : missingOutlets) {
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						sb.append(outlet.getName());
+					}
+				}
+	
 				sb.append(" on subsystem ");
 				sb.append(subsystem.getName());
 				
@@ -1436,6 +1547,7 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -2420,19 +2532,11 @@ public class DMLValidator extends EObjectValidator {
 		return null;
 	}
 	
-	private String getName(INamedElement namedElement, String defaultName) {
-		if (isResolved(namedElement) && namedElement.getName() != null) {
-			return namedElement.getName();
+	private String extractElementName(EObject eObject) {
+		if (eObject == null) {
+			return "UNNAMED";
 		}
-		return defaultName;
-	}
-	
-	private String extractElementName(URI uri) {
-		String fragment = uri.fragment();
-		if (URI_LAST_ELEMENT_NAME_PATTERN.matcher(fragment).find()) {
-			return fragment.substring(fragment.lastIndexOf('.') + 1);
-		}
-		return null;
+		return DMLUtil.extractElementName(EcoreUtil.getURI(eObject));
 	}
 
 	private String formatStringWithOwnerName(String s, EObject eObject) {

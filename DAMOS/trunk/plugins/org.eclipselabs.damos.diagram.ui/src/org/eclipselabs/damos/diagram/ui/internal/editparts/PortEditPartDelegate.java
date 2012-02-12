@@ -11,7 +11,11 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import java.util.Collections;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
+import org.eclipselabs.damos.dml.Port;
 
 
 /**
@@ -20,19 +24,28 @@ import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
  */
 public class PortEditPartDelegate {
 
-	protected PortEditPart editPart;
+	protected final PortEditPart editPart;
+
+	private final NotificationHelper inoutputNotificationHelper;
 	
 	/**
 	 * 
 	 */
 	public PortEditPartDelegate(PortEditPart editPart) {
 		this.editPart = editPart;
+		this.inoutputNotificationHelper = new NotificationHelper(editPart);
 	}
 	
 	public void addSemanticListeners() {
+		EObject o = editPart.resolveSemanticElement();
+		if (o instanceof Port) {
+			Port port = (Port) o;
+			inoutputNotificationHelper.addSemanticListeners(Collections.singletonList(port.getInoutput()));
+		}
 	}
 	
 	public void removeSemanticListeners() {
+		inoutputNotificationHelper.removeSemanticListeners();
 	}
 	
 }

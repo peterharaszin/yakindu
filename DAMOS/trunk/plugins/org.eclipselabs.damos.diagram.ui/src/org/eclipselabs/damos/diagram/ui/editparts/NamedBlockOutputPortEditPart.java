@@ -11,7 +11,9 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.dml.DMLPackage;
 
 /**
  * @author Andreas Unger
@@ -39,6 +41,14 @@ public class NamedBlockOutputPortEditPart extends BlockOutputPortEditPart {
 	
 	protected void refreshName() {
 		helper.refreshName();
+	}
+
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		if (notification.getFeature() == DMLPackage.eINSTANCE.getBlockOutput_Definition()) {
+			refreshName();
+		}
+		super.handleNotificationEvent(notification);
 	}
 
 }

@@ -3012,13 +3012,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		  (blockEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "ContainsAllInputs ContainsAllOutputs ContainsAllParameters"
+			 "constraints", "ValidInputDefinitionReferences ValidOutputDefinitionReferences ValidParameterReferences"
 		   });		
 		addAnnotation
 		  (subsystemEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "ContainsAllInlets ContainsAllOutlets"
+			 "constraints", "ValidInletReferences ValidOutletReferences"
 		   });		
 		addAnnotation
 		  (subsystemRealizationEClass, 

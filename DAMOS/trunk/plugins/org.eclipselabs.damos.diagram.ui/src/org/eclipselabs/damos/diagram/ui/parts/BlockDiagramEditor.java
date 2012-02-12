@@ -11,14 +11,9 @@
 
 package org.eclipselabs.damos.diagram.ui.parts;
 
-import java.io.IOException;
-
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.editor.FileDiagramEditorWithFlyoutPalette;
@@ -26,7 +21,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
-import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
+import org.eclipselabs.damos.common.ecore.util.WorkspaceSynchronizer;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.LocalTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.ResourceTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.ToolTransferDropTargetListener;
@@ -89,7 +84,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		workspaceSynchronizer = new WorkspaceSynchronizer(getEditingDomain(), createWorkspaceSynchronizerDelegate());
+		workspaceSynchronizer = new WorkspaceSynchronizer(getEditingDomain(), getResource());
 	}
 	
 	/* (non-Javadoc)
@@ -101,40 +96,6 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 		getGraphicalViewer().addDropTargetListener(new ToolTransferDropTargetListener(getGraphicalViewer()));
 		getGraphicalViewer().addDropTargetListener(new LocalTransferDropTargetListener(getGraphicalViewer(), getEditingDomain(), getPreferencesHint()));
 		getGraphicalViewer().addDropTargetListener(new ResourceTransferDropTargetListener(getGraphicalViewer(), getEditingDomain(), getPreferencesHint()));
-	}
-	
-	private WorkspaceSynchronizer.Delegate createWorkspaceSynchronizerDelegate() {
-		return new WorkspaceSynchronizer.Delegate() {
-			
-			public boolean handleResourceDeleted(Resource resource) {
-				resource.unload();
-				return true;
-			}
-
-			public boolean handleResourceMoved(Resource resource, URI newURI) {
-				resource.unload();
-				return true;
-			}
-
-			public boolean handleResourceChanged(Resource resource) {
-				if (resource == getResource()) {
-					return true;
-				}
-				
-				resource.unload();
-				try {
-					resource.load(resource.getResourceSet().getLoadOptions());
-				} catch (IOException e) {
-					DiagramUIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DiagramUIPlugin.PLUGIN_ID, "Reloading resource '" + resource.getURI() + "' failed"));
-				}
-				
-				return true;
-			}
-			
-			public void dispose() {
-			}
-			
-		};
 	}
 	
 	private Resource getResource() {

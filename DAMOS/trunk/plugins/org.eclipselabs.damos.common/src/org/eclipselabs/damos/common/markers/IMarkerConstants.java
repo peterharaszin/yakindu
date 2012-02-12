@@ -23,5 +23,7 @@ public interface IMarkerConstants {
 
 	String PROBLEM_MARKER_ID = CommonPlugin.PLUGIN_ID + ".damosProblem";
 	String ATTRIBUTE__FRAGMENT_URI = CommonPlugin.PLUGIN_ID + ".fragmentURI";
+	String SOURCE = CommonPlugin.PLUGIN_ID + ".source";
+	String CODE = CommonPlugin.PLUGIN_ID + ".code";
 	
 }

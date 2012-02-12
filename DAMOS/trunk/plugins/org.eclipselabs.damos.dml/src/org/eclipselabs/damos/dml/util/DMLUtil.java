@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
@@ -51,6 +52,8 @@ import org.eclipselabs.damos.dml.registry.LanguageRegistry;
  *
  */
 public class DMLUtil {
+	
+	private static final Pattern URI_LAST_ELEMENT_NAME_PATTERN = Pattern.compile("~\\w+\\.\\w+\\z");
 	
 	@SuppressWarnings("rawtypes")
 	public static int indexOf(EObject o) {
@@ -314,6 +317,14 @@ public class DMLUtil {
 	
 	public static String safeFormatName(INamedElement element) {
 		return element != null && !element.eIsProxy() && element.getName() != null ? element.getName() : "???";
+	}
+
+	public static String extractElementName(URI uri) {
+		String fragment = uri.fragment();
+		if (URI_LAST_ELEMENT_NAME_PATTERN.matcher(fragment).find()) {
+			return fragment.substring(fragment.lastIndexOf('.') + 1);
+		}
+		return null;
 	}
 
 }

@@ -39,8 +39,6 @@ import org.eclipselabs.damos.dml.Port;
 
 public abstract class PortEditPart extends ShapeNodeEditPart implements IConnectorEditPart {
 
-	private static final PortEditPartDelegate PASSIVE_DELEGATE = new PortEditPartDelegate(null);
-	
 	private PortEditPartDelegate delegate;
 
 	public PortEditPart(View view) {
@@ -58,7 +56,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	}
 	
 	PortEditPartDelegate createDelegate() {
-		return PASSIVE_DELEGATE;
+		return new PortEditPartDelegate(this);
 	}
 
 	protected boolean isTestPoint() {

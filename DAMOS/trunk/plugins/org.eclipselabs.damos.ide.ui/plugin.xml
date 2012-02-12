@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="quickFixProviders" name="Quick Fix Providers" schema="schema/quickFixProviders.exsd"/>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
@@ -273,11 +274,33 @@
       </paletteProvider>
    </extension>
    <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider
+            class="org.eclipselabs.damos.ide.ui.internal.providers.ProblemMarkerDecoratorProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </decoratorProvider>
+   </extension>
+   <extension
          point="org.eclipselabs.damos.dml.ui.injectorProviders">
       <provider
             class="org.eclipselabs.damos.ide.ui.internal.providers.UIInjectorProvider"
             language="org.eclipselabs.damos">
       </provider>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.ide.ui.quickFixProviders">
+      <provider
+            class="org.eclipselabs.damos.ide.ui.internal.providers.QuickFixProvider">
+      </provider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.eclipselabs.damos.ide.ui.internal.providers.QuickFixMarkerResolutionGenerator"
+            markerType="org.eclipselabs.damos.common.damosProblem">
+      </markerResolutionGenerator>
    </extension>
 
 </plugin>

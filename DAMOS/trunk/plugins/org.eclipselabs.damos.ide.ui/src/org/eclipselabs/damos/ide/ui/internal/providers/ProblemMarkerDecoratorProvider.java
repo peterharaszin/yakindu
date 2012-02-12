@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.diagram.ui.internal.providers;
+package org.eclipselabs.damos.ide.ui.internal.providers;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;

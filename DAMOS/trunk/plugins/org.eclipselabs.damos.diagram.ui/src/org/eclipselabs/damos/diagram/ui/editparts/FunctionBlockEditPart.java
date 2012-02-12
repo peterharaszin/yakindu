@@ -11,11 +11,13 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.NonRotatableTransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.FunctionBlockFigure;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
 /**
@@ -64,6 +66,17 @@ public class FunctionBlockEditPart extends StandardBlockEditPart {
 	@Override
 	public FunctionBlockFigure getMainFigure() {
 		return (FunctionBlockFigure) super.getMainFigure();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		if (notification.getFeature() == DMLPackage.eINSTANCE.getBlock_Type()) {
+			refreshHeader();
+		}
+		super.handleNotificationEvent(notification);
 	}
 	
 }

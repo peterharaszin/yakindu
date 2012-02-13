@@ -13,18 +13,25 @@ package org.eclipselabs.damos.diagram.ui.editpolicies;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputPort;
 
 /**
  * Sync notation views with semantic children
@@ -45,7 +52,7 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 		super.activate();
 		
-		EObject o = ViewUtil.resolveSemanticElement((View) host().getModel());
+		EObject o = resolveSemanticElement();
 		if (o instanceof Component) {
 			Component component = (Component) o;
 			
@@ -88,7 +95,7 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#getSemanticChildrenList()
 	 */
 	protected List<EObject> getSemanticChildrenList() {
-		EObject o = ViewUtil.resolveSemanticElement((View) host().getModel());
+		EObject o = resolveSemanticElement();
 		
 		if (!(o instanceof Component)) {
 			return Collections.emptyList();
@@ -103,11 +110,76 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 		return children;
 	}
 	
+	/**
+	 * Also handle move move notifications.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#shouldHandleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected boolean shouldHandleNotificationEvent(Notification event) {
+		if (super.shouldHandleNotificationEvent(event)) {
+			return true;
+		}
+
+		Object element = event.getNotifier();
+		if (element instanceof EObject && !(element instanceof View)) {
+			return NotificationUtil.isMove(event);
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Ensure semantic elements and views are in the same order.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#refreshSemantic()
+	 */
+	@Override
+	protected void refreshSemantic() {
+		super.refreshSemantic();
+
+		if (isSemanticOrdered()) {
+			return;
+		}
+		
+		executeCommand(new ReorderCommand());
+	}
+	
+	private boolean isSemanticOrdered() {
+		Component component = (Component) resolveSemanticElement();
+		View container = (View) getHost().getModel();
+		EList<?> children = container.getChildren();
+
+		int i = 0;
+		
+		for (InputPort port : component.getInputPorts()) {
+			if (children.size() == i) {
+				return false;
+			}
+			View view = (View) children.get(++i);
+			if (view.getElement() != port) {
+				return false;
+			}
+		}
+		
+		for (OutputPort port : component.getOutputPorts()) {
+			if (children.size() == i) {
+				return false;
+			}
+			View view = (View) children.get(++i);
+			if (view.getElement() != port) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#shouldDeleteView(org.eclipse.gmf.runtime.notation.View)
 	 */
 	protected boolean shouldDeleteView(View view) {
-		return !(ViewUtil.resolveSemanticElement(view) instanceof Component);
+		return "".equals(view.getType()) || view.getType() == null;
 	}
 	
 	private DiagramEventBroker getDiagramEventBroker() {
@@ -117,5 +189,57 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		return null;
     }
+
+	/**
+	 * @author Andreas Unger
+	 *
+	 */
+	private class ReorderCommand extends Command {
+		
+		@Override
+		public void execute() {
+			Component component = (Component) resolveSemanticElement();
+			View container = (View) getHost().getModel();
+	
+			Map<InputPort, View> inputPortViews = new HashMap<InputPort, View>();
+			Map<OutputPort, View> outputPortViews = new HashMap<OutputPort, View>();
+	
+			for (Object o : container.getChildren()) {
+				View view = (View) o;
+				if (view != null) {
+					if (view.getElement() instanceof InputPort) {
+						inputPortViews.put((InputPort) view.getElement(), view);
+					} else if (view.getElement() instanceof OutputPort) {
+						outputPortViews.put((OutputPort) view.getElement(), view);
+					}
+				}
+			}
+			
+			int i = 0;
+			for (InputPort port : component.getInputPorts()) {
+				reorderView(container, inputPortViews.get(port), ++i);
+			}
+			for (OutputPort port : component.getOutputPorts()) {
+				reorderView(container, outputPortViews.get(port), ++i);
+			}
+		}
+
+		/**
+		 * @param container
+		 * @param view
+		 * @param i
+		 */
+		private void reorderView(View container, View view, int i) {
+			if (view != null) {
+			    container.removeChild(view);
+			    if (container.getChildren().size() < i) {
+			    	container.insertChildAt(view, i);
+			    } else {
+			    	container.insertChild(view);
+			    }
+			}
+		}
+		
+	}
 
 }

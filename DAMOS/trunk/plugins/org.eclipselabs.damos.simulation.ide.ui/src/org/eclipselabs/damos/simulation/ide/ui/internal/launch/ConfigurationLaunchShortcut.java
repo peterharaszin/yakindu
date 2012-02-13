@@ -73,7 +73,7 @@ public class ConfigurationLaunchShortcut implements ILaunchShortcut2 {
 				String name = launchManager.generateLaunchConfigurationName(path.removeFileExtension().lastSegment() + " Simulation");
 				ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, name);
 				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, false);
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, path.toString());
+				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, path.makeRelative().toString());
 				launchConfiguration.doSave();
 				
 				DebugUITools.launch(launchConfiguration, mode);

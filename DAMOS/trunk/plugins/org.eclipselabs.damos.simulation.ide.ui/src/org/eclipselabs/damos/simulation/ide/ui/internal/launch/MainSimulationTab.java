@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
@@ -144,7 +145,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				d.open();
 				Object firstResult = d.getFirstResult();
 				if (firstResult instanceof IFile) {
-					baseConfigurationPathText.setText(((IFile) firstResult).getFullPath().toString());
+					baseConfigurationPathText.setText(((IFile) firstResult).getFullPath().makeRelative().toString());
 				}
 			}
 			
@@ -183,7 +184,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 					rs.getResource(uri, true);
 					fragmentViewer.setInput(rs);
 					fragmentViewer.getCombo().select(0);
-				} catch (Exception e) {
+				} catch (RuntimeException e) {
 					fragmentViewer.setInput(null);
 				}
 				updateLaunchConfigurationDialog();
@@ -203,7 +204,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				d.open();
 				Object firstResult = d.getFirstResult();
 				if (firstResult instanceof IFile) {
-					blockDiagramPathText.setText(((IFile) firstResult).getFullPath().toString());
+					blockDiagramPathText.setText(((IFile) firstResult).getFullPath().makeRelative().toString());
 				}
 			}
 		});
@@ -293,6 +294,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		});
 		solverViewer.setContentProvider(new ArrayContentProvider());
 		solverViewer.setComparator(new ViewerComparator());
+		solverViewer.setInput(ISolverRegistry.INSTANCE.getSolvers());
 		solverViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			
 			public void selectionChanged(SelectionChangedEvent event) {
@@ -301,7 +303,6 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			}
 			
 		});
-		solverViewer.setInput(ISolverRegistry.INSTANCE.getSolvers());
 		overrideConfigurationControls.add(solverViewer.getControl());
 		
 		solverConfigurationGroup = new Group(composite, SWT.NONE);
@@ -433,12 +434,19 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				String fragmentURIString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, "");
 				if (fragmentURIString.trim().length() > 0) {
 					URI fragmentURI = URI.createURI(fragmentURIString);
+
+					IPath blockDiagramPath = new Path(fragmentURI.toPlatformString(true));
+					blockDiagramPathText.setText(blockDiagramPath.makeRelative().toString());
+					
 					ResourceSet resourceSet = new ResourceSetImpl();
-					EObject eObject = resourceSet.getEObject(fragmentURI, true);
-					if (eObject instanceof Fragment) {
-						blockDiagramPathText.setText(eObject.eResource().getURI().toPlatformString(true));
-						fragmentViewer.setInput(resourceSet);
-						fragmentViewer.setSelection(new StructuredSelection(eObject));
+					try {
+						EObject eObject = resourceSet.getEObject(fragmentURI, true);
+						if (eObject instanceof Fragment) {
+							fragmentViewer.setInput(resourceSet);
+							fragmentViewer.setSelection(new StructuredSelection(eObject));
+						}
+					} catch (RuntimeException e) {
+						// Ignore invalid fragment URIs
 					}
 				}
 				
@@ -481,41 +489,67 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, overrideConfiguration);
 		
 		if (overrideConfiguration) {
-			Fragment fragment = null;
-			ISelection selection = fragmentViewer.getSelection();
-			if (selection instanceof IStructuredSelection) {
-				fragment = (Fragment) ((IStructuredSelection) selection).getFirstElement();
+			String blockDiagramPathString = blockDiagramPathText.getText().trim();
+			if (blockDiagramPathString.length() == 0) {
+				errorMessage = "No block diagram specified";
 			}
-			if (fragment != null) {
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, EcoreUtil.getURI(fragment).toString());
-			} else {
-				errorMessage = "No fragment selected";
-			}
-
-			boolean realTimeSimulation = realTimeSimulationButton.getSelection();
-			launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__REAL_TIME_SIMULATION, realTimeSimulation);
-			if (!realTimeSimulation) {
-				String simulationTimeString = simulationTimeText.getText().trim();
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, simulationTimeString);
-			}
-
-			IStructuredSelection solverSelection = (IStructuredSelection) solverViewer.getSelection();
-			ISolverDescriptor solver = (ISolverDescriptor) solverSelection.getFirstElement();
-			if (solver != null) {
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, solver.getId());
-				SolverConfigurationPage page = solverConfigurationControls.get(solver.getId());
-				if (page != null) {
-					Map<String, String> solverConfiguration = new HashMap<String, String>();
-					for (Entry<String, Text> entry : page.propertyTexts.entrySet()) {
-						String text = entry.getValue().getText();
-						if (text.trim().length() > 0) {
-							solverConfiguration.put(entry.getKey(), text);
+			
+			if (errorMessage == null) {
+				ResourceSet resourceSet = new ResourceSetImpl();
+				try {
+					Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(blockDiagramPathString, true), true);
+					boolean fragmentFound = false;
+					for (EObject eObject : resource.getContents()) {
+						if (eObject instanceof Fragment) {
+							fragmentFound = true;
+							break;
 						}
 					}
-					launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, solverConfiguration);
+					if (!fragmentFound) {
+						errorMessage = "Specified block diagram file does not contain fragments";
+					}
+				} catch (RuntimeException e) {
+					errorMessage = "Invalid block diagram file specified";
 				}
-			} else {
-				errorMessage = "No solver selected";
+			}
+		
+			if (errorMessage == null) {
+				Fragment fragment = null;
+				ISelection selection = fragmentViewer.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					fragment = (Fragment) ((IStructuredSelection) selection).getFirstElement();
+				}
+				if (fragment != null) {
+					launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, EcoreUtil.getURI(fragment).toString());
+				} else {
+					errorMessage = "No fragment selected";
+				}
+	
+				boolean realTimeSimulation = realTimeSimulationButton.getSelection();
+				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__REAL_TIME_SIMULATION, realTimeSimulation);
+				if (!realTimeSimulation) {
+					String simulationTimeString = simulationTimeText.getText().trim();
+					launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, simulationTimeString);
+				}
+	
+				IStructuredSelection solverSelection = (IStructuredSelection) solverViewer.getSelection();
+				ISolverDescriptor solver = (ISolverDescriptor) solverSelection.getFirstElement();
+				if (solver != null) {
+					launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, solver.getId());
+					SolverConfigurationPage page = solverConfigurationControls.get(solver.getId());
+					if (page != null) {
+						Map<String, String> solverConfiguration = new HashMap<String, String>();
+						for (Entry<String, Text> entry : page.propertyTexts.entrySet()) {
+							String text = entry.getValue().getText();
+							if (text.trim().length() > 0) {
+								solverConfiguration.put(entry.getKey(), text);
+							}
+						}
+						launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, solverConfiguration);
+					}
+				} else {
+					errorMessage = "No solver selected";
+				}
 			}
 		}
 		

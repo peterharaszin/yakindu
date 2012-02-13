@@ -147,10 +147,11 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
-	public static final int FRAGMENT__WELL_FORMED_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 100;
-	public static final int FRAGMENT__UNIQUE_COMPONENT_NAMES = GENERATED_DIAGNOSTIC_CODE_COUNT + 101;
+	public static final int FRAGMENT__WELL_FORMED_PACKAGE_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 100;
+	public static final int FRAGMENT__WELL_FORMED_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 101;
 
 	public static final int COMPONENT__WELL_FORMED_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 200;
+	public static final int COMPONENT__UNIQUE_COMPONENT_NAME = GENERATED_DIAGNOSTIC_CODE_COUNT + 201;
 	
 	public static final int BLOCK__VALID_BLOCK_TYPE_REFERENCE = GENERATED_DIAGNOSTIC_CODE_COUNT + 300;
 	public static final int BLOCK__VALID_INPUT_DEFINITION_REFERENCES = GENERATED_DIAGNOSTIC_CODE_COUNT + 301;
@@ -174,6 +175,7 @@ public class DMLValidator extends EObjectValidator {
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT + 10000;
 
 	private static final Pattern IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z]\\w*");
+	private static final Pattern PACKAGE_NAME_PATTERN = Pattern.compile("\\A([a-zA-Z]\\w*)(\\.[a-zA-Z]\\w*)*\\z");
 	
 	/**
 	 * Creates an instance of the switch.
@@ -387,7 +389,7 @@ public class DMLValidator extends EObjectValidator {
 	public boolean validate_EveryProxyResolves(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (eObject instanceof Block) {
 			Block block = (Block) eObject;
-			if (!isResolved(block.getType())) {
+			if (!DMLUtil.isResolved(block.getType())) {
 				if (diagnostics != null) {
 					String path = "";
 					if (block.getType() != null) {
@@ -410,7 +412,7 @@ public class DMLValidator extends EObjectValidator {
 			return true;
 		} else if (eObject instanceof SubsystemRealization) {
 			SubsystemRealization subsystemRealization = (SubsystemRealization) eObject;
-			if (!isResolved(subsystemRealization.getRealizingFragment())) {
+			if (!DMLUtil.isResolved(subsystemRealization.getRealizingFragment())) {
 				if (diagnostics != null) {
 					String path = "";
 					if (subsystemRealization.getRealizingFragment() != null) {
@@ -422,13 +424,13 @@ public class DMLValidator extends EObjectValidator {
 					String message = String.format("Realizing fragment%s could not be resolved for subsystem %s", path,
 							subsystemRealization.getRealizedSubsystem().getName());
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, SUBSYSTEM_REALIZATION__VALID_REALIZING_FRAGMENT_REFERENCE, message,
-							new Object[] { subsystemRealization.getRealizedSubsystem() }));
+							new Object[] { subsystemRealization }));
 				}
 				return false;
 			}
 		} else if (eObject instanceof Subsystem) {
 			Subsystem subsystem = (Subsystem) eObject;
-				if (!isResolved(subsystem.getInterface())) {
+				if (!DMLUtil.isResolved(subsystem.getInterface())) {
 					if (diagnostics != null) {
 						String path = "";
 						if (subsystem.getInterface() != null) {
@@ -522,28 +524,45 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateFragment_WellFormedName(Fragment fragment, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		String packageName = fragment.getPackageName();
 		String name = fragment.getName();
+
+		boolean result = true;
+
 		if (name == null || name.trim().length() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						FRAGMENT__WELL_FORMED_NAME,
 						"Missing fragment name",
 						new Object[] { fragment }));
 			}
-			return false;
+			result = false;
 		}
-		if (!isValidIdentifier(name)) {
+		
+		if (result && !isValidIdentifier(name)) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						FRAGMENT__WELL_FORMED_NAME,
 						"Invalid fragment name '" + name + "'",
 						new Object[] { fragment }));
 			}
-			return false;
+			result = false;
 		}
-		return true;
+		
+		if (packageName != null && !isValidPackageName(packageName)) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						FRAGMENT__WELL_FORMED_PACKAGE_NAME,
+						"Invalid fragment package name '" + packageName + "'",
+						new Object[] { fragment }));
+			}
+			result = false;
+		}
+
+		return result;
 	}
 
 	/**
@@ -564,7 +583,7 @@ public class DMLValidator extends EObjectValidator {
 			for (Component invalidComponent : invalidComponents) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						COMPONENT__UNIQUE_COMPONENT_NAME,
 						"Duplicate component name '" + invalidComponent.getName() + "'",
 						new Object[] { invalidComponent }));
 			}
@@ -627,7 +646,7 @@ public class DMLValidator extends EObjectValidator {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						COMPONENT__WELL_FORMED_NAME,
 						"Missing component name",
 						new Object[] { component }));
 			}
@@ -637,7 +656,7 @@ public class DMLValidator extends EObjectValidator {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						COMPONENT__WELL_FORMED_NAME,
 						"Invalid component name '" + name + "'",
 						new Object[] { component }));
 			}
@@ -1046,7 +1065,7 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateBlock_ValidInputDefinitionReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (!isResolved(blockType)) {
+		if (!DMLUtil.isResolved(blockType)) {
 			return true;
 		}
 		
@@ -1059,7 +1078,7 @@ public class DMLValidator extends EObjectValidator {
 		for (Input input : block.getInputs()) {
 			if (input instanceof BlockInput) {
 				InputDefinition definition = ((BlockInput) input).getDefinition();
-				if (isResolved(definition)) {
+				if (DMLUtil.isResolved(definition)) {
 					missingDefinitions.remove(definition);
 				} else {
 					undefinedDefinitions.add(extractElementName(definition));
@@ -1109,16 +1128,42 @@ public class DMLValidator extends EObjectValidator {
 					}
 				}
 	
-				sb.append(" on block ");
-				sb.append(block.getName());
+				if (block.getName() != null) {
+					sb.append(" on block ");
+					sb.append(block.getName());
+				}
 				
 				diagnostics.add(new BasicDiagnostic(
 						Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						BLOCK__VALID_INPUT_DEFINITION_REFERENCES,
 						sb.toString(), new Object[] { block }));
 			}
 			return false;
+		}
+
+		if (diagnostics != null) {
+			for (int i = 0; i < block.getInputs().size(); ++i) {
+				Input input = block.getInputs().get(i);
+				if (input instanceof BlockInput) {
+					BlockInput blockInput = (BlockInput) input;
+					if (blockInput.getDefinition() != blockType.getInputDefinitions().get(i)) {
+						StringBuilder sb = new StringBuilder();
+						sb.append("Block input order");
+						if (block.getName() != null) {
+							sb.append(" of ");
+							sb.append(block.getName());
+						}
+						sb.append(" does not correspond to input definition order of the block type");
+						diagnostics.add(new BasicDiagnostic(
+								Diagnostic.WARNING,
+								DIAGNOSTIC_SOURCE,
+								BLOCK__VALID_INPUT_DEFINITION_REFERENCES,
+								sb.toString(), new Object[] { block }));
+						break;
+					}
+				}
+			}
 		}
 		
 		return true;
@@ -1132,7 +1177,7 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateBlock_ValidOutputDefinitionReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (!isResolved(blockType)) {
+		if (!DMLUtil.isResolved(blockType)) {
 			return true;
 		}
 		
@@ -1145,7 +1190,7 @@ public class DMLValidator extends EObjectValidator {
 		for (Output output : block.getOutputs()) {
 			if (output instanceof BlockOutput) {
 				OutputDefinition definition = ((BlockOutput) output).getDefinition();
-				if (isResolved(definition)) {
+				if (DMLUtil.isResolved(definition)) {
 					missingDefinitions.remove(definition);
 				} else {
 					undefinedDefinitions.add(extractElementName(definition));
@@ -1195,18 +1240,44 @@ public class DMLValidator extends EObjectValidator {
 					}
 				}
 	
-				sb.append(" on block ");
-				sb.append(block.getName());
+				if (block.getName() != null) {
+					sb.append(" on block ");
+					sb.append(block.getName());
+				}
 				
 				diagnostics.add(new BasicDiagnostic(
 						Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						BLOCK__VALID_OUTPUT_DEFINITION_REFERENCES,
 						sb.toString(), new Object[] { block }));
 			}
 			return false;
 		}
 		
+		if (diagnostics != null) {
+			for (int i = 0; i < block.getOutputs().size(); ++i) {
+				Output output = block.getOutputs().get(i);
+				if (output instanceof BlockOutput) {
+					BlockOutput blockOutput = (BlockOutput) output;
+					if (blockOutput.getDefinition() != blockType.getOutputDefinitions().get(i)) {
+						StringBuilder sb = new StringBuilder();
+						sb.append("Block output order");
+						if (block.getName() != null) {
+							sb.append(" of ");
+							sb.append(block.getName());
+						}
+						sb.append(" does not correspond to output definition order of the block type");
+						diagnostics.add(new BasicDiagnostic(
+								Diagnostic.WARNING,
+								DIAGNOSTIC_SOURCE,
+								BLOCK__VALID_OUTPUT_DEFINITION_REFERENCES,
+								sb.toString(), new Object[] { block }));
+						break;
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 
@@ -1218,7 +1289,7 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateBlock_ValidParameterReferences(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		BlockType blockType = block.getType();
-		if (!isResolved(blockType)) {
+		if (!DMLUtil.isResolved(blockType)) {
 			return true;
 		}
 		
@@ -1230,7 +1301,7 @@ public class DMLValidator extends EObjectValidator {
 		
 		for (Argument argument : block.getArguments()) {
 			Parameter parameter = argument.getParameter();
-			if (isResolved(parameter)) {
+			if (DMLUtil.isResolved(parameter)) {
 				missingParameters.remove(parameter);
 			} else {
 				undefinedParameters.add(extractElementName(parameter));
@@ -1284,7 +1355,7 @@ public class DMLValidator extends EObjectValidator {
 			diagnostics.add(new BasicDiagnostic(
 					!undefinedParameters.isEmpty() ? Diagnostic.ERROR : Diagnostic.WARNING,
 					DIAGNOSTIC_SOURCE,
-					0,
+					BLOCK__VALID_PARAMETER_REFERENCES,
 					sb.toString(), new Object[] { block }));
 		}
 		
@@ -1387,7 +1458,7 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateSubsystem_ValidInletReferences(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		SystemInterface interface_ = subsystem.getInterface();
-		if (!isResolved(interface_)) {
+		if (!DMLUtil.isResolved(interface_)) {
 			return true;
 		}
 		
@@ -1400,7 +1471,7 @@ public class DMLValidator extends EObjectValidator {
 		for (Input input : subsystem.getInputs()) {
 			if (input instanceof SubsystemInput) {
 				Inlet inlet = ((SubsystemInput) input).getInlet();
-				if (isResolved(inlet)) {
+				if (DMLUtil.isResolved(inlet)) {
 					missingInlets.remove(inlet);
 				} else {
 					undefinedInlets.add(extractElementName(inlet));
@@ -1450,18 +1521,44 @@ public class DMLValidator extends EObjectValidator {
 					}
 				}
 	
-				sb.append(" on subsystem ");
-				sb.append(subsystem.getName());
+				if (subsystem.getName() != null) {
+					sb.append(" on subsystem ");
+					sb.append(subsystem.getName());
+				}
 				
 				diagnostics.add(new BasicDiagnostic(
 						Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						SUBSYSTEM__VALID_INLET_REFERENCES,
 						sb.toString(), new Object[] { subsystem }));
 			}
 			return false;
 		}
 		
+		if (diagnostics != null) {
+			for (int i = 0; i < subsystem.getInputs().size(); ++i) {
+				Input input = subsystem.getInputs().get(i);
+				if (input instanceof SubsystemInput) {
+					SubsystemInput subsystemInput = (SubsystemInput) input;
+					if (subsystemInput.getInlet() != interface_.getInlets().get(i)) {
+						StringBuilder sb = new StringBuilder();
+						sb.append("Subsystem input order");
+						if (subsystem.getName() != null) {
+							sb.append(" of ");
+							sb.append(subsystem.getName());
+						}
+						sb.append(" does not correspond to inlet order of the interface");
+						diagnostics.add(new BasicDiagnostic(
+								Diagnostic.WARNING,
+								DIAGNOSTIC_SOURCE,
+								SUBSYSTEM__VALID_INLET_REFERENCES,
+								sb.toString(), new Object[] { subsystem }));
+						break;
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 
@@ -1473,7 +1570,7 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateSubsystem_ValidOutletReferences(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		SystemInterface interface_ = subsystem.getInterface();
-		if (!isResolved(interface_)) {
+		if (!DMLUtil.isResolved(interface_)) {
 			return true;
 		}
 		
@@ -1486,7 +1583,7 @@ public class DMLValidator extends EObjectValidator {
 		for (Output output : subsystem.getOutputs()) {
 			if (output instanceof SubsystemOutput) {
 				Outlet outlet = ((SubsystemOutput) output).getOutlet();
-				if (isResolved(outlet)) {
+				if (DMLUtil.isResolved(outlet)) {
 					missingOutlets.remove(outlet);
 				} else {
 					undefinedOutlets.add(extractElementName(outlet));
@@ -1542,12 +1639,36 @@ public class DMLValidator extends EObjectValidator {
 				diagnostics.add(new BasicDiagnostic(
 						Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
-						0,
+						SUBSYSTEM__VALID_OUTLET_REFERENCES,
 						sb.toString(), new Object[] { subsystem }));
 			}
 			return false;
 		}
 		
+		if (diagnostics != null) {
+			for (int i = 0; i < subsystem.getOutputs().size(); ++i) {
+				Output output = subsystem.getOutputs().get(i);
+				if (output instanceof SubsystemOutput) {
+					SubsystemOutput subsystemOutput = (SubsystemOutput) output;
+					if (subsystemOutput.getOutlet() != interface_.getOutlets().get(i)) {
+						StringBuilder sb = new StringBuilder();
+						sb.append("Subsystem output order");
+						if (subsystem.getName() != null) {
+							sb.append(" of ");
+							sb.append(subsystem.getName());
+						}
+						sb.append(" does not correspond to outlet order of the interface");
+						diagnostics.add(new BasicDiagnostic(
+								Diagnostic.WARNING,
+								DIAGNOSTIC_SOURCE,
+								SUBSYSTEM__VALID_OUTLET_REFERENCES,
+								sb.toString(), new Object[] { subsystem }));
+						break;
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 
@@ -1621,17 +1742,17 @@ public class DMLValidator extends EObjectValidator {
 		}
 
 		Subsystem realizedSubsystem = subsystemRealization.getRealizedSubsystem();
-		if (!isResolved(realizedSubsystem) || realizedSubsystem.getName() == null) {
+		if (!DMLUtil.isResolved(realizedSubsystem) || realizedSubsystem.getName() == null) {
 			return result;
 		}
 		
 		SystemInterface interface_ = realizedSubsystem.getInterface();
-		if (!isResolved(interface_)) {
+		if (!DMLUtil.isResolved(interface_)) {
 			return result;
 		}
 		
 		Fragment realizingFragment = subsystemRealization.getRealizingFragment();
-		if (!isResolved(realizingFragment)) {
+		if (!DMLUtil.isResolved(realizingFragment)) {
 			return result;
 		}
 		
@@ -2515,13 +2636,13 @@ public class DMLValidator extends EObjectValidator {
 	public ResourceLocator getResourceLocator() {
 		return DMLPlugin.INSTANCE;
 	}
-	
-	private boolean isResolved(EObject eObject) {
-		return eObject != null && !eObject.eIsProxy();
-	}
-	
+		
 	private boolean isValidIdentifier(String identifier) {
 		return IDENTIFIER_PATTERN.matcher(identifier).matches() && !identifier.contains("__");
+	}
+
+	private boolean isValidPackageName(String packageName) {
+		return PACKAGE_NAME_PATTERN.matcher(packageName).matches() && !packageName.contains("__");
 	}
 
 	private String getOwnerName(EObject eObject) {

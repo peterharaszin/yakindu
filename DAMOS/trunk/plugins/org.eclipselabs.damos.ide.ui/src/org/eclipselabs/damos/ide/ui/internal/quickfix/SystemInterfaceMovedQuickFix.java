@@ -49,7 +49,7 @@ public class SystemInterfaceMovedQuickFix extends SystemInterfaceReferenceChange
 	private static class Factory extends SystemInterfaceReferenceChangedFactory {
 
 		protected Collection<IQuickFix> doCreateQuickFixes(Problem problem, final TransactionalEditingDomain editingDomain) {
-			URI uri = ProblemUtil.getPlatformResourceElementURI(problem);
+			final URI uri = ProblemUtil.getPlatformResourceElementURI(problem);
 			if (uri == null) {
 				return Collections.emptyList();
 			}
@@ -93,7 +93,7 @@ public class SystemInterfaceMovedQuickFix extends SystemInterfaceReferenceChange
 								if (interface_ != null && systemInterfaceMatches(subsystem, interface_)) {
 									SystemInterfaceMovedQuickFix quickFix = new SystemInterfaceMovedQuickFix(
 											"Change interface to " + path.makeRelative(), null,
-											EcoreUtil.getURI(subsystem), EcoreUtil.getURI(interface_));
+											uri, EcoreUtil.getURI(interface_));
 									quickFixes.add(quickFix);
 								}
 							}

@@ -327,4 +327,8 @@ public class DMLUtil {
 		return null;
 	}
 
+	public static boolean isResolved(EObject eObject) {
+		return eObject != null && !eObject.eIsProxy();
+	}
+
 }

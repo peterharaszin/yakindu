@@ -23,12 +23,13 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.BlockType;
-import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.internal.util.ProblemUtil;
@@ -38,15 +39,15 @@ import org.eclipselabs.damos.ide.ui.quickfix.IQuickFix;
  * @author Andreas Unger
  *
  */
-public class BlockTypeMovedQuickFix extends BlockTypeReferenceChangedQuickFix {
+public class RealizingFragmentMovedQuickFix extends RealizingFragmentReferenceChangedQuickFix {
 
 	public static final Factory FACTORY = new Factory();
 		
-	private BlockTypeMovedQuickFix(String label, String description, URI blockURI, URI blockTypeURI) {
-		super(label, description, blockURI, blockTypeURI);
+	private RealizingFragmentMovedQuickFix(String label, String description, URI realizationURI, URI contextFragmentURI) {
+		super(label, description, realizationURI, contextFragmentURI);
 	}
 	
-	private static class Factory extends BlockTypeReferenceChangedFactory {
+	private static class Factory extends RealizingFragmentReferenceChangedFactory {
 
 		protected Collection<IQuickFix> doCreateQuickFixes(Problem problem, final TransactionalEditingDomain editingDomain) {
 			final URI uri = ProblemUtil.getPlatformResourceElementURI(problem);
@@ -54,18 +55,26 @@ public class BlockTypeMovedQuickFix extends BlockTypeReferenceChangedQuickFix {
 				return Collections.emptyList();
 			}
 			
-			final Block block = (Block) editingDomain.getResourceSet().getEObject(uri, true);
-			if (block == null) {
+			SubsystemRealization realization = (SubsystemRealization) editingDomain.getResourceSet().getEObject(uri, true);
+			if (realization == null) {
 				return Collections.emptyList();
 			}
 			
-			BlockType oldBlockType = block.getType();
-			if (oldBlockType == null) {
+			Subsystem subsystem = realization.getRealizedSubsystem();
+			if (subsystem == null) {
 				return Collections.emptyList();
 			}
+
+			final SystemInterface interface_ = subsystem.getInterface();
+			if (interface_ == null) {
+				return Collections.emptyList();
+			}
+
+			Fragment oldRealizingFragment = realization.getRealizingFragment();
+			final URI oldRealizingFragmentURI = EcoreUtil.getURI(oldRealizingFragment);
 			
-			final String blockTypeFileName = EcoreUtil.getURI(oldBlockType).lastSegment();
-			if (blockTypeFileName == null) {
+			final String blockDiagramFileName = oldRealizingFragmentURI.lastSegment();
+			if (blockDiagramFileName == null) {
 				return Collections.emptyList();
 			}
 
@@ -84,16 +93,20 @@ public class BlockTypeMovedQuickFix extends BlockTypeReferenceChangedQuickFix {
 				project.accept(new IResourceVisitor() {
 					
 					public boolean visit(IResource resource) throws CoreException {
-						if (resource instanceof IFile && blockTypeFileName.equals(resource.getName())) {
+						if (resource instanceof IFile && blockDiagramFileName.equals(resource.getName())) {
 							IPath path = resource.getFullPath();
-							URI newURI = URI.createPlatformResourceURI(path.toString(), true);
-							Resource emfResource = editingDomain.getResourceSet().getResource(newURI, true);
-							if (emfResource != null) {
-								BlockType blockType = (BlockType) EcoreUtil.getObjectByType(emfResource.getContents(), DMLPackage.eINSTANCE.getBlockType());
-								if (blockType != null && blockTypeMatches(block, blockType)) {
-									BlockTypeMovedQuickFix quickFix = new BlockTypeMovedQuickFix(
-											"Change block type to " + path.makeRelative(), null,
-											uri, EcoreUtil.getURI(blockType));
+							URI newURI = URI.createPlatformResourceURI(path.toString(), true).appendFragment(oldRealizingFragmentURI.fragment());
+							EObject eObject = editingDomain.getResourceSet().getEObject(newURI, true);
+							if (eObject instanceof Fragment) {
+								Fragment contextFragment = (Fragment) eObject;
+								if (systemInterfaceMatches(contextFragment, interface_)) {
+									String name = contextFragment.getName();
+									if (name == null) {
+										name = "UNNAMED";
+									}
+									RealizingFragmentMovedQuickFix quickFix = new RealizingFragmentMovedQuickFix(
+											"Change realizing fragment to " + name + " in " + path.makeRelative(), null,
+											uri, EcoreUtil.getURI(contextFragment));
 									quickFixes.add(quickFix);
 								}
 							}

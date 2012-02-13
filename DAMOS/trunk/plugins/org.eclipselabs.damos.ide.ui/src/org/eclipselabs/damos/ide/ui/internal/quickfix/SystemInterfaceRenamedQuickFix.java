@@ -79,7 +79,7 @@ public class SystemInterfaceRenamedQuickFix extends SystemInterfaceReferenceChan
 							if (interface_ != null && systemInterfaceMatches(subsystem, interface_)) {
 								SystemInterfaceRenamedQuickFix quickFix = new SystemInterfaceRenamedQuickFix(
 										"Change interface to " + member.getFullPath().lastSegment(), null,
-										EcoreUtil.getURI(subsystem), EcoreUtil.getURI(interface_));
+										uri, EcoreUtil.getURI(interface_));
 								quickFixes.add(quickFix);
 							}
 						}

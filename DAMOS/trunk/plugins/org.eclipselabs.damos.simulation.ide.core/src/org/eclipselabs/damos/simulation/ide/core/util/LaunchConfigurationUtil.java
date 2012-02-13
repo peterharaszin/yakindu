@@ -82,8 +82,12 @@ public class LaunchConfigurationUtil {
 		String baseConfigurationPath = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, "").trim();
 		if (baseConfigurationPath.length() > 0) {
 			URI uri = URI.createPlatformResourceURI(baseConfigurationPath, true);
-			Resource baseConfigurationResource = helper.getResourceSet().getResource(uri, true);
-			baseConfiguration = (Configuration) EcoreUtil.getObjectByType(baseConfigurationResource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
+			try {
+				Resource baseConfigurationResource = helper.getResourceSet().getResource(uri, true);
+				baseConfiguration = (Configuration) EcoreUtil.getObjectByType(baseConfigurationResource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
+			} catch (RuntimeException e) {
+				// baseConfiguration will be null, thus throwing an exception later on
+			}
 			if (baseConfiguration == null) {
 				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid base configuration specified"));
 			}
@@ -163,7 +167,12 @@ public class LaunchConfigurationUtil {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No fragment specified"));
 		}
 
-		EObject eObject = helper.getResourceSet().getEObject(URI.createURI(fragmentURIString), true);
+		EObject eObject = null;
+		try {
+			eObject = helper.getResourceSet().getEObject(URI.createURI(fragmentURIString), true);
+		} catch (RuntimeException e) {
+			// eObject will be null, thus throwing an exception later on
+		}
 		if (!(eObject instanceof Fragment)) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid fragment specified"));
 		}

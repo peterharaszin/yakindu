@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import java.util.Collection;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -19,6 +21,7 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -184,6 +187,16 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	
 	protected EditPart getDragTrackerTargetEditPart(Request request) {
 		return getParent();
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	protected Collection disableCanonicalFor(Request request) {
+		Collection hosts = super.disableCanonicalFor(request);
+		if (request instanceof CreateConnectionRequest) {
+			hosts.add(getRoot().getContents());
+		}
+		return hosts;
 	}
 	
 }

@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import java.util.Collection;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -18,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -113,6 +116,16 @@ public abstract class CompoundConnectorEditPart extends BorderedBorderItemEditPa
 			}
 		}
 		return super.getDragTracker(request);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	protected Collection disableCanonicalFor(Request request) {
+		Collection hosts = super.disableCanonicalFor(request);
+		if (request instanceof CreateConnectionRequest) {
+			hosts.add(getRoot().getContents());
+		}
+		return hosts;
 	}
 
 }

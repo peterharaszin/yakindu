@@ -15,7 +15,9 @@ import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.editpolicies.FragmentCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.SnapToConnectorFeedbackPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToConnector;
@@ -51,6 +53,7 @@ public class BlockDiagramEditPart extends DiagramEditPart {
 		removeEditPolicy(IEditPolicyRoles.POPUPBAR_ROLE);
 		installEditPolicy(IEditPolicyRoles.SNAP_TO_CONNECTOR_FEEDBACK_ROLE, new SnapToConnectorFeedbackPolicy());
 		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new BlockDiagramCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new FragmentCanonicalEditPolicy());
 	}
 	
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {

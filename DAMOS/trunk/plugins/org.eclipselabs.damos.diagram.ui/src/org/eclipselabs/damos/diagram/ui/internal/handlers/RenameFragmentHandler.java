@@ -26,7 +26,7 @@ public class RenameFragmentHandler extends AbstractHandler {
 				Object element = structuredSelection.getFirstElement();
 				if (element instanceof Fragment) {
 					Fragment fragment = (Fragment) element;
-					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Rename Fragment", "Fragment name:", fragment.getName(), null);
+					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Rename Fragment", "Qualified name:", fragment.getQualifiedName(), null);
 					if (d.open() == Dialog.OK) {
 						EditingDomain editingDomain = TransactionUtil.getEditingDomain(fragment);
 						Command command = editingDomain.createCommand(

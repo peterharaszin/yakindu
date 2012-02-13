@@ -30,6 +30,8 @@ import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.core.validation.ValidationAdapter;
 
@@ -102,6 +104,9 @@ public class ProblemUtil {
 	private static boolean isAncestor(EObject element, EObject eObject) {
 		if (element instanceof Component && eObject instanceof ActionLink) {
 			return false;
+		}
+		if (element instanceof Subsystem && eObject instanceof SubsystemRealization) {
+			return element == ((SubsystemRealization) eObject).getRealizedSubsystem();
 		}
 		return eObject != null && (element == eObject || (element instanceof Component && EcoreUtil.isAncestor(element, eObject)));
 	}

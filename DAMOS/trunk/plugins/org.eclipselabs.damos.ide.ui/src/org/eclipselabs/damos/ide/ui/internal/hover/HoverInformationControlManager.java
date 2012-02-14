@@ -39,10 +39,13 @@ import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.ui.internal.util.ProblemUtil;
 
-/**
- * @author Andreas Unger
- *
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
  */
+
 public class HoverInformationControlManager extends AbstractHoverInformationControlManager {
 
 	private EditPartViewer viewer;

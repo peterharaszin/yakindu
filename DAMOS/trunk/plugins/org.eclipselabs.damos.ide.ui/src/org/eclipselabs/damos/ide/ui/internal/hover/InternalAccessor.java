@@ -8,6 +8,12 @@ import org.eclipse.jface.text.IInformationControlExtension3;
 import org.eclipse.jface.text.ITextViewerExtension8;
 import org.eclipse.jface.text.ITextViewerExtension8.EnrichMode;
 
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
+ */
 
 /**
  * An internal class that gives access to internal methods of {@link

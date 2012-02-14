@@ -3,6 +3,12 @@ package org.eclipselabs.damos.ide.ui.internal.hover;
 import org.eclipse.jface.text.IDelayedInputChangeProvider;
 import org.eclipse.jface.text.IInputChangedListener;
 
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
+ */
 
 /**
  * A delayed input change listener that forwards delayed input changes to an information control replacer.

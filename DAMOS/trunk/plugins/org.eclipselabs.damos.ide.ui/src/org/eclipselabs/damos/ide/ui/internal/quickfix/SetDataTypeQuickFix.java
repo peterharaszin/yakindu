@@ -45,7 +45,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 	}
 
 	public Image getImage() {
-		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_ADD);
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_CHANGE);
 	}
 
 	public String getLabel() {

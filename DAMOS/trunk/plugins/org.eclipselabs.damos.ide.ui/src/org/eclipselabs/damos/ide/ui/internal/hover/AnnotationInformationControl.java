@@ -41,6 +41,13 @@ import org.eclipselabs.damos.ide.ui.internal.registry.QuickFixProviderRegistry;
 import org.eclipselabs.damos.ide.ui.internal.util.ProblemUtil;
 import org.eclipselabs.damos.ide.ui.quickfix.IQuickFix;
 
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
+ */
+
 public class AnnotationInformationControl extends AbstractInformationControl implements IInformationControlExtension2 {
 
 		private Control fFocusControl;

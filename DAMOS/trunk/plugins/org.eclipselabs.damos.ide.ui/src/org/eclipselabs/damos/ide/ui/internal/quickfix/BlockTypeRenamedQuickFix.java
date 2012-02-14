@@ -62,7 +62,12 @@ public class BlockTypeRenamedQuickFix extends BlockTypeReferenceChangedQuickFix 
 				return Collections.emptyList();
 			}
 			
-			URI containerURI = EcoreUtil.getURI(oldBlockType).trimFragment().trimSegments(1);
+			URI oldBlockTypeURI = EcoreUtil.getURI(oldBlockType);
+			if (!oldBlockTypeURI.isPlatformResource()) {
+				return Collections.emptyList();
+			}
+			
+			URI containerURI = oldBlockTypeURI.trimFragment().trimSegments(1);
 			IResource container = ResourcesPlugin.getWorkspace().getRoot().findMember(containerURI.toPlatformString(true));
 			if (!(container instanceof IContainer)) {
 				return Collections.emptyList();

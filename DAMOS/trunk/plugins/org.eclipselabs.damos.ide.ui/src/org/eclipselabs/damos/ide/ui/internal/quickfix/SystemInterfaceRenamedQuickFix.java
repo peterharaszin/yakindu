@@ -62,7 +62,12 @@ public class SystemInterfaceRenamedQuickFix extends SystemInterfaceReferenceChan
 				return Collections.emptyList();
 			}
 			
-			URI containerURI = EcoreUtil.getURI(oldInterface).trimFragment().trimSegments(1);
+			URI oldInterfaceURI = EcoreUtil.getURI(oldInterface);
+			if (!oldInterfaceURI.isPlatformResource()) {
+				return Collections.emptyList();
+			}
+			
+			URI containerURI = oldInterfaceURI.trimFragment().trimSegments(1);
 			IResource container = ResourcesPlugin.getWorkspace().getRoot().findMember(containerURI.toPlatformString(true));
 			if (!(container instanceof IContainer)) {
 				return Collections.emptyList();

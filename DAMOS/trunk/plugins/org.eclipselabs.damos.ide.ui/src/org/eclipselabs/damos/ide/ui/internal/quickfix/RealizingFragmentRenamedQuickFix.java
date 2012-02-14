@@ -69,7 +69,11 @@ public class RealizingFragmentRenamedQuickFix extends RealizingFragmentReference
 			}
 			
 			Fragment oldRealizingFragment = realization.getRealizingFragment();
+			
 			URI oldRealizingFragmentURI = EcoreUtil.getURI(oldRealizingFragment);
+			if (!oldRealizingFragmentURI.isPlatformResource()) {
+				return Collections.emptyList();
+			}
 
 			URI containerURI = oldRealizingFragmentURI.trimFragment().trimSegments(1);
 			IResource container = ResourcesPlugin.getWorkspace().getRoot().findMember(containerURI.toPlatformString(true));

@@ -34,6 +34,7 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 import org.eclipselabs.damos.ide.ui.quickfix.IQuickFix;
 
@@ -66,7 +67,7 @@ public abstract class BlockTypeReferenceChangedQuickFix extends AbstractQuickFix
 	}
 
 	public Image getImage() {
-		return null;
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_CHANGE);
 	}
 
 	public String getLabel() {

@@ -36,11 +36,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.ide.core.validation.Problem;
-import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.internal.registry.QuickFixProviderRegistry;
+import org.eclipselabs.damos.ide.ui.internal.util.ProblemUtil;
 import org.eclipselabs.damos.ide.ui.quickfix.IQuickFix;
 
 public class AnnotationInformationControl extends AbstractInformationControl implements IInformationControlExtension2 {
@@ -164,7 +162,7 @@ public class AnnotationInformationControl extends AbstractInformationControl imp
 			List<Problem> liveProblems = getAnnotationInfo().liveProblems;
 			List<Problem> fixedErrors = new ArrayList<Problem>();
 			for (Problem resourceProblem : getAnnotationInfo().resourceProblems) {
-				if (resourceProblem.getSeverity() == IMarker.SEVERITY_ERROR && !liveProblems.contains(resourceProblem)) {
+				if (resourceProblem.getSeverity() >= IMarker.SEVERITY_WARNING && !liveProblems.contains(resourceProblem)) {
 					fixedErrors.add(resourceProblem);
 				}
 			}
@@ -175,10 +173,10 @@ public class AnnotationInformationControl extends AbstractInformationControl imp
 			
 			int markersLeft = problems.size();
 			for (Problem problem : problems) {
-				boolean fixedError = fixedErrors.contains(problem);
-				createAnnotationInformation(fParent, problem, fixedError);
+				boolean fixed = fixedErrors.contains(problem);
+				createAnnotationInformation(fParent, problem, fixed);
 				
-				if (!fixedError) {
+				if (!fixed) {
 					Collection<IQuickFix> quickFixes = QuickFixProviderRegistry.getInstance().getQuickFixes(problem);
 					
 					if (!quickFixes.isEmpty()) {
@@ -217,7 +215,7 @@ public class AnnotationInformationControl extends AbstractInformationControl imp
 			}
 		}
 
-		private void createAnnotationInformation(Composite parent, final Problem problem, boolean fixedError) {
+		private void createAnnotationInformation(Composite parent, final Problem problem, boolean fixed) {
 			Composite composite= new Composite(parent, SWT.NONE);
 			composite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 			GridLayout layout= new GridLayout(2, false);
@@ -231,12 +229,7 @@ public class AnnotationInformationControl extends AbstractInformationControl imp
 			gridData.widthHint= 17;
 			gridData.heightHint= 16;
 			imageLabel.setLayoutData(gridData);
-			Image image;
-			if (fixedError) {
-				image = IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_FIXED_ERROR);
-			} else {
-				image = getImage(problem.getSeverity());
-			}
+			Image image = ProblemUtil.getMarkerImage(problem.getSeverity(), fixed);
 			imageLabel.setImage(image);
 
 			StyledText text= new StyledText(composite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
@@ -432,22 +425,6 @@ public class AnnotationInformationControl extends AbstractInformationControl imp
 				}
 			});
 			return proposalLink;
-		}
-
-		private Image getImage(int severity) {
-			String imageName;
-			switch (severity) {
-			case IMarker.SEVERITY_ERROR:
-				imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
-				break;
-			case IMarker.SEVERITY_WARNING:
-				imageName = ISharedImages.IMG_OBJS_WARN_TSK;
-				break;
-			default:
-				imageName = ISharedImages.IMG_OBJS_INFO_TSK;
-				break;
-			}
-			return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
 		}
 
 	}

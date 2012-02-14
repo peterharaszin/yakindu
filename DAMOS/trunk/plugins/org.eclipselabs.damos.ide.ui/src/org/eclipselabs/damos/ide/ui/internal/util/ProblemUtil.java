@@ -25,6 +25,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -34,6 +37,7 @@ import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.core.validation.ValidationAdapter;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -115,6 +119,27 @@ public class ProblemUtil {
 		URI uri = problem.getElementURI();
 		if (uri != null && uri.isPlatformResource()) {
 			return uri;
+		}
+		return null;
+	}
+	
+	public static Image getMarkerImage(int severity, boolean fixed) {
+		if (fixed) {
+			switch (severity) {
+			case IMarker.SEVERITY_ERROR:
+				return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_ERROR_FIXED);
+			case IMarker.SEVERITY_WARNING:
+				return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_WARNING_FIXED);
+			}
+		} else {
+			switch (severity) {
+			case IMarker.SEVERITY_ERROR:
+				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
+			case IMarker.SEVERITY_WARNING:
+				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_WARN_TSK);
+			default:
+				return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+			}
 		}
 		return null;
 	}

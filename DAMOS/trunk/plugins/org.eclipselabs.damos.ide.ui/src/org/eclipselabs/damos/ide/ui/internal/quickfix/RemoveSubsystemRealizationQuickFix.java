@@ -18,6 +18,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.graphics.Image;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.ide.core.validation.Problem;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.internal.util.ProblemUtil;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 
@@ -38,7 +39,7 @@ public class RemoveSubsystemRealizationQuickFix extends AbstractQuickFix {
 	 * @see org.eclipselabs.damos.ide.ui.quickfix.IQuickFix#getImage()
 	 */
 	public Image getImage() {
-		return null;
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_REMOVE);
 	}
 
 	/* (non-Javadoc)

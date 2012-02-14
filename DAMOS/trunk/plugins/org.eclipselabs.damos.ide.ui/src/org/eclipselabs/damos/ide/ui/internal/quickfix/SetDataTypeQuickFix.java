@@ -18,6 +18,7 @@ import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
@@ -44,7 +45,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 	}
 
 	public Image getImage() {
-		return null;
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_ADD);
 	}
 
 	public String getLabel() {

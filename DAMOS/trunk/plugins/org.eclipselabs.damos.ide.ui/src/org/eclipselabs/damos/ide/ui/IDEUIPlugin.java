@@ -13,7 +13,13 @@ public class IDEUIPlugin extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.ide.ui";
 	
-	public static final String IMAGE_FIXED_ERROR = "fixedError";
+	public static final String IMAGE_ERROR_FIXED = "errorFixed";
+	public static final String IMAGE_WARNING_FIXED = "warningFixed";
+	public static final String IMAGE_CORRECTION_ADD = "correctionAdd";
+	public static final String IMAGE_CORRECTION_REMOVE = "correctionRemove";
+	public static final String IMAGE_CORRECTION_CHANGE = "correctionChange";
+	public static final String IMAGE_CORRECTION_RENAME = "correctionRename";
+	public static final String IMAGE_CORRECTION_SYNCHRONIZE = "correctionSynchronize";
 
 	// The shared instance
 	private static IDEUIPlugin plugin;
@@ -30,7 +36,13 @@ public class IDEUIPlugin extends AbstractUIPlugin {
 	@Override
 	protected void initializeImageRegistry(ImageRegistry reg) {
 		super.initializeImageRegistry(reg);
-		reg.put(IMAGE_FIXED_ERROR, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/FixedError.png"));
+		reg.put(IMAGE_ERROR_FIXED, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/ErrorFixed.png"));
+		reg.put(IMAGE_WARNING_FIXED, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/WarningFixed.png"));
+		reg.put(IMAGE_CORRECTION_ADD, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/full/obj16/correction_add.gif"));
+		reg.put(IMAGE_CORRECTION_REMOVE, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/full/obj16/correction_remove.gif"));
+		reg.put(IMAGE_CORRECTION_CHANGE, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/full/obj16/correction_change.gif"));
+		reg.put(IMAGE_CORRECTION_RENAME, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/full/obj16/correction_rename.gif"));
+		reg.put(IMAGE_CORRECTION_SYNCHRONIZE, imageDescriptorFromPlugin(IDEUIPlugin.PLUGIN_ID, "icons/full/obj16/correction_synchronize.gif"));
 	}
 
 	/*

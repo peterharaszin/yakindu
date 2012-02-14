@@ -20,8 +20,6 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
 import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
@@ -30,7 +28,6 @@ import org.eclipselabs.damos.ide.core.validation.IValidationListener;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.core.validation.ValidationAdapter;
 import org.eclipselabs.damos.ide.core.validation.ValidationEvent;
-import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.internal.hover.AbstractHoverInformationControlManager;
 import org.eclipselabs.damos.ide.ui.internal.hover.AbstractInformationControlManager;
 import org.eclipselabs.damos.ide.ui.internal.hover.HoverInformationControlManager;
@@ -128,13 +125,9 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		Image image = null;
 		
 		if (!liveProblems.isEmpty()) {
-			int severity = getMaximumSeverity(liveProblems);
-			image = getImage(severity);
+			image = ProblemUtil.getMarkerImage(getMaximumSeverity(liveProblems), false);
 		} else if (!resourceProblems.isEmpty()) {
-			int severity = getMaximumSeverity(resourceProblems);
-			if (severity == IMarker.SEVERITY_ERROR) {
-				image = IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_FIXED_ERROR);
-			}
+			image = ProblemUtil.getMarkerImage(getMaximumSeverity(resourceProblems), true);
 		}
 
 		if (image != null) {
@@ -200,22 +193,6 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		viewer.getControl().setData(AbstractInformationControlManager.class.getCanonicalName(), manager);
 	}
 		
-	private Image getImage(int severity) {
-		String imageName;
-		switch (severity) {
-		case IMarker.SEVERITY_ERROR:
-			imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
-			break;
-		case IMarker.SEVERITY_WARNING:
-			imageName = ISharedImages.IMG_OBJS_WARN_TSK;
-			break;
-		default:
-			imageName = ISharedImages.IMG_OBJS_INFO_TSK;
-			break;
-		}
-		return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
-	}
-	
 	private Fragment getSelectedFragment() {
 		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
 		if (fragmentSelectionManager != null) {

@@ -11,6 +11,12 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
+ */
 
 /**
  * An information control replacer can replace an {@link AbstractInformationControlManager}'s

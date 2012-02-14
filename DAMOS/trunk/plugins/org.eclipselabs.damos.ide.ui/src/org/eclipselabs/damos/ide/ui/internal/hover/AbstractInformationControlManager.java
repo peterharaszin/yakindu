@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.ide.ui.internal.hover;
 
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -23,6 +22,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 
+/*
+ * Classes of this package have been copied from other Eclipse projects like Jface and Xtext,
+ * since only parts of the required classes are public API.
+ * 
+ * TODO: Clean-up this code
+ */
 
 /**
  * Manages the life cycle, visibility, layout, and contents of an

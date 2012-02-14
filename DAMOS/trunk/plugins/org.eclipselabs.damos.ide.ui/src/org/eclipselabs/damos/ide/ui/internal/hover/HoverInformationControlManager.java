@@ -31,9 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.jface.text.AbstractReusableInformationControlCreator;
 import org.eclipse.jface.text.IInformationControl;
 import org.eclipse.jface.text.IInformationControlCreator;
-import org.eclipse.jface.text.contentassist.CompletionProposal;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
@@ -67,7 +64,7 @@ public class HoverInformationControlManager extends AbstractHoverInformationCont
 		if (isDecoration(root.findFigureAt(p.x, p.y))) {
 			List<Problem> resourceProblems = ProblemUtil.getResourceProblems(getElement(), getFile(getElement()), getSelectedFragment());
 			List<Problem> liveProblems = ProblemUtil.getLiveProblems(getElement(), getSelectedFragment());
-			setInformation(new AnnotationInfo(resourceProblems, liveProblems, new Annotation(null, false, ""), null, null, new ICompletionProposal[] { new CompletionProposal("xxx", 10, 10, 0), new CompletionProposal("xxx", 10, 10, 0) }), new Rectangle(p.x, p.y, 10, 10));
+			setInformation(new AnnotationInfo(resourceProblems, liveProblems), new Rectangle(p.x, p.y, 10, 10));
 		} else {
 			setInformation(null, null);
 		}

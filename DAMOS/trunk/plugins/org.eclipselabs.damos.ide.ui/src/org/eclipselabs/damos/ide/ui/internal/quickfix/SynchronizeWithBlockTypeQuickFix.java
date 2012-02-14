@@ -39,6 +39,7 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 
 /**
@@ -58,7 +59,7 @@ public class SynchronizeWithBlockTypeQuickFix extends AbstractQuickFix {
 	 * @see org.eclipselabs.damos.ide.ui.quickfix.IQuickFix#getImage()
 	 */
 	public Image getImage() {
-		return null;
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_SYNCHRONIZE);
 	}
 
 	/* (non-Javadoc)

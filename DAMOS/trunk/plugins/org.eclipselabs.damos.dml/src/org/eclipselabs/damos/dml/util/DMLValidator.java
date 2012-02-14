@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -395,7 +396,7 @@ public class DMLValidator extends EObjectValidator {
 					if (block.getType() != null) {
 						URI uri = EcoreUtil.getURI(block.getType());
 						if (uri != null && uri.isPlatformResource()) {
-							path = " defined in " + uri.toPlatformString(true);
+							path = " defined in " + new Path(uri.toPlatformString(true)).makeRelative();
 						}
 					}
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
@@ -418,7 +419,7 @@ public class DMLValidator extends EObjectValidator {
 					if (subsystemRealization.getRealizingFragment() != null) {
 						URI uri = EcoreUtil.getURI(subsystemRealization.getRealizingFragment());
 						if (uri != null && uri.isPlatformResource()) {
-							path = " defined in " + uri.toPlatformString(true);
+							path = " defined in " + new Path(uri.toPlatformString(true)).makeRelative();
 						}
 					}
 					String message = String.format("Realizing fragment%s could not be resolved for subsystem %s", path,
@@ -436,7 +437,7 @@ public class DMLValidator extends EObjectValidator {
 						if (subsystem.getInterface() != null) {
 							URI uri = EcoreUtil.getURI(subsystem.getInterface());
 							if (uri != null && uri.isPlatformResource()) {
-								path = " defined in " + uri.toPlatformString(true);
+								path = " defined in " + new Path(uri.toPlatformString(true)).makeRelative();
 							}
 						}
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,

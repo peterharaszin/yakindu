@@ -33,6 +33,7 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 import org.eclipselabs.damos.ide.ui.quickfix.IQuickFix;
 
@@ -65,7 +66,7 @@ public abstract class SystemInterfaceReferenceChangedQuickFix extends AbstractQu
 	}
 
 	public Image getImage() {
-		return null;
+		return IDEUIPlugin.getDefault().getImageRegistry().get(IDEUIPlugin.IMAGE_CORRECTION_CHANGE);
 	}
 
 	public String getLabel() {

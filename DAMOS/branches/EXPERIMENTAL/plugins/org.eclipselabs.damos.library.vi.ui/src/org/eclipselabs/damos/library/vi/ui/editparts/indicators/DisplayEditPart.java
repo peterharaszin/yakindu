@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.library.vi.ui.editparts.indicators;
 
 import java.util.IllegalFormatException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -43,6 +45,8 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 	
 	private volatile String cachedFormatString;
 	
+	private ConsumerThread consumerThread;
+
 	private ISimulationListener simulationListener = new ISimulationListener() {
 		
 		public void handleSimulationEvent(SimulationEvent event) {
@@ -60,7 +64,9 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 						}
 						values[i] = value;
 					}
-					Display.getDefault().asyncExec(new SetValuesRunnable(values));
+					if (consumerThread != null) {
+						consumerThread.consume(values);
+					}
 				}
 			}
 		}
@@ -80,6 +86,11 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 	@Override
 	public void activate() {
 		super.activate();
+		if (consumerThread != null) {
+			consumerThread.cancel();
+		}
+		consumerThread = new ConsumerThread();
+		consumerThread.start();
 		SimulationManager.getInstance().addSimulationListener(simulationListener);
 	}
 	
@@ -89,6 +100,10 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 	@Override
 	public void deactivate() {
 		SimulationManager.getInstance().removeSimulationListener(simulationListener);
+		if (consumerThread != null) {
+			consumerThread.cancel();
+			consumerThread = null;
+		}
 		super.deactivate();
 	}
 
@@ -142,23 +157,43 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 		cachedFormatString = block.getArgumentStringValue(DisplayConstants.PARAMETER__FORMAT_STRING);
 	}
 	
-	private class SetValuesRunnable implements Runnable {
+	private class ConsumerThread extends Thread {
 		
-		private volatile IValue[] values;
+		private final BlockingQueue<IValue[]> queue = new ArrayBlockingQueue<IValue[]>(1);
+		private volatile boolean canceled;
 		
-		/**
-		 * 
-		 */
-		public SetValuesRunnable(IValue[] values) {
-			this.values = values;
+		public void consume(IValue[] values) {
+			queue.offer(values);
 		}
 		
+		public void cancel() {
+			canceled = true;
+			interrupt();
+		}
+		
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
+		@Override
 		public void run() {
-			if (isActive()) {
-				setValues(values);
+			try {
+				while (!canceled) {
+					final IValue[] values = queue.take();
+					Display.getDefault().syncExec(new Runnable() {
+						
+						public void run() {
+							if (isActive()) {
+								setValues(values);
+							}
+						}
+						
+					});
+				}
+			} catch (InterruptedException e) {
+				interrupt();
 			}
 		}
-
+		
 	}
 
 }

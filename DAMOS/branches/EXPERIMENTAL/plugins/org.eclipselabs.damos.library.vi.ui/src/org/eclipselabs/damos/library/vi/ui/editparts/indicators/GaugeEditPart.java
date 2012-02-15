@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.library.vi.ui.editparts.indicators;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
@@ -40,17 +43,7 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 	private volatile double cachedScaleOffset = Double.NaN;
 	private volatile double cachedScaleLength = Double.NaN;
 	
-	private volatile IValue value;
-	
-	private final Runnable setValueRunnable = new Runnable() {
-		
-		public void run() {
-			if (isActive()) {
-				setValue(value);
-			}
-		}
-		
-	};
+	private ConsumerThread consumerThread;
 	
 	private ISimulationListener simulationListener = new ISimulationListener() {
 		
@@ -61,9 +54,9 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
 				if (agent != null) {
 					ISimulationTracePoint tracePoint = agent.getTracePoints()[0];
-					value = tracePoint.getValue();
-					if (value != null) {
-						Display.getDefault().asyncExec(setValueRunnable);
+					IValue value = tracePoint.getValue();
+					if (value != null && consumerThread != null) {
+						consumerThread.consume(value);
 					}
 				}
 			}
@@ -84,6 +77,11 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 	@Override
 	public void activate() {
 		super.activate();
+		if (consumerThread != null) {
+			consumerThread.cancel();
+		}
+		consumerThread = new ConsumerThread();
+		consumerThread.start();
 		SimulationManager.getInstance().addSimulationListener(simulationListener);
 	}
 	
@@ -93,6 +91,10 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 	@Override
 	public void deactivate() {
 		SimulationManager.getInstance().removeSimulationListener(simulationListener);
+		if (consumerThread != null) {
+			consumerThread.cancel();
+			consumerThread = null;
+		}
 		super.deactivate();
 	}
 
@@ -124,6 +126,45 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 		Block block = (Block) resolveSemanticElement();
 		cachedScaleOffset = Double.parseDouble(block.getArgumentStringValue(GaugeConstants.PARAMETER__SCALE_MINIMUM));
 		cachedScaleLength = Double.parseDouble(block.getArgumentStringValue(GaugeConstants.PARAMETER__SCALE_MAXIMUM)) - cachedScaleOffset;
+	}
+	
+	private class ConsumerThread extends Thread {
+		
+		private final BlockingQueue<IValue> queue = new ArrayBlockingQueue<IValue>(1);
+		private volatile boolean canceled;
+		
+		public void consume(IValue value) {
+			queue.offer(value);
+		}
+		
+		public void cancel() {
+			canceled = true;
+			interrupt();
+		}
+		
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
+		@Override
+		public void run() {
+			try {
+				while (!canceled) {
+					final IValue value = queue.take();
+					Display.getDefault().syncExec(new Runnable() {
+						
+						public void run() {
+							if (isActive()) {
+								setValue(value);
+							}
+						}
+						
+					});
+				}
+			} catch (InterruptedException e) {
+				interrupt();
+			}
+		}
+		
 	}
 
 }

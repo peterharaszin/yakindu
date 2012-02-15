@@ -867,6 +867,10 @@ public class StaticExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
+			if (!(accumulatorValue instanceof AnyValue)) {
+				accumulatorValue = new AnyValue(context.getComputationContext(), accumulatorValue.getDataType());
+			}
+			
 			context.setValue(iterationCall.getAccumulator(), accumulatorValue);
 			
 			if (iterationCall.getIterationVariables().size() != 1) {
@@ -885,6 +889,11 @@ public class StaticExpressionEvaluator {
 			if (resultingDataType == null) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call accumulator type is incompatabile with expression type", iterationCall));
 				return InvalidValue.SINGLETON;
+			}
+			
+			if (!accumulatorValue.getDataType().isAssignableFrom(resultingDataType)) {
+				accumulatorValue = new AnyValue(context.getComputationContext(), resultingDataType);
+				context.setValue(iterationCall.getAccumulator(), accumulatorValue);
 			}
 			
 			return new AnyValue(context.getComputationContext(), resultingDataType);

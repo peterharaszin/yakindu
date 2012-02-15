@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.yakindu.sct.model.sexec;
+package org.yakindu.base.base;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.yakindu.sct.model.sexec.NamedElement#getName <em>Name</em>}</li>
+ *   <li>{@link org.yakindu.base.base.NamedElement#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.yakindu.sct.model.sexec.SexecPackage#getNamedElement()
+ * @see org.yakindu.base.base.BasePackage#getNamedElement()
  * @model
  * @generated
  */
@@ -35,14 +35,14 @@ public interface NamedElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.yakindu.sct.model.sexec.SexecPackage#getNamedElement_Name()
+	 * @see org.yakindu.base.base.BasePackage#getNamedElement_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.yakindu.sct.model.sexec.NamedElement#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.yakindu.base.base.NamedElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

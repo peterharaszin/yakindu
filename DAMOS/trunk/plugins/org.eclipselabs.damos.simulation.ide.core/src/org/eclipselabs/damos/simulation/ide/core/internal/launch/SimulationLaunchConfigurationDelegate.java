@@ -32,7 +32,13 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 		if (progressMonitor != null && progressMonitor.isCanceled()) {
 			return;
 		}
-		new SimulationProcess(launch, simulator.getSimulationEngine()).run();
+		
+		String name = configuration.getContextFragment().getName();
+		if (name == null) {
+			name = "Unnamed";
+		}
+		
+		new SimulationProcess(launch, name).run(simulator.getSimulationEngine());
 	}
 
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {

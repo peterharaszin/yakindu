@@ -17,7 +17,6 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
-import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
@@ -30,17 +29,30 @@ import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 public class SimulationProcess implements IProcess {
 
 	private final ILaunch launch;
-	private final ISimulationEngine simulationEngine;
+	private final String name;
+	
+	private ISimulationEngine simulationEngine;
 
 	private SimulationThread simulationThread;
 	private volatile boolean terminated;
+	
+	private final ISimulationListener simulationListener = new ISimulationListener() {
+		
+		public void handleSimulationEvent(SimulationEvent event) {
+			if (event.getSimulation() == simulationEngine.getSimulation() && event.isDone()) {
+				doTerminate();
+			}
+		}
+		
+	};
 
 	/**
 	 * 
 	 */
-	public SimulationProcess(ILaunch launch, ISimulationEngine simulationEngine) {
+	public SimulationProcess(ILaunch launch, String name) {
 		this.launch = launch;
-		this.simulationEngine = simulationEngine;
+		this.name = name;
+		
 		launch.addProcess(this);
 		fireCreationEvent();
 	}
@@ -50,8 +62,7 @@ public class SimulationProcess implements IProcess {
 	}
 	
 	public String getLabel() {
-		Fragment contextFragment = simulationEngine.getSimulation().getConfiguration().getContextFragment();
-		return contextFragment != null ? contextFragment.getName() : "Unnamed";
+		return name;
 	}
 
 	/**
@@ -61,18 +72,10 @@ public class SimulationProcess implements IProcess {
 		return simulationThread;
 	}
 	
-	public void run() {
+	public void run(ISimulationEngine simulationEngine) {
+		this.simulationEngine = simulationEngine;
 		simulationThread = new SimulationThread(simulationEngine);
-		SimulationManager.getInstance().addSimulationListener(new ISimulationListener() {
-			
-			public void handleSimulationEvent(SimulationEvent event) {
-				if (event.getSimulation() == simulationEngine.getSimulation() && event.isDone()) {
-					terminated = true;
-					fireTerminateEvent();
-				}
-			}
-			
-		});
+		SimulationManager.getInstance().addSimulationListener(simulationListener);
 		simulationThread.start();
 	}
 	
@@ -85,7 +88,18 @@ public class SimulationProcess implements IProcess {
 	}
 
 	public void terminate() throws DebugException {
-		simulationEngine.getSimulation().getMonitor().setCanceled(true);
+		if (!isTerminated()) {
+			simulationEngine.getSimulation().getMonitor().setCanceled(true);
+			doTerminate();
+		}
+	}
+
+	private void doTerminate() {
+		SimulationManager.getInstance().removeSimulationListener(simulationListener);
+		simulationThread = null;
+		simulationEngine = null;
+		terminated = true;
+		fireTerminateEvent();
 	}
 
 	public String getAttribute(String key) {
@@ -132,5 +146,5 @@ public class SimulationProcess implements IProcess {
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return null;
 	}
-
+	
 }

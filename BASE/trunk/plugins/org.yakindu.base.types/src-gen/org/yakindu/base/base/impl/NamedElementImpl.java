@@ -4,14 +4,17 @@
  *
  * $Id$
  */
-package org.yakindu.sct.model.sexec.impl;
+package org.yakindu.base.base.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.yakindu.sct.model.sexec.NamedElement;
-import org.yakindu.sct.model.sexec.SexecPackage;
+
+import org.yakindu.base.base.BasePackage;
+import org.yakindu.base.base.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +23,7 @@ import org.yakindu.sct.model.sexec.SexecPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.yakindu.sct.model.sexec.impl.NamedElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.yakindu.base.base.impl.NamedElementImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +66,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SexecPackage.Literals.NAMED_ELEMENT;
+		return BasePackage.Literals.NAMED_ELEMENT;
 	}
 
 	/**
@@ -84,7 +87,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SexecPackage.NAMED_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, BasePackage.NAMED_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -95,7 +98,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SexecPackage.NAMED_ELEMENT__NAME:
+			case BasePackage.NAMED_ELEMENT__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +112,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SexecPackage.NAMED_ELEMENT__NAME:
+			case BasePackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -124,7 +127,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SexecPackage.NAMED_ELEMENT__NAME:
+			case BasePackage.NAMED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -139,7 +142,7 @@ public class NamedElementImpl extends EObjectImpl implements NamedElement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SexecPackage.NAMED_ELEMENT__NAME:
+			case BasePackage.NAMED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

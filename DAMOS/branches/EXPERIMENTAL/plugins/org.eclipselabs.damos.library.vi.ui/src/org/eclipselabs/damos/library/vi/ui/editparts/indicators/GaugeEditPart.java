@@ -43,7 +43,7 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 	private volatile double cachedScaleOffset = Double.NaN;
 	private volatile double cachedScaleLength = Double.NaN;
 	
-	private ConsumerThread consumerThread;
+	private volatile ConsumerThread consumerThread;
 	
 	private ISimulationListener simulationListener = new ISimulationListener() {
 		
@@ -134,7 +134,10 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 		private volatile boolean canceled;
 		
 		public void consume(IValue value) {
-			queue.offer(value);
+			if (!queue.offer(value)) {
+				queue.clear();
+				queue.offer(value);
+			}
 		}
 		
 		public void cancel() {

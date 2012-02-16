@@ -45,7 +45,7 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 	
 	private volatile String cachedFormatString;
 	
-	private ConsumerThread consumerThread;
+	private volatile ConsumerThread consumerThread;
 
 	private ISimulationListener simulationListener = new ISimulationListener() {
 		
@@ -163,7 +163,10 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 		private volatile boolean canceled;
 		
 		public void consume(IValue[] values) {
-			queue.offer(values);
+			if (!queue.offer(values)) {
+				queue.clear();
+				queue.offer(values);
+			}
 		}
 		
 		public void cancel() {

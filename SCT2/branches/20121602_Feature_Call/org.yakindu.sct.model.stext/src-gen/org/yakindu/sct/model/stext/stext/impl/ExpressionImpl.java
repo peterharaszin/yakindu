@@ -8,7 +8,7 @@ package org.yakindu.sct.model.stext.stext.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.yakindu.sct.model.sgraph.impl.StatementImpl;
 
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.StextPackage;
@@ -22,7 +22,7 @@ import org.yakindu.sct.model.stext.stext.StextPackage;
  *
  * @generated
  */
-public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
+public class ExpressionImpl extends StatementImpl implements Expression
 {
   /**
    * <!-- begin-user-doc -->

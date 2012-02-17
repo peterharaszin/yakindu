@@ -99,8 +99,6 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.ON_CYCLE_EVENT: return createOnCycleEvent();
       case StextPackage.ALWAYS_EVENT: return createAlwaysEvent();
       case StextPackage.DEFAULT_EVENT: return createDefaultEvent();
-      case StextPackage.ASSIGNMENT: return createAssignment();
-      case StextPackage.EVENT_RAISING: return createEventRaising();
       case StextPackage.EXPRESSION: return createExpression();
       case StextPackage.LITERAL: return createLiteral();
       case StextPackage.BOOL_LITERAL: return createBoolLiteral();
@@ -113,6 +111,7 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.EXITPOINT: return createExitpoint();
       case StextPackage.REACTION_TRIGGER: return createReactionTrigger();
       case StextPackage.REACTION_EFFECT: return createReactionEffect();
+      case StextPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case StextPackage.CONDITIONAL_EXPRESSION: return createConditionalExpression();
       case StextPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case StextPackage.LOGICAL_AND_EXPRESSION: return createLogicalAndExpression();
@@ -130,6 +129,7 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.TYPED_ELEMENT_REFERENCE_EXPRESSION: return createTypedElementReferenceExpression();
       case StextPackage.EVENT_VALUE_REFERENCE_EXPRESSION: return createEventValueReferenceExpression();
       case StextPackage.ACTIVE_STATE_REFERENCE_EXPRESSION: return createActiveStateReferenceExpression();
+      case StextPackage.EVENT_RAISING_EXPRESSION: return createEventRaisingExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -536,28 +536,6 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Assignment createAssignment()
-  {
-    AssignmentImpl assignment = new AssignmentImpl();
-    return assignment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EventRaising createEventRaising()
-  {
-    EventRaisingImpl eventRaising = new EventRaisingImpl();
-    return eventRaising;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Expression createExpression()
   {
     ExpressionImpl expression = new ExpressionImpl();
@@ -683,6 +661,17 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
   {
     ReactionEffectImpl reactionEffect = new ReactionEffectImpl();
     return reactionEffect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignmentExpression createAssignmentExpression()
+  {
+    AssignmentExpressionImpl assignmentExpression = new AssignmentExpressionImpl();
+    return assignmentExpression;
   }
 
   /**
@@ -870,6 +859,17 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
   {
     ActiveStateReferenceExpressionImpl activeStateReferenceExpression = new ActiveStateReferenceExpressionImpl();
     return activeStateReferenceExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EventRaisingExpression createEventRaisingExpression()
+  {
+    EventRaisingExpressionImpl eventRaisingExpression = new EventRaisingExpressionImpl();
+    return eventRaisingExpression;
   }
 
   /**

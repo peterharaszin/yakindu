@@ -6,13 +6,20 @@
  */
 package org.yakindu.sct.model.stext.stext.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.yakindu.base.types.Feature;
 
@@ -29,6 +36,8 @@ import org.yakindu.sct.model.stext.stext.StextPackage;
  * <ul>
  *   <li>{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl#isOperationCall <em>Operation Call</em>}</li>
+ *   <li>{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl#getArgs <em>Args</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +64,36 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
    * @ordered
    */
   protected Feature feature;
+
+  /**
+   * The default value of the '{@link #isOperationCall() <em>Operation Call</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isOperationCall()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean OPERATION_CALL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isOperationCall() <em>Operation Call</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isOperationCall()
+   * @generated
+   * @ordered
+   */
+  protected boolean operationCall = OPERATION_CALL_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArgs()
+   * @generated
+   * @ordered
+   */
+  protected EList<Expression> args;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +212,43 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isOperationCall()
+  {
+    return operationCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperationCall(boolean newOperationCall)
+  {
+    boolean oldOperationCall = operationCall;
+    operationCall = newOperationCall;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, StextPackage.FEATURE_CALL__OPERATION_CALL, oldOperationCall, operationCall));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Expression> getArgs()
+  {
+    if (args == null)
+    {
+      args = new EObjectContainmentEList<Expression>(Expression.class, this, StextPackage.FEATURE_CALL__ARGS);
+    }
+    return args;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -180,6 +256,8 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
     {
       case StextPackage.FEATURE_CALL__OWNER:
         return basicSetOwner(null, msgs);
+      case StextPackage.FEATURE_CALL__ARGS:
+        return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -199,6 +277,10 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
       case StextPackage.FEATURE_CALL__FEATURE:
         if (resolve) return getFeature();
         return basicGetFeature();
+      case StextPackage.FEATURE_CALL__OPERATION_CALL:
+        return isOperationCall();
+      case StextPackage.FEATURE_CALL__ARGS:
+        return getArgs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -208,6 +290,7 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -218,6 +301,13 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
         return;
       case StextPackage.FEATURE_CALL__FEATURE:
         setFeature((Feature)newValue);
+        return;
+      case StextPackage.FEATURE_CALL__OPERATION_CALL:
+        setOperationCall((Boolean)newValue);
+        return;
+      case StextPackage.FEATURE_CALL__ARGS:
+        getArgs().clear();
+        getArgs().addAll((Collection<? extends Expression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,6 +329,12 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
       case StextPackage.FEATURE_CALL__FEATURE:
         setFeature((Feature)null);
         return;
+      case StextPackage.FEATURE_CALL__OPERATION_CALL:
+        setOperationCall(OPERATION_CALL_EDEFAULT);
+        return;
+      case StextPackage.FEATURE_CALL__ARGS:
+        getArgs().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -257,8 +353,29 @@ public class FeatureCallImpl extends ExpressionImpl implements FeatureCall
         return owner != null;
       case StextPackage.FEATURE_CALL__FEATURE:
         return feature != null;
+      case StextPackage.FEATURE_CALL__OPERATION_CALL:
+        return operationCall != OPERATION_CALL_EDEFAULT;
+      case StextPackage.FEATURE_CALL__ARGS:
+        return args != null && !args.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (operationCall: ");
+    result.append(operationCall);
+    result.append(')');
+    return result.toString();
   }
 
 } //FeatureCallImpl

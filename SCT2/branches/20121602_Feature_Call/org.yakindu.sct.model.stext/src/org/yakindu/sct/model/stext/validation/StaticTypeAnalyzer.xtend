@@ -67,8 +67,8 @@ class StaticTypeAnalyzer {
 	/**
 	 * Check Variable assignments
 	 */
-	def dispatch check(Assignment assignment){
-		//FIXME
+//	def dispatch check(Assignment assignment){
+//		//FIXME
 //		var valueType = assignment.expression.check
 //		var ref = assignment.varRef
 //		var type = (ref as VariableDefinition).getType()
@@ -81,30 +81,30 @@ class StaticTypeAnalyzer {
 //		else if(isReal(type) && !(valueType == typeof(Number))){
 //			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
 //		} 
-		return null 
-	}
-	
-	
-		
-	/**
-	 * Check Event value assignments
-	 */
-	def dispatch check(EventRaising eventRaising){
-		var valueType = eventRaising.value.check
-		var ref = eventRaising.event
-		var type = (ref as EventDefinition).getType()
-		if(isBoolean(type) && !(valueType == typeof(Boolean))){
-			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
-		}
-		else if (isInteger(type) && !(valueType == typeof(Number))){
-			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
-		}
-		else if(isReal(type) && !(valueType == typeof(Number))){
-			error("Can not assign a value of type " + valueType.simpleName + " to an event  type " + type)
-		} 
-		return null 
-	}
-	
+//		return null 
+//	}
+//	
+//	
+//		
+//	/**
+//	 * Check Event value assignments
+//	 */
+//	def dispatch check(EventRaising eventRaising){
+//		var valueType = eventRaising.value.check
+//		var ref = eventRaising.event
+//		var type = (ref as EventDefinition).getType()
+//		if(isBoolean(type) && !(valueType == typeof(Boolean))){
+//			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
+//		}
+//		else if (isInteger(type) && !(valueType == typeof(Number))){
+//			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
+//		}
+//		else if(isReal(type) && !(valueType == typeof(Number))){
+//			error("Can not assign a value of type " + valueType.simpleName + " to an event  type " + type)
+//		} 
+//		return null 
+//	}
+//	
 	
 	
 	def dispatch check(LogicalAndExpression expression){

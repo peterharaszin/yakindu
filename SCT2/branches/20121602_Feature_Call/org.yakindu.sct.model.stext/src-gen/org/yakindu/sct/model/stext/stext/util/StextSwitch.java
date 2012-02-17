@@ -346,26 +346,11 @@ public class StextSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case StextPackage.ASSIGNMENT:
-      {
-        Assignment assignment = (Assignment)theEObject;
-        T result = caseAssignment(assignment);
-        if (result == null) result = caseStatement(assignment);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case StextPackage.EVENT_RAISING:
-      {
-        EventRaising eventRaising = (EventRaising)theEObject;
-        T result = caseEventRaising(eventRaising);
-        if (result == null) result = caseStatement(eventRaising);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case StextPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = caseStatement(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -463,11 +448,21 @@ public class StextSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case StextPackage.ASSIGNMENT_EXPRESSION:
+      {
+        AssignmentExpression assignmentExpression = (AssignmentExpression)theEObject;
+        T result = caseAssignmentExpression(assignmentExpression);
+        if (result == null) result = caseExpression(assignmentExpression);
+        if (result == null) result = caseStatement(assignmentExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case StextPackage.CONDITIONAL_EXPRESSION:
       {
         ConditionalExpression conditionalExpression = (ConditionalExpression)theEObject;
         T result = caseConditionalExpression(conditionalExpression);
         if (result == null) result = caseExpression(conditionalExpression);
+        if (result == null) result = caseStatement(conditionalExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -476,6 +471,7 @@ public class StextSwitch<T> extends Switch<T>
         LogicalOrExpression logicalOrExpression = (LogicalOrExpression)theEObject;
         T result = caseLogicalOrExpression(logicalOrExpression);
         if (result == null) result = caseExpression(logicalOrExpression);
+        if (result == null) result = caseStatement(logicalOrExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -484,6 +480,7 @@ public class StextSwitch<T> extends Switch<T>
         LogicalAndExpression logicalAndExpression = (LogicalAndExpression)theEObject;
         T result = caseLogicalAndExpression(logicalAndExpression);
         if (result == null) result = caseExpression(logicalAndExpression);
+        if (result == null) result = caseStatement(logicalAndExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -492,6 +489,7 @@ public class StextSwitch<T> extends Switch<T>
         LogicalNotExpression logicalNotExpression = (LogicalNotExpression)theEObject;
         T result = caseLogicalNotExpression(logicalNotExpression);
         if (result == null) result = caseExpression(logicalNotExpression);
+        if (result == null) result = caseStatement(logicalNotExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -500,6 +498,7 @@ public class StextSwitch<T> extends Switch<T>
         BitwiseXorExpression bitwiseXorExpression = (BitwiseXorExpression)theEObject;
         T result = caseBitwiseXorExpression(bitwiseXorExpression);
         if (result == null) result = caseExpression(bitwiseXorExpression);
+        if (result == null) result = caseStatement(bitwiseXorExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -508,6 +507,7 @@ public class StextSwitch<T> extends Switch<T>
         BitwiseOrExpression bitwiseOrExpression = (BitwiseOrExpression)theEObject;
         T result = caseBitwiseOrExpression(bitwiseOrExpression);
         if (result == null) result = caseExpression(bitwiseOrExpression);
+        if (result == null) result = caseStatement(bitwiseOrExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -516,6 +516,7 @@ public class StextSwitch<T> extends Switch<T>
         BitwiseAndExpression bitwiseAndExpression = (BitwiseAndExpression)theEObject;
         T result = caseBitwiseAndExpression(bitwiseAndExpression);
         if (result == null) result = caseExpression(bitwiseAndExpression);
+        if (result == null) result = caseStatement(bitwiseAndExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -524,6 +525,7 @@ public class StextSwitch<T> extends Switch<T>
         LogicalRelationExpression logicalRelationExpression = (LogicalRelationExpression)theEObject;
         T result = caseLogicalRelationExpression(logicalRelationExpression);
         if (result == null) result = caseExpression(logicalRelationExpression);
+        if (result == null) result = caseStatement(logicalRelationExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -532,6 +534,7 @@ public class StextSwitch<T> extends Switch<T>
         ShiftExpression shiftExpression = (ShiftExpression)theEObject;
         T result = caseShiftExpression(shiftExpression);
         if (result == null) result = caseExpression(shiftExpression);
+        if (result == null) result = caseStatement(shiftExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -540,6 +543,7 @@ public class StextSwitch<T> extends Switch<T>
         NumericalAddSubtractExpression numericalAddSubtractExpression = (NumericalAddSubtractExpression)theEObject;
         T result = caseNumericalAddSubtractExpression(numericalAddSubtractExpression);
         if (result == null) result = caseExpression(numericalAddSubtractExpression);
+        if (result == null) result = caseStatement(numericalAddSubtractExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -548,6 +552,7 @@ public class StextSwitch<T> extends Switch<T>
         NumericalMultiplyDivideExpression numericalMultiplyDivideExpression = (NumericalMultiplyDivideExpression)theEObject;
         T result = caseNumericalMultiplyDivideExpression(numericalMultiplyDivideExpression);
         if (result == null) result = caseExpression(numericalMultiplyDivideExpression);
+        if (result == null) result = caseStatement(numericalMultiplyDivideExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -556,6 +561,7 @@ public class StextSwitch<T> extends Switch<T>
         NumericalUnaryExpression numericalUnaryExpression = (NumericalUnaryExpression)theEObject;
         T result = caseNumericalUnaryExpression(numericalUnaryExpression);
         if (result == null) result = caseExpression(numericalUnaryExpression);
+        if (result == null) result = caseStatement(numericalUnaryExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -564,6 +570,7 @@ public class StextSwitch<T> extends Switch<T>
         FeatureCall featureCall = (FeatureCall)theEObject;
         T result = caseFeatureCall(featureCall);
         if (result == null) result = caseExpression(featureCall);
+        if (result == null) result = caseStatement(featureCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -572,6 +579,7 @@ public class StextSwitch<T> extends Switch<T>
         PrimitiveValueExpression primitiveValueExpression = (PrimitiveValueExpression)theEObject;
         T result = casePrimitiveValueExpression(primitiveValueExpression);
         if (result == null) result = caseExpression(primitiveValueExpression);
+        if (result == null) result = caseStatement(primitiveValueExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -580,6 +588,7 @@ public class StextSwitch<T> extends Switch<T>
         TypedElementReferenceExpression typedElementReferenceExpression = (TypedElementReferenceExpression)theEObject;
         T result = caseTypedElementReferenceExpression(typedElementReferenceExpression);
         if (result == null) result = caseExpression(typedElementReferenceExpression);
+        if (result == null) result = caseStatement(typedElementReferenceExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -588,6 +597,7 @@ public class StextSwitch<T> extends Switch<T>
         EventValueReferenceExpression eventValueReferenceExpression = (EventValueReferenceExpression)theEObject;
         T result = caseEventValueReferenceExpression(eventValueReferenceExpression);
         if (result == null) result = caseExpression(eventValueReferenceExpression);
+        if (result == null) result = caseStatement(eventValueReferenceExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -596,6 +606,16 @@ public class StextSwitch<T> extends Switch<T>
         ActiveStateReferenceExpression activeStateReferenceExpression = (ActiveStateReferenceExpression)theEObject;
         T result = caseActiveStateReferenceExpression(activeStateReferenceExpression);
         if (result == null) result = caseExpression(activeStateReferenceExpression);
+        if (result == null) result = caseStatement(activeStateReferenceExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StextPackage.EVENT_RAISING_EXPRESSION:
+      {
+        EventRaisingExpression eventRaisingExpression = (EventRaisingExpression)theEObject;
+        T result = caseEventRaisingExpression(eventRaisingExpression);
+        if (result == null) result = caseExpression(eventRaisingExpression);
+        if (result == null) result = caseStatement(eventRaisingExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1084,38 +1104,6 @@ public class StextSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Assignment</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Assignment</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAssignment(Assignment object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Event Raising</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Event Raising</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEventRaising(EventRaising object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1303,6 +1291,22 @@ public class StextSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseReactionEffect(ReactionEffect object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assignment Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssignmentExpression(AssignmentExpression object)
   {
     return null;
   }
@@ -1575,6 +1579,22 @@ public class StextSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseActiveStateReferenceExpression(ActiveStateReferenceExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Event Raising Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Event Raising Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEventRaisingExpression(EventRaisingExpression object)
   {
     return null;
   }

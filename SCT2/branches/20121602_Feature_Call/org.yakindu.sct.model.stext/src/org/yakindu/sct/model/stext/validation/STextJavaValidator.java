@@ -59,15 +59,15 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 
 	@Check
 	public void checkExpression(final Statement statement) {
-		try {
-			analyzer.check(statement);
-		} catch (TypeCheckException e) {
-			error(e.getMessage(), null);
-		} catch (IllegalArgumentException e) {
-			// This happens, when the expression is not completed for Unhandled
-			// parameter types: [null]
-			// We can safely ignore this exception
-		}
+		//try {
+		//	analyzer.check(statement);
+//		} catch (TypeCheckException e) {
+//			error(e.getMessage(), null);
+//		} catch (IllegalArgumentException e) {
+//			// This happens, when the expression is not completed for Unhandled
+//			// parameter types: [null]
+//			// We can safely ignore this exception
+//		}
 	}
 
 	@Check(CheckType.FAST)

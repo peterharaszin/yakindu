@@ -101,13 +101,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="OnCycleEvent" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//BuiltinEventSpec"/>
   <eClassifiers xsi:type="ecore:EClass" name="AlwaysEvent" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//BuiltinEventSpec"/>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultEvent" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//BuiltinEventSpec"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varRef" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EEnum platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//AssignmentOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Statement"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssignmentOperator">
     <eLiterals name="assign" literal="="/>
     <eLiterals name="multAssign" value="1" literal="*="/>
@@ -121,13 +115,6 @@
     <eLiterals name="xorAssign" value="9" literal="^="/>
     <eLiterals name="orAssign" value="10" literal="|="/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EventRaising" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ShiftOperator">
     <eLiterals name="left" literal="&lt;&lt;"/>
     <eLiterals name="right" value="1" literal=">>"/>
@@ -189,7 +176,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReactionEffect" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Effect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="ecore:EClass platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Statement"
+        eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varRef" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EEnum platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//AssignmentOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
@@ -271,6 +265,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/resource/org.yakindu.base.types/model/types.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationCall" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveValueExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal"
@@ -285,5 +282,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActiveStateReferenceExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//State"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventRaisingExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

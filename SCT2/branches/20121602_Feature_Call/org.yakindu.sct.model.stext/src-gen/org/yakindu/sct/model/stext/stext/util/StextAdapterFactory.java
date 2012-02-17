@@ -244,16 +244,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
         return createDefaultEventAdapter();
       }
       @Override
-      public Adapter caseAssignment(Assignment object)
-      {
-        return createAssignmentAdapter();
-      }
-      @Override
-      public Adapter caseEventRaising(EventRaising object)
-      {
-        return createEventRaisingAdapter();
-      }
-      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
@@ -312,6 +302,11 @@ public class StextAdapterFactory extends AdapterFactoryImpl
       public Adapter caseReactionEffect(ReactionEffect object)
       {
         return createReactionEffectAdapter();
+      }
+      @Override
+      public Adapter caseAssignmentExpression(AssignmentExpression object)
+      {
+        return createAssignmentExpressionAdapter();
       }
       @Override
       public Adapter caseConditionalExpression(ConditionalExpression object)
@@ -397,6 +392,11 @@ public class StextAdapterFactory extends AdapterFactoryImpl
       public Adapter caseActiveStateReferenceExpression(ActiveStateReferenceExpression object)
       {
         return createActiveStateReferenceExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEventRaisingExpression(EventRaisingExpression object)
+      {
+        return createEventRaisingExpressionAdapter();
       }
       @Override
       public Adapter caseScope(Scope object)
@@ -941,36 +941,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.Assignment <em>Assignment</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.model.stext.stext.Assignment
-   * @generated
-   */
-  public Adapter createAssignmentAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.EventRaising <em>Event Raising</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.model.stext.stext.EventRaising
-   * @generated
-   */
-  public Adapter createEventRaisingAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1146,6 +1116,21 @@ public class StextAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createReactionEffectAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.AssignmentExpression <em>Assignment Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.model.stext.stext.AssignmentExpression
+   * @generated
+   */
+  public Adapter createAssignmentExpressionAdapter()
   {
     return null;
   }
@@ -1401,6 +1386,21 @@ public class StextAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createActiveStateReferenceExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression <em>Event Raising Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression
+   * @generated
+   */
+  public Adapter createEventRaisingExpressionAdapter()
   {
     return null;
   }

@@ -17,17 +17,12 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.yakindu.base.base.NamedElement;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statechart;
-import org.yakindu.sct.model.stext.stext.EventDefinition;
-import org.yakindu.sct.model.stext.stext.EventRaising;
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.FeatureCall;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
-import org.yakindu.sct.model.stext.stext.StextPackage;
 import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -70,14 +65,12 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			if (scope instanceof InterfaceScope) {
 				String name = ((InterfaceScope) scope).getName();
 				if (name == null || name.trim().length() == 0) {
-					scopeCandidates.addAll(scope.getEvents());
-					scopeCandidates.addAll(scope.getVariables());
+					scopeCandidates.addAll(scope.getDeclarations());
 				} else {
 					scopeCandidates.add(scope);
 				}
 			} else if (scope instanceof InternalScope) {
-				scopeCandidates.addAll(scope.getEvents());
-				scopeCandidates.addAll(scope.getVariables());
+				scopeCandidates.addAll(scope.getDeclarations());
 			}
 		}
 		return scopeCandidates;

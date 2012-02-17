@@ -61,7 +61,7 @@ NamedInterfaceScope returns base::NamedElement:
 ;
 
 InterfaceScope:
-	{InterfaceScope} 'interface' (name=ID)? ':' (declarations+=(EventDeclarartion | VariableDeclaration | Entrypoint |
+	{InterfaceScope} 'interface' (name=ID)? ':' (declarations+=(EventDeclarartion | VariableDeclaration | OperationDeclaration | Entrypoint |
 	Exitpoint))*;
 
 InternalScope :
@@ -127,7 +127,7 @@ ReactionTrigger returns sgraph::Trigger:
 	| ('[' guardExpression=Expression ']'));
 
 ReactionEffect returns sgraph::Effect:
-	{ReactionEffect} actions+=Statement =>(';' actions+=Statement )* (';')?;
+	{ReactionEffect} actions+=Expression =>(';' actions+=Expression )* (';')?;
 
 ReactionProperties:
 	{ReactionProperties} (properties+=ReactionProperty)*;
@@ -174,12 +174,19 @@ DefaultEvent:
 	{DefaultEvent} ('default' | 'else')
 ;
 
-/* --- statements --- */
-Statement returns sgraph::Statement:
-	Assignment | EventRaising;// | OperationCall; 
+//****************
+// Expression Grammar
+//****************
+StatementExpression returns sgraph::Statement:
+	Expression
+;
+Expression:
+	 AssignmentExpression
+;
 
-Assignment:
-	varRef=FeatureCall operator=AssignmentOperator expression=Expression;
+AssignmentExpression returns Expression:
+	ConditionalExpression ({AssignmentExpression.varRef=current} operator=AssignmentOperator expression=ConditionalExpression)*
+;
 
 enum AssignmentOperator:
 	assign='='
@@ -194,17 +201,6 @@ enum AssignmentOperator:
 	| xorAssign='^='
 	| orAssign='|=';
  
-EventRaising:
-	'raise' event=FeatureCall (':' value=Expression)?;
-
-	//****************
-// Expression Grammar
-//****************
-//ExpressionRule:
-//	expression=(LogicalOrExpression | RaiseEventExpression);
-Expression returns Expression:
-	ConditionalExpression;
-
 ConditionalExpression returns Expression:
 	LogicalOrExpression ({ConditionalExpression.condition=current} '?' trueCase=LogicalOrExpression ':'
 	falseCase=LogicalOrExpression)?;
@@ -261,11 +257,17 @@ NumericalUnaryExpression returns Expression:
 
 
 FeatureCall returns Expression:
-	 PrimaryExpression  ({FeatureCall.owner=current} '.' feature=[types::Feature])*
+	 PrimaryExpression  ({FeatureCall.owner=current} '.' feature=[types::Feature]
+	 	 (	=>operationCall?='(' 
+				(
+				    (args+=Expression (',' args+=Expression)*)?
+				)? 
+			')')?
+	 )*
 ;
 
 PrimaryExpression returns Expression:
-	ValueExpression  | '(' Expression ')'; //| OperationCall;
+	ValueExpression  | '(' Expression ')'; 
 
 enum AdditiveOperator:
 	plus='+' | minus='-';
@@ -291,6 +293,7 @@ ValueExpression returns Expression:
 	| TypedElementReferenceExpression 
 	| ActiveStateReferenceExpression 
 	| EventValueReferenceExpression
+	| EventRaisingExpression
 ;
 
 PrimitiveValueExpression returns Expression:
@@ -305,6 +308,10 @@ EventValueReferenceExpression returns Expression:
 
 ActiveStateReferenceExpression returns Expression:
 	{ActiveStateReferenceExpression} 'active' '(' value=[sgraph::State] ')';
+	
+EventRaisingExpression returns Expression:
+	{EventRaisingExpression} 'raise' event=FeatureCall  (':' value=Expression)?
+;	
 
 Literal:
 	BoolLiteral | IntLiteral | HexLiteral | RealLiteral;

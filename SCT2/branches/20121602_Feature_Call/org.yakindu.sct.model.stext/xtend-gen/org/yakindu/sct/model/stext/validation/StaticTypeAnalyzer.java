@@ -1,20 +1,16 @@
 package org.yakindu.sct.model.stext.validation;
 
 import java.io.Serializable;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.stext.stext.AdditiveOperator;
-import org.yakindu.sct.model.stext.stext.Assignment;
 import org.yakindu.sct.model.stext.stext.BitwiseAndExpression;
 import org.yakindu.sct.model.stext.stext.BitwiseOrExpression;
 import org.yakindu.sct.model.stext.stext.BitwiseXorExpression;
 import org.yakindu.sct.model.stext.stext.BoolLiteral;
 import org.yakindu.sct.model.stext.stext.ConditionalExpression;
-import org.yakindu.sct.model.stext.stext.EventDefinition;
-import org.yakindu.sct.model.stext.stext.EventRaising;
 import org.yakindu.sct.model.stext.stext.EventValueReferenceExpression;
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.IntLiteral;
@@ -74,73 +70,6 @@ public class StaticTypeAnalyzer {
       _operator_and = BooleanExtensions.operator_and(_operator_notEquals, _operator_equals);
     }
     return _operator_and;
-  }
-  
-  protected Class<? extends Serializable> _check(final Assignment assignment) {
-    return null;
-  }
-  
-  protected Class<? extends Serializable> _check(final EventRaising eventRaising) throws TypeCheckException {
-    {
-      Expression _value = eventRaising.getValue();
-      Class<? extends Serializable> _check = this.check(_value);
-      Class<? extends Serializable> valueType = _check;
-      Expression _event = eventRaising.getEvent();
-      Expression ref = _event;
-      Type _type = ((EventDefinition) ref).getType();
-      Type type = _type;
-      boolean _operator_and = false;
-      boolean _isBoolean = this.isBoolean(type);
-      if (!_isBoolean) {
-        _operator_and = false;
-      } else {
-        boolean _operator_equals = ObjectExtensions.operator_equals(valueType, java.lang.Boolean.class);
-        boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
-        _operator_and = BooleanExtensions.operator_and(_isBoolean, _operator_not);
-      }
-      if (_operator_and) {
-        String _simpleName = valueType.getSimpleName();
-        String _operator_plus = StringExtensions.operator_plus("Can not assign a value of type ", _simpleName);
-        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, " to an event of type ");
-        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, type);
-        this.error(_operator_plus_2);
-      } else {
-        boolean _operator_and_1 = false;
-        boolean _isInteger = this.isInteger(type);
-        if (!_isInteger) {
-          _operator_and_1 = false;
-        } else {
-          boolean _operator_equals_1 = ObjectExtensions.operator_equals(valueType, java.lang.Number.class);
-          boolean _operator_not_1 = BooleanExtensions.operator_not(_operator_equals_1);
-          _operator_and_1 = BooleanExtensions.operator_and(_isInteger, _operator_not_1);
-        }
-        if (_operator_and_1) {
-          String _simpleName_1 = valueType.getSimpleName();
-          String _operator_plus_3 = StringExtensions.operator_plus("Can not assign a value of type ", _simpleName_1);
-          String _operator_plus_4 = StringExtensions.operator_plus(_operator_plus_3, " to an event of type ");
-          String _operator_plus_5 = StringExtensions.operator_plus(_operator_plus_4, type);
-          this.error(_operator_plus_5);
-        } else {
-          boolean _operator_and_2 = false;
-          boolean _isReal = this.isReal(type);
-          if (!_isReal) {
-            _operator_and_2 = false;
-          } else {
-            boolean _operator_equals_2 = ObjectExtensions.operator_equals(valueType, java.lang.Number.class);
-            boolean _operator_not_2 = BooleanExtensions.operator_not(_operator_equals_2);
-            _operator_and_2 = BooleanExtensions.operator_and(_isReal, _operator_not_2);
-          }
-          if (_operator_and_2) {
-            String _simpleName_2 = valueType.getSimpleName();
-            String _operator_plus_6 = StringExtensions.operator_plus("Can not assign a value of type ", _simpleName_2);
-            String _operator_plus_7 = StringExtensions.operator_plus(_operator_plus_6, " to an event  type ");
-            String _operator_plus_8 = StringExtensions.operator_plus(_operator_plus_7, type);
-            this.error(_operator_plus_8);
-          }
-        }
-      }
-      return null;
-    }
   }
   
   protected Class<? extends Serializable> _check(final LogicalAndExpression expression) throws TypeCheckException {
@@ -405,42 +334,38 @@ public class StaticTypeAnalyzer {
     throw _typeCheckException;
   }
   
-  public Class<? extends Serializable> check(final EObject assignment) throws TypeCheckException {
-    if ((assignment instanceof Assignment)) {
-      return _check((Assignment)assignment);
-    } else if ((assignment instanceof BitwiseAndExpression)) {
-      return _check((BitwiseAndExpression)assignment);
-    } else if ((assignment instanceof BitwiseOrExpression)) {
-      return _check((BitwiseOrExpression)assignment);
-    } else if ((assignment instanceof BitwiseXorExpression)) {
-      return _check((BitwiseXorExpression)assignment);
-    } else if ((assignment instanceof ConditionalExpression)) {
-      return _check((ConditionalExpression)assignment);
-    } else if ((assignment instanceof EventRaising)) {
-      return _check((EventRaising)assignment);
-    } else if ((assignment instanceof EventValueReferenceExpression)) {
-      return _check((EventValueReferenceExpression)assignment);
-    } else if ((assignment instanceof LogicalAndExpression)) {
-      return _check((LogicalAndExpression)assignment);
-    } else if ((assignment instanceof LogicalNotExpression)) {
-      return _check((LogicalNotExpression)assignment);
-    } else if ((assignment instanceof LogicalOrExpression)) {
-      return _check((LogicalOrExpression)assignment);
-    } else if ((assignment instanceof LogicalRelationExpression)) {
-      return _check((LogicalRelationExpression)assignment);
-    } else if ((assignment instanceof NumericalAddSubtractExpression)) {
-      return _check((NumericalAddSubtractExpression)assignment);
-    } else if ((assignment instanceof NumericalMultiplyDivideExpression)) {
-      return _check((NumericalMultiplyDivideExpression)assignment);
-    } else if ((assignment instanceof NumericalUnaryExpression)) {
-      return _check((NumericalUnaryExpression)assignment);
-    } else if ((assignment instanceof PrimitiveValueExpression)) {
-      return _check((PrimitiveValueExpression)assignment);
-    } else if ((assignment instanceof ShiftExpression)) {
-      return _check((ShiftExpression)assignment);
+  public Class<? extends Serializable> check(final Expression expression) throws TypeCheckException {
+    if ((expression instanceof BitwiseAndExpression)) {
+      return _check((BitwiseAndExpression)expression);
+    } else if ((expression instanceof BitwiseOrExpression)) {
+      return _check((BitwiseOrExpression)expression);
+    } else if ((expression instanceof BitwiseXorExpression)) {
+      return _check((BitwiseXorExpression)expression);
+    } else if ((expression instanceof ConditionalExpression)) {
+      return _check((ConditionalExpression)expression);
+    } else if ((expression instanceof EventValueReferenceExpression)) {
+      return _check((EventValueReferenceExpression)expression);
+    } else if ((expression instanceof LogicalAndExpression)) {
+      return _check((LogicalAndExpression)expression);
+    } else if ((expression instanceof LogicalNotExpression)) {
+      return _check((LogicalNotExpression)expression);
+    } else if ((expression instanceof LogicalOrExpression)) {
+      return _check((LogicalOrExpression)expression);
+    } else if ((expression instanceof LogicalRelationExpression)) {
+      return _check((LogicalRelationExpression)expression);
+    } else if ((expression instanceof NumericalAddSubtractExpression)) {
+      return _check((NumericalAddSubtractExpression)expression);
+    } else if ((expression instanceof NumericalMultiplyDivideExpression)) {
+      return _check((NumericalMultiplyDivideExpression)expression);
+    } else if ((expression instanceof NumericalUnaryExpression)) {
+      return _check((NumericalUnaryExpression)expression);
+    } else if ((expression instanceof PrimitiveValueExpression)) {
+      return _check((PrimitiveValueExpression)expression);
+    } else if ((expression instanceof ShiftExpression)) {
+      return _check((ShiftExpression)expression);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(assignment).toString());
+        java.util.Arrays.<Object>asList(expression).toString());
     }
   }
   

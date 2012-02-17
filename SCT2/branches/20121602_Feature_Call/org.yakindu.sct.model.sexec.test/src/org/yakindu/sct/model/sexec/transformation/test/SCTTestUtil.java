@@ -6,9 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.yakindu.base.types.Type;
 import org.yakindu.base.types.TypesFactory;
-import org.yakindu.sct.model.sexec.Execution;
-import org.yakindu.sct.model.sexec.Sequence;
-import org.yakindu.sct.model.sexec.SexecFactory;
 import org.yakindu.sct.model.sgraph.Entry;
 import org.yakindu.sct.model.sgraph.EntryKind;
 import org.yakindu.sct.model.sgraph.FinalState;
@@ -22,13 +19,12 @@ import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
 import org.yakindu.sct.model.sgraph.Vertex;
 import org.yakindu.sct.model.stext.stext.AlwaysEvent;
-import org.yakindu.sct.model.stext.stext.Assignment;
+import org.yakindu.sct.model.stext.stext.AssignmentExpression;
 import org.yakindu.sct.model.stext.stext.AssignmentOperator;
 import org.yakindu.sct.model.stext.stext.BoolLiteral;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 import org.yakindu.sct.model.stext.stext.EventSpec;
 import org.yakindu.sct.model.stext.stext.Expression;
-import org.yakindu.sct.model.stext.stext.FeatureCall;
 import org.yakindu.sct.model.stext.stext.IntLiteral;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
@@ -43,7 +39,6 @@ import org.yakindu.sct.model.stext.stext.StextFactory;
 import org.yakindu.sct.model.stext.stext.TimeEventSpec;
 import org.yakindu.sct.model.stext.stext.TimeEventType;
 import org.yakindu.sct.model.stext.stext.TimeUnit;
-import org.yakindu.sct.model.stext.stext.TransitionReaction;
 import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
@@ -284,9 +279,11 @@ public class SCTTestUtil {
 				_createValue(value), (ReactionEffect) entryAction.getEffect());
 	}
 
-	public static Assignment _createVariableAssignment(VariableDefinition v,
-			AssignmentOperator op, Expression expression, ReactionEffect e) {
-		Assignment assignment = StextFactory.eINSTANCE.createAssignment();
+	public static AssignmentExpression _createVariableAssignment(
+			VariableDefinition v, AssignmentOperator op, Expression expression,
+			ReactionEffect e) {
+		AssignmentExpression assignment = StextFactory.eINSTANCE
+				.createAssignmentExpression();
 		TypedElementReferenceExpression reference = StextFactory.eINSTANCE
 				.createTypedElementReferenceExpression();
 		reference.setReference(v);

@@ -6,31 +6,24 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.sql.CallableStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.yakindu.sct.model.sexec.Call;
 import org.yakindu.sct.model.sexec.Execution;
 import org.yakindu.sct.model.sexec.ExecutionFlow;
 import org.yakindu.sct.model.sexec.ExecutionRegion;
 import org.yakindu.sct.model.sexec.ExecutionState;
-import org.yakindu.sct.model.sexec.ExitState;
 import org.yakindu.sct.model.sexec.HistoryEntry;
-import org.yakindu.sct.model.sexec.Reaction;
 import org.yakindu.sct.model.sexec.SaveHistory;
 import org.yakindu.sct.model.sexec.Sequence;
 import org.yakindu.sct.model.sexec.StateCase;
 import org.yakindu.sct.model.sexec.StateSwitch;
 import org.yakindu.sct.model.sexec.Step;
-import org.yakindu.sct.model.sexec.Trace;
-import org.yakindu.sct.model.sexec.transformation.test.Assert.StepNode;
-import org.yakindu.sct.model.sgraph.State;
-import org.yakindu.sct.model.stext.stext.Assignment;
+import org.yakindu.sct.model.stext.stext.AssignmentExpression;
 import org.yakindu.sct.model.stext.stext.AssignmentOperator;
 import org.yakindu.sct.model.stext.stext.BoolLiteral;
 import org.yakindu.sct.model.stext.stext.Expression;
@@ -63,8 +56,9 @@ public class Assert {
 			AssignmentOperator operator, String value) {
 		assertTrue(step instanceof Execution);
 		Execution exec = (Execution) step;
-		assertTrue(exec.getStatement() instanceof Assignment);
-		Assignment assignment = (Assignment) exec.getStatement();
+		assertTrue(exec.getStatement() instanceof AssignmentExpression);
+		AssignmentExpression assignment = (AssignmentExpression) exec
+				.getStatement();
 		assertEquals(operator, assignment.getOperator());
 
 		Expression varRef = assignment.getVarRef();

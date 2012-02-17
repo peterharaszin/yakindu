@@ -24,10 +24,8 @@ import org.yakindu.sct.model.stext.stext.BoolLiteral
 import org.yakindu.sct.model.stext.stext.RealLiteral
 import org.yakindu.sct.simulation.core.ScopeVariable
 import org.yakindu.sct.simulation.core.ScopeEvent
-import org.yakindu.sct.model.stext.stext.Assignment
 import org.yakindu.sct.model.stext.stext.NumericalAddSubtractExpression
 import org.yakindu.sct.model.stext.stext.NumericalMultiplyDivideExpression
-import org.yakindu.sct.model.stext.stext.EventRaising
 import org.yakindu.sct.model.stext.stext.ActiveStateReferenceExpression
 import org.yakindu.sct.model.stext.stext.BitwiseAndExpression
 import org.yakindu.sct.model.stext.stext.BitwiseOrExpression
@@ -50,6 +48,8 @@ import org.yakindu.sct.model.stext.naming.StextNameProvider
 import org.yakindu.sct.model.stext.stext.HexLiteral
 import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression
 import org.yakindu.sct.model.stext.stext.FeatureCall
+import org.yakindu.sct.model.stext.stext.AssignmentExpression
+import org.yakindu.sct.model.stext.stext.EventRaisingExpression
 
 /**
  * 
@@ -69,8 +69,12 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 		this.context = context
 		statement.execute()
 	}
+	
+	def dispatch execute(Statement statement){
+		null
+	}
 
-	def dispatch execute(Assignment assignment){
+	def dispatch execute(AssignmentExpression assignment){
 		var scopeVariable = context.getVariable(assignment.varRef.fullyQualifiedName.toString)
 		var result = assignment.expression.execute
 		if(assignment.operator == AssignmentOperator::ASSIGN){
@@ -82,7 +86,7 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 		null		
 	}
 	
-	def dispatch execute(EventRaising eventRaising){
+	def dispatch execute(EventRaisingExpression eventRaising){
 		if(eventRaising.value != null){
 			context.raiseEvent(eventRaising.event.fullyQualifiedName.toString, eventRaising.value.execute)
 		}else {

@@ -314,7 +314,7 @@ EventRaisingExpression returns Expression:
 ;	
 
 Literal:
-	BoolLiteral | IntLiteral | HexLiteral | RealLiteral;
+	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 
 BoolLiteral:
 	{BoolLiteral} value=BOOL;
@@ -328,6 +328,11 @@ RealLiteral:
 HexLiteral:
 	{HexLiteral} value=HEX;
 
+StringLiteral:
+	{StringLiteral} value=STRING
+;	
+
+
 terminal BOOL returns ecore::EBoolean:
 	'true' | 'false' | 'yes' | 'no';
 
@@ -336,5 +341,6 @@ terminal HEX returns ecore::EInt:
 
 terminal FLOAT returns ecore::EFloat:
 	(INT '.' INT) ('e' ('-' | '+') INT)? ('f' | 'F' | 'd' | 'D')?;
+	
 
 

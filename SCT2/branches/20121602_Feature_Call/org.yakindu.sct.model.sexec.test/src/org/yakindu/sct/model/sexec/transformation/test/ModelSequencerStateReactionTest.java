@@ -4,7 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil.*;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil.TYPE_INTEGER;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createEventDefinition;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createInterfaceScope;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createLocalReaction;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createOncycleEventSpec;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createReactionTrigger;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createRegion;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createRegularEventSpec;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createState;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createStatechart;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createTimeEventSpec;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createTimeTriggeredReaction;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createTransition;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createValue;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createVariableAssignment;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createVariableDefinition;
 
 import org.junit.Test;
 import org.yakindu.sct.model.sexec.ExecutionFlow;
@@ -22,7 +37,7 @@ import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Statement;
 import org.yakindu.sct.model.sgraph.Transition;
-import org.yakindu.sct.model.stext.stext.Assignment;
+import org.yakindu.sct.model.stext.stext.AssignmentExpression;
 import org.yakindu.sct.model.stext.stext.AssignmentOperator;
 import org.yakindu.sct.model.stext.stext.BoolLiteral;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
@@ -243,7 +258,7 @@ public class ModelSequencerStateReactionTest extends ModelSequencerTest {
 		ReactionTrigger tr1 = _createReactionTrigger(t);
 		_createTimeEventSpec(TimeEventType.AFTER, 1, TimeUnit.SECOND, tr1);
 
-		Assignment assign = _createVariableAssignment(v1,
+		AssignmentExpression assign = _createVariableAssignment(v1,
 				AssignmentOperator.ASSIGN, _createValue(42),
 				(ReactionEffect) t.getEffect());
 
@@ -305,7 +320,7 @@ public class ModelSequencerStateReactionTest extends ModelSequencerTest {
 
 		LocalReaction timeTriggeredReaction = _createTimeTriggeredReaction(s,
 				TimeEventType.AFTER, 2, TimeUnit.MILLISECOND);
-		Assignment assign = _createVariableAssignment(v1,
+		AssignmentExpression assign = _createVariableAssignment(v1,
 				AssignmentOperator.ASSIGN, _createValue(42),
 				(ReactionEffect) timeTriggeredReaction.getEffect());
 
@@ -351,7 +366,7 @@ public class ModelSequencerStateReactionTest extends ModelSequencerTest {
 
 		LocalReaction timeTriggeredReaction = _createLocalReaction(s,
 				StextFactory.eINSTANCE.createOnCycleEvent());
-		Assignment assign = _createVariableAssignment(v1,
+		AssignmentExpression assign = _createVariableAssignment(v1,
 				AssignmentOperator.ASSIGN, _createValue(42),
 				(ReactionEffect) timeTriggeredReaction.getEffect());
 
@@ -382,7 +397,7 @@ public class ModelSequencerStateReactionTest extends ModelSequencerTest {
 
 		LocalReaction timeTriggeredReaction = _createLocalReaction(s,
 				StextFactory.eINSTANCE.createAlwaysEvent());
-		Assignment assign = _createVariableAssignment(v1,
+		AssignmentExpression assign = _createVariableAssignment(v1,
 				AssignmentOperator.ASSIGN, _createValue(42),
 				(ReactionEffect) timeTriggeredReaction.getEffect());
 

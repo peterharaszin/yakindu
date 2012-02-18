@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.util;
 
@@ -390,6 +389,14 @@ public class StextSwitch<T> extends Switch<T>
         HexLiteral hexLiteral = (HexLiteral)theEObject;
         T result = caseHexLiteral(hexLiteral);
         if (result == null) result = caseLiteral(hexLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StextPackage.STRING_LITERAL:
+      {
+        StringLiteral stringLiteral = (StringLiteral)theEObject;
+        T result = caseStringLiteral(stringLiteral);
+        if (result == null) result = caseLiteral(stringLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1195,6 +1202,22 @@ public class StextSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseHexLiteral(HexLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringLiteral(StringLiteral object)
   {
     return null;
   }

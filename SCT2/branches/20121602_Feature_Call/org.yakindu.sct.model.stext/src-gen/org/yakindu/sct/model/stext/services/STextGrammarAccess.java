@@ -2343,12 +2343,13 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIntLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cHexLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cRealLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cStringLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Literal:
-		//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral;
+		//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//BoolLiteral | IntLiteral | HexLiteral | RealLiteral
+		//BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//BoolLiteral
@@ -2362,6 +2363,9 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RealLiteral
 		public RuleCall getRealLiteralParserRuleCall_3() { return cRealLiteralParserRuleCall_3; }
+
+		//StringLiteral
+		public RuleCall getStringLiteralParserRuleCall_4() { return cStringLiteralParserRuleCall_4; }
 	}
 
 	public class BoolLiteralElements extends AbstractParserRuleElementFinder {
@@ -2458,6 +2462,30 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 
 		//HEX
 		public RuleCall getValueHEXTerminalRuleCall_1_0() { return cValueHEXTerminalRuleCall_1_0; }
+	}
+
+	public class StringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//StringLiteral:
+		//	{StringLiteral} value=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//{StringLiteral} value=STRING
+		public Group getGroup() { return cGroup; }
+
+		//{StringLiteral}
+		public Action getStringLiteralAction_0() { return cStringLiteralAction_0; }
+
+		//value=STRING
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_1_0() { return cValueSTRINGTerminalRuleCall_1_0; }
 	}
 	
 	
@@ -2942,6 +2970,7 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	private IntLiteralElements pIntLiteral;
 	private RealLiteralElements pRealLiteral;
 	private HexLiteralElements pHexLiteral;
+	private StringLiteralElements pStringLiteral;
 	private TerminalRule tBOOL;
 	private TerminalRule tHEX;
 	private TerminalRule tFLOAT;
@@ -3779,7 +3808,7 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Literal:
-	//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral;
+	//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 	public LiteralElements getLiteralAccess() {
 		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
 	}
@@ -3826,6 +3855,16 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getHexLiteralRule() {
 		return getHexLiteralAccess().getRule();
+	}
+
+	//StringLiteral:
+	//	{StringLiteral} value=STRING;
+	public StringLiteralElements getStringLiteralAccess() {
+		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
+	}
+	
+	public ParserRule getStringLiteralRule() {
+		return getStringLiteralAccess().getRule();
 	}
 
 	//terminal BOOL returns ecore::EBoolean:

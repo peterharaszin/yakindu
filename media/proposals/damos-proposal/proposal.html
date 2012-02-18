@@ -47,7 +47,7 @@ margin-bottom:5px;
 
 <body>
 <p>The Damos project is a proposed open source project under the <a
-	href="http://www.eclipse.org/modeling/mdt/">Model Development Tools (MDT) project</a>.</p>
+	href="http://www.eclipse.org/projects/project.php?id=tools">Tools project</a>.</p>
 
 <!-- 
 	The communication channel must be specified. Typically, this is the
@@ -66,13 +66,14 @@ Forum.</p>
 	Optionally provide the background that has lead you to creating this project.
  -->
 
-<p>In the field of science and engineering, data flow-oriented modeling is commonly used for analyzing and designing systems.
+<p>In the field of science and engineering, a data flow-oriented approach is commonly used for analyzing and designing systems.
 On the one hand it allows scientists and engineers to focus on the data processing aspects of a system,
 and on the other hand it provides a means to specify the dynamics of the mechanical components and the physical environment of the system to
 facilitate close-to-real-world system simulation.</p>
 
-<p>Since many scientists and engineers already utilize Eclipse for software development using CDT, DSDP, and other technologies,
-it would be beneficial to perform system modeling, simulation, and code generation in Eclipse rather than in an external tool.</p>
+<p>Since many scientists and engineers already use Eclipse for software development,
+it would be beneficial to perform system design, simulation, and code generation in Eclipse rather than using an external tool
+like MATLAB/Simulink or LabVIEW.</p>
 
 <h2>Scope</h2>
 
@@ -82,8 +83,8 @@ it would be beneficial to perform system modeling, simulation, and code generati
 	cannot have an open-ended scope.
  -->
  
-This project will provide a data flow-oriented modeling environment. 
-Furthermore, it will provide support to derive own data flow-oriented languages based on the structural and diagram editing components of this project.
+The scope of this project is to provide a development environment for data flow-oriented systems, which includes a simulation environment and code generators.
+Furthermore, it will provide support to derive custom data flow-oriented languages based on the structural and diagram editing components of this project.
 
 <h2>Description</h2>
 
@@ -93,9 +94,16 @@ Furthermore, it will provide support to derive own data flow-oriented languages 
 	has at least a fighting chance of understanding its purpose.
  -->
 
-<p>The goal of this project is to provide a modeling environment for analyzing and designing systems using a data flow-oriented approach.
-Such system models are usually comprised of software components (e.g. control algorithm), mechanical components, and the physical environment.
-Even though data flow-oriented design is not bound to a specific domain,
+<p>This project will provide a development environment for analyzing and designing systems using a data flow-oriented approach.
+Such systems are specified using block diagrams, which
+contain the software components (e.g. control algorithm) that will later be executed on a target device (e.g. digital controller)
+and the mechanical components of the system as well as the physical environment to allow for system simulation.
+The specification of the mechanical and physical components is done by providing the transfer
+function of the corresponding linear time-invariant (LTI) system.</p>
+
+<p><img src="simple-pi-controller.png"/></p>
+
+<p>Even though data flow-oriented design is not bound to a specific domain,
 it is most commonly used in control systems engineering and digital signal processing.</p>
 
 <h2>Why Eclipse?</h2> 
@@ -108,12 +116,14 @@ it is most commonly used in control systems engineering and digital signal proce
 	of hosting at Eclipse Labs?
  -->
 
-<p>Currently, Eclipse does not provide tool support for modeling data flow-oriented systems.
-Engineers and scientists are forced to use commercial tools which do not integrate with other Eclipse technologies very well.
+<p>Currently, Eclipse does not provide tool support for designing data flow-oriented systems.
+Engineers and scientists are forced to use tools which do not integrate with other Eclipse technologies very well.
 Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools to better
 integrate them with other Eclipse technologies.</p>
 
-<p>This project will benefit from being hosted at Eclipse due to the broader visibility in contrast to other project hosting providers.
+<p>This project will benefit from being hosted at Eclipse due to the broader visibility,
+and better integration and coordination with other Eclipse-based technologies
+such as EMF, RMF, CDT, RTSC, TMC, and other tools like Papyrus, eTrice, and Koneki.
 Because of the perceived higher reliability in terms of long-term support,
 it is expected to attract more interest and participation from other parties.
 This will lead to greater market penetration, while improving quality and reducing development costs.</p> 
@@ -130,30 +140,30 @@ This will lead to greater market penetration, while improving quality and reduci
 	and associated licenses.
  -->
 
-<p>The initial contribution consists of sources found in the current Damos repository at <a href="http://eclipselabs.org/p/yakindu">EclipseLabs</a>.</p>
+<p>The initial contribution consists of sources found in the current Damos repository at
+<a href="http://eclipselabs.org/p/yakindu">EclipseLabs</a>, which include:
+<ul>
+<li>GMF-based block diagram editor</li>
+<li>Simulator</li>
+<li>C code generator</li>
+<li>Base block library</li>
+<li>Declarative scripting language <i>Mscript</i></li>
+</ul>
+<p>
+
 
 <h3>Architecture</h3>
 
 <p>In order to facilitate customization, Damos is split into a set of top-level components (i.e. Eclipse features).
 There are two main groups of components. The first group contains components providing the structural semantics
-and the diagram editing features of the modeling environment (orange).
+and the diagram editing features (orange).
 The second group provides simulation and code generation components as well as the standard block library (green).
 This enables other projects to build their own data flow-oriented languages by reusing the structural semantics
-and the diagram editing components, and without being required to include unneeded components.</p>
+and the diagram editing components, without being required to include unneeded components.</p>
 
 <p></p>
 
 <p><img src="architecture.png"/></p>
-
-<p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:
-<ul>
-<li>Registering block libraries</li>
-<li>Contributing the visual representation (i.e. symbols) of blocks</li>
-<li>Providing simulation behavior</li>
-<li>Providing additional solvers</li>
-<li>Providing code generators</li>
-</ul>
-</p>
 
 <h3>Main Components</h3>
 
@@ -167,11 +177,22 @@ and the software model that will later be executed on that device.
 These models are specified using block diagrams.</p>
 
 <p>When performing model simulation or code generation, an execution flow is first derived from the system model.
-The execution flow contains the execution graphs (i.e. the execution order of system components) of the system model.
-The execution-specific configuration must be provided in an execution configuration model.
-The simulation and code generation configuration models are used to configure the simulation process (e.g. solver configuration)
-and the code generator (e.g. target directories), respectively.
-The computation model specifies the computation algorithms utilized in the target device (e.g. fixed-point arithmetic vs. floating-point arithmetic).</p>
+The execution flow can be seen as the imperative representation of the system model.
+For instance, it describes the execution order of the components so that components that drive other components
+are executed first.
+This information is then later used by the simulator and the code generator to execute and to generate the components in the right order, respectively.</p>
+
+<p>Simulation and code generation can be configured using a Damos-specific configuration language.
+Such configurations contain global properties and properties for individual Damos model elements (using an annotation mechanism).
+Configurations can extend and/or override other configurations, so that, for instance,
+properties that are common to simulation and code generation can be extracted to a base configuration.</p>
+
+<p>To configure computation-related aspects (e.g. fixed-point arithmetic operations),
+computation models can be specified in the configuration for individual model elements (e.g.components and subsystems).
+Since Damos models only contain logical numeric data types (e.g. real and integer),
+computation models can be used to map the logical data types to machine data types (e.g. double).
+The computation models are used by both the simulation environment and the code generators to ensure
+that the simulation results match the behavior of the generated code.</p>
 
 <p>Damos provides a GMF-based graphical block diagram editor for the system model.
 For all other models, textual model editors based on Xtext are provided.</p>
@@ -182,40 +203,21 @@ For all other models, textual model editors based on Xtext are provided.</p>
 
 <p>The graphical block diagram editor is used for editing system models.
 It can also be used to visualize real-time simulation results using virtual instruments.
-Block diagram files contain two model types: the semantic model of the system and
-the notation model containing the graphical information of the block diagram.
-When processing block diagrams, the notation model is usually ignored.</p>
+Virtual instruments display simulation result in real-time, or provide a means to interact with the running simulation (e.g. using buttons and sliders).</p>
 
-<p>The architecture of Damos facilitates the derivation of new data flow-based
-languages. Such languages can reuse the semantic metamodel (DML) and the block diagram editor.
-Language-specific aspects can be configured using Google Guice.</p>
+<p>Block diagram files contain two model types: the semantic model of the system and
+the notation model containing the graphical information of the block diagram.
+When processing block diagrams (i.e. simulation and code generation), the notation model is ignored.</p>
 
 <p><a href="block-diagram-editor.png"><img src="block-diagram-editor-small.png"/></a></p>
 
-<h4>Simulator</h4>
+<p>While editing block diagrams, the model is continuously validated.
+Validation errors are shown as annotations on invalid model elements.
+For instance, when using units of measurement for numeric values,
+the compatibility of block inputs and outputs are checked based of their corresponding units.</p>
 
-<p>The simulator utilizes adaptive and fixed step size solvers to simulate continuous, synchronous, and asynchronous systems.
-Additional solvers can be provided using the Eclipse extension mechanism.
-When real-time simulation is performed, simulation results can be displayed in real-time using virtual instrument blocks.
-The simulation engine incorporates a target-specific computation model,
-so that&mdash;for instance&mdash;overflows can be detected when using fixed-point arithmetic.
-Simulation aspects (e.g. solver configuration) can be configured using a simulation configuration model.</p>
+<p><img src="validation.png"/></p>
 
-<h4>Code Generator</h4>
-
-<p>The code generation tooling initially includes a standards-compliant C code generator.
-Other languages may be added in the future.
-Each system component can provide its own code generator.
-When using Mscript to describe the block behavior, an Mscript-specific code generator is used that
-transforms the Mscript functions into C code.
-The code generators incorporate a target-specific computation model containing information on how arithmetic operations should be handled.
-The code generation process can be configured using a generator configuration model (e.g. target directories).</p>
-
-<h4>Block Library</h4>
-
-<p>The standard block library contains commonly used blocks.
-If required, the user is can create his/her own block libraries.
-The block behavior can be specified using the declarative programming language Mscript, which is part of this project.</p>
 
 <h4>Mscript</h4>
 
@@ -223,15 +225,54 @@ The block behavior can be specified using the declarative programming language M
 of a function using a set of equations.
 In contrast to functional languages, Mscript functions can be stateful.
 Consequently, such functions must be instantiated (function objects).
-Stateful function equations can reference previous input and output values,
+Stateful function equations can reference input and output values from previous steps,
 which enable the specification of difference equations.
 Difference equations are widely used to specify discrete transfer functions,
 for instance in the field of digital signal processing (e.g. FIR and IIR filters).
 In future versions, differential equations may be supported as well to
-allow for specifying time-continuous blocks.
+allow for specifying time-continuous blocks.</p>
 
-</p>
 <p><img src="mscript.png"/></p>
+
+<h4>Simulator</h4>
+
+<p>The simulator utilizes adaptive and fixed step size solvers to simulate time-continuous, synchronous, and asynchronous systems.
+Solvers encapsulate the numerical integration algorithm to solve the differential equations that represent the system.</p>
+
+<p>When real-time simulation is performed, simulation results can be displayed in real-time using virtual instrument blocks.
+The simulation engine incorporates a target-specific computation model,
+so that&mdash;for instance&mdash;overflows can be detected when using fixed-point arithmetic.
+Simulation aspects (e.g. solver configuration) can be configured using a simulation configuration model.</p>
+
+<h4>Code Generator</h4>
+
+<p>The code generation tooling initially includes a C code generator.
+Other languages may be added in the future.
+Each system component can provide its own code generator.
+When using Mscript to describe the block behavior, an Mscript-specific code generator is used that
+transforms the Mscript functions into C code.
+The code generators incorporate a target-specific computation model containing information on how arithmetic operations should be handled.
+The code generation process can be configured using a generator configuration model (e.g. target directories).</p>
+
+<p><img src="codegen.png"/></p>
+
+<h4>Block Library</h4>
+
+<p>The standard block library contains commonly used blocks.
+If required, the user is can create his/her own block libraries.
+The block behavior can be specified using the declarative programming language Mscript, which is part of this project.</p>
+
+<h4>Extensibility</h4>
+
+<p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:
+<ul>
+<li>Registering block libraries</li>
+<li>Contributing the visual representation (i.e. symbols) of blocks</li>
+<li>Providing simulation behavior</li>
+<li>Providing additional solvers</li>
+<li>Providing code generators</li>
+</ul>
+</p>
 
 <h2>Legal Issues</h2>
 

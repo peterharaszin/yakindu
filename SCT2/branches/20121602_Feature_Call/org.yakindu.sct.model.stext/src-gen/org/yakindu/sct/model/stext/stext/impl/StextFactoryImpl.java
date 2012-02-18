@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.impl;
 
@@ -105,6 +104,7 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.INT_LITERAL: return createIntLiteral();
       case StextPackage.REAL_LITERAL: return createRealLiteral();
       case StextPackage.HEX_LITERAL: return createHexLiteral();
+      case StextPackage.STRING_LITERAL: return createStringLiteral();
       case StextPackage.SIMPLE_SCOPE: return createSimpleScope();
       case StextPackage.OPERATION: return createOperation();
       case StextPackage.ENTRYPOINT: return createEntrypoint();
@@ -595,6 +595,17 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
   {
     HexLiteralImpl hexLiteral = new HexLiteralImpl();
     return hexLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StringLiteral createStringLiteral()
+  {
+    StringLiteralImpl stringLiteral = new StringLiteralImpl();
+    return stringLiteral;
   }
 
   /**

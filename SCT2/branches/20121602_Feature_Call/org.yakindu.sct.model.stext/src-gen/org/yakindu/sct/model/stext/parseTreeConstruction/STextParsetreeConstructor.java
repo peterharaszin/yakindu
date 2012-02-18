@@ -104,6 +104,7 @@ protected class ThisRootNode extends RootToken {
 			case 70: return new IntLiteral_Group(this, this, 70, inst);
 			case 71: return new RealLiteral_Group(this, this, 71, inst);
 			case 72: return new HexLiteral_Group(this, this, 72, inst);
+			case 73: return new StringLiteral_Group(this, this, 73, inst);
 			default: return null;
 		}	
 	}	
@@ -11503,11 +11504,11 @@ protected class EventRaisingExpression_ValueAssignment_3_1 extends AssignmentTok
 /************ begin Rule Literal ****************
  *
  * Literal:
- * 	BoolLiteral | IntLiteral | HexLiteral | RealLiteral;
+ * 	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
  *
  **/
 
-// BoolLiteral | IntLiteral | HexLiteral | RealLiteral
+// BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
 protected class Literal_Alternatives extends AlternativesToken {
 
 	public Literal_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11526,6 +11527,7 @@ protected class Literal_Alternatives extends AlternativesToken {
 			case 1: return new Literal_IntLiteralParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			case 2: return new Literal_HexLiteralParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
 			case 3: return new Literal_RealLiteralParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new Literal_StringLiteralParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			default: return null;
 		}	
 	}
@@ -11535,7 +11537,8 @@ protected class Literal_Alternatives extends AlternativesToken {
 		if(getEObject().eClass() != grammarAccess.getBoolLiteralAccess().getBoolLiteralAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getHexLiteralAccess().getHexLiteralAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIntLiteralAccess().getIntLiteralAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getRealLiteralAccess().getRealLiteralAction_0().getType().getClassifier())
+		   getEObject().eClass() != grammarAccess.getRealLiteralAccess().getRealLiteralAction_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getStringLiteralAccess().getStringLiteralAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -11675,6 +11678,42 @@ protected class Literal_RealLiteralParserRuleCall_3 extends RuleCallToken {
 		if(getEObject().eClass() != grammarAccess.getRealLiteralAccess().getRealLiteralAction_0().getType().getClassifier())
 			return null;
 		if(checkForRecursion(RealLiteral_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// StringLiteral
+protected class Literal_StringLiteralParserRuleCall_4 extends RuleCallToken {
+	
+	public Literal_StringLiteralParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getLiteralAccess().getStringLiteralParserRuleCall_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new StringLiteral_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getStringLiteralAccess().getStringLiteralAction_0().getType().getClassifier())
+			return null;
+		if(checkForRecursion(StringLiteral_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -12088,5 +12127,105 @@ protected class HexLiteral_ValueAssignment_1 extends AssignmentToken  {
 
 
 /************ end Rule HexLiteral ****************/
+
+
+/************ begin Rule StringLiteral ****************
+ *
+ * StringLiteral:
+ * 	{StringLiteral} value=STRING;
+ *
+ **/
+
+// {StringLiteral} value=STRING
+protected class StringLiteral_Group extends GroupToken {
+	
+	public StringLiteral_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new StringLiteral_ValueAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getStringLiteralAccess().getStringLiteralAction_0().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// {StringLiteral}
+protected class StringLiteral_StringLiteralAction_0 extends ActionToken  {
+
+	public StringLiteral_StringLiteralAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Action getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getStringLiteralAction_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(!eObjectConsumer.isConsumed()) return null;
+		return eObjectConsumer;
+	}
+}
+
+// value=STRING
+protected class StringLiteral_ValueAssignment_1 extends AssignmentToken  {
+	
+	public StringLiteral_ValueAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getValueAssignment_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new StringLiteral_StringLiteralAction_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0(), value, null)) {
+			type = AssignmentType.TERMINAL_RULE_CALL;
+			element = grammarAccess.getStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
+/************ end Rule StringLiteral ****************/
 
 }

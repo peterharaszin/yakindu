@@ -8,45 +8,53 @@ package org.yakindu.sct.model.stext.stext.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.yakindu.sct.model.stext.stext.ExitPointSpec;
-import org.yakindu.sct.model.stext.stext.Exitpoint;
 import org.yakindu.sct.model.stext.stext.StextPackage;
+import org.yakindu.sct.model.stext.stext.StringLiteral;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Exit Point Spec</b></em>'.
+ * An implementation of the model object '<em><b>String Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.yakindu.sct.model.stext.stext.impl.ExitPointSpecImpl#getExitpoint <em>Exitpoint</em>}</li>
+ *   <li>{@link org.yakindu.sct.model.stext.stext.impl.StringLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPointSpec
+public class StringLiteralImpl extends LiteralImpl implements StringLiteral
 {
   /**
-   * The cached value of the '{@link #getExitpoint() <em>Exitpoint</em>}' reference.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExitpoint()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected Exitpoint exitpoint;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExitPointSpecImpl()
+  protected StringLiteralImpl()
   {
     super();
   }
@@ -59,7 +67,7 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
   @Override
   protected EClass eStaticClass()
   {
-    return StextPackage.Literals.EXIT_POINT_SPEC;
+    return StextPackage.Literals.STRING_LITERAL;
   }
 
   /**
@@ -67,19 +75,9 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
    * <!-- end-user-doc -->
    * @generated
    */
-  public Exitpoint getExitpoint()
+  public String getValue()
   {
-    if (exitpoint != null && exitpoint.eIsProxy())
-    {
-      InternalEObject oldExitpoint = (InternalEObject)exitpoint;
-      exitpoint = (Exitpoint)eResolveProxy(oldExitpoint);
-      if (exitpoint != oldExitpoint)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, StextPackage.EXIT_POINT_SPEC__EXITPOINT, oldExitpoint, exitpoint));
-      }
-    }
-    return exitpoint;
+    return value;
   }
 
   /**
@@ -87,22 +85,12 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
    * <!-- end-user-doc -->
    * @generated
    */
-  public Exitpoint basicGetExitpoint()
+  public void setValue(String newValue)
   {
-    return exitpoint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExitpoint(Exitpoint newExitpoint)
-  {
-    Exitpoint oldExitpoint = exitpoint;
-    exitpoint = newExitpoint;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, StextPackage.EXIT_POINT_SPEC__EXITPOINT, oldExitpoint, exitpoint));
+      eNotify(new ENotificationImpl(this, Notification.SET, StextPackage.STRING_LITERAL__VALUE, oldValue, value));
   }
 
   /**
@@ -115,9 +103,8 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
   {
     switch (featureID)
     {
-      case StextPackage.EXIT_POINT_SPEC__EXITPOINT:
-        if (resolve) return getExitpoint();
-        return basicGetExitpoint();
+      case StextPackage.STRING_LITERAL__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,8 +119,8 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
   {
     switch (featureID)
     {
-      case StextPackage.EXIT_POINT_SPEC__EXITPOINT:
-        setExitpoint((Exitpoint)newValue);
+      case StextPackage.STRING_LITERAL__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,8 +136,8 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
   {
     switch (featureID)
     {
-      case StextPackage.EXIT_POINT_SPEC__EXITPOINT:
-        setExitpoint((Exitpoint)null);
+      case StextPackage.STRING_LITERAL__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -166,10 +153,27 @@ public class ExitPointSpecImpl extends ReactionPropertyImpl implements ExitPoint
   {
     switch (featureID)
     {
-      case StextPackage.EXIT_POINT_SPEC__EXITPOINT:
-        return exitpoint != null;
+      case StextPackage.STRING_LITERAL__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
 
-} //ExitPointSpecImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (value: ");
+    result.append(value);
+    result.append(')');
+    return result.toString();
+  }
+
+} //StringLiteralImpl

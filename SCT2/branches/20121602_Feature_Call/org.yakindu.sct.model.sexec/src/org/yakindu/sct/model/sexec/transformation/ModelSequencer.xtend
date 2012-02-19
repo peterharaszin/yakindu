@@ -80,6 +80,7 @@ import org.yakindu.base.base.NamedElement
 import org.apache.commons.logging.LogFactory
 import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.apache.commons.logging.LogConfigurationException
+import org.yakindu.base.types.Feature
 
 class ModelSequencer {
 	 
@@ -165,7 +166,7 @@ class ModelSequencer {
 	}
 
 	def retarget(FeatureCall call, Collection<EObject> declared) {
-		if (! declared.contains(call.feature) ) call.feature = (call.feature.replaced) as Operation
+		if (! declared.contains(call.feature) ) call.feature = (call.feature.replaced) as Feature
 	}
 	
 	def dispatch Declaration replaced(NamedElement ne) {

@@ -177,7 +177,7 @@ public class ModelSequencer {
     if (_operator_not) {
       Feature _feature_1 = call.getFeature();
       Declaration _replaced = this.replaced(_feature_1);
-      call.setFeature(((Operation) _replaced));
+      call.setFeature(((Feature) _replaced));
     }
     return _xifexpression;
   }

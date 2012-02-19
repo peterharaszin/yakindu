@@ -50,6 +50,7 @@ import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression
 import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.yakindu.sct.model.stext.stext.AssignmentExpression
 import org.yakindu.sct.model.stext.stext.EventRaisingExpression
+import org.yakindu.sct.model.stext.stext.VariableDefinition
 
 /**
  * 
@@ -75,7 +76,7 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 	}
 
 	def dispatch execute(AssignmentExpression assignment){
-		var scopeVariable = context.getVariable(assignment.varRef.fullyQualifiedName.toString)
+		var scopeVariable = context.getVariable(assignment.varRef.variable.fullyQualifiedName.toString)
 		var result = assignment.expression.execute
 		if(assignment.operator == AssignmentOperator::ASSIGN){
 			context.setVariableValue(scopeVariable.getName, result)
@@ -85,6 +86,17 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 		}
 		null		
 	}
+	
+	
+	def dispatch variable(TypedElementReferenceExpression e) {
+		if (e.reference instanceof VariableDefinition) e.reference else null	
+	} 
+	
+	
+	def dispatch variable(FeatureCall e) {
+		if (e.feature instanceof VariableDefinition) e.feature else null
+	}
+	
 	
 	def dispatch execute(EventRaisingExpression eventRaising){
 		if(eventRaising.value != null){
@@ -192,7 +204,15 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 	}
 	
 	def dispatch execute(FeatureCall call){
-		context.call(call.feature.name)
+		if (call.operationCall) context.call(call.feature.name)
+		else {
+			var variableRef = context.getVariable(call.feature.fullyQualifiedName.toString)
+			if(variableRef != null){
+				return variableRef.getValue
+			}
+			return context.isEventRaised(call.feature.fullyQualifiedName.toString)
+		}
+		
 		null
 	}
 	

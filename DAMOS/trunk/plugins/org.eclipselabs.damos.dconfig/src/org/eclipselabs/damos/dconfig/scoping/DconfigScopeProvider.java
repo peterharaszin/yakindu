@@ -6,6 +6,7 @@ package org.eclipselabs.damos.dconfig.scoping;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -19,6 +20,8 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
+import org.eclipselabs.damos.dconfig.MappingPropertyReference;
+import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
@@ -29,7 +32,6 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
 import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
-import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
@@ -66,7 +68,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	}
 
 	public IScope scope_SimpleProperty_declaration(MappingBody context, EReference reference) {
-		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetResource().getPropertyDeclarations(), SimplePropertyDeclaration.class));
+		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SimplePropertyDeclaration.class));
 	}
 
 	public IScope scope_SelectionProperty_declaration(Configuration context, EReference reference) {
@@ -79,7 +81,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	}
 
 	public IScope scope_SelectionProperty_declaration(MappingBody context, EReference reference) {
-		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetResource().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
+		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
 	}
 
 	public IScope scope_SelectionProperty_selection(final SelectionProperty context, EReference reference) {
@@ -182,24 +184,68 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), Component.class));
 	}
 
-	public IScope scope_Mapping_targetProperty(final SystemConfigurationBody context, EReference reference) {
-		List<Property> properties = new ArrayList<Property>();
-		EObject eObject = context;
-		while (eObject != null) {
-			if (eObject instanceof PropertyContainer) {
-				collectNamedSelectionProperties((PropertyContainer) eObject, properties);
+	public IScope scope_MappingPropertyReference_property(Mapping context, EReference reference) {
+		MappingPropertyReference lastPropertyReference = null;
+		
+		MappingTargetPath targetPath = context.getTargetPath();
+		if (targetPath != null) {
+			for (MappingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
+				if (propertyReference.getProperty() == null) {
+					break;
+				}
+				if (propertyReference.getProperty().eIsProxy()) {
+					return doScope_MappingPropertyReference_property(context, null);
+				}
+				lastPropertyReference = propertyReference;
 			}
-			if (eObject instanceof Configuration) {
+		}
+		
+		return doScope_MappingPropertyReference_property(context, lastPropertyReference);
+	}
+	
+	public IScope scope_MappingPropertyReference_property(MappingPropertyReference context, EReference reference) {
+		MappingTargetPath targetPath = (MappingTargetPath) context.eContainer();
+		
+		MappingPropertyReference lastPropertyReference = null;
+		for (MappingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
+			if (propertyReference == context) {
 				break;
 			}
-			eObject = eObject.eContainer();
+			lastPropertyReference = propertyReference;
+		}
+		
+		return doScope_MappingPropertyReference_property((Mapping) targetPath.eContainer(), lastPropertyReference);
+	}
+
+	private IScope doScope_MappingPropertyReference_property(Mapping context, MappingPropertyReference lastPropertyReference) {
+		List<Property> properties = new ArrayList<Property>();
+		if (lastPropertyReference == null) {
+			EObject eObject = context;
+			while (eObject != null) {
+				if (eObject instanceof PropertyContainer) {
+					collectNamedSelectionProperties((PropertyContainer) eObject, properties);
+				}
+				if (eObject instanceof Configuration) {
+					break;
+				}
+				eObject = eObject.eContainer();
+			}
+		} else {
+			SelectionProperty lastProperty = lastPropertyReference.getProperty();
+			if (lastProperty != null && lastProperty.getBody() != null) {
+				collectNamedSelectionProperties(lastProperty.getBody(), properties);
+			}
 		}
 		return Scopes.scopeFor(properties);
 	}
-	
-	public IScope scope_Mapping_targetResource(Mapping context, EReference reference) {
-		if (context.getTargetProperty() != null && context.getTargetProperty().getDeclaration() != null) {
-			return Scopes.scopeFor(context.getTargetProperty().getSelection().getResourceDeclarations());
+
+	public IScope scope_MappingTargetPath_resource(MappingTargetPath context, EReference reference) {
+		if (!context.getPropertyReferences().isEmpty()) {
+			EList<MappingPropertyReference> properties = context.getPropertyReferences();
+			MappingPropertyReference lastPropertyReference = properties.get(properties.size() - 1);
+			if (lastPropertyReference != null && lastPropertyReference.getProperty() != null && !lastPropertyReference.getProperty().eIsProxy()) {
+				return Scopes.scopeFor(lastPropertyReference.getProperty().getSelection().getResourceDeclarations());
+			}
 		}
 		return IScope.NULLSCOPE;
 	}

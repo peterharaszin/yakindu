@@ -107,6 +107,24 @@ public interface DconfigFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
+	 * Returns a new object of class '<em>Mapping Target Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapping Target Path</em>'.
+	 * @generated
+	 */
+	MappingTargetPath createMappingTargetPath();
+
+	/**
+	 * Returns a new object of class '<em>Mapping Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapping Property Reference</em>'.
+	 * @generated
+	 */
+	MappingPropertyReference createMappingPropertyReference();
+
+	/**
 	 * Returns a new object of class '<em>Mapping Body</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

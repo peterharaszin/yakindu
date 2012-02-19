@@ -89,12 +89,20 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetProperty" eType="#//SelectionProperty"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetResource" eType="#//ResourceDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" eType="#//MappingTargetPath"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//MappingSubscript"
         unsettable="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//MappingBody"
         containment="true" eOpposite="#//MappingBody/owner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingTargetPath">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReferences" upperBound="-1"
+        eType="#//MappingPropertyReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" eType="#//ResourceDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingPropertyReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//SelectionProperty"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingBody" eSuperTypes="#//PropertyContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Mapping"

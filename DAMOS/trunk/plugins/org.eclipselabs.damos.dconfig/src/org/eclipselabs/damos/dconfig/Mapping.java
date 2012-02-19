@@ -18,8 +18,7 @@ import org.eclipselabs.damos.dml.Component;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getTargetProperty <em>Target Property</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getTargetResource <em>Target Resource</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getTargetPath <em>Target Path</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getBody <em>Body</em>}</li>
  * </ul>
@@ -57,56 +56,30 @@ public interface Mapping extends EObject {
 	void setSource(Component value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Target Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Property</em>' reference isn't clear,
+	 * If the meaning of the '<em>Target Path</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Property</em>' reference.
-	 * @see #setTargetProperty(SelectionProperty)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_TargetProperty()
-	 * @model
+	 * @return the value of the '<em>Target Path</em>' containment reference.
+	 * @see #setTargetPath(MappingTargetPath)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_TargetPath()
+	 * @model containment="true"
 	 * @generated
 	 */
-	SelectionProperty getTargetProperty();
+	MappingTargetPath getTargetPath();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetProperty <em>Target Property</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetPath <em>Target Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Property</em>' reference.
-	 * @see #getTargetProperty()
+	 * @param value the new value of the '<em>Target Path</em>' containment reference.
+	 * @see #getTargetPath()
 	 * @generated
 	 */
-	void setTargetProperty(SelectionProperty value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Resource</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Resource</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Resource</em>' reference.
-	 * @see #setTargetResource(ResourceDeclaration)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_TargetResource()
-	 * @model
-	 * @generated
-	 */
-	ResourceDeclaration getTargetResource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetResource <em>Target Resource</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Resource</em>' reference.
-	 * @see #getTargetResource()
-	 * @generated
-	 */
-	void setTargetResource(ResourceDeclaration value);
+	void setTargetPath(MappingTargetPath value);
 
 	/**
 	 * Returns the value of the '<em><b>Subscript</b></em>' containment reference.

@@ -121,7 +121,9 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentConfigurationBodyAccess().getGroup(), "rule__ComponentConfigurationBody__Group__0");
 					put(grammarAccess.getComputationPropertyAccess().getGroup(), "rule__ComputationProperty__Group__0");
 					put(grammarAccess.getMappingAccess().getGroup(), "rule__Mapping__Group__0");
-					put(grammarAccess.getMappingAccess().getGroup_6(), "rule__Mapping__Group_6__0");
+					put(grammarAccess.getMappingAccess().getGroup_4(), "rule__Mapping__Group_4__0");
+					put(grammarAccess.getMappingTargetPathAccess().getGroup(), "rule__MappingTargetPath__Group__0");
+					put(grammarAccess.getMappingTargetPathAccess().getGroup_1(), "rule__MappingTargetPath__Group_1__0");
 					put(grammarAccess.getMappingBodyAccess().getGroup(), "rule__MappingBody__Group__0");
 					put(grammarAccess.getComputationModelAccess().getGroup(), "rule__ComputationModel__Group__0");
 					put(grammarAccess.getFixedPointFormatAccess().getGroup(), "rule__FixedPointFormat__Group__0");
@@ -327,10 +329,13 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComputationPropertyAccess().getPropagateAssignment_0(), "rule__ComputationProperty__PropagateAssignment_0");
 					put(grammarAccess.getComputationPropertyAccess().getComputationModelAssignment_3(), "rule__ComputationProperty__ComputationModelAssignment_3");
 					put(grammarAccess.getMappingAccess().getSourceAssignment_1(), "rule__Mapping__SourceAssignment_1");
-					put(grammarAccess.getMappingAccess().getTargetPropertyAssignment_3(), "rule__Mapping__TargetPropertyAssignment_3");
-					put(grammarAccess.getMappingAccess().getTargetResourceAssignment_5(), "rule__Mapping__TargetResourceAssignment_5");
-					put(grammarAccess.getMappingAccess().getSubscriptAssignment_6_1(), "rule__Mapping__SubscriptAssignment_6_1");
-					put(grammarAccess.getMappingAccess().getBodyAssignment_7(), "rule__Mapping__BodyAssignment_7");
+					put(grammarAccess.getMappingAccess().getTargetPathAssignment_3(), "rule__Mapping__TargetPathAssignment_3");
+					put(grammarAccess.getMappingAccess().getSubscriptAssignment_4_1(), "rule__Mapping__SubscriptAssignment_4_1");
+					put(grammarAccess.getMappingAccess().getBodyAssignment_5(), "rule__Mapping__BodyAssignment_5");
+					put(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesAssignment_0(), "rule__MappingTargetPath__PropertyReferencesAssignment_0");
+					put(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesAssignment_1_1(), "rule__MappingTargetPath__PropertyReferencesAssignment_1_1");
+					put(grammarAccess.getMappingTargetPathAccess().getResourceAssignment_3(), "rule__MappingTargetPath__ResourceAssignment_3");
+					put(grammarAccess.getMappingPropertyReferenceAccess().getPropertyAssignment(), "rule__MappingPropertyReference__PropertyAssignment");
 					put(grammarAccess.getMappingBodyAccess().getPropertiesAssignment_2(), "rule__MappingBody__PropertiesAssignment_2");
 					put(grammarAccess.getMappingSubscriptAccess().getIndexAssignment(), "rule__MappingSubscript__IndexAssignment");
 					put(grammarAccess.getComputationModelAccess().getNumberFormatMappingsAssignment_1(), "rule__ComputationModel__NumberFormatMappingsAssignment_1");

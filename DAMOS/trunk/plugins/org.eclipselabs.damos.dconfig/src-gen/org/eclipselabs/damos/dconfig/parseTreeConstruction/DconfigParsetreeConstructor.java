@@ -46,114 +46,116 @@ protected class ThisRootNode extends RootToken {
 			case 12: return new ComponentConfigurationBody_Group(this, this, 12, inst);
 			case 13: return new ComputationProperty_Group(this, this, 13, inst);
 			case 14: return new Mapping_Group(this, this, 14, inst);
-			case 15: return new MappingBody_Group(this, this, 15, inst);
-			case 16: return new MappingSubscript_IndexAssignment(this, this, 16, inst);
-			case 17: return new ComputationModel_Group(this, this, 17, inst);
-			case 18: return new NumberFormat_Alternatives(this, this, 18, inst);
-			case 19: return new FloatingPointFormat_KindAssignment(this, this, 19, inst);
-			case 20: return new FixedPointFormat_Group(this, this, 20, inst);
-			case 21: return new NumberFormatMapping_Group(this, this, 21, inst);
-			case 22: return new Module_Group(this, this, 22, inst);
-			case 23: return new ImportDeclaration_Group(this, this, 23, inst);
-			case 24: return new Declaration_Alternatives(this, this, 24, inst);
-			case 25: return new DataTypeDeclaration_Alternatives(this, this, 25, inst);
-			case 26: return new EnumerationDeclaration_Group(this, this, 26, inst);
-			case 27: return new EnumerationLiteralDeclaration_NameAssignment(this, this, 27, inst);
-			case 28: return new TypedefDeclaration_Group(this, this, 28, inst);
-			case 29: return new StructDeclaration_Group(this, this, 29, inst);
-			case 30: return new StructMemberDeclaration_Group(this, this, 30, inst);
-			case 31: return new FunctionDeclaration_Group(this, this, 31, inst);
-			case 32: return new TemplateParameterDeclaration_NameAssignment(this, this, 32, inst);
-			case 33: return new InputParameterDeclaration_NameAssignment(this, this, 33, inst);
-			case 34: return new OutputParameterDeclaration_NameAssignment(this, this, 34, inst);
-			case 35: return new Check_Group(this, this, 35, inst);
-			case 36: return new Assertion_Group(this, this, 36, inst);
-			case 37: return new StateVariableDeclaration_Group(this, this, 37, inst);
-			case 38: return new ConstantDeclaration_Group(this, this, 38, inst);
-			case 39: return new FunctionObjectDeclaration_Group(this, this, 39, inst);
-			case 40: return new Equation_Group(this, this, 40, inst);
-			case 41: return new DataTypeSpecifier_Alternatives(this, this, 41, inst);
-			case 42: return new PrimitiveType_Alternatives(this, this, 42, inst);
-			case 43: return new NumericType_Alternatives(this, this, 43, inst);
-			case 44: return new RealType_Group(this, this, 44, inst);
-			case 45: return new IntegerType_Group(this, this, 45, inst);
-			case 46: return new ComplexType_Group(this, this, 46, inst);
-			case 47: return new GaussianType_Group(this, this, 47, inst);
-			case 48: return new BooleanType_Group(this, this, 48, inst);
-			case 49: return new StringType_Group(this, this, 49, inst);
-			case 50: return new ArrayType_Alternatives(this, this, 50, inst);
-			case 51: return new TensorType_Group(this, this, 51, inst);
-			case 52: return new ArrayDimension_Group(this, this, 52, inst);
-			case 53: return new Expression_Alternatives(this, this, 53, inst);
-			case 54: return new LetExpression_Group(this, this, 54, inst);
-			case 55: return new LetExpressionAssignment_Group(this, this, 55, inst);
-			case 56: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 56, inst);
-			case 57: return new IfExpression_Group(this, this, 57, inst);
-			case 58: return new SwitchExpression_Group(this, this, 58, inst);
-			case 59: return new SwitchCase_Group(this, this, 59, inst);
-			case 60: return new RangeExpression_Group(this, this, 60, inst);
-			case 61: return new ImpliesExpression_Group(this, this, 61, inst);
-			case 62: return new LogicalOrExpression_Group(this, this, 62, inst);
-			case 63: return new LogicalAndExpression_Group(this, this, 63, inst);
-			case 64: return new EqualityExpression_Group(this, this, 64, inst);
-			case 65: return new RelationalExpression_Group(this, this, 65, inst);
-			case 66: return new AdditiveExpression_Group(this, this, 66, inst);
-			case 67: return new MultiplicativeExpression_Group(this, this, 67, inst);
-			case 68: return new PowerExpression_Group(this, this, 68, inst);
-			case 69: return new UnaryExpression_Alternatives(this, this, 69, inst);
-			case 70: return new PostfixExpression_Group(this, this, 70, inst);
-			case 71: return new ArrayElementAccess_Group(this, this, 71, inst);
-			case 72: return new MemberFeatureCall_Group(this, this, 72, inst);
-			case 73: return new AssignableMemberFeatureCall_Group(this, this, 73, inst);
-			case 74: return new IterationAccumulator_Group(this, this, 74, inst);
-			case 75: return new IterationVariableDeclaration_NameAssignment(this, this, 75, inst);
-			case 76: return new ArraySubscript_Alternatives(this, this, 76, inst);
-			case 77: return new PrimaryExpression_Alternatives(this, this, 77, inst);
-			case 78: return new AssignablePrimaryExpression_Alternatives(this, this, 78, inst);
-			case 79: return new Literal_Alternatives(this, this, 79, inst);
-			case 80: return new NumericLiteral_Alternatives(this, this, 80, inst);
-			case 81: return new RealLiteral_Group(this, this, 81, inst);
-			case 82: return new IntegerLiteral_Group(this, this, 82, inst);
-			case 83: return new BooleanLiteral_Group(this, this, 83, inst);
-			case 84: return new StringLiteral_ValueAssignment(this, this, 84, inst);
-			case 85: return new FeatureCall_Alternatives(this, this, 85, inst);
-			case 86: return new VariableReference_Group(this, this, 86, inst);
-			case 87: return new FunctionCall_Group(this, this, 87, inst);
-			case 88: return new QualifiedFeatureCall_Alternatives(this, this, 88, inst);
-			case 89: return new QualifiedVariableReference_Group(this, this, 89, inst);
-			case 90: return new QualifiedFunctionCall_Group(this, this, 90, inst);
-			case 91: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 91, inst);
-			case 92: return new RangeStepExpression_Group(this, this, 92, inst);
-			case 93: return new AdditiveStepExpression_Group(this, this, 93, inst);
-			case 94: return new NegateStepExpression_Alternatives(this, this, 94, inst);
-			case 95: return new PrimitiveStepExpression_Alternatives(this, this, 95, inst);
-			case 96: return new StepLiteral_ValueAssignment(this, this, 96, inst);
-			case 97: return new StepN_Group(this, this, 97, inst);
-			case 98: return new ArrayConstructionOperator_Group(this, this, 98, inst);
-			case 99: return new ArrayConstructionIterationClause_Group(this, this, 99, inst);
-			case 100: return new ArrayConcatenationOperator_Group(this, this, 100, inst);
-			case 101: return new ExpressionList_Group(this, this, 101, inst);
-			case 102: return new UnitConstructionOperator_Group(this, this, 102, inst);
-			case 103: return new ParenthesizedExpression_Group(this, this, 103, inst);
-			case 104: return new EndExpression_Group(this, this, 104, inst);
-			case 105: return new AlgorithmExpression_Group(this, this, 105, inst);
-			case 106: return new Compound_Group(this, this, 106, inst);
-			case 107: return new Statement_Alternatives(this, this, 107, inst);
-			case 108: return new Assignment_Group(this, this, 108, inst);
-			case 109: return new LocalVariableDeclaration_Group(this, this, 109, inst);
-			case 110: return new IfStatement_Group(this, this, 110, inst);
-			case 111: return new WhileStatement_Group(this, this, 111, inst);
-			case 112: return new ForStatement_Group(this, this, 112, inst);
-			case 113: return new DoWhileStatement_Group(this, this, 113, inst);
-			case 114: return new ContinueStatement_Group(this, this, 114, inst);
-			case 115: return new BreakStatement_Group(this, this, 115, inst);
-			case 116: return new ReturnStatement_Group(this, this, 116, inst);
-			case 117: return new Unit_Group(this, this, 117, inst);
-			case 118: return new ExplicitUnit_Group(this, this, 118, inst);
-			case 119: return new UnitNumerator_Alternatives(this, this, 119, inst);
-			case 120: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 120, inst);
-			case 121: return new UnitDenominator_Alternatives(this, this, 121, inst);
-			case 122: return new UnitFactor_Group(this, this, 122, inst);
+			case 15: return new MappingTargetPath_Group(this, this, 15, inst);
+			case 16: return new MappingPropertyReference_PropertyAssignment(this, this, 16, inst);
+			case 17: return new MappingBody_Group(this, this, 17, inst);
+			case 18: return new MappingSubscript_IndexAssignment(this, this, 18, inst);
+			case 19: return new ComputationModel_Group(this, this, 19, inst);
+			case 20: return new NumberFormat_Alternatives(this, this, 20, inst);
+			case 21: return new FloatingPointFormat_KindAssignment(this, this, 21, inst);
+			case 22: return new FixedPointFormat_Group(this, this, 22, inst);
+			case 23: return new NumberFormatMapping_Group(this, this, 23, inst);
+			case 24: return new Module_Group(this, this, 24, inst);
+			case 25: return new ImportDeclaration_Group(this, this, 25, inst);
+			case 26: return new Declaration_Alternatives(this, this, 26, inst);
+			case 27: return new DataTypeDeclaration_Alternatives(this, this, 27, inst);
+			case 28: return new EnumerationDeclaration_Group(this, this, 28, inst);
+			case 29: return new EnumerationLiteralDeclaration_NameAssignment(this, this, 29, inst);
+			case 30: return new TypedefDeclaration_Group(this, this, 30, inst);
+			case 31: return new StructDeclaration_Group(this, this, 31, inst);
+			case 32: return new StructMemberDeclaration_Group(this, this, 32, inst);
+			case 33: return new FunctionDeclaration_Group(this, this, 33, inst);
+			case 34: return new TemplateParameterDeclaration_NameAssignment(this, this, 34, inst);
+			case 35: return new InputParameterDeclaration_NameAssignment(this, this, 35, inst);
+			case 36: return new OutputParameterDeclaration_NameAssignment(this, this, 36, inst);
+			case 37: return new Check_Group(this, this, 37, inst);
+			case 38: return new Assertion_Group(this, this, 38, inst);
+			case 39: return new StateVariableDeclaration_Group(this, this, 39, inst);
+			case 40: return new ConstantDeclaration_Group(this, this, 40, inst);
+			case 41: return new FunctionObjectDeclaration_Group(this, this, 41, inst);
+			case 42: return new Equation_Group(this, this, 42, inst);
+			case 43: return new DataTypeSpecifier_Alternatives(this, this, 43, inst);
+			case 44: return new PrimitiveType_Alternatives(this, this, 44, inst);
+			case 45: return new NumericType_Alternatives(this, this, 45, inst);
+			case 46: return new RealType_Group(this, this, 46, inst);
+			case 47: return new IntegerType_Group(this, this, 47, inst);
+			case 48: return new ComplexType_Group(this, this, 48, inst);
+			case 49: return new GaussianType_Group(this, this, 49, inst);
+			case 50: return new BooleanType_Group(this, this, 50, inst);
+			case 51: return new StringType_Group(this, this, 51, inst);
+			case 52: return new ArrayType_Alternatives(this, this, 52, inst);
+			case 53: return new TensorType_Group(this, this, 53, inst);
+			case 54: return new ArrayDimension_Group(this, this, 54, inst);
+			case 55: return new Expression_Alternatives(this, this, 55, inst);
+			case 56: return new LetExpression_Group(this, this, 56, inst);
+			case 57: return new LetExpressionAssignment_Group(this, this, 57, inst);
+			case 58: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 58, inst);
+			case 59: return new IfExpression_Group(this, this, 59, inst);
+			case 60: return new SwitchExpression_Group(this, this, 60, inst);
+			case 61: return new SwitchCase_Group(this, this, 61, inst);
+			case 62: return new RangeExpression_Group(this, this, 62, inst);
+			case 63: return new ImpliesExpression_Group(this, this, 63, inst);
+			case 64: return new LogicalOrExpression_Group(this, this, 64, inst);
+			case 65: return new LogicalAndExpression_Group(this, this, 65, inst);
+			case 66: return new EqualityExpression_Group(this, this, 66, inst);
+			case 67: return new RelationalExpression_Group(this, this, 67, inst);
+			case 68: return new AdditiveExpression_Group(this, this, 68, inst);
+			case 69: return new MultiplicativeExpression_Group(this, this, 69, inst);
+			case 70: return new PowerExpression_Group(this, this, 70, inst);
+			case 71: return new UnaryExpression_Alternatives(this, this, 71, inst);
+			case 72: return new PostfixExpression_Group(this, this, 72, inst);
+			case 73: return new ArrayElementAccess_Group(this, this, 73, inst);
+			case 74: return new MemberFeatureCall_Group(this, this, 74, inst);
+			case 75: return new AssignableMemberFeatureCall_Group(this, this, 75, inst);
+			case 76: return new IterationAccumulator_Group(this, this, 76, inst);
+			case 77: return new IterationVariableDeclaration_NameAssignment(this, this, 77, inst);
+			case 78: return new ArraySubscript_Alternatives(this, this, 78, inst);
+			case 79: return new PrimaryExpression_Alternatives(this, this, 79, inst);
+			case 80: return new AssignablePrimaryExpression_Alternatives(this, this, 80, inst);
+			case 81: return new Literal_Alternatives(this, this, 81, inst);
+			case 82: return new NumericLiteral_Alternatives(this, this, 82, inst);
+			case 83: return new RealLiteral_Group(this, this, 83, inst);
+			case 84: return new IntegerLiteral_Group(this, this, 84, inst);
+			case 85: return new BooleanLiteral_Group(this, this, 85, inst);
+			case 86: return new StringLiteral_ValueAssignment(this, this, 86, inst);
+			case 87: return new FeatureCall_Alternatives(this, this, 87, inst);
+			case 88: return new VariableReference_Group(this, this, 88, inst);
+			case 89: return new FunctionCall_Group(this, this, 89, inst);
+			case 90: return new QualifiedFeatureCall_Alternatives(this, this, 90, inst);
+			case 91: return new QualifiedVariableReference_Group(this, this, 91, inst);
+			case 92: return new QualifiedFunctionCall_Group(this, this, 92, inst);
+			case 93: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 93, inst);
+			case 94: return new RangeStepExpression_Group(this, this, 94, inst);
+			case 95: return new AdditiveStepExpression_Group(this, this, 95, inst);
+			case 96: return new NegateStepExpression_Alternatives(this, this, 96, inst);
+			case 97: return new PrimitiveStepExpression_Alternatives(this, this, 97, inst);
+			case 98: return new StepLiteral_ValueAssignment(this, this, 98, inst);
+			case 99: return new StepN_Group(this, this, 99, inst);
+			case 100: return new ArrayConstructionOperator_Group(this, this, 100, inst);
+			case 101: return new ArrayConstructionIterationClause_Group(this, this, 101, inst);
+			case 102: return new ArrayConcatenationOperator_Group(this, this, 102, inst);
+			case 103: return new ExpressionList_Group(this, this, 103, inst);
+			case 104: return new UnitConstructionOperator_Group(this, this, 104, inst);
+			case 105: return new ParenthesizedExpression_Group(this, this, 105, inst);
+			case 106: return new EndExpression_Group(this, this, 106, inst);
+			case 107: return new AlgorithmExpression_Group(this, this, 107, inst);
+			case 108: return new Compound_Group(this, this, 108, inst);
+			case 109: return new Statement_Alternatives(this, this, 109, inst);
+			case 110: return new Assignment_Group(this, this, 110, inst);
+			case 111: return new LocalVariableDeclaration_Group(this, this, 111, inst);
+			case 112: return new IfStatement_Group(this, this, 112, inst);
+			case 113: return new WhileStatement_Group(this, this, 113, inst);
+			case 114: return new ForStatement_Group(this, this, 114, inst);
+			case 115: return new DoWhileStatement_Group(this, this, 115, inst);
+			case 116: return new ContinueStatement_Group(this, this, 116, inst);
+			case 117: return new BreakStatement_Group(this, this, 117, inst);
+			case 118: return new ReturnStatement_Group(this, this, 118, inst);
+			case 119: return new Unit_Group(this, this, 119, inst);
+			case 120: return new ExplicitUnit_Group(this, this, 120, inst);
+			case 121: return new UnitNumerator_Alternatives(this, this, 121, inst);
+			case 122: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 122, inst);
+			case 123: return new UnitDenominator_Alternatives(this, this, 123, inst);
+			case 124: return new UnitFactor_Group(this, this, 124, inst);
 			default: return null;
 		}	
 	}	
@@ -3282,13 +3284,13 @@ protected class ComputationProperty_RightCurlyBracketKeyword_4 extends KeywordTo
 /************ begin Rule Mapping ****************
  *
  * Mapping:
- * 	"map" source=[Component|ValidID] "to" targetProperty=[SelectionProperty|ValidID] "."
- * 	targetResource=[ResourceDeclaration|ValidID] ("[" subscript=MappingSubscript "]")? body=MappingBody?;
+ * 	"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
+ * 	body=MappingBody?;
  *
  **/
 
-// "map" source=[Component|ValidID] "to" targetProperty=[SelectionProperty|ValidID] "."
-// targetResource=[ResourceDeclaration|ValidID] ("[" subscript=MappingSubscript "]")? body=MappingBody?
+// "map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
+// body=MappingBody?
 protected class Mapping_Group extends GroupToken {
 	
 	public Mapping_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3303,9 +3305,9 @@ protected class Mapping_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mapping_BodyAssignment_7(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Mapping_Group_6(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Mapping_TargetResourceAssignment_5(lastRuleCallOrigin, this, 2, inst);
+			case 0: return new Mapping_BodyAssignment_5(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Mapping_Group_4(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Mapping_TargetPathAssignment_3(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -3399,118 +3401,68 @@ protected class Mapping_ToKeyword_2 extends KeywordToken  {
 
 }
 
-// targetProperty=[SelectionProperty|ValidID]
-protected class Mapping_TargetPropertyAssignment_3 extends AssignmentToken  {
+// targetPath=MappingTargetPath
+protected class Mapping_TargetPathAssignment_3 extends AssignmentToken  {
 	
-	public Mapping_TargetPropertyAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_TargetPathAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMappingAccess().getTargetPropertyAssignment_3();
+		return grammarAccess.getMappingAccess().getTargetPathAssignment_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mapping_ToKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new MappingTargetPath_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("targetProperty",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("targetProperty");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+		if((value = eObjectConsumer.getConsumable("targetPath",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("targetPath");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getMappingAccess().getTargetPropertySelectionPropertyCrossReference_3_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getMappingAccess().getTargetPropertySelectionPropertyCrossReference_3_0(); 
-				return obj;
+			if(param.isInstanceOf(grammarAccess.getMappingTargetPathRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMappingAccess().getTargetPathMappingTargetPathParserRuleCall_3_0(); 
+				consumed = obj;
+				return param;
 			}
 		}
 		return null;
 	}
 
-}
-
-// "."
-protected class Mapping_FullStopKeyword_4 extends KeywordToken  {
-	
-	public Mapping_FullStopKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getMappingAccess().getFullStopKeyword_4();
-	}
-
     @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Mapping_TargetPropertyAssignment_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Mapping_ToKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
-	}
-
-}
-
-// targetResource=[ResourceDeclaration|ValidID]
-protected class Mapping_TargetResourceAssignment_5 extends AssignmentToken  {
-	
-	public Mapping_TargetResourceAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getMappingAccess().getTargetResourceAssignment_5();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Mapping_FullStopKeyword_4(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("targetResource",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("targetResource");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getMappingAccess().getTargetResourceResourceDeclarationCrossReference_5_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getMappingAccess().getTargetResourceResourceDeclarationCrossReference_5_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
+	}	
 }
 
 // ("[" subscript=MappingSubscript "]")?
-protected class Mapping_Group_6 extends GroupToken {
+protected class Mapping_Group_4 extends GroupToken {
 	
-	public Mapping_Group_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getMappingAccess().getGroup_6();
+		return grammarAccess.getMappingAccess().getGroup_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mapping_RightSquareBracketKeyword_6_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Mapping_RightSquareBracketKeyword_4_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3518,21 +3470,21 @@ protected class Mapping_Group_6 extends GroupToken {
 }
 
 // "["
-protected class Mapping_LeftSquareBracketKeyword_6_0 extends KeywordToken  {
+protected class Mapping_LeftSquareBracketKeyword_4_0 extends KeywordToken  {
 	
-	public Mapping_LeftSquareBracketKeyword_6_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_LeftSquareBracketKeyword_4_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getMappingAccess().getLeftSquareBracketKeyword_6_0();
+		return grammarAccess.getMappingAccess().getLeftSquareBracketKeyword_4_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mapping_TargetResourceAssignment_5(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Mapping_TargetPathAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3540,15 +3492,15 @@ protected class Mapping_LeftSquareBracketKeyword_6_0 extends KeywordToken  {
 }
 
 // subscript=MappingSubscript
-protected class Mapping_SubscriptAssignment_6_1 extends AssignmentToken  {
+protected class Mapping_SubscriptAssignment_4_1 extends AssignmentToken  {
 	
-	public Mapping_SubscriptAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_SubscriptAssignment_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMappingAccess().getSubscriptAssignment_6_1();
+		return grammarAccess.getMappingAccess().getSubscriptAssignment_4_1();
 	}
 
     @Override
@@ -3567,7 +3519,7 @@ protected class Mapping_SubscriptAssignment_6_1 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMappingSubscriptRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getMappingAccess().getSubscriptMappingSubscriptParserRuleCall_6_1_0(); 
+				element = grammarAccess.getMappingAccess().getSubscriptMappingSubscriptParserRuleCall_4_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3579,28 +3531,28 @@ protected class Mapping_SubscriptAssignment_6_1 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Mapping_LeftSquareBracketKeyword_6_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Mapping_LeftSquareBracketKeyword_4_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // "]"
-protected class Mapping_RightSquareBracketKeyword_6_2 extends KeywordToken  {
+protected class Mapping_RightSquareBracketKeyword_4_2 extends KeywordToken  {
 	
-	public Mapping_RightSquareBracketKeyword_6_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_RightSquareBracketKeyword_4_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getMappingAccess().getRightSquareBracketKeyword_6_2();
+		return grammarAccess.getMappingAccess().getRightSquareBracketKeyword_4_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mapping_SubscriptAssignment_6_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Mapping_SubscriptAssignment_4_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3609,15 +3561,15 @@ protected class Mapping_RightSquareBracketKeyword_6_2 extends KeywordToken  {
 
 
 // body=MappingBody?
-protected class Mapping_BodyAssignment_7 extends AssignmentToken  {
+protected class Mapping_BodyAssignment_5 extends AssignmentToken  {
 	
-	public Mapping_BodyAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mapping_BodyAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMappingAccess().getBodyAssignment_7();
+		return grammarAccess.getMappingAccess().getBodyAssignment_5();
 	}
 
     @Override
@@ -3636,7 +3588,7 @@ protected class Mapping_BodyAssignment_7 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMappingBodyRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getMappingAccess().getBodyMappingBodyParserRuleCall_7_0(); 
+				element = grammarAccess.getMappingAccess().getBodyMappingBodyParserRuleCall_5_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3648,8 +3600,8 @@ protected class Mapping_BodyAssignment_7 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Mapping_Group_6(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Mapping_TargetResourceAssignment_5(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Mapping_Group_4(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Mapping_TargetPathAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -3657,6 +3609,293 @@ protected class Mapping_BodyAssignment_7 extends AssignmentToken  {
 
 
 /************ end Rule Mapping ****************/
+
+
+/************ begin Rule MappingTargetPath ****************
+ *
+ * MappingTargetPath:
+ * 	propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+ * 	resource=[ResourceDeclaration|ValidID];
+ *
+ **/
+
+// propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+// resource=[ResourceDeclaration|ValidID]
+protected class MappingTargetPath_Group extends GroupToken {
+	
+	public MappingTargetPath_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingTargetPath_ResourceAssignment_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getMappingTargetPathRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// propertyReferences+=MappingPropertyReference
+protected class MappingTargetPath_PropertyReferencesAssignment_0 extends AssignmentToken  {
+	
+	public MappingTargetPath_PropertyReferencesAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getPropertyReferencesAssignment_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingPropertyReference_PropertyAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("propertyReferences",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("propertyReferences");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getMappingPropertyReferenceRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, consumed);
+		}	
+	}	
+}
+
+// ("." propertyReferences+=MappingPropertyReference)*
+protected class MappingTargetPath_Group_1 extends GroupToken {
+	
+	public MappingTargetPath_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getGroup_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingTargetPath_PropertyReferencesAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "."
+protected class MappingTargetPath_FullStopKeyword_1_0 extends KeywordToken  {
+	
+	public MappingTargetPath_FullStopKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingTargetPath_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new MappingTargetPath_PropertyReferencesAssignment_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// propertyReferences+=MappingPropertyReference
+protected class MappingTargetPath_PropertyReferencesAssignment_1_1 extends AssignmentToken  {
+	
+	public MappingTargetPath_PropertyReferencesAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getPropertyReferencesAssignment_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingPropertyReference_PropertyAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("propertyReferences",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("propertyReferences");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getMappingPropertyReferenceRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new MappingTargetPath_FullStopKeyword_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+// "."
+protected class MappingTargetPath_FullStopKeyword_2 extends KeywordToken  {
+	
+	public MappingTargetPath_FullStopKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingTargetPath_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new MappingTargetPath_PropertyReferencesAssignment_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// resource=[ResourceDeclaration|ValidID]
+protected class MappingTargetPath_ResourceAssignment_3 extends AssignmentToken  {
+	
+	public MappingTargetPath_ResourceAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getMappingTargetPathAccess().getResourceAssignment_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MappingTargetPath_FullStopKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("resource",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("resource");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getMappingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0().getType().getClassifier())) {
+				type = AssignmentType.CROSS_REFERENCE;
+				element = grammarAccess.getMappingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0(); 
+				return obj;
+			}
+		}
+		return null;
+	}
+
+}
+
+
+/************ end Rule MappingTargetPath ****************/
+
+
+/************ begin Rule MappingPropertyReference ****************
+ *
+ * MappingPropertyReference:
+ * 	property=[SelectionProperty|ValidID];
+ *
+ **/
+
+// property=[SelectionProperty|ValidID]
+protected class MappingPropertyReference_PropertyAssignment extends AssignmentToken  {
+	
+	public MappingPropertyReference_PropertyAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getMappingPropertyReferenceAccess().getPropertyAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getMappingPropertyReferenceRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("property",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("property");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getMappingPropertyReferenceAccess().getPropertySelectionPropertyCrossReference_0().getType().getClassifier())) {
+				type = AssignmentType.CROSS_REFERENCE;
+				element = grammarAccess.getMappingPropertyReferenceAccess().getPropertySelectionPropertyCrossReference_0(); 
+				return obj;
+			}
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule MappingPropertyReference ****************/
 
 
 /************ begin Rule MappingBody ****************

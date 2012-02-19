@@ -718,28 +718,23 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cSourceComponentCrossReference_1_0 = (CrossReference)cSourceAssignment_1.eContents().get(0);
 		private final RuleCall cSourceComponentValidIDParserRuleCall_1_0_1 = (RuleCall)cSourceComponentCrossReference_1_0.eContents().get(1);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTargetPropertyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cTargetPropertySelectionPropertyCrossReference_3_0 = (CrossReference)cTargetPropertyAssignment_3.eContents().get(0);
-		private final RuleCall cTargetPropertySelectionPropertyValidIDParserRuleCall_3_0_1 = (RuleCall)cTargetPropertySelectionPropertyCrossReference_3_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cTargetResourceAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cTargetResourceResourceDeclarationCrossReference_5_0 = (CrossReference)cTargetResourceAssignment_5.eContents().get(0);
-		private final RuleCall cTargetResourceResourceDeclarationValidIDParserRuleCall_5_0_1 = (RuleCall)cTargetResourceResourceDeclarationCrossReference_5_0.eContents().get(1);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cLeftSquareBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cSubscriptAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cSubscriptMappingSubscriptParserRuleCall_6_1_0 = (RuleCall)cSubscriptAssignment_6_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
-		private final Assignment cBodyAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBodyMappingBodyParserRuleCall_7_0 = (RuleCall)cBodyAssignment_7.eContents().get(0);
+		private final Assignment cTargetPathAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTargetPathMappingTargetPathParserRuleCall_3_0 = (RuleCall)cTargetPathAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSubscriptAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubscriptMappingSubscriptParserRuleCall_4_1_0 = (RuleCall)cSubscriptAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBodyMappingBodyParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
 		
 		//Mapping:
-		//	"map" source=[Component|ValidID] "to" targetProperty=[SelectionProperty|ValidID] "."
-		//	targetResource=[ResourceDeclaration|ValidID] ("[" subscript=MappingSubscript "]")? body=MappingBody?;
+		//	"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
+		//	body=MappingBody?;
 		public ParserRule getRule() { return rule; }
 
-		//"map" source=[Component|ValidID] "to" targetProperty=[SelectionProperty|ValidID] "."
-		//targetResource=[ResourceDeclaration|ValidID] ("[" subscript=MappingSubscript "]")? body=MappingBody?
+		//"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
+		//body=MappingBody?
 		public Group getGroup() { return cGroup; }
 
 		//"map"
@@ -757,47 +752,106 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//"to"
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
 
-		//targetProperty=[SelectionProperty|ValidID]
-		public Assignment getTargetPropertyAssignment_3() { return cTargetPropertyAssignment_3; }
+		//targetPath=MappingTargetPath
+		public Assignment getTargetPathAssignment_3() { return cTargetPathAssignment_3; }
 
-		//[SelectionProperty|ValidID]
-		public CrossReference getTargetPropertySelectionPropertyCrossReference_3_0() { return cTargetPropertySelectionPropertyCrossReference_3_0; }
-
-		//ValidID
-		public RuleCall getTargetPropertySelectionPropertyValidIDParserRuleCall_3_0_1() { return cTargetPropertySelectionPropertyValidIDParserRuleCall_3_0_1; }
-
-		//"."
-		public Keyword getFullStopKeyword_4() { return cFullStopKeyword_4; }
-
-		//targetResource=[ResourceDeclaration|ValidID]
-		public Assignment getTargetResourceAssignment_5() { return cTargetResourceAssignment_5; }
-
-		//[ResourceDeclaration|ValidID]
-		public CrossReference getTargetResourceResourceDeclarationCrossReference_5_0() { return cTargetResourceResourceDeclarationCrossReference_5_0; }
-
-		//ValidID
-		public RuleCall getTargetResourceResourceDeclarationValidIDParserRuleCall_5_0_1() { return cTargetResourceResourceDeclarationValidIDParserRuleCall_5_0_1; }
+		//MappingTargetPath
+		public RuleCall getTargetPathMappingTargetPathParserRuleCall_3_0() { return cTargetPathMappingTargetPathParserRuleCall_3_0; }
 
 		//("[" subscript=MappingSubscript "]")?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_4() { return cGroup_4; }
 
 		//"["
-		public Keyword getLeftSquareBracketKeyword_6_0() { return cLeftSquareBracketKeyword_6_0; }
+		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
 
 		//subscript=MappingSubscript
-		public Assignment getSubscriptAssignment_6_1() { return cSubscriptAssignment_6_1; }
+		public Assignment getSubscriptAssignment_4_1() { return cSubscriptAssignment_4_1; }
 
 		//MappingSubscript
-		public RuleCall getSubscriptMappingSubscriptParserRuleCall_6_1_0() { return cSubscriptMappingSubscriptParserRuleCall_6_1_0; }
+		public RuleCall getSubscriptMappingSubscriptParserRuleCall_4_1_0() { return cSubscriptMappingSubscriptParserRuleCall_4_1_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
+		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
 
 		//body=MappingBody?
-		public Assignment getBodyAssignment_7() { return cBodyAssignment_7; }
+		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
 
 		//MappingBody
-		public RuleCall getBodyMappingBodyParserRuleCall_7_0() { return cBodyMappingBodyParserRuleCall_7_0; }
+		public RuleCall getBodyMappingBodyParserRuleCall_5_0() { return cBodyMappingBodyParserRuleCall_5_0; }
+	}
+
+	public class MappingTargetPathElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingTargetPath");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPropertyReferencesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0 = (RuleCall)cPropertyReferencesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPropertyReferencesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0 = (RuleCall)cPropertyReferencesAssignment_1_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cResourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cResourceResourceDeclarationCrossReference_3_0 = (CrossReference)cResourceAssignment_3.eContents().get(0);
+		private final RuleCall cResourceResourceDeclarationValidIDParserRuleCall_3_0_1 = (RuleCall)cResourceResourceDeclarationCrossReference_3_0.eContents().get(1);
+		
+		//MappingTargetPath:
+		//	propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+		//	resource=[ResourceDeclaration|ValidID];
+		public ParserRule getRule() { return rule; }
+
+		//propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+		//resource=[ResourceDeclaration|ValidID]
+		public Group getGroup() { return cGroup; }
+
+		//propertyReferences+=MappingPropertyReference
+		public Assignment getPropertyReferencesAssignment_0() { return cPropertyReferencesAssignment_0; }
+
+		//MappingPropertyReference
+		public RuleCall getPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0() { return cPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0; }
+
+		//("." propertyReferences+=MappingPropertyReference)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+
+		//propertyReferences+=MappingPropertyReference
+		public Assignment getPropertyReferencesAssignment_1_1() { return cPropertyReferencesAssignment_1_1; }
+
+		//MappingPropertyReference
+		public RuleCall getPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0() { return cPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0; }
+
+		//"."
+		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
+
+		//resource=[ResourceDeclaration|ValidID]
+		public Assignment getResourceAssignment_3() { return cResourceAssignment_3; }
+
+		//[ResourceDeclaration|ValidID]
+		public CrossReference getResourceResourceDeclarationCrossReference_3_0() { return cResourceResourceDeclarationCrossReference_3_0; }
+
+		//ValidID
+		public RuleCall getResourceResourceDeclarationValidIDParserRuleCall_3_0_1() { return cResourceResourceDeclarationValidIDParserRuleCall_3_0_1; }
+	}
+
+	public class MappingPropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingPropertyReference");
+		private final Assignment cPropertyAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cPropertySelectionPropertyCrossReference_0 = (CrossReference)cPropertyAssignment.eContents().get(0);
+		private final RuleCall cPropertySelectionPropertyValidIDParserRuleCall_0_1 = (RuleCall)cPropertySelectionPropertyCrossReference_0.eContents().get(1);
+		
+		//MappingPropertyReference:
+		//	property=[SelectionProperty|ValidID];
+		public ParserRule getRule() { return rule; }
+
+		//property=[SelectionProperty|ValidID]
+		public Assignment getPropertyAssignment() { return cPropertyAssignment; }
+
+		//[SelectionProperty|ValidID]
+		public CrossReference getPropertySelectionPropertyCrossReference_0() { return cPropertySelectionPropertyCrossReference_0; }
+
+		//ValidID
+		public RuleCall getPropertySelectionPropertyValidIDParserRuleCall_0_1() { return cPropertySelectionPropertyValidIDParserRuleCall_0_1; }
 	}
 
 	public class MappingBodyElements extends AbstractParserRuleElementFinder {
@@ -1432,6 +1486,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	private ComponentConfigurationBodyElements pComponentConfigurationBody;
 	private ComputationPropertyElements pComputationProperty;
 	private MappingElements pMapping;
+	private MappingTargetPathElements pMappingTargetPath;
+	private MappingPropertyReferenceElements pMappingPropertyReference;
 	private MappingBodyElements pMappingBody;
 	private MappingSubscriptElements pMappingSubscript;
 	private ComputationModelElements pComputationModel;
@@ -1615,14 +1671,35 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Mapping:
-	//	"map" source=[Component|ValidID] "to" targetProperty=[SelectionProperty|ValidID] "."
-	//	targetResource=[ResourceDeclaration|ValidID] ("[" subscript=MappingSubscript "]")? body=MappingBody?;
+	//	"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
+	//	body=MappingBody?;
 	public MappingElements getMappingAccess() {
 		return (pMapping != null) ? pMapping : (pMapping = new MappingElements());
 	}
 	
 	public ParserRule getMappingRule() {
 		return getMappingAccess().getRule();
+	}
+
+	//MappingTargetPath:
+	//	propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+	//	resource=[ResourceDeclaration|ValidID];
+	public MappingTargetPathElements getMappingTargetPathAccess() {
+		return (pMappingTargetPath != null) ? pMappingTargetPath : (pMappingTargetPath = new MappingTargetPathElements());
+	}
+	
+	public ParserRule getMappingTargetPathRule() {
+		return getMappingTargetPathAccess().getRule();
+	}
+
+	//MappingPropertyReference:
+	//	property=[SelectionProperty|ValidID];
+	public MappingPropertyReferenceElements getMappingPropertyReferenceAccess() {
+		return (pMappingPropertyReference != null) ? pMappingPropertyReference : (pMappingPropertyReference = new MappingPropertyReferenceElements());
+	}
+	
+	public ParserRule getMappingPropertyReferenceRule() {
+		return getMappingPropertyReferenceAccess().getRule();
 	}
 
 	//MappingBody:

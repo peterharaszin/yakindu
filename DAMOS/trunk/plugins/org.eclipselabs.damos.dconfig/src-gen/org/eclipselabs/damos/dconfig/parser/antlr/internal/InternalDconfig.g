@@ -1179,83 +1179,183 @@ ruleMapping returns [EObject current=null]
     }
 (
 (
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMappingRule());
-	        }
-        }
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getTargetPropertySelectionPropertyCrossReference_3_0()); 
+	        newCompositeNode(grammarAccess.getMappingAccess().getTargetPathMappingTargetPathParserRuleCall_3_0()); 
 	    }
-		ruleValidID		{ 
+		lv_targetPath_3_0=ruleMappingTargetPath		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMappingRule());
+	        }
+       		set(
+       			$current, 
+       			"targetPath",
+        		lv_targetPath_3_0, 
+        		"MappingTargetPath");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4='.' 
+)(	otherlv_4='[' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getMappingAccess().getFullStopKeyword_4());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMappingRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getTargetResourceResourceDeclarationCrossReference_5_0()); 
-	    }
-		ruleValidID		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_6='[' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getMappingAccess().getLeftSquareBracketKeyword_6_0());
+    	newLeafNode(otherlv_4, grammarAccess.getMappingAccess().getLeftSquareBracketKeyword_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getSubscriptMappingSubscriptParserRuleCall_6_1_0()); 
+	        newCompositeNode(grammarAccess.getMappingAccess().getSubscriptMappingSubscriptParserRuleCall_4_1_0()); 
 	    }
-		lv_subscript_7_0=ruleMappingSubscript		{
+		lv_subscript_5_0=ruleMappingSubscript		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMappingRule());
 	        }
        		set(
        			$current, 
        			"subscript",
-        		lv_subscript_7_0, 
+        		lv_subscript_5_0, 
         		"MappingSubscript");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_8=']' 
+)	otherlv_6=']' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getMappingAccess().getRightSquareBracketKeyword_6_2());
+    	newLeafNode(otherlv_6, grammarAccess.getMappingAccess().getRightSquareBracketKeyword_4_2());
     }
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getBodyMappingBodyParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getMappingAccess().getBodyMappingBodyParserRuleCall_5_0()); 
 	    }
-		lv_body_9_0=ruleMappingBody		{
+		lv_body_7_0=ruleMappingBody		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMappingRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_9_0, 
+        		lv_body_7_0, 
         		"MappingBody");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )?)
+;
+
+
+
+
+
+// Entry rule entryRuleMappingTargetPath
+entryRuleMappingTargetPath returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMappingTargetPathRule()); }
+	 iv_ruleMappingTargetPath=ruleMappingTargetPath 
+	 { $current=$iv_ruleMappingTargetPath.current; } 
+	 EOF 
+;
+
+// Rule MappingTargetPath
+ruleMappingTargetPath returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0()); 
+	    }
+		lv_propertyReferences_0_0=ruleMappingPropertyReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMappingTargetPathRule());
+	        }
+       		add(
+       			$current, 
+       			"propertyReferences",
+        		lv_propertyReferences_0_0, 
+        		"MappingPropertyReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_1='.' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0()); 
+	    }
+		lv_propertyReferences_2_0=ruleMappingPropertyReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMappingTargetPathRule());
+	        }
+       		add(
+       			$current, 
+       			"propertyReferences",
+        		lv_propertyReferences_2_0, 
+        		"MappingPropertyReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_3='.' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_2());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMappingTargetPathRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleMappingPropertyReference
+entryRuleMappingPropertyReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMappingPropertyReferenceRule()); }
+	 iv_ruleMappingPropertyReference=ruleMappingPropertyReference 
+	 { $current=$iv_ruleMappingPropertyReference.current; } 
+	 EOF 
+;
+
+// Rule MappingPropertyReference
+ruleMappingPropertyReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMappingPropertyReferenceRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getMappingPropertyReferenceAccess().getPropertySelectionPropertyCrossReference_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
 ;
 
 

@@ -660,22 +660,13 @@ public interface DconfigPackage extends EPackage {
 	int MAPPING__SOURCE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Property</b></em>' reference.
+	 * The feature id for the '<em><b>Target Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__TARGET_PROPERTY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Target Resource</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__TARGET_RESOURCE = 2;
+	int MAPPING__TARGET_PATH = 1;
 
 	/**
 	 * The feature id for the '<em><b>Subscript</b></em>' containment reference.
@@ -684,7 +675,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__SUBSCRIPT = 3;
+	int MAPPING__SUBSCRIPT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -693,7 +684,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__BODY = 4;
+	int MAPPING__BODY = 3;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -702,7 +693,72 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = 5;
+	int MAPPING_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl <em>Mapping Target Path</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingTargetPath()
+	 * @generated
+	 */
+	int MAPPING_TARGET_PATH = 14;
+
+	/**
+	 * The feature id for the '<em><b>Property References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_TARGET_PATH__PROPERTY_REFERENCES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_TARGET_PATH__RESOURCE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Mapping Target Path</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_TARGET_PATH_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.MappingPropertyReferenceImpl <em>Mapping Property Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dconfig.impl.MappingPropertyReferenceImpl
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingPropertyReference()
+	 * @generated
+	 */
+	int MAPPING_PROPERTY_REFERENCE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_PROPERTY_REFERENCE__PROPERTY = 0;
+
+	/**
+	 * The number of structural features of the '<em>Mapping Property Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_PROPERTY_REFERENCE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.MappingBodyImpl <em>Mapping Body</em>}' class.
@@ -712,7 +768,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingBody()
 	 * @generated
 	 */
-	int MAPPING_BODY = 14;
+	int MAPPING_BODY = 16;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -749,7 +805,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingSubscript()
 	 * @generated
 	 */
-	int MAPPING_SUBSCRIPT = 15;
+	int MAPPING_SUBSCRIPT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -777,7 +833,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getResourceDeclaration()
 	 * @generated
 	 */
-	int RESOURCE_DECLARATION = 16;
+	int RESOURCE_DECLARATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Property Declarations</b></em>' containment reference list.
@@ -823,7 +879,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComputationProperty()
 	 * @generated
 	 */
-	int COMPUTATION_PROPERTY = 17;
+	int COMPUTATION_PROPERTY = 19;
 
 	/**
 	 * The feature id for the '<em><b>Propagate</b></em>' attribute.
@@ -860,7 +916,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfiguration()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION = 18;
+	int SYSTEM_CONFIGURATION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -888,7 +944,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfigurationBody()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION_BODY = 19;
+	int SYSTEM_CONFIGURATION_BODY = 21;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -961,7 +1017,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRootSystemConfiguration()
 	 * @generated
 	 */
-	int ROOT_SYSTEM_CONFIGURATION = 20;
+	int ROOT_SYSTEM_CONFIGURATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -998,7 +1054,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSubsystemConfiguration()
 	 * @generated
 	 */
-	int SUBSYSTEM_CONFIGURATION = 21;
+	int SUBSYSTEM_CONFIGURATION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1044,7 +1100,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfiguration()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION = 22;
+	int FRAGMENT_CONFIGURATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Start Fragment</b></em>' reference.
@@ -1100,7 +1156,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfigurationBody()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION_BODY = 23;
+	int FRAGMENT_CONFIGURATION_BODY = 25;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1137,7 +1193,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfiguration()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION = 24;
+	int COMPONENT_CONFIGURATION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -1174,7 +1230,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfigurationBody()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION_BODY = 25;
+	int COMPONENT_CONFIGURATION_BODY = 27;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1211,7 +1267,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemPath()
 	 * @generated
 	 */
-	int SYSTEM_PATH = 26;
+	int SYSTEM_PATH = 28;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.Configuration <em>Configuration</em>}'.
@@ -1640,26 +1696,15 @@ public interface DconfigPackage extends EPackage {
 	EReference getMapping_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetProperty <em>Target Property</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetPath <em>Target Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Property</em>'.
-	 * @see org.eclipselabs.damos.dconfig.Mapping#getTargetProperty()
+	 * @return the meta object for the containment reference '<em>Target Path</em>'.
+	 * @see org.eclipselabs.damos.dconfig.Mapping#getTargetPath()
 	 * @see #getMapping()
 	 * @generated
 	 */
-	EReference getMapping_TargetProperty();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetResource <em>Target Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Resource</em>'.
-	 * @see org.eclipselabs.damos.dconfig.Mapping#getTargetResource()
-	 * @see #getMapping()
-	 * @generated
-	 */
-	EReference getMapping_TargetResource();
+	EReference getMapping_TargetPath();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}'.
@@ -1682,6 +1727,59 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMapping_Body();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.MappingTargetPath <em>Mapping Target Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Target Path</em>'.
+	 * @see org.eclipselabs.damos.dconfig.MappingTargetPath
+	 * @generated
+	 */
+	EClass getMappingTargetPath();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dconfig.MappingTargetPath#getPropertyReferences <em>Property References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Property References</em>'.
+	 * @see org.eclipselabs.damos.dconfig.MappingTargetPath#getPropertyReferences()
+	 * @see #getMappingTargetPath()
+	 * @generated
+	 */
+	EReference getMappingTargetPath_PropertyReferences();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.MappingTargetPath#getResource <em>Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Resource</em>'.
+	 * @see org.eclipselabs.damos.dconfig.MappingTargetPath#getResource()
+	 * @see #getMappingTargetPath()
+	 * @generated
+	 */
+	EReference getMappingTargetPath_Resource();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.MappingPropertyReference <em>Mapping Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Property Reference</em>'.
+	 * @see org.eclipselabs.damos.dconfig.MappingPropertyReference
+	 * @generated
+	 */
+	EClass getMappingPropertyReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.MappingPropertyReference#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property</em>'.
+	 * @see org.eclipselabs.damos.dconfig.MappingPropertyReference#getProperty()
+	 * @see #getMappingPropertyReference()
+	 * @generated
+	 */
+	EReference getMappingPropertyReference_Property();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.MappingBody <em>Mapping Body</em>}'.
@@ -2427,20 +2525,12 @@ public interface DconfigPackage extends EPackage {
 		EReference MAPPING__SOURCE = eINSTANCE.getMapping_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Property</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target Path</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING__TARGET_PROPERTY = eINSTANCE.getMapping_TargetProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Resource</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MAPPING__TARGET_RESOURCE = eINSTANCE.getMapping_TargetResource();
+		EReference MAPPING__TARGET_PATH = eINSTANCE.getMapping_TargetPath();
 
 		/**
 		 * The meta object literal for the '<em><b>Subscript</b></em>' containment reference feature.
@@ -2457,6 +2547,50 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING__BODY = eINSTANCE.getMapping_Body();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl <em>Mapping Target Path</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingTargetPath()
+		 * @generated
+		 */
+		EClass MAPPING_TARGET_PATH = eINSTANCE.getMappingTargetPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Property References</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_TARGET_PATH__PROPERTY_REFERENCES = eINSTANCE.getMappingTargetPath_PropertyReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Resource</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_TARGET_PATH__RESOURCE = eINSTANCE.getMappingTargetPath_Resource();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.MappingPropertyReferenceImpl <em>Mapping Property Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dconfig.impl.MappingPropertyReferenceImpl
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingPropertyReference()
+		 * @generated
+		 */
+		EClass MAPPING_PROPERTY_REFERENCE = eINSTANCE.getMappingPropertyReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_PROPERTY_REFERENCE__PROPERTY = eINSTANCE.getMappingPropertyReference_Property();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.MappingBodyImpl <em>Mapping Body</em>}' class.

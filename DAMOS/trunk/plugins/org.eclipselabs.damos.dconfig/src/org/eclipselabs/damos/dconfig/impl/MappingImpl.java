@@ -16,8 +16,7 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
 import org.eclipselabs.damos.dconfig.MappingSubscript;
-import org.eclipselabs.damos.dconfig.ResourceDeclaration;
-import org.eclipselabs.damos.dconfig.SelectionProperty;
+import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dml.Component;
 
 /**
@@ -28,8 +27,7 @@ import org.eclipselabs.damos.dml.Component;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getTargetProperty <em>Target Property</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getTargetResource <em>Target Resource</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getTargetPath <em>Target Path</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getSubscript <em>Subscript</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -49,24 +47,14 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	protected Component source;
 
 	/**
-	 * The cached value of the '{@link #getTargetProperty() <em>Target Property</em>}' reference.
+	 * The cached value of the '{@link #getTargetPath() <em>Target Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetProperty()
+	 * @see #getTargetPath()
 	 * @generated
 	 * @ordered
 	 */
-	protected SelectionProperty targetProperty;
-
-	/**
-	 * The cached value of the '{@link #getTargetResource() <em>Target Resource</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetResource()
-	 * @generated
-	 * @ordered
-	 */
-	protected ResourceDeclaration targetResource;
+	protected MappingTargetPath targetPath;
 
 	/**
 	 * The cached value of the '{@link #getSubscript() <em>Subscript</em>}' containment reference.
@@ -159,16 +147,23 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SelectionProperty getTargetProperty() {
-		if (targetProperty != null && targetProperty.eIsProxy()) {
-			InternalEObject oldTargetProperty = (InternalEObject)targetProperty;
-			targetProperty = (SelectionProperty)eResolveProxy(oldTargetProperty);
-			if (targetProperty != oldTargetProperty) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.MAPPING__TARGET_PROPERTY, oldTargetProperty, targetProperty));
-			}
+	public MappingTargetPath getTargetPath() {
+		return targetPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTargetPath(MappingTargetPath newTargetPath, NotificationChain msgs) {
+		MappingTargetPath oldTargetPath = targetPath;
+		targetPath = newTargetPath;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_PATH, oldTargetPath, newTargetPath);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return targetProperty;
+		return msgs;
 	}
 
 	/**
@@ -176,58 +171,18 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SelectionProperty basicGetTargetProperty() {
-		return targetProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetProperty(SelectionProperty newTargetProperty) {
-		SelectionProperty oldTargetProperty = targetProperty;
-		targetProperty = newTargetProperty;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_PROPERTY, oldTargetProperty, targetProperty));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourceDeclaration getTargetResource() {
-		if (targetResource != null && targetResource.eIsProxy()) {
-			InternalEObject oldTargetResource = (InternalEObject)targetResource;
-			targetResource = (ResourceDeclaration)eResolveProxy(oldTargetResource);
-			if (targetResource != oldTargetResource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.MAPPING__TARGET_RESOURCE, oldTargetResource, targetResource));
-			}
+	public void setTargetPath(MappingTargetPath newTargetPath) {
+		if (newTargetPath != targetPath) {
+			NotificationChain msgs = null;
+			if (targetPath != null)
+				msgs = ((InternalEObject)targetPath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__TARGET_PATH, null, msgs);
+			if (newTargetPath != null)
+				msgs = ((InternalEObject)newTargetPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__TARGET_PATH, null, msgs);
+			msgs = basicSetTargetPath(newTargetPath, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return targetResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourceDeclaration basicGetTargetResource() {
-		return targetResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetResource(ResourceDeclaration newTargetResource) {
-		ResourceDeclaration oldTargetResource = targetResource;
-		targetResource = newTargetResource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_RESOURCE, oldTargetResource, targetResource));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_PATH, newTargetPath, newTargetPath));
 	}
 
 	/**
@@ -392,6 +347,8 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DconfigPackage.MAPPING__TARGET_PATH:
+				return basicSetTargetPath(null, msgs);
 			case DconfigPackage.MAPPING__SUBSCRIPT:
 				return basicUnsetSubscript(msgs);
 			case DconfigPackage.MAPPING__BODY:
@@ -411,12 +368,8 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			case DconfigPackage.MAPPING__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case DconfigPackage.MAPPING__TARGET_PROPERTY:
-				if (resolve) return getTargetProperty();
-				return basicGetTargetProperty();
-			case DconfigPackage.MAPPING__TARGET_RESOURCE:
-				if (resolve) return getTargetResource();
-				return basicGetTargetResource();
+			case DconfigPackage.MAPPING__TARGET_PATH:
+				return getTargetPath();
 			case DconfigPackage.MAPPING__SUBSCRIPT:
 				return getSubscript();
 			case DconfigPackage.MAPPING__BODY:
@@ -436,11 +389,8 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			case DconfigPackage.MAPPING__SOURCE:
 				setSource((Component)newValue);
 				return;
-			case DconfigPackage.MAPPING__TARGET_PROPERTY:
-				setTargetProperty((SelectionProperty)newValue);
-				return;
-			case DconfigPackage.MAPPING__TARGET_RESOURCE:
-				setTargetResource((ResourceDeclaration)newValue);
+			case DconfigPackage.MAPPING__TARGET_PATH:
+				setTargetPath((MappingTargetPath)newValue);
 				return;
 			case DconfigPackage.MAPPING__SUBSCRIPT:
 				setSubscript((MappingSubscript)newValue);
@@ -463,11 +413,8 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			case DconfigPackage.MAPPING__SOURCE:
 				setSource((Component)null);
 				return;
-			case DconfigPackage.MAPPING__TARGET_PROPERTY:
-				setTargetProperty((SelectionProperty)null);
-				return;
-			case DconfigPackage.MAPPING__TARGET_RESOURCE:
-				setTargetResource((ResourceDeclaration)null);
+			case DconfigPackage.MAPPING__TARGET_PATH:
+				setTargetPath((MappingTargetPath)null);
 				return;
 			case DconfigPackage.MAPPING__SUBSCRIPT:
 				unsetSubscript();
@@ -489,10 +436,8 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 		switch (featureID) {
 			case DconfigPackage.MAPPING__SOURCE:
 				return source != null;
-			case DconfigPackage.MAPPING__TARGET_PROPERTY:
-				return targetProperty != null;
-			case DconfigPackage.MAPPING__TARGET_RESOURCE:
-				return targetResource != null;
+			case DconfigPackage.MAPPING__TARGET_PATH:
+				return targetPath != null;
 			case DconfigPackage.MAPPING__SUBSCRIPT:
 				return isSetSubscript();
 			case DconfigPackage.MAPPING__BODY:

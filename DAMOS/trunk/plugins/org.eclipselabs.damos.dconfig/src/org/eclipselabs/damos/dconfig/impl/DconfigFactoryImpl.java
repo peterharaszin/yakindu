@@ -22,7 +22,9 @@ import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
+import org.eclipselabs.damos.dconfig.MappingPropertyReference;
 import org.eclipselabs.damos.dconfig.MappingSubscript;
+import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
@@ -89,6 +91,8 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 			case DconfigPackage.SELECTION_PROPERTY_OPTION: return createSelectionPropertyOption();
 			case DconfigPackage.PROPERTY_GROUP: return createPropertyGroup();
 			case DconfigPackage.MAPPING: return createMapping();
+			case DconfigPackage.MAPPING_TARGET_PATH: return createMappingTargetPath();
+			case DconfigPackage.MAPPING_PROPERTY_REFERENCE: return createMappingPropertyReference();
 			case DconfigPackage.MAPPING_BODY: return createMappingBody();
 			case DconfigPackage.MAPPING_SUBSCRIPT: return createMappingSubscript();
 			case DconfigPackage.RESOURCE_DECLARATION: return createResourceDeclaration();
@@ -223,6 +227,26 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public Mapping createMapping() {
 		MappingImpl mapping = new MappingImpl();
 		return mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MappingTargetPath createMappingTargetPath() {
+		MappingTargetPathImpl mappingTargetPath = new MappingTargetPathImpl();
+		return mappingTargetPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MappingPropertyReference createMappingPropertyReference() {
+		MappingPropertyReferenceImpl mappingPropertyReference = new MappingPropertyReferenceImpl();
+		return mappingPropertyReference;
 	}
 
 	/**

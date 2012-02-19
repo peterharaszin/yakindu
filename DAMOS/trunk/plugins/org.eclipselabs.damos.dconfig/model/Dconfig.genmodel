@@ -80,10 +80,16 @@
     </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//Mapping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/targetProperty"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/targetResource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/targetPath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/subscript"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Mapping/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//MappingTargetPath">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//MappingTargetPath/propertyReferences"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//MappingTargetPath/resource"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//MappingPropertyReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//MappingPropertyReference/property"/>
     </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//MappingBody">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//MappingBody/owner"/>

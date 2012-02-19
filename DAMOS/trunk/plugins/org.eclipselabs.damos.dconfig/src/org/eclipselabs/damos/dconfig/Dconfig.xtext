@@ -67,9 +67,14 @@ ComputationProperty:
 	'}';
 
 Mapping:
-	'map' source=[Component|ValidID] 'to' targetProperty=[SelectionProperty|ValidID]
-		'.' targetResource=[ResourceDeclaration|ValidID] ('[' subscript=MappingSubscript ']')?
+	'map' source=[Component|ValidID] 'to' targetPath=MappingTargetPath ('[' subscript=MappingSubscript ']')?
 		(body=MappingBody)?;
+
+MappingTargetPath:
+	propertyReferences+=MappingPropertyReference ('.' propertyReferences+=MappingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID];
+
+MappingPropertyReference:
+	property=[SelectionProperty|ValidID];
 
 MappingBody:
 	{MappingBody} '{' (properties+=DeclaredProperty)* '}';

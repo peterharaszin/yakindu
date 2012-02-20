@@ -558,32 +558,56 @@ public class SexecElementMapping {
       StextFactory _factory = this.stext.factory();
       TypedElementReferenceExpression _createTypedElementReferenceExpression = _factory.createTypedElementReferenceExpression();
       final TypedElementReferenceExpression r = _createTypedElementReferenceExpression;
-      Expression _event = e.getEvent();
-      final Expression event = _event;
-      NamedElement _switchResult = null;
-      final Expression event_1 = event;
-      boolean matched = false;
-      if (!matched) {
-        if (event_1 instanceof FeatureCall) {
-          final FeatureCall event_2 = (FeatureCall) event_1;
-          matched=true;
-          Feature _feature = event_2.getFeature();
-          _switchResult = _feature;
-        }
-      }
-      if (!matched) {
-        if (event_1 instanceof TypedElementReferenceExpression) {
-          final TypedElementReferenceExpression event_3 = (TypedElementReferenceExpression) event_1;
-          matched=true;
-          NamedElement _reference = event_3.getReference();
-          _switchResult = _reference;
-        }
-      }
-      final NamedElement target = _switchResult;
-      EventDefinition _create = this.create(((EventDefinition) target));
-      r.setReference(_create);
+      EObject _eContainer = e.eContainer();
+      NamedElement _resolveRegularEventSpec = this.resolveRegularEventSpec(e, _eContainer);
+      r.setReference(_resolveRegularEventSpec);
       return r;
     }
+  }
+  
+  protected NamedElement _resolveRegularEventSpec(final Object o, final Object context) {
+    return null;
+  }
+  
+  protected NamedElement _resolveRegularEventSpec(final RegularEventSpec re, final Object context) {
+    NamedElement _xifexpression = null;
+    Expression _event = re.getEvent();
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_event, null);
+    if (_operator_notEquals) {
+      Expression _event_1 = re.getEvent();
+      NamedElement _resolveRegularEventSpec = this.resolveRegularEventSpec(_event_1, re);
+      _xifexpression = _resolveRegularEventSpec;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _resolveRegularEventSpec(final FeatureCall fc, final Object context) {
+    NamedElement _xifexpression = null;
+    Feature _feature = fc.getFeature();
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_feature, null);
+    if (_operator_notEquals) {
+      Feature _feature_1 = fc.getFeature();
+      NamedElement _resolveRegularEventSpec = this.resolveRegularEventSpec(_feature_1, fc);
+      _xifexpression = _resolveRegularEventSpec;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _resolveRegularEventSpec(final TypedElementReferenceExpression ter, final Object context) {
+    NamedElement _xifexpression = null;
+    NamedElement _reference = ter.getReference();
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_reference, null);
+    if (_operator_notEquals) {
+      NamedElement _reference_1 = ter.getReference();
+      NamedElement _resolveRegularEventSpec = this.resolveRegularEventSpec(_reference_1, ter);
+      _xifexpression = _resolveRegularEventSpec;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _resolveRegularEventSpec(final EventDefinition ed, final Object context) {
+    EventDefinition _create = this.create(ed);
+    return _create;
   }
   
   protected Expression _raised(final TimeEventSpec e) {
@@ -674,6 +698,28 @@ public class SexecElementMapping {
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         java.util.Arrays.<Object>asList(e).toString());
+    }
+  }
+  
+  public NamedElement resolveRegularEventSpec(final Object ed, final Object context) {
+    if ((ed instanceof EventDefinition)
+         && (context instanceof Object)) {
+      return _resolveRegularEventSpec((EventDefinition)ed, (Object)context);
+    } else if ((ed instanceof FeatureCall)
+         && (context instanceof Object)) {
+      return _resolveRegularEventSpec((FeatureCall)ed, (Object)context);
+    } else if ((ed instanceof TypedElementReferenceExpression)
+         && (context instanceof Object)) {
+      return _resolveRegularEventSpec((TypedElementReferenceExpression)ed, (Object)context);
+    } else if ((ed instanceof RegularEventSpec)
+         && (context instanceof Object)) {
+      return _resolveRegularEventSpec((RegularEventSpec)ed, (Object)context);
+    } else if ((ed instanceof Object)
+         && (context instanceof Object)) {
+      return _resolveRegularEventSpec((Object)ed, (Object)context);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(ed, context).toString());
     }
   }
 }

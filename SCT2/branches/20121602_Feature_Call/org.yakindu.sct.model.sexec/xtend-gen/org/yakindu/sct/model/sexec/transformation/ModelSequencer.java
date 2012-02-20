@@ -158,26 +158,62 @@ public class ModelSequencer {
   
   public Object retarget(final TypedElementReferenceExpression ere, final Collection<EObject> declared) {
     Object _xifexpression = null;
+    boolean _operator_and = false;
     NamedElement _reference = ere.getReference();
-    boolean _contains = declared.contains(_reference);
-    boolean _operator_not = BooleanExtensions.operator_not(_contains);
-    if (_operator_not) {
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_reference, null);
+    if (!_operator_notEquals) {
+      _operator_and = false;
+    } else {
       NamedElement _reference_1 = ere.getReference();
-      Declaration _replaced = this.replaced(_reference_1);
-      ere.setReference(_replaced);
+      boolean _contains = declared.contains(_reference_1);
+      boolean _operator_not = BooleanExtensions.operator_not(_contains);
+      _operator_and = BooleanExtensions.operator_and(_operator_notEquals, _operator_not);
+    }
+    if (_operator_and) {
+      Object _xblockexpression = null;
+      {
+        NamedElement _reference_2 = ere.getReference();
+        Declaration _replaced = this.replaced(_reference_2);
+        final Declaration r = _replaced;
+        Object _xifexpression_1 = null;
+        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(r, null);
+        if (_operator_notEquals_1) {
+          ere.setReference(r);
+        }
+        _xblockexpression = (_xifexpression_1);
+      }
+      _xifexpression = _xblockexpression;
     }
     return _xifexpression;
   }
   
   public Object retarget(final FeatureCall call, final Collection<EObject> declared) {
     Object _xifexpression = null;
+    boolean _operator_and = false;
     Feature _feature = call.getFeature();
-    boolean _contains = declared.contains(_feature);
-    boolean _operator_not = BooleanExtensions.operator_not(_contains);
-    if (_operator_not) {
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_feature, null);
+    if (!_operator_notEquals) {
+      _operator_and = false;
+    } else {
       Feature _feature_1 = call.getFeature();
-      Declaration _replaced = this.replaced(_feature_1);
-      call.setFeature(((Feature) _replaced));
+      boolean _contains = declared.contains(_feature_1);
+      boolean _operator_not = BooleanExtensions.operator_not(_contains);
+      _operator_and = BooleanExtensions.operator_and(_operator_notEquals, _operator_not);
+    }
+    if (_operator_and) {
+      Object _xblockexpression = null;
+      {
+        Feature _feature_2 = call.getFeature();
+        Declaration _replaced = this.replaced(_feature_2);
+        final Declaration r = _replaced;
+        Object _xifexpression_1 = null;
+        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(r, null);
+        if (_operator_notEquals_1) {
+          call.setFeature(((Feature) r));
+        }
+        _xblockexpression = (_xifexpression_1);
+      }
+      _xifexpression = _xblockexpression;
     }
     return _xifexpression;
   }
@@ -186,20 +222,18 @@ public class ModelSequencer {
     Declaration _xblockexpression = null;
     {
       try {
-        Log _log = LogFactory.getLog(org.yakindu.sct.model.sexec.transformation.ModelSequencer.class);
-        String _xifexpression = null;
-        boolean _operator_equals = ObjectExtensions.operator_equals(ne, null);
-        if (_operator_equals) {
-          _xifexpression = "null";
-        } else {
-          String _name = ne.getName();
-          _xifexpression = _name;
-        }
-        String _operator_plus = StringExtensions.operator_plus("Replace with unknown NamedElement called: ", _xifexpression);
-        _log.error(_operator_plus);
-      } catch (final LogConfigurationException e) { 
         {
-          e.printStackTrace();
+          String _xifexpression = null;
+          boolean _operator_equals = ObjectExtensions.operator_equals(ne, null);
+          if (_operator_equals) {
+            _xifexpression = "null";
+          } else {
+            String _name = ne.getName();
+            _xifexpression = _name;
+          }
+          String _operator_plus = StringExtensions.operator_plus("Replace with unknown NamedElement called: ", _xifexpression);
+          InputOutput.<String>println(_operator_plus);
+          Log _log = LogFactory.getLog(org.yakindu.sct.model.sexec.transformation.ModelSequencer.class);
           String _xifexpression_1 = null;
           boolean _operator_equals_1 = ObjectExtensions.operator_equals(ne, null);
           if (_operator_equals_1) {
@@ -209,7 +243,21 @@ public class ModelSequencer {
             _xifexpression_1 = _name_1;
           }
           String _operator_plus_1 = StringExtensions.operator_plus("Replace with unknown NamedElement called: ", _xifexpression_1);
-          InputOutput.<String>println(_operator_plus_1);
+          _log.error(_operator_plus_1);
+        }
+      } catch (final LogConfigurationException e) { 
+        {
+          e.printStackTrace();
+          String _xifexpression_2 = null;
+          boolean _operator_equals_2 = ObjectExtensions.operator_equals(ne, null);
+          if (_operator_equals_2) {
+            _xifexpression_2 = "null";
+          } else {
+            String _name_2 = ne.getName();
+            _xifexpression_2 = _name_2;
+          }
+          String _operator_plus_2 = StringExtensions.operator_plus("Replace with unknown NamedElement called: ", _xifexpression_2);
+          InputOutput.<String>println(_operator_plus_2);
         }
       }
       _xblockexpression = (null);

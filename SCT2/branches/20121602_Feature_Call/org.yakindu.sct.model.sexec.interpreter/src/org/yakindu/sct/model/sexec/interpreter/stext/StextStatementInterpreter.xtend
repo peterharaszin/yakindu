@@ -51,6 +51,7 @@ import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.yakindu.sct.model.stext.stext.AssignmentExpression
 import org.yakindu.sct.model.stext.stext.EventRaisingExpression
 import org.yakindu.sct.model.stext.stext.VariableDefinition
+import org.yakindu.sct.model.stext.stext.EventDefinition
 
 /**
  * 
@@ -97,12 +98,22 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 		if (e.feature instanceof VariableDefinition) e.feature else null
 	}
 	
+
+	def dispatch event(TypedElementReferenceExpression e) {
+		if (e.reference instanceof EventDefinition) e.reference else null	
+	} 
+	
+	
+	def dispatch event(FeatureCall e) {
+		if (e.feature instanceof EventDefinition) e.feature else null
+	}
+	
 	
 	def dispatch execute(EventRaisingExpression eventRaising){
 		if(eventRaising.value != null){
-			context.raiseEvent(eventRaising.event.fullyQualifiedName.toString, eventRaising.value.execute)
+			context.raiseEvent(eventRaising.event.event.fullyQualifiedName.toString, eventRaising.value.execute)
 		}else {
-			context.raiseEvent(eventRaising.event.fullyQualifiedName.toString, null)
+			context.raiseEvent(eventRaising.event.event.fullyQualifiedName.toString, null)
 		}
 		null
 	}

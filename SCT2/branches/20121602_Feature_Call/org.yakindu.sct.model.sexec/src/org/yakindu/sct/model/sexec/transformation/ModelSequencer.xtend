@@ -162,15 +162,24 @@ class ModelSequencer {
 	
 	
 	def retarget(TypedElementReferenceExpression ere, Collection<EObject> declared) {
-		if (! declared.contains(ere.reference) ) ere.reference = ere.reference.replaced
+		if (ere.reference != null && ! declared.contains(ere.reference) ) {
+			val r = ere.reference.replaced 
+			if (r != null) ere.reference = r
+		}
 	}
 
 	def retarget(FeatureCall call, Collection<EObject> declared) {
-		if (! declared.contains(call.feature) ) call.feature = (call.feature.replaced) as Feature
+		if (call.feature != null && ! declared.contains(call.feature) ) {
+			val r = call.feature.replaced 
+			if ( r != null ) call.feature = r as Feature	
+		}
 	}
+	
 	
 	def dispatch Declaration replaced(NamedElement ne) {
 		try {
+			println("Replace with unknown NamedElement called: "+if (ne ==null) "null" else ne.name)
+			
 			LogFactory::getLog(typeof(ModelSequencer)).error("Replace with unknown NamedElement called: "+if (ne ==null) "null" else ne.name)
 		} catch (LogConfigurationException e) {
 			e.printStackTrace

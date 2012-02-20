@@ -198,14 +198,22 @@ import org.apache.commons.logging.LogConfigurationException
 
 	def dispatch Expression raised(RegularEventSpec e) {
 		val r = stext.factory.createTypedElementReferenceExpression
-		val event = e.event
-		val target = switch (event) {
-			FeatureCall: event.feature
-			TypedElementReferenceExpression: event.reference
-		}
-		r.reference = (target as EventDefinition).create
+//		val event = e.event
+//		val target = switch (event) {
+//			FeatureCall: event.feature
+//			TypedElementReferenceExpression: event.reference
+//		}
+//		r.reference = (target as EventDefinition).create
+		r.reference = e.resolveRegularEventSpec(e.eContainer)
 		return r
-	} 
+	} 	 
+	
+	def dispatch NamedElement resolveRegularEventSpec(Object o, Object context) { null }
+	def dispatch NamedElement resolveRegularEventSpec(RegularEventSpec re, Object context) { if ( re.event != null ) re.event.resolveRegularEventSpec(re) }
+	def dispatch NamedElement resolveRegularEventSpec(FeatureCall fc, Object context) { if (fc.feature != null) fc.feature.resolveRegularEventSpec(fc) }
+	def dispatch NamedElement resolveRegularEventSpec(TypedElementReferenceExpression ter, Object context) { if (ter.reference != null) ter.reference.resolveRegularEventSpec(ter) }
+	def dispatch NamedElement resolveRegularEventSpec(EventDefinition ed, Object context) { ed.create }
+	
 	
 	def dispatch Expression raised(TimeEventSpec e) {
 		val r = stext.factory.createTypedElementReferenceExpression

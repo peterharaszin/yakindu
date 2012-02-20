@@ -16,14 +16,14 @@ import org.yakindu.sct.model.sgraph.Statement;
 import org.yakindu.sct.model.stext.naming.StextNameProvider;
 import org.yakindu.sct.model.stext.stext.ActiveStateReferenceExpression;
 import org.yakindu.sct.model.stext.stext.AdditiveOperator;
-import org.yakindu.sct.model.stext.stext.Assignment;
+import org.yakindu.sct.model.stext.stext.AssignmentExpression;
 import org.yakindu.sct.model.stext.stext.AssignmentOperator;
 import org.yakindu.sct.model.stext.stext.BitwiseAndExpression;
 import org.yakindu.sct.model.stext.stext.BitwiseOrExpression;
 import org.yakindu.sct.model.stext.stext.BitwiseXorExpression;
 import org.yakindu.sct.model.stext.stext.BoolLiteral;
 import org.yakindu.sct.model.stext.stext.ConditionalExpression;
-import org.yakindu.sct.model.stext.stext.EventRaising;
+import org.yakindu.sct.model.stext.stext.EventRaisingExpression;
 import org.yakindu.sct.model.stext.stext.EventValueReferenceExpression;
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.FeatureCall;
@@ -68,14 +68,19 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
     return _xblockexpression;
   }
   
-  protected Object _execute(final Assignment assignment) throws ExecutionException {
+  protected Object _execute(final Statement statement) {
+    return null;
+  }
+  
+  protected Object _execute(final AssignmentExpression assignment) throws ExecutionException {
     Object _xblockexpression = null;
     {
       Expression _varRef = assignment.getVarRef();
-      QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_varRef);
+      NamedElement _variable = this.variable(_varRef);
+      QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_variable);
       String _string = _fullyQualifiedName.toString();
-      ExecutionVariable _variable = this.context.getVariable(_string);
-      ExecutionVariable scopeVariable = _variable;
+      ExecutionVariable _variable_1 = this.context.getVariable(_string);
+      ExecutionVariable scopeVariable = _variable_1;
       Expression _expression = assignment.getExpression();
       Object _execute = this.execute(_expression);
       Object result = _execute;
@@ -101,21 +106,71 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
     return _xblockexpression;
   }
   
-  protected Object _execute(final EventRaising eventRaising) throws ExecutionException {
+  protected NamedElement _variable(final TypedElementReferenceExpression e) {
+    NamedElement _xifexpression = null;
+    NamedElement _reference = e.getReference();
+    if ((_reference instanceof org.yakindu.sct.model.stext.stext.VariableDefinition)) {
+      NamedElement _reference_1 = e.getReference();
+      _xifexpression = _reference_1;
+    } else {
+      _xifexpression = null;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _variable(final FeatureCall e) {
+    Feature _xifexpression = null;
+    Feature _feature = e.getFeature();
+    if ((_feature instanceof org.yakindu.sct.model.stext.stext.VariableDefinition)) {
+      Feature _feature_1 = e.getFeature();
+      _xifexpression = _feature_1;
+    } else {
+      _xifexpression = null;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _event(final TypedElementReferenceExpression e) {
+    NamedElement _xifexpression = null;
+    NamedElement _reference = e.getReference();
+    if ((_reference instanceof org.yakindu.sct.model.stext.stext.EventDefinition)) {
+      NamedElement _reference_1 = e.getReference();
+      _xifexpression = _reference_1;
+    } else {
+      _xifexpression = null;
+    }
+    return _xifexpression;
+  }
+  
+  protected NamedElement _event(final FeatureCall e) {
+    Feature _xifexpression = null;
+    Feature _feature = e.getFeature();
+    if ((_feature instanceof org.yakindu.sct.model.stext.stext.EventDefinition)) {
+      Feature _feature_1 = e.getFeature();
+      _xifexpression = _feature_1;
+    } else {
+      _xifexpression = null;
+    }
+    return _xifexpression;
+  }
+  
+  protected Object _execute(final EventRaisingExpression eventRaising) throws ExecutionException {
     Object _xblockexpression = null;
     {
       Expression _value = eventRaising.getValue();
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_value, null);
       if (_operator_notEquals) {
         Expression _event = eventRaising.getEvent();
-        QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_event);
+        NamedElement _event_1 = this.event(_event);
+        QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_event_1);
         String _string = _fullyQualifiedName.toString();
         Expression _value_1 = eventRaising.getValue();
         Object _execute = this.execute(_value_1);
         this.context.raiseEvent(_string, _execute);
       } else {
-        Expression _event_1 = eventRaising.getEvent();
-        QualifiedName _fullyQualifiedName_1 = this.provider.getFullyQualifiedName(_event_1);
+        Expression _event_2 = eventRaising.getEvent();
+        NamedElement _event_3 = this.event(_event_2);
+        QualifiedName _fullyQualifiedName_1 = this.provider.getFullyQualifiedName(_event_3);
         String _string_1 = _fullyQualifiedName_1.toString();
         this.context.raiseEvent(_string_1, null);
       }
@@ -341,9 +396,30 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
   protected Object _execute(final FeatureCall call) {
     Object _xblockexpression = null;
     {
-      Feature _feature = call.getFeature();
-      String _name = _feature.getName();
-      this.context.call(_name);
+      boolean _isOperationCall = call.isOperationCall();
+      if (_isOperationCall) {
+        Feature _feature = call.getFeature();
+        String _name = _feature.getName();
+        this.context.call(_name);
+      } else {
+        {
+          Feature _feature_1 = call.getFeature();
+          QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_feature_1);
+          String _string = _fullyQualifiedName.toString();
+          ExecutionVariable _variable = this.context.getVariable(_string);
+          ExecutionVariable variableRef = _variable;
+          boolean _operator_notEquals = ObjectExtensions.operator_notEquals(variableRef, null);
+          if (_operator_notEquals) {
+            Object _value = variableRef.getValue();
+            return _value;
+          }
+          Feature _feature_2 = call.getFeature();
+          QualifiedName _fullyQualifiedName_1 = this.provider.getFullyQualifiedName(_feature_2);
+          String _string_1 = _fullyQualifiedName_1.toString();
+          boolean _isEventRaised = this.context.isEventRaised(_string_1);
+          return ((Boolean)_isEventRaised);
+        }
+      }
       _xblockexpression = (null);
     }
     return _xblockexpression;
@@ -378,6 +454,8 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
   public Object execute(final Statement expression) throws ExecutionException {
     if ((expression instanceof ActiveStateReferenceExpression)) {
       return _execute((ActiveStateReferenceExpression)expression);
+    } else if ((expression instanceof AssignmentExpression)) {
+      return _execute((AssignmentExpression)expression);
     } else if ((expression instanceof BitwiseAndExpression)) {
       return _execute((BitwiseAndExpression)expression);
     } else if ((expression instanceof BitwiseOrExpression)) {
@@ -386,6 +464,8 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
       return _execute((BitwiseXorExpression)expression);
     } else if ((expression instanceof ConditionalExpression)) {
       return _execute((ConditionalExpression)expression);
+    } else if ((expression instanceof EventRaisingExpression)) {
+      return _execute((EventRaisingExpression)expression);
     } else if ((expression instanceof EventValueReferenceExpression)) {
       return _execute((EventValueReferenceExpression)expression);
     } else if ((expression instanceof FeatureCall)) {
@@ -410,13 +490,33 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
       return _execute((ShiftExpression)expression);
     } else if ((expression instanceof TypedElementReferenceExpression)) {
       return _execute((TypedElementReferenceExpression)expression);
-    } else if ((expression instanceof Assignment)) {
-      return _execute((Assignment)expression);
-    } else if ((expression instanceof EventRaising)) {
-      return _execute((EventRaising)expression);
+    } else if ((expression instanceof Statement)) {
+      return _execute((Statement)expression);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         java.util.Arrays.<Object>asList(expression).toString());
+    }
+  }
+  
+  public NamedElement variable(final Expression e) {
+    if ((e instanceof FeatureCall)) {
+      return _variable((FeatureCall)e);
+    } else if ((e instanceof TypedElementReferenceExpression)) {
+      return _variable((TypedElementReferenceExpression)e);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(e).toString());
+    }
+  }
+  
+  public NamedElement event(final Expression e) {
+    if ((e instanceof FeatureCall)) {
+      return _event((FeatureCall)e);
+    } else if ((e instanceof TypedElementReferenceExpression)) {
+      return _event((TypedElementReferenceExpression)e);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(e).toString());
     }
   }
   

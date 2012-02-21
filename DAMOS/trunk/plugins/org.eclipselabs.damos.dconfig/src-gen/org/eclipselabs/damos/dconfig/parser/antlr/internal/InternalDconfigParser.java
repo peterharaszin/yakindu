@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_EXP", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'configuration'", "'extends'", "'{'", "'}'", "'propagate'", "'='", "'unset'", "'select'", "'as'", "'system'", "'subsystem'", "'fragment'", "'..'", "'component'", "'computation'", "'bind'", "'to'", "'['", "']'", "'.'", "'fix'", "'ufix'", "'slope'", "'bias'", "'saturate'", "'map'", "'.*'", "'*'", "'-'", "'+'", "'import'", "'enum'", "','", "'typedef'", "'struct'", "'function'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gaussian'", "'boolean'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "';'", "'|'", "'true'", "'false'", "'::'", "'for'", "'unitlit'", "'end'", "'algorithm'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'^'", "'float32'", "'float64'", "'int8'", "'int16'", "'int32'", "'int64'", "'int128'", "'uint8'", "'uint16'", "'uint32'", "'uint64'", "'uint128'", "'fract8'", "'fract16'", "'fract32'", "'fract64'", "'fract128'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'./'", "'%'", "'.^'", "'!'", "'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_EXP", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'configuration'", "'extends'", "'{'", "'}'", "'propagate'", "'='", "'unset'", "'select'", "'as'", "'system'", "'subsystem'", "'fragment'", "'..'", "'component'", "'computation'", "'bind'", "'to'", "'.'", "'['", "']'", "'fix'", "'ufix'", "'slope'", "'bias'", "'saturate'", "'map'", "'.*'", "'*'", "'-'", "'+'", "'import'", "'enum'", "','", "'typedef'", "'struct'", "'function'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gaussian'", "'boolean'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "';'", "'|'", "'true'", "'false'", "'::'", "'for'", "'unitlit'", "'end'", "'algorithm'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'^'", "'float32'", "'float64'", "'int8'", "'int16'", "'int32'", "'int64'", "'int128'", "'uint8'", "'uint16'", "'uint32'", "'uint64'", "'uint128'", "'fract8'", "'fract16'", "'fract32'", "'fract64'", "'fract128'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'./'", "'%'", "'.^'", "'!'", "'\\''"
     };
     public static final int RULE_ID=6;
     public static final int T__29=29;
@@ -3383,29 +3383,25 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinding"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1153:1: ruleBinding returns [EObject current=null] : (otherlv_0= 'bind' ( ( ruleValidID ) ) otherlv_2= 'to' ( (lv_targetPath_3_0= ruleBindingTargetPath ) ) (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )? ( (lv_body_7_0= ruleBindingBody ) )? ) ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1153:1: ruleBinding returns [EObject current=null] : (otherlv_0= 'bind' ( (lv_targetPath_1_0= ruleBindingTargetPath ) ) otherlv_2= 'to' ( ( ruleValidID ) ) ( (lv_body_4_0= ruleBindingBody ) )? ) ;
     public final EObject ruleBinding() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
-        Token otherlv_4=null;
-        Token otherlv_6=null;
-        EObject lv_targetPath_3_0 = null;
+        EObject lv_targetPath_1_0 = null;
 
-        EObject lv_subscript_5_0 = null;
-
-        EObject lv_body_7_0 = null;
+        EObject lv_body_4_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1156:28: ( (otherlv_0= 'bind' ( ( ruleValidID ) ) otherlv_2= 'to' ( (lv_targetPath_3_0= ruleBindingTargetPath ) ) (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )? ( (lv_body_7_0= ruleBindingBody ) )? ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:1: (otherlv_0= 'bind' ( ( ruleValidID ) ) otherlv_2= 'to' ( (lv_targetPath_3_0= ruleBindingTargetPath ) ) (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )? ( (lv_body_7_0= ruleBindingBody ) )? )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1156:28: ( (otherlv_0= 'bind' ( (lv_targetPath_1_0= ruleBindingTargetPath ) ) otherlv_2= 'to' ( ( ruleValidID ) ) ( (lv_body_4_0= ruleBindingBody ) )? ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:1: (otherlv_0= 'bind' ( (lv_targetPath_1_0= ruleBindingTargetPath ) ) otherlv_2= 'to' ( ( ruleValidID ) ) ( (lv_body_4_0= ruleBindingBody ) )? )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:1: (otherlv_0= 'bind' ( ( ruleValidID ) ) otherlv_2= 'to' ( (lv_targetPath_3_0= ruleBindingTargetPath ) ) (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )? ( (lv_body_7_0= ruleBindingBody ) )? )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:3: otherlv_0= 'bind' ( ( ruleValidID ) ) otherlv_2= 'to' ( (lv_targetPath_3_0= ruleBindingTargetPath ) ) (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )? ( (lv_body_7_0= ruleBindingBody ) )?
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:1: (otherlv_0= 'bind' ( (lv_targetPath_1_0= ruleBindingTargetPath ) ) otherlv_2= 'to' ( ( ruleValidID ) ) ( (lv_body_4_0= ruleBindingBody ) )? )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1157:3: otherlv_0= 'bind' ( (lv_targetPath_1_0= ruleBindingTargetPath ) ) otherlv_2= 'to' ( ( ruleValidID ) ) ( (lv_body_4_0= ruleBindingBody ) )?
             {
             otherlv_0=(Token)match(input,33,FOLLOW_33_in_ruleBinding2457); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -3413,11 +3409,52 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_0, grammarAccess.getBindingAccess().getBindKeyword_0());
                   
             }
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1161:1: ( ( ruleValidID ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1162:1: ( ruleValidID )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1161:1: ( (lv_targetPath_1_0= ruleBindingTargetPath ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1162:1: (lv_targetPath_1_0= ruleBindingTargetPath )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1162:1: ( ruleValidID )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1163:3: ruleValidID
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1162:1: (lv_targetPath_1_0= ruleBindingTargetPath )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1163:3: lv_targetPath_1_0= ruleBindingTargetPath
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getBindingAccess().getTargetPathBindingTargetPathParserRuleCall_1_0()); 
+              	    
+            }
+            pushFollow(FOLLOW_ruleBindingTargetPath_in_ruleBinding2478);
+            lv_targetPath_1_0=ruleBindingTargetPath();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getBindingRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"targetPath",
+                      		lv_targetPath_1_0, 
+                      		"BindingTargetPath");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleBinding2490); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_2, grammarAccess.getBindingAccess().getToKeyword_2());
+                  
+            }
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1183:1: ( ( ruleValidID ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1184:1: ( ruleValidID )
+            {
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1184:1: ( ruleValidID )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1185:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
 
@@ -3428,10 +3465,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getBindingAccess().getSourceComponentCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getBindingAccess().getSourceComponentCrossReference_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleBinding2480);
+            pushFollow(FOLLOW_ruleValidID_in_ruleBinding2513);
             ruleValidID();
 
             state._fsp--;
@@ -3447,132 +3484,27 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,34,FOLLOW_34_in_ruleBinding2492); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_2, grammarAccess.getBindingAccess().getToKeyword_2());
-                  
-            }
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1180:1: ( (lv_targetPath_3_0= ruleBindingTargetPath ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1181:1: (lv_targetPath_3_0= ruleBindingTargetPath )
-            {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1181:1: (lv_targetPath_3_0= ruleBindingTargetPath )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1182:3: lv_targetPath_3_0= ruleBindingTargetPath
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getBindingAccess().getTargetPathBindingTargetPathParserRuleCall_3_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleBindingTargetPath_in_ruleBinding2513);
-            lv_targetPath_3_0=ruleBindingTargetPath();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getBindingRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"targetPath",
-                      		lv_targetPath_3_0, 
-                      		"BindingTargetPath");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1198:2: (otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']' )?
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1198:2: ( (lv_body_4_0= ruleBindingBody ) )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==35) ) {
+            if ( (LA21_0==20) ) {
                 alt21=1;
             }
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1198:4: otherlv_4= '[' ( (lv_subscript_5_0= ruleBindingSubscript ) ) otherlv_6= ']'
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1199:1: (lv_body_4_0= ruleBindingBody )
                     {
-                    otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleBinding2526); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                          	newLeafNode(otherlv_4, grammarAccess.getBindingAccess().getLeftSquareBracketKeyword_4_0());
-                          
-                    }
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1202:1: ( (lv_subscript_5_0= ruleBindingSubscript ) )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1203:1: (lv_subscript_5_0= ruleBindingSubscript )
-                    {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1203:1: (lv_subscript_5_0= ruleBindingSubscript )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1204:3: lv_subscript_5_0= ruleBindingSubscript
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1199:1: (lv_body_4_0= ruleBindingBody )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1200:3: lv_body_4_0= ruleBindingBody
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getBindingAccess().getSubscriptBindingSubscriptParserRuleCall_4_1_0()); 
+                      	        newCompositeNode(grammarAccess.getBindingAccess().getBodyBindingBodyParserRuleCall_4_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleBindingSubscript_in_ruleBinding2547);
-                    lv_subscript_5_0=ruleBindingSubscript();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getBindingRule());
-                      	        }
-                             		set(
-                             			current, 
-                             			"subscript",
-                              		lv_subscript_5_0, 
-                              		"BindingSubscript");
-                      	        afterParserOrEnumRuleCall();
-                      	    
-                    }
-
-                    }
-
-
-                    }
-
-                    otherlv_6=(Token)match(input,36,FOLLOW_36_in_ruleBinding2559); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                          	newLeafNode(otherlv_6, grammarAccess.getBindingAccess().getRightSquareBracketKeyword_4_2());
-                          
-                    }
-
-                    }
-                    break;
-
-            }
-
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1224:3: ( (lv_body_7_0= ruleBindingBody ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
-
-            if ( (LA22_0==20) ) {
-                alt22=1;
-            }
-            switch (alt22) {
-                case 1 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1225:1: (lv_body_7_0= ruleBindingBody )
-                    {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1225:1: (lv_body_7_0= ruleBindingBody )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1226:3: lv_body_7_0= ruleBindingBody
-                    {
-                    if ( state.backtracking==0 ) {
-                       
-                      	        newCompositeNode(grammarAccess.getBindingAccess().getBodyBindingBodyParserRuleCall_5_0()); 
-                      	    
-                    }
-                    pushFollow(FOLLOW_ruleBindingBody_in_ruleBinding2582);
-                    lv_body_7_0=ruleBindingBody();
+                    pushFollow(FOLLOW_ruleBindingBody_in_ruleBinding2534);
+                    lv_body_4_0=ruleBindingBody();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -3584,7 +3516,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                              		set(
                              			current, 
                              			"body",
-                              		lv_body_7_0, 
+                              		lv_body_4_0, 
                               		"BindingBody");
                       	        afterParserOrEnumRuleCall();
                       	    
@@ -3621,7 +3553,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBindingTargetPath"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1250:1: entryRuleBindingTargetPath returns [EObject current=null] : iv_ruleBindingTargetPath= ruleBindingTargetPath EOF ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1224:1: entryRuleBindingTargetPath returns [EObject current=null] : iv_ruleBindingTargetPath= ruleBindingTargetPath EOF ;
     public final EObject entryRuleBindingTargetPath() throws RecognitionException {
         EObject current = null;
 
@@ -3629,13 +3561,13 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1251:2: (iv_ruleBindingTargetPath= ruleBindingTargetPath EOF )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1252:2: iv_ruleBindingTargetPath= ruleBindingTargetPath EOF
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1225:2: (iv_ruleBindingTargetPath= ruleBindingTargetPath EOF )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1226:2: iv_ruleBindingTargetPath= ruleBindingTargetPath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBindingTargetPathRule()); 
             }
-            pushFollow(FOLLOW_ruleBindingTargetPath_in_entryRuleBindingTargetPath2619);
+            pushFollow(FOLLOW_ruleBindingTargetPath_in_entryRuleBindingTargetPath2571);
             iv_ruleBindingTargetPath=ruleBindingTargetPath();
 
             state._fsp--;
@@ -3643,7 +3575,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleBindingTargetPath; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBindingTargetPath2629); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBindingTargetPath2581); if (state.failed) return current;
 
             }
 
@@ -3661,38 +3593,42 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBindingTargetPath"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1259:1: ruleBindingTargetPath returns [EObject current=null] : ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) ) ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1233:1: ruleBindingTargetPath returns [EObject current=null] : ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )? ) ;
     public final EObject ruleBindingTargetPath() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_7=null;
         EObject lv_propertyReferences_0_0 = null;
 
         EObject lv_propertyReferences_2_0 = null;
+
+        EObject lv_subscript_6_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1262:28: ( ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1263:1: ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1236:28: ( ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )? ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1237:1: ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )? )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1263:1: ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1263:2: ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1237:1: ( ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )? )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1237:2: ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) ) (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )* otherlv_3= '.' ( ( ruleValidID ) ) (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )?
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1263:2: ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1264:1: (lv_propertyReferences_0_0= ruleBindingPropertyReference )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1237:2: ( (lv_propertyReferences_0_0= ruleBindingPropertyReference ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1238:1: (lv_propertyReferences_0_0= ruleBindingPropertyReference )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1264:1: (lv_propertyReferences_0_0= ruleBindingPropertyReference )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1265:3: lv_propertyReferences_0_0= ruleBindingPropertyReference
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1238:1: (lv_propertyReferences_0_0= ruleBindingPropertyReference )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1239:3: lv_propertyReferences_0_0= ruleBindingPropertyReference
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getPropertyReferencesBindingPropertyReferenceParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2675);
+            pushFollow(FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2627);
             lv_propertyReferences_0_0=ruleBindingPropertyReference();
 
             state._fsp--;
@@ -3716,20 +3652,20 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1281:2: (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )*
-            loop23:
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1255:2: (otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) ) )*
+            loop22:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA23_0==37) ) {
+                if ( (LA22_0==35) ) {
                     switch ( input.LA(2) ) {
                     case RULE_N:
                         {
-                        int LA23_2 = input.LA(3);
+                        int LA22_2 = input.LA(3);
 
-                        if ( (LA23_2==37) ) {
-                            alt23=1;
+                        if ( (LA22_2==35) ) {
+                            alt22=1;
                         }
 
 
@@ -3737,10 +3673,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                         break;
                     case RULE_IJ:
                         {
-                        int LA23_3 = input.LA(3);
+                        int LA22_3 = input.LA(3);
 
-                        if ( (LA23_3==37) ) {
-                            alt23=1;
+                        if ( (LA22_3==35) ) {
+                            alt22=1;
                         }
 
 
@@ -3748,10 +3684,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                         break;
                     case RULE_E:
                         {
-                        int LA23_4 = input.LA(3);
+                        int LA22_4 = input.LA(3);
 
-                        if ( (LA23_4==37) ) {
-                            alt23=1;
+                        if ( (LA22_4==35) ) {
+                            alt22=1;
                         }
 
 
@@ -3759,10 +3695,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                         break;
                     case RULE_EXPIJ:
                         {
-                        int LA23_5 = input.LA(3);
+                        int LA22_5 = input.LA(3);
 
-                        if ( (LA23_5==37) ) {
-                            alt23=1;
+                        if ( (LA22_5==35) ) {
+                            alt22=1;
                         }
 
 
@@ -3770,10 +3706,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                         break;
                     case RULE_ID:
                         {
-                        int LA23_6 = input.LA(3);
+                        int LA22_6 = input.LA(3);
 
-                        if ( (LA23_6==37) ) {
-                            alt23=1;
+                        if ( (LA22_6==35) ) {
+                            alt22=1;
                         }
 
 
@@ -3785,28 +3721,28 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 }
 
 
-                switch (alt23) {
+                switch (alt22) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1281:4: otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1255:4: otherlv_1= '.' ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) )
             	    {
-            	    otherlv_1=(Token)match(input,37,FOLLOW_37_in_ruleBindingTargetPath2688); if (state.failed) return current;
+            	    otherlv_1=(Token)match(input,35,FOLLOW_35_in_ruleBindingTargetPath2640); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_1, grammarAccess.getBindingTargetPathAccess().getFullStopKeyword_1_0());
             	          
             	    }
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1285:1: ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) )
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1286:1: (lv_propertyReferences_2_0= ruleBindingPropertyReference )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1259:1: ( (lv_propertyReferences_2_0= ruleBindingPropertyReference ) )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1260:1: (lv_propertyReferences_2_0= ruleBindingPropertyReference )
             	    {
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1286:1: (lv_propertyReferences_2_0= ruleBindingPropertyReference )
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1287:3: lv_propertyReferences_2_0= ruleBindingPropertyReference
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1260:1: (lv_propertyReferences_2_0= ruleBindingPropertyReference )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1261:3: lv_propertyReferences_2_0= ruleBindingPropertyReference
             	    {
             	    if ( state.backtracking==0 ) {
             	       
             	      	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getPropertyReferencesBindingPropertyReferenceParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2709);
+            	    pushFollow(FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2661);
             	    lv_propertyReferences_2_0=ruleBindingPropertyReference();
 
             	    state._fsp--;
@@ -3835,21 +3771,21 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop22;
                 }
             } while (true);
 
-            otherlv_3=(Token)match(input,37,FOLLOW_37_in_ruleBindingTargetPath2723); if (state.failed) return current;
+            otherlv_3=(Token)match(input,35,FOLLOW_35_in_ruleBindingTargetPath2675); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getBindingTargetPathAccess().getFullStopKeyword_2());
                   
             }
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1307:1: ( ( ruleValidID ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1308:1: ( ruleValidID )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1281:1: ( ( ruleValidID ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1282:1: ( ruleValidID )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1308:1: ( ruleValidID )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1309:3: ruleValidID
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1282:1: ( ruleValidID )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1283:3: ruleValidID
             {
             if ( state.backtracking==0 ) {
 
@@ -3863,7 +3799,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleBindingTargetPath2746);
+            pushFollow(FOLLOW_ruleValidID_in_ruleBindingTargetPath2698);
             ruleValidID();
 
             state._fsp--;
@@ -3876,6 +3812,70 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             }
 
+
+            }
+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1296:2: (otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']' )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( (LA23_0==36) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1296:4: otherlv_5= '[' ( (lv_subscript_6_0= ruleBindingSubscript ) ) otherlv_7= ']'
+                    {
+                    otherlv_5=(Token)match(input,36,FOLLOW_36_in_ruleBindingTargetPath2711); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                          	newLeafNode(otherlv_5, grammarAccess.getBindingTargetPathAccess().getLeftSquareBracketKeyword_4_0());
+                          
+                    }
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1300:1: ( (lv_subscript_6_0= ruleBindingSubscript ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1301:1: (lv_subscript_6_0= ruleBindingSubscript )
+                    {
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1301:1: (lv_subscript_6_0= ruleBindingSubscript )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1302:3: lv_subscript_6_0= ruleBindingSubscript
+                    {
+                    if ( state.backtracking==0 ) {
+                       
+                      	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getSubscriptBindingSubscriptParserRuleCall_4_1_0()); 
+                      	    
+                    }
+                    pushFollow(FOLLOW_ruleBindingSubscript_in_ruleBindingTargetPath2732);
+                    lv_subscript_6_0=ruleBindingSubscript();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      	        if (current==null) {
+                      	            current = createModelElementForParent(grammarAccess.getBindingTargetPathRule());
+                      	        }
+                             		set(
+                             			current, 
+                             			"subscript",
+                              		lv_subscript_6_0, 
+                              		"BindingSubscript");
+                      	        afterParserOrEnumRuleCall();
+                      	    
+                    }
+
+                    }
+
+
+                    }
+
+                    otherlv_7=(Token)match(input,37,FOLLOW_37_in_ruleBindingTargetPath2744); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                          	newLeafNode(otherlv_7, grammarAccess.getBindingTargetPathAccess().getRightSquareBracketKeyword_4_2());
+                          
+                    }
+
+                    }
+                    break;
 
             }
 
@@ -4864,7 +4864,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
-                    if ( (LA30_0==37) ) {
+                    if ( (LA30_0==35) ) {
                         alt30=1;
                     }
                     else if ( (LA30_0==EOF||LA30_0==21||(LA30_0>=40 && LA30_0<=43)) ) {
@@ -4884,7 +4884,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                             // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1633:3: (otherlv_3= '.' ( (lv_fractionLength_4_0= ruleValidInt ) ) )
                             // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1633:5: otherlv_3= '.' ( (lv_fractionLength_4_0= ruleValidInt ) )
                             {
-                            otherlv_3=(Token)match(input,37,FOLLOW_37_in_ruleFixedPointFormat3524); if (state.failed) return current;
+                            otherlv_3=(Token)match(input,35,FOLLOW_35_in_ruleFixedPointFormat3524); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                   	newLeafNode(otherlv_3, grammarAccess.getFixedPointFormatAccess().getFullStopKeyword_0_0_2_0_0());
@@ -5421,7 +5421,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             if ( (LA33_0==44) ) {
                 alt33=1;
             }
-            else if ( (LA33_0==37) ) {
+            else if ( (LA33_0==35) ) {
                 alt33=2;
             }
             switch (alt33) {
@@ -5444,7 +5444,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1838:6: (kw= '.' kw= '*' )
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1839:2: kw= '.' kw= '*'
                     {
-                    kw=(Token)match(input,37,FOLLOW_37_in_ruleQualifiedNameWithWildcard3959); if (state.failed) return current;
+                    kw=(Token)match(input,35,FOLLOW_35_in_ruleQualifiedNameWithWildcard3959); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -5575,7 +5575,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 int alt34=2;
                 int LA34_0 = input.LA(1);
 
-                if ( (LA34_0==37) ) {
+                if ( (LA34_0==35) ) {
                     alt34=1;
                 }
 
@@ -5584,7 +5584,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1883:2: kw= '.' this_ValidIDWithoutIJ_2= ruleValidIDWithoutIJ
             	    {
-            	    kw=(Token)match(input,37,FOLLOW_37_in_ruleQualifiedNameWithoutIJ4093); if (state.failed) return current;
+            	    kw=(Token)match(input,35,FOLLOW_35_in_ruleQualifiedNameWithoutIJ4093); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	              current.merge(kw);
@@ -5920,7 +5920,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt41=3;
             int LA41_0 = input.LA(1);
 
-            if ( (LA41_0==37) ) {
+            if ( (LA41_0==35) ) {
                 alt41=1;
             }
             else if ( (LA41_0==RULE_E||LA41_0==RULE_EXP) ) {
@@ -5933,7 +5933,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1988:2: (kw= '.' this_ValidInt_3= ruleValidInt (this_EXP_4= RULE_EXP | (this_E_5= RULE_E (kw= '+' | kw= '-' ) this_ValidInt_8= ruleValidInt ) )? )
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:1989:2: kw= '.' this_ValidInt_3= ruleValidInt (this_EXP_4= RULE_EXP | (this_E_5= RULE_E (kw= '+' | kw= '-' ) this_ValidInt_8= ruleValidInt ) )?
                     {
-                    kw=(Token)match(input,37,FOLLOW_37_in_ruleValidDouble4416); if (state.failed) return current;
+                    kw=(Token)match(input,35,FOLLOW_35_in_ruleValidDouble4416); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -10304,10 +10304,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 {
                 int LA64_2 = input.LA(2);
 
-                if ( (LA64_2==35) ) {
+                if ( (LA64_2==36) ) {
                     alt64=1;
                 }
-                else if ( (LA64_2==EOF||(LA64_2>=RULE_N && LA64_2<=RULE_ID)||(LA64_2>=RULE_IJ && LA64_2<=RULE_EXPIJ)||(LA64_2>=21 && LA64_2<=25)||(LA64_2>=27 && LA64_2<=29)||(LA64_2>=31 && LA64_2<=34)||(LA64_2>=36 && LA64_2<=37)||LA64_2==50||LA64_2==55||LA64_2==57||(LA64_2>=59 && LA64_2<=67)||LA64_2==75||(LA64_2>=77 && LA64_2<=78)||(LA64_2>=80 && LA64_2<=84)||(LA64_2>=86 && LA64_2<=87)||LA64_2==91||(LA64_2>=125 && LA64_2<=126)) ) {
+                else if ( (LA64_2==EOF||(LA64_2>=RULE_N && LA64_2<=RULE_ID)||(LA64_2>=RULE_IJ && LA64_2<=RULE_EXPIJ)||(LA64_2>=21 && LA64_2<=25)||(LA64_2>=27 && LA64_2<=29)||(LA64_2>=31 && LA64_2<=35)||LA64_2==37||LA64_2==50||LA64_2==55||LA64_2==57||(LA64_2>=59 && LA64_2<=67)||LA64_2==75||(LA64_2>=77 && LA64_2<=78)||(LA64_2>=80 && LA64_2<=84)||(LA64_2>=86 && LA64_2<=87)||LA64_2==91||(LA64_2>=125 && LA64_2<=126)) ) {
                     alt64=2;
                 }
                 else {
@@ -11862,7 +11862,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,35,FOLLOW_35_in_ruleArrayType8996); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,36,FOLLOW_36_in_ruleArrayType8996); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getArrayTypeAccess().getLeftSquareBracketKeyword_1_1());
@@ -11968,7 +11968,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    otherlv_7=(Token)match(input,36,FOLLOW_36_in_ruleArrayType9065); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,37,FOLLOW_37_in_ruleArrayType9065); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_7, grammarAccess.getArrayTypeAccess().getRightSquareBracketKeyword_1_4());
@@ -12101,7 +12101,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,35,FOLLOW_35_in_ruleTensorType9170); if (state.failed) return current;
+            otherlv_1=(Token)match(input,36,FOLLOW_36_in_ruleTensorType9170); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getTensorTypeAccess().getLeftSquareBracketKeyword_1());
@@ -12207,7 +12207,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,36,FOLLOW_36_in_ruleTensorType9239); if (state.failed) return current;
+            otherlv_5=(Token)match(input,37,FOLLOW_37_in_ruleTensorType9239); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getTensorTypeAccess().getRightSquareBracketKeyword_4());
@@ -12309,7 +12309,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt72=2;
             int LA72_0 = input.LA(1);
 
-            if ( ((LA72_0>=RULE_N && LA72_0<=RULE_ID)||(LA72_0>=RULE_IJ && LA72_0<=RULE_INT)||LA72_0==20||LA72_0==35||LA72_0==46||LA72_0==56||LA72_0==60||LA72_0==74||LA72_0==76||LA72_0==79||(LA72_0>=88 && LA72_0<=90)||(LA72_0>=92 && LA72_0<=94)||LA72_0==132) ) {
+            if ( ((LA72_0>=RULE_N && LA72_0<=RULE_ID)||(LA72_0>=RULE_IJ && LA72_0<=RULE_INT)||LA72_0==20||LA72_0==36||LA72_0==46||LA72_0==56||LA72_0==60||LA72_0==74||LA72_0==76||LA72_0==79||(LA72_0>=88 && LA72_0<=90)||(LA72_0>=92 && LA72_0<=94)||LA72_0==132) ) {
                 alt72=1;
             }
             switch (alt72) {
@@ -12479,7 +12479,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             case RULE_ONE:
             case RULE_INT:
             case 20:
-            case 35:
+            case 36:
             case 46:
             case 56:
             case 88:
@@ -14038,7 +14038,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             if ( (LA81_0==62) ) {
                 int LA81_1 = input.LA(2);
 
-                if ( ((LA81_1>=RULE_N && LA81_1<=RULE_ID)||(LA81_1>=RULE_IJ && LA81_1<=RULE_INT)||LA81_1==20||LA81_1==35||LA81_1==46||LA81_1==56||(LA81_1>=88 && LA81_1<=90)||(LA81_1>=92 && LA81_1<=94)||LA81_1==132) ) {
+                if ( ((LA81_1>=RULE_N && LA81_1<=RULE_ID)||(LA81_1>=RULE_IJ && LA81_1<=RULE_INT)||LA81_1==20||LA81_1==36||LA81_1==46||LA81_1==56||(LA81_1>=88 && LA81_1<=90)||(LA81_1>=92 && LA81_1<=94)||LA81_1==132) ) {
                     alt81=1;
                 }
             }
@@ -14107,7 +14107,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     if ( (LA80_0==62) ) {
                         int LA80_1 = input.LA(2);
 
-                        if ( ((LA80_1>=RULE_N && LA80_1<=RULE_ID)||(LA80_1>=RULE_IJ && LA80_1<=RULE_INT)||LA80_1==20||LA80_1==35||LA80_1==46||LA80_1==56||(LA80_1>=88 && LA80_1<=90)||(LA80_1>=92 && LA80_1<=94)||LA80_1==132) ) {
+                        if ( ((LA80_1>=RULE_N && LA80_1<=RULE_ID)||(LA80_1>=RULE_IJ && LA80_1<=RULE_INT)||LA80_1==20||LA80_1==36||LA80_1==46||LA80_1==56||(LA80_1>=88 && LA80_1<=90)||(LA80_1>=92 && LA80_1<=94)||LA80_1==132) ) {
                             alt80=1;
                         }
                     }
@@ -15887,7 +15887,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt91=2;
             int LA91_0 = input.LA(1);
 
-            if ( ((LA91_0>=RULE_N && LA91_0<=RULE_ID)||(LA91_0>=RULE_IJ && LA91_0<=RULE_INT)||LA91_0==20||LA91_0==35||LA91_0==56||(LA91_0>=88 && LA91_0<=90)||(LA91_0>=92 && LA91_0<=94)) ) {
+            if ( ((LA91_0>=RULE_N && LA91_0<=RULE_ID)||(LA91_0>=RULE_IJ && LA91_0<=RULE_INT)||LA91_0==20||LA91_0==36||LA91_0==56||(LA91_0>=88 && LA91_0<=90)||(LA91_0>=92 && LA91_0<=94)) ) {
                 alt91=1;
             }
             else if ( (LA91_0==46||LA91_0==132) ) {
@@ -16275,7 +16275,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             if ( (LA93_0==90) ) {
                 alt93=1;
             }
-            else if ( ((LA93_0>=RULE_N && LA93_0<=RULE_ID)||(LA93_0>=RULE_IJ && LA93_0<=RULE_INT)||LA93_0==20||LA93_0==35||LA93_0==56||(LA93_0>=88 && LA93_0<=89)||(LA93_0>=92 && LA93_0<=94)) ) {
+            else if ( ((LA93_0>=RULE_N && LA93_0<=RULE_ID)||(LA93_0>=RULE_IJ && LA93_0<=RULE_INT)||LA93_0==20||LA93_0==36||LA93_0==56||(LA93_0>=88 && LA93_0<=89)||(LA93_0>=92 && LA93_0<=94)) ) {
                 alt93=2;
             }
             else {
@@ -16339,7 +16339,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 int alt95=2;
                 int LA95_0 = input.LA(1);
 
-                if ( (LA95_0==35) ) {
+                if ( (LA95_0==36) ) {
                     alt95=1;
                 }
 
@@ -16361,7 +16361,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_3=(Token)match(input,35,FOLLOW_35_in_ruleArrayElementAccess12374); if (state.failed) return current;
+            	    otherlv_3=(Token)match(input,36,FOLLOW_36_in_ruleArrayElementAccess12374); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_3, grammarAccess.getArrayElementAccessAccess().getLeftSquareBracketKeyword_1_1());
@@ -16467,7 +16467,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             	        }
             	    } while (true);
 
-            	    otherlv_7=(Token)match(input,36,FOLLOW_36_in_ruleArrayElementAccess12443); if (state.failed) return current;
+            	    otherlv_7=(Token)match(input,37,FOLLOW_37_in_ruleArrayElementAccess12443); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_7, grammarAccess.getArrayElementAccessAccess().getRightSquareBracketKeyword_1_4());
@@ -16630,7 +16630,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_2=(Token)match(input,37,FOLLOW_37_in_ruleMemberFeatureCall12560); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,35,FOLLOW_35_in_ruleMemberFeatureCall12560); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_2, grammarAccess.getMemberFeatureCallAccess().getFullStopKeyword_1_0_1());
@@ -16695,7 +16695,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_5=(Token)match(input,37,FOLLOW_37_in_ruleMemberFeatureCall12612); if (state.failed) return current;
+            	    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleMemberFeatureCall12612); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_5, grammarAccess.getMemberFeatureCallAccess().getFullStopKeyword_1_1_1());
@@ -16745,7 +16745,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             	    int alt97=2;
             	    int LA97_0 = input.LA(1);
 
-            	    if ( ((LA97_0>=RULE_N && LA97_0<=RULE_ID)||(LA97_0>=RULE_IJ && LA97_0<=RULE_INT)||LA97_0==20||LA97_0==35||LA97_0==46||LA97_0==56||LA97_0==60||LA97_0==74||LA97_0==76||LA97_0==79||(LA97_0>=88 && LA97_0<=90)||(LA97_0>=92 && LA97_0<=94)||LA97_0==132) ) {
+            	    if ( ((LA97_0>=RULE_N && LA97_0<=RULE_ID)||(LA97_0>=RULE_IJ && LA97_0<=RULE_INT)||LA97_0==20||LA97_0==36||LA97_0==46||LA97_0==56||LA97_0==60||LA97_0==74||LA97_0==76||LA97_0==79||(LA97_0>=88 && LA97_0<=90)||(LA97_0>=92 && LA97_0<=94)||LA97_0==132) ) {
             	        alt97=1;
             	    }
             	    switch (alt97) {
@@ -16889,7 +16889,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_13=(Token)match(input,37,FOLLOW_37_in_ruleMemberFeatureCall12748); if (state.failed) return current;
+            	    otherlv_13=(Token)match(input,35,FOLLOW_35_in_ruleMemberFeatureCall12748); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_13, grammarAccess.getMemberFeatureCallAccess().getFullStopKeyword_1_2_1());
@@ -17360,7 +17360,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 int alt102=2;
                 int LA102_0 = input.LA(1);
 
-                if ( (LA102_0==37) ) {
+                if ( (LA102_0==35) ) {
                     alt102=1;
                 }
 
@@ -17382,7 +17382,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_2=(Token)match(input,37,FOLLOW_37_in_ruleAssignableMemberFeatureCall13072); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,35,FOLLOW_35_in_ruleAssignableMemberFeatureCall13072); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_2, grammarAccess.getAssignableMemberFeatureCallAccess().getFullStopKeyword_1_1());
@@ -17781,7 +17781,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             if ( (LA103_0==62) ) {
                 alt103=1;
             }
-            else if ( ((LA103_0>=RULE_N && LA103_0<=RULE_ID)||(LA103_0>=RULE_IJ && LA103_0<=RULE_INT)||LA103_0==20||LA103_0==35||LA103_0==46||LA103_0==56||LA103_0==60||LA103_0==74||LA103_0==76||LA103_0==79||(LA103_0>=88 && LA103_0<=90)||(LA103_0>=92 && LA103_0<=94)||LA103_0==132) ) {
+            else if ( ((LA103_0>=RULE_N && LA103_0<=RULE_ID)||(LA103_0>=RULE_IJ && LA103_0<=RULE_INT)||LA103_0==20||LA103_0==36||LA103_0==46||LA103_0==56||LA103_0==60||LA103_0==74||LA103_0==76||LA103_0==79||(LA103_0>=88 && LA103_0<=90)||(LA103_0>=92 && LA103_0<=94)||LA103_0==132) ) {
                 alt103=2;
             }
             else {
@@ -17986,7 +17986,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 alt104=4;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt104=5;
                 }
@@ -18590,7 +18590,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             if ( (LA107_0==RULE_ONE) ) {
                 switch ( input.LA(2) ) {
-                case 37:
+                case 35:
                     {
                     int LA107_3 = input.LA(3);
 
@@ -18621,7 +18621,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     if ( ((LA107_5>=46 && LA107_5<=47)) ) {
                         alt107=2;
                     }
-                    else if ( (LA107_5==23||LA107_5==37) ) {
+                    else if ( (LA107_5==23||LA107_5==35) ) {
                         alt107=1;
                     }
                     else {
@@ -18648,8 +18648,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 case 31:
                 case 32:
                 case 33:
-                case 35:
                 case 36:
+                case 37:
                 case 44:
                 case 45:
                 case 46:
@@ -18720,8 +18720,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 case 31:
                 case 32:
                 case 33:
-                case 35:
                 case 36:
+                case 37:
                 case 44:
                 case 45:
                 case 46:
@@ -18766,7 +18766,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     alt107=1;
                     }
                     break;
-                case 37:
+                case 35:
                     {
                     int LA107_3 = input.LA(3);
 
@@ -18792,7 +18792,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     if ( ((LA107_5>=46 && LA107_5<=47)) ) {
                         alt107=2;
                     }
-                    else if ( (LA107_5==23||LA107_5==37) ) {
+                    else if ( (LA107_5==23||LA107_5==35) ) {
                         alt107=1;
                     }
                     else {
@@ -19145,7 +19145,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt114=2;
             int LA114_0 = input.LA(1);
 
-            if ( (LA114_0==37) ) {
+            if ( (LA114_0==35) ) {
                 alt114=1;
             }
             else if ( (LA114_0==RULE_E||LA114_0==RULE_EXPIJ) ) {
@@ -19165,7 +19165,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:6504:2: (kw= '.' this_ValidInt_2= ruleValidInt (this_IJ_3= RULE_IJ | this_EXPIJ_4= RULE_EXPIJ | (this_E_5= RULE_E (kw= '+' | kw= '-' ) this_ValidInt_8= ruleValidInt (this_IJ_9= RULE_IJ )? ) )? )
                     // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:6505:2: kw= '.' this_ValidInt_2= ruleValidInt (this_IJ_3= RULE_IJ | this_EXPIJ_4= RULE_EXPIJ | (this_E_5= RULE_E (kw= '+' | kw= '-' ) this_ValidInt_8= ruleValidInt (this_IJ_9= RULE_IJ )? ) )?
                     {
-                    kw=(Token)match(input,37,FOLLOW_37_in_ruleRealData14344); if (state.failed) return current;
+                    kw=(Token)match(input,35,FOLLOW_35_in_ruleRealData14344); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -20656,7 +20656,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt120=2;
             int LA120_0 = input.LA(1);
 
-            if ( ((LA120_0>=RULE_N && LA120_0<=RULE_ID)||(LA120_0>=RULE_IJ && LA120_0<=RULE_INT)||LA120_0==20||LA120_0==35||LA120_0==46||LA120_0==56||LA120_0==60||LA120_0==74||LA120_0==76||LA120_0==79||(LA120_0>=88 && LA120_0<=90)||(LA120_0>=92 && LA120_0<=94)||LA120_0==132) ) {
+            if ( ((LA120_0>=RULE_N && LA120_0<=RULE_ID)||(LA120_0>=RULE_IJ && LA120_0<=RULE_INT)||LA120_0==20||LA120_0==36||LA120_0==46||LA120_0==56||LA120_0==60||LA120_0==74||LA120_0==76||LA120_0==79||(LA120_0>=88 && LA120_0<=90)||(LA120_0>=92 && LA120_0<=94)||LA120_0==132) ) {
                 alt120=1;
             }
             switch (alt120) {
@@ -21180,7 +21180,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             int alt123=2;
             int LA123_0 = input.LA(1);
 
-            if ( ((LA123_0>=RULE_N && LA123_0<=RULE_ID)||(LA123_0>=RULE_IJ && LA123_0<=RULE_INT)||LA123_0==20||LA123_0==35||LA123_0==46||LA123_0==56||LA123_0==60||LA123_0==74||LA123_0==76||LA123_0==79||(LA123_0>=88 && LA123_0<=90)||(LA123_0>=92 && LA123_0<=94)||LA123_0==132) ) {
+            if ( ((LA123_0>=RULE_N && LA123_0<=RULE_ID)||(LA123_0>=RULE_IJ && LA123_0<=RULE_INT)||LA123_0==20||LA123_0==36||LA123_0==46||LA123_0==56||LA123_0==60||LA123_0==74||LA123_0==76||LA123_0==79||(LA123_0>=88 && LA123_0<=90)||(LA123_0>=92 && LA123_0<=94)||LA123_0==132) ) {
                 alt123=1;
             }
             switch (alt123) {
@@ -22882,7 +22882,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:7720:1: (otherlv_0= '[' ( (lv_rows_1_0= ruleExpressionList ) ) (otherlv_2= ';' ( (lv_rows_3_0= ruleExpressionList ) ) )* otherlv_4= ']' )
             // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:7720:3: otherlv_0= '[' ( (lv_rows_1_0= ruleExpressionList ) ) (otherlv_2= ';' ( (lv_rows_3_0= ruleExpressionList ) ) )* otherlv_4= ']'
             {
-            otherlv_0=(Token)match(input,35,FOLLOW_35_in_ruleArrayConcatenationOperator17301); if (state.failed) return current;
+            otherlv_0=(Token)match(input,36,FOLLOW_36_in_ruleArrayConcatenationOperator17301); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getArrayConcatenationOperatorAccess().getLeftSquareBracketKeyword_0());
@@ -22988,7 +22988,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,36,FOLLOW_36_in_ruleArrayConcatenationOperator17370); if (state.failed) return current;
+            otherlv_4=(Token)match(input,37,FOLLOW_37_in_ruleArrayConcatenationOperator17370); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getArrayConcatenationOperatorAccess().getRightSquareBracketKeyword_3());
@@ -27253,7 +27253,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                 int alt146=2;
                 int LA146_0 = input.LA(1);
 
-                if ( (LA146_0==37) ) {
+                if ( (LA146_0==35) ) {
                     int LA146_2 = input.LA(2);
 
                     if ( ((LA146_2>=RULE_N && LA146_2<=RULE_ID)||(LA146_2>=RULE_IJ && LA146_2<=RULE_EXPIJ)) ) {
@@ -27268,7 +27268,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:9265:2: kw= '.' this_ValidID_2= ruleValidID
             	    {
-            	    kw=(Token)match(input,37,FOLLOW_37_in_ruleQualifiedName20882); if (state.failed) return current;
+            	    kw=(Token)match(input,35,FOLLOW_35_in_ruleQualifiedName20882); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	              current.merge(kw);
@@ -29445,29 +29445,29 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     static final String[] DFA63_transitionS = {
             "\1\7\75\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\10\1\11\1\uffff\11\11"+
-            "\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\10\1\11\1\uffff"+
+            "\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3"+
+            "\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\12\1\11\1\uffff\11\11"+
-            "\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\12\1\11\1\uffff"+
+            "\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3"+
+            "\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\13\1\11\1\uffff\11\11"+
-            "\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\13\1\11\1\uffff"+
+            "\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3"+
+            "\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\14\1\11\1\uffff\11\11"+
-            "\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\14\1\11\1\uffff"+
+            "\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3"+
+            "\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "",
             "\1\16\1\20\1\22\1\uffff\1\17\1\21\1\uffff\1\15\55\uffff\1\23",
             "",
@@ -29481,9 +29481,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             "\1\54\13\uffff\1\52\52\uffff\1\51\1\53",
             "\1\54\13\uffff\1\52\52\uffff\1\51\1\53",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\56\52\uffff\1\55",
             "\1\60\13\uffff\1\56\52\uffff\1\55\1\57",
             "\1\60\13\uffff\1\56\52\uffff\1\55\1\57",
@@ -29491,13 +29491,13 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             "\1\60\13\uffff\1\56\52\uffff\1\55\1\57",
             "\1\60\13\uffff\1\56\52\uffff\1\55\1\57",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\62\52\uffff\1\61",
             "\1\64\13\uffff\1\62\52\uffff\1\61\1\63",
             "\1\64\13\uffff\1\62\52\uffff\1\61\1\63",
@@ -29505,9 +29505,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             "\1\64\13\uffff\1\62\52\uffff\1\61\1\63",
             "\1\64\13\uffff\1\62\52\uffff\1\61\1\63",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\66\52\uffff\1\65",
             "\1\70\13\uffff\1\66\52\uffff\1\65\1\67",
             "\1\70\13\uffff\1\66\52\uffff\1\65\1\67",
@@ -29516,30 +29516,30 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             "\1\70\13\uffff\1\66\52\uffff\1\65\1\67",
             "\1\71\1\73\1\75\1\uffff\1\72\1\74\56\uffff\1\76",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\100\1\101\41\uffff\1\77",
             "\1\102\1\104\1\106\1\uffff\1\103\1\105",
             "\1\107\1\111\1\113\1\uffff\1\110\1\112\56\uffff\1\114",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\116\1\117\41\uffff\1\115",
             "\1\120\1\122\1\124\1\uffff\1\121\1\123",
             "\1\125\1\127\1\131\1\uffff\1\126\1\130\56\uffff\1\132",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\134\1\135\41\uffff\1\133",
             "\1\136\1\140\1\142\1\uffff\1\137\1\141",
             "\1\143\1\145\1\147\1\uffff\1\144\1\146\56\uffff\1\150",
             "\3\11\1\uffff\2\11\13\uffff\5\11\1\uffff\3\11\1\uffff\4\11"+
-            "\1\7\1\11\15\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1\uffff\11"+
-            "\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff\2\11\3\uffff"+
-            "\1\11\41\uffff\2\11",
+            "\1\uffff\1\7\1\11\14\uffff\1\11\4\uffff\1\11\1\uffff\1\11\1"+
+            "\uffff\11\11\7\uffff\1\11\1\uffff\2\11\1\uffff\5\11\1\uffff"+
+            "\2\11\3\uffff\1\11\41\uffff\2\11",
             "\1\152\1\153\41\uffff\1\151",
             "\1\154\1\156\1\160\1\uffff\1\155\1\157",
             "\1\52\53\uffff\1\161",
@@ -29758,7 +29758,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     static final String DFA87_specialS =
         "\1\0\2\uffff\1\1\52\uffff}>";
     static final String[] DFA87_transitionS = {
-            "\3\6\16\uffff\5\6\1\uffff\3\6\1\uffff\3\6\2\uffff\1\6\15\uffff"+
+            "\3\6\16\uffff\5\6\1\uffff\3\6\1\uffff\3\6\3\uffff\1\6\14\uffff"+
             "\1\6\3\uffff\1\1\1\3\1\uffff\1\6\1\uffff\11\6\7\uffff\1\6\1"+
             "\uffff\2\6\1\uffff\5\6\1\5\2\6\3\uffff\1\6\41\uffff\2\6\1\2"+
             "\1\4",
@@ -29862,7 +29862,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
                         else if ( (LA87_0==85) && (synpred2_InternalDconfig())) {s = 5;}
 
-                        else if ( (LA87_0==EOF||(LA87_0>=RULE_N && LA87_0<=RULE_ID)||(LA87_0>=21 && LA87_0<=25)||(LA87_0>=27 && LA87_0<=29)||(LA87_0>=31 && LA87_0<=33)||LA87_0==36||LA87_0==50||LA87_0==57||(LA87_0>=59 && LA87_0<=67)||LA87_0==75||(LA87_0>=77 && LA87_0<=78)||(LA87_0>=80 && LA87_0<=84)||(LA87_0>=86 && LA87_0<=87)||LA87_0==91||(LA87_0>=125 && LA87_0<=126)) ) {s = 6;}
+                        else if ( (LA87_0==EOF||(LA87_0>=RULE_N && LA87_0<=RULE_ID)||(LA87_0>=21 && LA87_0<=25)||(LA87_0>=27 && LA87_0<=29)||(LA87_0>=31 && LA87_0<=33)||LA87_0==37||LA87_0==50||LA87_0==57||(LA87_0>=59 && LA87_0<=67)||LA87_0==75||(LA87_0>=77 && LA87_0<=78)||(LA87_0>=80 && LA87_0<=84)||(LA87_0>=86 && LA87_0<=87)||LA87_0==91||(LA87_0>=125 && LA87_0<=126)) ) {s = 6;}
 
                          
                         input.seek(index87_0);
@@ -29905,7 +29905,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     static final String DFA101_specialS =
         "\27\uffff}>";
     static final String[] DFA101_transitionS = {
-            "\3\1\16\uffff\5\1\1\uffff\3\1\1\uffff\3\1\1\uffff\2\1\1\2\6"+
+            "\3\1\16\uffff\5\1\1\uffff\3\1\1\uffff\3\1\1\uffff\1\2\2\1\6"+
             "\uffff\4\1\2\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff\11\1"+
             "\7\uffff\1\1\1\uffff\2\1\1\uffff\10\1\3\uffff\1\1\10\uffff\2"+
             "\1\27\uffff\7\1\1\uffff\1\1",
@@ -29932,46 +29932,46 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             "\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10\10"+
             "\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
             "",
-            "\1\12\1\14\1\16\1\uffff\1\13\1\15\3\17\7\uffff\1\17\16\uffff"+
-            "\1\17\12\uffff\1\17\11\uffff\2\17\2\uffff\1\17\15\uffff\1\17"+
+            "\1\12\1\14\1\16\1\uffff\1\13\1\15\3\17\7\uffff\1\17\17\uffff"+
+            "\1\17\11\uffff\1\17\11\uffff\2\17\2\uffff\1\17\15\uffff\1\17"+
             "\1\uffff\1\17\2\uffff\1\17\10\uffff\3\17\1\uffff\3\17\45\uffff"+
             "\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
             "",
-            "\1\22\1\24\1\26\1\uffff\1\23\1\25\3\17\7\uffff\1\17\16\uffff"+
-            "\1\17\12\uffff\1\17\11\uffff\1\17\3\uffff\1\17\15\uffff\1\17"+
+            "\1\22\1\24\1\26\1\uffff\1\23\1\25\3\17\7\uffff\1\17\17\uffff"+
+            "\1\17\11\uffff\1\17\11\uffff\1\17\3\uffff\1\17\15\uffff\1\17"+
             "\1\uffff\1\17\2\uffff\1\17\10\uffff\3\17\1\uffff\3\17\45\uffff"+
             "\1\17",
             "",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17",
-            "\1\17\16\uffff\1\17\1\uffff\1\17\6\uffff\4\17\2\uffff\1\20"+
-            "\3\uffff\4\17\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17"+
-            "\27\uffff\7\17\1\uffff\1\17"
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17",
+            "\1\17\16\uffff\2\17\7\uffff\4\17\2\uffff\1\20\3\uffff\4\17"+
+            "\4\uffff\1\17\23\uffff\4\17\2\21\14\uffff\2\17\27\uffff\7\17"+
+            "\1\uffff\1\17"
     };
 
     static final short[] DFA101_eot = DFA.unpackEncodedString(DFA101_eotS);
@@ -30022,47 +30022,47 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     static final String[] DFA121_transitionS = {
             "\1\1",
             "\1\2\1\4\1\6\1\uffff\1\3\1\5",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
             "\1\12\1\14\1\16\1\uffff\1\13\1\15",
             "",
             "",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10",
-            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\2\10"+
-            "\1\7\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
+            "\3\10\16\uffff\5\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\7\2"+
+            "\10\6\uffff\4\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff"+
             "\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\10\10\3\uffff\1\10"+
             "\10\uffff\2\10\27\uffff\7\10\1\uffff\1\10"
     };
@@ -30127,7 +30127,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleSimpleProperty588 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_22_in_ruleSimpleProperty631 = new BitSet(new long[]{0x0000000001000070L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithoutIJ_in_ruleSimpleProperty670 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleSimpleProperty682 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleSimpleProperty682 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSimpleProperty703 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_24_in_ruleSimpleProperty723 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSimpleProperty746 = new BitSet(new long[]{0x0000000000000002L});
@@ -30198,20 +30198,20 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBinding_in_entryRuleBinding2410 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBinding2420 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_33_in_ruleBinding2457 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleBinding2480 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleBinding2492 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleBindingTargetPath_in_ruleBinding2513 = new BitSet(new long[]{0x0000000800100002L});
-    public static final BitSet FOLLOW_35_in_ruleBinding2526 = new BitSet(new long[]{0x0000000000001800L});
-    public static final BitSet FOLLOW_ruleBindingSubscript_in_ruleBinding2547 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleBinding2559 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_ruleBindingBody_in_ruleBinding2582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBindingTargetPath_in_entryRuleBindingTargetPath2619 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBindingTargetPath2629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2675 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleBindingTargetPath2688 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2709 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleBindingTargetPath2723 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleBindingTargetPath2746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBindingTargetPath_in_ruleBinding2478 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleBinding2490 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleBinding2513 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_ruleBindingBody_in_ruleBinding2534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBindingTargetPath_in_entryRuleBindingTargetPath2571 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBindingTargetPath2581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2627 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleBindingTargetPath2640 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleBindingPropertyReference_in_ruleBindingTargetPath2661 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleBindingTargetPath2675 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleBindingTargetPath2698 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_36_in_ruleBindingTargetPath2711 = new BitSet(new long[]{0x0000000000001800L});
+    public static final BitSet FOLLOW_ruleBindingSubscript_in_ruleBindingTargetPath2732 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_ruleBindingTargetPath2744 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBindingPropertyReference_in_entryRuleBindingPropertyReference2782 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBindingPropertyReference2792 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleBindingPropertyReference2839 = new BitSet(new long[]{0x0000000000000002L});
@@ -30237,8 +30237,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleFixedPointFormat3411 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_ruleFixedPointFormat3451 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_39_in_ruleFixedPointFormat3475 = new BitSet(new long[]{0x0000000000001800L});
-    public static final BitSet FOLLOW_ruleValidInt_in_ruleFixedPointFormat3510 = new BitSet(new long[]{0x0000072000000002L});
-    public static final BitSet FOLLOW_37_in_ruleFixedPointFormat3524 = new BitSet(new long[]{0x0000000000001800L});
+    public static final BitSet FOLLOW_ruleValidInt_in_ruleFixedPointFormat3510 = new BitSet(new long[]{0x0000070800000002L});
+    public static final BitSet FOLLOW_35_in_ruleFixedPointFormat3524 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_ruleValidInt_in_ruleFixedPointFormat3545 = new BitSet(new long[]{0x0000040000000002L});
     public static final BitSet FOLLOW_40_in_ruleFixedPointFormat3566 = new BitSet(new long[]{0x0000400000001800L});
     public static final BitSet FOLLOW_ruleValidDouble_in_ruleFixedPointFormat3587 = new BitSet(new long[]{0x0000060000000002L});
@@ -30254,15 +30254,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleNumberFormat_in_ruleNumberFormatMapping3825 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard3862 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard3873 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard3920 = new BitSet(new long[]{0x0000102000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameWithWildcard3920 = new BitSet(new long[]{0x0000100800000002L});
     public static final BitSet FOLLOW_44_in_ruleQualifiedNameWithWildcard3939 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleQualifiedNameWithWildcard3959 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_35_in_ruleQualifiedNameWithWildcard3959 = new BitSet(new long[]{0x0000200000000000L});
     public static final BitSet FOLLOW_45_in_ruleQualifiedNameWithWildcard3972 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithoutIJ_in_entryRuleQualifiedNameWithoutIJ4016 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithoutIJ4027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidIDWithoutIJ_in_ruleQualifiedNameWithoutIJ4074 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleQualifiedNameWithoutIJ4093 = new BitSet(new long[]{0x0000000000000070L});
-    public static final BitSet FOLLOW_ruleValidIDWithoutIJ_in_ruleQualifiedNameWithoutIJ4115 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_ruleValidIDWithoutIJ_in_ruleQualifiedNameWithoutIJ4074 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleQualifiedNameWithoutIJ4093 = new BitSet(new long[]{0x0000000000000070L});
+    public static final BitSet FOLLOW_ruleValidIDWithoutIJ_in_ruleQualifiedNameWithoutIJ4115 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_ruleValidIDWithoutIJ_in_entryRuleValidIDWithoutIJ4163 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValidIDWithoutIJ4174 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_N_in_ruleValidIDWithoutIJ4214 = new BitSet(new long[]{0x0000000000000002L});
@@ -30271,8 +30271,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleValidDouble_in_entryRuleValidDouble4318 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValidDouble4329 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_46_in_ruleValidDouble4372 = new BitSet(new long[]{0x0000000000001800L});
-    public static final BitSet FOLLOW_ruleValidInt_in_ruleValidDouble4396 = new BitSet(new long[]{0x00000020000000A2L});
-    public static final BitSet FOLLOW_37_in_ruleValidDouble4416 = new BitSet(new long[]{0x0000000000001800L});
+    public static final BitSet FOLLOW_ruleValidInt_in_ruleValidDouble4396 = new BitSet(new long[]{0x00000008000000A2L});
+    public static final BitSet FOLLOW_35_in_ruleValidDouble4416 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_ruleValidInt_in_ruleValidDouble4438 = new BitSet(new long[]{0x00000000000000A2L});
     public static final BitSet FOLLOW_RULE_EXP_in_ruleValidDouble4459 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_E_in_ruleValidDouble4486 = new BitSet(new long[]{0x0000C00000000000L});
@@ -30364,9 +30364,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleCheck_in_entryRuleCheck6572 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCheck6582 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_59_in_ruleCheck6619 = new BitSet(new long[]{0x0140000000000000L});
-    public static final BitSet FOLLOW_54_in_ruleCheck6632 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_54_in_ruleCheck6632 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleCheck6653 = new BitSet(new long[]{0x0084000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleCheck6666 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleCheck6666 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleCheck6687 = new BitSet(new long[]{0x0084000000000000L});
     public static final BitSet FOLLOW_55_in_ruleCheck6701 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_56_in_ruleCheck6715 = new BitSet(new long[]{0x0200000000000370L,0x00000000000003F0L});
@@ -30381,10 +30381,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssertion_in_entryRuleAssertion6892 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssertion6902 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_60_in_ruleAssertion6945 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_ruleAssertion6971 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_61_in_ruleAssertion6971 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssertion6992 = new BitSet(new long[]{0x4000000000000000L});
     public static final BitSet FOLLOW_62_in_ruleAssertion7004 = new BitSet(new long[]{0x0000000000000000L,0x1E00000000000000L});
-    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_ruleAssertion7025 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_ruleAssertion7025 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssertion7046 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_entryRuleStateVariableDeclaration7082 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStateVariableDeclaration7092 = new BitSet(new long[]{0x0000000000000002L});
@@ -30394,24 +30394,24 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleConstantDeclaration7196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_64_in_ruleConstantDeclaration7233 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleConstantDeclaration7254 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleConstantDeclaration7266 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleConstantDeclaration7266 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleConstantDeclaration7287 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_entryRuleFunctionObjectDeclaration7323 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionObjectDeclaration7333 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_65_in_ruleFunctionObjectDeclaration7370 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleFunctionObjectDeclaration7393 = new BitSet(new long[]{0x0040000000000370L});
-    public static final BitSet FOLLOW_54_in_ruleFunctionObjectDeclaration7406 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_54_in_ruleFunctionObjectDeclaration7406 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionObjectDeclaration7427 = new BitSet(new long[]{0x0084000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleFunctionObjectDeclaration7440 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleFunctionObjectDeclaration7440 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionObjectDeclaration7461 = new BitSet(new long[]{0x0084000000000000L});
     public static final BitSet FOLLOW_55_in_ruleFunctionObjectDeclaration7475 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionObjectDeclaration7498 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEquation_in_entryRuleEquation7534 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEquation7544 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_66_in_ruleEquation7587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_ruleEquation7613 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_67_in_ruleEquation7613 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleEquation7634 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleEquation7646 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleEquation7646 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleEquation7667 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_entryRuleDataTypeSpecifier7703 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeSpecifier7713 = new BitSet(new long[]{0x0000000000000002L});
@@ -30454,22 +30454,22 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleArrayType_in_entryRuleArrayType8803 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayType8813 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_ruleArrayType8860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanType_in_ruleArrayType8934 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_ruleStringType_in_ruleArrayType8953 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleArrayType8982 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleArrayType8996 = new BitSet(new long[]{0x1104401800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType9017 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_50_in_ruleArrayType9030 = new BitSet(new long[]{0x1104401800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType9051 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleArrayType9065 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanType_in_ruleArrayType8934 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_ruleStringType_in_ruleArrayType8953 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleArrayType8982 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleArrayType8996 = new BitSet(new long[]{0x1104403000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType9017 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_50_in_ruleArrayType9030 = new BitSet(new long[]{0x1104403000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType9051 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_37_in_ruleArrayType9065 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_entryRuleTensorType9102 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTensorType9112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumericType_in_ruleTensorType9158 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleTensorType9170 = new BitSet(new long[]{0x1104401800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType9191 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_50_in_ruleTensorType9204 = new BitSet(new long[]{0x1104401800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType9225 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleTensorType9239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumericType_in_ruleTensorType9158 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleTensorType9170 = new BitSet(new long[]{0x1104403000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType9191 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_50_in_ruleTensorType9204 = new BitSet(new long[]{0x1104403000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType9225 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_37_in_ruleTensorType9239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_entryRuleArrayDimension9275 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayDimension9285 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayDimension9340 = new BitSet(new long[]{0x0000000000000002L});
@@ -30485,7 +30485,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression9618 = new BitSet(new long[]{0x0004000000000000L,0x0000000000000800L});
     public static final BitSet FOLLOW_50_in_ruleLetExpression9631 = new BitSet(new long[]{0x0100000000000370L});
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression9652 = new BitSet(new long[]{0x0004000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_ruleLetExpression9666 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_75_in_ruleLetExpression9666 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpression9687 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_entryRuleLetExpressionAssignment9723 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionAssignment9733 = new BitSet(new long[]{0x0000000000000002L});
@@ -30495,7 +30495,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_50_in_ruleLetExpressionAssignment9833 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment9854 = new BitSet(new long[]{0x0204000000000000L});
     public static final BitSet FOLLOW_57_in_ruleLetExpressionAssignment9868 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleLetExpressionAssignment9882 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleLetExpressionAssignment9882 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpressionAssignment9903 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration9939 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration9949 = new BitSet(new long[]{0x0000000000000002L});
@@ -30503,80 +30503,80 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIfExpression_in_entryRuleIfExpression10029 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfExpression10039 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_60_in_ruleIfExpression10082 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-    public static final BitSet FOLLOW_76_in_ruleIfExpression10108 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_76_in_ruleIfExpression10108 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression10129 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_ruleIfExpression10141 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_77_in_ruleIfExpression10141 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression10162 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_ruleIfExpression10174 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_78_in_ruleIfExpression10174 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression10195 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchExpression_in_entryRuleSwitchExpression10231 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSwitchExpression10241 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_60_in_ruleSwitchExpression10284 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleSwitchExpression10310 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_79_in_ruleSwitchExpression10310 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchExpression10331 = new BitSet(new long[]{0x0000000000000000L,0x0000000000030000L});
     public static final BitSet FOLLOW_ruleSwitchCase_in_ruleSwitchExpression10352 = new BitSet(new long[]{0x0000000000000000L,0x0000000000030000L});
     public static final BitSet FOLLOW_80_in_ruleSwitchExpression10365 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_ruleSwitchExpression10377 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_62_in_ruleSwitchExpression10377 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchExpression10398 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchCase_in_entryRuleSwitchCase10434 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSwitchCase10444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_ruleSwitchCase10481 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_81_in_ruleSwitchCase10481 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleSwitchCase10502 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_ruleSwitchCase10514 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_62_in_ruleSwitchCase10514 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchCase10535 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRangeExpression_in_entryRuleRangeExpression10571 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRangeExpression10581 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression10628 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_62_in_ruleRangeExpression10649 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_62_in_ruleRangeExpression10649 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression10670 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_62_in_ruleRangeExpression10683 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_62_in_ruleRangeExpression10683 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression10704 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_entryRuleImpliesExpression10744 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleImpliesExpression10754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_ruleImpliesExpression10801 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_ruleImpliesExpression10822 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_82_in_ruleImpliesExpression10822 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_ruleImpliesExpression10843 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_entryRuleLogicalOrExpression10881 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLogicalOrExpression10891 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_ruleLogicalOrExpression10938 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_83_in_ruleLogicalOrExpression10959 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_83_in_ruleLogicalOrExpression10959 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_ruleLogicalOrExpression10980 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_entryRuleLogicalAndExpression11018 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLogicalAndExpression11028 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleLogicalAndExpression11075 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_ruleLogicalAndExpression11096 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_84_in_ruleLogicalAndExpression11096 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleLogicalAndExpression11117 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression11155 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEqualityExpression11165 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression11212 = new BitSet(new long[]{0x0000000000000002L,0x6000000000000000L});
-    public static final BitSet FOLLOW_ruleEqualityOperator_in_ruleEqualityExpression11242 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleEqualityOperator_in_ruleEqualityExpression11242 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression11263 = new BitSet(new long[]{0x0000000000000002L,0x6000000000000000L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression11301 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRelationalExpression11311 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleRelationalExpression11358 = new BitSet(new long[]{0x00C0000000000002L,0x8000000000200000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_ruleRelationalOperator_in_ruleRelationalExpression11442 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleRelationalOperator_in_ruleRelationalExpression11442 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleRelationalExpression11463 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_85_in_ruleRelationalExpression11492 = new BitSet(new long[]{0x0000000000000370L,0x00000000000003F0L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_ruleRelationalExpression11513 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression11553 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression11563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression11610 = new BitSet(new long[]{0x0000C00000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveOperator_in_ruleAdditiveExpression11640 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleAdditiveOperator_in_ruleAdditiveExpression11640 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression11661 = new BitSet(new long[]{0x0000C00000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression11699 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression11709 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression11756 = new BitSet(new long[]{0x0000300000000002L,0x0000001000000000L,0x0000000000000006L});
-    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_ruleMultiplicativeExpression11786 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_ruleMultiplicativeExpression11786 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression11807 = new BitSet(new long[]{0x0000300000000002L,0x0000001000000000L,0x0000000000000006L});
     public static final BitSet FOLLOW_rulePowerExpression_in_entryRulePowerExpression11845 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePowerExpression11855 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnaryExpression_in_rulePowerExpression11902 = new BitSet(new long[]{0x0000000000000002L,0x0000002000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_rulePowerOperator_in_rulePowerExpression11932 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_rulePowerOperator_in_rulePowerExpression11932 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleUnaryExpression_in_rulePowerExpression11953 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression11991 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression12001 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePostfixExpression_in_ruleUnaryExpression12048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryOperator_in_ruleUnaryExpression12084 = new BitSet(new long[]{0x0100000800101F70L,0x0000000077000000L});
+    public static final BitSet FOLLOW_ruleUnaryOperator_in_ruleUnaryExpression12084 = new BitSet(new long[]{0x0100001000101F70L,0x0000000077000000L});
     public static final BitSet FOLLOW_rulePostfixExpression_in_ruleUnaryExpression12105 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePostfixExpression_in_entryRulePostfixExpression12142 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePostfixExpression12152 = new BitSet(new long[]{0x0000000000000002L});
@@ -30584,26 +30584,26 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePostfixOperator_in_rulePostfixExpression12229 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayElementAccess_in_entryRuleArrayElementAccess12267 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayElementAccess12277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedFeatureCall_in_ruleArrayElementAccess12325 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_ruleMemberFeatureCall_in_ruleArrayElementAccess12352 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_35_in_ruleArrayElementAccess12374 = new BitSet(new long[]{0x5100400800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess12395 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_50_in_ruleArrayElementAccess12408 = new BitSet(new long[]{0x5100400800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess12429 = new BitSet(new long[]{0x0004001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleArrayElementAccess12443 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_ruleQualifiedFeatureCall_in_ruleArrayElementAccess12325 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_ruleMemberFeatureCall_in_ruleArrayElementAccess12352 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_36_in_ruleArrayElementAccess12374 = new BitSet(new long[]{0x5100401000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess12395 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_50_in_ruleArrayElementAccess12408 = new BitSet(new long[]{0x5100401000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess12429 = new BitSet(new long[]{0x0004002000000000L});
+    public static final BitSet FOLLOW_37_in_ruleArrayElementAccess12443 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_ruleMemberFeatureCall_in_entryRuleMemberFeatureCall12481 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMemberFeatureCall12491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleMemberFeatureCall12538 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleMemberFeatureCall12560 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall12583 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleMemberFeatureCall12612 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleMemberFeatureCall12538 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleMemberFeatureCall12560 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall12583 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleMemberFeatureCall12612 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall12635 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleMemberFeatureCall12647 = new BitSet(new long[]{0x1300400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleMemberFeatureCall12647 = new BitSet(new long[]{0x1300401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall12669 = new BitSet(new long[]{0x0204000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleMemberFeatureCall12682 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleMemberFeatureCall12682 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall12703 = new BitSet(new long[]{0x0204000000000000L});
-    public static final BitSet FOLLOW_57_in_ruleMemberFeatureCall12719 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleMemberFeatureCall12748 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_57_in_ruleMemberFeatureCall12719 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleMemberFeatureCall12748 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall12769 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_56_in_ruleMemberFeatureCall12781 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall12802 = new BitSet(new long[]{0x0004000000000000L,0x0000000000C00000L});
@@ -30611,20 +30611,20 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall12836 = new BitSet(new long[]{0x0004000000000000L,0x0000000000C00000L});
     public static final BitSet FOLLOW_86_in_ruleMemberFeatureCall12851 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleIterationAccumulator_in_ruleMemberFeatureCall12872 = new BitSet(new long[]{0x0000000000000000L,0x0000000000C00000L});
-    public static final BitSet FOLLOW_86_in_ruleMemberFeatureCall12887 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_86_in_ruleMemberFeatureCall12887 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall12908 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_ruleMemberFeatureCall12922 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_87_in_ruleMemberFeatureCall12922 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall12943 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_ruleMemberFeatureCall12955 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_57_in_ruleMemberFeatureCall12955 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_entryRuleAssignableMemberFeatureCall12994 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignableMemberFeatureCall13004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignablePrimaryExpression_in_ruleAssignableMemberFeatureCall13051 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleAssignableMemberFeatureCall13072 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleAssignableMemberFeatureCall13095 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_ruleAssignablePrimaryExpression_in_ruleAssignableMemberFeatureCall13051 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleAssignableMemberFeatureCall13072 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleAssignableMemberFeatureCall13095 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator13133 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterationAccumulator13143 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleIterationAccumulator13189 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleIterationAccumulator13201 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleIterationAccumulator13201 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIterationAccumulator13222 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_entryRuleIterationVariableDeclaration13258 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterationVariableDeclaration13268 = new BitSet(new long[]{0x0000000000000002L});
@@ -30662,8 +30662,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleUnit_in_ruleRealLiteral14219 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealData_in_entryRuleRealData14262 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRealData14273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidInt_in_ruleRealData14324 = new BitSet(new long[]{0x0000002000000220L});
-    public static final BitSet FOLLOW_37_in_ruleRealData14344 = new BitSet(new long[]{0x0000000000001800L});
+    public static final BitSet FOLLOW_ruleValidInt_in_ruleRealData14324 = new BitSet(new long[]{0x0000000800000220L});
+    public static final BitSet FOLLOW_35_in_ruleRealData14344 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_ruleValidInt_in_ruleRealData14366 = new BitSet(new long[]{0x0000000000000322L});
     public static final BitSet FOLLOW_RULE_IJ_in_ruleRealData14387 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_EXPIJ_in_ruleRealData14413 = new BitSet(new long[]{0x0000000000000002L});
@@ -30706,9 +30706,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall15464 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall15474 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionCall15531 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleFunctionCall15543 = new BitSet(new long[]{0x1300400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleFunctionCall15543 = new BitSet(new long[]{0x1300401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionCall15565 = new BitSet(new long[]{0x0204000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleFunctionCall15578 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleFunctionCall15578 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionCall15599 = new BitSet(new long[]{0x0204000000000000L});
     public static final BitSet FOLLOW_57_in_ruleFunctionCall15615 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedFeatureCall_in_entryRuleQualifiedFeatureCall15651 = new BitSet(new long[]{0x0000000000000000L});
@@ -30723,9 +30723,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedFunctionCall15895 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_90_in_ruleQualifiedFunctionCall15941 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedFunctionCall15964 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleQualifiedFunctionCall15976 = new BitSet(new long[]{0x1300400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleQualifiedFunctionCall15976 = new BitSet(new long[]{0x1300401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleQualifiedFunctionCall15998 = new BitSet(new long[]{0x0204000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleQualifiedFunctionCall16011 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleQualifiedFunctionCall16011 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleQualifiedFunctionCall16032 = new BitSet(new long[]{0x0204000000000000L});
     public static final BitSet FOLLOW_57_in_ruleQualifiedFunctionCall16048 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStepExpression_in_entryRuleStepExpression16084 = new BitSet(new long[]{0x0000000000000000L});
@@ -30758,9 +30758,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_N_in_ruleStepN16863 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConstructionOperator_in_entryRuleArrayConstructionOperator16898 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConstructionOperator16908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleArrayConstructionOperator16945 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_20_in_ruleArrayConstructionOperator16945 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionOperator16966 = new BitSet(new long[]{0x0004000000200000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_50_in_ruleArrayConstructionOperator16980 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleArrayConstructionOperator16980 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionOperator17001 = new BitSet(new long[]{0x0004000000200000L});
     public static final BitSet FOLLOW_91_in_ruleArrayConstructionOperator17022 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_ruleArrayConstructionOperator17043 = new BitSet(new long[]{0x0004000000200000L});
@@ -30770,19 +30770,19 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_entryRuleArrayConstructionIterationClause17129 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConstructionIterationClause17139 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleArrayConstructionIterationClause17185 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_ruleArrayConstructionIterationClause17197 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_75_in_ruleArrayConstructionIterationClause17197 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionIterationClause17218 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConcatenationOperator_in_entryRuleArrayConcatenationOperator17254 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConcatenationOperator17264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleArrayConcatenationOperator17301 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator17322 = new BitSet(new long[]{0x0000001000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_ruleArrayConcatenationOperator17335 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator17356 = new BitSet(new long[]{0x0000001000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_36_in_ruleArrayConcatenationOperator17370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleArrayConcatenationOperator17301 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator17322 = new BitSet(new long[]{0x0000002000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_ruleArrayConcatenationOperator17335 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator17356 = new BitSet(new long[]{0x0000002000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_37_in_ruleArrayConcatenationOperator17370 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionList_in_entryRuleExpressionList17406 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleExpressionList17416 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList17462 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleExpressionList17475 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleExpressionList17475 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList17496 = new BitSet(new long[]{0x0004000000000002L});
     public static final BitSet FOLLOW_ruleUnitConstructionOperator_in_entryRuleUnitConstructionOperator17534 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnitConstructionOperator17544 = new BitSet(new long[]{0x0000000000000002L});
@@ -30790,9 +30790,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleExplicitUnit_in_ruleUnitConstructionOperator17602 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleParenthesizedExpression_in_entryRuleParenthesizedExpression17638 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleParenthesizedExpression17648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_ruleParenthesizedExpression17685 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleParenthesizedExpression17685 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleParenthesizedExpression17706 = new BitSet(new long[]{0x0204000000000000L});
-    public static final BitSet FOLLOW_50_in_ruleParenthesizedExpression17719 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_50_in_ruleParenthesizedExpression17719 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleParenthesizedExpression17740 = new BitSet(new long[]{0x0204000000000000L});
     public static final BitSet FOLLOW_57_in_ruleParenthesizedExpression17754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEndExpression_in_entryRuleEndExpression17790 = new BitSet(new long[]{0x0000000000000000L});
@@ -30822,20 +30822,20 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssignment_in_entryRuleAssignment18456 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignment18466 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_ruleAssignment18512 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleAssignment18524 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleAssignment18524 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssignment18545 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
     public static final BitSet FOLLOW_86_in_ruleAssignment18557 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration18593 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration18603 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_63_in_ruleLocalVariableDeclaration18640 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration18661 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleLocalVariableDeclaration18673 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleLocalVariableDeclaration18673 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration18694 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
     public static final BitSet FOLLOW_86_in_ruleLocalVariableDeclaration18706 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement18742 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement18752 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_76_in_ruleIfStatement18789 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleIfStatement18801 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleIfStatement18801 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfStatement18822 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_57_in_ruleIfStatement18834 = new BitSet(new long[]{0x8100000000100370L,0x0000000F88001000L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement18855 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
@@ -30844,7 +30844,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleWhileStatement_in_entryRuleWhileStatement18936 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleWhileStatement18946 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_95_in_ruleWhileStatement18983 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleWhileStatement18995 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleWhileStatement18995 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleWhileStatement19016 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_57_in_ruleWhileStatement19028 = new BitSet(new long[]{0x8100000000100370L,0x0000000F88001000L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleWhileStatement19049 = new BitSet(new long[]{0x0000000000000002L});
@@ -30853,7 +30853,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_91_in_ruleForStatement19132 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_56_in_ruleForStatement19144 = new BitSet(new long[]{0x0000000000000370L});
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleForStatement19165 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_ruleForStatement19177 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_75_in_ruleForStatement19177 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement19198 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_57_in_ruleForStatement19210 = new BitSet(new long[]{0x8100000000100370L,0x0000000F88001000L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement19231 = new BitSet(new long[]{0x0000000000000002L});
@@ -30862,7 +30862,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_96_in_ruleDoWhileStatement19314 = new BitSet(new long[]{0x8100000000100370L,0x0000000F88001000L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleDoWhileStatement19335 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
     public static final BitSet FOLLOW_95_in_ruleDoWhileStatement19347 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleDoWhileStatement19359 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_56_in_ruleDoWhileStatement19359 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleDoWhileStatement19380 = new BitSet(new long[]{0x0200000000000000L});
     public static final BitSet FOLLOW_57_in_ruleDoWhileStatement19392 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
     public static final BitSet FOLLOW_86_in_ruleDoWhileStatement19404 = new BitSet(new long[]{0x0000000000000002L});
@@ -30876,7 +30876,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_86_in_ruleBreakStatement19612 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement19648 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleReturnStatement19658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_ruleReturnStatement19695 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_99_in_ruleReturnStatement19695 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleReturnStatement19716 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
     public static final BitSet FOLLOW_86_in_ruleReturnStatement19728 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_entryRuleUnit19764 = new BitSet(new long[]{0x0000000000000000L});
@@ -30923,9 +30923,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleValidInt_in_ruleUnitExponent20759 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName20805 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName20816 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName20863 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleQualifiedName20882 = new BitSet(new long[]{0x0000000000000370L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName20904 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName20863 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_ruleQualifiedName20882 = new BitSet(new long[]{0x0000000000000370L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName20904 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_ruleValidInt_in_entryRuleValidInt20952 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValidInt20963 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ONE_in_ruleValidInt21003 = new BitSet(new long[]{0x0000000000000002L});
@@ -30981,7 +30981,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBooleanType_in_synpred1_InternalDconfig8884 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringType_in_synpred1_InternalDconfig8891 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_synpred1_InternalDconfig8910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRelationalOperator_in_synpred2_InternalDconfig11377 = new BitSet(new long[]{0x1100400800101F70L,0x0000000077009400L,0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleRelationalOperator_in_synpred2_InternalDconfig11377 = new BitSet(new long[]{0x1100401000101F70L,0x0000000077009400L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_synpred2_InternalDconfig11386 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_85_in_synpred2_InternalDconfig11403 = new BitSet(new long[]{0x0000000000000370L,0x00000000000003F0L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_synpred2_InternalDconfig11410 = new BitSet(new long[]{0x0000000000000002L});

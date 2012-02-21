@@ -545,15 +545,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	public EReference getBinding_Source() {
-		return (EReference)bindingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBinding_TargetPath() {
 		return (EReference)bindingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -562,8 +553,8 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinding_Subscript() {
-		return (EReference)bindingEClass.getEStructuralFeatures().get(2);
+	public EReference getBinding_TargetPath() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -572,7 +563,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	public EReference getBinding_Body() {
-		return (EReference)bindingEClass.getEStructuralFeatures().get(3);
+		return (EReference)bindingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -600,6 +591,15 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 */
 	public EReference getBindingTargetPath_Resource() {
 		return (EReference)bindingTargetPathEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindingTargetPath_Subscript() {
+		return (EReference)bindingTargetPathEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1150,14 +1150,14 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEReference(propertyGroupEClass, PROPERTY_GROUP__MEMBERS);
 
 		bindingEClass = createEClass(BINDING);
-		createEReference(bindingEClass, BINDING__SOURCE);
 		createEReference(bindingEClass, BINDING__TARGET_PATH);
-		createEReference(bindingEClass, BINDING__SUBSCRIPT);
+		createEReference(bindingEClass, BINDING__SOURCE);
 		createEReference(bindingEClass, BINDING__BODY);
 
 		bindingTargetPathEClass = createEClass(BINDING_TARGET_PATH);
 		createEReference(bindingTargetPathEClass, BINDING_TARGET_PATH__PROPERTY_REFERENCES);
 		createEReference(bindingTargetPathEClass, BINDING_TARGET_PATH__RESOURCE);
+		createEReference(bindingTargetPathEClass, BINDING_TARGET_PATH__SUBSCRIPT);
 
 		bindingPropertyReferenceEClass = createEClass(BINDING_PROPERTY_REFERENCE);
 		createEReference(bindingPropertyReferenceEClass, BINDING_PROPERTY_REFERENCE__PROPERTY);
@@ -1338,14 +1338,14 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEReference(getPropertyGroup_Members(), this.getPropertyDeclaration(), this.getPropertyDeclaration_Group(), "members", null, 0, -1, PropertyGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinding_Source(), theDMLPackage.getComponent(), null, "source", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_TargetPath(), this.getBindingTargetPath(), null, "targetPath", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBinding_Subscript(), this.getBindingSubscript(), null, "subscript", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_Source(), theDMLPackage.getComponent(), null, "source", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_Body(), this.getBindingBody(), this.getBindingBody_Owner(), "body", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindingTargetPathEClass, BindingTargetPath.class, "BindingTargetPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBindingTargetPath_PropertyReferences(), this.getBindingPropertyReference(), null, "propertyReferences", null, 0, -1, BindingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBindingTargetPath_Resource(), this.getResourceDeclaration(), null, "resource", null, 0, 1, BindingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindingTargetPath_Subscript(), this.getBindingSubscript(), null, "subscript", null, 0, 1, BindingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindingPropertyReferenceEClass, BindingPropertyReference.class, "BindingPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBindingPropertyReference_Property(), this.getSelectionProperty(), null, "property", null, 0, 1, BindingPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

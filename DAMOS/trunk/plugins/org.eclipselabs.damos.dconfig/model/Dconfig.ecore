@@ -88,11 +88,9 @@
         eType="#//PropertyDeclaration" containment="true" eOpposite="#//PropertyDeclaration/group"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Binding">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" eType="#//BindingTargetPath"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//BindingSubscript"
-        unsettable="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BindingBody"
         containment="true" eOpposite="#//BindingBody/owner"/>
   </eClassifiers>
@@ -100,6 +98,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReferences" upperBound="-1"
         eType="#//BindingPropertyReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resource" eType="#//ResourceDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//BindingSubscript"
+        unsettable="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BindingPropertyReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//SelectionProperty"/>

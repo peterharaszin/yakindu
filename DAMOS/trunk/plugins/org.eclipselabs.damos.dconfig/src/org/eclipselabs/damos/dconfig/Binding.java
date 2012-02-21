@@ -17,9 +17,8 @@ import org.eclipselabs.damos.dml.Component;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getTargetPath <em>Target Path</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
@@ -80,59 +79,6 @@ public interface Binding extends EObject {
 	 * @generated
 	 */
 	void setTargetPath(BindingTargetPath value);
-
-	/**
-	 * Returns the value of the '<em><b>Subscript</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Subscript</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subscript</em>' containment reference.
-	 * @see #isSetSubscript()
-	 * @see #unsetSubscript()
-	 * @see #setSubscript(BindingSubscript)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Subscript()
-	 * @model containment="true" unsettable="true"
-	 * @generated
-	 */
-	BindingSubscript getSubscript();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Subscript</em>' containment reference.
-	 * @see #isSetSubscript()
-	 * @see #unsetSubscript()
-	 * @see #getSubscript()
-	 * @generated
-	 */
-	void setSubscript(BindingSubscript value);
-
-	/**
-	 * Unsets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSubscript()
-	 * @see #getSubscript()
-	 * @see #setSubscript(BindingSubscript)
-	 * @generated
-	 */
-	void unsetSubscript();
-
-	/**
-	 * Returns whether the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Subscript</em>' containment reference is set.
-	 * @see #unsetSubscript()
-	 * @see #getSubscript()
-	 * @see #setSubscript(BindingSubscript)
-	 * @generated
-	 */
-	boolean isSetSubscript();
 
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' containment reference.

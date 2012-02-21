@@ -60,7 +60,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinition" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration platform:/resource/org.yakindu.base.types/model/types.ecore#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinition" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration platform:/resource/org.yakindu.base.types/model/types.ecore#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paramTypes" unique="false"
+        upperBound="-1" eType="ecore:EClass platform:/resource/org.yakindu.base.types/model/types.ecore#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalReaction" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Reaction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//ReactionProperties"
         containment="true"/>
@@ -164,10 +167,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleScope" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Scope"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//OperationDefinition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paramTypes" unique="false"
-        upperBound="-1" eType="ecore:EClass platform:/resource/org.yakindu.base.types/model/types.ecore#//Type"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entrypoint" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="Exitpoint" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReactionTrigger" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Trigger">

@@ -1027,31 +1027,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.Operation} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected OperationItemProvider operationItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.Operation}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createOperationAdapter()
-  {
-    if (operationItemProvider == null)
-    {
-      operationItemProvider = new OperationItemProvider(this);
-    }
-
-    return operationItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.Entrypoint} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1775,7 +1750,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     if (hexLiteralItemProvider != null) hexLiteralItemProvider.dispose();
     if (stringLiteralItemProvider != null) stringLiteralItemProvider.dispose();
     if (simpleScopeItemProvider != null) simpleScopeItemProvider.dispose();
-    if (operationItemProvider != null) operationItemProvider.dispose();
     if (entrypointItemProvider != null) entrypointItemProvider.dispose();
     if (exitpointItemProvider != null) exitpointItemProvider.dispose();
     if (reactionTriggerItemProvider != null) reactionTriggerItemProvider.dispose();

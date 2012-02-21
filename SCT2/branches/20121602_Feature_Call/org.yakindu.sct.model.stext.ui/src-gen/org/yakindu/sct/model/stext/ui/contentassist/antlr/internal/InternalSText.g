@@ -4281,11 +4281,11 @@ rule__OperationDefinition__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getOperationDefinitionAccess().getOperationAction_0()); }
+{ before(grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0()); }
 (
 
 )
-{ after(grammarAccess.getOperationDefinitionAccess().getOperationAction_0()); }
+{ after(grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0()); }
 )
 
 ;

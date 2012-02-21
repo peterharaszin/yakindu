@@ -2,6 +2,7 @@
  * <copyright>
  * </copyright>
  *
+
  */
 package org.yakindu.sct.model.stext.stext;
 
@@ -366,15 +367,6 @@ public interface StextFactory extends EFactory
    * @generated
    */
   SimpleScope createSimpleScope();
-
-  /**
-   * Returns a new object of class '<em>Operation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Operation</em>'.
-   * @generated
-   */
-  Operation createOperation();
 
   /**
    * Returns a new object of class '<em>Entrypoint</em>'.

@@ -81,6 +81,7 @@ import org.apache.commons.logging.LogFactory
 import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.apache.commons.logging.LogConfigurationException
 import org.yakindu.base.types.Feature
+import org.yakindu.sct.model.stext.stext.OperationDefinition
 
 class ModelSequencer {
 	 
@@ -154,7 +155,7 @@ class ModelSequencer {
 	
 	def retargetDeclRefs(ExecutionFlow flow) {
 		val allContent = EcoreUtil2::eAllContentsAsList(flow)
-		val declared = allContent.filter(e | e instanceof EventDefinition || e instanceof VariableDefinition || e instanceof Operation).toSet
+		val declared = allContent.filter(e | e instanceof EventDefinition || e instanceof VariableDefinition || e instanceof OperationDefinition).toSet
 		
 		allContent.filter(typeof(TypedElementReferenceExpression)).forEach( ere | ere.retarget(declared) )
 		allContent.filter(typeof(FeatureCall)).forEach( call|call.retarget(declared))
@@ -191,7 +192,7 @@ class ModelSequencer {
 	def dispatch replaced(VariableDefinition vd) {
 		vd.create	
 	}
-	def dispatch replaced(Operation vd) {
+	def dispatch replaced(OperationDefinition vd) {
 		vd.create	
 	}
 	

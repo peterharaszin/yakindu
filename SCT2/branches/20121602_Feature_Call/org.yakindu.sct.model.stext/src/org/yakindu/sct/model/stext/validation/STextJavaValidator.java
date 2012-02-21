@@ -15,13 +15,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.yakindu.base.base.BasePackage;
-import org.yakindu.sct.model.sgraph.SGraphPackage;
+import org.yakindu.base.types.Feature;
+import org.yakindu.base.types.Operation;
+import org.yakindu.base.types.Parameter;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Statement;
@@ -31,11 +34,13 @@ import org.yakindu.sct.model.stext.stext.EntryEvent;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 import org.yakindu.sct.model.stext.stext.EventSpec;
 import org.yakindu.sct.model.stext.stext.ExitEvent;
+import org.yakindu.sct.model.stext.stext.Expression;
+import org.yakindu.sct.model.stext.stext.FeatureCall;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
 import org.yakindu.sct.model.stext.stext.LocalReaction;
 import org.yakindu.sct.model.stext.stext.OnCycleEvent;
-import org.yakindu.sct.model.stext.stext.Operation;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.ReactionTrigger;
 import org.yakindu.sct.model.stext.stext.SimpleScope;
 import org.yakindu.sct.model.stext.stext.StatechartSpecification;
@@ -58,16 +63,35 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	private StaticTypeAnalyzer analyzer;
 
 	@Check
+	public void checkOperationCall(final FeatureCall call) {
+		if (call.getFeature() instanceof Operation && !call.isOperationCall()) {
+			error(call.getFeature().getName()
+					+ " can not be resolved or is not a property", null);
+		}
+	}
+	@Check
+	public void checkOperationArguments(final FeatureCall call) {
+		if (call.getFeature() instanceof Operation) {
+			Operation operation = (Operation) call.getFeature();
+			EList<Parameter> parameters = operation.getParameters();
+			EList<Expression> args = call.getArgs();
+			if (parameters.size() != args.size()) {
+				error("Wrong number of arguments, expected " + parameters, null);
+			}
+		}
+	}
+
+	@Check
 	public void checkExpression(final Statement statement) {
-		//try {
-		//	analyzer.check(statement);
-//		} catch (TypeCheckException e) {
-//			error(e.getMessage(), null);
-//		} catch (IllegalArgumentException e) {
-//			// This happens, when the expression is not completed for Unhandled
-//			// parameter types: [null]
-//			// We can safely ignore this exception
-//		}
+		try {
+			analyzer.check(statement);
+		} catch (TypeCheckException e) {
+			error(e.getMessage(), null);
+		} catch (IllegalArgumentException e) {
+			// This happens, when the expression is not completed for Unhandled
+			// parameter types: [null]
+			// We can safely ignore this exception
+		}
 	}
 
 	@Check(CheckType.FAST)
@@ -122,10 +146,10 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	}
 
 	@Check(CheckType.FAST)
-	public void checkOperation(Operation operation) {
+	public void checkOperation(OperationDefinition operation) {
 		if (operation.eContainer() instanceof SimpleScope) {
 			error("Operations can not be defined in states.", operation,
-					StextPackage.Literals.OPERATION__PARAM_TYPES,
+					StextPackage.Literals.OPERATION_DEFINITION__PARAM_TYPES,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX);
 		}
 	}

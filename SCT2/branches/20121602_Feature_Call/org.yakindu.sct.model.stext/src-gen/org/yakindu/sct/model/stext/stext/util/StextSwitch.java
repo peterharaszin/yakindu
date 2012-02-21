@@ -2,6 +2,7 @@
  * <copyright>
  * </copyright>
  *
+
  */
 package org.yakindu.sct.model.stext.stext.util;
 
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.yakindu.base.base.NamedElement;
 
 import org.yakindu.base.types.Feature;
+import org.yakindu.base.types.Operation;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.TypedElement;
 
@@ -214,7 +216,7 @@ public class StextSwitch<T> extends Switch<T>
         OperationDefinition operationDefinition = (OperationDefinition)theEObject;
         T result = caseOperationDefinition(operationDefinition);
         if (result == null) result = caseDeclaration(operationDefinition);
-        if (result == null) result = caseTypes_Operation(operationDefinition);
+        if (result == null) result = caseOperation(operationDefinition);
         if (result == null) result = caseFeature(operationDefinition);
         if (result == null) result = caseNamedElement(operationDefinition);
         if (result == null) result = caseTypedElement(operationDefinition);
@@ -405,19 +407,6 @@ public class StextSwitch<T> extends Switch<T>
         SimpleScope simpleScope = (SimpleScope)theEObject;
         T result = caseSimpleScope(simpleScope);
         if (result == null) result = caseScope(simpleScope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case StextPackage.OPERATION:
-      {
-        Operation operation = (Operation)theEObject;
-        T result = caseOperation(operation);
-        if (result == null) result = caseOperationDefinition(operation);
-        if (result == null) result = caseDeclaration(operation);
-        if (result == null) result = caseTypes_Operation(operation);
-        if (result == null) result = caseFeature(operation);
-        if (result == null) result = caseNamedElement(operation);
-        if (result == null) result = caseTypedElement(operation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1239,22 +1228,6 @@ public class StextSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseOperation(Operation object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Entrypoint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1777,7 +1750,7 @@ public class StextSwitch<T> extends Switch<T>
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypes_Operation(org.yakindu.base.types.Operation object)
+  public T caseOperation(Operation object)
   {
     return null;
   }

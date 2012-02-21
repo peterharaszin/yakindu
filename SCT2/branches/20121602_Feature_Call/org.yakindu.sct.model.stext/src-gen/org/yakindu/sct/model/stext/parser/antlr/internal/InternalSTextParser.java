@@ -3498,7 +3498,7 @@ public class InternalSTextParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getOperationDefinitionAccess().getOperationAction_0(),
+                          grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0(),
                           current);
                   
             }
@@ -13435,8 +13435,9 @@ public class InternalSTextParser extends AbstractInternalAntlrParser {
     static final String DFA32_specialS =
         "\6\uffff}>";
     static final String[] DFA32_transitionS = {
-            "\1\2\5\1\4\uffff\3\1\1\uffff\1\1\1\uffff\2\1\1\uffff\1\1\2\uffff"+
-            "\2\1\2\uffff\2\1\3\uffff\1\1\2\uffff\1\3\6\1\7\uffff\10\1",
+            "\1\2\5\1\4\uffff\3\1\1\uffff\1\1\1\uffff\2\1\1\uffff\1\1\2"+
+            "\uffff\2\1\2\uffff\2\1\3\uffff\1\1\2\uffff\1\3\6\1\7\uffff\10"+
+            "\1",
             "",
             "\1\1\3\uffff\1\4\1\1\1\uffff\1\1\2\uffff\1\3",
             "",

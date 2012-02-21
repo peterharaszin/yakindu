@@ -2,6 +2,7 @@
  * <copyright>
  * </copyright>
  *
+
  */
 package org.yakindu.sct.model.stext.stext.impl;
 
@@ -61,7 +62,6 @@ import org.yakindu.sct.model.stext.stext.NumericalAddSubtractExpression;
 import org.yakindu.sct.model.stext.stext.NumericalMultiplyDivideExpression;
 import org.yakindu.sct.model.stext.stext.NumericalUnaryExpression;
 import org.yakindu.sct.model.stext.stext.OnCycleEvent;
-import org.yakindu.sct.model.stext.stext.Operation;
 import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.PrimitiveValueExpression;
 import org.yakindu.sct.model.stext.stext.ReactionEffect;
@@ -366,13 +366,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * @generated
    */
   private EClass simpleScopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass operationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -970,6 +963,16 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getOperationDefinition_ParamTypes()
+  {
+    return (EReference)operationDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLocalReaction()
   {
     return localReactionEClass;
@@ -1333,26 +1336,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
   public EClass getSimpleScope()
   {
     return simpleScopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getOperation()
-  {
-    return operationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getOperation_ParamTypes()
-  {
-    return (EReference)operationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2189,6 +2172,7 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     createEReference(variableDefinitionEClass, VARIABLE_DEFINITION__INITIAL_VALUE);
 
     operationDefinitionEClass = createEClass(OPERATION_DEFINITION);
+    createEReference(operationDefinitionEClass, OPERATION_DEFINITION__PARAM_TYPES);
 
     localReactionEClass = createEClass(LOCAL_REACTION);
     createEReference(localReactionEClass, LOCAL_REACTION__PROPERTIES);
@@ -2249,9 +2233,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     createEAttribute(stringLiteralEClass, STRING_LITERAL__VALUE);
 
     simpleScopeEClass = createEClass(SIMPLE_SCOPE);
-
-    operationEClass = createEClass(OPERATION);
-    createEReference(operationEClass, OPERATION__PARAM_TYPES);
 
     entrypointEClass = createEClass(ENTRYPOINT);
 
@@ -2422,7 +2403,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     hexLiteralEClass.getESuperTypes().add(this.getLiteral());
     stringLiteralEClass.getESuperTypes().add(this.getLiteral());
     simpleScopeEClass.getESuperTypes().add(theSGraphPackage.getScope());
-    operationEClass.getESuperTypes().add(this.getOperationDefinition());
     entrypointEClass.getESuperTypes().add(theSGraphPackage.getDeclaration());
     exitpointEClass.getESuperTypes().add(theSGraphPackage.getDeclaration());
     reactionTriggerEClass.getESuperTypes().add(theSGraphPackage.getTrigger());
@@ -2492,6 +2472,7 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     initEReference(getVariableDefinition_InitialValue(), this.getExpression(), null, "initialValue", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(operationDefinitionEClass, OperationDefinition.class, "OperationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOperationDefinition_ParamTypes(), theTypesPackage.getType(), null, "paramTypes", null, 0, -1, OperationDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(localReactionEClass, LocalReaction.class, "LocalReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLocalReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, LocalReaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2552,9 +2533,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     initEAttribute(getStringLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(simpleScopeEClass, SimpleScope.class, "SimpleScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOperation_ParamTypes(), theTypesPackage.getType(), null, "paramTypes", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entrypointEClass, Entrypoint.class, "Entrypoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

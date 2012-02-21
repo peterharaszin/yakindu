@@ -73,6 +73,7 @@ public class OperationDefinitionItemProvider
       super.getPropertyDescriptors(object);
 
       addTypePropertyDescriptor(object);
+      addParamTypesPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -92,6 +93,29 @@ public class OperationDefinitionItemProvider
          getString("_UI_TypedElement_type_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_type_feature", "_UI_TypedElement_type"),
          TypesPackage.Literals.TYPED_ELEMENT__TYPE,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Param Types feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addParamTypesPropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_OperationDefinition_paramTypes_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_OperationDefinition_paramTypes_feature", "_UI_OperationDefinition_type"),
+         StextPackage.Literals.OPERATION_DEFINITION__PARAM_TYPES,
          true,
          false,
          true,

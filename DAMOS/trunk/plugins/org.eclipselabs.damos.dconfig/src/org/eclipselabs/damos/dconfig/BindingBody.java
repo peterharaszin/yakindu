@@ -9,24 +9,24 @@ package org.eclipselabs.damos.dconfig;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mapping Body</b></em>'.
+ * A representation of the model object '<em><b>Binding Body</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.MappingBody#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.BindingBody#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMappingBody()
+ * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingBody()
  * @model
  * @generated
  */
-public interface MappingBody extends PropertyContainer {
+public interface BindingBody extends PropertyContainer {
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dconfig.Mapping#getBody <em>Body</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
@@ -34,22 +34,22 @@ public interface MappingBody extends PropertyContainer {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owner</em>' container reference.
-	 * @see #setOwner(Mapping)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMappingBody_Owner()
-	 * @see org.eclipselabs.damos.dconfig.Mapping#getBody
+	 * @see #setOwner(Binding)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingBody_Owner()
+	 * @see org.eclipselabs.damos.dconfig.Binding#getBody
 	 * @model opposite="body" transient="false"
 	 * @generated
 	 */
-	Mapping getOwner();
+	Binding getOwner();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.MappingBody#getOwner <em>Owner</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.BindingBody#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owner</em>' container reference.
 	 * @see #getOwner()
 	 * @generated
 	 */
-	void setOwner(Mapping value);
+	void setOwner(Binding value);
 
-} // MappingBody
+} // BindingBody

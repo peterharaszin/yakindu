@@ -708,17 +708,17 @@ ruleSystemConfigurationBody returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSystemConfigurationBodyAccess().getMappingsMappingParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getSystemConfigurationBodyAccess().getBindingsBindingParserRuleCall_2_1_0()); 
 	    }
-		lv_mappings_3_0=ruleMapping		{
+		lv_bindings_3_0=ruleBinding		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSystemConfigurationBodyRule());
 	        }
        		add(
        			$current, 
-       			"mappings",
-        		lv_mappings_3_0, 
-        		"Mapping");
+       			"bindings",
+        		lv_bindings_3_0, 
+        		"Binding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1140,33 +1140,33 @@ ruleComputationProperty returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMapping
-entryRuleMapping returns [EObject current=null] 
+// Entry rule entryRuleBinding
+entryRuleBinding returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMappingRule()); }
-	 iv_ruleMapping=ruleMapping 
-	 { $current=$iv_ruleMapping.current; } 
+	{ newCompositeNode(grammarAccess.getBindingRule()); }
+	 iv_ruleBinding=ruleBinding 
+	 { $current=$iv_ruleBinding.current; } 
 	 EOF 
 ;
 
-// Rule Mapping
-ruleMapping returns [EObject current=null] 
+// Rule Binding
+ruleBinding returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='map' 
+(	otherlv_0='bind' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getMappingAccess().getMapKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getBindingAccess().getBindKeyword_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMappingRule());
+	            $current = createModelElement(grammarAccess.getBindingRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getSourceComponentCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getBindingAccess().getSourceComponentCrossReference_1_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
@@ -1175,66 +1175,66 @@ ruleMapping returns [EObject current=null]
 )
 )	otherlv_2='to' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getMappingAccess().getToKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getBindingAccess().getToKeyword_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getTargetPathMappingTargetPathParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getBindingAccess().getTargetPathBindingTargetPathParserRuleCall_3_0()); 
 	    }
-		lv_targetPath_3_0=ruleMappingTargetPath		{
+		lv_targetPath_3_0=ruleBindingTargetPath		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingRule());
 	        }
        		set(
        			$current, 
        			"targetPath",
         		lv_targetPath_3_0, 
-        		"MappingTargetPath");
+        		"BindingTargetPath");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )(	otherlv_4='[' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getMappingAccess().getLeftSquareBracketKeyword_4_0());
+    	newLeafNode(otherlv_4, grammarAccess.getBindingAccess().getLeftSquareBracketKeyword_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getSubscriptMappingSubscriptParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getBindingAccess().getSubscriptBindingSubscriptParserRuleCall_4_1_0()); 
 	    }
-		lv_subscript_5_0=ruleMappingSubscript		{
+		lv_subscript_5_0=ruleBindingSubscript		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingRule());
 	        }
        		set(
        			$current, 
        			"subscript",
         		lv_subscript_5_0, 
-        		"MappingSubscript");
+        		"BindingSubscript");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )	otherlv_6=']' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getMappingAccess().getRightSquareBracketKeyword_4_2());
+    	newLeafNode(otherlv_6, grammarAccess.getBindingAccess().getRightSquareBracketKeyword_4_2());
     }
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingAccess().getBodyMappingBodyParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getBindingAccess().getBodyBindingBodyParserRuleCall_5_0()); 
 	    }
-		lv_body_7_0=ruleMappingBody		{
+		lv_body_7_0=ruleBindingBody		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingRule());
 	        }
        		set(
        			$current, 
        			"body",
         		lv_body_7_0, 
-        		"MappingBody");
+        		"BindingBody");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1246,73 +1246,73 @@ ruleMapping returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMappingTargetPath
-entryRuleMappingTargetPath returns [EObject current=null] 
+// Entry rule entryRuleBindingTargetPath
+entryRuleBindingTargetPath returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMappingTargetPathRule()); }
-	 iv_ruleMappingTargetPath=ruleMappingTargetPath 
-	 { $current=$iv_ruleMappingTargetPath.current; } 
+	{ newCompositeNode(grammarAccess.getBindingTargetPathRule()); }
+	 iv_ruleBindingTargetPath=ruleBindingTargetPath 
+	 { $current=$iv_ruleBindingTargetPath.current; } 
 	 EOF 
 ;
 
-// Rule MappingTargetPath
-ruleMappingTargetPath returns [EObject current=null] 
+// Rule BindingTargetPath
+ruleBindingTargetPath returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getPropertyReferencesBindingPropertyReferenceParserRuleCall_0_0()); 
 	    }
-		lv_propertyReferences_0_0=ruleMappingPropertyReference		{
+		lv_propertyReferences_0_0=ruleBindingPropertyReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingTargetPathRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingTargetPathRule());
 	        }
        		add(
        			$current, 
        			"propertyReferences",
         		lv_propertyReferences_0_0, 
-        		"MappingPropertyReference");
+        		"BindingPropertyReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )(	otherlv_1='.' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getBindingTargetPathAccess().getFullStopKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getPropertyReferencesBindingPropertyReferenceParserRuleCall_1_1_0()); 
 	    }
-		lv_propertyReferences_2_0=ruleMappingPropertyReference		{
+		lv_propertyReferences_2_0=ruleBindingPropertyReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingTargetPathRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingTargetPathRule());
 	        }
        		add(
        			$current, 
        			"propertyReferences",
         		lv_propertyReferences_2_0, 
-        		"MappingPropertyReference");
+        		"BindingPropertyReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))*	otherlv_3='.' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMappingTargetPathAccess().getFullStopKeyword_2());
+    	newLeafNode(otherlv_3, grammarAccess.getBindingTargetPathAccess().getFullStopKeyword_2());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMappingTargetPathRule());
+	            $current = createModelElement(grammarAccess.getBindingTargetPathRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getMappingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0()); 
+	        newCompositeNode(grammarAccess.getBindingTargetPathAccess().getResourceResourceDeclarationCrossReference_3_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
@@ -1326,17 +1326,17 @@ ruleMappingTargetPath returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMappingPropertyReference
-entryRuleMappingPropertyReference returns [EObject current=null] 
+// Entry rule entryRuleBindingPropertyReference
+entryRuleBindingPropertyReference returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMappingPropertyReferenceRule()); }
-	 iv_ruleMappingPropertyReference=ruleMappingPropertyReference 
-	 { $current=$iv_ruleMappingPropertyReference.current; } 
+	{ newCompositeNode(grammarAccess.getBindingPropertyReferenceRule()); }
+	 iv_ruleBindingPropertyReference=ruleBindingPropertyReference 
+	 { $current=$iv_ruleBindingPropertyReference.current; } 
 	 EOF 
 ;
 
-// Rule MappingPropertyReference
-ruleMappingPropertyReference returns [EObject current=null] 
+// Rule BindingPropertyReference
+ruleBindingPropertyReference returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -1344,11 +1344,11 @@ ruleMappingPropertyReference returns [EObject current=null]
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMappingPropertyReferenceRule());
+	            $current = createModelElement(grammarAccess.getBindingPropertyReferenceRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getMappingPropertyReferenceAccess().getPropertySelectionPropertyCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getBindingPropertyReferenceAccess().getPropertySelectionPropertyCrossReference_0()); 
 	    }
 		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
@@ -1362,38 +1362,38 @@ ruleMappingPropertyReference returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMappingBody
-entryRuleMappingBody returns [EObject current=null] 
+// Entry rule entryRuleBindingBody
+entryRuleBindingBody returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMappingBodyRule()); }
-	 iv_ruleMappingBody=ruleMappingBody 
-	 { $current=$iv_ruleMappingBody.current; } 
+	{ newCompositeNode(grammarAccess.getBindingBodyRule()); }
+	 iv_ruleBindingBody=ruleBindingBody 
+	 { $current=$iv_ruleBindingBody.current; } 
 	 EOF 
 ;
 
-// Rule MappingBody
-ruleMappingBody returns [EObject current=null] 
+// Rule BindingBody
+ruleBindingBody returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getMappingBodyAccess().getMappingBodyAction_0(),
+            grammarAccess.getBindingBodyAccess().getBindingBodyAction_0(),
             $current);
     }
 )	otherlv_1='{' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getMappingBodyAccess().getLeftCurlyBracketKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getBindingBodyAccess().getLeftCurlyBracketKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingBodyAccess().getPropertiesDeclaredPropertyParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getBindingBodyAccess().getPropertiesDeclaredPropertyParserRuleCall_2_0()); 
 	    }
 		lv_properties_2_0=ruleDeclaredProperty		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingBodyRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingBodyRule());
 	        }
        		add(
        			$current, 
@@ -1406,7 +1406,7 @@ ruleMappingBody returns [EObject current=null]
 )
 )*	otherlv_3='}' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMappingBodyAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getBindingBodyAccess().getRightCurlyBracketKeyword_3());
     }
 )
 ;
@@ -1415,28 +1415,28 @@ ruleMappingBody returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMappingSubscript
-entryRuleMappingSubscript returns [EObject current=null] 
+// Entry rule entryRuleBindingSubscript
+entryRuleBindingSubscript returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMappingSubscriptRule()); }
-	 iv_ruleMappingSubscript=ruleMappingSubscript 
-	 { $current=$iv_ruleMappingSubscript.current; } 
+	{ newCompositeNode(grammarAccess.getBindingSubscriptRule()); }
+	 iv_ruleBindingSubscript=ruleBindingSubscript 
+	 { $current=$iv_ruleBindingSubscript.current; } 
 	 EOF 
 ;
 
-// Rule MappingSubscript
-ruleMappingSubscript returns [EObject current=null] 
+// Rule BindingSubscript
+ruleBindingSubscript returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMappingSubscriptAccess().getIndexValidIntParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getBindingSubscriptAccess().getIndexValidIntParserRuleCall_0()); 
 	    }
 		lv_index_0_0=ruleValidInt		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMappingSubscriptRule());
+	            $current = createModelElementForParent(grammarAccess.getBindingSubscriptRule());
 	        }
        		set(
        			$current, 

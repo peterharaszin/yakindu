@@ -14,14 +14,14 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingPropertyReference;
-import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
@@ -67,7 +67,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return Scopes.scopeFor(Iterables.filter(context.getOwner().getSelection().getPropertyDeclarations(), SimplePropertyDeclaration.class));
 	}
 
-	public IScope scope_SimpleProperty_declaration(MappingBody context, EReference reference) {
+	public IScope scope_SimpleProperty_declaration(BindingBody context, EReference reference) {
 		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SimplePropertyDeclaration.class));
 	}
 
@@ -80,7 +80,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return Scopes.scopeFor(Iterables.filter(context.getOwner().getSelection().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
 	}
 
-	public IScope scope_SelectionProperty_declaration(MappingBody context, EReference reference) {
+	public IScope scope_SelectionProperty_declaration(BindingBody context, EReference reference) {
 		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
 	}
 
@@ -175,7 +175,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 				ComputationModelPackage.eINSTANCE.getComputationModel()));
 	}
 
-	public IScope scope_Mapping_source(SystemConfiguration context, EReference reference) {
+	public IScope scope_Binding_source(SystemConfiguration context, EReference reference) {
 		Fragment contextFragment = getContextFragment(context);
 		if (contextFragment == null) {
 			return IScope.NULLSCOPE;
@@ -184,40 +184,40 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), Component.class));
 	}
 
-	public IScope scope_MappingPropertyReference_property(Mapping context, EReference reference) {
-		MappingPropertyReference lastPropertyReference = null;
+	public IScope scope_BindingPropertyReference_property(Binding context, EReference reference) {
+		BindingPropertyReference lastPropertyReference = null;
 		
-		MappingTargetPath targetPath = context.getTargetPath();
+		BindingTargetPath targetPath = context.getTargetPath();
 		if (targetPath != null) {
-			for (MappingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
+			for (BindingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
 				if (propertyReference.getProperty() == null) {
 					break;
 				}
 				if (propertyReference.getProperty().eIsProxy()) {
-					return doScope_MappingPropertyReference_property(context, null);
+					return doScope_BindingPropertyReference_property(context, null);
 				}
 				lastPropertyReference = propertyReference;
 			}
 		}
 		
-		return doScope_MappingPropertyReference_property(context, lastPropertyReference);
+		return doScope_BindingPropertyReference_property(context, lastPropertyReference);
 	}
 	
-	public IScope scope_MappingPropertyReference_property(MappingPropertyReference context, EReference reference) {
-		MappingTargetPath targetPath = (MappingTargetPath) context.eContainer();
+	public IScope scope_BindingPropertyReference_property(BindingPropertyReference context, EReference reference) {
+		BindingTargetPath targetPath = (BindingTargetPath) context.eContainer();
 		
-		MappingPropertyReference lastPropertyReference = null;
-		for (MappingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
+		BindingPropertyReference lastPropertyReference = null;
+		for (BindingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
 			if (propertyReference == context) {
 				break;
 			}
 			lastPropertyReference = propertyReference;
 		}
 		
-		return doScope_MappingPropertyReference_property((Mapping) targetPath.eContainer(), lastPropertyReference);
+		return doScope_BindingPropertyReference_property((Binding) targetPath.eContainer(), lastPropertyReference);
 	}
 
-	private IScope doScope_MappingPropertyReference_property(Mapping context, MappingPropertyReference lastPropertyReference) {
+	private IScope doScope_BindingPropertyReference_property(Binding context, BindingPropertyReference lastPropertyReference) {
 		List<Property> properties = new ArrayList<Property>();
 		if (lastPropertyReference == null) {
 			EObject eObject = context;
@@ -239,10 +239,10 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return Scopes.scopeFor(properties);
 	}
 
-	public IScope scope_MappingTargetPath_resource(MappingTargetPath context, EReference reference) {
+	public IScope scope_BindingTargetPath_resource(BindingTargetPath context, EReference reference) {
 		if (!context.getPropertyReferences().isEmpty()) {
-			EList<MappingPropertyReference> properties = context.getPropertyReferences();
-			MappingPropertyReference lastPropertyReference = properties.get(properties.size() - 1);
+			EList<BindingPropertyReference> properties = context.getPropertyReferences();
+			BindingPropertyReference lastPropertyReference = properties.get(properties.size() - 1);
 			if (lastPropertyReference != null && lastPropertyReference.getProperty() != null && !lastPropertyReference.getProperty().eIsProxy()) {
 				return Scopes.scopeFor(lastPropertyReference.getProperty().getSelection().getResourceDeclarations());
 			}

@@ -39,7 +39,7 @@ SubsystemConfiguration:
 SystemConfigurationBody:
 	{SystemConfigurationBody} '{'
 		(properties+=Property |
-		mappings+=Mapping |
+		bindings+=Binding |
 		componentConfigurations+=ComponentConfiguration |
 		fragmentConfigurations+=FragmentConfiguration |
 		subsystemConfigurations+=SubsystemConfiguration)*
@@ -66,20 +66,20 @@ ComputationProperty:
 		computationModel=ComputationModel
 	'}';
 
-Mapping:
-	'map' source=[Component|ValidID] 'to' targetPath=MappingTargetPath ('[' subscript=MappingSubscript ']')?
-		(body=MappingBody)?;
+Binding:
+	'bind' source=[Component|ValidID] 'to' targetPath=BindingTargetPath ('[' subscript=BindingSubscript ']')?
+		(body=BindingBody)?;
 
-MappingTargetPath:
-	propertyReferences+=MappingPropertyReference ('.' propertyReferences+=MappingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID];
+BindingTargetPath:
+	propertyReferences+=BindingPropertyReference ('.' propertyReferences+=BindingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID];
 
-MappingPropertyReference:
+BindingPropertyReference:
 	property=[SelectionProperty|ValidID];
 
-MappingBody:
-	{MappingBody} '{' (properties+=DeclaredProperty)* '}';
+BindingBody:
+	{BindingBody} '{' (properties+=DeclaredProperty)* '}';
 
-MappingSubscript:
+BindingSubscript:
 	index=ValidInt;
 
 ComputationModel:

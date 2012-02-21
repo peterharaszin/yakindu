@@ -12,30 +12,30 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
-import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dml.Component;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping</b></em>'.
+ * An implementation of the model object '<em><b>Binding</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getTargetPath <em>Target Path</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getSubscript <em>Subscript</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getTargetPath <em>Target Path</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getSubscript <em>Subscript</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingImpl extends EObjectImpl implements Mapping {
+public class BindingImpl extends EObjectImpl implements Binding {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected MappingTargetPath targetPath;
+	protected BindingTargetPath targetPath;
 
 	/**
 	 * The cached value of the '{@link #getSubscript() <em>Subscript</em>}' containment reference.
@@ -64,7 +64,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected MappingSubscript subscript;
+	protected BindingSubscript subscript;
 
 	/**
 	 * This is true if the Subscript containment reference has been set.
@@ -83,14 +83,14 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected MappingBody body;
+	protected BindingBody body;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingImpl() {
+	protected BindingImpl() {
 		super();
 	}
 
@@ -101,7 +101,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.MAPPING;
+		return DconfigPackage.Literals.BINDING;
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			source = (Component)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.MAPPING__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.BINDING__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -139,7 +139,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 		Component oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingTargetPath getTargetPath() {
+	public BindingTargetPath getTargetPath() {
 		return targetPath;
 	}
 
@@ -156,11 +156,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetPath(MappingTargetPath newTargetPath, NotificationChain msgs) {
-		MappingTargetPath oldTargetPath = targetPath;
+	public NotificationChain basicSetTargetPath(BindingTargetPath newTargetPath, NotificationChain msgs) {
+		BindingTargetPath oldTargetPath = targetPath;
 		targetPath = newTargetPath;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_PATH, oldTargetPath, newTargetPath);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET_PATH, oldTargetPath, newTargetPath);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -171,18 +171,18 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetPath(MappingTargetPath newTargetPath) {
+	public void setTargetPath(BindingTargetPath newTargetPath) {
 		if (newTargetPath != targetPath) {
 			NotificationChain msgs = null;
 			if (targetPath != null)
-				msgs = ((InternalEObject)targetPath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__TARGET_PATH, null, msgs);
+				msgs = ((InternalEObject)targetPath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET_PATH, null, msgs);
 			if (newTargetPath != null)
-				msgs = ((InternalEObject)newTargetPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__TARGET_PATH, null, msgs);
+				msgs = ((InternalEObject)newTargetPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET_PATH, null, msgs);
 			msgs = basicSetTargetPath(newTargetPath, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__TARGET_PATH, newTargetPath, newTargetPath));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET_PATH, newTargetPath, newTargetPath));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingSubscript getSubscript() {
+	public BindingSubscript getSubscript() {
 		return subscript;
 	}
 
@@ -199,13 +199,13 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSubscript(MappingSubscript newSubscript, NotificationChain msgs) {
-		MappingSubscript oldSubscript = subscript;
+	public NotificationChain basicSetSubscript(BindingSubscript newSubscript, NotificationChain msgs) {
+		BindingSubscript oldSubscript = subscript;
 		subscript = newSubscript;
 		boolean oldSubscriptESet = subscriptESet;
 		subscriptESet = true;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__SUBSCRIPT, oldSubscript, newSubscript, !oldSubscriptESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SUBSCRIPT, oldSubscript, newSubscript, !oldSubscriptESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -216,13 +216,13 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSubscript(MappingSubscript newSubscript) {
+	public void setSubscript(BindingSubscript newSubscript) {
 		if (newSubscript != subscript) {
 			NotificationChain msgs = null;
 			if (subscript != null)
-				msgs = ((InternalEObject)subscript).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__SUBSCRIPT, null, msgs);
+				msgs = ((InternalEObject)subscript).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__SUBSCRIPT, null, msgs);
 			if (newSubscript != null)
-				msgs = ((InternalEObject)newSubscript).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__SUBSCRIPT, null, msgs);
+				msgs = ((InternalEObject)newSubscript).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__SUBSCRIPT, null, msgs);
 			msgs = basicSetSubscript(newSubscript, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -230,7 +230,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			boolean oldSubscriptESet = subscriptESet;
 			subscriptESet = true;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__SUBSCRIPT, newSubscript, newSubscript, !oldSubscriptESet));
+				eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SUBSCRIPT, newSubscript, newSubscript, !oldSubscriptESet));
 		}
 	}
 
@@ -240,12 +240,12 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 */
 	public NotificationChain basicUnsetSubscript(NotificationChain msgs) {
-		MappingSubscript oldSubscript = subscript;
+		BindingSubscript oldSubscript = subscript;
 		subscript = null;
 		boolean oldSubscriptESet = subscriptESet;
 		subscriptESet = false;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DconfigPackage.MAPPING__SUBSCRIPT, oldSubscript, null, oldSubscriptESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DconfigPackage.BINDING__SUBSCRIPT, oldSubscript, null, oldSubscriptESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -259,7 +259,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	public void unsetSubscript() {
 		if (subscript != null) {
 			NotificationChain msgs = null;
-			msgs = ((InternalEObject)subscript).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__SUBSCRIPT, null, msgs);
+			msgs = ((InternalEObject)subscript).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__SUBSCRIPT, null, msgs);
 			msgs = basicUnsetSubscript(msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -267,7 +267,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 			boolean oldSubscriptESet = subscriptESet;
 			subscriptESet = false;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, DconfigPackage.MAPPING__SUBSCRIPT, null, null, oldSubscriptESet));
+				eNotify(new ENotificationImpl(this, Notification.UNSET, DconfigPackage.BINDING__SUBSCRIPT, null, null, oldSubscriptESet));
 		}
 	}
 
@@ -285,7 +285,7 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingBody getBody() {
+	public BindingBody getBody() {
 		return body;
 	}
 
@@ -294,11 +294,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBody(MappingBody newBody, NotificationChain msgs) {
-		MappingBody oldBody = body;
+	public NotificationChain basicSetBody(BindingBody newBody, NotificationChain msgs) {
+		BindingBody oldBody = body;
 		body = newBody;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__BODY, oldBody, newBody);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__BODY, oldBody, newBody);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -309,18 +309,18 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(MappingBody newBody) {
+	public void setBody(BindingBody newBody) {
 		if (newBody != body) {
 			NotificationChain msgs = null;
 			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, DconfigPackage.MAPPING_BODY__OWNER, MappingBody.class, msgs);
+				msgs = ((InternalEObject)body).eInverseRemove(this, DconfigPackage.BINDING_BODY__OWNER, BindingBody.class, msgs);
 			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, DconfigPackage.MAPPING_BODY__OWNER, MappingBody.class, msgs);
+				msgs = ((InternalEObject)newBody).eInverseAdd(this, DconfigPackage.BINDING_BODY__OWNER, BindingBody.class, msgs);
 			msgs = basicSetBody(newBody, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING__BODY, newBody, newBody));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__BODY, newBody, newBody));
 	}
 
 	/**
@@ -331,10 +331,10 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__BODY:
+			case DconfigPackage.BINDING__BODY:
 				if (body != null)
-					msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.MAPPING__BODY, null, msgs);
-				return basicSetBody((MappingBody)otherEnd, msgs);
+					msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__BODY, null, msgs);
+				return basicSetBody((BindingBody)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -347,11 +347,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__TARGET_PATH:
+			case DconfigPackage.BINDING__TARGET_PATH:
 				return basicSetTargetPath(null, msgs);
-			case DconfigPackage.MAPPING__SUBSCRIPT:
+			case DconfigPackage.BINDING__SUBSCRIPT:
 				return basicUnsetSubscript(msgs);
-			case DconfigPackage.MAPPING__BODY:
+			case DconfigPackage.BINDING__BODY:
 				return basicSetBody(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -365,14 +365,14 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__SOURCE:
+			case DconfigPackage.BINDING__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case DconfigPackage.MAPPING__TARGET_PATH:
+			case DconfigPackage.BINDING__TARGET_PATH:
 				return getTargetPath();
-			case DconfigPackage.MAPPING__SUBSCRIPT:
+			case DconfigPackage.BINDING__SUBSCRIPT:
 				return getSubscript();
-			case DconfigPackage.MAPPING__BODY:
+			case DconfigPackage.BINDING__BODY:
 				return getBody();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -386,17 +386,17 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__SOURCE:
+			case DconfigPackage.BINDING__SOURCE:
 				setSource((Component)newValue);
 				return;
-			case DconfigPackage.MAPPING__TARGET_PATH:
-				setTargetPath((MappingTargetPath)newValue);
+			case DconfigPackage.BINDING__TARGET_PATH:
+				setTargetPath((BindingTargetPath)newValue);
 				return;
-			case DconfigPackage.MAPPING__SUBSCRIPT:
-				setSubscript((MappingSubscript)newValue);
+			case DconfigPackage.BINDING__SUBSCRIPT:
+				setSubscript((BindingSubscript)newValue);
 				return;
-			case DconfigPackage.MAPPING__BODY:
-				setBody((MappingBody)newValue);
+			case DconfigPackage.BINDING__BODY:
+				setBody((BindingBody)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -410,17 +410,17 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__SOURCE:
+			case DconfigPackage.BINDING__SOURCE:
 				setSource((Component)null);
 				return;
-			case DconfigPackage.MAPPING__TARGET_PATH:
-				setTargetPath((MappingTargetPath)null);
+			case DconfigPackage.BINDING__TARGET_PATH:
+				setTargetPath((BindingTargetPath)null);
 				return;
-			case DconfigPackage.MAPPING__SUBSCRIPT:
+			case DconfigPackage.BINDING__SUBSCRIPT:
 				unsetSubscript();
 				return;
-			case DconfigPackage.MAPPING__BODY:
-				setBody((MappingBody)null);
+			case DconfigPackage.BINDING__BODY:
+				setBody((BindingBody)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -434,16 +434,16 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING__SOURCE:
+			case DconfigPackage.BINDING__SOURCE:
 				return source != null;
-			case DconfigPackage.MAPPING__TARGET_PATH:
+			case DconfigPackage.BINDING__TARGET_PATH:
 				return targetPath != null;
-			case DconfigPackage.MAPPING__SUBSCRIPT:
+			case DconfigPackage.BINDING__SUBSCRIPT:
 				return isSetSubscript();
-			case DconfigPackage.MAPPING__BODY:
+			case DconfigPackage.BINDING__BODY:
 				return body != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MappingImpl
+} //BindingImpl

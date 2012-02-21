@@ -87,28 +87,28 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//PropertyDeclaration" containment="true" eOpposite="#//PropertyDeclaration/group"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Mapping">
+  <eClassifiers xsi:type="ecore:EClass" name="Binding">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" eType="#//MappingTargetPath"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" eType="#//BindingTargetPath"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//MappingSubscript"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//BindingSubscript"
         unsettable="true" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//MappingBody"
-        containment="true" eOpposite="#//MappingBody/owner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BindingBody"
+        containment="true" eOpposite="#//BindingBody/owner"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingTargetPath">
+  <eClassifiers xsi:type="ecore:EClass" name="BindingTargetPath">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReferences" upperBound="-1"
-        eType="#//MappingPropertyReference" containment="true"/>
+        eType="#//BindingPropertyReference" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resource" eType="#//ResourceDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingPropertyReference">
+  <eClassifiers xsi:type="ecore:EClass" name="BindingPropertyReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//SelectionProperty"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingBody" eSuperTypes="#//PropertyContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Mapping"
-        eOpposite="#//Mapping/body"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BindingBody" eSuperTypes="#//PropertyContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Binding"
+        eOpposite="#//Binding/body"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingSubscript">
+  <eClassifiers xsi:type="ecore:EClass" name="BindingSubscript">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceDeclaration" eSuperTypes="#//PropertyDeclarationContainer">
@@ -127,8 +127,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="SystemConfigurationBody" eSuperTypes="#//PropertyContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//SystemConfiguration"
         eOpposite="#//SystemConfiguration/body"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
-        eType="#//Mapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
+        eType="#//Binding" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="componentConfigurations"
         upperBound="-1" eType="#//ComponentConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentConfigurations"

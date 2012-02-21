@@ -12,30 +12,30 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Body</b></em>'.
+ * An implementation of the model object '<em><b>Binding Body</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingBodyImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingBodyImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingBodyImpl extends PropertyContainerImpl implements MappingBody {
+public class BindingBodyImpl extends PropertyContainerImpl implements BindingBody {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingBodyImpl() {
+	protected BindingBodyImpl() {
 		super();
 	}
 
@@ -46,7 +46,7 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.MAPPING_BODY;
+		return DconfigPackage.Literals.BINDING_BODY;
 	}
 
 	/**
@@ -54,9 +54,9 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Mapping getOwner() {
-		if (eContainerFeatureID() != DconfigPackage.MAPPING_BODY__OWNER) return null;
-		return (Mapping)eContainer();
+	public Binding getOwner() {
+		if (eContainerFeatureID() != DconfigPackage.BINDING_BODY__OWNER) return null;
+		return (Binding)eContainer();
 	}
 
 	/**
@@ -64,8 +64,8 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwner(Mapping newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, DconfigPackage.MAPPING_BODY__OWNER, msgs);
+	public NotificationChain basicSetOwner(Binding newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DconfigPackage.BINDING_BODY__OWNER, msgs);
 		return msgs;
 	}
 
@@ -74,20 +74,20 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwner(Mapping newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DconfigPackage.MAPPING_BODY__OWNER && newOwner != null)) {
+	public void setOwner(Binding newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DconfigPackage.BINDING_BODY__OWNER && newOwner != null)) {
 			if (EcoreUtil.isAncestor(this, newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DconfigPackage.MAPPING__BODY, Mapping.class, msgs);
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DconfigPackage.BINDING__BODY, Binding.class, msgs);
 			msgs = basicSetOwner(newOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING_BODY__OWNER, newOwner, newOwner));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_BODY__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -98,10 +98,10 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
+			case DconfigPackage.BINDING_BODY__OWNER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((Mapping)otherEnd, msgs);
+				return basicSetOwner((Binding)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -114,7 +114,7 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
+			case DconfigPackage.BINDING_BODY__OWNER:
 				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -128,8 +128,8 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
-				return eInternalContainer().eInverseRemove(this, DconfigPackage.MAPPING__BODY, Mapping.class, msgs);
+			case DconfigPackage.BINDING_BODY__OWNER:
+				return eInternalContainer().eInverseRemove(this, DconfigPackage.BINDING__BODY, Binding.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -142,7 +142,7 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
+			case DconfigPackage.BINDING_BODY__OWNER:
 				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -156,8 +156,8 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
-				setOwner((Mapping)newValue);
+			case DconfigPackage.BINDING_BODY__OWNER:
+				setOwner((Binding)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,8 +171,8 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
-				setOwner((Mapping)null);
+			case DconfigPackage.BINDING_BODY__OWNER:
+				setOwner((Binding)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class MappingBodyImpl extends PropertyContainerImpl implements MappingBod
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_BODY__OWNER:
+			case DconfigPackage.BINDING_BODY__OWNER:
 				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MappingBodyImpl
+} //BindingBodyImpl

@@ -10,7 +10,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.dconfig.*;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
@@ -19,9 +23,6 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
@@ -148,24 +149,24 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyGroupAdapter();
 			}
 			@Override
-			public Adapter caseMapping(Mapping object) {
-				return createMappingAdapter();
+			public Adapter caseBinding(Binding object) {
+				return createBindingAdapter();
 			}
 			@Override
-			public Adapter caseMappingTargetPath(MappingTargetPath object) {
-				return createMappingTargetPathAdapter();
+			public Adapter caseBindingTargetPath(BindingTargetPath object) {
+				return createBindingTargetPathAdapter();
 			}
 			@Override
-			public Adapter caseMappingPropertyReference(MappingPropertyReference object) {
-				return createMappingPropertyReferenceAdapter();
+			public Adapter caseBindingPropertyReference(BindingPropertyReference object) {
+				return createBindingPropertyReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMappingBody(MappingBody object) {
-				return createMappingBodyAdapter();
+			public Adapter caseBindingBody(BindingBody object) {
+				return createBindingBodyAdapter();
 			}
 			@Override
-			public Adapter caseMappingSubscript(MappingSubscript object) {
-				return createMappingSubscriptAdapter();
+			public Adapter caseBindingSubscript(BindingSubscript object) {
+				return createBindingSubscriptAdapter();
 			}
 			@Override
 			public Adapter caseResourceDeclaration(ResourceDeclaration object) {
@@ -340,6 +341,76 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.Binding <em>Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.Binding
+	 * @generated
+	 */
+	public Adapter createBindingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingTargetPath <em>Binding Target Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.BindingTargetPath
+	 * @generated
+	 */
+	public Adapter createBindingTargetPathAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingPropertyReference <em>Binding Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.BindingPropertyReference
+	 * @generated
+	 */
+	public Adapter createBindingPropertyReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingBody <em>Binding Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.BindingBody
+	 * @generated
+	 */
+	public Adapter createBindingBodyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingSubscript <em>Binding Subscript</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.BindingSubscript
+	 * @generated
+	 */
+	public Adapter createBindingSubscriptAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.SimplePropertyDeclaration <em>Simple Property Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -406,76 +477,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSelectionPropertyOptionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.Mapping <em>Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.Mapping
-	 * @generated
-	 */
-	public Adapter createMappingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.MappingTargetPath <em>Mapping Target Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.MappingTargetPath
-	 * @generated
-	 */
-	public Adapter createMappingTargetPathAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.MappingPropertyReference <em>Mapping Property Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.MappingPropertyReference
-	 * @generated
-	 */
-	public Adapter createMappingPropertyReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.MappingBody <em>Mapping Body</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.MappingBody
-	 * @generated
-	 */
-	public Adapter createMappingBodyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.MappingSubscript <em>Mapping Subscript</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.MappingSubscript
-	 * @generated
-	 */
-	public Adapter createMappingSubscriptAdapter() {
 		return null;
 	}
 

@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
-import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
@@ -33,7 +33,7 @@ import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getOwner <em>Owner</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getComponentConfigurations <em>Component Configurations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getFragmentConfigurations <em>Fragment Configurations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SystemConfigurationBodyImpl#getSubsystemConfigurations <em>Subsystem Configurations</em>}</li>
@@ -44,14 +44,14 @@ import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
  */
 public class SystemConfigurationBodyImpl extends PropertyContainerImpl implements SystemConfigurationBody {
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMappings()
+	 * @see #getBindings()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Mapping> mappings;
+	protected EList<Binding> bindings;
 	/**
 	 * The cached value of the '{@link #getComponentConfigurations() <em>Component Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -144,11 +144,11 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Mapping> getMappings() {
-		if (mappings == null) {
-			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS);
+	public EList<Binding> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<Binding>(Binding.class, this, DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS);
 		}
-		return mappings;
+		return bindings;
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 		switch (featureID) {
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__OWNER:
 				return basicSetOwner(null, msgs);
-			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS:
-				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS:
+				return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS:
 				return ((InternalEList<?>)getComponentConfigurations()).basicRemove(otherEnd, msgs);
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__FRAGMENT_CONFIGURATIONS:
@@ -249,8 +249,8 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 		switch (featureID) {
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__OWNER:
 				return getOwner();
-			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS:
-				return getMappings();
+			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS:
+				return getBindings();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS:
 				return getComponentConfigurations();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__FRAGMENT_CONFIGURATIONS:
@@ -273,9 +273,9 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__OWNER:
 				setOwner((SystemConfiguration)newValue);
 				return;
-			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS:
-				getMappings().clear();
-				getMappings().addAll((Collection<? extends Mapping>)newValue);
+			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS:
+				getBindings().clear();
+				getBindings().addAll((Collection<? extends Binding>)newValue);
 				return;
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS:
 				getComponentConfigurations().clear();
@@ -304,8 +304,8 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__OWNER:
 				setOwner((SystemConfiguration)null);
 				return;
-			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS:
-				getMappings().clear();
+			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS:
+				getBindings().clear();
 				return;
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS:
 				getComponentConfigurations().clear();
@@ -330,8 +330,8 @@ public class SystemConfigurationBodyImpl extends PropertyContainerImpl implement
 		switch (featureID) {
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__OWNER:
 				return getOwner() != null;
-			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__MAPPINGS:
-				return mappings != null && !mappings.isEmpty();
+			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__BINDINGS:
+				return bindings != null && !bindings.isEmpty();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS:
 				return componentConfigurations != null && !componentConfigurations.isEmpty();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY__FRAGMENT_CONFIGURATIONS:

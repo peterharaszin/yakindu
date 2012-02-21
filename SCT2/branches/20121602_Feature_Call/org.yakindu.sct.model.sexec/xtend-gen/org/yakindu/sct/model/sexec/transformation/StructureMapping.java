@@ -36,7 +36,7 @@ import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Vertex;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
-import org.yakindu.sct.model.stext.stext.Operation;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.TimeEventSpec;
 import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
@@ -118,10 +118,10 @@ public class StructureMapping {
     }
   }
   
-  protected Declaration _map(final Operation v) {
+  protected Declaration _map(final OperationDefinition v) {
     {
-      Operation _create = this.mapping.create(v);
-      final Operation _v = _create;
+      OperationDefinition _create = this.mapping.create(v);
+      final OperationDefinition _v = _create;
       return _v;
     }
   }
@@ -288,18 +288,18 @@ public class StructureMapping {
     return _xblockexpression;
   }
   
-  public Declaration map(final Declaration v) {
-    if ((v instanceof Operation)) {
-      return _map((Operation)v);
-    } else if ((v instanceof EventDefinition)) {
-      return _map((EventDefinition)v);
-    } else if ((v instanceof VariableDefinition)) {
-      return _map((VariableDefinition)v);
-    } else if ((v instanceof Declaration)) {
-      return _map((Declaration)v);
+  public Declaration map(final Declaration e) {
+    if ((e instanceof EventDefinition)) {
+      return _map((EventDefinition)e);
+    } else if ((e instanceof OperationDefinition)) {
+      return _map((OperationDefinition)e);
+    } else if ((e instanceof VariableDefinition)) {
+      return _map((VariableDefinition)e);
+    } else if ((e instanceof Declaration)) {
+      return _map((Declaration)e);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(v).toString());
+        java.util.Arrays.<Object>asList(e).toString());
     }
   }
   

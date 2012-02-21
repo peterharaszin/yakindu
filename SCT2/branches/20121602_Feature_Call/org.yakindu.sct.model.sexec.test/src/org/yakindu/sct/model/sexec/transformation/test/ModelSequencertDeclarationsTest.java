@@ -4,7 +4,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil.*;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil.TYPE_INTEGER;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createEventDefinition;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createInterfaceScope;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createInternalScope;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createOperation;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createOperationCall;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createReactionEffect;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createReactionTrigger;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createRegion;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createRegularEventSpec;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createState;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createStatechart;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createTransition;
+import static org.yakindu.sct.model.sexec.transformation.test.SCTTestUtil._createVariableDefinition;
 
 import org.junit.Test;
 import org.yakindu.sct.model.sexec.Call;
@@ -18,14 +31,13 @@ import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
-import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
-import org.yakindu.sct.model.stext.stext.Operation;
-import org.yakindu.sct.model.stext.stext.FeatureCall;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.ReactionEffect;
 import org.yakindu.sct.model.stext.stext.ReactionTrigger;
+import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
 public class ModelSequencertDeclarationsTest extends ModelSequencerTest {
@@ -117,7 +129,7 @@ public class ModelSequencertDeclarationsTest extends ModelSequencerTest {
 
 		Statechart sc = _createStatechart("test");
 		InterfaceScope s_scope = _createInterfaceScope("Interface", sc);
-		Operation _operation = _createOperation("value", s_scope);
+		OperationDefinition _operation = _createOperation("value", s_scope);
 		Region r = _createRegion("main", sc);
 		State s1 = _createState("S1", r);
 		State s2 = _createState("S2", r);
@@ -128,7 +140,8 @@ public class ModelSequencertDeclarationsTest extends ModelSequencerTest {
 
 		ExecutionFlow flow = sequencer.transform(sc);
 
-		Operation _o1 = (Operation) flow.getScopes().get(0).getDeclarations()
+		OperationDefinition _o1 = (OperationDefinition) flow.getScopes().get(0)
+				.getDeclarations()
 				.get(0);
 		assertNotSame(_operation, _o1);
 		assertEquals(_operation.getName(), _o1.getName());

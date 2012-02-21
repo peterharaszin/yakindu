@@ -30,7 +30,7 @@ import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
 import org.yakindu.sct.model.stext.stext.LocalReaction;
 import org.yakindu.sct.model.stext.stext.OnCycleEvent;
-import org.yakindu.sct.model.stext.stext.Operation;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.PrimitiveValueExpression;
 import org.yakindu.sct.model.stext.stext.ReactionEffect;
 import org.yakindu.sct.model.stext.stext.ReactionTrigger;
@@ -58,8 +58,9 @@ public class SCTTestUtil {
 		return e;
 	}
 
-	public static Operation _createOperation(String name, Scope scope) {
-		Operation e = StextFactory.eINSTANCE.createOperation();
+	public static OperationDefinition _createOperation(String name, Scope scope) {
+		OperationDefinition e = StextFactory.eINSTANCE
+				.createOperationDefinition();
 		e.setName(name);
 		if (scope != null)
 			scope.getDeclarations().add(e);
@@ -296,7 +297,7 @@ public class SCTTestUtil {
 	}
 
 	public static TypedElementReferenceExpression _createOperationCall(
-			Operation o) {
+			OperationDefinition o) {
 		TypedElementReferenceExpression oc = StextFactory.eINSTANCE
 				.createTypedElementReferenceExpression();
 		oc.setReference(o);

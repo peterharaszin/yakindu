@@ -11,24 +11,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.MappingPropertyReference;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Property Reference</b></em>'.
+ * An implementation of the model object '<em><b>Binding Property Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingPropertyReferenceImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingPropertyReferenceImpl#getProperty <em>Property</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingPropertyReferenceImpl extends EObjectImpl implements MappingPropertyReference {
+public class BindingPropertyReferenceImpl extends EObjectImpl implements BindingPropertyReference {
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingPropertyReferenceImpl() {
+	protected BindingPropertyReferenceImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.MAPPING_PROPERTY_REFERENCE;
+		return DconfigPackage.Literals.BINDING_PROPERTY_REFERENCE;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 			property = (SelectionProperty)eResolveProxy(oldProperty);
 			if (property != oldProperty) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
 			}
 		}
 		return property;
@@ -93,7 +93,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 		SelectionProperty oldProperty = property;
 		property = newProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY:
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
 				if (resolve) return getProperty();
 				return basicGetProperty();
 		}
@@ -119,7 +119,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY:
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
 				setProperty((SelectionProperty)newValue);
 				return;
 		}
@@ -134,7 +134,7 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY:
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
 				setProperty((SelectionProperty)null);
 				return;
 		}
@@ -149,10 +149,10 @@ public class MappingPropertyReferenceImpl extends EObjectImpl implements Mapping
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE__PROPERTY:
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
 				return property != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MappingPropertyReferenceImpl
+} //BindingPropertyReferenceImpl

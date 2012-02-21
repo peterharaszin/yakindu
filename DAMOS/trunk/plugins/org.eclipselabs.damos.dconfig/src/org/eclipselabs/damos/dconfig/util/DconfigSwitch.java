@@ -9,7 +9,11 @@ package org.eclipselabs.damos.dconfig.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipselabs.damos.dconfig.*;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
@@ -18,9 +22,6 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
@@ -183,34 +184,34 @@ public class DconfigSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.MAPPING: {
-				Mapping mapping = (Mapping)theEObject;
-				T result = caseMapping(mapping);
+			case DconfigPackage.BINDING: {
+				Binding binding = (Binding)theEObject;
+				T result = caseBinding(binding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.MAPPING_TARGET_PATH: {
-				MappingTargetPath mappingTargetPath = (MappingTargetPath)theEObject;
-				T result = caseMappingTargetPath(mappingTargetPath);
+			case DconfigPackage.BINDING_TARGET_PATH: {
+				BindingTargetPath bindingTargetPath = (BindingTargetPath)theEObject;
+				T result = caseBindingTargetPath(bindingTargetPath);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE: {
-				MappingPropertyReference mappingPropertyReference = (MappingPropertyReference)theEObject;
-				T result = caseMappingPropertyReference(mappingPropertyReference);
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE: {
+				BindingPropertyReference bindingPropertyReference = (BindingPropertyReference)theEObject;
+				T result = caseBindingPropertyReference(bindingPropertyReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.MAPPING_BODY: {
-				MappingBody mappingBody = (MappingBody)theEObject;
-				T result = caseMappingBody(mappingBody);
-				if (result == null) result = casePropertyContainer(mappingBody);
+			case DconfigPackage.BINDING_BODY: {
+				BindingBody bindingBody = (BindingBody)theEObject;
+				T result = caseBindingBody(bindingBody);
+				if (result == null) result = casePropertyContainer(bindingBody);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.MAPPING_SUBSCRIPT: {
-				MappingSubscript mappingSubscript = (MappingSubscript)theEObject;
-				T result = caseMappingSubscript(mappingSubscript);
+			case DconfigPackage.BINDING_SUBSCRIPT: {
+				BindingSubscript bindingSubscript = (BindingSubscript)theEObject;
+				T result = caseBindingSubscript(bindingSubscript);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -406,6 +407,81 @@ public class DconfigSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinding(Binding object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Target Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Target Path</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBindingTargetPath(BindingTargetPath object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Property Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBindingPropertyReference(BindingPropertyReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Body</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Body</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBindingBody(BindingBody object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Subscript</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Subscript</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBindingSubscript(BindingSubscript object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Simple Property Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -477,81 +553,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSelectionPropertyOption(SelectionPropertyOption object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMapping(Mapping object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping Target Path</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping Target Path</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingTargetPath(MappingTargetPath object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping Property Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping Property Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingPropertyReference(MappingPropertyReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping Body</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping Body</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingBody(MappingBody object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mapping Subscript</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mapping Subscript</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingSubscript(MappingSubscript object) {
 		return null;
 	}
 

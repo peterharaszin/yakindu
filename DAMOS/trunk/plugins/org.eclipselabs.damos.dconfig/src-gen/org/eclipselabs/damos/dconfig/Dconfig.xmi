@@ -211,7 +211,7 @@
           <elements xsi:type="xtext:Assignment" feature="properties" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
           </elements>
-          <elements xsi:type="xtext:Assignment" feature="mappings" operator="+=">
+          <elements xsi:type="xtext:Assignment" feature="bindings" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.14"/>
           </elements>
           <elements xsi:type="xtext:Assignment" feature="componentConfigurations" operator="+=">
@@ -345,12 +345,12 @@
         <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="Mapping">
+    <rules xsi:type="xtext:ParserRule" name="Binding">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//Mapping"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//Binding"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" value="map"/>
+        <elements xsi:type="xtext:Keyword" value="bind"/>
         <elements xsi:type="xtext:Assignment" feature="source" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
@@ -375,9 +375,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="MappingTargetPath">
+    <rules xsi:type="xtext:ParserRule" name="BindingTargetPath">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//MappingTargetPath"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//BindingTargetPath"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="propertyReferences" operator="+=">
@@ -400,9 +400,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="MappingPropertyReference">
+    <rules xsi:type="xtext:ParserRule" name="BindingPropertyReference">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//MappingPropertyReference"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//BindingPropertyReference"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="property" operator="=">
         <terminal xsi:type="xtext:CrossReference">
@@ -413,14 +413,14 @@
         </terminal>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="MappingBody">
+    <rules xsi:type="xtext:ParserRule" name="BindingBody">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//MappingBody"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//BindingBody"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Action">
           <type metamodel="/0/@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//MappingBody"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//BindingBody"/>
           </type>
         </elements>
         <elements xsi:type="xtext:Keyword" value="{"/>
@@ -430,9 +430,9 @@
         <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="MappingSubscript">
+    <rules xsi:type="xtext:ParserRule" name="BindingSubscript">
       <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//MappingSubscript"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//BindingSubscript"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="index" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>

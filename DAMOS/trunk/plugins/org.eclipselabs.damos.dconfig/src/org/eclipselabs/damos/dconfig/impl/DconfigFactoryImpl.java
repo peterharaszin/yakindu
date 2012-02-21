@@ -12,6 +12,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
@@ -20,11 +25,6 @@ import org.eclipselabs.damos.dconfig.DconfigFactory;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingPropertyReference;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
-import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
@@ -90,11 +90,11 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 			case DconfigPackage.SELECTION_PROPERTY_DECLARATION: return createSelectionPropertyDeclaration();
 			case DconfigPackage.SELECTION_PROPERTY_OPTION: return createSelectionPropertyOption();
 			case DconfigPackage.PROPERTY_GROUP: return createPropertyGroup();
-			case DconfigPackage.MAPPING: return createMapping();
-			case DconfigPackage.MAPPING_TARGET_PATH: return createMappingTargetPath();
-			case DconfigPackage.MAPPING_PROPERTY_REFERENCE: return createMappingPropertyReference();
-			case DconfigPackage.MAPPING_BODY: return createMappingBody();
-			case DconfigPackage.MAPPING_SUBSCRIPT: return createMappingSubscript();
+			case DconfigPackage.BINDING: return createBinding();
+			case DconfigPackage.BINDING_TARGET_PATH: return createBindingTargetPath();
+			case DconfigPackage.BINDING_PROPERTY_REFERENCE: return createBindingPropertyReference();
+			case DconfigPackage.BINDING_BODY: return createBindingBody();
+			case DconfigPackage.BINDING_SUBSCRIPT: return createBindingSubscript();
 			case DconfigPackage.RESOURCE_DECLARATION: return createResourceDeclaration();
 			case DconfigPackage.COMPUTATION_PROPERTY: return createComputationProperty();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY: return createSystemConfigurationBody();
@@ -224,9 +224,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Mapping createMapping() {
-		MappingImpl mapping = new MappingImpl();
-		return mapping;
+	public Binding createBinding() {
+		BindingImpl binding = new BindingImpl();
+		return binding;
 	}
 
 	/**
@@ -234,9 +234,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingTargetPath createMappingTargetPath() {
-		MappingTargetPathImpl mappingTargetPath = new MappingTargetPathImpl();
-		return mappingTargetPath;
+	public BindingTargetPath createBindingTargetPath() {
+		BindingTargetPathImpl bindingTargetPath = new BindingTargetPathImpl();
+		return bindingTargetPath;
 	}
 
 	/**
@@ -244,9 +244,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingPropertyReference createMappingPropertyReference() {
-		MappingPropertyReferenceImpl mappingPropertyReference = new MappingPropertyReferenceImpl();
-		return mappingPropertyReference;
+	public BindingPropertyReference createBindingPropertyReference() {
+		BindingPropertyReferenceImpl bindingPropertyReference = new BindingPropertyReferenceImpl();
+		return bindingPropertyReference;
 	}
 
 	/**
@@ -254,9 +254,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingBody createMappingBody() {
-		MappingBodyImpl mappingBody = new MappingBodyImpl();
-		return mappingBody;
+	public BindingBody createBindingBody() {
+		BindingBodyImpl bindingBody = new BindingBodyImpl();
+		return bindingBody;
 	}
 
 	/**
@@ -264,9 +264,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingSubscript createMappingSubscript() {
-		MappingSubscriptImpl mappingSubscript = new MappingSubscriptImpl();
-		return mappingSubscript;
+	public BindingSubscript createBindingSubscript() {
+		BindingSubscriptImpl bindingSubscript = new BindingSubscriptImpl();
+		return bindingSubscript;
 	}
 
 	/**

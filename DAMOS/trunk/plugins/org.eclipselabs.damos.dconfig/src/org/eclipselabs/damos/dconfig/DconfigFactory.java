@@ -98,49 +98,49 @@ public interface DconfigFactory extends EFactory {
 	PropertyGroup createPropertyGroup();
 
 	/**
-	 * Returns a new object of class '<em>Mapping</em>'.
+	 * Returns a new object of class '<em>Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping</em>'.
+	 * @return a new object of class '<em>Binding</em>'.
 	 * @generated
 	 */
-	Mapping createMapping();
+	Binding createBinding();
 
 	/**
-	 * Returns a new object of class '<em>Mapping Target Path</em>'.
+	 * Returns a new object of class '<em>Binding Target Path</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping Target Path</em>'.
+	 * @return a new object of class '<em>Binding Target Path</em>'.
 	 * @generated
 	 */
-	MappingTargetPath createMappingTargetPath();
+	BindingTargetPath createBindingTargetPath();
 
 	/**
-	 * Returns a new object of class '<em>Mapping Property Reference</em>'.
+	 * Returns a new object of class '<em>Binding Property Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping Property Reference</em>'.
+	 * @return a new object of class '<em>Binding Property Reference</em>'.
 	 * @generated
 	 */
-	MappingPropertyReference createMappingPropertyReference();
+	BindingPropertyReference createBindingPropertyReference();
 
 	/**
-	 * Returns a new object of class '<em>Mapping Body</em>'.
+	 * Returns a new object of class '<em>Binding Body</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping Body</em>'.
+	 * @return a new object of class '<em>Binding Body</em>'.
 	 * @generated
 	 */
-	MappingBody createMappingBody();
+	BindingBody createBindingBody();
 
 	/**
-	 * Returns a new object of class '<em>Mapping Subscript</em>'.
+	 * Returns a new object of class '<em>Binding Subscript</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mapping Subscript</em>'.
+	 * @return a new object of class '<em>Binding Subscript</em>'.
 	 * @generated
 	 */
-	MappingSubscript createMappingSubscript();
+	BindingSubscript createBindingSubscript();
 
 	/**
 	 * Returns a new object of class '<em>Resource Declaration</em>'.

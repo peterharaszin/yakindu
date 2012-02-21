@@ -17,26 +17,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.MappingPropertyReference;
-import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Target Path</b></em>'.
+ * An implementation of the model object '<em><b>Binding Target Path</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl#getPropertyReferences <em>Property References</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingTargetPathImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingTargetPathImpl#getPropertyReferences <em>Property References</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingTargetPathImpl#getResource <em>Resource</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetPath {
+public class BindingTargetPathImpl extends EObjectImpl implements BindingTargetPath {
 	/**
 	 * The cached value of the '{@link #getPropertyReferences() <em>Property References</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MappingPropertyReference> propertyReferences;
+	protected EList<BindingPropertyReference> propertyReferences;
 
 	/**
 	 * The cached value of the '{@link #getResource() <em>Resource</em>}' reference.
@@ -62,7 +62,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingTargetPathImpl() {
+	protected BindingTargetPathImpl() {
 		super();
 	}
 
@@ -73,7 +73,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.MAPPING_TARGET_PATH;
+		return DconfigPackage.Literals.BINDING_TARGET_PATH;
 	}
 
 	/**
@@ -81,9 +81,9 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MappingPropertyReference> getPropertyReferences() {
+	public EList<BindingPropertyReference> getPropertyReferences() {
 		if (propertyReferences == null) {
-			propertyReferences = new EObjectContainmentEList<MappingPropertyReference>(MappingPropertyReference.class, this, DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES);
+			propertyReferences = new EObjectContainmentEList<BindingPropertyReference>(BindingPropertyReference.class, this, DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES);
 		}
 		return propertyReferences;
 	}
@@ -99,7 +99,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 			resource = (ResourceDeclaration)eResolveProxy(oldResource);
 			if (resource != oldResource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.MAPPING_TARGET_PATH__RESOURCE, oldResource, resource));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.BINDING_TARGET_PATH__RESOURCE, oldResource, resource));
 			}
 		}
 		return resource;
@@ -123,7 +123,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 		ResourceDeclaration oldResource = resource;
 		resource = newResource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING_TARGET_PATH__RESOURCE, oldResource, resource));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_TARGET_PATH__RESOURCE, oldResource, resource));
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES:
+			case DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES:
 				return ((InternalEList<?>)getPropertyReferences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -148,9 +148,9 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES:
+			case DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES:
 				return getPropertyReferences();
-			case DconfigPackage.MAPPING_TARGET_PATH__RESOURCE:
+			case DconfigPackage.BINDING_TARGET_PATH__RESOURCE:
 				if (resolve) return getResource();
 				return basicGetResource();
 		}
@@ -166,11 +166,11 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES:
+			case DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES:
 				getPropertyReferences().clear();
-				getPropertyReferences().addAll((Collection<? extends MappingPropertyReference>)newValue);
+				getPropertyReferences().addAll((Collection<? extends BindingPropertyReference>)newValue);
 				return;
-			case DconfigPackage.MAPPING_TARGET_PATH__RESOURCE:
+			case DconfigPackage.BINDING_TARGET_PATH__RESOURCE:
 				setResource((ResourceDeclaration)newValue);
 				return;
 		}
@@ -185,10 +185,10 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES:
+			case DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES:
 				getPropertyReferences().clear();
 				return;
-			case DconfigPackage.MAPPING_TARGET_PATH__RESOURCE:
+			case DconfigPackage.BINDING_TARGET_PATH__RESOURCE:
 				setResource((ResourceDeclaration)null);
 				return;
 		}
@@ -203,12 +203,12 @@ public class MappingTargetPathImpl extends EObjectImpl implements MappingTargetP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_TARGET_PATH__PROPERTY_REFERENCES:
+			case DconfigPackage.BINDING_TARGET_PATH__PROPERTY_REFERENCES:
 				return propertyReferences != null && !propertyReferences.isEmpty();
-			case DconfigPackage.MAPPING_TARGET_PATH__RESOURCE:
+			case DconfigPackage.BINDING_TARGET_PATH__RESOURCE:
 				return resource != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MappingTargetPathImpl
+} //BindingTargetPathImpl

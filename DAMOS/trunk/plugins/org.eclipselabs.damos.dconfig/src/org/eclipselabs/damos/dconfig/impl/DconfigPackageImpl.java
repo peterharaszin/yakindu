@@ -13,6 +13,11 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingBody;
+import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
@@ -22,11 +27,6 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.Mapping;
-import org.eclipselabs.damos.dconfig.MappingBody;
-import org.eclipselabs.damos.dconfig.MappingPropertyReference;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
-import org.eclipselabs.damos.dconfig.MappingTargetPath;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
@@ -116,6 +116,41 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass bindingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindingTargetPathEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindingPropertyReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindingBodyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindingSubscriptEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass simplePropertyDeclarationEClass = null;
 
 	/**
@@ -145,41 +180,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	private EClass selectionPropertyOptionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mappingEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mappingTargetPathEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mappingPropertyReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mappingBodyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mappingSubscriptEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -535,6 +535,132 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBinding() {
+		return bindingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinding_Source() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinding_TargetPath() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinding_Subscript() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinding_Body() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBindingTargetPath() {
+		return bindingTargetPathEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindingTargetPath_PropertyReferences() {
+		return (EReference)bindingTargetPathEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindingTargetPath_Resource() {
+		return (EReference)bindingTargetPathEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBindingPropertyReference() {
+		return bindingPropertyReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindingPropertyReference_Property() {
+		return (EReference)bindingPropertyReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBindingBody() {
+		return bindingBodyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindingBody_Owner() {
+		return (EReference)bindingBodyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBindingSubscript() {
+		return bindingSubscriptEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBindingSubscript_Index() {
+		return (EAttribute)bindingSubscriptEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSimplePropertyDeclaration() {
 		return simplePropertyDeclarationEClass;
 	}
@@ -670,132 +796,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMapping() {
-		return mappingEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMapping_Source() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMapping_TargetPath() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMapping_Subscript() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMapping_Body() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMappingTargetPath() {
-		return mappingTargetPathEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMappingTargetPath_PropertyReferences() {
-		return (EReference)mappingTargetPathEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMappingTargetPath_Resource() {
-		return (EReference)mappingTargetPathEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMappingPropertyReference() {
-		return mappingPropertyReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMappingPropertyReference_Property() {
-		return (EReference)mappingPropertyReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMappingBody() {
-		return mappingBodyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMappingBody_Owner() {
-		return (EReference)mappingBodyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMappingSubscript() {
-		return mappingSubscriptEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMappingSubscript_Index() {
-		return (EAttribute)mappingSubscriptEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getResourceDeclaration() {
 		return resourceDeclarationEClass;
 	}
@@ -877,7 +877,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSystemConfigurationBody_Mappings() {
+	public EReference getSystemConfigurationBody_Bindings() {
 		return (EReference)systemConfigurationBodyEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1149,24 +1149,24 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEAttribute(propertyGroupEClass, PROPERTY_GROUP__QUALIFIED_NAME);
 		createEReference(propertyGroupEClass, PROPERTY_GROUP__MEMBERS);
 
-		mappingEClass = createEClass(MAPPING);
-		createEReference(mappingEClass, MAPPING__SOURCE);
-		createEReference(mappingEClass, MAPPING__TARGET_PATH);
-		createEReference(mappingEClass, MAPPING__SUBSCRIPT);
-		createEReference(mappingEClass, MAPPING__BODY);
+		bindingEClass = createEClass(BINDING);
+		createEReference(bindingEClass, BINDING__SOURCE);
+		createEReference(bindingEClass, BINDING__TARGET_PATH);
+		createEReference(bindingEClass, BINDING__SUBSCRIPT);
+		createEReference(bindingEClass, BINDING__BODY);
 
-		mappingTargetPathEClass = createEClass(MAPPING_TARGET_PATH);
-		createEReference(mappingTargetPathEClass, MAPPING_TARGET_PATH__PROPERTY_REFERENCES);
-		createEReference(mappingTargetPathEClass, MAPPING_TARGET_PATH__RESOURCE);
+		bindingTargetPathEClass = createEClass(BINDING_TARGET_PATH);
+		createEReference(bindingTargetPathEClass, BINDING_TARGET_PATH__PROPERTY_REFERENCES);
+		createEReference(bindingTargetPathEClass, BINDING_TARGET_PATH__RESOURCE);
 
-		mappingPropertyReferenceEClass = createEClass(MAPPING_PROPERTY_REFERENCE);
-		createEReference(mappingPropertyReferenceEClass, MAPPING_PROPERTY_REFERENCE__PROPERTY);
+		bindingPropertyReferenceEClass = createEClass(BINDING_PROPERTY_REFERENCE);
+		createEReference(bindingPropertyReferenceEClass, BINDING_PROPERTY_REFERENCE__PROPERTY);
 
-		mappingBodyEClass = createEClass(MAPPING_BODY);
-		createEReference(mappingBodyEClass, MAPPING_BODY__OWNER);
+		bindingBodyEClass = createEClass(BINDING_BODY);
+		createEReference(bindingBodyEClass, BINDING_BODY__OWNER);
 
-		mappingSubscriptEClass = createEClass(MAPPING_SUBSCRIPT);
-		createEAttribute(mappingSubscriptEClass, MAPPING_SUBSCRIPT__INDEX);
+		bindingSubscriptEClass = createEClass(BINDING_SUBSCRIPT);
+		createEAttribute(bindingSubscriptEClass, BINDING_SUBSCRIPT__INDEX);
 
 		resourceDeclarationEClass = createEClass(RESOURCE_DECLARATION);
 		createEAttribute(resourceDeclarationEClass, RESOURCE_DECLARATION__NAME);
@@ -1180,7 +1180,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		systemConfigurationBodyEClass = createEClass(SYSTEM_CONFIGURATION_BODY);
 		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__OWNER);
-		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__MAPPINGS);
+		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__BINDINGS);
 		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__COMPONENT_CONFIGURATIONS);
 		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__FRAGMENT_CONFIGURATIONS);
 		createEReference(systemConfigurationBodyEClass, SYSTEM_CONFIGURATION_BODY__SUBSYSTEM_CONFIGURATIONS);
@@ -1253,7 +1253,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		selectionPropertyBodyEClass.getESuperTypes().add(this.getPropertyContainer());
 		selectionPropertyDeclarationEClass.getESuperTypes().add(this.getPropertyDeclaration());
 		selectionPropertyOptionEClass.getESuperTypes().add(this.getPropertyDeclarationContainer());
-		mappingBodyEClass.getESuperTypes().add(this.getPropertyContainer());
+		bindingBodyEClass.getESuperTypes().add(this.getPropertyContainer());
 		resourceDeclarationEClass.getESuperTypes().add(this.getPropertyDeclarationContainer());
 		computationPropertyEClass.getESuperTypes().add(this.getProperty());
 		systemConfigurationBodyEClass.getESuperTypes().add(this.getPropertyContainer());
@@ -1337,24 +1337,24 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEAttribute(getPropertyGroup_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, PropertyGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyGroup_Members(), this.getPropertyDeclaration(), this.getPropertyDeclaration_Group(), "members", null, 0, -1, PropertyGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMapping_Source(), theDMLPackage.getComponent(), null, "source", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMapping_TargetPath(), this.getMappingTargetPath(), null, "targetPath", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMapping_Subscript(), this.getMappingSubscript(), null, "subscript", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMapping_Body(), this.getMappingBody(), this.getMappingBody_Owner(), "body", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBinding_Source(), theDMLPackage.getComponent(), null, "source", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_TargetPath(), this.getBindingTargetPath(), null, "targetPath", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_Subscript(), this.getBindingSubscript(), null, "subscript", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_Body(), this.getBindingBody(), this.getBindingBody_Owner(), "body", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingTargetPathEClass, MappingTargetPath.class, "MappingTargetPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingTargetPath_PropertyReferences(), this.getMappingPropertyReference(), null, "propertyReferences", null, 0, -1, MappingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingTargetPath_Resource(), this.getResourceDeclaration(), null, "resource", null, 0, 1, MappingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bindingTargetPathEClass, BindingTargetPath.class, "BindingTargetPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBindingTargetPath_PropertyReferences(), this.getBindingPropertyReference(), null, "propertyReferences", null, 0, -1, BindingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBindingTargetPath_Resource(), this.getResourceDeclaration(), null, "resource", null, 0, 1, BindingTargetPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingPropertyReferenceEClass, MappingPropertyReference.class, "MappingPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingPropertyReference_Property(), this.getSelectionProperty(), null, "property", null, 0, 1, MappingPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bindingPropertyReferenceEClass, BindingPropertyReference.class, "BindingPropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBindingPropertyReference_Property(), this.getSelectionProperty(), null, "property", null, 0, 1, BindingPropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingBodyEClass, MappingBody.class, "MappingBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingBody_Owner(), this.getMapping(), this.getMapping_Body(), "owner", null, 0, 1, MappingBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bindingBodyEClass, BindingBody.class, "BindingBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBindingBody_Owner(), this.getBinding(), this.getBinding_Body(), "owner", null, 0, 1, BindingBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappingSubscriptEClass, MappingSubscript.class, "MappingSubscript", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMappingSubscript_Index(), ecorePackage.getEInt(), "index", null, 0, 1, MappingSubscript.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bindingSubscriptEClass, BindingSubscript.class, "BindingSubscript", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBindingSubscript_Index(), ecorePackage.getEInt(), "index", null, 0, 1, BindingSubscript.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resourceDeclarationEClass, ResourceDeclaration.class, "ResourceDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResourceDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ResourceDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1368,7 +1368,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		initEClass(systemConfigurationBodyEClass, SystemConfigurationBody.class, "SystemConfigurationBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSystemConfigurationBody_Owner(), this.getSystemConfiguration(), this.getSystemConfiguration_Body(), "owner", null, 0, 1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSystemConfigurationBody_Mappings(), this.getMapping(), null, "mappings", null, 0, -1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSystemConfigurationBody_Bindings(), this.getBinding(), null, "bindings", null, 0, -1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemConfigurationBody_ComponentConfigurations(), this.getComponentConfiguration(), null, "componentConfigurations", null, 0, -1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemConfigurationBody_FragmentConfigurations(), this.getFragmentConfiguration(), null, "fragmentConfigurations", null, 0, -1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemConfigurationBody_SubsystemConfigurations(), this.getSubsystemConfiguration(), null, "subsystemConfigurations", null, 0, -1, SystemConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

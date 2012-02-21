@@ -10,23 +10,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.dconfig.BindingSubscript;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.MappingSubscript;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Subscript</b></em>'.
+ * An implementation of the model object '<em><b>Binding Subscript</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.MappingSubscriptImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingSubscriptImpl#getIndex <em>Index</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscript {
+public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscript {
 	/**
 	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MappingSubscriptImpl() {
+	protected BindingSubscriptImpl() {
 		super();
 	}
 
@@ -63,7 +63,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.MAPPING_SUBSCRIPT;
+		return DconfigPackage.Literals.BINDING_SUBSCRIPT;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.MAPPING_SUBSCRIPT__INDEX, oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_SUBSCRIPT__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
 				return getIndex();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
 				setIndex((Integer)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
 		}
@@ -139,7 +139,7 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.MAPPING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
 				return index != INDEX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -161,4 +161,4 @@ public class MappingSubscriptImpl extends EObjectImpl implements MappingSubscrip
 		return result.toString();
 	}
 
-} //MappingSubscriptImpl
+} //BindingSubscriptImpl

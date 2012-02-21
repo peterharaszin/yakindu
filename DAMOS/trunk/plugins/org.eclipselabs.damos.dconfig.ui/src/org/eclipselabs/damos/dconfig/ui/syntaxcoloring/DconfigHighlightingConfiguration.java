@@ -14,11 +14,13 @@ public class DconfigHighlightingConfiguration extends MscriptHighlightingConfigu
 
 	public static final String SELECTION_PROPERTY_ID = "selectionProperty";
 	public static final String MODEL_ELEMENT_ID = "modelElement";
+	public static final String RESOURCE_ID = "resource";
 
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(SELECTION_PROPERTY_ID, "Selection property", selectionPropertyTextStyle());
 		acceptor.acceptDefaultHighlighting(MODEL_ELEMENT_ID, "Model element", modelElementTextStyle());
+		acceptor.acceptDefaultHighlighting(RESOURCE_ID, "Resource", resourceTextStyle());
 	}
 
 	public TextStyle selectionPropertyTextStyle() {
@@ -31,6 +33,13 @@ public class DconfigHighlightingConfiguration extends MscriptHighlightingConfigu
 	public TextStyle modelElementTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(0x00, 0x50, 0x32));
+		return textStyle;
+	}
+
+	public TextStyle resourceTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(0xab, 0x30, 0x00));
+		textStyle.setStyle(SWT.ITALIC);
 		return textStyle;
 	}
 

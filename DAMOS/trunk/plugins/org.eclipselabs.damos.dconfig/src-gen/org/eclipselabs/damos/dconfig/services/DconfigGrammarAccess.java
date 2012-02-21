@@ -410,8 +410,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Assignment cPropertiesAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cPropertiesPropertyParserRuleCall_2_0_0 = (RuleCall)cPropertiesAssignment_2_0.eContents().get(0);
-		private final Assignment cMappingsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cMappingsMappingParserRuleCall_2_1_0 = (RuleCall)cMappingsAssignment_2_1.eContents().get(0);
+		private final Assignment cBindingsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cBindingsBindingParserRuleCall_2_1_0 = (RuleCall)cBindingsAssignment_2_1.eContents().get(0);
 		private final Assignment cComponentConfigurationsAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
 		private final RuleCall cComponentConfigurationsComponentConfigurationParserRuleCall_2_2_0 = (RuleCall)cComponentConfigurationsAssignment_2_2.eContents().get(0);
 		private final Assignment cFragmentConfigurationsAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
@@ -421,12 +421,12 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SystemConfigurationBody:
-		//	{SystemConfigurationBody} "{" (properties+=Property | mappings+=Mapping |
+		//	{SystemConfigurationBody} "{" (properties+=Property | bindings+=Binding |
 		//	componentConfigurations+=ComponentConfiguration | fragmentConfigurations+=FragmentConfiguration |
 		//	subsystemConfigurations+=SubsystemConfiguration)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{SystemConfigurationBody} "{" (properties+=Property | mappings+=Mapping |
+		//{SystemConfigurationBody} "{" (properties+=Property | bindings+=Binding |
 		//componentConfigurations+=ComponentConfiguration | fragmentConfigurations+=FragmentConfiguration |
 		//subsystemConfigurations+=SubsystemConfiguration)* "}"
 		public Group getGroup() { return cGroup; }
@@ -437,7 +437,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//(properties+=Property | mappings+=Mapping | componentConfigurations+=ComponentConfiguration |
+		//(properties+=Property | bindings+=Binding | componentConfigurations+=ComponentConfiguration |
 		//fragmentConfigurations+=FragmentConfiguration | subsystemConfigurations+=SubsystemConfiguration)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
@@ -447,11 +447,11 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//Property
 		public RuleCall getPropertiesPropertyParserRuleCall_2_0_0() { return cPropertiesPropertyParserRuleCall_2_0_0; }
 
-		//mappings+=Mapping
-		public Assignment getMappingsAssignment_2_1() { return cMappingsAssignment_2_1; }
+		//bindings+=Binding
+		public Assignment getBindingsAssignment_2_1() { return cBindingsAssignment_2_1; }
 
-		//Mapping
-		public RuleCall getMappingsMappingParserRuleCall_2_1_0() { return cMappingsMappingParserRuleCall_2_1_0; }
+		//Binding
+		public RuleCall getBindingsBindingParserRuleCall_2_1_0() { return cBindingsBindingParserRuleCall_2_1_0; }
 
 		//componentConfigurations+=ComponentConfiguration
 		public Assignment getComponentConfigurationsAssignment_2_2() { return cComponentConfigurationsAssignment_2_2; }
@@ -710,35 +710,35 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
-	public class MappingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Mapping");
+	public class BindingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Binding");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cMapKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cBindKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cSourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cSourceComponentCrossReference_1_0 = (CrossReference)cSourceAssignment_1.eContents().get(0);
 		private final RuleCall cSourceComponentValidIDParserRuleCall_1_0_1 = (RuleCall)cSourceComponentCrossReference_1_0.eContents().get(1);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cTargetPathAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTargetPathMappingTargetPathParserRuleCall_3_0 = (RuleCall)cTargetPathAssignment_3.eContents().get(0);
+		private final RuleCall cTargetPathBindingTargetPathParserRuleCall_3_0 = (RuleCall)cTargetPathAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cSubscriptAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cSubscriptMappingSubscriptParserRuleCall_4_1_0 = (RuleCall)cSubscriptAssignment_4_1.eContents().get(0);
+		private final RuleCall cSubscriptBindingSubscriptParserRuleCall_4_1_0 = (RuleCall)cSubscriptAssignment_4_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyMappingBodyParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final RuleCall cBodyBindingBodyParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
 		
-		//Mapping:
-		//	"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
-		//	body=MappingBody?;
+		//Binding:
+		//	"bind" source=[Component|ValidID] "to" targetPath=BindingTargetPath ("[" subscript=BindingSubscript "]")?
+		//	body=BindingBody?;
 		public ParserRule getRule() { return rule; }
 
-		//"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
-		//body=MappingBody?
+		//"bind" source=[Component|ValidID] "to" targetPath=BindingTargetPath ("[" subscript=BindingSubscript "]")?
+		//body=BindingBody?
 		public Group getGroup() { return cGroup; }
 
-		//"map"
-		public Keyword getMapKeyword_0() { return cMapKeyword_0; }
+		//"bind"
+		public Keyword getBindKeyword_0() { return cBindKeyword_0; }
 
 		//source=[Component|ValidID]
 		public Assignment getSourceAssignment_1() { return cSourceAssignment_1; }
@@ -752,74 +752,74 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//"to"
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
 
-		//targetPath=MappingTargetPath
+		//targetPath=BindingTargetPath
 		public Assignment getTargetPathAssignment_3() { return cTargetPathAssignment_3; }
 
-		//MappingTargetPath
-		public RuleCall getTargetPathMappingTargetPathParserRuleCall_3_0() { return cTargetPathMappingTargetPathParserRuleCall_3_0; }
+		//BindingTargetPath
+		public RuleCall getTargetPathBindingTargetPathParserRuleCall_3_0() { return cTargetPathBindingTargetPathParserRuleCall_3_0; }
 
-		//("[" subscript=MappingSubscript "]")?
+		//("[" subscript=BindingSubscript "]")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
 
-		//subscript=MappingSubscript
+		//subscript=BindingSubscript
 		public Assignment getSubscriptAssignment_4_1() { return cSubscriptAssignment_4_1; }
 
-		//MappingSubscript
-		public RuleCall getSubscriptMappingSubscriptParserRuleCall_4_1_0() { return cSubscriptMappingSubscriptParserRuleCall_4_1_0; }
+		//BindingSubscript
+		public RuleCall getSubscriptBindingSubscriptParserRuleCall_4_1_0() { return cSubscriptBindingSubscriptParserRuleCall_4_1_0; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
 
-		//body=MappingBody?
+		//body=BindingBody?
 		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
 
-		//MappingBody
-		public RuleCall getBodyMappingBodyParserRuleCall_5_0() { return cBodyMappingBodyParserRuleCall_5_0; }
+		//BindingBody
+		public RuleCall getBodyBindingBodyParserRuleCall_5_0() { return cBodyBindingBodyParserRuleCall_5_0; }
 	}
 
-	public class MappingTargetPathElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingTargetPath");
+	public class BindingTargetPathElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BindingTargetPath");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPropertyReferencesAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0 = (RuleCall)cPropertyReferencesAssignment_0.eContents().get(0);
+		private final RuleCall cPropertyReferencesBindingPropertyReferenceParserRuleCall_0_0 = (RuleCall)cPropertyReferencesAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cPropertyReferencesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0 = (RuleCall)cPropertyReferencesAssignment_1_1.eContents().get(0);
+		private final RuleCall cPropertyReferencesBindingPropertyReferenceParserRuleCall_1_1_0 = (RuleCall)cPropertyReferencesAssignment_1_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cResourceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cResourceResourceDeclarationCrossReference_3_0 = (CrossReference)cResourceAssignment_3.eContents().get(0);
 		private final RuleCall cResourceResourceDeclarationValidIDParserRuleCall_3_0_1 = (RuleCall)cResourceResourceDeclarationCrossReference_3_0.eContents().get(1);
 		
-		//MappingTargetPath:
-		//	propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+		//BindingTargetPath:
+		//	propertyReferences+=BindingPropertyReference ("." propertyReferences+=BindingPropertyReference)* "."
 		//	resource=[ResourceDeclaration|ValidID];
 		public ParserRule getRule() { return rule; }
 
-		//propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+		//propertyReferences+=BindingPropertyReference ("." propertyReferences+=BindingPropertyReference)* "."
 		//resource=[ResourceDeclaration|ValidID]
 		public Group getGroup() { return cGroup; }
 
-		//propertyReferences+=MappingPropertyReference
+		//propertyReferences+=BindingPropertyReference
 		public Assignment getPropertyReferencesAssignment_0() { return cPropertyReferencesAssignment_0; }
 
-		//MappingPropertyReference
-		public RuleCall getPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0() { return cPropertyReferencesMappingPropertyReferenceParserRuleCall_0_0; }
+		//BindingPropertyReference
+		public RuleCall getPropertyReferencesBindingPropertyReferenceParserRuleCall_0_0() { return cPropertyReferencesBindingPropertyReferenceParserRuleCall_0_0; }
 
-		//("." propertyReferences+=MappingPropertyReference)*
+		//("." propertyReferences+=BindingPropertyReference)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"."
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
-		//propertyReferences+=MappingPropertyReference
+		//propertyReferences+=BindingPropertyReference
 		public Assignment getPropertyReferencesAssignment_1_1() { return cPropertyReferencesAssignment_1_1; }
 
-		//MappingPropertyReference
-		public RuleCall getPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0() { return cPropertyReferencesMappingPropertyReferenceParserRuleCall_1_1_0; }
+		//BindingPropertyReference
+		public RuleCall getPropertyReferencesBindingPropertyReferenceParserRuleCall_1_1_0() { return cPropertyReferencesBindingPropertyReferenceParserRuleCall_1_1_0; }
 
 		//"."
 		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
@@ -834,13 +834,13 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getResourceResourceDeclarationValidIDParserRuleCall_3_0_1() { return cResourceResourceDeclarationValidIDParserRuleCall_3_0_1; }
 	}
 
-	public class MappingPropertyReferenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingPropertyReference");
+	public class BindingPropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BindingPropertyReference");
 		private final Assignment cPropertyAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cPropertySelectionPropertyCrossReference_0 = (CrossReference)cPropertyAssignment.eContents().get(0);
 		private final RuleCall cPropertySelectionPropertyValidIDParserRuleCall_0_1 = (RuleCall)cPropertySelectionPropertyCrossReference_0.eContents().get(1);
 		
-		//MappingPropertyReference:
+		//BindingPropertyReference:
 		//	property=[SelectionProperty|ValidID];
 		public ParserRule getRule() { return rule; }
 
@@ -854,24 +854,24 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getPropertySelectionPropertyValidIDParserRuleCall_0_1() { return cPropertySelectionPropertyValidIDParserRuleCall_0_1; }
 	}
 
-	public class MappingBodyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingBody");
+	public class BindingBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BindingBody");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cMappingBodyAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBindingBodyAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cPropertiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cPropertiesDeclaredPropertyParserRuleCall_2_0 = (RuleCall)cPropertiesAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//MappingBody:
-		//	{MappingBody} "{" properties+=DeclaredProperty* "}";
+		//BindingBody:
+		//	{BindingBody} "{" properties+=DeclaredProperty* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{MappingBody} "{" properties+=DeclaredProperty* "}"
+		//{BindingBody} "{" properties+=DeclaredProperty* "}"
 		public Group getGroup() { return cGroup; }
 
-		//{MappingBody}
-		public Action getMappingBodyAction_0() { return cMappingBodyAction_0; }
+		//{BindingBody}
+		public Action getBindingBodyAction_0() { return cBindingBodyAction_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
@@ -886,12 +886,12 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
-	public class MappingSubscriptElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingSubscript");
+	public class BindingSubscriptElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BindingSubscript");
 		private final Assignment cIndexAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cIndexValidIntParserRuleCall_0 = (RuleCall)cIndexAssignment.eContents().get(0);
 		
-		//MappingSubscript:
+		//BindingSubscript:
 		//	index=ValidInt;
 		public ParserRule getRule() { return rule; }
 
@@ -1485,11 +1485,11 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	private ComponentConfigurationElements pComponentConfiguration;
 	private ComponentConfigurationBodyElements pComponentConfigurationBody;
 	private ComputationPropertyElements pComputationProperty;
-	private MappingElements pMapping;
-	private MappingTargetPathElements pMappingTargetPath;
-	private MappingPropertyReferenceElements pMappingPropertyReference;
-	private MappingBodyElements pMappingBody;
-	private MappingSubscriptElements pMappingSubscript;
+	private BindingElements pBinding;
+	private BindingTargetPathElements pBindingTargetPath;
+	private BindingPropertyReferenceElements pBindingPropertyReference;
+	private BindingBodyElements pBindingBody;
+	private BindingSubscriptElements pBindingSubscript;
 	private ComputationModelElements pComputationModel;
 	private NumberFormatElements pNumberFormat;
 	private FloatingPointFormatElements pFloatingPointFormat;
@@ -1608,7 +1608,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SystemConfigurationBody:
-	//	{SystemConfigurationBody} "{" (properties+=Property | mappings+=Mapping |
+	//	{SystemConfigurationBody} "{" (properties+=Property | bindings+=Binding |
 	//	componentConfigurations+=ComponentConfiguration | fragmentConfigurations+=FragmentConfiguration |
 	//	subsystemConfigurations+=SubsystemConfiguration)* "}";
 	public SystemConfigurationBodyElements getSystemConfigurationBodyAccess() {
@@ -1670,56 +1670,56 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getComputationPropertyAccess().getRule();
 	}
 
-	//Mapping:
-	//	"map" source=[Component|ValidID] "to" targetPath=MappingTargetPath ("[" subscript=MappingSubscript "]")?
-	//	body=MappingBody?;
-	public MappingElements getMappingAccess() {
-		return (pMapping != null) ? pMapping : (pMapping = new MappingElements());
+	//Binding:
+	//	"bind" source=[Component|ValidID] "to" targetPath=BindingTargetPath ("[" subscript=BindingSubscript "]")?
+	//	body=BindingBody?;
+	public BindingElements getBindingAccess() {
+		return (pBinding != null) ? pBinding : (pBinding = new BindingElements());
 	}
 	
-	public ParserRule getMappingRule() {
-		return getMappingAccess().getRule();
+	public ParserRule getBindingRule() {
+		return getBindingAccess().getRule();
 	}
 
-	//MappingTargetPath:
-	//	propertyReferences+=MappingPropertyReference ("." propertyReferences+=MappingPropertyReference)* "."
+	//BindingTargetPath:
+	//	propertyReferences+=BindingPropertyReference ("." propertyReferences+=BindingPropertyReference)* "."
 	//	resource=[ResourceDeclaration|ValidID];
-	public MappingTargetPathElements getMappingTargetPathAccess() {
-		return (pMappingTargetPath != null) ? pMappingTargetPath : (pMappingTargetPath = new MappingTargetPathElements());
+	public BindingTargetPathElements getBindingTargetPathAccess() {
+		return (pBindingTargetPath != null) ? pBindingTargetPath : (pBindingTargetPath = new BindingTargetPathElements());
 	}
 	
-	public ParserRule getMappingTargetPathRule() {
-		return getMappingTargetPathAccess().getRule();
+	public ParserRule getBindingTargetPathRule() {
+		return getBindingTargetPathAccess().getRule();
 	}
 
-	//MappingPropertyReference:
+	//BindingPropertyReference:
 	//	property=[SelectionProperty|ValidID];
-	public MappingPropertyReferenceElements getMappingPropertyReferenceAccess() {
-		return (pMappingPropertyReference != null) ? pMappingPropertyReference : (pMappingPropertyReference = new MappingPropertyReferenceElements());
+	public BindingPropertyReferenceElements getBindingPropertyReferenceAccess() {
+		return (pBindingPropertyReference != null) ? pBindingPropertyReference : (pBindingPropertyReference = new BindingPropertyReferenceElements());
 	}
 	
-	public ParserRule getMappingPropertyReferenceRule() {
-		return getMappingPropertyReferenceAccess().getRule();
+	public ParserRule getBindingPropertyReferenceRule() {
+		return getBindingPropertyReferenceAccess().getRule();
 	}
 
-	//MappingBody:
-	//	{MappingBody} "{" properties+=DeclaredProperty* "}";
-	public MappingBodyElements getMappingBodyAccess() {
-		return (pMappingBody != null) ? pMappingBody : (pMappingBody = new MappingBodyElements());
+	//BindingBody:
+	//	{BindingBody} "{" properties+=DeclaredProperty* "}";
+	public BindingBodyElements getBindingBodyAccess() {
+		return (pBindingBody != null) ? pBindingBody : (pBindingBody = new BindingBodyElements());
 	}
 	
-	public ParserRule getMappingBodyRule() {
-		return getMappingBodyAccess().getRule();
+	public ParserRule getBindingBodyRule() {
+		return getBindingBodyAccess().getRule();
 	}
 
-	//MappingSubscript:
+	//BindingSubscript:
 	//	index=ValidInt;
-	public MappingSubscriptElements getMappingSubscriptAccess() {
-		return (pMappingSubscript != null) ? pMappingSubscript : (pMappingSubscript = new MappingSubscriptElements());
+	public BindingSubscriptElements getBindingSubscriptAccess() {
+		return (pBindingSubscript != null) ? pBindingSubscript : (pBindingSubscript = new BindingSubscriptElements());
 	}
 	
-	public ParserRule getMappingSubscriptRule() {
-		return getMappingSubscriptAccess().getRule();
+	public ParserRule getBindingSubscriptRule() {
+		return getBindingSubscriptAccess().getRule();
 	}
 
 	//ComputationModel:

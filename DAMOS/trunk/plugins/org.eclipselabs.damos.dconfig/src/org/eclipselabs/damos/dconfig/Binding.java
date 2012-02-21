@@ -11,24 +11,24 @@ import org.eclipselabs.damos.dml.Component;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Mapping</b></em>'.
+ * A representation of the model object '<em><b>Binding</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getTargetPath <em>Target Path</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Mapping#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getTargetPath <em>Target Path</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping()
+ * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding()
  * @model
  * @generated
  */
-public interface Mapping extends EObject {
+public interface Binding extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -39,14 +39,14 @@ public interface Mapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Component)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_Source()
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Source()
 	 * @model
 	 * @generated
 	 */
 	Component getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -64,22 +64,22 @@ public interface Mapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Path</em>' containment reference.
-	 * @see #setTargetPath(MappingTargetPath)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_TargetPath()
+	 * @see #setTargetPath(BindingTargetPath)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_TargetPath()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MappingTargetPath getTargetPath();
+	BindingTargetPath getTargetPath();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getTargetPath <em>Target Path</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getTargetPath <em>Target Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Path</em>' containment reference.
 	 * @see #getTargetPath()
 	 * @generated
 	 */
-	void setTargetPath(MappingTargetPath value);
+	void setTargetPath(BindingTargetPath value);
 
 	/**
 	 * Returns the value of the '<em><b>Subscript</b></em>' containment reference.
@@ -92,15 +92,15 @@ public interface Mapping extends EObject {
 	 * @return the value of the '<em>Subscript</em>' containment reference.
 	 * @see #isSetSubscript()
 	 * @see #unsetSubscript()
-	 * @see #setSubscript(MappingSubscript)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_Subscript()
+	 * @see #setSubscript(BindingSubscript)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Subscript()
 	 * @model containment="true" unsettable="true"
 	 * @generated
 	 */
-	MappingSubscript getSubscript();
+	BindingSubscript getSubscript();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Subscript</em>' containment reference.
@@ -109,34 +109,34 @@ public interface Mapping extends EObject {
 	 * @see #getSubscript()
 	 * @generated
 	 */
-	void setSubscript(MappingSubscript value);
+	void setSubscript(BindingSubscript value);
 
 	/**
-	 * Unsets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}' containment reference.
+	 * Unsets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isSetSubscript()
 	 * @see #getSubscript()
-	 * @see #setSubscript(MappingSubscript)
+	 * @see #setSubscript(BindingSubscript)
 	 * @generated
 	 */
 	void unsetSubscript();
 
 	/**
-	 * Returns whether the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getSubscript <em>Subscript</em>}' containment reference is set.
+	 * Returns whether the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}' containment reference is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return whether the value of the '<em>Subscript</em>' containment reference is set.
 	 * @see #unsetSubscript()
 	 * @see #getSubscript()
-	 * @see #setSubscript(MappingSubscript)
+	 * @see #setSubscript(BindingSubscript)
 	 * @generated
 	 */
 	boolean isSetSubscript();
 
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dconfig.MappingBody#getOwner <em>Owner</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dconfig.BindingBody#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
@@ -144,22 +144,22 @@ public interface Mapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body</em>' containment reference.
-	 * @see #setBody(MappingBody)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getMapping_Body()
-	 * @see org.eclipselabs.damos.dconfig.MappingBody#getOwner
+	 * @see #setBody(BindingBody)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Body()
+	 * @see org.eclipselabs.damos.dconfig.BindingBody#getOwner
 	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
-	MappingBody getBody();
+	BindingBody getBody();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Mapping#getBody <em>Body</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Body</em>' containment reference.
 	 * @see #getBody()
 	 * @generated
 	 */
-	void setBody(MappingBody value);
+	void setBody(BindingBody value);
 
-} // Mapping
+} // Binding

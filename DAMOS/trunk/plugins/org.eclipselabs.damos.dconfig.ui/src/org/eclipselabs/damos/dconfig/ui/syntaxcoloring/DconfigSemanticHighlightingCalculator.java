@@ -7,10 +7,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingTargetPath;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
-import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
@@ -41,8 +42,13 @@ public class DconfigSemanticHighlightingCalculator extends MscriptSemanticHighli
 			provideHighlightingForModelElement(eObject, DconfigPackage.eINSTANCE.getFragmentConfiguration_EndFragment(), acceptor);
 		} else if (eObject instanceof ComponentConfiguration) {
 			provideHighlightingForModelElement(eObject, DconfigPackage.eINSTANCE.getComponentConfiguration_Component(), acceptor);
-		} else if (eObject instanceof Mapping) {
-			provideHighlightingForModelElement(eObject, DconfigPackage.eINSTANCE.getMapping_Source(), acceptor);
+		} else if (eObject instanceof Binding) {
+			provideHighlightingForModelElement(eObject, DconfigPackage.eINSTANCE.getBinding_Source(), acceptor);
+		} else if (eObject instanceof BindingTargetPath) {
+			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, DconfigPackage.eINSTANCE.getBindingTargetPath_Resource());
+			for (INode node : nodes) {
+				acceptor.addPosition(node.getOffset(), node.getLength(), DconfigHighlightingConfiguration.RESOURCE_ID);
+			}
 		} else {
 			return super.provideHighlightingFor(eObject, acceptor);
 		}

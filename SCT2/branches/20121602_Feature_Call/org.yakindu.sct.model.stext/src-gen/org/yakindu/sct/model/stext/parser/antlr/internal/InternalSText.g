@@ -1222,7 +1222,7 @@ ruleOperationDefinition returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getOperationDefinitionAccess().getOperationAction_0(),
+            grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0(),
             $current);
     }
 )	otherlv_1='operation' 

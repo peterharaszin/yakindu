@@ -2,6 +2,7 @@
  * <copyright>
  * </copyright>
  *
+
  */
 package org.yakindu.sct.model.stext.stext.util;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.yakindu.base.base.NamedElement;
 
 import org.yakindu.base.types.Feature;
+import org.yakindu.base.types.Operation;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.TypedElement;
 
@@ -283,11 +285,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
         return createSimpleScopeAdapter();
       }
       @Override
-      public Adapter caseOperation(Operation object)
-      {
-        return createOperationAdapter();
-      }
-      @Override
       public Adapter caseEntrypoint(Entrypoint object)
       {
         return createEntrypointAdapter();
@@ -448,9 +445,9 @@ public class StextAdapterFactory extends AdapterFactoryImpl
         return createPropertyAdapter();
       }
       @Override
-      public Adapter caseTypes_Operation(org.yakindu.base.types.Operation object)
+      public Adapter caseOperation(Operation object)
       {
-        return createTypes_OperationAdapter();
+        return createOperationAdapter();
       }
       @Override
       public Adapter caseReaction(Reaction object)
@@ -1065,21 +1062,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.Operation <em>Operation</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.model.stext.stext.Operation
-   * @generated
-   */
-  public Adapter createOperationAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.Entrypoint <em>Entrypoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1569,7 +1551,7 @@ public class StextAdapterFactory extends AdapterFactoryImpl
    * @see org.yakindu.base.types.Operation
    * @generated
    */
-  public Adapter createTypes_OperationAdapter()
+  public Adapter createOperationAdapter()
   {
     return null;
   }

@@ -1832,7 +1832,7 @@ protected class Declaration_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getEventDefinitionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getExitpointAccess().getExitpointAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLocalReactionRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationAction_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getVariableDefinitionAccess().getVariableDefinitionAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
@@ -1934,7 +1934,7 @@ protected class Declaration_OperationDeclarationParserRuleCall_2 extends RuleCal
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0().getType().getClassifier())
 			return null;
 		if(checkForRecursion(OperationDeclaration_OperationDefinitionParserRuleCall.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
@@ -3101,7 +3101,7 @@ protected class OperationDeclaration_OperationDefinitionParserRuleCall extends R
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0().getType().getClassifier())
 			return null;
 		if(checkForRecursion(OperationDefinition_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
@@ -3147,7 +3147,7 @@ protected class OperationFeature_OperationDefinitionParserRuleCall extends RuleC
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0().getType().getClassifier())
 			return null;
 		if(checkForRecursion(OperationDefinition_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
@@ -3167,13 +3167,13 @@ protected class OperationFeature_OperationDefinitionParserRuleCall extends RuleC
 /************ begin Rule OperationDefinition ****************
  *
  * OperationDefinition:
- * 	{Operation} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")" (":"
- * 	type=[types::Type|FQN])?;
+ * 	{OperationDefinition} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)?
+ * 	")" (":" type=[types::Type|FQN])?;
  *
  **/
 
-// {Operation} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")" (":"
-// type=[types::Type|FQN])?
+// {OperationDefinition} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")"
+// (":" type=[types::Type|FQN])?
 protected class OperationDefinition_Group extends GroupToken {
 	
 	public OperationDefinition_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3196,23 +3196,23 @@ protected class OperationDefinition_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// {Operation}
-protected class OperationDefinition_OperationAction_0 extends ActionToken  {
+// {OperationDefinition}
+protected class OperationDefinition_OperationDefinitionAction_0 extends ActionToken  {
 
-	public OperationDefinition_OperationAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public OperationDefinition_OperationDefinitionAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Action getGrammarElement() {
-		return grammarAccess.getOperationDefinitionAccess().getOperationAction_0();
+		return grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0();
 	}
 
     @Override
@@ -3244,7 +3244,7 @@ protected class OperationDefinition_OperationKeyword_1 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new OperationDefinition_OperationAction_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new OperationDefinition_OperationDefinitionAction_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

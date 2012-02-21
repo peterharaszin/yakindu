@@ -61,6 +61,7 @@ import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.yakindu.base.base.NamedElement
 import org.apache.commons.logging.LogFactory
 import org.apache.commons.logging.LogConfigurationException
+import org.yakindu.sct.model.stext.stext.OperationDefinition
  
 
 @Singleton class SexecElementMapping {
@@ -94,7 +95,7 @@ import org.apache.commons.logging.LogConfigurationException
 	
 	def VariableDefinition create r : EcoreUtil::copy(v) create(VariableDefinition v) {}
 	
-	def Operation create r : EcoreUtil::copy(v) create(Operation v) {}
+	def OperationDefinition create r : EcoreUtil::copy(v) create(OperationDefinition v) {}
 	
 	
 	def ExecutionState create r : sexecFactory.createExecutionState create(RegularState state){

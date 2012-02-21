@@ -704,7 +704,7 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	public class OperationDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cOperationAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cOperationDefinitionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cOperationKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
@@ -726,16 +726,16 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeTypeFQNParserRuleCall_6_1_0_1 = (RuleCall)cTypeTypeCrossReference_6_1_0.eContents().get(1);
 		
 		//OperationDefinition:
-		//	{Operation} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")" (":"
-		//	type=[types::Type|FQN])?;
+		//	{OperationDefinition} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)?
+		//	")" (":" type=[types::Type|FQN])?;
 		public ParserRule getRule() { return rule; }
 
-		//{Operation} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")" (":"
-		//type=[types::Type|FQN])?
+		//{OperationDefinition} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")"
+		//(":" type=[types::Type|FQN])?
 		public Group getGroup() { return cGroup; }
 
-		//{Operation}
-		public Action getOperationAction_0() { return cOperationAction_0; }
+		//{OperationDefinition}
+		public Action getOperationDefinitionAction_0() { return cOperationDefinitionAction_0; }
 
 		//"operation"
 		public Keyword getOperationKeyword_1() { return cOperationKeyword_1; }
@@ -3260,8 +3260,8 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationDefinition:
-	//	{Operation} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)? ")" (":"
-	//	type=[types::Type|FQN])?;
+	//	{OperationDefinition} "operation" name=ID "(" (paramTypes+=[types::Type|FQN] ("," paramTypes+=[types::Type|FQN])*)?
+	//	")" (":" type=[types::Type|FQN])?;
 	public OperationDefinitionElements getOperationDefinitionAccess() {
 		return (pOperationDefinition != null) ? pOperationDefinition : (pOperationDefinition = new OperationDefinitionElements());
 	}

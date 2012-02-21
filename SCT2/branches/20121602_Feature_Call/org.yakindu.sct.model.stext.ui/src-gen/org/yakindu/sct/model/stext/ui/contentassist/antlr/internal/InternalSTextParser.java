@@ -13356,7 +13356,7 @@ public class InternalSTextParser extends AbstractInternalContentAssistParser {
             // ../org.yakindu.sct.model.stext.ui/src-gen/org/yakindu/sct/model/stext/ui/contentassist/antlr/internal/InternalSText.g:4284:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getOperationDefinitionAccess().getOperationAction_0()); 
+               before(grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0()); 
             }
             // ../org.yakindu.sct.model.stext.ui/src-gen/org/yakindu/sct/model/stext/ui/contentassist/antlr/internal/InternalSText.g:4285:1: ()
             // ../org.yakindu.sct.model.stext.ui/src-gen/org/yakindu/sct/model/stext/ui/contentassist/antlr/internal/InternalSText.g:4287:1: 
@@ -13364,7 +13364,7 @@ public class InternalSTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getOperationDefinitionAccess().getOperationAction_0()); 
+               after(grammarAccess.getOperationDefinitionAccess().getOperationDefinitionAction_0()); 
             }
 
             }

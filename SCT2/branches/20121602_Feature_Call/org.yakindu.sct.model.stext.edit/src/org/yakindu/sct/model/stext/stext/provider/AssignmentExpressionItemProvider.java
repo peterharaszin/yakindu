@@ -203,6 +203,11 @@ public class AssignmentExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -268,12 +273,12 @@ public class AssignmentExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -289,11 +294,6 @@ public class AssignmentExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.ASSIGNMENT_EXPRESSION__VAR_REF,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -303,6 +303,11 @@ public class AssignmentExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -368,12 +373,12 @@ public class AssignmentExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -389,11 +394,6 @@ public class AssignmentExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.ASSIGNMENT_EXPRESSION__EXPRESSION,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

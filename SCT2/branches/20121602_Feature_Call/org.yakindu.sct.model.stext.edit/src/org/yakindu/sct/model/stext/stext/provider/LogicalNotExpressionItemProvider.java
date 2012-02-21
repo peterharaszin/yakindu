@@ -167,6 +167,11 @@ public class LogicalNotExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -232,12 +237,12 @@ public class LogicalNotExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -253,11 +258,6 @@ public class LogicalNotExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.LOGICAL_NOT_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
 }

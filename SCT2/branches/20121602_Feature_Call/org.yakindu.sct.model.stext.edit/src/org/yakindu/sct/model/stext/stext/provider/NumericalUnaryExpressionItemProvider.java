@@ -201,6 +201,11 @@ public class NumericalUnaryExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -266,12 +271,12 @@ public class NumericalUnaryExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -287,11 +292,6 @@ public class NumericalUnaryExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.NUMERICAL_UNARY_EXPRESSION__OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
 }

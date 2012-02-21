@@ -203,6 +203,11 @@ public class ShiftExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -268,12 +273,12 @@ public class ShiftExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -289,11 +294,6 @@ public class ShiftExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.SHIFT_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -303,6 +303,11 @@ public class ShiftExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -368,12 +373,12 @@ public class ShiftExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -389,11 +394,6 @@ public class ShiftExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.SHIFT_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

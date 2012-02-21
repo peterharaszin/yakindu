@@ -60,8 +60,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			final EObject context, EReference reference) {
 		IScope namdScope = getNamedTopLevelScope(context, reference);
 		IScope unnamedScope = getUnnamedTopLevelScope(context, reference);
-		Predicate<IEObjectDescription> predicate = predicateProvider
-				.getPredicate(context.eClass());
+		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(context);
 		unnamedScope = new FilteringScope(unnamedScope, predicate);
 		return new SimpleScope(Iterables.concat(namdScope.getAllElements(),
 				unnamedScope.getAllElements()));
@@ -70,17 +69,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
 			EReference reference) {
 
-		// collect a predicate to filter
-		EObject container = context;
-		Predicate<IEObjectDescription> predicate = null;
-		while (container != null) {
-			predicate = predicateProvider.getPredicate(container.eClass());
-			if (!(predicate instanceof EmptyPredicate)) {
-				break;
-			}
-			container = container.eContainer();
-		}
-
+		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(context);
 		Expression owner = context.getOwner();
 		if (owner instanceof TypedElementReferenceExpression) {
 			NamedElement element = ((TypedElementReferenceExpression) owner)
@@ -106,9 +95,21 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			}
 			return new FilteringScope(scope, predicate);
 		}
-
 		return getDelegate().getScope(context, reference);
+	}
 
+	private Predicate<IEObjectDescription> calcuateFilterPredicate(
+			final EObject context) {
+		Predicate<IEObjectDescription> predicate = null;
+		EObject container = context;
+		while (container != null) {
+			predicate = predicateProvider.getPredicate(container.eClass());
+			if (!(predicate instanceof EmptyPredicate)) {
+				break;
+			}
+			container = container.eContainer();
+		}
+		return predicate;
 	}
 
 	/**

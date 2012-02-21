@@ -169,6 +169,11 @@ public class EventRaisingExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -234,12 +239,12 @@ public class EventRaisingExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -255,11 +260,6 @@ public class EventRaisingExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.EVENT_RAISING_EXPRESSION__EVENT,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -269,6 +269,11 @@ public class EventRaisingExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -334,12 +339,12 @@ public class EventRaisingExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -355,11 +360,6 @@ public class EventRaisingExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.EVENT_RAISING_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

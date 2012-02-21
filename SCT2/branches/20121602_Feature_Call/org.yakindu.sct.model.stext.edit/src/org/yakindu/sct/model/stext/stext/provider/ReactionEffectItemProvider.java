@@ -171,6 +171,11 @@ public class ReactionEffectItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -236,12 +241,12 @@ public class ReactionEffectItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -257,11 +262,6 @@ public class ReactionEffectItemProvider
       (createChildParameter
         (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.REACTION_EFFECT__ACTIONS,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

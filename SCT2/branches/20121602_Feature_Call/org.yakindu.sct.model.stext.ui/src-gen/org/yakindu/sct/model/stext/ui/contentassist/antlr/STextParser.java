@@ -55,7 +55,6 @@ public class STextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLogicalNotExpressionAccess().getAlternatives(), "rule__LogicalNotExpression__Alternatives");
 					put(grammarAccess.getNumericalUnaryExpressionAccess().getAlternatives(), "rule__NumericalUnaryExpression__Alternatives");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
-					put(grammarAccess.getValueExpressionAccess().getAlternatives(), "rule__ValueExpression__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getDirectionAccess().getAlternatives(), "rule__Direction__Alternatives");
 					put(grammarAccess.getTimeEventTypeAccess().getAlternatives(), "rule__TimeEventType__Alternatives");
@@ -138,13 +137,13 @@ public class STextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericalMultiplyDivideExpressionAccess().getGroup(), "rule__NumericalMultiplyDivideExpression__Group__0");
 					put(grammarAccess.getNumericalMultiplyDivideExpressionAccess().getGroup_1(), "rule__NumericalMultiplyDivideExpression__Group_1__0");
 					put(grammarAccess.getNumericalUnaryExpressionAccess().getGroup_1(), "rule__NumericalUnaryExpression__Group_1__0");
+					put(grammarAccess.getPrimaryExpressionAccess().getGroup_4(), "rule__PrimaryExpression__Group_4__0");
+					put(grammarAccess.getPrimitiveValueExpressionAccess().getGroup(), "rule__PrimitiveValueExpression__Group__0");
 					put(grammarAccess.getFeatureCallAccess().getGroup(), "rule__FeatureCall__Group__0");
 					put(grammarAccess.getFeatureCallAccess().getGroup_1(), "rule__FeatureCall__Group_1__0");
 					put(grammarAccess.getFeatureCallAccess().getGroup_1_3(), "rule__FeatureCall__Group_1_3__0");
 					put(grammarAccess.getFeatureCallAccess().getGroup_1_3_1(), "rule__FeatureCall__Group_1_3_1__0");
 					put(grammarAccess.getFeatureCallAccess().getGroup_1_3_1_1(), "rule__FeatureCall__Group_1_3_1_1__0");
-					put(grammarAccess.getPrimaryExpressionAccess().getGroup_1(), "rule__PrimaryExpression__Group_1__0");
-					put(grammarAccess.getPrimitiveValueExpressionAccess().getGroup(), "rule__PrimitiveValueExpression__Group__0");
 					put(grammarAccess.getTypedElementReferenceExpressionAccess().getGroup(), "rule__TypedElementReferenceExpression__Group__0");
 					put(grammarAccess.getEventValueReferenceExpressionAccess().getGroup(), "rule__EventValueReferenceExpression__Group__0");
 					put(grammarAccess.getActiveStateReferenceExpressionAccess().getGroup(), "rule__ActiveStateReferenceExpression__Group__0");
@@ -223,11 +222,11 @@ public class STextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericalMultiplyDivideExpressionAccess().getRightOperandAssignment_1_2(), "rule__NumericalMultiplyDivideExpression__RightOperandAssignment_1_2");
 					put(grammarAccess.getNumericalUnaryExpressionAccess().getOperatorAssignment_1_1(), "rule__NumericalUnaryExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getNumericalUnaryExpressionAccess().getOperandAssignment_1_2(), "rule__NumericalUnaryExpression__OperandAssignment_1_2");
+					put(grammarAccess.getPrimitiveValueExpressionAccess().getValueAssignment_1(), "rule__PrimitiveValueExpression__ValueAssignment_1");
 					put(grammarAccess.getFeatureCallAccess().getFeatureAssignment_1_2(), "rule__FeatureCall__FeatureAssignment_1_2");
 					put(grammarAccess.getFeatureCallAccess().getOperationCallAssignment_1_3_0(), "rule__FeatureCall__OperationCallAssignment_1_3_0");
 					put(grammarAccess.getFeatureCallAccess().getArgsAssignment_1_3_1_0(), "rule__FeatureCall__ArgsAssignment_1_3_1_0");
 					put(grammarAccess.getFeatureCallAccess().getArgsAssignment_1_3_1_1_1(), "rule__FeatureCall__ArgsAssignment_1_3_1_1_1");
-					put(grammarAccess.getPrimitiveValueExpressionAccess().getValueAssignment_1(), "rule__PrimitiveValueExpression__ValueAssignment_1");
 					put(grammarAccess.getTypedElementReferenceExpressionAccess().getReferenceAssignment_1(), "rule__TypedElementReferenceExpression__ReferenceAssignment_1");
 					put(grammarAccess.getEventValueReferenceExpressionAccess().getValueAssignment_3(), "rule__EventValueReferenceExpression__ValueAssignment_3");
 					put(grammarAccess.getActiveStateReferenceExpressionAccess().getValueAssignment_3(), "rule__ActiveStateReferenceExpression__ValueAssignment_3");

@@ -167,6 +167,11 @@ public class RegularEventSpecItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -232,12 +237,12 @@ public class RegularEventSpecItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -253,11 +258,6 @@ public class RegularEventSpecItemProvider
       (createChildParameter
         (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.REGULAR_EVENT_SPEC__EVENT,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
 }

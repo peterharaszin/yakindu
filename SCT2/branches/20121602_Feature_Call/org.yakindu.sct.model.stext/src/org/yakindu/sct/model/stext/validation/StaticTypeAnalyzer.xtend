@@ -74,42 +74,34 @@ class StaticTypeAnalyzer {
 		null
 	}
 	
-//	/**
-//	 * Check Variable assignments
-//	 */
-//	def dispatch check(AssignmentExpression assignment){
-//		var valueType = assignment.expression.check
-//		var ref = assignment.varRef
-//		ref.
-//		if(isBoolean(type) && !(valueType == typeof(Boolean))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
-//		}
-//		else if(isInteger(type) && !(valueType == typeof(Number))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
-//		}
-//		else if(isReal(type) && !(valueType == typeof(Number))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
-//		} 
-//		return null 
-//	}
-//	/**
-//	 * Check Event value assignments
-//	 */
-//	def dispatch check(EventRaisingExpression eventRaising){
-//		var valueType = eventRaising.value.check
-//		var ref = eventRaising.event
-//		var type = (ref as EventDefinition).getType()
-//		if(isBoolean(type) && !(valueType == typeof(Boolean))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
-//		}
-//		else if (isInteger(type) && !(valueType == typeof(Number))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
-//		}
-//		else if(isReal(type) && !(valueType == typeof(Number))){
-//			error("Can not assign a value of type " + valueType.simpleName + " to an event  type " + type)
-//		} 
-//		return null 
-//	}
+	/**
+	 * Check Variable assignments
+	 */
+	def dispatch check(AssignmentExpression assignment){
+		var valueType = assignment.expression.check
+		var type = assignment.varRef.check
+		if(type == typeof(Boolean) && !(valueType == typeof(Boolean))){
+			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
+		}
+		else if(type == typeof(Number) && !(valueType == typeof(Number))){
+			error("Can not assign a value of type " + valueType.simpleName + " to a variable of type " + type)
+		}
+		return null 
+	}
+	/**
+	 * Check Event value assignments
+	 */
+	def dispatch check(EventRaisingExpression eventRaising){
+		var valueType = eventRaising.value.check
+		var type = eventRaising.event.check
+		if(type == typeof(Boolean) && !(valueType == typeof(Boolean))){
+			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
+		}
+		else if (type == typeof(Number) && !(valueType == typeof(Number))){
+			error("Can not assign a value of type " + valueType.simpleName + " to an event of type " + type)
+		}
+		return null 
+	}
 	
 	
 	

@@ -400,6 +400,13 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass eventRaisingExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass assignmentExpressionEClass = null;
 
   /**
@@ -520,13 +527,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * @generated
    */
   private EClass activeStateReferenceExpressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass eventRaisingExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1413,6 +1413,36 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEventRaisingExpression()
+  {
+    return eventRaisingExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventRaisingExpression_Event()
+  {
+    return (EReference)eventRaisingExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventRaisingExpression_Value()
+  {
+    return (EReference)eventRaisingExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAssignmentExpression()
   {
     return assignmentExpressionEClass;
@@ -1983,36 +2013,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEventRaisingExpression()
-  {
-    return eventRaisingExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEventRaisingExpression_Event()
-  {
-    return (EReference)eventRaisingExpressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEventRaisingExpression_Value()
-  {
-    return (EReference)eventRaisingExpressionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getDirection()
   {
     return directionEEnum;
@@ -2245,6 +2245,10 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     reactionEffectEClass = createEClass(REACTION_EFFECT);
     createEReference(reactionEffectEClass, REACTION_EFFECT__ACTIONS);
 
+    eventRaisingExpressionEClass = createEClass(EVENT_RAISING_EXPRESSION);
+    createEReference(eventRaisingExpressionEClass, EVENT_RAISING_EXPRESSION__EVENT);
+    createEReference(eventRaisingExpressionEClass, EVENT_RAISING_EXPRESSION__VALUE);
+
     assignmentExpressionEClass = createEClass(ASSIGNMENT_EXPRESSION);
     createEReference(assignmentExpressionEClass, ASSIGNMENT_EXPRESSION__VAR_REF);
     createEAttribute(assignmentExpressionEClass, ASSIGNMENT_EXPRESSION__OPERATOR);
@@ -2319,10 +2323,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
 
     activeStateReferenceExpressionEClass = createEClass(ACTIVE_STATE_REFERENCE_EXPRESSION);
     createEReference(activeStateReferenceExpressionEClass, ACTIVE_STATE_REFERENCE_EXPRESSION__VALUE);
-
-    eventRaisingExpressionEClass = createEClass(EVENT_RAISING_EXPRESSION);
-    createEReference(eventRaisingExpressionEClass, EVENT_RAISING_EXPRESSION__EVENT);
-    createEReference(eventRaisingExpressionEClass, EVENT_RAISING_EXPRESSION__VALUE);
 
     // Create enums
     directionEEnum = createEEnum(DIRECTION);
@@ -2407,6 +2407,7 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     exitpointEClass.getESuperTypes().add(theSGraphPackage.getDeclaration());
     reactionTriggerEClass.getESuperTypes().add(theSGraphPackage.getTrigger());
     reactionEffectEClass.getESuperTypes().add(theSGraphPackage.getEffect());
+    eventRaisingExpressionEClass.getESuperTypes().add(this.getExpression());
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
     conditionalExpressionEClass.getESuperTypes().add(this.getExpression());
     logicalOrExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2425,7 +2426,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     typedElementReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
     eventValueReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
     activeStateReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
-    eventRaisingExpressionEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(rootEClass, Root.class, "Root", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2545,6 +2545,10 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     initEClass(reactionEffectEClass, ReactionEffect.class, "ReactionEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionEffect_Actions(), this.getExpression(), null, "actions", null, 0, -1, ReactionEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(eventRaisingExpressionEClass, EventRaisingExpression.class, "EventRaisingExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEventRaisingExpression_Event(), this.getExpression(), null, "event", null, 0, 1, EventRaisingExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEventRaisingExpression_Value(), this.getExpression(), null, "value", null, 0, 1, EventRaisingExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(assignmentExpressionEClass, AssignmentExpression.class, "AssignmentExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssignmentExpression_VarRef(), this.getExpression(), null, "varRef", null, 0, 1, AssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAssignmentExpression_Operator(), this.getAssignmentOperator(), "operator", null, 0, 1, AssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2619,10 +2623,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
 
     initEClass(activeStateReferenceExpressionEClass, ActiveStateReferenceExpression.class, "ActiveStateReferenceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getActiveStateReferenceExpression_Value(), theSGraphPackage.getState(), null, "value", null, 0, 1, ActiveStateReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(eventRaisingExpressionEClass, EventRaisingExpression.class, "EventRaisingExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEventRaisingExpression_Event(), this.getExpression(), null, "event", null, 0, 1, EventRaisingExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEventRaisingExpression_Value(), this.getExpression(), null, "value", null, 0, 1, EventRaisingExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(directionEEnum, Direction.class, "Direction");

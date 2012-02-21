@@ -5396,9 +5396,9 @@ rule__MscriptBlockType__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3()); }
-(rule__MscriptBlockType__TimingAssignment_3)?
-{ after(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3()); }
+{ before(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3()); }
+(rule__MscriptBlockType__UnorderedGroup_3)
+{ after(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3()); }
 )
 
 ;
@@ -22911,6 +22911,102 @@ finally {
 
 
 
+rule__MscriptBlockType__UnorderedGroup_3
+    @init {
+    	int stackSize = keepStackSize();
+		getUnorderedGroupHelper().enter(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3());
+    }
+:
+	rule__MscriptBlockType__UnorderedGroup_3__0
+	?
+	
+;
+finally {
+	getUnorderedGroupHelper().leave(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3());
+	restoreStackSize(stackSize);
+}
+
+
+rule__MscriptBlockType__UnorderedGroup_3__Impl
+	@init {
+		int stackSize = keepStackSize();
+		boolean selected = false;
+    }
+:
+		(
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3(), 0)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3(), 0);
+	 				}
+	 				{
+	 				  selected = true;
+	 				}
+					(
+					
+						{ before(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3_0()); }
+						(rule__MscriptBlockType__TimingAssignment_3_0)
+						{ after(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3_0()); }
+					)
+ 				)
+			)  |
+
+			( 
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3(), 1)}?=>(
+					{ 
+	 				  getUnorderedGroupHelper().select(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3(), 1);
+	 				}
+	 				{
+	 				  selected = true;
+	 				}
+					(
+					
+						{ before(grammarAccess.getMscriptBlockTypeAccess().getBoundaryAssignment_3_1()); }
+						(rule__MscriptBlockType__BoundaryAssignment_3_1)
+						{ after(grammarAccess.getMscriptBlockTypeAccess().getBoundaryAssignment_3_1()); }
+					)
+ 				)
+			)  
+
+		)
+;
+finally {
+	if (selected)
+		getUnorderedGroupHelper().returnFromSelection(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3());
+	restoreStackSize(stackSize);
+}
+
+
+rule__MscriptBlockType__UnorderedGroup_3__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MscriptBlockType__UnorderedGroup_3__Impl
+	rule__MscriptBlockType__UnorderedGroup_3__1?
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MscriptBlockType__UnorderedGroup_3__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MscriptBlockType__UnorderedGroup_3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
 rule__InputDefinition__UnorderedGroup_0
     @init {
     	int stackSize = keepStackSize();
@@ -23264,14 +23360,37 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MscriptBlockType__TimingAssignment_3
+rule__MscriptBlockType__TimingAssignment_3_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0()); }
-	ruleTimingKind{ after(grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0()); }
+{ before(grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0_0()); }
+	ruleTimingKind{ after(grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MscriptBlockType__BoundaryAssignment_3_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMscriptBlockTypeAccess().getBoundaryBoundaryKeyword_3_1_0()); }
+(
+{ before(grammarAccess.getMscriptBlockTypeAccess().getBoundaryBoundaryKeyword_3_1_0()); }
+
+	'boundary' 
+
+{ after(grammarAccess.getMscriptBlockTypeAccess().getBoundaryBoundaryKeyword_3_1_0()); }
+)
+
+{ after(grammarAccess.getMscriptBlockTypeAccess().getBoundaryBoundaryKeyword_3_1_0()); }
 )
 
 ;

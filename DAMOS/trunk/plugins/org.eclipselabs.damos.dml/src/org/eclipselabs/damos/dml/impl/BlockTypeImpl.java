@@ -53,6 +53,7 @@ import org.eclipselabs.damos.dml.internal.util.URIUtil;
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getTiming <em>Timing</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#isBoundary <em>Boundary</em>}</li>
  * </ul>
  * </p>
  *
@@ -168,6 +169,26 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * @ordered
 	 */
 	protected TimingKind timing = TIMING_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isBoundary() <em>Boundary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBoundary()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean BOUNDARY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isBoundary() <em>Boundary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBoundary()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean boundary = BOUNDARY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -320,6 +341,27 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isBoundary() {
+		return boundary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundary(boolean newBoundary) {
+		boolean oldBoundary = boundary;
+		boundary = newBoundary;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__BOUNDARY, oldBoundary, boundary));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean belongsTo(String categoryName) {
@@ -386,6 +428,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return getOutputDefinitions();
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				return getTiming();
+			case DMLPackage.BLOCK_TYPE__BOUNDARY:
+				return isBoundary();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -427,6 +471,9 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				setTiming((TimingKind)newValue);
 				return;
+			case DMLPackage.BLOCK_TYPE__BOUNDARY:
+				setBoundary((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -463,6 +510,9 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				setTiming(TIMING_EDEFAULT);
 				return;
+			case DMLPackage.BLOCK_TYPE__BOUNDARY:
+				setBoundary(BOUNDARY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -491,6 +541,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return outputDefinitions != null && !outputDefinitions.isEmpty();
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				return timing != TIMING_EDEFAULT;
+			case DMLPackage.BLOCK_TYPE__BOUNDARY:
+				return boundary != BOUNDARY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -581,6 +633,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		result.append(packageName);
 		result.append(", timing: ");
 		result.append(timing);
+		result.append(", boundary: ");
+		result.append(boundary);
 		result.append(')');
 		return result.toString();
 	}

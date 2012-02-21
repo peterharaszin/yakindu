@@ -43,6 +43,7 @@
     <eOperations name="isTimingConstraintApplicable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="eClass" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eOperations>
+    <eOperations name="isBoundary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//Input" containment="true" eOpposite="#//Input/component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
@@ -252,6 +253,7 @@
         eType="#//OutputDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timing" lowerBound="1"
         eType="#//TimingKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimingKind">
     <eLiterals name="Any"/>

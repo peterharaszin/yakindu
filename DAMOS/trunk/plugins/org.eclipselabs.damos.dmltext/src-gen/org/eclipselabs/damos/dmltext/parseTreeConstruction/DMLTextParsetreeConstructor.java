@@ -285,15 +285,15 @@ protected class Root_SystemInterfacesAssignment_1 extends AssignmentToken  {
 /************ begin Rule MscriptBlockType ****************
  *
  * MscriptBlockType:
- * 	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
- * 	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
- * 	declarations+=Declaration* "}";
+ * 	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
+ * 	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
+ * 	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=Declaration* "}";
  *
  **/
 
-// "package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
-// "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-// declarations+=Declaration* "}"
+// "package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? & boundary?="boundary"?)
+// "blockType" name=ValidID "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition*
+// parameters+=Parameter* declarations+=Declaration* "}"
 protected class MscriptBlockType_Group extends GroupToken {
 	
 	public MscriptBlockType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -424,16 +424,41 @@ protected class MscriptBlockType_ImportDeclarationsAssignment_2 extends Assignme
 	}	
 }
 
-// timing=TimingKind?
-protected class MscriptBlockType_TimingAssignment_3 extends AssignmentToken  {
+// timing=TimingKind? & boundary?="boundary"?
+protected class MscriptBlockType_UnorderedGroup_3 extends UnorderedGroupToken {
 	
-	public MscriptBlockType_TimingAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public MscriptBlockType_UnorderedGroup_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public UnorderedGroup getGrammarElement() {
+		return grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MscriptBlockType_BoundaryAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new MscriptBlockType_TimingAssignment_3_0(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new MscriptBlockType_ImportDeclarationsAssignment_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new MscriptBlockType_PackageNameAssignment_1(lastRuleCallOrigin, this, 3, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// timing=TimingKind?
+protected class MscriptBlockType_TimingAssignment_3_0 extends AssignmentToken  {
+	
+	public MscriptBlockType_TimingAssignment_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3();
+		return grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3_0();
 	}
 
     @Override
@@ -449,15 +474,52 @@ protected class MscriptBlockType_TimingAssignment_3 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("timing",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("timing");
-		if(enumLitSerializer.isValid(obj.getEObject(), grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0(), value, null)) { 
+		if(enumLitSerializer.isValid(obj.getEObject(), grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0_0(), value, null)) { 
 			type = AssignmentType.ENUM_RULE_CALL;
-			element = grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0();
+			element = grammarAccess.getMscriptBlockTypeAccess().getTimingTimingKindEnumRuleCall_3_0_0();
 			return obj;
 		}
 		return null;
 	}
 
 }
+
+// boundary?="boundary"?
+protected class MscriptBlockType_BoundaryAssignment_3_1 extends AssignmentToken  {
+	
+	public MscriptBlockType_BoundaryAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getMscriptBlockTypeAccess().getBoundaryAssignment_3_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new MscriptBlockType_TimingAssignment_3_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new MscriptBlockType_ImportDeclarationsAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new MscriptBlockType_PackageNameAssignment_1(lastRuleCallOrigin, this, 2, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("boundary",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("boundary");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getMscriptBlockTypeAccess().getBoundaryBoundaryKeyword_3_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
 
 // "blockType"
 protected class MscriptBlockType_BlockTypeKeyword_4 extends KeywordToken  {
@@ -474,9 +536,7 @@ protected class MscriptBlockType_BlockTypeKeyword_4 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new MscriptBlockType_TimingAssignment_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new MscriptBlockType_ImportDeclarationsAssignment_2(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new MscriptBlockType_PackageNameAssignment_1(lastRuleCallOrigin, this, 2, inst);
+			case 0: return new MscriptBlockType_UnorderedGroup_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

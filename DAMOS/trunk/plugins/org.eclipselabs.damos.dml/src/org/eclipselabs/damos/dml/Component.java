@@ -222,4 +222,12 @@ public interface Component extends FragmentElement, CompoundMember, INamedElemen
 	 */
 	boolean isTimingConstraintApplicable(EClass eClass);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	boolean isBoundary();
+
 } // Component

@@ -69,6 +69,7 @@ public class BlockTypeItemProvider
 			addPackageNamePropertyDescriptor(object);
 			addBelongingCategoriesPropertyDescriptor(object);
 			addTimingPropertyDescriptor(object);
+			addBoundaryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -162,6 +163,28 @@ public class BlockTypeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Boundary feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBoundaryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlockType_boundary_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlockType_boundary_feature", "_UI_BlockType_type"),
+				 DMLPackage.Literals.BLOCK_TYPE__BOUNDARY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -235,6 +258,7 @@ public class BlockTypeItemProvider
 			case DMLPackage.BLOCK_TYPE__NAME:
 			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
 			case DMLPackage.BLOCK_TYPE__TIMING:
+			case DMLPackage.BLOCK_TYPE__BOUNDARY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DMLPackage.BLOCK_TYPE__EANNOTATIONS:

@@ -11,7 +11,7 @@ Root:
 MscriptBlockType:
 	'package' packageName=QualifiedName
 	(importDeclarations+=ImportDeclaration)*
-	(timing=TimingKind)? 'blockType' name=ValidID '{'
+	((timing=TimingKind)? & (boundary?='boundary')?) 'blockType' name=ValidID '{'
 		(inputDefinitions+=InputDefinition)*
 		(outputDefinitions+=OutputDefinition)*
 		(parameters+=Parameter)*

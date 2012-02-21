@@ -53,8 +53,11 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackageNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cPackageNameAssignment_1.eContents().get(0);
 		private final Assignment cImportDeclarationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cImportDeclarationsImportDeclarationParserRuleCall_2_0 = (RuleCall)cImportDeclarationsAssignment_2.eContents().get(0);
-		private final Assignment cTimingAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTimingTimingKindEnumRuleCall_3_0 = (RuleCall)cTimingAssignment_3.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_3 = (UnorderedGroup)cGroup.eContents().get(3);
+		private final Assignment cTimingAssignment_3_0 = (Assignment)cUnorderedGroup_3.eContents().get(0);
+		private final RuleCall cTimingTimingKindEnumRuleCall_3_0_0 = (RuleCall)cTimingAssignment_3_0.eContents().get(0);
+		private final Assignment cBoundaryAssignment_3_1 = (Assignment)cUnorderedGroup_3.eContents().get(1);
+		private final Keyword cBoundaryBoundaryKeyword_3_1_0 = (Keyword)cBoundaryAssignment_3_1.eContents().get(0);
 		private final Keyword cBlockTypeKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cNameValidIDParserRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
@@ -70,14 +73,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//MscriptBlockType:
-		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
-		//	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-		//	declarations+=Declaration* "}";
+		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
+		//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
+		//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=Declaration* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
-		//"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-		//declarations+=Declaration* "}"
+		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? & boundary?="boundary"?)
+		//"blockType" name=ValidID "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition*
+		//parameters+=Parameter* declarations+=Declaration* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -95,11 +98,20 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportDeclaration
 		public RuleCall getImportDeclarationsImportDeclarationParserRuleCall_2_0() { return cImportDeclarationsImportDeclarationParserRuleCall_2_0; }
 
+		//timing=TimingKind? & boundary?="boundary"?
+		public UnorderedGroup getUnorderedGroup_3() { return cUnorderedGroup_3; }
+
 		//timing=TimingKind?
-		public Assignment getTimingAssignment_3() { return cTimingAssignment_3; }
+		public Assignment getTimingAssignment_3_0() { return cTimingAssignment_3_0; }
 
 		//TimingKind
-		public RuleCall getTimingTimingKindEnumRuleCall_3_0() { return cTimingTimingKindEnumRuleCall_3_0; }
+		public RuleCall getTimingTimingKindEnumRuleCall_3_0_0() { return cTimingTimingKindEnumRuleCall_3_0_0; }
+
+		//boundary?="boundary"?
+		public Assignment getBoundaryAssignment_3_1() { return cBoundaryAssignment_3_1; }
+
+		//"boundary"
+		public Keyword getBoundaryBoundaryKeyword_3_1_0() { return cBoundaryBoundaryKeyword_3_1_0; }
 
 		//"blockType"
 		public Keyword getBlockTypeKeyword_4() { return cBlockTypeKeyword_4; }
@@ -1112,9 +1124,9 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MscriptBlockType:
-	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
-	//	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-	//	declarations+=Declaration* "}";
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
+	//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
+	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=Declaration* "}";
 	public MscriptBlockTypeElements getMscriptBlockTypeAccess() {
 		return (pMscriptBlockType != null) ? pMscriptBlockType : (pMscriptBlockType = new MscriptBlockTypeElements());
 	}

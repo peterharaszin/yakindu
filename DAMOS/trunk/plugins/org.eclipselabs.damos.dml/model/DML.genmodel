@@ -58,6 +58,7 @@
       <genOperations ecoreOperation="DML.ecore#//Component/isTimingConstraintApplicable">
         <genParameters ecoreParameter="DML.ecore#//Component/isTimingConstraintApplicable/eClass"/>
       </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/isBoundary"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//TimingConstraint"/>
     <genClasses ecoreClass="DML.ecore#//ContinuousTimingConstraint"/>
@@ -204,6 +205,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/timing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/boundary"/>
       <genOperations ecoreOperation="DML.ecore#//BlockType/newInstance">
         <genParameters ecoreParameter="DML.ecore#//BlockType/newInstance/name"/>
       </genOperations>

@@ -65,18 +65,6 @@ String toCCode(EventRaisingExpression eventRaising) :
 	eventRaising.getInterfaceName() + "." + 
 	eventRaising.event.getEventName() + "); ";
 
-String getScopeName(emf::EObject o) :
-  "unknownScopeName";
-  
-String getScopeName(InterfaceScope is) :
-  is.name;
-  
-String getScopeName(InternalScope inls) :
-  "internal";
-
-String getInterfaceName(EventRaisingExpression event) :
-	"iface" + (( event.event.eContainer.getScopeName() == null)?"":event.event.eContainer.getScopeName().toFirstUpper());
-
 String addValue(EventRaisingExpression event) :
   ( (event.value == null)?"":("((" +event.event.getEventName() + "*)ev)->value = " + event.value.toCCode() + "; ") );
 
@@ -119,7 +107,6 @@ String interfaceObjectName(InterfaceScope this) : "iface" + ((this.name == null)
 
 String getInterface(VariableDefinition var) :
 	((InterfaceScope)var.eContainer).interfaceObjectName();
-
 
 String getOperator(AdditiveOperator operator) : 
     switch(operator) {
@@ -200,7 +187,7 @@ String toCCode(TimeEvent time_ev) :
 
 String toCCode(VariableDefinition var) :
     " " + var.statemachineHandleName() + "->" + var.getInterface() + 
-    "." + var.name.toLowerCase() + " ";
+    "." + var.getName() + " ";
 	
 String toCCode(EventDefinition evDef) :
     " ( eventSet_check( &" + evDef.statemachineHandleName() + "->base.eventSet, " + evDef.getEventEnumName() + ") ) ";

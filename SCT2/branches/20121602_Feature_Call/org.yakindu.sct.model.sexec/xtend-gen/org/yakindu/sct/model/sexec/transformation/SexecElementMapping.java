@@ -59,7 +59,7 @@ import org.yakindu.sct.model.stext.stext.InterfaceScope;
 import org.yakindu.sct.model.stext.stext.InternalScope;
 import org.yakindu.sct.model.stext.stext.LocalReaction;
 import org.yakindu.sct.model.stext.stext.OnCycleEvent;
-import org.yakindu.sct.model.stext.stext.Operation;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.PrimitiveValueExpression;
 import org.yakindu.sct.model.stext.stext.ReactionTrigger;
 import org.yakindu.sct.model.stext.stext.RegularEventSpec;
@@ -194,16 +194,16 @@ public class SexecElementMapping {
     return r;
   }
   
-  private final HashMap<ArrayList<?>,Operation> _createCache_create_5 = new HashMap<ArrayList<?>,Operation>();
+  private final HashMap<ArrayList<?>,OperationDefinition> _createCache_create_5 = new HashMap<ArrayList<?>,OperationDefinition>();
   
-  public Operation create(final Operation v) {
+  public OperationDefinition create(final OperationDefinition v) {
     final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(v);
-    final Operation r;
+    final OperationDefinition r;
     synchronized (_createCache_create_5) {
       if (_createCache_create_5.containsKey(_cacheKey)) {
         return _createCache_create_5.get(_cacheKey);
       }
-      Operation _copy = EcoreUtil.<Operation>copy(v);
+      OperationDefinition _copy = EcoreUtil.<OperationDefinition>copy(v);
       r = _copy;
       _createCache_create_5.put(_cacheKey, r);
     }

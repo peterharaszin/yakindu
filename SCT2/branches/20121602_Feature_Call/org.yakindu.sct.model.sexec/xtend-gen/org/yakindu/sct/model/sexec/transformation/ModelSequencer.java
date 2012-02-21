@@ -36,7 +36,7 @@ import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 import org.yakindu.sct.model.stext.stext.FeatureCall;
-import org.yakindu.sct.model.stext.stext.Operation;
+import org.yakindu.sct.model.stext.stext.OperationDefinition;
 import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
@@ -129,7 +129,7 @@ public class ModelSequencer {
             if (_operator_or_1) {
               _operator_or = true;
             } else {
-              _operator_or = BooleanExtensions.operator_or(_operator_or_1, (e instanceof org.yakindu.sct.model.stext.stext.Operation));
+              _operator_or = BooleanExtensions.operator_or(_operator_or_1, (e instanceof org.yakindu.sct.model.stext.stext.OperationDefinition));
             }
             return ((Boolean)_operator_or);
           }
@@ -270,8 +270,8 @@ public class ModelSequencer {
     return _create;
   }
   
-  protected Declaration _replaced(final Operation vd) {
-    Operation _create = this.mapping.create(vd);
+  protected Declaration _replaced(final OperationDefinition vd) {
+    OperationDefinition _create = this.mapping.create(vd);
     return _create;
   }
   
@@ -284,20 +284,20 @@ public class ModelSequencer {
     return ed;
   }
   
-  public Declaration replaced(final NamedElement vd) {
-    if ((vd instanceof Operation)) {
-      return _replaced((Operation)vd);
-    } else if ((vd instanceof TimeEvent)) {
-      return _replaced((TimeEvent)vd);
-    } else if ((vd instanceof EventDefinition)) {
-      return _replaced((EventDefinition)vd);
-    } else if ((vd instanceof VariableDefinition)) {
-      return _replaced((VariableDefinition)vd);
-    } else if ((vd instanceof NamedElement)) {
-      return _replaced((NamedElement)vd);
+  public Declaration replaced(final NamedElement ed) {
+    if ((ed instanceof TimeEvent)) {
+      return _replaced((TimeEvent)ed);
+    } else if ((ed instanceof EventDefinition)) {
+      return _replaced((EventDefinition)ed);
+    } else if ((ed instanceof OperationDefinition)) {
+      return _replaced((OperationDefinition)ed);
+    } else if ((ed instanceof VariableDefinition)) {
+      return _replaced((VariableDefinition)ed);
+    } else if ((ed instanceof NamedElement)) {
+      return _replaced((NamedElement)ed);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(vd).toString());
+        java.util.Arrays.<Object>asList(ed).toString());
     }
   }
 }

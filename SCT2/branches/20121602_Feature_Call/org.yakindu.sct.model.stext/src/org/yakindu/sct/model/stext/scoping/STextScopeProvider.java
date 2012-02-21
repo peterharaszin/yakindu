@@ -41,16 +41,6 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 		return scope;
 	}
 	
-	@Override
-	public IScope getScope(EObject context, EReference reference) {
-		String methodName = "scope_"
-				+ reference.getEContainingClass().getName() + "_"
-				+ reference.getName();
-		System.out.println(methodName);
-		return super.getScope(context, reference);
-	}
-
-	
 	public IScope scope_TypedElementReferenceExpression_reference(
 			final EObject context, EReference reference) {
 		List<EObject> scopeCandidates = getScopeCandidates(context);

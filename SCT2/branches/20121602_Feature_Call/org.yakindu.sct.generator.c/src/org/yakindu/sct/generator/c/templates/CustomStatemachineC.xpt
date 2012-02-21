@@ -180,7 +180,7 @@ static void «this.reactFunction()»;
 
 «DEFINE ReactMethodsImplement FOR ExecutionNode -»
 «IF (ExecutionState.isInstance(this) || this.reactSequence.caller.size > 0) -»
-void «this.reactFunction()»
+void «this.reactFunction()-»
 «REM»void «stName()»_react_«this.simpleName»(«StName()»* handle)«ENDREM»
 {
 	«EXPAND ReactCode FOR reactSequence»

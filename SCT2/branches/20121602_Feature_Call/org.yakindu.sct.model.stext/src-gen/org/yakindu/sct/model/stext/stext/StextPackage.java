@@ -1429,6 +1429,43 @@ public interface StextPackage extends EPackage
   int REACTION_EFFECT_FEATURE_COUNT = SGraphPackage.EFFECT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl <em>Event Raising Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl
+   * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getEventRaisingExpression()
+   * @generated
+   */
+  int EVENT_RAISING_EXPRESSION = 42;
+
+  /**
+   * The feature id for the '<em><b>Event</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_RAISING_EXPRESSION__EVENT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_RAISING_EXPRESSION__VALUE = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Event Raising Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_RAISING_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1436,7 +1473,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getAssignmentExpression()
    * @generated
    */
-  int ASSIGNMENT_EXPRESSION = 42;
+  int ASSIGNMENT_EXPRESSION = 43;
 
   /**
    * The feature id for the '<em><b>Var Ref</b></em>' containment reference.
@@ -1482,7 +1519,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getConditionalExpression()
    * @generated
    */
-  int CONDITIONAL_EXPRESSION = 43;
+  int CONDITIONAL_EXPRESSION = 44;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1528,7 +1565,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getLogicalOrExpression()
    * @generated
    */
-  int LOGICAL_OR_EXPRESSION = 44;
+  int LOGICAL_OR_EXPRESSION = 45;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1565,7 +1602,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getLogicalAndExpression()
    * @generated
    */
-  int LOGICAL_AND_EXPRESSION = 45;
+  int LOGICAL_AND_EXPRESSION = 46;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1602,7 +1639,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getLogicalNotExpression()
    * @generated
    */
-  int LOGICAL_NOT_EXPRESSION = 46;
+  int LOGICAL_NOT_EXPRESSION = 47;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1630,7 +1667,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getBitwiseXorExpression()
    * @generated
    */
-  int BITWISE_XOR_EXPRESSION = 47;
+  int BITWISE_XOR_EXPRESSION = 48;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1667,7 +1704,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getBitwiseOrExpression()
    * @generated
    */
-  int BITWISE_OR_EXPRESSION = 48;
+  int BITWISE_OR_EXPRESSION = 49;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1704,7 +1741,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getBitwiseAndExpression()
    * @generated
    */
-  int BITWISE_AND_EXPRESSION = 49;
+  int BITWISE_AND_EXPRESSION = 50;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1741,7 +1778,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getLogicalRelationExpression()
    * @generated
    */
-  int LOGICAL_RELATION_EXPRESSION = 50;
+  int LOGICAL_RELATION_EXPRESSION = 51;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1787,7 +1824,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getShiftExpression()
    * @generated
    */
-  int SHIFT_EXPRESSION = 51;
+  int SHIFT_EXPRESSION = 52;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1833,7 +1870,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getNumericalAddSubtractExpression()
    * @generated
    */
-  int NUMERICAL_ADD_SUBTRACT_EXPRESSION = 52;
+  int NUMERICAL_ADD_SUBTRACT_EXPRESSION = 53;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1879,7 +1916,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getNumericalMultiplyDivideExpression()
    * @generated
    */
-  int NUMERICAL_MULTIPLY_DIVIDE_EXPRESSION = 53;
+  int NUMERICAL_MULTIPLY_DIVIDE_EXPRESSION = 54;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1925,7 +1962,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getNumericalUnaryExpression()
    * @generated
    */
-  int NUMERICAL_UNARY_EXPRESSION = 54;
+  int NUMERICAL_UNARY_EXPRESSION = 55;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1962,7 +1999,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getFeatureCall()
    * @generated
    */
-  int FEATURE_CALL = 55;
+  int FEATURE_CALL = 56;
 
   /**
    * The feature id for the '<em><b>Owner</b></em>' containment reference.
@@ -2017,7 +2054,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getPrimitiveValueExpression()
    * @generated
    */
-  int PRIMITIVE_VALUE_EXPRESSION = 56;
+  int PRIMITIVE_VALUE_EXPRESSION = 57;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -2045,7 +2082,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getTypedElementReferenceExpression()
    * @generated
    */
-  int TYPED_ELEMENT_REFERENCE_EXPRESSION = 57;
+  int TYPED_ELEMENT_REFERENCE_EXPRESSION = 58;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -2073,7 +2110,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getEventValueReferenceExpression()
    * @generated
    */
-  int EVENT_VALUE_REFERENCE_EXPRESSION = 58;
+  int EVENT_VALUE_REFERENCE_EXPRESSION = 59;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -2101,7 +2138,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getActiveStateReferenceExpression()
    * @generated
    */
-  int ACTIVE_STATE_REFERENCE_EXPRESSION = 59;
+  int ACTIVE_STATE_REFERENCE_EXPRESSION = 60;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -2120,43 +2157,6 @@ public interface StextPackage extends EPackage
    * @ordered
    */
   int ACTIVE_STATE_REFERENCE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl <em>Event Raising Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl
-   * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getEventRaisingExpression()
-   * @generated
-   */
-  int EVENT_RAISING_EXPRESSION = 60;
-
-  /**
-   * The feature id for the '<em><b>Event</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT_RAISING_EXPRESSION__EVENT = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT_RAISING_EXPRESSION__VALUE = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Event Raising Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT_RAISING_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.Direction <em>Direction</em>}' enum.
@@ -3033,6 +3033,38 @@ public interface StextPackage extends EPackage
   EReference getReactionEffect_Actions();
 
   /**
+   * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression <em>Event Raising Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Event Raising Expression</em>'.
+   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression
+   * @generated
+   */
+  EClass getEventRaisingExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression#getEvent <em>Event</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Event</em>'.
+   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression#getEvent()
+   * @see #getEventRaisingExpression()
+   * @generated
+   */
+  EReference getEventRaisingExpression_Event();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression#getValue()
+   * @see #getEventRaisingExpression()
+   * @generated
+   */
+  EReference getEventRaisingExpression_Value();
+
+  /**
    * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.AssignmentExpression <em>Assignment Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3640,38 +3672,6 @@ public interface StextPackage extends EPackage
    * @generated
    */
   EReference getActiveStateReferenceExpression_Value();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression <em>Event Raising Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Event Raising Expression</em>'.
-   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression
-   * @generated
-   */
-  EClass getEventRaisingExpression();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression#getEvent <em>Event</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Event</em>'.
-   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression#getEvent()
-   * @see #getEventRaisingExpression()
-   * @generated
-   */
-  EReference getEventRaisingExpression_Event();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.EventRaisingExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.yakindu.sct.model.stext.stext.EventRaisingExpression#getValue()
-   * @see #getEventRaisingExpression()
-   * @generated
-   */
-  EReference getEventRaisingExpression_Value();
 
   /**
    * Returns the meta object for enum '{@link org.yakindu.sct.model.stext.stext.Direction <em>Direction</em>}'.
@@ -4471,6 +4471,32 @@ public interface StextPackage extends EPackage
     EReference REACTION_EFFECT__ACTIONS = eINSTANCE.getReactionEffect_Actions();
 
     /**
+     * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl <em>Event Raising Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl
+     * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getEventRaisingExpression()
+     * @generated
+     */
+    EClass EVENT_RAISING_EXPRESSION = eINSTANCE.getEventRaisingExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Event</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EVENT_RAISING_EXPRESSION__EVENT = eINSTANCE.getEventRaisingExpression_Event();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EVENT_RAISING_EXPRESSION__VALUE = eINSTANCE.getEventRaisingExpression_Value();
+
+    /**
      * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4961,32 +4987,6 @@ public interface StextPackage extends EPackage
      * @generated
      */
     EReference ACTIVE_STATE_REFERENCE_EXPRESSION__VALUE = eINSTANCE.getActiveStateReferenceExpression_Value();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl <em>Event Raising Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.model.stext.stext.impl.EventRaisingExpressionImpl
-     * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getEventRaisingExpression()
-     * @generated
-     */
-    EClass EVENT_RAISING_EXPRESSION = eINSTANCE.getEventRaisingExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Event</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EVENT_RAISING_EXPRESSION__EVENT = eINSTANCE.getEventRaisingExpression_Event();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EVENT_RAISING_EXPRESSION__VALUE = eINSTANCE.getEventRaisingExpression_Value();
 
     /**
      * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.Direction <em>Direction</em>}' enum.

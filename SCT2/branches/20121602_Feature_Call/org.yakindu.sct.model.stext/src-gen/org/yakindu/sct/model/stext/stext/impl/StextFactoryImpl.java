@@ -111,6 +111,7 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.EXITPOINT: return createExitpoint();
       case StextPackage.REACTION_TRIGGER: return createReactionTrigger();
       case StextPackage.REACTION_EFFECT: return createReactionEffect();
+      case StextPackage.EVENT_RAISING_EXPRESSION: return createEventRaisingExpression();
       case StextPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
       case StextPackage.CONDITIONAL_EXPRESSION: return createConditionalExpression();
       case StextPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
@@ -129,7 +130,6 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.TYPED_ELEMENT_REFERENCE_EXPRESSION: return createTypedElementReferenceExpression();
       case StextPackage.EVENT_VALUE_REFERENCE_EXPRESSION: return createEventValueReferenceExpression();
       case StextPackage.ACTIVE_STATE_REFERENCE_EXPRESSION: return createActiveStateReferenceExpression();
-      case StextPackage.EVENT_RAISING_EXPRESSION: return createEventRaisingExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -668,6 +668,17 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EventRaisingExpression createEventRaisingExpression()
+  {
+    EventRaisingExpressionImpl eventRaisingExpression = new EventRaisingExpressionImpl();
+    return eventRaisingExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public AssignmentExpression createAssignmentExpression()
   {
     AssignmentExpressionImpl assignmentExpression = new AssignmentExpressionImpl();
@@ -859,17 +870,6 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
   {
     ActiveStateReferenceExpressionImpl activeStateReferenceExpression = new ActiveStateReferenceExpressionImpl();
     return activeStateReferenceExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EventRaisingExpression createEventRaisingExpression()
-  {
-    EventRaisingExpressionImpl eventRaisingExpression = new EventRaisingExpressionImpl();
-    return eventRaisingExpression;
   }
 
   /**

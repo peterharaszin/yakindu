@@ -5,7 +5,11 @@ package org.yakindu.sct.model.stext.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory.StatefulFactory;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.yakindu.sct.model.stext.ui.contentassist.STextStatefulFactory;
+import org.yakindu.sct.model.stext.ui.highlighting.STextHighlightingConfiguration;
+import org.yakindu.sct.model.stext.ui.highlighting.STextSemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -21,5 +25,13 @@ public class STextUiModule extends
 
 	public Class<? extends StatefulFactory> bindStatefulFactory() {
 		return STextStatefulFactory.class;
+	}
+
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return STextSemanticHighlightingCalculator.class;
+	}
+
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return STextHighlightingConfiguration.class;
 	}
 }

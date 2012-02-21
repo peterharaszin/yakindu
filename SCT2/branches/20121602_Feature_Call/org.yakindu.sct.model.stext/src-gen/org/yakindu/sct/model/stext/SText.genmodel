@@ -163,6 +163,10 @@
     <genClasses ecoreClass="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//ReactionEffect">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//ReactionEffect/actions"/>
     </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression/event"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression/value"/>
+    </genClasses>
     <genClasses ecoreClass="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//AssignmentExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//AssignmentExpression/varRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//AssignmentExpression/operator"/>
@@ -237,10 +241,6 @@
     </genClasses>
     <genClasses ecoreClass="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//ActiveStateReferenceExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//ActiveStateReferenceExpression/value"/>
-    </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression/event"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//EventRaisingExpression/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

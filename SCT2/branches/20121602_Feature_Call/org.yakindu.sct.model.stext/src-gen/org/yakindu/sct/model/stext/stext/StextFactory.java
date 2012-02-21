@@ -405,6 +405,15 @@ public interface StextFactory extends EFactory
   ReactionEffect createReactionEffect();
 
   /**
+   * Returns a new object of class '<em>Event Raising Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Event Raising Expression</em>'.
+   * @generated
+   */
+  EventRaisingExpression createEventRaisingExpression();
+
+  /**
    * Returns a new object of class '<em>Assignment Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -565,15 +574,6 @@ public interface StextFactory extends EFactory
    * @generated
    */
   ActiveStateReferenceExpression createActiveStateReferenceExpression();
-
-  /**
-   * Returns a new object of class '<em>Event Raising Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Event Raising Expression</em>'.
-   * @generated
-   */
-  EventRaisingExpression createEventRaisingExpression();
 
   /**
    * Returns the package supported by this factory.

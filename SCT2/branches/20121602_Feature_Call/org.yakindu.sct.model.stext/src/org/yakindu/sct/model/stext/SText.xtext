@@ -117,7 +117,7 @@ Reaction returns sgraph::Reaction:
 	LocalReaction | TransitionReaction;
 
 LocalReaction:
-	(trigger=ReactionTrigger) ('/' effect=ReactionEffect) ('#' properties=ReactionProperties)?;
+	(trigger=ReactionTrigger) =>('/' effect=ReactionEffect) ('#' properties=ReactionProperties)?;
 
 TransitionReaction:
 	{TransitionReaction} (trigger=ReactionTrigger)? ('/' effect=ReactionEffect)? ('#' properties=ReactionProperties)?;
@@ -127,7 +127,7 @@ ReactionTrigger returns sgraph::Trigger:
 	| ('[' guardExpression=Expression ']'));
 
 ReactionEffect returns sgraph::Effect:
-	{ReactionEffect} actions+=Expression =>(';' actions+=Expression )* (';')?;
+	{ReactionEffect} actions+=(Expression | EventRaisingExpression) =>(';' actions+=(Expression|EventRaisingExpression) )* (';')?;
 
 ReactionProperties:
 	{ReactionProperties} (properties+=ReactionProperty)*;
@@ -177,12 +177,18 @@ DefaultEvent:
 //****************
 // Expression Grammar
 //****************
+
+EventRaisingExpression returns Expression:
+	{EventRaisingExpression}'raise' event=FeatureCall  (':' value=Expression)?
+;	
+
 StatementExpression returns sgraph::Statement:
 	Expression
 ;
 Expression:
 	 AssignmentExpression
 ;
+
 
 AssignmentExpression returns Expression:
 	ConditionalExpression ({AssignmentExpression.varRef=current} operator=AssignmentOperator expression=ConditionalExpression)*
@@ -293,7 +299,6 @@ ValueExpression returns Expression:
 	| TypedElementReferenceExpression 
 	| ActiveStateReferenceExpression 
 	| EventValueReferenceExpression
-	| EventRaisingExpression
 ;
 
 PrimitiveValueExpression returns Expression:
@@ -304,14 +309,11 @@ TypedElementReferenceExpression returns Expression:
 ;
 
 EventValueReferenceExpression returns Expression:
-	{EventValueReferenceExpression} 'valueof'  '(' value=Expression ')';
+	{EventValueReferenceExpression} 'valueof'  '(' value=FeatureCall ')';
 
 ActiveStateReferenceExpression returns Expression:
 	{ActiveStateReferenceExpression} 'active' '(' value=[sgraph::State] ')';
 	
-EventRaisingExpression returns Expression:
-	{EventRaisingExpression} 'raise' event=FeatureCall  (':' value=Expression)?
-;	
 
 Literal:
 	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;

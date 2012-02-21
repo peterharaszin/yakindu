@@ -1127,6 +1127,31 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.EventRaisingExpression} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected EventRaisingExpressionItemProvider eventRaisingExpressionItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.EventRaisingExpression}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createEventRaisingExpressionAdapter()
+  {
+    if (eventRaisingExpressionItemProvider == null)
+    {
+      eventRaisingExpressionItemProvider = new EventRaisingExpressionItemProvider(this);
+    }
+
+    return eventRaisingExpressionItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.AssignmentExpression} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1452,31 +1477,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.FeatureCall} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected FeatureCallItemProvider featureCallItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.FeatureCall}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createFeatureCallAdapter()
-  {
-    if (featureCallItemProvider == null)
-    {
-      featureCallItemProvider = new FeatureCallItemProvider(this);
-    }
-
-    return featureCallItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1499,6 +1499,31 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     }
 
     return primitiveValueExpressionItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.FeatureCall} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FeatureCallItemProvider featureCallItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.FeatureCall}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFeatureCallAdapter()
+  {
+    if (featureCallItemProvider == null)
+    {
+      featureCallItemProvider = new FeatureCallItemProvider(this);
+    }
+
+    return featureCallItemProvider;
   }
 
   /**
@@ -1574,31 +1599,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     }
 
     return activeStateReferenceExpressionItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.EventRaisingExpression} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected EventRaisingExpressionItemProvider eventRaisingExpressionItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.EventRaisingExpression}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createEventRaisingExpressionAdapter()
-  {
-    if (eventRaisingExpressionItemProvider == null)
-    {
-      eventRaisingExpressionItemProvider = new EventRaisingExpressionItemProvider(this);
-    }
-
-    return eventRaisingExpressionItemProvider;
   }
 
   /**
@@ -1754,6 +1754,7 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     if (exitpointItemProvider != null) exitpointItemProvider.dispose();
     if (reactionTriggerItemProvider != null) reactionTriggerItemProvider.dispose();
     if (reactionEffectItemProvider != null) reactionEffectItemProvider.dispose();
+    if (eventRaisingExpressionItemProvider != null) eventRaisingExpressionItemProvider.dispose();
     if (assignmentExpressionItemProvider != null) assignmentExpressionItemProvider.dispose();
     if (conditionalExpressionItemProvider != null) conditionalExpressionItemProvider.dispose();
     if (logicalOrExpressionItemProvider != null) logicalOrExpressionItemProvider.dispose();
@@ -1767,12 +1768,11 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     if (numericalAddSubtractExpressionItemProvider != null) numericalAddSubtractExpressionItemProvider.dispose();
     if (numericalMultiplyDivideExpressionItemProvider != null) numericalMultiplyDivideExpressionItemProvider.dispose();
     if (numericalUnaryExpressionItemProvider != null) numericalUnaryExpressionItemProvider.dispose();
-    if (featureCallItemProvider != null) featureCallItemProvider.dispose();
     if (primitiveValueExpressionItemProvider != null) primitiveValueExpressionItemProvider.dispose();
+    if (featureCallItemProvider != null) featureCallItemProvider.dispose();
     if (typedElementReferenceExpressionItemProvider != null) typedElementReferenceExpressionItemProvider.dispose();
     if (eventValueReferenceExpressionItemProvider != null) eventValueReferenceExpressionItemProvider.dispose();
     if (activeStateReferenceExpressionItemProvider != null) activeStateReferenceExpressionItemProvider.dispose();
-    if (eventRaisingExpressionItemProvider != null) eventRaisingExpressionItemProvider.dispose();
   }
 
 }

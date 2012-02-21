@@ -169,6 +169,11 @@ public class BitwiseXorExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -234,12 +239,12 @@ public class BitwiseXorExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -255,11 +260,6 @@ public class BitwiseXorExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.BITWISE_XOR_EXPRESSION__LEFT_OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -269,6 +269,11 @@ public class BitwiseXorExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -334,12 +339,12 @@ public class BitwiseXorExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -355,11 +360,6 @@ public class BitwiseXorExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.BITWISE_XOR_EXPRESSION__RIGHT_OPERAND,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

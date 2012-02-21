@@ -27,11 +27,11 @@ public class STextUiModule extends
 		return STextStatefulFactory.class;
 	}
 
-	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
-		return STextSemanticHighlightingCalculator.class;
-	}
-
-	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
-		return STextHighlightingConfiguration.class;
-	}
+//	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+//		return STextSemanticHighlightingCalculator.class;
+//	}
+//
+//	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+//		return STextHighlightingConfiguration.class;
+//	}
 }

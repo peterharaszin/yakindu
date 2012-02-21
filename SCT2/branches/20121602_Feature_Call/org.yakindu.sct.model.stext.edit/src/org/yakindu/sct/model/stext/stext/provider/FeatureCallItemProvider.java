@@ -223,6 +223,11 @@ public class FeatureCallItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__OWNER,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.FEATURE_CALL__OWNER,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -288,12 +293,12 @@ public class FeatureCallItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__OWNER,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__OWNER,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -309,11 +314,6 @@ public class FeatureCallItemProvider
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__OWNER,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.FEATURE_CALL__OWNER,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -323,6 +323,11 @@ public class FeatureCallItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__ARGS,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.FEATURE_CALL__ARGS,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -388,12 +393,12 @@ public class FeatureCallItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__ARGS,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__ARGS,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -409,11 +414,6 @@ public class FeatureCallItemProvider
       (createChildParameter
         (StextPackage.Literals.FEATURE_CALL__ARGS,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.FEATURE_CALL__ARGS,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

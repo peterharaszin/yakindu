@@ -189,23 +189,9 @@ Expression:
 	 AssignmentExpression
 ;
 
-
 AssignmentExpression returns Expression:
 	ConditionalExpression ({AssignmentExpression.varRef=current} operator=AssignmentOperator expression=ConditionalExpression)*
 ;
-
-enum AssignmentOperator:
-	assign='='
-	| multAssign='*='
-	| divAssign='/='
-	| modAssign='%='
-	| addAssign='+='
-	| subAssign='-='
-	| leftShiftAssign='<<='
-	| rightShiftAssign='>>='
-	| andAssign='&='
-	| xorAssign='^='
-	| orAssign='|=';
  
 ConditionalExpression returns Expression:
 	LogicalOrExpression ({ConditionalExpression.condition=current} '?' trueCase=LogicalOrExpression ':'
@@ -241,10 +227,6 @@ ShiftExpression returns Expression:
 	NumericalAddSubtractExpression ({ShiftExpression.leftOperand=current} operator=ShiftOperator
 	rightOperand=NumericalAddSubtractExpression)*;
 
-enum ShiftOperator:
-	left='<<'
-	| right='>>';
-
 NumericalAddSubtractExpression returns Expression:
 	NumericalMultiplyDivideExpression
 	({NumericalAddSubtractExpression.leftOperand=current}
@@ -258,12 +240,21 @@ NumericalMultiplyDivideExpression returns Expression:
 	rightOperand=NumericalUnaryExpression)*;
 
 NumericalUnaryExpression returns Expression:
-	FeatureCall | {NumericalUnaryExpression}
-	operator=UnaryOperator operand=FeatureCall;
+	PrimaryExpression | {NumericalUnaryExpression}
+	operator=UnaryOperator operand=PrimaryExpression;
 
+
+PrimaryExpression returns Expression:
+	PrimitiveValueExpression 
+	| FeatureCall 
+	| ActiveStateReferenceExpression 
+	| EventValueReferenceExpression  | '(' Expression ')'; 
+
+PrimitiveValueExpression returns Expression:
+	{PrimitiveValueExpression} value=Literal;
 
 FeatureCall returns Expression:
-	 PrimaryExpression  ({FeatureCall.owner=current} '.' feature=[types::Feature]
+	 TypedElementReferenceExpression  ({FeatureCall.owner=current} '.' feature=[types::Feature]
 	 	 (	=>operationCall?='(' 
 				(
 				    (args+=Expression (',' args+=Expression)*)?
@@ -271,38 +262,6 @@ FeatureCall returns Expression:
 			')')?
 	 )*
 ;
-
-PrimaryExpression returns Expression:
-	ValueExpression  | '(' Expression ')'; 
-
-enum AdditiveOperator:
-	plus='+' | minus='-';
-
-enum MultiplicativeOperator:
-	mul='*' | div='/' | mod='%';
-
-enum UnaryOperator:
-	positive='+' | negative='-' | complement='~';
-
-enum RelationalOperator:
-	smaller='<' | smallerEqual='<=' | greater='>' | greaterEqual='>=' |
-	equals='==' | notEquals='!=';
-
-enum TimeUnit:
-	second='s'
-	| millisecond='ms'
-	| microsecond = 'us'
-	| nanosecond='ns';
-
-ValueExpression returns Expression:
-	PrimitiveValueExpression 
-	| TypedElementReferenceExpression 
-	| ActiveStateReferenceExpression 
-	| EventValueReferenceExpression
-;
-
-PrimitiveValueExpression returns Expression:
-	{PrimitiveValueExpression} value=Literal;
 
 TypedElementReferenceExpression returns Expression:
 	{TypedElementReferenceExpression} reference=[base::NamedElement|ID]
@@ -334,6 +293,41 @@ StringLiteral:
 	{StringLiteral} value=STRING
 ;	
 
+enum AssignmentOperator:
+	assign='='
+	| multAssign='*='
+	| divAssign='/='
+	| modAssign='%='
+	| addAssign='+='
+	| subAssign='-='
+	| leftShiftAssign='<<='
+	| rightShiftAssign='>>='
+	| andAssign='&='
+	| xorAssign='^='
+	| orAssign='|=';
+	
+enum ShiftOperator:
+	left='<<'
+	| right='>>';
+
+enum AdditiveOperator:
+	plus='+' | minus='-';
+
+enum MultiplicativeOperator:
+	mul='*' | div='/' | mod='%';
+
+enum UnaryOperator:
+	positive='+' | negative='-' | complement='~';
+
+enum RelationalOperator:
+	smaller='<' | smallerEqual='<=' | greater='>' | greaterEqual='>=' |
+	equals='==' | notEquals='!=';
+
+enum TimeUnit:
+	second='s'
+	| millisecond='ms'
+	| microsecond = 'us'
+	| nanosecond='ns';
 
 terminal BOOL returns ecore::EBoolean:
 	'true' | 'false' | 'yes' | 'no';

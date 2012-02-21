@@ -167,6 +167,11 @@ public class EventValueReferenceExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -232,12 +237,12 @@ public class EventValueReferenceExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -253,11 +258,6 @@ public class EventValueReferenceExpressionItemProvider
       (createChildParameter
         (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.EVENT_VALUE_REFERENCE_EXPRESSION__VALUE,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
 }

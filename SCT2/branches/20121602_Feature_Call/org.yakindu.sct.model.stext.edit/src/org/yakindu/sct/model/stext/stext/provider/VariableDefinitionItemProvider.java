@@ -254,6 +254,11 @@ public class VariableDefinitionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
+         StextFactory.eINSTANCE.createEventRaisingExpression()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
          StextFactory.eINSTANCE.createAssignmentExpression()));
 
     newChildDescriptors.add
@@ -319,12 +324,12 @@ public class VariableDefinitionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
-         StextFactory.eINSTANCE.createFeatureCall()));
+         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
 
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
-         StextFactory.eINSTANCE.createPrimitiveValueExpression()));
+         StextFactory.eINSTANCE.createFeatureCall()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -340,11 +345,6 @@ public class VariableDefinitionItemProvider
       (createChildParameter
         (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
          StextFactory.eINSTANCE.createActiveStateReferenceExpression()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE,
-         StextFactory.eINSTANCE.createEventRaisingExpression()));
   }
 
   /**

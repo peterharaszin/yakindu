@@ -67,11 +67,11 @@ ComputationProperty:
 	'}';
 
 Binding:
-	'bind' source=[Component|ValidID] 'to' targetPath=BindingTargetPath ('[' subscript=BindingSubscript ']')?
+	'bind' targetPath=BindingTargetPath 'to' source=[Component|ValidID]
 		(body=BindingBody)?;
 
 BindingTargetPath:
-	propertyReferences+=BindingPropertyReference ('.' propertyReferences+=BindingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID];
+	propertyReferences+=BindingPropertyReference ('.' propertyReferences+=BindingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID] ('[' subscript=BindingSubscript ']')?;
 
 BindingPropertyReference:
 	property=[SelectionProperty|ValidID];

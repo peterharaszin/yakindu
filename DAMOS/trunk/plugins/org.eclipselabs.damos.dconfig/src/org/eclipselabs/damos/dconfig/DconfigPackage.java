@@ -651,31 +651,22 @@ public interface DconfigPackage extends EPackage {
 	int BINDING = 13;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING__SOURCE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Target Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__TARGET_PATH = 1;
+	int BINDING__TARGET_PATH = 0;
 
 	/**
-	 * The feature id for the '<em><b>Subscript</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__SUBSCRIPT = 2;
+	int BINDING__SOURCE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -684,7 +675,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING__BODY = 3;
+	int BINDING__BODY = 2;
 
 	/**
 	 * The number of structural features of the '<em>Binding</em>' class.
@@ -693,7 +684,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_FEATURE_COUNT = 4;
+	int BINDING_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.BindingTargetPathImpl <em>Binding Target Path</em>}' class.
@@ -724,13 +715,22 @@ public interface DconfigPackage extends EPackage {
 	int BINDING_TARGET_PATH__RESOURCE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Subscript</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING_TARGET_PATH__SUBSCRIPT = 2;
+
+	/**
 	 * The number of structural features of the '<em>Binding Target Path</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_TARGET_PATH_FEATURE_COUNT = 2;
+	int BINDING_TARGET_PATH_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.BindingPropertyReferenceImpl <em>Binding Property Reference</em>}' class.
@@ -1547,17 +1547,6 @@ public interface DconfigPackage extends EPackage {
 	EReference getBinding_TargetPath();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Binding#getSubscript <em>Subscript</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Subscript</em>'.
-	 * @see org.eclipselabs.damos.dconfig.Binding#getSubscript()
-	 * @see #getBinding()
-	 * @generated
-	 */
-	EReference getBinding_Subscript();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1599,6 +1588,17 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBindingTargetPath_Resource();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.BindingTargetPath#getSubscript <em>Subscript</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Subscript</em>'.
+	 * @see org.eclipselabs.damos.dconfig.BindingTargetPath#getSubscript()
+	 * @see #getBindingTargetPath()
+	 * @generated
+	 */
+	EReference getBindingTargetPath_Subscript();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.BindingPropertyReference <em>Binding Property Reference</em>}'.
@@ -2403,14 +2403,6 @@ public interface DconfigPackage extends EPackage {
 		EReference BINDING__TARGET_PATH = eINSTANCE.getBinding_TargetPath();
 
 		/**
-		 * The meta object literal for the '<em><b>Subscript</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BINDING__SUBSCRIPT = eINSTANCE.getBinding_Subscript();
-
-		/**
 		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2443,6 +2435,14 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BINDING_TARGET_PATH__RESOURCE = eINSTANCE.getBindingTargetPath_Resource();
+
+		/**
+		 * The meta object literal for the '<em><b>Subscript</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINDING_TARGET_PATH__SUBSCRIPT = eINSTANCE.getBindingTargetPath_Subscript();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.BindingPropertyReferenceImpl <em>Binding Property Reference</em>}' class.

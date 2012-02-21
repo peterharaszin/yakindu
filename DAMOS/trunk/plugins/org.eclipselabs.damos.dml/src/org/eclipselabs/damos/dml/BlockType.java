@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EModelElement;
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getTiming <em>Timing</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.BlockType#isBoundary <em>Boundary</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +89,32 @@ public interface BlockType extends EModelElement, QualifiedElement, CategorizedE
 	 * @generated
 	 */
 	void setTiming(TimingKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Boundary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Boundary</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Boundary</em>' attribute.
+	 * @see #setBoundary(boolean)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getBlockType_Boundary()
+	 * @model
+	 * @generated
+	 */
+	boolean isBoundary();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.BlockType#isBoundary <em>Boundary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Boundary</em>' attribute.
+	 * @see #isBoundary()
+	 * @generated
+	 */
+	void setBoundary(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

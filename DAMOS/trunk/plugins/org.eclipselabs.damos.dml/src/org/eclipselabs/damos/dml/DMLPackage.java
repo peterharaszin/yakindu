@@ -1650,13 +1650,22 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_TYPE__TIMING = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Boundary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_TYPE__BOUNDARY = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Block Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+	int BLOCK_TYPE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -4795,6 +4804,17 @@ public interface DMLPackage extends EPackage {
 	EAttribute getBlockType_Timing();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.BlockType#isBoundary <em>Boundary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Boundary</em>'.
+	 * @see org.eclipselabs.damos.dml.BlockType#isBoundary()
+	 * @see #getBlockType()
+	 * @generated
+	 */
+	EAttribute getBlockType_Boundary();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.QualifiedElement <em>Qualified Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6338,6 +6358,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BLOCK_TYPE__TIMING = eINSTANCE.getBlockType_Timing();
+
+		/**
+		 * The meta object literal for the '<em><b>Boundary</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BLOCK_TYPE__BOUNDARY = eINSTANCE.getBlockType_Boundary();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl <em>Qualified Element</em>}' class.

@@ -270,7 +270,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootAccess().getSystemInterfacesAssignment_1(), "rule__Root__SystemInterfacesAssignment_1");
 					put(grammarAccess.getMscriptBlockTypeAccess().getPackageNameAssignment_1(), "rule__MscriptBlockType__PackageNameAssignment_1");
 					put(grammarAccess.getMscriptBlockTypeAccess().getImportDeclarationsAssignment_2(), "rule__MscriptBlockType__ImportDeclarationsAssignment_2");
-					put(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3(), "rule__MscriptBlockType__TimingAssignment_3");
+					put(grammarAccess.getMscriptBlockTypeAccess().getTimingAssignment_3_0(), "rule__MscriptBlockType__TimingAssignment_3_0");
+					put(grammarAccess.getMscriptBlockTypeAccess().getBoundaryAssignment_3_1(), "rule__MscriptBlockType__BoundaryAssignment_3_1");
 					put(grammarAccess.getMscriptBlockTypeAccess().getNameAssignment_5(), "rule__MscriptBlockType__NameAssignment_5");
 					put(grammarAccess.getMscriptBlockTypeAccess().getInputDefinitionsAssignment_7(), "rule__MscriptBlockType__InputDefinitionsAssignment_7");
 					put(grammarAccess.getMscriptBlockTypeAccess().getOutputDefinitionsAssignment_8(), "rule__MscriptBlockType__OutputDefinitionsAssignment_8");
@@ -502,6 +503,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getFactorsAssignment_1_2_1(), "rule__UnitDenominator__FactorsAssignment_1_2_1");
 					put(grammarAccess.getUnitFactorAccess().getSymbolAssignment_0(), "rule__UnitFactor__SymbolAssignment_0");
 					put(grammarAccess.getUnitFactorAccess().getExponentAssignment_1_1(), "rule__UnitFactor__ExponentAssignment_1_1");
+					put(grammarAccess.getMscriptBlockTypeAccess().getUnorderedGroup_3(), "rule__MscriptBlockType__UnorderedGroup_3");
 					put(grammarAccess.getInputDefinitionAccess().getUnorderedGroup_0(), "rule__InputDefinition__UnorderedGroup_0");
 					put(grammarAccess.getInputDefinitionAccess().getUnorderedGroup_4_1(), "rule__InputDefinition__UnorderedGroup_4_1");
 					put(grammarAccess.getOutputDefinitionAccess().getUnorderedGroup_0(), "rule__OutputDefinition__UnorderedGroup_0");

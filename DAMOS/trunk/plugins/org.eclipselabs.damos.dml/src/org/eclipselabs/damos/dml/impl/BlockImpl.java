@@ -175,6 +175,15 @@ public class BlockImpl extends ComponentImpl implements Block {
 		return BlockOperations.isTimingConstraintApplicable(this, eClass);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.ComponentImpl#isBoundary()
+	 */
+	@Override
+	public boolean isBoundary() {
+		BlockType type = getType();
+		return type != null ? type.isBoundary() : false;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

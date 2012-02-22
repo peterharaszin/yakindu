@@ -6,7 +6,6 @@ package org.eclipselabs.damos.dconfig.scoping;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -14,16 +13,13 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
-import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
-import org.eclipselabs.damos.dconfig.BindingPropertyReference;
-import org.eclipselabs.damos.dconfig.BindingTargetPath;
+import org.eclipselabs.damos.dconfig.ComponentPath;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
-import org.eclipselabs.damos.dconfig.Property;
-import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
@@ -35,6 +31,7 @@ import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
@@ -52,6 +49,14 @@ import com.google.common.collect.Iterables;
  *
  */
 public class DconfigScopeProvider extends MscriptScopeProvider {
+
+	private static final Predicate<FragmentElement> COMPONENT_PREDICATE = new Predicate<FragmentElement>() {
+		
+		public boolean apply(FragmentElement input) {
+			return input instanceof Component;
+		}
+		
+	};
 	
 	public IScope scope_Configuration_baseConfiguration(Configuration context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
@@ -68,7 +73,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	}
 
 	public IScope scope_SimpleProperty_declaration(BindingBody context, EReference reference) {
-		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SimplePropertyDeclaration.class));
+		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTarget().getResourceDeclaration().getPropertyDeclarations(), SimplePropertyDeclaration.class));
 	}
 
 	public IScope scope_SelectionProperty_declaration(Configuration context, EReference reference) {
@@ -81,7 +86,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	}
 
 	public IScope scope_SelectionProperty_declaration(BindingBody context, EReference reference) {
-		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTargetPath().getResource().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
+		return Scopes.scopeFor(Iterables.filter(context.getOwner().getTarget().getResourceDeclaration().getPropertyDeclarations(), SelectionPropertyDeclaration.class));
 	}
 
 	public IScope scope_SelectionProperty_selection(final SelectionProperty context, EReference reference) {
@@ -174,93 +179,67 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
 				ComputationModelPackage.eINSTANCE.getComputationModel()));
 	}
-
-	public IScope scope_Binding_source(SystemConfiguration context, EReference reference) {
-		Fragment contextFragment = getContextFragment(context);
-		if (contextFragment == null) {
-			return IScope.NULLSCOPE;
-		}
-
-		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), Component.class));
-	}
-
-	public IScope scope_BindingPropertyReference_property(Binding context, EReference reference) {
-		BindingPropertyReference lastPropertyReference = null;
-		
-		BindingTargetPath targetPath = context.getTargetPath();
-		if (targetPath != null) {
-			for (BindingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
-				if (propertyReference.getProperty() == null) {
-					break;
-				}
-				if (propertyReference.getProperty().eIsProxy()) {
-					return doScope_BindingPropertyReference_property(context, null);
-				}
-				lastPropertyReference = propertyReference;
-			}
-		}
-		
-		return doScope_BindingPropertyReference_property(context, lastPropertyReference);
-	}
 	
-	public IScope scope_BindingPropertyReference_property(BindingPropertyReference context, EReference reference) {
-		BindingTargetPath targetPath = (BindingTargetPath) context.eContainer();
-		
-		BindingPropertyReference lastPropertyReference = null;
-		for (BindingPropertyReference propertyReference : targetPath.getPropertyReferences()) {
-			if (propertyReference == context) {
-				break;
-			}
-			lastPropertyReference = propertyReference;
-		}
-		
-		return doScope_BindingPropertyReference_property((Binding) targetPath.eContainer(), lastPropertyReference);
-	}
-
-	private IScope doScope_BindingPropertyReference_property(Binding context, BindingPropertyReference lastPropertyReference) {
-		List<Property> properties = new ArrayList<Property>();
-		if (lastPropertyReference == null) {
-			EObject eObject = context;
-			while (eObject != null) {
-				if (eObject instanceof PropertyContainer) {
-					collectNamedSelectionProperties((PropertyContainer) eObject, properties);
-				}
-				if (eObject instanceof Configuration) {
-					break;
-				}
-				eObject = eObject.eContainer();
-			}
-		} else {
-			SelectionProperty lastProperty = lastPropertyReference.getProperty();
-			if (lastProperty != null && lastProperty.getBody() != null) {
-				collectNamedSelectionProperties(lastProperty.getBody(), properties);
-			}
-		}
-		return Scopes.scopeFor(properties);
-	}
-
-	public IScope scope_BindingTargetPath_resource(BindingTargetPath context, EReference reference) {
-		if (!context.getPropertyReferences().isEmpty()) {
-			EList<BindingPropertyReference> properties = context.getPropertyReferences();
-			BindingPropertyReference lastPropertyReference = properties.get(properties.size() - 1);
-			if (lastPropertyReference != null && lastPropertyReference.getProperty() != null && !lastPropertyReference.getProperty().eIsProxy()) {
-				return Scopes.scopeFor(lastPropertyReference.getProperty().getSelection().getResourceDeclarations());
-			}
+	public IScope scope_BindingResourceReference_resourceDeclaration(SelectionProperty context, EReference reference) {
+		if (DMLUtil.isResolved(context.getSelection())) {
+			return Scopes.scopeFor(context.getSelection().getResourceDeclarations());
 		}
 		return IScope.NULLSCOPE;
 	}
 
-	private void collectNamedSelectionProperties(PropertyContainer propertyContainer, List<Property> properties) {
-		for (Property property : propertyContainer.getProperties()) {
-			if (property instanceof SelectionProperty) {
-				SelectionProperty selectionProperty = (SelectionProperty) property;
-				if (selectionProperty.getName() != null) {
-					properties.add(selectionProperty);
-				}
-			}
+	public IScope scope_ComponentReference_component(Configuration context, EReference reference) {
+		Fragment contextFragment = context.getContextFragment();
+		if (DMLUtil.isResolved(contextFragment)) {
+			return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), COMPONENT_PREDICATE));
 		}
+		return IScope.NULLSCOPE;
+	}
+	
+	public IScope scope_ComponentReference_component(ComponentPath context, EReference reference) {
+		return doScope_ComponentReference_component(context, null);
 	}
 
+	public IScope scope_ComponentReference_component(ComponentReference context, EReference reference) {
+		return doScope_ComponentReference_component((ComponentPath) context.eContainer(), context);
+	}
+
+	private IScope doScope_ComponentReference_component(ComponentPath componentPath, ComponentReference excluding) {
+		Configuration configuration = DMLUtil.getOwner(componentPath, Configuration.class);
+		if (configuration == null) {
+			return IScope.NULLSCOPE;
+		}
+
+		Fragment contextFragment = configuration.getContextFragment();
+		if (!DMLUtil.isResolved(contextFragment)) {
+			return IScope.NULLSCOPE;
+		}
+		
+		for (ComponentReference componentReference : componentPath.getReferences()) {
+			if (componentReference == excluding) {
+				break;
+			}
+			
+			Component component = componentReference.getComponent();
+			
+			if (!DMLUtil.isResolved(component)) {
+				break;
+			}
+
+			if (!(component instanceof Subsystem)) {
+				return IScope.NULLSCOPE;
+			}
+			
+			SubsystemRealization realization = ((Subsystem) component).getRealization(contextFragment);
+			if (!DMLUtil.isResolved(realization) || !DMLUtil.isResolved(realization.getRealizingFragment())) {
+				return IScope.NULLSCOPE;
+			}
+			
+			contextFragment = realization.getRealizingFragment();
+		}
+		
+		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), COMPONENT_PREDICATE));
+	}
+	
 	private Fragment getContextFragment(SystemConfiguration systemConfiguration) {
 		if (systemConfiguration instanceof RootSystemConfiguration) {
 			return ((RootSystemConfiguration) systemConfiguration).getContextFragment();

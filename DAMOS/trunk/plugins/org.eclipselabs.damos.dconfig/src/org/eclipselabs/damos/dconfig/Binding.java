@@ -7,7 +7,6 @@
 package org.eclipselabs.damos.dconfig;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.dml.Component;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +16,7 @@ import org.eclipselabs.damos.dml.Component;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getTargetPath <em>Target Path</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Binding#getBody <em>Body</em>}</li>
  * </ul>
@@ -29,56 +28,56 @@ import org.eclipselabs.damos.dml.Component;
  */
 public interface Binding extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' containment reference.
+	 * @see #setTarget(BindingResourceReference)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Target()
+	 * @model containment="true"
+	 * @generated
+	 */
+	BindingResourceReference getTarget();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getTarget <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' containment reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(BindingResourceReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Component)
+	 * @return the value of the '<em>Source</em>' containment reference.
+	 * @see #setSource(ComponentPath)
 	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_Source()
-	 * @model
-	 * @generated
-	 */
-	Component getSource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(Component value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Path</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Path</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Path</em>' containment reference.
-	 * @see #setTargetPath(BindingTargetPath)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBinding_TargetPath()
 	 * @model containment="true"
 	 * @generated
 	 */
-	BindingTargetPath getTargetPath();
+	ComponentPath getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getTargetPath <em>Target Path</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Binding#getSource <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Path</em>' containment reference.
-	 * @see #getTargetPath()
+	 * @param value the new value of the '<em>Source</em>' containment reference.
+	 * @see #getSource()
 	 * @generated
 	 */
-	void setTargetPath(BindingTargetPath value);
+	void setSource(ComponentPath value);
 
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' containment reference.

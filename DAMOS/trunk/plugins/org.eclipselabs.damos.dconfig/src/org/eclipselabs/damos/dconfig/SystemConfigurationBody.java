@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.SystemConfigurationBody#getOwner <em>Owner</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.SystemConfigurationBody#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SystemConfigurationBody#getComponentConfigurations <em>Component Configurations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SystemConfigurationBody#getFragmentConfigurations <em>Fragment Configurations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SystemConfigurationBody#getSubsystemConfigurations <em>Subsystem Configurations</em>}</li>
@@ -56,22 +55,6 @@ public interface SystemConfigurationBody extends PropertyContainer {
 	 * @generated
 	 */
 	void setOwner(SystemConfiguration value);
-
-	/**
-	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.dconfig.Binding}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bindings</em>' containment reference list.
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getSystemConfigurationBody_Bindings()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Binding> getBindings();
 
 	/**
 	 * Returns the value of the '<em><b>Component Configurations</b></em>' containment reference list.

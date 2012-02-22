@@ -98,6 +98,24 @@ public interface DconfigFactory extends EFactory {
 	PropertyGroup createPropertyGroup();
 
 	/**
+	 * Returns a new object of class '<em>Component Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Component Path</em>'.
+	 * @generated
+	 */
+	ComponentPath createComponentPath();
+
+	/**
+	 * Returns a new object of class '<em>Component Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Component Reference</em>'.
+	 * @generated
+	 */
+	ComponentReference createComponentReference();
+
+	/**
 	 * Returns a new object of class '<em>Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,22 +125,22 @@ public interface DconfigFactory extends EFactory {
 	Binding createBinding();
 
 	/**
-	 * Returns a new object of class '<em>Binding Target Path</em>'.
+	 * Returns a new object of class '<em>Binding Resource Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binding Target Path</em>'.
+	 * @return a new object of class '<em>Binding Resource Reference</em>'.
 	 * @generated
 	 */
-	BindingTargetPath createBindingTargetPath();
+	BindingResourceReference createBindingResourceReference();
 
 	/**
-	 * Returns a new object of class '<em>Binding Property Reference</em>'.
+	 * Returns a new object of class '<em>Binding Resource Subscript</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binding Property Reference</em>'.
+	 * @return a new object of class '<em>Binding Resource Subscript</em>'.
 	 * @generated
 	 */
-	BindingPropertyReference createBindingPropertyReference();
+	BindingResourceSubscript createBindingResourceSubscript();
 
 	/**
 	 * Returns a new object of class '<em>Binding Body</em>'.
@@ -132,15 +150,6 @@ public interface DconfigFactory extends EFactory {
 	 * @generated
 	 */
 	BindingBody createBindingBody();
-
-	/**
-	 * Returns a new object of class '<em>Binding Subscript</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binding Subscript</em>'.
-	 * @generated
-	 */
-	BindingSubscript createBindingSubscript();
 
 	/**
 	 * Returns a new object of class '<em>Resource Declaration</em>'.

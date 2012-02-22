@@ -10,21 +10,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Binding Subscript</b></em>'.
+ * A representation of the model object '<em><b>Binding Resource Subscript</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.BindingSubscript#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.BindingResourceSubscript#getIndex <em>Index</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingSubscript()
+ * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingResourceSubscript()
  * @model
  * @generated
  */
-public interface BindingSubscript extends EObject {
+public interface BindingResourceSubscript extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Index</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,14 +35,14 @@ public interface BindingSubscript extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Index</em>' attribute.
 	 * @see #setIndex(int)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingSubscript_Index()
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getBindingResourceSubscript_Index()
 	 * @model
 	 * @generated
 	 */
 	int getIndex();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.BindingSubscript#getIndex <em>Index</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.BindingResourceSubscript#getIndex <em>Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Index</em>' attribute.
@@ -51,4 +51,4 @@ public interface BindingSubscript extends EObject {
 	 */
 	void setIndex(int value);
 
-} // BindingSubscript
+} // BindingResourceSubscript

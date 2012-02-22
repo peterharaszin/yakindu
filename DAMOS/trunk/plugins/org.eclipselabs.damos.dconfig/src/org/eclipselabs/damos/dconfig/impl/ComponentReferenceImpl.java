@@ -11,40 +11,40 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.dconfig.BindingPropertyReference;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.SelectionProperty;
+import org.eclipselabs.damos.dml.Component;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binding Property Reference</b></em>'.
+ * An implementation of the model object '<em><b>Binding Component Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingPropertyReferenceImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.ComponentReferenceImpl#getComponent <em>Component</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BindingPropertyReferenceImpl extends EObjectImpl implements BindingPropertyReference {
+public class ComponentReferenceImpl extends EObjectImpl implements ComponentReference {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+	 * The cached value of the '{@link #getComponent() <em>Component</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
+	 * @see #getComponent()
 	 * @generated
 	 * @ordered
 	 */
-	protected SelectionProperty property;
+	protected Component component;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BindingPropertyReferenceImpl() {
+	protected ComponentReferenceImpl() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.BINDING_PROPERTY_REFERENCE;
+		return DconfigPackage.Literals.COMPONENT_REFERENCE;
 	}
 
 	/**
@@ -63,16 +63,16 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SelectionProperty getProperty() {
-		if (property != null && property.eIsProxy()) {
-			InternalEObject oldProperty = (InternalEObject)property;
-			property = (SelectionProperty)eResolveProxy(oldProperty);
-			if (property != oldProperty) {
+	public Component getComponent() {
+		if (component != null && component.eIsProxy()) {
+			InternalEObject oldComponent = (InternalEObject)component;
+			component = (Component)eResolveProxy(oldComponent);
+			if (component != oldComponent) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.COMPONENT_REFERENCE__COMPONENT, oldComponent, component));
 			}
 		}
-		return property;
+		return component;
 	}
 
 	/**
@@ -80,8 +80,8 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SelectionProperty basicGetProperty() {
-		return property;
+	public Component basicGetComponent() {
+		return component;
 	}
 
 	/**
@@ -89,11 +89,11 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProperty(SelectionProperty newProperty) {
-		SelectionProperty oldProperty = property;
-		property = newProperty;
+	public void setComponent(Component newComponent) {
+		Component oldComponent = component;
+		component = newComponent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.COMPONENT_REFERENCE__COMPONENT, oldComponent, component));
 	}
 
 	/**
@@ -104,9 +104,9 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
-				if (resolve) return getProperty();
-				return basicGetProperty();
+			case DconfigPackage.COMPONENT_REFERENCE__COMPONENT:
+				if (resolve) return getComponent();
+				return basicGetComponent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,8 +119,8 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
-				setProperty((SelectionProperty)newValue);
+			case DconfigPackage.COMPONENT_REFERENCE__COMPONENT:
+				setComponent((Component)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
-				setProperty((SelectionProperty)null);
+			case DconfigPackage.COMPONENT_REFERENCE__COMPONENT:
+				setComponent((Component)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -149,10 +149,10 @@ public class BindingPropertyReferenceImpl extends EObjectImpl implements Binding
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE__PROPERTY:
-				return property != null;
+			case DconfigPackage.COMPONENT_REFERENCE__COMPONENT:
+				return component != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //BindingPropertyReferenceImpl
+} //BindingComponentReferenceImpl

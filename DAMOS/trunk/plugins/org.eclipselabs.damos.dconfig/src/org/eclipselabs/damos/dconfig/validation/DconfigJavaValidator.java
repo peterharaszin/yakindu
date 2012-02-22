@@ -6,9 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
@@ -16,7 +19,9 @@ import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
+import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
@@ -171,6 +176,21 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 	public void checkFixedPointFormatSlope(FixedPointFormat fixedPointFormat) {
 		if (fixedPointFormat.getSlope() <= 0) {
 			error("Slope must be greater than 0", ComputationModelPackage.eINSTANCE.getFixedPointFormat_Slope(), -1);
+		}
+	}
+	
+	@Check
+	public void checkBindingComponentReference(Binding binding) {
+		if (DMLUtil.isResolved(binding.getSource()) && DMLUtil.isResolved(binding.getSource().getComponent()) && !binding.getSource().getComponent().isBoundary()) {
+			EList<ComponentReference> references = binding.getSource().getReferences();
+			error("Bound component must be boundary component", references.get(references.size() - 1), DconfigPackage.eINSTANCE.getComponentReference_Component(), -1);
+		}
+	}
+
+	@Check
+	public void checkBindingInGlobalSelectionProperty(Binding binding) {
+		if (DMLUtil.getOwner(binding, SystemConfiguration.class) != null) {
+			error("Bindings must not be located within system configurations", null);
 		}
 	}
 

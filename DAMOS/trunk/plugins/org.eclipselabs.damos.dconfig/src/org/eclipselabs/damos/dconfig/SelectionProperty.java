@@ -15,7 +15,6 @@ package org.eclipselabs.damos.dconfig;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.SelectionProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionProperty#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionProperty#getSelection <em>Selection</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionProperty#getBody <em>Body</em>}</li>
@@ -27,32 +26,6 @@ package org.eclipselabs.damos.dconfig;
  * @generated
  */
 public interface SelectionProperty extends DeclaredProperty {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getSelectionProperty_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.SelectionProperty#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->

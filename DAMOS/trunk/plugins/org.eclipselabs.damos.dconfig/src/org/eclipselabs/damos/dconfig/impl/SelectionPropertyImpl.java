@@ -24,7 +24,6 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getSelection <em>Selection</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getBody <em>Body</em>}</li>
@@ -34,26 +33,6 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
  * @generated
  */
 public class SelectionPropertyImpl extends DeclaredPropertyImpl implements SelectionProperty {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getDeclaration() <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -101,27 +80,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	@Override
 	protected EClass eStaticClass() {
 		return DconfigPackage.Literals.SELECTION_PROPERTY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY__NAME, oldName, name));
 	}
 
 	/**
@@ -281,8 +239,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY__NAME:
-				return getName();
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				if (resolve) return getDeclaration();
 				return basicGetDeclaration();
@@ -303,9 +259,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY__NAME:
-				setName((String)newValue);
-				return;
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				setDeclaration((SelectionPropertyDeclaration)newValue);
 				return;
@@ -327,9 +280,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				setDeclaration((SelectionPropertyDeclaration)null);
 				return;
@@ -351,8 +301,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				return declaration != null;
 			case DconfigPackage.SELECTION_PROPERTY__SELECTION:
@@ -361,22 +309,6 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 				return body != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SelectionPropertyImpl

@@ -6,12 +6,18 @@
  */
 package org.eclipselabs.damos.dconfig.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
@@ -24,12 +30,23 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyBodyImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyBodyImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements SelectionPropertyBody {
+	/**
+	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Binding> bindings;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,6 +112,18 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Binding> getBindings() {
+		if (bindings == null) {
+			bindings = new EObjectContainmentEList<Binding>(Binding.class, this, DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS);
+		}
+		return bindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -116,6 +145,8 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY_BODY__OWNER:
 				return basicSetOwner(null, msgs);
+			case DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS:
+				return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -144,6 +175,8 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY_BODY__OWNER:
 				return getOwner();
+			case DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS:
+				return getBindings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,11 +186,16 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY_BODY__OWNER:
 				setOwner((SelectionProperty)newValue);
+				return;
+			case DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS:
+				getBindings().clear();
+				getBindings().addAll((Collection<? extends Binding>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,6 +212,9 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 			case DconfigPackage.SELECTION_PROPERTY_BODY__OWNER:
 				setOwner((SelectionProperty)null);
 				return;
+			case DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS:
+				getBindings().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,6 +229,8 @@ public class SelectionPropertyBodyImpl extends PropertyContainerImpl implements 
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY_BODY__OWNER:
 				return getOwner() != null;
+			case DconfigPackage.SELECTION_PROPERTY_BODY__BINDINGS:
+				return bindings != null && !bindings.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

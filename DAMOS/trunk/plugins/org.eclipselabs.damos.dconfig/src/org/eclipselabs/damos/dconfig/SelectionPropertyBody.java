@@ -6,6 +6,8 @@
  */
 package org.eclipselabs.damos.dconfig;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +18,7 @@ package org.eclipselabs.damos.dconfig;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionPropertyBody#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.SelectionPropertyBody#getBindings <em>Bindings</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,5 +54,21 @@ public interface SelectionPropertyBody extends PropertyContainer {
 	 * @generated
 	 */
 	void setOwner(SelectionProperty value);
+
+	/**
+	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.dconfig.Binding}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bindings</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bindings</em>' containment reference list.
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getSelectionPropertyBody_Bindings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Binding> getBindings();
 
 } // SelectionPropertyBody

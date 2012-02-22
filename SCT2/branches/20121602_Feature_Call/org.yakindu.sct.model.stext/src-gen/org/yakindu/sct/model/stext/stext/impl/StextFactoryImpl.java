@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.impl;
 
@@ -125,8 +124,8 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.NUMERICAL_ADD_SUBTRACT_EXPRESSION: return createNumericalAddSubtractExpression();
       case StextPackage.NUMERICAL_MULTIPLY_DIVIDE_EXPRESSION: return createNumericalMultiplyDivideExpression();
       case StextPackage.NUMERICAL_UNARY_EXPRESSION: return createNumericalUnaryExpression();
-      case StextPackage.FEATURE_CALL: return createFeatureCall();
       case StextPackage.PRIMITIVE_VALUE_EXPRESSION: return createPrimitiveValueExpression();
+      case StextPackage.FEATURE_CALL: return createFeatureCall();
       case StextPackage.TYPED_ELEMENT_REFERENCE_EXPRESSION: return createTypedElementReferenceExpression();
       case StextPackage.EVENT_VALUE_REFERENCE_EXPRESSION: return createEventValueReferenceExpression();
       case StextPackage.ACTIVE_STATE_REFERENCE_EXPRESSION: return createActiveStateReferenceExpression();
@@ -822,10 +821,10 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public FeatureCall createFeatureCall()
+  public PrimitiveValueExpression createPrimitiveValueExpression()
   {
-    FeatureCallImpl featureCall = new FeatureCallImpl();
-    return featureCall;
+    PrimitiveValueExpressionImpl primitiveValueExpression = new PrimitiveValueExpressionImpl();
+    return primitiveValueExpression;
   }
 
   /**
@@ -833,10 +832,10 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PrimitiveValueExpression createPrimitiveValueExpression()
+  public FeatureCall createFeatureCall()
   {
-    PrimitiveValueExpressionImpl primitiveValueExpression = new PrimitiveValueExpressionImpl();
-    return primitiveValueExpression;
+    FeatureCallImpl featureCall = new FeatureCallImpl();
+    return featureCall;
   }
 
   /**

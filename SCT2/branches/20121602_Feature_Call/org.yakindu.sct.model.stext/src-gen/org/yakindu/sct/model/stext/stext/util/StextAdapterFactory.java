@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.util;
 
@@ -375,14 +374,14 @@ public class StextAdapterFactory extends AdapterFactoryImpl
         return createNumericalUnaryExpressionAdapter();
       }
       @Override
-      public Adapter caseFeatureCall(FeatureCall object)
-      {
-        return createFeatureCallAdapter();
-      }
-      @Override
       public Adapter casePrimitiveValueExpression(PrimitiveValueExpression object)
       {
         return createPrimitiveValueExpressionAdapter();
+      }
+      @Override
+      public Adapter caseFeatureCall(FeatureCall object)
+      {
+        return createFeatureCallAdapter();
       }
       @Override
       public Adapter caseTypedElementReferenceExpression(TypedElementReferenceExpression object)
@@ -1332,21 +1331,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.FeatureCall <em>Feature Call</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.model.stext.stext.FeatureCall
-   * @generated
-   */
-  public Adapter createFeatureCallAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression <em>Primitive Value Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1357,6 +1341,21 @@ public class StextAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitiveValueExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.FeatureCall <em>Feature Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.model.stext.stext.FeatureCall
+   * @generated
+   */
+  public Adapter createFeatureCallAdapter()
   {
     return null;
   }

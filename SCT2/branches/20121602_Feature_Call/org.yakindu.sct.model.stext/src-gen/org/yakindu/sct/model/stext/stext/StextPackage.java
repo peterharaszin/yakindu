@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext;
 
@@ -1992,6 +1991,34 @@ public interface StextPackage extends EPackage
   int NUMERICAL_UNARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl <em>Primitive Value Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl
+   * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getPrimitiveValueExpression()
+   * @generated
+   */
+  int PRIMITIVE_VALUE_EXPRESSION = 56;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_VALUE_EXPRESSION__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Primitive Value Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_VALUE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl <em>Feature Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1999,7 +2026,7 @@ public interface StextPackage extends EPackage
    * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getFeatureCall()
    * @generated
    */
-  int FEATURE_CALL = 56;
+  int FEATURE_CALL = 57;
 
   /**
    * The feature id for the '<em><b>Owner</b></em>' containment reference.
@@ -2045,34 +2072,6 @@ public interface StextPackage extends EPackage
    * @ordered
    */
   int FEATURE_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl <em>Primitive Value Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl
-   * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getPrimitiveValueExpression()
-   * @generated
-   */
-  int PRIMITIVE_VALUE_EXPRESSION = 57;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_VALUE_EXPRESSION__VALUE = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Primitive Value Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_VALUE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.model.stext.stext.impl.TypedElementReferenceExpressionImpl <em>Typed Element Reference Expression</em>}' class.
@@ -3536,6 +3535,27 @@ public interface StextPackage extends EPackage
   EReference getNumericalUnaryExpression_Operand();
 
   /**
+   * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression <em>Primitive Value Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Value Expression</em>'.
+   * @see org.yakindu.sct.model.stext.stext.PrimitiveValueExpression
+   * @generated
+   */
+  EClass getPrimitiveValueExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.yakindu.sct.model.stext.stext.PrimitiveValueExpression#getValue()
+   * @see #getPrimitiveValueExpression()
+   * @generated
+   */
+  EReference getPrimitiveValueExpression_Value();
+
+  /**
    * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.FeatureCall <em>Feature Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3588,27 +3608,6 @@ public interface StextPackage extends EPackage
    * @generated
    */
   EReference getFeatureCall_Args();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression <em>Primitive Value Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Primitive Value Expression</em>'.
-   * @see org.yakindu.sct.model.stext.stext.PrimitiveValueExpression
-   * @generated
-   */
-  EClass getPrimitiveValueExpression();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.model.stext.stext.PrimitiveValueExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.yakindu.sct.model.stext.stext.PrimitiveValueExpression#getValue()
-   * @see #getPrimitiveValueExpression()
-   * @generated
-   */
-  EReference getPrimitiveValueExpression_Value();
 
   /**
    * Returns the meta object for class '{@link org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression <em>Typed Element Reference Expression</em>}'.
@@ -4875,6 +4874,24 @@ public interface StextPackage extends EPackage
     EReference NUMERICAL_UNARY_EXPRESSION__OPERAND = eINSTANCE.getNumericalUnaryExpression_Operand();
 
     /**
+     * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl <em>Primitive Value Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl
+     * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getPrimitiveValueExpression()
+     * @generated
+     */
+    EClass PRIMITIVE_VALUE_EXPRESSION = eINSTANCE.getPrimitiveValueExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PRIMITIVE_VALUE_EXPRESSION__VALUE = eINSTANCE.getPrimitiveValueExpression_Value();
+
+    /**
      * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.FeatureCallImpl <em>Feature Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4915,24 +4932,6 @@ public interface StextPackage extends EPackage
      * @generated
      */
     EReference FEATURE_CALL__ARGS = eINSTANCE.getFeatureCall_Args();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl <em>Primitive Value Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.model.stext.stext.impl.PrimitiveValueExpressionImpl
-     * @see org.yakindu.sct.model.stext.stext.impl.StextPackageImpl#getPrimitiveValueExpression()
-     * @generated
-     */
-    EClass PRIMITIVE_VALUE_EXPRESSION = eINSTANCE.getPrimitiveValueExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PRIMITIVE_VALUE_EXPRESSION__VALUE = eINSTANCE.getPrimitiveValueExpression_Value();
 
     /**
      * The meta object literal for the '{@link org.yakindu.sct.model.stext.stext.impl.TypedElementReferenceExpressionImpl <em>Typed Element Reference Expression</em>}' class.

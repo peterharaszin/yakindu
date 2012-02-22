@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext;
 
@@ -531,15 +530,6 @@ public interface StextFactory extends EFactory
   NumericalUnaryExpression createNumericalUnaryExpression();
 
   /**
-   * Returns a new object of class '<em>Feature Call</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Feature Call</em>'.
-   * @generated
-   */
-  FeatureCall createFeatureCall();
-
-  /**
    * Returns a new object of class '<em>Primitive Value Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -547,6 +537,15 @@ public interface StextFactory extends EFactory
    * @generated
    */
   PrimitiveValueExpression createPrimitiveValueExpression();
+
+  /**
+   * Returns a new object of class '<em>Feature Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Feature Call</em>'.
+   * @generated
+   */
+  FeatureCall createFeatureCall();
 
   /**
    * Returns a new object of class '<em>Typed Element Reference Expression</em>'.

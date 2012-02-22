@@ -14,11 +14,12 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
-import org.eclipselabs.damos.dconfig.BindingPropertyReference;
-import org.eclipselabs.damos.dconfig.BindingSubscript;
-import org.eclipselabs.damos.dconfig.BindingTargetPath;
+import org.eclipselabs.damos.dconfig.BindingResourceReference;
+import org.eclipselabs.damos.dconfig.BindingResourceSubscript;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
+import org.eclipselabs.damos.dconfig.ComponentPath;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
@@ -90,11 +91,12 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 			case DconfigPackage.SELECTION_PROPERTY_DECLARATION: return createSelectionPropertyDeclaration();
 			case DconfigPackage.SELECTION_PROPERTY_OPTION: return createSelectionPropertyOption();
 			case DconfigPackage.PROPERTY_GROUP: return createPropertyGroup();
+			case DconfigPackage.COMPONENT_PATH: return createComponentPath();
+			case DconfigPackage.COMPONENT_REFERENCE: return createComponentReference();
 			case DconfigPackage.BINDING: return createBinding();
-			case DconfigPackage.BINDING_TARGET_PATH: return createBindingTargetPath();
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE: return createBindingPropertyReference();
+			case DconfigPackage.BINDING_RESOURCE_REFERENCE: return createBindingResourceReference();
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT: return createBindingResourceSubscript();
 			case DconfigPackage.BINDING_BODY: return createBindingBody();
-			case DconfigPackage.BINDING_SUBSCRIPT: return createBindingSubscript();
 			case DconfigPackage.RESOURCE_DECLARATION: return createResourceDeclaration();
 			case DconfigPackage.COMPUTATION_PROPERTY: return createComputationProperty();
 			case DconfigPackage.SYSTEM_CONFIGURATION_BODY: return createSystemConfigurationBody();
@@ -224,6 +226,26 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ComponentPath createComponentPath() {
+		ComponentPathImpl componentPath = new ComponentPathImpl();
+		return componentPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComponentReference createComponentReference() {
+		ComponentReferenceImpl componentReference = new ComponentReferenceImpl();
+		return componentReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Binding createBinding() {
 		BindingImpl binding = new BindingImpl();
 		return binding;
@@ -234,9 +256,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindingTargetPath createBindingTargetPath() {
-		BindingTargetPathImpl bindingTargetPath = new BindingTargetPathImpl();
-		return bindingTargetPath;
+	public BindingResourceReference createBindingResourceReference() {
+		BindingResourceReferenceImpl bindingResourceReference = new BindingResourceReferenceImpl();
+		return bindingResourceReference;
 	}
 
 	/**
@@ -244,9 +266,9 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BindingPropertyReference createBindingPropertyReference() {
-		BindingPropertyReferenceImpl bindingPropertyReference = new BindingPropertyReferenceImpl();
-		return bindingPropertyReference;
+	public BindingResourceSubscript createBindingResourceSubscript() {
+		BindingResourceSubscriptImpl bindingResourceSubscript = new BindingResourceSubscriptImpl();
+		return bindingResourceSubscript;
 	}
 
 	/**
@@ -257,16 +279,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public BindingBody createBindingBody() {
 		BindingBodyImpl bindingBody = new BindingBodyImpl();
 		return bindingBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BindingSubscript createBindingSubscript() {
-		BindingSubscriptImpl bindingSubscript = new BindingSubscriptImpl();
-		return bindingSubscript;
 	}
 
 	/**

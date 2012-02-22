@@ -10,23 +10,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.dconfig.BindingSubscript;
+import org.eclipselabs.damos.dconfig.BindingResourceSubscript;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binding Subscript</b></em>'.
+ * An implementation of the model object '<em><b>Binding Resource Subscript</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingSubscriptImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingResourceSubscriptImpl#getIndex <em>Index</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscript {
+public class BindingResourceSubscriptImpl extends EObjectImpl implements BindingResourceSubscript {
 	/**
 	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BindingSubscriptImpl() {
+	protected BindingResourceSubscriptImpl() {
 		super();
 	}
 
@@ -63,7 +63,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.BINDING_SUBSCRIPT;
+		return DconfigPackage.Literals.BINDING_RESOURCE_SUBSCRIPT;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_SUBSCRIPT__INDEX, oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING_RESOURCE_SUBSCRIPT__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT__INDEX:
 				return getIndex();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT__INDEX:
 				setIndex((Integer)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
 		}
@@ -139,7 +139,7 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING_SUBSCRIPT__INDEX:
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT__INDEX:
 				return index != INDEX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -161,4 +161,4 @@ public class BindingSubscriptImpl extends EObjectImpl implements BindingSubscrip
 		return result.toString();
 	}
 
-} //BindingSubscriptImpl
+} //BindingResourceSubscriptImpl

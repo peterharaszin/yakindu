@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
-import org.eclipselabs.damos.dconfig.BindingTargetPath;
+import org.eclipselabs.damos.dconfig.BindingResourceReference;
+import org.eclipselabs.damos.dconfig.ComponentPath;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dml.Component;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dml.Component;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getTargetPath <em>Target Path</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.BindingImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -35,24 +35,24 @@ import org.eclipselabs.damos.dml.Component;
  */
 public class BindingImpl extends EObjectImpl implements Binding {
 	/**
-	 * The cached value of the '{@link #getTargetPath() <em>Target Path</em>}' containment reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetPath()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected BindingTargetPath targetPath;
+	protected BindingResourceReference target;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected Component source;
+	protected ComponentPath source;
 
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -88,16 +88,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Component getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Component)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DconfigPackage.BINDING__SOURCE, oldSource, source));
-			}
-		}
-		return source;
+	public BindingResourceReference getTarget() {
+		return target;
 	}
 
 	/**
@@ -105,41 +97,11 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Component basicGetSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(Component newSource) {
-		Component oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SOURCE, oldSource, source));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BindingTargetPath getTargetPath() {
-		return targetPath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTargetPath(BindingTargetPath newTargetPath, NotificationChain msgs) {
-		BindingTargetPath oldTargetPath = targetPath;
-		targetPath = newTargetPath;
+	public NotificationChain basicSetTarget(BindingResourceReference newTarget, NotificationChain msgs) {
+		BindingResourceReference oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET_PATH, oldTargetPath, newTargetPath);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -150,18 +112,61 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetPath(BindingTargetPath newTargetPath) {
-		if (newTargetPath != targetPath) {
+	public void setTarget(BindingResourceReference newTarget) {
+		if (newTarget != target) {
 			NotificationChain msgs = null;
-			if (targetPath != null)
-				msgs = ((InternalEObject)targetPath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET_PATH, null, msgs);
-			if (newTargetPath != null)
-				msgs = ((InternalEObject)newTargetPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET_PATH, null, msgs);
-			msgs = basicSetTargetPath(newTargetPath, msgs);
+			if (target != null)
+				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET, null, msgs);
+			if (newTarget != null)
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__TARGET, null, msgs);
+			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET_PATH, newTargetPath, newTargetPath));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__TARGET, newTarget, newTarget));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComponentPath getSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSource(ComponentPath newSource, NotificationChain msgs) {
+		ComponentPath oldSource = source;
+		source = newSource;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SOURCE, oldSource, newSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(ComponentPath newSource) {
+		if (newSource != source) {
+			NotificationChain msgs = null;
+			if (source != null)
+				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__SOURCE, null, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.BINDING__SOURCE, null, msgs);
+			msgs = basicSetSource(newSource, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.BINDING__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -231,8 +236,10 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.BINDING__TARGET_PATH:
-				return basicSetTargetPath(null, msgs);
+			case DconfigPackage.BINDING__TARGET:
+				return basicSetTarget(null, msgs);
+			case DconfigPackage.BINDING__SOURCE:
+				return basicSetSource(null, msgs);
 			case DconfigPackage.BINDING__BODY:
 				return basicSetBody(null, msgs);
 		}
@@ -247,11 +254,10 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.BINDING__TARGET_PATH:
-				return getTargetPath();
+			case DconfigPackage.BINDING__TARGET:
+				return getTarget();
 			case DconfigPackage.BINDING__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case DconfigPackage.BINDING__BODY:
 				return getBody();
 		}
@@ -266,11 +272,11 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.BINDING__TARGET_PATH:
-				setTargetPath((BindingTargetPath)newValue);
+			case DconfigPackage.BINDING__TARGET:
+				setTarget((BindingResourceReference)newValue);
 				return;
 			case DconfigPackage.BINDING__SOURCE:
-				setSource((Component)newValue);
+				setSource((ComponentPath)newValue);
 				return;
 			case DconfigPackage.BINDING__BODY:
 				setBody((BindingBody)newValue);
@@ -287,11 +293,11 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING__TARGET_PATH:
-				setTargetPath((BindingTargetPath)null);
+			case DconfigPackage.BINDING__TARGET:
+				setTarget((BindingResourceReference)null);
 				return;
 			case DconfigPackage.BINDING__SOURCE:
-				setSource((Component)null);
+				setSource((ComponentPath)null);
 				return;
 			case DconfigPackage.BINDING__BODY:
 				setBody((BindingBody)null);
@@ -308,8 +314,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.BINDING__TARGET_PATH:
-				return targetPath != null;
+			case DconfigPackage.BINDING__TARGET:
+				return target != null;
 			case DconfigPackage.BINDING__SOURCE:
 				return source != null;
 			case DconfigPackage.BINDING__BODY:

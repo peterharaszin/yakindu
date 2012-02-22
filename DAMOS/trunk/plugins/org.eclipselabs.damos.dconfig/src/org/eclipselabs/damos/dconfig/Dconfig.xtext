@@ -23,11 +23,11 @@ SimpleProperty:
 	(propagate?='propagate')? (declaration=[SimplePropertyDeclaration|QualifiedNameWithoutIJ] '=' value=Expression | 'unset' declaration=[SimplePropertyDeclaration|QualifiedName]);
 
 SelectionProperty:
-	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] selection=[SelectionPropertyOption|QualifiedName] ('as' name=ValidID)? (body=SelectionPropertyBody)?;
+	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] selection=[SelectionPropertyOption|QualifiedName] (body=SelectionPropertyBody)?;
 	
 SelectionPropertyBody:
 	{SelectionPropertyBody} '{'
-		(properties+=DeclaredProperty)*
+		(properties+=DeclaredProperty | bindings+=Binding)*
 	'}';
 	
 RootSystemConfiguration:
@@ -39,7 +39,6 @@ SubsystemConfiguration:
 SystemConfigurationBody:
 	{SystemConfigurationBody} '{'
 		(properties+=Property |
-		bindings+=Binding |
 		componentConfigurations+=ComponentConfiguration |
 		fragmentConfigurations+=FragmentConfiguration |
 		subsystemConfigurations+=SubsystemConfiguration)*
@@ -66,20 +65,22 @@ ComputationProperty:
 		computationModel=ComputationModel
 	'}';
 
+ComponentPath:
+	references+=ComponentReference ('.' references+=ComponentReference)*;
+
+ComponentReference:
+	component=[Component|ValidID];
+
 Binding:
-	'bind' targetPath=BindingTargetPath 'to' source=[Component|ValidID]
-		(body=BindingBody)?;
+	'bind' target=BindingResourceReference 'to' source=ComponentPath (body=BindingBody)?;
 
-BindingTargetPath:
-	propertyReferences+=BindingPropertyReference ('.' propertyReferences+=BindingPropertyReference)* '.' resource=[ResourceDeclaration|ValidID] ('[' subscript=BindingSubscript ']')?;
-
-BindingPropertyReference:
-	property=[SelectionProperty|ValidID];
+BindingResourceReference:
+	resourceDeclaration=[ResourceDeclaration|ValidID] ('[' subscript=BindingResourceSubscript ']')?;
 
 BindingBody:
 	{BindingBody} '{' (properties+=DeclaredProperty)* '}';
 
-BindingSubscript:
+BindingResourceSubscript:
 	index=ValidInt;
 
 ComputationModel:

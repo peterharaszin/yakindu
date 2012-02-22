@@ -11,11 +11,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
-import org.eclipselabs.damos.dconfig.BindingPropertyReference;
-import org.eclipselabs.damos.dconfig.BindingSubscript;
-import org.eclipselabs.damos.dconfig.BindingTargetPath;
+import org.eclipselabs.damos.dconfig.BindingResourceReference;
+import org.eclipselabs.damos.dconfig.BindingResourceSubscript;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
+import org.eclipselabs.damos.dconfig.ComponentPath;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
@@ -184,21 +185,33 @@ public class DconfigSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DconfigPackage.COMPONENT_PATH: {
+				ComponentPath componentPath = (ComponentPath)theEObject;
+				T result = caseComponentPath(componentPath);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DconfigPackage.COMPONENT_REFERENCE: {
+				ComponentReference componentReference = (ComponentReference)theEObject;
+				T result = caseComponentReference(componentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DconfigPackage.BINDING: {
 				Binding binding = (Binding)theEObject;
 				T result = caseBinding(binding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.BINDING_TARGET_PATH: {
-				BindingTargetPath bindingTargetPath = (BindingTargetPath)theEObject;
-				T result = caseBindingTargetPath(bindingTargetPath);
+			case DconfigPackage.BINDING_RESOURCE_REFERENCE: {
+				BindingResourceReference bindingResourceReference = (BindingResourceReference)theEObject;
+				T result = caseBindingResourceReference(bindingResourceReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DconfigPackage.BINDING_PROPERTY_REFERENCE: {
-				BindingPropertyReference bindingPropertyReference = (BindingPropertyReference)theEObject;
-				T result = caseBindingPropertyReference(bindingPropertyReference);
+			case DconfigPackage.BINDING_RESOURCE_SUBSCRIPT: {
+				BindingResourceSubscript bindingResourceSubscript = (BindingResourceSubscript)theEObject;
+				T result = caseBindingResourceSubscript(bindingResourceSubscript);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -206,12 +219,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 				BindingBody bindingBody = (BindingBody)theEObject;
 				T result = caseBindingBody(bindingBody);
 				if (result == null) result = casePropertyContainer(bindingBody);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DconfigPackage.BINDING_SUBSCRIPT: {
-				BindingSubscript bindingSubscript = (BindingSubscript)theEObject;
-				T result = caseBindingSubscript(bindingSubscript);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -407,6 +414,36 @@ public class DconfigSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Path</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComponentPath(ComponentPath object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComponentReference(ComponentReference object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Binding</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -422,32 +459,32 @@ public class DconfigSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binding Target Path</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Resource Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binding Target Path</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Resource Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBindingTargetPath(BindingTargetPath object) {
+	public T caseBindingResourceReference(BindingResourceReference object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binding Property Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Resource Subscript</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binding Property Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Resource Subscript</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBindingPropertyReference(BindingPropertyReference object) {
+	public T caseBindingResourceSubscript(BindingResourceSubscript object) {
 		return null;
 	}
 
@@ -463,21 +500,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBindingBody(BindingBody object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binding Subscript</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binding Subscript</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBindingSubscript(BindingSubscript object) {
 		return null;
 	}
 

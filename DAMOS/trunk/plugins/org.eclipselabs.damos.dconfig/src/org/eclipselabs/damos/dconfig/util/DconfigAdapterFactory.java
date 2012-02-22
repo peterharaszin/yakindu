@@ -12,11 +12,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
-import org.eclipselabs.damos.dconfig.BindingPropertyReference;
-import org.eclipselabs.damos.dconfig.BindingSubscript;
-import org.eclipselabs.damos.dconfig.BindingTargetPath;
+import org.eclipselabs.damos.dconfig.BindingResourceReference;
+import org.eclipselabs.damos.dconfig.BindingResourceSubscript;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentConfigurationBody;
+import org.eclipselabs.damos.dconfig.ComponentPath;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
@@ -149,24 +150,28 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyGroupAdapter();
 			}
 			@Override
+			public Adapter caseComponentPath(ComponentPath object) {
+				return createComponentPathAdapter();
+			}
+			@Override
+			public Adapter caseComponentReference(ComponentReference object) {
+				return createComponentReferenceAdapter();
+			}
+			@Override
 			public Adapter caseBinding(Binding object) {
 				return createBindingAdapter();
 			}
 			@Override
-			public Adapter caseBindingTargetPath(BindingTargetPath object) {
-				return createBindingTargetPathAdapter();
+			public Adapter caseBindingResourceReference(BindingResourceReference object) {
+				return createBindingResourceReferenceAdapter();
 			}
 			@Override
-			public Adapter caseBindingPropertyReference(BindingPropertyReference object) {
-				return createBindingPropertyReferenceAdapter();
+			public Adapter caseBindingResourceSubscript(BindingResourceSubscript object) {
+				return createBindingResourceSubscriptAdapter();
 			}
 			@Override
 			public Adapter caseBindingBody(BindingBody object) {
 				return createBindingBodyAdapter();
-			}
-			@Override
-			public Adapter caseBindingSubscript(BindingSubscript object) {
-				return createBindingSubscriptAdapter();
 			}
 			@Override
 			public Adapter caseResourceDeclaration(ResourceDeclaration object) {
@@ -341,6 +346,34 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.ComponentPath <em>Component Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.ComponentPath
+	 * @generated
+	 */
+	public Adapter createComponentPathAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.ComponentReference <em>Component Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.ComponentReference
+	 * @generated
+	 */
+	public Adapter createComponentReferenceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.Binding <em>Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -355,30 +388,30 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingTargetPath <em>Binding Target Path</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingResourceReference <em>Binding Resource Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.BindingTargetPath
+	 * @see org.eclipselabs.damos.dconfig.BindingResourceReference
 	 * @generated
 	 */
-	public Adapter createBindingTargetPathAdapter() {
+	public Adapter createBindingResourceReferenceAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingPropertyReference <em>Binding Property Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingResourceSubscript <em>Binding Resource Subscript</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.BindingPropertyReference
+	 * @see org.eclipselabs.damos.dconfig.BindingResourceSubscript
 	 * @generated
 	 */
-	public Adapter createBindingPropertyReferenceAdapter() {
+	public Adapter createBindingResourceSubscriptAdapter() {
 		return null;
 	}
 
@@ -393,20 +426,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBindingBodyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.BindingSubscript <em>Binding Subscript</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.BindingSubscript
-	 * @generated
-	 */
-	public Adapter createBindingSubscriptAdapter() {
 		return null;
 	}
 

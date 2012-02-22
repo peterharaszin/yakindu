@@ -39,7 +39,6 @@ public class DconfigHighlightingConfiguration extends MscriptHighlightingConfigu
 	public TextStyle resourceTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(0xab, 0x30, 0x00));
-		textStyle.setStyle(SWT.ITALIC);
 		return textStyle;
 	}
 

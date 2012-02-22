@@ -54,7 +54,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionProperty" eSuperTypes="#//DeclaredProperty">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//SelectionPropertyDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selection" eType="#//SelectionPropertyOption"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//SelectionPropertyBody"
@@ -63,6 +62,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyBody" eSuperTypes="#//PropertyContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//SelectionProperty"
         eOpposite="#//SelectionProperty/body"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
+        eType="#//Binding" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyDeclaration" eSuperTypes="#//PropertyDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyOption" eSuperTypes="#//PropertyDeclarationContainer">
@@ -87,29 +88,33 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//PropertyDeclaration" containment="true" eOpposite="#//PropertyDeclaration/group"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPath">
+    <eOperations name="getComponent" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
+        eType="#//ComponentReference" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Binding">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPath" eType="#//BindingTargetPath"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BindingResourceReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ComponentPath"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BindingBody"
         containment="true" eOpposite="#//BindingBody/owner"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BindingTargetPath">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReferences" upperBound="-1"
-        eType="#//BindingPropertyReference" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" eType="#//ResourceDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//BindingSubscript"
+  <eClassifiers xsi:type="ecore:EClass" name="BindingResourceReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDeclaration" eType="#//ResourceDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscript" eType="#//BindingResourceSubscript"
         unsettable="true" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BindingPropertyReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//SelectionProperty"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BindingResourceSubscript">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BindingBody" eSuperTypes="#//PropertyContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Binding"
         eOpposite="#//Binding/body"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BindingSubscript">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceDeclaration" eSuperTypes="#//PropertyDeclarationContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -127,8 +132,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="SystemConfigurationBody" eSuperTypes="#//PropertyContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//SystemConfiguration"
         eOpposite="#//SystemConfiguration/body"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
-        eType="#//Binding" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="componentConfigurations"
         upperBound="-1" eType="#//ComponentConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentConfigurations"

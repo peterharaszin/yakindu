@@ -36,6 +36,11 @@ import org.eclipselabs.damos.ide.core.validation.Problem;
  */
 public class DamosBuilderParticipant implements IXtextBuilderParticipant {
 	
+	/**
+	 * 
+	 */
+	private static final String BLOCK_DIAGRAM_FILE_EXTENSION = "blockdiagram";
+	
 	private final DamosValidator validator = new DamosValidator();
 
 	public void build(IBuildContext buildContext, IProgressMonitor monitor) throws CoreException {
@@ -47,6 +52,11 @@ public class DamosBuilderParticipant implements IXtextBuilderParticipant {
 			}
 			
 			URI uri = delta.getUri();
+			
+			if (!BLOCK_DIAGRAM_FILE_EXTENSION.equals(uri.fileExtension())) {
+				continue;
+			}
+			
 			Resource resource = resourceSet.getResource(uri, true);
 			
 			if (!uri.isPlatformResource()) {

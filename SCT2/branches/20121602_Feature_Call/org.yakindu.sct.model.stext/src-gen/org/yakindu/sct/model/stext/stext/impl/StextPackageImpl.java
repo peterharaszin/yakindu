@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.impl;
 
@@ -498,14 +497,14 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass featureCallEClass = null;
+  private EClass primitiveValueExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass primitiveValueExpressionEClass = null;
+  private EClass featureCallEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1883,6 +1882,26 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPrimitiveValueExpression()
+  {
+    return primitiveValueExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPrimitiveValueExpression_Value()
+  {
+    return (EReference)primitiveValueExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getFeatureCall()
   {
     return featureCallEClass;
@@ -1926,26 +1945,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
   public EReference getFeatureCall_Args()
   {
     return (EReference)featureCallEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPrimitiveValueExpression()
-  {
-    return primitiveValueExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPrimitiveValueExpression_Value()
-  {
-    return (EReference)primitiveValueExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2306,14 +2305,14 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     createEAttribute(numericalUnaryExpressionEClass, NUMERICAL_UNARY_EXPRESSION__OPERATOR);
     createEReference(numericalUnaryExpressionEClass, NUMERICAL_UNARY_EXPRESSION__OPERAND);
 
+    primitiveValueExpressionEClass = createEClass(PRIMITIVE_VALUE_EXPRESSION);
+    createEReference(primitiveValueExpressionEClass, PRIMITIVE_VALUE_EXPRESSION__VALUE);
+
     featureCallEClass = createEClass(FEATURE_CALL);
     createEReference(featureCallEClass, FEATURE_CALL__OWNER);
     createEReference(featureCallEClass, FEATURE_CALL__FEATURE);
     createEAttribute(featureCallEClass, FEATURE_CALL__OPERATION_CALL);
     createEReference(featureCallEClass, FEATURE_CALL__ARGS);
-
-    primitiveValueExpressionEClass = createEClass(PRIMITIVE_VALUE_EXPRESSION);
-    createEReference(primitiveValueExpressionEClass, PRIMITIVE_VALUE_EXPRESSION__VALUE);
 
     typedElementReferenceExpressionEClass = createEClass(TYPED_ELEMENT_REFERENCE_EXPRESSION);
     createEReference(typedElementReferenceExpressionEClass, TYPED_ELEMENT_REFERENCE_EXPRESSION__REFERENCE);
@@ -2421,8 +2420,8 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     numericalAddSubtractExpressionEClass.getESuperTypes().add(this.getExpression());
     numericalMultiplyDivideExpressionEClass.getESuperTypes().add(this.getExpression());
     numericalUnaryExpressionEClass.getESuperTypes().add(this.getExpression());
-    featureCallEClass.getESuperTypes().add(this.getExpression());
     primitiveValueExpressionEClass.getESuperTypes().add(this.getExpression());
+    featureCallEClass.getESuperTypes().add(this.getExpression());
     typedElementReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
     eventValueReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
     activeStateReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2606,14 +2605,14 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     initEAttribute(getNumericalUnaryExpression_Operator(), this.getUnaryOperator(), "operator", null, 0, 1, NumericalUnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNumericalUnaryExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, NumericalUnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(primitiveValueExpressionEClass, PrimitiveValueExpression.class, "PrimitiveValueExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPrimitiveValueExpression_Value(), this.getLiteral(), null, "value", null, 0, 1, PrimitiveValueExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(featureCallEClass, FeatureCall.class, "FeatureCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFeatureCall_Owner(), this.getExpression(), null, "owner", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFeatureCall_Feature(), theTypesPackage.getFeature(), null, "feature", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFeatureCall_OperationCall(), ecorePackage.getEBoolean(), "operationCall", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFeatureCall_Args(), this.getExpression(), null, "args", null, 0, -1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(primitiveValueExpressionEClass, PrimitiveValueExpression.class, "PrimitiveValueExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPrimitiveValueExpression_Value(), this.getLiteral(), null, "value", null, 0, 1, PrimitiveValueExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typedElementReferenceExpressionEClass, TypedElementReferenceExpression.class, "TypedElementReferenceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypedElementReferenceExpression_Reference(), theBasePackage.getNamedElement(), null, "reference", null, 0, 1, TypedElementReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

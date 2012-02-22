@@ -105,6 +105,22 @@
   <eClassifiers xsi:type="ecore:EClass" name="AlwaysEvent" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//BuiltinEventSpec"/>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultEvent" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//BuiltinEventSpec"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HexLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssignmentOperator">
     <eLiterals name="assign" literal="="/>
     <eLiterals name="multAssign" value="1" literal="*="/>
@@ -149,22 +165,6 @@
     <eLiterals name="millisecond" value="1" literal="ms"/>
     <eLiterals name="microsecond" value="2" literal="us"/>
     <eLiterals name="nanosecond" value="3" literal="ns"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Literal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RealLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HexLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleScope" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Scope"/>
   <eClassifiers xsi:type="ecore:EClass" name="Entrypoint" eSuperTypes="platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore#//Declaration"/>
@@ -269,16 +269,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveValueExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCall" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/resource/org.yakindu.base.types/model/types.ecore#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationCall" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveValueExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Literal"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementReferenceExpression" eSuperTypes="platform:/resource/org.yakindu.sct.model.stext/src-gen/org/yakindu/sct/model/stext/SText.ecore#//Expression">

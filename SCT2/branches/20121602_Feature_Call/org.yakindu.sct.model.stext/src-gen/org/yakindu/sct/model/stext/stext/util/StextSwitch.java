@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
-
  */
 package org.yakindu.sct.model.stext.stext.util;
 
@@ -570,21 +569,21 @@ public class StextSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case StextPackage.FEATURE_CALL:
-      {
-        FeatureCall featureCall = (FeatureCall)theEObject;
-        T result = caseFeatureCall(featureCall);
-        if (result == null) result = caseExpression(featureCall);
-        if (result == null) result = caseStatement(featureCall);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case StextPackage.PRIMITIVE_VALUE_EXPRESSION:
       {
         PrimitiveValueExpression primitiveValueExpression = (PrimitiveValueExpression)theEObject;
         T result = casePrimitiveValueExpression(primitiveValueExpression);
         if (result == null) result = caseExpression(primitiveValueExpression);
         if (result == null) result = caseStatement(primitiveValueExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StextPackage.FEATURE_CALL:
+      {
+        FeatureCall featureCall = (FeatureCall)theEObject;
+        T result = caseFeatureCall(featureCall);
+        if (result == null) result = caseExpression(featureCall);
+        if (result == null) result = caseStatement(featureCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1516,22 +1515,6 @@ public class StextSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Feature Call</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Feature Call</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFeatureCall(FeatureCall object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Primitive Value Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1543,6 +1526,22 @@ public class StextSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitiveValueExpression(PrimitiveValueExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFeatureCall(FeatureCall object)
   {
     return null;
   }

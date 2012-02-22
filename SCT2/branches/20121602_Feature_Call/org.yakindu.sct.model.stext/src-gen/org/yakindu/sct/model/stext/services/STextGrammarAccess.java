@@ -2040,25 +2040,25 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	public class NumericalUnaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumericalUnaryExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cFeatureCallParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPrimaryExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cNumericalUnaryExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorUnaryOperatorEnumRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandFeatureCallParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandPrimaryExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
 		//NumericalUnaryExpression returns Expression:
-		//	FeatureCall | {NumericalUnaryExpression} operator=UnaryOperator operand=FeatureCall;
+		//	PrimaryExpression | {NumericalUnaryExpression} operator=UnaryOperator operand=PrimaryExpression;
 		public ParserRule getRule() { return rule; }
 
-		//FeatureCall | {NumericalUnaryExpression} operator=UnaryOperator operand=FeatureCall
+		//PrimaryExpression | {NumericalUnaryExpression} operator=UnaryOperator operand=PrimaryExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//FeatureCall
-		public RuleCall getFeatureCallParserRuleCall_0() { return cFeatureCallParserRuleCall_0; }
+		//PrimaryExpression
+		public RuleCall getPrimaryExpressionParserRuleCall_0() { return cPrimaryExpressionParserRuleCall_0; }
 
-		//{NumericalUnaryExpression} operator=UnaryOperator operand=FeatureCall
+		//{NumericalUnaryExpression} operator=UnaryOperator operand=PrimaryExpression
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{NumericalUnaryExpression}
@@ -2070,17 +2070,87 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		//UnaryOperator
 		public RuleCall getOperatorUnaryOperatorEnumRuleCall_1_1_0() { return cOperatorUnaryOperatorEnumRuleCall_1_1_0; }
 
-		//operand=FeatureCall
+		//operand=PrimaryExpression
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 
+		//PrimaryExpression
+		public RuleCall getOperandPrimaryExpressionParserRuleCall_1_2_0() { return cOperandPrimaryExpressionParserRuleCall_1_2_0; }
+	}
+
+	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimaryExpression");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPrimitiveValueExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFeatureCallParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cActiveStateReferenceExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cEventValueReferenceExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
+		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		
+		//PrimaryExpression returns Expression:
+		//	PrimitiveValueExpression | FeatureCall | ActiveStateReferenceExpression | EventValueReferenceExpression | "("
+		//	Expression ")";
+		public ParserRule getRule() { return rule; }
+
+		//PrimitiveValueExpression | FeatureCall | ActiveStateReferenceExpression | EventValueReferenceExpression | "(" Expression
+		//")"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//PrimitiveValueExpression
+		public RuleCall getPrimitiveValueExpressionParserRuleCall_0() { return cPrimitiveValueExpressionParserRuleCall_0; }
+
 		//FeatureCall
-		public RuleCall getOperandFeatureCallParserRuleCall_1_2_0() { return cOperandFeatureCallParserRuleCall_1_2_0; }
+		public RuleCall getFeatureCallParserRuleCall_1() { return cFeatureCallParserRuleCall_1; }
+
+		//ActiveStateReferenceExpression
+		public RuleCall getActiveStateReferenceExpressionParserRuleCall_2() { return cActiveStateReferenceExpressionParserRuleCall_2; }
+
+		//EventValueReferenceExpression
+		public RuleCall getEventValueReferenceExpressionParserRuleCall_3() { return cEventValueReferenceExpressionParserRuleCall_3; }
+
+		//"(" Expression ")"
+		public Group getGroup_4() { return cGroup_4; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_4_0() { return cLeftParenthesisKeyword_4_0; }
+
+		//Expression
+		public RuleCall getExpressionParserRuleCall_4_1() { return cExpressionParserRuleCall_4_1; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_4_2() { return cRightParenthesisKeyword_4_2; }
+	}
+
+	public class PrimitiveValueExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimitiveValueExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPrimitiveValueExpressionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueLiteralParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//PrimitiveValueExpression returns Expression:
+		//	{PrimitiveValueExpression} value=Literal;
+		public ParserRule getRule() { return rule; }
+
+		//{PrimitiveValueExpression} value=Literal
+		public Group getGroup() { return cGroup; }
+
+		//{PrimitiveValueExpression}
+		public Action getPrimitiveValueExpressionAction_0() { return cPrimitiveValueExpressionAction_0; }
+
+		//value=Literal
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+
+		//Literal
+		public RuleCall getValueLiteralParserRuleCall_1_0() { return cValueLiteralParserRuleCall_1_0; }
 	}
 
 	public class FeatureCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FeatureCall");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPrimaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cTypedElementReferenceExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cFeatureCallOwnerAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
@@ -2100,16 +2170,16 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_3_2 = (Keyword)cGroup_1_3.eContents().get(2);
 		
 		//FeatureCall returns Expression:
-		//	PrimaryExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="(" (args+=Expression
-		//	("," args+=Expression)*)? ")")?)*;
+		//	TypedElementReferenceExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="("
+		//	(args+=Expression ("," args+=Expression)*)? ")")?)*;
 		public ParserRule getRule() { return rule; }
 
-		//PrimaryExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="(" (args+=Expression
-		//("," args+=Expression)*)? ")")?)*
+		//TypedElementReferenceExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="("
+		//(args+=Expression ("," args+=Expression)*)? ")")?)*
 		public Group getGroup() { return cGroup; }
 
-		//PrimaryExpression
-		public RuleCall getPrimaryExpressionParserRuleCall_0() { return cPrimaryExpressionParserRuleCall_0; }
+		//TypedElementReferenceExpression
+		public RuleCall getTypedElementReferenceExpressionParserRuleCall_0() { return cTypedElementReferenceExpressionParserRuleCall_0; }
 
 		//({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="(" (args+=Expression (","
 		//args+=Expression)*)? ")")?)*
@@ -2162,92 +2232,6 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_1_3_2() { return cRightParenthesisKeyword_1_3_2; }
-	}
-
-	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimaryExpression");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cValueExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cExpressionParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//PrimaryExpression returns Expression:
-		//	ValueExpression | "(" Expression ")";
-		public ParserRule getRule() { return rule; }
-
-		//ValueExpression | "(" Expression ")"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//ValueExpression
-		public RuleCall getValueExpressionParserRuleCall_0() { return cValueExpressionParserRuleCall_0; }
-
-		//"(" Expression ")"
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
-
-		//Expression
-		public RuleCall getExpressionParserRuleCall_1_1() { return cExpressionParserRuleCall_1_1; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
-	}
-
-	public class ValueExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValueExpression");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPrimitiveValueExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cTypedElementReferenceExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cActiveStateReferenceExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cEventValueReferenceExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		
-		//ValueExpression returns Expression:
-		//	PrimitiveValueExpression | TypedElementReferenceExpression | ActiveStateReferenceExpression |
-		//	EventValueReferenceExpression;
-		public ParserRule getRule() { return rule; }
-
-		//PrimitiveValueExpression | TypedElementReferenceExpression | ActiveStateReferenceExpression |
-		//EventValueReferenceExpression
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//PrimitiveValueExpression
-		public RuleCall getPrimitiveValueExpressionParserRuleCall_0() { return cPrimitiveValueExpressionParserRuleCall_0; }
-
-		//TypedElementReferenceExpression
-		public RuleCall getTypedElementReferenceExpressionParserRuleCall_1() { return cTypedElementReferenceExpressionParserRuleCall_1; }
-
-		//ActiveStateReferenceExpression
-		public RuleCall getActiveStateReferenceExpressionParserRuleCall_2() { return cActiveStateReferenceExpressionParserRuleCall_2; }
-
-		//EventValueReferenceExpression
-		public RuleCall getEventValueReferenceExpressionParserRuleCall_3() { return cEventValueReferenceExpressionParserRuleCall_3; }
-	}
-
-	public class PrimitiveValueExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimitiveValueExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPrimitiveValueExpressionAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueLiteralParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
-		
-		//PrimitiveValueExpression returns Expression:
-		//	{PrimitiveValueExpression} value=Literal;
-		public ParserRule getRule() { return rule; }
-
-		//{PrimitiveValueExpression} value=Literal
-		public Group getGroup() { return cGroup; }
-
-		//{PrimitiveValueExpression}
-		public Action getPrimitiveValueExpressionAction_0() { return cPrimitiveValueExpressionAction_0; }
-
-		//value=Literal
-		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
-
-		//Literal
-		public RuleCall getValueLiteralParserRuleCall_1_0() { return cValueLiteralParserRuleCall_1_0; }
 	}
 
 	public class TypedElementReferenceExpressionElements extends AbstractParserRuleElementFinder {
@@ -2957,7 +2941,6 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	private StatementExpressionElements pStatementExpression;
 	private ExpressionElements pExpression;
 	private AssignmentExpressionElements pAssignmentExpression;
-	private AssignmentOperatorElements unknownRuleAssignmentOperator;
 	private ConditionalExpressionElements pConditionalExpression;
 	private LogicalOrExpressionElements pLogicalOrExpression;
 	private LogicalAndExpressionElements pLogicalAndExpression;
@@ -2967,19 +2950,12 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	private BitwiseAndExpressionElements pBitwiseAndExpression;
 	private LogicalRelationExpressionElements pLogicalRelationExpression;
 	private ShiftExpressionElements pShiftExpression;
-	private ShiftOperatorElements unknownRuleShiftOperator;
 	private NumericalAddSubtractExpressionElements pNumericalAddSubtractExpression;
 	private NumericalMultiplyDivideExpressionElements pNumericalMultiplyDivideExpression;
 	private NumericalUnaryExpressionElements pNumericalUnaryExpression;
-	private FeatureCallElements pFeatureCall;
 	private PrimaryExpressionElements pPrimaryExpression;
-	private AdditiveOperatorElements unknownRuleAdditiveOperator;
-	private MultiplicativeOperatorElements unknownRuleMultiplicativeOperator;
-	private UnaryOperatorElements unknownRuleUnaryOperator;
-	private RelationalOperatorElements unknownRuleRelationalOperator;
-	private TimeUnitElements unknownRuleTimeUnit;
-	private ValueExpressionElements pValueExpression;
 	private PrimitiveValueExpressionElements pPrimitiveValueExpression;
+	private FeatureCallElements pFeatureCall;
 	private TypedElementReferenceExpressionElements pTypedElementReferenceExpression;
 	private EventValueReferenceExpressionElements pEventValueReferenceExpression;
 	private ActiveStateReferenceExpressionElements pActiveStateReferenceExpression;
@@ -2989,6 +2965,13 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	private RealLiteralElements pRealLiteral;
 	private HexLiteralElements pHexLiteral;
 	private StringLiteralElements pStringLiteral;
+	private AssignmentOperatorElements unknownRuleAssignmentOperator;
+	private ShiftOperatorElements unknownRuleShiftOperator;
+	private AdditiveOperatorElements unknownRuleAdditiveOperator;
+	private MultiplicativeOperatorElements unknownRuleMultiplicativeOperator;
+	private UnaryOperatorElements unknownRuleUnaryOperator;
+	private RelationalOperatorElements unknownRuleRelationalOperator;
+	private TimeUnitElements unknownRuleTimeUnit;
 	private TerminalRule tBOOL;
 	private TerminalRule tHEX;
 	private TerminalRule tFLOAT;
@@ -3558,17 +3541,6 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentExpressionAccess().getRule();
 	}
 
-	//enum AssignmentOperator:
-	//	assign="=" | multAssign="*=" | divAssign="/=" | modAssign="%=" | addAssign="+=" | subAssign="-=" |
-	//	leftShiftAssign="<<=" | rightShiftAssign=">>=" | andAssign="&=" | xorAssign="^=" | orAssign="|=";
-	public AssignmentOperatorElements getAssignmentOperatorAccess() {
-		return (unknownRuleAssignmentOperator != null) ? unknownRuleAssignmentOperator : (unknownRuleAssignmentOperator = new AssignmentOperatorElements());
-	}
-	
-	public EnumRule getAssignmentOperatorRule() {
-		return getAssignmentOperatorAccess().getRule();
-	}
-
 	//ConditionalExpression returns Expression:
 	//	LogicalOrExpression ({ConditionalExpression.condition=current} "?" trueCase=LogicalOrExpression ":"
 	//	falseCase=LogicalOrExpression)?;
@@ -3662,16 +3634,6 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		return getShiftExpressionAccess().getRule();
 	}
 
-	//enum ShiftOperator:
-	//	left="<<" | right=">>";
-	public ShiftOperatorElements getShiftOperatorAccess() {
-		return (unknownRuleShiftOperator != null) ? unknownRuleShiftOperator : (unknownRuleShiftOperator = new ShiftOperatorElements());
-	}
-	
-	public EnumRule getShiftOperatorRule() {
-		return getShiftOperatorAccess().getRule();
-	}
-
 	//NumericalAddSubtractExpression returns Expression:
 	//	NumericalMultiplyDivideExpression ({NumericalAddSubtractExpression.leftOperand=current} operator=AdditiveOperator
 	//	rightOperand=NumericalMultiplyDivideExpression)*;
@@ -3695,7 +3657,7 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumericalUnaryExpression returns Expression:
-	//	FeatureCall | {NumericalUnaryExpression} operator=UnaryOperator operand=FeatureCall;
+	//	PrimaryExpression | {NumericalUnaryExpression} operator=UnaryOperator operand=PrimaryExpression;
 	public NumericalUnaryExpressionElements getNumericalUnaryExpressionAccess() {
 		return (pNumericalUnaryExpression != null) ? pNumericalUnaryExpression : (pNumericalUnaryExpression = new NumericalUnaryExpressionElements());
 	}
@@ -3704,86 +3666,15 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		return getNumericalUnaryExpressionAccess().getRule();
 	}
 
-	//FeatureCall returns Expression:
-	//	PrimaryExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="(" (args+=Expression
-	//	("," args+=Expression)*)? ")")?)*;
-	public FeatureCallElements getFeatureCallAccess() {
-		return (pFeatureCall != null) ? pFeatureCall : (pFeatureCall = new FeatureCallElements());
-	}
-	
-	public ParserRule getFeatureCallRule() {
-		return getFeatureCallAccess().getRule();
-	}
-
 	//PrimaryExpression returns Expression:
-	//	ValueExpression | "(" Expression ")";
+	//	PrimitiveValueExpression | FeatureCall | ActiveStateReferenceExpression | EventValueReferenceExpression | "("
+	//	Expression ")";
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return (pPrimaryExpression != null) ? pPrimaryExpression : (pPrimaryExpression = new PrimaryExpressionElements());
 	}
 	
 	public ParserRule getPrimaryExpressionRule() {
 		return getPrimaryExpressionAccess().getRule();
-	}
-
-	//enum AdditiveOperator:
-	//	plus="+" | minus="-";
-	public AdditiveOperatorElements getAdditiveOperatorAccess() {
-		return (unknownRuleAdditiveOperator != null) ? unknownRuleAdditiveOperator : (unknownRuleAdditiveOperator = new AdditiveOperatorElements());
-	}
-	
-	public EnumRule getAdditiveOperatorRule() {
-		return getAdditiveOperatorAccess().getRule();
-	}
-
-	//enum MultiplicativeOperator:
-	//	mul="*" | div="/" | mod="%";
-	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
-		return (unknownRuleMultiplicativeOperator != null) ? unknownRuleMultiplicativeOperator : (unknownRuleMultiplicativeOperator = new MultiplicativeOperatorElements());
-	}
-	
-	public EnumRule getMultiplicativeOperatorRule() {
-		return getMultiplicativeOperatorAccess().getRule();
-	}
-
-	//enum UnaryOperator:
-	//	positive="+" | negative="-" | complement="~";
-	public UnaryOperatorElements getUnaryOperatorAccess() {
-		return (unknownRuleUnaryOperator != null) ? unknownRuleUnaryOperator : (unknownRuleUnaryOperator = new UnaryOperatorElements());
-	}
-	
-	public EnumRule getUnaryOperatorRule() {
-		return getUnaryOperatorAccess().getRule();
-	}
-
-	//enum RelationalOperator:
-	//	smaller="<" | smallerEqual="<=" | greater=">" | greaterEqual=">=" | equals="==" | notEquals="!=";
-	public RelationalOperatorElements getRelationalOperatorAccess() {
-		return (unknownRuleRelationalOperator != null) ? unknownRuleRelationalOperator : (unknownRuleRelationalOperator = new RelationalOperatorElements());
-	}
-	
-	public EnumRule getRelationalOperatorRule() {
-		return getRelationalOperatorAccess().getRule();
-	}
-
-	//enum TimeUnit:
-	//	second="s" | millisecond="ms" | microsecond="us" | nanosecond="ns";
-	public TimeUnitElements getTimeUnitAccess() {
-		return (unknownRuleTimeUnit != null) ? unknownRuleTimeUnit : (unknownRuleTimeUnit = new TimeUnitElements());
-	}
-	
-	public EnumRule getTimeUnitRule() {
-		return getTimeUnitAccess().getRule();
-	}
-
-	//ValueExpression returns Expression:
-	//	PrimitiveValueExpression | TypedElementReferenceExpression | ActiveStateReferenceExpression |
-	//	EventValueReferenceExpression;
-	public ValueExpressionElements getValueExpressionAccess() {
-		return (pValueExpression != null) ? pValueExpression : (pValueExpression = new ValueExpressionElements());
-	}
-	
-	public ParserRule getValueExpressionRule() {
-		return getValueExpressionAccess().getRule();
 	}
 
 	//PrimitiveValueExpression returns Expression:
@@ -3794,6 +3685,17 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimitiveValueExpressionRule() {
 		return getPrimitiveValueExpressionAccess().getRule();
+	}
+
+	//FeatureCall returns Expression:
+	//	TypedElementReferenceExpression ({FeatureCall.owner=current} "." feature=[types::Feature] (=> operationCall?="("
+	//	(args+=Expression ("," args+=Expression)*)? ")")?)*;
+	public FeatureCallElements getFeatureCallAccess() {
+		return (pFeatureCall != null) ? pFeatureCall : (pFeatureCall = new FeatureCallElements());
+	}
+	
+	public ParserRule getFeatureCallRule() {
+		return getFeatureCallAccess().getRule();
 	}
 
 	//TypedElementReferenceExpression returns Expression:
@@ -3884,6 +3786,77 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStringLiteralRule() {
 		return getStringLiteralAccess().getRule();
+	}
+
+	//enum AssignmentOperator:
+	//	assign="=" | multAssign="*=" | divAssign="/=" | modAssign="%=" | addAssign="+=" | subAssign="-=" |
+	//	leftShiftAssign="<<=" | rightShiftAssign=">>=" | andAssign="&=" | xorAssign="^=" | orAssign="|=";
+	public AssignmentOperatorElements getAssignmentOperatorAccess() {
+		return (unknownRuleAssignmentOperator != null) ? unknownRuleAssignmentOperator : (unknownRuleAssignmentOperator = new AssignmentOperatorElements());
+	}
+	
+	public EnumRule getAssignmentOperatorRule() {
+		return getAssignmentOperatorAccess().getRule();
+	}
+
+	//enum ShiftOperator:
+	//	left="<<" | right=">>";
+	public ShiftOperatorElements getShiftOperatorAccess() {
+		return (unknownRuleShiftOperator != null) ? unknownRuleShiftOperator : (unknownRuleShiftOperator = new ShiftOperatorElements());
+	}
+	
+	public EnumRule getShiftOperatorRule() {
+		return getShiftOperatorAccess().getRule();
+	}
+
+	//enum AdditiveOperator:
+	//	plus="+" | minus="-";
+	public AdditiveOperatorElements getAdditiveOperatorAccess() {
+		return (unknownRuleAdditiveOperator != null) ? unknownRuleAdditiveOperator : (unknownRuleAdditiveOperator = new AdditiveOperatorElements());
+	}
+	
+	public EnumRule getAdditiveOperatorRule() {
+		return getAdditiveOperatorAccess().getRule();
+	}
+
+	//enum MultiplicativeOperator:
+	//	mul="*" | div="/" | mod="%";
+	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
+		return (unknownRuleMultiplicativeOperator != null) ? unknownRuleMultiplicativeOperator : (unknownRuleMultiplicativeOperator = new MultiplicativeOperatorElements());
+	}
+	
+	public EnumRule getMultiplicativeOperatorRule() {
+		return getMultiplicativeOperatorAccess().getRule();
+	}
+
+	//enum UnaryOperator:
+	//	positive="+" | negative="-" | complement="~";
+	public UnaryOperatorElements getUnaryOperatorAccess() {
+		return (unknownRuleUnaryOperator != null) ? unknownRuleUnaryOperator : (unknownRuleUnaryOperator = new UnaryOperatorElements());
+	}
+	
+	public EnumRule getUnaryOperatorRule() {
+		return getUnaryOperatorAccess().getRule();
+	}
+
+	//enum RelationalOperator:
+	//	smaller="<" | smallerEqual="<=" | greater=">" | greaterEqual=">=" | equals="==" | notEquals="!=";
+	public RelationalOperatorElements getRelationalOperatorAccess() {
+		return (unknownRuleRelationalOperator != null) ? unknownRuleRelationalOperator : (unknownRuleRelationalOperator = new RelationalOperatorElements());
+	}
+	
+	public EnumRule getRelationalOperatorRule() {
+		return getRelationalOperatorAccess().getRule();
+	}
+
+	//enum TimeUnit:
+	//	second="s" | millisecond="ms" | microsecond="us" | nanosecond="ns";
+	public TimeUnitElements getTimeUnitAccess() {
+		return (unknownRuleTimeUnit != null) ? unknownRuleTimeUnit : (unknownRuleTimeUnit = new TimeUnitElements());
+	}
+	
+	public EnumRule getTimeUnitRule() {
+		return getTimeUnitAccess().getRule();
 	}
 
 	//terminal BOOL returns ecore::EBoolean:

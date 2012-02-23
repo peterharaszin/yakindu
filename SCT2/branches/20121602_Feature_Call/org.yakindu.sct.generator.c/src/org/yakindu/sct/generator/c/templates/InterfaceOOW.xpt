@@ -63,7 +63,7 @@ inline «interface.interfaceClassNameOOW()»::~«interface.interfaceClassNameOOW()»
 «FOREACH interface.getOutEvents() AS event -»
 inline sc_boolean «interface.interfaceClassNameOOW()»::is_«event.name»_raised(«IF !event.type.isVoid() -»«event.type.asCType()»* value«ENDIF» )
 {
-  return «interface.interfaceName()»_is_«event.name»_raised(«interface.interfaceObjectName()»«IF !event.type.isVoid() -», value«ENDIF» );
+  return «interface.interfaceName()»_is_«event.name.toLowerCase()»_raised(«interface.interfaceObjectName()»«IF !event.type.isVoid() -», value«ENDIF» );
 
 }
 «ENDFOREACH»
@@ -71,19 +71,19 @@ inline sc_boolean «interface.interfaceClassNameOOW()»::is_«event.name»_raised(«I
 «FOREACH interface.getInEvents() AS event -»
 inline void «interface.interfaceClassNameOOW()»::raise_«event.name»(«IF !event.type.isVoid() -»«event.type.asCType()» value «ENDIF»)
 {
-	«interface.interfaceName()»_raise_«event.name»(«interface.interfaceObjectName()»«IF !event.type.isVoid() -», value«ENDIF»);
+	«interface.interfaceName()»_raise_«event.name.toLowerCase()»(«interface.interfaceObjectName()»«IF !event.type.isVoid() -», value«ENDIF»);
 }
 «ENDFOREACH» 
 
 «FOREACH interface.declarations.typeSelect(VariableDefinition) AS variable -»
 inline «asCType(variable.type)» «interface.interfaceClassNameOOW()»::get_«variable.name»()
 {
-	return «interface.interfaceName()»_get_«variable.name»(«interface.interfaceObjectName()»); 
+	return «interface.interfaceName()»_get_«variable.name.toLowerCase()»(«interface.interfaceObjectName()»); 
 }   
 «IF variable.readonly == false -»
 inline void «interface.interfaceClassNameOOW()»::set_«variable.name»(«asCType(variable.type)» value)
 {
-	«interface.interfaceName()»_set_«variable.name»(«interface.interfaceObjectName()», value);
+	«interface.interfaceName()»_set_«variable.name.toLowerCase()»(«interface.interfaceObjectName()», value);
 }
 «ENDIF»
 «ENDFOREACH» 

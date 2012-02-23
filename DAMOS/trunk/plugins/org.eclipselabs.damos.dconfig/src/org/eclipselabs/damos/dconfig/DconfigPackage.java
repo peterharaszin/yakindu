@@ -78,7 +78,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyContainer()
 	 * @generated
 	 */
-	int PROPERTY_CONTAINER = 1;
+	int PROPERTY_CONTAINER = 3;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -162,6 +162,89 @@ public interface DconfigPackage extends EPackage {
 	int CONFIGURATION_FEATURE_COUNT = PROPERTY_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl <em>Configuration Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getConfigurationDefinition()
+	 * @generated
+	 */
+	int CONFIGURATION_DEFINITION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION__PACKAGE_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION__MEMBERS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Configuration Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionMemberImpl <em>Configuration Definition Member</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionMemberImpl
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getConfigurationDefinitionMember()
+	 * @generated
+	 */
+	int CONFIGURATION_DEFINITION_MEMBER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION_MEMBER__OWNER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION_MEMBER__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME = 2;
+
+	/**
+	 * The number of structural features of the '<em>Configuration Definition Member</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_DEFINITION_MEMBER_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -169,7 +252,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 2;
+	int PROPERTY = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.DeclaredPropertyImpl <em>Declared Property</em>}' class.
@@ -179,7 +262,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getDeclaredProperty()
 	 * @generated
 	 */
-	int DECLARED_PROPERTY = 3;
+	int DECLARED_PROPERTY = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SimplePropertyImpl <em>Simple Property</em>}' class.
@@ -189,7 +272,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSimpleProperty()
 	 * @generated
 	 */
-	int SIMPLE_PROPERTY = 4;
+	int SIMPLE_PROPERTY = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyDeclarationImpl <em>Property Declaration</em>}' class.
@@ -199,7 +282,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyDeclaration()
 	 * @generated
 	 */
-	int PROPERTY_DECLARATION = 10;
+	int PROPERTY_DECLARATION = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SimplePropertyDeclarationImpl <em>Simple Property Declaration</em>}' class.
@@ -209,7 +292,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSimplePropertyDeclaration()
 	 * @generated
 	 */
-	int SIMPLE_PROPERTY_DECLARATION = 5;
+	int SIMPLE_PROPERTY_DECLARATION = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl <em>Selection Property</em>}' class.
@@ -219,7 +302,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionProperty()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY = 6;
+	int SELECTION_PROPERTY = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyBodyImpl <em>Selection Property Body</em>}' class.
@@ -229,7 +312,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyBody()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_BODY = 7;
+	int SELECTION_PROPERTY_BODY = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyDeclarationImpl <em>Selection Property Declaration</em>}' class.
@@ -239,7 +322,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyDeclaration()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_DECLARATION = 8;
+	int SELECTION_PROPERTY_DECLARATION = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyDeclarationContainerImpl <em>Property Declaration Container</em>}' class.
@@ -249,17 +332,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyDeclarationContainer()
 	 * @generated
 	 */
-	int PROPERTY_DECLARATION_CONTAINER = 11;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl <em>Property Group</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl
-	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyGroup()
-	 * @generated
-	 */
-	int PROPERTY_GROUP = 12;
+	int PROPERTY_DECLARATION_CONTAINER = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl <em>Selection Property Option</em>}' class.
@@ -269,7 +342,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyOption()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_OPTION = 9;
+	int SELECTION_PROPERTY_OPTION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Propagate</b></em>' attribute.
@@ -344,13 +417,22 @@ public interface DconfigPackage extends EPackage {
 	int SIMPLE_PROPERTY_FEATURE_COUNT = DECLARED_PROPERTY_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_DECLARATION__OWNER = CONFIGURATION_DEFINITION_MEMBER__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_DECLARATION__NAME = 0;
+	int PROPERTY_DECLARATION__NAME = CONFIGURATION_DEFINITION_MEMBER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -359,16 +441,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_DECLARATION__QUALIFIED_NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_DECLARATION__GROUP = 2;
+	int PROPERTY_DECLARATION__QUALIFIED_NAME = CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Property Declaration</em>' class.
@@ -377,7 +450,16 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_DECLARATION_FEATURE_COUNT = 3;
+	int PROPERTY_DECLARATION_FEATURE_COUNT = CONFIGURATION_DEFINITION_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_PROPERTY_DECLARATION__OWNER = PROPERTY_DECLARATION__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -396,15 +478,6 @@ public interface DconfigPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_PROPERTY_DECLARATION__QUALIFIED_NAME = PROPERTY_DECLARATION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_PROPERTY_DECLARATION__GROUP = PROPERTY_DECLARATION__GROUP;
 
 	/**
 	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
@@ -515,6 +588,15 @@ public interface DconfigPackage extends EPackage {
 	int SELECTION_PROPERTY_BODY_FEATURE_COUNT = PROPERTY_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROPERTY_DECLARATION__OWNER = PROPERTY_DECLARATION__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -531,15 +613,6 @@ public interface DconfigPackage extends EPackage {
 	 * @ordered
 	 */
 	int SELECTION_PROPERTY_DECLARATION__QUALIFIED_NAME = PROPERTY_DECLARATION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELECTION_PROPERTY_DECLARATION__GROUP = PROPERTY_DECLARATION__GROUP;
 
 	/**
 	 * The number of structural features of the '<em>Selection Property Declaration</em>' class.
@@ -578,13 +651,31 @@ public interface DconfigPackage extends EPackage {
 	int SELECTION_PROPERTY_OPTION__PROPERTY_DECLARATIONS = PROPERTY_DECLARATION_CONTAINER__PROPERTY_DECLARATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROPERTY_OPTION__OWNER = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROPERTY_OPTION__NAME = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_OPTION__QUALIFIED_NAME = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 0;
+	int SELECTION_PROPERTY_OPTION__QUALIFIED_NAME = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -593,7 +684,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_OPTION__TARGET = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 1;
+	int SELECTION_PROPERTY_OPTION__TARGET = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Resource Declarations</b></em>' containment reference list.
@@ -602,7 +693,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_OPTION__RESOURCE_DECLARATIONS = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 2;
+	int SELECTION_PROPERTY_OPTION__RESOURCE_DECLARATIONS = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Selection Property Option</em>' class.
@@ -611,34 +702,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_OPTION_FEATURE_COUNT = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_GROUP__QUALIFIED_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_GROUP__MEMBERS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Property Group</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_GROUP_FEATURE_COUNT = 2;
+	int SELECTION_PROPERTY_OPTION_FEATURE_COUNT = PROPERTY_DECLARATION_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.ComponentPathImpl <em>Component Path</em>}' class.
@@ -648,7 +712,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentPath()
 	 * @generated
 	 */
-	int COMPONENT_PATH = 13;
+	int COMPONENT_PATH = 14;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -676,7 +740,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentReference()
 	 * @generated
 	 */
-	int COMPONENT_REFERENCE = 14;
+	int COMPONENT_REFERENCE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -704,7 +768,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getBinding()
 	 * @generated
 	 */
-	int BINDING = 15;
+	int BINDING = 16;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -750,7 +814,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getBindingResourceReference()
 	 * @generated
 	 */
-	int BINDING_RESOURCE_REFERENCE = 16;
+	int BINDING_RESOURCE_REFERENCE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Resource Declaration</b></em>' reference.
@@ -787,7 +851,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getBindingResourceSubscript()
 	 * @generated
 	 */
-	int BINDING_RESOURCE_SUBSCRIPT = 17;
+	int BINDING_RESOURCE_SUBSCRIPT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -815,7 +879,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getBindingBody()
 	 * @generated
 	 */
-	int BINDING_BODY = 18;
+	int BINDING_BODY = 19;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -852,7 +916,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getResourceDeclaration()
 	 * @generated
 	 */
-	int RESOURCE_DECLARATION = 19;
+	int RESOURCE_DECLARATION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Property Declarations</b></em>' containment reference list.
@@ -898,7 +962,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComputationProperty()
 	 * @generated
 	 */
-	int COMPUTATION_PROPERTY = 20;
+	int COMPUTATION_PROPERTY = 21;
 
 	/**
 	 * The feature id for the '<em><b>Propagate</b></em>' attribute.
@@ -935,7 +999,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfiguration()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION = 21;
+	int SYSTEM_CONFIGURATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -963,7 +1027,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfigurationBody()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION_BODY = 22;
+	int SYSTEM_CONFIGURATION_BODY = 23;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1027,7 +1091,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRootSystemConfiguration()
 	 * @generated
 	 */
-	int ROOT_SYSTEM_CONFIGURATION = 23;
+	int ROOT_SYSTEM_CONFIGURATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1064,7 +1128,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSubsystemConfiguration()
 	 * @generated
 	 */
-	int SUBSYSTEM_CONFIGURATION = 24;
+	int SUBSYSTEM_CONFIGURATION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1110,7 +1174,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfiguration()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION = 25;
+	int FRAGMENT_CONFIGURATION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Start Fragment</b></em>' reference.
@@ -1166,7 +1230,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfigurationBody()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION_BODY = 26;
+	int FRAGMENT_CONFIGURATION_BODY = 27;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1203,7 +1267,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfiguration()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION = 27;
+	int COMPONENT_CONFIGURATION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -1240,7 +1304,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfigurationBody()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION_BODY = 28;
+	int COMPONENT_CONFIGURATION_BODY = 29;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1277,7 +1341,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemPath()
 	 * @generated
 	 */
-	int SYSTEM_PATH = 29;
+	int SYSTEM_PATH = 30;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.Configuration <em>Configuration</em>}'.
@@ -1343,6 +1407,81 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfiguration_RootSystemConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinition <em>Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration Definition</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinition
+	 * @generated
+	 */
+	EClass getConfigurationDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinition#getPackageName <em>Package Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Package Name</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinition#getPackageName()
+	 * @see #getConfigurationDefinition()
+	 * @generated
+	 */
+	EAttribute getConfigurationDefinition_PackageName();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinition#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Members</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinition#getMembers()
+	 * @see #getConfigurationDefinition()
+	 * @generated
+	 */
+	EReference getConfigurationDefinition_Members();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember <em>Configuration Definition Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration Definition Member</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember
+	 * @generated
+	 */
+	EClass getConfigurationDefinitionMember();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getOwner()
+	 * @see #getConfigurationDefinitionMember()
+	 * @generated
+	 */
+	EReference getConfigurationDefinitionMember_Owner();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getName()
+	 * @see #getConfigurationDefinitionMember()
+	 * @generated
+	 */
+	EAttribute getConfigurationDefinitionMember_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember#getQualifiedName()
+	 * @see #getConfigurationDefinitionMember()
+	 * @generated
+	 */
+	EAttribute getConfigurationDefinitionMember_QualifiedName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.PropertyContainer <em>Property Container</em>}'.
@@ -1439,39 +1578,6 @@ public interface DconfigPackage extends EPackage {
 	EClass getPropertyDeclaration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.PropertyDeclaration#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyDeclaration#getName()
-	 * @see #getPropertyDeclaration()
-	 * @generated
-	 */
-	EAttribute getPropertyDeclaration_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.PropertyDeclaration#getQualifiedName <em>Qualified Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyDeclaration#getQualifiedName()
-	 * @see #getPropertyDeclaration()
-	 * @generated
-	 */
-	EAttribute getPropertyDeclaration_QualifiedName();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.dconfig.PropertyDeclaration#getGroup <em>Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Group</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyDeclaration#getGroup()
-	 * @see #getPropertyDeclaration()
-	 * @generated
-	 */
-	EReference getPropertyDeclaration_Group();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.PropertyDeclarationContainer <em>Property Declaration Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1491,38 +1597,6 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyDeclarationContainer_PropertyDeclarations();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.PropertyGroup <em>Property Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Property Group</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyGroup
-	 * @generated
-	 */
-	EClass getPropertyGroup();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.PropertyGroup#getQualifiedName <em>Qualified Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyGroup#getQualifiedName()
-	 * @see #getPropertyGroup()
-	 * @generated
-	 */
-	EAttribute getPropertyGroup_QualifiedName();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dconfig.PropertyGroup#getMembers <em>Members</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Members</em>'.
-	 * @see org.eclipselabs.damos.dconfig.PropertyGroup#getMembers()
-	 * @see #getPropertyGroup()
-	 * @generated
-	 */
-	EReference getPropertyGroup_Members();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.ComponentPath <em>Component Path</em>}'.
@@ -1809,17 +1883,6 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSelectionPropertyOption();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getQualifiedName <em>Qualified Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
-	 * @see org.eclipselabs.damos.dconfig.SelectionPropertyOption#getQualifiedName()
-	 * @see #getSelectionPropertyOption()
-	 * @generated
-	 */
-	EAttribute getSelectionPropertyOption_QualifiedName();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getTarget <em>Target</em>}'.
@@ -2236,6 +2299,66 @@ public interface DconfigPackage extends EPackage {
 		EReference CONFIGURATION__ROOT_SYSTEM_CONFIGURATION = eINSTANCE.getConfiguration_RootSystemConfiguration();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl <em>Configuration Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getConfigurationDefinition()
+		 * @generated
+		 */
+		EClass CONFIGURATION_DEFINITION = eINSTANCE.getConfigurationDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Package Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION_DEFINITION__PACKAGE_NAME = eINSTANCE.getConfigurationDefinition_PackageName();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION_DEFINITION__MEMBERS = eINSTANCE.getConfigurationDefinition_Members();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionMemberImpl <em>Configuration Definition Member</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionMemberImpl
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getConfigurationDefinitionMember()
+		 * @generated
+		 */
+		EClass CONFIGURATION_DEFINITION_MEMBER = eINSTANCE.getConfigurationDefinitionMember();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION_DEFINITION_MEMBER__OWNER = eINSTANCE.getConfigurationDefinitionMember_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION_DEFINITION_MEMBER__NAME = eINSTANCE.getConfigurationDefinitionMember_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME = eINSTANCE.getConfigurationDefinitionMember_QualifiedName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyContainerImpl <em>Property Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2318,30 +2441,6 @@ public interface DconfigPackage extends EPackage {
 		EClass PROPERTY_DECLARATION = eINSTANCE.getPropertyDeclaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_DECLARATION__NAME = eINSTANCE.getPropertyDeclaration_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_DECLARATION__QUALIFIED_NAME = eINSTANCE.getPropertyDeclaration_QualifiedName();
-
-		/**
-		 * The meta object literal for the '<em><b>Group</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_DECLARATION__GROUP = eINSTANCE.getPropertyDeclaration_Group();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyDeclarationContainerImpl <em>Property Declaration Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2358,32 +2457,6 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_DECLARATION_CONTAINER__PROPERTY_DECLARATIONS = eINSTANCE.getPropertyDeclarationContainer_PropertyDeclarations();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl <em>Property Group</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl
-		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyGroup()
-		 * @generated
-		 */
-		EClass PROPERTY_GROUP = eINSTANCE.getPropertyGroup();
-
-		/**
-		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_GROUP__QUALIFIED_NAME = eINSTANCE.getPropertyGroup_QualifiedName();
-
-		/**
-		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROPERTY_GROUP__MEMBERS = eINSTANCE.getPropertyGroup_Members();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.ComponentPathImpl <em>Component Path</em>}' class.
@@ -2622,14 +2695,6 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SELECTION_PROPERTY_OPTION = eINSTANCE.getSelectionPropertyOption();
-
-		/**
-		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SELECTION_PROPERTY_OPTION__QUALIFIED_NAME = eINSTANCE.getSelectionPropertyOption_QualifiedName();
 
 		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.

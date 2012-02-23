@@ -35,6 +35,15 @@ public interface DconfigFactory extends EFactory {
 	Configuration createConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Configuration Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration Definition</em>'.
+	 * @generated
+	 */
+	ConfigurationDefinition createConfigurationDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Simple Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,15 +96,6 @@ public interface DconfigFactory extends EFactory {
 	 * @generated
 	 */
 	SelectionPropertyOption createSelectionPropertyOption();
-
-	/**
-	 * Returns a new object of class '<em>Property Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Group</em>'.
-	 * @generated
-	 */
-	PropertyGroup createPropertyGroup();
 
 	/**
 	 * Returns a new object of class '<em>Component Path</em>'.

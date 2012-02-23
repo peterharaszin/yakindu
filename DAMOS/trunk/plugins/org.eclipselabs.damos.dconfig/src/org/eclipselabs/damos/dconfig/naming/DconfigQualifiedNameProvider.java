@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.dconfig.PropertyDeclaration;
-import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 
 /**
  * @author Andreas Unger
@@ -28,27 +27,20 @@ public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNam
 	 * @see org.eclipse.xtext.naming.IQualifiedNameProvider#getFullyQualifiedName(org.eclipse.emf.ecore.EObject)
 	 */
 	public QualifiedName getFullyQualifiedName(EObject obj) {
-		if (obj instanceof PropertyDeclaration) {
-			PropertyDeclaration propertyDeclaration = (PropertyDeclaration) obj;
+		if (obj instanceof ConfigurationDefinitionMember) {
+			ConfigurationDefinitionMember member = (ConfigurationDefinitionMember) obj;
 			
-			String name = propertyDeclaration.getName();
+			String name = member.getName();
 			if (name == null) {
 				return null;
 			}
 			
-			String qualifiedGroupName = propertyDeclaration.getGroup().getQualifiedName();
-			if (qualifiedGroupName == null) {
+			String packageName = member.getOwner().getPackageName();
+			if (packageName == null) {
 				return null;
 			}
 			
-			return getConverter().toQualifiedName(qualifiedGroupName).append(name);
-		}
-		if (obj instanceof SelectionPropertyOption) {
-			String qualifiedName = ((SelectionPropertyOption) obj).getQualifiedName();
-			if (qualifiedName == null) {
-				return null;
-			}
-			return getConverter().toQualifiedName(qualifiedName);
+			return getConverter().toQualifiedName(packageName).append(name);
 		}
 		if (obj instanceof Configuration) {
 			Configuration configuration = (Configuration) obj;

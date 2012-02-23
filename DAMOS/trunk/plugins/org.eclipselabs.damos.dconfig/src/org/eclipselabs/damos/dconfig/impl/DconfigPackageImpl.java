@@ -23,6 +23,8 @@ import org.eclipselabs.damos.dconfig.ComponentPath;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
@@ -32,7 +34,6 @@ import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
-import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
@@ -62,6 +63,20 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configurationDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configurationDefinitionMemberEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,13 +119,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	private EClass propertyDeclarationContainerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass propertyGroupEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -390,6 +398,69 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConfigurationDefinition() {
+		return configurationDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfigurationDefinition_PackageName() {
+		return (EAttribute)configurationDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfigurationDefinition_Members() {
+		return (EReference)configurationDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConfigurationDefinitionMember() {
+		return configurationDefinitionMemberEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfigurationDefinitionMember_Owner() {
+		return (EReference)configurationDefinitionMemberEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfigurationDefinitionMember_Name() {
+		return (EAttribute)configurationDefinitionMemberEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfigurationDefinitionMember_QualifiedName() {
+		return (EAttribute)configurationDefinitionMemberEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPropertyContainer() {
 		return propertyContainerEClass;
 	}
@@ -471,33 +542,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyDeclaration_Name() {
-		return (EAttribute)propertyDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPropertyDeclaration_QualifiedName() {
-		return (EAttribute)propertyDeclarationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPropertyDeclaration_Group() {
-		return (EReference)propertyDeclarationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPropertyDeclarationContainer() {
 		return propertyDeclarationContainerEClass;
 	}
@@ -509,33 +553,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 */
 	public EReference getPropertyDeclarationContainer_PropertyDeclarations() {
 		return (EReference)propertyDeclarationContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPropertyGroup() {
-		return propertyGroupEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPropertyGroup_QualifiedName() {
-		return (EAttribute)propertyGroupEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPropertyGroup_Members() {
-		return (EReference)propertyGroupEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -786,17 +803,8 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSelectionPropertyOption_QualifiedName() {
-		return (EAttribute)selectionPropertyOptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSelectionPropertyOption_Target() {
-		return (EReference)selectionPropertyOptionEClass.getEStructuralFeatures().get(1);
+		return (EReference)selectionPropertyOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -805,7 +813,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	public EReference getSelectionPropertyOption_ResourceDeclarations() {
-		return (EReference)selectionPropertyOptionEClass.getEStructuralFeatures().get(2);
+		return (EReference)selectionPropertyOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1113,6 +1121,15 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEReference(configurationEClass, CONFIGURATION__IMPORT_DECLARATIONS);
 		createEReference(configurationEClass, CONFIGURATION__ROOT_SYSTEM_CONFIGURATION);
 
+		configurationDefinitionEClass = createEClass(CONFIGURATION_DEFINITION);
+		createEAttribute(configurationDefinitionEClass, CONFIGURATION_DEFINITION__PACKAGE_NAME);
+		createEReference(configurationDefinitionEClass, CONFIGURATION_DEFINITION__MEMBERS);
+
+		configurationDefinitionMemberEClass = createEClass(CONFIGURATION_DEFINITION_MEMBER);
+		createEReference(configurationDefinitionMemberEClass, CONFIGURATION_DEFINITION_MEMBER__OWNER);
+		createEAttribute(configurationDefinitionMemberEClass, CONFIGURATION_DEFINITION_MEMBER__NAME);
+		createEAttribute(configurationDefinitionMemberEClass, CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME);
+
 		propertyContainerEClass = createEClass(PROPERTY_CONTAINER);
 		createEReference(propertyContainerEClass, PROPERTY_CONTAINER__PROPERTIES);
 
@@ -1141,21 +1158,13 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		selectionPropertyDeclarationEClass = createEClass(SELECTION_PROPERTY_DECLARATION);
 
 		selectionPropertyOptionEClass = createEClass(SELECTION_PROPERTY_OPTION);
-		createEAttribute(selectionPropertyOptionEClass, SELECTION_PROPERTY_OPTION__QUALIFIED_NAME);
 		createEReference(selectionPropertyOptionEClass, SELECTION_PROPERTY_OPTION__TARGET);
 		createEReference(selectionPropertyOptionEClass, SELECTION_PROPERTY_OPTION__RESOURCE_DECLARATIONS);
 
 		propertyDeclarationEClass = createEClass(PROPERTY_DECLARATION);
-		createEAttribute(propertyDeclarationEClass, PROPERTY_DECLARATION__NAME);
-		createEAttribute(propertyDeclarationEClass, PROPERTY_DECLARATION__QUALIFIED_NAME);
-		createEReference(propertyDeclarationEClass, PROPERTY_DECLARATION__GROUP);
 
 		propertyDeclarationContainerEClass = createEClass(PROPERTY_DECLARATION_CONTAINER);
 		createEReference(propertyDeclarationContainerEClass, PROPERTY_DECLARATION_CONTAINER__PROPERTY_DECLARATIONS);
-
-		propertyGroupEClass = createEClass(PROPERTY_GROUP);
-		createEAttribute(propertyGroupEClass, PROPERTY_GROUP__QUALIFIED_NAME);
-		createEReference(propertyGroupEClass, PROPERTY_GROUP__MEMBERS);
 
 		componentPathEClass = createEClass(COMPONENT_PATH);
 		createEReference(componentPathEClass, COMPONENT_PATH__REFERENCES);
@@ -1262,6 +1271,8 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		selectionPropertyBodyEClass.getESuperTypes().add(this.getPropertyContainer());
 		selectionPropertyDeclarationEClass.getESuperTypes().add(this.getPropertyDeclaration());
 		selectionPropertyOptionEClass.getESuperTypes().add(this.getPropertyDeclarationContainer());
+		selectionPropertyOptionEClass.getESuperTypes().add(this.getConfigurationDefinitionMember());
+		propertyDeclarationEClass.getESuperTypes().add(this.getConfigurationDefinitionMember());
 		bindingBodyEClass.getESuperTypes().add(this.getPropertyContainer());
 		resourceDeclarationEClass.getESuperTypes().add(this.getPropertyDeclarationContainer());
 		computationPropertyEClass.getESuperTypes().add(this.getProperty());
@@ -1298,6 +1309,15 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(configurationDefinitionEClass, ConfigurationDefinition.class, "ConfigurationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConfigurationDefinition_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, ConfigurationDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfigurationDefinition_Members(), this.getConfigurationDefinitionMember(), this.getConfigurationDefinitionMember_Owner(), "members", null, 0, -1, ConfigurationDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(configurationDefinitionMemberEClass, ConfigurationDefinitionMember.class, "ConfigurationDefinitionMember", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigurationDefinitionMember_Owner(), this.getConfigurationDefinition(), this.getConfigurationDefinition_Members(), "owner", null, 0, 1, ConfigurationDefinitionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfigurationDefinitionMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConfigurationDefinitionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfigurationDefinitionMember_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ConfigurationDefinitionMember.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
 		initEClass(propertyContainerEClass, PropertyContainer.class, "PropertyContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyContainer_Properties(), this.getProperty(), null, "properties", null, 0, -1, PropertyContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1330,21 +1350,13 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEClass(selectionPropertyDeclarationEClass, SelectionPropertyDeclaration.class, "SelectionPropertyDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(selectionPropertyOptionEClass, SelectionPropertyOption.class, "SelectionPropertyOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSelectionPropertyOption_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, SelectionPropertyOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSelectionPropertyOption_Target(), this.getSelectionPropertyDeclaration(), null, "target", null, 0, 1, SelectionPropertyOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSelectionPropertyOption_ResourceDeclarations(), this.getResourceDeclaration(), null, "resourceDeclarations", null, 0, -1, SelectionPropertyOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyDeclarationEClass, PropertyDeclaration.class, "PropertyDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPropertyDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPropertyDeclaration_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, PropertyDeclaration.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyDeclaration_Group(), this.getPropertyGroup(), this.getPropertyGroup_Members(), "group", null, 0, 1, PropertyDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyDeclarationContainerEClass, PropertyDeclarationContainer.class, "PropertyDeclarationContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyDeclarationContainer_PropertyDeclarations(), this.getPropertyDeclaration(), null, "propertyDeclarations", null, 0, -1, PropertyDeclarationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(propertyGroupEClass, PropertyGroup.class, "PropertyGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPropertyGroup_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, PropertyGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyGroup_Members(), this.getPropertyDeclaration(), this.getPropertyDeclaration_Group(), "members", null, 0, -1, PropertyGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentPathEClass, ComponentPath.class, "ComponentPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentPath_References(), this.getComponentReference(), null, "references", null, 0, -1, ComponentPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

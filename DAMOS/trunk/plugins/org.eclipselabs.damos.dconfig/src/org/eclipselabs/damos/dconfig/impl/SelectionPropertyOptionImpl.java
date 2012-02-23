@@ -15,11 +15,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
+import org.eclipselabs.damos.dconfig.internal.operations.ConfigurationDefinitionMemberOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +32,8 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl#getResourceDeclarations <em>Resource Declarations</em>}</li>
@@ -38,6 +44,26 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
  */
 public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImpl implements SelectionPropertyOption {
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,16 +72,6 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * @ordered
 	 */
 	protected static final String QUALIFIED_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiedName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -101,8 +117,9 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getQualifiedName() {
-		return qualifiedName;
+	public ConfigurationDefinition getOwner() {
+		if (eContainerFeatureID() != DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER) return null;
+		return (ConfigurationDefinition)eContainer();
 	}
 
 	/**
@@ -110,11 +127,60 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQualifiedName(String newQualifiedName) {
-		String oldQualifiedName = qualifiedName;
-		qualifiedName = newQualifiedName;
+	public NotificationChain basicSetOwner(ConfigurationDefinition newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(ConfigurationDefinition newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS, ConfigurationDefinition.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY_OPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getQualifiedName() {
+		return ConfigurationDefinitionMemberOperations.getQualifiedName(this);
 	}
 
 	/**
@@ -173,8 +239,26 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((ConfigurationDefinition)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				return basicSetOwner(null, msgs);
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__RESOURCE_DECLARATIONS:
 				return ((InternalEList<?>)getResourceDeclarations()).basicRemove(otherEnd, msgs);
 		}
@@ -187,8 +271,26 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				return eInternalContainer().eInverseRemove(this, DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS, ConfigurationDefinition.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				return getOwner();
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__NAME:
+				return getName();
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME:
 				return getQualifiedName();
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__TARGET:
@@ -209,8 +311,11 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME:
-				setQualifiedName((String)newValue);
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				setOwner((ConfigurationDefinition)newValue);
+				return;
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__NAME:
+				setName((String)newValue);
 				return;
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__TARGET:
 				setTarget((SelectionPropertyDeclaration)newValue);
@@ -231,8 +336,11 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME:
-				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				setOwner((ConfigurationDefinition)null);
+				return;
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__TARGET:
 				setTarget((SelectionPropertyDeclaration)null);
@@ -252,8 +360,12 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER:
+				return getOwner() != null;
+			case DconfigPackage.SELECTION_PROPERTY_OPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME:
-				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
+				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__TARGET:
 				return target != null;
 			case DconfigPackage.SELECTION_PROPERTY_OPTION__RESOURCE_DECLARATIONS:
@@ -268,12 +380,48 @@ public class SelectionPropertyOptionImpl extends PropertyDeclarationContainerImp
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ConfigurationDefinitionMember.class) {
+			switch (derivedFeatureID) {
+				case DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER: return DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__OWNER;
+				case DconfigPackage.SELECTION_PROPERTY_OPTION__NAME: return DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__NAME;
+				case DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME: return DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ConfigurationDefinitionMember.class) {
+			switch (baseFeatureID) {
+				case DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__OWNER: return DconfigPackage.SELECTION_PROPERTY_OPTION__OWNER;
+				case DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__NAME: return DconfigPackage.SELECTION_PROPERTY_OPTION__NAME;
+				case DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__QUALIFIED_NAME: return DconfigPackage.SELECTION_PROPERTY_OPTION__QUALIFIED_NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifiedName: ");
-		result.append(qualifiedName);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

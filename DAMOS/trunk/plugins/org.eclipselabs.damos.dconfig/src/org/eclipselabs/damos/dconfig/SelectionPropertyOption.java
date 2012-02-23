@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getResourceDeclarations <em>Resource Declarations</em>}</li>
  * </ul>
@@ -26,33 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface SelectionPropertyOption extends PropertyDeclarationContainer {
-	/**
-	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualified Name</em>' attribute.
-	 * @see #setQualifiedName(String)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getSelectionPropertyOption_QualifiedName()
-	 * @model
-	 * @generated
-	 */
-	String getQualifiedName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption#getQualifiedName <em>Qualified Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
-	 * @see #getQualifiedName()
-	 * @generated
-	 */
-	void setQualifiedName(String value);
-
+public interface SelectionPropertyOption extends PropertyDeclarationContainer, ConfigurationDefinitionMember {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

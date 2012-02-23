@@ -216,6 +216,8 @@ String getEventEnumName(Expression this) : "/* EventEnum requested, but got Expr
 String getEventName(Event this) : this.eContainer.getScopeName().toFirstUpper() + this.getNameWA().toFirstUpper();
 String getEventName(EventDefinition this) : name.toFirstUpper();
 String getEventName(FeatureCall this) : feature.getEventName();
+String getEventName(base::NamedElement this) : "/* Event expected, but got NamedElement: "+this+" */";
+String getEventName(TypedElementReferenceExpression this) : reference.getEventName();
 String getEventName(types::Feature this) : "/* Event expected, but got Feature: "+this+" */";
 String getEventName(Expression this) : "/* Event expected, but got Expression: "+this+" */";
 

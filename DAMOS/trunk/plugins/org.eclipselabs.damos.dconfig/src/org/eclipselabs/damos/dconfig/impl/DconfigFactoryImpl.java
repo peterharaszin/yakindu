@@ -22,11 +22,11 @@ import org.eclipselabs.damos.dconfig.ComponentPath;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
@@ -84,13 +84,13 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DconfigPackage.CONFIGURATION: return createConfiguration();
+			case DconfigPackage.CONFIGURATION_DEFINITION: return createConfigurationDefinition();
 			case DconfigPackage.SIMPLE_PROPERTY: return createSimpleProperty();
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION: return createSimplePropertyDeclaration();
 			case DconfigPackage.SELECTION_PROPERTY: return createSelectionProperty();
 			case DconfigPackage.SELECTION_PROPERTY_BODY: return createSelectionPropertyBody();
 			case DconfigPackage.SELECTION_PROPERTY_DECLARATION: return createSelectionPropertyDeclaration();
 			case DconfigPackage.SELECTION_PROPERTY_OPTION: return createSelectionPropertyOption();
-			case DconfigPackage.PROPERTY_GROUP: return createPropertyGroup();
 			case DconfigPackage.COMPONENT_PATH: return createComponentPath();
 			case DconfigPackage.COMPONENT_REFERENCE: return createComponentReference();
 			case DconfigPackage.BINDING: return createBinding();
@@ -156,6 +156,16 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ConfigurationDefinition createConfigurationDefinition() {
+		ConfigurationDefinitionImpl configurationDefinition = new ConfigurationDefinitionImpl();
+		return configurationDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SimpleProperty createSimpleProperty() {
 		SimplePropertyImpl simpleProperty = new SimplePropertyImpl();
 		return simpleProperty;
@@ -209,16 +219,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public SelectionPropertyOption createSelectionPropertyOption() {
 		SelectionPropertyOptionImpl selectionPropertyOption = new SelectionPropertyOptionImpl();
 		return selectionPropertyOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PropertyGroup createPropertyGroup() {
-		PropertyGroupImpl propertyGroup = new PropertyGroupImpl();
-		return propertyGroup;
 	}
 
 	/**

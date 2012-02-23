@@ -20,6 +20,8 @@ import org.eclipselabs.damos.dconfig.ComponentPath;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
@@ -28,7 +30,6 @@ import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
-import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
@@ -102,6 +103,14 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 				return createConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseConfigurationDefinition(ConfigurationDefinition object) {
+				return createConfigurationDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseConfigurationDefinitionMember(ConfigurationDefinitionMember object) {
+				return createConfigurationDefinitionMemberAdapter();
+			}
+			@Override
 			public Adapter casePropertyContainer(PropertyContainer object) {
 				return createPropertyContainerAdapter();
 			}
@@ -144,10 +153,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePropertyDeclarationContainer(PropertyDeclarationContainer object) {
 				return createPropertyDeclarationContainerAdapter();
-			}
-			@Override
-			public Adapter casePropertyGroup(PropertyGroup object) {
-				return createPropertyGroupAdapter();
 			}
 			@Override
 			public Adapter caseComponentPath(ComponentPath object) {
@@ -248,6 +253,34 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinition <em>Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinition
+	 * @generated
+	 */
+	public Adapter createConfigurationDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember <em>Configuration Definition Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember
+	 * @generated
+	 */
+	public Adapter createConfigurationDefinitionMemberAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.PropertyContainer <em>Property Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -328,20 +361,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyDeclarationContainerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.PropertyGroup <em>Property Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.PropertyGroup
-	 * @generated
-	 */
-	public Adapter createPropertyGroupAdapter() {
 		return null;
 	}
 

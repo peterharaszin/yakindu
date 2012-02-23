@@ -17,43 +17,45 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.PropertyDeclaration;
-import org.eclipselabs.damos.dconfig.PropertyGroup;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Property Group</b></em>'.
+ * An implementation of the model object '<em><b>Configuration Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl#getQualifiedName <em>Qualified Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl#getMembers <em>Members</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl#getPackageName <em>Package Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationDefinitionImpl#getMembers <em>Members</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
+public class ConfigurationDefinitionImpl extends EObjectImpl implements ConfigurationDefinition {
 	/**
-	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifiedName()
+	 * @see #getPackageName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+	protected static final String PACKAGE_NAME_EDEFAULT = null;
+
 	/**
-	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * The cached value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifiedName()
+	 * @see #getPackageName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
+	protected String packageName = PACKAGE_NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -62,14 +64,14 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyDeclaration> members;
+	protected EList<ConfigurationDefinitionMember> members;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PropertyGroupImpl() {
+	protected ConfigurationDefinitionImpl() {
 		super();
 	}
 
@@ -80,7 +82,7 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.PROPERTY_GROUP;
+		return DconfigPackage.Literals.CONFIGURATION_DEFINITION;
 	}
 
 	/**
@@ -88,8 +90,8 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getQualifiedName() {
-		return qualifiedName;
+	public String getPackageName() {
+		return packageName;
 	}
 
 	/**
@@ -97,11 +99,11 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQualifiedName(String newQualifiedName) {
-		String oldQualifiedName = qualifiedName;
-		qualifiedName = newQualifiedName;
+	public void setPackageName(String newPackageName) {
+		String oldPackageName = packageName;
+		packageName = newPackageName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.PROPERTY_GROUP__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.CONFIGURATION_DEFINITION__PACKAGE_NAME, oldPackageName, packageName));
 	}
 
 	/**
@@ -109,9 +111,9 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PropertyDeclaration> getMembers() {
+	public EList<ConfigurationDefinitionMember> getMembers() {
 		if (members == null) {
-			members = new EObjectContainmentWithInverseEList<PropertyDeclaration>(PropertyDeclaration.class, this, DconfigPackage.PROPERTY_GROUP__MEMBERS, DconfigPackage.PROPERTY_DECLARATION__GROUP);
+			members = new EObjectContainmentWithInverseEList<ConfigurationDefinitionMember>(ConfigurationDefinitionMember.class, this, DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS, DconfigPackage.CONFIGURATION_DEFINITION_MEMBER__OWNER);
 		}
 		return members;
 	}
@@ -125,7 +127,7 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMembers()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -139,7 +141,7 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -153,9 +155,9 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__QUALIFIED_NAME:
-				return getQualifiedName();
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__PACKAGE_NAME:
+				return getPackageName();
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				return getMembers();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -170,12 +172,12 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__QUALIFIED_NAME:
-				setQualifiedName((String)newValue);
+			case DconfigPackage.CONFIGURATION_DEFINITION__PACKAGE_NAME:
+				setPackageName((String)newValue);
 				return;
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				getMembers().clear();
-				getMembers().addAll((Collection<? extends PropertyDeclaration>)newValue);
+				getMembers().addAll((Collection<? extends ConfigurationDefinitionMember>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,10 +191,10 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__QUALIFIED_NAME:
-				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+			case DconfigPackage.CONFIGURATION_DEFINITION__PACKAGE_NAME:
+				setPackageName(PACKAGE_NAME_EDEFAULT);
 				return;
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				getMembers().clear();
 				return;
 		}
@@ -207,9 +209,9 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.PROPERTY_GROUP__QUALIFIED_NAME:
-				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
-			case DconfigPackage.PROPERTY_GROUP__MEMBERS:
+			case DconfigPackage.CONFIGURATION_DEFINITION__PACKAGE_NAME:
+				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
+			case DconfigPackage.CONFIGURATION_DEFINITION__MEMBERS:
 				return members != null && !members.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -225,10 +227,10 @@ public class PropertyGroupImpl extends EObjectImpl implements PropertyGroup {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifiedName: ");
-		result.append(qualifiedName);
+		result.append(" (packageName: ");
+		result.append(packageName);
 		result.append(')');
 		return result.toString();
 	}
 
-} //PropertyGroupImpl
+} //ConfigurationDefinitionImpl

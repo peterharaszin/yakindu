@@ -19,6 +19,8 @@ import org.eclipselabs.damos.dconfig.ComponentPath;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
+import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
@@ -27,7 +29,6 @@ import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
-import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
@@ -104,6 +105,18 @@ public class DconfigSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DconfigPackage.CONFIGURATION_DEFINITION: {
+				ConfigurationDefinition configurationDefinition = (ConfigurationDefinition)theEObject;
+				T result = caseConfigurationDefinition(configurationDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DconfigPackage.CONFIGURATION_DEFINITION_MEMBER: {
+				ConfigurationDefinitionMember configurationDefinitionMember = (ConfigurationDefinitionMember)theEObject;
+				T result = caseConfigurationDefinitionMember(configurationDefinitionMember);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DconfigPackage.PROPERTY_CONTAINER: {
 				PropertyContainer propertyContainer = (PropertyContainer)theEObject;
 				T result = casePropertyContainer(propertyContainer);
@@ -135,6 +148,7 @@ public class DconfigSwitch<T> extends Switch<T> {
 				SimplePropertyDeclaration simplePropertyDeclaration = (SimplePropertyDeclaration)theEObject;
 				T result = caseSimplePropertyDeclaration(simplePropertyDeclaration);
 				if (result == null) result = casePropertyDeclaration(simplePropertyDeclaration);
+				if (result == null) result = caseConfigurationDefinitionMember(simplePropertyDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,6 +171,7 @@ public class DconfigSwitch<T> extends Switch<T> {
 				SelectionPropertyDeclaration selectionPropertyDeclaration = (SelectionPropertyDeclaration)theEObject;
 				T result = caseSelectionPropertyDeclaration(selectionPropertyDeclaration);
 				if (result == null) result = casePropertyDeclaration(selectionPropertyDeclaration);
+				if (result == null) result = caseConfigurationDefinitionMember(selectionPropertyDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,24 +179,20 @@ public class DconfigSwitch<T> extends Switch<T> {
 				SelectionPropertyOption selectionPropertyOption = (SelectionPropertyOption)theEObject;
 				T result = caseSelectionPropertyOption(selectionPropertyOption);
 				if (result == null) result = casePropertyDeclarationContainer(selectionPropertyOption);
+				if (result == null) result = caseConfigurationDefinitionMember(selectionPropertyOption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DconfigPackage.PROPERTY_DECLARATION: {
 				PropertyDeclaration propertyDeclaration = (PropertyDeclaration)theEObject;
 				T result = casePropertyDeclaration(propertyDeclaration);
+				if (result == null) result = caseConfigurationDefinitionMember(propertyDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DconfigPackage.PROPERTY_DECLARATION_CONTAINER: {
 				PropertyDeclarationContainer propertyDeclarationContainer = (PropertyDeclarationContainer)theEObject;
 				T result = casePropertyDeclarationContainer(propertyDeclarationContainer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DconfigPackage.PROPERTY_GROUP: {
-				PropertyGroup propertyGroup = (PropertyGroup)theEObject;
-				T result = casePropertyGroup(propertyGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -309,6 +320,36 @@ public class DconfigSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurationDefinition(ConfigurationDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration Definition Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration Definition Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurationDefinitionMember(ConfigurationDefinitionMember object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Property Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -395,21 +436,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePropertyDeclarationContainer(PropertyDeclarationContainer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property Group</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePropertyGroup(PropertyGroup object) {
 		return null;
 	}
 

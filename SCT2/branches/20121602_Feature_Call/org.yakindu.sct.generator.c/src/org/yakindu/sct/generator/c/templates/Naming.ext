@@ -208,7 +208,7 @@ String interfaceObjectName(InternalScope this) : "ifaceInternal";
 /* Event name information  */
 String getEventEnumName(TimeEvent this) : "ev_" + this.name.toFirstLower();
 String getEventEnumName(Event this) : "ev_" + this.eContainer.getScopeName() + "_" + this.getNameWA().toFirstLower();
-String getEventEnumName(EventDefinition this) : "ev_" +name.toFirstLower();
+String getEventEnumName(EventDefinition this) : "ev_" + this.eContainer.getScopeName() + "_" + name; //.toFirstLower();
 String getEventEnumName(FeatureCall this) : feature.getEventEnumName();
 String getEventEnumName(types::Feature this) : "/* EventEnum requested, but got Feature: "+this+" */";
 String getEventEnumName(Expression this) : "/* EventEnum requested, but got Expression: "+this+" */";

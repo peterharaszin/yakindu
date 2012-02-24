@@ -222,7 +222,7 @@ String getEventName(types::Feature this) : "/* Event expected, but got Feature: 
 String getEventName(Expression this) : "/* Event expected, but got Expression: "+this+" */";
 
 String getInterfaceName(EventRaisingExpression this) :
-	"iface" + (( this.event.getEvent().eContainer.getScopeName() == null)?"":this.event.getEvent().eContainer.getScopeName().toFirstUpper());
+	"iface" + (( this.event.getEvent().eContainer.getScopeName() == "default")?"":this.event.getEvent().eContainer.getScopeName().toFirstUpper());
 
 EventDefinition getEvent(Expression e) : null;
 EventDefinition getEvent(NamedElement e) : null;

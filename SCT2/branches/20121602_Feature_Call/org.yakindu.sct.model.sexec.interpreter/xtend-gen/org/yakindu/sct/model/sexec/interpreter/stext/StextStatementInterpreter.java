@@ -220,8 +220,8 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
       for (final ExecutionEvent event : _raisedEvents) {
         String _name = event.getName();
         Expression _value = expression.getValue();
-        String _name_1 = this.name(_value);
-        Boolean _equals = this.equals(_name, _name_1);
+        String _qname = this.qname(_value);
+        Boolean _equals = this.equals(_name, _qname);
         if (_equals) {
           Object _value_1 = event.getValue();
           return _value_1;
@@ -242,6 +242,20 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
     NamedElement _reference = e.getReference();
     String _name = _reference.getName();
     return _name;
+  }
+  
+  protected String _qname(final FeatureCall e) {
+    Feature _feature = e.getFeature();
+    QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_feature);
+    String _string = _fullyQualifiedName.toString();
+    return _string;
+  }
+  
+  protected String _qname(final TypedElementReferenceExpression e) {
+    NamedElement _reference = e.getReference();
+    QualifiedName _fullyQualifiedName = this.provider.getFullyQualifiedName(_reference);
+    String _string = _fullyQualifiedName.toString();
+    return _string;
   }
   
   protected Object _execute(final ActiveStateReferenceExpression expression) {
@@ -525,6 +539,17 @@ public class StextStatementInterpreter extends AbstractStatementInterpreter {
       return _name((FeatureCall)e);
     } else if ((e instanceof TypedElementReferenceExpression)) {
       return _name((TypedElementReferenceExpression)e);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(e).toString());
+    }
+  }
+  
+  public String qname(final Expression e) {
+    if ((e instanceof FeatureCall)) {
+      return _qname((FeatureCall)e);
+    } else if ((e instanceof TypedElementReferenceExpression)) {
+      return _qname((TypedElementReferenceExpression)e);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         java.util.Arrays.<Object>asList(e).toString());

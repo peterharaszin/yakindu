@@ -22,15 +22,19 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.yakindu.base.base.BasePackage;
+import org.yakindu.base.types.Event;
 import org.yakindu.base.types.Operation;
 import org.yakindu.base.types.Parameter;
+import org.yakindu.base.types.Property;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Statement;
 import org.yakindu.sct.model.stext.stext.AlwaysEvent;
+import org.yakindu.sct.model.stext.stext.AssignmentExpression;
 import org.yakindu.sct.model.stext.stext.Direction;
 import org.yakindu.sct.model.stext.stext.EntryEvent;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
+import org.yakindu.sct.model.stext.stext.EventRaisingExpression;
 import org.yakindu.sct.model.stext.stext.EventSpec;
 import org.yakindu.sct.model.stext.stext.ExitEvent;
 import org.yakindu.sct.model.stext.stext.Expression;
@@ -40,10 +44,12 @@ import org.yakindu.sct.model.stext.stext.InternalScope;
 import org.yakindu.sct.model.stext.stext.LocalReaction;
 import org.yakindu.sct.model.stext.stext.OnCycleEvent;
 import org.yakindu.sct.model.stext.stext.OperationDefinition;
+import org.yakindu.sct.model.stext.stext.ReactionEffect;
 import org.yakindu.sct.model.stext.stext.ReactionTrigger;
 import org.yakindu.sct.model.stext.stext.SimpleScope;
 import org.yakindu.sct.model.stext.stext.StatechartSpecification;
 import org.yakindu.sct.model.stext.stext.StextPackage;
+import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
 import com.google.inject.Inject;
@@ -61,13 +67,14 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	@Inject
 	private StaticTypeAnalyzer analyzer;
 
-	@Check
-	public void checkOperationCall(final FeatureCall call) {
-		if (call.getFeature() instanceof Operation && !call.isOperationCall()) {
-			error(call.getFeature().getName()
-					+ " can not be resolved or is not a property", null);
-		}
-	}
+	
+//	@Check
+//	public void checkOperationCall(final FeatureCall call) {
+//		if (! (call.getFeature() instanceof Operation) /*&& !call.isOperationCall()*/) {
+//			error(call.getFeature().getName()
+//					+ " is not an operation ", null);
+//		}
+//	}
 	@Check
 	public void checkOperationArguments(final FeatureCall call) {
 		if (call.getFeature() instanceof Operation) {
@@ -121,6 +128,77 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 		}
 	}
 
+	
+	/**
+	 * Only Expressions that produce an effect should be used as actions.
+	 * 
+	 * @param effect
+	 */
+	@Check(CheckType.FAST)
+	public void checkReactionEffectActions(ReactionEffect effect) {
+		for (Expression exp : effect.getActions()) {
+
+			if ( ! (exp instanceof AssignmentExpression)
+				 && ! (exp instanceof EventRaisingExpression) ) {
+				
+				if ( exp instanceof FeatureCall ) {
+					checkFeatureCallEffect((FeatureCall) exp);
+				} else if ( exp instanceof TypedElementReferenceExpression ) {
+					checkTypedElementReferenceEffect((TypedElementReferenceExpression) exp);					
+				} else {
+					error("Action has no effect.",
+							StextPackage.Literals.REACTION_EFFECT__ACTIONS, effect.getActions().indexOf(exp));
+				}
+
+			}
+		}
+	}
+
+	
+	protected void checkFeatureCallEffect(FeatureCall call) {
+		if (! (call.getFeature() instanceof Operation)) {
+			if ( call.getFeature() instanceof Property ) {
+				error("Access to property '" + call.getFeature().getName() + "' has no effect.",
+						call,
+						StextPackage.Literals.FEATURE_CALL__FEATURE, 0);	
+			} else if ( call.getFeature() instanceof Event ) {
+				error("Access to event '" + call.getFeature().getName() + "' has no effect.",
+						call,
+						StextPackage.Literals.FEATURE_CALL__FEATURE, 0);	
+			} else {
+				error("Access to feature '" + call.getFeature().getName() + "' has no effect.",
+						call,
+						StextPackage.Literals.FEATURE_CALL__FEATURE, 0);	
+			}
+			
+			if (call.getOwner() != null) {
+				if (call.getOwner() instanceof FeatureCall) checkFeatureCallEffect((FeatureCall)call.getOwner());
+				else if (call.getOwner() instanceof TypedElementReferenceExpression) checkTypedElementReferenceEffect((TypedElementReferenceExpression)call.getOwner());
+			}
+		}
+
+	}
+	
+	
+	protected void checkTypedElementReferenceEffect(TypedElementReferenceExpression ter) {
+		if (! (ter.getReference() instanceof Operation)) {
+			if ( ter.getReference() instanceof Property ) {
+				error("Access to property '" + ter.getReference().getName() + "' has no effect.",
+						ter,
+						StextPackage.Literals.TYPED_ELEMENT_REFERENCE_EXPRESSION__REFERENCE, 0);	
+			} else if ( ter.getReference() instanceof Event ) {
+				error("Access to event '" + ter.getReference().getName() + "' has no effect.",
+						ter,
+						StextPackage.Literals.TYPED_ELEMENT_REFERENCE_EXPRESSION__REFERENCE, 0);	
+			} else {
+				error("Access to feature '" + ter.getReference().getName() + "' has no effect.",
+						ter,
+						StextPackage.Literals.TYPED_ELEMENT_REFERENCE_EXPRESSION__REFERENCE, 0);		
+			}
+		}
+	}
+	
+	
 	@Check(CheckType.FAST)
 	public void checkVariable(VariableDefinition variable) {
 		if (variable.eContainer() instanceof SimpleScope) {

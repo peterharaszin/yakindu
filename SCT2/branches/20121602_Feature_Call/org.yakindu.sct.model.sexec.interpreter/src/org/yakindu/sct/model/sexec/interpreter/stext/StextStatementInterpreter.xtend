@@ -136,7 +136,7 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 	
 	def dispatch execute(EventValueReferenceExpression expression){
 		for(event : context.raisedEvents){
-			if(event.getName.equals(expression.value.name)){
+			if(event.getName.equals(expression.value.qname)){
 				return event.getValue
 			}
 		}
@@ -148,6 +148,24 @@ class StextStatementInterpreter extends AbstractStatementInterpreter {
 	}
 	def dispatch name(TypedElementReferenceExpression e) {
 		e.reference.name
+	}
+
+	def dispatch qname(FeatureCall e) {
+		return e.feature.fullyQualifiedName.toString
+//		if( e.feature.eContainer instanceof InterfaceScope) {
+//			val scope = (e.feature.eContainer as InterfaceScope)
+//			if (scope.name != null && ! scope.name.empty)  return scope.name + "." + e.feature.name	
+//		}
+//		return e.feature.name
+	}
+
+	def dispatch qname(TypedElementReferenceExpression e) {
+		e.reference.fullyQualifiedName.toString
+//		if( e.reference.eContainer instanceof InterfaceScope) {
+//			val scope = (e.reference.eContainer as InterfaceScope)
+//			if (scope.name != null && ! scope.name.empty)  return scope.name + "." + e.reference.name	
+//		}
+//		return e.reference.name
 	}
 	
 	def dispatch execute(ActiveStateReferenceExpression expression){

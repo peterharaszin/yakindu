@@ -106,6 +106,7 @@ public class InjectMembersResource extends GMFResource implements
 	}
 
 	private void parseAll() {
+		System.out.println("Parse all");
 		parsing = true;
 		diagnostics.clear();
 		TreeIterator<EObject> iter = getAllContents();
@@ -120,6 +121,8 @@ public class InjectMembersResource extends GMFResource implements
 		}
 		for (EObject eObject : toParse) {
 			reparse(eObject);
+		}
+		for(EObject eObject : toParse){
 			registerReparseAdapter(eObject);
 		}
 		doLinking();
@@ -165,7 +168,6 @@ public class InjectMembersResource extends GMFResource implements
 		IMemberInjectionService service = receiveInjectionService(currentObject);
 		service.injectMembers(currentObject);
 		diagnostics.addAll(service.getDiagnostics());
-		doLinking();
 	}
 
 	private void registerReparseAdapter(EObject object) {
@@ -190,6 +192,7 @@ public class InjectMembersResource extends GMFResource implements
 	}
 
 	private final class ReparseAdapter extends AdapterImpl {
+		
 
 		private boolean trackModification = true;
 
@@ -198,6 +201,7 @@ public class InjectMembersResource extends GMFResource implements
 			if (msg.getNewValue() != null && trackModification) {
 				trackModification = false;
 				reparse((EObject) this.getTarget());
+				doLinking();
 				trackModification = true;
 			}
 		}
@@ -206,6 +210,7 @@ public class InjectMembersResource extends GMFResource implements
 		public boolean isAdapterForType(Object type) {
 			return ReparseAdapter.class == type;
 		}
+		
 	}
 
 	public String getLanguageName() {

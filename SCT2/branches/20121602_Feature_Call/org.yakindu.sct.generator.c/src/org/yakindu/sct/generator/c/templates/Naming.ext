@@ -15,9 +15,12 @@ String getNameWA(Vertex this) : this.metaType.getProperty("name").toString();
 
  
 // TODO: move to other extension
-
-GeneratorEntry genEntry(Object obj) : ((EObject)obj).eRootContainer.getProperty("_GEN_ENTRY_");
-Object setGenEntry(Object obj, GeneratorEntry genEntry) : ((EObject)obj).eRootContainer.setProperty("_GEN_ENTRY_", genEntry) -> "";
+Void setGeneratorEntry(emf::EObject obj, GeneratorEntry entry):
+	JAVA org.yakindu.sct.generator.c.GeneratorEntryAccess.setGeneratorEntry(org.eclipse.emf.ecore.EObject, org.yakindu.sct.model.sgen.GeneratorEntry);
+GeneratorEntry getGeneratorEntry(emf::EObject obj):
+	JAVA org.yakindu.sct.generator.c.GeneratorEntryAccess.getGeneratorEntry(org.eclipse.emf.ecore.EObject);
+GeneratorEntry genEntry(Object obj) : getGeneratorEntry(((EObject)obj).eRootContainer);
+Object setGenEntry(Object obj, GeneratorEntry genEntry) : setGeneratorEntry(((EObject)obj).eRootContainer,genEntry) -> "";
  
 
 ExecutionFlow getExecutionFlow(InterfaceScope this) : ((ExecutionFlow)this.eContainer);
@@ -78,17 +81,17 @@ boolean isShallowEnterSequence(Step step) : Sequence.isInstance(step) && step.na
 /* If this is a singleton, we do not need any additional information for the 
 	statemachine or the interfaces */
 String handleAddition(Object this) :
-	(isSingleton(genEntry()) == true) ? "" : StName() + "* " + this.statemachineHandleName();
+	(isSingleton() == true) ? "" : StName() + "* " + this.statemachineHandleName();
 
 String handleAdditionComma(Object this) :
-	(isSingleton(genEntry()) == true) ? "" : StName() + "* " + this.statemachineHandleName() + ", ";
+	(isSingleton() == true) ? "" : StName() + "* " + this.statemachineHandleName() + ", ";
 
 
 String handleInterfaceAddition(Scope this) :
-	(isSingleton(genEntry()) == true) ? "" : this.interfaceClassName() + "* handle";
+	(isSingleton() == true) ? "" : this.interfaceClassName() + "* handle";
 
 String handleInterfaceAdditionComma(Scope this) :
-	(isSingleton(genEntry()) == true) ? "" : this.interfaceClassName() + "* handle, ";
+	(isSingleton() == true) ? "" : this.interfaceClassName() + "* handle, ";
 
 
 /* Function Naming */

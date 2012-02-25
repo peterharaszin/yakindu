@@ -165,14 +165,24 @@ String getName(VariableDefinition this): name.toFirstLower();
 
 String getStateName(Step this) : this.eContainer.getStateName(); 
 String getStateName(emf::EObject this) : (this.eContainer != null)?this.eContainer.getStateName():"unkown";
-String getStateName(ExecutionEntry this) : this.simpleName;
-String getStateName(ExecutionState this) : this.simpleName;
+String getStateName(ExecutionEntry this) : this.getStateFqn();
+String getStateName(ExecutionState this) : this.getStateFqn();
 String getStateName(ExecutionRegion this) : 
 	if (ExecutionState.isInstance(superScope)) 
 	then (
 		getStateName((ExecutionState)superScope)+getNullSafeRegionName()
 	) else 
 		"Region"+getNullSafeRegionName();
+
+String getStateFqn(Void element) :
+	"";
+String getStateFqn(emf::EObject element) :
+	element.eContainer.getStateFqn();
+String getStateFqn(ExecutionScope this) :
+	(this.superScope.getStateFqn()==""?"":this.superScope.getStateFqn()+"_")+this.name;
+String getStateFqn(ExecutionState this) :
+	(this.superScope.getStateFqn()==""?"":this.superScope.getStateFqn()+"_")+this.simpleName;
+
 
 private String getNullSafeRegionName(ExecutionRegion this) :
 	if (name == null)

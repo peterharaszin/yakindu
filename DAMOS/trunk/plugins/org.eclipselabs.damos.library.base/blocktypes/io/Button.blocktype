@@ -1,0 +1,7 @@
+package damos.library.base.io
+
+discrete boundary blockType Button {
+
+	output _output
+
+}

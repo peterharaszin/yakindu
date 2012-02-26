@@ -1,0 +1,35 @@
+package damos.library.base.logic
+
+blockType EdgeToggle {
+
+	input u
+	output y
+
+	parameter initialValue = false predefined { true, false }
+	parameter trigger = 0 predefined {
+		0 as "Rising",
+		1 as "Falling"
+	}
+
+	stateful function main<initialValue, trigger>(u) -> y {
+		check<false, 0>(boolean) -> boolean
+		check<false, 1>(boolean) -> boolean
+		
+		static assert initialValue is boolean :
+			error "Initial value must be boolean"
+			
+		static assert trigger is int:
+			error "Trigger value must be integer"
+	
+	
+		eq u{-1} = trigger != 0
+		
+		eq y{-1} = initialValue
+		eq y{n} =
+			if static if trigger == 0 then !u{n-1} && u else u{n-1} && !u then
+				!y{n-1}
+			else
+				y{n-1}
+	}
+
+}

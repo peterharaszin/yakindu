@@ -99,7 +99,7 @@ Such systems are specified using block diagrams, which
 contain the software components (e.g. control algorithm) that will later be executed on a target device (e.g. digital controller)
 and the mechanical components as well as the physical environment to allow for system simulation.
 The mechanical and physical components of the system can be represented as a dynamical system,
-which are specified by providing the transfer function of the corresponding linear time-invariant (LTI) system.</p>
+which is specified by providing the transfer function of the corresponding linear time-invariant (LTI) system.</p>
 
 <p><img src="simple-pi-controller.png"/></p>
 
@@ -117,7 +117,7 @@ it is most commonly used in control systems engineering and digital signal proce
  -->
 
 <p>Currently, Eclipse does not provide tool support for designing data flow-oriented systems.
-Engineers and scientists are forced to use tools which do not integrate with other Eclipse technologies very well.
+Engineers and scientists are forced to use tools which do not integrate very well with other Eclipse technologies.
 Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools for better
 integration with other Eclipse technologies.</p>
 
@@ -164,7 +164,7 @@ There are two main groups of components. The first group contains components pro
 and the diagram editing features (orange).
 The second group provides simulation and code generation components as well as the standard block library (green).
 This enables other projects to build their own data flow-oriented languages by reusing the structural semantics
-and the diagram editing components, without being required to include unneeded components.</p>
+and the diagram editing components, without being required to include unnecessary components.</p>
 
 <p></p>
 
@@ -178,14 +178,14 @@ and the diagram editing components, without being required to include unneeded c
 This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.<p>
 
 <p>System models are comprised of models describing the mechanical components and the physical environment of a device,
-and the software model that will later be executed on the device.
+and the software model that later will be executed on the device.
 These models are specified using block diagrams.</p>
 
 <p>When performing model simulation or code generation, an execution flow is first derived from the system model.
 The execution flow can be seen as the imperative representation of the system model.
 For instance, it describes the execution order of the components so that components that drive other components
 are executed first.
-This information is then later used by the simulator and the code generator to execute and to generate the components in the right order, respectively.</p>
+This information is later used by the simulator and the code generator to execute and to generate the components in the right order, respectively.</p>
 
 <p>Simulation and code generation can be configured using a Damos-specific configuration language.
 Such configurations contain global properties and properties for individual Damos model elements (using an annotation mechanism).
@@ -208,7 +208,7 @@ For all other models, textual model editors based on Xtext are provided.</p>
 
 <p>The graphical block diagram editor is used for editing system models.
 It can also be used to visualize real-time simulation results using virtual instruments.
-Virtual instruments display simulation result in real-time, or provide a means to interact with the running simulation (e.g. using buttons and sliders).</p>
+Virtual instruments display simulation results in real-time, or provide a means to interact with the running simulation (e.g. using buttons and sliders).</p>
 
 <p>Block diagram files contain two model types: the semantic model of the system and
 the notation model containing the graphical information of the block diagram.
@@ -264,12 +264,12 @@ The code generation process can be configured using a generator configuration mo
 <h4>Block Library</h4>
 
 <p>The standard block library contains commonly used blocks.
-If required, the user is can create his/her own block libraries.
+If required, the user can create his/her own block libraries.
 The block behavior can be specified using the declarative programming language Mscript, which is part of this project.</p>
 
 <h4>Extensibility</h4>
 
-<p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:
+<p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:</p>
 <ul>
 <li>Registering block libraries</li>
 <li>Contributing the visual representation (i.e. symbols) of blocks</li>
@@ -277,7 +277,6 @@ The block behavior can be specified using the declarative programming language M
 <li>Providing additional solvers</li>
 <li>Providing code generators</li>
 </ul>
-</p>
 
 <h2>Legal Issues</h2>
 

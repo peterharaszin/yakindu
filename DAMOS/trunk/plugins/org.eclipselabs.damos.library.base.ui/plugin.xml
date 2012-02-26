@@ -140,6 +140,24 @@
             name="SchmittTrigger">
       </editPart>
       <editPart
+            blockType="damos.library.base.logic.EdgeToggle"
+            class="org.eclipselabs.damos.library.base.ui.editparts.logic.EdgeToggleEditPart"
+            name="Edge Toggle">
+      </editPart>
+      <editPart
+            blockType="damos.library.base.logic.Debounce"
+            class="org.eclipselabs.damos.library.base.ui.editparts.logic.DebounceEditPart"
+            name="Debounce">
+         <input
+               class="org.eclipselabs.damos.library.base.ui.editparts.logic.DebounceInputPortEditPart"
+               name="u">
+         </input>
+         <output
+               class="org.eclipselabs.damos.library.base.ui.editparts.logic.DebounceOutputPortEditPart"
+               name="y">
+         </output>
+      </editPart>
+      <editPart
             blockType="damos.library.base.math.Gain"
             class="org.eclipselabs.damos.library.base.ui.editparts.math.GainEditPart"
             name="Gain">
@@ -203,6 +221,16 @@
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.AudioFileSourceEditPart"
             name="Audio File Source">
       </editPart>
+      <editPart
+            blockType="damos.library.base.io.DataOut"
+            class="org.eclipselabs.damos.library.base.ui.editparts.io.DataOutEditPart"
+            name="Data Out">
+      </editPart>
+      <editPart
+            blockType="damos.library.base.discrete.EdgeCounter"
+            class="org.eclipselabs.damos.library.base.ui.editparts.discrete.EdgeCounterEditPart"
+            name="Edge Counter">
+      </editPart>
    </extension>
    <extension
          point="org.eclipselabs.damos.dml.ui.blockImages">
@@ -230,6 +258,11 @@
             blockType="damos.library.base.discrete.Counter"
             icon16="icons/discrete/Counter16.png"
             icon24="icons/discrete/Counter24.png">
+      </image>
+      <image
+            blockType="damos.library.base.discrete.EdgeCounter"
+            icon16="icons/discrete/EdgeCounter16.png"
+            icon24="icons/discrete/EdgeCounter24.png">
       </image>
       <image
             blockType="damos.library.base.discrete.Delay"
@@ -270,6 +303,16 @@
             blockType="damos.library.base.logic.SchmittTrigger"
             icon16="icons/logic/SchmittTrigger16.png"
             icon24="icons/logic/SchmittTrigger24.png">
+      </image>
+      <image
+            blockType="damos.library.base.logic.Debounce"
+            icon16="icons/logic/Debounce16.png"
+            icon24="icons/logic/Debounce24.png">
+      </image>
+      <image
+            blockType="damos.library.base.logic.EdgeToggle"
+            icon16="icons/logic/EdgeToggle16.png"
+            icon24="icons/logic/EdgeToggle24.png">
       </image>
       <image
             blockType="damos.library.base.math.Gain"
@@ -330,6 +373,16 @@
             blockType="damos.library.base.sources.AudioFileSource"
             icon16="icons/sources/AudioFileSource16.png"
             icon24="icons/sources/AudioFileSource24.png">
+      </image>
+      <image
+            blockType="damos.library.base.io.Button"
+            icon16="icons/io/Button16.png"
+            icon24="icons/io/Button24.png">
+      </image>
+      <image
+            blockType="damos.library.base.io.DataOut"
+            icon16="icons/io/DataOut16.png"
+            icon24="icons/io/DataOut24.png">
       </image>
    </extension>
    <extension

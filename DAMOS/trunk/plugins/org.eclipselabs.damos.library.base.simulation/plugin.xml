@@ -53,6 +53,16 @@
             class="org.eclipselabs.damos.library.base.simulation.sinks.AudioFileSinkSimulationObject"
             name="Audio File Sink">
       </simulationObject>
+      <simulationObject
+            blockType="damos.library.base.io.Button"
+            class="org.eclipselabs.damos.library.base.simulation.io.ButtonSimulationObject"
+            name="Button">
+      </simulationObject>
+      <simulationObject
+            blockType="damos.library.base.io.DataOut"
+            class="org.eclipselabs.damos.library.base.simulation.io.DataOutSimulationObject"
+            name="Data Out">
+      </simulationObject>
    </extension>
 
 </plugin>

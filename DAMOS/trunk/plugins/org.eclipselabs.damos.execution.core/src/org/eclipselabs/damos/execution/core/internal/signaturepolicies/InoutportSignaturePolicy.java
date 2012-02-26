@@ -53,9 +53,6 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(dataType));
 		}
 
-		if (status.getSeverity() > IStatus.WARNING) {
-			return new ComponentSignatureEvaluationResult(signature, status);
-		}
 		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 

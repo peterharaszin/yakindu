@@ -41,17 +41,18 @@ public class InjectMembersResource extends GMFResource implements
 
 	private boolean parsing = false;
 
-	private boolean debug = true;
+	private boolean debug = false;
 
 	private String languageName;
 
 	@Inject
 	private InjectMembersLazyLinker linker;
 
-	public void doLinking() {
-		System.out.println("Linking model");
+	public synchronized void doLinking() {
+		diagnostics.clear();
 		long t = System.currentTimeMillis();
-		TreeIterator<EObject> allContents = getAllContents();
+		TreeIterator<EObject> allContents = EcoreUtil.getAllProperContents(
+				this, true);
 		while (allContents.hasNext()) {
 			EObject next = allContents.next();
 			EAnnotation eAnnotation = next.eClass().getEAnnotation(
@@ -60,9 +61,12 @@ public class InjectMembersResource extends GMFResource implements
 				linkObject(next);
 			}
 		}
+		// Remove cached content after linking
 		if (debug)
-			System.out.println("Linking model took "
-					+ (System.currentTimeMillis() - t));
+			System.out.println("Linking mode took "
+					+ (System.currentTimeMillis() - t) + "with diagnostics "
+					+ diagnostics.size());
+
 	}
 
 	private void linkObject(EObject model) {
@@ -93,23 +97,22 @@ public class InjectMembersResource extends GMFResource implements
 		services = new ArrayList<IMemberInjectionService>();
 	}
 
-	public List<org.eclipse.emf.common.util.Diagnostic> getDiagnostics() {
+	public synchronized List<org.eclipse.emf.common.util.Diagnostic> getDiagnostics() {
 		return diagnostics;
 	}
 
 	@Override
-	public void doLoad(InputStream inputStream, Map<?, ?> options)
+	public synchronized void doLoad(InputStream inputStream, Map<?, ?> options)
 			throws IOException {
-
 		super.doLoad(inputStream, options);
 		parseAll();
+		isLoading = false;
 	}
 
-	private void parseAll() {
-		System.out.println("Parse all");
+	private synchronized void parseAll() {
 		parsing = true;
 		diagnostics.clear();
-		TreeIterator<EObject> iter = getAllContents();
+		TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(this, true);
 		List<EObject> toParse = new ArrayList<EObject>();
 		while (iter.hasNext()) {
 			EObject currentObject = iter.next();
@@ -122,7 +125,7 @@ public class InjectMembersResource extends GMFResource implements
 		for (EObject eObject : toParse) {
 			reparse(eObject);
 		}
-		for(EObject eObject : toParse){
+		for (EObject eObject : toParse) {
 			registerReparseAdapter(eObject);
 		}
 		doLinking();
@@ -163,7 +166,7 @@ public class InjectMembersResource extends GMFResource implements
 				+ currentObject);
 	}
 
-	private void reparse(EObject currentObject) {
+	private synchronized void reparse(EObject currentObject) {
 		diagnostics.clear();
 		IMemberInjectionService service = receiveInjectionService(currentObject);
 		service.injectMembers(currentObject);
@@ -192,7 +195,6 @@ public class InjectMembersResource extends GMFResource implements
 	}
 
 	private final class ReparseAdapter extends AdapterImpl {
-		
 
 		private boolean trackModification = true;
 
@@ -210,7 +212,7 @@ public class InjectMembersResource extends GMFResource implements
 		public boolean isAdapterForType(Object type) {
 			return ReparseAdapter.class == type;
 		}
-		
+
 	}
 
 	public String getLanguageName() {

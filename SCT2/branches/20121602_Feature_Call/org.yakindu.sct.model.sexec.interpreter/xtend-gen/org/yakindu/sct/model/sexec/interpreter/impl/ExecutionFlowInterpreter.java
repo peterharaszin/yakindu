@@ -39,6 +39,7 @@ import org.yakindu.sct.model.sexec.UnscheduleTimeEvent;
 import org.yakindu.sct.model.sexec.interpreter.IExecutionFlowInterpreter;
 import org.yakindu.sct.model.sexec.interpreter.IStatementInterpreter;
 import org.yakindu.sct.model.sexec.interpreter.ITimingService;
+import org.yakindu.sct.model.sexec.interpreter.impl.BufferingExecutionContext;
 import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statement;
@@ -63,6 +64,8 @@ public class ExecutionFlowInterpreter extends AbstractExecutionFacade implements
   
   @Inject
   private IExecutionContext executionContext;
+  
+  private BufferingExecutionContext externalExecutionContext;
   
   @Inject
   private StextNameProvider provider;
@@ -101,6 +104,8 @@ public class ExecutionFlowInterpreter extends AbstractExecutionFacade implements
       this.brc = _createTraceBeginRunCycle;
       TraceEndRunCycle _createTraceEndRunCycle = SexecFactory.eINSTANCE.createTraceEndRunCycle();
       this.erc = _createTraceEndRunCycle;
+      BufferingExecutionContext _bufferingExecutionContext = new BufferingExecutionContext(this.executionContext);
+      this.externalExecutionContext = _bufferingExecutionContext;
     }
   }
   
@@ -113,7 +118,7 @@ public class ExecutionFlowInterpreter extends AbstractExecutionFacade implements
   }
   
   public IExecutionContext getExecutionContext() {
-    return this.executionContext;
+    return this.externalExecutionContext;
   }
   
   protected void _declareContents(final InternalScope scope) throws NumberFormatException {
@@ -139,6 +144,7 @@ public class ExecutionFlowInterpreter extends AbstractExecutionFacade implements
   
   public void runCycle() throws ExecutionException {
     {
+      this.externalExecutionContext.flush();
       this.nextSVIdx = 0;
       this.execute(this.brc);
       ExecutionState[] _stateConfiguration = this.executionContext.getStateConfiguration();

@@ -15,15 +15,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
-import org.eclipse.xtext.scoping.impl.FilteringScope;
-import org.eclipse.xtext.scoping.impl.ResourceSetGlobalScopeProvider;
-import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.yakindu.base.types.TypesPackage;
 import org.yakindu.base.types.scope.TypeLibrariesExtensionPointScopeHelper;
-import org.yakindu.sct.model.sgraph.SGraphPackage;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
 /**
@@ -33,32 +28,20 @@ import com.google.inject.Inject;
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public class STextGlobalScopeProvider extends ResourceSetGlobalScopeProvider {
+public class STextGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
-	@Inject
-	private DefaultGlobalScopeProvider delegate;
 
 	@Inject
 	private TypeLibrariesExtensionPointScopeHelper typeScopeHelper;
 
 	public IScope getScope(Resource context, EReference reference,
 			Predicate<IEObjectDescription> filter) {
-		IScope scope = super.getScope(context, reference, filter);
-		IScope globalScope = delegate.getScope(context, reference, filter);
-		FilteringScope filteringScope = new FilteringScope(globalScope,
-				new Predicate<IEObjectDescription>() {
-
-					public boolean apply(IEObjectDescription input) {
-						return input.getEClass() == SGraphPackage.Literals.STATECHART;
-					}
-				});
-		IScope parentScope = new SimpleScope(Iterables.concat(
-				scope.getAllElements(), filteringScope.getAllElements()));
-		
+	
+		IScope globalScope = super.getScope(context, reference, filter);
 		// add types from type libraries, in case the type of the reference refers to Type
 		if (reference.getEReferenceType().isSuperTypeOf(TypesPackage.eINSTANCE.getType())) {
-			return typeScopeHelper.createExtensionScope(parentScope);
+			return typeScopeHelper.createExtensionScope(globalScope);
 		}
-		return parentScope;
+		return globalScope;
 	}
 }

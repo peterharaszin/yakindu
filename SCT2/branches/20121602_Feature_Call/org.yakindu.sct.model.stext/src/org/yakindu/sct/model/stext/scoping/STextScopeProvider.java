@@ -68,7 +68,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
 			EReference reference) {
-
+		
 		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(context);
 		Expression owner = context.getOwner();
 		if (owner instanceof TypedElementReferenceExpression) {
@@ -84,7 +84,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 						.scopeFor(allFeatures(((Feature) element).getType())));
 				return new FilteringScope(scope, predicate);
 			}
-			
+
 		} else if (owner instanceof FeatureCall) {
 			Feature feature = ((FeatureCall) owner).getFeature();
 			IScope scope = Scopes.scopeFor(allFeatures(feature.getType()));
@@ -98,6 +98,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 		return getDelegate().getScope(context, reference);
 	}
 
+	// OK
 	private Predicate<IEObjectDescription> calcuateFilterPredicate(
 			final EObject context) {
 		Predicate<IEObjectDescription> predicate = null;
@@ -155,13 +156,15 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 	/**
 	 * Returns the {@link Statechart} for a context element
 	 */
+
 	protected Statechart getStatechart(EObject object) {
 		ResourceSet resourceSet = object.eResource().getResourceSet();
 		TreeIterator<Notifier> iter = resourceSet.getAllContents();
 		while (iter.hasNext()) {
 			Notifier next = iter.next();
-			if (next instanceof Statechart)
+			if (next instanceof Statechart) {
 				return (Statechart) next;
+			}
 		}
 		return null;
 	}

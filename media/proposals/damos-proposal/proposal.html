@@ -97,9 +97,9 @@ Furthermore, it will provide support to derive custom data flow-oriented languag
 <p>This project will provide a development environment for analyzing and designing systems using a data flow-oriented approach.
 Such systems are specified using block diagrams, which
 contain the software components (e.g. control algorithm) that will later be executed on a target device (e.g. digital controller)
-and the mechanical components of the system as well as the physical environment to allow for system simulation.
-The specification of the mechanical and physical components is done by providing the transfer
-function of the corresponding linear time-invariant (LTI) system.</p>
+and the mechanical components as well as the physical environment to allow for system simulation.
+The mechanical and physical components of the system can be represented as a dynamical system,
+which are specified by providing the transfer function of the corresponding linear time-invariant (LTI) system.</p>
 
 <p><img src="simple-pi-controller.png"/></p>
 
@@ -118,8 +118,8 @@ it is most commonly used in control systems engineering and digital signal proce
 
 <p>Currently, Eclipse does not provide tool support for designing data flow-oriented systems.
 Engineers and scientists are forced to use tools which do not integrate with other Eclipse technologies very well.
-Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools to better
-integrate them with other Eclipse technologies.</p>
+Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools for better
+integration with other Eclipse technologies.</p>
 
 <p>This project will benefit from being hosted at Eclipse due to the broader visibility,
 and better integration and coordination with other Eclipse-based technologies
@@ -178,7 +178,7 @@ and the diagram editing components, without being required to include unneeded c
 This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.<p>
 
 <p>System models are comprised of models describing the mechanical components and the physical environment of a device,
-and the software model that will later be executed on that device.
+and the software model that will later be executed on the device.
 These models are specified using block diagrams.</p>
 
 <p>When performing model simulation or code generation, an execution flow is first derived from the system model.
@@ -194,9 +194,9 @@ properties that are common to simulation and code generation can be extracted to
 
 <p>To configure computation-related aspects (e.g. fixed-point arithmetic operations),
 computation models can be specified in the configuration for individual model elements (e.g.components and subsystems).
-Since Damos models only contain logical numeric data types (e.g. real and integer),
-computation models can be used to map the logical data types to machine data types (e.g. double).
-The computation models are used by both the simulation environment and the code generators to ensure
+Since Damos models only utilize logical numeric data types (e.g. real and integer),
+computation models are used to map the logical data types to machine data types (e.g. double).
+The computation models are incorporated by both the simulation environment and the code generators to ensure
 that the simulation results match the behavior of the generated code.</p>
 
 <p>Damos provides a GMF-based graphical block diagram editor for the system model.

@@ -26,11 +26,11 @@ import org.eclipselabs.damos.library.vi.ui.figures.indicators.GaugeContentFigure
 import org.eclipselabs.damos.library.vi.util.indicators.GaugeConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationListener;
-import org.eclipselabs.damos.simulation.core.ISimulationTracePoint;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.core.SimulationManager;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationListener;
+import org.eclipselabs.damos.simulation.ISimulationTracePoint;
+import org.eclipselabs.damos.simulation.SimulationEvent;
+import org.eclipselabs.damos.simulation.SimulationManager;
 
 /**
  * @author Andreas Unger

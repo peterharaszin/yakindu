@@ -14,8 +14,8 @@ package org.eclipselabs.damos.simulation.simulator;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 
 /**
  * @author Andreas Unger

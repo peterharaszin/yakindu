@@ -12,7 +12,7 @@
       </definedType>
     </typeSpecifier>
   </propertyDeclarations>
-  <target href="../../org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi#//@members.1"/>
+  <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince54">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
@@ -66,7 +66,7 @@
       </definedType>
     </typeSpecifier>
   </propertyDeclarations>
-  <target href="../../org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi#//@members.1"/>
+  <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince853">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
@@ -120,7 +120,7 @@
       </definedType>
     </typeSpecifier>
   </propertyDeclarations>
-  <target href="../../org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi#//@members.1"/>
+  <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="Euler">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="stepSize">
@@ -134,6 +134,6 @@
       </definedType>
     </typeSpecifier>
   </propertyDeclarations>
-  <target href="../../org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi#//@members.1"/>
+  <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
 </dconfig:ConfigurationDefinition>

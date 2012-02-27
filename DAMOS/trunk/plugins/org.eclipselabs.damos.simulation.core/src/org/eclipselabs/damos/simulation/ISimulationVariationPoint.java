@@ -9,27 +9,20 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
+package org.eclipselabs.damos.simulation;
 
-import java.util.Collection;
-
-import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulation {
+public interface ISimulationVariationPoint {
 
-	ISimulationMonitor getMonitor();
-
-	Configuration getConfiguration();
+	DataType getDataType();
 	
-	ISimulationAgent getAgent(Component component);
-	
-	Collection<ISimulationAgent> getAgents();
-	
-	void execute(ISimulationRunnable runnable);
+	IValue getValue();
+	void setValue(IValue value);
 	
 }

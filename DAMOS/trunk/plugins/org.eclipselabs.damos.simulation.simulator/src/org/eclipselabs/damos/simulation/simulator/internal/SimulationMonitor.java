@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator.internal;
 
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 
 /**
  * @author Andreas Unger

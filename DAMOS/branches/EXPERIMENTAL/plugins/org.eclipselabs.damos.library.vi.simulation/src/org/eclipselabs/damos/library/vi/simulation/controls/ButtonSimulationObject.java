@@ -17,9 +17,9 @@ import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
-import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationVariationPoint;
+import org.eclipselabs.damos.simulation.AbstractSimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationVariationPoint;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 
 /**

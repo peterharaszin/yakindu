@@ -36,8 +36,8 @@ import org.eclipselabs.damos.library.base.simulation.audio.AudioFileWriter;
 import org.eclipselabs.damos.library.base.util.sources.AudioFileSourceConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.util.SimulationConfigurationUtil;
 
 /**
  * @author Andreas Unger

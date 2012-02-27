@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.simulation.simulator;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.simulation.core.ISimulation;
+import org.eclipselabs.damos.simulation.ISimulation;
 
 /**
  * @author Andreas Unger

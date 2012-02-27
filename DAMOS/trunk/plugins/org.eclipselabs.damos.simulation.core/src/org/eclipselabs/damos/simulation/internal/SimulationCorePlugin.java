@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.simulation.core.internal;
+package org.eclipselabs.damos.simulation.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -6,7 +6,7 @@ import org.osgi.framework.BundleContext;
 public class SimulationCorePlugin extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation.core";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation";
 
 	// The shared instance
 	private static SimulationCorePlugin plugin;

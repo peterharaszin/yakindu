@@ -9,15 +9,15 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core.internal.registry;
+package org.eclipselabs.damos.simulation.internal.registry;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.simulation.core.ISimulationListener;
-import org.eclipselabs.damos.simulation.core.internal.SimulationCorePlugin;
+import org.eclipselabs.damos.simulation.ISimulationListener;
+import org.eclipselabs.damos.simulation.internal.SimulationCorePlugin;
 
 /**
  * @author Andreas Unger

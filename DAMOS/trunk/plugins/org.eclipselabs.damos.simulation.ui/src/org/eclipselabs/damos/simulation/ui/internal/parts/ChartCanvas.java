@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipselabs.damos.simulation.core.IXYChartData;
+import org.eclipselabs.damos.simulation.IXYChartData;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**

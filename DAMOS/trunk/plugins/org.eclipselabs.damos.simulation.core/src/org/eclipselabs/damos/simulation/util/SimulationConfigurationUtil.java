@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core.util;
+package org.eclipselabs.damos.simulation.util;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.dconfig.Configuration;

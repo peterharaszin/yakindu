@@ -5,7 +5,7 @@
    <extension
          point="org.eclipselabs.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi">
+            uri="platform:/plugin/org.eclipselabs.damos.simulation/dconfig/Simulation.xmi">
       </resource>
    </extension>
 </plugin>

@@ -32,7 +32,7 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
-import org.eclipselabs.damos.simulation.core.ISimulation;
+import org.eclipselabs.damos.simulation.ISimulation;
 import org.eclipselabs.damos.simulation.simulator.internal.ComponentOverflowMonitor;
 import org.eclipselabs.damos.simulation.simulator.internal.DefaultSimulationClock;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;

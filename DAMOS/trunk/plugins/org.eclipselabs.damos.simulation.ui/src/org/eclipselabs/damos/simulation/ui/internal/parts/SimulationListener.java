@@ -21,10 +21,10 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.core.ISimulationListener;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
+import org.eclipselabs.damos.simulation.ISimulationListener;
+import org.eclipselabs.damos.simulation.SimulationEvent;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
+import org.eclipselabs.damos.simulation.util.SimulationConfigurationUtil;
 
 /**
  * @author Andreas Unger

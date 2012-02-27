@@ -9,16 +9,14 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
-
-import org.eclipselabs.damos.dml.Component;
+package org.eclipselabs.damos.simulation;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulationRunnable extends Runnable {
+public interface IXYChartDataProvider {
 
-	Component getComponent();
+	IXYChartData getXYChartData();
 	
 }

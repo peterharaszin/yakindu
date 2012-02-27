@@ -9,31 +9,40 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
+package org.eclipselabs.damos.simulation;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulationAgent extends IAdaptable {
+public abstract class AbstractSimulationRunnable implements ISimulationRunnable {
 
-	Component getComponent();
+	private ISimulation simulation;
 	
-	ISimulationTracePoint[] getTracePoints();
-	
-	ISimulationVariationPoint[] getVariationPoints();
+	private Component component;
 
 	/**
-	 * Return the {@link IComputationContext} that will be used to
-	 * create variation point values. If no variation points exist,
-	 * <code>null</code> should be returned.
 	 * 
-	 * @return the {@link IComputationContext}, or <code>null</code>
 	 */
-	IComputationContext getComputationContext();
+	public AbstractSimulationRunnable(ISimulation simulation, Component component) {
+		this.simulation = simulation;
+		this.component = component;
+	}
+	
+	/**
+	 * @return the simulation
+	 */
+	protected ISimulation getSimulation() {
+		return simulation;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.ISimulationRunnable#getComponent()
+	 */
+	public Component getComponent() {
+		return component;
+	}
 
 }

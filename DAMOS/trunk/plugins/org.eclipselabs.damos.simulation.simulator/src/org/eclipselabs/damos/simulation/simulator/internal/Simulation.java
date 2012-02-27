@@ -26,10 +26,10 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
-import org.eclipselabs.damos.simulation.core.ISimulation;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.core.ISimulationRunnable;
+import org.eclipselabs.damos.simulation.ISimulation;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationRunnable;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
@@ -58,7 +58,7 @@ public class Simulation implements ISimulation {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.core.ISimulation#getMonitor()
+	 * @see org.eclipselabs.damos.simulation.ISimulation#getMonitor()
 	 */
 	public ISimulationMonitor getMonitor() {
 		return monitor;
@@ -107,7 +107,7 @@ public class Simulation implements ISimulation {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.core.ISimulation#execute(java.lang.Runnable)
+	 * @see org.eclipselabs.damos.simulation.ISimulation#execute(java.lang.Runnable)
 	 */
 	public void execute(ISimulationRunnable runnable) {
 		cache();

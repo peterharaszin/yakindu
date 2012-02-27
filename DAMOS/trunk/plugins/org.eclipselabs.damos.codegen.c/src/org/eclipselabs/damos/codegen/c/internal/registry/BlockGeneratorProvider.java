@@ -36,7 +36,7 @@ public class BlockGeneratorProvider implements IComponentGeneratorProvider {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.core.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
+	 * @see org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
 	 */
 	public IComponentGenerator createGenerator(Component component) {
 		if (component instanceof Block) {

@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.common.math.jama.Matrix;
-import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
 import org.eclipselabs.damos.mscript.MscriptFactory;

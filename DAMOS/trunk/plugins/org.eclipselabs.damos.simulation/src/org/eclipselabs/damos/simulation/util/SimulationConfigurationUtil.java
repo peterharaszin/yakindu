@@ -13,7 +13,7 @@ package org.eclipselabs.damos.simulation.util;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;

@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.codegen.c;
 
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.core.IComponentSignature;
+import org.eclipselabs.damos.execution.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**

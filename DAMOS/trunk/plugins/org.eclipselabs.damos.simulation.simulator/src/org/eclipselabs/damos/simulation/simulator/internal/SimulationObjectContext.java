@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.simulation.simulator.internal;
 
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.core.IComponentSignature;
+import org.eclipselabs.damos.execution.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext;

@@ -15,10 +15,10 @@ import java.util.Map;
 
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.core.ComponentSignature;
-import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.ComponentSignature;
+import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 

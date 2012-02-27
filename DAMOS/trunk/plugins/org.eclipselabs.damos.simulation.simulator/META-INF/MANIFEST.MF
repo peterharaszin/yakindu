@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexpor
  org.eclipselabs.damos.dml;bundle-version="0.3.0";visibility:=reexport,
  org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
  org.eclipselabs.damos.common;bundle-version="0.3.0",
- org.eclipselabs.damos.execution.core;bundle-version="0.3.0",
+ org.eclipselabs.damos.execution;bundle-version="0.3.0",
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.3.0",
  org.eclipselabs.damos.simulation;bundle-version="0.3.0";visibility:=reexport,
  org.eclipselabs.damos.mscript;bundle-version="0.3.0",

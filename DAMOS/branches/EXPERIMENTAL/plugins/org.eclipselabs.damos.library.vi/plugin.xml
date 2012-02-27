@@ -73,7 +73,7 @@
       </blockType>
    </extension>
    <extension
-         point="org.eclipselabs.damos.execution.core.blockSignaturePolicies">
+         point="org.eclipselabs.damos.execution.blockSignaturePolicies">
       <policy
             blockType="damos.library.vi.communication.UDPSource"
             class="org.eclipselabs.damos.library.vi.signatures.communication.UDPSourceSignaturePolicy"

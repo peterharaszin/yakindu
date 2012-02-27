@@ -36,7 +36,7 @@ public class BlockSimulationObjectProvider implements ISimulationObjectProvider 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.core.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
+	 * @see org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
 	 */
 	public ISimulationObject createSimulationObject(Component component) {
 		if (component instanceof Block) {

@@ -13,8 +13,8 @@ package org.eclipselabs.damos.rte.posix.codegen.c;
 
 import java.io.IOException;
 
-import org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator;
-import org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo;
+import org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator;
+import org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo;
 
 /**
  * @author Andreas Unger
@@ -23,7 +23,7 @@ import org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo;
 public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#contributesContextCode()
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#contributesContextCode()
 	 */
 	@Override
 	public boolean contributesContextCode() {
@@ -31,7 +31,7 @@ public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
 	 */
 	@Override
 	public void writeContextCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
@@ -39,7 +39,7 @@ public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#contributesInitializationCode()
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#contributesInitializationCode()
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
@@ -47,7 +47,7 @@ public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
 	 */
 	@Override
 	public void writeInitializationCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
@@ -55,7 +55,7 @@ public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#writeDownCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeDownCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
 	 */
 	@Override
 	public void writeDownCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
@@ -63,7 +63,7 @@ public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractSemaphoreGenerator#writeUpCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeUpCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
 	 */
 	@Override
 	public void writeUpCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {

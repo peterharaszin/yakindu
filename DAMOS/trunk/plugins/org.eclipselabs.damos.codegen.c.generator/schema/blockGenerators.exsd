@@ -65,7 +65,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.codegen.c.generator.IComponentGenerator"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.codegen.c.IComponentGenerator"/>
                </appinfo>
             </annotation>
          </attribute>

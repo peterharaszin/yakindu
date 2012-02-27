@@ -127,7 +127,7 @@ ReactionTrigger returns sgraph::Trigger:
 	| ('[' guardExpression=Expression ']'));
 
 ReactionEffect returns sgraph::Effect:
-	{ReactionEffect} actions+=(Expression | EventRaisingExpression) =>(';' actions+=(Expression|EventRaisingExpression) )* (';')?;
+	{ReactionEffect} actions+=(Expression | EventRaisingExpression) (=> ';' actions+=(Expression|EventRaisingExpression) )* ; // (';')?;
 
 ReactionProperties:
 	{ReactionProperties} (properties+=ReactionProperty)*;

@@ -4996,14 +4996,13 @@ protected class ReactionTrigger_RightSquareBracketKeyword_1_1_2 extends KeywordT
 
 /************ begin Rule ReactionEffect ****************
  *
+ * // (';')?;
  * ReactionEffect returns sgraph::Effect:
- * 	{ReactionEffect} actions+=(Expression | EventRaisingExpression) => (";" actions+=(Expression |
- * 	EventRaisingExpression))* ";"?;
+ * 	{ReactionEffect} actions+=(Expression | EventRaisingExpression) (";" actions+=(Expression | EventRaisingExpression))*;
  *
  **/
 
-// {ReactionEffect} actions+=(Expression | EventRaisingExpression) => (";" actions+=(Expression | EventRaisingExpression))*
-// ";"?
+// {ReactionEffect} actions+=(Expression | EventRaisingExpression) (";" actions+=(Expression | EventRaisingExpression))*
 protected class ReactionEffect_Group extends GroupToken {
 	
 	public ReactionEffect_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5115,7 +5114,7 @@ protected class ReactionEffect_ActionsAssignment_1 extends AssignmentToken  {
 	}	
 }
 
-// => (";" actions+=(Expression | EventRaisingExpression))*
+// (=> ";" actions+=(Expression | EventRaisingExpression))*
 protected class ReactionEffect_Group_2 extends GroupToken {
 	
 	public ReactionEffect_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5130,45 +5129,23 @@ protected class ReactionEffect_Group_2 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ReactionEffect_Group_2_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ReactionEffect_ActionsAssignment_2_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// ";" actions+=(Expression | EventRaisingExpression)
-protected class ReactionEffect_Group_2_0 extends GroupToken {
+// => ";"
+protected class ReactionEffect_SemicolonKeyword_2_0 extends KeywordToken  {
 	
-	public ReactionEffect_Group_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getReactionEffectAccess().getGroup_2_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ReactionEffect_ActionsAssignment_2_0_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// ";"
-protected class ReactionEffect_SemicolonKeyword_2_0_0 extends KeywordToken  {
-	
-	public ReactionEffect_SemicolonKeyword_2_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ReactionEffect_SemicolonKeyword_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0_0();
+		return grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0();
 	}
 
     @Override
@@ -5183,15 +5160,15 @@ protected class ReactionEffect_SemicolonKeyword_2_0_0 extends KeywordToken  {
 }
 
 // actions+=(Expression | EventRaisingExpression)
-protected class ReactionEffect_ActionsAssignment_2_0_1 extends AssignmentToken  {
+protected class ReactionEffect_ActionsAssignment_2_1 extends AssignmentToken  {
 	
-	public ReactionEffect_ActionsAssignment_2_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ReactionEffect_ActionsAssignment_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getReactionEffectAccess().getActionsAssignment_2_0_1();
+		return grammarAccess.getReactionEffectAccess().getActionsAssignment_2_1();
 	}
 
     @Override
@@ -5211,7 +5188,7 @@ protected class ReactionEffect_ActionsAssignment_2_0_1 extends AssignmentToken  
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpressionRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_0_1_0_0(); 
+				element = grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_1_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -5220,7 +5197,7 @@ protected class ReactionEffect_ActionsAssignment_2_0_1 extends AssignmentToken  
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getEventRaisingExpressionRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1(); 
+				element = grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_1_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -5232,12 +5209,11 @@ protected class ReactionEffect_ActionsAssignment_2_0_1 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new ReactionEffect_SemicolonKeyword_2_0_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new ReactionEffect_SemicolonKeyword_2_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
-
 
 
 

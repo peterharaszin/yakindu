@@ -1811,23 +1811,15 @@ ruleReactionEffect returns [EObject current=null]
 
 )
 )(((	';' 
-(
-(
-(
-ruleExpression
-    |ruleEventRaisingExpression
-)
-
-)
-)))=>(	otherlv_2=';' 
+)=>	otherlv_2=';' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0_0());
+    	newLeafNode(otherlv_2, grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0());
     }
-(
+)(
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_0_1_0_0()); 
+	        newCompositeNode(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_1_0_0()); 
 	    }
 		lv_actions_3_1=ruleExpression		{
 	        if ($current==null) {
@@ -1842,7 +1834,7 @@ ruleExpression
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1()); 
+	        newCompositeNode(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_1_0_1()); 
 	    }
 		lv_actions_3_2=ruleEventRaisingExpression		{
 	        if ($current==null) {
@@ -1859,11 +1851,7 @@ ruleExpression
 )
 
 )
-)))*(	otherlv_4=';' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getReactionEffectAccess().getSemicolonKeyword_3());
-    }
-)?)
+))*)
 ;
 
 

@@ -556,18 +556,15 @@
             <elements xsi:type="xtext:RuleCall" rule="/0/@rules.48"/>
           </terminal>
         </elements>
-        <elements xsi:type="xtext:Group" cardinality="*" predicated="true">
-          <elements xsi:type="xtext:Group">
-            <elements xsi:type="xtext:Keyword" value=";"/>
-            <elements xsi:type="xtext:Assignment" feature="actions" operator="+=">
-              <terminal xsi:type="xtext:Alternatives">
-                <elements xsi:type="xtext:RuleCall" rule="/0/@rules.50"/>
-                <elements xsi:type="xtext:RuleCall" rule="/0/@rules.48"/>
-              </terminal>
-            </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" predicated="true" value=";"/>
+          <elements xsi:type="xtext:Assignment" feature="actions" operator="+=">
+            <terminal xsi:type="xtext:Alternatives">
+              <elements xsi:type="xtext:RuleCall" rule="/0/@rules.50"/>
+              <elements xsi:type="xtext:RuleCall" rule="/0/@rules.48"/>
+            </terminal>
           </elements>
         </elements>
-        <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ReactionProperties">

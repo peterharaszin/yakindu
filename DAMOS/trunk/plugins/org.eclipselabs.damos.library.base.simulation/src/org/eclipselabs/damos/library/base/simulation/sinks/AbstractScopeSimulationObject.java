@@ -14,7 +14,7 @@ package org.eclipselabs.damos.library.base.simulation.sinks;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.util.sinks.CommonScopeConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;

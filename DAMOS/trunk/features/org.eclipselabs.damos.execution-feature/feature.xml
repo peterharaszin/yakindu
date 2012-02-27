@@ -22,7 +22,7 @@
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.execution.core"
+         id="org.eclipselabs.damos.execution"
          download-size="0"
          install-size="0"
          version="0.0.0"

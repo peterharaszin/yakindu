@@ -252,7 +252,7 @@
       </blockType>
    </extension>
    <extension
-         point="org.eclipselabs.damos.execution.core.blockSignaturePolicies">
+         point="org.eclipselabs.damos.execution.blockSignaturePolicies">
       <policy
             blockType="damos.library.base.continuous.Integrator"
             class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.IntegratorSignaturePolicy"

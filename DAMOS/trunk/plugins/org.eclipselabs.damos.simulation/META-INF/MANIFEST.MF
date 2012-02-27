@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0",
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
- org.eclipselabs.damos.execution.core;bundle-version="0.3.0"
+ org.eclipselabs.damos.execution;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipselabs.damos.simulation,

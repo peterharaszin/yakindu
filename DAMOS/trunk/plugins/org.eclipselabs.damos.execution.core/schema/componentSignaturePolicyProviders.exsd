@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipselabs.damos.execution.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipselabs.damos.execution" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipselabs.damos.execution.core" id="componentSignaturePolicyProviders" name="Component Signature Policy Providers"/>
+         <meta.schema plugin="org.eclipselabs.damos.execution" id="componentSignaturePolicyProviders" name="Component Signature Policy Providers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.execution.core.IComponentSignaturePolicyProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider"/>
                </appinfo>
             </annotation>
          </attribute>

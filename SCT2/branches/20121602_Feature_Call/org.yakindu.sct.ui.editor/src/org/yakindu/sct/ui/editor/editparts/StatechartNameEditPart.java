@@ -12,6 +12,8 @@ package org.yakindu.sct.ui.editor.editparts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.FontData;
 import org.yakindu.base.base.BasePackage;
 import org.yakindu.sct.ui.editor.DiagramActivator;
 
@@ -31,6 +33,12 @@ public class StatechartNameEditPart extends TextAwareLabelEditPart {
 
 	public void setLabel(IFigure label) {
 		setFigure(label);
+	}
+
+	@Override
+	protected void setFont(FontData fontData) {
+		super.setFont(new FontData(fontData.getName(), fontData.getHeight(),
+				fontData.getStyle() | SWT.BOLD));
 	}
 
 	@Override

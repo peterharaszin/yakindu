@@ -21,6 +21,6 @@ import org.eclipselabs.damos.dconfig.Configuration;
  */
 public interface IGenerator {
 
-	void generate(final Configuration configuration, final IProgressMonitor monitor) throws CoreException;
+	void generate(Configuration configuration, IProgressMonitor monitor) throws CoreException;
 	
 }

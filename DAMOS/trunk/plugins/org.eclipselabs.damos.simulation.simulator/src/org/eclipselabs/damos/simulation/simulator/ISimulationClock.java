@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.simulation.simulator;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 
 /**
  * @author Andreas Unger

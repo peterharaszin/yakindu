@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
+package org.eclipselabs.damos.simulation;
 
 import java.util.EventObject;
 

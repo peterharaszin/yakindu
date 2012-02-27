@@ -25,13 +25,13 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.simulation.core.ISimulation;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationListener;
-import org.eclipselabs.damos.simulation.core.IXYChartData;
-import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.core.SimulationManager;
+import org.eclipselabs.damos.simulation.ISimulation;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationListener;
+import org.eclipselabs.damos.simulation.IXYChartData;
+import org.eclipselabs.damos.simulation.IXYChartDataProvider;
+import org.eclipselabs.damos.simulation.SimulationEvent;
+import org.eclipselabs.damos.simulation.SimulationManager;
 
 public class SimulationView extends ViewPart {
 

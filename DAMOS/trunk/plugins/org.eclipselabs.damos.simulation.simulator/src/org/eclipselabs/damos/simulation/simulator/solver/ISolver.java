@@ -13,7 +13,7 @@ package org.eclipselabs.damos.simulation.simulator.solver;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 
 /**

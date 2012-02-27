@@ -9,13 +9,13 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
+package org.eclipselabs.damos.simulation;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipselabs.damos.simulation.core.internal.registry.SimulationListenerRegistry;
+import org.eclipselabs.damos.simulation.internal.registry.SimulationListenerRegistry;
 
 /**
  * @author Andreas Unger

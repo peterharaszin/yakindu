@@ -19,10 +19,10 @@ import org.eclipselabs.damos.library.base.util.sinks.CommonScopeConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.IXYChartData;
-import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
+import org.eclipselabs.damos.simulation.AbstractSimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.IXYChartData;
+import org.eclipselabs.damos.simulation.IXYChartDataProvider;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 
 /**

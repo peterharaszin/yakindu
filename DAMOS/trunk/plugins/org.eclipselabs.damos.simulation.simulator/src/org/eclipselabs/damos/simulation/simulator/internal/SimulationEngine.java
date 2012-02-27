@@ -19,16 +19,16 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
-import org.eclipselabs.damos.simulation.core.ISimulation;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
+import org.eclipselabs.damos.simulation.ISimulation;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.SimulationEvent;
+import org.eclipselabs.damos.simulation.SimulationManager;
 import org.eclipselabs.damos.simulation.simulator.ISimulationClock;
 import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
+import org.eclipselabs.damos.simulation.util.SimulationConfigurationUtil;
 
 public class SimulationEngine implements ISimulationEngine {
 

@@ -30,7 +30,7 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 import org.eclipse.birt.chart.model.type.LineSeries;
 import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
-import org.eclipselabs.damos.simulation.core.IXYChartData;
+import org.eclipselabs.damos.simulation.IXYChartData;
 
 /**
  * @author Andreas Unger

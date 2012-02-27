@@ -14,9 +14,9 @@ package org.eclipselabs.damos.library.vi.simulation.indicators;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationTracePoint;
+import org.eclipselabs.damos.simulation.AbstractSimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationAgent;
+import org.eclipselabs.damos.simulation.ISimulationTracePoint;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 
 /**
@@ -88,7 +88,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.simulation.core.ISimulationTracePoint#getValue()
+		 * @see org.eclipselabs.damos.simulation.ISimulationTracePoint#getValue()
 		 */
 		public IValue getValue() {
 			return values[index];

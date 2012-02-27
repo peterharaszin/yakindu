@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2009 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,20 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.core;
-
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+package org.eclipselabs.damos.simulation;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulationTracePoint {
+public interface IXYChartData {
 
-	IValue getValue();
+	String getChartTitle();
+	
+	String getXAxisTitle();
+	String[] getYAxisTitles();
+
+	double[] getXValues();
+	double[][] getYValues();
 	
 }

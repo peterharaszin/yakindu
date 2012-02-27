@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.DiscreteStateComputationHelper;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
@@ -56,7 +56,7 @@ public abstract class AbstractSolver implements ISolver {
 	protected abstract void configure(Configuration configuration);
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#initialize(org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext, org.eclipselabs.damos.simulation.core.ISimulationMonitor)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#initialize(org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext, org.eclipselabs.damos.simulation.ISimulationMonitor)
 	 */
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
 		this.context = context;

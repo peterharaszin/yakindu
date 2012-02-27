@@ -14,9 +14,9 @@ package org.eclipselabs.damos.simulation.simulator.internal;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
 import org.eclipselabs.damos.mscript.interpreter.OverflowInfo;
-import org.eclipselabs.damos.simulation.core.ISimulation;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.core.SimulationManager;
+import org.eclipselabs.damos.simulation.ISimulation;
+import org.eclipselabs.damos.simulation.SimulationEvent;
+import org.eclipselabs.damos.simulation.SimulationManager;
 
 /**
  * @author Andreas Unger

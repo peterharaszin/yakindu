@@ -40,7 +40,7 @@
       </decorator>
    </extension>
    <extension
-         point="org.eclipselabs.damos.simulation.core.simulationListeners">
+         point="org.eclipselabs.damos.simulation.simulationListeners">
       <listener
             class="org.eclipselabs.damos.simulation.ui.internal.parts.SimulationListener">
       </listener>

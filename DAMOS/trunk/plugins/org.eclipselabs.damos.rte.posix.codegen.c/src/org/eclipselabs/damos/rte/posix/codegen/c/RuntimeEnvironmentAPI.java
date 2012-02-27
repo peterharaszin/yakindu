@@ -13,10 +13,10 @@ package org.eclipselabs.damos.rte.posix.codegen.c;
 
 import java.io.IOException;
 
-import org.eclipselabs.damos.codegen.c.generator.rte.AbstractRuntimeEnvironmentAPI;
-import org.eclipselabs.damos.codegen.c.generator.rte.IFastLockGenerator;
-import org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueGenerator;
-import org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreGenerator;
+import org.eclipselabs.damos.codegen.c.rte.AbstractRuntimeEnvironmentAPI;
+import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
+import org.eclipselabs.damos.codegen.c.rte.IMessageQueueGenerator;
+import org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator;
 
 /**
  * @author Andreas Unger
@@ -35,14 +35,14 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskInfoInclude(java.lang.Appendable)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskInfoInclude(java.lang.Appendable)
 	 */
 	public void writeTaskInfoInclude(Appendable appendable) throws IOException {
 		appendable.append("#include <damos/posix/task.h>\n");
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#getTaskInfoStructName()
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getTaskInfoStructName()
 	 */
 	public String getTaskInfoStructName() {
 		return "DamosPosixTaskInfo";
@@ -53,35 +53,35 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#getSemaphoreGenerator()
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getSemaphoreGenerator()
 	 */
 	public ISemaphoreGenerator getSemaphoreGenerator() {
 		return new SemaphoreGenerator();
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#getMessageQueueGenerator()
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getMessageQueueGenerator()
 	 */
 	public IMessageQueueGenerator getMessageQueueGenerator() {
 		return new MessageQueueGenerator();
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskFunctionType(java.lang.Appendable, java.lang.String)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskFunctionType(java.lang.Appendable, java.lang.String)
 	 */
 	public void writeTaskFunctionType(Appendable appendable, String name) throws IOException {
 		appendable.append("void *(*").append(name).append(")(void *context)");
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskFunction(java.lang.Appendable, java.lang.String)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskFunction(java.lang.Appendable, java.lang.String)
 	 */
 	public void writeTaskSignature(Appendable appendable, String name) throws IOException {
 		appendable.append("void *").append(name).append("(void *context)");
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskReturnStatement(java.lang.Appendable, java.lang.String)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskReturnStatement(java.lang.Appendable, java.lang.String)
 	 */
 	public void writeTaskReturnStatement(Appendable appendable, String name) throws IOException {
 		appendable.append("return NULL;");

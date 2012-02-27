@@ -9,49 +9,52 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.rte.posix.codegen.c;
+package org.eclipselabs.damos.codegen.c.rte;
 
 import java.io.IOException;
-
-import org.eclipselabs.damos.codegen.c.rte.AbstractFastLockGenerator;
 
 /**
  * @author Andreas Unger
  *
  */
-public class FastLockGenerator extends AbstractFastLockGenerator {
+public class AbstractFastLockGenerator implements IFastLockGenerator {
 
-	@Override
-	public boolean contributesContextCode() {
-		return true;
-	}
-	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSimpleLockGenerator#writeContextCode(java.lang.Appendable, java.lang.String)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesContextStructCode()
 	 */
-	@Override
-	public void writeContextCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_t ").append(variableName).append(";\n");
-	}
-	
-	@Override
-	public boolean contributesInitializationCode() {
-		return true;
-	}
-	
-	@Override
-	public void writeInitializationCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_init(&").append(variableName).append(", NULL);\n");
+	public boolean contributesContextCode() {
+		return false;
 	}
 
-	@Override
-	public void writeLockCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_lock(&").append(variableName).append(");\n");
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeContextStructCode(java.lang.Appendable)
+	 */
+	public void writeContextCode(Appendable appendable, String variableName) throws IOException {
 	}
-	
-	@Override
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesInitializationCode()
+	 */
+	public boolean contributesInitializationCode() {
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String)
+	 */
+	public void writeInitializationCode(Appendable appendable, String variableName) throws IOException {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeLockCode(java.lang.Appendable, java.lang.String)
+	 */
+	public void writeLockCode(Appendable appendable, String variableName) throws IOException {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeUnlockCode(java.lang.Appendable, java.lang.String)
+	 */
 	public void writeUnlockCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_unlock(&").append(variableName).append(");\n");
 	}
 
 }

@@ -62,7 +62,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.codegen.c.generator.IRuntimeEnvironmentAPI"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.codegen.c.IRuntimeEnvironmentAPI"/>
                </appinfo>
             </annotation>
          </attribute>

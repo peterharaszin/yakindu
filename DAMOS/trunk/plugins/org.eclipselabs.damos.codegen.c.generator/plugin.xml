@@ -5,27 +5,27 @@
    <extension-point id="blockGenerators" name="Block Generators" schema="schema/blockGenerators.exsd"/>
    <extension-point id="runtimeEnvironmentAPIs" name="Runtime Environment APIs" schema="schema/runtimeEnvironmentAPIs.exsd"/>
    <extension
-         point="org.eclipselabs.damos.codegen.c.generator.componentGeneratorProviders">
+         point="org.eclipselabs.damos.codegen.c.componentGeneratorProviders">
       <provider
-            class="org.eclipselabs.damos.codegen.c.generator.internal.registry.BlockGeneratorProvider">
+            class="org.eclipselabs.damos.codegen.c.internal.registry.BlockGeneratorProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.codegen.c.generator.internal.providers.BehavioredBlockGeneratorProvider">
+            class="org.eclipselabs.damos.codegen.c.internal.providers.BehavioredBlockGeneratorProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.codegen.c.generator.internal.providers.BuiltinComponentGeneratorProvider">
+            class="org.eclipselabs.damos.codegen.c.internal.providers.BuiltinComponentGeneratorProvider">
       </provider>
    </extension>
    <extension
          point="org.eclipselabs.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/CodegenC.xmi">
+            uri="platform:/plugin/org.eclipselabs.damos.codegen.c/dconfig/CodegenC.xmi">
       </resource>
    </extension>
    <extension
          point="org.eclipselabs.damos.codegen.generators">
       <generator
-            class="org.eclipselabs.damos.codegen.c.generator.Generator"
+            class="org.eclipselabs.damos.codegen.c.Generator"
             id="damos.codegen.c.DefaultGenerator"
             name="Default Generator">
       </generator>

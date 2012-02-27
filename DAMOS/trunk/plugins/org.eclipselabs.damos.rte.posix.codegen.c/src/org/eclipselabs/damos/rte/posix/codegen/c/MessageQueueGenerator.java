@@ -13,8 +13,8 @@ package org.eclipselabs.damos.rte.posix.codegen.c;
 
 import java.io.IOException;
 
-import org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator;
-import org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo;
+import org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator;
+import org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo;
 
 /**
  * @author Andreas Unger
@@ -23,7 +23,7 @@ import org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo;
 public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#contributesContextCode()
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#contributesContextCode()
 	 */
 	@Override
 	public boolean contributesContextCode() {
@@ -31,7 +31,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
 	 */
 	@Override
 	public void writeContextCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
@@ -40,7 +40,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#contributesInitializationCode()
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#contributesInitializationCode()
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
@@ -48,7 +48,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
 	 */
 	@Override
 	public void writeInitializationCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
@@ -57,7 +57,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#writeSendCode(java.lang.Appendable, java.lang.String, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeSendCode(java.lang.Appendable, java.lang.String, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
 	 */
 	@Override
 	public void writeSendCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
@@ -66,7 +66,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.rte.AbstractMessageQueueGenerator#writeReceiveCode(java.lang.Appendable, java.lang.String, java.lang.String, org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueInfo)
+	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeReceiveCode(java.lang.Appendable, java.lang.String, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
 	 */
 	@Override
 	public void writeReceiveCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {

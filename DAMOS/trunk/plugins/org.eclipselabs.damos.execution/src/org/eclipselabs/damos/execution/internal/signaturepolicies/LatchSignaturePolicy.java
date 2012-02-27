@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.ComponentSignature;
 import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.DataType;
@@ -40,7 +40,7 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Latch latch = (Latch) component;
 		
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = null;
 		
 		DataType dataType = getDataType(status, latch);
@@ -48,7 +48,7 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
 				if (!incomingDataType.isAssignableFrom(dataType)) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Initial value data type incompatible with input value data type"));
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Initial value data type incompatible with input value data type"));
 				}
 				signature = new ComponentSignature(incomingDataTypes);
 				signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
@@ -66,11 +66,11 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 			if (latch.getInitialValue() instanceof MscriptValueSpecification) {
 				return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid model"));
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid model"));
 			}
 		} catch (CoreException e) {
 			status.add(new MultiStatus(
-					ExecutionCorePlugin.PLUGIN_ID,
+					ExecutionPlugin.PLUGIN_ID,
 					0,
 					new IStatus[] { e.getStatus() },
 					"Initial value evaluation failed",

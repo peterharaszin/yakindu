@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.ComponentSignature;
 import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.DataType;
@@ -41,7 +41,7 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 
 		Choice choice = (Choice) component;
 		
@@ -59,10 +59,10 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
 					IValue value = ExpressionUtil.evaluateExpression(condition.getExpression());
 					if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Action link condition '" + condition.stringValue() + "' is incompatible with choice input value"));
+						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Action link condition '" + condition.stringValue() + "' is incompatible with choice input value"));
 					}
 				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid initial value"));
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid initial value"));
 				}
 			} catch (CoreException e) {
 				status.add(e.getStatus());

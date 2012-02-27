@@ -31,7 +31,7 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.ComponentSignature;
 import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.mscript.DataType;
 
@@ -45,7 +45,7 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Subsystem subsystem = (Subsystem) component;
 		
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
 		for (Input input : subsystem.getInputs()) {
@@ -56,14 +56,14 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 					if (!input.getPorts().isEmpty()) {
 						DataType incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
 						if (incomingDataType != null && !dataType.isAssignableFrom(incomingDataType)) {
-							status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
+							status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
 						}
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Missing input port")));
+						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Missing input port")));
 					}
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid subsystem input"));
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid subsystem input"));
 			}
 		}
 
@@ -75,11 +75,11 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 					if (!output.getPorts().isEmpty()) {
 						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(dataType));
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
+						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
 					}
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid subsystem output"));
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid subsystem output"));
 			}
 		}
 
@@ -93,7 +93,7 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 		if (inoutlet != null && inoutlet.getDataType() instanceof MscriptDataTypeSpecification) {
 			return ((MscriptDataTypeSpecification) inoutlet.getDataType()).getType();
 		} else {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid model"));
+			status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid model"));
 		}
 		return null;
 	}

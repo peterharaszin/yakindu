@@ -100,12 +100,12 @@ public class Generator extends AbstractGenerator {
 	public void generate(final Configuration configuration, final IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No system configuration specified"));
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No system configuration specified"));
 		}
 		
 		String projectName = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
 		if (projectName == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing configuration property projectName"));
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing configuration property projectName"));
 		}
 
 		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
@@ -117,7 +117,7 @@ public class Generator extends AbstractGenerator {
 		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
 
 		if (executionFlow.getAsynchronousZoneCount() > 0 && getRuntimeEnvironmentAPI(configuration) == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
 		}
 
 		initializeExecutionFlow(configuration, executionFlow, monitor);
@@ -135,7 +135,7 @@ public class Generator extends AbstractGenerator {
 				try {
 					generateHeaderFile(configuration, executionFlow, new PrintWriter(writer), monitor);
 				} catch (IOException e) {
-					throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "I/O error occurred", e));
+					throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "I/O error occurred", e));
 				}
 			}
 			
@@ -149,7 +149,7 @@ public class Generator extends AbstractGenerator {
 				try {
 					generateSourceFile(configuration, executionFlow, new PrintWriter(writer), monitor);
 				} catch (IOException e) {
-					throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "I/O error occurred", e));
+					throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "I/O error occurred", e));
 				}
 			}
 			
@@ -201,7 +201,7 @@ public class Generator extends AbstractGenerator {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
 		if (project.exists()) {
 			if (!project.isOpen()) {
-				throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Project " + projectName + " closed"));
+				throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Project " + projectName + " closed"));
 			}
 		} else {
 			project.create(monitor);
@@ -251,7 +251,7 @@ public class Generator extends AbstractGenerator {
 	private ExecutionFlow constructExecutionFlow(Configuration configuration, IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No root system specification found in configuration"));
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No root system specification found in configuration"));
 		}
 		ExecutionFlow executionFlow = new ExecutionFlowBuilder().build(contextFragment, monitor);
 		new ComponentGeneratorAdaptor().adaptGenerators(configuration, executionFlow, monitor);
@@ -1043,7 +1043,7 @@ public class Generator extends AbstractGenerator {
 			try {
 				pipedOutputStream = new PipedOutputStream(pipedInputStream);
 			} catch (IOException e) {
-				throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Writing file '" + targetFile.getName() + "' failed", e));
+				throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Writing file '" + targetFile.getName() + "' failed", e));
 			}
 
 			Writer writer = new OutputStreamWriter(pipedOutputStream);
@@ -1061,7 +1061,7 @@ public class Generator extends AbstractGenerator {
 					writer.close();
 				} catch (IOException e) {
 					if (status.isOK()) {
-						status = new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Closing file '" + targetFile.getName() + "' failed", e);
+						status = new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Closing file '" + targetFile.getName() + "' failed", e);
 					}
 				} finally {
 					try {

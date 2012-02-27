@@ -13,7 +13,7 @@ package org.eclipselabs.damos.execution.internal;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IEObjectStatus;
 
 /**
@@ -28,7 +28,7 @@ public class EObjectStatus extends Status implements IEObjectStatus {
 	 * 
 	 */
 	public EObjectStatus(int severity, EObject eObject, String message) {
-		super(severity, ExecutionCorePlugin.PLUGIN_ID, message);
+		super(severity, ExecutionPlugin.PLUGIN_ID, message);
 		this.eObject = eObject;
 	}
 

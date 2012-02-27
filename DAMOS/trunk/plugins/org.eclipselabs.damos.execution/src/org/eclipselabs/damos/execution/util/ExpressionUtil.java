@@ -18,7 +18,7 @@ import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
@@ -37,15 +37,15 @@ public class ExpressionUtil {
 		Argument argument = element.getArgument(parameterName);
 		if (argument != null) {
 			if (!(argument.getValue() instanceof MscriptValueSpecification)) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: Invalid value"));
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: Invalid value"));
 			}
 			try {
 				return evaluateExpression(((MscriptValueSpecification) argument.getValue()).getExpression());
 			} catch (CoreException e) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: " + e.getStatus().getMessage()));
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: " + e.getStatus().getMessage()));
 			}
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
 	public static ISimpleNumericValue evaluateSimpleNumericArgument(ParameterizedElement element, String parameterName) throws CoreException {
@@ -53,7 +53,7 @@ public class ExpressionUtil {
 		if (value instanceof ISimpleNumericValue) {
 			return (ISimpleNumericValue) value;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
 	public static ISimpleNumericValue evaluateIntegerArgument(ParameterizedElement element, String parameterName) throws CoreException {
@@ -61,7 +61,7 @@ public class ExpressionUtil {
 		if (value instanceof ISimpleNumericValue && value.getDataType() instanceof IntegerType) {
 			return (ISimpleNumericValue) value;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
 	}
 
 	public static IBooleanValue evaluateBooleanArgument(ParameterizedElement element, String parameterName) throws CoreException {
@@ -69,7 +69,7 @@ public class ExpressionUtil {
 		if (value instanceof IBooleanValue) {
 			return (IBooleanValue) value;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
 	}
 
 	public static IValue evaluateExpression(Expression expression) throws CoreException {

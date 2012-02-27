@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
-import org.eclipselabs.damos.codegen.c.CodegenCGeneratorPlugin;
+import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
@@ -79,7 +79,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		MultiStatus status = new MultiStatus(CodegenCGeneratorPlugin.PLUGIN_ID, 0, "Generator initialization", null);
+		MultiStatus status = new MultiStatus(CodegenCPlugin.PLUGIN_ID, 0, "Generator initialization", null);
 
 		Block block = getComponent();
 
@@ -96,7 +96,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 		
 		if (inputParameterDataTypes == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing input data types"));
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
 		helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);

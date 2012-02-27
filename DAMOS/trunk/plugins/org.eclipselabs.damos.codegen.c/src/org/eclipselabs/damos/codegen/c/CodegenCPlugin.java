@@ -1,20 +1,20 @@
-package org.eclipselabs.damos.simulation.internal;
+package org.eclipselabs.damos.codegen.c;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-public class SimulationCorePlugin extends Plugin {
+public class CodegenCPlugin extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.codegen.c";
 
 	// The shared instance
-	private static SimulationCorePlugin plugin;
+	private static CodegenCPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public SimulationCorePlugin() {
+	public CodegenCPlugin() {
 	}
 
 	/*
@@ -40,7 +40,7 @@ public class SimulationCorePlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static SimulationCorePlugin getDefault() {
+	public static CodegenCPlugin getDefault() {
 		return plugin;
 	}
 

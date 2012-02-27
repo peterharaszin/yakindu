@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.codegen.c.CodegenCGeneratorPlugin;
+import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.ComponentGeneratorProviderRegistry;
@@ -58,7 +58,7 @@ public class ComponentGeneratorAdaptor {
 				sb.append("'");
 			}
 			throw new CoreException(new ComponentGeneratorStatus(
-					IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, 0, sb.toString(), null, missingGeneratorComponents));
+					IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, 0, sb.toString(), null, missingGeneratorComponents));
 		}
 	}
 

@@ -1,23 +1,20 @@
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.simulation.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-/**
- * The activator class controls the plug-in life cycle
- */
-public class ExecutionCorePlugin extends Plugin {
+public class SimulationPlugin extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.execution";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation";
 
 	// The shared instance
-	private static ExecutionCorePlugin plugin;
+	private static SimulationPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public ExecutionCorePlugin() {
+	public SimulationPlugin() {
 	}
 
 	/*
@@ -43,7 +40,7 @@ public class ExecutionCorePlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static ExecutionCorePlugin getDefault() {
+	public static SimulationPlugin getDefault() {
 		return plugin;
 	}
 

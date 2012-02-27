@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider;
 
 /**
@@ -41,7 +41,7 @@ public class ComponentSignaturePolicyProviderRegistryReader extends AbstractRegi
 	 */
 	@Override
 	protected String getPluginId() {
-		return ExecutionCorePlugin.PLUGIN_ID;
+		return ExecutionPlugin.PLUGIN_ID;
 	}
 
 	/* (non-Javadoc)
@@ -49,7 +49,7 @@ public class ComponentSignaturePolicyProviderRegistryReader extends AbstractRegi
 	 */
 	@Override
 	protected ILog getLog() {
-		return ExecutionCorePlugin.getDefault().getLog();
+		return ExecutionPlugin.getDefault().getLog();
 	}
 
 	/* (non-Javadoc)

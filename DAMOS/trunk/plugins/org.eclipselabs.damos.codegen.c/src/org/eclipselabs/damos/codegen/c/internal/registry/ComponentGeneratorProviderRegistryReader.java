@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c.internal.registry;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
-import org.eclipselabs.damos.codegen.c.CodegenCGeneratorPlugin;
+import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
@@ -41,7 +41,7 @@ public class ComponentGeneratorProviderRegistryReader extends AbstractRegistryRe
 	 */
 	@Override
 	protected String getPluginId() {
-		return CodegenCGeneratorPlugin.PLUGIN_ID;
+		return CodegenCPlugin.PLUGIN_ID;
 	}
 
 	/* (non-Javadoc)
@@ -49,7 +49,7 @@ public class ComponentGeneratorProviderRegistryReader extends AbstractRegistryRe
 	 */
 	@Override
 	protected ILog getLog() {
-		return CodegenCGeneratorPlugin.getDefault().getLog();
+		return CodegenCPlugin.getDefault().getLog();
 	}
 
 	/* (non-Javadoc)

@@ -46,7 +46,7 @@ import org.yakindu.sct.model.stext.stext.TypedElementReferenceExpression
 import org.yakindu.base.types.Feature
 import javax.lang.model.element.TypeElement
 import org.yakindu.sct.model.stext.stext.FeatureCall
-
+ 
 /**
  * 
  * The Static type analyzer checks an expression AST for type conformance

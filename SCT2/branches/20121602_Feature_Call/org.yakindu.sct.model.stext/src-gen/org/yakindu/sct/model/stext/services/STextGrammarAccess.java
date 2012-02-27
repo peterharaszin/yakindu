@@ -1113,21 +1113,18 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActionsExpressionParserRuleCall_1_0_0 = (RuleCall)cActionsAlternatives_1_0.eContents().get(0);
 		private final RuleCall cActionsEventRaisingExpressionParserRuleCall_1_0_1 = (RuleCall)cActionsAlternatives_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cGroup_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cActionsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final Alternatives cActionsAlternatives_2_0_1_0 = (Alternatives)cActionsAssignment_2_0_1.eContents().get(0);
-		private final RuleCall cActionsExpressionParserRuleCall_2_0_1_0_0 = (RuleCall)cActionsAlternatives_2_0_1_0.eContents().get(0);
-		private final RuleCall cActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1 = (RuleCall)cActionsAlternatives_2_0_1_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cSemicolonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cActionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final Alternatives cActionsAlternatives_2_1_0 = (Alternatives)cActionsAssignment_2_1.eContents().get(0);
+		private final RuleCall cActionsExpressionParserRuleCall_2_1_0_0 = (RuleCall)cActionsAlternatives_2_1_0.eContents().get(0);
+		private final RuleCall cActionsEventRaisingExpressionParserRuleCall_2_1_0_1 = (RuleCall)cActionsAlternatives_2_1_0.eContents().get(1);
 		
+		//// (';')?;
 		//ReactionEffect returns sgraph::Effect:
-		//	{ReactionEffect} actions+=(Expression | EventRaisingExpression) => (";" actions+=(Expression |
-		//	EventRaisingExpression))* ";"?;
+		//	{ReactionEffect} actions+=(Expression | EventRaisingExpression) (";" actions+=(Expression | EventRaisingExpression))*;
 		public ParserRule getRule() { return rule; }
 
-		//{ReactionEffect} actions+=(Expression | EventRaisingExpression) => (";" actions+=(Expression | EventRaisingExpression))*
-		//";"?
+		//{ReactionEffect} actions+=(Expression | EventRaisingExpression) (";" actions+=(Expression | EventRaisingExpression))*
 		public Group getGroup() { return cGroup; }
 
 		//{ReactionEffect}
@@ -1145,29 +1142,23 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		//EventRaisingExpression
 		public RuleCall getActionsEventRaisingExpressionParserRuleCall_1_0_1() { return cActionsEventRaisingExpressionParserRuleCall_1_0_1; }
 
-		//=> (";" actions+=(Expression | EventRaisingExpression))*
+		//(=> ";" actions+=(Expression | EventRaisingExpression))*
 		public Group getGroup_2() { return cGroup_2; }
 
-		//";" actions+=(Expression | EventRaisingExpression)
-		public Group getGroup_2_0() { return cGroup_2_0; }
-
-		//";"
-		public Keyword getSemicolonKeyword_2_0_0() { return cSemicolonKeyword_2_0_0; }
+		//=> ";"
+		public Keyword getSemicolonKeyword_2_0() { return cSemicolonKeyword_2_0; }
 
 		//actions+=(Expression | EventRaisingExpression)
-		public Assignment getActionsAssignment_2_0_1() { return cActionsAssignment_2_0_1; }
+		public Assignment getActionsAssignment_2_1() { return cActionsAssignment_2_1; }
 
 		//Expression | EventRaisingExpression
-		public Alternatives getActionsAlternatives_2_0_1_0() { return cActionsAlternatives_2_0_1_0; }
+		public Alternatives getActionsAlternatives_2_1_0() { return cActionsAlternatives_2_1_0; }
 
 		//Expression
-		public RuleCall getActionsExpressionParserRuleCall_2_0_1_0_0() { return cActionsExpressionParserRuleCall_2_0_1_0_0; }
+		public RuleCall getActionsExpressionParserRuleCall_2_1_0_0() { return cActionsExpressionParserRuleCall_2_1_0_0; }
 
 		//EventRaisingExpression
-		public RuleCall getActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1() { return cActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1; }
-
-		//";"?
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public RuleCall getActionsEventRaisingExpressionParserRuleCall_2_1_0_1() { return cActionsEventRaisingExpressionParserRuleCall_2_1_0_1; }
 	}
 
 	public class ReactionPropertiesElements extends AbstractParserRuleElementFinder {
@@ -3344,9 +3335,9 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 		return getReactionTriggerAccess().getRule();
 	}
 
+	//// (';')?;
 	//ReactionEffect returns sgraph::Effect:
-	//	{ReactionEffect} actions+=(Expression | EventRaisingExpression) => (";" actions+=(Expression |
-	//	EventRaisingExpression))* ";"?;
+	//	{ReactionEffect} actions+=(Expression | EventRaisingExpression) (";" actions+=(Expression | EventRaisingExpression))*;
 	public ReactionEffectElements getReactionEffectAccess() {
 		return (pReactionEffect != null) ? pReactionEffect : (pReactionEffect = new ReactionEffectElements());
 	}

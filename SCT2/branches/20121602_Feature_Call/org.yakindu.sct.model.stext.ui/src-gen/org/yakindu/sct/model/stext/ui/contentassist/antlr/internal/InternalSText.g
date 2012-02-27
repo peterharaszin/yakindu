@@ -2292,21 +2292,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ReactionEffect__ActionsAlternatives_2_0_1_0
+rule__ReactionEffect__ActionsAlternatives_2_1_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_0_1_0_0()); }
+{ before(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_1_0_0()); }
 	ruleExpression
-{ after(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_0_1_0_0()); }
+{ after(grammarAccess.getReactionEffectAccess().getActionsExpressionParserRuleCall_2_1_0_0()); }
 )
 
     |(
-{ before(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1()); }
+{ before(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_1_0_1()); }
 	ruleEventRaisingExpression
-{ after(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_0_1_0_1()); }
+{ after(grammarAccess.getReactionEffectAccess().getActionsEventRaisingExpressionParserRuleCall_2_1_0_1()); }
 )
 
 ;
@@ -5959,7 +5959,6 @@ rule__ReactionEffect__Group__2
     }
 :
 	rule__ReactionEffect__Group__2__Impl
-	rule__ReactionEffect__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -5982,38 +5981,6 @@ finally {
 }
 
 
-rule__ReactionEffect__Group__3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ReactionEffect__Group__3__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ReactionEffect__Group__3__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_3()); }
-(
-	';' 
-)?
-{ after(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_3()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
 
 
 
@@ -6026,6 +5993,7 @@ rule__ReactionEffect__Group_2__0
     }
 :
 	rule__ReactionEffect__Group_2__0__Impl
+	rule__ReactionEffect__Group_2__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6037,42 +6005,11 @@ rule__ReactionEffect__Group_2__0__Impl
     }
 :
 (
-{ before(grammarAccess.getReactionEffectAccess().getGroup_2_0()); }
-(rule__ReactionEffect__Group_2_0__0)
-{ after(grammarAccess.getReactionEffectAccess().getGroup_2_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-rule__ReactionEffect__Group_2_0__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ReactionEffect__Group_2_0__0__Impl
-	rule__ReactionEffect__Group_2_0__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ReactionEffect__Group_2_0__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
+{ before(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0()); }
 (
-{ before(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0_0()); }
-
 	';' 
-
-{ after(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0_0()); }
+)
+{ after(grammarAccess.getReactionEffectAccess().getSemicolonKeyword_2_0()); }
 )
 
 ;
@@ -6081,26 +6018,26 @@ finally {
 }
 
 
-rule__ReactionEffect__Group_2_0__1
+rule__ReactionEffect__Group_2__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__ReactionEffect__Group_2_0__1__Impl
+	rule__ReactionEffect__Group_2__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ReactionEffect__Group_2_0__1__Impl
+rule__ReactionEffect__Group_2__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getReactionEffectAccess().getActionsAssignment_2_0_1()); }
-(rule__ReactionEffect__ActionsAssignment_2_0_1)
-{ after(grammarAccess.getReactionEffectAccess().getActionsAssignment_2_0_1()); }
+{ before(grammarAccess.getReactionEffectAccess().getActionsAssignment_2_1()); }
+(rule__ReactionEffect__ActionsAssignment_2_1)
+{ after(grammarAccess.getReactionEffectAccess().getActionsAssignment_2_1()); }
 )
 
 ;
@@ -10882,15 +10819,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ReactionEffect__ActionsAssignment_2_0_1
+rule__ReactionEffect__ActionsAssignment_2_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getReactionEffectAccess().getActionsAlternatives_2_0_1_0()); }
-(rule__ReactionEffect__ActionsAlternatives_2_0_1_0)
-{ after(grammarAccess.getReactionEffectAccess().getActionsAlternatives_2_0_1_0()); }
+{ before(grammarAccess.getReactionEffectAccess().getActionsAlternatives_2_1_0()); }
+(rule__ReactionEffect__ActionsAlternatives_2_1_0)
+{ after(grammarAccess.getReactionEffectAccess().getActionsAlternatives_2_1_0()); }
 )
 
 ;

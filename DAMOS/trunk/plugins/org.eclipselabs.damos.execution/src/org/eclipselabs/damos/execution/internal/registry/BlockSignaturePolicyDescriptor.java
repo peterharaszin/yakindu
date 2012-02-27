@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignaturePolicy;
 
 public class BlockSignaturePolicyDescriptor {
@@ -102,8 +102,8 @@ public class BlockSignaturePolicyDescriptor {
 	}
 	
 	private void log(String msg) {
-		ExecutionCorePlugin.getDefault().getLog().log(
-				new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID,
+		ExecutionPlugin.getDefault().getLog().log(
+				new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID,
 						"Failed to load class '"
 						+ className
 						+ "' in plug-in '"

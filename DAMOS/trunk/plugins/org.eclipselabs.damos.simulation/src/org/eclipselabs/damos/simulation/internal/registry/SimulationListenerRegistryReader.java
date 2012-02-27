@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.simulation.ISimulationListener;
-import org.eclipselabs.damos.simulation.internal.SimulationCorePlugin;
+import org.eclipselabs.damos.simulation.internal.SimulationPlugin;
 
 /**
  * @author Andreas Unger
@@ -41,7 +41,7 @@ public class SimulationListenerRegistryReader extends AbstractRegistryReader {
 	 */
 	@Override
 	protected String getPluginId() {
-		return SimulationCorePlugin.PLUGIN_ID;
+		return SimulationPlugin.PLUGIN_ID;
 	}
 
 	/* (non-Javadoc)
@@ -49,7 +49,7 @@ public class SimulationListenerRegistryReader extends AbstractRegistryReader {
 	 */
 	@Override
 	protected ILog getLog() {
-		return SimulationCorePlugin.getDefault().getLog();
+		return SimulationPlugin.getDefault().getLog();
 	}
 
 	/* (non-Javadoc)

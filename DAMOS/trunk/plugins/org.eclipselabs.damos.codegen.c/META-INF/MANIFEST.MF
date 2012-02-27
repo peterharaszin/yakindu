@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Damos Codegen C Generator
 Bundle-SymbolicName: org.eclipselabs.damos.codegen.c;singleton:=true
 Bundle-Version: 0.3.0.qualifier
-Bundle-Activator: org.eclipselabs.damos.codegen.c.CodegenCGeneratorPlugin
+Bundle-Activator: org.eclipselabs.damos.codegen.c.CodegenCPlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.6.0",

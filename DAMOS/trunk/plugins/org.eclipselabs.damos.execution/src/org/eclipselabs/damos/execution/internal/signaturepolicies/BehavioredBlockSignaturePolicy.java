@@ -29,7 +29,7 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.ComponentSignature;
 import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
@@ -54,7 +54,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			Map<InputPort, DataType> incomingDataTypes) {
 		Block block = (Block) component;
 
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 
 		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
 		Helper helper = new Helper(staticEvaluationContext, block);
@@ -97,7 +97,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			BlockOutput blockOutput = (BlockOutput) output;
 			
 			if (!outputParameterDeclarationIt.hasNext()) {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No output parameter found for output '" + blockOutput.getDefinition().getName() + "'"));
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No output parameter found for output '" + blockOutput.getDefinition().getName() + "'"));
 				break;
 			}
 			
@@ -106,7 +106,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Output '"
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Output '"
 							+ outputParameterDeclaration.getName() + "' must result to array type"));
 					continue;
 				}
@@ -117,7 +117,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 				}
 			} else {
 				if (output.getPorts().isEmpty()) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid output '"
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid output '"
 							+ outputParameterDeclaration.getName() + "'"));
 					continue;
 				}

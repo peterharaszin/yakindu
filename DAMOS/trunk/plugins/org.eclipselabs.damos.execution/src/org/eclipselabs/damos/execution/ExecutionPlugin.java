@@ -1,20 +1,23 @@
-package org.eclipselabs.damos.codegen.c;
+package org.eclipselabs.damos.execution;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-public class CodegenCGeneratorPlugin extends Plugin {
+/**
+ * The activator class controls the plug-in life cycle
+ */
+public class ExecutionPlugin extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.codegen.c";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.execution";
 
 	// The shared instance
-	private static CodegenCGeneratorPlugin plugin;
+	private static ExecutionPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public CodegenCGeneratorPlugin() {
+	public ExecutionPlugin() {
 	}
 
 	/*
@@ -40,7 +43,7 @@ public class CodegenCGeneratorPlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static CodegenCGeneratorPlugin getDefault() {
+	public static ExecutionPlugin getDefault() {
 		return plugin;
 	}
 

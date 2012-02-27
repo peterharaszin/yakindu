@@ -24,7 +24,7 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.ComponentSignature;
 import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.mscript.DataType;
 
@@ -59,8 +59,8 @@ public class MemorySignaturePolicy extends AbstractComponentSignaturePolicy {
 		IStatus status = Status.OK_STATUS;
 
 		if (initialConditionDataType != null && !dataType.isAssignableFrom(initialConditionDataType)) {
-			MultiStatus multiStatus = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
-			multiStatus.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Data type of initial condition is incompatible with input data type"));
+			MultiStatus multiStatus = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
+			multiStatus.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Data type of initial condition is incompatible with input data type"));
 			status = multiStatus;
 		}
 		

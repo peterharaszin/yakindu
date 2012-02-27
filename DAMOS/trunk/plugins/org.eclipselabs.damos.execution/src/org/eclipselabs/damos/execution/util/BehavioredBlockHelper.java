@@ -29,7 +29,7 @@ import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.execution.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.ExecutionPlugin;
 import org.eclipselabs.damos.execution.IComponentSignature;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
@@ -92,14 +92,14 @@ public class BehavioredBlockHelper {
 		MscriptBlockType blockType = (MscriptBlockType) block.getType();
 		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(blockType.getDeclarations(), "main");
 		if (functionDeclaration == null) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}
 		
 		return functionDeclaration;
 	}
 
 	public void evaluateFunctionDefinition(FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) throws CoreException {
-		multiStatus = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		multiStatus = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 		
 		if (multiStatus.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(multiStatus);
@@ -140,7 +140,7 @@ public class BehavioredBlockHelper {
 				if (value != null) {
 					templateArguments.add(value);
 				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Block parameter '"
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Block parameter '"
 							+ parameterName + "' not found"));
 				}
 			} catch (CoreException e) {
@@ -164,7 +164,7 @@ public class BehavioredBlockHelper {
 			BlockInput blockInput = (BlockInput) input;
 			
 			if (!parameterDeclarationIterator.hasNext()) {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No input parameter found for input '" + blockInput.getDefinition().getName() + "'"));
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for input '" + blockInput.getDefinition().getName() + "'"));
 				return null;
 			}
 
@@ -180,7 +180,7 @@ public class BehavioredBlockHelper {
 						} else {
 							elementDataType = TypeUtil.getLeftHandDataType(elementDataType, dataType);
 							if (elementDataType == null) {
-								status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
+								status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
 								continue;
 							}
 						}
@@ -193,7 +193,7 @@ public class BehavioredBlockHelper {
 			} else {
 				DataType dataType = null;
 				if (input.getPorts().isEmpty()) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
+					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
 					continue;
 				}
 				dataType = signature.getInputDataType(input.getPorts().get(0));
@@ -230,7 +230,7 @@ public class BehavioredBlockHelper {
 					BlockInputPort blockInputPort = (BlockInputPort) inputPort;
 					Argument argument = blockInputPort.getArgument(name);
 					if (argument == null) {
-						throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No argument for input parameter '" + name + "' found"));
+						throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No argument for input parameter '" + name + "' found"));
 					}
 					IValue value = evaluateParameterValue(argument.getParameter(), argument.getValue());
 					if (elementType == null) {
@@ -238,7 +238,7 @@ public class BehavioredBlockHelper {
 					} else {
 						elementType = TypeUtil.getLeftHandDataType(elementType, value.getDataType());
 						if (elementType == null) {
-							throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Argument values of input parameter '" + name + "' have incompatible data types"));
+							throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument values of input parameter '" + name + "' have incompatible data types"));
 						}
 					}
 					values.add(value);
@@ -266,7 +266,7 @@ public class BehavioredBlockHelper {
 			}
 			return staticEvaluationContext.getValue(expression);
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' must be an expression"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' must be an expression"));
 	}
 
 }

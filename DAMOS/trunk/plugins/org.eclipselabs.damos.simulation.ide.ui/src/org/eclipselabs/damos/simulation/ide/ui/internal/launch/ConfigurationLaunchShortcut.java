@@ -142,18 +142,18 @@ public class ConfigurationLaunchShortcut implements ILaunchShortcut2 {
 	}
 
 	private Collection<ILaunchConfiguration> getLaunchConfigurations(Configuration configuration) {
-		URI uri = EcoreUtil.getURI(configuration);
-		IPath path = new Path(uri.toPlatformString(true));
-
 		try {
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 			ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(SimulationLaunchConfigurationDelegate.LAUNCH_CONFIGURATION_TYPE);
 			if (launchConfigurationType != null) {
+				URI uri = EcoreUtil.getURI(configuration);
+				IPath path = new Path(uri.toPlatformString(true));
+
 				List<ILaunchConfiguration> launchConfigurations = new ArrayList<ILaunchConfiguration>();
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
 					if (!launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, true)) {
 						String pathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, "");
-						if (pathString.trim().length() > 0 && path.equals(new Path(pathString))) {
+						if (pathString.trim().length() > 0 && path.equals(new Path(pathString).makeAbsolute())) {
 							launchConfigurations.add(launchConfiguration);
 						}
 					}

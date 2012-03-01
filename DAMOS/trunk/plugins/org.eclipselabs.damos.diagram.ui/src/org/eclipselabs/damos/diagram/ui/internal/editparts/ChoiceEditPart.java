@@ -11,9 +11,11 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editparts.StandardComponentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ChoiceCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.ChoiceFigure;
 
 /**
@@ -27,6 +29,15 @@ public class ChoiceEditPart extends StandardComponentEditPart {
 	 */
 	public ChoiceEditPart(View view) {
 		super(view);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ChoiceCanonicalEditPolicy());
 	}
 
 	/* (non-Javadoc)

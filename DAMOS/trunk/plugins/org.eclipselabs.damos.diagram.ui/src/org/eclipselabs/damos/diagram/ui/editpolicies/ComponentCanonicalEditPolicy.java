@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.editpolicies;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Input;
@@ -38,7 +40,7 @@ import org.eclipselabs.damos.dml.OutputPort;
  * 
  * @author Andreas Unger
  */
-public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ComponentCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	
 	private List<EObject> listenerTargets;
 
@@ -110,8 +112,32 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 		return children;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#getSemanticConnectionsList()
+	 */
+	@Override
+	protected List<EObject> getSemanticConnectionsList() {
+		return Collections.emptyList();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#getSourceElement(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected EObject getSourceElement(EObject relationship) {
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#getTargetElement(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected EObject getTargetElement(EObject relationship) {
+		return null;
+	}
+
 	/**
-	 * Also handle move move notifications.
+	 * Also handle move notifications.
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#shouldHandleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 */
@@ -173,6 +199,14 @@ public class ComponentCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		
 		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#shouldIncludeConnection(org.eclipse.gmf.runtime.notation.Edge, java.util.Collection)
+	 */
+	@Override
+	protected boolean shouldIncludeConnection(Edge connection, Collection<View> children) {
+		return false;
 	}
 	
 	/* (non-Javadoc)

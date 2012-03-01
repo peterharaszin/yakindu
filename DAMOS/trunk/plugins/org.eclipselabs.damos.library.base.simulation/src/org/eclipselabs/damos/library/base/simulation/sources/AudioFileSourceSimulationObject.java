@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.library.base.simulation.sources;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,7 +72,7 @@ public class AudioFileSourceSimulationObject extends AbstractBlockSimulationObje
 				throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Unknown file scheme" + scheme));
 			}
 
-			audioFileReader = new AudioFileReader(inputStream);
+			audioFileReader = new AudioFileReader(new BufferedInputStream(inputStream));
 			int channelCount = audioFileReader.getFormat().getChannels();
 			int portCount = getComponent().getPrimaryOutputPorts().size();
 			if (channelCount < portCount) {

@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.editpolicies;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -91,12 +92,24 @@ public class FragmentCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#shouldCheckForConnections(org.eclipse.gmf.runtime.notation.View, java.util.Collection)
+	 */
+	@Override
+	protected boolean shouldCheckForConnections(View view, Collection<View> viewChildren) {
+		return true;
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy#shouldDeleteView(org.eclipse.gmf.runtime.notation.View)
 	 */
 	@Override
 	protected boolean shouldDeleteView(View view) {
 		if (view instanceof Edge) {
-			return !(view.getElement() instanceof Connection);
+			if (view.getElement() instanceof Connection) {
+				Connection connection = (Connection) view.getElement();
+				return connection.getOwningFragment() == resolveSemanticElement();
+			}
+			return false;
 		}
 		return super.shouldDeleteView(view);
 	}

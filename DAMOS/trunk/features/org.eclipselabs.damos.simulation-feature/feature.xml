@@ -18,7 +18,6 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.birt" version="2.5.0" match="greaterOrEqual"/>
       <import feature="org.eclipselabs.damos" version="0.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipselabs.damos.execution" version="0.3.0" match="greaterOrEqual"/>
    </requires>

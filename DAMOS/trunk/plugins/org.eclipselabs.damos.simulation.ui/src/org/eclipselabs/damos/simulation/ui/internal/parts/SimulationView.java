@@ -152,10 +152,6 @@ public class SimulationView extends ViewPart {
 		}
 	}
 
-	public void clear() {
-		canvas.clear();
-	}
-	
 	public void setRealtime(boolean realtime) {
 		canvas.setRealtime(realtime);
 	}

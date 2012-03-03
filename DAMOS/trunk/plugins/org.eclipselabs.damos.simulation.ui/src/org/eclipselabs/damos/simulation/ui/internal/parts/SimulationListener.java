@@ -78,7 +78,6 @@ public class SimulationListener implements ISimulationListener {
 						viewPart = (SimulationView) workbenchPage.showView(SimulationView.ID);
 						viewPart.setRealtime(simulationTime <= 0);
 						viewPart.setProgress(progress);
-						viewPart.clear();
 						break;
 					case SimulationEvent.STEP:
 						viewPart = (SimulationView) workbenchPage.findView(SimulationView.ID);

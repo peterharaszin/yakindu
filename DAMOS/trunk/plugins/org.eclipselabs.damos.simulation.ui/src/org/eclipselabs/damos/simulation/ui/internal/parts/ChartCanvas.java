@@ -73,6 +73,7 @@ public class ChartCanvas extends Composite {
 	}
 
 	public void setDataset(Collection<IXYChartData> dataset) {
+		progress = -1;
 		disposeChildren();
 		chartsAvailable = !dataset.isEmpty();
 		updateCanvas();

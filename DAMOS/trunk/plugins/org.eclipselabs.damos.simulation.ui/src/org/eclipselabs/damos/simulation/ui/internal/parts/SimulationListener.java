@@ -89,7 +89,6 @@ public class SimulationListener implements ISimulationListener {
 					case SimulationEvent.CANCEL:
 						viewPart = (SimulationView) workbenchPage.findView(SimulationView.ID);
 						if (viewPart != null) {
-							viewPart.setProgress(-1);
 							viewPart.setSimulation(event.getSimulation());
 						}
 						if (!overflowedComponents.isEmpty()) {

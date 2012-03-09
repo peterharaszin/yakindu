@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -183,7 +184,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) {
+	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
@@ -219,7 +220,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) {
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 		writeInputVariables(out);
 
@@ -258,7 +259,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateUpdateCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) {
+	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 		writeInputVariables(out);
 
@@ -292,7 +293,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 	}
 	
-	private void writeInputVariables(PrintAppendable out) {
+	private void writeInputVariables(PrintAppendable out) throws IOException {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		

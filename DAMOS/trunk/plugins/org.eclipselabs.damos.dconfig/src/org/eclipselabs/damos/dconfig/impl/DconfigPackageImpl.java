@@ -1306,6 +1306,10 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(configurationEClass, this.getBindingResourceReference(), "getBindingTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSystemPath(), "sourcePath", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
 

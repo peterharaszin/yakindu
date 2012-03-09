@@ -9,21 +9,18 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.util;
+package org.eclipselabs.damos.library.base.util.io;
 
+import org.eclipselabs.damos.library.common.util.BlockConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MathUtil {
+public interface NumericDataInConstants extends BlockConstants {
 
-	public static int normalizeAngle(int angle) {
-		angle %= 360;
-		if (angle < 0) {
-			angle += 360;
-		}
-		return angle;
-	}
-
+        String PARAMETER__MINIMUM_VALUE = "minimumValue";
+        String PARAMETER__MAXIMUM_VALUE = "maximumValue";
+        String PARAMETER__INTEGER = "integer";
+        
 }

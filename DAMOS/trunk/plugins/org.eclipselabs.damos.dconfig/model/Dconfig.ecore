@@ -19,6 +19,10 @@
       <eParameters name="path" lowerBound="1" eType="#//SystemPath"/>
       <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="getBindingTarget" eType="#//BindingResourceReference">
+      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="sourcePath" lowerBound="1" eType="#//SystemPath"/>
+    </eOperations>
     <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel">
       <eParameters name="path" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>

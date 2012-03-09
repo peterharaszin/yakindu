@@ -15,6 +15,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/dataFlows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionFlow.ecore#//ExecutionFlow/asynchronousZoneCount"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/taskGraphs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionFlow.ecore#//ExecutionFlow/fundamentalSampleTime"/>
       <genOperations ecoreOperation="ExecutionFlow.ecore#//ExecutionFlow/getAllNodes"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Graph">

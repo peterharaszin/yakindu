@@ -11,9 +11,11 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
@@ -28,7 +30,6 @@ import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
@@ -42,8 +43,6 @@ import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookupTable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IFunctionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -53,16 +52,25 @@ import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ExpressionGenerator implements IExpressionGenerator {
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.codegen.c.IExpressionGenerator#generate(org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext, org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy, org.eclipselabs.mscript.language.ast.Expression)
 	 */
-	public void generate(IMscriptGeneratorContext context, Expression expression) {
-		new ExpressionGeneratorSwitch(context).doSwitch(expression);
+	public void generate(IMscriptGeneratorContext context, Expression expression) throws IOException {
+		try {
+			new ExpressionGeneratorSwitch(context).doSwitch(expression);
+		} catch (WrappedException e) {
+			if (e.exception() instanceof IOException) {
+				throw (IOException) e.exception();
+			}
+			throw e;
+		}
 	}
 	
 	private static class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
 
+		private final MultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new MultiplicativeExpressionGenerator();
+		
 		private IMscriptGeneratorContext context;
 		private IBuiltinFunctionGeneratorLookupTable builtinFunctionGeneratorLookupTable = new BuiltinFunctionGeneratorLookupTable();
 		
@@ -113,7 +121,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
-			writeCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
+			try {
+				writeCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
+			} catch (IOException e) {
+				throw new WrappedException(e);
+			}
 			return true;
 		}
 		
@@ -122,11 +134,15 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseRelationalExpression(RelationalExpression relationalExpression) {
-			writeCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
+			try {
+				writeCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
+			} catch (IOException e) {
+				throw new WrappedException(e);
+			}
 			return true;
 		}
 		
-		private void writeCompareExpression(Expression leftOperand, Expression rightOperand, String operator) {
+		private void writeCompareExpression(Expression leftOperand, Expression rightOperand, String operator) throws IOException {
 			DataType leftDataType = getDataType(leftOperand);
 			DataType rightDataType = getDataType(rightOperand);
 			
@@ -158,15 +174,18 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
-			DataType dataType = getDataType(additiveExpression);
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
-	
-			MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getLeftOperand());
-			out.print(" ");
-			out.print(additiveExpression.getOperator().getLiteral());
-			out.print(" ");
-			MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getRightOperand());
-			
+			try {
+				DataType dataType = getDataType(additiveExpression);
+				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+		
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getLeftOperand());
+				out.print(" ");
+				out.print(additiveExpression.getOperator().getLiteral());
+				out.print(" ");
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getRightOperand());
+			} catch (IOException e) {
+				new WrappedException(e);
+			}
 			return true;
 		}
 		
@@ -174,138 +193,34 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipselabs.mscript.language.ast.MultiplicativeExpression)
 		 */
 		@Override
-		public Boolean caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
-			if (numberFormat instanceof FloatingPointFormat) {
-				writeFloatingPointMultiplicativeExpression(multiplicativeExpression.getOperator(), multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand(), (FloatingPointFormat) numberFormat);
-			} else if (numberFormat instanceof FixedPointFormat) {
-				writeFixedPointMultiplicativeExpression(multiplicativeExpression.getOperator(), multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand(), (FixedPointFormat) numberFormat);
-			} else {
-				throw new IllegalArgumentException();
-			}
-			
-			return true;
-		}
-		
-		private void writeFloatingPointMultiplicativeExpression(MultiplicativeOperator operator, Expression leftOperand, Expression rightOperand, FloatingPointFormat floatingPointFormat) {
-			if (operator == MultiplicativeOperator.MODULO) {
-				out.print("fmod(");
-				castToFloatingPoint(leftOperand, floatingPointFormat);
-				out.print(", ");
-				castToFloatingPoint(rightOperand, floatingPointFormat);
-				out.print(")");
-			} else {
-				castToFloatingPoint(leftOperand, floatingPointFormat);
-				out.print(" ");
-				out.print(operator.getLiteral());
-				out.print(" ");
-				castToFloatingPoint(rightOperand, floatingPointFormat);
-			}
-		}
-		
-		private void writeFixedPointMultiplicativeExpression(MultiplicativeOperator operator, Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
-			switch (operator) {
-			case MULTIPLY:
-				writeFixedPointMultiplicationExpression(leftOperand, rightOperand, fixedPointFormat);
-				break;
-			case DIVIDE:
-				writeFixedPointDivisionExpression(leftOperand, rightOperand, fixedPointFormat);
-				break;
-			case MODULO:
-				MscriptGeneratorUtil.castNumericType(context, fixedPointFormat, leftOperand);
-				out.print(" % ");
-				MscriptGeneratorUtil.castNumericType(context, fixedPointFormat, rightOperand);
-				break;
-			default:
-				throw new IllegalArgumentException();
-			}
-		}
-		
-		private void writeFixedPointMultiplicationExpression(Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
-			int intermediateWordSize = getIntermediateWordSize(fixedPointFormat);
-			boolean hasIntermediateWordSize = intermediateWordSize != fixedPointFormat.getWordSize();
-		
-			if (hasIntermediateWordSize) {
-				out.printf("(int%d_t) ", fixedPointFormat.getWordSize());
-			}
-			
-			if (hasIntermediateWordSize || fixedPointFormat.getFractionLength() > 0) {
-				out.print("(");
-			}
-			
-			castToFixedPoint(leftOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
-			
-			out.print(" * ");
-			
-			if (fixedPointFormat.getFractionLength() > 0) {
-				out.print("(");
-			}
-	
-			castToFixedPoint(rightOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
-			
-			if (fixedPointFormat.getFractionLength() > 0) {
-				out.printf(") >> %d", fixedPointFormat.getFractionLength());
-			}
-	
-			if (hasIntermediateWordSize || fixedPointFormat.getFractionLength() > 0) {
-				out.print(")");
-			}
-		}
-	
-		private void writeFixedPointDivisionExpression(Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
-			int intermediateWordSize = getIntermediateWordSize(fixedPointFormat);
-			boolean hasIntermediateWordSize = intermediateWordSize != fixedPointFormat.getWordSize();
-		
-			if (hasIntermediateWordSize) {
-				out.printf("(int%d_t) (", fixedPointFormat.getWordSize());
-			}
-			
-			if (fixedPointFormat.getFractionLength() > 0) {
-				out.print("((");
-			}
-	
-			castToFixedPoint(leftOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
-			
-			if (fixedPointFormat.getFractionLength() > 0) {
-				out.printf(") << %d)", fixedPointFormat.getFractionLength());
-			}
-	
-			out.print(" / ");
-			
-			castToFixedPoint(rightOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
-			
-			if (hasIntermediateWordSize) {
-				out.print(")");
-			}
-		}
-		
-		private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {
-			if (fixedPointFormat.getFractionLength() != 0) {
-				return 2 * fixedPointFormat.getWordSize();
-			}
-			return fixedPointFormat.getWordSize();
-		}
+		public Boolean caseMultiplicativeExpression(final MultiplicativeExpression multiplicativeExpression) {
+			try {
+				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
 
-		private void castToFloatingPoint(final Expression expression, FloatingPointFormat floatingPointFormat) {
-			new CastToFloatingPointHelper(context.getComputationModel(), context.getAppendable(), getDataType(expression), floatingPointFormat) {
+				DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
+				DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
+				NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
+				NumberFormat rightNumberFormat = context.getComputationModel().getNumberFormat(rightDataType);
 				
-				@Override
-				protected void writeExpression() {
-					ExpressionGeneratorSwitch.this.doSwitch(expression);
-				}
-				
-			}.cast();
-		}
-	
-		private void castToFixedPoint(final Expression expression, int wordSize, int fractionLength) {
-			new CastToFixedPointHelper(context.getComputationModel(), context.getAppendable(), getDataType(expression), wordSize, fractionLength) {
-				
-				@Override
-				protected void writeExpression() {
-					ExpressionGeneratorSwitch.this.doSwitch(expression);
-				}
-				
-			}.cast();
+				NumericExpressionInfo leftOperand = NumericExpressionInfo.create(leftNumberFormat, new IWriter() {
+					
+					public void write(Appendable appendable) throws IOException {
+						doSwitch(multiplicativeExpression.getLeftOperand());
+					}
+					
+				});
+				NumericExpressionInfo rightOperand = NumericExpressionInfo.create(rightNumberFormat, new IWriter() {
+					
+					public void write(Appendable appendable) throws IOException {
+						doSwitch(multiplicativeExpression.getRightOperand());
+					}
+					
+				});
+				multiplicativeExpressionGenerator.generate(out, multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
+			} catch (IOException e) {
+				throw new WrappedException(e);
+			}
+			return true;
 		}
 	
 		/* (non-Javadoc)
@@ -334,26 +249,30 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean casePowerExpression(PowerExpression powerExpression) {
-			DataType dataType = getDataType(powerExpression);
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
-	
-			if (numberFormat instanceof FixedPointFormat) {
-				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-				if (fixedPointFormat.getWordSize() > 32) {
-					out.print("DamosMath_powfix32(");
-				} else {
-					out.print("DamosMath_powfix64(");
+			try {
+				DataType dataType = getDataType(powerExpression);
+				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+		
+				if (numberFormat instanceof FixedPointFormat) {
+					FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
+					if (fixedPointFormat.getWordSize() > 32) {
+						out.print("DamosMath_powfix32(");
+					} else {
+						out.print("DamosMath_powfix64(");
+					}
+					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
+					out.print(", ");
+					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
+					out.printf(", %d)", fixedPointFormat.getFractionLength());
+				} else if (numberFormat instanceof FloatingPointFormat) {
+					out.print("pow(");
+					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
+					out.print(", ");
+					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
+					out.print(")");
 				}
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
-				out.print(", ");
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
-				out.printf(", %d)", fixedPointFormat.getFractionLength());
-			} else if (numberFormat instanceof FloatingPointFormat) {
-				out.print("pow(");
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
-				out.print(", ");
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
-				out.print(")");
+			} catch (IOException e) {
+				throw new WrappedException(e);
 			}
 
 			return true;
@@ -412,7 +331,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (descriptor != null) {
 				IFunctionGenerator generator = builtinFunctionGeneratorLookupTable.getFunctionGenerator(descriptor);
 				if (generator != null) {
-					generator.generate(context, functionCall);
+					try {
+						generator.generate(context, functionCall);
+					} catch (IOException e) {
+						throw new WrappedException(e);
+					}
 				}
 			}
 

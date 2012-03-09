@@ -197,6 +197,14 @@ public interface Configuration extends PropertyContainer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model propertyIdRequired="true" sourcePathDataType="org.eclipselabs.damos.dconfig.SystemPath" sourcePathRequired="true"
+	 * @generated
+	 */
+	BindingResourceReference getBindingTarget(String propertyId, SystemPath sourcePath);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model pathDataType="org.eclipselabs.damos.dconfig.SystemPath" pathRequired="true"
 	 * @generated
 	 */

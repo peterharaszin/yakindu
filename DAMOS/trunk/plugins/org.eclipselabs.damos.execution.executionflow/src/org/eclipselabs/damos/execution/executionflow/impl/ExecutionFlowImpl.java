@@ -39,6 +39,7 @@ import org.eclipselabs.damos.execution.executionflow.internal.operations.Executi
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTaskGraphs <em>Task Graphs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getFundamentalSampleTime <em>Fundamental Sample Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,6 +105,26 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * @ordered
 	 */
 	protected EList<TaskGraph> taskGraphs;
+
+	/**
+	 * The default value of the '{@link #getFundamentalSampleTime() <em>Fundamental Sample Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFundamentalSampleTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double FUNDAMENTAL_SAMPLE_TIME_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getFundamentalSampleTime() <em>Fundamental Sample Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFundamentalSampleTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected double fundamentalSampleTime = FUNDAMENTAL_SAMPLE_TIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,6 +274,27 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getFundamentalSampleTime() {
+		return fundamentalSampleTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFundamentalSampleTime(double newFundamentalSampleTime) {
+		double oldFundamentalSampleTime = fundamentalSampleTime;
+		fundamentalSampleTime = newFundamentalSampleTime;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME, oldFundamentalSampleTime, fundamentalSampleTime));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public TreeIterator<Node> getAllNodes() {
@@ -296,6 +338,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return getAsynchronousZoneCount();
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				return getTaskGraphs();
+			case ExecutionFlowPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
+				return getFundamentalSampleTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -326,6 +370,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				getTaskGraphs().clear();
 				getTaskGraphs().addAll((Collection<? extends TaskGraph>)newValue);
 				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
+				setFundamentalSampleTime((Double)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -353,6 +400,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				getTaskGraphs().clear();
 				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
+				setFundamentalSampleTime(FUNDAMENTAL_SAMPLE_TIME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -375,6 +425,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return asynchronousZoneCount != ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				return taskGraphs != null && !taskGraphs.isEmpty();
+			case ExecutionFlowPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
+				return fundamentalSampleTime != FUNDAMENTAL_SAMPLE_TIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -391,6 +443,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (asynchronousZoneCount: ");
 		result.append(asynchronousZoneCount);
+		result.append(", fundamentalSampleTime: ");
+		result.append(fundamentalSampleTime);
 		result.append(')');
 		return result.toString();
 	}

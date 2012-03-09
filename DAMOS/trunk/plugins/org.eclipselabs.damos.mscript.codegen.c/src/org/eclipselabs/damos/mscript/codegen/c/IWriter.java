@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,21 +9,16 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.util;
+package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.io.IOException;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MathUtil {
+public interface IWriter {
 
-	public static int normalizeAngle(int angle) {
-		angle %= 360;
-		if (angle < 0) {
-			angle += 360;
-		}
-		return angle;
-	}
-
+	void write(Appendable appendable) throws IOException;
+	
 }

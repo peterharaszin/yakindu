@@ -11,14 +11,12 @@
 
 package org.eclipselabs.damos.simulation.simulator.solver;
 
-import java.math.BigDecimal;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.common.math.MathUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.ISimulationMonitor;
@@ -88,7 +86,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
 		super.initialize(context, monitor);
-		stepSize = computeStepSize(context.getExecutionFlow().getGraph(), stepSize);
+		stepSize = MathUtil.gcd(context.getExecutionFlow().getFundamentalSampleTime(), stepSize);
 		n = 0;
 	}
 
@@ -125,24 +123,6 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 			return n % (long) (componentNode.getSampleTime() / stepSize) == 0;
 		}
 		return super.canExecute(componentNode, t);
-	}
-
-	private double computeStepSize(Graph graph, double maximumStepSize) {
-		for (Node node : graph.getNodes()) {
-			if (node instanceof ComponentNode) {
-				ComponentNode componentNode = (ComponentNode) node;
-				if (componentNode.getSampleTime() > 0) {
-					if (maximumStepSize == -1) {
-						maximumStepSize = componentNode.getSampleTime();
-					} else {
-						maximumStepSize = gcd(maximumStepSize, componentNode.getSampleTime());
-					}
-				}
-			} else if (node instanceof CompoundNode) {
-				maximumStepSize = computeStepSize((CompoundNode) node, maximumStepSize);
-			}
-		}
-		return maximumStepSize;
 	}
 
 	/**
@@ -243,17 +223,6 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 			}
 			data.yTmps[j] = data.y[j] + stepSize * sum;
 		}
-	}
-
-	private static double gcd(double a, double b) {
-		return gcd(BigDecimal.valueOf(a), BigDecimal.valueOf(b));
-	}
-
-	private static double gcd(BigDecimal a, BigDecimal b) {
-		if (BigDecimal.ZERO.compareTo(b) == 0) {
-			return a.doubleValue();
-		}
-		return gcd(b, a.remainder(b));
 	}
 	
 }

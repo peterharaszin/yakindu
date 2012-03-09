@@ -14,7 +14,10 @@ package org.eclipselabs.damos.dconfig.internal.operations;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
+import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingResourceReference;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
+import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
@@ -22,6 +25,7 @@ import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
+import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
@@ -92,6 +96,17 @@ public class ConfigurationOperations {
 		return null;
 	}
 	
+	public static BindingResourceReference getBindingTarget(Configuration configuration, String propertyId, SystemPath sourcePath) {
+		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+		if (property instanceof SelectionProperty) {
+			Binding binding = getBinding(((SelectionProperty) property).getBody(), sourcePath);
+			if (binding != null) {
+				return binding.getTarget();
+			}
+		}
+		return null;
+	}
+
 	public static ComputationModel getComputationModel(Configuration configuration, SystemPath path) {
 		Property property = getProperty(configuration, path, COMPUTATION_PROPERTY_ID_SEGMENTS);
 		if (property instanceof ComputationProperty) {
@@ -320,6 +335,37 @@ public class ConfigurationOperations {
 				}
 			}
 		} while (found);
+		return null;
+	}
+	
+	private static Binding getBinding(SelectionPropertyBody selectionPropertyBody, SystemPath sourcePath) {
+		if (!sourcePath.isComponentPath()) {
+			return null;
+		}
+		
+		for (Binding binding : selectionPropertyBody.getBindings()) {
+			if (binding.getSource() == null) {
+				continue;
+			}
+			
+			Iterator<ComponentReference> it = binding.getSource().getReferences().iterator();
+			
+			boolean equals = true;
+			for (Subsystem subsystem : sourcePath.getSubsystems()) {
+				if (!it.hasNext()) {
+					break;
+				}
+				if (it.next().getComponent() != subsystem) {
+					equals = false;
+					break;
+				}
+			}
+			
+			if (equals && it.hasNext() && it.next().getComponent() == sourcePath.getComponent()) {
+				return binding;
+			}
+		}
+		
 		return null;
 	}
 	

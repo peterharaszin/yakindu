@@ -24,6 +24,7 @@ import org.eclipselabs.damos.dml.Fragment;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskGraphs <em>Task Graphs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,6 +142,32 @@ public interface ExecutionFlow extends EObject {
 	 * @generated
 	 */
 	EList<TaskGraph> getTaskGraphs();
+
+	/**
+	 * Returns the value of the '<em><b>Fundamental Sample Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fundamental Sample Time</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fundamental Sample Time</em>' attribute.
+	 * @see #setFundamentalSampleTime(double)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getExecutionFlow_FundamentalSampleTime()
+	 * @model
+	 * @generated
+	 */
+	double getFundamentalSampleTime();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fundamental Sample Time</em>' attribute.
+	 * @see #getFundamentalSampleTime()
+	 * @generated
+	 */
+	void setFundamentalSampleTime(double value);
 
 	/**
 	 * <!-- begin-user-doc -->

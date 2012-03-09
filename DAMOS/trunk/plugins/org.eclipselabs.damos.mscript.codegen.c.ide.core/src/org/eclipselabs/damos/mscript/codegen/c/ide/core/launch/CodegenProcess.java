@@ -206,15 +206,15 @@ public class CodegenProcess implements IProcess {
 		}
 		
 		public void run() {
-			generate();
 			try {
+				generate();
 				writer.close();
 			} catch (IOException e) {
 				status = new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Writing to file failed", e);
 			}
 		}
 		
-		protected abstract void generate();
+		protected abstract void generate() throws IOException;
 
 		/**
 		 * @return the status
@@ -236,7 +236,7 @@ public class CodegenProcess implements IProcess {
 
 	private class ImplementationGeneratorThread extends GeneratorThread {
 		
-		public void generate() {
+		public void generate() throws IOException {
 			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext), functionName);
 			generator.generateImplementationCode();
 		}

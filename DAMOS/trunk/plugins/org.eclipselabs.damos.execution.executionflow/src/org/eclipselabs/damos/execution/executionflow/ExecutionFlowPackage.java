@@ -116,13 +116,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int EXECUTION_FLOW__TASK_GRAPHS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Fundamental Sample Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME = 5;
+
+	/**
 	 * The number of structural features of the '<em>Execution Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW_FEATURE_COUNT = 5;
+	int EXECUTION_FLOW_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.
@@ -1390,6 +1399,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	EReference getExecutionFlow_TaskGraphs();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fundamental Sample Time</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getFundamentalSampleTime()
+	 * @see #getExecutionFlow()
+	 * @generated
+	 */
+	EAttribute getExecutionFlow_FundamentalSampleTime();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2004,6 +2024,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXECUTION_FLOW__TASK_GRAPHS = eINSTANCE.getExecutionFlow_TaskGraphs();
+
+		/**
+		 * The meta object literal for the '<em><b>Fundamental Sample Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME = eINSTANCE.getExecutionFlow_FundamentalSampleTime();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.

@@ -13,6 +13,7 @@ Export-Package: org.eclipselabs.damos.execution.executionflow,
  org.eclipselabs.damos.execution.executionflow.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipselabs.damos.common.math;bundle-version="0.3.0",
  org.eclipselabs.damos.dml;visibility:=reexport,
  org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0"

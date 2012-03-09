@@ -11,7 +11,10 @@
 
 package org.eclipselabs.damos.codegen.c.util;
 
+import org.eclipse.core.runtime.Path;
+import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 
@@ -27,6 +30,31 @@ public class GeneratorConfigurationUtil {
 			return ((StringLiteral) expression).getValue();
 		}
 		return defaultValue;
+	}
+
+	public static String getSystemSourceFile(Configuration configuration) {
+		Fragment contextFragment = configuration.getContextFragment();
+		String defaultSourceFile = contextFragment.getName();
+		if (defaultSourceFile == null || defaultSourceFile.trim().length() == 0) {
+			defaultSourceFile = "main.c";
+		} else {
+			defaultSourceFile.replaceAll("\\W", "_");
+			defaultSourceFile += ".c";
+		}
+		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemSourceFile", defaultSourceFile);
+	}
+
+	public static String getSystemHeaderFile(Configuration configuration) {
+		String defaultHeaderFile = new Path(getSystemSourceFile(configuration)).removeFileExtension().addFileExtension("h").toString();
+		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
+	}
+
+	public static String getPrefix(Configuration configuration) {
+		String prefix = InternalGeneratorUtil.getPrefix(configuration);
+		if (prefix == null) {
+			prefix = "";
+		}
+		return prefix;
 	}
 
 }

@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
@@ -28,7 +30,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public abstract class AbstractSingleParameterFunctionGenerator implements IFunctionGenerator {
 
-	public void generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
+	public void generate(IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException {
 		PrintAppendable out = new PrintAppendable(context.getAppendable());
 		
 		Expression argument = functionCall.getArguments().get(0);

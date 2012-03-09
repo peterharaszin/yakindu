@@ -11,73 +11,44 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelSwitch;
 
-public abstract class CastToFloatingPointHelper extends ComputationModelSwitch<Boolean> {
+public class CastToFloatingPointHelper {
+	
+	public static final CastToFloatingPointHelper INSTANCE = new CastToFloatingPointHelper();
 
-	private ComputationModel computationModel;
-	private PrintAppendable out;
-
-	private DataType expressionDataType;
-	private FloatingPointFormat targetFloatingPointFormat;
-	
-	/**
-	 * 
-	 */
-	public CastToFloatingPointHelper(ComputationModel computationModel, Appendable appendable, DataType expressionDataType, FloatingPointFormat targetFloatingPointFormat) {
-		this.computationModel = computationModel;
-		this.expressionDataType = expressionDataType;
-		this.targetFloatingPointFormat = targetFloatingPointFormat;
-		out = new PrintAppendable(appendable);
-	}
-	
-	public void cast() {
-		NumberFormat numberFormat = computationModel.getNumberFormat(expressionDataType);
-		doSwitch(numberFormat);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelSwitch#caseFloatingPointFormat(org.eclipselabs.mscript.computation.computationmodel.FloatingPointFormat)
-	 */
-	@Override
-	public Boolean caseFloatingPointFormat(FloatingPointFormat floatingPointFormat) {
-		if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
-			writeExpression();
-		} else {
-			out.printf("((%s) (", getCDataType());
-			writeExpression();
-			out.print("))");
+	public void cast(Appendable appendable, FloatingPointFormat targetFloatingPointFormat, NumericExpressionInfo expression) throws IOException {
+		PrintAppendable out = new PrintAppendable(appendable);
+		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
+			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) expression.getNumberFormat();
+			if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
+				expression.getWriter().write(appendable);
+			} else {
+				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
+				expression.getWriter().write(appendable);
+				out.print("))");
+			}
+		} else if (expression.getNumberFormat() instanceof FixedPointFormat) {
+			FixedPointFormat fixedPointFormat = (FixedPointFormat) expression.getNumberFormat();
+			if (fixedPointFormat.getFractionLength() > 0) {
+				out.printf("((%s) ((", getCDataType(targetFloatingPointFormat));
+				expression.getWriter().write(appendable);
+				out.printf(") * pow(2, -%d)))", fixedPointFormat.getFractionLength());
+			} else {
+				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
+				expression.getWriter().write(appendable);
+				out.print("))");
+			}
 		}
-		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelSwitch#caseFixedPointFormat(org.eclipselabs.mscript.computation.computationmodel.FixedPointFormat)
-	 */
-	@Override
-	public Boolean caseFixedPointFormat(FixedPointFormat fixedPointFormat) {
-		if (fixedPointFormat.getFractionLength() > 0) {
-			out.printf("((%s) ((", getCDataType());
-			writeExpression();
-			out.printf(") * pow(2, -%d)))", fixedPointFormat.getFractionLength());
-		} else {
-			out.printf("((%s) (", getCDataType());
-			writeExpression();
-			out.print("))");
-		}
-		return true;
-	}
-	
-	protected abstract void writeExpression();
-
-	private String getCDataType() {
-		switch (targetFloatingPointFormat.getKind()) {
+	private String getCDataType(FloatingPointFormat floatingPointFormat) {
+		switch (floatingPointFormat.getKind()) {
 		case BINARY32:
 			return "float";
 		case BINARY64:

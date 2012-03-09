@@ -11,90 +11,58 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelSwitch;
 
-public abstract class CastToFixedPointHelper extends ComputationModelSwitch<Boolean> {
+public class CastToFixedPointHelper {
 
-	private ComputationModel computationModel;
-	private PrintAppendable out;
-
-	private DataType expressionDataType;
-	private int wordSize;
-	private int fractionLength;
+	public static final CastToFixedPointHelper INSTANCE = new CastToFixedPointHelper();
 	
-	/**
-	 * 
-	 */
-	public CastToFixedPointHelper(ComputationModel computationModel, Appendable appendable, DataType expressionDataType, int wordSize, int fractionLength) {
-		this.computationModel = computationModel;
-		this.expressionDataType = expressionDataType;
-		this.wordSize = wordSize;
-		this.fractionLength = fractionLength;
-		out = new PrintAppendable(appendable);
-	}
-	
-	public void cast() {
-		NumberFormat numberFormat = computationModel.getNumberFormat(expressionDataType);
-		doSwitch(numberFormat);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelSwitch#caseFloatingPointFormat(org.eclipselabs.mscript.computation.computationmodel.FloatingPointFormat)
-	 */
-	@Override
-	public Boolean caseFloatingPointFormat(FloatingPointFormat floatingPointFormat) {
-		if (fractionLength > 0) {
-			out.printf("((%s) floor((", getCDataType());
-			writeExpression();
-			out.printf(") * pow(2, %d) + 0.5))", fractionLength);
-		} else {
-			out.printf("((%s) (", getCDataType());
-			writeExpression();
-			out.print("))");
-		}
-		return true;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelSwitch#caseFixedPointFormat(org.eclipselabs.mscript.computation.computationmodel.FixedPointFormat)
-	 */
-	@Override
-	public Boolean caseFixedPointFormat(FixedPointFormat fixedPointFormat) {
-		if (wordSize != fixedPointFormat.getWordSize()) {
-			if (fractionLength < fixedPointFormat.getFractionLength()) {
-				out.printf("(%s) ((", getCDataType());
+	public void cast(Appendable appendable, int wordSize, int fractionLength, NumericExpressionInfo expression) throws IOException {
+		PrintAppendable out = new PrintAppendable(appendable);
+		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
+			if (fractionLength > 0) {
+				out.printf("((%s) floor((", getCDataType(wordSize));
+				expression.getWriter().write(appendable);
+				out.printf(") * pow(2, %d) + 0.5))", fractionLength);
 			} else {
-				out.printf("((%s) (", getCDataType());
-			}
-		}
-		if (fractionLength != fixedPointFormat.getFractionLength()) {
-			if (wordSize == fixedPointFormat.getWordSize()) {
-				out.print("((");
-			}
-			writeExpression();
-			if (fractionLength > fixedPointFormat.getFractionLength()) {
-				out.printf(") << %d)", fractionLength - fixedPointFormat.getFractionLength());
-			} else {
-				out.printf(") >> %d)", fixedPointFormat.getFractionLength() - fractionLength);
-			}
-		} else {
-			writeExpression();
-			if (wordSize != fixedPointFormat.getWordSize()) {
+				out.printf("((%s) (", getCDataType(wordSize));
+				expression.getWriter().write(appendable);
 				out.print("))");
 			}
+		} else if (expression.getNumberFormat() instanceof FixedPointFormat) {
+			FixedPointFormat fixedPointFormat = (FixedPointFormat) expression.getNumberFormat();
+			if (wordSize != fixedPointFormat.getWordSize()) {
+				if (fractionLength < fixedPointFormat.getFractionLength()) {
+					out.printf("(%s) ((", getCDataType(wordSize));
+				} else {
+					out.printf("((%s) (", getCDataType(wordSize));
+				}
+			}
+			if (fractionLength != fixedPointFormat.getFractionLength()) {
+				if (wordSize == fixedPointFormat.getWordSize()) {
+					out.print("((");
+				}
+				expression.getWriter().write(appendable);
+				if (fractionLength > fixedPointFormat.getFractionLength()) {
+					out.printf(") << %d)", fractionLength - fixedPointFormat.getFractionLength());
+				} else {
+					out.printf(") >> %d)", fixedPointFormat.getFractionLength() - fractionLength);
+				}
+			} else {
+				expression.getWriter().write(appendable);
+				if (wordSize != fixedPointFormat.getWordSize()) {
+					out.print("))");
+				}
+			}
 		}
-		return true;
 	}
 	
-	protected abstract void writeExpression();
-	
-	private String getCDataType() {
+	private String getCDataType(int wordSize) {
 		return String.format("int%d_t", wordSize);
 	}
 	

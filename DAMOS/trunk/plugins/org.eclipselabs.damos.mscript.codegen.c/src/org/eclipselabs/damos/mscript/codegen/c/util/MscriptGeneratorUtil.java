@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
@@ -20,8 +22,9 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
+import org.eclipselabs.damos.mscript.codegen.c.IWriter;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -125,41 +128,27 @@ public class MscriptGeneratorUtil {
 		return String.format("(%s) %d", cDataType, value);
 	}
 
-	public static void cast(IMscriptGeneratorContext context, String expression, DataType expressionDataType, DataType targetDataType) {
+	public static void cast(IMscriptGeneratorContext context, String expression, DataType expressionDataType, DataType targetDataType) throws IOException {
 		cast(context.getComputationModel(), context.getAppendable(), expression, expressionDataType, targetDataType);
 	}
 	
-	public static void cast(ComputationModel computationModel, final Appendable appendable, final String expression, DataType expressionDataType, DataType targetDataType) {
+	public static void cast(ComputationModel computationModel, final Appendable appendable, final String expression, DataType expressionDataType, DataType targetDataType) throws IOException {
 		if (targetDataType instanceof NumericType) {
-			NumberFormat numberFormat = computationModel.getNumberFormat(targetDataType);
-			if (numberFormat instanceof FloatingPointFormat) {
-				new CastToFloatingPointHelper(computationModel, appendable, expressionDataType, (FloatingPointFormat) numberFormat) {
-					
-					@Override
-					protected void writeExpression() {
-						new PrintAppendable(appendable).print(expression);
-					}
-					
-				}.cast();
-			} else if (numberFormat instanceof FixedPointFormat) {
-				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-				new CastToFixedPointHelper(computationModel, appendable, expressionDataType, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength()) {
-
-					@Override
-					protected void writeExpression() {
-						new PrintAppendable(appendable).print(expression);
-					}
-					
-				}.cast();
-			} else {
-				throw new IllegalArgumentException();
-			}
+			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
+			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
+			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
+				
+				public void write(Appendable appendable) throws IOException {
+					appendable.append(expression);
+				}
+				
+			}));
 		} else {
 			new PrintAppendable(appendable).print(expression);
 		}
 	}
 
-	public static void cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
+	public static void cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) throws IOException {
 		if (targetDataType instanceof NumericType) {
 			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(targetDataType);
 			castNumericType(context, numberFormat, expression);
@@ -168,30 +157,16 @@ public class MscriptGeneratorUtil {
 		}
 	}
 
-	public static void castNumericType(final IMscriptGeneratorContext context, NumberFormat numberFormat, final Expression expression) {
+	public static void castNumericType(final IMscriptGeneratorContext context, NumberFormat targetNumberFormat, final Expression expression) throws IOException {
 		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
-		if (numberFormat instanceof FloatingPointFormat) {
-			new CastToFloatingPointHelper(context.getComputationModel(), context.getAppendable(), expressionDataType, (FloatingPointFormat) numberFormat) {
-				
-				@Override
-				protected void writeExpression() {
-					new ExpressionGenerator().generate(context, expression);
-				}
-				
-			}.cast();
-		} else if (numberFormat instanceof FixedPointFormat) {
-			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			new CastToFixedPointHelper(context.getComputationModel(), context.getAppendable(), expressionDataType, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength()) {
-
-				@Override
-				protected void writeExpression() {
-					new ExpressionGenerator().generate(context, expression);
-				}
-				
-			}.cast();
-		} else {
-			throw new IllegalArgumentException();
-		}
+		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
+		NumericExpressionCaster.INSTANCE.cast(context.getAppendable(), targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
+			
+			public void write(Appendable appendable) throws IOException {
+				new ExpressionGenerator().generate(context, expression);
+			}
+			
+		}));
 	}
 
 }

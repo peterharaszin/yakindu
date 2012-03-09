@@ -231,6 +231,11 @@
             class="org.eclipselabs.damos.library.base.ui.editparts.discrete.EdgeCounterEditPart"
             name="Edge Counter">
       </editPart>
+      <editPart
+            blockType="damos.library.base.io.NumericDataIn"
+            class="org.eclipselabs.damos.library.base.ui.editparts.io.NumericDataInEditPart"
+            name="Numeric Data In">
+      </editPart>
    </extension>
    <extension
          point="org.eclipselabs.damos.dml.ui.blockImages">
@@ -383,6 +388,11 @@
             blockType="damos.library.base.io.DataOut"
             icon16="icons/io/DataOut16.png"
             icon24="icons/io/DataOut24.png">
+      </image>
+      <image
+            blockType="damos.library.base.io.NumericDataIn"
+            icon16="icons/io/NumericDataIn16.png"
+            icon24="icons/io/NumericDataIn24.png">
       </image>
    </extension>
    <extension

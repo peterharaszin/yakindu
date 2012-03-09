@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 
@@ -20,6 +22,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
  */
 public interface IFunctionGenerator {
 
-	void generate(IMscriptGeneratorContext context, FunctionCall functionCall);
+	void generate(IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException;
 	
 }

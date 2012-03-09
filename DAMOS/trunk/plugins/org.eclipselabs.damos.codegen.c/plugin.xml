@@ -4,6 +4,7 @@
    <extension-point id="componentGeneratorProviders" name="Component Generator Providers" schema="schema/componentGeneratorProviders.exsd"/>
    <extension-point id="blockGenerators" name="Block Generators" schema="schema/blockGenerators.exsd"/>
    <extension-point id="runtimeEnvironmentAPIs" name="Runtime Environment APIs" schema="schema/runtimeEnvironmentAPIs.exsd"/>
+   <extension-point id="targetGenerators" name="Target Generators" schema="schema/targetGenerators.exsd"/>
    <extension
          point="org.eclipselabs.damos.codegen.c.componentGeneratorProviders">
       <provider

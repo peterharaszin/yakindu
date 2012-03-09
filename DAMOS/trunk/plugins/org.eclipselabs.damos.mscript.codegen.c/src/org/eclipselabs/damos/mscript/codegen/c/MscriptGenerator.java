@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +135,7 @@ public class MscriptGenerator {
 		}
 	}
 
-	public void generateImplementationCode() {
+	public void generateImplementationCode() throws IOException {
 		generateImplementationIncludes();
 		out.println();
 		generateFunctionImplementations();
@@ -146,7 +147,7 @@ public class MscriptGenerator {
 		out.printf("#include \"%s.h\"\n", functionName);
 	}
 	
-	public void generateFunctionImplementations() {
+	public void generateFunctionImplementations() throws IOException {
 		if (functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL) {
 			generateInitializeFunctionImplementation();
 
@@ -176,8 +177,9 @@ public class MscriptGenerator {
 
 	/**
 	 * @param variableAccessStrategy
+	 * @throws IOException 
 	 */
-	private void generateInitializeFunctionImplementation() {
+	private void generateInitializeFunctionImplementation() throws IOException {
 		generateInitializeFunctionHeader();
 		out.println(" {");
 		generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
@@ -211,8 +213,9 @@ public class MscriptGenerator {
 
 	/**
 	 * @param variableAccessStrategy
+	 * @throws IOException 
 	 */
-	private void generateComputeOutputsImplementation() {
+	private void generateComputeOutputsImplementation() throws IOException {
 		generateComputeOutputsFunctionHeader();
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
@@ -249,8 +252,9 @@ public class MscriptGenerator {
 
 	/**
 	 * @param variableAccessStrategy
+	 * @throws IOException 
 	 */
-	private void generateUpdateFunctionImplementation() {
+	private void generateUpdateFunctionImplementation() throws IOException {
 		generateUpdateFunctionHeader();
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {

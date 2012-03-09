@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -37,7 +39,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipselabs.damos.codegen.c.IVariableAccessor, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) {
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 
 		InputPort inputPort = getComponent().getFirstInputPort();

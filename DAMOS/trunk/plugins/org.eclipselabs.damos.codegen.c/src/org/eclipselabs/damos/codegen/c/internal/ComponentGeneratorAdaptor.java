@@ -20,12 +20,14 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+import org.eclipselabs.damos.codegen.c.ITargetGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.ComponentGeneratorProviderRegistry;
-import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
-import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
@@ -36,13 +38,13 @@ import org.eclipselabs.damos.execution.executionflow.TaskGraph;
  */
 public class ComponentGeneratorAdaptor {
 
-	public void adaptGenerators(Configuration configuration, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
+	public void adaptGenerators(IGeneratorContext context, IProgressMonitor monitor) throws CoreException {
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
-		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
-			adaptGenerators(taskGraph, missingGeneratorComponents);
+		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+			adaptGenerators(context, taskGraph, missingGeneratorComponents);
 		}
-		adaptGenerators(executionFlow.getGraph(), missingGeneratorComponents);
+		adaptGenerators(context, context.getExecutionFlow().getGraph(), missingGeneratorComponents);
 		
 		if (!missingGeneratorComponents.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Missing component generator for ");
@@ -67,22 +69,40 @@ public class ComponentGeneratorAdaptor {
 	 * @param signatures
 	 * @param missingGeneratorComponents
 	 */
-	private void adaptGenerators(Graph graph, List<Component> missingGeneratorComponents) {
+	private void adaptGenerators(IGeneratorContext context, Graph graph, List<Component> missingGeneratorComponents) {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				Component component = componentNode.getComponent();
-				IComponentGenerator generator;
-				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
+				IComponentGenerator generator = null;
+				if (component.isBoundary()) {
+					ITargetGenerator targetGenerator = getTargetGenerator(context);
+					if (targetGenerator != null) {
+						generator = targetGenerator.createBoundaryComponentGenerator(component);
+					}
+				} else {
+					generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
+				}
 				if (generator != null) {
 					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
 				} else {
 					missingGeneratorComponents.add(component);
 				}
 			} else if (node instanceof CompoundNode) {
-				adaptGenerators((CompoundNode) node, missingGeneratorComponents);
+				adaptGenerators(context, (CompoundNode) node, missingGeneratorComponents);
 			}
 		}
+	}
+	
+	private ITargetGenerator getTargetGenerator(IGeneratorContext context) {
+		String targetId = context.getConfiguration().getPropertySelectionName("damos.codegen.target");
+		if (targetId != null) {
+			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
+			if (targetGeneratorDescriptor != null) {
+				return targetGeneratorDescriptor.createGenerator();
+			}
+		}
+		return null;
 	}
 	
 }

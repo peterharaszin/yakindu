@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
+import java.io.IOException;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
@@ -22,7 +24,9 @@ import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.Caster;
+import org.eclipselabs.damos.mscript.codegen.c.IWriter;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
+import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -36,7 +40,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
-	public void generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
+	public void generate(final IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException {
 		final PrintAppendable out = new PrintAppendable(context.getAppendable());
 		
 		final Expression argument = functionCall.getArguments().get(0);
@@ -50,15 +54,17 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 		IntegerType resultDataType = MscriptFactory.eINSTANCE.createIntegerType();
 		resultDataType.setUnit(EcoreUtil.copy(argumentNumericType.getUnit()));
 		
-		NumberFormat numberFormat = context.getComputationModel().getNumberFormat(argumentDataType);
+		NumberFormat argumentNumberFormat = context.getComputationModel().getNumberFormat(argumentDataType);
+		NumberFormat resultNumberFormat = context.getComputationModel().getNumberFormat(resultDataType);
 		
-		if (numberFormat instanceof FixedPointFormat) {
-			final FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
+		IWriter writer;
+		
+		if (argumentNumberFormat instanceof FixedPointFormat) {
+			final FixedPointFormat fixedPointFormat = (FixedPointFormat) argumentNumberFormat;
 			final int fractionLength = fixedPointFormat.getFractionLength();
-			new Caster() {
+			writer = new IWriter() {
 				
-				@Override
-				protected void writeExpression() {
+				public void write(Appendable appendable) throws IOException {
 					if (fractionLength > 0) {
 						out.print("((");
 						expressionGenerator.generate(context, argument);
@@ -70,21 +76,22 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 					}
 				}
 				
-			}.cast(context, argumentDataType, resultDataType);
-		} else if (numberFormat instanceof FloatingPointFormat) {
-			new Caster() {
-				
-				@Override
-				protected void writeExpression() {
+			};
+		} else if (argumentNumberFormat instanceof FloatingPointFormat) {
+			writer = new IWriter() {
+
+				public void write(Appendable appendable) throws IOException {
 					out.print("floor((");
 					expressionGenerator.generate(context, argument);
 					out.print(") + 0.5)");
 				}
 				
-			}.cast(context, argumentDataType, resultDataType);
+			};
 		} else {
 			throw new IllegalArgumentException();
 		}
+		
+		NumericExpressionCaster.INSTANCE.cast(context.getAppendable(), resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, writer));
 	}
 	
 }

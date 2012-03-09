@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.io.IOException;
+
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayDimension;
@@ -24,8 +27,8 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
@@ -44,8 +47,15 @@ public class CompoundGenerator implements ICompoundGenerator {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.codegen.c.ICompoundGenerator#generate(org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext, org.eclipselabs.mscript.language.il.Compound, org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy)
 	 */
-	public void generate(IMscriptGeneratorContext context, Compound compound) {
-		new CompoundGeneratorSwitch(context).writeCompoundStatements(compound);
+	public void generate(IMscriptGeneratorContext context, Compound compound) throws IOException {
+		try {
+			new CompoundGeneratorSwitch(context).writeCompoundStatements(compound);
+		} catch (WrappedException e) {
+			if (e.exception() instanceof IOException) {
+				throw (IOException) e.exception();
+			}
+			throw e;
+		}
 	}
 	
 	private class CompoundGeneratorSwitch extends FunctionModelSwitch<Boolean> {
@@ -83,7 +93,11 @@ public class CompoundGenerator implements ICompoundGenerator {
 		@Override
 		public Boolean defaultCase(EObject object) {
 			if (object instanceof Expression) {
-				expressionGenerator.generate(context, (Expression) object);
+				try {
+					expressionGenerator.generate(context, (Expression) object);
+				} catch (IOException e) {
+					throw new WrappedException(e);
+				}
 				return true;
 			}
 			return astCompoundGeneratorSwitch.doSwitch(object);
@@ -115,7 +129,11 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		private void cast(DataType targetDataType, Expression expression) {
-			MscriptGeneratorUtil.cast(context, expression, targetDataType);
+			try {
+				MscriptGeneratorUtil.cast(context, expression, targetDataType);
+			} catch (IOException e) {
+				throw new WrappedException(e);
+			}
 		}
 		
 		/**

@@ -63,6 +63,11 @@
             class="org.eclipselabs.damos.library.base.simulation.io.DataOutSimulationObject"
             name="Data Out">
       </simulationObject>
+      <simulationObject
+            blockType="damos.library.base.io.NumericDataIn"
+            class="org.eclipselabs.damos.library.base.simulation.io.NumericDataInSimulationObject"
+            name="Numeric Data In">
+      </simulationObject>
    </extension>
 
 </plugin>

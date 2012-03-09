@@ -14,6 +14,8 @@ package org.eclipselabs.damos.dconfig.scoping;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -28,6 +30,7 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
 import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
+import org.eclipselabs.damos.dconfig.internal.DconfigPlugin;
 import org.eclipselabs.damos.dconfig.internal.registry.DefinitionRegistry;
 
 import com.google.common.base.Predicate;
@@ -68,9 +71,13 @@ public class DconfigGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		}
 		synchronized (DconfigGlobalScopeProvider.class) {
 			if (eObjectDescriptions == null) {
-				eObjectDescriptions = new ArrayList<IEObjectDescription>();
+				List<IEObjectDescription> eObjectDescriptions = new ArrayList<IEObjectDescription>();
 				for (URI uri : DefinitionRegistry.getInstance().getDefinitionResourceURIs()) {
 					Resource resource = resourceSet.getResource(uri, true);
+					if (resource == null) {
+						DconfigPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DconfigPlugin.PLUGIN_ID, "Resource not found: " + uri.toString()));
+						continue;
+					}
 					for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
 						EObject next = it.next();
 						if (next instanceof ConfigurationDefinitionMember) {
@@ -82,6 +89,7 @@ public class DconfigGlobalScopeProvider extends DefaultGlobalScopeProvider {
 					}
 					resource.unload();
 				}
+				DconfigGlobalScopeProvider.eObjectDescriptions = eObjectDescriptions;
 			}
 		}
 		return eObjectDescriptions;

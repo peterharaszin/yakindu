@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.common.math.MathUtil;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
@@ -58,7 +59,7 @@ public class TimingContraintPropagationHelper {
 	public void propagateTimingConstraints(ExecutionFlow executionFlow) throws CoreException {
 		Graph graph = executionFlow.getGraph();
 		List<ComponentNode> inheritingNodes = new LinkedList<ComponentNode>();
-		applySampleTimes(graph, inheritingNodes);
+		applySampleTimes(executionFlow, graph, inheritingNodes);
 		
 		boolean changed;
 		do {
@@ -107,7 +108,7 @@ public class TimingContraintPropagationHelper {
 		}
 	}
 	
-	private void applySampleTimes(Graph graph, List<ComponentNode> inheritingNodes) throws CoreException {
+	private void applySampleTimes(ExecutionFlow executionFlow, Graph graph, List<ComponentNode> inheritingNodes) throws CoreException {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
@@ -118,13 +119,21 @@ public class TimingContraintPropagationHelper {
 						componentNode.setAsynchronousZone(asynchronousZone++);
 					} else if (sampleTime == INHERITED) {
 						inheritingNodes.add(componentNode);
+					} else if (sampleTime != CONTINUOUS) {
+						double fundamentalSampleTime = executionFlow.getFundamentalSampleTime();
+						if (fundamentalSampleTime == 0) {
+							fundamentalSampleTime = sampleTime;
+						} else {
+							fundamentalSampleTime = MathUtil.gcd(sampleTime, fundamentalSampleTime);
+						}
+						executionFlow.setFundamentalSampleTime(fundamentalSampleTime);
 					}
 				} catch (NumberFormatException e) {
 					throw new CoreException(new Status(
 							IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, "Invalid sample time specified", e));
 				}
 			} else if (node instanceof Graph) {
-				applySampleTimes((Graph) node, inheritingNodes);
+				applySampleTimes(executionFlow, (Graph) node, inheritingNodes);
 			}
 		}
 	}

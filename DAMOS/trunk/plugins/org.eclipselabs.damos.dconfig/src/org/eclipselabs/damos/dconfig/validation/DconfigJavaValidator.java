@@ -1,7 +1,9 @@
 package org.eclipselabs.damos.dconfig.validation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipselabs.damos.dconfig.Binding;
+import org.eclipselabs.damos.dconfig.BindingResourceSubscript;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
@@ -18,9 +21,11 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
+import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -191,6 +196,49 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 	public void checkBindingInGlobalSelectionProperty(Binding binding) {
 		if (DMLUtil.getOwner(binding, SystemConfiguration.class) != null) {
 			error("Bindings must not be located within system configurations", null);
+		}
+	}
+	
+	@Check
+	public void checkBindings(SelectionPropertyBody selectionPropertyBody) {
+		Set<List<Component>> sources = new HashSet<List<Component>>();
+		Set<List<Object>> targets = new HashSet<List<Object>>();
+		for (Binding binding : selectionPropertyBody.getBindings()) {
+			if (DMLUtil.isResolved(binding.getSource().getComponent())) {
+				EList<ComponentReference> references = binding.getSource().getReferences();
+				List<Component> source = new ArrayList<Component>(references.size());
+				for (ComponentReference reference : references) {
+					source.add(reference.getComponent());
+				}
+				if (!sources.add(source)) {
+					error("Duplicate binding", binding.getSource(), null, -1);
+				}
+			}
+
+			if (DMLUtil.isResolved(binding.getTarget().getResourceDeclaration())) {
+				int resourceCount = binding.getTarget().getResourceDeclaration().getCount();
+				int resourceIndex = 0;
+				
+				BindingResourceSubscript subscript = binding.getTarget().getSubscript();
+				
+				if (subscript != null) {
+					resourceIndex = subscript.getIndex();
+					if (resourceIndex < 0) {
+						error("Binding subscript must not be negative", binding.getTarget(), null, -1);
+					} else if (resourceIndex >= resourceCount) {
+						error("Maximum " + resourceCount + " available resources exceeded", binding.getTarget(), null, -1);
+					}
+				} else if (resourceCount > 1) {
+					error("Missing binding subscript", binding.getTarget(), null, -1);
+				}
+				
+				List<Object> target = new ArrayList<Object>(2);
+				target.add(binding.getTarget().getResourceDeclaration());
+				target.add(resourceIndex);
+				if (!targets.add(target)) {
+					error("Duplicate binding", binding.getTarget(), null, -1);
+				}
+			}
 		}
 	}
 

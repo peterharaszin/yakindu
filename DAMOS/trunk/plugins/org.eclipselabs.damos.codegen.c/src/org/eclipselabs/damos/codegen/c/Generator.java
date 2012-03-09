@@ -38,8 +38,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
+import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
@@ -108,32 +111,31 @@ public class Generator extends AbstractGenerator {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing configuration property projectName"));
 		}
 
+		final IGeneratorContext context = createContext(configuration, monitor);
+		
 		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
 		String headerFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
 		
-		String mainSourceFile = getSystemSourceFile(configuration);
-		String mainHeaderFile = getSystemHeaderFile(configuration);
+		String systemSourceFile = GeneratorConfigurationUtil.getSystemSourceFile(context.getConfiguration());
+		String systemHeaderFile = GeneratorConfigurationUtil.getSystemHeaderFile(context.getConfiguration());
 		
-		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
-
-		if (executionFlow.getAsynchronousZoneCount() > 0 && getRuntimeEnvironmentAPI(configuration) == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
-		}
-
-		initializeExecutionFlow(configuration, executionFlow, monitor);
-
 		IProject project = getProject(projectName, monitor);
 		IContainer sourceContainer = getContainer(monitor, project, sourceFolder);
 		IContainer headerContainer = getContainer(monitor, project, headerFolder);
 
-		IFile headerFile = headerContainer.getFile(new Path(mainHeaderFile));
+		IFile headerFile = headerContainer.getFile(new Path(systemHeaderFile));
 		
+		ITargetGenerator targetGenerator = getTargetGenerator(context);
+		if (targetGenerator != null) {
+			targetGenerator.generate(context, monitor);
+		}
+
 		new FileWriter() {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
 				try {
-					generateHeaderFile(configuration, executionFlow, new PrintWriter(writer), monitor);
+					generateHeaderFile(context, new PrintWriter(writer), monitor);
 				} catch (IOException e) {
 					throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "I/O error occurred", e));
 				}
@@ -141,36 +143,19 @@ public class Generator extends AbstractGenerator {
 			
 		}.write(headerFile, monitor);
 
-		IFile sourceFile = sourceContainer.getFile(new Path(mainSourceFile));
+		IFile sourceFile = sourceContainer.getFile(new Path(systemSourceFile));
 		new FileWriter() {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
 				try {
-					generateSourceFile(configuration, executionFlow, new PrintWriter(writer), monitor);
+					generateSourceFile(context, new PrintWriter(writer), monitor);
 				} catch (IOException e) {
 					throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "I/O error occurred", e));
 				}
 			}
 			
 		}.write(sourceFile, monitor);
-	}
-
-	private String getSystemSourceFile(final Configuration configuration) {
-		Fragment contextFragment = configuration.getContextFragment();
-		String defaultSourceFile = contextFragment.getName();
-		if (defaultSourceFile == null || defaultSourceFile.trim().length() == 0) {
-			defaultSourceFile = "main.c";
-		} else {
-			defaultSourceFile.replaceAll("\\W", "_");
-			defaultSourceFile += ".c";
-		}
-		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemSourceFile", defaultSourceFile);
-	}
-
-	private String getSystemHeaderFile(final Configuration configuration) {
-		String defaultHeaderFile = getSystemSourceFile(configuration).replaceAll("\\.c\\z", ".h");
-		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
 	}
 
 	/**
@@ -220,49 +205,48 @@ public class Generator extends AbstractGenerator {
 		return folder;
 	}
 
-	/**
-	 * @param configuration
-	 * @param monitor
-	 * @param graph
-	 * @param signatures
-	 * @throws CoreException
-	 */
-	private void initializeExecutionFlow(Configuration configuration, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
-		Map<Component, IComponentSignature> signatures = resolveDataTypes(configuration, executionFlow);
-		for (Node node : getAllNodes(executionFlow)) {
-			if (node instanceof ComponentNode) {
-				ComponentNode componentNode = (ComponentNode) node;
-				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				IVariableAccessor variableAccessor = new VariableAccessor(configuration, componentNode);
-				ComponentGeneratorContext context = new ComponentGeneratorContext(componentNode, signatures.get(componentNode.getComponent()), variableAccessor, configuration);
-				generator.initialize(context, monitor);
-			}
-		}
-	}
-	
-	private Map<Component, IComponentSignature> resolveDataTypes(Configuration configuration, ExecutionFlow executionFlow) throws CoreException {
-		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(executionFlow.getTopLevelFragment(), true);
+	private Map<Component, IComponentSignature> resolveDataTypes(IGeneratorContext context) throws CoreException {
+		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
 		if (!dataTypeResolverResult.getStatus().isOK()) {
 			throw new CoreException(dataTypeResolverResult.getStatus());
 		}
 		return dataTypeResolverResult.getSignatures();
 	}
 	
-	private ExecutionFlow constructExecutionFlow(Configuration configuration, IProgressMonitor monitor) throws CoreException {
+	private IGeneratorContext createContext(Configuration configuration, IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No root system specification found in configuration"));
 		}
+		
 		ExecutionFlow executionFlow = new ExecutionFlowBuilder().build(contextFragment, monitor);
-		new ComponentGeneratorAdaptor().adaptGenerators(configuration, executionFlow, monitor);
-		return executionFlow;
+		IGeneratorContext context = new GeneratorContext(configuration, executionFlow);
+		new ComponentGeneratorAdaptor().adaptGenerators(context, monitor);
+
+		if (executionFlow.getAsynchronousZoneCount() > 0 && getRuntimeEnvironmentAPI(context) == null) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
+		}
+
+		Map<Component, IComponentSignature> signatures = resolveDataTypes(context);
+		for (Node node : getAllNodes(context.getExecutionFlow())) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				IVariableAccessor variableAccessor = new VariableAccessor(configuration, componentNode);
+				IComponentSignature componentSignature = signatures.get(componentNode.getComponent());
+				ComponentGeneratorContext componentGeneratorContext = new ComponentGeneratorContext(componentNode, componentSignature, variableAccessor, configuration);
+				generator.initialize(componentGeneratorContext, monitor);
+			}
+		}
+
+		return context;
 	}
 	
-	private void generateHeaderFile(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
-		String headerFileName = getSystemHeaderFile(configuration);
+	private void generateHeaderFile(IGeneratorContext context, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
+		String headerFileName = GeneratorConfigurationUtil.getSystemHeaderFile(context.getConfiguration());
 		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase() + "_";
 		
-		String prefix = getPrefix(configuration);
+		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		
 		writer.printf("#ifndef %s\n", headerMacro);
 		writer.printf("#define %s\n", headerMacro);
@@ -270,8 +254,8 @@ public class Generator extends AbstractGenerator {
 		
 		writer.println("#include <stdint.h>");
 
-		if (executionFlow.getAsynchronousZoneCount() > 0) {
-			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(configuration);
+		if (context.getExecutionFlow().getAsynchronousZoneCount() > 0) {
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
 			if (runtimeEnvironmentAPI != null) {
 				runtimeEnvironmentAPI.writeTaskInfoInclude(writer);
 			}
@@ -283,13 +267,13 @@ public class Generator extends AbstractGenerator {
 		writer.println("#endif /* __cplusplus */");
 		writer.println();
 		
-		if (!executionFlow.getTaskGraphs().isEmpty()) {
-			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), executionFlow.getTaskGraphs().size());
-			writer.printf("extern const %s %staskInfos[];\n\n", getRuntimeEnvironmentAPI(configuration).getTaskInfoStructName(), prefix);
+		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
+			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), context.getExecutionFlow().getTaskGraphs().size());
+			writer.printf("extern const %s %staskInfos[];\n\n", getRuntimeEnvironmentAPI(context).getTaskInfoStructName(), prefix);
 		}
 
 		writer.println("typedef struct {");
-		for (Node node : executionFlow.getGraph().getNodes()) {
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
 			}
@@ -301,14 +285,14 @@ public class Generator extends AbstractGenerator {
 			IComponentSignature signature = generator.getContext().getComponentSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(configuration, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(context, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
 		}
 		writer.printf("} %sInput;\n", prefix);
 		
 		writer.println();
 
 		writer.println("typedef struct {");
-		for (Node node : executionFlow.getGraph().getNodes()) {
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
 			}
@@ -320,7 +304,7 @@ public class Generator extends AbstractGenerator {
 			IComponentSignature signature = generator.getContext().getComponentSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(configuration, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(context, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
 		}
 		writer.printf("} %sOutput;\n", prefix);
 
@@ -336,34 +320,34 @@ public class Generator extends AbstractGenerator {
 		writer.printf("#endif /* %s */\n", headerMacro);
 	}
 	
-	private void generateSourceFile(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
-		String prefix = getPrefix(configuration);
+	private void generateSourceFile(IGeneratorContext context, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
+		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 
-		generateIncludes(configuration, executionFlow, writer);
+		generateIncludes(context, writer);
 
 		writer.println();
 		
-		if (!executionFlow.getTaskGraphs().isEmpty()) {
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				writer.append("static ");
-				getRuntimeEnvironmentAPI(configuration).writeTaskSignature(writer, InternalGeneratorUtil.getTaskName(configuration, taskGraph));
+				getRuntimeEnvironmentAPI(context).writeTaskSignature(writer, InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 				writer.append(";\n");
 			}
 
 			writer.println();
-			writer.printf("const %s %staskInfos[] = {\n", getRuntimeEnvironmentAPI(configuration).getTaskInfoStructName(), prefix);
+			writer.printf("const %s %staskInfos[] = {\n", getRuntimeEnvironmentAPI(context).getTaskInfoStructName(), prefix);
 			boolean first = true;
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				if (first) {
 					first = false;
 				} else {
 					writer.append(",\n");
 				}
-				writer.append("{ ").append(InternalGeneratorUtil.getTaskName(configuration, taskGraph)).append(" }");
+				writer.append("{ ").append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph)).append(" }");
 			}
 			writer.println("\n};\n");
 			
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				EList<Input> inputSockets = getInputSockets(taskGraph);
 				if (!inputSockets.isEmpty()) {
 					writer.append("typedef struct {\n");
@@ -374,54 +358,54 @@ public class Generator extends AbstractGenerator {
 							ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 							IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 							IComponentSignature signature = generator.getContext().getComponentSignature();
-							writer.append(MscriptGeneratorUtil.getCDataType(getComputationModel(configuration, componentNode), signature.getInputDataType(input.getPorts().get(0))));
+							writer.append(MscriptGeneratorUtil.getCDataType(getComputationModel(context, componentNode), signature.getInputDataType(input.getPorts().get(0))));
 							writer.append(" ");
 							writer.append(input.getName());
 							writer.append(";\n");
 						}
 					}
 					writer.append("} data;\n");
-					writer.printf("} %s_Message;\n\n", InternalGeneratorUtil.getTaskName(configuration, taskGraph));
+					writer.printf("} %s_Message;\n\n", InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 				}
 			}
 		}
 		
-		boolean hasContext = hasContext(executionFlow);
-		Graph graph = executionFlow.getGraph();
+		boolean hasContext = hasContext(context.getExecutionFlow());
+		Graph graph = context.getExecutionFlow().getGraph();
 		if (hasContext) {
-			for (Node node : getAllNodes(executionFlow)) {
+			for (Node node : getAllNodes(context.getExecutionFlow())) {
 				if (!(node instanceof ComponentNode)) {
 					continue;
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 				if (generator.contributesContextCode()) {
-					String typeName = InternalGeneratorUtil.getPrefix(configuration, node) + componentNode.getComponent().getName() + "_Context";
+					String typeName = InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName() + "_Context";
 					generator.writeContextCode(writer, typeName, monitor);
 					writer.append("\n");
 				}
 			}
 			writer.println("typedef struct {");
-			generateTaskContexts(configuration, executionFlow, writer);
-			for (Node node : getAllNodes(executionFlow)) {
+			generateTaskContexts(context, writer);
+			for (Node node : getAllNodes(context.getExecutionFlow())) {
 				if (!(node instanceof ComponentNode)) {
 					continue;
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 				if (generator.contributesContextCode()) {
-					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(configuration, node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(configuration, node) + componentNode.getComponent().getName());
+					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(context.getConfiguration(), node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName());
 				}
 			}
 			writer.printf("} %sContext;\n\n", prefix);
 			writer.printf("static %sContext %scontext;\n\n", prefix, prefix);
 		}
 		
-		generateTasks(configuration, executionFlow, writer, monitor);
+		generateTasks(context, writer, monitor);
 		
 		writer.printf("void %sinitialize(void) {\n", prefix);
-		generateInitializeTasks(configuration, executionFlow, writer);
-		for (Node node : getAllNodes(executionFlow)) {
+		generateInitializeTasks(context, writer);
+		for (Node node : getAllNodes(context.getExecutionFlow())) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
 			}
@@ -438,27 +422,27 @@ public class Generator extends AbstractGenerator {
 
 		writer.printf("void %sexecute(const %sInput *input, %sOutput *output) {\n", prefix, prefix, prefix);
 		
-		generateOutputVariableDeclarations(configuration, graph, writer);
+		generateOutputVariableDeclarations(context, graph, writer);
 		writer.println();
-		generateGraph(configuration, graph, writer, monitor);
+		generateGraph(context, graph, writer, monitor);
 		
 		writer.println("}");
 	}
 
-	private void generateTaskContexts(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer) throws IOException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(configuration);
+	private void generateTaskContexts(IGeneratorContext context, PrintWriter writer) throws IOException {
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
 		if (runtimeEnvironmentAPI != null) {
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
-				String taskName = InternalGeneratorUtil.getTaskName(configuration, taskGraph);
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 				writer.append("struct {\n");
 				if (!inputNodes.isEmpty()) {
 					if (getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, inputNode);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(writer, "queue", messageQueueInfo);
 					} else {
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, taskGraph);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, taskGraph);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(writer, "queue", messageQueueInfo);
 					}
 				}
@@ -472,29 +456,29 @@ public class Generator extends AbstractGenerator {
 	 * @param inputNode
 	 * @return
 	 */
-	private MessageQueueInfo createMessageQueueInfoFor(Configuration configuration, TaskInputNode inputNode) {
-		return new MessageQueueInfo("10", "sizeof(" + getCDataTypeFor(configuration, inputNode) + ")");
+	private MessageQueueInfo createMessageQueueInfoFor(IGeneratorContext context, TaskInputNode inputNode) {
+		return new MessageQueueInfo("10", "sizeof(" + getCDataTypeFor(context, inputNode) + ")");
 	}
 	
-	private MessageQueueInfo createMessageQueueInfoFor(Configuration configuration, TaskGraph taskGraph) {
-		return new MessageQueueInfo("10", "sizeof(" + InternalGeneratorUtil.getTaskName(configuration, taskGraph) + "_Message)");
+	private MessageQueueInfo createMessageQueueInfoFor(IGeneratorContext context, TaskGraph taskGraph) {
+		return new MessageQueueInfo("10", "sizeof(" + InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph) + "_Message)");
 	}
 
-	private void generateInitializeTasks(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer) throws IOException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(configuration);
+	private void generateInitializeTasks(IGeneratorContext context, PrintWriter writer) throws IOException {
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
 		if (runtimeEnvironmentAPI != null) {
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
-				String taskName = InternalGeneratorUtil.getTaskName(configuration, taskGraph);
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 				if (!inputNodes.isEmpty()) {
 					writer.append(" {\n");
-					String qualifier = getTaskContextVariable(configuration, taskName, false) + "." + "queue";
+					String qualifier = getTaskContextVariable(context, taskName, false) + "." + "queue";
 					if (getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, inputNode);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(writer, qualifier, messageQueueInfo);
 					} else {
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, taskGraph);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, taskGraph);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(writer, qualifier, messageQueueInfo);
 					}
 					writer.append("}\n");
@@ -503,23 +487,11 @@ public class Generator extends AbstractGenerator {
 		}
 	}
 	
-	private String getCDataTypeFor(Configuration configuration, TaskInputNode inputNode) {
+	private String getCDataTypeFor(IGeneratorContext context, TaskInputNode inputNode) {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = InternalGeneratorUtil.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return MscriptGeneratorUtil.getCDataType(getComputationModel(configuration, (ComponentNode) end.getNode()), dataType);
-	}
-
-	/**
-	 * @param configuration
-	 * @return
-	 */
-	private String getPrefix(Configuration configuration) {
-		String prefix = InternalGeneratorUtil.getPrefix(configuration);
-		if (prefix == null) {
-			prefix = "";
-		}
-		return prefix;
+		return MscriptGeneratorUtil.getCDataType(getComputationModel(context, (ComponentNode) end.getNode()), dataType);
 	}
 
 	/**
@@ -528,21 +500,26 @@ public class Generator extends AbstractGenerator {
 	 * @param writer
 	 * @throws IOException
 	 */
-	private void generateIncludes(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer)
+	private void generateIncludes(IGeneratorContext context, PrintWriter writer)
 			throws IOException {
 		writer.println("#include <string.h>");
 		writer.println("#include <math.h>");
-		writer.println("#include <damos/math.h>");
+//		writer.println("#include <damos/math.h>");
 		
-		if (executionFlow.getAsynchronousZoneCount() > 0) {
-			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(configuration);
+		ITargetGenerator targetGenerator = getTargetGenerator(context);
+		if (targetGenerator != null && targetGenerator.contributesIncludes(context)) {
+			targetGenerator.writeIncludes(context, writer);
+		}
+		
+		if (context.getExecutionFlow().getAsynchronousZoneCount() > 0) {
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
 			if (runtimeEnvironmentAPI != null) {
 				runtimeEnvironmentAPI.writeMultitaskingIncludes(writer);
 			}
 		}
 		
 		writer.println();
-		writer.printf("#include \"%s\"\n", getSystemHeaderFile(configuration));
+		writer.printf("#include \"%s\"\n", GeneratorConfigurationUtil.getSystemHeaderFile(context.getConfiguration()));
 	}
 
 	/**
@@ -553,25 +530,25 @@ public class Generator extends AbstractGenerator {
 	 * @throws IOException
 	 * @throws CoreException
 	 */
-	private void generateTasks(Configuration configuration, ExecutionFlow executionFlow, PrintWriter writer,
+	private void generateTasks(IGeneratorContext context, PrintWriter writer,
 			IProgressMonitor monitor) throws IOException, CoreException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(configuration);
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
 		if (runtimeEnvironmentAPI != null) {
-			for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
-				String taskName = InternalGeneratorUtil.getTaskName(configuration, taskGraph);
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				writer.append("static ");
 				runtimeEnvironmentAPI.writeTaskSignature(writer, taskName);
 				writer.append(" {\n");
-				generateOutputVariableDeclarations(configuration, taskGraph, writer);
+				generateOutputVariableDeclarations(context, taskGraph, writer);
 				
 				if (getInputSockets(taskGraph).isEmpty()) {
 					TaskInputNode inputNode = taskGraph.getInputNodes().get(0);
-					String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
-					writer.append(getCDataTypeFor(configuration, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
+					String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
+					writer.append(getCDataTypeFor(context, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
 				} else {
-					writer.append(InternalGeneratorUtil.getTaskName(configuration, taskGraph));
+					writer.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 					writer.append("_Message ");
-					writer.append(InternalGeneratorUtil.getTaskName(configuration, taskGraph));
+					writer.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 					writer.append("_message;\n");
 				}
 				
@@ -579,20 +556,20 @@ public class Generator extends AbstractGenerator {
 				
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 				if (!inputNodes.isEmpty()) {
-					String qualifier = getTaskContextVariable(configuration, taskName, false) + "." + "queue";
+					String qualifier = getTaskContextVariable(context, taskName, false) + "." + "queue";
 					if (getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
-						String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, inputNode);
+						String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeReceiveCode(writer, qualifier, "&" + taskInputVariableName, messageQueueInfo);
 					} else {
-						String taskInputVariableName = InternalGeneratorUtil.getTaskName(configuration, taskGraph) + "_message";
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, taskGraph);
+						String taskInputVariableName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph) + "_message";
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, taskGraph);
 						runtimeEnvironmentAPI.getMessageQueueGenerator().writeReceiveCode(writer, qualifier, "&" + taskInputVariableName, messageQueueInfo);
 					}
 				}
 
-				generateGraph(configuration, taskGraph, writer, monitor);
+				generateGraph(context, taskGraph, writer, monitor);
 								
 				writer.append("}\n");
 				runtimeEnvironmentAPI.writeTaskReturnStatement(writer, taskName);
@@ -601,12 +578,12 @@ public class Generator extends AbstractGenerator {
 		}
 	}
 
-	private String getTaskContextVariable(Configuration configuration, String taskName, boolean pointer) {
+	private String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
 			sb.append("(&");
 		}
-		String prefix = getPrefix(configuration);
+		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		if (prefix != null) {
 			sb.append(prefix);
 		}
@@ -623,7 +600,7 @@ public class Generator extends AbstractGenerator {
 	 * @param graph
 	 * @param writer
 	 */
-	private void generateOutputVariableDeclarations(Configuration configuration, Graph graph, PrintWriter writer) {
+	private void generateOutputVariableDeclarations(IGeneratorContext context, Graph graph, PrintWriter writer) {
 		for (Node node : getAllNodes(graph)) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -637,11 +614,14 @@ public class Generator extends AbstractGenerator {
 			
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			for (Output output : component.getOutputs()) {
+				if (output.isTestPoint()) {
+					continue;
+				}
 				for (OutputPort outputPort : output.getPorts()) {
-					ComputationModel computationModel = getComputationModel(configuration, componentNode);
+					ComputationModel computationModel = getComputationModel(context, componentNode);
 					DataType outputDataType = generator.getContext().getComponentSignature().getOutputDataType(outputPort);
 					String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, outputDataType);
-					writer.printf("%s %s;\n", cDataType, getOutputVariableName(configuration, componentNode, outputPort));
+					writer.printf("%s %s;\n", cDataType, getOutputVariableName(context, componentNode, outputPort));
 				}
 			}
 		}
@@ -655,7 +635,7 @@ public class Generator extends AbstractGenerator {
 	 * @throws CoreException
 	 * @throws IOException 
 	 */
-	private void generateGraph(Configuration configuration, Graph graph, PrintWriter writer, IProgressMonitor monitor)
+	private void generateGraph(IGeneratorContext context, Graph graph, PrintWriter writer, IProgressMonitor monitor)
 			throws CoreException, IOException {
 		boolean hasChoices = false;
 		for (Node node : getAllNodes(graph)) {
@@ -664,7 +644,7 @@ public class Generator extends AbstractGenerator {
 				Component component = componentNode.getComponent();
 				
 				if (component instanceof Choice) {
-					writer.printf("uint_fast8_t %s;\n", getChoiceVariableName(configuration, componentNode));
+					writer.printf("uint_fast8_t %s;\n", getChoiceVariableName(context, componentNode));
 					hasChoices = true;
 				}
 			}
@@ -677,7 +657,7 @@ public class Generator extends AbstractGenerator {
 		writer.print("/*\n * Compute outputs\n */\n\n");
 		for (Node node : graph.getNodes()) {
 			if (node instanceof CompoundNode) {
-				generateCompoundCode(configuration, (CompoundNode) node, writer, monitor);
+				generateCompoundCode(context, (CompoundNode) node, writer, monitor);
 				writer.println();
 				continue;
 			} else if (!(node instanceof ComponentNode)) {
@@ -692,8 +672,8 @@ public class Generator extends AbstractGenerator {
 
 				Choice choice = (Choice) component;
 				
-				String incomingVariableName = getIncomingVariableName(configuration, componentNode, choice.getFirstInputPort());
-				String choiceResult = getChoiceVariableName(configuration, componentNode);
+				String incomingVariableName = getIncomingVariableName(context, componentNode, choice.getFirstInputPort());
+				String choiceResult = getChoiceVariableName(context, componentNode);
 				
 				int i = 0;
 				for (ActionLink actionLink : choice.getActionLinks()) {
@@ -705,7 +685,7 @@ public class Generator extends AbstractGenerator {
 						
 						if (actionLink.getCondition() instanceof MscriptValueSpecification) {
 							MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
-							ComputationModel computationModel = getComputationModel(configuration, componentNode);
+							ComputationModel computationModel = getComputationModel(context, componentNode);
 							ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
 							new ExpressionGenerator().generate(new MscriptGeneratorContext(writer, computationModel, new StaticEvaluationContext(), variableAccessStrategy), condition.getExpression());
 						} else {
@@ -738,22 +718,22 @@ public class Generator extends AbstractGenerator {
 						ActionNode actionNode = (ActionNode) enclosingCompoundNode;
 						Action action = (Action) actionNode.getCompound();
 						if (actionNode.getChoiceNode() != null) {
-							variableNameMap.put(DMLUtil.indexOf(action.getLink()), getIncomingVariableName(configuration, componentNode, inputPort));
+							variableNameMap.put(DMLUtil.indexOf(action.getLink()), getIncomingVariableName(context, componentNode, inputPort));
 							choiceNode = actionNode.getChoiceNode();
 						}
 					}
 				}
-				writer.printf("switch (%s) {\n", getChoiceVariableName(configuration, choiceNode));
+				writer.printf("switch (%s) {\n", getChoiceVariableName(context, choiceNode));
 				for (Entry<Integer, String> entry : variableNameMap.entrySet()) {
 					writer.printf("case %d:\n", entry.getKey());
-					writer.printf("%s = %s;\n", getOutputVariableName(configuration, componentNode, component.getFirstOutputPort()), entry.getValue());
+					writer.printf("%s = %s;\n", getOutputVariableName(context, componentNode, component.getFirstOutputPort()), entry.getValue());
 					writer.println("break;");
 				}
 				writer.println("}\n");
 			} else if (component instanceof Memory) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 				writer.println("{");
-				writer.printf("%s = %s;\n", getOutputVariableName(configuration, componentNode, component.getFirstOutputPort()), getMemoryPreviousValueVariableName(configuration, componentNode));
+				writer.printf("%s = %s;\n", getOutputVariableName(context, componentNode, component.getFirstOutputPort()), getMemoryPreviousValueVariableName(context, componentNode));
 				writer.println("}\n");
 			} else {
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
@@ -763,8 +743,8 @@ public class Generator extends AbstractGenerator {
 					generator.writeComputeOutputsCode(writer, monitor);
 					writer.println("}\n");
 				}
-				generateLatchUpdate(configuration, componentNode, writer);
-				generateMessageQueueSend(configuration, componentNode, writer);
+				generateLatchUpdate(context, componentNode, writer);
+				generateMessageQueueSend(context, componentNode, writer);
 			}
 		}
 		
@@ -779,7 +759,7 @@ public class Generator extends AbstractGenerator {
 			if (component instanceof Memory) {
 				writer.printf("/* %s */\n", component.getName());
 				writer.println("{");
-				writer.printf("%s = %s;\n", getMemoryPreviousValueVariableName(configuration, componentNode), getIncomingVariableName(configuration, componentNode, component.getInputPorts().get(1)));
+				writer.printf("%s = %s;\n", getMemoryPreviousValueVariableName(context, componentNode), getIncomingVariableName(context, componentNode, component.getInputPorts().get(1)));
 				writer.println("}");
 			} else {
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
@@ -798,18 +778,18 @@ public class Generator extends AbstractGenerator {
 	 * @param componentNode
 	 * @param writer
 	 */
-	private void generateLatchUpdate(Configuration configuration, ComponentNode componentNode, PrintWriter writer) throws IOException {
+	private void generateLatchUpdate(IGeneratorContext context, ComponentNode componentNode, PrintWriter writer) throws IOException {
 		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
 			if (end.getNode() instanceof ComponentNode) {
 				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
 				if (otherComponentNode.getComponent() instanceof Latch) {
-					String contextVariable = new VariableAccessor(configuration, otherComponentNode).getContextVariable(false);
+					String contextVariable = new VariableAccessor(context.getConfiguration(), otherComponentNode).getContextVariable(false);
 					String variableName = contextVariable + "." + "lock";
-					String outputVariable = new VariableAccessor(configuration, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
-					getRuntimeEnvironmentAPI(configuration).getFastLockGenerator().writeLockCode(writer, variableName);
+					getRuntimeEnvironmentAPI(context).getFastLockGenerator().writeLockCode(writer, variableName);
 					new Formatter(writer).format("%s.data = %s;\n", contextVariable, outputVariable);
-					getRuntimeEnvironmentAPI(configuration).getFastLockGenerator().writeUnlockCode(writer, variableName);
+					getRuntimeEnvironmentAPI(context).getFastLockGenerator().writeUnlockCode(writer, variableName);
 				}
 			}
 		}
@@ -820,14 +800,14 @@ public class Generator extends AbstractGenerator {
 	 * @param componentNode
 	 * @param writer
 	 */
-	private void generateMessageQueueSend(Configuration configuration, ComponentNode componentNode, PrintWriter writer) throws IOException {
+	private void generateMessageQueueSend(IGeneratorContext context, ComponentNode componentNode, PrintWriter writer) throws IOException {
 		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
 			if (end.getNode() instanceof TaskInputNode) {
 				TaskInputNode inputNode = (TaskInputNode) end.getNode();
 				
-				String taskName = InternalGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph());
-				String qualifier = getTaskContextVariable(configuration, taskName, false) + "." + "queue";
-				String outputVariable = new VariableAccessor(configuration, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph());
+				String qualifier = getTaskContextVariable(context, taskName, false) + "." + "queue";
+				String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 				DataFlowTargetEnd firstEnd = inputNode.getDrivenEnds().get(0);
 				if (firstEnd.getConnector() instanceof InputPort) {
@@ -835,24 +815,24 @@ public class Generator extends AbstractGenerator {
 					Input input = inputPort.getInput();
 					if (input.isSocket()) {
 						writer.append("{\n");
-						writer.append(InternalGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_Message message;\n");
+						writer.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph()) + "_Message message;\n");
 						writer.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
 						writer.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
-						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, inputNode.getTaskGraph());
-						getRuntimeEnvironmentAPI(configuration).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&message", messageQueueInfo);
+						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode.getTaskGraph());
+						getRuntimeEnvironmentAPI(context).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&message", messageQueueInfo);
 						writer.append("}\n");
 						continue;
 					}
 				}
 				
-				MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(configuration, inputNode);
-				getRuntimeEnvironmentAPI(configuration).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
+				MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode);
+				getRuntimeEnvironmentAPI(context).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
 			}
 		}
 	}
 
-	private String getChoiceVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_result", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
+	private String getChoiceVariableName(IGeneratorContext context, ComponentNode componentNode) {
+		return String.format("%s%s_result", InternalGeneratorUtil.getPrefix(context.getConfiguration(), componentNode), componentNode.getComponent().getName());
 	}
 	
 	/**
@@ -863,7 +843,7 @@ public class Generator extends AbstractGenerator {
 	 * @throws CoreException 
 	 * @throws IOException 
 	 */
-	private void generateCompoundCode(Configuration configuration, CompoundNode compoundNode, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
+	private void generateCompoundCode(IGeneratorContext context, CompoundNode compoundNode, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
 		if (compoundNode instanceof ActionNode) {
 			ActionNode actionNode = (ActionNode) compoundNode;
 			Action action = (Action) actionNode.getCompound();
@@ -871,7 +851,7 @@ public class Generator extends AbstractGenerator {
 			if (actionNode.getChoiceNode() != null) {
 				Choice choice = (Choice) actionNode.getChoiceNode().getComponent();
 				int index = getActionIndex(choice, action);
-				writer.printf("if (%s%s_result == %d) ", InternalGeneratorUtil.getPrefix(configuration, compoundNode), choice.getName(), index);
+				writer.printf("if (%s%s_result == %d) ", InternalGeneratorUtil.getPrefix(context.getConfiguration(), compoundNode), choice.getName(), index);
 			}
 			
 			writer.print("{\n");
@@ -882,11 +862,11 @@ public class Generator extends AbstractGenerator {
 					if (componentNode.getComponent() instanceof Memory) {
 						Memory memory = (Memory) componentNode.getComponent();
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-						String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(configuration, componentNode), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()));
+						String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(context, componentNode), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()));
 						
-						String initializer = getIncomingVariableName(configuration, componentNode, memory.getFirstInputPort());
+						String initializer = getIncomingVariableName(context, componentNode, memory.getFirstInputPort());
 						
-						writer.printf("%s %s = %s;\n", cDataType, getMemoryPreviousValueVariableName(configuration, componentNode), initializer);
+						writer.printf("%s %s = %s;\n", cDataType, getMemoryPreviousValueVariableName(context, componentNode), initializer);
 					}
 				}
 			}
@@ -895,13 +875,13 @@ public class Generator extends AbstractGenerator {
 				writer.print("do {\n");
 			}
 			
-			generateGraph(configuration, compoundNode, writer, monitor);
+			generateGraph(context, compoundNode, writer, monitor);
 			
 			if (action instanceof WhileLoop) {
 				WhileLoop whileLoop = (WhileLoop) action;
 
 				InputConnector inputConnector = whileLoop.getCondition();
-				String condition = getIncomingVariableName(configuration, actionNode, inputConnector);
+				String condition = getIncomingVariableName(context, actionNode, inputConnector);
 				if (condition == null) {
 					condition = "0";
 				}
@@ -913,8 +893,8 @@ public class Generator extends AbstractGenerator {
 		}
 	}
 	
-	private String getMemoryPreviousValueVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_previousValue", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
+	private String getMemoryPreviousValueVariableName(IGeneratorContext context, ComponentNode componentNode) {
+		return String.format("%s%s_previousValue", InternalGeneratorUtil.getPrefix(context.getConfiguration(), componentNode), componentNode.getComponent().getName());
 	}
 
 	/**
@@ -923,7 +903,7 @@ public class Generator extends AbstractGenerator {
 	 * @param inputConnector
 	 * @return
 	 */
-	private String getIncomingVariableName(Configuration configuration, Node node, InputConnector inputConnector) {
+	private String getIncomingVariableName(IGeneratorContext context, Node node, InputConnector inputConnector) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputConnector);
 		if (targetEnd != null) {
 			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
@@ -931,7 +911,7 @@ public class Generator extends AbstractGenerator {
 			if (sourceNode instanceof ComponentNode && sourceEnd.getConnector() instanceof OutputPort) {
 				OutputPort outputPort = (OutputPort) sourceEnd.getConnector();
 				ComponentNode componentNode = (ComponentNode) sourceNode;
-				return new VariableAccessor(configuration, componentNode).getOutputVariable(outputPort, false);
+				return new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable(outputPort, false);
 			}
 		}
 		return null;
@@ -949,8 +929,8 @@ public class Generator extends AbstractGenerator {
 		return ECollections.emptyEList();
 	}
 	
-	private String getOutputVariableName(Configuration configuration, ComponentNode componentNode, OutputPort outputPort) {
-		return String.format("%s%s_%s", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
+	private String getOutputVariableName(IGeneratorContext context, ComponentNode componentNode, OutputPort outputPort) {
+		return String.format("%s%s_%s", InternalGeneratorUtil.getPrefix(context.getConfiguration(), componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
 	}
 
 	/**
@@ -982,8 +962,8 @@ public class Generator extends AbstractGenerator {
 		return false;
 	}
 	
-	private ComputationModel getComputationModel(Configuration configuration, ComponentNode node) {
-		ComputationModel computationModel = configuration.getComputationModel(node.getSystemPath());
+	private ComputationModel getComputationModel(IGeneratorContext context, ComponentNode node) {
+		ComputationModel computationModel = context.getConfiguration().getComputationModel(node.getSystemPath());
 		if (computationModel == null) {
 			computationModel = ComputationModelUtil.constructDefaultComputationModel();
 		}
@@ -1012,10 +992,21 @@ public class Generator extends AbstractGenerator {
 		return null;
 	}
 
-	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(Configuration configuration) {
-		String runtimeId = configuration.getPropertySelectionName("damos.rte.runtime");
+	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(IGeneratorContext context) {
+		String runtimeId = context.getConfiguration().getPropertySelectionName("damos.rte.runtime");
 		if (runtimeId != null) {
 			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
+		}
+		return null;
+	}
+	
+	private ITargetGenerator getTargetGenerator(IGeneratorContext context) {
+		String targetId = context.getConfiguration().getPropertySelectionName("damos.codegen.target");
+		if (targetId != null) {
+			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
+			if (targetGeneratorDescriptor != null) {
+				return targetGeneratorDescriptor.createGenerator();
+			}
 		}
 		return null;
 	}

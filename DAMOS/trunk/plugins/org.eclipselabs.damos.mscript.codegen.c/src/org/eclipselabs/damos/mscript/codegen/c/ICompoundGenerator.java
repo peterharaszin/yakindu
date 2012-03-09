@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.io.IOException;
+
 import org.eclipselabs.damos.mscript.Compound;
 
 
@@ -20,6 +22,6 @@ import org.eclipselabs.damos.mscript.Compound;
  */
 public interface ICompoundGenerator {
 
-	void generate(IMscriptGeneratorContext context, Compound compound);
+	void generate(IMscriptGeneratorContext context, Compound compound) throws IOException;
 
 }

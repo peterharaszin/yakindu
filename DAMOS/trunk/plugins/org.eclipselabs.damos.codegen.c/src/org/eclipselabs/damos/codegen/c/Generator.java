@@ -100,12 +100,20 @@ public class Generator extends AbstractGenerator {
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 
-	public void generate(final Configuration configuration, final IProgressMonitor monitor) throws CoreException {
+	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No system configuration specified"));
 		}
 		
+		ITargetGenerator targetGenerator = getTargetGenerator(configuration);
+		if (targetGenerator != null) {
+			Configuration newConfiguration = targetGenerator.createConfiguration(configuration, monitor);
+			if (newConfiguration != null) {
+				configuration = newConfiguration;
+			}
+		}
+
 		String projectName = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
 		if (projectName == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing configuration property projectName"));
@@ -125,7 +133,6 @@ public class Generator extends AbstractGenerator {
 
 		IFile headerFile = headerContainer.getFile(new Path(systemHeaderFile));
 		
-		ITargetGenerator targetGenerator = getTargetGenerator(context);
 		if (targetGenerator != null) {
 			targetGenerator.generate(context, monitor);
 		}
@@ -506,7 +513,7 @@ public class Generator extends AbstractGenerator {
 		writer.println("#include <math.h>");
 //		writer.println("#include <damos/math.h>");
 		
-		ITargetGenerator targetGenerator = getTargetGenerator(context);
+		ITargetGenerator targetGenerator = getTargetGenerator(context.getConfiguration());
 		if (targetGenerator != null && targetGenerator.contributesIncludes(context)) {
 			targetGenerator.writeIncludes(context, writer);
 		}
@@ -1000,8 +1007,8 @@ public class Generator extends AbstractGenerator {
 		return null;
 	}
 	
-	private ITargetGenerator getTargetGenerator(IGeneratorContext context) {
-		String targetId = context.getConfiguration().getPropertySelectionName("damos.codegen.target");
+	private ITargetGenerator getTargetGenerator(Configuration configuration) {
+		String targetId = configuration.getPropertySelectionName("damos.codegen.target");
 		if (targetId != null) {
 			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
 			if (targetGeneratorDescriptor != null) {

@@ -48,7 +48,7 @@ public class DataTypeResolver {
 		new DataTypeResolverHelper(fragment, signatures, status).resolve();
 		visitedFragments.add(fragment);
 		
-		for (FragmentElement element : fragment.getFragmentElements()) {
+		for (FragmentElement element : fragment.getAllFragmentElements()) {
 			if (element instanceof Subsystem) {
 				Subsystem subsystem = (Subsystem) element;
 				SubsystemRealization realization = subsystem.getRealization(fragment);

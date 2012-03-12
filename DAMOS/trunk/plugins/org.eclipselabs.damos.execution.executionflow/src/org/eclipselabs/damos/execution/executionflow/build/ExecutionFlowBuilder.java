@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -153,7 +154,7 @@ public class ExecutionFlowBuilder {
 			InputConnector target = targetEnd.getConnector();
 			if (target instanceof InputPort && !(target instanceof ChoiceInputPort)) {
 				InputPort targetPort = (InputPort) target;
-				driving = targetPort.getInput().isDirectFeedthrough();
+				driving = targetPort.getInput().isDirectFeedthrough() || targetPort.getComponent() instanceof Outport;
 			}
 			
 			if (driving) {

@@ -4,6 +4,7 @@
 package org.eclipselabs.damos.dconfig.scoping;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,7 @@ import org.eclipselabs.damos.mscript.scoping.MscriptScopeProvider;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
 
 /**
  * This class contains custom scoping description.
@@ -158,7 +160,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 			return IScope.NULLSCOPE;
 		}
 
-		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), Component.class));
+		return Scopes.scopeFor(Iterables.filter(getAllFragmentElements(contextFragment), Component.class));
 	}
 
 	public IScope scope_SubsystemConfiguration_subsystem(SubsystemConfiguration context, EReference reference) {
@@ -172,7 +174,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 			return IScope.NULLSCOPE;
 		}
 		
-		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), Subsystem.class));
+		return Scopes.scopeFor(Iterables.filter(getAllFragmentElements(contextFragment), Subsystem.class));
 	}
 	
 	public IScope scope_ComputationProperty_computationModel(ComputationProperty context, EReference reference) {
@@ -190,11 +192,11 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	public IScope scope_ComponentReference_component(Configuration context, EReference reference) {
 		Fragment contextFragment = context.getContextFragment();
 		if (DMLUtil.isResolved(contextFragment)) {
-			return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), COMPONENT_PREDICATE));
+			return Scopes.scopeFor(Iterables.filter(getAllFragmentElements(contextFragment), COMPONENT_PREDICATE));
 		}
 		return IScope.NULLSCOPE;
 	}
-	
+
 	public IScope scope_ComponentReference_component(ComponentPath context, EReference reference) {
 		return doScope_ComponentReference_component(context, null);
 	}
@@ -237,7 +239,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 			contextFragment = realization.getRealizingFragment();
 		}
 		
-		return Scopes.scopeFor(Iterables.filter(contextFragment.getAllFragmentElements(), COMPONENT_PREDICATE));
+		return Scopes.scopeFor(Iterables.filter(getAllFragmentElements(contextFragment), COMPONENT_PREDICATE));
 	}
 	
 	private Fragment getContextFragment(SystemConfiguration systemConfiguration) {
@@ -276,6 +278,16 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 		}
 		
 		return contextFragment;
+	}
+
+	private Iterable<FragmentElement> getAllFragmentElements(final Fragment contextFragment) {
+		return new Iterable<FragmentElement>() {
+			
+			public Iterator<FragmentElement> iterator() {
+				return Iterators.filter(contextFragment.eAllContents(), FragmentElement.class);
+			}
+			
+		};
 	}
 
 }

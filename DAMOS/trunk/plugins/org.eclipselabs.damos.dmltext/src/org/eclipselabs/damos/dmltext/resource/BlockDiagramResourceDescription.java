@@ -35,7 +35,6 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
@@ -89,18 +88,19 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 
 	public Iterable<IReferenceDescription> getReferenceDescriptions() {
 		List<IReferenceDescription> references = new ArrayList<IReferenceDescription>();
-		for (EObject element : resource.getContents()) {
-			if (!(element instanceof Fragment)) {
-				continue;
-			}
-			for (FragmentElement fragmentElement : ((Fragment) element).getAllFragmentElements()) {
-				if (fragmentElement instanceof Block) {
-					getBlockReferenceDescriptions((Block) fragmentElement, references);
-				} else if (fragmentElement instanceof Subsystem) {
-					getSubsystemReferenceDescriptions((Subsystem) fragmentElement, references);
-				} else if (fragmentElement instanceof SubsystemRealization) {
-					getSubsystemRealizationReferenceDescriptions((SubsystemRealization) fragmentElement, references);
-				}
+		for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
+			EObject element = it.next();
+			if (element instanceof Block) {
+				getBlockReferenceDescriptions((Block) element, references);
+				it.prune();
+			} else if (element instanceof Subsystem) {
+				getSubsystemReferenceDescriptions((Subsystem) element, references);
+				it.prune();
+			} else if (element instanceof SubsystemRealization) {
+				getSubsystemRealizationReferenceDescriptions((SubsystemRealization) element, references);
+				it.prune();
+			} else if (element.eClass().getEPackage() != DMLPackage.eINSTANCE) {
+				it.prune();
 			}
 		}
 		return references;

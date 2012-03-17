@@ -12,7 +12,9 @@
 package org.eclipselabs.damos.codegen.c.util;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.mscript.Expression;
@@ -41,12 +43,12 @@ public class GeneratorConfigurationUtil {
 			defaultSourceFile.replaceAll("\\W", "_");
 			defaultSourceFile += ".c";
 		}
-		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemSourceFile", defaultSourceFile);
+		return getPropertyStringValue(configuration, "damos.codegen.generator/systemSourceFile", defaultSourceFile);
 	}
 
 	public static String getSystemHeaderFile(Configuration configuration) {
 		String defaultHeaderFile = new Path(getSystemSourceFile(configuration)).removeFileExtension().addFileExtension("h").toString();
-		return GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
+		return getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
 	}
 
 	public static String getPrefix(Configuration configuration) {
@@ -55,6 +57,14 @@ public class GeneratorConfigurationUtil {
 			prefix = "";
 		}
 		return prefix;
+	}
+
+	public static IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(Configuration configuration) {
+		String runtimeId = configuration.getPropertySelectionName("damos.rte.runtime");
+		if (runtimeId != null) {
+			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
+		}
+		return null;
 	}
 
 }

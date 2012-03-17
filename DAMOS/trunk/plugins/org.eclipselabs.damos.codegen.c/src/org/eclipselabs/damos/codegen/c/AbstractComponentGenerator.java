@@ -16,6 +16,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.IComponentSignature;
@@ -134,10 +135,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	
 	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI() {
 		if (cachedRuntimeEnvironmentAPI == null) {
-//			String runtimeEnvironmentId = getExecutionModel().getRuntimeEnvironmentId();
-//			if (runtimeEnvironmentId != null) {
-//				cachedRuntimeEnvironmentAPI = RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
-//			}
+			cachedRuntimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(getConfiguration());
 		}
 		return cachedRuntimeEnvironmentAPI;
 	}

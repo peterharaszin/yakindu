@@ -38,7 +38,6 @@ import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
-import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
@@ -219,7 +218,7 @@ public class Generator extends AbstractGenerator {
 		IGeneratorContext context = new GeneratorContext(configuration, executionFlow);
 		new ComponentGeneratorAdaptor().adaptGenerators(context, monitor);
 
-		if (executionFlow.getAsynchronousZoneCount() > 0 && getRuntimeEnvironmentAPI(context) == null) {
+		if (executionFlow.getAsynchronousZoneCount() > 0 && GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()) == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
 		}
 
@@ -251,7 +250,7 @@ public class Generator extends AbstractGenerator {
 		writer.println("#include <stdint.h>");
 
 		if (context.getExecutionFlow().getAsynchronousZoneCount() > 0) {
-			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 			if (runtimeEnvironmentAPI != null) {
 				runtimeEnvironmentAPI.writeTaskInfoInclude(writer);
 			}
@@ -265,7 +264,7 @@ public class Generator extends AbstractGenerator {
 		
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
 			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), context.getExecutionFlow().getTaskGraphs().size());
-			writer.printf("extern const %s %staskInfos[];\n\n", getRuntimeEnvironmentAPI(context).getTaskInfoStructName(), prefix);
+			writer.printf("extern const %s %staskInfos[];\n\n", GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getTaskInfoStructName(), prefix);
 		}
 
 		writer.println("typedef struct {");
@@ -326,12 +325,12 @@ public class Generator extends AbstractGenerator {
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				writer.append("static ");
-				getRuntimeEnvironmentAPI(context).writeTaskSignature(writer, InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+				GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).writeTaskSignature(writer, InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 				writer.append(";\n");
 			}
 
 			writer.println();
-			writer.printf("const %s %staskInfos[] = {\n", getRuntimeEnvironmentAPI(context).getTaskInfoStructName(), prefix);
+			writer.printf("const %s %staskInfos[] = {\n", GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getTaskInfoStructName(), prefix);
 			boolean first = true;
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				if (first) {
@@ -426,7 +425,7 @@ public class Generator extends AbstractGenerator {
 	}
 
 	private void generateTaskContexts(IGeneratorContext context, PrintWriter writer) throws IOException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
@@ -461,7 +460,7 @@ public class Generator extends AbstractGenerator {
 	}
 
 	private void generateInitializeTasks(IGeneratorContext context, PrintWriter writer) throws IOException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
@@ -508,7 +507,7 @@ public class Generator extends AbstractGenerator {
 		}
 		
 		if (context.getExecutionFlow().getAsynchronousZoneCount() > 0) {
-			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 			if (runtimeEnvironmentAPI != null) {
 				runtimeEnvironmentAPI.writeMultitaskingIncludes(writer);
 			}
@@ -528,7 +527,7 @@ public class Generator extends AbstractGenerator {
 	 */
 	private void generateTasks(IGeneratorContext context, PrintWriter writer,
 			IProgressMonitor monitor) throws IOException, CoreException {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(context);
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
@@ -712,9 +711,9 @@ public class Generator extends AbstractGenerator {
 					String variableName = contextVariable + "." + "lock";
 					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
-					getRuntimeEnvironmentAPI(context).getFastLockGenerator().writeLockCode(writer, variableName);
+					GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().writeLockCode(writer, variableName);
 					new Formatter(writer).format("%s.data = %s;\n", contextVariable, outputVariable);
-					getRuntimeEnvironmentAPI(context).getFastLockGenerator().writeUnlockCode(writer, variableName);
+					GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().writeUnlockCode(writer, variableName);
 				}
 			}
 		}
@@ -744,14 +743,14 @@ public class Generator extends AbstractGenerator {
 						writer.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
 						writer.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
 						MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode.getTaskGraph());
-						getRuntimeEnvironmentAPI(context).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&message", messageQueueInfo);
+						GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&message", messageQueueInfo);
 						writer.append("}\n");
 						continue;
 					}
 				}
 				
 				MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(context, inputNode);
-				getRuntimeEnvironmentAPI(context).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
+				GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
 			}
 		}
 	}
@@ -861,14 +860,6 @@ public class Generator extends AbstractGenerator {
 			computationModel = ComputationModelUtil.constructDefaultComputationModel();
 		}
 		return computationModel;
-	}
-	
-	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(IGeneratorContext context) {
-		String runtimeId = context.getConfiguration().getPropertySelectionName("damos.rte.runtime");
-		if (runtimeId != null) {
-			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
-		}
-		return null;
 	}
 	
 	private ITargetGenerator getTargetGenerator(Configuration configuration) {

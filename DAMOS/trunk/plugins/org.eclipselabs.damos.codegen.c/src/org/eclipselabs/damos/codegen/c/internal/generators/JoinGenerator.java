@@ -11,12 +11,91 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
+import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.common.util.PrintAppendable;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.CompoundNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * @author Andreas Unger
  *
  */
 public class JoinGenerator extends AbstractComponentGenerator {
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#contributesComputeOutputsCode()
+	 */
+	@Override
+	public boolean contributesComputeOutputsCode() {
+		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeComputeOutputsCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+		PrintAppendable out = new PrintAppendable(appendable);
+		
+		Map<Integer, String> variableNameMap = new TreeMap<Integer, String>();
+		ComponentNode choiceNode = null;
+		for (InputPort inputPort : getComponent().getInputPorts()) {
+			DataFlowTargetEnd targetEnd = getNode().getIncomingDataFlow(inputPort);
+			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+			CompoundNode enclosingCompoundNode = findEnclosingActionNodeWithActionLink(sourceEnd.getNode());
+			if (enclosingCompoundNode instanceof ActionNode) {
+				ActionNode actionNode = (ActionNode) enclosingCompoundNode;
+				Action action = (Action) actionNode.getCompound();
+				if (actionNode.getChoiceNode() != null) {
+					variableNameMap.put(DMLUtil.indexOf(action.getLink()), InternalGeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), inputPort));
+					choiceNode = actionNode.getChoiceNode();
+				}
+			}
+		}
+		out.printf("switch (%s) {\n", InternalGeneratorUtil.getChoiceVariableName(getConfiguration(), choiceNode));
+		for (Entry<Integer, String> entry : variableNameMap.entrySet()) {
+			out.printf("case %d:\n", entry.getKey());
+			out.printf("%s = %s;\n", InternalGeneratorUtil.getOutputVariableName(getConfiguration(), getNode(), getComponent().getFirstOutputPort()), entry.getValue());
+			out.println("break;");
+		}
+		out.println("}");
+	}
+	
+	private CompoundNode findEnclosingActionNodeWithActionLink(Node node) {
+		Graph graph;
+		for (;;) {
+			graph = node.getGraph();
+			if (graph instanceof CompoundNode) {
+				CompoundNode compoundNode = (CompoundNode) graph;
+				if (compoundNode.getCompound() instanceof Action) {
+					Action action = (Action) compoundNode.getCompound();
+					if (action.getLink() != null) {
+						return compoundNode;
+					}
+				}
+			}
+			if (graph instanceof Node) {
+				node = (Node) graph;
+			} else {
+				break;
+			}
+		}
+		return null;
+	}
 
 }

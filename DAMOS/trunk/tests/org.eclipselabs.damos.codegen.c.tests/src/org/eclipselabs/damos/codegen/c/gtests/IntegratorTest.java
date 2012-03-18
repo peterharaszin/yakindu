@@ -1,0 +1,43 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.codegen.c.gtests;
+
+import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
+import org.eclipselabs.damos.codegen.c.test.GTest;
+import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.Outport;
+import org.junit.Before;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+@GTest(sourceFile="gtests/IntegratorTest.cpp", program="gtests/IntegratorTest")
+public class IntegratorTest extends AbstractGeneratorGTest {
+
+	@Before
+	public void setUp() {
+		createConfiguration();
+		
+		Block integrator = createBlock(DISCRETE_INTEGRATOR, "Integrator");
+		
+		Inport inport = createInport("In", createRealTypeSpecification(), 1);
+		Outport outport = createOutport("Out", createRealTypeSpecification());
+		
+		connect(inport, integrator);
+		connect(integrator, outport);
+
+		generateAndCompile();
+	}
+
+}

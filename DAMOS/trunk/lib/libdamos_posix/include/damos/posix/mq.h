@@ -25,7 +25,7 @@ typedef struct {
 	sem_t emptyCount;
 	int tail;
 	int head;
-	int capacity;
+	int size;
 	int elementSize;
 } DamosPosixMessageQueue;
 

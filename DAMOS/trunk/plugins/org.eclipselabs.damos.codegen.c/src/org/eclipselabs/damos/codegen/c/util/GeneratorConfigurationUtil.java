@@ -12,13 +12,19 @@
 package org.eclipselabs.damos.codegen.c.util;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipselabs.damos.codegen.c.ITargetGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
+import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -63,6 +69,25 @@ public class GeneratorConfigurationUtil {
 		String runtimeId = configuration.getPropertySelectionName("damos.rte.runtime");
 		if (runtimeId != null) {
 			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
+		}
+		return null;
+	}
+
+	public static ComputationModel getComputationModel(Configuration configuration, ComponentNode node) {
+		ComputationModel computationModel = configuration.getComputationModel(node.getSystemPath());
+		if (computationModel == null) {
+			computationModel = ComputationModelUtil.constructDefaultComputationModel();
+		}
+		return computationModel;
+	}
+	
+	public static ITargetGenerator getTargetGenerator(Configuration configuration) {
+		String targetId = configuration.getPropertySelectionName("damos.codegen.target");
+		if (targetId != null) {
+			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
+			if (targetGeneratorDescriptor != null) {
+				return targetGeneratorDescriptor.createGenerator();
+			}
 		}
 		return null;
 	}

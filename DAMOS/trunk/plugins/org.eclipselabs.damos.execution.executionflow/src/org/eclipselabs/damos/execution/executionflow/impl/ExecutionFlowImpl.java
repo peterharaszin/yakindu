@@ -297,7 +297,16 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public TreeIterator<Node> getAllNodes() {
+	public TreeIterator<Node> getAllNodesIterator() {
+		return ExecutionFlowOperations.getAllNodesIterator(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Iterable<Node> getAllNodes() {
 		return ExecutionFlowOperations.getAllNodes(this);
 	}
 

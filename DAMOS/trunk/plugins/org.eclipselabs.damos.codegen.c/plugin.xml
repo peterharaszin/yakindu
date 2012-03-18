@@ -26,7 +26,7 @@
    <extension
          point="org.eclipselabs.damos.codegen.generators">
       <generator
-            class="org.eclipselabs.damos.codegen.c.Generator"
+            class="org.eclipselabs.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipselabs.damos.codegen.c.DefaultGenerator"
             id="damos.codegen.c.DefaultGenerator"
             name="Default Generator">
       </generator>

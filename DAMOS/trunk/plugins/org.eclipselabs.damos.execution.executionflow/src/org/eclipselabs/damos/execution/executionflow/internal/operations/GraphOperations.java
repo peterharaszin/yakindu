@@ -24,7 +24,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
  */
 public class GraphOperations {
 
-	public static TreeIterator<Node> getAllNodes(Graph graph) {
+	public static TreeIterator<Node> getAllNodesIterator(Graph graph) {
 		return new AbstractTreeIterator<Node>(graph, false) {
 
 			private static final long serialVersionUID = 1L;
@@ -35,6 +35,16 @@ public class GraphOperations {
 					return ((Graph) object).getNodes().iterator();
 				}
 				return ExecutionFlowOperations.EMPTY_NODE_ITERATOR;
+			}
+			
+		};
+	}
+
+	public static Iterable<Node> getAllNodes(final Graph graph) {
+		return new Iterable<Node>() {
+			
+			public Iterator<Node> iterator() {
+				return graph.getAllNodesIterator();
 			}
 			
 		};

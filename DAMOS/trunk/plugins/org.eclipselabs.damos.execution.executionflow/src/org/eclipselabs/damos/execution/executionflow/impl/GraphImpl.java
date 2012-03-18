@@ -129,7 +129,16 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public TreeIterator<Node> getAllNodes() {
+	public TreeIterator<Node> getAllNodesIterator() {
+		return GraphOperations.getAllNodesIterator(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Iterable<Node> getAllNodes() {
 		return GraphOperations.getAllNodes(this);
 	}
 

@@ -4,8 +4,13 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionflow"
     nsURI="http://www.eclipselabs.org/damos/2011/ExecutionFlow" nsPrefix="executionflow">
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionFlow">
-    <eOperations name="getAllNodes" lowerBound="1">
+    <eOperations name="getAllNodesIterator" lowerBound="1">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="#//Iterable">
         <eTypeArguments eClassifier="#//Node"/>
       </eGenericType>
     </eOperations>
@@ -23,8 +28,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
-    <eOperations name="getAllNodes" lowerBound="1">
+    <eOperations name="getAllNodesIterator" lowerBound="1">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="#//Iterable">
         <eTypeArguments eClassifier="#//Node"/>
       </eGenericType>
     </eOperations>
@@ -142,4 +152,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SystemPath" instanceClassName="org.eclipselabs.damos.dml.util.SystemPath"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Iterable" instanceClassName="java.lang.Iterable">
+    <eTypeParameters name="E"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -1334,6 +1334,17 @@ public interface ExecutionFlowPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Iterable</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Iterable
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getIterable()
+	 * @generated
+	 */
+	int ITERABLE = 19;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow <em>Execution Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,6 +1965,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	EDataType getSystemPath();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Iterable <em>Iterable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Iterable</em>'.
+	 * @see java.lang.Iterable
+	 * @model instanceClass="java.lang.Iterable" typeParameters="E"
+	 * @generated
+	 */
+	EDataType getIterable();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2476,6 +2498,16 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType SYSTEM_PATH = eINSTANCE.getSystemPath();
+
+		/**
+		 * The meta object literal for the '<em>Iterable</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Iterable
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getIterable()
+		 * @generated
+		 */
+		EDataType ITERABLE = eINSTANCE.getIterable();
 
 	}
 

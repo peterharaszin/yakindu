@@ -62,12 +62,10 @@ public class GeneratorRegistryReader extends AbstractRegistryReader implements I
 
 		String id = getRequiredAttribute(element, ATT_ID);
 		String name = getRequiredAttribute(element, ATT_NAME);
-		String className = getRequiredAttribute(element, ATT_CLASS);
 		
 		GeneratorDescriptor generator = new GeneratorDescriptor();
 		generator.setId(id);
 		generator.setName(name);
-		generator.setClassName(className);
 		generator.setConfigurationElement(element);
 		registry.register(generator);
 		

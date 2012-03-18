@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.execution.executionflow;
 
+import java.lang.Iterable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -175,6 +176,14 @@ public interface ExecutionFlow extends EObject {
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
-	TreeIterator<Node> getAllNodes();
+	TreeIterator<Node> getAllNodesIterator();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" dataType="org.eclipselabs.damos.execution.executionflow.Iterable<org.eclipselabs.damos.execution.executionflow.Node>" required="true"
+	 * @generated
+	 */
+	Iterable<Node> getAllNodes();
 
 } // ExecutionFlow

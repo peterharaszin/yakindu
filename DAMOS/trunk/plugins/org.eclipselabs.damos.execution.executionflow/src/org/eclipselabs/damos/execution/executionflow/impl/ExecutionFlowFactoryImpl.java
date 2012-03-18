@@ -103,6 +103,8 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 		switch (eDataType.getClassifierID()) {
 			case ExecutionFlowPackage.SYSTEM_PATH:
 				return createSystemPathFromString(eDataType, initialValue);
+			case ExecutionFlowPackage.ITERABLE:
+				return createIterableFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +120,8 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 		switch (eDataType.getClassifierID()) {
 			case ExecutionFlowPackage.SYSTEM_PATH:
 				return convertSystemPathToString(eDataType, instanceValue);
+			case ExecutionFlowPackage.ITERABLE:
+				return convertIterableToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -279,6 +283,24 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	 */
 	public String convertSystemPathToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Iterable<?> createIterableFromString(EDataType eDataType, String initialValue) {
+		return (Iterable<?>)super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIterableToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

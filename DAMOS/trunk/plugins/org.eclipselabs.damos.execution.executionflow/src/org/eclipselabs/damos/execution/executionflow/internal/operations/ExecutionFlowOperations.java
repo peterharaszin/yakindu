@@ -43,7 +43,7 @@ public class ExecutionFlowOperations {
 		
 	};
 
-	public static TreeIterator<Node> getAllNodes(ExecutionFlow executionFlow) {
+	public static TreeIterator<Node> getAllNodesIterator(ExecutionFlow executionFlow) {
 		return new AbstractTreeIterator<Node>(executionFlow, false) {
 			
 			private static final long serialVersionUID = 1L;
@@ -62,6 +62,16 @@ public class ExecutionFlowOperations {
 		};
 	}
 	
+	public static Iterable<Node> getAllNodes(final ExecutionFlow executionFlow) {
+		return new Iterable<Node>() {
+			
+			public Iterator<Node> iterator() {
+				return executionFlow.getAllNodesIterator();
+			}
+			
+		};
+	}
+
 	private static class ExecutionFlowNodeIterator implements Iterator<Node> {
 
 		private Iterator<Node> taskGraphNodeIterator;

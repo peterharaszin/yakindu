@@ -9,6 +9,9 @@
   <genPackages prefix="ExecutionFlow" basePackage="org.eclipselabs.damos.execution"
       disposableProviderFactory="true" ecorePackage="ExecutionFlow.ecore#/">
     <genDataTypes ecoreDataType="ExecutionFlow.ecore#//SystemPath"/>
+    <genDataTypes ecoreDataType="ExecutionFlow.ecore#//Iterable">
+      <genTypeParameters ecoreTypeParameter="ExecutionFlow.ecore#//Iterable/E"/>
+    </genDataTypes>
     <genClasses ecoreClass="ExecutionFlow.ecore#//ExecutionFlow">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/topLevelFragment"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/graph"/>
@@ -16,12 +19,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionFlow.ecore#//ExecutionFlow/asynchronousZoneCount"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/taskGraphs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionFlow.ecore#//ExecutionFlow/fundamentalSampleTime"/>
+      <genOperations ecoreOperation="ExecutionFlow.ecore#//ExecutionFlow/getAllNodesIterator"/>
       <genOperations ecoreOperation="ExecutionFlow.ecore#//ExecutionFlow/getAllNodes"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Graph">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Graph/nodes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Graph/initialNodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Graph/edges"/>
+      <genOperations ecoreOperation="ExecutionFlow.ecore#//Graph/getAllNodesIterator"/>
       <genOperations ecoreOperation="ExecutionFlow.ecore#//Graph/getAllNodes"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Node">

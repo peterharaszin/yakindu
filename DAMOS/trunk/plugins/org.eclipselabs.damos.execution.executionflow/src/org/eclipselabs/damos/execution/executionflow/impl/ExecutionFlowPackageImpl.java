@@ -178,6 +178,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	private EDataType systemPathEDataType = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iterableEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -768,6 +775,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getIterable() {
+		return iterableEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExecutionFlowFactory getExecutionFlowFactory() {
 		return (ExecutionFlowFactory)getEFactoryInstance();
 	}
@@ -868,6 +884,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		// Create data types
 		systemPathEDataType = createEDataType(SYSTEM_PATH);
+		iterableEDataType = createEDataType(ITERABLE);
 	}
 
 	/**
@@ -897,6 +914,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 
 		// Create type parameters
+		addETypeParameter(iterableEDataType, "E");
 
 		// Set bounds for type parameters
 
@@ -923,9 +941,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getExecutionFlow_TaskGraphs(), this.getTaskGraph(), null, "taskGraphs", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExecutionFlow_FundamentalSampleTime(), ecorePackage.getEDouble(), "fundamentalSampleTime", null, 0, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(executionFlowEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(executionFlowEClass, null, "getAllNodesIterator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getETreeIterator());
 		EGenericType g2 = createEGenericType(this.getNode());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
+		op = addEOperation(executionFlowEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getIterable());
+		g2 = createEGenericType(this.getNode());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
@@ -934,8 +958,14 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getGraph_InitialNodes(), this.getNode(), null, "initialNodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Edges(), this.getEdge(), this.getEdge_Graph(), "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(graphEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, null, "getAllNodesIterator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getETreeIterator());
+		g2 = createEGenericType(this.getNode());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
+		op = addEOperation(graphEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getIterable());
 		g2 = createEGenericType(this.getNode());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
@@ -1031,6 +1061,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		// Initialize data types
 		initEDataType(systemPathEDataType, SystemPath.class, "SystemPath", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iterableEDataType, Iterable.class, "Iterable", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

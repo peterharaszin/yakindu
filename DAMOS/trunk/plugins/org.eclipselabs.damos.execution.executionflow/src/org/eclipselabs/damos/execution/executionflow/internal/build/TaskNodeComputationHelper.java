@@ -52,7 +52,7 @@ public class TaskNodeComputationHelper {
 		}
 		
 		List<ComponentNode> asynchronousNodes = new LinkedList<ComponentNode>();
-		for (Iterator<Node> it = graph.getAllNodes(); it.hasNext();) {
+		for (Iterator<Node> it = graph.getAllNodesIterator(); it.hasNext();) {
 			Node node = it.next();
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;

@@ -8,7 +8,6 @@ Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.debug.core;bundle-version="3.5.0",
  org.eclipselabs.damos.common;bundle-version="0.3.0",
- org.eclipselabs.damos.execution.executionflow;bundle-version="0.3.0",
  org.eclipselabs.damos.simulation.simulator;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0",
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0"

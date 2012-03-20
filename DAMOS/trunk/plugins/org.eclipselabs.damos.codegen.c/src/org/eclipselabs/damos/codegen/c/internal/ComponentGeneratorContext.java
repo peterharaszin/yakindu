@@ -14,8 +14,8 @@ package org.eclipselabs.damos.codegen.c.internal;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.IComponentSignature;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger

@@ -15,8 +15,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 
 public class BlockSignaturePolicyDescriptor {
 	

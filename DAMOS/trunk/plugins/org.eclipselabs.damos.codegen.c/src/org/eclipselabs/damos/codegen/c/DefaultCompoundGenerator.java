@@ -24,11 +24,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.WhileLoop;
-import org.eclipselabs.damos.execution.executionflow.ActionNode;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.CompoundNode;
-import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.ActionNode;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.CompoundNode;
+import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 
 import com.google.inject.Inject;

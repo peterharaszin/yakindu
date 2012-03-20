@@ -17,8 +17,8 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicyProvider;
 
 /**
  * @author Andreas Unger

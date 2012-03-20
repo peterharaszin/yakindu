@@ -13,7 +13,7 @@ package org.eclipselabs.damos.codegen.c.internal;
 
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.ExecutionFlow;
 
 /**
  * @author Andreas Unger

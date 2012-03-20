@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.execution.datatype;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,6 +24,7 @@ import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.execution.internal.DataTypeResolverHelper;
 import org.eclipselabs.damos.execution.internal.EObjectStatus;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 
 /**
  * @author Andreas Unger

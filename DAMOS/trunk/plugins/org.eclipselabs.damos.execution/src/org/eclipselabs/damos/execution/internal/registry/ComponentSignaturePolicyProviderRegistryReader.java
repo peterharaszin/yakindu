@@ -16,8 +16,8 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicyProvider;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 
 /**
  * @author Andreas Unger

@@ -3,8 +3,8 @@ package org.eclipselabs.damos.execution.internal.providers;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicyProvider;
 import org.eclipselabs.damos.execution.internal.signaturepolicies.BehavioredBlockSignaturePolicy;
 
 public class BehavioredBlockSignaturePolicyProvider implements IComponentSignaturePolicyProvider {

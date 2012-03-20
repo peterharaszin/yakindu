@@ -9,16 +9,34 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.execution.transform;
 
-import org.eclipselabs.damos.dml.Component;
+import java.util.List;
+
+import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.execution.Node;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IComponentSignaturePolicyProvider {
+public class DeadlockStatus extends Status {
 
-	IComponentSignaturePolicy createPolicy(Component component);
+	private List<Node> backlog;
+	
+	/**
+	 * 
+	 */
+	public DeadlockStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Node> backlog) {
+		super(severity, pluginId, code, message, exception);
+		this.backlog = backlog;
+	}
+	
+	/**
+	 * @return the backlog
+	 */
+	public List<Node> getBacklog() {
+		return backlog;
+	}
 	
 }

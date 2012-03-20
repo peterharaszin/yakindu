@@ -42,9 +42,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.simulation.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
@@ -228,7 +228,7 @@ public abstract class AdaptiveStepSizeSolver extends AbstractSolver {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationContext, org.eclipselabs.damos.execution.executionflow.Graph, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationContext, org.eclipselabs.damos.execution.Graph, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
 	 */
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {

@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger

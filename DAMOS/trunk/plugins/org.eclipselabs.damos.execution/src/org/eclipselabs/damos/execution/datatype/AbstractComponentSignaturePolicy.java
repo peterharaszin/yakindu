@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,19 +9,20 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.execution.datatype;
 
-import org.eclipse.core.runtime.IStatus;
+import java.util.Map;
+
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.mscript.DataType;
 
 /**
  * @author Andreas Unger
  *
- * @noextend
- * @noimplement
  */
-public interface IComponentSignatureEvaluationResult {
+public abstract class AbstractComponentSignaturePolicy implements IComponentSignaturePolicy {
 
-	IComponentSignature getSignature();
-	IStatus getStatus();
+	public abstract IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes);
 	
 }

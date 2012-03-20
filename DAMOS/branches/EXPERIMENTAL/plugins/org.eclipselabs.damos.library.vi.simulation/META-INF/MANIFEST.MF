@@ -7,7 +7,6 @@ Bundle-Vendor: Damos Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipselabs.damos.execution;bundle-version="0.3.0",
- org.eclipselabs.damos.execution.executionflow;bundle-version="0.3.0",
  org.eclipselabs.damos.simulation.simulator;bundle-version="0.3.0",
  org.eclipselabs.damos.library.vi;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0"

@@ -23,13 +23,13 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.execution.executionflow.ActionNode;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.CompoundNode;
-import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
-import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
-import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.ActionNode;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.CompoundNode;
+import org.eclipselabs.damos.execution.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.execution.Node;
 
 /**
  * @author Andreas Unger

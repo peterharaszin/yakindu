@@ -20,9 +20,9 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.execution.IComponentSignature;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 

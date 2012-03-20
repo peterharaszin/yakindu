@@ -16,9 +16,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.math.MathUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.simulation.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
@@ -81,7 +81,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationContext, org.eclipselabs.damos.execution.executionflow.Graph, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationContext, org.eclipselabs.damos.execution.Graph, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
 	 */
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
@@ -115,7 +115,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#canExecute(org.eclipselabs.damos.execution.executionflow.ComponentNode, double)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.AbstractSolver#canExecute(org.eclipselabs.damos.execution.ComponentNode, double)
 	 */
 	@Override
 	protected boolean canExecute(ComponentNode componentNode, double t) {

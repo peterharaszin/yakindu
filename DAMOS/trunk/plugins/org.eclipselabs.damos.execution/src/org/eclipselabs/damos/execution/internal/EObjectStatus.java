@@ -13,8 +13,7 @@ package org.eclipselabs.damos.execution.internal;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
-import org.eclipselabs.damos.execution.IEObjectStatus;
+import org.eclipselabs.damos.execution.datatype.IEObjectStatus;
 
 /**
  * @author Andreas Unger

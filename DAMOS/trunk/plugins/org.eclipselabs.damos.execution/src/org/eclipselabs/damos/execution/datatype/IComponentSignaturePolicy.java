@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.execution.datatype;
 
 import java.util.Map;
 

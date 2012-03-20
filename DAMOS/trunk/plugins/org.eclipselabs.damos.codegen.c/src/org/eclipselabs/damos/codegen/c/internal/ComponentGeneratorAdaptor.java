@@ -26,11 +26,11 @@ import org.eclipselabs.damos.codegen.c.internal.registry.ComponentGeneratorProvi
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.CompoundNode;
-import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskGraph;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.CompoundNode;
+import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.execution.Node;
+import org.eclipselabs.damos.execution.TaskGraph;
 
 /**
  * @author Andreas Unger

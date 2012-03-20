@@ -9,19 +9,19 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution;
+package org.eclipselabs.damos.execution.datatype;
 
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
-public interface IComponentSignature {
+public interface IComponentSignatureEvaluationResult {
 
-	DataType getInputDataType(InputPort inputPort);
-	DataType getOutputDataType(OutputPort outputPort);
+	IComponentSignature getSignature();
+	IStatus getStatus();
 	
 }

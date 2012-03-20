@@ -22,12 +22,12 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dml.util.SystemPath;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
-import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
-import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskGraph;
-import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.Node;
+import org.eclipselabs.damos.execution.TaskGraph;
+import org.eclipselabs.damos.execution.TaskInputNode;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 

@@ -28,11 +28,11 @@ import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.ComponentSignature;
-import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
-import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.ComponentSignature;
+import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.DataType;
 
 /**

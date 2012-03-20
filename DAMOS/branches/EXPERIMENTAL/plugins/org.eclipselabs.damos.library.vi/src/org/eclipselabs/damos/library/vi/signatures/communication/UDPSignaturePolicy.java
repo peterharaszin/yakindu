@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
 import org.eclipselabs.damos.library.vi.util.communication.UDPSourceConstants;
 

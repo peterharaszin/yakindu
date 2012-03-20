@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.simulation.simulator.internal;
 
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.ExecutionFlow;
 
 /**
  * @author Andreas Unger

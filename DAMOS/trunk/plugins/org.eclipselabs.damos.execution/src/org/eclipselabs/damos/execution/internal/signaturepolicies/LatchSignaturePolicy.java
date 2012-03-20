@@ -22,11 +22,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.execution.AbstractComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.ComponentSignature;
-import org.eclipselabs.damos.execution.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
-import org.eclipselabs.damos.execution.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
+import org.eclipselabs.damos.execution.datatype.ComponentSignature;
+import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.DataType;
 

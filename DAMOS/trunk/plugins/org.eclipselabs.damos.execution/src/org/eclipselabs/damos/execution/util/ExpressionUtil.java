@@ -18,7 +18,7 @@ import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.execution.ExecutionPlugin;
+import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;

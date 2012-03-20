@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.Graph;
 
 /**
  * @author Andreas Unger

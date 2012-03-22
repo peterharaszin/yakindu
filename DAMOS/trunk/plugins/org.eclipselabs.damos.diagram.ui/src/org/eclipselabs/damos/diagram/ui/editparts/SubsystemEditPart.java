@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -182,7 +183,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	}
 	
 	private SubsystemRealizationType getSubsystemRealizationType() {
-		Fragment contextualFragment = getContextualFragment();
+		Fragment contextualFragment = getSelectedFragment();
 		if (contextualFragment != null) {
 			return DMLUtil.getSubsystemRealizationType((Subsystem) resolveSemanticElement(), contextualFragment);
 		}
@@ -210,7 +211,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		if (RequestConstants.REQ_OPEN.equals(request.getType())) {
 			Subsystem subsystem = (Subsystem) resolveSemanticElement();
 			if (subsystem != null) {
-				Fragment contextualFragment = getContextualFragment();
+				Fragment contextualFragment = getSelectedFragment();
 				if (contextualFragment != null) {
 					SubsystemRealization subsystemRealization = subsystem.getRealization(contextualFragment);
 					if (subsystemRealization != null) {
@@ -275,12 +276,15 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		return overrideImage;
 	}
 	
-	private Fragment getContextualFragment() {
+	private Fragment getSelectedFragment() {
 		EObject element = resolveSemanticElement();
 		if (element instanceof Subsystem) {
-			FragmentSelectionManager fragmentSelectionManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-			if (fragmentSelectionManager != null) {
-				return fragmentSelectionManager.getSelectedFragment();
+			RootEditPart root = getRoot();
+			if (root != null) {
+				FragmentSelectionManager fragmentSelectionManager = (FragmentSelectionManager) root.getContents().getAdapter(FragmentSelectionManager.class);
+				if (fragmentSelectionManager != null) {
+					return fragmentSelectionManager.getSelectedFragment();
+				}
 			}
 		}
 		return null;

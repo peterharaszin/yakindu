@@ -170,20 +170,23 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 				out.append(" {\n");
 				graphGenerator.writeOutputVariableDeclarations(context, appendable, taskGraph, monitor);
 				
-				if (getInputSockets(taskGraph).isEmpty()) {
-					TaskInputNode inputNode = taskGraph.getInputNodes().get(0);
-					String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
-					out.append(getCDataTypeFor(context, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
-				} else {
-					out.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
-					out.append("_Message ");
-					out.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
-					out.append("_message;\n");
+				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
+
+				if (!inputNodes.isEmpty()) {
+					if (getInputSockets(taskGraph).isEmpty()) {
+						TaskInputNode inputNode = taskGraph.getInputNodes().get(0);
+						String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
+						out.append(getCDataTypeFor(context, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
+					} else {
+						out.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+						out.append("_Message ");
+						out.append(InternalGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+						out.append("_message;\n");
+					}
 				}
 				
 				out.append("for (;;) {\n");
 				
-				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 				if (!inputNodes.isEmpty()) {
 					String qualifier = getTaskContextVariable(context, taskName, false) + "." + "queue";
 					if (getInputSockets(taskGraph).isEmpty()) {

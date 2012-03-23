@@ -12,17 +12,16 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.dml.Inport;
-import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.ComponentNode;
-import org.eclipselabs.damos.execution.Node;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 
@@ -32,7 +31,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DefaultHeaderFileGenerator implements IHeaderFileGenerator {
+public class DefaultHeaderFileGenerator extends AbstractFileGenerator implements IHeaderFileGenerator {
 
 	private final ITaskGenerator taskGenerator;
 	
@@ -68,45 +67,36 @@ public class DefaultHeaderFileGenerator implements IHeaderFileGenerator {
 		
 		taskGenerator.writeExternVariables(context, out, monitor);
 		
-		out.println("typedef struct {");
-		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
-			if (!(node instanceof ComponentNode)) {
-				continue;
+		List<ComponentNode> inportNodes = getInportNodes(context);
+		if (!inportNodes.isEmpty()) {
+			out.println("typedef struct {");
+			for (ComponentNode node : inportNodes) {
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+				IComponentSignature signature = generator.getContext().getComponentSignature();
+				OutputPort outputPort = node.getComponent().getFirstOutputPort();
+				DataType dataType = signature.getOutputDataType(outputPort);
+				out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), node), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 			}
-			ComponentNode componentNode = (ComponentNode) node;
-			if (!(componentNode.getComponent() instanceof Inport)) {
-				continue;
-			}
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-			IComponentSignature signature = generator.getContext().getComponentSignature();
-			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
-			DataType dataType = signature.getOutputDataType(outputPort);
-			out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
+			out.printf("} %sInput;\n\n", prefix);
 		}
-		out.printf("} %sInput;\n", prefix);
 		
-		out.println();
-
-		out.println("typedef struct {");
-		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
-			if (!(node instanceof ComponentNode)) {
-				continue;
+		List<ComponentNode> outportNodes = getOutportNodes(context);
+		if (!outportNodes.isEmpty()) {
+			out.println("typedef struct {");
+			for (ComponentNode node : outportNodes) {
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+				IComponentSignature signature = generator.getContext().getComponentSignature();
+				InputPort inputPort = node.getComponent().getFirstInputPort();
+				DataType dataType = signature.getInputDataType(inputPort);
+				out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), node), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 			}
-			ComponentNode componentNode = (ComponentNode) node;
-			if (!(componentNode.getComponent() instanceof Outport)) {
-				continue;
-			}
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-			IComponentSignature signature = generator.getContext().getComponentSignature();
-			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
-			DataType dataType = signature.getOutputDataType(outputPort);
-			out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
+			out.printf("} %sOutput;\n\n", prefix);
 		}
-		out.printf("} %sOutput;\n", prefix);
 
-		out.println();
 		out.printf("void %sinitialize(void);\n", prefix);
-		out.printf("void %sexecute(const %sInput *input, %sOutput *output);\n", prefix, prefix, prefix);
+		
+		writeExecutionFunctionSignature(context, appendable);
+		out.print(";\n");
 
 		out.println();
 		out.println("#ifdef __cplusplus");
@@ -115,5 +105,5 @@ public class DefaultHeaderFileGenerator implements IHeaderFileGenerator {
 		out.println();
 		out.printf("#endif /* %s */\n", headerMacro);
 	}
-
+	
 }

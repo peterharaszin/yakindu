@@ -1,0 +1,10 @@
+SMAP
+SGenJvmModelInferrer.java
+Xtend
+*S Xtend
+*F
++ 0 SGenJvmModelInferrer.xtend
+src/org/yakindu/sct/generator/genmodel/jvmmodel/SGenJvmModelInferrer.xtend
+*L
+30:24
+*E

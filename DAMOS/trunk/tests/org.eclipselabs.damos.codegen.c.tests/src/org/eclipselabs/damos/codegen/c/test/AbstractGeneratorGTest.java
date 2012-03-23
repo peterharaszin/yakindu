@@ -82,6 +82,7 @@ import com.google.inject.Guice;
  */
 public abstract class AbstractGeneratorGTest extends AbstractGTest {
 
+	protected static final String CONSTANT = "damos.library.base.sources.Constant";
 	protected static final String GAIN = "damos.library.base.math.Gain";
 	protected static final String SUM = "damos.library.base.math.Sum";
 	protected static final String AND = "damos.library.base.logic.And";

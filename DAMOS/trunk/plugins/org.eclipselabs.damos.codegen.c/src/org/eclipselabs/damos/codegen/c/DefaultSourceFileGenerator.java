@@ -31,7 +31,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DefaultSourceFileGenerator implements ISourceFileGenerator {
+public class DefaultSourceFileGenerator extends AbstractFileGenerator implements ISourceFileGenerator {
 
 	private final IGraphGenerator graphGenerator;
 	private final ITaskGenerator taskGenerator;
@@ -107,7 +107,8 @@ public class DefaultSourceFileGenerator implements ISourceFileGenerator {
 		}
 		out.print("}\n\n");
 
-		out.printf("void %sexecute(const %sInput *input, %sOutput *output) {\n", prefix, prefix, prefix);
+		writeExecutionFunctionSignature(context, appendable);
+		out.print(" {\n");
 		
 		graphGenerator.writeOutputVariableDeclarations(context, out, graph, monitor);
 		out.println();

@@ -120,7 +120,7 @@ public class DefaultGenerator extends AbstractGenerator {
 		for (ICodeFragment codeFragment : codeFragments) {
 			if (codeFragment instanceof InputStruct || codeFragment instanceof OutputStruct
 					|| codeFragment instanceof InitializeFunction || codeFragment instanceof ExecuteFunction
-					|| codeFragment instanceof TaskInfo) {
+					|| codeFragment instanceof TaskInfo || codeFragment instanceof ITaskInfoStruct) {
 				module.addEntry(codeFragment, Visibility.PUBLIC);
 			} else {
 				module.addEntry(codeFragment, Visibility.PRIVATE);

@@ -50,7 +50,9 @@ public class ContextStruct extends PrimaryCodeFragment {
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
-		context.addCodeFragment(new TaskMessageStruct(), monitor);
+		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
+			context.addCodeFragment(new TaskMessageStruct(), monitor);
+		}
 
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);

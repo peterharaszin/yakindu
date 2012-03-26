@@ -38,6 +38,13 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#requiredBy(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
+	 */
+	public boolean requiredBy(ICodeFragment other) {
+		return false;
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#contributesInternalForwardDeclaration()
 	 */
 	public boolean contributesInternalForwardDeclaration() {

@@ -13,48 +13,32 @@ package org.eclipselabs.damos.codegen.c.rte;
 
 import java.io.IOException;
 
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+
 /**
  * @author Andreas Unger
  *
  */
 public abstract class AbstractMessageQueueGenerator implements IMessageQueueGenerator {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesContextStructCode()
-	 */
 	public boolean contributesContextCode() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeContextStructCode(java.lang.Appendable)
-	 */
-	public void writeContextCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public void writeContextCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesInitializationCode()
-	 */
 	public boolean contributesInitializationCode() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeInitializationCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public void writeInitializationCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeLockCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeSendCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public void writeSendCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeUnlockCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeReceiveCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public void writeReceiveCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
 	}
 
 }

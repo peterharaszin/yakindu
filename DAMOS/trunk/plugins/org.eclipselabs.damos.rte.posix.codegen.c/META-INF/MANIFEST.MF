@@ -6,4 +6,7 @@ Bundle-Version: 0.3.0.qualifier
 Bundle-Vendor: Damos Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipselabs.damos.common;bundle-version="0.3.0",
+ org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript.codegen.c;bundle-version="0.3.0",
  org.eclipselabs.damos.codegen.c;bundle-version="0.3.0"

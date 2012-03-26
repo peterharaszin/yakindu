@@ -235,7 +235,7 @@ public class CModule {
 	private void resolveDependencies(Collection<CModuleEntry> backlog, CModuleEntry nextEntry, Collection<CModuleEntry> resolvedEntries, Collection<CModuleEntry> unresolvedEntries) {
 		unresolvedEntries.add(nextEntry);
 		for (CModuleEntry entry : backlog) {
-			if (nextEntry.getCodeFragment().dependsOn(entry.getCodeFragment()) && !resolvedEntries.contains(entry)) {
+			if (!resolvedEntries.contains(entry) && (nextEntry.getCodeFragment().dependsOn(entry.getCodeFragment()) || entry.getCodeFragment().requiredBy(nextEntry.getCodeFragment()))) {
 				if (unresolvedEntries.contains(entry)) {
 					throw new IllegalStateException("Circular dependency encountered");
 				}

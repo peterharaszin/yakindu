@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c.gtests;
 
-import java.util.Collection;
-
 import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
@@ -30,20 +28,8 @@ import org.junit.Before;
 @GTest(sourceFile="gtests/CounterTest.cpp", program="gtests/CounterTest")
 public class CounterTest extends AbstractGeneratorGTest {
 
-	/**
-	 * 
-	 */
-	private static final String LIBDAMOS_POSIX_DIR = "LIBDAMOS_POSIX_DIR";
-	
-	private String posixLibraryDirectory;
-	
 	@Before
 	public void setUp() {
-		posixLibraryDirectory = System.getenv(LIBDAMOS_POSIX_DIR);
-		if (posixLibraryDirectory == null) {
-			throw new RuntimeException(LIBDAMOS_POSIX_DIR + " environment variable not set");
-		}
-		
 		createConfiguration();
 		configuration.getProperties().add(createSelectionProperty("damos.rte.runtime", "damos.rte.runtimes.Posix"));
 		
@@ -83,19 +69,4 @@ public class CounterTest extends AbstractGeneratorGTest {
 		generateAndCompile();
 	}
 
-	@Override
-	protected void getSourceFiles(Collection<String> files) {
-		super.getSourceFiles(files);
-		files.add(posixLibraryDirectory + "/src/mq.c");
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.test.AbstractGTest#getIncludes(java.util.List)
-	 */
-	@Override
-	protected void getIncludes(Collection<String> includes) {
-		super.getIncludes(includes);
-		includes.add(posixLibraryDirectory + "/include");
-	}
-	
 }

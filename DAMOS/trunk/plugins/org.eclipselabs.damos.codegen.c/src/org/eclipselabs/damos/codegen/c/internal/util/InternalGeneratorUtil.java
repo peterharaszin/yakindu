@@ -11,13 +11,19 @@
 
 package org.eclipselabs.damos.codegen.c.internal.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdapter;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputConnector;
+import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
@@ -26,8 +32,6 @@ import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.Node;
-import org.eclipselabs.damos.execution.TaskGraph;
-import org.eclipselabs.damos.execution.TaskInputNode;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 
@@ -58,19 +62,6 @@ public class InternalGeneratorUtil {
 		return "";
 	}
 	
-	public static String getTaskName(Configuration configuration, TaskGraph taskGraph) {
-		return InternalGeneratorUtil.getPrefix(configuration, taskGraph.getInitialNodes().get(0)) + ((ComponentNode) taskGraph.getInitialNodes().get(0)).getComponent().getName() + "_Task";
-	}
-	
-	public static String getTaskInputVariableName(Configuration configuration, TaskInputNode inputNode) {
-		TaskGraph taskGraph = inputNode.getTaskGraph();
-		String taskInputVariableName = getTaskName(configuration, taskGraph) + "_input";
-		if (taskGraph.getInputNodes().size() > 1) {
-			taskInputVariableName += taskGraph.getInputNodes().indexOf(inputNode);
-		}
-		return taskInputVariableName;
-	}
-
 	public static String getIncomingVariableName(Configuration configuration, Node node, InputConnector inputConnector) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputConnector);
 		if (targetEnd != null) {
@@ -87,14 +78,6 @@ public class InternalGeneratorUtil {
 
 	public static String getOutputVariableName(Configuration configuration, ComponentNode componentNode, OutputPort outputPort) {
 		return String.format("%s%s_%s", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
-	}
-
-	public static String getChoiceVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_result", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
-	}
-
-	public static String getMemoryPreviousValueVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_previousValue", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
 	}
 
 	public static String uncapitalize(String s) {
@@ -134,6 +117,32 @@ public class InternalGeneratorUtil {
 			sb.append(outputPort.getIndex());
 		}
 		return sb.toString();
+	}
+
+	public static List<ComponentNode> getInportNodes(IGeneratorContext context) {
+		List<ComponentNode> inportNodes = new ArrayList<ComponentNode>();
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				if (componentNode.getComponent() instanceof Inport) {
+					inportNodes.add(componentNode);
+				}
+			}
+		}
+		return inportNodes;
+	}
+
+	public static List<ComponentNode> getOutportNodes(IGeneratorContext context) {
+		List<ComponentNode> outportNodes = new ArrayList<ComponentNode>();
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				if (componentNode.getComponent() instanceof Outport) {
+					outportNodes.add(componentNode);
+				}
+			}
+		}
+		return outportNodes;
 	}
 
 }

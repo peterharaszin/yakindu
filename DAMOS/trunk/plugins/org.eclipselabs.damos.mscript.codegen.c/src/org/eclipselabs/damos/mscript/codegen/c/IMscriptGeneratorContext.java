@@ -26,5 +26,6 @@ public interface IMscriptGeneratorContext {
 	ComputationModel getComputationModel();
 	IStaticEvaluationContext getStaticEvaluationContext();
 	IVariableAccessStrategy getVariableAccessStrategy();
+	ICodeFragmentCollector getCodeFragmentCollector();
 	
 }

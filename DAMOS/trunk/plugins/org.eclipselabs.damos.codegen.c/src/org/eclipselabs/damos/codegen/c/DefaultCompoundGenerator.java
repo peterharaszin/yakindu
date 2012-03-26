@@ -14,6 +14,7 @@ package org.eclipselabs.damos.codegen.c;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -58,7 +59,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 				Component component = componentNode.getComponent();
 				
 				if (component instanceof Choice) {
-					out.printf("uint_fast8_t %s;\n", InternalGeneratorUtil.getChoiceVariableName(context.getConfiguration(), componentNode));
+					out.printf("uint_fast8_t %s;\n", CompoundGeneratorUtil.getChoiceVariableName(context.getConfiguration(), componentNode));
 					hasChoices = true;
 				}
 			}
@@ -94,7 +95,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 						
 						String initializer = InternalGeneratorUtil.getIncomingVariableName(context.getConfiguration(), componentNode, memory.getFirstInputPort());
 						
-						out.printf("%s %s = %s;\n", cDataType, InternalGeneratorUtil.getMemoryPreviousValueVariableName(context.getConfiguration(), componentNode), initializer);
+						out.printf("%s %s = %s;\n", cDataType, CompoundGeneratorUtil.getMemoryPreviousValueVariableName(context.getConfiguration(), componentNode), initializer);
 					}
 				}
 			}

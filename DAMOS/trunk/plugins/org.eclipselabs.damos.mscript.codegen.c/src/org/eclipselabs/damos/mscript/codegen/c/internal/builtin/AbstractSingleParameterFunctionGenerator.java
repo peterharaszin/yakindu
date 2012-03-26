@@ -18,6 +18,7 @@ import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -54,6 +55,11 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IFunct
 		} else {
 			throw new IllegalArgumentException();
 		}
+		
+		contributeCodeFragments(context.getCodeFragmentCollector());
+	}
+	
+	protected void contributeCodeFragments(ICodeFragmentCollector codeFragmentCollector) {
 	}
 	
 	protected abstract String getFixedPointFunctionName(FixedPointFormat fixedPointFormat);

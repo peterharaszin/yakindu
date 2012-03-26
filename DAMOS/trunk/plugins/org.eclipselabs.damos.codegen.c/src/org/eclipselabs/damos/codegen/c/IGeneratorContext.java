@@ -11,16 +11,21 @@
 
 package org.eclipselabs.damos.codegen.c;
 
+import java.util.Collection;
+
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ExecutionFlow;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IGeneratorContext {
+public interface IGeneratorContext extends ICodeFragmentCollector {
 
 	Configuration getConfiguration();
 	ExecutionFlow getExecutionFlow();
+	Collection<ICodeFragment> getCodeFragments();
 	
 }

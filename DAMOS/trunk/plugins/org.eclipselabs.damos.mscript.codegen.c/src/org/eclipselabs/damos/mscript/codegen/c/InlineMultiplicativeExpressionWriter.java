@@ -14,64 +14,18 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import java.io.IOException;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MultiplicativeExpressionGenerator {
+public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpressionWriter {
 	
-	public void generate(Appendable appendable, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+	protected void writeFixedPointMultiplicationExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
-		if (targetNumberFormat instanceof FloatingPointFormat) {
-			writeFloatingPointMultiplicativeExpression(out, operator, targetNumberFormat, leftOperand, rightOperand);
-		} else if (targetNumberFormat instanceof FixedPointFormat) {
-			writeFixedPointMultiplicativeExpression(out, operator, (FixedPointFormat) targetNumberFormat, leftOperand, rightOperand);
-		} else {
-			throw new IllegalArgumentException();
-		}
-	}
-
-	private void writeFloatingPointMultiplicativeExpression(PrintAppendable out, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		if (operator == MultiplicativeOperator.MODULO) {
-			out.print("fmod(");
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, leftOperand);
-			out.print(", ");
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, rightOperand);
-			out.print(")");
-		} else {
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, leftOperand);
-			out.print(" ");
-			out.print(operator.getLiteral());
-			out.print(" ");
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, rightOperand);
-		}
-	}
-	
-	private void writeFixedPointMultiplicativeExpression(PrintAppendable out, MultiplicativeOperator operator, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		switch (operator) {
-		case MULTIPLY:
-			writeFixedPointMultiplicationExpression(out, targetNumberFormat, leftOperand, rightOperand);
-			break;
-		case DIVIDE:
-			writeFixedPointDivisionExpression(out, targetNumberFormat, leftOperand, rightOperand);
-			break;
-		case MODULO:
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, leftOperand);
-			out.print(" % ");
-			NumericExpressionCaster.INSTANCE.cast(out, targetNumberFormat, rightOperand);
-			break;
-		default:
-			throw new IllegalArgumentException();
-		}
-	}
-	
-	private void writeFixedPointMultiplicationExpression(PrintAppendable out, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+		
 		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
 	
@@ -102,7 +56,9 @@ public class MultiplicativeExpressionGenerator {
 		}
 	}
 
-	private void writeFixedPointDivisionExpression(PrintAppendable out, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+	protected void writeFixedPointDivisionExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+		PrintAppendable out = new PrintAppendable(appendable);
+
 		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
 	

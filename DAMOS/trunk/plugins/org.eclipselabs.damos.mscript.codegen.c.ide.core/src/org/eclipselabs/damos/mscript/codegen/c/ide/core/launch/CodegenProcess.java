@@ -33,6 +33,8 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
@@ -228,7 +230,7 @@ public class CodegenProcess implements IProcess {
 	private class HeaderGeneratorThread extends GeneratorThread {
 		
 		public void generate() {
-			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext), functionName);
+			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
 			generator.generateHeaderCode();
 		}
 		
@@ -237,8 +239,16 @@ public class CodegenProcess implements IProcess {
 	private class ImplementationGeneratorThread extends GeneratorThread {
 		
 		public void generate() throws IOException {
-			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext), functionName);
+			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
 			generator.generateImplementationCode();
+		}
+		
+	}
+	
+	// TODO: Implement real shared code collector
+	private class DummySharedCodeCollector implements ICodeFragmentCollector {
+
+		public void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
 		}
 		
 	}

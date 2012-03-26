@@ -190,7 +190,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		compoundGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound());
 	}
 	
@@ -224,7 +224,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(appendable);
 		writeInputVariables(out);
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
@@ -263,7 +263,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(appendable);
 		writeInputVariables(out);
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
@@ -295,7 +295,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	
 	private void writeInputVariables(PrintAppendable out) throws IOException {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		boolean skip = !getComponent().getInputSockets().isEmpty();
 		

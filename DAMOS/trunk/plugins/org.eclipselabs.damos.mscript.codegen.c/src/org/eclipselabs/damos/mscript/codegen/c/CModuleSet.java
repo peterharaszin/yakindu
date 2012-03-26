@@ -9,12 +9,35 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c;
+package org.eclipselabs.damos.mscript.codegen.c;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IHeaderFileGenerator extends IFileGenerator {
+public class CModuleSet {
 
+	private Map<String, CModule> modules = new HashMap<String, CModule>();
+
+	/**
+	 * @return the modules
+	 */
+	public Collection<CModule> getModules() {
+		return modules.values();
+	}
+	
+	public CModule getModule(String name) {
+		return modules.get(name);
+	}
+	
+	public CModule createModule(String name) {
+		CModule module = new CModule(this, name);
+		modules.put(name, module);
+		return module;
+	}
+	
 }

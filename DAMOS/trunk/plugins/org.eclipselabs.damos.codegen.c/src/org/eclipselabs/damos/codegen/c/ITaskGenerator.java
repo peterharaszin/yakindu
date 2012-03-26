@@ -22,17 +22,7 @@ import org.eclipselabs.damos.execution.ComponentNode;
  */
 public interface ITaskGenerator {
 
-	void writeTaskInfoInclude(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-	
-	void writeMultitaskingIncludes(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-	
-	void writeExternVariables(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-	
-	void writeTaskStructs(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-
 	void writeTaskContexts(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-
-	void writeTasks(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
 
 	void writeInitializeTasks(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
 

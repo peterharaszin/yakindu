@@ -12,6 +12,9 @@
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipselabs.damos.codegen.c.rte.AbstractRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
@@ -24,21 +27,28 @@ import org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator;
  */
 public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 
-	public boolean contributesMultitaskingIncludes() {
-		return true;
+	private static final Collection<String> IMPLEMENTATION_INCLUDES = new ArrayList<String>();
+	
+	static {
+		IMPLEMENTATION_INCLUDES.add("pthread.h");
+		IMPLEMENTATION_INCLUDES.add("semaphore.h");
+		IMPLEMENTATION_INCLUDES.add("damos/posix/mq.h");
 	}
 	
-	public void writeMultitaskingIncludes(Appendable appendable) throws IOException {
-		appendable.append("#include <pthread.h>\n");
-		appendable.append("#include <semaphore.h>\n");
-		appendable.append("#include <damos/posix/mq.h>\n");
+	private static final Collection<String> FORWARD_DECLARATION_INCLUDES = Collections.singletonList("damos/posix/task.h");
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getMultitaskingIncludes()
+	 */
+	public Collection<String> getImplementationIncludes() {
+		return IMPLEMENTATION_INCLUDES;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskInfoInclude(java.lang.Appendable)
+	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getTaskInfoIncludes()
 	 */
-	public void writeTaskInfoInclude(Appendable appendable) throws IOException {
-		appendable.append("#include <damos/posix/task.h>\n");
+	public Collection<String> getForwardDeclarationIncludes() {
+		return FORWARD_DECLARATION_INCLUDES;
 	}
 	
 	/* (non-Javadoc)
@@ -84,7 +94,7 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskReturnStatement(java.lang.Appendable, java.lang.String)
 	 */
 	public void writeTaskReturnStatement(Appendable appendable, String name) throws IOException {
-		appendable.append("return NULL;");
+		appendable.append("return NULL;\n");
 	}
 	
 }

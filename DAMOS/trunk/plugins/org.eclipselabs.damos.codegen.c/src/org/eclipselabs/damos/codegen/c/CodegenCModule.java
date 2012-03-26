@@ -24,8 +24,6 @@ public class CodegenCModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(IGenerator.class).to(DefaultGenerator.class);
-		bind(ISourceFileGenerator.class).to(DefaultSourceFileGenerator.class);
-		bind(IHeaderFileGenerator.class).to(DefaultHeaderFileGenerator.class);
 		bind(IGraphGenerator.class).to(DefaultGraphGenerator.class);
 		bind(ICompoundGenerator.class).to(DefaultCompoundGenerator.class);
 		bind(ITaskGenerator.class).to(DefaultTaskGenerator.class);

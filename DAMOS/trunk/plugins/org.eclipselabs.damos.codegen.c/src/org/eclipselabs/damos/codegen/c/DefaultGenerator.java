@@ -12,6 +12,9 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
@@ -24,10 +27,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
-import org.eclipselabs.damos.codegen.c.internal.FileWriter;
 import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -42,7 +45,10 @@ import org.eclipselabs.damos.execution.datatype.DataTypeResolver;
 import org.eclipselabs.damos.execution.datatype.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.transform.ExecutionFlowBuilder;
-import org.eclipselabs.damos.mscript.codegen.c.IWriter;
+import org.eclipselabs.damos.mscript.codegen.c.CModule;
+import org.eclipselabs.damos.mscript.codegen.c.CModuleEntry.Visibility;
+import org.eclipselabs.damos.mscript.codegen.c.CModuleSet;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.Inject;
 
@@ -54,18 +60,16 @@ public class DefaultGenerator extends AbstractGenerator {
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
-	private final FileWriter fileWriter = new FileWriter();
-	
-	private final IHeaderFileGenerator headerFileGenerator;
-	private final ISourceFileGenerator sourceFileGenerator;
-	
+	private final IGraphGenerator graphGenerator;
+	private final ITaskGenerator taskGenerator;
+		
 	/**
 	 * 
 	 */
 	@Inject
-	DefaultGenerator(IHeaderFileGenerator headerFileGenerator, ISourceFileGenerator sourceFileGenerator) {
-		this.headerFileGenerator = headerFileGenerator;
-		this.sourceFileGenerator = sourceFileGenerator;
+	DefaultGenerator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator) {
+		this.graphGenerator = graphGenerator;
+		this.taskGenerator = taskGenerator;
 	}
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
@@ -103,27 +107,71 @@ public class DefaultGenerator extends AbstractGenerator {
 			targetGenerator.generate(context, monitor);
 		}
 
-		IWriter headerFileWriter = new IWriter() {
-			
-			public void write(Appendable appendable) throws IOException {
-				headerFileGenerator.writeFile(context, appendable, monitor);
-			}
-			
-		};
-		
 		IFile headerFile = headerContainer.getFile(new Path(systemHeaderFile));
-		fileWriter.write(headerFileWriter, headerFile, monitor);
-		
-		IWriter sourceFileWriter = new IWriter() {
-			
-			public void write(Appendable appendable) throws IOException {
-				sourceFileGenerator.writeFile(context, appendable, monitor);
-			}
-			
-		};
-		
 		IFile sourceFile = sourceContainer.getFile(new Path(systemSourceFile));
-		fileWriter.write(sourceFileWriter, sourceFile, monitor);
+
+		addCodeFragments(context, monitor);
+		
+		CModuleSet moduleSet = new CModuleSet();
+		CModule module = moduleSet.createModule(new Path(systemSourceFile).removeFileExtension().toString());
+		
+		List<ICodeFragment> codeFragments = new ArrayList<ICodeFragment>(context.getCodeFragments());
+		
+		for (ICodeFragment codeFragment : codeFragments) {
+			if (codeFragment instanceof InputStruct || codeFragment instanceof OutputStruct
+					|| codeFragment instanceof InitializeFunction || codeFragment instanceof ExecuteFunction
+					|| codeFragment instanceof TaskInfo) {
+				module.addEntry(codeFragment, Visibility.PUBLIC);
+			} else {
+				module.addEntry(codeFragment, Visibility.PRIVATE);
+			}
+		}
+		
+		try {
+			final StringBuilder headerContent = new StringBuilder();
+			module.writeHeader(headerContent);
+			InputStream is = new StringInputStream(headerContent.toString());
+			if (headerFile.exists()) {
+				headerFile.setContents(is, true, true, monitor);
+			} else {
+				headerFile.create(is, true, monitor);
+			}
+
+			final StringBuilder sourceContent = new StringBuilder();
+			module.writeSource(sourceContent);
+			is = new StringInputStream(sourceContent.toString());
+			if (sourceFile.exists()) {
+				sourceFile.setContents(is, true, true, monitor);
+			} else {
+				sourceFile.create(is, true, monitor);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param context
+	 * @param monitor
+	 */
+	private void addCodeFragments(IGeneratorContext context, IProgressMonitor monitor) {
+		if (!InternalGeneratorUtil.getInportNodes(context).isEmpty()) {
+			context.addCodeFragment(new InputStruct(), monitor);
+		}
+		
+		if (!InternalGeneratorUtil.getOutportNodes(context).isEmpty()) {
+			context.addCodeFragment(new OutputStruct(), monitor);
+		}
+		
+		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
+			context.addCodeFragment(new TaskInfo(graphGenerator), monitor);
+		}
+		
+		context.addCodeFragment(new ContextStruct(taskGenerator), monitor);
+		context.addCodeFragment(new ContextVariable(), monitor);
+		context.addCodeFragment(new InitializeFunction(taskGenerator), monitor);
+		context.addCodeFragment(new ExecuteFunction(graphGenerator), monitor);
 	}
 
 	/**
@@ -202,7 +250,7 @@ public class DefaultGenerator extends AbstractGenerator {
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 				IVariableAccessor variableAccessor = new VariableAccessor(configuration, componentNode);
 				IComponentSignature componentSignature = signatures.get(componentNode.getComponent());
-				ComponentGeneratorContext componentGeneratorContext = new ComponentGeneratorContext(componentNode, componentSignature, variableAccessor, configuration);
+				ComponentGeneratorContext componentGeneratorContext = new ComponentGeneratorContext(componentNode, componentSignature, variableAccessor, configuration, context);
 				generator.initialize(componentGeneratorContext, monitor);
 			}
 		}

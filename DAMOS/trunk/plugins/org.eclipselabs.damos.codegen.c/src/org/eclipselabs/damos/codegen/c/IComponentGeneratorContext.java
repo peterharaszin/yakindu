@@ -14,6 +14,7 @@ package org.eclipselabs.damos.codegen.c;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 
 /**
  * @author Andreas Unger
@@ -25,5 +26,6 @@ public interface IComponentGeneratorContext {
 	IComponentSignature getComponentSignature();
 	IVariableAccessor getVariableAccessor();
 	Configuration getConfiguration();
+	ICodeFragmentCollector getCodeFragmentCollector();
 	
 }

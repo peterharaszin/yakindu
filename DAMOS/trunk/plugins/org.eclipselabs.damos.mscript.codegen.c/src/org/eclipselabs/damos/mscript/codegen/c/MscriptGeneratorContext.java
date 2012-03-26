@@ -25,22 +25,24 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	private ComputationModel computationModel;
 	private IStaticEvaluationContext staticEvaluationContext;
 	private IVariableAccessStrategy variableAccessStrategy;
+	private ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext) {
-		this(appendable, computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext));
+	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, ICodeFragmentCollector codeFragmentCollector) {
+		this(appendable, computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext), codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, IVariableAccessStrategy variableAccessStrategy) {
+	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.appendable = appendable;
 		this.computationModel = computationModel;
 		this.staticEvaluationContext = staticEvaluationContext;
 		this.variableAccessStrategy = variableAccessStrategy;
+		this.codeFragmentCollector = codeFragmentCollector;
 	}
 
 	/* (non-Javadoc)
@@ -69,6 +71,10 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	 */
 	public IVariableAccessStrategy getVariableAccessStrategy() {
 		return variableAccessStrategy;
+	}
+	
+	public ICodeFragmentCollector getCodeFragmentCollector() {
+		return codeFragmentCollector;
 	}
 
 }

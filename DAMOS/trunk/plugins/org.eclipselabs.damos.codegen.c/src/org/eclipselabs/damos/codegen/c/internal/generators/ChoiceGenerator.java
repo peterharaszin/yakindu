@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
+import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -50,7 +51,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 		Choice choice = (Choice) getComponent();
 		
 		String incomingVariableName = InternalGeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), choice.getFirstInputPort());
-		String choiceResult = InternalGeneratorUtil.getChoiceVariableName(getConfiguration(), getNode());
+		String choiceResult = CompoundGeneratorUtil.getChoiceVariableName(getConfiguration(), getNode());
 		
 		int i = 0;
 		for (ActionLink actionLink : choice.getActionLinks()) {
@@ -64,7 +65,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
 					ComputationModel computationModel = getComputationModel();
 					ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
-					new ExpressionGenerator().generate(new MscriptGeneratorContext(out, computationModel, new StaticEvaluationContext(), variableAccessStrategy), condition.getExpression());
+					new ExpressionGenerator().generate(new MscriptGeneratorContext(out, computationModel, new StaticEvaluationContext(), variableAccessStrategy, getContext().getCodeFragmentCollector()), condition.getExpression());
 				} else {
 					// TODO: Handle error
 				}

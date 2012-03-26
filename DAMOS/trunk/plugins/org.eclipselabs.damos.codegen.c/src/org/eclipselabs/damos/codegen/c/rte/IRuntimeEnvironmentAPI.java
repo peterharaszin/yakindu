@@ -14,6 +14,8 @@ package org.eclipselabs.damos.codegen.c.rte;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+
 
 /**
  * @author Andreas Unger
@@ -23,7 +25,8 @@ public interface IRuntimeEnvironmentAPI {
 
 	Collection<String> getImplementationIncludes();
 	Collection<String> getForwardDeclarationIncludes();
-	String getTaskInfoStructName();
+	
+    void writeTaskInfoStructName(IGeneratorContext context, Appendable appendable) throws IOException;
 	
 	IFastLockGenerator getFastLockGenerator();
 	ISemaphoreGenerator getSemaphoreGenerator();

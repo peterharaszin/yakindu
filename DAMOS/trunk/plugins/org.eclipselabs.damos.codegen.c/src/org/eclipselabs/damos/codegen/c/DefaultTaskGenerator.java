@@ -49,10 +49,10 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 					if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(appendable, "queue", messageQueueInfo);
+						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(context, appendable, "queue", messageQueueInfo);
 					} else {
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
-						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(appendable, "queue", messageQueueInfo);
+						runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(context, appendable, "queue", messageQueueInfo);
 					}
 				}
 				appendable.append("} ").append(taskName).append(";\n");
@@ -73,10 +73,10 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 					if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(out, qualifier, messageQueueInfo);
+						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(context, out, qualifier, messageQueueInfo);
 					} else {
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
-						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(out, qualifier, messageQueueInfo);
+						runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(context, out, qualifier, messageQueueInfo);
 					}
 					out.append("}\n");
 				}
@@ -122,14 +122,14 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 						out.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
 						out.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode.getTaskGraph());
-						GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(out, qualifier, "&message", messageQueueInfo);
+						GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(context, out, qualifier, "&message", messageQueueInfo);
 						out.append("}\n");
 						continue;
 					}
 				}
 				
 				MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-				GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(out, qualifier, "&" + outputVariable, messageQueueInfo);
+				GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().writeSendCode(context, out, qualifier, "&" + outputVariable, messageQueueInfo);
 			}
 		}
 	}

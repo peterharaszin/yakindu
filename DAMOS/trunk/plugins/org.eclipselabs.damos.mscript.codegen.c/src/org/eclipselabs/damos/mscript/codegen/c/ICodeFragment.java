@@ -27,6 +27,8 @@ public interface ICodeFragment {
 
 	boolean dependsOn(ICodeFragment other);
 	
+	boolean requiredBy(ICodeFragment other);
+	
 	boolean contributesInternalForwardDeclaration();
 
 	Collection<String> getForwardDeclarationIncludes();

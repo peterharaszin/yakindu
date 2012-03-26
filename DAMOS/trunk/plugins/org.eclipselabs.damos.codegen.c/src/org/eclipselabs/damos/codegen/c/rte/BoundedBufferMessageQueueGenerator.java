@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c.rte;
 
 import java.io.IOException;
 
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.rte.SemaphoreInfo;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 
@@ -33,19 +34,13 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		this.semaphoreGenerator = runtimeEnvironmentAPI.getSemaphoreGenerator();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#contributesContextCode()
-	 */
 	@Override
 	public boolean contributesContextCode() {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
-	 */
 	@Override
-	public void writeContextCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public void writeContextCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
 		appendable.append("struct {\n");
 		appendable.append("int ").append("tail;\n");
 		appendable.append("int ").append("head;\n");
@@ -60,19 +55,13 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		appendable.append("} ").append(variableName).append(";\n");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#contributesInitializationCode()
-	 */
 	@Override
 	public boolean contributesInitializationCode() {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
-	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public void writeInitializationCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
 		appendable.append(variableName).append(".tail = 0;\n");
 		appendable.append(variableName).append(".head = 0;\n");
 		if (fastLockGenerator.contributesInitializationCode()) {
@@ -85,11 +74,8 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeSendCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
-	 */
 	@Override
-	public void writeSendCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public void writeSendCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 
 		out.println("{");
@@ -104,11 +90,8 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		out.println("}");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator#writeReceiveCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo)
-	 */
 	@Override
-	public void writeReceiveCode(Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public void writeReceiveCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
 
 		out.println("{");

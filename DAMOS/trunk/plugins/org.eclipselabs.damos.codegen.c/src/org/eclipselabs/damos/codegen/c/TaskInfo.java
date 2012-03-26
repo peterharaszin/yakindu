@@ -51,7 +51,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 	 */
 	@Override
 	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof Task;
+		return other instanceof Task || other instanceof ITaskInfoStruct;
 	}
 	
 	/* (non-Javadoc)
@@ -80,7 +80,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 		initializeImplementation(context);
 	}
 
-	private void initializeForwardDeclaration(IGeneratorContext context) {
+	private void initializeForwardDeclaration(IGeneratorContext context) throws IOException {
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 	
@@ -88,7 +88,9 @@ public class TaskInfo extends PrimaryCodeFragment {
 		PrintAppendable out = new PrintAppendable(sb);
 	
 		out.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), context.getExecutionFlow().getTaskGraphs().size());
-		out.printf("extern const %s %staskInfos[];\n", rteAPI.getTaskInfoStructName(), prefix);
+		out.print("extern const ");
+		rteAPI.writeTaskInfoStructName(context, out);
+		out.printf(" %staskInfos[];\n", prefix);
 	
 		forwardDeclaration = sb.toString();
 		forwardDeclarationIncludes = rteAPI.getForwardDeclarationIncludes();
@@ -101,7 +103,9 @@ public class TaskInfo extends PrimaryCodeFragment {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		
-		out.printf("const %s %staskInfos[] = {\n", rteAPI.getTaskInfoStructName(), prefix);
+		out.print("const ");
+		rteAPI.writeTaskInfoStructName(context, out);
+		out.printf(" %staskInfos[] = {\n", prefix);
 		boolean first = true;
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			if (first) {

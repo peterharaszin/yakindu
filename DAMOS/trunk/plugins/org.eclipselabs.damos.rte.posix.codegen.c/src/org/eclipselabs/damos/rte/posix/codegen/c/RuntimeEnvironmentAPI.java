@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.rte.AbstractRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
 import org.eclipselabs.damos.codegen.c.rte.IMessageQueueGenerator;
@@ -32,10 +34,7 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	static {
 		IMPLEMENTATION_INCLUDES.add("pthread.h");
 		IMPLEMENTATION_INCLUDES.add("semaphore.h");
-		IMPLEMENTATION_INCLUDES.add("damos/posix/mq.h");
 	}
-	
-	private static final Collection<String> FORWARD_DECLARATION_INCLUDES = Collections.singletonList("damos/posix/task.h");
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getMultitaskingIncludes()
@@ -48,14 +47,12 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getTaskInfoIncludes()
 	 */
 	public Collection<String> getForwardDeclarationIncludes() {
-		return FORWARD_DECLARATION_INCLUDES;
+		return Collections.emptyList();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getTaskInfoStructName()
-	 */
-	public String getTaskInfoStructName() {
-		return "DamosPosixTaskInfo";
+	public void writeTaskInfoStructName(IGeneratorContext context, Appendable appendable) throws IOException {
+		context.addCodeFragment(new TaskInfoStruct(), new NullProgressMonitor());
+		appendable.append("Damos_Posix_TaskInfo");
 	}
 	
 	public IFastLockGenerator getFastLockGenerator() {

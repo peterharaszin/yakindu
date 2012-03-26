@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.codegen.c.rte;
 
 import java.io.IOException;
+import java.util.Collection;
 
 
 /**
@@ -20,10 +21,8 @@ import java.io.IOException;
  */
 public interface IRuntimeEnvironmentAPI {
 
-	boolean contributesMultitaskingIncludes();
-	void writeMultitaskingIncludes(Appendable appendable) throws IOException;
-	
-	void writeTaskInfoInclude(Appendable appendable) throws IOException;
+	Collection<String> getImplementationIncludes();
+	Collection<String> getForwardDeclarationIncludes();
 	String getTaskInfoStructName();
 	
 	IFastLockGenerator getFastLockGenerator();

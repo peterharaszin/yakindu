@@ -11,7 +11,8 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -29,11 +30,11 @@ public abstract class AbstractTargetGenerator implements ITargetGenerator {
 		return null;
 	}
 	
-	public boolean contributesIncludes(IGeneratorContext context) {
-		return false;
-	}
-	
-	public void writeIncludes(IGeneratorContext context, Appendable appendable) throws IOException {
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.ITargetGenerator#getImplementationIncludes()
+	 */
+	public Collection<String> getImplementationIncludes() {
+		return Collections.emptyList();
 	}
 
 	public IComponentGenerator createBoundaryComponentGenerator(Component component) {

@@ -69,7 +69,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 	
 	private static class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
 
-		private final MultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new MultiplicativeExpressionGenerator();
+		private final IMultiplicativeExpressionWriter multiplicativeExpressionWriter = new InlineMultiplicativeExpressionWriter();
 		
 		private IMscriptGeneratorContext context;
 		private IBuiltinFunctionGeneratorLookupTable builtinFunctionGeneratorLookupTable = new BuiltinFunctionGeneratorLookupTable();
@@ -216,7 +216,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 					}
 					
 				});
-				multiplicativeExpressionGenerator.generate(out, multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
+				multiplicativeExpressionWriter.write(out, context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
 			} catch (IOException e) {
 				throw new WrappedException(e);
 			}

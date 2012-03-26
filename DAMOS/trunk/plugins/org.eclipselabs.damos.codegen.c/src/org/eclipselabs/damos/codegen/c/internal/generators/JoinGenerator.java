@@ -18,6 +18,7 @@ import java.util.TreeMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
+import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Action;
@@ -67,7 +68,7 @@ public class JoinGenerator extends AbstractComponentGenerator {
 				}
 			}
 		}
-		out.printf("switch (%s) {\n", InternalGeneratorUtil.getChoiceVariableName(getConfiguration(), choiceNode));
+		out.printf("switch (%s) {\n", CompoundGeneratorUtil.getChoiceVariableName(getConfiguration(), choiceNode));
 		for (Entry<Integer, String> entry : variableNameMap.entrySet()) {
 			out.printf("case %d:\n", entry.getKey());
 			out.printf("%s = %s;\n", InternalGeneratorUtil.getOutputVariableName(getConfiguration(), getNode(), getComponent().getFirstOutputPort()), entry.getValue());

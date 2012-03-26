@@ -9,12 +9,16 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c;
+package org.eclipselabs.damos.mscript.codegen.c;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISourceFileGenerator extends IFileGenerator {
+public interface ICodeFragmentCollector {
 
+	void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor);
+	
 }

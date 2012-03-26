@@ -14,8 +14,9 @@ package org.eclipselabs.damos.codegen.c.internal;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 
 /**
  * @author Andreas Unger
@@ -27,15 +28,17 @@ public class ComponentGeneratorContext implements IComponentGeneratorContext {
 	private IComponentSignature componentSignature;
 	private IVariableAccessor variableAccessor;
 	private Configuration configuration;
+	private ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public ComponentGeneratorContext(ComponentNode node, IComponentSignature componentSignature, IVariableAccessor variableAccessor, Configuration configuration) {
+	public ComponentGeneratorContext(ComponentNode node, IComponentSignature componentSignature, IVariableAccessor variableAccessor, Configuration configuration, ICodeFragmentCollector codeFragmentCollector) {
 		this.node = node;
 		this.componentSignature = componentSignature;
 		this.variableAccessor = variableAccessor;
 		this.configuration = configuration;
+		this.codeFragmentCollector = codeFragmentCollector;
 	}
 	
 	/* (non-Javadoc)
@@ -61,6 +64,10 @@ public class ComponentGeneratorContext implements IComponentGeneratorContext {
 
 	public Configuration getConfiguration() {
 		return configuration;
+	}
+	
+	public ICodeFragmentCollector getCodeFragmentCollector() {
+		return codeFragmentCollector;
 	}
 
 }

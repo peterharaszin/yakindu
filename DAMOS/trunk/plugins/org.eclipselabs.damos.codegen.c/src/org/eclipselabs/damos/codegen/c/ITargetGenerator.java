@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,9 +26,7 @@ public interface ITargetGenerator {
 
 	Configuration createConfiguration(Configuration baseConfiguration, IProgressMonitor monitor) throws CoreException;
 
-	boolean contributesIncludes(IGeneratorContext context);
-	
-	void writeIncludes(IGeneratorContext context, Appendable appendable) throws IOException;
+	Collection<String> getImplementationIncludes();
 	
 	IComponentGenerator createBoundaryComponentGenerator(Component component);
 

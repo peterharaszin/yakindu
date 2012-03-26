@@ -16,13 +16,11 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
-import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
@@ -166,7 +164,12 @@ public class ExpressionGeneratorTest {
 			staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
 			
 			StringBuilder stringBuilder = new StringBuilder();
-			IMscriptGeneratorContext context = new MscriptGeneratorContext(stringBuilder, ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext);
+			IMscriptGeneratorContext context = new MscriptGeneratorContext(stringBuilder, ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
+				
+				public void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+				}
+				
+			});
 			expressionGenerator.generate(context, expression);
 			
 			return stringBuilder.toString();

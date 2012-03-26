@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c.internal;
 
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
@@ -73,9 +74,9 @@ public class VariableAccessor implements IVariableAccessor {
 			TaskInputNode inputNode = (TaskInputNode) sourceEnd.getNode();
 			Input input = inputPort.getInput();
 			if (input.isSocket()) {
-				return InternalGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message.data." + input.getName();
+				return TaskGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message.data." + input.getName();
 			}
-			return InternalGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
+			return TaskGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
 		}
 		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
@@ -113,7 +114,7 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("(&");
 		}
-		sb.append(InternalGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
+		sb.append(TaskGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
 		sb.append("_message.kind");
 		if (pointer) {
 			sb.append(")");

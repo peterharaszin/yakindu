@@ -9,18 +9,21 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c;
+package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.io.IOException;
 
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IFileGenerator {
+public interface IMultiplicativeExpressionWriter {
 
-	void writeFile(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
-	
+	void write(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator,
+			NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand)
+			throws IOException;
+
 }

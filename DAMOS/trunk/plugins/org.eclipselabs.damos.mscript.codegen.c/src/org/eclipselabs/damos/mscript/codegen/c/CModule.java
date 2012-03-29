@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -32,7 +31,7 @@ public class CModule {
 	private String name;
 	private String headerComment;
 	private String sourceComment;
-	private List<CModuleEntry> entries = new ArrayList<CModuleEntry>();
+	private Collection<CModuleEntry> entries = new ArrayList<CModuleEntry>();
 	
 	/**
 	 * 
@@ -120,7 +119,7 @@ public class CModule {
 		out.println();
 		
 		// Write external forward declarations
-		for (CModuleEntry entry : getSortedEntries()) {
+		for (CModuleEntry entry : entries) {
 			if (!entry.isInternal()) {
 				entry.getCodeFragment().writeForwardDeclaration(appendable, false);
 				out.println();
@@ -174,7 +173,7 @@ public class CModule {
 		out.println();
 
 		// Write internal forward declarations
-		for (CModuleEntry entry : getSortedEntries()) {
+		for (CModuleEntry entry : entries) {
 			ICodeFragment codeFragment = entry.getCodeFragment();
 			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
 				codeFragment.writeForwardDeclaration(appendable, true);
@@ -212,7 +211,7 @@ public class CModule {
 	public boolean dependsOn(CModule other) {
 		for (CModuleEntry entry : entries) {
 			for (CModuleEntry otherEntry : other.entries) {
-				if (entry.getCodeFragment().dependsOn(otherEntry.getCodeFragment())) {
+				if (entry.getCodeFragment().forwardDeclarationDependsOn(otherEntry.getCodeFragment())) {
 					return true;
 				}
 			}
@@ -220,22 +219,25 @@ public class CModule {
 		return false;
 	}
 	
-	private Collection<CModuleEntry> getSortedEntries() {
-		Collection<CModuleEntry> sortedEntries = new ArrayList<CModuleEntry>();
+	void resolveEntries() {
+		Collection<CModuleEntry> allResolvedEntries = new ArrayList<CModuleEntry>();
 		Collection<CModuleEntry> backlog = new LinkedHashSet<CModuleEntry>(entries);
 		while (!backlog.isEmpty()) {
 			Collection<CModuleEntry> resolvedEntries = new LinkedHashSet<CModuleEntry>();
 			resolveDependencies(backlog, backlog.iterator().next(), resolvedEntries, new HashSet<CModuleEntry>());
 			backlog.removeAll(resolvedEntries);
-			sortedEntries.addAll(resolvedEntries);
+			allResolvedEntries.addAll(resolvedEntries);
 		}
-		return sortedEntries;
+		entries = allResolvedEntries;
 	}
 	
 	private void resolveDependencies(Collection<CModuleEntry> backlog, CModuleEntry nextEntry, Collection<CModuleEntry> resolvedEntries, Collection<CModuleEntry> unresolvedEntries) {
 		unresolvedEntries.add(nextEntry);
 		for (CModuleEntry entry : backlog) {
-			if (!resolvedEntries.contains(entry) && (nextEntry.getCodeFragment().dependsOn(entry.getCodeFragment()) || entry.getCodeFragment().requiredBy(nextEntry.getCodeFragment()))) {
+			if (!resolvedEntries.contains(entry) && (nextEntry.getCodeFragment().forwardDeclarationDependsOn(entry.getCodeFragment())
+					|| entry.getCodeFragment().forwardDeclarationRequiredBy(nextEntry.getCodeFragment())
+					|| nextEntry.getCodeFragment().implementationDependsOn(entry.getCodeFragment())
+					|| entry.getCodeFragment().implementationRequiredBy(nextEntry.getCodeFragment()))) {
 				if (unresolvedEntries.contains(entry)) {
 					throw new IllegalStateException("Circular dependency encountered");
 				}

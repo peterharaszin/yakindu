@@ -22,8 +22,8 @@ public class CModuleEntry {
 		PUBLIC
 	}
 	
-	private CModule module;
-	private ICodeFragment codeFragment;
+	private final CModule module;
+	private final ICodeFragment codeFragment;
 	private Visibility visibility;
 	
 	/**
@@ -49,6 +49,13 @@ public class CModuleEntry {
 		return visibility;
 	}
 	
+	/**
+	 * @param visibility the visibility to set
+	 */
+	public void setVisibility(Visibility visibility) {
+		this.visibility = visibility;
+	}
+	
 	public boolean isInternal() {
 		if (visibility != Visibility.PRIVATE) {
 			return false;
@@ -56,9 +63,17 @@ public class CModuleEntry {
 		for (CModule otherModule : module.getModuleSet().getModules()) {
 			if (otherModule != module) {
 				for (CModuleEntry otherEntry : otherModule.getEntries()) {
-					if (otherEntry.codeFragment.dependsOn(codeFragment)) {
+					if (otherEntry.codeFragment.forwardDeclarationDependsOn(codeFragment)
+							|| codeFragment.forwardDeclarationRequiredBy(otherEntry.codeFragment)
+							|| otherEntry.codeFragment.implementationDependsOn(codeFragment)
+							|| codeFragment.implementationRequiredBy(otherEntry.codeFragment)) {
 						return false;
 					}
+				}
+			}
+			for (CModuleEntry otherEntry : otherModule.getEntries()) {
+				if ((otherEntry.codeFragment.forwardDeclarationDependsOn(codeFragment) || codeFragment.forwardDeclarationRequiredBy(otherEntry.codeFragment)) && !otherEntry.isInternal()) {
+					return false;
 				}
 			}
 		}

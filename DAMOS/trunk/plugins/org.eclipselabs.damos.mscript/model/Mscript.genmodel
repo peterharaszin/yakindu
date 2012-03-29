@@ -102,13 +102,7 @@
     <genClasses ecoreClass="Mscript.ecore#//TypedefDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypedefDeclaration/typeSpecifier"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructDeclaration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructDeclaration/memberDeclarations"/>
-    </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructMemberDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructMemberDeclaration/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructMemberDeclaration/typeSpecifier"/>
-    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//StructDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//FunctionDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/kind"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/templateParameterDeclarations"/>
@@ -223,6 +217,13 @@
     <genClasses ecoreClass="Mscript.ecore#//ExpressionList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ExpressionList/expressions"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//StructConstructionOperator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructConstructionOperator/members"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//StructConstructionMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructConstructionMember/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructConstructionMember/value"/>
+    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//UnitConstructionOperator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitConstructionOperator/unit"/>
     </genClasses>
@@ -312,7 +313,7 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//MemberVariableAccess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//MemberVariableAccess/target"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//MemberVariableAccess/memberVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Mscript.ecore#//MemberVariableAccess/memberVariable"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//AlgorithmExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AlgorithmExpression/body"/>
@@ -399,6 +400,19 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayDimension">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayDimension/size"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//StructType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructType/members"/>
+      <genOperations ecoreOperation="Mscript.ecore#//StructType/getMember">
+        <genParameters ecoreParameter="Mscript.ecore#//StructType/getMember/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Mscript.ecore#//StructType/getMemberIndex">
+        <genParameters ecoreParameter="Mscript.ecore#//StructType/getMemberIndex/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//StructMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructMember/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructMember/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Expression"/>
     <genClasses ecoreClass="Mscript.ecore#//Unit">

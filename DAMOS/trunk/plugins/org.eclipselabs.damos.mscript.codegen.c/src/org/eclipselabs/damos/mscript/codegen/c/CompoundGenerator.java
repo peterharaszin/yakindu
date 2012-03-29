@@ -15,7 +15,6 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.Compound;
@@ -74,7 +73,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 		public Boolean caseCompound(Compound compound) {
 			out.print("{\n");
 			for (LocalVariableDeclaration localVariableDeclaration : compound.getLocalVariableDeclarations()) {
-				out.print(MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(localVariableDeclaration), localVariableDeclaration.getName(), false));
+				out.print(MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(localVariableDeclaration), localVariableDeclaration.getName(), false, null));
 				out.print(";\n");
 			}
 			for (Statement statement : compound.getStatements()) {
@@ -124,7 +123,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 			}
 			
 			String itVarName = iterationVariableDeclaration.getName();
-			String itVarDecl = MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(iterationVariableDeclaration), itVarName, false);
+			String itVarDecl = MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(iterationVariableDeclaration), itVarName, false, null);
 			int size = TypeUtil.getArraySize(collectionArrayType);
 			
 			out.println("{");
@@ -132,7 +131,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 			out.printf("for (%s_i = 0; %s_i < %d; ++%s_i) {\n", itVarName, itVarName, size, itVarName);
 			out.printf("%s = (", itVarDecl);
 			generate(forStatement.getCollectionExpression());
-			out.printf(")[%s_i];\n", itVarName);
+			out.printf(").data[%s_i];\n", itVarName);
 			doSwitch(forStatement.getBody());
 			out.println("}");
 			out.println("}");
@@ -160,27 +159,9 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		private void writeAssignment(DataType targetDataType, String target, Expression assignedExpression) {
-			ArrayType arrayType = null;
-			if (targetDataType instanceof ArrayType) {
-				arrayType = (ArrayType) targetDataType;
-			}
-			if (arrayType != null) {
-				out.print("memcpy(");
-			}
 			out.print(target);
-			if (arrayType != null) {
-				out.print(", ");
-			} else {
-				out.print(" = ");
-			}
+			out.print(" = ");
 			cast(targetDataType, assignedExpression);
-			if (arrayType != null) {
-				out.printf(", sizeof (%s)", MscriptGeneratorUtil.getCDataType(context.getComputationModel(), arrayType.getElementType()));
-				for (ArrayDimension arrayDimension : arrayType.getDimensions()) {
-					out.printf(" * %d", arrayDimension.getSize());
-				}
-				out.print(")");
-			}
 			out.print(";\n");
 		}
 		

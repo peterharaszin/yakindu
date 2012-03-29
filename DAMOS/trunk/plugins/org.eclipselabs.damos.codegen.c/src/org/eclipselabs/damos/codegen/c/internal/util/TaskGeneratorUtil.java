@@ -50,7 +50,7 @@ public class TaskGeneratorUtil {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = InternalGeneratorUtil.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), dataType);
+		return MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context, dataType, null);
 	}
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {

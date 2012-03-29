@@ -69,7 +69,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 						out.print("((");
 						expressionGenerator.generate(context, argument);
 						out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
-								MscriptGeneratorUtil.getCDataType(context.getComputationModel(), argumentDataType),
+								MscriptGeneratorUtil.getCDataType(context, argumentDataType, null),
 								(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
 					} else {
 						expressionGenerator.generate(context, argument);

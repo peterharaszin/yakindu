@@ -19,6 +19,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public interface ICodeFragmentCollector {
 
-	void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor);
+	ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor);
 	
 }

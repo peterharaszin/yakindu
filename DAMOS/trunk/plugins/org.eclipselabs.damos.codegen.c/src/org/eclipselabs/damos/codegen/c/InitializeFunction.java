@@ -20,6 +20,7 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 import com.google.inject.Inject;
 
@@ -43,6 +44,17 @@ public class InitializeFunction extends PrimaryCodeFragment {
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#implementationDependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
+			 */
+			@Override
+			public boolean implementationDependsOn(ICodeFragment other) {
+				return other instanceof ContextVariable;
+			}
+
+		});
 		PrintAppendable out = new PrintAppendable(content);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 
@@ -68,14 +80,6 @@ public class InitializeFunction extends PrimaryCodeFragment {
 		out.print("}\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof ContextVariable;
-	}
-
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
 	 */

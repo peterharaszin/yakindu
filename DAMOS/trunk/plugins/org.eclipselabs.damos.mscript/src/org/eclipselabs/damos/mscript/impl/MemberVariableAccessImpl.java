@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -42,14 +41,24 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 	protected Expression target;
 
 	/**
-	 * The cached value of the '{@link #getMemberVariable() <em>Member Variable</em>}' reference.
+	 * The default value of the '{@link #getMemberVariable() <em>Member Variable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMemberVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected CallableElement memberVariable;
+	protected static final String MEMBER_VARIABLE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMemberVariable() <em>Member Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected String memberVariable = MEMBER_VARIABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,15 +127,7 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableElement getMemberVariable() {
-		if (memberVariable != null && memberVariable.eIsProxy()) {
-			InternalEObject oldMemberVariable = (InternalEObject)memberVariable;
-			memberVariable = (CallableElement)eResolveProxy(oldMemberVariable);
-			if (memberVariable != oldMemberVariable) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE, oldMemberVariable, memberVariable));
-			}
-		}
+	public String getMemberVariable() {
 		return memberVariable;
 	}
 
@@ -135,17 +136,8 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableElement basicGetMemberVariable() {
-		return memberVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMemberVariable(CallableElement newMemberVariable) {
-		CallableElement oldMemberVariable = memberVariable;
+	public void setMemberVariable(String newMemberVariable) {
+		String oldMemberVariable = memberVariable;
 		memberVariable = newMemberVariable;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE, oldMemberVariable, memberVariable));
@@ -176,8 +168,7 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__TARGET:
 				return getTarget();
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE:
-				if (resolve) return getMemberVariable();
-				return basicGetMemberVariable();
+				return getMemberVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -194,7 +185,7 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 				setTarget((Expression)newValue);
 				return;
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE:
-				setMemberVariable((CallableElement)newValue);
+				setMemberVariable((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -212,7 +203,7 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 				setTarget((Expression)null);
 				return;
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE:
-				setMemberVariable((CallableElement)null);
+				setMemberVariable(MEMBER_VARIABLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -229,9 +220,25 @@ public class MemberVariableAccessImpl extends ExpressionImpl implements MemberVa
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__TARGET:
 				return target != null;
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE:
-				return memberVariable != null;
+				return MEMBER_VARIABLE_EDEFAULT == null ? memberVariable != null : !MEMBER_VARIABLE_EDEFAULT.equals(memberVariable);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (memberVariable: ");
+		result.append(memberVariable);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MemberVariableAccessImpl

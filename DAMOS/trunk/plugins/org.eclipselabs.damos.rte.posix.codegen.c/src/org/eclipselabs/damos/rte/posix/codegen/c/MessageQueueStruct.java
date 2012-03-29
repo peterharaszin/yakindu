@@ -21,6 +21,7 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 /**
  * @author Andreas Unger
@@ -38,14 +39,6 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	private String prefix;
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#requiredBy(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean requiredBy(ICodeFragment other) {
-		return other instanceof ContextStruct;
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
 	@Override
@@ -58,6 +51,15 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+			
+			@Override
+			public boolean forwardDeclarationRequiredBy(ICodeFragment other) {
+				return other instanceof ContextStruct;
+			}
+			
+		});
+		
 		prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 	}
 

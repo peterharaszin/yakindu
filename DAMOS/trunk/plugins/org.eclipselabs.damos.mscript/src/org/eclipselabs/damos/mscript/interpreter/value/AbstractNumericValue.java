@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -83,6 +84,10 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 	protected abstract AbstractNumericValue basicSubtract(AbstractNumericValue other, NumericType resultDataType);
 
 	protected IValue doMultiply(IValue other, DataType resultDataType) {
+		if (other.getDataType() instanceof ArrayType) {
+			return other.multiply(this);
+		}
+		
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		

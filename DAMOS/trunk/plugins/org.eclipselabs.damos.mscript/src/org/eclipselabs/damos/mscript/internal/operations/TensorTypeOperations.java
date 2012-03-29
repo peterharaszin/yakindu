@@ -53,7 +53,7 @@ public class TensorTypeOperations extends ArrayTypeOperations {
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}
 	
-	private static DataType evaluateElementWiseScalar(TensorType tensorType, OperatorKind operator, NumericType other) {
+	static DataType evaluateElementWiseScalar(TensorType tensorType, OperatorKind operator, NumericType other) {
 		DataType elementType = tensorType.getElementType().evaluate(operator, other);
 		if (elementType instanceof InvalidDataType) {
 			return elementType;

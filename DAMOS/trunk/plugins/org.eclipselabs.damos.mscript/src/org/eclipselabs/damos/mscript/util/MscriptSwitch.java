@@ -119,13 +119,9 @@ public class MscriptSwitch<T> extends Switch<T> {
 				StructDeclaration structDeclaration = (StructDeclaration)theEObject;
 				T result = caseStructDeclaration(structDeclaration);
 				if (result == null) result = caseDataTypeDeclaration(structDeclaration);
+				if (result == null) result = caseStructType(structDeclaration);
 				if (result == null) result = caseDeclaration(structDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.STRUCT_MEMBER_DECLARATION: {
-				StructMemberDeclaration structMemberDeclaration = (StructMemberDeclaration)theEObject;
-				T result = caseStructMemberDeclaration(structMemberDeclaration);
+				if (result == null) result = caseDataType(structDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -357,6 +353,20 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.EXPRESSION_LIST: {
 				ExpressionList expressionList = (ExpressionList)theEObject;
 				T result = caseExpressionList(expressionList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: {
+				StructConstructionOperator structConstructionOperator = (StructConstructionOperator)theEObject;
+				T result = caseStructConstructionOperator(structConstructionOperator);
+				if (result == null) result = caseExpression(structConstructionOperator);
+				if (result == null) result = caseEvaluable(structConstructionOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STRUCT_CONSTRUCTION_MEMBER: {
+				StructConstructionMember structConstructionMember = (StructConstructionMember)theEObject;
+				T result = caseStructConstructionMember(structConstructionMember);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -803,6 +813,19 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.STRUCT_TYPE: {
+				StructType structType = (StructType)theEObject;
+				T result = caseStructType(structType);
+				if (result == null) result = caseDataType(structType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STRUCT_MEMBER: {
+				StructMember structMember = (StructMember)theEObject;
+				T result = caseStructMember(structMember);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.EXPRESSION: {
 				Expression expression = (Expression)theEObject;
 				T result = caseExpression(expression);
@@ -1018,21 +1041,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStructDeclaration(StructDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Member Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Member Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStructMemberDeclaration(StructMemberDeclaration object) {
 		return null;
 	}
 
@@ -1483,6 +1491,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExpressionList(ExpressionList object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Construction Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Construction Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructConstructionOperator(StructConstructionOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Construction Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Construction Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructConstructionMember(StructConstructionMember object) {
 		return null;
 	}
 
@@ -2338,6 +2376,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArrayDimension(ArrayDimension object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructType(StructType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructMember(StructMember object) {
 		return null;
 	}
 

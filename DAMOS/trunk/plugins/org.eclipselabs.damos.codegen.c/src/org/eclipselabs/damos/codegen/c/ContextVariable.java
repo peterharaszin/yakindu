@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 /**
  * @author Andreas Unger
@@ -27,18 +28,19 @@ public class ContextVariable extends PrimaryCodeFragment {
 	private String prefix;
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof ContextStruct;
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+			
+			@Override
+			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+				return other instanceof ContextStruct;
+			}
+
+		});
+		
 		prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 	}
 	

@@ -64,7 +64,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
 			case MscriptPackage.TYPEDEF_DECLARATION: return createTypedefDeclaration();
 			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
-			case MscriptPackage.STRUCT_MEMBER_DECLARATION: return createStructMemberDeclaration();
 			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
 			case MscriptPackage.TEMPLATE_PARAMETER_DECLARATION: return createTemplateParameterDeclaration();
@@ -91,6 +90,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: return createArrayConstructionIterationClause();
 			case MscriptPackage.ARRAY_CONCATENATION_OPERATOR: return createArrayConcatenationOperator();
 			case MscriptPackage.EXPRESSION_LIST: return createExpressionList();
+			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: return createStructConstructionOperator();
+			case MscriptPackage.STRUCT_CONSTRUCTION_MEMBER: return createStructConstructionMember();
 			case MscriptPackage.UNIT_CONSTRUCTION_OPERATOR: return createUnitConstructionOperator();
 			case MscriptPackage.PARENTHESIZED_EXPRESSION: return createParenthesizedExpression();
 			case MscriptPackage.END_EXPRESSION: return createEndExpression();
@@ -143,6 +144,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ARRAY_TYPE: return createArrayType();
 			case MscriptPackage.TENSOR_TYPE: return createTensorType();
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
+			case MscriptPackage.STRUCT_TYPE: return createStructType();
+			case MscriptPackage.STRUCT_MEMBER: return createStructMember();
 			case MscriptPackage.EXPRESSION: return createExpression();
 			case MscriptPackage.UNIT: return createUnit();
 			case MscriptPackage.UNIT_NUMERATOR: return createUnitNumerator();
@@ -291,16 +294,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public StructDeclaration createStructDeclaration() {
 		StructDeclarationImpl structDeclaration = new StructDeclarationImpl();
 		return structDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StructMemberDeclaration createStructMemberDeclaration() {
-		StructMemberDeclarationImpl structMemberDeclaration = new StructMemberDeclarationImpl();
-		return structMemberDeclaration;
 	}
 
 	/**
@@ -561,6 +554,26 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ExpressionList createExpressionList() {
 		ExpressionListImpl expressionList = new ExpressionListImpl();
 		return expressionList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructConstructionOperator createStructConstructionOperator() {
+		StructConstructionOperatorImpl structConstructionOperator = new StructConstructionOperatorImpl();
+		return structConstructionOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructConstructionMember createStructConstructionMember() {
+		StructConstructionMemberImpl structConstructionMember = new StructConstructionMemberImpl();
+		return structConstructionMember;
 	}
 
 	/**
@@ -1081,6 +1094,26 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ArrayDimension createArrayDimension() {
 		ArrayDimensionImpl arrayDimension = new ArrayDimensionImpl();
 		return arrayDimension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructType createStructType() {
+		StructTypeImpl structType = new StructTypeImpl();
+		return structType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructMember createStructMember() {
+		StructMemberImpl structMember = new StructMemberImpl();
+		return structMember;
 	}
 
 	/**

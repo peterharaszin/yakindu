@@ -80,15 +80,6 @@ public interface MscriptFactory extends EFactory {
 	StructDeclaration createStructDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Struct Member Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Member Declaration</em>'.
-	 * @generated
-	 */
-	StructMemberDeclaration createStructMemberDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,6 +312,24 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	ExpressionList createExpressionList();
+
+	/**
+	 * Returns a new object of class '<em>Struct Construction Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Struct Construction Operator</em>'.
+	 * @generated
+	 */
+	StructConstructionOperator createStructConstructionOperator();
+
+	/**
+	 * Returns a new object of class '<em>Struct Construction Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Struct Construction Member</em>'.
+	 * @generated
+	 */
+	StructConstructionMember createStructConstructionMember();
 
 	/**
 	 * Returns a new object of class '<em>Unit Construction Operator</em>'.
@@ -789,6 +798,24 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	ArrayDimension createArrayDimension();
+
+	/**
+	 * Returns a new object of class '<em>Struct Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Struct Type</em>'.
+	 * @generated
+	 */
+	StructType createStructType();
+
+	/**
+	 * Returns a new object of class '<em>Struct Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Struct Member</em>'.
+	 * @generated
+	 */
+	StructMember createStructMember();
 
 	/**
 	 * Returns a new object of class '<em>Expression</em>'.

@@ -61,11 +61,8 @@ TypedefDeclaration:
 
 StructDeclaration:
 	'struct' name=ValidID '{'
-		(memberDeclarations+=StructMemberDeclaration)*
+		members+=StructMember (',' members+=StructMember)*
 	'}'; 
-
-StructMemberDeclaration:
-	typeSpecifier=DataTypeSpecifier name=ValidID;
 
 /*
  * Function
@@ -128,7 +125,7 @@ Equation:
  */
 
 DataTypeSpecifier:
-	definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName];
+	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -162,6 +159,14 @@ TensorType:
 	
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;
+
+StructType:
+	'struct' '{'
+		members+=StructMember (',' members+=StructMember)*
+	'}'; 
+
+StructMember:
+	typeSpecifier=DataTypeSpecifier name=ValidID;
 
 /*
  * Expressions
@@ -250,21 +255,19 @@ enum UnaryOperator:
 	LogicalNot='!';
 	
 PostfixExpression returns Expression:
-	ArrayElementAccess ({PostfixExpression.operand=current} operator=PostfixOperator)?;
+	(QualifiedFeatureCall | MemberFeatureCall) ({PostfixExpression.operand=current} operator=PostfixOperator)?;
 
 enum PostfixOperator:
 	Derivative="'";
 
-ArrayElementAccess returns Expression:
-	(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
-
 MemberFeatureCall returns Expression:
-	PrimaryExpression (({MemberVariableAccess.target=current} '.' memberVariable=[CallableElement|ValidID])
+	PrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID)
 		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')
 		| ({IterationCall.target=current} '.' identifier=ValidID '(' iterationVariables+=IterationVariableDeclaration (',' iterationVariables+=IterationVariableDeclaration)* (';' accumulator=IterationAccumulator)? (';' breakCondition=Expression)? '|' expression=Expression ')'))*;
 
 AssignableMemberFeatureCall returns Expression:
-	AssignablePrimaryExpression (({MemberVariableAccess.target=current} '.' memberVariable=[CallableElement|ValidID]))*;
+	AssignablePrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']') | ({MemberVariableAccess.target=current} '.' memberVariable=ValidID))*;
 
 IterationAccumulator:
 	name=ValidID '=' initializer=Expression;
@@ -281,12 +284,13 @@ PrimaryExpression returns Expression:
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
 	ArrayConcatenationOperator |
+	StructConstructionOperator |
 	ParenthesizedExpression |
 	EndExpression |
 	AlgorithmExpression;
 
 AssignablePrimaryExpression returns Expression:
-	FeatureCall |
+	VariableReference |
 	ParenthesizedExpression;
 
 Literal:
@@ -363,6 +367,12 @@ ArrayConcatenationOperator:
 	
 ExpressionList:
 	expressions+=Expression (',' expressions+=Expression)*;
+	
+StructConstructionOperator:
+	'{' members+=StructConstructionMember (',' members+=StructConstructionMember)* '}';
+	
+StructConstructionMember:
+	name=ValidID '=' value=Expression;
 	
 UnitConstructionOperator:
 	'unitlit' unit=ExplicitUnit;

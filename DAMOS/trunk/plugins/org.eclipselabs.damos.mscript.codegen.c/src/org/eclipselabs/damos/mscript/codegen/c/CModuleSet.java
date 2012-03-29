@@ -22,22 +22,35 @@ import java.util.Map;
 public class CModuleSet {
 
 	private Map<String, CModule> modules = new HashMap<String, CModule>();
+	private boolean resolved;
 
 	/**
 	 * @return the modules
 	 */
 	public Collection<CModule> getModules() {
+		resolveEntries();
 		return modules.values();
 	}
 	
 	public CModule getModule(String name) {
+		resolveEntries();
 		return modules.get(name);
 	}
 	
 	public CModule createModule(String name) {
 		CModule module = new CModule(this, name);
 		modules.put(name, module);
+		resolved = false;
 		return module;
+	}
+	
+	private void resolveEntries() {
+		if (!resolved) {
+			for (CModule module : modules.values()) {
+				module.resolveEntries();
+			}
+			resolved = true;
+		}
 	}
 	
 }

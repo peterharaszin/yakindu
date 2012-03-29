@@ -21,6 +21,7 @@ import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 /**
  * @author Andreas Unger
@@ -54,14 +55,6 @@ public abstract class MessageQueueFunction extends PrimaryCodeFragment {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof MessageQueueStruct;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
 	 */
 	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
@@ -77,6 +70,15 @@ public abstract class MessageQueueFunction extends PrimaryCodeFragment {
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+			
+			@Override
+			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+				return other instanceof MessageQueueStruct;
+			}
+			
+		});
+
 		prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		StringBuilder sb = new StringBuilder();
 		writeFunctionSignature(sb);

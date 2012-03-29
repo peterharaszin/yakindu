@@ -115,7 +115,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 				for (OutputPort outputPort : output.getPorts()) {
 					ComputationModel computationModel = GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode);
 					DataType outputDataType = generator.getContext().getComponentSignature().getOutputDataType(outputPort);
-					String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, outputDataType);
+					String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, context, outputDataType, null);
 					out.printf("%s %s;\n", cDataType, InternalGeneratorUtil.getOutputVariableName(context.getConfiguration(), componentNode, outputPort));
 				}
 			}

@@ -25,11 +25,17 @@ public interface ICodeFragment {
 	
 	void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException;
 
-	boolean dependsOn(ICodeFragment other);
-	
-	boolean requiredBy(ICodeFragment other);
+	void addDependency(ICodeFragmentDependency dependency);
 	
 	boolean contributesInternalForwardDeclaration();
+
+	boolean forwardDeclarationDependsOn(ICodeFragment other);
+	
+	boolean implementationDependsOn(ICodeFragment other);
+
+	boolean forwardDeclarationRequiredBy(ICodeFragment other);
+	
+	boolean implementationRequiredBy(ICodeFragment other);
 
 	Collection<String> getForwardDeclarationIncludes();
 	

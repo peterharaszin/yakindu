@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
@@ -29,6 +31,7 @@ import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
+import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
@@ -36,6 +39,7 @@ import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
@@ -199,6 +203,14 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 				DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 				DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
+				
+				if (leftDataType instanceof NumericType && rightDataType instanceof TensorType) {
+					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+				}
+				if (leftDataType instanceof TensorType && rightDataType instanceof NumericType) {
+					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+				}
+				
 				NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
 				NumberFormat rightNumberFormat = context.getComputationModel().getNumberFormat(rightDataType);
 				
@@ -223,6 +235,27 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 	
+		/**
+		 * @param operator
+		 * @param scalarExpression
+		 * @param tensorExpression
+		 * @return
+		 */
+		private Boolean writeScalarMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
+				Expression tensorExpression) {
+			DataType scalarType = EcoreUtil.copy(getDataType(scalarExpression));
+			TensorType tensorType = (TensorType) getDataType(tensorExpression);
+			DataType elementType = EcoreUtil.copy(tensorType.getElementType());
+			TensorType resultType = EcoreUtil.copy((TensorType) getDataType(multiplicativeExpression));
+			ScalarMultiplyCodeFragment codeFragment = (ScalarMultiplyCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new ScalarMultiplyCodeFragment(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
+			out.printf("%s(", codeFragment.getName());
+			doSwitch(scalarExpression);
+			out.print(", &(");
+			doSwitch(tensorExpression);
+			out.printf(").data[0], %d)", TypeUtil.getArraySize(tensorType));
+			return true;
+		}
+
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseParenthesizedExpression(org.eclipselabs.mscript.language.ast.ParenthesizedExpression)
 		 */
@@ -284,7 +317,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseRealLiteral(RealLiteral realLiteral) {
 			DataType dataType = getDataType(realLiteral);
-			out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, realLiteral.getValue()));
+			out.print(MscriptGeneratorUtil.getLiteralString(context, dataType, realLiteral.getValue(), null));
 			return true;
 		}
 	
@@ -294,7 +327,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
 			DataType dataType = getDataType(integerLiteral);
-			out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, integerLiteral.getValue()));
+			out.print(MscriptGeneratorUtil.getLiteralString(context, dataType, integerLiteral.getValue(), null));
 			return true;
 		}
 		
@@ -348,11 +381,23 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
 			doSwitch(arrayElementAccess.getArray());
+			out.print(".data");
 			for (ArraySubscript subscript : arrayElementAccess.getSubscripts()) {
 				out.print("[");
 				doSwitch(subscript.getExpression());
 				out.print("]");
 			}
+			return true;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseMemberVariableAccess(org.eclipselabs.damos.mscript.MemberVariableAccess)
+		 */
+		@Override
+		public Boolean caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
+			doSwitch(memberVariableAccess.getTarget());
+			out.print(".");
+			out.print(memberVariableAccess.getMemberVariable());
 			return true;
 		}
 

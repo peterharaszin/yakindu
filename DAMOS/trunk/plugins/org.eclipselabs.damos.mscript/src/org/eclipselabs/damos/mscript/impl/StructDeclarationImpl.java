@@ -14,9 +14,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StructDeclaration;
-import org.eclipselabs.damos.mscript.StructMemberDeclaration;
+import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.internal.operations.StructTypeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +29,7 @@ import org.eclipselabs.damos.mscript.StructMemberDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.StructDeclarationImpl#getMemberDeclarations <em>Member Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.StructDeclarationImpl#getMembers <em>Members</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,15 +37,14 @@ import org.eclipselabs.damos.mscript.StructMemberDeclaration;
  */
 public class StructDeclarationImpl extends DataTypeDeclarationImpl implements StructDeclaration {
 	/**
-	 * The cached value of the '{@link #getMemberDeclarations() <em>Member Declarations</em>}' containment reference list.
+	 * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemberDeclarations()
+	 * @see #getMembers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StructMemberDeclaration> memberDeclarations;
-
+	protected EList<StructMember> members;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,11 +69,65 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<StructMemberDeclaration> getMemberDeclarations() {
-		if (memberDeclarations == null) {
-			memberDeclarations = new EObjectContainmentEList<StructMemberDeclaration>(StructMemberDeclaration.class, this, MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS);
+	public EList<StructMember> getMembers() {
+		if (members == null) {
+			members = new EObjectContainmentEList<StructMember>(StructMember.class, this, MscriptPackage.STRUCT_DECLARATION__MEMBERS);
 		}
-		return memberDeclarations;
+		return members;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public StructMember getMember(String name) {
+		return StructTypeOperations.getMember(this, name);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getMemberIndex(String name) {
+		return StructTypeOperations.getMemberIndex(this, name);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataType evaluate(OperatorKind operator, DataType other) {
+		return StructTypeOperations.evaluate(this, operator, other);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataType evaluate(OperatorKind operator, int n) {
+		return StructTypeOperations.evaluate(this, operator, n);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isAssignableFrom(DataType other) {
+		return StructTypeOperations.isAssignableFrom(this, other);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isEquivalentTo(DataType other) {
+		return StructTypeOperations.isEquivalentTo(this, other);
 	}
 
 	/**
@@ -81,8 +138,8 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS:
-				return ((InternalEList<?>)getMemberDeclarations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.STRUCT_DECLARATION__MEMBERS:
+				return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +152,8 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS:
-				return getMemberDeclarations();
+			case MscriptPackage.STRUCT_DECLARATION__MEMBERS:
+				return getMembers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +167,9 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS:
-				getMemberDeclarations().clear();
-				getMemberDeclarations().addAll((Collection<? extends StructMemberDeclaration>)newValue);
+			case MscriptPackage.STRUCT_DECLARATION__MEMBERS:
+				getMembers().clear();
+				getMembers().addAll((Collection<? extends StructMember>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +183,8 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS:
-				getMemberDeclarations().clear();
+			case MscriptPackage.STRUCT_DECLARATION__MEMBERS:
+				getMembers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +198,52 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DECLARATION__MEMBER_DECLARATIONS:
-				return memberDeclarations != null && !memberDeclarations.isEmpty();
+			case MscriptPackage.STRUCT_DECLARATION__MEMBERS:
+				return members != null && !members.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == DataType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == StructType.class) {
+			switch (derivedFeatureID) {
+				case MscriptPackage.STRUCT_DECLARATION__MEMBERS: return MscriptPackage.STRUCT_TYPE__MEMBERS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == DataType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == StructType.class) {
+			switch (baseFeatureID) {
+				case MscriptPackage.STRUCT_TYPE__MEMBERS: return MscriptPackage.STRUCT_DECLARATION__MEMBERS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //StructDefinitionImpl

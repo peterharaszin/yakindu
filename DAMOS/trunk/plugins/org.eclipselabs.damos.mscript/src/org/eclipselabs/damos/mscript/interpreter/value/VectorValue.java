@@ -52,7 +52,15 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		return null;
+		if (!(dataType instanceof TensorType)) {
+			throw new IllegalArgumentException("Data type must be tensor type");
+		}
+		TensorType tensorType = (TensorType) dataType;
+		INumericValue[] convertedElements = new INumericValue[elements.length];
+		for (int i = 0; i < elements.length; ++i) {
+			convertedElements[i] = (INumericValue) elements[i].convert(tensorType.getElementType());
+		}
+		return new VectorValue(getContext(), tensorType, convertedElements);
 	}
 	
 	public int getSize() {

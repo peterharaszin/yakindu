@@ -6,39 +6,17 @@
  */
 package org.eclipselabs.damos.mscript;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Struct Definition</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.StructDeclaration#getMemberDeclarations <em>Member Declarations</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDeclaration()
  * @model
  * @generated
  */
-public interface StructDeclaration extends DataTypeDeclaration {
-	/**
-	 * Returns the value of the '<em><b>Member Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.StructMemberDeclaration}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Member Declarations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Member Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDeclaration_MemberDeclarations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<StructMemberDeclaration> getMemberDeclarations();
+public interface StructDeclaration extends DataTypeDeclaration, StructType {
 
 } // StructDefinition

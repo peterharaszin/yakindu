@@ -1,0 +1,22 @@
+package damos.tests
+
+blockType StructTest {
+
+	input x
+	output y
+	
+	struct MyNamedStruct {
+		int x,
+		int y
+	}
+
+	function main(x) -> y {
+		check(struct { int x, int y }) -> MyNamedStruct
+
+		static assert x is struct { int x, int y } :
+			error "X must be struct { int x, int y }"
+
+		eq y = x
+	}
+
+}

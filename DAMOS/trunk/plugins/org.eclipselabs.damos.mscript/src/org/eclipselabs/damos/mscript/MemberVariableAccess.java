@@ -52,29 +52,29 @@ public interface MemberVariableAccess extends Expression {
 	void setTarget(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Member Variable</b></em>' reference.
+	 * Returns the value of the '<em><b>Member Variable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Member Variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Member Variable</em>' reference.
-	 * @see #setMemberVariable(CallableElement)
+	 * @return the value of the '<em>Member Variable</em>' attribute.
+	 * @see #setMemberVariable(String)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getMemberVariableAccess_MemberVariable()
 	 * @model
 	 * @generated
 	 */
-	CallableElement getMemberVariable();
+	String getMemberVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.MemberVariableAccess#getMemberVariable <em>Member Variable</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.MemberVariableAccess#getMemberVariable <em>Member Variable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Member Variable</em>' reference.
+	 * @param value the new value of the '<em>Member Variable</em>' attribute.
 	 * @see #getMemberVariable()
 	 * @generated
 	 */
-	void setMemberVariable(CallableElement value);
+	void setMemberVariable(String value);
 
 } // MemberVariableAccess

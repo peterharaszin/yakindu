@@ -119,6 +119,7 @@ public abstract class AbstractGTest {
 		}
 		command.add("-lgtest");
 		command.add("-lgtest_main");
+		command.add("-lstdc++");
 		command.add("-pthread");
 		return command;
 	}
@@ -127,7 +128,7 @@ public abstract class AbstractGTest {
 	 * @return
 	 */
 	protected String getCompilerCommand() {
-		return "g++";
+		return "gcc";
 	}
 
 	/**

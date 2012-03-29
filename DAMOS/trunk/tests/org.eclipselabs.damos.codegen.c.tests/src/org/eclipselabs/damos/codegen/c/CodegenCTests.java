@@ -13,12 +13,15 @@ package org.eclipselabs.damos.codegen.c;
 
 import org.eclipselabs.damos.codegen.c.gtests.ActionTest;
 import org.eclipselabs.damos.codegen.c.gtests.AndTest;
+import org.eclipselabs.damos.codegen.c.gtests.StructTest;
+import org.eclipselabs.damos.codegen.c.gtests.VectorScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.DoWhileLoopTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainFixedPointTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainTest;
 import org.eclipselabs.damos.codegen.c.gtests.InportOnlyTest;
 import org.eclipselabs.damos.codegen.c.gtests.IntegratorTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
+import org.eclipselabs.damos.codegen.c.gtests.VectorTest;
 import org.eclipselabs.damos.codegen.c.gtests.WhileLoopTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -38,7 +41,10 @@ import org.junit.runners.Suite.SuiteClasses;
 	IntegratorTest.class,
 	ActionTest.class,
 	DoWhileLoopTest.class,
-	WhileLoopTest.class
+	WhileLoopTest.class,
+	VectorTest.class,
+	VectorScalarMultiplyTest.class,
+	StructTest.class
 })
 public class CodegenCTests {
 

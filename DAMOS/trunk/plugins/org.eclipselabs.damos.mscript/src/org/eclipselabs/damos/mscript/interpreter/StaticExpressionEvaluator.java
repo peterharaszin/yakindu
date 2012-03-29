@@ -29,6 +29,7 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
@@ -43,7 +44,9 @@ import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
+import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -53,6 +56,10 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StructConstructionMember;
+import org.eclipselabs.damos.mscript.StructConstructionOperator;
+import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
@@ -73,6 +80,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -621,6 +629,52 @@ public class StaticExpressionEvaluator {
 		public IValue processMatrix(IValue[][] matrix, int rowSize, int columnSize) {
 			return InvalidValue.SINGLETON;
 		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
+		 */
+		@Override
+		public IValue caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
+			StructType structType = MscriptFactory.eINSTANCE.createStructType();
+			IValue[] values = new IValue[structConstructionOperator.getMembers().size()];
+			
+			boolean anyValue = false;
+
+			{
+				int i = 0;
+				for (StructConstructionMember constructionMember : structConstructionOperator.getMembers()) {
+					IValue value = evaluate(constructionMember.getValue());
+					
+					if (value instanceof InvalidValue) {
+						return InvalidValue.SINGLETON;
+					}
+					
+					if (value instanceof AnyValue) {
+						anyValue = true;
+					}
+					
+					StructMember member = MscriptFactory.eINSTANCE.createStructMember();
+					member.setName(constructionMember.getName());
+					DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
+					dataTypeSpecifier.setDefinedType(EcoreUtil.copy(value.getDataType()));
+					member.setTypeSpecifier(dataTypeSpecifier);
+					structType.getMembers().add(member);
+					
+					values[i++] = value;
+				}
+			}
+			
+			if (anyValue) {
+				for (int i = 0; i < values.length; ++i) {
+					if (!(values[i] instanceof AnyValue)) {
+						values[i] = new AnyValue(context.getComputationContext(), values[i].getDataType());
+					}
+				}
+				return new AnyValue(context.getComputationContext(), structType);
+			}
+			
+			return new StructValue(context.getComputationContext(), structType, values);
+		}
 	
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnitConstructionOperator(org.eclipselabs.mscript.language.ast.UnitConstructionOperator)
@@ -722,35 +776,39 @@ public class StaticExpressionEvaluator {
 		@Override
 		public IValue caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
 			IValue value = evaluate(arrayElementAccess.getArray());
+			if (value instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			if (value == null) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for array", arrayElementAccess.getArray()));
 				return InvalidValue.SINGLETON;
 			}
 			
 			if (!(value.getDataType() instanceof ArrayType)) {
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array element access is only applicable to arrays", arrayElementAccess.getArray()));
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array element access is only applicable to arrays", arrayElementAccess));
 				return InvalidValue.SINGLETON;
 			}
+			
+			ArrayType arrayType = (ArrayType) value.getDataType();
 
-			if (!(value instanceof IArrayValue)) {
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Dynamic arrays not supported", arrayElementAccess.getArray()));
-				return InvalidValue.SINGLETON;
-			}
-			
-			IArrayValue arrayValue = (IArrayValue) value;
-			
 			if (arrayElementAccess.getSubscripts().size() != 1) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript dimensionality must be 1", arrayElementAccess));
 				return InvalidValue.SINGLETON;
 			}
 			
-			EList<ArrayDimension> dimensions = arrayValue.getDataType().getDimensions();
+			EList<ArrayDimension> dimensions = arrayType.getDimensions();
 			if (dimensions.size() != 1) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array dimensionality must be 1", arrayElementAccess));
 				return InvalidValue.SINGLETON;
 			}
 			
-			IValue sizeValue = context.getValue(dimensions.get(0).getSize());
+			Expression sizeExpression = dimensions.get(0).getSize();
+			IValue sizeValue = context.getValue(sizeExpression);
+			// TODO: This has to be redesigned
+			if (sizeValue == null) {
+				sizeValue = evaluate(sizeExpression);
+			}
 			if (sizeValue == null || !(sizeValue.getDataType() instanceof IntegerType) || !(sizeValue instanceof ISimpleNumericValue)) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array size data type", arrayElementAccess));
 				return InvalidValue.SINGLETON;
@@ -773,14 +831,16 @@ public class StaticExpressionEvaluator {
 			if (subsciptValue instanceof ISimpleNumericValue) {
 				int index = (int) ((ISimpleNumericValue) subsciptValue).longValue();
 				if (index < size) {
-					return arrayValue.get(index);
+					if (value instanceof IArrayValue) {
+						return ((IArrayValue) value).get(index);
+					}
 				} else {
 					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be less than " + size, arrayElementAccess));
 					return InvalidValue.SINGLETON;
 				}
 			}
 			
-			return new AnyValue(context.getComputationContext(), arrayValue.getDataType().getElementType());
+			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(arrayType.getElementType()));
 		}
 		
 		/* (non-Javadoc)
@@ -797,6 +857,39 @@ public class StaticExpressionEvaluator {
 				value = InvalidValue.SINGLETON;
 			}
 			return value;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseMemberVariableAccess(org.eclipselabs.damos.mscript.MemberVariableAccess)
+		 */
+		@Override
+		public IValue caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
+			IValue value = evaluate(memberVariableAccess.getTarget());
+			if (value instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+
+			if (value == null) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for target", memberVariableAccess.getTarget()));
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(value.getDataType() instanceof StructType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Member variable access is only applicable to structs", memberVariableAccess, MscriptPackage.eINSTANCE.getMemberVariableAccess_MemberVariable()));
+				return InvalidValue.SINGLETON;
+			}
+			
+			StructType structType = (StructType) value.getDataType();
+			
+			int memberIndex = structType.getMemberIndex(memberVariableAccess.getMemberVariable());
+			if (memberIndex == -1) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, memberVariableAccess.getMemberVariable() + " is not a member variable", memberVariableAccess, MscriptPackage.eINSTANCE.getMemberVariableAccess_MemberVariable()));
+				return InvalidValue.SINGLETON;
+			}
+			
+			// TODO: Process static struct value
+			
+			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(structType.getMembers().get(memberIndex).getTypeSpecifier().getType()));
 		}
 
 		/* (non-Javadoc)

@@ -17,6 +17,7 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 
 public class RealTypeOperations extends PrimitiveTypeOperations {
@@ -27,6 +28,9 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 		}
 		
 		if (!(other instanceof NumericType)) {
+			if (other instanceof TensorType && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
+				return TensorTypeOperations.evaluateElementWiseScalar((TensorType) other, operator, realType);
+			}
 			return MscriptFactory.eINSTANCE.createInvalidDataType();
 		}
 		NumericType otherNumericType = (NumericType) other;

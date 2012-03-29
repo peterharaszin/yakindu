@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.test;
 
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -20,8 +21,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.codegen.IGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCModule;
+import org.eclipselabs.damos.codegen.c.CodegenCTestsPlugin;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
@@ -64,17 +68,24 @@ import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
@@ -91,10 +102,21 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 	protected static final String COUNTER = "damos.library.base.discrete.Counter";
 	protected static final String DISCRETE_INTEGRATOR = "damos.library.base.discrete.DiscreteIntegrator";
 	
+	@Inject
+	private IParser parser;
+	
+	@Inject
+	private MscriptGrammarAccess grammarAccess;
+
 	protected ResourceSet resourceSet;
 	protected Configuration configuration;
 	protected System system;
 	
+	protected void setUpInjector() {
+		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
+		injector.injectMembers(this);
+	}
+
 	@Override
 	protected void getSourceFiles(Collection<String> files) {
 		super.getSourceFiles(files);
@@ -191,6 +213,21 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "boolean");
 		return dataTypeSpecification;
+	}
+
+	protected MscriptDataTypeSpecification createArrayTypeSpecification(DataType elementType, int... sizes) {
+		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
+		dataTypeSpecifier.setDefinedType(TypeUtil.createArrayType(elementType, sizes));
+		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+		return dataTypeSpecification;
+	}
+
+	protected Block createTestBlock(String blockTypeName, String name) {
+		BlockType blockType = loadBlockType(blockTypeName);
+		Block block = blockType.newInstance(name);
+		system.getComponents().add(block);
+		return block;
 	}
 
 	protected Block createBlock(String blockTypeQualifiedName, String name) {
@@ -294,6 +331,13 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
 	}
 
+	protected void setArgument(Block block, String parameterName, String expressionString) {
+		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
+		valueSpecification.setExpression(parseExpression(expressionString));
+		DMLTextUtil.setText(valueSpecification, expressionString);
+		block.getArgument(parameterName).setValue(valueSpecification);
+	}
+
 	protected void generate() {
 		try {
 			IGenerator generator = Guice.createInjector(new CodegenCModule()).getInstance(IGenerator.class);
@@ -394,6 +438,19 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 		computationModel.getNumberFormatMappings().add(realTypeMapping);
 		
 		return computationModel;
+	}
+	
+	protected BlockType loadBlockType(String name) {
+		String pathName = "/" + CodegenCTestsPlugin.PLUGIN_ID + "/blocktypes/" + name + ".blocktype";
+		return (BlockType) resourceSet.getEObject(URI.createPlatformPluginURI(pathName, true).appendFragment("/"), true);
+	}
+
+	protected Expression parseExpression(String expressionString) {
+		IParseResult result = parser.parse(grammarAccess.getExpressionRule(), new StringReader(expressionString));
+		if (result.hasSyntaxErrors()) {
+			throw new RuntimeException("Syntax errors in '" + expressionString + "'");
+		}
+		return (Expression) result.getRootASTElement();
 	}
 
 }

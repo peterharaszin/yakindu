@@ -40,7 +40,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	@Override
 	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
 		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(), dataType);
+		String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, null);
 		appendable.append("typedef struct {\n").append(cDataType).append(" ").append("data;\n");
 		getFastLockGenerator().writeContextCode(appendable, "lock");
 		appendable.append("} ").append(typeName).append(";\n");

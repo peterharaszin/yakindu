@@ -84,13 +84,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass structMemberDeclarationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass functionDeclarationEClass = null;
 
 	/**
@@ -295,6 +288,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	private EClass expressionListEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structConstructionOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structConstructionMemberEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -700,6 +707,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass structTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structMemberEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass expressionEClass = null;
 
 	/**
@@ -1066,42 +1087,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EClass getStructDeclaration() {
 		return structDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStructDeclaration_MemberDeclarations() {
-		return (EReference)structDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStructMemberDeclaration() {
-		return structMemberDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStructMemberDeclaration_Name() {
-		return (EAttribute)structMemberDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStructMemberDeclaration_TypeSpecifier() {
-		return (EReference)structMemberDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1919,6 +1904,51 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStructConstructionOperator() {
+		return structConstructionOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructConstructionOperator_Members() {
+		return (EReference)structConstructionOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructConstructionMember() {
+		return structConstructionMemberEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructConstructionMember_Name() {
+		return (EAttribute)structConstructionMemberEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructConstructionMember_Value() {
+		return (EReference)structConstructionMemberEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUnitConstructionOperator() {
 		return unitConstructionOperatorEClass;
 	}
@@ -2522,8 +2552,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMemberVariableAccess_MemberVariable() {
-		return (EReference)memberVariableAccessEClass.getEStructuralFeatures().get(1);
+	public EAttribute getMemberVariableAccess_MemberVariable() {
+		return (EAttribute)memberVariableAccessEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3044,6 +3074,51 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStructType() {
+		return structTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructType_Members() {
+		return (EReference)structTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructMember() {
+		return structMemberEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructMember_Name() {
+		return (EAttribute)structMemberEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructMember_TypeSpecifier() {
+		return (EReference)structMemberEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpression() {
 		return expressionEClass;
 	}
@@ -3432,11 +3507,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(typedefDeclarationEClass, TYPEDEF_DECLARATION__TYPE_SPECIFIER);
 
 		structDeclarationEClass = createEClass(STRUCT_DECLARATION);
-		createEReference(structDeclarationEClass, STRUCT_DECLARATION__MEMBER_DECLARATIONS);
-
-		structMemberDeclarationEClass = createEClass(STRUCT_MEMBER_DECLARATION);
-		createEAttribute(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__NAME);
-		createEReference(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__TYPE_SPECIFIER);
 
 		functionDeclarationEClass = createEClass(FUNCTION_DECLARATION);
 		createEAttribute(functionDeclarationEClass, FUNCTION_DECLARATION__KIND);
@@ -3558,6 +3628,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		expressionListEClass = createEClass(EXPRESSION_LIST);
 		createEReference(expressionListEClass, EXPRESSION_LIST__EXPRESSIONS);
 
+		structConstructionOperatorEClass = createEClass(STRUCT_CONSTRUCTION_OPERATOR);
+		createEReference(structConstructionOperatorEClass, STRUCT_CONSTRUCTION_OPERATOR__MEMBERS);
+
+		structConstructionMemberEClass = createEClass(STRUCT_CONSTRUCTION_MEMBER);
+		createEAttribute(structConstructionMemberEClass, STRUCT_CONSTRUCTION_MEMBER__NAME);
+		createEReference(structConstructionMemberEClass, STRUCT_CONSTRUCTION_MEMBER__VALUE);
+
 		unitConstructionOperatorEClass = createEClass(UNIT_CONSTRUCTION_OPERATOR);
 		createEReference(unitConstructionOperatorEClass, UNIT_CONSTRUCTION_OPERATOR__UNIT);
 
@@ -3650,7 +3727,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		memberVariableAccessEClass = createEClass(MEMBER_VARIABLE_ACCESS);
 		createEReference(memberVariableAccessEClass, MEMBER_VARIABLE_ACCESS__TARGET);
-		createEReference(memberVariableAccessEClass, MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE);
+		createEAttribute(memberVariableAccessEClass, MEMBER_VARIABLE_ACCESS__MEMBER_VARIABLE);
 
 		algorithmExpressionEClass = createEClass(ALGORITHM_EXPRESSION);
 		createEReference(algorithmExpressionEClass, ALGORITHM_EXPRESSION__BODY);
@@ -3740,6 +3817,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		arrayDimensionEClass = createEClass(ARRAY_DIMENSION);
 		createEReference(arrayDimensionEClass, ARRAY_DIMENSION__SIZE);
 
+		structTypeEClass = createEClass(STRUCT_TYPE);
+		createEReference(structTypeEClass, STRUCT_TYPE__MEMBERS);
+
+		structMemberEClass = createEClass(STRUCT_MEMBER);
+		createEAttribute(structMemberEClass, STRUCT_MEMBER__NAME);
+		createEReference(structMemberEClass, STRUCT_MEMBER__TYPE_SPECIFIER);
+
 		expressionEClass = createEClass(EXPRESSION);
 
 		unitEClass = createEClass(UNIT);
@@ -3827,6 +3911,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		enumerationDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
 		typedefDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
 		structDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		structDeclarationEClass.getESuperTypes().add(this.getStructType());
 		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		functionDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		callableElementEClass.getESuperTypes().add(this.getEvaluable());
@@ -3848,6 +3933,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		iterationAccumulatorEClass.getESuperTypes().add(this.getVariableDeclaration());
 		arrayConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		arrayConcatenationOperatorEClass.getESuperTypes().add(this.getExpression());
+		structConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		unitConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		parenthesizedExpressionEClass.getESuperTypes().add(this.getExpression());
 		endExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -3903,6 +3989,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stringTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		arrayTypeEClass.getESuperTypes().add(this.getDataType());
 		tensorTypeEClass.getESuperTypes().add(this.getArrayType());
+		structTypeEClass.getESuperTypes().add(this.getDataType());
 		expressionEClass.getESuperTypes().add(this.getEvaluable());
 		unitNumeratorEClass.getESuperTypes().add(this.getUnitProduct());
 		unitDenominatorEClass.getESuperTypes().add(this.getUnitProduct());
@@ -3937,11 +4024,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getTypedefDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypedefDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structDeclarationEClass, StructDeclaration.class, "StructDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStructDeclaration_MemberDeclarations(), this.getStructMemberDeclaration(), null, "memberDeclarations", null, 0, -1, StructDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(structMemberDeclarationEClass, StructMemberDeclaration.class, "StructMemberDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStructMemberDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStructMemberDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionDeclarationEClass, FunctionDeclaration.class, "FunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionDeclaration_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4067,6 +4149,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(expressionListEClass, ExpressionList.class, "ExpressionList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpressionList_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, ExpressionList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(structConstructionOperatorEClass, StructConstructionOperator.class, "StructConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructConstructionOperator_Members(), this.getStructConstructionMember(), null, "members", null, 0, -1, StructConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(structConstructionMemberEClass, StructConstructionMember.class, "StructConstructionMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStructConstructionMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructConstructionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStructConstructionMember_Value(), this.getExpression(), null, "value", null, 0, 1, StructConstructionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(unitConstructionOperatorEClass, UnitConstructionOperator.class, "UnitConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitConstructionOperator_Unit(), this.getUnit(), null, "unit", null, 0, 1, UnitConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4161,7 +4250,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(memberVariableAccessEClass, MemberVariableAccess.class, "MemberVariableAccess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemberVariableAccess_Target(), this.getExpression(), null, "target", null, 0, 1, MemberVariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMemberVariableAccess_MemberVariable(), this.getCallableElement(), null, "memberVariable", null, 0, 1, MemberVariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMemberVariableAccess_MemberVariable(), ecorePackage.getEString(), "memberVariable", null, 0, 1, MemberVariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlgorithmExpression_Body(), this.getCompound(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4266,6 +4355,19 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(arrayDimensionEClass, ArrayDimension.class, "ArrayDimension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayDimension_Size(), this.getExpression(), null, "size", null, 0, 1, ArrayDimension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(structTypeEClass, StructType.class, "StructType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructType_Members(), this.getStructMember(), null, "members", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(structTypeEClass, this.getStructMember(), "getMember", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(structTypeEClass, ecorePackage.getEInt(), "getMemberIndex", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(structMemberEClass, StructMember.class, "StructMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStructMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStructMember_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

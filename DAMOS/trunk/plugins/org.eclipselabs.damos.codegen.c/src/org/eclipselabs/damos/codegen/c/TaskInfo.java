@@ -21,6 +21,7 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 import com.google.inject.Inject;
 
@@ -47,14 +48,6 @@ public class TaskInfo extends PrimaryCodeFragment {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof Task || other instanceof ITaskInfoStruct;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
 	@Override
@@ -75,6 +68,22 @@ public class TaskInfo extends PrimaryCodeFragment {
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+			
+			@Override
+			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+				return other instanceof ITaskInfoStruct;
+			}
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#implementationDependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
+			 */
+			@Override
+			public boolean implementationDependsOn(ICodeFragment other) {
+				return other instanceof Task;
+			}
+
+		});
 		context.addCodeFragment(new Task(graphGenerator), monitor);
 		initializeForwardDeclaration(context);
 		initializeImplementation(context);

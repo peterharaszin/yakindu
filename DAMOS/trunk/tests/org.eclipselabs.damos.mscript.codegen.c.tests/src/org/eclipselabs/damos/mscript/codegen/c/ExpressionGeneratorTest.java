@@ -166,7 +166,8 @@ public class ExpressionGeneratorTest {
 			StringBuilder stringBuilder = new StringBuilder();
 			IMscriptGeneratorContext context = new MscriptGeneratorContext(stringBuilder, ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
 				
-				public void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+				public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+					return codeFragment;
 				}
 				
 			});

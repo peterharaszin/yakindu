@@ -13,15 +13,20 @@ package org.eclipselabs.damos.codegen.c.internal;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ExecutionFlow;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 
 /**
  * @author Andreas Unger
@@ -31,7 +36,9 @@ public class GeneratorContext extends PlatformObject implements IGeneratorContex
 
 	private final Configuration configuration;
 	private final ExecutionFlow executionFlow;
-	private final Collection<ICodeFragment> codeFragments = new LinkedHashSet<ICodeFragment>();
+	private final Map<ICodeFragment, ICodeFragment> codeFragments = new LinkedHashMap<ICodeFragment, ICodeFragment>();
+	
+	private final IGlobalNameProvider globalNameProvider;
 	
 	/**
 	 * 
@@ -39,6 +46,7 @@ public class GeneratorContext extends PlatformObject implements IGeneratorContex
 	public GeneratorContext(Configuration configuration, ExecutionFlow executionFlow) {
 		this.configuration = configuration;
 		this.executionFlow = executionFlow;
+		this.globalNameProvider = new GlobalNameProvider(InternalGeneratorUtil.getPrefix(configuration));
 	}
 	
 	/* (non-Javadoc)
@@ -55,21 +63,22 @@ public class GeneratorContext extends PlatformObject implements IGeneratorContex
 		return executionFlow;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector#addCodeFragment(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment, org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
-		if (codeFragments.add(codeFragment)) {
-			try {
-				codeFragment.initialize(this, monitor);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+		ICodeFragment existing = codeFragments.get(codeFragment);
+		if (existing != null) {
+			return existing;
 		}
+		try {
+			codeFragment.initialize(this, monitor);
+			codeFragments.put(codeFragment, codeFragment);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return codeFragment;
 	}
 	
 	public Collection<ICodeFragment> getCodeFragments() {
-		return codeFragments;
+		return codeFragments.keySet();
 	}
 	
 	/* (non-Javadoc)
@@ -80,7 +89,38 @@ public class GeneratorContext extends PlatformObject implements IGeneratorContex
 		if (adapter == ICodeFragmentCollector.class || adapter == IGeneratorContext.class) {
 			return this;
 		}
+		if (adapter == IGlobalNameProvider.class) {
+			return globalNameProvider;
+		}
 		return super.getAdapter(adapter);
+	}
+	
+	private class GlobalNameProvider implements IGlobalNameProvider {
+
+		private final Set<String> globalNames = new HashSet<String>();
+		
+		private final String prefix;
+		
+		/**
+		 * 
+		 */
+		public GlobalNameProvider(String prefix) {
+			this.prefix = prefix;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider#requestName(java.lang.String)
+		 */
+		public String getName(String preferredName) {
+			preferredName = prefix + preferredName;
+			String name = preferredName;
+			int i = 2;
+			while (!globalNames.add(name)) {
+				name = preferredName + i++;
+			}
+			return name;
+		}
+		
 	}
 
 }

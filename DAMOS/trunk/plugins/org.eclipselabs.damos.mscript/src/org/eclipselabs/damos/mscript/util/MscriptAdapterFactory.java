@@ -101,10 +101,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createStructDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseStructMemberDeclaration(StructMemberDeclaration object) {
-				return createStructMemberDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseFunctionDeclaration(FunctionDeclaration object) {
 				return createFunctionDeclarationAdapter();
 			}
@@ -223,6 +219,14 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExpressionList(ExpressionList object) {
 				return createExpressionListAdapter();
+			}
+			@Override
+			public Adapter caseStructConstructionOperator(StructConstructionOperator object) {
+				return createStructConstructionOperatorAdapter();
+			}
+			@Override
+			public Adapter caseStructConstructionMember(StructConstructionMember object) {
+				return createStructConstructionMemberAdapter();
 			}
 			@Override
 			public Adapter caseUnitConstructionOperator(UnitConstructionOperator object) {
@@ -453,6 +457,14 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createArrayDimensionAdapter();
 			}
 			@Override
+			public Adapter caseStructType(StructType object) {
+				return createStructTypeAdapter();
+			}
+			@Override
+			public Adapter caseStructMember(StructMember object) {
+				return createStructMemberAdapter();
+			}
+			@Override
 			public Adapter caseExpression(Expression object) {
 				return createExpressionAdapter();
 			}
@@ -629,20 +641,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStructDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructMemberDeclaration <em>Struct Member Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructMemberDeclaration
-	 * @generated
-	 */
-	public Adapter createStructMemberDeclarationAdapter() {
 		return null;
 	}
 
@@ -1063,6 +1061,34 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExpressionListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructConstructionOperator <em>Struct Construction Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.StructConstructionOperator
+	 * @generated
+	 */
+	public Adapter createStructConstructionOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructConstructionMember <em>Struct Construction Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.StructConstructionMember
+	 * @generated
+	 */
+	public Adapter createStructConstructionMemberAdapter() {
 		return null;
 	}
 
@@ -1861,6 +1887,34 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArrayDimensionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructType <em>Struct Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.StructType
+	 * @generated
+	 */
+	public Adapter createStructTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructMember <em>Struct Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.StructMember
+	 * @generated
+	 */
+	public Adapter createStructMemberAdapter() {
 		return null;
 	}
 

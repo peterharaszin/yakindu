@@ -91,7 +91,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 					if (componentNode.getComponent() instanceof Memory) {
 						Memory memory = (Memory) componentNode.getComponent();
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-						String cDataType = MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()));
+						String cDataType = MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), generator.getContext().getCodeFragmentCollector(), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()), null);
 						
 						String initializer = InternalGeneratorUtil.getIncomingVariableName(context.getConfiguration(), componentNode, memory.getFirstInputPort());
 						

@@ -248,7 +248,8 @@ public class CodegenProcess implements IProcess {
 	// TODO: Implement real shared code collector
 	private class DummySharedCodeCollector implements ICodeFragmentCollector {
 
-		public void addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+		public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+			return codeFragment;
 		}
 		
 	}

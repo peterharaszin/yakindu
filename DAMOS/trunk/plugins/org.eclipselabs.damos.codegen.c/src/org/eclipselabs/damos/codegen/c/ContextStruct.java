@@ -20,6 +20,7 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 import com.google.inject.Inject;
 
@@ -41,15 +42,16 @@ public class ContextStruct extends PrimaryCodeFragment {
 		this.taskGenerator = taskGenerator;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	@Override
-	public boolean dependsOn(ICodeFragment other) {
-		return other instanceof TaskMessageStruct;
-	}
-	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		addDependency(new ICodeFragmentDependency.Stub() {
+		
+			@Override
+			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+				return other instanceof TaskMessageStruct;
+			}
+
+		});
+		
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
 			context.addCodeFragment(new TaskMessageStruct(), monitor);
 		}

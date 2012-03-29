@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
+import org.eclipselabs.damos.mscript.ArrayElementAccess;
+import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Compound;
@@ -40,6 +42,7 @@ import org.eclipselabs.damos.mscript.Literal;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
+import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
@@ -423,6 +426,33 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			transformedExpression.getIterationClauses().add(transformedIterationClause);
 		}
 		return transformedExpression;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseArrayElementAccess(org.eclipselabs.damos.mscript.ArrayElementAccess)
+	 */
+	@Override
+	public Expression caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
+		ArrayElementAccess transformedAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
+		transformedAccess.setArray(doTransform(arrayElementAccess.getArray()));
+		for (ArraySubscript arraySubscript : arrayElementAccess.getSubscripts()) {
+			Expression transformedExpression = doTransform(arraySubscript.getExpression());
+			ArraySubscript subscript = MscriptFactory.eINSTANCE.createArraySubscript();
+			subscript.setExpression(transformedExpression);
+			transformedAccess.getSubscripts().add(subscript);
+		}
+		return transformedAccess;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseMemberVariableAccess(org.eclipselabs.damos.mscript.MemberVariableAccess)
+	 */
+	@Override
+	public Expression caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
+		MemberVariableAccess transformedMemberVariableAccess = MscriptFactory.eINSTANCE.createMemberVariableAccess();
+		transformedMemberVariableAccess.setTarget(doTransform(memberVariableAccess.getTarget()));
+		transformedMemberVariableAccess.setMemberVariable(memberVariableAccess.getMemberVariable());
+		return transformedMemberVariableAccess;
 	}
 	
 	/* (non-Javadoc)

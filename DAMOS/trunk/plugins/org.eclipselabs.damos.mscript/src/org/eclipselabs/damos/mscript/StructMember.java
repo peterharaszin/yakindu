@@ -10,22 +10,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Struct Member Declaration</b></em>'.
+ * A representation of the model object '<em><b>Struct Member</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getTypeSpecifier <em>Type Specifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.StructMember#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.StructMember#getTypeSpecifier <em>Type Specifier</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMemberDeclaration()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMember()
  * @model
  * @generated
  */
-public interface StructMemberDeclaration extends EObject {
+public interface StructMember extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ public interface StructMemberDeclaration extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMemberDeclaration_Name()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMember_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StructMember#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -62,14 +62,14 @@ public interface StructMemberDeclaration extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Specifier</em>' containment reference.
 	 * @see #setTypeSpecifier(DataTypeSpecifier)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMemberDeclaration_TypeSpecifier()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMember_TypeSpecifier()
 	 * @model containment="true"
 	 * @generated
 	 */
 	DataTypeSpecifier getTypeSpecifier();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getTypeSpecifier <em>Type Specifier</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StructMember#getTypeSpecifier <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type Specifier</em>' containment reference.
@@ -78,4 +78,4 @@ public interface StructMemberDeclaration extends EObject {
 	 */
 	void setTypeSpecifier(DataTypeSpecifier value);
 
-} // StructMemberDeclaration
+} // StructMember

@@ -52,6 +52,8 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StructConstructionMember;
+import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
@@ -442,6 +444,20 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			transformedAccess.getSubscripts().add(subscript);
 		}
 		return transformedAccess;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
+	 */
+	@Override
+	public Expression caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
+		StructConstructionOperator transformedStructConstructionOperator = MscriptFactory.eINSTANCE.createStructConstructionOperator();
+		for (StructConstructionMember member : structConstructionOperator.getMembers()) {
+			StructConstructionMember transformedMember = MscriptFactory.eINSTANCE.createStructConstructionMember();
+			transformedMember.setName(member.getName());
+			transformedMember.setValue(doTransform(member.getValue()));
+		}
+		return transformedStructConstructionOperator;
 	}
 	
 	/* (non-Javadoc)

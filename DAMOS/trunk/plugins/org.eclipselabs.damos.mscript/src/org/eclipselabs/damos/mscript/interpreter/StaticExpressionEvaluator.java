@@ -75,7 +75,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
@@ -533,39 +532,46 @@ public class StaticExpressionEvaluator {
 		public IValue caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
 			int size = arrayConstructionOperator.getExpressions().size();
 			
-			IValue[] elements = null;
+			IValue[] elements = new IValue[size];
+			boolean anyValue = false;
 			
-			int i = 0;
-			for (Expression expression : arrayConstructionOperator.getExpressions()) {
-				IValue value = evaluate(expression);
-				if (value instanceof InvalidValue) {
-					return value;
-				}
-				if (elements == null) {
-					if (value instanceof INumericValue) {
-						elements = new INumericValue[size];
-					} else {
-						elements = new IValue[size];
+			{
+				int i = 0;
+				for (Expression expression : arrayConstructionOperator.getExpressions()) {
+					IValue value = evaluate(expression);
+					if (value instanceof InvalidValue) {
+						return value;
 					}
-				} else if (elements instanceof INumericValue[] && !(value instanceof INumericValue)) {
-					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array construction elements", arrayConstructionOperator));
-					return InvalidValue.SINGLETON;
+					if (value instanceof AnyValue) {
+						anyValue = true;
+					}
+					elements[i++] = value;
 				}
-				elements[i] = value;
-				++i;
+			}
+			
+			if (anyValue) {
+				for (int i = 0; i < size; ++i) {
+					if (!(elements[i] instanceof AnyValue)) {
+						elements[i] = new AnyValue(context.getComputationContext(), elements[i].getDataType());
+					}
+				}
 			}
 			
 			ArrayType arrayType = createArrayType(elements);
 			
 			if (arrayType == null) {
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array construction elements", arrayConstructionOperator));
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Incompatible array construction elements", arrayConstructionOperator));
 				return InvalidValue.SINGLETON;
 			}
 			
 			context.setValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), size));
+			
+			if (anyValue) {
+				return new AnyValue(context.getComputationContext(), arrayType);
+			}
 
 			if (arrayType instanceof TensorType) {
-				return new VectorValue(context.getComputationContext(), (TensorType) arrayType, (INumericValue[]) elements);
+				return new VectorValue(context.getComputationContext(), (TensorType) arrayType, elements);
 			}
 			
 			return new ArrayValue(context.getComputationContext(), arrayType, elements);

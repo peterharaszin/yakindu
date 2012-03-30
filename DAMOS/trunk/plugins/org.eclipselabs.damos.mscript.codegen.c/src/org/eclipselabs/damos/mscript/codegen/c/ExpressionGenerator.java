@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
@@ -39,6 +40,7 @@ import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -52,6 +54,9 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -386,6 +391,34 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				out.print("[");
 				doSwitch(subscript.getExpression());
 				out.print("]");
+			}
+			return true;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseArrayConstructionOperator(org.eclipselabs.damos.mscript.ArrayConstructionOperator)
+		 */
+		@Override
+		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
+			IValue value = context.getStaticEvaluationContext().getValue(arrayConstructionOperator);
+			if (value instanceof IArrayValue) {
+				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
+			} else {
+				// TODO: Create non-static array
+			}
+			return true;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
+		 */
+		@Override
+		public Boolean caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
+			IValue value = context.getStaticEvaluationContext().getValue(structConstructionOperator);
+			if (value instanceof StructValue) {
+				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
+			} else {
+				// TODO: Create non-static struct
 			}
 			return true;
 		}

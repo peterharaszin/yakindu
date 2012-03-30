@@ -42,7 +42,7 @@ public class OutputStruct extends PrimaryCodeFragment {
 			IComponentSignature signature = generator.getContext().getComponentSignature();
 			InputPort inputPort = node.getComponent().getFirstInputPort();
 			DataType dataType = signature.getInputDataType(inputPort);
-			out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), node), context, dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false, null));
+			out.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), node), context, dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false, this));
 		}
 		out.printf("} %sOutput;\n", prefix);
 		

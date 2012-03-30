@@ -20,8 +20,11 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.codegen.c.ArrayLiteralDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ArrayTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
@@ -31,11 +34,17 @@ import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IWriter;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
+import org.eclipselabs.damos.mscript.codegen.c.StructLiteralDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.StructTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -199,6 +208,69 @@ public class MscriptGeneratorUtil {
 			}
 			
 		}));
+	}
+
+	public static String getLiteralString(IMscriptGeneratorContext context, IValue value) {
+		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), value);
+	}
+	
+	public static String getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
+		if (value instanceof IArrayValue) {
+			ArrayLiteralDeclarationCodeFragment codeFragment = new ArrayLiteralDeclarationCodeFragment(computationModel, (IArrayValue) value);
+			codeFragment = (ArrayLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			return codeFragment.getName();
+		}
+		if (value instanceof StructValue) {
+			StructLiteralDeclarationCodeFragment codeFragment = new StructLiteralDeclarationCodeFragment(computationModel, (StructValue) value);
+			codeFragment = (StructLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			return codeFragment.getName();
+		}
+		StringBuilder sb = new StringBuilder();
+		createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), value);
+		return sb.toString();
+	}
+
+	public static void createInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, IValue value) {
+		if (value instanceof ISimpleNumericValue) {
+			ISimpleNumericValue numericTemplateArgument = (ISimpleNumericValue) value;
+			if (value.getDataType() instanceof RealType) {
+				out.print(MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue(), null));
+			} else if (value.getDataType() instanceof IntegerType) {
+				out.print(MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue(), null));
+			}
+		} else if (value instanceof IBooleanValue) {
+			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
+			out.print(booleanTemplateArgument.booleanValue() ? "1" : "0");
+		} else if (value instanceof IArrayValue) {
+			createArrayInitializer(computationModel, codeFragmentCollector, out, (IArrayValue) value);
+		} else if (value instanceof StructValue) {
+			createStructInitializer(computationModel, codeFragmentCollector, out, (StructValue) value);
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private static void createArrayInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, IArrayValue value) {
+		out.print("{ { ");
+		int size = TypeUtil.getArraySize(value.getDataType());
+		for (int i = 0; i < size; ++i) {
+			if (i > 0) {
+				out.print(", ");
+			}
+			createInitializer(computationModel, codeFragmentCollector, out, value.get(i));
+		}
+		out.print(" } }");
+	}
+
+	private static void createStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, StructValue value) {
+		out.print("{ ");
+		for (int i = 0; i < value.getDataType().getMembers().size(); ++i) {
+			if (i > 0) {
+				out.print(", ");
+			}
+			createInitializer(computationModel, codeFragmentCollector, out, value.get(i));
+		}
+		out.print(" }");
 	}
 
 }

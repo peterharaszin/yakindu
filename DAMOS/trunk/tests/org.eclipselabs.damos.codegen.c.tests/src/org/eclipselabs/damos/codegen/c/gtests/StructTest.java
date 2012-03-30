@@ -17,13 +17,7 @@ import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
-import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
-import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.StructMember;
-import org.eclipselabs.damos.mscript.StructType;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.junit.Before;
 
 /**
@@ -39,37 +33,21 @@ public class StructTest extends AbstractGeneratorGTest {
 		
 		createConfiguration();
 		
-		MscriptDataTypeSpecification structTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		StructType structType = MscriptFactory.eINSTANCE.createStructType();
-		dataTypeSpecifier.setType(structType);
-		structTypeSpecification.setSpecifier(dataTypeSpecifier);
-
-		StructMember x = MscriptFactory.eINSTANCE.createStructMember();
-		x.setName("x");
-		DataTypeSpecifier xDataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		xDataTypeSpecifier.setType(TypeUtil.createIntegerType());
-		x.setTypeSpecifier(xDataTypeSpecifier);
-		structType.getMembers().add(x);
-
-		StructMember y = MscriptFactory.eINSTANCE.createStructMember();
-		y.setName("y");
-		DataTypeSpecifier yDataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		yDataTypeSpecifier.setType(TypeUtil.createIntegerType());
-		y.setTypeSpecifier(yDataTypeSpecifier);
-		structType.getMembers().add(y);
+		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("struct { int x, int y }");
 
 		Inport inport = createInport("In", structTypeSpecification, 1);
 		Block structTest = createTestBlock("StructTest", "StructTest");
+		Block structExtractX = createTestBlock("StructExtractX", "StructExtractX");
 		Outport outport = createOutport("Out", EcoreUtil.copy(structTypeSpecification));
 		Outport outportX = createOutport("OutX", createIntegerTypeSpecification());
+		Outport outportStructLiteral = createOutport("OutStructLiteral", createDataTypeSpecification("struct { int x, struct { int a, int[2] b } y }"));
 		
-		Block structExtractX = createTestBlock("StructExtractX", "StructExtractX");
 		
 		connect(inport, structTest);
-		connect(structTest, outport);
-		connect(structTest, structExtractX);
+		connect(structTest, 0, outport);
+		connect(structTest, 0, structExtractX);
 		connect(structExtractX, outportX);
+		connect(structTest, 1, outportStructLiteral);
 
 		generateAndCompile();
 	}

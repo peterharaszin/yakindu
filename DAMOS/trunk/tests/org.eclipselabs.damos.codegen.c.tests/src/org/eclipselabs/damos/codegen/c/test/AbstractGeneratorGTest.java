@@ -187,6 +187,12 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 		timingConstraint.setSampleTime(DMLTextUtil.createValueSpecification(sampleTime));
 		component.setTimingConstraint(timingConstraint);
 	}
+	
+	protected MscriptDataTypeSpecification createDataTypeSpecification(String dataType) {
+		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+		dataTypeSpecification.setSpecifier(parseDataTypeSpecifier(dataType));
+		return dataTypeSpecification;
+	}
 
 	protected MscriptDataTypeSpecification createRealTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
@@ -451,6 +457,14 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 			throw new RuntimeException("Syntax errors in '" + expressionString + "'");
 		}
 		return (Expression) result.getRootASTElement();
+	}
+
+	protected DataTypeSpecifier parseDataTypeSpecifier(String dataTypeString) {
+		IParseResult result = parser.parse(grammarAccess.getDataTypeSpecifierRule(), new StringReader(dataTypeString));
+		if (result.hasSyntaxErrors()) {
+			throw new RuntimeException("Syntax errors in '" + dataTypeString + "'");
+		}
+		return (DataTypeSpecifier) result.getRootASTElement();
 	}
 
 }

@@ -18,36 +18,30 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ArrayDeclarationCodeFragment extends AbstractCodeFragment {
+public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 
-	private IArrayValue arrayValue;
+	private StructValue structValue;
 	private ComputationModel computationModel;
 	
-	private String name;
 	private String typeName;
-	private NumberFormat elementNumberFormat;
+	private String name;
+	
+	private String body;
 	
 	/**
 	 * 
 	 */
-	public ArrayDeclarationCodeFragment(ComputationModel computationModel, IArrayValue value) {
+	public StructLiteralDeclarationCodeFragment(ComputationModel computationModel, StructValue value) {
 		this.computationModel = computationModel;
-		this.arrayValue = value;
-		this.elementNumberFormat = computationModel.getNumberFormat(arrayValue.getDataType().getElementType());
+		this.structValue = value;
 	}
 	
 	/**
@@ -65,21 +59,24 @@ public class ArrayDeclarationCodeFragment extends AbstractCodeFragment {
 		addDependency(new ICodeFragmentDependency.Stub() {
 			
 			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
-				return other instanceof ArrayTypeDeclarationCodeFragment;
+				return other instanceof StructTypeDeclarationCodeFragment;
 			}
 			
 		});
-		
-		ArrayType arrayType = arrayValue.getDataType();
-		ArrayTypeDeclarationCodeFragment arrayTypeDeclarationCodeFragment = new ArrayTypeDeclarationCodeFragment(computationModel, EcoreUtil.copy(arrayType.getElementType()), TypeUtil.getArraySize(arrayType));
+
+		StructTypeDeclarationCodeFragment structTypeDeclarationCodeFragment = new StructTypeDeclarationCodeFragment(computationModel, EcoreUtil.copy(structValue.getDataType()));
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
-		ArrayTypeDeclarationCodeFragment codeFragment = (ArrayTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(arrayTypeDeclarationCodeFragment, new NullProgressMonitor());
+		StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(structTypeDeclarationCodeFragment, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("array");
+		name = globalNameProvider.getName("structure");
+
+		StringBuilder sb = new StringBuilder();
+		MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), structValue);
+		body = sb.toString();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#contributesInternalForwardDeclaration()
 	 */
@@ -113,20 +110,9 @@ public class ArrayDeclarationCodeFragment extends AbstractCodeFragment {
 			appendable.append("static ");
 		}
 		PrintAppendable out = new PrintAppendable(appendable);
-		out.printf("const %s %s = { { ", typeName, name);
-		int arraySize = TypeUtil.getArraySize(arrayValue.getDataType());
-		DataType elementType = arrayValue.getDataType().getElementType();
-		for (int i = 0; i < arraySize; ++i) {
-			if (i > 0) {
-				out.append(", ");
-			}
-			if (elementType instanceof RealType) {
-				out.printf("%f", ((ISimpleNumericValue) arrayValue.get(i)).doubleValue());
-			} else if (elementType instanceof IntegerType) {
-				out.printf("%d", ((ISimpleNumericValue) arrayValue.get(i)).longValue());
-			}
-		}
-		out.print(" } };\n");
+		out.printf("const %s %s = ", typeName, name);
+		out.print(body);
+		out.print(";\n");
 	}
 	
 	/* (non-Javadoc)
@@ -134,7 +120,7 @@ public class ArrayDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public int hashCode() {
-		return getClass().hashCode() ^ elementNumberFormat.getClass().hashCode();
+		return getClass().hashCode() ^ structValue.getClass().hashCode();
 	}
 	
 	/* (non-Javadoc)
@@ -142,11 +128,11 @@ public class ArrayDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ArrayDeclarationCodeFragment) {
-			ArrayDeclarationCodeFragment other = (ArrayDeclarationCodeFragment) obj;
+		if (obj instanceof StructLiteralDeclarationCodeFragment) {
+			StructLiteralDeclarationCodeFragment other = (StructLiteralDeclarationCodeFragment) obj;
 			
 			// TODO: complete this
-			return other.elementNumberFormat.isEquivalentTo(elementNumberFormat);
+			return other.structValue.getDataType().isEquivalentTo(structValue.getDataType());
 		}
 		return false;
 	}

@@ -22,13 +22,13 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class VectorValue extends AbstractExplicitDataTypeValue implements IArrayValue {
 
-	private INumericValue[] elements;
+	private IValue[] elements;
 	
 	/**
 	 * @param context
 	 * @param dataType
 	 */
-	public VectorValue(IComputationContext context, TensorType dataType, INumericValue[] elements) {
+	public VectorValue(IComputationContext context, TensorType dataType, IValue[] elements) {
 		super(context, dataType);
 		if (!dataType.isVector()) {
 			throw new IllegalArgumentException("Tensor type must be vector");
@@ -68,7 +68,7 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	}
 	
 	public INumericValue get(int index) {
-		return elements[index];
+		return (INumericValue) elements[index];
 	}
 
 	public IValue get(int rowIndex, int columnIndex) {
@@ -79,7 +79,7 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 		if (indices.length != 1) {
 			throw new IllegalArgumentException("Index array length must be 1");
 		}
-		return elements[indices[0]];
+		return (INumericValue) elements[indices[0]];
 	}
 	
 	public void set(int index, IValue value) {

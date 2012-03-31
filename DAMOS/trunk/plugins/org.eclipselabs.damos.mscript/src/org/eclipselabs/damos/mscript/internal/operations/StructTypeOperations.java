@@ -44,7 +44,7 @@ public class StructTypeOperations extends DataTypeOperations {
 		switch (operator) {
 		case EQUAL_TO:
 		case NOT_EQUAL_TO:
-			if (structType.isEquivalentTo(other)) {
+			if (structType.isAssignableFrom(other) || other.isAssignableFrom(structType)) {
 				return MscriptFactory.eINSTANCE.createBooleanType();
 			}
 		}
@@ -69,7 +69,7 @@ public class StructTypeOperations extends DataTypeOperations {
 
 				DataType type = member.getTypeSpecifier().getType();
 				DataType otherType = otherMember.getTypeSpecifier().getType();
-				if (type == null || otherType == null || type.eIsProxy() || otherType.eIsProxy() || !type.isEquivalentTo(otherType)) {
+				if (type == null || otherType == null || type.eIsProxy() || otherType.eIsProxy() || !type.isAssignableFrom(otherType)) {
 					return false;
 				}
 			}

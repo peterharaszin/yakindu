@@ -31,7 +31,7 @@ import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getElementType <em>Element Type</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDefinedElementType <em>Defined Element Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getAnonymousElementType <em>Anonymous Element Type</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isDimensional <em>Dimensional</em>}</li>
@@ -53,14 +53,14 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	protected DataType elementType;
 
 	/**
-	 * The cached value of the '{@link #getDefinedElementType() <em>Defined Element Type</em>}' containment reference.
+	 * The cached value of the '{@link #getAnonymousElementType() <em>Anonymous Element Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefinedElementType()
+	 * @see #getAnonymousElementType()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataType definedElementType;
+	protected DataType anonymousElementType;
 
 	/**
 	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' containment reference list.
@@ -124,7 +124,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	public DataType getElementType() {
 		DataType elementType = getElementTypeGen();
 		if (elementType == null) {
-			elementType = getDefinedElementType();
+			elementType = getAnonymousElementType();
 		}
 		return elementType;
 	}
@@ -172,8 +172,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType getDefinedElementType() {
-		return definedElementType;
+	public DataType getAnonymousElementType() {
+		return anonymousElementType;
 	}
 
 	/**
@@ -181,11 +181,11 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefinedElementType(DataType newDefinedElementType, NotificationChain msgs) {
-		DataType oldDefinedElementType = definedElementType;
-		definedElementType = newDefinedElementType;
+	public NotificationChain basicSetAnonymousElementType(DataType newAnonymousElementType, NotificationChain msgs) {
+		DataType oldAnonymousElementType = anonymousElementType;
+		anonymousElementType = newAnonymousElementType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE, oldDefinedElementType, newDefinedElementType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE, oldAnonymousElementType, newAnonymousElementType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -196,18 +196,18 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefinedElementType(DataType newDefinedElementType) {
-		if (newDefinedElementType != definedElementType) {
+	public void setAnonymousElementType(DataType newAnonymousElementType) {
+		if (newAnonymousElementType != anonymousElementType) {
 			NotificationChain msgs = null;
-			if (definedElementType != null)
-				msgs = ((InternalEObject)definedElementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE, null, msgs);
-			if (newDefinedElementType != null)
-				msgs = ((InternalEObject)newDefinedElementType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE, null, msgs);
-			msgs = basicSetDefinedElementType(newDefinedElementType, msgs);
+			if (anonymousElementType != null)
+				msgs = ((InternalEObject)anonymousElementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE, null, msgs);
+			if (newAnonymousElementType != null)
+				msgs = ((InternalEObject)newAnonymousElementType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE, null, msgs);
+			msgs = basicSetAnonymousElementType(newAnonymousElementType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE, newDefinedElementType, newDefinedElementType));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE, newAnonymousElementType, newAnonymousElementType));
 	}
 
 	/**
@@ -281,8 +281,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE:
-				return basicSetDefinedElementType(null, msgs);
+			case MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE:
+				return basicSetAnonymousElementType(null, msgs);
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return ((InternalEList<?>)getDimensions()).basicRemove(otherEnd, msgs);
 		}
@@ -300,8 +300,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();
-			case MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE:
-				return getDefinedElementType();
+			case MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE:
+				return getAnonymousElementType();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return getDimensions();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:
@@ -326,8 +326,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE:
 				setElementType((DataType)newValue);
 				return;
-			case MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE:
-				setDefinedElementType((DataType)newValue);
+			case MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE:
+				setAnonymousElementType((DataType)newValue);
 				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();
@@ -348,8 +348,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE:
 				setElementType((DataType)null);
 				return;
-			case MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE:
-				setDefinedElementType((DataType)null);
+			case MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE:
+				setAnonymousElementType((DataType)null);
 				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();
@@ -368,8 +368,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE:
 				return elementType != null;
-			case MscriptPackage.ARRAY_TYPE__DEFINED_ELEMENT_TYPE:
-				return definedElementType != null;
+			case MscriptPackage.ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE:
+				return anonymousElementType != null;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return dimensions != null && !dimensions.isEmpty();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:

@@ -125,7 +125,7 @@ Equation:
  */
 
 DataTypeSpecifier:
-	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -152,10 +152,10 @@ StringType:
 	{StringType} 'string';
 	
 ArrayType:
-	TensorType | =>(definedElementType=(BooleanType | StringType) | elementType=[DataType]) '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	TensorType | =>(anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
 TensorType:
-	definedElementType=NumericType '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	anonymousElementType=NumericType '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;

@@ -1481,7 +1481,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataTypeSpecifier_DefinedType() {
+	public EReference getDataTypeSpecifier_AnonymousType() {
 		return (EReference)dataTypeSpecifierEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2984,7 +2984,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArrayType_DefinedElementType() {
+	public EReference getArrayType_AnonymousElementType() {
 		return (EReference)arrayTypeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3565,7 +3565,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		dataTypeSpecifierEClass = createEClass(DATA_TYPE_SPECIFIER);
 		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__TYPE);
-		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__DEFINED_TYPE);
+		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE);
 
 		letExpressionEClass = createEClass(LET_EXPRESSION);
 		createEReference(letExpressionEClass, LET_EXPRESSION__ASSIGNMENTS);
@@ -3804,7 +3804,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		arrayTypeEClass = createEClass(ARRAY_TYPE);
 		createEReference(arrayTypeEClass, ARRAY_TYPE__ELEMENT_TYPE);
-		createEReference(arrayTypeEClass, ARRAY_TYPE__DEFINED_ELEMENT_TYPE);
+		createEReference(arrayTypeEClass, ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE);
 		createEReference(arrayTypeEClass, ARRAY_TYPE__DIMENSIONS);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONALITY);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONAL);
@@ -4086,7 +4086,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(dataTypeSpecifierEClass, DataTypeSpecifier.class, "DataTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataTypeSpecifier_Type(), this.getDataType(), null, "type", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataTypeSpecifier_DefinedType(), this.getDataType(), null, "definedType", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataTypeSpecifier_AnonymousType(), this.getDataType(), null, "anonymousType", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLetExpression_Assignments(), this.getLetExpressionAssignment(), null, "assignments", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4343,7 +4343,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayType_ElementType(), this.getDataType(), null, "elementType", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getArrayType_DefinedElementType(), this.getDataType(), null, "definedElementType", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrayType_AnonymousElementType(), this.getDataType(), null, "anonymousElementType", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrayType_Dimensions(), this.getArrayDimension(), null, "dimensions", null, 0, -1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensionality(), ecorePackage.getEInt(), "dimensionality", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensional(), ecorePackage.getEBoolean(), "dimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

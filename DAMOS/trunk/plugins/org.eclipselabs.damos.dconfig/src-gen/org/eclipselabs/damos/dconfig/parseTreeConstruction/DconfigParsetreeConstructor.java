@@ -9314,11 +9314,11 @@ protected class Equation_RightHandSideAssignment_4 extends AssignmentToken  {
  * / *
  *  * Data type specifier
  *  * / DataTypeSpecifier:
- * 	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+ * 	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
  *
  **/
 
-// definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName]
+// anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName]
 protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
 
 	public DataTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9333,7 +9333,7 @@ protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_DefinedTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new DataTypeSpecifier_AnonymousTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new DataTypeSpecifier_TypeAssignment_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -9348,16 +9348,16 @@ protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
 
 }
 
-// definedType=(PrimitiveType | ArrayType | StructType)
-protected class DataTypeSpecifier_DefinedTypeAssignment_0 extends AssignmentToken  {
+// anonymousType=(PrimitiveType | ArrayType | StructType)
+protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentToken  {
 	
-	public DataTypeSpecifier_DefinedTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DataTypeSpecifier_AnonymousTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0();
+		return grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0();
 	}
 
     @Override
@@ -9372,13 +9372,13 @@ protected class DataTypeSpecifier_DefinedTypeAssignment_0 extends AssignmentToke
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("definedType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("definedType");
+		if((value = eObjectConsumer.getConsumable("anonymousType",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousType");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getPrimitiveTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0(); 
+				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -9387,7 +9387,7 @@ protected class DataTypeSpecifier_DefinedTypeAssignment_0 extends AssignmentToke
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getArrayTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1(); 
+				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -9396,7 +9396,7 @@ protected class DataTypeSpecifier_DefinedTypeAssignment_0 extends AssignmentToke
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStructTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2(); 
+				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2(); 
 				consumed = obj;
 				return param;
 			}
@@ -10516,13 +10516,13 @@ protected class StringType_StringKeyword_1 extends KeywordToken  {
 /************ begin Rule ArrayType ****************
  *
  * ArrayType:
- * 	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+ * 	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
  * 	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
  *
  **/
 
-// TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension
-// ("," dimensions+=ArrayDimension)* "]"
+// TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+// dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 protected class ArrayType_Alternatives extends AlternativesToken {
 
 	public ArrayType_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10589,7 +10589,7 @@ protected class ArrayType_TensorTypeParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
+// => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
 // dimensions+=ArrayDimension)* "]"
 protected class ArrayType_Group_1 extends GroupToken {
 	
@@ -10619,7 +10619,7 @@ protected class ArrayType_Group_1 extends GroupToken {
 
 }
 
-// => (definedElementType=(BooleanType | StringType) | elementType=[DataType])
+// => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType])
 protected class ArrayType_Group_1_0 extends GroupToken {
 	
 	public ArrayType_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10641,7 +10641,7 @@ protected class ArrayType_Group_1_0 extends GroupToken {
 
 }
 
-// definedElementType=(BooleanType | StringType) | elementType=[DataType]
+// anonymousElementType=(BooleanType | StringType) | elementType=[DataType]
 protected class ArrayType_Alternatives_1_0_0 extends AlternativesToken {
 
 	public ArrayType_Alternatives_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10656,7 +10656,7 @@ protected class ArrayType_Alternatives_1_0_0 extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ArrayType_DefinedElementTypeAssignment_1_0_0_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ArrayType_AnonymousElementTypeAssignment_1_0_0_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new ArrayType_ElementTypeAssignment_1_0_0_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -10664,16 +10664,16 @@ protected class ArrayType_Alternatives_1_0_0 extends AlternativesToken {
 
 }
 
-// definedElementType=(BooleanType | StringType)
-protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends AssignmentToken  {
+// anonymousElementType=(BooleanType | StringType)
+protected class ArrayType_AnonymousElementTypeAssignment_1_0_0_0 extends AssignmentToken  {
 	
-	public ArrayType_DefinedElementTypeAssignment_1_0_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ArrayType_AnonymousElementTypeAssignment_1_0_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getArrayTypeAccess().getDefinedElementTypeAssignment_1_0_0_0();
+		return grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAssignment_1_0_0_0();
 	}
 
     @Override
@@ -10687,13 +10687,13 @@ protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends Assignmen
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("definedElementType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("definedElementType");
+		if((value = eObjectConsumer.getConsumable("anonymousElementType",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousElementType");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getBooleanTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0(); 
+				element = grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -10702,7 +10702,7 @@ protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends Assignmen
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStringTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1(); 
+				element = grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -10948,11 +10948,11 @@ protected class ArrayType_RightSquareBracketKeyword_1_4 extends KeywordToken  {
 /************ begin Rule TensorType ****************
  *
  * TensorType:
- * 	definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+ * 	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
  *
  **/
 
-// definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
+// anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 protected class TensorType_Group extends GroupToken {
 	
 	public TensorType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10981,16 +10981,16 @@ protected class TensorType_Group extends GroupToken {
 
 }
 
-// definedElementType=NumericType
-protected class TensorType_DefinedElementTypeAssignment_0 extends AssignmentToken  {
+// anonymousElementType=NumericType
+protected class TensorType_AnonymousElementTypeAssignment_0 extends AssignmentToken  {
 	
-	public TensorType_DefinedElementTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TensorType_AnonymousElementTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getTensorTypeAccess().getDefinedElementTypeAssignment_0();
+		return grammarAccess.getTensorTypeAccess().getAnonymousElementTypeAssignment_0();
 	}
 
     @Override
@@ -11003,13 +11003,13 @@ protected class TensorType_DefinedElementTypeAssignment_0 extends AssignmentToke
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("definedElementType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("definedElementType");
+		if((value = eObjectConsumer.getConsumable("anonymousElementType",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousElementType");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getNumericTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0(); 
+				element = grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -11041,7 +11041,7 @@ protected class TensorType_LeftSquareBracketKeyword_1 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TensorType_DefinedElementTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TensorType_AnonymousElementTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

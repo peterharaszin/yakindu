@@ -907,11 +907,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class DataTypeSpecifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeSpecifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cDefinedTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Alternatives cDefinedTypeAlternatives_0_0 = (Alternatives)cDefinedTypeAssignment_0.eContents().get(0);
-		private final RuleCall cDefinedTypePrimitiveTypeParserRuleCall_0_0_0 = (RuleCall)cDefinedTypeAlternatives_0_0.eContents().get(0);
-		private final RuleCall cDefinedTypeArrayTypeParserRuleCall_0_0_1 = (RuleCall)cDefinedTypeAlternatives_0_0.eContents().get(1);
-		private final RuleCall cDefinedTypeStructTypeParserRuleCall_0_0_2 = (RuleCall)cDefinedTypeAlternatives_0_0.eContents().get(2);
+		private final Assignment cAnonymousTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cAnonymousTypeAlternatives_0_0 = (Alternatives)cAnonymousTypeAssignment_0.eContents().get(0);
+		private final RuleCall cAnonymousTypePrimitiveTypeParserRuleCall_0_0_0 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(0);
+		private final RuleCall cAnonymousTypeArrayTypeParserRuleCall_0_0_1 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(1);
+		private final RuleCall cAnonymousTypeStructTypeParserRuleCall_0_0_2 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(2);
 		private final Assignment cTypeAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final CrossReference cTypeDataTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
 		private final RuleCall cTypeDataTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDataTypeCrossReference_1_0.eContents().get(1);
@@ -919,26 +919,26 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		// * Data type specifier
 		// * / DataTypeSpecifier:
-		//	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+		//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
 		public ParserRule getRule() { return rule; }
 
-		//definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName]
+		//anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName]
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//definedType=(PrimitiveType | ArrayType | StructType)
-		public Assignment getDefinedTypeAssignment_0() { return cDefinedTypeAssignment_0; }
+		//anonymousType=(PrimitiveType | ArrayType | StructType)
+		public Assignment getAnonymousTypeAssignment_0() { return cAnonymousTypeAssignment_0; }
 
 		//PrimitiveType | ArrayType | StructType
-		public Alternatives getDefinedTypeAlternatives_0_0() { return cDefinedTypeAlternatives_0_0; }
+		public Alternatives getAnonymousTypeAlternatives_0_0() { return cAnonymousTypeAlternatives_0_0; }
 
 		//PrimitiveType
-		public RuleCall getDefinedTypePrimitiveTypeParserRuleCall_0_0_0() { return cDefinedTypePrimitiveTypeParserRuleCall_0_0_0; }
+		public RuleCall getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0() { return cAnonymousTypePrimitiveTypeParserRuleCall_0_0_0; }
 
 		//ArrayType
-		public RuleCall getDefinedTypeArrayTypeParserRuleCall_0_0_1() { return cDefinedTypeArrayTypeParserRuleCall_0_0_1; }
+		public RuleCall getAnonymousTypeArrayTypeParserRuleCall_0_0_1() { return cAnonymousTypeArrayTypeParserRuleCall_0_0_1; }
 
 		//StructType
-		public RuleCall getDefinedTypeStructTypeParserRuleCall_0_0_2() { return cDefinedTypeStructTypeParserRuleCall_0_0_2; }
+		public RuleCall getAnonymousTypeStructTypeParserRuleCall_0_0_2() { return cAnonymousTypeStructTypeParserRuleCall_0_0_2; }
 
 		//type=[DataType|QualifiedName]
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
@@ -1161,10 +1161,10 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_0_0 = (Alternatives)cGroup_1_0.eContents().get(0);
-		private final Assignment cDefinedElementTypeAssignment_1_0_0_0 = (Assignment)cAlternatives_1_0_0.eContents().get(0);
-		private final Alternatives cDefinedElementTypeAlternatives_1_0_0_0_0 = (Alternatives)cDefinedElementTypeAssignment_1_0_0_0.eContents().get(0);
-		private final RuleCall cDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0 = (RuleCall)cDefinedElementTypeAlternatives_1_0_0_0_0.eContents().get(0);
-		private final RuleCall cDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1 = (RuleCall)cDefinedElementTypeAlternatives_1_0_0_0_0.eContents().get(1);
+		private final Assignment cAnonymousElementTypeAssignment_1_0_0_0 = (Assignment)cAlternatives_1_0_0.eContents().get(0);
+		private final Alternatives cAnonymousElementTypeAlternatives_1_0_0_0_0 = (Alternatives)cAnonymousElementTypeAssignment_1_0_0_0.eContents().get(0);
+		private final RuleCall cAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0 = (RuleCall)cAnonymousElementTypeAlternatives_1_0_0_0_0.eContents().get(0);
+		private final RuleCall cAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1 = (RuleCall)cAnonymousElementTypeAlternatives_1_0_0_0_0.eContents().get(1);
 		private final Assignment cElementTypeAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
 		private final CrossReference cElementTypeDataTypeCrossReference_1_0_0_1_0 = (CrossReference)cElementTypeAssignment_1_0_0_1.eContents().get(0);
 		private final RuleCall cElementTypeDataTypeIDTerminalRuleCall_1_0_0_1_0_1 = (RuleCall)cElementTypeDataTypeCrossReference_1_0_0_1_0.eContents().get(1);
@@ -1178,38 +1178,38 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//ArrayType:
-		//	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+		//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
 		//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 		public ParserRule getRule() { return rule; }
 
-		//TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension
-		//("," dimensions+=ArrayDimension)* "]"
+		//TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+		//dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//TensorType
 		public RuleCall getTensorTypeParserRuleCall_0() { return cTensorTypeParserRuleCall_0; }
 
-		//=> (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
+		//=> (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
 		//dimensions+=ArrayDimension)* "]"
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> (definedElementType=(BooleanType | StringType) | elementType=[DataType])
+		//=> (anonymousElementType=(BooleanType | StringType) | elementType=[DataType])
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//definedElementType=(BooleanType | StringType) | elementType=[DataType]
+		//anonymousElementType=(BooleanType | StringType) | elementType=[DataType]
 		public Alternatives getAlternatives_1_0_0() { return cAlternatives_1_0_0; }
 
-		//definedElementType=(BooleanType | StringType)
-		public Assignment getDefinedElementTypeAssignment_1_0_0_0() { return cDefinedElementTypeAssignment_1_0_0_0; }
+		//anonymousElementType=(BooleanType | StringType)
+		public Assignment getAnonymousElementTypeAssignment_1_0_0_0() { return cAnonymousElementTypeAssignment_1_0_0_0; }
 
 		//BooleanType | StringType
-		public Alternatives getDefinedElementTypeAlternatives_1_0_0_0_0() { return cDefinedElementTypeAlternatives_1_0_0_0_0; }
+		public Alternatives getAnonymousElementTypeAlternatives_1_0_0_0_0() { return cAnonymousElementTypeAlternatives_1_0_0_0_0; }
 
 		//BooleanType
-		public RuleCall getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0() { return cDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0; }
+		public RuleCall getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0() { return cAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0; }
 
 		//StringType
-		public RuleCall getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1() { return cDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1; }
+		public RuleCall getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1() { return cAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1; }
 
 		//elementType=[DataType]
 		public Assignment getElementTypeAssignment_1_0_0_1() { return cElementTypeAssignment_1_0_0_1; }
@@ -1248,8 +1248,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class TensorTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TensorType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDefinedElementTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cDefinedElementTypeNumericTypeParserRuleCall_0_0 = (RuleCall)cDefinedElementTypeAssignment_0.eContents().get(0);
+		private final Assignment cAnonymousElementTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cAnonymousElementTypeNumericTypeParserRuleCall_0_0 = (RuleCall)cAnonymousElementTypeAssignment_0.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDimensionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDimensionsArrayDimensionParserRuleCall_2_0 = (RuleCall)cDimensionsAssignment_2.eContents().get(0);
@@ -1260,17 +1260,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//TensorType:
-		//	definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+		//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 		public ParserRule getRule() { return rule; }
 
-		//definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
+		//anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 		public Group getGroup() { return cGroup; }
 
-		//definedElementType=NumericType
-		public Assignment getDefinedElementTypeAssignment_0() { return cDefinedElementTypeAssignment_0; }
+		//anonymousElementType=NumericType
+		public Assignment getAnonymousElementTypeAssignment_0() { return cAnonymousElementTypeAssignment_0; }
 
 		//NumericType
-		public RuleCall getDefinedElementTypeNumericTypeParserRuleCall_0_0() { return cDefinedElementTypeNumericTypeParserRuleCall_0_0; }
+		public RuleCall getAnonymousElementTypeNumericTypeParserRuleCall_0_0() { return cAnonymousElementTypeNumericTypeParserRuleCall_0_0; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
@@ -5295,7 +5295,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
 	public DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return (pDataTypeSpecifier != null) ? pDataTypeSpecifier : (pDataTypeSpecifier = new DataTypeSpecifierElements());
 	}
@@ -5385,7 +5385,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+	//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
 	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public ArrayTypeElements getArrayTypeAccess() {
 		return (pArrayType != null) ? pArrayType : (pArrayType = new ArrayTypeElements());
@@ -5396,7 +5396,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TensorType:
-	//	definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public TensorTypeElements getTensorTypeAccess() {
 		return (pTensorType != null) ? pTensorType : (pTensorType = new TensorTypeElements());
 	}

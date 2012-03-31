@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getDefinedType <em>Defined Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getAnonymousType <em>Anonymous Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,29 +53,29 @@ public interface DataTypeSpecifier extends EObject {
 	void setType(DataType value);
 
 	/**
-	 * Returns the value of the '<em><b>Defined Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Anonymous Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defined Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defined Type</em>' containment reference.
-	 * @see #setDefinedType(DataType)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDataTypeSpecifier_DefinedType()
+	 * @return the value of the '<em>Anonymous Type</em>' containment reference.
+	 * @see #setAnonymousType(DataType)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDataTypeSpecifier_AnonymousType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataType getDefinedType();
+	DataType getAnonymousType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getDefinedType <em>Defined Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getAnonymousType <em>Anonymous Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Defined Type</em>' containment reference.
-	 * @see #getDefinedType()
+	 * @param value the new value of the '<em>Anonymous Type</em>' containment reference.
+	 * @see #getAnonymousType()
 	 * @generated
 	 */
-	void setDefinedType(DataType value);
+	void setAnonymousType(DataType value);
 
 } // DataTypeSpecifier

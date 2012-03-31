@@ -42,7 +42,7 @@ public class ComputationModelUtil {
 		RealType realType = MscriptFactory.eINSTANCE.createRealType();
 		realType.setUnit(MscriptFactory.eINSTANCE.createUnit());
 		DataTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		typeSpecifier.setDefinedType(realType);
+		typeSpecifier.setAnonymousType(realType);
 		mapping.setTypeSpecifier(typeSpecifier);
 		mapping.setNumberFormat(floatingPointFormat);
 		computationModel.getNumberFormatMappings().add(mapping);
@@ -51,7 +51,7 @@ public class ComputationModelUtil {
 		IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
 		integerType.setUnit(MscriptFactory.eINSTANCE.createUnit());
 		typeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		typeSpecifier.setDefinedType(integerType);
+		typeSpecifier.setAnonymousType(integerType);
 		mapping.setTypeSpecifier(typeSpecifier);
 		mapping.setNumberFormat(fixedPointFormat);
 		computationModel.getNumberFormatMappings().add(mapping);

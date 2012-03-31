@@ -114,7 +114,7 @@ public class TypeUtil {
 		if (elementType.eContainer() != null) {
 			arrayType.setElementType(elementType);
 		} else {
-			arrayType.setDefinedElementType(elementType);
+			arrayType.setAnonymousElementType(elementType);
 		}
 		return arrayType;
 	}

@@ -197,7 +197,7 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 	protected MscriptDataTypeSpecification createRealTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setDefinedType(TypeUtil.createRealType());
+		dataTypeSpecifier.setAnonymousType(TypeUtil.createRealType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "real");
 		return dataTypeSpecification;
@@ -206,7 +206,7 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 	protected MscriptDataTypeSpecification createIntegerTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setDefinedType(TypeUtil.createIntegerType());
+		dataTypeSpecifier.setAnonymousType(TypeUtil.createIntegerType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "int");
 		return dataTypeSpecification;
@@ -215,7 +215,7 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 	protected MscriptDataTypeSpecification createBooleanTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setDefinedType(MscriptFactory.eINSTANCE.createBooleanType());
+		dataTypeSpecifier.setAnonymousType(MscriptFactory.eINSTANCE.createBooleanType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "boolean");
 		return dataTypeSpecification;
@@ -224,7 +224,7 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 	protected MscriptDataTypeSpecification createArrayTypeSpecification(DataType elementType, int... sizes) {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setDefinedType(TypeUtil.createArrayType(elementType, sizes));
+		dataTypeSpecifier.setAnonymousType(TypeUtil.createArrayType(elementType, sizes));
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		return dataTypeSpecification;
 	}
@@ -433,7 +433,7 @@ public abstract class AbstractGeneratorGTest extends AbstractGTest {
 		
 		NumberFormatMapping realTypeMapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
 		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setDefinedType(TypeUtil.createRealType(MscriptFactory.eINSTANCE.createUnit()));
+		dataTypeSpecifier.setAnonymousType(TypeUtil.createRealType(MscriptFactory.eINSTANCE.createUnit()));
 		realTypeMapping.setTypeSpecifier(dataTypeSpecifier);
 		
 		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();

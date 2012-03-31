@@ -12606,13 +12606,13 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataTypeSpecifier__Alternatives"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4107:1: rule__DataTypeSpecifier__Alternatives : ( ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) );
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4107:1: rule__DataTypeSpecifier__Alternatives : ( ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) );
     public final void rule__DataTypeSpecifier__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4111:1: ( ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4111:1: ( ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) )
             int alt10=2;
             switch ( input.LA(1) ) {
             case 71:
@@ -12663,19 +12663,19 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4112:1: ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4112:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) )
                     {
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4112:1: ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) )
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4113:1: ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4112:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4113:1: ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0()); 
                     }
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4114:1: ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 )
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4114:2: rule__DataTypeSpecifier__DefinedTypeAssignment_0
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4114:1: ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4114:2: rule__DataTypeSpecifier__AnonymousTypeAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__DataTypeSpecifier__DefinedTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives8710);
-                    rule__DataTypeSpecifier__DefinedTypeAssignment_0();
+                    pushFollow(FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives8710);
+                    rule__DataTypeSpecifier__AnonymousTypeAssignment_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -12683,7 +12683,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0()); 
                     }
 
                     }
@@ -12737,9 +12737,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DataTypeSpecifier__Alternatives"
 
 
-    // $ANTLR start "rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4129:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );
-    public final void rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0() throws RecognitionException {
+    // $ANTLR start "rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4129:1: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );
+    public final void rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -12755,15 +12755,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4135:1: rulePrimitiveType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
                     }
-                    pushFollow(FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08761);
+                    pushFollow(FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08761);
                     rulePrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
                     }
 
                     }
@@ -12778,15 +12778,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4141:1: ruleArrayType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
                     }
-                    pushFollow(FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08778);
+                    pushFollow(FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08778);
                     ruleArrayType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
                     }
 
                     }
@@ -12801,15 +12801,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4147:1: ruleStructType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
                     }
-                    pushFollow(FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08795);
+                    pushFollow(FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08795);
                     ruleStructType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
                     }
 
                     }
@@ -12831,7 +12831,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0"
+    // $ANTLR end "rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0"
 
 
     // $ANTLR start "rule__PrimitiveType__Alternatives"
@@ -13200,13 +13200,13 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrayType__Alternatives_1_0_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4241:1: rule__ArrayType__Alternatives_1_0_0 : ( ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) );
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4241:1: rule__ArrayType__Alternatives_1_0_0 : ( ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) );
     public final void rule__ArrayType__Alternatives_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4245:1: ( ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4245:1: ( ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -13225,19 +13225,19 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4246:1: ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4246:1: ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) )
                     {
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4246:1: ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) )
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4247:1: ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4246:1: ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4247:1: ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAssignment_1_0_0_0()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAssignment_1_0_0_0()); 
                     }
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4248:1: ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 )
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4248:2: rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4248:1: ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 )
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4248:2: rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0
                     {
-                    pushFollow(FOLLOW_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_09026);
-                    rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0();
+                    pushFollow(FOLLOW_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_09026);
+                    rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -13245,7 +13245,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAssignment_1_0_0_0()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAssignment_1_0_0_0()); 
                     }
 
                     }
@@ -13299,9 +13299,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArrayType__Alternatives_1_0_0"
 
 
-    // $ANTLR start "rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4263:1: rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 : ( ( ruleBooleanType ) | ( ruleStringType ) );
-    public final void rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0() throws RecognitionException {
+    // $ANTLR start "rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4263:1: rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 : ( ( ruleBooleanType ) | ( ruleStringType ) );
+    public final void rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -13331,15 +13331,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4269:1: ruleBooleanType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
                     }
-                    pushFollow(FOLLOW_ruleBooleanType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_09077);
+                    pushFollow(FOLLOW_ruleBooleanType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_09077);
                     ruleBooleanType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
                     }
 
                     }
@@ -13354,15 +13354,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4275:1: ruleStringType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
                     }
-                    pushFollow(FOLLOW_ruleStringType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_09094);
+                    pushFollow(FOLLOW_ruleStringType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_09094);
                     ruleStringType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
                     }
 
                     }
@@ -13384,7 +13384,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0"
+    // $ANTLR end "rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0"
 
 
     // $ANTLR start "rule__Expression__Alternatives"
@@ -37276,26 +37276,26 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TensorType__Group__0__Impl"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12356:1: rule__TensorType__Group__0__Impl : ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) ) ;
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12356:1: rule__TensorType__Group__0__Impl : ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) ) ;
     public final void rule__TensorType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12360:1: ( ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12361:1: ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12360:1: ( ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12361:1: ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12361:1: ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12362:1: ( rule__TensorType__DefinedElementTypeAssignment_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12361:1: ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12362:1: ( rule__TensorType__AnonymousElementTypeAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTensorTypeAccess().getDefinedElementTypeAssignment_0()); 
+               before(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12363:1: ( rule__TensorType__DefinedElementTypeAssignment_0 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12363:2: rule__TensorType__DefinedElementTypeAssignment_0
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12363:1: ( rule__TensorType__AnonymousElementTypeAssignment_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:12363:2: rule__TensorType__AnonymousElementTypeAssignment_0
             {
-            pushFollow(FOLLOW_rule__TensorType__DefinedElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl25493);
-            rule__TensorType__DefinedElementTypeAssignment_0();
+            pushFollow(FOLLOW_rule__TensorType__AnonymousElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl25493);
+            rule__TensorType__AnonymousElementTypeAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -37303,7 +37303,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTensorTypeAccess().getDefinedElementTypeAssignment_0()); 
+               after(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeAssignment_0()); 
             }
 
             }
@@ -73908,27 +73908,27 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Equation__RightHandSideAssignment_4"
 
 
-    // $ANTLR start "rule__DataTypeSpecifier__DefinedTypeAssignment_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25763:1: rule__DataTypeSpecifier__DefinedTypeAssignment_0 : ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) ) ;
-    public final void rule__DataTypeSpecifier__DefinedTypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__DataTypeSpecifier__AnonymousTypeAssignment_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25763:1: rule__DataTypeSpecifier__AnonymousTypeAssignment_0 : ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) ) ;
+    public final void rule__DataTypeSpecifier__AnonymousTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25767:1: ( ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25768:1: ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25767:1: ( ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25768:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25768:1: ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25769:1: ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25768:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25769:1: ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAlternatives_0_0()); 
+               before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAlternatives_0_0()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25770:1: ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25770:2: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25770:1: ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25770:2: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0
             {
-            pushFollow(FOLLOW_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0_in_rule__DataTypeSpecifier__DefinedTypeAssignment_052386);
-            rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0();
+            pushFollow(FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0_in_rule__DataTypeSpecifier__AnonymousTypeAssignment_052386);
+            rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -73936,7 +73936,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAlternatives_0_0()); 
+               after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAlternatives_0_0()); 
             }
 
             }
@@ -73956,7 +73956,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataTypeSpecifier__DefinedTypeAssignment_0"
+    // $ANTLR end "rule__DataTypeSpecifier__AnonymousTypeAssignment_0"
 
 
     // $ANTLR start "rule__DataTypeSpecifier__TypeAssignment_1"
@@ -74196,27 +74196,27 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__GaussianType__UnitAssignment_2"
 
 
-    // $ANTLR start "rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25858:1: rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 : ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) ) ;
-    public final void rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0() throws RecognitionException {
+    // $ANTLR start "rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25858:1: rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 : ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) ) ;
+    public final void rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25862:1: ( ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25863:1: ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25862:1: ( ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25863:1: ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25863:1: ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25864:1: ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25863:1: ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25864:1: ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAlternatives_1_0_0_0_0()); 
+               before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAlternatives_1_0_0_0_0()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25865:1: ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25865:2: rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25865:1: ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25865:2: rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0
             {
-            pushFollow(FOLLOW_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_052582);
-            rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0();
+            pushFollow(FOLLOW_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_052582);
+            rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -74224,7 +74224,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAlternatives_1_0_0_0_0()); 
+               after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAlternatives_1_0_0_0_0()); 
             }
 
             }
@@ -74244,7 +74244,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0"
+    // $ANTLR end "rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0"
 
 
     // $ANTLR start "rule__ArrayType__ElementTypeAssignment_1_0_0_1"
@@ -74390,9 +74390,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArrayType__DimensionsAssignment_1_3_1"
 
 
-    // $ANTLR start "rule__TensorType__DefinedElementTypeAssignment_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25923:1: rule__TensorType__DefinedElementTypeAssignment_0 : ( ruleNumericType ) ;
-    public final void rule__TensorType__DefinedElementTypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__TensorType__AnonymousElementTypeAssignment_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25923:1: rule__TensorType__AnonymousElementTypeAssignment_0 : ( ruleNumericType ) ;
+    public final void rule__TensorType__AnonymousElementTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -74404,15 +74404,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25929:1: ruleNumericType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+               before(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleNumericType_in_rule__TensorType__DefinedElementTypeAssignment_052716);
+            pushFollow(FOLLOW_ruleNumericType_in_rule__TensorType__AnonymousElementTypeAssignment_052716);
             ruleNumericType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+               after(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
             }
 
             }
@@ -74432,7 +74432,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TensorType__DefinedElementTypeAssignment_0"
+    // $ANTLR end "rule__TensorType__AnonymousElementTypeAssignment_0"
 
 
     // $ANTLR start "rule__TensorType__DimensionsAssignment_2"
@@ -80372,6 +80372,54 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__UnitFactor__ExponentAssignment_1_1"
 
+    // $ANTLR start synpred16_InternalDMLText
+    public final void synpred16_InternalDMLText_fragment() throws RecognitionException {   
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4134:1: ( ( rulePrimitiveType ) )
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4134:1: ( rulePrimitiveType )
+        {
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4134:1: ( rulePrimitiveType )
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4135:1: rulePrimitiveType
+        {
+        if ( state.backtracking==0 ) {
+           before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
+        }
+        pushFollow(FOLLOW_rulePrimitiveType_in_synpred16_InternalDMLText8761);
+        rulePrimitiveType();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+
+        }
+    }
+    // $ANTLR end synpred16_InternalDMLText
+
+    // $ANTLR start synpred17_InternalDMLText
+    public final void synpred17_InternalDMLText_fragment() throws RecognitionException {   
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4140:6: ( ( ruleArrayType ) )
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4140:6: ( ruleArrayType )
+        {
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4140:6: ( ruleArrayType )
+        // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:4141:1: ruleArrayType
+        {
+        if ( state.backtracking==0 ) {
+           before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
+        }
+        pushFollow(FOLLOW_ruleArrayType_in_synpred17_InternalDMLText8778);
+        ruleArrayType();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+
+        }
+    }
+    // $ANTLR end synpred17_InternalDMLText
+
     // $ANTLR start synpred158_InternalDMLText
     public final void synpred158_InternalDMLText_fragment() throws RecognitionException {   
         // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:14919:2: ( rule__RelationalExpression__Group_1__0 )
@@ -80783,6 +80831,34 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred17_InternalDMLText() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred17_InternalDMLText_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred16_InternalDMLText() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred16_InternalDMLText_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred189_InternalDMLText() {
         state.backtracking++;
         int start = input.mark();
@@ -80909,11 +80985,11 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred201_InternalDMLText() {
+    public final boolean synpred207_InternalDMLText() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred201_InternalDMLText_fragment(); // can never throw exception
+            synpred207_InternalDMLText_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -80923,11 +80999,11 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred207_InternalDMLText() {
+    public final boolean synpred201_InternalDMLText() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred207_InternalDMLText_fragment(); // can never throw exception
+            synpred201_InternalDMLText_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -81043,315 +81119,28 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String DFA11_eotS =
-        "\u00e2\uffff";
+        "\12\uffff";
     static final String DFA11_eofS =
-        "\1\uffff\6\12\7\uffff\1\12\6\uffff\1\12\14\uffff\1\12\6\uffff\1"+
-        "\12\1\uffff\1\12\3\uffff\1\12\3\uffff\1\12\3\uffff\1\12\u00aa\uffff";
+        "\12\uffff";
     static final String DFA11_minS =
-        "\1\12\6\4\2\uffff\1\4\1\uffff\4\4\1\52\5\24\1\4\1\52\5\24\1\52\5"+
-        "\24\1\4\1\52\5\24\3\4\1\6\3\4\1\6\3\4\1\6\3\4\1\6\1\4\5\55\1\4\1"+
-        "\6\7\24\5\55\1\4\1\6\7\24\5\55\1\4\1\6\7\24\5\55\1\4\1\6\7\24\1"+
-        "\6\5\24\2\6\5\24\2\6\5\24\2\6\5\24\2\6\2\112\1\6\1\4\1\112\1\6\2"+
-        "\24\1\6\2\112\1\6\1\4\1\112\1\6\2\24\1\6\2\112\1\6\1\4\1\112\1\6"+
-        "\2\24\1\6\2\112\1\6\1\4\1\112\1\6\2\24\1\6\7\24\1\6\7\24\1\6\7\24"+
-        "\1\6\7\24\5\6\2\24\1\6\2\24\1\6\2\24\1\6\2\24";
+        "\1\12\6\0\3\uffff";
     static final String DFA11_maxS =
-        "\1\130\6\165\2\uffff\1\112\1\uffff\3\112\1\165\6\112\1\165\14\112"+
-        "\1\165\6\112\1\165\1\111\1\165\1\27\1\12\1\111\1\165\1\27\1\12\1"+
-        "\111\1\165\1\27\1\12\1\111\1\165\1\27\1\12\5\112\1\12\1\7\14\112"+
-        "\1\12\1\7\14\112\1\12\1\7\14\112\1\12\1\7\7\112\1\27\5\112\2\27"+
-        "\5\112\2\27\5\112\2\27\5\112\1\27\1\7\2\112\1\27\1\12\1\112\1\7"+
-        "\2\112\1\7\2\112\1\27\1\12\1\112\1\7\2\112\1\7\2\112\1\27\1\12\1"+
-        "\112\1\7\2\112\1\7\2\112\1\27\1\12\1\112\1\7\2\112\1\7\7\112\1\7"+
-        "\7\112\1\7\7\112\1\7\7\112\4\27\1\7\2\112\1\7\2\112\1\7\2\112\1"+
-        "\7\2\112";
+        "\1\130\6\0\3\uffff";
     static final String DFA11_acceptS =
-        "\7\uffff\1\2\1\3\1\uffff\1\1\u00d7\uffff";
+        "\7\uffff\1\2\1\3\1\1";
     static final String DFA11_specialS =
-        "\u00e2\uffff}>";
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\3\uffff}>";
     static final String[] DFA11_transitionS = {
             "\1\7\74\uffff\1\10\13\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\11\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\13\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\14\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\15\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "",
             "",
-            "\1\21\1\23\1\17\1\uffff\1\20\1\22\1\24\77\uffff\1\16",
-            "",
-            "\1\30\1\32\1\26\1\uffff\1\27\1\31\1\33\77\uffff\1\25",
-            "\1\36\1\40\1\34\1\uffff\1\35\1\37\1\41\77\uffff\1\42",
-            "\1\45\1\47\1\43\1\uffff\1\44\1\46\1\50\77\uffff\1\51",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\52\37\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\54\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\54\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\54\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\54\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\54\34\uffff\1\53",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\56\37\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\60\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\60\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\60\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\60\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\60\34\uffff\1\57",
-            "\1\62\37\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\64\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\64\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\64\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\64\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\64\34\uffff\1\63",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\66\37\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\70\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\70\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\70\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\70\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\70\34\uffff\1\67",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\73\1\75\2\uffff\1\72\1\74\1\76\76\uffff\1\77",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\101\1\102\17\uffff\1\100",
-            "\1\104\1\106\2\uffff\1\103\1\105\1\107",
-            "\1\111\1\113\2\uffff\1\110\1\112\1\114\76\uffff\1\115",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\117\1\120\17\uffff\1\116",
-            "\1\122\1\124\2\uffff\1\121\1\123\1\125",
-            "\1\127\1\131\2\uffff\1\126\1\130\1\132\76\uffff\1\133",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\135\1\136\17\uffff\1\134",
-            "\1\140\1\142\2\uffff\1\137\1\141\1\143",
-            "\1\145\1\147\2\uffff\1\144\1\146\1\150\76\uffff\1\151",
-            "\2\12\2\uffff\3\12\6\uffff\1\12\7\uffff\1\12\3\uffff\3\12\4"+
-            "\uffff\2\12\2\uffff\1\12\12\uffff\1\12\1\uffff\1\7\1\uffff\3"+
-            "\12\1\uffff\5\12\5\uffff\4\12\1\uffff\1\12\1\uffff\7\12\7\uffff"+
-            "\1\12\1\uffff\2\12\1\uffff\5\12\1\uffff\1\12\1\uffff\1\12\14"+
-            "\uffff\2\12",
-            "\1\153\1\154\17\uffff\1\152",
-            "\1\156\1\160\2\uffff\1\155\1\157\1\161",
-            "\1\162\34\uffff\1\53",
-            "\1\162\34\uffff\1\53",
-            "\1\162\34\uffff\1\53",
-            "\1\162\34\uffff\1\53",
-            "\1\162\34\uffff\1\53",
-            "\1\164\1\166\2\uffff\1\163\1\165\1\167",
-            "\1\101\1\102",
-            "\1\55\25\uffff\1\52\37\uffff\1\53",
-            "\1\55\25\uffff\1\52\37\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\170\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\170\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\170\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\170\34\uffff\1\53",
-            "\1\55\25\uffff\1\52\2\uffff\1\170\34\uffff\1\53",
-            "\1\171\34\uffff\1\57",
-            "\1\171\34\uffff\1\57",
-            "\1\171\34\uffff\1\57",
-            "\1\171\34\uffff\1\57",
-            "\1\171\34\uffff\1\57",
-            "\1\173\1\175\2\uffff\1\172\1\174\1\176",
-            "\1\117\1\120",
-            "\1\61\25\uffff\1\56\37\uffff\1\57",
-            "\1\61\25\uffff\1\56\37\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\177\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\177\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\177\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\177\34\uffff\1\57",
-            "\1\61\25\uffff\1\56\2\uffff\1\177\34\uffff\1\57",
-            "\1\u0080\34\uffff\1\63",
-            "\1\u0080\34\uffff\1\63",
-            "\1\u0080\34\uffff\1\63",
-            "\1\u0080\34\uffff\1\63",
-            "\1\u0080\34\uffff\1\63",
-            "\1\u0082\1\u0084\2\uffff\1\u0081\1\u0083\1\u0085",
-            "\1\135\1\136",
-            "\1\65\25\uffff\1\62\37\uffff\1\63",
-            "\1\65\25\uffff\1\62\37\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\u0086\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\u0086\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\u0086\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\u0086\34\uffff\1\63",
-            "\1\65\25\uffff\1\62\2\uffff\1\u0086\34\uffff\1\63",
-            "\1\u0087\34\uffff\1\67",
-            "\1\u0087\34\uffff\1\67",
-            "\1\u0087\34\uffff\1\67",
-            "\1\u0087\34\uffff\1\67",
-            "\1\u0087\34\uffff\1\67",
-            "\1\u0089\1\u008b\2\uffff\1\u0088\1\u008a\1\u008c",
-            "\1\153\1\154",
-            "\1\71\25\uffff\1\66\37\uffff\1\67",
-            "\1\71\25\uffff\1\66\37\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\u008d\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\u008d\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\u008d\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\u008d\34\uffff\1\67",
-            "\1\71\25\uffff\1\66\2\uffff\1\u008d\34\uffff\1\67",
-            "\1\u008f\1\u0090\17\uffff\1\u008e",
-            "\1\u0092\30\uffff\1\u0091\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u0091\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u0091\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u0091\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u0091\34\uffff\1\u0093",
-            "\1\u0095\1\u0096\17\uffff\1\u0094",
-            "\1\u0098\1\u0099\17\uffff\1\u0097",
-            "\1\u009b\30\uffff\1\u009a\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u009a\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u009a\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u009a\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u009a\34\uffff\1\u009c",
-            "\1\u009e\1\u009f\17\uffff\1\u009d",
-            "\1\u00a1\1\u00a2\17\uffff\1\u00a0",
-            "\1\u00a4\30\uffff\1\u00a3\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00a3\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00a3\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00a3\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00a3\34\uffff\1\u00a5",
-            "\1\u00a7\1\u00a8\17\uffff\1\u00a6",
-            "\1\u00aa\1\u00ab\17\uffff\1\u00a9",
-            "\1\u00ad\30\uffff\1\u00ac\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00ac\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00ac\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00ac\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00ac\34\uffff\1\u00ae",
-            "\1\u00b0\1\u00b1\17\uffff\1\u00af",
-            "\1\u008f\1\u0090",
-            "\1\53",
-            "\1\53",
-            "\1\u00b3\1\u00b4\17\uffff\1\u00b2",
-            "\1\u00b6\1\u00b8\2\uffff\1\u00b5\1\u00b7\1\u00b9",
-            "\1\53",
-            "\1\u0095\1\u0096",
-            "\1\55\25\uffff\1\52\37\uffff\1\53",
-            "\1\55\25\uffff\1\52\37\uffff\1\53",
-            "\1\u0098\1\u0099",
-            "\1\57",
-            "\1\57",
-            "\1\u00bb\1\u00bc\17\uffff\1\u00ba",
-            "\1\u00be\1\u00c0\2\uffff\1\u00bd\1\u00bf\1\u00c1",
-            "\1\57",
-            "\1\u009e\1\u009f",
-            "\1\61\25\uffff\1\56\37\uffff\1\57",
-            "\1\61\25\uffff\1\56\37\uffff\1\57",
-            "\1\u00a1\1\u00a2",
-            "\1\63",
-            "\1\63",
-            "\1\u00c3\1\u00c4\17\uffff\1\u00c2",
-            "\1\u00c6\1\u00c8\2\uffff\1\u00c5\1\u00c7\1\u00c9",
-            "\1\63",
-            "\1\u00a7\1\u00a8",
-            "\1\65\25\uffff\1\62\37\uffff\1\63",
-            "\1\65\25\uffff\1\62\37\uffff\1\63",
-            "\1\u00aa\1\u00ab",
-            "\1\67",
-            "\1\67",
-            "\1\u00cb\1\u00cc\17\uffff\1\u00ca",
-            "\1\u00ce\1\u00d0\2\uffff\1\u00cd\1\u00cf\1\u00d1",
-            "\1\67",
-            "\1\u00b0\1\u00b1",
-            "\1\71\25\uffff\1\66\37\uffff\1\67",
-            "\1\71\25\uffff\1\66\37\uffff\1\67",
-            "\1\u00b3\1\u00b4",
-            "\1\u0092\65\uffff\1\u0093",
-            "\1\u0092\65\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u00d2\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u00d2\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u00d2\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u00d2\34\uffff\1\u0093",
-            "\1\u0092\30\uffff\1\u00d2\34\uffff\1\u0093",
-            "\1\u00bb\1\u00bc",
-            "\1\u009b\65\uffff\1\u009c",
-            "\1\u009b\65\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u00d3\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u00d3\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u00d3\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u00d3\34\uffff\1\u009c",
-            "\1\u009b\30\uffff\1\u00d3\34\uffff\1\u009c",
-            "\1\u00c3\1\u00c4",
-            "\1\u00a4\65\uffff\1\u00a5",
-            "\1\u00a4\65\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00d4\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00d4\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00d4\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00d4\34\uffff\1\u00a5",
-            "\1\u00a4\30\uffff\1\u00d4\34\uffff\1\u00a5",
-            "\1\u00cb\1\u00cc",
-            "\1\u00ad\65\uffff\1\u00ae",
-            "\1\u00ad\65\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00d5\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00d5\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00d5\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00d5\34\uffff\1\u00ae",
-            "\1\u00ad\30\uffff\1\u00d5\34\uffff\1\u00ae",
-            "\1\u00d7\1\u00d8\17\uffff\1\u00d6",
-            "\1\u00da\1\u00db\17\uffff\1\u00d9",
-            "\1\u00dd\1\u00de\17\uffff\1\u00dc",
-            "\1\u00e0\1\u00e1\17\uffff\1\u00df",
-            "\1\u00d7\1\u00d8",
-            "\1\u0092\65\uffff\1\u0093",
-            "\1\u0092\65\uffff\1\u0093",
-            "\1\u00da\1\u00db",
-            "\1\u009b\65\uffff\1\u009c",
-            "\1\u009b\65\uffff\1\u009c",
-            "\1\u00dd\1\u00de",
-            "\1\u00a4\65\uffff\1\u00a5",
-            "\1\u00a4\65\uffff\1\u00a5",
-            "\1\u00e0\1\u00e1",
-            "\1\u00ad\65\uffff\1\u00ae",
-            "\1\u00ad\65\uffff\1\u00ae"
+            ""
     };
 
     static final short[] DFA11_eot = DFA.unpackEncodedString(DFA11_eotS);
@@ -81384,7 +81173,108 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "4129:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );";
+            return "4129:1: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA11_1 = input.LA(1);
+
+                         
+                        int index11_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA11_2 = input.LA(1);
+
+                         
+                        int index11_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA11_3 = input.LA(1);
+
+                         
+                        int index11_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA11_4 = input.LA(1);
+
+                         
+                        int index11_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA11_5 = input.LA(1);
+
+                         
+                        int index11_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA11_6 = input.LA(1);
+
+                         
+                        int index11_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred16_InternalDMLText()) ) {s = 9;}
+
+                        else if ( (synpred17_InternalDMLText()) ) {s = 7;}
+
+                         
+                        input.seek(index11_6);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 11, _s, input);
+            error(nvae);
+            throw nvae;
         }
     }
     static final String DFA22_eotS =
@@ -82212,11 +82102,11 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDeclaration__Alternatives_118641 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDeclaration__Alternatives_118659 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionDeclaration__EquationsAssignment_11_5_in_rule__FunctionDeclaration__Alternatives_118677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataTypeSpecifier__DefinedTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives8710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives8710 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataTypeSpecifier__TypeAssignment_1_in_rule__DataTypeSpecifier__Alternatives8728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08778 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_08795 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_08795 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNumericType_in_rule__PrimitiveType__Alternatives8827 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanType_in_rule__PrimitiveType__Alternatives8844 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringType_in_rule__PrimitiveType__Alternatives8861 = new BitSet(new long[]{0x0000000000000002L});
@@ -82226,10 +82116,10 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleGaussianType_in_rule__NumericType__Alternatives8944 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_rule__ArrayType__Alternatives8976 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayType__Group_1__0_in_rule__ArrayType__Alternatives8993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_09026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_09026 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayType__ElementTypeAssignment_1_0_0_1_in_rule__ArrayType__Alternatives_1_0_09044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_09077 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_09094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_09077 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_09094 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpression_in_rule__Expression__Alternatives9126 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfExpression_in_rule__Expression__Alternatives9143 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchExpression_in_rule__Expression__Alternatives9160 = new BitSet(new long[]{0x0000000000000002L});
@@ -82936,7 +82826,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__ArrayType__DimensionsAssignment_1_3_1_in_rule__ArrayType__Group_1_3__1__Impl25429 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TensorType__Group__0__Impl_in_rule__TensorType__Group__025463 = new BitSet(new long[]{0x0020000000000000L});
     public static final BitSet FOLLOW_rule__TensorType__Group__1_in_rule__TensorType__Group__025466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TensorType__DefinedElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl25493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TensorType__AnonymousElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl25493 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TensorType__Group__1__Impl_in_rule__TensorType__Group__125523 = new BitSet(new long[]{0x0024800001800FF0L,0x005007404A000200L});
     public static final BitSet FOLLOW_rule__TensorType__Group__2_in_rule__TensorType__Group__125526 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_53_in_rule__TensorType__Group__1__Impl25554 = new BitSet(new long[]{0x0000000000000002L});
@@ -83992,17 +83882,17 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_117_in_rule__Equation__InitialAssignment_052285 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_252324 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_452355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0_in_rule__DataTypeSpecifier__DefinedTypeAssignment_052386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0_in_rule__DataTypeSpecifier__AnonymousTypeAssignment_052386 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__DataTypeSpecifier__TypeAssignment_152423 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_252458 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_252489 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_252520 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_252551 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_052582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_052582 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__ArrayType__ElementTypeAssignment_1_0_0_152619 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_1_252654 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_1_3_152685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumericType_in_rule__TensorType__DefinedElementTypeAssignment_052716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumericType_in_rule__TensorType__AnonymousElementTypeAssignment_052716 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__TensorType__DimensionsAssignment_252747 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__TensorType__DimensionsAssignment_3_152778 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_152809 = new BitSet(new long[]{0x0000000000000002L});
@@ -84133,6 +84023,8 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_156776 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_056807 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_156838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_synpred16_InternalDMLText8761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayType_in_synpred17_InternalDMLText8778 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__0_in_synpred158_InternalDMLText30519 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred189_InternalDMLText43611 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MscriptBlockType__UnorderedGroup_3__0_in_synpred197_InternalDMLText47881 = new BitSet(new long[]{0x0000000000000002L});

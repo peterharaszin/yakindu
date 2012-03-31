@@ -10414,13 +10414,13 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataTypeSpecifier__Alternatives"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3427:1: rule__DataTypeSpecifier__Alternatives : ( ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) );
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3427:1: rule__DataTypeSpecifier__Alternatives : ( ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) );
     public final void rule__DataTypeSpecifier__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3431:1: ( ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3431:1: ( ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) ) | ( ( rule__DataTypeSpecifier__TypeAssignment_1 ) ) )
             int alt4=2;
             switch ( input.LA(1) ) {
             case 48:
@@ -10471,19 +10471,19 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3432:1: ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3432:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) )
                     {
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3432:1: ( ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 ) )
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3433:1: ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3432:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 ) )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3433:1: ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0()); 
                     }
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3434:1: ( rule__DataTypeSpecifier__DefinedTypeAssignment_0 )
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3434:2: rule__DataTypeSpecifier__DefinedTypeAssignment_0
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3434:1: ( rule__DataTypeSpecifier__AnonymousTypeAssignment_0 )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3434:2: rule__DataTypeSpecifier__AnonymousTypeAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__DataTypeSpecifier__DefinedTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives7259);
-                    rule__DataTypeSpecifier__DefinedTypeAssignment_0();
+                    pushFollow(FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives7259);
+                    rule__DataTypeSpecifier__AnonymousTypeAssignment_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10491,7 +10491,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0()); 
                     }
 
                     }
@@ -10545,9 +10545,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DataTypeSpecifier__Alternatives"
 
 
-    // $ANTLR start "rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3449:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );
-    public final void rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0() throws RecognitionException {
+    // $ANTLR start "rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3449:1: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );
+    public final void rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -10563,15 +10563,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3455:1: rulePrimitiveType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
                     }
-                    pushFollow(FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07310);
+                    pushFollow(FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07310);
                     rulePrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
                     }
 
                     }
@@ -10586,15 +10586,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3461:1: ruleArrayType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
                     }
-                    pushFollow(FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07327);
+                    pushFollow(FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07327);
                     ruleArrayType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
                     }
 
                     }
@@ -10609,15 +10609,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3467:1: ruleStructType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+                       before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
                     }
-                    pushFollow(FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07344);
+                    pushFollow(FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07344);
                     ruleStructType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+                       after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
                     }
 
                     }
@@ -10639,7 +10639,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0"
+    // $ANTLR end "rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0"
 
 
     // $ANTLR start "rule__PrimitiveType__Alternatives"
@@ -11008,13 +11008,13 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrayType__Alternatives_1_0_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3561:1: rule__ArrayType__Alternatives_1_0_0 : ( ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) );
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3561:1: rule__ArrayType__Alternatives_1_0_0 : ( ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) );
     public final void rule__ArrayType__Alternatives_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3565:1: ( ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3565:1: ( ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) ) | ( ( rule__ArrayType__ElementTypeAssignment_1_0_0_1 ) ) )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -11033,19 +11033,19 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3566:1: ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3566:1: ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) )
                     {
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3566:1: ( ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 ) )
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3567:1: ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3566:1: ( ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 ) )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3567:1: ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAssignment_1_0_0_0()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAssignment_1_0_0_0()); 
                     }
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3568:1: ( rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 )
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3568:2: rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3568:1: ( rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3568:2: rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0
                     {
-                    pushFollow(FOLLOW_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_07575);
-                    rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0();
+                    pushFollow(FOLLOW_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_07575);
+                    rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -11053,7 +11053,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAssignment_1_0_0_0()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAssignment_1_0_0_0()); 
                     }
 
                     }
@@ -11107,9 +11107,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArrayType__Alternatives_1_0_0"
 
 
-    // $ANTLR start "rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3583:1: rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 : ( ( ruleBooleanType ) | ( ruleStringType ) );
-    public final void rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0() throws RecognitionException {
+    // $ANTLR start "rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3583:1: rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 : ( ( ruleBooleanType ) | ( ruleStringType ) );
+    public final void rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -11139,15 +11139,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3589:1: ruleBooleanType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
                     }
-                    pushFollow(FOLLOW_ruleBooleanType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_07626);
+                    pushFollow(FOLLOW_ruleBooleanType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_07626);
                     ruleBooleanType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
                     }
 
                     }
@@ -11162,15 +11162,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3595:1: ruleStringType
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+                       before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
                     }
-                    pushFollow(FOLLOW_ruleStringType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_07643);
+                    pushFollow(FOLLOW_ruleStringType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_07643);
                     ruleStringType();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+                       after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
                     }
 
                     }
@@ -11192,7 +11192,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0"
+    // $ANTLR end "rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0"
 
 
     // $ANTLR start "rule__Expression__Alternatives"
@@ -26342,26 +26342,26 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TensorType__Group__0__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8542:1: rule__TensorType__Group__0__Impl : ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8542:1: rule__TensorType__Group__0__Impl : ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) ) ;
     public final void rule__TensorType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8546:1: ( ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8547:1: ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8546:1: ( ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8547:1: ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8547:1: ( ( rule__TensorType__DefinedElementTypeAssignment_0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8548:1: ( rule__TensorType__DefinedElementTypeAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8547:1: ( ( rule__TensorType__AnonymousElementTypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8548:1: ( rule__TensorType__AnonymousElementTypeAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTensorTypeAccess().getDefinedElementTypeAssignment_0()); 
+               before(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8549:1: ( rule__TensorType__DefinedElementTypeAssignment_0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8549:2: rule__TensorType__DefinedElementTypeAssignment_0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8549:1: ( rule__TensorType__AnonymousElementTypeAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:8549:2: rule__TensorType__AnonymousElementTypeAssignment_0
             {
-            pushFollow(FOLLOW_rule__TensorType__DefinedElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl17835);
-            rule__TensorType__DefinedElementTypeAssignment_0();
+            pushFollow(FOLLOW_rule__TensorType__AnonymousElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl17835);
+            rule__TensorType__AnonymousElementTypeAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -26369,7 +26369,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTensorTypeAccess().getDefinedElementTypeAssignment_0()); 
+               after(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeAssignment_0()); 
             }
 
             }
@@ -59628,27 +59628,27 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Equation__RightHandSideAssignment_4"
 
 
-    // $ANTLR start "rule__DataTypeSpecifier__DefinedTypeAssignment_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20855:1: rule__DataTypeSpecifier__DefinedTypeAssignment_0 : ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) ) ;
-    public final void rule__DataTypeSpecifier__DefinedTypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__DataTypeSpecifier__AnonymousTypeAssignment_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20855:1: rule__DataTypeSpecifier__AnonymousTypeAssignment_0 : ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) ) ;
+    public final void rule__DataTypeSpecifier__AnonymousTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20859:1: ( ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20860:1: ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20859:1: ( ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20860:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20860:1: ( ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20861:1: ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20860:1: ( ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20861:1: ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAlternatives_0_0()); 
+               before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAlternatives_0_0()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20862:1: ( rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20862:2: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20862:1: ( rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20862:2: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0
             {
-            pushFollow(FOLLOW_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0_in_rule__DataTypeSpecifier__DefinedTypeAssignment_042057);
-            rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0();
+            pushFollow(FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0_in_rule__DataTypeSpecifier__AnonymousTypeAssignment_042057);
+            rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -59656,7 +59656,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAlternatives_0_0()); 
+               after(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAlternatives_0_0()); 
             }
 
             }
@@ -59676,7 +59676,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataTypeSpecifier__DefinedTypeAssignment_0"
+    // $ANTLR end "rule__DataTypeSpecifier__AnonymousTypeAssignment_0"
 
 
     // $ANTLR start "rule__DataTypeSpecifier__TypeAssignment_1"
@@ -59916,27 +59916,27 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__GaussianType__UnitAssignment_2"
 
 
-    // $ANTLR start "rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20950:1: rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0 : ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) ) ;
-    public final void rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0() throws RecognitionException {
+    // $ANTLR start "rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20950:1: rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0 : ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) ) ;
+    public final void rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20954:1: ( ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20955:1: ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20954:1: ( ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20955:1: ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20955:1: ( ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20956:1: ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20955:1: ( ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20956:1: ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAlternatives_1_0_0_0_0()); 
+               before(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAlternatives_1_0_0_0_0()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20957:1: ( rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20957:2: rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20957:1: ( rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20957:2: rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0
             {
-            pushFollow(FOLLOW_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_042253);
-            rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0();
+            pushFollow(FOLLOW_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_042253);
+            rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -59944,7 +59944,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAlternatives_1_0_0_0_0()); 
+               after(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeAlternatives_1_0_0_0_0()); 
             }
 
             }
@@ -59964,7 +59964,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0"
+    // $ANTLR end "rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0"
 
 
     // $ANTLR start "rule__ArrayType__ElementTypeAssignment_1_0_0_1"
@@ -60110,9 +60110,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArrayType__DimensionsAssignment_1_3_1"
 
 
-    // $ANTLR start "rule__TensorType__DefinedElementTypeAssignment_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21015:1: rule__TensorType__DefinedElementTypeAssignment_0 : ( ruleNumericType ) ;
-    public final void rule__TensorType__DefinedElementTypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__TensorType__AnonymousElementTypeAssignment_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21015:1: rule__TensorType__AnonymousElementTypeAssignment_0 : ( ruleNumericType ) ;
+    public final void rule__TensorType__AnonymousElementTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -60124,15 +60124,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21021:1: ruleNumericType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+               before(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleNumericType_in_rule__TensorType__DefinedElementTypeAssignment_042387);
+            pushFollow(FOLLOW_ruleNumericType_in_rule__TensorType__AnonymousElementTypeAssignment_042387);
             ruleNumericType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+               after(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
             }
 
             }
@@ -60152,7 +60152,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TensorType__DefinedElementTypeAssignment_0"
+    // $ANTLR end "rule__TensorType__AnonymousElementTypeAssignment_0"
 
 
     // $ANTLR start "rule__TensorType__DimensionsAssignment_2"
@@ -66101,7 +66101,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3455:1: rulePrimitiveType
         {
         if ( state.backtracking==0 ) {
-           before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+           before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
         }
         pushFollow(FOLLOW_rulePrimitiveType_in_synpred10_InternalMscript7310);
         rulePrimitiveType();
@@ -66125,7 +66125,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3461:1: ruleArrayType
         {
         if ( state.backtracking==0 ) {
-           before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+           before(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
         }
         pushFollow(FOLLOW_ruleArrayType_in_synpred11_InternalMscript7327);
         ruleArrayType();
@@ -66290,7 +66290,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             this.transition = DFA5_transition;
         }
         public String getDescription() {
-            return "3449:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );";
+            return "3449:1: rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -67113,11 +67113,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDeclaration__Alternatives_117190 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDeclaration__Alternatives_117208 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionDeclaration__EquationsAssignment_11_5_in_rule__FunctionDeclaration__Alternatives_117226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataTypeSpecifier__DefinedTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives7259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives7259 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataTypeSpecifier__TypeAssignment_1_in_rule__DataTypeSpecifier__Alternatives7277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07310 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructType_in_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_07344 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNumericType_in_rule__PrimitiveType__Alternatives7376 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanType_in_rule__PrimitiveType__Alternatives7393 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringType_in_rule__PrimitiveType__Alternatives7410 = new BitSet(new long[]{0x0000000000000002L});
@@ -67127,10 +67127,10 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleGaussianType_in_rule__NumericType__Alternatives7493 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_rule__ArrayType__Alternatives7525 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayType__Group_1__0_in_rule__ArrayType__Alternatives7542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_07575 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_0_in_rule__ArrayType__Alternatives_1_0_07575 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayType__ElementTypeAssignment_1_0_0_1_in_rule__ArrayType__Alternatives_1_0_07593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_07626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringType_in_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_07643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_07626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringType_in_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_07643 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpression_in_rule__Expression__Alternatives7675 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfExpression_in_rule__Expression__Alternatives7692 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchExpression_in_rule__Expression__Alternatives7709 = new BitSet(new long[]{0x0000000000000002L});
@@ -67565,7 +67565,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__ArrayType__DimensionsAssignment_1_3_1_in_rule__ArrayType__Group_1_3__1__Impl17771 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TensorType__Group__0__Impl_in_rule__TensorType__Group__017805 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_rule__TensorType__Group__1_in_rule__TensorType__Group__017808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TensorType__DefinedElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl17835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TensorType__AnonymousElementTypeAssignment_0_in_rule__TensorType__Group__0__Impl17835 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TensorType__Group__1__Impl_in_rule__TensorType__Group__117865 = new BitSet(new long[]{0x0004110000180FF0L,0x00000002839004A8L});
     public static final BitSet FOLLOW_rule__TensorType__Group__2_in_rule__TensorType__Group__117868 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_67_in_rule__TensorType__Group__1__Impl17896 = new BitSet(new long[]{0x0000000000000002L});
@@ -68554,17 +68554,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_96_in_rule__Equation__InitialAssignment_041956 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_241995 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_442026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0_in_rule__DataTypeSpecifier__DefinedTypeAssignment_042057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0_in_rule__DataTypeSpecifier__AnonymousTypeAssignment_042057 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__DataTypeSpecifier__TypeAssignment_142094 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_242129 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_242160 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_242191 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_242222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__DefinedElementTypeAssignment_1_0_0_042253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayType__AnonymousElementTypeAlternatives_1_0_0_0_0_in_rule__ArrayType__AnonymousElementTypeAssignment_1_0_0_042253 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__ArrayType__ElementTypeAssignment_1_0_0_142290 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_1_242325 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_1_3_142356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumericType_in_rule__TensorType__DefinedElementTypeAssignment_042387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumericType_in_rule__TensorType__AnonymousElementTypeAssignment_042387 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__TensorType__DimensionsAssignment_242418 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_rule__TensorType__DimensionsAssignment_3_142449 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_142480 = new BitSet(new long[]{0x0000000000000002L});

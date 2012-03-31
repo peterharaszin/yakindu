@@ -10128,24 +10128,24 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataTypeSpecifier"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3515:1: ruleDataTypeSpecifier returns [EObject current=null] : ( ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) ) ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3515:1: ruleDataTypeSpecifier returns [EObject current=null] : ( ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) ) ;
     public final EObject ruleDataTypeSpecifier() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_definedType_0_1 = null;
+        EObject lv_anonymousType_0_1 = null;
 
-        EObject lv_definedType_0_2 = null;
+        EObject lv_anonymousType_0_2 = null;
 
-        EObject lv_definedType_0_3 = null;
+        EObject lv_anonymousType_0_3 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3518:28: ( ( ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:1: ( ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3518:28: ( ( ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:1: ( ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:1: ( ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:1: ( ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) ) | ( ( ruleQualifiedName ) ) )
             int alt63=2;
             switch ( input.LA(1) ) {
             case 51:
@@ -10196,28 +10196,28 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
             switch (alt63) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:2: ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:2: ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) )
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:2: ( ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) ) )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3520:1: ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3519:2: ( ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3520:1: ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) )
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3520:1: ( (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType ) )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3521:1: (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3520:1: ( (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3521:1: (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType )
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3521:1: (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3521:1: (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType )
                     int alt62=3;
                     alt62 = dfa62.predict(input);
                     switch (alt62) {
                         case 1 :
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3522:3: lv_definedType_0_1= rulePrimitiveType
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3522:3: lv_anonymousType_0_1= rulePrimitiveType
                             {
                             if ( state.backtracking==0 ) {
                                
-                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
                               	    
                             }
                             pushFollow(FOLLOW_rulePrimitiveType_in_ruleDataTypeSpecifier7706);
-                            lv_definedType_0_1=rulePrimitiveType();
+                            lv_anonymousType_0_1=rulePrimitiveType();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -10228,8 +10228,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                               	        }
                                      		set(
                                      			current, 
-                                     			"definedType",
-                                      		lv_definedType_0_1, 
+                                     			"anonymousType",
+                                      		lv_anonymousType_0_1, 
                                       		"PrimitiveType");
                               	        afterParserOrEnumRuleCall();
                               	    
@@ -10238,15 +10238,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3537:8: lv_definedType_0_2= ruleArrayType
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3537:8: lv_anonymousType_0_2= ruleArrayType
                             {
                             if ( state.backtracking==0 ) {
                                
-                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
                               	    
                             }
                             pushFollow(FOLLOW_ruleArrayType_in_ruleDataTypeSpecifier7725);
-                            lv_definedType_0_2=ruleArrayType();
+                            lv_anonymousType_0_2=ruleArrayType();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -10257,8 +10257,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                               	        }
                                      		set(
                                      			current, 
-                                     			"definedType",
-                                      		lv_definedType_0_2, 
+                                     			"anonymousType",
+                                      		lv_anonymousType_0_2, 
                                       		"ArrayType");
                               	        afterParserOrEnumRuleCall();
                               	    
@@ -10267,15 +10267,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3552:8: lv_definedType_0_3= ruleStructType
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3552:8: lv_anonymousType_0_3= ruleStructType
                             {
                             if ( state.backtracking==0 ) {
                                
-                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+                              	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
                               	    
                             }
                             pushFollow(FOLLOW_ruleStructType_in_ruleDataTypeSpecifier7744);
-                            lv_definedType_0_3=ruleStructType();
+                            lv_anonymousType_0_3=ruleStructType();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -10286,8 +10286,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                               	        }
                                      		set(
                                      			current, 
-                                     			"definedType",
-                                      		lv_definedType_0_3, 
+                                     			"anonymousType",
+                                      		lv_anonymousType_0_3, 
                                       		"StructType");
                               	        afterParserOrEnumRuleCall();
                               	    
@@ -11518,7 +11518,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArrayType"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3971:1: ruleArrayType returns [EObject current=null] : (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) ) ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3971:1: ruleArrayType returns [EObject current=null] : (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) ) ;
     public final EObject ruleArrayType() throws RecognitionException {
         EObject current = null;
 
@@ -11528,9 +11528,9 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
         Token otherlv_7=null;
         EObject this_TensorType_0 = null;
 
-        EObject lv_definedElementType_1_1 = null;
+        EObject lv_anonymousElementType_1_1 = null;
 
-        EObject lv_definedElementType_1_2 = null;
+        EObject lv_anonymousElementType_1_2 = null;
 
         EObject lv_dimensions_4_0 = null;
 
@@ -11540,10 +11540,10 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3974:28: ( (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3975:1: (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3974:28: ( (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3975:1: (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3975:1: (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3975:1: (this_TensorType_0= ruleTensorType | ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' ) )
             int alt69=2;
             int LA69_0 = input.LA(1);
 
@@ -11590,15 +11590,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:6: ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:6: ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' )
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:6: ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:7: ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']'
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:6: ( ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']' )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:7: ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) ) otherlv_3= '[' ( (lv_dimensions_4_0= ruleArrayDimension ) ) (otherlv_5= ',' ( (lv_dimensions_6_0= ruleArrayDimension ) ) )* otherlv_7= ']'
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:7: ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) )
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:8: ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:7: ( ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3985:8: ( ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) ) )=> ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) )
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:6: ( ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) )
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:6: ( ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) ) | ( (otherlv_2= RULE_ID ) ) )
                     int alt67=2;
                     int LA67_0 = input.LA(1);
 
@@ -11617,15 +11617,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt67) {
                         case 1 :
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:7: ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:7: ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) )
                             {
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:7: ( ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) ) )
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4000:1: ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:3999:7: ( ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) ) )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4000:1: ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) )
                             {
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4000:1: ( (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType ) )
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4001:1: (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4000:1: ( (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType ) )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4001:1: (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType )
                             {
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4001:1: (lv_definedElementType_1_1= ruleBooleanType | lv_definedElementType_1_2= ruleStringType )
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4001:1: (lv_anonymousElementType_1_1= ruleBooleanType | lv_anonymousElementType_1_2= ruleStringType )
                             int alt66=2;
                             int LA66_0 = input.LA(1);
 
@@ -11644,15 +11644,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                             }
                             switch (alt66) {
                                 case 1 :
-                                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4002:3: lv_definedElementType_1_1= ruleBooleanType
+                                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4002:3: lv_anonymousElementType_1_1= ruleBooleanType
                                     {
                                     if ( state.backtracking==0 ) {
                                        
-                                      	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+                                      	        newCompositeNode(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
                                       	    
                                     }
                                     pushFollow(FOLLOW_ruleBooleanType_in_ruleArrayType8898);
-                                    lv_definedElementType_1_1=ruleBooleanType();
+                                    lv_anonymousElementType_1_1=ruleBooleanType();
 
                                     state._fsp--;
                                     if (state.failed) return current;
@@ -11663,8 +11663,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                                       	        }
                                              		set(
                                              			current, 
-                                             			"definedElementType",
-                                              		lv_definedElementType_1_1, 
+                                             			"anonymousElementType",
+                                              		lv_anonymousElementType_1_1, 
                                               		"BooleanType");
                                       	        afterParserOrEnumRuleCall();
                                       	    
@@ -11673,15 +11673,15 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4017:8: lv_definedElementType_1_2= ruleStringType
+                                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4017:8: lv_anonymousElementType_1_2= ruleStringType
                                     {
                                     if ( state.backtracking==0 ) {
                                        
-                                      	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+                                      	        newCompositeNode(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
                                       	    
                                     }
                                     pushFollow(FOLLOW_ruleStringType_in_ruleArrayType8917);
-                                    lv_definedElementType_1_2=ruleStringType();
+                                    lv_anonymousElementType_1_2=ruleStringType();
 
                                     state._fsp--;
                                     if (state.failed) return current;
@@ -11692,8 +11692,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
                                       	        }
                                              		set(
                                              			current, 
-                                             			"definedElementType",
-                                              		lv_definedElementType_1_2, 
+                                             			"anonymousElementType",
+                                              		lv_anonymousElementType_1_2, 
                                               		"StringType");
                                       	        afterParserOrEnumRuleCall();
                                       	    
@@ -11931,14 +11931,14 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTensorType"
-    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4114:1: ruleTensorType returns [EObject current=null] : ( ( (lv_definedElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' ) ;
+    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4114:1: ruleTensorType returns [EObject current=null] : ( ( (lv_anonymousElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' ) ;
     public final EObject ruleTensorType() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
-        EObject lv_definedElementType_0_0 = null;
+        EObject lv_anonymousElementType_0_0 = null;
 
         EObject lv_dimensions_2_0 = null;
 
@@ -11948,25 +11948,25 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4117:28: ( ( ( (lv_definedElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:1: ( ( (lv_definedElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4117:28: ( ( ( (lv_anonymousElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:1: ( ( (lv_anonymousElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:1: ( ( (lv_definedElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:2: ( (lv_definedElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:1: ( ( (lv_anonymousElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:2: ( (lv_anonymousElementType_0_0= ruleNumericType ) ) otherlv_1= '[' ( (lv_dimensions_2_0= ruleArrayDimension ) ) (otherlv_3= ',' ( (lv_dimensions_4_0= ruleArrayDimension ) ) )* otherlv_5= ']'
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:2: ( (lv_definedElementType_0_0= ruleNumericType ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4119:1: (lv_definedElementType_0_0= ruleNumericType )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4118:2: ( (lv_anonymousElementType_0_0= ruleNumericType ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4119:1: (lv_anonymousElementType_0_0= ruleNumericType )
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4119:1: (lv_definedElementType_0_0= ruleNumericType )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4120:3: lv_definedElementType_0_0= ruleNumericType
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4119:1: (lv_anonymousElementType_0_0= ruleNumericType )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:4120:3: lv_anonymousElementType_0_0= ruleNumericType
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleNumericType_in_ruleTensorType9122);
-            lv_definedElementType_0_0=ruleNumericType();
+            lv_anonymousElementType_0_0=ruleNumericType();
 
             state._fsp--;
             if (state.failed) return current;
@@ -11977,8 +11977,8 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
               	        }
                      		set(
                      			current, 
-                     			"definedElementType",
-                      		lv_definedElementType_0_0, 
+                     			"anonymousElementType",
+                      		lv_anonymousElementType_0_0, 
                       		"NumericType");
               	        afterParserOrEnumRuleCall();
               	    
@@ -30360,7 +30360,7 @@ public class InternalDconfigParser extends AbstractInternalAntlrParser {
             this.transition = DFA62_transition;
         }
         public String getDescription() {
-            return "3521:1: (lv_definedType_0_1= rulePrimitiveType | lv_definedType_0_2= ruleArrayType | lv_definedType_0_3= ruleStructType )";
+            return "3521:1: (lv_anonymousType_0_1= rulePrimitiveType | lv_anonymousType_0_2= ruleArrayType | lv_anonymousType_0_3= ruleStructType )";
         }
     }
     static final String DFA87_eotS =

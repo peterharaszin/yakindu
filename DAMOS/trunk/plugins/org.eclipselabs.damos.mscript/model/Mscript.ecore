@@ -115,7 +115,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecifier">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definedType" eType="#//DataType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousType" eType="#//DataType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpression" eSuperTypes="#//Expression">
@@ -480,7 +480,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//DataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definedElementType" eType="#//DataType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousElementType" eType="#//DataType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
         eType="#//ArrayDimension" containment="true"/>

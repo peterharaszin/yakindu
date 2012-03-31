@@ -1572,46 +1572,46 @@ ruleDataTypeSpecifier returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
 	    }
-		lv_definedType_0_1=rulePrimitiveType		{
+		lv_anonymousType_0_1=rulePrimitiveType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"definedType",
-        		lv_definedType_0_1, 
+       			"anonymousType",
+        		lv_anonymousType_0_1, 
         		"PrimitiveType");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeArrayTypeParserRuleCall_0_0_1()); 
+	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
 	    }
-		lv_definedType_0_2=ruleArrayType		{
+		lv_anonymousType_0_2=ruleArrayType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"definedType",
-        		lv_definedType_0_2, 
+       			"anonymousType",
+        		lv_anonymousType_0_2, 
         		"ArrayType");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeStructTypeParserRuleCall_0_0_2()); 
+	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
 	    }
-		lv_definedType_0_3=ruleStructType		{
+		lv_anonymousType_0_3=ruleStructType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"definedType",
-        		lv_definedType_0_3, 
+       			"anonymousType",
+        		lv_anonymousType_0_3, 
         		"StructType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2052,31 +2052,31 @@ ruleBooleanType
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
+	        newCompositeNode(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
 	    }
-		lv_definedElementType_1_1=ruleBooleanType		{
+		lv_anonymousElementType_1_1=ruleBooleanType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArrayTypeRule());
 	        }
        		set(
        			$current, 
-       			"definedElementType",
-        		lv_definedElementType_1_1, 
+       			"anonymousElementType",
+        		lv_anonymousElementType_1_1, 
         		"BooleanType");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+	        newCompositeNode(grammarAccess.getArrayTypeAccess().getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
 	    }
-		lv_definedElementType_1_2=ruleStringType		{
+		lv_anonymousElementType_1_2=ruleStringType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArrayTypeRule());
 	        }
        		set(
        			$current, 
-       			"definedElementType",
-        		lv_definedElementType_1_2, 
+       			"anonymousElementType",
+        		lv_anonymousElementType_1_2, 
         		"StringType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2170,16 +2170,16 @@ ruleTensorType returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTensorTypeAccess().getDefinedElementTypeNumericTypeParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getTensorTypeAccess().getAnonymousElementTypeNumericTypeParserRuleCall_0_0()); 
 	    }
-		lv_definedElementType_0_0=ruleNumericType		{
+		lv_anonymousElementType_0_0=ruleNumericType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTensorTypeRule());
 	        }
        		set(
        			$current, 
-       			"definedElementType",
-        		lv_definedElementType_0_0, 
+       			"anonymousElementType",
+        		lv_anonymousElementType_0_0, 
         		"NumericType");
 	        afterParserOrEnumRuleCall();
 	    }

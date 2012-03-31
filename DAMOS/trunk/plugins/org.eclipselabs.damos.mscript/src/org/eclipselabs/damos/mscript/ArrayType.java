@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getElementType <em>Element Type</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDefinedElementType <em>Defined Element Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType <em>Anonymous Element Type</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isDimensional <em>Dimensional</em>}</li>
@@ -57,30 +57,30 @@ public interface ArrayType extends DataType {
 	void setElementType(DataType value);
 
 	/**
-	 * Returns the value of the '<em><b>Defined Element Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Anonymous Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defined Element Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defined Element Type</em>' containment reference.
-	 * @see #setDefinedElementType(DataType)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_DefinedElementType()
+	 * @return the value of the '<em>Anonymous Element Type</em>' containment reference.
+	 * @see #setAnonymousElementType(DataType)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_AnonymousElementType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataType getDefinedElementType();
+	DataType getAnonymousElementType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getDefinedElementType <em>Defined Element Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType <em>Anonymous Element Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Defined Element Type</em>' containment reference.
-	 * @see #getDefinedElementType()
+	 * @param value the new value of the '<em>Anonymous Element Type</em>' containment reference.
+	 * @see #getAnonymousElementType()
 	 * @generated
 	 */
-	void setDefinedElementType(DataType value);
+	void setAnonymousElementType(DataType value);
 
 	/**
 	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.

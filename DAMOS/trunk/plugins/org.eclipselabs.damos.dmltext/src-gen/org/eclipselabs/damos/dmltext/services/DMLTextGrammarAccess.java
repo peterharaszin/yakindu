@@ -1576,7 +1576,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	definedType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
 	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return gaMscript.getDataTypeSpecifierAccess();
 	}
@@ -1666,7 +1666,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+	//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
 	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.ArrayTypeElements getArrayTypeAccess() {
 		return gaMscript.getArrayTypeAccess();
@@ -1677,7 +1677,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TensorType:
-	//	definedElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.TensorTypeElements getTensorTypeAccess() {
 		return gaMscript.getTensorTypeAccess();
 	}

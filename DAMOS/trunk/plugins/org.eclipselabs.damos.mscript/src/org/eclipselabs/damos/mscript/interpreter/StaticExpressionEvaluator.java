@@ -662,7 +662,7 @@ public class StaticExpressionEvaluator {
 					StructMember member = MscriptFactory.eINSTANCE.createStructMember();
 					member.setName(constructionMember.getName());
 					DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-					dataTypeSpecifier.setDefinedType(EcoreUtil.copy(value.getDataType()));
+					dataTypeSpecifier.setAnonymousType(EcoreUtil.copy(value.getDataType()));
 					member.setTypeSpecifier(dataTypeSpecifier);
 					structType.getMembers().add(member);
 					

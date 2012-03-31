@@ -401,7 +401,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeSpecifier"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <elements xsi:type="xtext:Assignment" feature="definedType" operator="=">
+      <elements xsi:type="xtext:Assignment" feature="anonymousType" operator="=">
         <terminal xsi:type="xtext:Alternatives">
           <elements xsi:type="xtext:RuleCall" rule="//@rules.21"/>
           <elements xsi:type="xtext:RuleCall" rule="//@rules.29"/>
@@ -538,7 +538,7 @@
       <elements xsi:type="xtext:Group">
         <elements xsi:type="xtext:Group" predicated="true">
           <elements xsi:type="xtext:Alternatives">
-            <elements xsi:type="xtext:Assignment" feature="definedElementType" operator="=">
+            <elements xsi:type="xtext:Assignment" feature="anonymousElementType" operator="=">
               <terminal xsi:type="xtext:Alternatives">
                 <elements xsi:type="xtext:RuleCall" rule="//@rules.27"/>
                 <elements xsi:type="xtext:RuleCall" rule="//@rules.28"/>
@@ -573,7 +573,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TensorType"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="definedElementType" operator="=">
+      <elements xsi:type="xtext:Assignment" feature="anonymousElementType" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.22"/>
       </elements>
       <elements xsi:type="xtext:Keyword" value="["/>

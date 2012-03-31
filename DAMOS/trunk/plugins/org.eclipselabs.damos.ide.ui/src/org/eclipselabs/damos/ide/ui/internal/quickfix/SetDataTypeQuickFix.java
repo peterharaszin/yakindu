@@ -59,7 +59,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 			protected void doExecute() {
 				MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 				DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-				dataTypeSpecifier.setDefinedType(createDataType());
+				dataTypeSpecifier.setAnonymousType(createDataType());
 				dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 				DMLTextUtil.setText(dataTypeSpecification, getDataTypeName());
 

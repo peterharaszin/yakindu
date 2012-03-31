@@ -913,13 +913,13 @@ public interface MscriptPackage extends EPackage {
 	int DATA_TYPE_SPECIFIER__TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Defined Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Anonymous Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_SPECIFIER__DEFINED_TYPE = 1;
+	int DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Data Type Specifier</em>' class.
@@ -3272,13 +3272,13 @@ public interface MscriptPackage extends EPackage {
 	int ARRAY_TYPE__ELEMENT_TYPE = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Defined Element Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Anonymous Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__DEFINED_ELEMENT_TYPE = DATA_TYPE_FEATURE_COUNT + 1;
+	int ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dimensions</b></em>' containment reference list.
@@ -3345,13 +3345,13 @@ public interface MscriptPackage extends EPackage {
 	int TENSOR_TYPE__ELEMENT_TYPE = ARRAY_TYPE__ELEMENT_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Defined Element Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Anonymous Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TENSOR_TYPE__DEFINED_ELEMENT_TYPE = ARRAY_TYPE__DEFINED_ELEMENT_TYPE;
+	int TENSOR_TYPE__ANONYMOUS_ELEMENT_TYPE = ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Dimensions</b></em>' containment reference list.
@@ -4629,15 +4629,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getDataTypeSpecifier_Type();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getDefinedType <em>Defined Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.DataTypeSpecifier#getAnonymousType <em>Anonymous Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Defined Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.DataTypeSpecifier#getDefinedType()
+	 * @return the meta object for the containment reference '<em>Anonymous Type</em>'.
+	 * @see org.eclipselabs.damos.mscript.DataTypeSpecifier#getAnonymousType()
 	 * @see #getDataTypeSpecifier()
 	 * @generated
 	 */
-	EReference getDataTypeSpecifier_DefinedType();
+	EReference getDataTypeSpecifier_AnonymousType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LetExpression <em>Let Expression</em>}'.
@@ -6394,15 +6394,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getArrayType_ElementType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ArrayType#getDefinedElementType <em>Defined Element Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType <em>Anonymous Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Defined Element Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.ArrayType#getDefinedElementType()
+	 * @return the meta object for the containment reference '<em>Anonymous Element Type</em>'.
+	 * @see org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType()
 	 * @see #getArrayType()
 	 * @generated
 	 */
-	EReference getArrayType_DefinedElementType();
+	EReference getArrayType_AnonymousElementType();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}'.
@@ -7491,12 +7491,12 @@ public interface MscriptPackage extends EPackage {
 		EReference DATA_TYPE_SPECIFIER__TYPE = eINSTANCE.getDataTypeSpecifier_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Defined Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Anonymous Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_TYPE_SPECIFIER__DEFINED_TYPE = eINSTANCE.getDataTypeSpecifier_DefinedType();
+		EReference DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE = eINSTANCE.getDataTypeSpecifier_AnonymousType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionImpl <em>Let Expression</em>}' class.
@@ -8971,12 +8971,12 @@ public interface MscriptPackage extends EPackage {
 		EReference ARRAY_TYPE__ELEMENT_TYPE = eINSTANCE.getArrayType_ElementType();
 
 		/**
-		 * The meta object literal for the '<em><b>Defined Element Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Anonymous Element Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ARRAY_TYPE__DEFINED_ELEMENT_TYPE = eINSTANCE.getArrayType_DefinedElementType();
+		EReference ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE = eINSTANCE.getArrayType_AnonymousElementType();
 
 		/**
 		 * The meta object literal for the '<em><b>Dimensions</b></em>' containment reference list feature.

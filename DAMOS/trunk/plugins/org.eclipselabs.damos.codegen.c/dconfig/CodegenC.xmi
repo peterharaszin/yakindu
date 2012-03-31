@@ -3,34 +3,34 @@
   <members xsi:type="dconfig:SelectionPropertyOption" name="DefaultGenerator">
     <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="projectName">
       <typeSpecifier>
-        <definedType xsi:type="mscript:StringType"/>
+        <anonymousType xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
     <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="sourceFolder">
       <typeSpecifier>
-        <definedType xsi:type="mscript:StringType"/>
+        <anonymousType xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
     <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="headerFolder">
       <typeSpecifier>
-        <definedType xsi:type="mscript:StringType"/>
+        <anonymousType xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
     <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemSourceFile">
       <typeSpecifier>
-        <definedType xsi:type="mscript:StringType"/>
+        <anonymousType xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
     <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemHeaderFile">
       <typeSpecifier>
-        <definedType xsi:type="mscript:StringType"/>
+        <anonymousType xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
     <target href="../../org.eclipselabs.damos.codegen/dconfig/Codegen.xmi#//@members.0"/>
   </members>
   <members xsi:type="dconfig:SimplePropertyDeclaration" name="prefix">
     <typeSpecifier>
-      <definedType xsi:type="mscript:StringType"/>
+      <anonymousType xsi:type="mscript:StringType"/>
     </typeSpecifier>
   </members>
 </dconfig:ConfigurationDefinition>

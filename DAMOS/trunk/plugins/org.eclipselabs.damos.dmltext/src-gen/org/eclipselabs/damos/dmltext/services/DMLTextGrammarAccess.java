@@ -1374,7 +1374,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
-	//	DataTypeDeclaration | FunctionDeclaration;
+	//	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
 	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
 		return gaMscript.getDeclarationAccess();
 	}
@@ -1386,13 +1386,34 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * DataTypeDeclaration
 	// * / DataTypeDeclaration:
-	//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
+	//	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+	//	typeSpecifier=StructDeclarationTypeSpecifier;
 	public MscriptGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
 		return gaMscript.getDataTypeDeclarationAccess();
 	}
 	
 	public ParserRule getDataTypeDeclarationRule() {
 		return getDataTypeDeclarationAccess().getRule();
+	}
+
+	//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
+	//	anonymousType=StructDeclarationType;
+	public MscriptGrammarAccess.StructDeclarationTypeSpecifierElements getStructDeclarationTypeSpecifierAccess() {
+		return gaMscript.getStructDeclarationTypeSpecifierAccess();
+	}
+	
+	public ParserRule getStructDeclarationTypeSpecifierRule() {
+		return getStructDeclarationTypeSpecifierAccess().getRule();
+	}
+
+	//StructDeclarationType returns StructType:
+	//	"{" members+=StructMember ("," members+=StructMember)* "}";
+	public MscriptGrammarAccess.StructDeclarationTypeElements getStructDeclarationTypeAccess() {
+		return gaMscript.getStructDeclarationTypeAccess();
+	}
+	
+	public ParserRule getStructDeclarationTypeRule() {
+		return getStructDeclarationTypeAccess().getRule();
 	}
 
 	/// *
@@ -1416,30 +1437,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEnumerationLiteralDeclarationRule() {
 		return getEnumerationLiteralDeclarationAccess().getRule();
-	}
-
-	/// *
-	// * Typedef
-	// * / TypedefDeclaration:
-	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID;
-	public MscriptGrammarAccess.TypedefDeclarationElements getTypedefDeclarationAccess() {
-		return gaMscript.getTypedefDeclarationAccess();
-	}
-	
-	public ParserRule getTypedefDeclarationRule() {
-		return getTypedefDeclarationAccess().getRule();
-	}
-
-	/// *
-	// * Struct
-	// * / StructDeclaration:
-	//	"struct" name=ValidID "{" members+=StructMember ("," members+=StructMember)* "}";
-	public MscriptGrammarAccess.StructDeclarationElements getStructDeclarationAccess() {
-		return gaMscript.getStructDeclarationAccess();
-	}
-	
-	public ParserRule getStructDeclarationRule() {
-		return getStructDeclarationAccess().getRule();
 	}
 
 	/// *
@@ -1576,7 +1573,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
 	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return gaMscript.getDataTypeSpecifierAccess();
 	}
@@ -1666,8 +1663,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
-	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.ArrayTypeElements getArrayTypeAccess() {
 		return gaMscript.getArrayTypeAccess();
 	}
@@ -1676,14 +1672,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//TensorType:
-	//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
-	public MscriptGrammarAccess.TensorTypeElements getTensorTypeAccess() {
-		return gaMscript.getTensorTypeAccess();
+	//ArrayDataTypeSpecifier returns DataTypeSpecifier:
+	//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	public MscriptGrammarAccess.ArrayDataTypeSpecifierElements getArrayDataTypeSpecifierAccess() {
+		return gaMscript.getArrayDataTypeSpecifierAccess();
 	}
 	
-	public ParserRule getTensorTypeRule() {
-		return getTensorTypeAccess().getRule();
+	public ParserRule getArrayDataTypeSpecifierRule() {
+		return getArrayDataTypeSpecifierAccess().getRule();
 	}
 
 	//ArrayDimension:

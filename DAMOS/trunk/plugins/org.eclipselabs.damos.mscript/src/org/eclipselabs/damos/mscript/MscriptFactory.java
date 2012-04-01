@@ -44,6 +44,15 @@ public interface MscriptFactory extends EFactory {
 	ImportDeclaration createImportDeclaration();
 
 	/**
+	 * Returns a new object of class '<em>Data Type Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Type Declaration</em>'.
+	 * @generated
+	 */
+	DataTypeDeclaration createDataTypeDeclaration();
+
+	/**
 	 * Returns a new object of class '<em>Enumeration Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,15 +69,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	EnumerationLiteralDeclaration createEnumerationLiteralDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Typedef Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Typedef Declaration</em>'.
-	 * @generated
-	 */
-	TypedefDeclaration createTypedefDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Struct Declaration</em>'.
@@ -780,15 +780,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	ArrayType createArrayType();
-
-	/**
-	 * Returns a new object of class '<em>Tensor Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Tensor Type</em>'.
-	 * @generated
-	 */
-	TensorType createTensorType();
 
 	/**
 	 * Returns a new object of class '<em>Array Dimension</em>'.

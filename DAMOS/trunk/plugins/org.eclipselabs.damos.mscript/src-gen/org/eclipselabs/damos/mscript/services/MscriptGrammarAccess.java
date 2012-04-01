@@ -84,46 +84,152 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Declaration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cDataTypeDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cFunctionDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cEnumerationDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cFunctionDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Declaration:
-		//	DataTypeDeclaration | FunctionDeclaration;
+		//	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
 		public ParserRule getRule() { return rule; }
 
-		//DataTypeDeclaration | FunctionDeclaration
+		//DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//DataTypeDeclaration
 		public RuleCall getDataTypeDeclarationParserRuleCall_0() { return cDataTypeDeclarationParserRuleCall_0; }
 
+		//EnumerationDeclaration
+		public RuleCall getEnumerationDeclarationParserRuleCall_1() { return cEnumerationDeclarationParserRuleCall_1; }
+
 		//FunctionDeclaration
-		public RuleCall getFunctionDeclarationParserRuleCall_1() { return cFunctionDeclarationParserRuleCall_1; }
+		public RuleCall getFunctionDeclarationParserRuleCall_2() { return cFunctionDeclarationParserRuleCall_2; }
 	}
 
 	public class DataTypeDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDeclaration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cEnumerationDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStructDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cTypedefDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cTypeKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cTypeSpecifierAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_0_3_0 = (RuleCall)cTypeSpecifierAssignment_0_3.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cStructKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0 = (RuleCall)cTypeSpecifierAssignment_1_2.eContents().get(0);
 		
 		/// *
 		// * DataTypeDeclaration
 		// * / DataTypeDeclaration:
-		//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
+		//	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+		//	typeSpecifier=StructDeclarationTypeSpecifier;
 		public ParserRule getRule() { return rule; }
 
-		//EnumerationDeclaration | StructDeclaration | TypedefDeclaration
+		//"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+		//typeSpecifier=StructDeclarationTypeSpecifier
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//EnumerationDeclaration
-		public RuleCall getEnumerationDeclarationParserRuleCall_0() { return cEnumerationDeclarationParserRuleCall_0; }
+		//"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier
+		public Group getGroup_0() { return cGroup_0; }
 
-		//StructDeclaration
-		public RuleCall getStructDeclarationParserRuleCall_1() { return cStructDeclarationParserRuleCall_1; }
+		//"type"
+		public Keyword getTypeKeyword_0_0() { return cTypeKeyword_0_0; }
 
-		//TypedefDeclaration
-		public RuleCall getTypedefDeclarationParserRuleCall_2() { return cTypedefDeclarationParserRuleCall_2; }
+		//name=ValidID
+		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_0_1_0() { return cNameValidIDParserRuleCall_0_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_0_2() { return cEqualsSignKeyword_0_2; }
+
+		//typeSpecifier=DataTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_0_3() { return cTypeSpecifierAssignment_0_3; }
+
+		//DataTypeSpecifier
+		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_0_3_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_0_3_0; }
+
+		//"struct" name=ValidID typeSpecifier=StructDeclarationTypeSpecifier
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"struct"
+		public Keyword getStructKeyword_1_0() { return cStructKeyword_1_0; }
+
+		//name=ValidID
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_1_1_0() { return cNameValidIDParserRuleCall_1_1_0; }
+
+		//typeSpecifier=StructDeclarationTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_1_2() { return cTypeSpecifierAssignment_1_2; }
+
+		//StructDeclarationTypeSpecifier
+		public RuleCall getTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0() { return cTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0; }
+	}
+
+	public class StructDeclarationTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDeclarationTypeSpecifier");
+		private final Assignment cAnonymousTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cAnonymousTypeStructDeclarationTypeParserRuleCall_0 = (RuleCall)cAnonymousTypeAssignment.eContents().get(0);
+		
+		//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
+		//	anonymousType=StructDeclarationType;
+		public ParserRule getRule() { return rule; }
+
+		//anonymousType=StructDeclarationType
+		public Assignment getAnonymousTypeAssignment() { return cAnonymousTypeAssignment; }
+
+		//StructDeclarationType
+		public RuleCall getAnonymousTypeStructDeclarationTypeParserRuleCall_0() { return cAnonymousTypeStructDeclarationTypeParserRuleCall_0; }
+	}
+
+	public class StructDeclarationTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDeclarationType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cMembersAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMembersStructMemberParserRuleCall_1_0 = (RuleCall)cMembersAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cMembersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cMembersStructMemberParserRuleCall_2_1_0 = (RuleCall)cMembersAssignment_2_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//StructDeclarationType returns StructType:
+		//	"{" members+=StructMember ("," members+=StructMember)* "}";
+		public ParserRule getRule() { return rule; }
+
+		//"{" members+=StructMember ("," members+=StructMember)* "}"
+		public Group getGroup() { return cGroup; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+
+		//members+=StructMember
+		public Assignment getMembersAssignment_1() { return cMembersAssignment_1; }
+
+		//StructMember
+		public RuleCall getMembersStructMemberParserRuleCall_1_0() { return cMembersStructMemberParserRuleCall_1_0; }
+
+		//("," members+=StructMember)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//members+=StructMember
+		public Assignment getMembersAssignment_2_1() { return cMembersAssignment_2_1; }
+
+		//StructMember
+		public RuleCall getMembersStructMemberParserRuleCall_2_1_0() { return cMembersStructMemberParserRuleCall_2_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class EnumerationDeclarationElements extends AbstractParserRuleElementFinder {
@@ -204,98 +310,6 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_0() { return cNameValidIDParserRuleCall_0; }
-	}
-
-	public class TypedefDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedefDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTypedefKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeSpecifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeSpecifierAssignment_1.eContents().get(0);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		
-		/// *
-		// * Typedef
-		// * / TypedefDeclaration:
-		//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID;
-		public ParserRule getRule() { return rule; }
-
-		//"typedef" typeSpecifier=DataTypeSpecifier name=ValidID
-		public Group getGroup() { return cGroup; }
-
-		//"typedef"
-		public Keyword getTypedefKeyword_0() { return cTypedefKeyword_0; }
-
-		//typeSpecifier=DataTypeSpecifier
-		public Assignment getTypeSpecifierAssignment_1() { return cTypeSpecifierAssignment_1; }
-
-		//DataTypeSpecifier
-		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0; }
-
-		//name=ValidID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_2_0() { return cNameValidIDParserRuleCall_2_0; }
-	}
-
-	public class StructDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cStructKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cMembersAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMembersStructMemberParserRuleCall_3_0 = (RuleCall)cMembersAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMembersStructMemberParserRuleCall_4_1_0 = (RuleCall)cMembersAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		
-		/// *
-		// * Struct
-		// * / StructDeclaration:
-		//	"struct" name=ValidID "{" members+=StructMember ("," members+=StructMember)* "}";
-		public ParserRule getRule() { return rule; }
-
-		//"struct" name=ValidID "{" members+=StructMember ("," members+=StructMember)* "}"
-		public Group getGroup() { return cGroup; }
-
-		//"struct"
-		public Keyword getStructKeyword_0() { return cStructKeyword_0; }
-
-		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-
-		//members+=StructMember
-		public Assignment getMembersAssignment_3() { return cMembersAssignment_3; }
-
-		//StructMember
-		public RuleCall getMembersStructMemberParserRuleCall_3_0() { return cMembersStructMemberParserRuleCall_3_0; }
-
-		//("," members+=StructMember)*
-		public Group getGroup_4() { return cGroup_4; }
-
-		//","
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
-
-		//members+=StructMember
-		public Assignment getMembersAssignment_4_1() { return cMembersAssignment_4_1; }
-
-		//StructMember
-		public RuleCall getMembersStructMemberParserRuleCall_4_1_0() { return cMembersStructMemberParserRuleCall_4_1_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
 	public class FunctionDeclarationElements extends AbstractParserRuleElementFinder {
@@ -912,17 +926,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAnonymousTypePrimitiveTypeParserRuleCall_0_0_0 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(0);
 		private final RuleCall cAnonymousTypeArrayTypeParserRuleCall_0_0_1 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(1);
 		private final RuleCall cAnonymousTypeStructTypeParserRuleCall_0_0_2 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(2);
-		private final Assignment cTypeAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cTypeDataTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
-		private final RuleCall cTypeDataTypeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDataTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cTypeDeclarationAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final CrossReference cTypeDeclarationDataTypeDeclarationCrossReference_1_0 = (CrossReference)cTypeDeclarationAssignment_1.eContents().get(0);
+		private final RuleCall cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDeclarationDataTypeDeclarationCrossReference_1_0.eContents().get(1);
 		
 		/// *
 		// * Data type specifier
 		// * / DataTypeSpecifier:
-		//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+		//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
 		public ParserRule getRule() { return rule; }
 
-		//anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName]
+		//anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName]
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//anonymousType=(PrimitiveType | ArrayType | StructType)
@@ -940,14 +954,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//StructType
 		public RuleCall getAnonymousTypeStructTypeParserRuleCall_0_0_2() { return cAnonymousTypeStructTypeParserRuleCall_0_0_2; }
 
-		//type=[DataType|QualifiedName]
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		//typeDeclaration=[DataTypeDeclaration|QualifiedName]
+		public Assignment getTypeDeclarationAssignment_1() { return cTypeDeclarationAssignment_1; }
 
-		//[DataType|QualifiedName]
-		public CrossReference getTypeDataTypeCrossReference_1_0() { return cTypeDataTypeCrossReference_1_0; }
+		//[DataTypeDeclaration|QualifiedName]
+		public CrossReference getTypeDeclarationDataTypeDeclarationCrossReference_1_0() { return cTypeDeclarationDataTypeDeclarationCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getTypeDataTypeQualifiedNameParserRuleCall_1_0_1() { return cTypeDataTypeQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1() { return cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
@@ -1156,100 +1170,9 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ArrayTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTensorTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
-		private final Alternatives cAlternatives_1_0_0 = (Alternatives)cGroup_1_0.eContents().get(0);
-		private final Assignment cAnonymousElementTypeAssignment_1_0_0_0 = (Assignment)cAlternatives_1_0_0.eContents().get(0);
-		private final Alternatives cAnonymousElementTypeAlternatives_1_0_0_0_0 = (Alternatives)cAnonymousElementTypeAssignment_1_0_0_0.eContents().get(0);
-		private final RuleCall cAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0 = (RuleCall)cAnonymousElementTypeAlternatives_1_0_0_0_0.eContents().get(0);
-		private final RuleCall cAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1 = (RuleCall)cAnonymousElementTypeAlternatives_1_0_0_0_0.eContents().get(1);
-		private final Assignment cElementTypeAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
-		private final CrossReference cElementTypeDataTypeCrossReference_1_0_0_1_0 = (CrossReference)cElementTypeAssignment_1_0_0_1.eContents().get(0);
-		private final RuleCall cElementTypeDataTypeIDTerminalRuleCall_1_0_0_1_0_1 = (RuleCall)cElementTypeDataTypeCrossReference_1_0_0_1_0.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cDimensionsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cDimensionsArrayDimensionParserRuleCall_1_2_0 = (RuleCall)cDimensionsAssignment_1_2.eContents().get(0);
-		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
-		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
-		private final Assignment cDimensionsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
-		private final RuleCall cDimensionsArrayDimensionParserRuleCall_1_3_1_0 = (RuleCall)cDimensionsAssignment_1_3_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
-		
-		//ArrayType:
-		//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
-		//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
-		public ParserRule getRule() { return rule; }
-
-		//TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
-		//dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//TensorType
-		public RuleCall getTensorTypeParserRuleCall_0() { return cTensorTypeParserRuleCall_0; }
-
-		//=> (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
-		//dimensions+=ArrayDimension)* "]"
-		public Group getGroup_1() { return cGroup_1; }
-
-		//=> (anonymousElementType=(BooleanType | StringType) | elementType=[DataType])
-		public Group getGroup_1_0() { return cGroup_1_0; }
-
-		//anonymousElementType=(BooleanType | StringType) | elementType=[DataType]
-		public Alternatives getAlternatives_1_0_0() { return cAlternatives_1_0_0; }
-
-		//anonymousElementType=(BooleanType | StringType)
-		public Assignment getAnonymousElementTypeAssignment_1_0_0_0() { return cAnonymousElementTypeAssignment_1_0_0_0; }
-
-		//BooleanType | StringType
-		public Alternatives getAnonymousElementTypeAlternatives_1_0_0_0_0() { return cAnonymousElementTypeAlternatives_1_0_0_0_0; }
-
-		//BooleanType
-		public RuleCall getAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0() { return cAnonymousElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0; }
-
-		//StringType
-		public RuleCall getAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1() { return cAnonymousElementTypeStringTypeParserRuleCall_1_0_0_0_0_1; }
-
-		//elementType=[DataType]
-		public Assignment getElementTypeAssignment_1_0_0_1() { return cElementTypeAssignment_1_0_0_1; }
-
-		//[DataType]
-		public CrossReference getElementTypeDataTypeCrossReference_1_0_0_1_0() { return cElementTypeDataTypeCrossReference_1_0_0_1_0; }
-
-		//ID
-		public RuleCall getElementTypeDataTypeIDTerminalRuleCall_1_0_0_1_0_1() { return cElementTypeDataTypeIDTerminalRuleCall_1_0_0_1_0_1; }
-
-		//"["
-		public Keyword getLeftSquareBracketKeyword_1_1() { return cLeftSquareBracketKeyword_1_1; }
-
-		//dimensions+=ArrayDimension
-		public Assignment getDimensionsAssignment_1_2() { return cDimensionsAssignment_1_2; }
-
-		//ArrayDimension
-		public RuleCall getDimensionsArrayDimensionParserRuleCall_1_2_0() { return cDimensionsArrayDimensionParserRuleCall_1_2_0; }
-
-		//("," dimensions+=ArrayDimension)*
-		public Group getGroup_1_3() { return cGroup_1_3; }
-
-		//","
-		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
-
-		//dimensions+=ArrayDimension
-		public Assignment getDimensionsAssignment_1_3_1() { return cDimensionsAssignment_1_3_1; }
-
-		//ArrayDimension
-		public RuleCall getDimensionsArrayDimensionParserRuleCall_1_3_1_0() { return cDimensionsArrayDimensionParserRuleCall_1_3_1_0; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_1_4() { return cRightSquareBracketKeyword_1_4; }
-	}
-
-	public class TensorTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TensorType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAnonymousElementTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAnonymousElementTypeNumericTypeParserRuleCall_0_0 = (RuleCall)cAnonymousElementTypeAssignment_0.eContents().get(0);
+		private final Assignment cElementTypeSpecifierAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0 = (RuleCall)cElementTypeSpecifierAssignment_0.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDimensionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDimensionsArrayDimensionParserRuleCall_2_0 = (RuleCall)cDimensionsAssignment_2.eContents().get(0);
@@ -1259,18 +1182,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDimensionsArrayDimensionParserRuleCall_3_1_0 = (RuleCall)cDimensionsAssignment_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//TensorType:
-		//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+		//ArrayType:
+		//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 		public ParserRule getRule() { return rule; }
 
-		//anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
+		//elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 		public Group getGroup() { return cGroup; }
 
-		//anonymousElementType=NumericType
-		public Assignment getAnonymousElementTypeAssignment_0() { return cAnonymousElementTypeAssignment_0; }
+		//elementTypeSpecifier=ArrayDataTypeSpecifier
+		public Assignment getElementTypeSpecifierAssignment_0() { return cElementTypeSpecifierAssignment_0; }
 
-		//NumericType
-		public RuleCall getAnonymousElementTypeNumericTypeParserRuleCall_0_0() { return cAnonymousElementTypeNumericTypeParserRuleCall_0_0; }
+		//ArrayDataTypeSpecifier
+		public RuleCall getElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0() { return cElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
@@ -1295,6 +1218,38 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+
+	public class ArrayDataTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayDataTypeSpecifier");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cAnonymousTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cAnonymousTypePrimitiveTypeParserRuleCall_0_0 = (RuleCall)cAnonymousTypeAssignment_0.eContents().get(0);
+		private final Assignment cTypeDeclarationAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final CrossReference cTypeDeclarationDataTypeDeclarationCrossReference_1_0 = (CrossReference)cTypeDeclarationAssignment_1.eContents().get(0);
+		private final RuleCall cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDeclarationDataTypeDeclarationCrossReference_1_0.eContents().get(1);
+		
+		//ArrayDataTypeSpecifier returns DataTypeSpecifier:
+		//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+		public ParserRule getRule() { return rule; }
+
+		//anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName]
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//anonymousType=PrimitiveType
+		public Assignment getAnonymousTypeAssignment_0() { return cAnonymousTypeAssignment_0; }
+
+		//PrimitiveType
+		public RuleCall getAnonymousTypePrimitiveTypeParserRuleCall_0_0() { return cAnonymousTypePrimitiveTypeParserRuleCall_0_0; }
+
+		//typeDeclaration=[DataTypeDeclaration|QualifiedName]
+		public Assignment getTypeDeclarationAssignment_1() { return cTypeDeclarationAssignment_1; }
+
+		//[DataTypeDeclaration|QualifiedName]
+		public CrossReference getTypeDeclarationDataTypeDeclarationCrossReference_1_0() { return cTypeDeclarationDataTypeDeclarationCrossReference_1_0; }
+
+		//QualifiedName
+		public RuleCall getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1() { return cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1; }
 	}
 
 	public class ArrayDimensionElements extends AbstractParserRuleElementFinder {
@@ -4930,10 +4885,10 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private ImportDeclarationElements pImportDeclaration;
 	private DeclarationElements pDeclaration;
 	private DataTypeDeclarationElements pDataTypeDeclaration;
+	private StructDeclarationTypeSpecifierElements pStructDeclarationTypeSpecifier;
+	private StructDeclarationTypeElements pStructDeclarationType;
 	private EnumerationDeclarationElements pEnumerationDeclaration;
 	private EnumerationLiteralDeclarationElements pEnumerationLiteralDeclaration;
-	private TypedefDeclarationElements pTypedefDeclaration;
-	private StructDeclarationElements pStructDeclaration;
 	private FunctionDeclarationElements pFunctionDeclaration;
 	private FunctionKindElements unknownRuleFunctionKind;
 	private TemplateParameterDeclarationElements pTemplateParameterDeclaration;
@@ -4956,7 +4911,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanTypeElements pBooleanType;
 	private StringTypeElements pStringType;
 	private ArrayTypeElements pArrayType;
-	private TensorTypeElements pTensorType;
+	private ArrayDataTypeSpecifierElements pArrayDataTypeSpecifier;
 	private ArrayDimensionElements pArrayDimension;
 	private StructTypeElements pStructType;
 	private StructMemberElements pStructMember;
@@ -5093,7 +5048,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
-	//	DataTypeDeclaration | FunctionDeclaration;
+	//	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
 	public DeclarationElements getDeclarationAccess() {
 		return (pDeclaration != null) ? pDeclaration : (pDeclaration = new DeclarationElements());
 	}
@@ -5105,13 +5060,34 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * DataTypeDeclaration
 	// * / DataTypeDeclaration:
-	//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
+	//	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+	//	typeSpecifier=StructDeclarationTypeSpecifier;
 	public DataTypeDeclarationElements getDataTypeDeclarationAccess() {
 		return (pDataTypeDeclaration != null) ? pDataTypeDeclaration : (pDataTypeDeclaration = new DataTypeDeclarationElements());
 	}
 	
 	public ParserRule getDataTypeDeclarationRule() {
 		return getDataTypeDeclarationAccess().getRule();
+	}
+
+	//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
+	//	anonymousType=StructDeclarationType;
+	public StructDeclarationTypeSpecifierElements getStructDeclarationTypeSpecifierAccess() {
+		return (pStructDeclarationTypeSpecifier != null) ? pStructDeclarationTypeSpecifier : (pStructDeclarationTypeSpecifier = new StructDeclarationTypeSpecifierElements());
+	}
+	
+	public ParserRule getStructDeclarationTypeSpecifierRule() {
+		return getStructDeclarationTypeSpecifierAccess().getRule();
+	}
+
+	//StructDeclarationType returns StructType:
+	//	"{" members+=StructMember ("," members+=StructMember)* "}";
+	public StructDeclarationTypeElements getStructDeclarationTypeAccess() {
+		return (pStructDeclarationType != null) ? pStructDeclarationType : (pStructDeclarationType = new StructDeclarationTypeElements());
+	}
+	
+	public ParserRule getStructDeclarationTypeRule() {
+		return getStructDeclarationTypeAccess().getRule();
 	}
 
 	/// *
@@ -5135,30 +5111,6 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEnumerationLiteralDeclarationRule() {
 		return getEnumerationLiteralDeclarationAccess().getRule();
-	}
-
-	/// *
-	// * Typedef
-	// * / TypedefDeclaration:
-	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID;
-	public TypedefDeclarationElements getTypedefDeclarationAccess() {
-		return (pTypedefDeclaration != null) ? pTypedefDeclaration : (pTypedefDeclaration = new TypedefDeclarationElements());
-	}
-	
-	public ParserRule getTypedefDeclarationRule() {
-		return getTypedefDeclarationAccess().getRule();
-	}
-
-	/// *
-	// * Struct
-	// * / StructDeclaration:
-	//	"struct" name=ValidID "{" members+=StructMember ("," members+=StructMember)* "}";
-	public StructDeclarationElements getStructDeclarationAccess() {
-		return (pStructDeclaration != null) ? pStructDeclaration : (pStructDeclaration = new StructDeclarationElements());
-	}
-	
-	public ParserRule getStructDeclarationRule() {
-		return getStructDeclarationAccess().getRule();
 	}
 
 	/// *
@@ -5295,7 +5247,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
 	public DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return (pDataTypeSpecifier != null) ? pDataTypeSpecifier : (pDataTypeSpecifier = new DataTypeSpecifierElements());
 	}
@@ -5385,8 +5337,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	TensorType | => (anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) "["
-	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public ArrayTypeElements getArrayTypeAccess() {
 		return (pArrayType != null) ? pArrayType : (pArrayType = new ArrayTypeElements());
 	}
@@ -5395,14 +5346,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//TensorType:
-	//	anonymousElementType=NumericType "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
-	public TensorTypeElements getTensorTypeAccess() {
-		return (pTensorType != null) ? pTensorType : (pTensorType = new TensorTypeElements());
+	//ArrayDataTypeSpecifier returns DataTypeSpecifier:
+	//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	public ArrayDataTypeSpecifierElements getArrayDataTypeSpecifierAccess() {
+		return (pArrayDataTypeSpecifier != null) ? pArrayDataTypeSpecifier : (pArrayDataTypeSpecifier = new ArrayDataTypeSpecifierElements());
 	}
 	
-	public ParserRule getTensorTypeRule() {
-		return getTensorTypeAccess().getRule();
+	public ParserRule getArrayDataTypeSpecifierRule() {
+		return getArrayDataTypeSpecifierAccess().getRule();
 	}
 
 	//ArrayDimension:

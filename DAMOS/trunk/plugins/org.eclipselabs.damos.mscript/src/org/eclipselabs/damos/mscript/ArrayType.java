@@ -16,12 +16,14 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getElementType <em>Element Type</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType <em>Anonymous Element Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isTensor <em>Tensor</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isDimensional <em>Dimensional</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isMultidimensional <em>Multidimensional</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isVector <em>Vector</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isMatrix <em>Matrix</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,56 +33,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ArrayType extends DataType {
 	/**
-	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Element Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Element Type Specifier</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element Type</em>' reference.
-	 * @see #setElementType(DataType)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_ElementType()
-	 * @model
-	 * @generated
-	 */
-	DataType getElementType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getElementType <em>Element Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element Type</em>' reference.
-	 * @see #getElementType()
-	 * @generated
-	 */
-	void setElementType(DataType value);
-
-	/**
-	 * Returns the value of the '<em><b>Anonymous Element Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Defined Element Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Anonymous Element Type</em>' containment reference.
-	 * @see #setAnonymousElementType(DataType)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_AnonymousElementType()
+	 * @return the value of the '<em>Element Type Specifier</em>' containment reference.
+	 * @see #setElementTypeSpecifier(DataTypeSpecifier)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_ElementTypeSpecifier()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataType getAnonymousElementType();
+	DataTypeSpecifier getElementTypeSpecifier();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getAnonymousElementType <em>Anonymous Element Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Anonymous Element Type</em>' containment reference.
-	 * @see #getAnonymousElementType()
+	 * @param value the new value of the '<em>Element Type Specifier</em>' containment reference.
+	 * @see #getElementTypeSpecifier()
 	 * @generated
 	 */
-	void setAnonymousElementType(DataType value);
+	void setElementTypeSpecifier(DataTypeSpecifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Tensor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tensor</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tensor</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Tensor()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isTensor();
 
 	/**
 	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
@@ -142,5 +133,43 @@ public interface ArrayType extends DataType {
 	 * @generated
 	 */
 	boolean isMultidimensional();
+
+	/**
+	 * Returns the value of the '<em><b>Vector</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Vector</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vector</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Vector()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isVector();
+
+	/**
+	 * Returns the value of the '<em><b>Matrix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Matrix</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Matrix</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Matrix()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isMatrix();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	DataType getElementType();
 
 } // ArrayType

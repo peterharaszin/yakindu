@@ -60,7 +60,6 @@ import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -570,8 +569,8 @@ public class StaticExpressionEvaluator {
 				return new AnyValue(context.getComputationContext(), arrayType);
 			}
 
-			if (arrayType instanceof TensorType) {
-				return new VectorValue(context.getComputationContext(), (TensorType) arrayType, elements);
+			if (arrayType.isTensor()) {
+				return new VectorValue(context.getComputationContext(), arrayType, elements);
 			}
 			
 			return new ArrayValue(context.getComputationContext(), arrayType, elements);

@@ -60,9 +60,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 		switch (eClass.getClassifierID()) {
 			case MscriptPackage.MODULE: return createModule();
 			case MscriptPackage.IMPORT_DECLARATION: return createImportDeclaration();
+			case MscriptPackage.DATA_TYPE_DECLARATION: return createDataTypeDeclaration();
 			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
-			case MscriptPackage.TYPEDEF_DECLARATION: return createTypedefDeclaration();
 			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
 			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
@@ -142,7 +142,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.BOOLEAN_TYPE: return createBooleanType();
 			case MscriptPackage.STRING_TYPE: return createStringType();
 			case MscriptPackage.ARRAY_TYPE: return createArrayType();
-			case MscriptPackage.TENSOR_TYPE: return createTensorType();
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
 			case MscriptPackage.STRUCT_TYPE: return createStructType();
 			case MscriptPackage.STRUCT_MEMBER: return createStructMember();
@@ -261,6 +260,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataTypeDeclaration createDataTypeDeclaration() {
+		DataTypeDeclarationImpl dataTypeDeclaration = new DataTypeDeclarationImpl();
+		return dataTypeDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EnumerationDeclaration createEnumerationDeclaration() {
 		EnumerationDeclarationImpl enumerationDeclaration = new EnumerationDeclarationImpl();
 		return enumerationDeclaration;
@@ -274,16 +283,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public EnumerationLiteralDeclaration createEnumerationLiteralDeclaration() {
 		EnumerationLiteralDeclarationImpl enumerationLiteralDeclaration = new EnumerationLiteralDeclarationImpl();
 		return enumerationLiteralDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypedefDeclaration createTypedefDeclaration() {
-		TypedefDeclarationImpl typedefDeclaration = new TypedefDeclarationImpl();
-		return typedefDeclaration;
 	}
 
 	/**
@@ -1074,16 +1073,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ArrayType createArrayType() {
 		ArrayTypeImpl arrayType = new ArrayTypeImpl();
 		return arrayType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TensorType createTensorType() {
-		TensorTypeImpl tensorType = new TensorTypeImpl();
-		return tensorType;
 	}
 
 	/**

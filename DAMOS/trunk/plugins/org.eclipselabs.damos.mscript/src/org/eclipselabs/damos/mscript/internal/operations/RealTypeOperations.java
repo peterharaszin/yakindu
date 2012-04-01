@@ -12,13 +12,14 @@
 package org.eclipselabs.damos.mscript.internal.operations;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class RealTypeOperations extends PrimitiveTypeOperations {
 
@@ -28,8 +29,8 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 		}
 		
 		if (!(other instanceof NumericType)) {
-			if (other instanceof TensorType && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
-				return TensorTypeOperations.evaluateElementWiseScalar((TensorType) other, operator, realType);
+			if (TypeUtil.isTensor(other) && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
+				return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, realType);
 			}
 			return MscriptFactory.eINSTANCE.createInvalidDataType();
 		}

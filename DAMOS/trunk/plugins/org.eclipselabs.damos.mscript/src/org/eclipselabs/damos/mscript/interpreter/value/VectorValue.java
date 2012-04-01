@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -28,10 +28,10 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @param context
 	 * @param dataType
 	 */
-	public VectorValue(IComputationContext context, TensorType dataType, IValue[] elements) {
+	public VectorValue(IComputationContext context, ArrayType dataType, IValue[] elements) {
 		super(context, dataType);
 		if (!dataType.isVector()) {
-			throw new IllegalArgumentException("Tensor type must be vector");
+			throw new IllegalArgumentException("Array type must be vector");
 		}
 		if (elements.length != TypeUtil.getArraySize(dataType)) {
 			throw new IllegalArgumentException("Number of elements must be equal to vector size");
@@ -43,8 +43,8 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractExplicitDataTypeValue#getDataType()
 	 */
 	@Override
-	public TensorType getDataType() {
-		return (TensorType) super.getDataType();
+	public ArrayType getDataType() {
+		return (ArrayType) super.getDataType();
 	}
 
 	/* (non-Javadoc)
@@ -52,15 +52,15 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (!(dataType instanceof TensorType)) {
-			throw new IllegalArgumentException("Data type must be tensor type");
+		if (!TypeUtil.isTensor(dataType)) {
+			throw new IllegalArgumentException("Data type must be array type");
 		}
-		TensorType tensorType = (TensorType) dataType;
+		ArrayType arrayType = (ArrayType) dataType;
 		INumericValue[] convertedElements = new INumericValue[elements.length];
 		for (int i = 0; i < elements.length; ++i) {
-			convertedElements[i] = (INumericValue) elements[i].convert(tensorType.getElementType());
+			convertedElements[i] = (INumericValue) elements[i].convert(arrayType.getElementType());
 		}
-		return new VectorValue(getContext(), tensorType, convertedElements);
+		return new VectorValue(getContext(), arrayType, convertedElements);
 	}
 	
 	public int getSize() {
@@ -121,7 +121,7 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 				}
 				resultElements[i] = (INumericValue) resultElement;
 			}
-			return new VectorValue(getContext(), (TensorType) resultDataType, resultElements);
+			return new VectorValue(getContext(), (ArrayType) resultDataType, resultElements);
 		} else if (other instanceof VectorValue) {
 			VectorValue otherVectorValue = (VectorValue) other;
 			if (elements.length != otherVectorValue.elements.length) {

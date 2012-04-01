@@ -19,14 +19,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitFactor;
 
@@ -105,17 +104,10 @@ public class TypeUtil {
 	}
 	
 	private static ArrayType doCreateArrayType(DataType elementType) {
-		ArrayType arrayType;
-		if (elementType instanceof NumericType) {
-			arrayType = MscriptFactory.eINSTANCE.createTensorType();
-		} else {
-			arrayType = MscriptFactory.eINSTANCE.createArrayType();
-		}
-		if (elementType.eContainer() != null) {
-			arrayType.setElementType(elementType);
-		} else {
-			arrayType.setAnonymousElementType(elementType);
-		}
+		ArrayType arrayType = MscriptFactory.eINSTANCE.createArrayType();
+		DataTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
+		elementTypeSpecifier.setAnonymousType(elementType);
+		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
 		return arrayType;
 	}
 	
@@ -128,6 +120,12 @@ public class TypeUtil {
 			dimension.setSize(sizeExpression);
 			arrayType.getDimensions().add(dimension);
 		}
+	}
+	
+	public static void setArrayElementType(ArrayType arrayType, DataType elementType) {
+		DataTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
+		elementTypeSpecifier.setAnonymousType(elementType);
+		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -193,10 +191,17 @@ public class TypeUtil {
 		return null;
 	}
 	
+	public static boolean isTensor(DataType dataType) {
+		if (!(dataType instanceof ArrayType)) {
+			return false;
+		}
+		return ((ArrayType) dataType).isTensor();
+	}
+	
 	public static boolean isVector(DataType dataType) {
-		if (dataType instanceof TensorType) {
-			TensorType tensorType = (TensorType) dataType;
-			return tensorType.isVector();
+		if (dataType instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) dataType;
+			return arrayType.isVector();
 		}
 		return false;
 	}

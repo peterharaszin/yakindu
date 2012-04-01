@@ -13,8 +13,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeDeclaration;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.internal.operations.DataTypeSpecifierOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +25,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.DataTypeSpecifierImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.DataTypeSpecifierImpl#getTypeDeclaration <em>Type Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.DataTypeSpecifierImpl#getAnonymousType <em>Anonymous Type</em>}</li>
  * </ul>
  * </p>
@@ -32,14 +34,14 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  */
 public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implements DataTypeSpecifier {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The cached value of the '{@link #getTypeDeclaration() <em>Type Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTypeDeclaration()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataType type;
+	protected DataTypeDeclaration typeDeclaration;
 	/**
 	 * The cached value of the '{@link #getAnonymousType() <em>Anonymous Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -68,29 +70,21 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 		return MscriptPackage.Literals.DATA_TYPE_SPECIFIER;
 	}
 
-	public DataType getType() {
-		DataType type = getTypeGen();
-		if (type == null) {
-			type = getAnonymousType();
-		}
-		return type;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType getTypeGen() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (DataType)eResolveProxy(oldType);
-			if (type != oldType) {
+	public DataTypeDeclaration getTypeDeclaration() {
+		if (typeDeclaration != null && typeDeclaration.eIsProxy()) {
+			InternalEObject oldTypeDeclaration = (InternalEObject)typeDeclaration;
+			typeDeclaration = (DataTypeDeclaration)eResolveProxy(oldTypeDeclaration);
+			if (typeDeclaration != oldTypeDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.DATA_TYPE_SPECIFIER__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION, oldTypeDeclaration, typeDeclaration));
 			}
 		}
-		return type;
+		return typeDeclaration;
 	}
 
 	/**
@@ -98,8 +92,8 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType basicGetType() {
-		return type;
+	public DataTypeDeclaration basicGetTypeDeclaration() {
+		return typeDeclaration;
 	}
 
 	/**
@@ -107,11 +101,11 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(DataType newType) {
-		DataType oldType = type;
-		type = newType;
+	public void setTypeDeclaration(DataTypeDeclaration newTypeDeclaration) {
+		DataTypeDeclaration oldTypeDeclaration = typeDeclaration;
+		typeDeclaration = newTypeDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DATA_TYPE_SPECIFIER__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION, oldTypeDeclaration, typeDeclaration));
 	}
 
 	/**
@@ -160,6 +154,15 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataType getType() {
+		return DataTypeSpecifierOperations.getType(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,9 +182,9 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION:
+				if (resolve) return getTypeDeclaration();
+				return basicGetTypeDeclaration();
 			case MscriptPackage.DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE:
 				return getAnonymousType();
 		}
@@ -196,8 +199,8 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE:
-				setType((DataType)newValue);
+			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION:
+				setTypeDeclaration((DataTypeDeclaration)newValue);
 				return;
 			case MscriptPackage.DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE:
 				setAnonymousType((DataType)newValue);
@@ -214,8 +217,8 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE:
-				setType((DataType)null);
+			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION:
+				setTypeDeclaration((DataTypeDeclaration)null);
 				return;
 			case MscriptPackage.DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE:
 				setAnonymousType((DataType)null);
@@ -232,8 +235,8 @@ public class DataTypeSpecifierImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE:
-				return type != null;
+			case MscriptPackage.DATA_TYPE_SPECIFIER__TYPE_DECLARATION:
+				return typeDeclaration != null;
 			case MscriptPackage.DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE:
 				return anonymousType != null;
 		}

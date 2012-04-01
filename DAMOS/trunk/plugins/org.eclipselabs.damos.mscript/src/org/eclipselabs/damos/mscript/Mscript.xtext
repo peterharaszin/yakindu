@@ -25,6 +25,7 @@ ImportDeclaration:
 
 Declaration:
 	DataTypeDeclaration |
+	EnumerationDeclaration |
 	FunctionDeclaration;
 
 /*
@@ -32,9 +33,13 @@ Declaration:
  */
  
 DataTypeDeclaration:
-	EnumerationDeclaration |
-	StructDeclaration |
-	TypedefDeclaration;
+	('type' name=ValidID '=' typeSpecifier=DataTypeSpecifier) | ('struct' name=ValidID typeSpecifier=StructDeclarationTypeSpecifier);
+
+StructDeclarationTypeSpecifier returns DataTypeSpecifier:
+	anonymousType=StructDeclarationType;
+
+StructDeclarationType returns StructType:
+	'{' members+=StructMember (',' members+=StructMember)* '}';
 
 /*
  * Enumeration
@@ -48,22 +53,6 @@ EnumerationDeclaration:
 EnumerationLiteralDeclaration:
 	name=ValidID;
 	
-/*
- * Typedef
- */
- 
-TypedefDeclaration:
-	'typedef' typeSpecifier=DataTypeSpecifier name=ValidID;	
-
-/*
- * Struct
- */
-
-StructDeclaration:
-	'struct' name=ValidID '{'
-		members+=StructMember (',' members+=StructMember)*
-	'}'; 
-
 /*
  * Function
  */
@@ -125,7 +114,7 @@ Equation:
  */
 
 DataTypeSpecifier:
-	anonymousType=(PrimitiveType | ArrayType | StructType) | type=[DataType|QualifiedName];
+	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -152,10 +141,10 @@ StringType:
 	{StringType} 'string';
 	
 ArrayType:
-	TensorType | =>(anonymousElementType=(BooleanType | StringType) | elementType=[DataType]) '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	elementTypeSpecifier=ArrayDataTypeSpecifier '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
-TensorType:
-	anonymousElementType=NumericType '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+ArrayDataTypeSpecifier returns DataTypeSpecifier:
+	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
 	
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;

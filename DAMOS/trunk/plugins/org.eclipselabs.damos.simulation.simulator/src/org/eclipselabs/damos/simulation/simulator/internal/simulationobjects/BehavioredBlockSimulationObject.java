@@ -34,7 +34,6 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -212,11 +211,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
 		DataType dataType = interpreterContext.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
 		if (dataType instanceof ArrayType) {
-			if (dataType instanceof TensorType) {
-				TensorType tensorType = (TensorType) dataType;
-				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[TypeUtil.getArraySize(tensorType)]));
+			ArrayType arrayType = (ArrayType) dataType;
+			if (arrayType.isTensor()) {
+				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new INumericValue[TypeUtil.getArraySize(arrayType)]));
 			} else {
-				ArrayType arrayType = (ArrayType) dataType;
 				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
 			}
 		} else {

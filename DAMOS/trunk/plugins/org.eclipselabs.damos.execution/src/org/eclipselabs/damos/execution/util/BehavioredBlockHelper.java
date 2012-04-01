@@ -39,7 +39,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
@@ -244,8 +243,8 @@ public class BehavioredBlockHelper {
 					values.add(value);
 				}
 				ArrayType arrayType = TypeUtil.createArrayType(elementType, values.size());
-				if (arrayType instanceof TensorType) {
-					return new VectorValue(new ComputationContext(), (TensorType) arrayType, values.toArray(new INumericValue[values.size()]));
+				if (arrayType.isTensor()) {
+					return new VectorValue(new ComputationContext(), arrayType, values.toArray(new INumericValue[values.size()]));
 				}
 				return new ArrayValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
 			}

@@ -96,7 +96,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.ENUMERATION_DECLARATION: {
 				EnumerationDeclaration enumerationDeclaration = (EnumerationDeclaration)theEObject;
 				T result = caseEnumerationDeclaration(enumerationDeclaration);
-				if (result == null) result = caseDataTypeDeclaration(enumerationDeclaration);
 				if (result == null) result = caseDeclaration(enumerationDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -104,14 +103,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: {
 				EnumerationLiteralDeclaration enumerationLiteralDeclaration = (EnumerationLiteralDeclaration)theEObject;
 				T result = caseEnumerationLiteralDeclaration(enumerationLiteralDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.TYPEDEF_DECLARATION: {
-				TypedefDeclaration typedefDeclaration = (TypedefDeclaration)theEObject;
-				T result = caseTypedefDeclaration(typedefDeclaration);
-				if (result == null) result = caseDataTypeDeclaration(typedefDeclaration);
-				if (result == null) result = caseDeclaration(typedefDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -799,14 +790,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.TENSOR_TYPE: {
-				TensorType tensorType = (TensorType)theEObject;
-				T result = caseTensorType(tensorType);
-				if (result == null) result = caseArrayType(tensorType);
-				if (result == null) result = caseDataType(tensorType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MscriptPackage.ARRAY_DIMENSION: {
 				ArrayDimension arrayDimension = (ArrayDimension)theEObject;
 				T result = caseArrayDimension(arrayDimension);
@@ -1011,21 +994,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEnumerationLiteralDeclaration(EnumerationLiteralDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typedef Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typedef Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypedefDeclaration(TypedefDeclaration object) {
 		return null;
 	}
 
@@ -2346,21 +2314,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArrayType(ArrayType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Tensor Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Tensor Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTensorType(TensorType object) {
 		return null;
 	}
 

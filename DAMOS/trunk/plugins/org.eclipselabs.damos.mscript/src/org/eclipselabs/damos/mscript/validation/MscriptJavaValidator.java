@@ -1,8 +1,12 @@
 package org.eclipselabs.damos.mscript.validation;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
@@ -12,6 +16,8 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.BuiltinVariableDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeDeclaration;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
@@ -24,6 +30,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
+import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
@@ -182,6 +189,36 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 			result = false;
 		}
 		return result;
+	}
+	
+	@Check
+	public void checkCyclicDataTypeDeclaration(DataTypeDeclaration typeDeclaration) {
+		checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<DataTypeDeclaration>(Collections.singleton(typeDeclaration)));
+	}
+	
+	private void checkCyclicDataTypeDeclaration(DataTypeSpecifier dataTypeSpecifier, Set<DataTypeDeclaration> visitedTypeDeclarations) {
+		DataType anonymousType = dataTypeSpecifier.getAnonymousType();
+		if (anonymousType != null) {
+			if (!(anonymousType instanceof PrimitiveType)) {
+				for (TreeIterator<EObject> it = anonymousType.eAllContents(); it.hasNext();) {
+					EObject next = it.next();
+					if (next instanceof DataTypeSpecifier) {
+						checkCyclicDataTypeDeclaration((DataTypeSpecifier) next, new HashSet<DataTypeDeclaration>(visitedTypeDeclarations));
+					}
+				}
+			}
+		} else {
+			DataTypeDeclaration typeDeclaration = dataTypeSpecifier.getTypeDeclaration();
+			if (typeDeclaration != null && !typeDeclaration.eIsProxy()) {
+				if (visitedTypeDeclarations.add(typeDeclaration)) {
+					checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<DataTypeDeclaration>(visitedTypeDeclarations));
+				} else {
+					String message = "Cyclic data type declaration of " + typeDeclaration.getName();
+					error(message, typeDeclaration, MscriptPackage.eINSTANCE.getDeclaration_Name(), -1);
+					error(message, dataTypeSpecifier, null, -1);
+				}
+			}
+		}
 	}
 	
 }

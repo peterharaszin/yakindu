@@ -17,11 +17,11 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -70,14 +70,16 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 
 		Unit dimensionlessUnit = TypeUtil.createUnit();
 		
-		TensorType numeratorType = (TensorType) numerator.getDataType();
-		TensorType denominatorType = (TensorType) denominator.getDataType();
+		ArrayType numeratorType = (ArrayType) numerator.getDataType();
+		ArrayType denominatorType = (ArrayType) denominator.getDataType();
 		
-		if (numeratorType.getElementType().getUnit() == null || !numeratorType.getElementType().getUnit().isEquivalentTo(dimensionlessUnit, false)) {
+		NumericType numeratorElementType = (NumericType) numeratorType.getElementType();
+		if (numeratorElementType.getUnit() == null || !numeratorElementType.getUnit().isEquivalentTo(dimensionlessUnit, false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator coefficients must be dimensionless"));
 		}
 		
-		if (denominatorType.getElementType().getUnit() == null || !denominatorType.getElementType().getUnit().isEquivalentTo(dimensionlessUnit, false)) {
+		NumericType denominatorElementType = (NumericType) denominatorType.getElementType();
+		if (denominatorElementType.getUnit() == null || !denominatorElementType.getUnit().isEquivalentTo(dimensionlessUnit, false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator coefficients must be dimensionless"));
 		}
 

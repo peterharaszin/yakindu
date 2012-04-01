@@ -31,7 +31,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class EnumerationDeclarationImpl extends DataTypeDeclarationImpl implements EnumerationDeclaration {
+public class EnumerationDeclarationImpl extends DeclarationImpl implements EnumerationDeclaration {
 	/**
 	 * The cached value of the '{@link #getLiteralDeclarations() <em>Literal Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

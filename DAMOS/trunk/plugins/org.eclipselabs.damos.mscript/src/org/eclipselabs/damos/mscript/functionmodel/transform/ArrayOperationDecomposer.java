@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
@@ -28,7 +29,6 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -95,10 +95,10 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 				if (leftOperand instanceof VariableReference && rightOperand instanceof VariableReference) {
 					DataType leftDataType = getDataType(leftOperand);
 					DataType rightDataType = getDataType(rightOperand);
-					if (leftDataType instanceof TensorType && rightDataType instanceof TensorType) {
-						TensorType leftTensorType = (TensorType) leftDataType;
-						TensorType rightTensorType = (TensorType) rightDataType;
-						if (leftTensorType.isVector() && rightTensorType.isVector()) {
+					if (TypeUtil.isTensor(leftDataType) && TypeUtil.isTensor(rightDataType)) {
+						ArrayType leftArrayType = (ArrayType) leftDataType;
+						ArrayType rightArrayType = (ArrayType) rightDataType;
+						if (leftArrayType.isVector() && rightArrayType.isVector()) {
 							Expression transformedExpression = createVectorMultiplicationExpression((VariableReference) leftOperand, (VariableReference) rightOperand);
 							EcoreUtil.replace(multiplicativeExpression, transformedExpression);
 						}
@@ -111,18 +111,18 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 		private Expression createVectorMultiplicationExpression(VariableReference leftOperand, VariableReference rightOperand) {			
 			ParenthesizedExpression parenthesizedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 
-			TensorType leftTensorType = (TensorType) getDataType(leftOperand);
-			TensorType rightTensorType = (TensorType) getDataType(rightOperand);
+			ArrayType leftArrayType = (ArrayType) getDataType(leftOperand);
+			ArrayType rightArrayType = (ArrayType) getDataType(rightOperand);
 			
-			DataType resultDataType = leftTensorType.getElementType().evaluate(OperatorKind.MULTIPLY, rightTensorType.getElementType());
+			DataType resultDataType = leftArrayType.getElementType().evaluate(OperatorKind.MULTIPLY, rightArrayType.getElementType());
 
 			Expression rootExpression = null;
-			for (int i = 0; i < TypeUtil.getArraySize(leftTensorType); ++i) {
+			for (int i = 0; i < TypeUtil.getArraySize(leftArrayType); ++i) {
 				MultiplicativeExpression multiplicativeExpression = MscriptFactory.eINSTANCE.createMultiplicativeExpression();
 				setDataType(multiplicativeExpression, EcoreUtil.copy(resultDataType));
 				
-				Expression leftMultiplicationOperand = createArrayElementAccess(leftOperand, leftTensorType, i);
-				Expression rightMultiplicationOperand = createArrayElementAccess(rightOperand, rightTensorType, i);
+				Expression leftMultiplicationOperand = createArrayElementAccess(leftOperand, leftArrayType, i);
+				Expression rightMultiplicationOperand = createArrayElementAccess(rightOperand, rightArrayType, i);
 
 				multiplicativeExpression.setOperator(MultiplicativeOperator.MULTIPLY);
 				multiplicativeExpression.setLeftOperand(leftMultiplicationOperand);
@@ -149,25 +149,26 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 
 		/**
 		 * @param operand
-		 * @param tensorType
+		 * @param arrayType
 		 * @param index
 		 * @return
 		 */
-		private Expression createArrayElementAccess(VariableReference operand, TensorType tensorType, int index) {
+		private Expression createArrayElementAccess(VariableReference operand, ArrayType arrayType, int index) {
 			IValue value = context.getValue(operand);
 			if (value instanceof IArrayValue) {
 				IValue elementValue = ((IArrayValue) value).get(index);
 				if (elementValue instanceof ISimpleNumericValue) {
 					ISimpleNumericValue numericValue = (ISimpleNumericValue) elementValue;
-					if (tensorType.getElementType() instanceof RealType) {
+					DataType elementType = arrayType.getElementType();
+					if (elementType instanceof RealType) {
 						RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
-						realLiteral.setUnit(EcoreUtil.copy(tensorType.getElementType().getUnit()));
+						realLiteral.setUnit(EcoreUtil.copy(((RealType) elementType).getUnit()));
 						realLiteral.setValue(numericValue.doubleValue());
 						context.setValue(realLiteral, numericValue);
 						return realLiteral;
-					} else if (tensorType.getElementType() instanceof IntegerType) {
+					} else if (elementType instanceof IntegerType) {
 						IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
-						integerLiteral.setUnit(EcoreUtil.copy(tensorType.getElementType().getUnit()));
+						integerLiteral.setUnit(EcoreUtil.copy(((IntegerType) elementType).getUnit()));
 						integerLiteral.setValue(numericValue.longValue());
 						context.setValue(integerLiteral, numericValue);
 						return integerLiteral;
@@ -176,7 +177,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 			}
 			
 			VariableReference variableReference = EcoreUtil.copy(operand);
-			setDataType(variableReference, EcoreUtil.copy(tensorType));
+			setDataType(variableReference, EcoreUtil.copy(arrayType));
 			IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 			integerLiteral.setUnit(TypeUtil.createUnit());
 			integerLiteral.setValue(index);
@@ -188,7 +189,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 			ArraySubscript subscript = MscriptFactory.eINSTANCE.createArraySubscript();
 			subscript.setExpression(integerLiteral);
 			arrayElementAccess.getSubscripts().add(subscript);
-			setDataType(arrayElementAccess, EcoreUtil.copy(tensorType.getElementType()));
+			setDataType(arrayElementAccess, EcoreUtil.copy(arrayType.getElementType()));
 			return arrayElementAccess;
 		}
 

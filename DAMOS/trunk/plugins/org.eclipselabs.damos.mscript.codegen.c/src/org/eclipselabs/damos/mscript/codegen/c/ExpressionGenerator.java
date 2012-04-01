@@ -23,6 +23,7 @@ import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -41,7 +42,6 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
@@ -209,10 +209,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 				DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
 				
-				if (leftDataType instanceof NumericType && rightDataType instanceof TensorType) {
+				if (leftDataType instanceof NumericType && TypeUtil.isTensor(rightDataType)) {
 					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 				}
-				if (leftDataType instanceof TensorType && rightDataType instanceof NumericType) {
+				if (TypeUtil.isTensor(leftDataType) && rightDataType instanceof NumericType) {
 					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
 				}
 				
@@ -249,15 +249,15 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		private Boolean writeScalarMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
 				Expression tensorExpression) {
 			DataType scalarType = EcoreUtil.copy(getDataType(scalarExpression));
-			TensorType tensorType = (TensorType) getDataType(tensorExpression);
-			DataType elementType = EcoreUtil.copy(tensorType.getElementType());
-			TensorType resultType = EcoreUtil.copy((TensorType) getDataType(multiplicativeExpression));
+			ArrayType arrayType = (ArrayType) getDataType(tensorExpression);
+			DataType elementType = EcoreUtil.copy(arrayType.getElementType());
+			ArrayType resultType = EcoreUtil.copy((ArrayType) getDataType(multiplicativeExpression));
 			ScalarMultiplyCodeFragment codeFragment = (ScalarMultiplyCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new ScalarMultiplyCodeFragment(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
 			out.printf("%s(", codeFragment.getName());
 			doSwitch(scalarExpression);
 			out.print(", &(");
 			doSwitch(tensorExpression);
-			out.printf(").data[0], %d)", TypeUtil.getArraySize(tensorType));
+			out.printf(").data[0], %d)", TypeUtil.getArraySize(arrayType));
 			return true;
 		}
 

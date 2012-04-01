@@ -19,9 +19,9 @@ import org.eclipselabs.damos.common.math.jama.Matrix;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -139,7 +139,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		double[] coefficients = null;
 		IValue coefficientVector = ExpressionUtil.evaluateArgumentExpression(getComponent(), parameterName);
 
-		if (!(coefficientVector.getDataType() instanceof TensorType)) {
+		if (!(TypeUtil.isTensor(coefficientVector.getDataType()))) {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Parameter '"
 					+ parameterName + "' of block '" + getComponent().getName() + "' must be vector"));
 		}
@@ -149,10 +149,10 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 					+ parameterName + "' of block '" + getComponent().getName() + "' contains invalid value"));
 		}
 
-		TensorType tensorType = (TensorType) coefficientVector.getDataType();
+		ArrayType arrayType = (ArrayType) coefficientVector.getDataType();
 		IArrayValue arrayValue = (IArrayValue) coefficientVector;
 		
-		int arraySize = TypeUtil.getArraySize(tensorType);
+		int arraySize = TypeUtil.getArraySize(arrayType);
 		coefficients = new double[arraySize];
 		for (int i = 0; i < arraySize; ++i) {
 			IValue element = arrayValue.get(i);

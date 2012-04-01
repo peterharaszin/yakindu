@@ -44,7 +44,6 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -351,8 +350,8 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
-			if (arrayType instanceof TensorType) {
-				return new VectorValue(context.getComputationContext(), (TensorType) arrayType, (INumericValue[]) elements);
+			if (arrayType.isTensor()) {
+				return new VectorValue(context.getComputationContext(), arrayType, (INumericValue[]) elements);
 			}
 			
 			return new ArrayValue(context.getComputationContext(), arrayType, elements);

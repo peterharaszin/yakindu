@@ -93,10 +93,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createEnumerationLiteralDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseTypedefDeclaration(TypedefDeclaration object) {
-				return createTypedefDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseStructDeclaration(StructDeclaration object) {
 				return createStructDeclarationAdapter();
 			}
@@ -449,10 +445,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createArrayTypeAdapter();
 			}
 			@Override
-			public Adapter caseTensorType(TensorType object) {
-				return createTensorTypeAdapter();
-			}
-			@Override
 			public Adapter caseArrayDimension(ArrayDimension object) {
 				return createArrayDimensionAdapter();
 			}
@@ -613,20 +605,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnumerationLiteralDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TypedefDeclaration <em>Typedef Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.TypedefDeclaration
-	 * @generated
-	 */
-	public Adapter createTypedefDeclarationAdapter() {
 		return null;
 	}
 
@@ -1859,20 +1837,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArrayTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TensorType <em>Tensor Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.TensorType
-	 * @generated
-	 */
-	public Adapter createTensorTypeAdapter() {
 		return null;
 	}
 

@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface EnumerationDeclaration extends DataTypeDeclaration {
+public interface EnumerationDeclaration extends Declaration {
 	/**
 	 * Returns the value of the '<em><b>Literal Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.EnumerationLiteralDeclaration}.

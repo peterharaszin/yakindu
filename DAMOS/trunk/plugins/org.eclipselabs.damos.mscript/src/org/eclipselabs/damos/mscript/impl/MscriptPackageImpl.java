@@ -70,13 +70,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass typedefDeclarationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass structDeclarationEClass = null;
 
 	/**
@@ -693,13 +686,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass tensorTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass arrayDimensionEClass = null;
 
 	/**
@@ -1031,6 +1017,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDataTypeDeclaration_TypeSpecifier() {
+		return (EReference)dataTypeDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEnumerationDeclaration() {
 		return enumerationDeclarationEClass;
 	}
@@ -1060,24 +1055,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EAttribute getEnumerationLiteralDeclaration_Name() {
 		return (EAttribute)enumerationLiteralDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypedefDeclaration() {
-		return typedefDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedefDeclaration_TypeSpecifier() {
-		return (EReference)typedefDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1472,7 +1449,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataTypeSpecifier_Type() {
+	public EReference getDataTypeSpecifier_TypeDeclaration() {
 		return (EReference)dataTypeSpecifierEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2975,7 +2952,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArrayType_ElementType() {
+	public EReference getArrayType_ElementTypeSpecifier() {
 		return (EReference)arrayTypeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2984,8 +2961,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArrayType_AnonymousElementType() {
-		return (EReference)arrayTypeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getArrayType_Tensor() {
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3029,8 +3006,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTensorType() {
-		return tensorTypeEClass;
+	public EAttribute getArrayType_Vector() {
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3038,17 +3015,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTensorType_Vector() {
-		return (EAttribute)tensorTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTensorType_Matrix() {
-		return (EAttribute)tensorTypeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getArrayType_Matrix() {
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3496,15 +3464,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(declarationEClass, DECLARATION__NAME);
 
 		dataTypeDeclarationEClass = createEClass(DATA_TYPE_DECLARATION);
+		createEReference(dataTypeDeclarationEClass, DATA_TYPE_DECLARATION__TYPE_SPECIFIER);
 
 		enumerationDeclarationEClass = createEClass(ENUMERATION_DECLARATION);
 		createEReference(enumerationDeclarationEClass, ENUMERATION_DECLARATION__LITERAL_DECLARATIONS);
 
 		enumerationLiteralDeclarationEClass = createEClass(ENUMERATION_LITERAL_DECLARATION);
 		createEAttribute(enumerationLiteralDeclarationEClass, ENUMERATION_LITERAL_DECLARATION__NAME);
-
-		typedefDeclarationEClass = createEClass(TYPEDEF_DECLARATION);
-		createEReference(typedefDeclarationEClass, TYPEDEF_DECLARATION__TYPE_SPECIFIER);
 
 		structDeclarationEClass = createEClass(STRUCT_DECLARATION);
 
@@ -3564,7 +3530,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(equationEClass, EQUATION__RIGHT_HAND_SIDE);
 
 		dataTypeSpecifierEClass = createEClass(DATA_TYPE_SPECIFIER);
-		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__TYPE);
+		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__TYPE_DECLARATION);
 		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE);
 
 		letExpressionEClass = createEClass(LET_EXPRESSION);
@@ -3803,16 +3769,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stringTypeEClass = createEClass(STRING_TYPE);
 
 		arrayTypeEClass = createEClass(ARRAY_TYPE);
-		createEReference(arrayTypeEClass, ARRAY_TYPE__ELEMENT_TYPE);
-		createEReference(arrayTypeEClass, ARRAY_TYPE__ANONYMOUS_ELEMENT_TYPE);
+		createEReference(arrayTypeEClass, ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__TENSOR);
 		createEReference(arrayTypeEClass, ARRAY_TYPE__DIMENSIONS);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONALITY);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONAL);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__MULTIDIMENSIONAL);
-
-		tensorTypeEClass = createEClass(TENSOR_TYPE);
-		createEAttribute(tensorTypeEClass, TENSOR_TYPE__VECTOR);
-		createEAttribute(tensorTypeEClass, TENSOR_TYPE__MATRIX);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__VECTOR);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__MATRIX);
 
 		arrayDimensionEClass = createEClass(ARRAY_DIMENSION);
 		createEReference(arrayDimensionEClass, ARRAY_DIMENSION__SIZE);
@@ -3908,8 +3872,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		// Add supertypes to classes
 		dataTypeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
-		enumerationDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
-		typedefDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		enumerationDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		structDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
 		structDeclarationEClass.getESuperTypes().add(this.getStructType());
 		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
@@ -3988,7 +3951,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		booleanTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		stringTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		arrayTypeEClass.getESuperTypes().add(this.getDataType());
-		tensorTypeEClass.getESuperTypes().add(this.getArrayType());
 		structTypeEClass.getESuperTypes().add(this.getDataType());
 		expressionEClass.getESuperTypes().add(this.getEvaluable());
 		unitNumeratorEClass.getESuperTypes().add(this.getUnitProduct());
@@ -4012,16 +3974,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(declarationEClass, Declaration.class, "Declaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataTypeDeclarationEClass, DataTypeDeclaration.class, "DataTypeDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dataTypeDeclarationEClass, DataTypeDeclaration.class, "DataTypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDataTypeDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, DataTypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationDeclarationEClass, EnumerationDeclaration.class, "EnumerationDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnumerationDeclaration_LiteralDeclarations(), this.getEnumerationLiteralDeclaration(), null, "literalDeclarations", null, 0, -1, EnumerationDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationLiteralDeclarationEClass, EnumerationLiteralDeclaration.class, "EnumerationLiteralDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEnumerationLiteralDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumerationLiteralDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typedefDeclarationEClass, TypedefDeclaration.class, "TypedefDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedefDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypedefDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structDeclarationEClass, StructDeclaration.class, "StructDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4085,8 +4045,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getEquation_RightHandSide(), this.getExpression(), null, "rightHandSide", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataTypeSpecifierEClass, DataTypeSpecifier.class, "DataTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataTypeSpecifier_Type(), this.getDataType(), null, "type", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataTypeSpecifier_TypeDeclaration(), this.getDataTypeDeclaration(), null, "typeDeclaration", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataTypeSpecifier_AnonymousType(), this.getDataType(), null, "anonymousType", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(dataTypeSpecifierEClass, this.getDataType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLetExpression_Assignments(), this.getLetExpressionAssignment(), null, "assignments", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4342,16 +4304,16 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(stringTypeEClass, StringType.class, "StringType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getArrayType_ElementType(), this.getDataType(), null, "elementType", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getArrayType_AnonymousElementType(), this.getDataType(), null, "anonymousElementType", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrayType_ElementTypeSpecifier(), this.getDataTypeSpecifier(), null, "elementTypeSpecifier", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_Tensor(), ecorePackage.getEBoolean(), "tensor", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getArrayType_Dimensions(), this.getArrayDimension(), null, "dimensions", null, 0, -1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensionality(), ecorePackage.getEInt(), "dimensionality", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensional(), ecorePackage.getEBoolean(), "dimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Multidimensional(), ecorePackage.getEBoolean(), "multidimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_Vector(), ecorePackage.getEBoolean(), "vector", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_Matrix(), ecorePackage.getEBoolean(), "matrix", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(tensorTypeEClass, TensorType.class, "TensorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTensorType_Vector(), ecorePackage.getEBoolean(), "vector", null, 1, 1, TensorType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTensorType_Matrix(), ecorePackage.getEBoolean(), "matrix", null, 1, 1, TensorType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		addEOperation(arrayTypeEClass, this.getDataType(), "getElementType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(arrayDimensionEClass, ArrayDimension.class, "ArrayDimension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayDimension_Size(), this.getExpression(), null, "size", null, 0, 1, ArrayDimension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -30,7 +29,7 @@ public class ArrayValue extends AbstractExplicitDataTypeValue implements IArrayV
 	 */
 	public ArrayValue(IComputationContext context, ArrayType dataType, IValue[] elements) {
 		super(context, dataType);
-		if (dataType instanceof TensorType) {
+		if (dataType.isTensor()) {
 			throw new IllegalArgumentException("Array type must not be tensor type");
 		}
 		if (dataType.getDimensionality() == 1) {

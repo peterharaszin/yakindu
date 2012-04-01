@@ -16,18 +16,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataTypeDeclaration" abstract="true"
-      eSuperTypes="#//Declaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumerationDeclaration" eSuperTypes="#//DataTypeDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeDeclaration" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//DataTypeSpecifier"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumerationDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literalDeclarations" upperBound="-1"
         eType="#//EnumerationLiteralDeclaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteralDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedefDeclaration" eSuperTypes="#//DataTypeDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//DataTypeSpecifier"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructDeclaration" eSuperTypes="#//DataTypeDeclaration #//StructType"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//Declaration #//CallableElement">
@@ -114,7 +112,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecifier">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DataType"/>
+    <eOperations name="getType" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDeclaration" eType="#//DataTypeDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousType" eType="#//DataType"
         containment="true"/>
   </eClassifiers>
@@ -479,9 +478,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//DataType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//DataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousElementType" eType="#//DataType"
+    <eOperations name="getElementType" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeSpecifier" eType="#//DataTypeSpecifier"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tensor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
         eType="#//ArrayDimension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimensionality" lowerBound="1"
@@ -493,8 +495,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multidimensional" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TensorType" eSuperTypes="#//ArrayType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vector" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>

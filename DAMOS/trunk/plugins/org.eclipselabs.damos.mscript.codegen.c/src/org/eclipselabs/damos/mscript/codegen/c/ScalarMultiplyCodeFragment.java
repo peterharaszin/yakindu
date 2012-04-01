@@ -16,9 +16,9 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
-import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -34,7 +34,7 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 	private final ComputationModel computationModel;
 	private final DataType scalarType;
 	private final DataType elementType;
-	private final TensorType resultType;
+	private final ArrayType resultType;
 	
 	private String scalarTypeString;
 	private String elementTypeString;
@@ -51,7 +51,7 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public ScalarMultiplyCodeFragment(ComputationModel computationModel, DataType scalarType, DataType elementType, TensorType resultType) {
+	public ScalarMultiplyCodeFragment(ComputationModel computationModel, DataType scalarType, DataType elementType, ArrayType resultType) {
 		this.computationModel = computationModel;
 		this.scalarType = scalarType;
 		this.elementType = elementType;

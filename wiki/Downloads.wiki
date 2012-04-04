@@ -5,4 +5,5 @@ Use the Eclipse update sites to install the yakindu tools into your existing Ecl
 ==Yakindu Statechart Tools==
 It is available via our milestones update site: http://updates.yakindu.com/indigo/milestones 
 
-==Yakindu Damos==
+==Damos==
+You will find the latest version on our Damos update site: http://updates.yakindu.com/damos

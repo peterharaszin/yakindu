@@ -161,7 +161,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass functionObjectDeclarationEClass = null;
+	private EClass functionAliasDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1134,7 +1134,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_FunctionObjectDeclarations() {
+	public EReference getFunctionDeclaration_FunctionAliasDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -1368,8 +1368,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFunctionObjectDeclaration() {
-		return functionObjectDeclarationEClass;
+	public EClass getFunctionAliasDeclaration() {
+		return functionAliasDeclarationEClass;
 	}
 
 	/**
@@ -1377,8 +1377,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFunctionObjectDeclaration_Name() {
-		return (EAttribute)functionObjectDeclarationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFunctionAliasDeclaration_Name() {
+		return (EAttribute)functionAliasDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1386,8 +1386,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionObjectDeclaration_FunctionName() {
-		return (EReference)functionObjectDeclarationEClass.getEStructuralFeatures().get(1);
+	public EReference getFunctionAliasDeclaration_FunctionDeclaration() {
+		return (EReference)functionAliasDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1395,8 +1395,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionObjectDeclaration_TemplateArguments() {
-		return (EReference)functionObjectDeclarationEClass.getEStructuralFeatures().get(2);
+	public EReference getFunctionAliasDeclaration_TemplateArguments() {
+		return (EReference)functionAliasDeclarationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1629,7 +1629,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSwitchCase_CaseExpression() {
+	public EReference getSwitchCase_Owner() {
 		return (EReference)switchCaseEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1638,8 +1638,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSwitchCase_ResultExpression() {
+	public EReference getSwitchCase_CaseExpression() {
 		return (EReference)switchCaseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSwitchCase_ResultExpression() {
+		return (EReference)switchCaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3481,7 +3490,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__CHECKS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__ASSERTIONS);
-		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__CONSTANT_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__EQUATIONS);
@@ -3519,10 +3528,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(constantDeclarationEClass, CONSTANT_DECLARATION__NAME);
 		createEReference(constantDeclarationEClass, CONSTANT_DECLARATION__INITIALIZER);
 
-		functionObjectDeclarationEClass = createEClass(FUNCTION_OBJECT_DECLARATION);
-		createEAttribute(functionObjectDeclarationEClass, FUNCTION_OBJECT_DECLARATION__NAME);
-		createEReference(functionObjectDeclarationEClass, FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME);
-		createEReference(functionObjectDeclarationEClass, FUNCTION_OBJECT_DECLARATION__TEMPLATE_ARGUMENTS);
+		functionAliasDeclarationEClass = createEClass(FUNCTION_ALIAS_DECLARATION);
+		createEAttribute(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__NAME);
+		createEReference(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION);
+		createEReference(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS);
 
 		equationEClass = createEClass(EQUATION);
 		createEAttribute(equationEClass, EQUATION__INITIAL);
@@ -3556,6 +3565,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(switchExpressionEClass, SWITCH_EXPRESSION__DEFAULT_EXPRESSION);
 
 		switchCaseEClass = createEClass(SWITCH_CASE);
+		createEReference(switchCaseEClass, SWITCH_CASE__OWNER);
 		createEReference(switchCaseEClass, SWITCH_CASE__CASE_EXPRESSION);
 		createEReference(switchCaseEClass, SWITCH_CASE__RESULT_EXPRESSION);
 
@@ -3885,7 +3895,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		constantDeclarationEClass.getESuperTypes().add(this.getCallableElement());
-		functionObjectDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		functionAliasDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		letExpressionEClass.getESuperTypes().add(this.getExpression());
 		letExpressionVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		ifExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -3992,7 +4002,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getFunctionDeclaration_OutputParameterDeclarations(), this.getOutputParameterDeclaration(), null, "outputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_Checks(), this.getCheck(), this.getCheck_Function(), "checks", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_Assertions(), this.getAssertion(), null, "assertions", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDeclaration_FunctionObjectDeclarations(), this.getFunctionObjectDeclaration(), null, "functionObjectDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_FunctionAliasDeclarations(), this.getFunctionAliasDeclaration(), null, "functionAliasDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_StateVariableDeclarations(), this.getStateVariableDeclaration(), null, "stateVariableDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_ConstantDeclarations(), this.getConstantDeclaration(), null, "constantDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_Equations(), this.getEquation(), null, "equations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4034,10 +4044,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getConstantDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstantDeclaration_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(functionObjectDeclarationEClass, FunctionObjectDeclaration.class, "FunctionObjectDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFunctionObjectDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionObjectDeclaration_FunctionName(), this.getFunctionDeclaration(), null, "functionName", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionObjectDeclaration_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(functionAliasDeclarationEClass, FunctionAliasDeclaration.class, "FunctionAliasDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionAliasDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionAliasDeclaration_FunctionDeclaration(), this.getFunctionDeclaration(), null, "functionDeclaration", null, 0, 1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionAliasDeclaration_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(equationEClass, Equation.class, "Equation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEquation_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4069,10 +4079,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(switchExpressionEClass, SwitchExpression.class, "SwitchExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSwitchExpression_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, SwitchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwitchExpression_ControlExpression(), this.getExpression(), null, "controlExpression", null, 0, 1, SwitchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSwitchExpression_Cases(), this.getSwitchCase(), null, "cases", null, 0, -1, SwitchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwitchExpression_Cases(), this.getSwitchCase(), this.getSwitchCase_Owner(), "cases", null, 0, -1, SwitchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwitchExpression_DefaultExpression(), this.getExpression(), null, "defaultExpression", null, 0, 1, SwitchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(switchCaseEClass, SwitchCase.class, "SwitchCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSwitchCase_Owner(), this.getSwitchExpression(), this.getSwitchExpression_Cases(), "owner", null, 0, 1, SwitchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwitchCase_CaseExpression(), this.getExpression(), null, "caseExpression", null, 0, 1, SwitchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwitchCase_ResultExpression(), this.getExpression(), null, "resultExpression", null, 0, 1, SwitchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

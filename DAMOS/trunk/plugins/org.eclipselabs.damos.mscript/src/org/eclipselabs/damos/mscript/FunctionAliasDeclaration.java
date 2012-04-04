@@ -10,23 +10,23 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function Object Declaration</b></em>'.
+ * A representation of the model object '<em><b>Function Alias Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getFunctionName <em>Function Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getTemplateArguments <em>Template Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getFunctionDeclaration <em>Function Declaration</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments <em>Template Arguments</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionObjectDeclaration()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration()
  * @model
  * @generated
  */
-public interface FunctionObjectDeclaration extends CallableElement {
+public interface FunctionAliasDeclaration extends CallableElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -37,14 +37,14 @@ public interface FunctionObjectDeclaration extends CallableElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionObjectDeclaration_Name()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -54,30 +54,30 @@ public interface FunctionObjectDeclaration extends CallableElement {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Function Name</b></em>' reference.
+	 * Returns the value of the '<em><b>Function Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Function Name</em>' reference isn't clear,
+	 * If the meaning of the '<em>Function Declaration</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Name</em>' reference.
-	 * @see #setFunctionName(FunctionDeclaration)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionObjectDeclaration_FunctionName()
+	 * @return the value of the '<em>Function Declaration</em>' reference.
+	 * @see #setFunctionDeclaration(FunctionDeclaration)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration_FunctionDeclaration()
 	 * @model
 	 * @generated
 	 */
-	FunctionDeclaration getFunctionName();
+	FunctionDeclaration getFunctionDeclaration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getFunctionName <em>Function Name</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getFunctionDeclaration <em>Function Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function Name</em>' reference.
-	 * @see #getFunctionName()
+	 * @param value the new value of the '<em>Function Declaration</em>' reference.
+	 * @see #getFunctionDeclaration()
 	 * @generated
 	 */
-	void setFunctionName(FunctionDeclaration value);
+	void setFunctionDeclaration(FunctionDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Template Arguments</b></em>' containment reference list.
@@ -89,10 +89,10 @@ public interface FunctionObjectDeclaration extends CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Template Arguments</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionObjectDeclaration_TemplateArguments()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration_TemplateArguments()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Expression> getTemplateArguments();
 
-} // FunctionObjectDeclaration
+} // FunctionAliasDeclaration

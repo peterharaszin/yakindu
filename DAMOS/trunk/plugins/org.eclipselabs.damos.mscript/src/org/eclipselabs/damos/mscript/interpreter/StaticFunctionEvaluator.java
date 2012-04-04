@@ -32,6 +32,8 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.PostfixExpression;
+import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -134,7 +136,13 @@ public class StaticFunctionEvaluator {
 			changed = false;
 			for (EquationDescriptor equationDescriptor : sortedEquations) {
 				StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
-				VariableReference variableReference = (VariableReference) equationDescriptor.getLeftHandSide().getExpression();
+				
+				Expression leftHandSideExpression = equationDescriptor.getLeftHandSide().getExpression();
+				if (leftHandSideExpression instanceof PostfixExpression) {
+					leftHandSideExpression = ((PostfixExpression) leftHandSideExpression).getOperand();
+				}
+				VariableReference variableReference = (VariableReference) leftHandSideExpression;
+				
 				IValue leftHandSideValue = context.getValue(variableReference.getFeature());
 				IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
@@ -192,6 +200,12 @@ public class StaticFunctionEvaluator {
 				}
 				if (defined) {
 					Expression expression = equationDescriptor.getLeftHandSide().getExpression();
+					if (expression instanceof PostfixExpression) {
+						PostfixExpression postfixExpression = (PostfixExpression) expression;
+						if (postfixExpression.getOperator() == PostfixOperator.DERIVATIVE) {
+							expression = postfixExpression.getOperand();
+						}
+					}
 					if (expression instanceof VariableReference) {
 						VariableReference variableReference = (VariableReference) expression;
 						definedFeatures.add(variableReference.getFeature());

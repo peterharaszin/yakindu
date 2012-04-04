@@ -109,7 +109,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/outputParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/checks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/assertions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/functionObjectDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/functionAliasDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/stateVariableDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/constantDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/equations"/>
@@ -143,10 +143,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ConstantDeclaration/initializer"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//FunctionObjectDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionObjectDeclaration/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionObjectDeclaration/functionName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionObjectDeclaration/templateArguments"/>
+    <genClasses ecoreClass="Mscript.ecore#//FunctionAliasDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionAliasDeclaration/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionAliasDeclaration/functionDeclaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionAliasDeclaration/templateArguments"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Equation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Equation/initial"/>
@@ -180,6 +180,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//SwitchExpression/defaultExpression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//SwitchCase">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//SwitchCase/owner"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//SwitchCase/caseExpression"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//SwitchCase/resultExpression"/>
     </genClasses>

@@ -21,9 +21,9 @@ import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.Check;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.Equation;
+import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
-import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -43,7 +43,7 @@ import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getChecks <em>Checks</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getAssertions <em>Assertions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getFunctionAliasDeclarations <em>Function Alias Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getEquations <em>Equations</em>}</li>
@@ -124,14 +124,14 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	protected EList<Assertion> assertions;
 
 	/**
-	 * The cached value of the '{@link #getFunctionObjectDeclarations() <em>Function Object Declarations</em>}' containment reference list.
+	 * The cached value of the '{@link #getFunctionAliasDeclarations() <em>Function Alias Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFunctionObjectDeclarations()
+	 * @see #getFunctionAliasDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FunctionObjectDeclaration> functionObjectDeclarations;
+	protected EList<FunctionAliasDeclaration> functionAliasDeclarations;
 
 	/**
 	 * The cached value of the '{@link #getStateVariableDeclarations() <em>State Variable Declarations</em>}' containment reference list.
@@ -268,11 +268,11 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FunctionObjectDeclaration> getFunctionObjectDeclarations() {
-		if (functionObjectDeclarations == null) {
-			functionObjectDeclarations = new EObjectContainmentEList<FunctionObjectDeclaration>(FunctionObjectDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS);
+	public EList<FunctionAliasDeclaration> getFunctionAliasDeclarations() {
+		if (functionAliasDeclarations == null) {
+			functionAliasDeclarations = new EObjectContainmentEList<FunctionAliasDeclaration>(FunctionAliasDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS);
 		}
-		return functionObjectDeclarations;
+		return functionAliasDeclarations;
 	}
 
 	/**
@@ -353,8 +353,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 				return ((InternalEList<?>)getChecks()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return ((InternalEList<?>)getAssertions()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
-				return ((InternalEList<?>)getFunctionObjectDeclarations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS:
+				return ((InternalEList<?>)getFunctionAliasDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return ((InternalEList<?>)getStateVariableDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
@@ -385,8 +385,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 				return getChecks();
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return getAssertions();
-			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
-				return getFunctionObjectDeclarations();
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS:
+				return getFunctionAliasDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return getStateVariableDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
@@ -429,9 +429,9 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 				getAssertions().clear();
 				getAssertions().addAll((Collection<? extends Assertion>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
-				getFunctionObjectDeclarations().clear();
-				getFunctionObjectDeclarations().addAll((Collection<? extends FunctionObjectDeclaration>)newValue);
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS:
+				getFunctionAliasDeclarations().clear();
+				getFunctionAliasDeclarations().addAll((Collection<? extends FunctionAliasDeclaration>)newValue);
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				getStateVariableDeclarations().clear();
@@ -475,8 +475,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				getAssertions().clear();
 				return;
-			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
-				getFunctionObjectDeclarations().clear();
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS:
+				getFunctionAliasDeclarations().clear();
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				getStateVariableDeclarations().clear();
@@ -511,8 +511,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 				return checks != null && !checks.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return assertions != null && !assertions.isEmpty();
-			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
-				return functionObjectDeclarations != null && !functionObjectDeclarations.isEmpty();
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS:
+				return functionAliasDeclarations != null && !functionAliasDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return stateVariableDeclarations != null && !stateVariableDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:

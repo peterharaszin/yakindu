@@ -145,8 +145,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createConstantDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseFunctionObjectDeclaration(FunctionObjectDeclaration object) {
-				return createFunctionObjectDeclarationAdapter();
+			public Adapter caseFunctionAliasDeclaration(FunctionAliasDeclaration object) {
+				return createFunctionAliasDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseEquation(Equation object) {
@@ -791,16 +791,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration <em>Function Object Declaration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration <em>Function Alias Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.FunctionObjectDeclaration
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration
 	 * @generated
 	 */
-	public Adapter createFunctionObjectDeclarationAdapter() {
+	public Adapter createFunctionAliasDeclarationAdapter() {
 		return null;
 	}
 

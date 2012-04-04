@@ -68,7 +68,7 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MODULO(4, "Modulo", "Modulo");
+	MODULO(4, "Modulo", "%");
 
 	/**
 	 * The '<em><b>Multiply</b></em>' literal value.
@@ -139,7 +139,7 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #MODULO
-	 * @model name="Modulo"
+	 * @model name="Modulo" literal="%"
 	 * @generated
 	 * @ordered
 	 */

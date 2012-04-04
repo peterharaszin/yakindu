@@ -20,6 +20,8 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.PostfixExpression;
+import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -81,6 +83,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		private IStaticEvaluationContext context;
 		private EquationSide equationSide;
 		private MultiStatus status;
+		private boolean derivative;
 		
 		/**
 		 * 
@@ -94,6 +97,20 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "", null);
 			doSwitch(equationSide.getExpression());
 			return status;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePostfixExpression(org.eclipselabs.damos.mscript.PostfixExpression)
+		 */
+		@Override
+		public Boolean casePostfixExpression(PostfixExpression postfixExpression) {
+			if (postfixExpression.getOperator() == PostfixOperator.DERIVATIVE) {
+				derivative = true;
+				evaluateContents(postfixExpression);
+				derivative = false;
+				return true;
+			}
+			return super.casePostfixExpression(postfixExpression);
 		}
 		
 		@Override
@@ -128,12 +145,13 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 				part.setVariableAccess(variableReference);
 				VariableDescriptor variableDescriptor = getVariableDescriptor(functionDescriptor, name, variableKind);
 				
-				VariableStep variableStep = variableDescriptor.getStep(stepIndex, initial, false);
+				VariableStep variableStep = variableDescriptor.getStep(stepIndex, initial, derivative);
 				if (variableStep == null) {
 					variableStep = FunctionModelFactory.eINSTANCE.createVariableStep();
 					variableStep.setDescriptor(variableDescriptor);
 					variableStep.setIndex(stepIndex);
 					variableStep.setInitial(initial);
+					variableStep.setDerivative(derivative);
 				}
 				part.setVariableStep(variableStep);
 			}
@@ -207,10 +225,17 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		 */
 		@Override
 		public Boolean defaultCase(EObject object) {
+			evaluateContents(object);
+			return true;
+		}
+
+		/**
+		 * @param object
+		 */
+		private void evaluateContents(EObject object) {
 			for (EObject content : object.eContents()) {
 				doSwitch(content);
 			}
-			return true;
 		}
 
 	}

@@ -1,11 +1,8 @@
-== Yakindu File Downloads ==
+==Installation & Update==
+Use the Eclipse update sites to install the yakindu tools into your existing Eclipse Indigo. For a new installation choose Eclipse menu *Help/Install New Software …* and *Help/Check for Updates* if you have already installed a preview version of SCT
 
-We currently do *not* use the _Eclipse Labs_ file downloads service. For downloads follow
 
-http://www.yakindu.com/yakindu/language=en/20658/downloads (english)
+==Yakindu Statechart Tools==
+It is available via our milestones update site: http://updates.yakindu.com/indigo/milestones 
 
-or 
-
-http://www.yakindu.de/yakindu/language=de/20654/downloads (german)
-
-These pages also contain information about the  available update sites.
+==Yakindu Damos==

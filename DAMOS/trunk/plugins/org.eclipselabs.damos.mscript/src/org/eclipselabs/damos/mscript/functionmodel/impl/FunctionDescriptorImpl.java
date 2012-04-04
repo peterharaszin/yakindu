@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -206,14 +207,18 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 				StringBuilder message = new StringBuilder();
 				message.append("Duplicate equation for ");
 				message.append(variableStep.getDescriptor().getName());
-				message.append("{n");
-				if (variableStep.getIndex() != 0) { 
-					if (variableStep.getIndex() > 0) {
-						message.append("+");
+				if (variableStep.isDerivative()) {
+					message.append("'");
+				} else if (getDeclaration().getKind() == FunctionKind.STATEFUL) {
+					message.append("{n");
+					if (variableStep.getIndex() != 0) { 
+						if (variableStep.getIndex() > 0) {
+							message.append("+");
+						}
+						message.append(variableStep.getIndex());
 					}
-					message.append(variableStep.getIndex());
+					message.append("}");
 				}
-				message.append("}");
 				
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						FunctionModelValidator.DIAGNOSTIC_SOURCE,

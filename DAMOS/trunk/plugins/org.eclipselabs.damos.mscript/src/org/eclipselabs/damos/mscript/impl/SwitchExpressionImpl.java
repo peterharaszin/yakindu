@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -178,7 +178,7 @@ public class SwitchExpressionImpl extends ExpressionImpl implements SwitchExpres
 	 */
 	public EList<SwitchCase> getCases() {
 		if (cases == null) {
-			cases = new EObjectContainmentEList<SwitchCase>(SwitchCase.class, this, MscriptPackage.SWITCH_EXPRESSION__CASES);
+			cases = new EObjectContainmentWithInverseEList<SwitchCase>(SwitchCase.class, this, MscriptPackage.SWITCH_EXPRESSION__CASES, MscriptPackage.SWITCH_CASE__OWNER);
 		}
 		return cases;
 	}
@@ -224,6 +224,21 @@ public class SwitchExpressionImpl extends ExpressionImpl implements SwitchExpres
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.SWITCH_EXPRESSION__DEFAULT_EXPRESSION, newDefaultExpression, newDefaultExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MscriptPackage.SWITCH_EXPRESSION__CASES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCases()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

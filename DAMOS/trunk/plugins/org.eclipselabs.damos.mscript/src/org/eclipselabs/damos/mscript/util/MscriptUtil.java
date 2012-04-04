@@ -49,7 +49,7 @@ public class MscriptUtil {
 		return null;
 	}
 
-	public static VariableReference createVariableAccess(IStaticEvaluationContext context, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
+	public static VariableReference createVariableReference(IStaticEvaluationContext context, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
 		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
 		variableReference.setFeature(variableDeclaration);
 		if (initial) {

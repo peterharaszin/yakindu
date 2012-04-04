@@ -152,13 +152,13 @@ public interface MscriptFactory extends EFactory {
 	ConstantDeclaration createConstantDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Function Object Declaration</em>'.
+	 * Returns a new object of class '<em>Function Alias Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Object Declaration</em>'.
+	 * @return a new object of class '<em>Function Alias Declaration</em>'.
 	 * @generated
 	 */
-	FunctionObjectDeclaration createFunctionObjectDeclaration();
+	FunctionAliasDeclaration createFunctionAliasDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Equation</em>'.

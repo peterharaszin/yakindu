@@ -40,8 +40,8 @@
         eType="#//Check" containment="true" eOpposite="#//Check/function"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assertions" upperBound="-1"
         eType="#//Assertion" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionObjectDeclarations"
-        upperBound="-1" eType="#//FunctionObjectDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionAliasDeclarations"
+        upperBound="-1" eType="#//FunctionAliasDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariableDeclarations"
         upperBound="-1" eType="#//StateVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantDeclarations" upperBound="-1"
@@ -98,9 +98,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionObjectDeclaration" eSuperTypes="#//CallableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionAliasDeclaration" eSuperTypes="#//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionName" eType="#//FunctionDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDeclaration" eType="#//FunctionDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateArguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
@@ -144,11 +144,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlExpression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1"
-        eType="#//SwitchCase" containment="true"/>
+        eType="#//SwitchCase" containment="true" eOpposite="#//SwitchCase/owner"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwitchCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//SwitchExpression"
+        eOpposite="#//SwitchExpression/cases"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="caseExpression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultExpression" eType="#//Expression"
@@ -173,7 +175,7 @@
     <eLiterals name="Divide" value="1" literal="/"/>
     <eLiterals name="ElementWiseMultiply" value="2" literal=".*"/>
     <eLiterals name="ElementWiseDivide" value="3" literal="./"/>
-    <eLiterals name="Modulo" value="4"/>
+    <eLiterals name="Modulo" value="4" literal="%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PowerOperator">
     <eLiterals name="Power" literal="^"/>

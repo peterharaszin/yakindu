@@ -139,9 +139,9 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssertionAccess().getGroup(), "rule__Assertion__Group__0");
 					put(grammarAccess.getStateVariableDeclarationAccess().getGroup(), "rule__StateVariableDeclaration__Group__0");
 					put(grammarAccess.getConstantDeclarationAccess().getGroup(), "rule__ConstantDeclaration__Group__0");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup(), "rule__FunctionObjectDeclaration__Group__0");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup_2(), "rule__FunctionObjectDeclaration__Group_2__0");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup_2_2(), "rule__FunctionObjectDeclaration__Group_2_2__0");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getGroup(), "rule__FunctionAliasDeclaration__Group__0");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getGroup_4(), "rule__FunctionAliasDeclaration__Group_4__0");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getGroup_4_2(), "rule__FunctionAliasDeclaration__Group_4_2__0");
 					put(grammarAccess.getEquationAccess().getGroup(), "rule__Equation__Group__0");
 					put(grammarAccess.getRealTypeAccess().getGroup(), "rule__RealType__Group__0");
 					put(grammarAccess.getIntegerTypeAccess().getGroup(), "rule__IntegerType__Group__0");
@@ -350,7 +350,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsAssignment_9_1(), "rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1");
 					put(grammarAccess.getFunctionDeclarationAccess().getChecksAssignment_11_0(), "rule__FunctionDeclaration__ChecksAssignment_11_0");
 					put(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssignment_11_1(), "rule__FunctionDeclaration__AssertionsAssignment_11_1");
-					put(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsAssignment_11_2(), "rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2");
+					put(grammarAccess.getFunctionDeclarationAccess().getFunctionAliasDeclarationsAssignment_11_2(), "rule__FunctionDeclaration__FunctionAliasDeclarationsAssignment_11_2");
 					put(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsAssignment_11_3(), "rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3");
 					put(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsAssignment_11_4(), "rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4");
 					put(grammarAccess.getFunctionDeclarationAccess().getEquationsAssignment_11_5(), "rule__FunctionDeclaration__EquationsAssignment_11_5");
@@ -370,10 +370,10 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStateVariableDeclarationAccess().getNameAssignment_1(), "rule__StateVariableDeclaration__NameAssignment_1");
 					put(grammarAccess.getConstantDeclarationAccess().getNameAssignment_1(), "rule__ConstantDeclaration__NameAssignment_1");
 					put(grammarAccess.getConstantDeclarationAccess().getInitializerAssignment_3(), "rule__ConstantDeclaration__InitializerAssignment_3");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameAssignment_1(), "rule__FunctionObjectDeclaration__FunctionNameAssignment_1");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getTemplateArgumentsAssignment_2_1(), "rule__FunctionObjectDeclaration__TemplateArgumentsAssignment_2_1");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getTemplateArgumentsAssignment_2_2_1(), "rule__FunctionObjectDeclaration__TemplateArgumentsAssignment_2_2_1");
-					put(grammarAccess.getFunctionObjectDeclarationAccess().getNameAssignment_3(), "rule__FunctionObjectDeclaration__NameAssignment_3");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getNameAssignment_1(), "rule__FunctionAliasDeclaration__NameAssignment_1");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getFunctionDeclarationAssignment_3(), "rule__FunctionAliasDeclaration__FunctionDeclarationAssignment_3");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getTemplateArgumentsAssignment_4_1(), "rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_1");
+					put(grammarAccess.getFunctionAliasDeclarationAccess().getTemplateArgumentsAssignment_4_2_1(), "rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_2_1");
 					put(grammarAccess.getEquationAccess().getInitialAssignment_0(), "rule__Equation__InitialAssignment_0");
 					put(grammarAccess.getEquationAccess().getLeftHandSideAssignment_2(), "rule__Equation__LeftHandSideAssignment_2");
 					put(grammarAccess.getEquationAccess().getRightHandSideAssignment_4(), "rule__Equation__RightHandSideAssignment_4");

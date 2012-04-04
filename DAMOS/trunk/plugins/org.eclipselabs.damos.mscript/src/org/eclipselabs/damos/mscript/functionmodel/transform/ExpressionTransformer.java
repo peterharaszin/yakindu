@@ -120,7 +120,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 		assignment.setAssignedExpression(result);
-		assignment.setTarget(MscriptUtil.createVariableAccess(context.getStaticEvaluationContext(), target.getVariableDeclaration(), target.getStepIndex(), false));
+		assignment.setTarget(MscriptUtil.createVariableReference(context.getStaticEvaluationContext(), target.getVariableDeclaration(), target.getStepIndex(), false));
 		context.getCompound().getStatements().add(assignment);
 		
 		return status.isOK() ? Status.OK_STATUS : status;
@@ -236,7 +236,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 		if (variableDeclaration != null) {
 			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableReference);
-			return MscriptUtil.createVariableAccess(context.getStaticEvaluationContext(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
+			return MscriptUtil.createVariableReference(context.getStaticEvaluationContext(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
 		}
 		return null;
 	}

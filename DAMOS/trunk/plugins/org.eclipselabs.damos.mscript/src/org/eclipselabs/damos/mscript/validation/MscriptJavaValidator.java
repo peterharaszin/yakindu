@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
+import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
@@ -21,11 +22,15 @@ import org.eclipselabs.damos.mscript.DataTypeDeclaration;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
-import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
+import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.IterationCall;
+import org.eclipselabs.damos.mscript.LogicalAndExpression;
+import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -33,6 +38,8 @@ import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
+import org.eclipselabs.damos.mscript.SwitchCase;
+import org.eclipselabs.damos.mscript.SwitchExpression;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -99,9 +106,68 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		}
 		CallableElement ce = functionCall.getFeature();
 		if (!(ce instanceof FunctionDeclaration
-				|| ce instanceof FunctionObjectDeclaration
+				|| ce instanceof FunctionAliasDeclaration
 				|| ce instanceof BuiltinFunctionDeclaration)) {
 			error("Invalid function call " + functionCall.getFeature().getName(), null);
+		}
+	}
+	
+	@Check
+	public void checkStatefulFunctionEnclosingExpression(FunctionCall functionCall) {
+		if (functionCall.getFeature() instanceof FunctionDeclaration) {
+			FunctionDeclaration functionDeclaration = (FunctionDeclaration) functionCall.getFeature();
+			if (functionDeclaration.getKind() == FunctionKind.STATEFUL) {
+				EObject element = functionCall;
+				EObject container = element.eContainer();
+				while (container instanceof Expression) {
+					if (container instanceof AlgorithmExpression) {
+						error("Stateful function calls must not be contained within algorithm expressions", null);
+						break;
+					}
+					if (container instanceof IfExpression) {
+						IfExpression ifExpression = (IfExpression) container;
+						if (!ifExpression.isStatic() && (ifExpression.getThenExpression() == element || ifExpression.getElseExpression() == element)) {
+							error("Stateful function calls must not be contained within non-static if-then or if-else expression", null);
+							break;
+						}
+					}
+					if (container instanceof SwitchExpression) {
+						SwitchExpression switchExpression = (SwitchExpression) container;
+						if (!switchExpression.isStatic() && switchExpression.getDefaultExpression() == element) {
+							error("Stateful function calls must not be contained within non-static switch default expression", null);
+							break;
+						}
+					}
+					if (container instanceof SwitchCase) {
+						SwitchCase switchCase = (SwitchCase) container;
+						if (!switchCase.getOwner().isStatic() && (switchCase.getCaseExpression() == element || switchCase.getResultExpression() == element)) {
+							error("Stateful function calls must not be contained within non-static switch case expression", null);
+							break;
+						}
+					}
+					if (container instanceof IterationCall) {
+						IterationCall iterationCall = (IterationCall) container;
+						if (iterationCall.getBreakCondition() == element) {
+							error("Stateful function calls must not be contained within iteration call break condition", null);
+							break;
+						}
+						if (iterationCall.getExpression() == element) {
+							error("Stateful function calls must not be contained within iteration call expression", null);
+							break;
+						}
+					}
+					if (container instanceof LogicalAndExpression) {
+						error("Stateful function calls must not be contained within AND expression", null);
+						break;
+					}
+					if (container instanceof LogicalOrExpression) {
+						error("Stateful function calls must not be contained within OR expression", null);
+						break;
+					}
+					element = container;
+					container = element.eContainer();
+				}
+			}
 		}
 	}
 

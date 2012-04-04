@@ -15,8 +15,8 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.ForStatement;
+import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.IterationAccumulator;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
@@ -62,8 +62,8 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					elements.add(stateVariableDeclaration);
 				}
 
-				for (FunctionObjectDeclaration functionObjectDeclaration : functionDeclaration.getFunctionObjectDeclarations()) {
-					elements.add(functionObjectDeclaration);
+				for (FunctionAliasDeclaration functionAliasDeclaration : functionDeclaration.getFunctionAliasDeclarations()) {
+					elements.add(functionAliasDeclaration);
 				}
 
 				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {

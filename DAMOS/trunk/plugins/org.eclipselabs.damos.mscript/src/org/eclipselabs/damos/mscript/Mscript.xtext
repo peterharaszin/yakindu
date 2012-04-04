@@ -64,7 +64,7 @@ FunctionDeclaration:
 			'->' outputParameterDeclarations+=OutputParameterDeclaration (',' outputParameterDeclarations+=OutputParameterDeclaration)* '{'
 		(checks+=Check |
 		assertions+=Assertion |
-		functionObjectDeclarations+=FunctionObjectDeclaration |
+		functionAliasDeclarations+=FunctionAliasDeclaration |
 		stateVariableDeclarations+=StateVariableDeclaration |
 		constantDeclarations+=ConstantDeclaration |
 		equations+=Equation)*
@@ -103,8 +103,8 @@ StateVariableDeclaration:
 ConstantDeclaration:
 	'const' name=ValidID '=' initializer=Expression;
 
-FunctionObjectDeclaration:
-	'fob' functionName=[FunctionDeclaration|QualifiedName] ('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')? name=ValidID;
+FunctionAliasDeclaration:
+	'function' name=ValidID '=' functionDeclaration=[FunctionDeclaration|QualifiedName] ('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')?;
 
 Equation:
 	(initial?='initial')? 'eq' leftHandSide=Expression '=' rightHandSide=Expression;

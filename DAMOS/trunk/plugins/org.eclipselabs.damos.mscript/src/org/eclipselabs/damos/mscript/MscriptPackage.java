@@ -385,13 +385,13 @@ public interface MscriptPackage extends EPackage {
 	int FUNCTION_DECLARATION__ASSERTIONS = DECLARATION_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Function Object Declarations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Function Alias Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS = DECLARATION_FEATURE_COUNT + 6;
+	int FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS = DECLARATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>State Variable Declarations</b></em>' containment reference list.
@@ -783,14 +783,14 @@ public interface MscriptPackage extends EPackage {
 	int CONSTANT_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl <em>Function Object Declaration</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl <em>Function Alias Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionObjectDeclaration()
+	 * @see org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionAliasDeclaration()
 	 * @generated
 	 */
-	int FUNCTION_OBJECT_DECLARATION = 19;
+	int FUNCTION_ALIAS_DECLARATION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -799,16 +799,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_OBJECT_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int FUNCTION_ALIAS_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Function Name</b></em>' reference.
+	 * The feature id for the '<em><b>Function Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Template Arguments</b></em>' containment reference list.
@@ -817,16 +817,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_OBJECT_DECLARATION__TEMPLATE_ARGUMENTS = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
+	int FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Function Object Declaration</em>' class.
+	 * The number of structural features of the '<em>Function Alias Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_OBJECT_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 3;
+	int FUNCTION_ALIAS_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.EquationImpl <em>Equation</em>}' class.
@@ -1153,13 +1153,22 @@ public interface MscriptPackage extends EPackage {
 	int SWITCH_CASE = 27;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH_CASE__OWNER = 0;
+
+	/**
 	 * The feature id for the '<em><b>Case Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_CASE__CASE_EXPRESSION = 0;
+	int SWITCH_CASE__CASE_EXPRESSION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Result Expression</b></em>' containment reference.
@@ -1168,7 +1177,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_CASE__RESULT_EXPRESSION = 1;
+	int SWITCH_CASE__RESULT_EXPRESSION = 2;
 
 	/**
 	 * The number of structural features of the '<em>Switch Case</em>' class.
@@ -1177,7 +1186,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_CASE_FEATURE_COUNT = 2;
+	int SWITCH_CASE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ArrayElementAccessImpl <em>Array Element Access</em>}' class.
@@ -4145,15 +4154,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getFunctionDeclaration_Assertions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionObjectDeclarations <em>Function Object Declarations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionAliasDeclarations <em>Function Alias Declarations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Function Object Declarations</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionObjectDeclarations()
+	 * @return the meta object for the containment reference list '<em>Function Alias Declarations</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionAliasDeclarations()
 	 * @see #getFunctionDeclaration()
 	 * @generated
 	 */
-	EReference getFunctionDeclaration_FunctionObjectDeclarations();
+	EReference getFunctionDeclaration_FunctionAliasDeclarations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStateVariableDeclarations <em>State Variable Declarations</em>}'.
@@ -4420,47 +4429,47 @@ public interface MscriptPackage extends EPackage {
 	EReference getConstantDeclaration_Initializer();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration <em>Function Object Declaration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration <em>Function Alias Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Function Object Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionObjectDeclaration
+	 * @return the meta object for class '<em>Function Alias Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration
 	 * @generated
 	 */
-	EClass getFunctionObjectDeclaration();
+	EClass getFunctionAliasDeclaration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getName()
-	 * @see #getFunctionObjectDeclaration()
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getName()
+	 * @see #getFunctionAliasDeclaration()
 	 * @generated
 	 */
-	EAttribute getFunctionObjectDeclaration_Name();
+	EAttribute getFunctionAliasDeclaration_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getFunctionName <em>Function Name</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getFunctionDeclaration <em>Function Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Function Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getFunctionName()
-	 * @see #getFunctionObjectDeclaration()
+	 * @return the meta object for the reference '<em>Function Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getFunctionDeclaration()
+	 * @see #getFunctionAliasDeclaration()
 	 * @generated
 	 */
-	EReference getFunctionObjectDeclaration_FunctionName();
+	EReference getFunctionAliasDeclaration_FunctionDeclaration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getTemplateArguments <em>Template Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments <em>Template Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Template Arguments</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getTemplateArguments()
-	 * @see #getFunctionObjectDeclaration()
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments()
+	 * @see #getFunctionAliasDeclaration()
 	 * @generated
 	 */
-	EReference getFunctionObjectDeclaration_TemplateArguments();
+	EReference getFunctionAliasDeclaration_TemplateArguments();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.Equation <em>Equation</em>}'.
@@ -4728,6 +4737,17 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSwitchCase();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.SwitchCase#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipselabs.damos.mscript.SwitchCase#getOwner()
+	 * @see #getSwitchCase()
+	 * @generated
+	 */
+	EReference getSwitchCase_Owner();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.SwitchCase#getCaseExpression <em>Case Expression</em>}'.
@@ -7053,12 +7073,12 @@ public interface MscriptPackage extends EPackage {
 		EReference FUNCTION_DECLARATION__ASSERTIONS = eINSTANCE.getFunctionDeclaration_Assertions();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Object Declarations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Function Alias Declarations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS = eINSTANCE.getFunctionDeclaration_FunctionObjectDeclarations();
+		EReference FUNCTION_DECLARATION__FUNCTION_ALIAS_DECLARATIONS = eINSTANCE.getFunctionDeclaration_FunctionAliasDeclarations();
 
 		/**
 		 * The meta object literal for the '<em><b>State Variable Declarations</b></em>' containment reference list feature.
@@ -7283,14 +7303,14 @@ public interface MscriptPackage extends EPackage {
 		EReference CONSTANT_DECLARATION__INITIALIZER = eINSTANCE.getConstantDeclaration_Initializer();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl <em>Function Object Declaration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl <em>Function Alias Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionObjectDeclaration()
+		 * @see org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionAliasDeclaration()
 		 * @generated
 		 */
-		EClass FUNCTION_OBJECT_DECLARATION = eINSTANCE.getFunctionObjectDeclaration();
+		EClass FUNCTION_ALIAS_DECLARATION = eINSTANCE.getFunctionAliasDeclaration();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -7298,15 +7318,15 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FUNCTION_OBJECT_DECLARATION__NAME = eINSTANCE.getFunctionObjectDeclaration_Name();
+		EAttribute FUNCTION_ALIAS_DECLARATION__NAME = eINSTANCE.getFunctionAliasDeclaration_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Name</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Function Declaration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME = eINSTANCE.getFunctionObjectDeclaration_FunctionName();
+		EReference FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION = eINSTANCE.getFunctionAliasDeclaration_FunctionDeclaration();
 
 		/**
 		 * The meta object literal for the '<em><b>Template Arguments</b></em>' containment reference list feature.
@@ -7314,7 +7334,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_OBJECT_DECLARATION__TEMPLATE_ARGUMENTS = eINSTANCE.getFunctionObjectDeclaration_TemplateArguments();
+		EReference FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS = eINSTANCE.getFunctionAliasDeclaration_TemplateArguments();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.EquationImpl <em>Equation</em>}' class.
@@ -7531,6 +7551,14 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SWITCH_CASE = eINSTANCE.getSwitchCase();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SWITCH_CASE__OWNER = eINSTANCE.getSwitchCase_Owner();
 
 		/**
 		 * The meta object literal for the '<em><b>Case Expression</b></em>' containment reference feature.

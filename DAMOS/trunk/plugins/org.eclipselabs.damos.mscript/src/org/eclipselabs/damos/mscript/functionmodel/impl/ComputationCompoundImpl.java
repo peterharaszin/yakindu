@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.impl.CompoundImpl;
@@ -26,6 +27,7 @@ import org.eclipselabs.damos.mscript.impl.CompoundImpl;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl#getDerivatives <em>Derivatives</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +53,16 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * @ordered
 	 */
 	protected EList<OutputParameterDeclaration> outputs;
+
+	/**
+	 * The cached value of the '{@link #getDerivatives() <em>Derivatives</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDerivatives()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariableDeclaration> derivatives;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,6 +112,18 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<VariableDeclaration> getDerivatives() {
+		if (derivatives == null) {
+			derivatives = new EObjectResolvingEList<VariableDeclaration>(VariableDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES);
+		}
+		return derivatives;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -107,6 +131,8 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 				return getInputs();
 			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return getOutputs();
+			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+				return getDerivatives();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,6 +154,10 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 				getOutputs().clear();
 				getOutputs().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
 				return;
+			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+				getDerivatives().clear();
+				getDerivatives().addAll((Collection<? extends VariableDeclaration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -146,6 +176,9 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
 				return;
+			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+				getDerivatives().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -162,6 +195,8 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 				return inputs != null && !inputs.isEmpty();
 			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return outputs != null && !outputs.isEmpty();
+			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+				return derivatives != null && !derivatives.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

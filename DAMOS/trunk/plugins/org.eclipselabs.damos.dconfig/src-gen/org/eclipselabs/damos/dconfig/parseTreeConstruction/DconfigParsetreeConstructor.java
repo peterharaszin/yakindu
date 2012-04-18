@@ -1134,12 +1134,12 @@ protected class SimpleProperty_DeclarationAssignment_1_1_1 extends AssignmentTok
 /************ begin Rule SelectionProperty ****************
  *
  * SelectionProperty:
- * 	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName]
+ * 	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName] ("[" index=ValidInt "]")?
  * 	selection=[SelectionPropertyOption|QualifiedName] body=SelectionPropertyBody?;
  *
  **/
 
-// propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName]
+// propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName] ("[" index=ValidInt "]")?
 // selection=[SelectionPropertyOption|QualifiedName] body=SelectionPropertyBody?
 protected class SelectionProperty_Group extends GroupToken {
 	
@@ -1155,8 +1155,8 @@ protected class SelectionProperty_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SelectionProperty_BodyAssignment_4(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new SelectionProperty_SelectionAssignment_3(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new SelectionProperty_BodyAssignment_5(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new SelectionProperty_SelectionAssignment_4(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -1262,16 +1262,38 @@ protected class SelectionProperty_DeclarationAssignment_2 extends AssignmentToke
 
 }
 
-// selection=[SelectionPropertyOption|QualifiedName]
-protected class SelectionProperty_SelectionAssignment_3 extends AssignmentToken  {
+// ("[" index=ValidInt "]")?
+protected class SelectionProperty_Group_3 extends GroupToken {
 	
-	public SelectionProperty_SelectionAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SelectionProperty_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getSelectionPropertyAccess().getSelectionAssignment_3();
+	public Group getGrammarElement() {
+		return grammarAccess.getSelectionPropertyAccess().getGroup_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SelectionProperty_RightSquareBracketKeyword_3_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class SelectionProperty_LeftSquareBracketKeyword_3_0 extends KeywordToken  {
+	
+	public SelectionProperty_LeftSquareBracketKeyword_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSelectionPropertyAccess().getLeftSquareBracketKeyword_3_0();
 	}
 
     @Override
@@ -1282,15 +1304,95 @@ protected class SelectionProperty_SelectionAssignment_3 extends AssignmentToken 
 		}	
 	}
 
+}
+
+// index=ValidInt
+protected class SelectionProperty_IndexAssignment_3_1 extends AssignmentToken  {
+	
+	public SelectionProperty_IndexAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSelectionPropertyAccess().getIndexAssignment_3_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SelectionProperty_LeftSquareBracketKeyword_3_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("index",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("index");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getSelectionPropertyAccess().getIndexValidIntParserRuleCall_3_1_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getSelectionPropertyAccess().getIndexValidIntParserRuleCall_3_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "]"
+protected class SelectionProperty_RightSquareBracketKeyword_3_2 extends KeywordToken  {
+	
+	public SelectionProperty_RightSquareBracketKeyword_3_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSelectionPropertyAccess().getRightSquareBracketKeyword_3_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SelectionProperty_IndexAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+
+// selection=[SelectionPropertyOption|QualifiedName]
+protected class SelectionProperty_SelectionAssignment_4 extends AssignmentToken  {
+	
+	public SelectionProperty_SelectionAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSelectionPropertyAccess().getSelectionAssignment_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SelectionProperty_Group_3(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new SelectionProperty_DeclarationAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
     @Override	
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("selection",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("selection");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_3_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_4_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_3_0(); 
+				element = grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_4_0(); 
 				return obj;
 			}
 		}
@@ -1300,15 +1402,15 @@ protected class SelectionProperty_SelectionAssignment_3 extends AssignmentToken 
 }
 
 // body=SelectionPropertyBody?
-protected class SelectionProperty_BodyAssignment_4 extends AssignmentToken  {
+protected class SelectionProperty_BodyAssignment_5 extends AssignmentToken  {
 	
-	public SelectionProperty_BodyAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SelectionProperty_BodyAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSelectionPropertyAccess().getBodyAssignment_4();
+		return grammarAccess.getSelectionPropertyAccess().getBodyAssignment_5();
 	}
 
     @Override
@@ -1327,7 +1429,7 @@ protected class SelectionProperty_BodyAssignment_4 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSelectionPropertyBodyRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSelectionPropertyAccess().getBodySelectionPropertyBodyParserRuleCall_4_0(); 
+				element = grammarAccess.getSelectionPropertyAccess().getBodySelectionPropertyBodyParserRuleCall_5_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -1339,7 +1441,7 @@ protected class SelectionProperty_BodyAssignment_4 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new SelectionProperty_SelectionAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new SelectionProperty_SelectionAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

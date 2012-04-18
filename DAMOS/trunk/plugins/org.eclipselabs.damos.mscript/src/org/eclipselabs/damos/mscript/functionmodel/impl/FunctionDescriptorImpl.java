@@ -191,7 +191,9 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 			if (!equationDescriptor.getLeftHandSide().getParts().isEmpty()) {
 				EquationPart equationPart = equationDescriptor.getLeftHandSide().getParts().get(0);
 				VariableStep variableStep = equationPart.getVariableStep();
-				VariableDescriptorWrapper descriptor = new VariableDescriptorWrapper(variableStep.getDescriptor().getName(), variableStep.getIndex(), false, variableStep.isDerivative());
+				// If function is not continuous, we do not distinguish between initial and non-initial steps
+				boolean initial = getDeclaration().getKind() == FunctionKind.CONTINUOUS ? variableStep.isInitial() : false;
+				VariableDescriptorWrapper descriptor = new VariableDescriptorWrapper(variableStep.getDescriptor().getName(), variableStep.getIndex(), initial, variableStep.isDerivative());
 				EquationPart previousEquationPart = wrappers.put(descriptor, equationPart);
 				if (previousEquationPart != null) {
 					invalidEquationParts.add(equationPart);

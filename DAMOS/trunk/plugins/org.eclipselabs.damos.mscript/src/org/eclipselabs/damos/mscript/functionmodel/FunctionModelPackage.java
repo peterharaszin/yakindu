@@ -466,13 +466,22 @@ public interface FunctionModelPackage extends EPackage {
 	int COMPUTATION_COMPOUND__OUTPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Derivatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_COMPOUND__DERIVATIVES = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Computation Compound</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
+	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}' enum.
@@ -874,6 +883,17 @@ public interface FunctionModelPackage extends EPackage {
 	EReference getComputationCompound_Outputs();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getDerivatives <em>Derivatives</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Derivatives</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getDerivatives()
+	 * @see #getComputationCompound()
+	 * @generated
+	 */
+	EReference getComputationCompound_Derivatives();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1208,6 +1228,14 @@ public interface FunctionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPUTATION_COMPOUND__OUTPUTS = eINSTANCE.getComputationCompound_Outputs();
+
+		/**
+		 * The meta object literal for the '<em><b>Derivatives</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTATION_COMPOUND__DERIVATIVES = eINSTANCE.getComputationCompound_Derivatives();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}' enum.

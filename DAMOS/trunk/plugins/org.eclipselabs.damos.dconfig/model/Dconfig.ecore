@@ -71,6 +71,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionProperty" eSuperTypes="#//DeclaredProperty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//SelectionPropertyDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selection" eType="#//SelectionPropertyOption"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//SelectionPropertyBody"
         containment="true" eOpposite="#//SelectionPropertyBody/owner"/>
@@ -81,7 +83,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Binding" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyDeclaration" eSuperTypes="#//PropertyDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyDeclaration" eSuperTypes="#//PropertyDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectionPropertyOption" eSuperTypes="#//PropertyDeclarationContainer #//ConfigurationDefinitionMember">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//SelectionPropertyDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDeclarations" upperBound="-1"

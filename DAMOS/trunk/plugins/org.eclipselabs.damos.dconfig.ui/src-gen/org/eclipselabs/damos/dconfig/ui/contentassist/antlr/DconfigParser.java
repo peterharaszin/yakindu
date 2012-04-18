@@ -107,6 +107,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSimplePropertyAccess().getGroup_1_0(), "rule__SimpleProperty__Group_1_0__0");
 					put(grammarAccess.getSimplePropertyAccess().getGroup_1_1(), "rule__SimpleProperty__Group_1_1__0");
 					put(grammarAccess.getSelectionPropertyAccess().getGroup(), "rule__SelectionProperty__Group__0");
+					put(grammarAccess.getSelectionPropertyAccess().getGroup_3(), "rule__SelectionProperty__Group_3__0");
 					put(grammarAccess.getSelectionPropertyBodyAccess().getGroup(), "rule__SelectionPropertyBody__Group__0");
 					put(grammarAccess.getRootSystemConfigurationAccess().getGroup(), "rule__RootSystemConfiguration__Group__0");
 					put(grammarAccess.getSubsystemConfigurationAccess().getGroup(), "rule__SubsystemConfiguration__Group__0");
@@ -308,8 +309,9 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSimplePropertyAccess().getDeclarationAssignment_1_1_1(), "rule__SimpleProperty__DeclarationAssignment_1_1_1");
 					put(grammarAccess.getSelectionPropertyAccess().getPropagateAssignment_0(), "rule__SelectionProperty__PropagateAssignment_0");
 					put(grammarAccess.getSelectionPropertyAccess().getDeclarationAssignment_2(), "rule__SelectionProperty__DeclarationAssignment_2");
-					put(grammarAccess.getSelectionPropertyAccess().getSelectionAssignment_3(), "rule__SelectionProperty__SelectionAssignment_3");
-					put(grammarAccess.getSelectionPropertyAccess().getBodyAssignment_4(), "rule__SelectionProperty__BodyAssignment_4");
+					put(grammarAccess.getSelectionPropertyAccess().getIndexAssignment_3_1(), "rule__SelectionProperty__IndexAssignment_3_1");
+					put(grammarAccess.getSelectionPropertyAccess().getSelectionAssignment_4(), "rule__SelectionProperty__SelectionAssignment_4");
+					put(grammarAccess.getSelectionPropertyAccess().getBodyAssignment_5(), "rule__SelectionProperty__BodyAssignment_5");
 					put(grammarAccess.getSelectionPropertyBodyAccess().getPropertiesAssignment_2_0(), "rule__SelectionPropertyBody__PropertiesAssignment_2_0");
 					put(grammarAccess.getSelectionPropertyBodyAccess().getBindingsAssignment_2_1(), "rule__SelectionPropertyBody__BindingsAssignment_2_1");
 					put(grammarAccess.getRootSystemConfigurationAccess().getContextFragmentAssignment_1(), "rule__RootSystemConfiguration__ContextFragmentAssignment_1");

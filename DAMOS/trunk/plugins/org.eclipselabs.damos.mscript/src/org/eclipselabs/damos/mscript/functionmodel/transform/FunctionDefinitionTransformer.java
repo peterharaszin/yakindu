@@ -213,6 +213,10 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 							&& lhsVariableStep.getIndex() == 0) {
 						compound.getOutputs().add((OutputParameterDeclaration) variableDeclarations.get(lhsVariableStep.getDescriptor()));
 					}
+					
+					if (lhsVariableStep.isDerivative()) {
+						compound.getDerivatives().add(variableDeclarations.get(lhsVariableStep.getDescriptor()));
+					}
 				}
 			}
 			for (InputParameterDeclaration input : inputs) {

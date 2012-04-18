@@ -14,10 +14,12 @@ import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  
@@ -86,6 +88,16 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		for (Entry<String, Parameter> entry : blockTypeParameters.entrySet()) {
 			if (!templateParameterNames.contains(entry.getKey())) {
 				warning("Unused parameter " + entry.getKey(), entry.getValue(), DMLPackage.eINSTANCE.getParameter_Name(), -1);
+			}
+		}
+	}
+	
+	@Check
+	public void checkContinuousFunctionDeclarationInContinuousBlockType(FunctionDeclaration functionDeclaration) {
+		if (functionDeclaration.getKind() == FunctionKind.CONTINUOUS) {
+			BlockType blockType = DMLUtil.getOwner(functionDeclaration, BlockType.class);
+			if (blockType != null && blockType.getTiming() != TimingKind.CONTINUOUS) {
+				error("Block types containing continuous function declarations must itself be declared continuous", blockType, DMLPackage.eINSTANCE.getQualifiedElement_Name(), -1);
 			}
 		}
 	}

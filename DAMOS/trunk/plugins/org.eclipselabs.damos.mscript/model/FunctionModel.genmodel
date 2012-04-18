@@ -94,6 +94,7 @@
     <genClasses ecoreClass="FunctionModel.ecore#//ComputationCompound">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//ComputationCompound/inputs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//ComputationCompound/outputs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//ComputationCompound/derivatives"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

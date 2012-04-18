@@ -68,22 +68,62 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 		Map<String, Property> identifiers = new HashMap<String, Property>();
 		Set<String> duplicates = new HashSet<String>();
 		for (Property property : propertyContainer.getProperties()) {
-			Property existing = identifiers.put(property.getId(), property);
-			if (existing != null) {
-				if (duplicates.add(property.getId())) {
-					propertyUniquenessError(existing);
+			if (property instanceof SelectionProperty) {
+				continue;
+			}
+			String id = property.getId();
+			if (id != null) {
+				Property existing = identifiers.put(id, property);
+				if (existing != null) {
+					if (duplicates.add(id)) {
+						propertyUniquenessError(existing);
+					}
+					propertyUniquenessError(property);
 				}
-				propertyUniquenessError(property);
 			}
 		}
 	}
 	
+	@Check
+	public void checkSelectionProperties(PropertyContainer propertyContainer) {
+		Set<List<Object>> declarations = new HashSet<List<Object>>();
+		for (Property property : propertyContainer.getProperties()) {
+			if (!(property instanceof SelectionProperty)) {
+				continue;
+			}
+			
+			SelectionProperty selectionProperty = (SelectionProperty) property;
+			
+			if (DMLUtil.isResolved(selectionProperty.getDeclaration())) {
+				int count = selectionProperty.getDeclaration().getCount();
+				int index = selectionProperty.getIndex();
+				
+				if (index >= 0) {
+					if (count == 1) {
+						error("Subscript must not be specified", selectionProperty, DconfigPackage.eINSTANCE.getSelectionProperty_Declaration(), -1);
+					} else if (count > 0 && index >= count) {
+						error("Maximum " + count + " selectable elements exceeded", selectionProperty, DconfigPackage.eINSTANCE.getSelectionProperty_Declaration(), -1);
+					}
+				} else if (count != 1) {
+					error("Missing property subscript", selectionProperty, DconfigPackage.eINSTANCE.getSelectionProperty_Declaration(), -1);
+				}
+				
+				List<Object> declaration = new ArrayList<Object>(2);
+				declaration.add(selectionProperty.getDeclaration());
+				if (index >= 0) {
+					declaration.add(index);
+				}
+				if (!declarations.add(declaration)) {
+					error("Duplicate property", selectionProperty, DconfigPackage.eINSTANCE.getSelectionProperty_Declaration(), -1);
+				}
+			}
+		}
+	}
+
 	private void propertyUniquenessError(Property property) {
 		EStructuralFeature feature = null;
 		if (property instanceof SimpleProperty) {
 			feature = DconfigPackage.eINSTANCE.getSimpleProperty_Declaration();
-		} else if (property instanceof SelectionProperty) {
-			feature = DconfigPackage.eINSTANCE.getSelectionProperty_Declaration();
 		} else if (property instanceof ComputationProperty) {
 			feature = DconfigPackage.eINSTANCE.getComputationProperty_ComputationModel();
 		}
@@ -222,11 +262,15 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 				BindingResourceSubscript subscript = binding.getTarget().getSubscript();
 				
 				if (subscript != null) {
-					resourceIndex = subscript.getIndex();
-					if (resourceIndex < 0) {
-						error("Binding subscript must not be negative", binding.getTarget(), null, -1);
-					} else if (resourceIndex >= resourceCount) {
-						error("Maximum " + resourceCount + " available resources exceeded", binding.getTarget(), null, -1);
+					if (resourceCount == 1) {
+						error("Subscript must not be specified", binding.getTarget(), null, -1);
+					} else {
+						resourceIndex = subscript.getIndex();
+						if (resourceIndex < 0) {
+							error("Binding subscript must not be negative", binding.getTarget(), null, -1);
+						} else if (resourceIndex >= resourceCount) {
+							error("Maximum " + resourceCount + " available resources exceeded", binding.getTarget(), null, -1);
+						}
 					}
 				} else if (resourceCount > 1) {
 					error("Missing binding subscript", binding.getTarget(), null, -1);

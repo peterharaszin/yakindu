@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getDeclaration <em>Declaration</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getIndex <em>Index</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getSelection <em>Selection</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -42,6 +43,26 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 	 * @ordered
 	 */
 	protected SelectionPropertyDeclaration declaration;
+
+	/**
+	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int INDEX_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected int index = INDEX_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getSelection() <em>Selection</em>}' reference.
@@ -118,6 +139,27 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 		declaration = newDeclaration;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY__DECLARATION, oldDeclaration, declaration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getIndex() {
+		return index;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndex(int newIndex) {
+		int oldIndex = index;
+		index = newIndex;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.SELECTION_PROPERTY__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -242,6 +284,8 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				if (resolve) return getDeclaration();
 				return basicGetDeclaration();
+			case DconfigPackage.SELECTION_PROPERTY__INDEX:
+				return getIndex();
 			case DconfigPackage.SELECTION_PROPERTY__SELECTION:
 				if (resolve) return getSelection();
 				return basicGetSelection();
@@ -261,6 +305,9 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				setDeclaration((SelectionPropertyDeclaration)newValue);
+				return;
+			case DconfigPackage.SELECTION_PROPERTY__INDEX:
+				setIndex((Integer)newValue);
 				return;
 			case DconfigPackage.SELECTION_PROPERTY__SELECTION:
 				setSelection((SelectionPropertyOption)newValue);
@@ -283,6 +330,9 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				setDeclaration((SelectionPropertyDeclaration)null);
 				return;
+			case DconfigPackage.SELECTION_PROPERTY__INDEX:
+				setIndex(INDEX_EDEFAULT);
+				return;
 			case DconfigPackage.SELECTION_PROPERTY__SELECTION:
 				setSelection((SelectionPropertyOption)null);
 				return;
@@ -303,12 +353,30 @@ public class SelectionPropertyImpl extends DeclaredPropertyImpl implements Selec
 		switch (featureID) {
 			case DconfigPackage.SELECTION_PROPERTY__DECLARATION:
 				return declaration != null;
+			case DconfigPackage.SELECTION_PROPERTY__INDEX:
+				return index != INDEX_EDEFAULT;
 			case DconfigPackage.SELECTION_PROPERTY__SELECTION:
 				return selection != null;
 			case DconfigPackage.SELECTION_PROPERTY__BODY:
 				return body != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (index: ");
+		result.append(index);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SelectionPropertyImpl

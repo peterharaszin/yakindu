@@ -525,13 +525,22 @@ public interface DconfigPackage extends EPackage {
 	int SELECTION_PROPERTY__DECLARATION = DECLARED_PROPERTY_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROPERTY__INDEX = DECLARED_PROPERTY_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Selection</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY__SELECTION = DECLARED_PROPERTY_FEATURE_COUNT + 1;
+	int SELECTION_PROPERTY__SELECTION = DECLARED_PROPERTY_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -540,7 +549,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY__BODY = DECLARED_PROPERTY_FEATURE_COUNT + 2;
+	int SELECTION_PROPERTY__BODY = DECLARED_PROPERTY_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Selection Property</em>' class.
@@ -549,7 +558,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_FEATURE_COUNT = DECLARED_PROPERTY_FEATURE_COUNT + 3;
+	int SELECTION_PROPERTY_FEATURE_COUNT = DECLARED_PROPERTY_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -615,13 +624,22 @@ public interface DconfigPackage extends EPackage {
 	int SELECTION_PROPERTY_DECLARATION__QUALIFIED_NAME = PROPERTY_DECLARATION__QUALIFIED_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_PROPERTY_DECLARATION__COUNT = PROPERTY_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Selection Property Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELECTION_PROPERTY_DECLARATION_FEATURE_COUNT = PROPERTY_DECLARATION_FEATURE_COUNT + 0;
+	int SELECTION_PROPERTY_DECLARATION_FEATURE_COUNT = PROPERTY_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Property Declarations</b></em>' containment reference list.
@@ -1811,6 +1829,17 @@ public interface DconfigPackage extends EPackage {
 	EReference getSelectionProperty_Declaration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.SelectionProperty#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see org.eclipselabs.damos.dconfig.SelectionProperty#getIndex()
+	 * @see #getSelectionProperty()
+	 * @generated
+	 */
+	EAttribute getSelectionProperty_Index();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.SelectionProperty#getSelection <em>Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1873,6 +1902,17 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSelectionPropertyDeclaration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration#getCount <em>Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Count</em>'.
+	 * @see org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration#getCount()
+	 * @see #getSelectionPropertyDeclaration()
+	 * @generated
+	 */
+	EAttribute getSelectionPropertyDeclaration_Count();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.SelectionPropertyOption <em>Selection Property Option</em>}'.
@@ -2635,6 +2675,14 @@ public interface DconfigPackage extends EPackage {
 		EReference SELECTION_PROPERTY__DECLARATION = eINSTANCE.getSelectionProperty_Declaration();
 
 		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTION_PROPERTY__INDEX = eINSTANCE.getSelectionProperty_Index();
+
+		/**
 		 * The meta object literal for the '<em><b>Selection</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2685,6 +2733,14 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SELECTION_PROPERTY_DECLARATION = eINSTANCE.getSelectionPropertyDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTION_PROPERTY_DECLARATION__COUNT = eINSTANCE.getSelectionPropertyDeclaration_Count();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl <em>Selection Property Option</em>}' class.

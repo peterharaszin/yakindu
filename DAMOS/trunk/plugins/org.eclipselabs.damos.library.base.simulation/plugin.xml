@@ -4,16 +4,6 @@
    <extension
          point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="damos.library.base.continuous.Integrator"
-            class="org.eclipselabs.damos.library.base.simulation.continuous.IntegratorSimulationObject"
-            name="Integrator">
-      </simulationObject>
-      <simulationObject
-            blockType="damos.library.base.continuous.Derivative"
-            class="org.eclipselabs.damos.library.base.simulation.continuous.DerivativeSimulationObject"
-            name="Derivative">
-      </simulationObject>
-      <simulationObject
             blockType="damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.simulation.continuous.TransferFunctionSimulationObject"
             name="Transfer Function">

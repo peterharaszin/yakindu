@@ -23,7 +23,7 @@ SimpleProperty:
 	(propagate?='propagate')? (declaration=[SimplePropertyDeclaration|QualifiedNameWithoutIJ] '=' value=Expression | 'unset' declaration=[SimplePropertyDeclaration|QualifiedName]);
 
 SelectionProperty:
-	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] selection=[SelectionPropertyOption|QualifiedName] (body=SelectionPropertyBody)?;
+	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] ('[' index=ValidInt ']')? selection=[SelectionPropertyOption|QualifiedName] (body=SelectionPropertyBody)?;
 	
 SelectionPropertyBody:
 	{SelectionPropertyBody} '{'

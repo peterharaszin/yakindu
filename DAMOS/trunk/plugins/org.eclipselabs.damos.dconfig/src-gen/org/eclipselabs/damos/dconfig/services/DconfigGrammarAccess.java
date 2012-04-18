@@ -233,18 +233,23 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDeclarationAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cDeclarationSelectionPropertyDeclarationCrossReference_2_0 = (CrossReference)cDeclarationAssignment_2.eContents().get(0);
 		private final RuleCall cDeclarationSelectionPropertyDeclarationQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cDeclarationSelectionPropertyDeclarationCrossReference_2_0.eContents().get(1);
-		private final Assignment cSelectionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cSelectionSelectionPropertyOptionCrossReference_3_0 = (CrossReference)cSelectionAssignment_3.eContents().get(0);
-		private final RuleCall cSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cSelectionSelectionPropertyOptionCrossReference_3_0.eContents().get(1);
-		private final Assignment cBodyAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cBodySelectionPropertyBodyParserRuleCall_4_0 = (RuleCall)cBodyAssignment_4.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cIndexAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cIndexValidIntParserRuleCall_3_1_0 = (RuleCall)cIndexAssignment_3_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Assignment cSelectionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cSelectionSelectionPropertyOptionCrossReference_4_0 = (CrossReference)cSelectionAssignment_4.eContents().get(0);
+		private final RuleCall cSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_4_0_1 = (RuleCall)cSelectionSelectionPropertyOptionCrossReference_4_0.eContents().get(1);
+		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBodySelectionPropertyBodyParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
 		
 		//SelectionProperty:
-		//	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName]
+		//	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName] ("[" index=ValidInt "]")?
 		//	selection=[SelectionPropertyOption|QualifiedName] body=SelectionPropertyBody?;
 		public ParserRule getRule() { return rule; }
 
-		//propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName]
+		//propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName] ("[" index=ValidInt "]")?
 		//selection=[SelectionPropertyOption|QualifiedName] body=SelectionPropertyBody?
 		public Group getGroup() { return cGroup; }
 
@@ -266,20 +271,35 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getDeclarationSelectionPropertyDeclarationQualifiedNameParserRuleCall_2_0_1() { return cDeclarationSelectionPropertyDeclarationQualifiedNameParserRuleCall_2_0_1; }
 
+		//("[" index=ValidInt "]")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
+
+		//index=ValidInt
+		public Assignment getIndexAssignment_3_1() { return cIndexAssignment_3_1; }
+
+		//ValidInt
+		public RuleCall getIndexValidIntParserRuleCall_3_1_0() { return cIndexValidIntParserRuleCall_3_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+
 		//selection=[SelectionPropertyOption|QualifiedName]
-		public Assignment getSelectionAssignment_3() { return cSelectionAssignment_3; }
+		public Assignment getSelectionAssignment_4() { return cSelectionAssignment_4; }
 
 		//[SelectionPropertyOption|QualifiedName]
-		public CrossReference getSelectionSelectionPropertyOptionCrossReference_3_0() { return cSelectionSelectionPropertyOptionCrossReference_3_0; }
+		public CrossReference getSelectionSelectionPropertyOptionCrossReference_4_0() { return cSelectionSelectionPropertyOptionCrossReference_4_0; }
 
 		//QualifiedName
-		public RuleCall getSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_3_0_1() { return cSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_3_0_1; }
+		public RuleCall getSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_4_0_1() { return cSelectionSelectionPropertyOptionQualifiedNameParserRuleCall_4_0_1; }
 
 		//body=SelectionPropertyBody?
-		public Assignment getBodyAssignment_4() { return cBodyAssignment_4; }
+		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
 
 		//SelectionPropertyBody
-		public RuleCall getBodySelectionPropertyBodyParserRuleCall_4_0() { return cBodySelectionPropertyBodyParserRuleCall_4_0; }
+		public RuleCall getBodySelectionPropertyBodyParserRuleCall_5_0() { return cBodySelectionPropertyBodyParserRuleCall_5_0; }
 	}
 
 	public class SelectionPropertyBodyElements extends AbstractParserRuleElementFinder {
@@ -1554,7 +1574,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SelectionProperty:
-	//	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName]
+	//	propagate?="propagate"? "select" declaration=[SelectionPropertyDeclaration|QualifiedName] ("[" index=ValidInt "]")?
 	//	selection=[SelectionPropertyOption|QualifiedName] body=SelectionPropertyBody?;
 	public SelectionPropertyElements getSelectionPropertyAccess() {
 		return (pSelectionProperty != null) ? pSelectionProperty : (pSelectionProperty = new SelectionPropertyElements());

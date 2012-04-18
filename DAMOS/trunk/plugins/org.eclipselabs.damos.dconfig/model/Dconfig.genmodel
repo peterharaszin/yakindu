@@ -66,6 +66,7 @@
     </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//SelectionProperty">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/declaration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//SelectionProperty/index"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/selection"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/body"/>
     </genClasses>
@@ -73,7 +74,9 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyBody/owner"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyBody/bindings"/>
     </genClasses>
-    <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyDeclaration"/>
+    <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//SelectionPropertyDeclaration/count"/>
+    </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyOption">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyOption/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyOption/resourceDeclarations"/>

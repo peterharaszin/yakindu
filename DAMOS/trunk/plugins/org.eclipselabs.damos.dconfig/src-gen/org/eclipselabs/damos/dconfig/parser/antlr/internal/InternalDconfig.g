@@ -431,7 +431,33 @@ ruleSelectionProperty returns [EObject current=null]
 	    }
 
 )
-)(
+)(	otherlv_3='[' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getSelectionPropertyAccess().getLeftSquareBracketKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSelectionPropertyAccess().getIndexValidIntParserRuleCall_3_1_0()); 
+	    }
+		lv_index_4_0=ruleValidInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSelectionPropertyRule());
+	        }
+       		set(
+       			$current, 
+       			"index",
+        		lv_index_4_0, 
+        		"ValidInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_5=']' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getSelectionPropertyAccess().getRightSquareBracketKeyword_3_2());
+    }
+)?(
 (
 		{
 			if ($current==null) {
@@ -439,7 +465,7 @@ ruleSelectionProperty returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_3_0()); 
+	        newCompositeNode(grammarAccess.getSelectionPropertyAccess().getSelectionSelectionPropertyOptionCrossReference_4_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -449,16 +475,16 @@ ruleSelectionProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSelectionPropertyAccess().getBodySelectionPropertyBodyParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getSelectionPropertyAccess().getBodySelectionPropertyBodyParserRuleCall_5_0()); 
 	    }
-		lv_body_4_0=ruleSelectionPropertyBody		{
+		lv_body_7_0=ruleSelectionPropertyBody		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSelectionPropertyRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_4_0, 
+        		lv_body_7_0, 
         		"SelectionPropertyBody");
 	        afterParserOrEnumRuleCall();
 	    }

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +22,7 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getDerivatives <em>Derivatives</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,5 +62,21 @@ public interface ComputationCompound extends Compound {
 	 * @generated
 	 */
 	EList<OutputParameterDeclaration> getOutputs();
+
+	/**
+	 * Returns the value of the '<em><b>Derivatives</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.VariableDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derivatives</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derivatives</em>' reference list.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getComputationCompound_Derivatives()
+	 * @model
+	 * @generated
+	 */
+	EList<VariableDeclaration> getDerivatives();
 
 } // ComputationCompound

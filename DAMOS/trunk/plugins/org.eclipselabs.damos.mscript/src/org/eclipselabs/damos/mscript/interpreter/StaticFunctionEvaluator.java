@@ -32,6 +32,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
 import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.StringLiteral;
@@ -137,9 +138,11 @@ public class StaticFunctionEvaluator {
 			for (EquationDescriptor equationDescriptor : sortedEquations) {
 				StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
 				
+				boolean derivative = false;
 				Expression leftHandSideExpression = equationDescriptor.getLeftHandSide().getExpression();
 				if (leftHandSideExpression instanceof PostfixExpression) {
 					leftHandSideExpression = ((PostfixExpression) leftHandSideExpression).getOperand();
+					derivative = true;
 				}
 				VariableReference variableReference = (VariableReference) leftHandSideExpression;
 				
@@ -147,11 +150,17 @@ public class StaticFunctionEvaluator {
 				IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
 					DataType dataType;
-					if (leftHandSideValue != null) {
-						dataType = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideValue.getDataType());
-					} else {
-						dataType = rightHandSideValue.getDataType();
+					
+					DataType rightHandSideDataType = rightHandSideValue.getDataType();
+					if (derivative) {
+						rightHandSideDataType = rightHandSideDataType.evaluate(OperatorKind.MULTIPLY, TypeUtil.createRealType("s"));
 					}
+					if (leftHandSideValue != null) {
+						dataType = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideDataType);
+					} else {
+						dataType = rightHandSideDataType;
+					}
+					
 					if (dataType != null) {
 						DataType previousDataType = null;
 						IValue previousValue = context.getValue(variableReference.getFeature());

@@ -740,8 +740,17 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSelectionProperty_Index() {
+		return (EAttribute)selectionPropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getSelectionProperty_Selection() {
-		return (EReference)selectionPropertyEClass.getEStructuralFeatures().get(1);
+		return (EReference)selectionPropertyEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -750,7 +759,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	public EReference getSelectionProperty_Body() {
-		return (EReference)selectionPropertyEClass.getEStructuralFeatures().get(2);
+		return (EReference)selectionPropertyEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -787,6 +796,15 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 */
 	public EClass getSelectionPropertyDeclaration() {
 		return selectionPropertyDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSelectionPropertyDeclaration_Count() {
+		return (EAttribute)selectionPropertyDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1148,6 +1166,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		selectionPropertyEClass = createEClass(SELECTION_PROPERTY);
 		createEReference(selectionPropertyEClass, SELECTION_PROPERTY__DECLARATION);
+		createEAttribute(selectionPropertyEClass, SELECTION_PROPERTY__INDEX);
 		createEReference(selectionPropertyEClass, SELECTION_PROPERTY__SELECTION);
 		createEReference(selectionPropertyEClass, SELECTION_PROPERTY__BODY);
 
@@ -1156,6 +1175,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEReference(selectionPropertyBodyEClass, SELECTION_PROPERTY_BODY__BINDINGS);
 
 		selectionPropertyDeclarationEClass = createEClass(SELECTION_PROPERTY_DECLARATION);
+		createEAttribute(selectionPropertyDeclarationEClass, SELECTION_PROPERTY_DECLARATION__COUNT);
 
 		selectionPropertyOptionEClass = createEClass(SELECTION_PROPERTY_OPTION);
 		createEReference(selectionPropertyOptionEClass, SELECTION_PROPERTY_OPTION__TARGET);
@@ -1344,6 +1364,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		initEClass(selectionPropertyEClass, SelectionProperty.class, "SelectionProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSelectionProperty_Declaration(), this.getSelectionPropertyDeclaration(), null, "declaration", null, 0, 1, SelectionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSelectionProperty_Index(), ecorePackage.getEInt(), "index", "-1", 0, 1, SelectionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSelectionProperty_Selection(), this.getSelectionPropertyOption(), null, "selection", null, 0, 1, SelectionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSelectionProperty_Body(), this.getSelectionPropertyBody(), this.getSelectionPropertyBody_Owner(), "body", null, 0, 1, SelectionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1352,6 +1373,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEReference(getSelectionPropertyBody_Bindings(), this.getBinding(), null, "bindings", null, 0, -1, SelectionPropertyBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectionPropertyDeclarationEClass, SelectionPropertyDeclaration.class, "SelectionPropertyDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSelectionPropertyDeclaration_Count(), ecorePackage.getEInt(), "count", "1", 0, 1, SelectionPropertyDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(selectionPropertyOptionEClass, SelectionPropertyOption.class, "SelectionPropertyOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSelectionPropertyOption_Target(), this.getSelectionPropertyDeclaration(), null, "target", null, 0, 1, SelectionPropertyOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

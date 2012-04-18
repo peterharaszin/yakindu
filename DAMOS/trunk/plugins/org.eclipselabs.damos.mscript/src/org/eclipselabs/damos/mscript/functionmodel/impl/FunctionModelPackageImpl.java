@@ -501,6 +501,15 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getComputationCompound_Derivatives() {
+		return (EReference)computationCompoundEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVariableKind() {
 		return variableKindEEnum;
 	}
@@ -576,6 +585,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		computationCompoundEClass = createEClass(COMPUTATION_COMPOUND);
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__INPUTS);
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__OUTPUTS);
+		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__DERIVATIVES);
 
 		// Create enums
 		variableKindEEnum = createEEnum(VARIABLE_KIND);
@@ -726,6 +736,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		initEClass(computationCompoundEClass, ComputationCompound.class, "ComputationCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputationCompound_Inputs(), theMscriptPackage.getInputParameterDeclaration(), null, "inputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComputationCompound_Outputs(), theMscriptPackage.getOutputParameterDeclaration(), null, "outputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationCompound_Derivatives(), theMscriptPackage.getVariableDeclaration(), null, "derivatives", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(variableKindEEnum, VariableKind.class, "VariableKind");

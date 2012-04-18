@@ -69,14 +69,14 @@ import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
  */
 public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
 
+	private final ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
+
 	private boolean hasInputSockets;
 	private IValue[] messageKinds;
 	
 	private IInterpreterContext interpreterContext;
 	private IFunctionObject functionObject;
 	
-	private ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
-
 	private IVariable[] inputVariables;
 	private IVariable[] outputVariables;
 		
@@ -157,11 +157,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 		
 		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
-			if (!compound.getOutputs().isEmpty()) {
-				computeOutputsCompounds.add(compound);
-			} else {
-				updateCompounds.add(compound);
-			}
+			initializeComputationCompound(compound);
 		}
 	}
 	
@@ -223,6 +219,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 	}
 	
+	protected void initializeComputationCompound(ComputationCompound compound) {
+		if (!compound.getOutputs().isEmpty()) {
+			computeOutputsCompounds.add(compound);
+		} else {
+			updateCompounds.add(compound);
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
@@ -277,6 +281,13 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			compoundInterpreter.execute(interpreterContext, compound);
 		}
 		functionObject.incrementStepIndex();
+	}
+	
+	/**
+	 * @return the interpreterContext
+	 */
+	protected IInterpreterContext getInterpreterContext() {
+		return interpreterContext;
 	}
 	
 	private class Helper extends BehavioredBlockHelper {

@@ -27,6 +27,7 @@ import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.IfExpression;
+import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
@@ -162,6 +163,10 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 					}
 					if (container instanceof LogicalOrExpression) {
 						error("Stateful function calls must not be contained within OR expression", null);
+						break;
+					}
+					if (container instanceof ImpliesExpression) {
+						error("Stateful function calls must not be contained within implies expression", null);
 						break;
 					}
 					element = container;

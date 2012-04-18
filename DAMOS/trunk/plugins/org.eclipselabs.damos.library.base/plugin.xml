@@ -260,16 +260,6 @@
    <extension
          point="org.eclipselabs.damos.execution.blockSignaturePolicies">
       <policy
-            blockType="damos.library.base.continuous.Integrator"
-            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.IntegratorSignaturePolicy"
-            name="Integrator">
-      </policy>
-      <policy
-            blockType="damos.library.base.continuous.Derivative"
-            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.DerivativeSignaturePolicy"
-            name="Derivative">
-      </policy>
-      <policy
             blockType="damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.TransferFunctionSignaturePolicy"
             name="Transfer Function">

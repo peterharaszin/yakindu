@@ -52,6 +52,7 @@ import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
+import org.eclipselabs.damos.mscript.RangeExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
@@ -193,6 +194,126 @@ public class StaticExpressionEvaluator {
 			}
 			
 			return new AnyValue(context.getComputationContext(), dataType);
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseRangeExpression(org.eclipselabs.damos.mscript.RangeExpression)
+		 */
+		@Override
+		public IValue caseRangeExpression(RangeExpression rangeExpression) {
+			Expression startExpression = null;
+			Expression incrementExpression = null;
+			Expression endExpression = null;
+			
+			EList<Expression> operands = rangeExpression.getOperands();
+			if (operands.size() == 2) {
+				startExpression = operands.get(0);
+				endExpression = operands.get(1);
+			} else if (operands.size() == 3) {
+				startExpression = operands.get(0);
+				incrementExpression = operands.get(1);
+				endExpression = operands.get(2);
+			} else {
+				return InvalidValue.SINGLETON;
+			}
+			
+			IValue startValue = evaluate(startExpression);
+			IValue incrementValue = incrementExpression != null ? evaluate(incrementExpression) : null;
+			IValue endValue = evaluate(endExpression);
+			
+			if (startValue instanceof InvalidValue || incrementValue instanceof InvalidValue || endValue instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			boolean nonStatic = false;
+			
+			if (startValue instanceof AnyValue) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Start expression must be static", startExpression));
+				nonStatic = true;
+			}
+			
+			if (incrementValue instanceof AnyValue) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Increment expression must be static", incrementExpression));
+				nonStatic = true;
+			}
+
+			if (endValue instanceof AnyValue) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "End expression must be static", endExpression));
+				nonStatic = true;
+			}
+			
+			if (nonStatic) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			boolean nonNumeric = false;
+			
+			if (!(startValue instanceof ISimpleNumericValue)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Start expression must be numeric", startExpression));
+				nonNumeric = true;
+			}
+			
+			if (incrementValue != null && !(incrementValue instanceof ISimpleNumericValue)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Increment expression must be numeric", incrementExpression));
+				nonNumeric = true;
+			}
+
+			if (!(endValue instanceof ISimpleNumericValue)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "End expression must be numeric", endExpression));
+				nonNumeric = true;
+			}
+
+			if (nonNumeric) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			DataType dataType = startValue.getDataType();
+			if (incrementValue != null && dataType != null) {
+				dataType = TypeUtil.getLeftHandDataType(dataType, incrementValue.getDataType());
+			}
+			if (dataType != null) {
+				dataType = TypeUtil.getLeftHandDataType(dataType, endValue.getDataType());
+			}
+			if (!(dataType instanceof NumericType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Incompatible data types in range expression", rangeExpression));
+				return InvalidValue.SINGLETON;
+			}
+			
+			List<IValue> values = new ArrayList<IValue>();
+			
+			ISimpleNumericValue numericStartValue = (ISimpleNumericValue) startValue;
+			ISimpleNumericValue numericIncrementValue = (ISimpleNumericValue) incrementValue;
+			ISimpleNumericValue numericEndValue = (ISimpleNumericValue) endValue;
+			
+			if (dataType instanceof IntegerType) {
+				long x = numericStartValue.longValue();
+				long increment = incrementValue != null ? numericIncrementValue.longValue() : 1;
+				long end = numericEndValue.longValue();
+				if (increment > 0 && x <= end) {
+					for (; x <= end; x += increment) {
+						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+					}
+				} else if (increment < 0 && x >= end) {
+					for (; x >= end; x += increment) {
+						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+					}
+				}
+			} else {
+				double x = numericStartValue.doubleValue();
+				double increment = incrementValue != null ? numericIncrementValue.doubleValue() : 1.0;
+				double end = numericEndValue.doubleValue();
+				if (increment > 0.0 && x <= end) {
+					for (; x <= end; x += increment) {
+						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+					}
+				} else if (increment < 0.0 && x >= end) {
+					for (; x >= end; x += increment) {
+						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+					}
+				}
+			}
+			
+			return new VectorValue(context.getComputationContext(), TypeUtil.createArrayType(dataType, values.size()), values.toArray(new IValue[values.size()]));
 		}
 		
 		/* (non-Javadoc)

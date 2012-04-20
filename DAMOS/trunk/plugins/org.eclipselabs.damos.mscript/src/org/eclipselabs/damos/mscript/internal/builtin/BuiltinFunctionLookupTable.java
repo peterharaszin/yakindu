@@ -26,6 +26,8 @@ public class BuiltinFunctionLookupTable implements IBuiltinFunctionLookupTable {
 		switch (descriptor) {
 		case UNIT:
 			return new UnitFunction();
+		case SIZE:
+			return new SizeFunction();
 		case ROUND:
 			return new RoundFunction();
 		case NUM:

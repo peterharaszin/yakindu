@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.internal.builtin.LnSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.NumSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.RoundSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.SinSignature;
+import org.eclipselabs.damos.mscript.internal.builtin.SizeSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.TanSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.UnitSignature;
 
@@ -32,6 +33,7 @@ import org.eclipselabs.damos.mscript.internal.builtin.UnitSignature;
 public enum BuiltinFunctionKind {
 	
 	UNIT("unit", new UnitSignature()),
+	SIZE("size", new SizeSignature()),
 	ROUND("round", new RoundSignature()),
 	NUM("num", new NumSignature()),
 	LN("ln", new LnSignature()),

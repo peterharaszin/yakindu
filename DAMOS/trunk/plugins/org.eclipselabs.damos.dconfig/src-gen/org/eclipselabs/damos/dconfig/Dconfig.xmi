@@ -1657,6 +1657,14 @@
           <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/Subtract"/>
           <literal value="-"/>
         </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseAdd"/>
+          <literal value=".+"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseSubtract"/>
+          <literal value=".-"/>
+        </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicativeExpression">
@@ -1694,6 +1702,10 @@
           <literal value="/"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Modulo"/>
+          <literal value="%"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
           <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseMultiply"/>
           <literal value=".*"/>
         </elements>
@@ -1702,8 +1714,8 @@
           <literal value="./"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Modulo"/>
-          <literal value="%"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseModulo"/>
+          <literal value=".%"/>
         </elements>
       </alternatives>
     </rules>

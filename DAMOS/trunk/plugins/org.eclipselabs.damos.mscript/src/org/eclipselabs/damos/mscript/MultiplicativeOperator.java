@@ -43,24 +43,6 @@ public enum MultiplicativeOperator implements Enumerator {
 	DIVIDE(1, "Divide", "/"),
 
 	/**
-	 * The '<em><b>Element Wise Multiply</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENT_WISE_MULTIPLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEMENT_WISE_MULTIPLY(2, "ElementWiseMultiply", ".*"),
-
-	/**
-	 * The '<em><b>Element Wise Divide</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENT_WISE_DIVIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELEMENT_WISE_DIVIDE(3, "ElementWiseDivide", "./"), /**
 	 * The '<em><b>Modulo</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +50,31 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MODULO(4, "Modulo", "%");
+	MODULO(2, "Modulo", "%"), /**
+	 * The '<em><b>Element Wise Multiply</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_MULTIPLY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELEMENT_WISE_MULTIPLY(3, "ElementWiseMultiply", ".*"), /**
+	 * The '<em><b>Element Wise Divide</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_DIVIDE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELEMENT_WISE_DIVIDE(4, "ElementWiseDivide", "./"), /**
+	 * The '<em><b>Element Wise Modulo</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_MODULO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELEMENT_WISE_MODULO(5, "ElementWiseModulo", ".%");
 
 	/**
 	 * The '<em><b>Multiply</b></em>' literal value.
@@ -101,6 +107,21 @@ public enum MultiplicativeOperator implements Enumerator {
 	public static final int DIVIDE_VALUE = 1;
 
 	/**
+	 * The '<em><b>Modulo</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Modulo</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MODULO
+	 * @model name="Modulo" literal="%"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MODULO_VALUE = 2;
+
+	/**
 	 * The '<em><b>Element Wise Multiply</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -113,7 +134,7 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEMENT_WISE_MULTIPLY_VALUE = 2;
+	public static final int ELEMENT_WISE_MULTIPLY_VALUE = 3;
 
 	/**
 	 * The '<em><b>Element Wise Divide</b></em>' literal value.
@@ -128,22 +149,22 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEMENT_WISE_DIVIDE_VALUE = 3;
+	public static final int ELEMENT_WISE_DIVIDE_VALUE = 4;
 
 	/**
-	 * The '<em><b>Modulo</b></em>' literal value.
+	 * The '<em><b>Element Wise Modulo</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Modulo</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Element Wise Modulo</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODULO
-	 * @model name="Modulo" literal="%"
+	 * @see #ELEMENT_WISE_MODULO
+	 * @model name="ElementWiseModulo" literal=".%"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODULO_VALUE = 4;
+	public static final int ELEMENT_WISE_MODULO_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Multiplicative Operator</b></em>' enumerators.
@@ -155,9 +176,10 @@ public enum MultiplicativeOperator implements Enumerator {
 		new MultiplicativeOperator[] {
 			MULTIPLY,
 			DIVIDE,
+			MODULO,
 			ELEMENT_WISE_MULTIPLY,
 			ELEMENT_WISE_DIVIDE,
-			MODULO,
+			ELEMENT_WISE_MODULO,
 		};
 
 	/**
@@ -210,9 +232,10 @@ public enum MultiplicativeOperator implements Enumerator {
 		switch (value) {
 			case MULTIPLY_VALUE: return MULTIPLY;
 			case DIVIDE_VALUE: return DIVIDE;
+			case MODULO_VALUE: return MODULO;
 			case ELEMENT_WISE_MULTIPLY_VALUE: return ELEMENT_WISE_MULTIPLY;
 			case ELEMENT_WISE_DIVIDE_VALUE: return ELEMENT_WISE_DIVIDE;
-			case MODULO_VALUE: return MODULO;
+			case ELEMENT_WISE_MODULO_VALUE: return ELEMENT_WISE_MODULO;
 		}
 		return null;
 	}

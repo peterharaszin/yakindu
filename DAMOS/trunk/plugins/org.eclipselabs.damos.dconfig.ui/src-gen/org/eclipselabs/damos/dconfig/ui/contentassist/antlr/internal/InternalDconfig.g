@@ -5846,6 +5846,20 @@ rule__AdditiveOperator__Alternatives
 { after(grammarAccess.getAdditiveOperatorAccess().getSubtractEnumLiteralDeclaration_1()); }
 )
 
+    |(
+{ before(grammarAccess.getAdditiveOperatorAccess().getElementWiseAddEnumLiteralDeclaration_2()); }
+(	'.+' 
+)
+{ after(grammarAccess.getAdditiveOperatorAccess().getElementWiseAddEnumLiteralDeclaration_2()); }
+)
+
+    |(
+{ before(grammarAccess.getAdditiveOperatorAccess().getElementWiseSubtractEnumLiteralDeclaration_3()); }
+(	'.-' 
+)
+{ after(grammarAccess.getAdditiveOperatorAccess().getElementWiseSubtractEnumLiteralDeclaration_3()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -5871,24 +5885,31 @@ rule__MultiplicativeOperator__Alternatives
 )
 
     |(
-{ before(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseMultiplyEnumLiteralDeclaration_2()); }
-(	'.*' 
-)
-{ after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseMultiplyEnumLiteralDeclaration_2()); }
-)
-
-    |(
-{ before(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3()); }
-(	'./' 
-)
-{ after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3()); }
-)
-
-    |(
-{ before(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); }
+{ before(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_2()); }
 (	'%' 
 )
-{ after(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); }
+{ after(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_2()); }
+)
+
+    |(
+{ before(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseMultiplyEnumLiteralDeclaration_3()); }
+(	'.*' 
+)
+{ after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseMultiplyEnumLiteralDeclaration_3()); }
+)
+
+    |(
+{ before(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_4()); }
+(	'./' 
+)
+{ after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_4()); }
+)
+
+    |(
+{ before(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseModuloEnumLiteralDeclaration_5()); }
+(	'.%' 
+)
+{ after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseModuloEnumLiteralDeclaration_5()); }
 )
 
 ;

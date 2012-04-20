@@ -217,7 +217,9 @@ AdditiveExpression returns Expression:
 
 enum AdditiveOperator:
 	Add='+' |
-	Subtract='-';
+	Subtract='-' |
+	ElementWiseAdd='.+' |
+	ElementWiseSubtract='.-';
 
 MultiplicativeExpression returns Expression:
 	PowerExpression ({MultiplicativeExpression.leftOperand=current} operator=MultiplicativeOperator rightOperand=PowerExpression)*;
@@ -225,9 +227,10 @@ MultiplicativeExpression returns Expression:
 enum MultiplicativeOperator:
 	Multiply='*' |
 	Divide='/' |
+	Modulo='%' |
 	ElementWiseMultiply='.*' |
 	ElementWiseDivide='./' |
-	Modulo='%';
+	ElementWiseModulo='.%';
 	
 PowerExpression returns Expression:
 	UnaryExpression ({PowerExpression.operand=current} operator=PowerOperator exponent=UnaryExpression)?;

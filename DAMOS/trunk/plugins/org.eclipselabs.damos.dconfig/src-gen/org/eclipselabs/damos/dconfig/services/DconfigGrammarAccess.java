@@ -2376,7 +2376,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum AdditiveOperator:
-	//	Add="+" | Subtract="-";
+	//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 	public MscriptGrammarAccess.AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return gaMscript.getAdditiveOperatorAccess();
 	}
@@ -2397,7 +2397,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum MultiplicativeOperator:
-	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
+	//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 	public MscriptGrammarAccess.MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return gaMscript.getMultiplicativeOperatorAccess();
 	}

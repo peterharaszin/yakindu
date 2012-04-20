@@ -40,7 +40,23 @@ public enum AdditiveOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SUBTRACT(1, "Subtract", "-");
+	SUBTRACT(1, "Subtract", "-"), /**
+	 * The '<em><b>Element Wise Add</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_ADD_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELEMENT_WISE_ADD(2, "ElementWiseAdd", ".+"), /**
+	 * The '<em><b>Element Wise Subtract</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_SUBTRACT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELEMENT_WISE_SUBTRACT(3, "ElementWiseSubtract", ".-");
 
 	/**
 	 * The '<em><b>Add</b></em>' literal value.
@@ -73,6 +89,36 @@ public enum AdditiveOperator implements Enumerator {
 	public static final int SUBTRACT_VALUE = 1;
 
 	/**
+	 * The '<em><b>Element Wise Add</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Element Wise Add</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_ADD
+	 * @model name="ElementWiseAdd" literal=".+"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELEMENT_WISE_ADD_VALUE = 2;
+
+	/**
+	 * The '<em><b>Element Wise Subtract</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Element Wise Subtract</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELEMENT_WISE_SUBTRACT
+	 * @model name="ElementWiseSubtract" literal=".-"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELEMENT_WISE_SUBTRACT_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Additive Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +128,8 @@ public enum AdditiveOperator implements Enumerator {
 		new AdditiveOperator[] {
 			ADD,
 			SUBTRACT,
+			ELEMENT_WISE_ADD,
+			ELEMENT_WISE_SUBTRACT,
 		};
 
 	/**
@@ -134,6 +182,8 @@ public enum AdditiveOperator implements Enumerator {
 		switch (value) {
 			case ADD_VALUE: return ADD;
 			case SUBTRACT_VALUE: return SUBTRACT;
+			case ELEMENT_WISE_ADD_VALUE: return ELEMENT_WISE_ADD;
+			case ELEMENT_WISE_SUBTRACT_VALUE: return ELEMENT_WISE_SUBTRACT;
 		}
 		return null;
 	}

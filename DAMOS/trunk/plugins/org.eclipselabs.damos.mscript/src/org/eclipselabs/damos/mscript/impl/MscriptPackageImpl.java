@@ -4424,13 +4424,16 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEEnum(additiveOperatorEEnum, AdditiveOperator.class, "AdditiveOperator");
 		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ADD);
 		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.SUBTRACT);
+		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ELEMENT_WISE_ADD);
+		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ELEMENT_WISE_SUBTRACT);
 
 		initEEnum(multiplicativeOperatorEEnum, MultiplicativeOperator.class, "MultiplicativeOperator");
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MULTIPLY);
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.DIVIDE);
+		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MODULO);
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_MULTIPLY);
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_DIVIDE);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MODULO);
+		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_MODULO);
 
 		initEEnum(powerOperatorEEnum, PowerOperator.class, "PowerOperator");
 		addEEnumLiteral(powerOperatorEEnum, PowerOperator.POWER);

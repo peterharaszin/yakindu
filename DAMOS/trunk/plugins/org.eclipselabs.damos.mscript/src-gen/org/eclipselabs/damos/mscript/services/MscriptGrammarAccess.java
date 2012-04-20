@@ -4740,12 +4740,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAddPlusSignKeyword_0_0 = (Keyword)cAddEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cSubtractEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cSubtractHyphenMinusKeyword_1_0 = (Keyword)cSubtractEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cElementWiseAddEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cElementWiseAddFullStopPlusSignKeyword_2_0 = (Keyword)cElementWiseAddEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cElementWiseSubtractEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cElementWiseSubtractFullStopHyphenMinusKeyword_3_0 = (Keyword)cElementWiseSubtractEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum AdditiveOperator:
-		//	Add="+" | Subtract="-";
+		//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 		public EnumRule getRule() { return rule; }
 
-		//Add="+" | Subtract="-"
+		//Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Add="+"
@@ -4759,6 +4763,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"-"
 		public Keyword getSubtractHyphenMinusKeyword_1_0() { return cSubtractHyphenMinusKeyword_1_0; }
+
+		//ElementWiseAdd=".+"
+		public EnumLiteralDeclaration getElementWiseAddEnumLiteralDeclaration_2() { return cElementWiseAddEnumLiteralDeclaration_2; }
+
+		//".+"
+		public Keyword getElementWiseAddFullStopPlusSignKeyword_2_0() { return cElementWiseAddFullStopPlusSignKeyword_2_0; }
+
+		//ElementWiseSubtract=".-"
+		public EnumLiteralDeclaration getElementWiseSubtractEnumLiteralDeclaration_3() { return cElementWiseSubtractEnumLiteralDeclaration_3; }
+
+		//".-"
+		public Keyword getElementWiseSubtractFullStopHyphenMinusKeyword_3_0() { return cElementWiseSubtractFullStopHyphenMinusKeyword_3_0; }
 	}
 
 	public class MultiplicativeOperatorElements extends AbstractEnumRuleElementFinder {
@@ -4768,18 +4784,20 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMultiplyAsteriskKeyword_0_0 = (Keyword)cMultiplyEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cDivideEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cDivideSolidusKeyword_1_0 = (Keyword)cDivideEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cElementWiseMultiplyEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cElementWiseMultiplyFullStopAsteriskKeyword_2_0 = (Keyword)cElementWiseMultiplyEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cElementWiseDivideEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cElementWiseDivideFullStopSolidusKeyword_3_0 = (Keyword)cElementWiseDivideEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cModuloEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cModuloPercentSignKeyword_4_0 = (Keyword)cModuloEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cModuloEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cModuloPercentSignKeyword_2_0 = (Keyword)cModuloEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cElementWiseMultiplyEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cElementWiseMultiplyFullStopAsteriskKeyword_3_0 = (Keyword)cElementWiseMultiplyEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cElementWiseDivideEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cElementWiseDivideFullStopSolidusKeyword_4_0 = (Keyword)cElementWiseDivideEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cElementWiseModuloEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cElementWiseModuloFullStopPercentSignKeyword_5_0 = (Keyword)cElementWiseModuloEnumLiteralDeclaration_5.eContents().get(0);
 		
 		//enum MultiplicativeOperator:
-		//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
+		//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 		public EnumRule getRule() { return rule; }
 
-		//Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%"
+		//Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Multiply="*"
@@ -4794,23 +4812,29 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"/"
 		public Keyword getDivideSolidusKeyword_1_0() { return cDivideSolidusKeyword_1_0; }
 
-		//ElementWiseMultiply=".*"
-		public EnumLiteralDeclaration getElementWiseMultiplyEnumLiteralDeclaration_2() { return cElementWiseMultiplyEnumLiteralDeclaration_2; }
-
-		//".*"
-		public Keyword getElementWiseMultiplyFullStopAsteriskKeyword_2_0() { return cElementWiseMultiplyFullStopAsteriskKeyword_2_0; }
-
-		//ElementWiseDivide="./"
-		public EnumLiteralDeclaration getElementWiseDivideEnumLiteralDeclaration_3() { return cElementWiseDivideEnumLiteralDeclaration_3; }
-
-		//"./"
-		public Keyword getElementWiseDivideFullStopSolidusKeyword_3_0() { return cElementWiseDivideFullStopSolidusKeyword_3_0; }
-
 		//Modulo="%"
-		public EnumLiteralDeclaration getModuloEnumLiteralDeclaration_4() { return cModuloEnumLiteralDeclaration_4; }
+		public EnumLiteralDeclaration getModuloEnumLiteralDeclaration_2() { return cModuloEnumLiteralDeclaration_2; }
 
 		//"%"
-		public Keyword getModuloPercentSignKeyword_4_0() { return cModuloPercentSignKeyword_4_0; }
+		public Keyword getModuloPercentSignKeyword_2_0() { return cModuloPercentSignKeyword_2_0; }
+
+		//ElementWiseMultiply=".*"
+		public EnumLiteralDeclaration getElementWiseMultiplyEnumLiteralDeclaration_3() { return cElementWiseMultiplyEnumLiteralDeclaration_3; }
+
+		//".*"
+		public Keyword getElementWiseMultiplyFullStopAsteriskKeyword_3_0() { return cElementWiseMultiplyFullStopAsteriskKeyword_3_0; }
+
+		//ElementWiseDivide="./"
+		public EnumLiteralDeclaration getElementWiseDivideEnumLiteralDeclaration_4() { return cElementWiseDivideEnumLiteralDeclaration_4; }
+
+		//"./"
+		public Keyword getElementWiseDivideFullStopSolidusKeyword_4_0() { return cElementWiseDivideFullStopSolidusKeyword_4_0; }
+
+		//ElementWiseModulo=".%"
+		public EnumLiteralDeclaration getElementWiseModuloEnumLiteralDeclaration_5() { return cElementWiseModuloEnumLiteralDeclaration_5; }
+
+		//".%"
+		public Keyword getElementWiseModuloFullStopPercentSignKeyword_5_0() { return cElementWiseModuloFullStopPercentSignKeyword_5_0; }
 	}
 
 	public class PowerOperatorElements extends AbstractEnumRuleElementFinder {
@@ -5558,7 +5582,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum AdditiveOperator:
-	//	Add="+" | Subtract="-";
+	//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 	public AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return (unknownRuleAdditiveOperator != null) ? unknownRuleAdditiveOperator : (unknownRuleAdditiveOperator = new AdditiveOperatorElements());
 	}
@@ -5579,7 +5603,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum MultiplicativeOperator:
-	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
+	//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return (unknownRuleMultiplicativeOperator != null) ? unknownRuleMultiplicativeOperator : (unknownRuleMultiplicativeOperator = new MultiplicativeOperatorElements());
 	}

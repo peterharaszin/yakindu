@@ -169,13 +169,16 @@
   <eClassifiers xsi:type="ecore:EEnum" name="AdditiveOperator">
     <eLiterals name="Add" literal="+"/>
     <eLiterals name="Subtract" value="1" literal="-"/>
+    <eLiterals name="ElementWiseAdd" value="2" literal=".+"/>
+    <eLiterals name="ElementWiseSubtract" value="3" literal=".-"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MultiplicativeOperator">
     <eLiterals name="Multiply" literal="*"/>
     <eLiterals name="Divide" value="1" literal="/"/>
-    <eLiterals name="ElementWiseMultiply" value="2" literal=".*"/>
-    <eLiterals name="ElementWiseDivide" value="3" literal="./"/>
-    <eLiterals name="Modulo" value="4" literal="%"/>
+    <eLiterals name="Modulo" value="2" literal="%"/>
+    <eLiterals name="ElementWiseMultiply" value="3" literal=".*"/>
+    <eLiterals name="ElementWiseDivide" value="4" literal="./"/>
+    <eLiterals name="ElementWiseModulo" value="5" literal=".%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PowerOperator">
     <eLiterals name="Power" literal="^"/>

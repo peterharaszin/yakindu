@@ -89,8 +89,14 @@ public class StaticFunctionEvaluator {
 		
 		for (Assertion assertion : functionDescriptor.getDeclaration().getAssertions()) {
 			if (assertion.isStatic()) {
-				staticExpressionEvaluator.evaluate(context, assertion.getCondition(), true);
+				IStatus assertStatus = staticExpressionEvaluator.evaluate(context, assertion.getCondition(), true);
+				if (!assertStatus.isOK()) {
+					status.merge(assertStatus);
+				}
 				IValue value = context.getValue(assertion.getCondition());
+				if (value instanceof InvalidValue) {
+					continue;
+				}
 				if (!(value instanceof IBooleanValue)) {
 					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Assertion condition must result to boolean value", assertion.getCondition()));
 					continue;

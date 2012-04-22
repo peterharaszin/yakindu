@@ -14,7 +14,6 @@ package org.eclipselabs.damos.mscript.internal.builtin;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
@@ -53,12 +52,7 @@ public class SizeFunction implements IBuiltinFunction {
 			Expression sizeExpression = dimensions.get(dimension).getSize();
 			IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
 			
-			IStatus result = new StaticExpressionEvaluator().evaluate(staticEvaluationContext, sizeExpression);
-			if (!result.isOK()) {
-				// TODO: throw EvaluationException
-				return Collections.<IValue>singletonList(InvalidValue.SINGLETON);
-			}
-			
+			new StaticExpressionEvaluator().evaluate(staticEvaluationContext, sizeExpression);
 			return Collections.singletonList(staticEvaluationContext.getValue(sizeExpression));
 		}
 		throw new IllegalArgumentException();

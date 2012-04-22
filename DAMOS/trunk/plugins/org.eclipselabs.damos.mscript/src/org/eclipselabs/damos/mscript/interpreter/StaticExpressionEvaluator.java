@@ -950,6 +950,10 @@ public class StaticExpressionEvaluator {
 			}
 			
 			IValue subsciptValue = evaluate(subscript.getExpression());
+			if (subsciptValue instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			if (!(subsciptValue.getDataType() instanceof IntegerType)) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript data type must be integer", arrayElementAccess));
 				return InvalidValue.SINGLETON;
@@ -957,6 +961,10 @@ public class StaticExpressionEvaluator {
 			
 			if (subsciptValue instanceof ISimpleNumericValue) {
 				int index = (int) ((ISimpleNumericValue) subsciptValue).longValue();
+				if (index < 0) {
+					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be greater than or equal to 0", arrayElementAccess));
+					return InvalidValue.SINGLETON;
+				}
 				if (index < size) {
 					if (value instanceof IArrayValue) {
 						return ((IArrayValue) value).get(index);
@@ -1169,7 +1177,13 @@ public class StaticExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
-			return Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), ((ISimpleNumericValue) sizeValue).longValue() - 1);
+			long size = ((ISimpleNumericValue) sizeValue).longValue();
+			if (size == 0) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array dimension must be greater than 0", endExpression));
+				return InvalidValue.SINGLETON;
+			}
+			
+			return Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), size - 1);
 		}
 
 		/* (non-Javadoc)

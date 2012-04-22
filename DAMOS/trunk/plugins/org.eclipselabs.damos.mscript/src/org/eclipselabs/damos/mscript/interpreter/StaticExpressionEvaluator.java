@@ -30,6 +30,7 @@ import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
@@ -1117,16 +1118,60 @@ public class StaticExpressionEvaluator {
 			
 			return new AnyValue(context.getComputationContext(), resultingDataType);
 		}
-
+		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseEndExpression(org.eclipselabs.damos.mscript.EndExpression)
 		 */
 		@Override
-		public IValue defaultCase(EObject object) {
-			status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
-			return InvalidValue.SINGLETON;
+		public IValue caseEndExpression(EndExpression endExpression) {
+			EObject container = endExpression.eContainer();
+			
+			while (container != null && !(container instanceof ArraySubscript)) {
+				container = container.eContainer();
+			}
+			
+			if (!(container instanceof ArraySubscript && container.eContainer() instanceof ArrayElementAccess)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			ArraySubscript arraySubscript = (ArraySubscript) container;
+			ArrayElementAccess arrayElementAccess = (ArrayElementAccess) container.eContainer();
+			
+			int dimension = arrayElementAccess.getSubscripts().indexOf(arraySubscript);
+			
+			IValue arrayValue = context.getValue(arrayElementAccess.getArray());
+			if (arrayValue == null) {
+				arrayValue = evaluate(arrayElementAccess.getArray());
+			}
+			
+			if (arrayValue instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(arrayValue.getDataType() instanceof ArrayType)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			ArrayType arrayType = (ArrayType) arrayValue.getDataType();
+			
+			EList<ArrayDimension> dimensions = arrayType.getDimensions();
+			if (dimension >= dimensions.size()) {
+				return InvalidValue.SINGLETON;
+			}
+
+			Expression sizeExpression = dimensions.get(dimension).getSize();
+			IValue sizeValue = context.getValue(sizeExpression);
+			if (sizeValue == null) {
+				sizeValue = evaluate(sizeExpression);
+			}
+			
+			if (!(sizeValue instanceof ISimpleNumericValue)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			return Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), ((ISimpleNumericValue) sizeValue).longValue() - 1);
 		}
-		
+
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 		 */
@@ -1161,6 +1206,15 @@ public class StaticExpressionEvaluator {
 		@Override
 		public IValue caseStringLiteral(StringLiteral stringLiteral) {
 			return new StringValue(context.getComputationContext(), stringLiteral.getValue());
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+		 */
+		@Override
+		public IValue defaultCase(EObject object) {
+			status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
+			return InvalidValue.SINGLETON;
 		}
 		
 	}

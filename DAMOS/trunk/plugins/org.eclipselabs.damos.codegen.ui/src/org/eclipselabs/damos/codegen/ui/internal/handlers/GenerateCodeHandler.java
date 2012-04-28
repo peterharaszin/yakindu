@@ -26,9 +26,12 @@ import org.eclipselabs.damos.codegen.registry.IGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.registry.IGeneratorRegistry;
 import org.eclipselabs.damos.codegen.ui.CodegenUIPlugin;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 
 public class GenerateCodeHandler extends AbstractHandler {
 
+	private static final PropertyPath GENERATOR_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator");
+	
 	private static final String MESSAGE_DIALOG_TITLE = "Code Generation";
 	private static final String ERROR_MESSAGE = "Code Generation failed";
 
@@ -50,7 +53,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Selected object must contain configuration model"));
 						}
 						
-						String generatorId = configuration.getPropertySelectionName("damos.codegen.generator");
+						String generatorId = configuration.getPropertySelectionName(GENERATOR_PROPERTY_PATH);
 						if (generatorId == null) {
 							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Configuration does not specify generator"));
 						}

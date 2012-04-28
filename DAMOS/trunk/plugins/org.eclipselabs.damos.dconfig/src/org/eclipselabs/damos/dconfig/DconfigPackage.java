@@ -1352,6 +1352,16 @@ public interface DconfigPackage extends EPackage {
 	int COMPONENT_CONFIGURATION_BODY_FEATURE_COUNT = PROPERTY_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '<em>Property Path</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dconfig.util.PropertyPath
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyPath()
+	 * @generated
+	 */
+	int PROPERTY_PATH = 30;
+
+	/**
 	 * The meta object id for the '<em>System Path</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1359,7 +1369,17 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemPath()
 	 * @generated
 	 */
-	int SYSTEM_PATH = 30;
+	int SYSTEM_PATH = 31;
+
+	/**
+	 * The meta object id for the '<em>Numbered List</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.common.util.NumberedList
+	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getNumberedList()
+	 * @generated
+	 */
+	int NUMBERED_LIST = 32;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.Configuration <em>Configuration</em>}'.
@@ -2256,6 +2276,17 @@ public interface DconfigPackage extends EPackage {
 	EReference getComponentConfigurationBody_Owner();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipselabs.damos.dconfig.util.PropertyPath <em>Property Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Property Path</em>'.
+	 * @see org.eclipselabs.damos.dconfig.util.PropertyPath
+	 * @model instanceClass="org.eclipselabs.damos.dconfig.util.PropertyPath"
+	 * @generated
+	 */
+	EDataType getPropertyPath();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipselabs.damos.dml.util.SystemPath <em>System Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2265,6 +2296,17 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getSystemPath();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipselabs.damos.common.util.NumberedList <em>Numbered List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Numbered List</em>'.
+	 * @see org.eclipselabs.damos.common.util.NumberedList
+	 * @model instanceClass="org.eclipselabs.damos.common.util.NumberedList" typeParameters="V"
+	 * @generated
+	 */
+	EDataType getNumberedList();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3021,6 +3063,16 @@ public interface DconfigPackage extends EPackage {
 		EReference COMPONENT_CONFIGURATION_BODY__OWNER = eINSTANCE.getComponentConfigurationBody_Owner();
 
 		/**
+		 * The meta object literal for the '<em>Property Path</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dconfig.util.PropertyPath
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyPath()
+		 * @generated
+		 */
+		EDataType PROPERTY_PATH = eINSTANCE.getPropertyPath();
+
+		/**
 		 * The meta object literal for the '<em>System Path</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3029,6 +3081,16 @@ public interface DconfigPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType SYSTEM_PATH = eINSTANCE.getSystemPath();
+
+		/**
+		 * The meta object literal for the '<em>Numbered List</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.common.util.NumberedList
+		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getNumberedList()
+		 * @generated
+		 */
+		EDataType NUMBERED_LIST = eINSTANCE.getNumberedList();
 
 	}
 

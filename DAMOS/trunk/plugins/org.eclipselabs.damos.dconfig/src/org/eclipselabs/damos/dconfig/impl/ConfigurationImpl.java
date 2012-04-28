@@ -16,11 +16,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.common.util.NumberedList;
 import org.eclipselabs.damos.dconfig.BindingResourceReference;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.internal.operations.ConfigurationOperations;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
@@ -283,8 +285,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Expression getPropertyValue(String propertyId) {
-		return ConfigurationOperations.getPropertyValue(this, propertyId);
+	public Expression getPropertyValue(PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertyValue(this, propertyPath);
 	}
 
 	/**
@@ -292,8 +294,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Expression getPropertyValue(SystemPath path, String propertyId) {
-		return ConfigurationOperations.getPropertyValue(this, path, propertyId);
+	public Expression getPropertyValue(SystemPath systemPath, PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertyValue(this, systemPath, propertyPath);
 	}
 
 	/**
@@ -301,8 +303,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String getPropertySelectionName(String propertyId) {
-		return ConfigurationOperations.getPropertySelectionName(this, propertyId);
+	public String getPropertySelectionName(PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertySelectionName(this, propertyPath);
 	}
 
 	/**
@@ -310,8 +312,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String getPropertySelectionName(SystemPath path, String propertyId) {
-		return ConfigurationOperations.getPropertySelectionName(this, path, propertyId);
+	public String getPropertySelectionName(SystemPath systemPath, PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertySelectionName(this, systemPath, propertyPath);
 	}
 
 	/**
@@ -319,8 +321,26 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public BindingResourceReference getBindingTarget(String propertyId, SystemPath sourcePath) {
-		return ConfigurationOperations.getBindingTarget(this, propertyId, sourcePath);
+	public NumberedList<String> getPropertySelectionNames(PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertySelectionNames(this, propertyPath);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public NumberedList<String> getPropertySelectionNames(SystemPath systemPath, PropertyPath propertyPath) {
+		return ConfigurationOperations.getPropertySelectionNames(this, systemPath, propertyPath);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public BindingResourceReference getBindingTarget(PropertyPath propertyPath, SystemPath sourcePath) {
+		return ConfigurationOperations.getBindingTarget(this, propertyPath, sourcePath);
 	}
 
 	/**

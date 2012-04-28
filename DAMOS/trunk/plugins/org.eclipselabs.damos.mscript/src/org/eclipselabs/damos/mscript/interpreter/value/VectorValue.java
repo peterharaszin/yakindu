@@ -52,8 +52,8 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (!TypeUtil.isTensor(dataType)) {
-			throw new IllegalArgumentException("Data type must be array type");
+		if (!TypeUtil.isVector(dataType)) {
+			throw new IllegalArgumentException("Data type must be vector");
 		}
 		ArrayType arrayType = (ArrayType) dataType;
 		INumericValue[] convertedElements = new INumericValue[elements.length];

@@ -7,7 +7,11 @@
   <foreignModel>Dconfig.ecore</foreignModel>
   <genPackages prefix="Dconfig" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
       ecorePackage="Dconfig.ecore#/">
+    <genDataTypes ecoreDataType="Dconfig.ecore#//PropertyPath"/>
     <genDataTypes ecoreDataType="Dconfig.ecore#//SystemPath"/>
+    <genDataTypes ecoreDataType="Dconfig.ecore#//NumberedList">
+      <genTypeParameters ecoreTypeParameter="Dconfig.ecore#//NumberedList/V"/>
+    </genDataTypes>
     <genClasses ecoreClass="Dconfig.ecore#//Configuration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/packageName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/name"/>
@@ -16,25 +20,32 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/rootSystemConfiguration"/>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getContextFragment"/>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertyValue">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue/propertyId"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue/propertyPath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertyValue.1">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/path"/>
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/propertyId"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/propertyPath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionName">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName/propertyId"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName/propertyPath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionName.1">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/path"/>
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/propertyId"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionNames">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionNames.1">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/propertyPath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getBindingTarget">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBindingTarget/propertyId"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBindingTarget/propertyPath"/>
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBindingTarget/sourcePath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getComputationModel">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/path"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/systemPath"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//ConfigurationDefinition">

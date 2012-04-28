@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.common.util.NumberedList;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
 import org.eclipselabs.damos.dconfig.BindingResourceReference;
@@ -37,6 +38,7 @@ import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.util.SystemPath;
 
 /**
@@ -119,8 +121,12 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case DconfigPackage.PROPERTY_PATH:
+				return createPropertyPathFromString(eDataType, initialValue);
 			case DconfigPackage.SYSTEM_PATH:
 				return createSystemPathFromString(eDataType, initialValue);
+			case DconfigPackage.NUMBERED_LIST:
+				return createNumberedListFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -134,8 +140,12 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case DconfigPackage.PROPERTY_PATH:
+				return convertPropertyPathToString(eDataType, instanceValue);
 			case DconfigPackage.SYSTEM_PATH:
 				return convertSystemPathToString(eDataType, instanceValue);
+			case DconfigPackage.NUMBERED_LIST:
+				return convertNumberedListToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -376,6 +386,24 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PropertyPath createPropertyPathFromString(EDataType eDataType, String initialValue) {
+		return (PropertyPath)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPropertyPathToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SystemPath createSystemPathFromString(EDataType eDataType, String initialValue) {
 		return (SystemPath)super.createFromString(eDataType, initialValue);
 	}
@@ -387,6 +415,24 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	 */
 	public String convertSystemPathToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NumberedList<?> createNumberedListFromString(EDataType eDataType, String initialValue) {
+		return (NumberedList<?>)super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNumberedListToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

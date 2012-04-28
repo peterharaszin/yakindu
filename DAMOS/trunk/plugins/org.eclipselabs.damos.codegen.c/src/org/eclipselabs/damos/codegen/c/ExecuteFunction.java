@@ -102,7 +102,7 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 		
 		ITargetGenerator targetGenerator = GeneratorConfigurationUtil.getTargetGenerator(context.getConfiguration());
 		if (targetGenerator != null) {
-			Collection<String> includes = targetGenerator.getImplementationIncludes();
+			Collection<String> includes = targetGenerator.getImplementationIncludes(context);
 			if (includes != null) {
 				implementationIncludes.addAll(includes);
 			}

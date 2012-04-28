@@ -25,6 +25,7 @@ import org.eclipselabs.damos.codegen.c.ITargetGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.ComponentGeneratorProviderRegistry;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.CompoundNode;
@@ -38,6 +39,8 @@ import org.eclipselabs.damos.execution.TaskGraph;
  */
 public class ComponentGeneratorAdaptor {
 
+	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
+	
 	public void adaptGenerators(IGeneratorContext context, IProgressMonitor monitor) throws CoreException {
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
@@ -78,7 +81,7 @@ public class ComponentGeneratorAdaptor {
 				if (component.isBoundary()) {
 					ITargetGenerator targetGenerator = getTargetGenerator(context);
 					if (targetGenerator != null) {
-						generator = targetGenerator.createBoundaryComponentGenerator(component);
+						generator = targetGenerator.createBoundaryComponentGenerator(context, component);
 					}
 				} else {
 					generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
@@ -95,7 +98,7 @@ public class ComponentGeneratorAdaptor {
 	}
 	
 	private ITargetGenerator getTargetGenerator(IGeneratorContext context) {
-		String targetId = context.getConfiguration().getPropertySelectionName("damos.codegen.target");
+		String targetId = context.getConfiguration().getPropertySelectionName(TARGET_PROPERTY_PATH);
 		if (targetId != null) {
 			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
 			if (targetGeneratorDescriptor != null) {

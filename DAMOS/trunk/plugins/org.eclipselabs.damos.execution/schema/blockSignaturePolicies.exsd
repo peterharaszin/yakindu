@@ -65,7 +65,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.execution.IComponentSignaturePolicy"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy"/>
                </appinfo>
             </annotation>
          </attribute>

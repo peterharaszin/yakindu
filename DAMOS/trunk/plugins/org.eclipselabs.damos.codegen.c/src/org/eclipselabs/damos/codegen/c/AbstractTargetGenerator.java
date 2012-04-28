@@ -30,14 +30,11 @@ public abstract class AbstractTargetGenerator implements ITargetGenerator {
 		return null;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.ITargetGenerator#getImplementationIncludes()
-	 */
-	public Collection<String> getImplementationIncludes() {
+	public Collection<String> getImplementationIncludes(IGeneratorContext context) {
 		return Collections.emptyList();
 	}
 
-	public IComponentGenerator createBoundaryComponentGenerator(Component component) {
+	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, Component component) {
 		return null;
 	}
 

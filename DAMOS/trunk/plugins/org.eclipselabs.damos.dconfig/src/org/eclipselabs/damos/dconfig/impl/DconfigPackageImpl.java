@@ -9,10 +9,12 @@ package org.eclipselabs.damos.dconfig.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipselabs.damos.common.util.NumberedList;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingBody;
 import org.eclipselabs.damos.dconfig.BindingResourceReference;
@@ -45,6 +47,7 @@ import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -272,7 +275,21 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType propertyPathEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType systemPathEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType numberedListEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1100,8 +1117,26 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getPropertyPath() {
+		return propertyPathEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getSystemPath() {
 		return systemPathEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getNumberedList() {
+		return numberedListEDataType;
 	}
 
 	/**
@@ -1247,7 +1282,9 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEReference(componentConfigurationBodyEClass, COMPONENT_CONFIGURATION_BODY__OWNER);
 
 		// Create data types
+		propertyPathEDataType = createEDataType(PROPERTY_PATH);
 		systemPathEDataType = createEDataType(SYSTEM_PATH);
+		numberedListEDataType = createEDataType(NUMBERED_LIST);
 	}
 
 	/**
@@ -1279,6 +1316,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		ComputationModelPackage theComputationModelPackage = (ComputationModelPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationModelPackage.eNS_URI);
 
 		// Create type parameters
+		addETypeParameter(numberedListEDataType, "V");
 
 		// Set bounds for type parameters
 
@@ -1313,25 +1351,40 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		addEOperation(configurationEClass, theDMLPackage.getFragment(), "getContextFragment", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		EOperation op = addEOperation(configurationEClass, theMscriptPackage.getExpression(), "getPropertyValue", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(configurationEClass, theMscriptPackage.getExpression(), "getPropertyValue", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSystemPath(), "systemPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(configurationEClass, ecorePackage.getEString(), "getPropertySelectionName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(configurationEClass, ecorePackage.getEString(), "getPropertySelectionName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSystemPath(), "systemPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(configurationEClass, null, "getPropertySelectionNames", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(this.getNumberedList());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
+		op = addEOperation(configurationEClass, null, "getPropertySelectionNames", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSystemPath(), "systemPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getNumberedList());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		op = addEOperation(configurationEClass, this.getBindingResourceReference(), "getBindingTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "propertyId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "sourcePath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSystemPath(), "systemPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(configurationDefinitionEClass, ConfigurationDefinition.class, "ConfigurationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfigurationDefinition_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, ConfigurationDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1447,7 +1500,9 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEReference(getComponentConfigurationBody_Owner(), this.getComponentConfiguration(), this.getComponentConfiguration_Body(), "owner", null, 0, 1, ComponentConfigurationBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
+		initEDataType(propertyPathEDataType, PropertyPath.class, "PropertyPath", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(systemPathEDataType, SystemPath.class, "SystemPath", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(numberedListEDataType, NumberedList.class, "NumberedList", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

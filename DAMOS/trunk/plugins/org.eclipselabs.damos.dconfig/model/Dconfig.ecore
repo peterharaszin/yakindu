@@ -6,25 +6,38 @@
   <eClassifiers xsi:type="ecore:EClass" name="Configuration" eSuperTypes="#//PropertyContainer">
     <eOperations name="getContextFragment" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eOperations name="getPropertyValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression">
-      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
     </eOperations>
     <eOperations name="getPropertyValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression">
-      <eParameters name="path" lowerBound="1" eType="#//SystemPath"/>
-      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
     </eOperations>
     <eOperations name="getPropertySelectionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
     </eOperations>
     <eOperations name="getPropertySelectionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eParameters name="path" lowerBound="1" eType="#//SystemPath"/>
-      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
+    </eOperations>
+    <eOperations name="getPropertySelectionNames">
+      <eGenericType eClassifier="#//NumberedList">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eGenericType>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
+    </eOperations>
+    <eOperations name="getPropertySelectionNames">
+      <eGenericType eClassifier="#//NumberedList">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eGenericType>
+      <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
     </eOperations>
     <eOperations name="getBindingTarget" eType="#//BindingResourceReference">
-      <eParameters name="propertyId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
       <eParameters name="sourcePath" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>
     <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel">
-      <eParameters name="path" lowerBound="1" eType="#//SystemPath"/>
+      <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -177,5 +190,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//ComponentConfiguration"
         eOpposite="#//ComponentConfiguration/body"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="PropertyPath" instanceClassName="org.eclipselabs.damos.dconfig.util.PropertyPath"/>
   <eClassifiers xsi:type="ecore:EDataType" name="SystemPath" instanceClassName="org.eclipselabs.damos.dml.util.SystemPath"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="NumberedList" instanceClassName="org.eclipselabs.damos.common.util.NumberedList">
+    <eTypeParameters name="V"/>
+  </eClassifiers>
 </ecore:EPackage>

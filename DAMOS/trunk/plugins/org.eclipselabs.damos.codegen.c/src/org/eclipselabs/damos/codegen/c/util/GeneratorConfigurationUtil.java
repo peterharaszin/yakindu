@@ -19,6 +19,7 @@ import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.mscript.Expression;
@@ -32,8 +33,11 @@ import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
  */
 public class GeneratorConfigurationUtil {
 
+	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
+	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
+	
 	public static String getPropertyStringValue(Configuration configuration, String propertyName, String defaultValue) {
-		Expression expression = configuration.getPropertyValue(propertyName);
+		Expression expression = configuration.getPropertyValue(PropertyPath.create(propertyName));
 		if (expression instanceof StringLiteral) {
 			return ((StringLiteral) expression).getValue();
 		}
@@ -66,7 +70,7 @@ public class GeneratorConfigurationUtil {
 	}
 
 	public static IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(Configuration configuration) {
-		String runtimeId = configuration.getPropertySelectionName("damos.rte.runtime");
+		String runtimeId = configuration.getPropertySelectionName(RTE_RUNTIME_PROPERTY_PATH);
 		if (runtimeId != null) {
 			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeId);
 		}
@@ -82,7 +86,7 @@ public class GeneratorConfigurationUtil {
 	}
 	
 	public static ITargetGenerator getTargetGenerator(Configuration configuration) {
-		String targetId = configuration.getPropertySelectionName("damos.codegen.target");
+		String targetId = configuration.getPropertySelectionName(TARGET_PROPERTY_PATH);
 		if (targetId != null) {
 			TargetGeneratorDescriptor targetGeneratorDescriptor = TargetGeneratorRegistry.getInstance().getGenerator(targetId);
 			if (targetGeneratorDescriptor != null) {

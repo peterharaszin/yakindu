@@ -26,9 +26,9 @@ public interface ITargetGenerator {
 
 	Configuration createConfiguration(Configuration baseConfiguration, IProgressMonitor monitor) throws CoreException;
 
-	Collection<String> getImplementationIncludes();
+	Collection<String> getImplementationIncludes(IGeneratorContext context);
 	
-	IComponentGenerator createBoundaryComponentGenerator(Component component);
+	IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, Component component);
 
 	void generate(IGeneratorContext context, IProgressMonitor monitor) throws CoreException;
 	

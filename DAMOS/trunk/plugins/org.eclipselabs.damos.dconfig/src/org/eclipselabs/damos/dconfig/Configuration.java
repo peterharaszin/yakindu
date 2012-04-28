@@ -7,6 +7,8 @@
 package org.eclipselabs.damos.dconfig;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.common.util.NumberedList;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
@@ -165,49 +167,65 @@ public interface Configuration extends PropertyContainer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model propertyIdRequired="true"
+	 * @model propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	Expression getPropertyValue(String propertyId);
+	Expression getPropertyValue(PropertyPath propertyPath);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model pathDataType="org.eclipselabs.damos.dconfig.SystemPath" pathRequired="true" propertyIdRequired="true"
+	 * @model systemPathDataType="org.eclipselabs.damos.dconfig.SystemPath" systemPathRequired="true" propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	Expression getPropertyValue(SystemPath path, String propertyId);
+	Expression getPropertyValue(SystemPath systemPath, PropertyPath propertyPath);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model propertyIdRequired="true"
+	 * @model propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	String getPropertySelectionName(String propertyId);
+	String getPropertySelectionName(PropertyPath propertyPath);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model pathDataType="org.eclipselabs.damos.dconfig.SystemPath" pathRequired="true" propertyIdRequired="true"
+	 * @model systemPathDataType="org.eclipselabs.damos.dconfig.SystemPath" systemPathRequired="true" propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	String getPropertySelectionName(SystemPath path, String propertyId);
+	String getPropertySelectionName(SystemPath systemPath, PropertyPath propertyPath);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model propertyIdRequired="true" sourcePathDataType="org.eclipselabs.damos.dconfig.SystemPath" sourcePathRequired="true"
+	 * @model dataType="org.eclipselabs.damos.dconfig.NumberedList<org.eclipse.emf.ecore.EString>" propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	BindingResourceReference getBindingTarget(String propertyId, SystemPath sourcePath);
+	NumberedList<String> getPropertySelectionNames(PropertyPath propertyPath);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model pathDataType="org.eclipselabs.damos.dconfig.SystemPath" pathRequired="true"
+	 * @model dataType="org.eclipselabs.damos.dconfig.NumberedList<org.eclipse.emf.ecore.EString>" systemPathDataType="org.eclipselabs.damos.dconfig.SystemPath" systemPathRequired="true" propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true"
 	 * @generated
 	 */
-	ComputationModel getComputationModel(SystemPath path);
+	NumberedList<String> getPropertySelectionNames(SystemPath systemPath, PropertyPath propertyPath);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true" sourcePathDataType="org.eclipselabs.damos.dconfig.SystemPath" sourcePathRequired="true"
+	 * @generated
+	 */
+	BindingResourceReference getBindingTarget(PropertyPath propertyPath, SystemPath sourcePath);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model systemPathDataType="org.eclipselabs.damos.dconfig.SystemPath" systemPathRequired="true"
+	 * @generated
+	 */
+	ComputationModel getComputationModel(SystemPath systemPath);
 
 } // Configuration

@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.dconfig.internal.operations;
 
 import java.util.Iterator;
-import java.util.regex.Pattern;
 
+import org.eclipselabs.damos.common.util.NumberedList;
 import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.BindingResourceReference;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
@@ -29,6 +29,8 @@ import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
+import org.eclipselabs.damos.dconfig.util.PropertyPath.Segment;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -44,9 +46,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public class ConfigurationOperations {
 	
-	private static final Pattern PROPERTY_ID_DELIMITER_PATTERN = Pattern.compile("/");
-	
-	private static final String[] COMPUTATION_PROPERTY_ID_SEGMENTS = { "computation" };
+	private static final PropertyPath COMPUTATION_PROPERTY_PATH = PropertyPath.create("computation");
 
 	public static Fragment getContextFragment(Configuration configuration) {
 		Configuration c = configuration;
@@ -64,40 +64,80 @@ public class ConfigurationOperations {
 		return null;
 	}
 
-	public static Expression getPropertyValue(Configuration configuration, String propertyId) {
-		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+	public static Expression getPropertyValue(Configuration configuration, PropertyPath propertyPath) {
+		NumberedList<Property> properties = getConfigurationProperties(configuration, propertyPath);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof SimpleProperty) {
 			return ((SimpleProperty) property).getValue();
 		}
 		return null;
 	}
 
-	public static Expression getPropertyValue(Configuration configuration, SystemPath path, String propertyId) {
-		Property property = getProperty(configuration, path, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+	public static Expression getPropertyValue(Configuration configuration, SystemPath systemPath, PropertyPath propertyPath) {
+		NumberedList<Property> properties = getProperties(configuration, systemPath, propertyPath);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof SimpleProperty) {
 			return ((SimpleProperty) property).getValue();
 		}
 		return null;
 	}
 
-	public static String getPropertySelectionName(Configuration configuration, String propertyId) {
-		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+	public static String getPropertySelectionName(Configuration configuration, PropertyPath propertyPath) {
+		NumberedList<Property> properties = getConfigurationProperties(configuration, propertyPath);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof SelectionProperty) {
 			return ((SelectionProperty) property).getSelection().getQualifiedName();
 		}
 		return null;
 	}
 
-	public static String getPropertySelectionName(Configuration configuration, SystemPath path, String propertyId) {
-		Property property = getProperty(configuration, path, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+	public static String getPropertySelectionName(Configuration configuration, SystemPath systemPath, PropertyPath propertyPath) {
+		NumberedList<Property> properties = getProperties(configuration, systemPath, propertyPath);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof SelectionProperty) {
 			return ((SelectionProperty) property).getSelection().getQualifiedName();
 		}
 		return null;
 	}
 	
-	public static BindingResourceReference getBindingTarget(Configuration configuration, String propertyId, SystemPath sourcePath) {
-		Property property = getConfigurationProperty(configuration, PROPERTY_ID_DELIMITER_PATTERN.split(propertyId));
+	public static NumberedList<String> getPropertySelectionNames(Configuration configuration, PropertyPath propertyPath) {
+		NumberedList<String> names = new NumberedList<String>();
+		for (NumberedList.Entry<Property> entry : getConfigurationProperties(configuration, propertyPath.wildcard()).entries()) {
+			if (entry.getValue() instanceof SelectionProperty) {
+				names.put(entry.getNumber(), ((SelectionProperty) entry.getValue()).getSelection().getQualifiedName());
+			}
+		}
+		return names;
+	}
+
+	public static NumberedList<String> getPropertySelectionNames(Configuration configuration, SystemPath systemPath, PropertyPath propertyPath) {
+		NumberedList<String> names = new NumberedList<String>();
+		for (NumberedList.Entry<Property> entry : getProperties(configuration, systemPath, propertyPath.wildcard()).entries()) {
+			if (entry.getValue() instanceof SelectionProperty) {
+				names.put(entry.getNumber(), ((SelectionProperty) entry.getValue()).getSelection().getQualifiedName());
+			}
+		}
+		return names;
+	}
+
+	public static BindingResourceReference getBindingTarget(Configuration configuration, PropertyPath propertyPath, SystemPath sourcePath) {
+		NumberedList<Property> properties = getConfigurationProperties(configuration, propertyPath);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof SelectionProperty) {
 			Binding binding = getBinding(((SelectionProperty) property).getBody(), sourcePath);
 			if (binding != null) {
@@ -107,81 +147,65 @@ public class ConfigurationOperations {
 		return null;
 	}
 
-	public static ComputationModel getComputationModel(Configuration configuration, SystemPath path) {
-		Property property = getProperty(configuration, path, COMPUTATION_PROPERTY_ID_SEGMENTS);
+	public static ComputationModel getComputationModel(Configuration configuration, SystemPath systemPath) {
+		NumberedList<Property> properties = getProperties(configuration, systemPath, COMPUTATION_PROPERTY_PATH);
+		if (properties.isEmpty()) {
+			return null;
+		}
+		Property property = properties.getFirst();
 		if (property instanceof ComputationProperty) {
 			return ((ComputationProperty) property).getComputationModel();
 		}
 		return null;
 	}
 
-	private static Property getConfigurationProperty(Configuration configuration, String[] propertyIdentifierSegments) {
-		Configuration c = configuration;
-		while (c != null) {
-			Property property = getProperty(c, propertyIdentifierSegments);
-			if (property != null) {
-				return property;
-			}
-			c = c.getBaseConfiguration();
-			if (c == configuration) {
-				// Break cycle
-				return null;
-			}
-		}
-		return null;
+	private static NumberedList<Property> getConfigurationProperties(Configuration configuration, PropertyPath propertyPath) {
+		NumberedList<Property> properties = new NumberedList<Property>();
+		collectConfigurationProperties(configuration, configuration, propertyPath, properties);
+		return properties;
 	}
 	
-	private static Property getProperty(Configuration configuration, SystemPath path, String[] propertyIdentifierSegments) {
-		Configuration c;
-		
-		if (path.isComponentPath()) {
-			c = configuration;
-			while (c != null) {
-				ComponentConfiguration componentConfiguration = getComponentConfiguration(c, path);
-				if (componentConfiguration != null && componentConfiguration.getBody() != null) {
-					Property property = getProperty(componentConfiguration.getBody(), propertyIdentifierSegments);
-					if (property != null) {
-						return property;
-					}
-				}
-				c = c.getBaseConfiguration();
-				if (c == configuration) {
-					// Break cycle
-					return null;
-				}
-			}
+	private static void collectConfigurationProperties(Configuration configuration, Configuration currentConfiguration, PropertyPath propertyPath, NumberedList<Property> properties) {
+		Configuration baseConfiguration = currentConfiguration.getBaseConfiguration();
+		// Break cycle
+		if (baseConfiguration == configuration) {
+			return;
+		}
 
-			c = configuration;
-			while (c != null) {
-				FragmentConfiguration fragmentConfiguration = getFragmentConfiguration(c, path);
-				if (fragmentConfiguration != null && fragmentConfiguration.getBody() != null) {
-					Property property = getProperty(fragmentConfiguration.getBody(), propertyIdentifierSegments);
-					if (property != null) {
-						return property;
-					}
-				}
-				c = c.getBaseConfiguration();
-				if (c == configuration) {
-					// Break cycle
-					return null;
-				}
-			}
+		if (baseConfiguration != null) {
+			collectConfigurationProperties(configuration, baseConfiguration, propertyPath, properties);
 		}
 		
-		c = configuration;
-		while (c != null) {
-			Property property = getSystemConfigurationProperty(c, path, propertyIdentifierSegments);
-			if (property != null) {
-				return property;
-			}
-			c = c.getBaseConfiguration();
-			if (c == configuration) {
-				// Break cycle
-				return null;
-			}
+		properties.putAll(getAllProperties(currentConfiguration, propertyPath));
+	}
+
+	private static NumberedList<Property> getProperties(Configuration configuration, SystemPath path, PropertyPath propertyPath) {
+		NumberedList<Property> properties = new NumberedList<Property>();
+		
+		collectSystemConfigurationProperties(configuration, configuration, path, propertyPath, properties);
+		if (path.isComponentPath()) {
+			collectFragmentConfigurationProperties(configuration, configuration, path, propertyPath, properties);
+			collectComponentConfigurationProperties(configuration, configuration, path, propertyPath, properties);
 		}
 		
-		return null;
+		return properties;
+	}
+	
+	private static void collectComponentConfigurationProperties(Configuration configuration, Configuration currentConfiguration, SystemPath path, PropertyPath propertyPath, NumberedList<Property> properties) {
+		Configuration baseConfiguration = currentConfiguration.getBaseConfiguration();
+		// Break cycle
+		if (baseConfiguration == configuration) {
+			return;
+		}
+
+		if (baseConfiguration != null) {
+			collectComponentConfigurationProperties(configuration, baseConfiguration, path, propertyPath, properties);
+		}
+		
+		ComponentConfiguration componentConfiguration = getComponentConfiguration(currentConfiguration, path);
+		if (componentConfiguration != null && componentConfiguration.getBody() != null) {
+			properties.putAll(getAllProperties(componentConfiguration.getBody(), propertyPath));
+		}
 	}
 
 	private static ComponentConfiguration getComponentConfiguration(Configuration configuration, SystemPath path) {
@@ -194,6 +218,23 @@ public class ConfigurationOperations {
 			}
 		}
 		return null;
+	}
+
+	private static void collectFragmentConfigurationProperties(Configuration configuration, Configuration currentConfiguration, SystemPath path, PropertyPath propertyPath, NumberedList<Property> properties) {
+		Configuration baseConfiguration = currentConfiguration.getBaseConfiguration();
+		// Break cycle
+		if (baseConfiguration == configuration) {
+			return;
+		}
+
+		if (baseConfiguration != null) {
+			collectFragmentConfigurationProperties(configuration, baseConfiguration, path, propertyPath, properties);
+		}
+		
+		FragmentConfiguration fragmentConfiguration = getFragmentConfiguration(currentConfiguration, path);
+		if (fragmentConfiguration != null && fragmentConfiguration.getBody() != null) {
+			properties.putAll(getAllProperties(fragmentConfiguration.getBody(), propertyPath));
+		}
 	}
 
 	private static FragmentConfiguration getFragmentConfiguration(Configuration configuration, SystemPath path) {
@@ -213,10 +254,24 @@ public class ConfigurationOperations {
 		return null;
 	}
 
-	private static Property getSystemConfigurationProperty(Configuration configuration, SystemPath path, String[] propertyIdentifierSegments) {
-		PropertiesSystemConfigurationVisitor visitor = new PropertiesSystemConfigurationVisitor(path, propertyIdentifierSegments);
+	private static void collectSystemConfigurationProperties(Configuration configuration, Configuration currentConfiguration, SystemPath path, PropertyPath propertyPath, NumberedList<Property> properties) {
+		Configuration baseConfiguration = currentConfiguration.getBaseConfiguration();
+		// Break cycle
+		if (baseConfiguration == configuration) {
+			return;
+		}
+
+		if (baseConfiguration != null) {
+			collectSystemConfigurationProperties(configuration, baseConfiguration, path, propertyPath, properties);
+		}
+		
+		properties.putAll(getSystemConfigurationProperties(currentConfiguration, path, propertyPath));
+	}
+
+	private static NumberedList<Property> getSystemConfigurationProperties(Configuration configuration, SystemPath path, PropertyPath propertyPath) {
+		PropertiesSystemConfigurationVisitor visitor = new PropertiesSystemConfigurationVisitor(path, propertyPath);
 		getSystemConfiguration(configuration, path, visitor);
-		return visitor.property;
+		return visitor.getProperties();
 	}
 
 	private static SystemConfiguration getSystemConfiguration(Configuration configuration, SystemPath path) {
@@ -310,34 +365,59 @@ public class ConfigurationOperations {
 		return realization.getRealizingFragment();
 	}
 	
-	private static Property getProperty(PropertyContainer propertyContainer, String[] propertyIdentifierSegments) {
+	private static NumberedList<Property> getAllProperties(PropertyContainer propertyContainer, PropertyPath propertyPath) {
 		int index = 0;
 		boolean found;
 		do {
 			found = false;
-			for (Property property : propertyContainer.getProperties()) {
-				if (propertyIdentifierSegments[index].equals(property.getId())) {
-					// Check if this is the last segment.
-					if (propertyIdentifierSegments.length == index + 1) {
-						return property;
-					}
-					if (property instanceof SelectionProperty) {
-						SelectionProperty selectionProperty = (SelectionProperty) property;
-						if (selectionProperty.getBody() != null) {
-							propertyContainer = selectionProperty.getBody();
-							++index;
-							found = true;
+			Segment segment = propertyPath.getSegments().get(index);
+
+			// Check if this is the last segment.
+			if (propertyPath.getSegments().size() == index + 1) {
+				NumberedList<Property> properties = new NumberedList<Property>();
+				for (Property property : propertyContainer.getProperties()) {
+					if (segment.getName().equals(property.getId())) {
+						if (property instanceof SelectionProperty) {
+							SelectionProperty selectionProperty = (SelectionProperty) property;
+							if (propertyPath.isWildcard()) {
+								properties.put(selectionProperty.getIndex(), property);
+							} else if (selectionProperty.getIndex() == segment.getIndex()) {
+								properties.put(selectionProperty.getIndex(), property);
+								break;
+							}
+						} else if (segment.getIndex() == -1) {
+							properties.put(segment.getIndex(), property);
 							break;
 						}
 					}
-					// There are more segments, but we have no child properties left.
-					return null;
+				}
+				return properties;
+			}
+
+			for (Property property : propertyContainer.getProperties()) {
+				if (segment.getName().equals(property.getId())) {
+					if (property instanceof SelectionProperty) {
+						SelectionProperty selectionProperty = (SelectionProperty) property;
+						if (selectionProperty.getIndex() == segment.getIndex()) {
+							if (selectionProperty.getBody() != null) {
+								propertyContainer = selectionProperty.getBody();
+								++index;
+								found = true;
+								break;
+							} else {
+								return NumberedList.emptyList();
+							}
+						}
+					} else {
+						return NumberedList.emptyList();
+					}
 				}
 			}
 		} while (found);
-		return null;
+		
+		return NumberedList.emptyList();
 	}
-	
+
 	private static Binding getBinding(SelectionPropertyBody selectionPropertyBody, SystemPath sourcePath) {
 		if (!sourcePath.isComponentPath()) {
 			return null;
@@ -378,16 +458,23 @@ public class ConfigurationOperations {
 	private static class PropertiesSystemConfigurationVisitor implements ISystemConfigurationVisitor {
 
 		private SystemPath systemPath;
-		private String[] propertyIdentifierSegments;
-		private Property property;
+		private PropertyPath propertyPath;
+		private NumberedList<Property> properties = new NumberedList<Property>();
 		
 		/**
 		 * @param systemPath
-		 * @param propertyIdentifierSegments
+		 * @param propertyPath
 		 */
-		public PropertiesSystemConfigurationVisitor(SystemPath systemPath, String[] propertyIdentifierSegments) {
+		public PropertiesSystemConfigurationVisitor(SystemPath systemPath, PropertyPath propertyPath) {
 			this.systemPath = systemPath;
-			this.propertyIdentifierSegments = propertyIdentifierSegments;
+			this.propertyPath = propertyPath;
+		}
+		
+		/**
+		 * @return the properties
+		 */
+		public NumberedList<Property> getProperties() {
+			return properties;
 		}
 
 		/* (non-Javadoc)
@@ -396,15 +483,17 @@ public class ConfigurationOperations {
 		public void visit(SystemConfiguration systemConfiguration, Fragment contextFragment,
 				Fragment pathContextFragment, boolean last) {
 			if (systemConfiguration != null && systemConfiguration.getBody() != null) {
-				Property property = getProperty(systemConfiguration.getBody(), propertyIdentifierSegments);
-				if (property != null && (last || property.isPropagate())) {
-					this.property = property;
+				NumberedList<Property> properties = getAllProperties(systemConfiguration.getBody(), propertyPath);
+				for (NumberedList.Entry<Property> entry : properties.entries()) {
+					if (last || entry.getValue().isPropagate()) {
+						this.properties.put(entry.getNumber(), entry.getValue());
+					}
 				}
 			}
-			if (last && this.property != null) {
+			if (last && !properties.isEmpty()) {
 				Component component = systemPath.getComponent();
 				if (component != null && !DMLUtil.isSameOrChildFragment(contextFragment, component.getEnclosingFragment())) {
-					this.property = null;
+					properties.clear();
 				}
 			}
 		}

@@ -206,4 +206,12 @@ public class TypeUtil {
 		return false;
 	}
 	
+	public static boolean isMatrix(DataType dataType) {
+		if (dataType instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) dataType;
+			return arrayType.isMatrix();
+		}
+		return false;
+	}
+
 }

@@ -31,11 +31,4 @@ public class InportOnlyTest extends AbstractGeneratorGTest {
 		generateAndCompile();
 	}
 
-	/**
-	 * @return
-	 */
-	protected double getGain() {
-		return 10;
-	}
-
 }

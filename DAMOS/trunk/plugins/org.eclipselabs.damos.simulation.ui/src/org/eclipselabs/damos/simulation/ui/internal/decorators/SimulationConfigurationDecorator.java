@@ -37,6 +37,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
@@ -46,7 +47,7 @@ import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 public class SimulationConfigurationDecorator extends BaseLabelProvider implements ILightweightLabelDecorator {
 
 	private static final String DCONFIG_FILE_EXTENSION = "dconfig";
-	private static final String SOLVER_PROPERTY_NAME = "damos.simulation.solver";
+	private static final PropertyPath SOLVER_PROPERTY_PATH = PropertyPath.create("damos.simulation.solver");
 	private static final String SIMULATION_OVERLAY_IMAGE = "icons/SimulationOverlay.png";
 	
 	private IResourceChangeListener resourceChangeListener;
@@ -76,7 +77,7 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		Resource resource = resourceSet.getResource(uri, true);
 		
 		Configuration configuration = (Configuration) EcoreUtil.getObjectByType(resource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
-		if (configuration != null && configuration.getPropertySelectionName(SOLVER_PROPERTY_NAME) != null) {
+		if (configuration != null && configuration.getPropertySelectionName(SOLVER_PROPERTY_PATH) != null) {
 			decoration.addOverlay(AbstractUIPlugin.imageDescriptorFromPlugin(SimulationUIPlugin.PLUGIN_ID, SIMULATION_OVERLAY_IMAGE));
 		}
 		

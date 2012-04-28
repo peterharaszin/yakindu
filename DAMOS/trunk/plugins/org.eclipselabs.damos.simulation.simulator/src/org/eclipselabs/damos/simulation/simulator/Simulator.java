@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.ComponentNode;
@@ -52,6 +53,8 @@ import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
  *
  */
 public class Simulator {
+	
+	private static final PropertyPath SOLVER_PROPERTY_PATH = PropertyPath.create("damos.simulation.solver");
 	
 	private final ExecutionFlowBuilder executionFlowBuilder = new ExecutionFlowBuilder();
 	
@@ -86,7 +89,7 @@ public class Simulator {
 			taskGraph.eAdapters().add(new Task(simulation, taskGraph));
 		}
 
-		String solverQualifiedName = configuration.getPropertySelectionName("damos.simulation.solver");
+		String solverQualifiedName = configuration.getPropertySelectionName(SOLVER_PROPERTY_PATH);
 		if (solverQualifiedName == null) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No solver specification found in configuration"));
 		}

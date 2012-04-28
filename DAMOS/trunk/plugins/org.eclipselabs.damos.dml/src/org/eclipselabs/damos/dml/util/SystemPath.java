@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.Subsystem;
  * @author Andreas Unger
  *
  */
-public class SystemPath {
+public final class SystemPath {
 
 	private final Fragment contextFragment;
 	private final List<Subsystem> subsystems;

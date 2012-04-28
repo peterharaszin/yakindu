@@ -13,6 +13,7 @@ package org.eclipselabs.damos.simulation.util;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -23,9 +24,12 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  *
  */
 public class SimulationConfigurationUtil {
+	
+	private static final PropertyPath SIMULATION_TIME_PROPERTY_PATH = PropertyPath.create("damos.simulation.simulationTime");
+	private static final PropertyPath SOLVER_PROPERTY_PATH = PropertyPath.create("damos.simulation.solver");
 
 	public static double getSimulationTime(Configuration configuration) {
-		Expression simulationTimeExpression = configuration.getPropertyValue("damos.simulation.simulationTime");
+		Expression simulationTimeExpression = configuration.getPropertyValue(SIMULATION_TIME_PROPERTY_PATH);
 		if (simulationTimeExpression != null) {
 			try {
 				IValue simulationTimeValue = ExpressionUtil.evaluateExpression(simulationTimeExpression);
@@ -40,7 +44,7 @@ public class SimulationConfigurationUtil {
 	}
 	
 	public static double getSolverPropertyDoubleValue(Configuration configuration, String propertyName, double defaultValue) {
-		Expression expression = configuration.getPropertyValue("damos.simulation.solver/" + propertyName);
+		Expression expression = configuration.getPropertyValue(SOLVER_PROPERTY_PATH.append(propertyName));
 		if (expression != null) {
 			try {
 				IValue value = ExpressionUtil.evaluateExpression(expression);

@@ -20,6 +20,7 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdapter;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputConnector;
@@ -40,6 +41,8 @@ import org.eclipselabs.damos.mscript.StringLiteral;
  *
  */
 public class InternalGeneratorUtil {
+	
+	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
 
 	public static IComponentGenerator getComponentGenerator(ComponentNode node) {
 		ComponentGeneratorAdapter adapter = (ComponentGeneratorAdapter) EcoreUtil.getAdapter(node.eAdapters(), ComponentGeneratorAdapter.class);
@@ -47,7 +50,7 @@ public class InternalGeneratorUtil {
 	}
 	
 	public static String getPrefix(Configuration configuration) {
-		Expression prefixValue = configuration.getPropertyValue(SystemPath.create(configuration.getContextFragment()), "damos.codegen.c.prefix");
+		Expression prefixValue = configuration.getPropertyValue(SystemPath.create(configuration.getContextFragment()), PREFIX_PROPERTY_PATH);
 		if (prefixValue instanceof StringLiteral) {
 			return ((StringLiteral) prefixValue).getValue();
 		}
@@ -55,7 +58,7 @@ public class InternalGeneratorUtil {
 	}
 
 	public static String getPrefix(Configuration configuration, Node node) {
-		Expression prefixValue = configuration.getPropertyValue(node.getSystemPath(), "damos.codegen.c.prefix");
+		Expression prefixValue = configuration.getPropertyValue(node.getSystemPath(), PREFIX_PROPERTY_PATH);
 		if (prefixValue instanceof StringLiteral) {
 			return ((StringLiteral) prefixValue).getValue();
 		}

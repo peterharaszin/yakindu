@@ -83,8 +83,21 @@ like MATLAB/Simulink, Scicos, or LabVIEW.</p>
 	cannot have an open-ended scope.
  -->
  
-The scope of this project is to provide a development environment for data flow-oriented systems, which includes a simulation environment and code generators.
-Furthermore, it will provide support to derive custom data flow-oriented languages based on the structural and diagram editing components of this project.
+<p>The scope of this project is to provide an integrated development environment for developing data flow-oriented systems using block diagrams.</p>
+<p>This will include:</p>
+<ul>
+<li>Metamodel for data flow-oriented system models</li>
+<li>Graphical and textual editors</li>
+<li>A simulation environment for simulating continuous, synchronous and asynchronous systems</li>
+<li>Code generators to transform system models into source code</li>
+<li>A declarative programming language for defining block behavior</li>
+<li>A Block library containing commonly used blocks</li>
+<li>Support for customizing and extending various aspects of the environment, such as simulation engine, code generators, and block libraries
+<li>Support to derive custom data flow-oriented languages based on the structural and diagram editing components of this project</li>
+</ul>
+
+<p>Note that this project is unrelated to process flow and work flow modeling.
+A description of the conceptual differences is given in the next section.</p> 
 
 <h2>Description</h2>
 
@@ -106,6 +119,42 @@ which is specified by providing the transfer function of the corresponding linea
 <p>Even though data flow-oriented design is not bound to a specific domain,
 it is most commonly used in control systems engineering and digital signal processing.</p>
 
+<h3>Relationship to Process Flow and Work Flow Modeling</h3>
+
+<p>Process flow and work flow models specify the high-level activities of a system.
+In other words, they do not specify a concrete implementation of the activities of such systems.
+For instance, business process models may specify that when receiving an order, the order must be checked 
+and then an invoice must be created before the ordered parts can be shipped.
+However, the concrete implementation (e.g. software components) of these activities is not specified.
+Because of the missing implementation and since process flow and work flow models tend to contain prose text,
+executing process models for simulation purposes is challenging.
+Thus, process flow and work flow models can be seen as top-level architectural models.</p>
+
+<p>Damos models, on the other hand, specify the concrete implementation of the software components and
+optionally the physical/mechatronical environment (for simulation purposes) using a data flow-oriented approach.
+Data flow-oriented modeling focuses on the data passing the system, rather than the state of the system.
+Since the structure and behavior (i.e. implementation) of the components are formally specified,
+such models can be simulated and transformed into executable code (e.g. C code).
+Thus, Damos can be considered as a graphical, data flow-oriented, declarative programming language.</p>
+
+<p>An important concept of data flow-oriented modeling is that components within such systems
+can only access the input values and their own state variables to compute the
+output values (i.e. components cannot access the global state of a system or the state of other components).
+This results in the fact that data flow-oriented systems inherently parallelizable.</p>
+
+<h3>Deriving Custom Data Flow-Oriented Languages</h3>
+
+<p>Damos models contain structural and behavioral information.
+The structural information specifies how systems are composed (i.e. system hierarchy) and how system components are interconnected.
+The behavioral information specifies how the data that passes the system is transformed by the system components.
+Damos provides a set of features that facilitate the definition of the system behavior.
+These features include a type system and a declarative programming language.</p>
+
+<p>Sometimes the provided behavioral concepts of Damos cannot be directly applied to a certain application.
+Yet the structural concepts of Damos may fit very well.
+In these cases, a new language can be derived from the structural features (e.g. structural metamodel and graphical editor) of Damos,
+and then implementing the custom behavioral features.</p>
+
 <h2>Why Eclipse?</h2> 
 
 <!-- 
@@ -117,7 +166,7 @@ it is most commonly used in control systems engineering and digital signal proce
  -->
 
 <p>Currently, Eclipse does not provide tool support for designing data flow-oriented systems.
-Engineers and scientists are forced to use tools which do not integrate very well with other Eclipse technologies.
+Engineers and scientists are required to use tools which do not integrate very well with other Eclipse technologies.
 Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools for better
 integration with other Eclipse technologies.</p>
 
@@ -152,7 +201,7 @@ tools and frameworks.</p>
 <li>GMF-based block diagram editor</li>
 <li>Simulator</li>
 <li>C code generator</li>
-<li>Base block library</li>
+<li>Basic block library</li>
 <li>Declarative scripting language <i>Mscript</i></li>
 </ul>
 <p>
@@ -165,8 +214,6 @@ and the diagram editing features (orange).
 The second group provides simulation and code generation components as well as the standard block library (green).
 This enables other projects to build their own data flow-oriented languages by reusing the structural semantics
 and the diagram editing components, without being required to include unnecessary components.</p>
-
-<p></p>
 
 <p><img src="architecture.png"/></p>
 
@@ -226,16 +273,22 @@ the compatibility of block inputs and outputs are checked based of their corresp
 
 <h4>Mscript</h4>
 
-<p>Mscript is a declarative programming language where the user defines the relationship between the inputs and outputs
+<p>This project will include the declarative programming language <i>Mscript</i>.
+Mscript can be used to specify the block behavior within the block type definitions.
+The simulation engine and the code generators will then derive the simulation behavior and the source code from the specified Mscript functions, respectively.
+This ensures that the simulation behavior and the generated code match as closely as possible.
+Furthermore, when adding new code generators, those block types do not need to be adapted to the new code generators.</p>
+
+<p>With Mscript, the user defines the relationship between the inputs and outputs
 of a function using a set of equations.
 In contrast to functional languages, Mscript functions can be stateful.
 Consequently, such functions must be instantiated (function objects).
-Stateful function equations can reference input and output values from previous steps,
+Stateful function equations can reference input and output values from previous computation steps,
 which enable the specification of difference equations.
 Difference equations are widely used to specify discrete transfer functions,
 for instance in the field of digital signal processing (e.g. FIR and IIR filters).
 In future versions, differential equations may be supported as well to
-allow for specifying time-continuous blocks.</p>
+allow for specifying the behavior of time-continuous blocks.</p>
 
 <p><img src="mscript.png"/></p>
 

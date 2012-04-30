@@ -15,7 +15,6 @@ import java.util.Iterator;
 
 import org.eclipselabs.damos.common.util.NumberedList;
 import org.eclipselabs.damos.dconfig.Binding;
-import org.eclipselabs.damos.dconfig.BindingResourceReference;
 import org.eclipselabs.damos.dconfig.ComponentConfiguration;
 import org.eclipselabs.damos.dconfig.ComponentReference;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
@@ -132,17 +131,14 @@ public class ConfigurationOperations {
 		return names;
 	}
 
-	public static BindingResourceReference getBindingTarget(Configuration configuration, PropertyPath propertyPath, SystemPath sourcePath) {
+	public static Binding getBinding(Configuration configuration, PropertyPath propertyPath, SystemPath sourcePath) {
 		NumberedList<Property> properties = getConfigurationProperties(configuration, propertyPath);
 		if (properties.isEmpty()) {
 			return null;
 		}
 		Property property = properties.getFirst();
 		if (property instanceof SelectionProperty) {
-			Binding binding = getBinding(((SelectionProperty) property).getBody(), sourcePath);
-			if (binding != null) {
-				return binding.getTarget();
-			}
+			return getBinding(((SelectionProperty) property).getBody(), sourcePath);
 		}
 		return null;
 	}

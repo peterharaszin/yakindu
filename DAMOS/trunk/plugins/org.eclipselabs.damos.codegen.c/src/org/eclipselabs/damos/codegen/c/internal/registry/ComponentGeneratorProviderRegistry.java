@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -43,9 +43,9 @@ public class ComponentGeneratorProviderRegistry {
 		return INSTANCE;
 	}
 	
-	public IComponentGenerator createGenerator(Component component) {
+	public IComponentGenerator createGenerator(ComponentNode node) {
 		for (IComponentGeneratorProvider provider : providers) {
-			IComponentGenerator generator = provider.createGenerator(component);
+			IComponentGenerator generator = provider.createGenerator(node);
 			if (generator != null) {
 				return generator;
 			}

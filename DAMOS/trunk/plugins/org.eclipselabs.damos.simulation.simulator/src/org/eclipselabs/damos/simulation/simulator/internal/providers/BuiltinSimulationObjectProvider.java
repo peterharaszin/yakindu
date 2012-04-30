@@ -16,6 +16,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.InoutportSimulationObject;
@@ -29,10 +30,8 @@ import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.Mem
  */
 public class BuiltinSimulationObjectProvider implements ISimulationObjectProvider {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
-	 */
-	public ISimulationObject createSimulationObject(Component component) {
+	public ISimulationObject createSimulationObject(ComponentNode node) {
+		Component component = node.getComponent();
 		if (component instanceof Inoutport) {
 			return new InoutportSimulationObject();
 		}

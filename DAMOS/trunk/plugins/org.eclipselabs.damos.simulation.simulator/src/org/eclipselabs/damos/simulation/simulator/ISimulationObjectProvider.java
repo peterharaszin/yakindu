@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator;
 
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import org.eclipselabs.damos.dml.Component;
  */
 public interface ISimulationObjectProvider {
 
-	ISimulationObject createSimulationObject(Component component);
+	ISimulationObject createSimulationObject(ComponentNode node);
 	
 }

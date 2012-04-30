@@ -218,7 +218,7 @@ public interface Configuration extends PropertyContainer {
 	 * @model propertyPathDataType="org.eclipselabs.damos.dconfig.PropertyPath" propertyPathRequired="true" sourcePathDataType="org.eclipselabs.damos.dconfig.SystemPath" sourcePathRequired="true"
 	 * @generated
 	 */
-	BindingResourceReference getBindingTarget(PropertyPath propertyPath, SystemPath sourcePath);
+	Binding getBinding(PropertyPath propertyPath, SystemPath sourcePath);
 
 	/**
 	 * <!-- begin-user-doc -->

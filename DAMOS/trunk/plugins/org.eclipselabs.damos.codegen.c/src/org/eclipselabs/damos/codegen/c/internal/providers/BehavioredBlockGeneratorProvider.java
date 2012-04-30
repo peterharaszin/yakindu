@@ -15,8 +15,8 @@ import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
 import org.eclipselabs.damos.codegen.c.internal.generators.BehavioredBlockGenerator;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -24,12 +24,9 @@ import org.eclipselabs.damos.dmltext.MscriptBlockType;
  */
 public class BehavioredBlockGeneratorProvider implements IComponentGeneratorProvider {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider#createGenerator(org.eclipselabs.damos.dml.Component)
-	 */
-	public IComponentGenerator createGenerator(Component component) {
-		if (component instanceof Block) {
-			Block block = (Block) component;
+	public IComponentGenerator createGenerator(ComponentNode node) {
+		if (node.getComponent() instanceof Block) {
+			Block block = (Block) node.getComponent();
 			if (block.getType() instanceof MscriptBlockType) {
 				MscriptBlockType mscriptBlockType = (MscriptBlockType) block.getType();
 				if (!mscriptBlockType.getDeclarations().isEmpty()) {

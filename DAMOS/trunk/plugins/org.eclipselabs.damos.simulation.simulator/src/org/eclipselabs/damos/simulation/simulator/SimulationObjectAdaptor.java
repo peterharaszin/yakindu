@@ -26,9 +26,9 @@ import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectStatus;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.registry.SimulationObjectProviderRegistry;
 
 /**
@@ -77,7 +77,7 @@ public class SimulationObjectAdaptor {
 				Component component = componentNode.getComponent();
 				if (!(component instanceof Choice)) {
 					ISimulationObject simulationObject;
-					simulationObject = SimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
+					simulationObject = SimulationObjectProviderRegistry.getInstance().createSimulationObject(componentNode);
 					if (simulationObject != null) {
 						node.eAdapters().add(new SimulationObjectAdapter(simulationObject));
 					} else {

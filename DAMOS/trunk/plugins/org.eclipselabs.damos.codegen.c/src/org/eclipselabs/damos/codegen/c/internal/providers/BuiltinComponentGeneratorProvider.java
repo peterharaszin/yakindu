@@ -26,6 +26,7 @@ import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -33,10 +34,8 @@ import org.eclipselabs.damos.dml.Outport;
  */
 public class BuiltinComponentGeneratorProvider implements IComponentGeneratorProvider {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider#createGenerator(org.eclipselabs.damos.dml.Component)
-	 */
-	public IComponentGenerator createGenerator(Component component) {
+	public IComponentGenerator createGenerator(ComponentNode node) {
+		Component component = node.getComponent();
 		if (component instanceof Inport) {
 			return new InportGenerator();
 		}

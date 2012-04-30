@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.common.util.NumberedList;
-import org.eclipselabs.damos.dconfig.BindingResourceReference;
+import org.eclipselabs.damos.dconfig.Binding;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
@@ -339,8 +339,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public BindingResourceReference getBindingTarget(PropertyPath propertyPath, SystemPath sourcePath) {
-		return ConfigurationOperations.getBindingTarget(this, propertyPath, sourcePath);
+	public Binding getBinding(PropertyPath propertyPath, SystemPath sourcePath) {
+		return ConfigurationOperations.getBinding(this, propertyPath, sourcePath);
 	}
 
 	/**

@@ -17,7 +17,7 @@ import java.util.Collections;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -34,7 +34,7 @@ public abstract class AbstractTargetGenerator implements ITargetGenerator {
 		return Collections.emptyList();
 	}
 
-	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, Component component) {
+	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, ComponentNode node) {
 		return null;
 	}
 

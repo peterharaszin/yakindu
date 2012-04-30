@@ -81,10 +81,10 @@ public class ComponentGeneratorAdaptor {
 				if (component.isBoundary()) {
 					ITargetGenerator targetGenerator = getTargetGenerator(context);
 					if (targetGenerator != null) {
-						generator = targetGenerator.createBoundaryComponentGenerator(context, component);
+						generator = targetGenerator.createBoundaryComponentGenerator(context, componentNode);
 					}
 				} else {
-					generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
+					generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(componentNode);
 				}
 				if (generator != null) {
 					node.eAdapters().add(new ComponentGeneratorAdapter(generator));

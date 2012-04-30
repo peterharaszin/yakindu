@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dconfig.Configuration;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -28,7 +28,7 @@ public interface ITargetGenerator {
 
 	Collection<String> getImplementationIncludes(IGeneratorContext context);
 	
-	IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, Component component);
+	IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, ComponentNode node);
 
 	void generate(IGeneratorContext context, IProgressMonitor monitor) throws CoreException;
 	

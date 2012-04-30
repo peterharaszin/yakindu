@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -93,7 +94,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 						String cDataType = MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), generator.getContext().getCodeFragmentCollector(), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()), null);
 						
-						String initializer = InternalGeneratorUtil.getIncomingVariableName(context.getConfiguration(), componentNode, memory.getFirstInputPort());
+						String initializer = GeneratorUtil.getIncomingVariableName(context.getConfiguration(), componentNode, memory.getFirstInputPort());
 						
 						out.printf("%s %s = %s;\n", cDataType, CompoundGeneratorUtil.getMemoryPreviousValueVariableName(context.getConfiguration(), componentNode), initializer);
 					}
@@ -110,7 +111,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 				WhileLoop whileLoop = (WhileLoop) action;
 
 				InputConnector inputConnector = whileLoop.getCondition();
-				String condition = InternalGeneratorUtil.getIncomingVariableName(context.getConfiguration(), actionNode, inputConnector);
+				String condition = GeneratorUtil.getIncomingVariableName(context.getConfiguration(), actionNode, inputConnector);
 				if (condition == null) {
 					condition = "0";
 				}

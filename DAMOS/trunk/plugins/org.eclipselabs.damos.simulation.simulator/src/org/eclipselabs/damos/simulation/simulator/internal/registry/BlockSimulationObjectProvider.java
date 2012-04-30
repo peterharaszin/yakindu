@@ -16,7 +16,7 @@ import java.util.Map;
 
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 
@@ -35,12 +35,9 @@ public class BlockSimulationObjectProvider implements ISimulationObjectProvider 
 		initializeFromStorage();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
-	 */
-	public ISimulationObject createSimulationObject(Component component) {
-		if (component instanceof Block) {
-			BlockType blockType = ((Block) component).getType();
+	public ISimulationObject createSimulationObject(ComponentNode node) {
+		if (node.getComponent() instanceof Block) {
+			BlockType blockType = ((Block) node.getComponent()).getType();
 			BlockSimulationObjectDescriptor descriptor = descriptors.get(blockType.getQualifiedName());
 			if (descriptor != null) {
 				return descriptor.createObject();

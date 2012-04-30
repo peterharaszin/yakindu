@@ -40,9 +40,9 @@
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/systemPath"/>
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/propertyPath"/>
       </genOperations>
-      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getBindingTarget">
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBindingTarget/propertyPath"/>
-        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBindingTarget/sourcePath"/>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getBinding">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBinding/propertyPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBinding/sourcePath"/>
       </genOperations>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getComputationModel">
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/systemPath"/>

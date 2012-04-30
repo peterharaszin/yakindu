@@ -16,7 +16,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
@@ -50,7 +50,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 		PrintAppendable out = new PrintAppendable(appendable);
 		Choice choice = (Choice) getComponent();
 		
-		String incomingVariableName = InternalGeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), choice.getFirstInputPort());
+		String incomingVariableName = GeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), choice.getFirstInputPort());
 		String choiceResult = CompoundGeneratorUtil.getChoiceVariableName(getConfiguration(), getNode());
 		
 		int i = 0;

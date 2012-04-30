@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 
@@ -43,9 +43,9 @@ public class SimulationObjectProviderRegistry {
 		return INSTANCE;
 	}
 	
-	public ISimulationObject createSimulationObject(Component component) {
+	public ISimulationObject createSimulationObject(ComponentNode node) {
 		for (ISimulationObjectProvider provider : providers) {
-			ISimulationObject simulationObject = provider.createSimulationObject(component);
+			ISimulationObject simulationObject = provider.createSimulationObject(node);
 			if (simulationObject != null) {
 				return simulationObject;
 			}

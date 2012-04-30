@@ -18,7 +18,7 @@ import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -35,12 +35,9 @@ public class BlockGeneratorProvider implements IComponentGeneratorProvider {
 		initializeFromStorage();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
-	 */
-	public IComponentGenerator createGenerator(Component component) {
-		if (component instanceof Block) {
-			BlockType blockType = ((Block) component).getType();
+	public IComponentGenerator createGenerator(ComponentNode node) {
+		if (node.getComponent() instanceof Block) {
+			BlockType blockType = ((Block) node.getComponent()).getType();
 			BlockGeneratorDescriptor descriptor = descriptors.get(blockType.getQualifiedName());
 			if (descriptor != null) {
 				return descriptor.createObject();

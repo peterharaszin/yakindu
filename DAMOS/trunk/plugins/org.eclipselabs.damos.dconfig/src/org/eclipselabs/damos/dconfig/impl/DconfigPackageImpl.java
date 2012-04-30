@@ -1379,7 +1379,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = addEOperation(configurationEClass, this.getBindingResourceReference(), "getBindingTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(configurationEClass, this.getBinding(), "getBinding", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "sourcePath", 1, 1, IS_UNIQUE, IS_ORDERED);
 

@@ -16,6 +16,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
@@ -116,7 +117,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 					ComputationModel computationModel = GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode);
 					DataType outputDataType = generator.getContext().getComponentSignature().getOutputDataType(outputPort);
 					String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, context, outputDataType, null);
-					out.printf("%s %s;\n", cDataType, InternalGeneratorUtil.getOutputVariableName(context.getConfiguration(), componentNode, outputPort));
+					out.printf("%s %s;\n", cDataType, GeneratorUtil.getOutputVariableName(context.getConfiguration(), componentNode, outputPort));
 				}
 			}
 		}

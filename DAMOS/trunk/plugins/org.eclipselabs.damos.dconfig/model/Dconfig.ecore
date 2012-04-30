@@ -32,7 +32,7 @@
       <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
       <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
     </eOperations>
-    <eOperations name="getBindingTarget" eType="#//BindingResourceReference">
+    <eOperations name="getBinding" eType="#//Binding">
       <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
       <eParameters name="sourcePath" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>

@@ -149,6 +149,10 @@ public class MscriptGeneratorUtil {
 		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, value, dependentCodeFragment);
 	}
 	
+	public static String getLiteralString(IMscriptGeneratorContext context, DataType dataType, long value, ICodeFragment dependentCodeFragment) {
+		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, value, dependentCodeFragment);
+	}
+
 	public static String getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, double value, ICodeFragment dependentCodeFragment) {
 		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
 		String cDataType = getCDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment);

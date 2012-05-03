@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.CModuleEntry.Visibility;
@@ -97,16 +98,18 @@ public class CModule {
 		out.printf("#define %s\n", headerMacro);
 		out.println();
 		
-		// Write external forward declaration includes
-		Set<String> includes = new HashSet<String>();
+		// Add external forward declaration includes
+		Set<Include> includes = new TreeSet<Include>();
 		for (CModuleEntry entry : entries) {
 			if (!entry.isInternal()) {
-				for (String include : entry.getCodeFragment().getForwardDeclarationIncludes()) {
-					if (includes.add(include)) {
-						out.printf("#include <%s>\n", include);
-					}
+				for (Include include : entry.getCodeFragment().getForwardDeclarationIncludes()) {
+					includes.add(include);
 				}
 			}
+		}
+		
+		for (Include include : includes) {
+			out.println(include.toString());
 		}
 		
 		if (!includes.isEmpty()) {
@@ -140,26 +143,31 @@ public class CModule {
 			out.println(sourceComment);
 		}
 		
-		// Write internal forward declaration includes
-		Set<String> includes = new HashSet<String>();
+		// Add internal forward declaration includes
+		Set<Include> includes = new TreeSet<Include>();
+		
 		for (CModuleEntry entry : entries) {
 			ICodeFragment codeFragment = entry.getCodeFragment();
 			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
-				for (String include : codeFragment.getForwardDeclarationIncludes()) {
-					if (includes.add(include)) {
-						out.printf("#include <%s>\n", include);
-					}
+				for (Include include : codeFragment.getForwardDeclarationIncludes()) {
+					includes.add(include);
 				}
 			}
 		}
 
-		// Write implementation includes
+		// Add implementation includes
 		for (CModuleEntry entry : entries) {
-			for (String include : entry.getCodeFragment().getImplementationIncludes()) {
-				if (includes.add(include)) {
-					out.printf("#include <%s>\n", include);
-				}
+			for (Include include : entry.getCodeFragment().getImplementationIncludes()) {
+				includes.add(include);
 			}
+		}
+		
+		for (Include include : includes) {
+			out.println(include.toString());
+		}
+
+		if (!includes.isEmpty()) {
+			out.println();
 		}
 		
 		out.printf("#include \"%s.h\"\n", name);

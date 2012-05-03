@@ -22,6 +22,7 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
 
@@ -33,8 +34,8 @@ public class TaskInfo extends PrimaryCodeFragment {
 
 	private final IGraphGenerator graphGenerator;
 	
-	private Collection<String> forwardDeclarationIncludes;
-	private Collection<String> implementationIncludes;
+	private Collection<Include> forwardDeclarationIncludes;
+	private Collection<Include> implementationIncludes;
 	
 	private String forwardDeclaration;
 	private String implementation;
@@ -51,7 +52,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
 	@Override
-	public Collection<String> getForwardDeclarationIncludes() {
+	public Collection<Include> getForwardDeclarationIncludes() {
 		return forwardDeclarationIncludes;
 	}
 	
@@ -59,7 +60,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getImplementationIncludes()
 	 */
 	@Override
-	public Collection<String> getImplementationIncludes() {
+	public Collection<Include> getImplementationIncludes() {
 		return implementationIncludes;
 	}
 	

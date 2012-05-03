@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -21,6 +23,7 @@ import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
 
@@ -34,12 +37,19 @@ public class ContextStruct extends PrimaryCodeFragment {
 	
 	private String content;
 	
+	private Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>();
+	
 	/**
 	 * 
 	 */
 	@Inject
 	ContextStruct(ITaskGenerator taskGenerator) {
 		this.taskGenerator = taskGenerator;
+	}
+	
+	@Override
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return forwardDeclarationIncludes;
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
@@ -68,9 +78,14 @@ public class ContextStruct extends PrimaryCodeFragment {
 			ComponentNode componentNode = (ComponentNode) node;
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesContextCode()) {
-				String typeName = InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName() + "_Context";
-				generator.writeContextCode(out, typeName, monitor);
-				out.append("\n");
+				Collection<Include> includes = generator.getContextCodeIncludes();
+				if (includes != null) {
+					forwardDeclarationIncludes.addAll(includes);
+				}
+				if (generator.getContextTypeName() == null) {
+					generator.writeContextCode(out, getContextTypeName(context, componentNode), monitor);
+					out.append("\n");
+				}
 			}
 		}
 		
@@ -83,7 +98,11 @@ public class ContextStruct extends PrimaryCodeFragment {
 			ComponentNode componentNode = (ComponentNode) node;
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesContextCode()) {
-				out.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(context.getConfiguration(), node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName());
+				String typeName = generator.getContextTypeName();
+				if (typeName == null) {
+					typeName = getContextTypeName(context, componentNode);
+				}
+				out.printf("%s %s;\n", typeName, InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName());
 			}
 		}
 
@@ -91,12 +110,22 @@ public class ContextStruct extends PrimaryCodeFragment {
 		
 		content = sb.toString();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
 	 */
 	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
 		appendable.append(content);
+	}
+
+	/**
+	 * @param context
+	 * @param node
+	 * @param componentNode
+	 * @return
+	 */
+	private String getContextTypeName(IGeneratorContext context, ComponentNode componentNode) {
+		return InternalGeneratorUtil.getPrefix(context.getConfiguration(), componentNode) + componentNode.getComponent().getName() + "_Context";
 	}
 	
 }

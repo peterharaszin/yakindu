@@ -98,7 +98,7 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#getIncludes()
 	 */
-	public Collection<String> getForwardDeclarationIncludes() {
+	public Collection<Include> getForwardDeclarationIncludes() {
 		return Collections.emptyList();
 	}
 	
@@ -112,7 +112,7 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#getImplementationIncludes()
 	 */
-	public Collection<String> getImplementationIncludes() {
+	public Collection<Include> getImplementationIncludes() {
 		return Collections.emptyList();
 	}
 	

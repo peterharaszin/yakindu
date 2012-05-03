@@ -22,6 +22,7 @@ import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
@@ -29,11 +30,11 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
  */
 public class MessageQueueStruct extends PrimaryCodeFragment {
 
-	private static final Collection<String> FORWARD_DECLARATION_INCLUDES = new ArrayList<String>();
+	private static final Collection<Include> FORWARD_DECLARATION_INCLUDES = new ArrayList<Include>();
 	
 	static {
-		FORWARD_DECLARATION_INCLUDES.add("pthread.h");
-		FORWARD_DECLARATION_INCLUDES.add("semaphore.h");
+		FORWARD_DECLARATION_INCLUDES.add(new Include("pthread.h"));
+		FORWARD_DECLARATION_INCLUDES.add(new Include("semaphore.h"));
 	}
 	
 	private String prefix;
@@ -42,7 +43,7 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
 	@Override
-	public Collection<String> getForwardDeclarationIncludes() {
+	public Collection<Include> getForwardDeclarationIncludes() {
 		return FORWARD_DECLARATION_INCLUDES;
 	}
 	

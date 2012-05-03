@@ -12,15 +12,19 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.Graph;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
  *
  */
 public interface IGraphGenerator {
+	
+	Collection<Include> getImplementationIncludes(IGeneratorContext context, Graph graph);
 
 	void writeGraph(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor)
 			throws IOException;

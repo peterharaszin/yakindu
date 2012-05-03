@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -23,6 +24,7 @@ import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
 
@@ -34,6 +36,8 @@ public class Task extends PrimaryCodeFragment {
 
 	private final IGraphGenerator graphGenerator;
 	
+	private Collection<Include> implementationIncludes = new ArrayList<Include>();
+
 	private List<String> forwardDeclarations = new ArrayList<String>();
 	private List<String> implementations = new ArrayList<String>();
 	
@@ -43,6 +47,11 @@ public class Task extends PrimaryCodeFragment {
 	@Inject
 	Task(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;
+	}
+	
+	@Override
+	public Collection<Include> getImplementationIncludes() {
+		return implementationIncludes;
 	}
 	
 	/* (non-Javadoc)
@@ -71,6 +80,8 @@ public class Task extends PrimaryCodeFragment {
 		}
 		
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+			implementationIncludes.addAll(graphGenerator.getImplementationIncludes(context, taskGraph));
+			
 			StringBuilder sb = new StringBuilder();
 			
 			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);

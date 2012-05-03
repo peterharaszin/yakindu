@@ -37,13 +37,13 @@ public interface ICodeFragment {
 	
 	boolean implementationRequiredBy(ICodeFragment other);
 
-	Collection<String> getForwardDeclarationIncludes();
+	Collection<Include> getForwardDeclarationIncludes();
 	
 	void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException;
 	
 	boolean contributesImplementation();
 
-	Collection<String> getImplementationIncludes();
+	Collection<Include> getImplementationIncludes();
 	
 	void writeImplementation(Appendable appendable, boolean internal) throws IOException;
 	

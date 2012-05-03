@@ -71,13 +71,8 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 		appendable.append(getMainPage().getParentFolder().getProject().getName());
 		appendable.append("\"\n");
 
-		String sourceFolder = getMainPage().getParentFolder().getProjectRelativePath().toString();
-		if (sourceFolder.length() > 0) {
-			appendable.append(indent);
-			appendable.append("\tsourceFolder = \"");
-			appendable.append(sourceFolder);
-			appendable.append("\"\n");
-		}
+		appendable.append(indent);
+		appendable.append("\tsourceFolder = \"src-gen\"\n");
 
 		String fragmentName = getMainPage().getFragment().getName();
 		if (fragmentName != null && fragmentName.trim().length() > 0) {

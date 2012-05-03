@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 
 /**
@@ -23,8 +24,8 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
  */
 public interface IRuntimeEnvironmentAPI {
 
-	Collection<String> getImplementationIncludes();
-	Collection<String> getForwardDeclarationIncludes();
+	Collection<Include> getImplementationIncludes();
+	Collection<Include> getForwardDeclarationIncludes();
 	
     void writeTaskInfoStructName(IGeneratorContext context, Appendable appendable) throws IOException;
 	

@@ -11,9 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dconfig.Configuration;
@@ -30,10 +27,6 @@ public abstract class AbstractTargetGenerator implements ITargetGenerator {
 		return null;
 	}
 	
-	public Collection<String> getImplementationIncludes(IGeneratorContext context) {
-		return Collections.emptyList();
-	}
-
 	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, ComponentNode node) {
 		return null;
 	}

@@ -23,6 +23,7 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
 
@@ -37,10 +38,10 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 	private String functionSignature;
 	private final StringBuilder content = new StringBuilder();
 	
-	private Collection<String> implementationIncludes = new ArrayList<String>();
+	private Collection<Include> implementationIncludes = new ArrayList<Include>();
 	
 	{
-		implementationIncludes.add("math.h");
+		implementationIncludes.add(new Include("math.h"));
 	}
 	
 	/**
@@ -55,15 +56,15 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
 	@Override
-	public Collection<String> getForwardDeclarationIncludes() {
-		return Collections.singleton("stdint.h");
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return Collections.singleton(new Include("stdint.h"));
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getImplementationIncludes()
 	 */
 	@Override
-	public Collection<String> getImplementationIncludes() {
+	public Collection<Include> getImplementationIncludes() {
 		return implementationIncludes;
 	}
 	
@@ -89,6 +90,8 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 		
 		Graph graph = context.getExecutionFlow().getGraph();
 
+		implementationIncludes.addAll(graphGenerator.getImplementationIncludes(context, graph));
+		
 		functionSignature = getFunctionSignature(context);
 		
 		out.append(functionSignature);
@@ -99,14 +102,6 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 		graphGenerator.writeGraph(context, out, graph, monitor);
 		
 		out.println("}");
-		
-		ITargetGenerator targetGenerator = GeneratorConfigurationUtil.getTargetGenerator(context.getConfiguration());
-		if (targetGenerator != null) {
-			Collection<String> includes = targetGenerator.getImplementationIncludes(context);
-			if (includes != null) {
-				implementationIncludes.addAll(includes);
-			}
-		}
 	}
 	
 	/* (non-Javadoc)

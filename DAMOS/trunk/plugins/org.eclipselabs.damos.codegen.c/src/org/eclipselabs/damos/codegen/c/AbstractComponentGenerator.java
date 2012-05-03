@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -19,8 +20,9 @@ import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
@@ -61,6 +63,20 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextCodeIncludes()
+	 */
+	public Collection<Include> getContextCodeIncludes() {
+		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextTypeName()
+	 */
+	public String getContextTypeName() {
+		return null;
+	}
+	
 	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
 	}
 	
@@ -69,6 +85,13 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	 */
 	public boolean contributesInitializationCode() {
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getInitializationCodeIncludes()
+	 */
+	public Collection<Include> getInitializationCodeIncludes() {
+		return getImplementationIncludes();
 	}
 	
 	/* (non-Javadoc)
@@ -82,6 +105,13 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	 */
 	public boolean contributesComputeOutputsCode() {
 		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getComputeOutputsCodeIncludes()
+	 */
+	public Collection<Include> getComputeOutputsCodeIncludes() {
+		return getImplementationIncludes();
 	}
 	
 	/* (non-Javadoc)
@@ -98,9 +128,20 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getUpdateCodeIncludes()
+	 */
+	public Collection<Include> getUpdateCodeIncludes() {
+		return getImplementationIncludes();
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#generateUpdateCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	}
+	
+	protected Collection<Include> getImplementationIncludes() {
+		return null;
 	}
 	
 	protected final ComponentNode getNode() {

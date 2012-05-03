@@ -22,6 +22,7 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
@@ -29,11 +30,11 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
  */
 public abstract class MessageQueueFunction extends PrimaryCodeFragment {
 
-	private static final Collection<String> IMPLEMENTATION_INCLUDES = new ArrayList<String>();
+	private static final Collection<Include> IMPLEMENTATION_INCLUDES = new ArrayList<Include>();
 	
 	static {
-		IMPLEMENTATION_INCLUDES.add("stddef.h");
-		IMPLEMENTATION_INCLUDES.add("string.h");
+		IMPLEMENTATION_INCLUDES.add(new Include("stddef.h"));
+		IMPLEMENTATION_INCLUDES.add(new Include("string.h"));
 	}
 
 	private String prefix;
@@ -50,7 +51,7 @@ public abstract class MessageQueueFunction extends PrimaryCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getImplementationIncludes()
 	 */
 	@Override
-	public Collection<String> getImplementationIncludes() {
+	public Collection<Include> getImplementationIncludes() {
 		return IMPLEMENTATION_INCLUDES;
 	}
 	

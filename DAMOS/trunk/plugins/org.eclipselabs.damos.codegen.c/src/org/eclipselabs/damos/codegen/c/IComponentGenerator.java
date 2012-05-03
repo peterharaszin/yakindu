@@ -12,9 +12,11 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
@@ -31,17 +33,27 @@ public interface IComponentGenerator {
 	
 	boolean contributesContextCode();
 	
+	Collection<Include> getContextCodeIncludes();
+	
+	String getContextTypeName();
+	
 	void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException;
 
 	boolean contributesInitializationCode();
 	
+	Collection<Include> getInitializationCodeIncludes();
+
 	void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 	
 	boolean contributesComputeOutputsCode();
 
+	Collection<Include> getComputeOutputsCodeIncludes();
+
 	void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 
 	boolean contributesUpdateCode();
+
+	Collection<Include> getUpdateCodeIncludes();
 
 	void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 

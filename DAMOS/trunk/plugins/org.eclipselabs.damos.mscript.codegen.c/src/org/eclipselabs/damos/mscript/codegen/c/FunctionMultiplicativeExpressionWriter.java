@@ -91,8 +91,8 @@ public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeEx
 		 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getIncludes()
 		 */
 		@Override
-		public Collection<String> getForwardDeclarationIncludes() {
-			return Collections.singletonList("stdint.h");
+		public Collection<Include> getForwardDeclarationIncludes() {
+			return Collections.singletonList(new Include("stdint.h"));
 		}
 		
 		public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {

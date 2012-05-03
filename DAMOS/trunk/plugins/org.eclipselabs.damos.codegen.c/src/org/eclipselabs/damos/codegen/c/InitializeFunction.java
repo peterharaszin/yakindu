@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -21,6 +23,7 @@ import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
 
@@ -35,12 +38,23 @@ public class InitializeFunction extends PrimaryCodeFragment {
 	private String functionSignature;
 	private final StringBuilder content = new StringBuilder();
 	
+	private Collection<Include> implementationIncludes = new ArrayList<Include>();
+	
+	{
+		implementationIncludes.add(new Include("math.h"));
+	}
+
 	/**
 	 * 
 	 */
 	@Inject
 	InitializeFunction(ITaskGenerator taskGenerator) {
 		this.taskGenerator = taskGenerator;
+	}
+	
+	@Override
+	public Collection<Include> getImplementationIncludes() {
+		return implementationIncludes;
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
@@ -71,6 +85,10 @@ public class InitializeFunction extends PrimaryCodeFragment {
 			ComponentNode componentNode = (ComponentNode) node;
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesInitializationCode()) {
+				Collection<Include> includes = generator.getInitializationCodeIncludes();
+				if (includes != null) {
+					implementationIncludes.addAll(includes);
+				}
 				out.printf("/* %s */\n", componentNode.getComponent().getName());
 				out.println("{");
 				generator.writeInitializationCode(out, monitor);

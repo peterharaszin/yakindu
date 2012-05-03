@@ -12,6 +12,9 @@
 package org.eclipselabs.damos.codegen.c;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -27,6 +30,7 @@ import org.eclipselabs.damos.execution.CompoundNode;
 import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
@@ -48,6 +52,36 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 	DefaultGraphGenerator(ICompoundGenerator compoundGenerator, ITaskGenerator taskGenerator) {
 		this.compoundGenerator = compoundGenerator;
 		this.taskGenerator = taskGenerator;
+	}
+	
+	public Collection<Include> getImplementationIncludes(IGeneratorContext context, Graph graph) {
+		List<Include> allIncludes = new ArrayList<Include>();
+		for (Node node : graph.getAllNodes()) {
+			if (!(node instanceof ComponentNode)) {
+				continue;
+			}
+			ComponentNode componentNode = (ComponentNode) node;
+			Component component = componentNode.getComponent();
+			
+			if (component instanceof Inoutport) {
+				continue;
+			}
+			
+			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+			if (generator.contributesComputeOutputsCode()) {
+				Collection<Include> includes = generator.getComputeOutputsCodeIncludes();
+				if (includes != null) {
+					allIncludes.addAll(includes);
+				}
+			}
+			if (generator.contributesUpdateCode()) {
+				Collection<Include> includes = generator.getUpdateCodeIncludes();
+				if (includes != null) {
+					allIncludes.addAll(includes);
+				}
+			}
+		}
+		return allIncludes;
 	}
 	
 	public void writeGraph(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor)

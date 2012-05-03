@@ -22,6 +22,7 @@ import org.eclipselabs.damos.codegen.c.rte.AbstractRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
 import org.eclipselabs.damos.codegen.c.rte.IMessageQueueGenerator;
 import org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
@@ -29,24 +30,24 @@ import org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator;
  */
 public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 
-	private static final Collection<String> IMPLEMENTATION_INCLUDES = new ArrayList<String>();
+	private static final Collection<Include> IMPLEMENTATION_INCLUDES = new ArrayList<Include>();
 	
 	static {
-		IMPLEMENTATION_INCLUDES.add("pthread.h");
-		IMPLEMENTATION_INCLUDES.add("semaphore.h");
+		IMPLEMENTATION_INCLUDES.add(new Include("pthread.h"));
+		IMPLEMENTATION_INCLUDES.add(new Include("semaphore.h"));
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getMultitaskingIncludes()
 	 */
-	public Collection<String> getImplementationIncludes() {
+	public Collection<Include> getImplementationIncludes() {
 		return IMPLEMENTATION_INCLUDES;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#getTaskInfoIncludes()
 	 */
-	public Collection<String> getForwardDeclarationIncludes() {
+	public Collection<Include> getForwardDeclarationIncludes() {
 		return Collections.emptyList();
 	}
 	

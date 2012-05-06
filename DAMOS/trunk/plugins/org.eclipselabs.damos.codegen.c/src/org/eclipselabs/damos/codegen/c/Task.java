@@ -155,10 +155,18 @@ public class Task extends PrimaryCodeFragment {
 	 */
 	@Override
 	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+		boolean first = true;
 		for (String implementation : implementations) {
+			if (first) {
+				first = false;
+			} else {
+				appendable.append("\n");
+			}
+			
 			if (internal) {
 				appendable.append("static ");
 			}
+			
 			appendable.append(implementation);
 		}
 	}

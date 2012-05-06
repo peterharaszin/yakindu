@@ -48,7 +48,13 @@
       <genOperations ecoreOperation="DML.ecore#//Component/getInputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getOutputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getFirstInputPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstInputPort.1">
+        <genParameters ecoreParameter="DML.ecore#//Component/getFirstInputPort.1/inputName"/>
+      </genOperations>
       <genOperations ecoreOperation="DML.ecore#//Component/getFirstOutputPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstOutputPort.1">
+        <genParameters ecoreParameter="DML.ecore#//Component/getFirstOutputPort.1/outputName"/>
+      </genOperations>
       <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryInputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryOutputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getInputSockets"/>

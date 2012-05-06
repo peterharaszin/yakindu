@@ -161,10 +161,26 @@ public interface Component extends FragmentElement, CompoundMember, INamedElemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" inputNameRequired="true"
+	 * @generated
+	 */
+	InputPort getFirstInputPort(String inputName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" ordered="false"
 	 * @generated
 	 */
 	OutputPort getFirstOutputPort();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" outputNameRequired="true"
+	 * @generated
+	 */
+	OutputPort getFirstOutputPort(String outputName);
 
 	/**
 	 * <!-- begin-user-doc -->

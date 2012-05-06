@@ -277,8 +277,26 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public InputPort getFirstInputPort(String inputName) {
+		return ComponentOperations.getFirstInputPort(this, inputName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public OutputPort getFirstOutputPort() {
 		return ComponentOperations.getFirstOutputPort(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OutputPort getFirstOutputPort(String outputName) {
+		return ComponentOperations.getFirstOutputPort(this, outputName);
 	}
 
 	/**

@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
 package org.eclipselabs.damos.dml.internal.operations;
 
 import java.util.List;
@@ -18,36 +23,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 
-/**
- * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>Component</b></em>' model objects.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following operations are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getInputPorts() <em>Get Input Ports</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getOutputPorts() <em>Get Output Ports</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getFirstInputPort() <em>Get First Input Port</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getFirstOutputPort() <em>Get First Output Port</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getPrimaryInputPorts() <em>Get Primary Input Ports</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#getPrimaryOutputPorts() <em>Get Primary Output Ports</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#isSource() <em>Is Source</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Component#isSink() <em>Is Sink</em>}</li>
- * </ul>
- * </p>
- *
- * @generated
- */
 public class ComponentOperations {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComponentOperations() {
-		super();
-	}
 
 	public static Input getInput(Component component, String name) {
 		for (Input input : component.getInputs()) {
@@ -67,12 +43,7 @@ public class ComponentOperations {
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  EList<InputPort> getInputPorts(Component component) {
+	public static EList<InputPort> getInputPorts(Component component) {
 		if (component.getInputs().isEmpty()) {
 			return ECollections.emptyEList();
 		}
@@ -86,12 +57,7 @@ public class ComponentOperations {
 		return ECollections.unmodifiableEList(inputPorts);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  EList<OutputPort> getOutputPorts(Component component) {
+	public static EList<OutputPort> getOutputPorts(Component component) {
 		if (component.getOutputs().isEmpty()) {
 			return ECollections.emptyEList();
 		}
@@ -105,12 +71,7 @@ public class ComponentOperations {
 		return ECollections.unmodifiableEList(outputPorts);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  InputPort getFirstInputPort(Component component) {
+	public static InputPort getFirstInputPort(Component component) {
 		List<Input> inputs = component.getInputs();
 		if (!inputs.isEmpty()) {
 			List<InputPort> inputPorts = inputs.get(0).getPorts();
@@ -121,12 +82,15 @@ public class ComponentOperations {
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  OutputPort getFirstOutputPort(Component component) {
+	public static InputPort getFirstInputPort(Component component, String inputName) {
+		Input input = component.getInput(inputName);
+		if (input != null && !input.getPorts().isEmpty()) {
+			return input.getPorts().get(0);
+		}
+		return null;
+	}
+
+	public static OutputPort getFirstOutputPort(Component component) {
 		List<Output> outputs = component.getOutputs();
 		if (!outputs.isEmpty()) {
 			List<OutputPort> outputPorts = outputs.get(0).getPorts();
@@ -137,12 +101,15 @@ public class ComponentOperations {
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  EList<InputPort> getPrimaryInputPorts(Component component) {
+	public static OutputPort getFirstOutputPort(Component component, String outputName) {
+		Output output = component.getOutput(outputName);
+		if (output != null && !output.getPorts().isEmpty()) {
+			return output.getPorts().get(0);
+		}
+		return null;
+	}
+
+	public static EList<InputPort> getPrimaryInputPorts(Component component) {
 		EList<Input> inputs = component.getInputs();
 		if (!inputs.isEmpty()) {
 			return ECollections.unmodifiableEList(inputs.get(0).getPorts());
@@ -150,12 +117,7 @@ public class ComponentOperations {
 		return ECollections.emptyEList();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  EList<OutputPort> getPrimaryOutputPorts(Component component) {
+	public static EList<OutputPort> getPrimaryOutputPorts(Component component) {
 		EList<Output> outputs = component.getOutputs();
 		if (!outputs.isEmpty()) {
 			return ECollections.unmodifiableEList(outputs.get(0).getPorts());
@@ -189,22 +151,12 @@ public class ComponentOperations {
 		return outputSockets != null ? outputSockets : ECollections.<Output>emptyEList();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  boolean isSource(Component component) {
+	public static boolean isSource(Component component) {
 		return component.getInputs().isEmpty();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  boolean isSink(Component component) {
+	public static boolean isSink(Component component) {
 		return component.getOutputs().isEmpty();
 	}
 
-} // ComponentOperations
+}

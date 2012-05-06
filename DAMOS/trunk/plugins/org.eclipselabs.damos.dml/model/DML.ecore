@@ -33,7 +33,13 @@
     <eOperations name="getInputPorts" upperBound="-1" eType="#//InputPort"/>
     <eOperations name="getOutputPorts" upperBound="-1" eType="#//OutputPort"/>
     <eOperations name="getFirstInputPort" ordered="false" lowerBound="1" eType="#//InputPort"/>
+    <eOperations name="getFirstInputPort" ordered="false" lowerBound="1" eType="#//InputPort">
+      <eParameters name="inputName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="getFirstOutputPort" ordered="false" lowerBound="1" eType="#//OutputPort"/>
+    <eOperations name="getFirstOutputPort" ordered="false" lowerBound="1" eType="#//OutputPort">
+      <eParameters name="outputName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="getPrimaryInputPorts" upperBound="-1" eType="#//InputPort"/>
     <eOperations name="getPrimaryOutputPorts" upperBound="-1" eType="#//OutputPort"/>
     <eOperations name="getInputSockets" upperBound="-1" eType="#//Input"/>

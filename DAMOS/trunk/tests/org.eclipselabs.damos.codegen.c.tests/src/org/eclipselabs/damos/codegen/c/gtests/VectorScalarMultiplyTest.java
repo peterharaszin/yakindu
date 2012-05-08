@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.gtests;
 
+import org.eclipselabs.damos.codegen.c.CodegenCTestsPlugin;
 import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
@@ -35,8 +36,8 @@ public class VectorScalarMultiplyTest extends AbstractGeneratorGTest {
 		setSynchronousTimingConstraint(constant, 1);
 		setArgument(constant, ConstantConstants.PARAMETER__VALUE, "{ 1, 2, 3 }");
 		
-		Block arrayScalarMultiply = createTestBlock("VectorScalarMultiply", "VectorScalarMultiply");
-		Block demux = createTestBlock("DemuxThree", "DemuxThree");
+		Block arrayScalarMultiply = createTestBlock("VectorScalarMultiply", CodegenCTestsPlugin.PLUGIN_ID, "VectorScalarMultiply");
+		Block demux = createTestBlock("DemuxThree", CodegenCTestsPlugin.PLUGIN_ID, "DemuxThree");
 		
 		Outport outport1 = createOutport("Out1", createRealTypeSpecification());
 		Outport outport2 = createOutport("Out2", createRealTypeSpecification());

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Damos Codegen C Tests
-Bundle-SymbolicName: org.eclipselabs.damos.codegen.c.tests
+Bundle-Name: Damos Execution Tests
+Bundle-SymbolicName: org.eclipselabs.damos.execution.tests
 Bundle-Version: 0.3.0.qualifier
 Bundle-Vendor: Damos Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -12,11 +12,7 @@ Require-Bundle: org.junit;bundle-version="4.8.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0",
- org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
- org.eclipselabs.damos.codegen;bundle-version="0.3.0",
- org.eclipselabs.damos.codegen.c;bundle-version="0.3.0",
- org.eclipselabs.damos.execution.tests;bundle-version="0.3.0"
+ org.eclipselabs.damos.dmltext;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.codegen.c,
- org.eclipselabs.damos.codegen.c.test
-Bundle-Activator: org.eclipselabs.damos.codegen.c.CodegenCTestsPlugin
+Bundle-Activator: org.eclipselabs.damos.execution.ExecutionTestsPlugin
+Export-Package: org.eclipselabs.damos.execution.test

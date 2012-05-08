@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -40,8 +39,16 @@ import org.osgi.framework.FrameworkUtil;
  * @author Andreas Unger
  *
  */
-@RunWith(GTestRunner.class)
-public abstract class AbstractGTest {
+public class GTestHelper {
+	
+	private final Object owner;
+	
+	/**
+	 * 
+	 */
+	public GTestHelper(Object owner) {
+		this.owner = owner;
+	}
 
 	public void compile() {
 		try {
@@ -158,7 +165,7 @@ public abstract class AbstractGTest {
 	}
 	
 	protected String getTestSourceFile() {
-		return getClass().getAnnotation(GTest.class).sourceFile();
+		return owner.getClass().getAnnotation(GTest.class).sourceFile();
 	}
 	
 	protected void getTestDataFiles(Collection<String> files) {
@@ -166,7 +173,7 @@ public abstract class AbstractGTest {
 	}
 
 	protected String getTestProgram() {
-		return getClass().getAnnotation(GTest.class).program();
+		return owner.getClass().getAnnotation(GTest.class).program();
 	}
 
 	protected void copyFileFromBundleToFolder(String sourcePath, String targetPath) {
@@ -200,7 +207,7 @@ public abstract class AbstractGTest {
 	}
 
 	protected Bundle getTestBundle() {
-		return FrameworkUtil.getBundle(getClass());
+		return FrameworkUtil.getBundle(owner.getClass());
 	}
 
 	protected void copyFileFromBundle(String sourcePath, IFile targetFile) {

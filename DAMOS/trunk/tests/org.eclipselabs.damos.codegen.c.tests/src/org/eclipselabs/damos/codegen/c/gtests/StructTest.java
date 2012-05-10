@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.codegen.c.gtests;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.codegen.c.CodegenCTestsPlugin;
 import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
@@ -37,8 +36,8 @@ public class StructTest extends AbstractGeneratorGTest {
 		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("struct { int x, int y }");
 
 		Inport inport = createInport("In", structTypeSpecification, 1);
-		Block structTest = createTestBlock("StructTest", CodegenCTestsPlugin.PLUGIN_ID, "StructTest");
-		Block structExtractX = createTestBlock("StructExtractX", CodegenCTestsPlugin.PLUGIN_ID, "StructExtractX");
+		Block structTest = createTestBlock("StructTest", "StructTest");
+		Block structExtractX = createTestBlock("StructExtractX", "StructExtractX");
 		Outport outport = createOutport("Out", EcoreUtil.copy(structTypeSpecification));
 		Outport outportX = createOutport("OutX", createIntegerTypeSpecification());
 		Outport outportStructLiteral = createOutport("OutStructLiteral", createDataTypeSpecification("struct { int x, struct { int a, int[2] b } y }"));

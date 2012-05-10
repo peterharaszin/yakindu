@@ -9,12 +9,8 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos;
+package org.eclipselabs.damos.simulation.simulator;
 
-import org.eclipselabs.damos.codegen.c.CodegenCTests;
-import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorTests;
-import org.eclipselabs.damos.rte.posix.codegen.c.RTEPosixCodegenCTests;
-import org.eclipselabs.damos.simulation.simulator.SimulatorTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -25,11 +21,8 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	SimulatorTests.class,
-	MscriptGeneratorTests.class,
-	CodegenCTests.class,
-	RTEPosixCodegenCTests.class
+	TransferFunctionTest.class
 })
-public class AllTests {
+public class SimulatorTests {
 
 }

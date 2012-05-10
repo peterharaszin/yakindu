@@ -28,6 +28,8 @@ import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
+import org.eclipselabs.damos.dconfig.SimpleProperty;
+import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
 import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.Action;
@@ -61,6 +63,7 @@ import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.execution.ExecutionTestsPlugin;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
@@ -213,6 +216,13 @@ public abstract class AbstractExecutionTest {
 		return dataTypeSpecification;
 	}
 
+	protected Block createTestBlock(String blockTypeName, String name) {
+		BlockType blockType = loadBlockType(blockTypeName, ExecutionTestsPlugin.PLUGIN_ID);
+		Block block = blockType.newInstance(name);
+		system.getComponents().add(block);
+		return block;
+	}
+
 	protected Block createTestBlock(String blockTypeName, String pluginId, String name) {
 		BlockType blockType = loadBlockType(blockTypeName, pluginId);
 		Block block = blockType.newInstance(name);
@@ -349,6 +359,15 @@ public abstract class AbstractExecutionTest {
 		}
 		
 		configuration.setRootSystemConfiguration(rootSystemConfiguration);
+	}
+
+	protected SimpleProperty createSimpleProperty(String propertyId, String expressionString) {
+		SimpleProperty property = DconfigFactory.eINSTANCE.createSimpleProperty();
+		PropertyEnumerationHelper helper = new PropertyEnumerationHelper(resourceSet, propertyId);
+		SimplePropertyDeclaration propertyDeclaration = (SimplePropertyDeclaration) helper.getPropertyDeclaration(propertyId);
+		property.setDeclaration(propertyDeclaration);
+		property.setValue(parseExpression(expressionString));
+		return property;
 	}
 
 	protected SelectionProperty createSelectionProperty(String propertyId, String optionName) {

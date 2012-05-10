@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.gtests;
 
-import org.eclipselabs.damos.codegen.c.CodegenCTestsPlugin;
 import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
@@ -34,7 +33,7 @@ public class VectorTest extends AbstractGeneratorGTest {
 		createConfiguration();
 		
 		Inport inport = createInport("In", createArrayTypeSpecification(TypeUtil.createRealType(), 3), 1);
-		Block arrayScalarMultiply = createTestBlock("VectorScalarMultiply", CodegenCTestsPlugin.PLUGIN_ID, "VectorScalarMultiply");
+		Block arrayScalarMultiply = createTestBlock("VectorScalarMultiply", "VectorScalarMultiply");
 		Outport outport = createOutport("Out", createArrayTypeSpecification(TypeUtil.createRealType(), 3));
 		
 		connect(inport, arrayScalarMultiply);

@@ -1,0 +1,4 @@
+sys = tf([2 3], [1 0.4 1]);
+[y t] = step(sys, 1, 30, 900);
+csvwrite("TransferFunctionTest.csv", [t' y']);
+plot(t, y);

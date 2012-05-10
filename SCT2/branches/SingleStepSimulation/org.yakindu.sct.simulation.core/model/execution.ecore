@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="execution" nsURI="http://www.yakindu.org/sct/statechart/Execution"
+    nsPrefix="execution">
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="raisedEvents" upperBound="-1"
+        eType="#//ExecutionEvent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scopes" upperBound="-1"
+        eType="#//ExecutionScope" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionScope">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredEvents" upperBound="-1"
+        eType="#//ExecutionEvent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//ExecutionVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionFeature" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipselabs.damos</groupId>
+	<artifactId>org.eclipselabs.damos.releng</artifactId>
+	<version>0.3.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- this is the parent POM from which all modules inherit common settings -->
+	<properties>
+		<tycho-version>0.14.1</tycho-version>
+		<antrun-version>1.6</antrun-version>
+		<p2.target.repository>file:../org.eclipselabs.damos.target/target/repository</p2.target.repository>
+	</properties>
+	<repositories>
+		<repository>
+			<id>target</id>
+			<layout>p2</layout>
+			<url>${p2.target.repository}</url>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${antrun-version}</version>
+				<executions>
+					<execution>
+						<id>replace-build-token</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<target>
+								<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+									classpathref="maven.plugin.classpath" />
+								<if>
+									<available file="about.mappings" />
+									<then>
+										<echo
+											message="Replacing @build@ token within about.mappings with build id." />
+										<replace file="about.mappings">
+											<replacefilter token="@build@"
+												value="${unqualifiedVersion}.${buildQualifier}" />
+										</replace>
+									</then>
+								</if>
+								<if>
+									<available file="javadocOptions.txt" />
+									<then>
+										<echo
+											message="Replacing @build@ token within javadocOptions.txt with build id." />
+										<replace file="javadocOptions.txt">
+											<replacefilter token="@build@"
+												value="${unqualifiedVersion}.${buildQualifier}" />
+										</replace>
+									</then>
+								</if>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>replace-back-build-token</id>
+						<phase>install</phase>
+						<configuration>
+							<target>
+								<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+									classpathref="maven.plugin.classpath" />
+								<if>
+									<available file="about.mappings" />
+									<then>
+										<echo
+											message="Replacing back build id within about.mappings with @build@ token." />
+										<replace file="about.mappings">
+											<replacefilter token="${unqualifiedVersion}.${buildQualifier}"
+												value="@build@" />
+										</replace>
+									</then>
+								</if>
+								<if>
+									<available file="javadocOptions.txt" />
+									<then>
+										<echo
+											message="Replacing back build id within javadocOptions.txt with @build@ token." />
+										<replace file="javadocOptions.txt">
+											<replacefilter token="${unqualifiedVersion}.${buildQualifier}"
+												value="@build@" />
+										</replace>
+									</then>
+								</if>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>20020829</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<!-- add target file content to target platform -->
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>../org.eclipselabs.damos.codegen</module>
+		<module>../org.eclipselabs.damos.codegen.c</module>
+		<module>../org.eclipselabs.damos.codegen.c.tests</module>
+		<module>../org.eclipselabs.damos.codegen.c.ui</module>
+		<module>../org.eclipselabs.damos.codegen.ui</module>
+		<module>../org.eclipselabs.damos.common</module>
+		<module>../org.eclipselabs.damos.common.math</module>
+		<module>../org.eclipselabs.damos.common.ui</module>
+		<module>../org.eclipselabs.damos.dconfig</module>
+		<module>../org.eclipselabs.damos.dconfig.ui</module>
+		<module>../org.eclipselabs.damos.diagram.core</module>
+		<module>../org.eclipselabs.damos.diagram.dmlnotation</module>
+		<module>../org.eclipselabs.damos.diagram.ui</module>
+		<module>../org.eclipselabs.damos.dml</module>
+		<module>../org.eclipselabs.damos.dml.edit</module>
+		<module>../org.eclipselabs.damos.dml.ui</module>
+		<module>../org.eclipselabs.damos.dmltext</module>
+		<module>../org.eclipselabs.damos.dmltext.tests</module>
+		<module>../org.eclipselabs.damos.dmltext.ui</module>
+		<module>../org.eclipselabs.damos.doc</module>
+		<module>../org.eclipselabs.damos.execution</module>
+		<module>../org.eclipselabs.damos.execution.ui</module>
+		<module>../org.eclipselabs.damos.ide.core</module>
+		<module>../org.eclipselabs.damos.ide.ui</module>
+		<module>../org.eclipselabs.damos.library.base</module>
+		<module>../org.eclipselabs.damos.library.base.simulation</module>
+		<module>../org.eclipselabs.damos.library.base.simulation.ui</module>
+		<module>../org.eclipselabs.damos.library.base.ui</module>
+		<module>../org.eclipselabs.damos.library.common</module>
+		<module>../org.eclipselabs.damos.library.common.ui</module>
+		<module>../org.eclipselabs.damos.mscript</module>
+		<module>../org.eclipselabs.damos.mscript.codegen.c</module>
+		<module>../org.eclipselabs.damos.mscript.codegen.c.ide.core</module>
+		<module>../org.eclipselabs.damos.mscript.codegen.c.ide.ui</module>
+		<module>../org.eclipselabs.damos.mscript.codegen.c.tests</module>
+		<module>../org.eclipselabs.damos.mscript.ide.core</module>
+		<module>../org.eclipselabs.damos.mscript.ide.ui</module>
+		<module>../org.eclipselabs.damos.mscript.tests</module>
+		<module>../org.eclipselabs.damos.mscript.ui</module>
+		<module>../org.eclipselabs.damos.rte</module>
+		<module>../org.eclipselabs.damos.rte.posix</module>
+		<module>../org.eclipselabs.damos.rte.posix.codegen.c</module>
+		<module>../org.eclipselabs.damos.rte.posix.codegen.c.tests</module>
+		<module>../org.eclipselabs.damos.simulation</module>
+		<module>../org.eclipselabs.damos.simulation.ide.core</module>
+		<module>../org.eclipselabs.damos.simulation.ide.ui</module>
+		<module>../org.eclipselabs.damos.simulation.simulator</module>
+		<module>../org.eclipselabs.damos.simulation.simulator.solvers</module>
+		<module>../org.eclipselabs.damos.simulation.ui</module>
+		<module>../org.eclipselabs.damos.tests</module>
+		
+		<module>../org.eclipselabs.damos-feature</module>
+		<module>../org.eclipselabs.damos.codegen.c-feature</module>
+		<module>../org.eclipselabs.damos.diagram-feature</module>
+		<module>../org.eclipselabs.damos.execution-feature</module>
+		<module>../org.eclipselabs.damos.library-feature</module>
+		<module>../org.eclipselabs.damos.library.simulation-feature</module>
+		<module>../org.eclipselabs.damos.mscript-feature</module>
+		<module>../org.eclipselabs.damos.simulation-feature</module>
+	</modules>
+
+</project>

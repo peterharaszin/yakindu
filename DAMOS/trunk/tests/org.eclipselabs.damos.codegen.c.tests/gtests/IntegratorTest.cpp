@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "GainTest.h"
+#include "IntegratorTest.h"
 
 TEST(IntegratorTest, ZeroInput) {
 	Input input;

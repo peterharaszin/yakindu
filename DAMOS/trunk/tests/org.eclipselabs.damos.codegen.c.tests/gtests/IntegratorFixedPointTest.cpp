@@ -1,7 +1,7 @@
 #include <math.h>
 
 #include "gtest/gtest.h"
-#include "GainTest.h"
+#include "IntegratorTest.h"
 
 TEST(IntegratorFixedPointTest, ZeroInput) {
 	Input input;

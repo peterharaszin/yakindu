@@ -42,7 +42,6 @@ public class StructTest extends AbstractGeneratorGTest {
 		Outport outportX = createOutport("OutX", createIntegerTypeSpecification());
 		Outport outportStructLiteral = createOutport("OutStructLiteral", createDataTypeSpecification("struct { int x, struct { int a, int[2] b } y }"));
 		
-		
 		connect(inport, structTest);
 		connect(structTest, 0, outport);
 		connect(structTest, 0, structExtractX);

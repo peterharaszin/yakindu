@@ -21,6 +21,12 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+	ActionTest.class,
+	DoWhileLoopTest.class,
+	WhileLoopTest.class,
+	StructTest.class,
+	VectorScalarMultiplyTest.class,
+	VectorTest.class,
 	TransferFunctionTest.class
 })
 public class SimulatorTests {

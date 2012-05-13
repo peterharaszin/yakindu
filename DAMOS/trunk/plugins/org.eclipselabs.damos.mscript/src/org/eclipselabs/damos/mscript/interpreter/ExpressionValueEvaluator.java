@@ -26,6 +26,7 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
@@ -36,6 +37,7 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.InvalidDataType;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
+import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
@@ -44,6 +46,10 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StructConstructionMember;
+import org.eclipselabs.damos.mscript.StructConstructionOperator;
+import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -54,6 +60,7 @@ import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookupTable;
+import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -62,6 +69,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -482,6 +490,44 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 			return InvalidValue.SINGLETON;
 		}
 		
+		@Override
+		public IValue caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
+			StructType structType = MscriptFactory.eINSTANCE.createStructType();
+			IValue[] values = new IValue[structConstructionOperator.getMembers().size()];
+			
+			boolean anyValue = false;
+
+			{
+				int i = 0;
+				for (StructConstructionMember constructionMember : structConstructionOperator.getMembers()) {
+					IValue value = doSwitch(constructionMember.getValue());
+					
+					if (value instanceof InvalidValue) {
+						return InvalidValue.SINGLETON;
+					}
+					
+					if (value instanceof AnyValue) {
+						anyValue = true;
+					}
+					
+					StructMember member = MscriptFactory.eINSTANCE.createStructMember();
+					member.setName(constructionMember.getName());
+					DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
+					dataTypeSpecifier.setAnonymousType(EcoreUtil.copy(value.getDataType()));
+					member.setTypeSpecifier(dataTypeSpecifier);
+					structType.getMembers().add(member);
+					
+					values[i++] = value;
+				}
+			}
+			
+			if (anyValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			return new StructValue(context.getComputationContext(), structType, values);
+		}
+
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipselabs.damos.mscript.PowerExpression)
 		 */
@@ -599,6 +645,38 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			return result;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseMemberVariableAccess(org.eclipselabs.damos.mscript.MemberVariableAccess)
+		 */
+		@Override
+		public IValue caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
+			IValue value = doSwitch(memberVariableAccess.getTarget());
+			if (value instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+
+			if (value == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(value.getDataType() instanceof StructType)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			StructType structType = (StructType) value.getDataType();
+			
+			int memberIndex = structType.getMemberIndex(memberVariableAccess.getMemberVariable());
+			if (memberIndex == -1) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(value instanceof StructValue)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			return ((StructValue) value).get(memberIndex);
 		}
 
 		/* (non-Javadoc)

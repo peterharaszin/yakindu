@@ -45,7 +45,7 @@ public class AbstractSimulationTest extends AbstractExecutionTest {
 	private static final Pattern COMMA_PATTERN = Pattern.compile(",");
 	
 	@Before
-	public void setUp() {
+	public void bectorScalarMultiply() {
 		setUpInjector();
 	}
 	

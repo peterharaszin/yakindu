@@ -456,6 +456,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			StructConstructionMember transformedMember = MscriptFactory.eINSTANCE.createStructConstructionMember();
 			transformedMember.setName(member.getName());
 			transformedMember.setValue(doTransform(member.getValue()));
+			transformedStructConstructionOperator.getMembers().add(transformedMember);
 		}
 		return transformedStructConstructionOperator;
 	}

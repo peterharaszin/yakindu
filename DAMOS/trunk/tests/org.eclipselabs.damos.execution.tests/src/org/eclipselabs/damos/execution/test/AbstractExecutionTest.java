@@ -331,6 +331,10 @@ public abstract class AbstractExecutionTest {
 		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
 	}
 
+	protected void setArgument(Block block, String parameterName, boolean value) {
+		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
+	}
+
 	protected void setArgument(Block block, String parameterName, String expressionString) {
 		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
 		valueSpecification.setExpression(parseExpression(expressionString));

@@ -20,8 +20,8 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
 import org.eclipselabs.damos.mscript.InvalidDataType;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
-import org.eclipselabs.damos.mscript.interpreter.ExpressionValueEvaluator;
-import org.eclipselabs.damos.mscript.interpreter.IExpressionValueEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
@@ -47,10 +47,10 @@ public class ParseUtil {
 		}
 		ExpressionList expressionList = (ExpressionList) parseResult.getRootASTElement();
 		
-		IExpressionValueEvaluator expressionValueEvaluator = new ExpressionValueEvaluator();
+		IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 		
 		for (Expression expression : expressionList.getExpressions()) {
-			IValue value = expressionValueEvaluator.evaluate(interpreterContext, expression);
+			IValue value = expressionEvaluator.evaluate(interpreterContext, expression);
 			if (value instanceof InvalidDataType) {
 				return null;
 			}

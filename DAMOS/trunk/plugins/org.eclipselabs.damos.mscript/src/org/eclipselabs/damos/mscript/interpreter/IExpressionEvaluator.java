@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  *
  */
-public interface IExpressionValueEvaluator {
+public interface IExpressionEvaluator {
 
 	IValue evaluate(IInterpreterContext context, Expression expression);
 

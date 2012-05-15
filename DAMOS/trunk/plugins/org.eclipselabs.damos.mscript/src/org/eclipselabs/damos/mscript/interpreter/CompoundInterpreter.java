@@ -46,7 +46,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		
 		private IInterpreterContext context;
 		
-		private IExpressionValueEvaluator expressionValueEvaluator = new ExpressionValueEvaluator();
+		private IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 		
 		private AstCompoundInterpreterSwitch astCompoundInterpreterSwitch = new AstCompoundInterpreterSwitch();
 
@@ -79,7 +79,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 				}
 				VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 				
-				IValue value = expressionValueEvaluator.evaluate(context, assignment.getAssignedExpression());
+				IValue value = expressionEvaluator.evaluate(context, assignment.getAssignedExpression());
 				IVariable variable = context.getVariable(variableDeclaration);
 				variable.setValue(context.getStaticEvaluationContext().getStepIndex(variableReference), value);
 				return true;
@@ -101,7 +101,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			
 			@Override
 			public Boolean caseForStatement(ForStatement forStatement) {
-				IValue value = expressionValueEvaluator.evaluate(context, forStatement.getCollectionExpression());
+				IValue value = expressionEvaluator.evaluate(context, forStatement.getCollectionExpression());
 		
 				if (!(value.getDataType() instanceof ArrayType)) {
 					throw new RuntimeException("Collection type must be array type");
@@ -140,7 +140,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
 				IValue value;
 				if (localVariableDeclaration.getInitializer() != null) {
-					value = expressionValueEvaluator.evaluate(context, localVariableDeclaration.getInitializer());
+					value = expressionEvaluator.evaluate(context, localVariableDeclaration.getInitializer());
 				} else {
 					value = new UninitializedValue(context.getComputationContext());
 				}
@@ -152,7 +152,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 
 			@Override
 			public Boolean caseIfStatement(IfStatement ifStatement) {
-				IValue conditionValue = expressionValueEvaluator.evaluate(context, ifStatement.getCondition());
+				IValue conditionValue = expressionEvaluator.evaluate(context, ifStatement.getCondition());
 				if (conditionValue instanceof IBooleanValue) {
 					IBooleanValue booleanConditionValue = (IBooleanValue) conditionValue;
 					if (booleanConditionValue.booleanValue()) {

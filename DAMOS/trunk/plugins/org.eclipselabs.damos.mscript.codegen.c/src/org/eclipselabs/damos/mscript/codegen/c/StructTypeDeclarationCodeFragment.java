@@ -18,9 +18,8 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.StructMember;
-import org.eclipselabs.damos.mscript.StructType;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -30,7 +29,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 
 	private ComputationModel computationModel;
-	private StructType structType;
+	private MachineStructType structType;
 	private List<String> memberTypeNames = new ArrayList<String>();
 	
 	private String name;
@@ -38,7 +37,7 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public StructTypeDeclarationCodeFragment(ComputationModel computationModel, StructType structType) {
+	public StructTypeDeclarationCodeFragment(ComputationModel computationModel, MachineStructType structType) {
 		this.computationModel = computationModel;
 		this.structType = structType;
 	}
@@ -60,8 +59,8 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
 		name = globalNameProvider.getName("Struct");
 		
-		for (StructMember member : structType.getMembers()) {
-			memberTypeNames.add(MscriptGeneratorUtil.getCDataType(computationModel, codeFragmentCollector, member.getTypeSpecifier().getType(), this));
+		for (MachineStructMember member : structType.getMembers()) {
+			memberTypeNames.add(member.getType().getCDataType(computationModel, codeFragmentCollector, this));
 		}
 	}
 	
@@ -94,7 +93,7 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	public boolean equals(Object obj) {
 		if (obj instanceof StructTypeDeclarationCodeFragment) {
 			StructTypeDeclarationCodeFragment other = (StructTypeDeclarationCodeFragment) obj;
-			return other.structType.isEquivalentTo(structType);
+			return other.structType.equals(structType);
 		}
 		return false;
 	}

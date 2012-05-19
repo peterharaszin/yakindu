@@ -16,10 +16,8 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 /**
  * @author Andreas Unger
@@ -27,22 +25,18 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 
-	private ComputationModel computationModel;
-	private DataType elementType;
+	private final ComputationModel computationModel;
+	private final MachineArrayType arrayType;
+
 	private String elementTypeString;
-	private NumberFormat elementNumberFormat;
-	private int size;
-	
 	private String name;
 	
 	/**
 	 * 
 	 */
-	public ArrayTypeDeclarationCodeFragment(ComputationModel computationModel, DataType elementType, int size) {
+	public ArrayTypeDeclarationCodeFragment(ComputationModel computationModel, MachineArrayType arrayType) {
 		this.computationModel = computationModel;
-		this.elementType = elementType;
-		this.size = size;
-		this.elementNumberFormat = computationModel.getNumberFormat(elementType);
+		this.arrayType = arrayType;
 	}
 	
 	/**
@@ -57,7 +51,7 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
-		elementTypeString = MscriptGeneratorUtil.getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), elementType, this);
+		elementTypeString = arrayType.getElementType().getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), this);
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
 		name = globalNameProvider.getName("Array");
@@ -68,9 +62,9 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
 		PrintAppendable out = new PrintAppendable(appendable);
-		out.printf("typedef struct { %s data[%d]; } %s;\n", elementTypeString, size, name);
+		out.printf("typedef struct { %s data[%d]; } %s;\n", elementTypeString, arrayType.getDimension(0), name);
 		if (!internal) {
-			out.printf("#define %s_SIZE %d\n", name.toUpperCase(), size);
+			out.printf("#define %s_SIZE %d\n", name.toUpperCase(), arrayType.getDimension(0));
 		}
 	}
 	
@@ -79,7 +73,7 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public int hashCode() {
-		return getClass().hashCode() ^ elementNumberFormat.getClass().hashCode() ^ size;
+		return getClass().hashCode() ^ arrayType.hashCode();
 	}
 	
 	/* (non-Javadoc)
@@ -89,7 +83,7 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	public boolean equals(Object obj) {
 		if (obj instanceof ArrayTypeDeclarationCodeFragment) {
 			ArrayTypeDeclarationCodeFragment other = (ArrayTypeDeclarationCodeFragment) obj;
-			return other.size == size && other.elementNumberFormat.isEquivalentTo(elementNumberFormat);
+			return other.arrayType.equals(arrayType);
 		}
 		return false;
 	}

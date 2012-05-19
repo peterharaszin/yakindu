@@ -16,8 +16,8 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
@@ -64,7 +64,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 			
 		});
 
-		StructTypeDeclarationCodeFragment structTypeDeclarationCodeFragment = new StructTypeDeclarationCodeFragment(computationModel, EcoreUtil.copy(structValue.getDataType()));
+		StructTypeDeclarationCodeFragment structTypeDeclarationCodeFragment = new StructTypeDeclarationCodeFragment(computationModel, MachineDataTypes.create(computationModel, structValue.getDataType()));
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
 		StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(structTypeDeclarationCodeFragment, new NullProgressMonitor());
 		typeName = codeFragment.getName();
@@ -120,7 +120,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public int hashCode() {
-		return getClass().hashCode() ^ structValue.getClass().hashCode();
+		return getClass().hashCode(); // TODO: get hash from value
 	}
 	
 	/* (non-Javadoc)
@@ -129,10 +129,8 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof StructLiteralDeclarationCodeFragment) {
-			StructLiteralDeclarationCodeFragment other = (StructLiteralDeclarationCodeFragment) obj;
-			
-			// TODO: complete this
-			return other.structValue.getDataType().isEquivalentTo(structValue.getDataType());
+//			StructLiteralDeclarationCodeFragment other = (StructLiteralDeclarationCodeFragment) obj;
+			// TODO: check equals using value
 		}
 		return false;
 	}

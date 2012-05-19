@@ -41,10 +41,13 @@ import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
+import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookupTable;
@@ -404,7 +407,19 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (value instanceof IArrayValue) {
 				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
 			} else {
-				// TODO: Create non-static array
+				ArrayConstructionCodeFragment codeFragment = (ArrayConstructionCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionCodeFragment(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (ArrayType) value.getDataType())), new NullProgressMonitor());
+				out.print(codeFragment.getName());
+				out.print("(");
+				boolean first = true;
+				for (Expression expression : arrayConstructionOperator.getExpressions()) {
+					if (first) {
+						first = false;
+					} else {
+						out.print(", ");
+					}
+					doSwitch(expression);
+				}
+				out.print(")");
 			}
 			return true;
 		}
@@ -418,7 +433,19 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (value instanceof StructValue) {
 				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
 			} else {
-				// TODO: Create non-static struct
+				StructConstructionCodeFragment codeFragment = (StructConstructionCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionCodeFragment(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (StructType) value.getDataType())), new NullProgressMonitor());
+				out.print(codeFragment.getName());
+				out.print("(");
+				boolean first = true;
+				for (StructConstructionMember member : structConstructionOperator.getMembers()) {
+					if (first) {
+						first = false;
+					} else {
+						out.print(", ");
+					}
+					doSwitch(member.getValue());
+				}
+				out.print(")");
 			}
 			return true;
 		}

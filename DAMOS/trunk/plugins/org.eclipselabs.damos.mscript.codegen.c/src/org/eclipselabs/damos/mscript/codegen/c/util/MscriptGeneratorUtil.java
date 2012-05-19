@@ -14,31 +14,24 @@ package org.eclipselabs.damos.mscript.codegen.c.util;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.codegen.c.ArrayLiteralDeclarationCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ArrayTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IWriter;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.codegen.c.StructLiteralDeclarationCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.StructTypeDeclarationCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -88,61 +81,7 @@ public class MscriptGeneratorUtil {
 	}
 	
 	public static String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, ICodeFragment dependentCodeFragment) {
-		if (dataType instanceof BooleanType) {
-			return "uint_fast8_t";
-		}
-		if (dataType instanceof NumericType) {
-			NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
-			if (numberFormat instanceof FloatingPointFormat) {
-				FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
-				switch (floatingPointFormat.getKind()) {
-				case BINARY32:
-					return "float";
-				case BINARY64:
-					return "double";
-				}
-			} else if (numberFormat instanceof FixedPointFormat) {
-				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-				return String.format("int%d_t", fixedPointFormat.getWordSize());
-			}
-		}
-		if (dataType instanceof ArrayType) {
-			ArrayType arrayType = (ArrayType) dataType;
-			final ArrayTypeDeclarationCodeFragment codeFragment = (ArrayTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(new ArrayTypeDeclarationCodeFragment(computationModel, EcoreUtil.copy(arrayType.getElementType()), TypeUtil.getArraySize(arrayType)), new NullProgressMonitor());
-			if (dependentCodeFragment != null) {
-				dependentCodeFragment.addDependency(new ICodeFragmentDependency.Stub() {
-					
-					/* (non-Javadoc)
-					 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-					 */
-					@Override
-					public boolean forwardDeclarationDependsOn(ICodeFragment other) {
-						return other == codeFragment;
-					}
-					
-				});
-			}
-			return codeFragment.getName();
-		}
-		if (dataType instanceof StructType) {
-			StructType structType = (StructType) dataType;
-			final StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(new StructTypeDeclarationCodeFragment(computationModel, EcoreUtil.copy(structType)), new NullProgressMonitor());
-			if (dependentCodeFragment != null) {
-				dependentCodeFragment.addDependency(new ICodeFragmentDependency.Stub() {
-					
-					/* (non-Javadoc)
-					 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-					 */
-					@Override
-					public boolean forwardDeclarationDependsOn(ICodeFragment other) {
-						return other == codeFragment;
-					}
-					
-				});
-			}
-			return codeFragment.getName();
-		}
-		throw new IllegalArgumentException("Unsupported type");
+		return MachineDataTypes.create(computationModel, dataType).getCDataType(computationModel, codeFragmentCollector, dependentCodeFragment);
 	}
 	
 	public static String getLiteralString(IMscriptGeneratorContext context, DataType dataType, double value, ICodeFragment dependentCodeFragment) {

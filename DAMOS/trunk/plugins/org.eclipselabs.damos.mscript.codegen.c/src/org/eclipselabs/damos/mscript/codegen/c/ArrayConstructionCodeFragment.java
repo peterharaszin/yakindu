@@ -18,30 +18,28 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
+public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 
-	private final ComputationModel computationModel;
-	private final IArrayValue arrayValue;
+	private MachineArrayType arrayType;
+	private ComputationModel computationModel;
 	
-	private String name;
 	private String typeName;
-	private String body;
-
+	private String name;
+	
+	private String functionSignature;
+	
 	/**
 	 * 
 	 */
-	public ArrayLiteralDeclarationCodeFragment(ComputationModel computationModel, IArrayValue value) {
+	public ArrayConstructionCodeFragment(ComputationModel computationModel, MachineArrayType arrayType) {
 		this.computationModel = computationModel;
-		this.arrayValue = value;
+		this.arrayType = arrayType;
 	}
 	
 	/**
@@ -63,21 +61,18 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 			}
 			
 		});
-		
-		MachineArrayType arrayType = MachineDataTypes.create(computationModel, arrayValue.getDataType());
+
 		ArrayTypeDeclarationCodeFragment arrayTypeDeclarationCodeFragment = new ArrayTypeDeclarationCodeFragment(computationModel, arrayType);
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
 		ArrayTypeDeclarationCodeFragment codeFragment = (ArrayTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(arrayTypeDeclarationCodeFragment, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("array");
+		name = globalNameProvider.getName("createArray");
 
-		StringBuilder sb = new StringBuilder();
-		MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), arrayValue);
-		body = sb.toString();
+		functionSignature = getFunctionSignature(codeFragmentCollector);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#contributesInternalForwardDeclaration()
 	 */
@@ -90,8 +85,11 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
 	 */
 	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
-		out.printf("extern const %s %s;\n", typeName, name);
+		if (internal) {
+			appendable.append("static ");
+		}
+		appendable.append(functionSignature);
+		appendable.append(";\n");
 	}
 	
 	/* (non-Javadoc)
@@ -111,17 +109,44 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 			appendable.append("static ");
 		}
 		PrintAppendable out = new PrintAppendable(appendable);
-		out.printf("const %s %s = ", typeName, name);
-		out.print(body);
-		out.print(";\n");
+		out.print(functionSignature);
+		out.println(" {");
+		out.printf("%s a;\n", typeName);
+		for (int i = 0; i < arrayType.getDimension(0); ++i) {
+			out.printf("a.data[%d] = e%d;\n", i, i);
+		}
+		out.println("return a;");
+		out.println("}");
 	}
-
+	
+	private String getFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(typeName);
+		sb.append(" ");
+		sb.append(name);
+		sb.append("(");
+		boolean first = true;
+		for (int i = 0; i < arrayType.getDimension(0); ++i) {
+			if (first) {
+				first = false;
+			} else {
+				sb.append(", ");
+			}
+			sb.append(arrayType.getElementType().getCDataType(computationModel, codeFragmentCollector, this));
+			sb.append(" ");
+			sb.append("e");
+			sb.append(i);
+		}
+		sb.append(")");
+		return sb.toString();
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
-		return getClass().hashCode(); // TODO: get hash from value
+		return getClass().hashCode() ^ arrayType.hashCode();
 	}
 	
 	/* (non-Javadoc)
@@ -129,9 +154,9 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ArrayLiteralDeclarationCodeFragment) {
-//			ArrayLiteralDeclarationCodeFragment other = (ArrayLiteralDeclarationCodeFragment) obj;
-			// TODO: check equals using value
+		if (obj instanceof ArrayConstructionCodeFragment) {
+			ArrayConstructionCodeFragment other = (ArrayConstructionCodeFragment) obj;
+			return other.arrayType.equals(arrayType);
 		}
 		return false;
 	}

@@ -21,6 +21,7 @@ Require-Bundle: org.eclipselabs.damos.dmltext;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.dmltext.ui.contentassist.antlr,
+Export-Package: org.eclipselabs.damos.dmltext.ui,
+ org.eclipselabs.damos.dmltext.ui.contentassist.antlr,
  org.eclipselabs.damos.dmltext.ui.internal
 Bundle-Activator: org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator

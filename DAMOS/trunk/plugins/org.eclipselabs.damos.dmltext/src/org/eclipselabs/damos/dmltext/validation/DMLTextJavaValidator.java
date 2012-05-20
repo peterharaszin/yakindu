@@ -7,9 +7,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IContainer;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.IResourceDescriptions;
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.CheckType;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
@@ -22,9 +31,16 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
- 
+
+import com.google.inject.Inject;
 
 public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
+	
+	@Inject
+	private ResourceDescriptionsProvider resourceDescriptionsProvider;
+	
+	@Inject
+	private IContainer.Manager containerManager;
 
 	private static final Set<String> GLOBAL_TEMPLATE_PARAMETERS = new HashSet<String>();
 	
@@ -37,6 +53,29 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	 * 
 	 */
 	private static final String MAIN_FUNCTION_NAME = "main";
+	
+	@Override
+	protected boolean isResponsible(Map<Object, Object> context, EObject eObject) {
+		if (eObject instanceof Fragment) {
+			return true;
+		}
+		return super.isResponsible(context, eObject);
+	}
+	
+	// TODO: This has to be reworked
+	@Check(CheckType.NORMAL)
+	public void checkUniqueFragment(Fragment fragment) {
+		Set<QualifiedName> names = new HashSet<QualifiedName>();
+		IResourceDescriptions resourceDescriptions = resourceDescriptionsProvider.getResourceDescriptions(fragment.eResource());
+		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(fragment.eResource().getURI());
+		for (IContainer container : containerManager.getVisibleContainers(resourceDescription, resourceDescriptions)) {
+			for (IEObjectDescription eObjectDescription : container.getExportedObjectsByType(DMLPackage.eINSTANCE.getFragment())) {
+				if (!names.add(eObjectDescription.getQualifiedName())) {
+					error("Duplicate fragment " + eObjectDescription.getQualifiedName(), null);
+				}
+			}
+		}
+	}
 
 	@Check
 	public void checkMainFunction(MscriptBlockType blockType) {

@@ -67,8 +67,7 @@ public class DamosBuilderParticipant implements IXtextBuilderParticipant {
 
 			IFile file = buildContext.getBuiltProject().getWorkspace().getRoot().getFile(path);
 
-			file.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
-			file.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
+			file.deleteMarkers(IMarkerConstants.PROBLEM_MARKER_ID, false, IResource.DEPTH_INFINITE);
 
 			List<Problem> problems = validator.validate(resource, monitor);
 			for (Problem problem : problems) {

@@ -37,6 +37,7 @@ public class QualifiedElementOperations {
 				qualifiedElement.setPackageName(newQualifiedName.substring(0, index));
 			} else {
 				qualifiedElement.setName(newQualifiedName);
+				qualifiedElement.setPackageName(null);
 			}
 		}
 	}

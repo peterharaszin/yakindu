@@ -11,14 +11,17 @@
 
 package org.eclipselabs.damos.ide.ui;
 
+import static com.google.inject.util.Modules.override;
+
+import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipselabs.damos.common.inject.AbstractGuiceAwareExecutableExtensionFactory;
 import org.eclipselabs.damos.dmltext.DMLTextRuntimeModule;
+import org.eclipselabs.damos.dmltext.ui.DMLTextUiModule;
 import org.eclipselabs.damos.ide.core.IDEModule;
 import org.osgi.framework.Bundle;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.util.Modules;
 
 /**
  * @author Andreas Unger
@@ -39,8 +42,8 @@ public class IDEUIExecutableExtensionFactory extends AbstractGuiceAwareExecutabl
 	 */
 	@Override
 	protected Injector getInjector() {
-		return Guice.createInjector(Modules.override(new DMLTextRuntimeModule()).with(
-				Modules.override(new IDEModule()).with(new IDEUIModule())));
+		return Guice.createInjector(override(override(override(new DMLTextRuntimeModule()).with(new SharedStateModule()))
+				.with(new DMLTextUiModule(IDEUIPlugin.getDefault()))).with(override(new IDEModule()).with(new IDEUIModule())));
 	}
 
 }

@@ -154,7 +154,7 @@
               uriExtension="systeminterface">
         </resourceServiceProvider>
         <resourceServiceProvider
-              class="org.eclipselabs.damos.dmltext.ui.DMLTextExecutableExtensionFactory:org.eclipselabs.damos.dmltext.resource.BlockDiagramResourceServiceProvider"
+              class="org.eclipselabs.damos.dmltext.ui.BlockDiagramExecutableExtensionFactory:org.eclipselabs.damos.dmltext.resource.BlockDiagramResourceServiceProvider"
               uriExtension="blockdiagram">
         </resourceServiceProvider>
     </extension>

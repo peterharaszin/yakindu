@@ -157,10 +157,8 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 
 		packageNameText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
 		String packageName = "";
-		if (fragment != null) {
-			if (fragment.getPackageName() != null) {
-				packageName = fragment.getPackageName();
-			}
+		if (fragment != null && fragment.getPackageName() != null && fragment.getPackageName().trim().length() > 0) {
+			packageName = fragment.getPackageName();
 		} else if (selectedContainer != null && selectedContainer.getProject() != null) {
 			Matcher matcher = INVALID_PACKAGE_NAME_PATTERN.matcher(selectedContainer.getProject().getName());
 			packageName = matcher.replaceAll("").toLowerCase();

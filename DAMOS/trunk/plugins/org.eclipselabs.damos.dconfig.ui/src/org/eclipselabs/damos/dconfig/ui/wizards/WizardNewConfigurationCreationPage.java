@@ -11,12 +11,14 @@
 
 package org.eclipselabs.damos.dconfig.ui.wizards;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -59,6 +61,7 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 	
 	private static final Pattern PACKAGE_NAME_PATTERN = Pattern.compile("\\A([a-zA-Z]\\w*)(\\.[a-zA-Z]\\w*)*\\z");
 	private static final Pattern CONFIGURATION_NAME_PATTERN = Pattern.compile("\\A[a-zA-Z]\\w*\\z");
+	private static final Pattern INVALID_PACKAGE_NAME_PATTERN = Pattern.compile("\\A[0-9]+|\\W|_");
 
 	private IStructuredSelection selection;
 	
@@ -161,11 +164,14 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		label.setText("Package:");
 
 		packageNameText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
-		String packageName;
-		if (fragment != null && fragment.getPackageName() != null && fragment.getPackageName().trim().length() > 0) {
-			packageName = fragment.getPackageName();
-		} else {
-			packageName = "org.example";
+		String packageName = "";
+		if (fragment != null) {
+			if (fragment.getPackageName() != null) {
+				packageName = fragment.getPackageName();
+			}
+		} else if (selectedContainer != null && selectedContainer.getProject() != null) {
+			Matcher matcher = INVALID_PACKAGE_NAME_PATTERN.matcher(selectedContainer.getProject().getName());
+			packageName = matcher.replaceAll("").toLowerCase();
 		}
 		packageNameText.setText(packageName);
 		packageNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
@@ -324,11 +330,18 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 	}
 	
 	private IContainer getSelectedContainer() {
-		if (selection.getFirstElement() instanceof IContainer) {
-			return (IContainer) selection.getFirstElement();
+		Object selectedElement = selection.getFirstElement();
+		if (selectedElement instanceof IAdaptable) {
+			IResource resource = (IResource) ((IAdaptable) selectedElement).getAdapter(IResource.class);
+			if (resource != null) {
+				selectedElement = resource;
+			}
 		}
-		if (selection.getFirstElement() instanceof IResource) {
-			return ((IResource) selection.getFirstElement()).getParent();
+		if (selectedElement instanceof IContainer) {
+			return (IContainer) selectedElement;
+		}
+		if (selectedElement instanceof IResource) {
+			return ((IResource) selectedElement).getParent();
 		}
 		return null;
 	}

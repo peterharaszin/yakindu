@@ -30,4 +30,5 @@ Export-Package: org.eclipselabs.damos.dml.ui,
  org.eclipselabs.damos.dml.ui.parts,
  org.eclipselabs.damos.dml.ui.properties,
  org.eclipselabs.damos.dml.ui.registry,
- org.eclipselabs.damos.dml.ui.viewers
+ org.eclipselabs.damos.dml.ui.viewers,
+ org.eclipselabs.damos.dml.ui.wizards

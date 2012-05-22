@@ -1,5 +1,7 @@
 package org.eclipselabs.damos.diagram.ui.internal.handlers;
 
+import java.util.regex.Pattern;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -9,6 +11,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -18,6 +21,8 @@ import org.eclipselabs.damos.dml.Fragment;
 
 public class RenameFragmentHandler extends AbstractHandler {
 
+	private static final Pattern QUALIFIED_NAME_PATTERN = Pattern.compile("\\A([a-zA-Z]\\w*)(\\.[a-zA-Z]\\w*)+\\z");
+
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
@@ -26,7 +31,7 @@ public class RenameFragmentHandler extends AbstractHandler {
 				Object element = structuredSelection.getFirstElement();
 				if (element instanceof Fragment) {
 					Fragment fragment = (Fragment) element;
-					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Rename Fragment", "Qualified name:", fragment.getQualifiedName(), null);
+					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Rename Fragment", "Qualified name (e.g. mypackage.MyFragment):", fragment.getQualifiedName(), new QualifiedNameValidator());
 					if (d.open() == Dialog.OK) {
 						EditingDomain editingDomain = TransactionUtil.getEditingDomain(fragment);
 						Command command = editingDomain.createCommand(
@@ -38,6 +43,20 @@ public class RenameFragmentHandler extends AbstractHandler {
 			}
 		}
 		return null;
+	}
+	
+	private static class QualifiedNameValidator implements IInputValidator {
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
+		 */
+		public String isValid(String newText) {
+			if (!QUALIFIED_NAME_PATTERN.matcher(newText).matches() || newText.contains("__")) {
+				return "Invalid qualified name";
+			}
+			return null;
+		}
+		
 	}
 
 }

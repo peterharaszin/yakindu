@@ -60,17 +60,23 @@ public class EditorUtil extends IDEEditorUtil {
 	 *      org.eclipse.core.runtime.IProgressMonitor, boolean, boolean,
 	 *      org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
 	 */
-	public static final IFile createAndOpenDiagram(DiagramFileCreator diagramFileCreator, IPath containerPath, String fileName,
-			InputStream initialContents, String kind, IWorkbenchWindow dWindow, IProgressMonitor progressMonitor,
-			boolean openEditor, boolean saveDiagram, String semanticResourcePath, PreferencesHint preferencesHint) {
+	public static final IFile createAndOpenDiagram(DiagramFileCreator diagramFileCreator, IPath containerPath, String fileName, String packageName, String name,
+			InputStream initialContents, String kind, final IWorkbenchWindow dWindow, final IProgressMonitor progressMonitor,
+			boolean openEditor, final boolean saveDiagram, String semanticResourcePath, PreferencesHint preferencesHint) {
 
-		IFile newFile = createNewDiagramFile(diagramFileCreator, containerPath, fileName, initialContents, kind,
+		final IFile newFile = createNewDiagramFile(diagramFileCreator, containerPath, fileName, packageName, name, initialContents, kind,
 				dWindow.getShell(), progressMonitor, semanticResourcePath, preferencesHint);
 
 		if (newFile != null && openEditor) {
 			// Since the file resource was created fine, open it for editing
 			// if requested by the user
-			IDEEditorUtil.openDiagram(newFile, dWindow, saveDiagram, progressMonitor);
+			dWindow.getShell().getDisplay().asyncExec(new Runnable() {
+				
+				public void run() {
+					IDEEditorUtil.openDiagram(newFile, dWindow, saveDiagram, progressMonitor);
+				}
+				
+			});
 		}
 
 		return newFile;
@@ -98,7 +104,7 @@ public class EditorUtil extends IDEEditorUtil {
 	 * @return the created file resource, or <code>null</code> if the file was
 	 *         not created
 	 */
-	public static final IFile createNewDiagramFile(DiagramFileCreator diagramFileCreator, IPath containerFullPath, String fileName,
+	public static final IFile createNewDiagramFile(DiagramFileCreator diagramFileCreator, IPath containerFullPath, String fileName, final String packageName, final String name,
 			InputStream initialContents, final String kind, Shell shell, final IProgressMonitor progressMonitor,
 			final String semanticResourcePath, final PreferencesHint preferencesHint) {
 
@@ -179,11 +185,8 @@ public class EditorUtil extends IDEEditorUtil {
 
 					Diagram view = ViewService.createDiagram(system, kind, preferencesHint);
 					
-					String name = newDiagramFile.getFullPath().removeFileExtension().lastSegment();
-
-					if (system.getQualifiedName() == null || system.getQualifiedName().length() == 0) {
-						system.setQualifiedName(name);
-					}
+					system.setPackageName(packageName);
+					system.setName(name);
 
 					if (view != null) {
 						notationResource.getContents().add(0, view);

@@ -57,7 +57,7 @@
       </wizard>
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.wizards.BlockDiagramEditorCreationWizard"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.wizards.NewBlockDiagramCreationWizard"
             icon="icons/BlockDiagram.png"
             id="org.eclipselabs.damos.ide.ui.blockDiagramWizard"
             name="Block Diagram">

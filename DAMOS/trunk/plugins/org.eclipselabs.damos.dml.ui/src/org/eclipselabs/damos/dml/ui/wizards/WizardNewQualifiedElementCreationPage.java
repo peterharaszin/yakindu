@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dmltext.ui.internal.wizards;
+package org.eclipselabs.damos.dml.ui.wizards;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,7 +41,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
-import org.eclipse.xtext.util.Strings;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 
@@ -49,9 +48,7 @@ import org.eclipselabs.damos.dml.Fragment;
  * @author Andreas Unger
  *
  */
-public class WizardNewDMLTextCreationPage extends WizardPage {
-	
-	private static final String BLOCK_DIAGRAM_FILE_EXTENSION = "blockdiagram";
+public class WizardNewQualifiedElementCreationPage extends WizardPage {
 	
 	private static final Pattern PACKAGE_NAME_PATTERN = Pattern.compile("\\A([a-zA-Z]\\w*)(\\.[a-zA-Z]\\w*)*\\z");
 	private static final Pattern MODEL_NAME_PATTERN = Pattern.compile("\\A[a-zA-Z]\\w*\\z");
@@ -60,6 +57,7 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 	private IStructuredSelection selection;
 	
 	private String fileExtension;
+	private String blockDiagramFileExtension;
 	private String modelKind;
 	private String initialModelName;
 	
@@ -67,9 +65,10 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 	private Text packageNameText;
 	private Text modelNameText;
 
-	public WizardNewDMLTextCreationPage(String pageName, String title, ImageDescriptor titleImage, String modelKind, String fileExtension, IStructuredSelection selection) {
+	public WizardNewQualifiedElementCreationPage(String pageName, String title, ImageDescriptor titleImage, String modelKind, String blockDiagramFileExtension, String fileExtension, IStructuredSelection selection) {
 		super(pageName, title, titleImage);
 		this.modelKind = modelKind;
+		this.blockDiagramFileExtension = blockDiagramFileExtension;
 		this.fileExtension = fileExtension;
 		this.selection = selection;
 		setPageComplete(false);
@@ -212,6 +211,17 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 		setMessage(null);
 		setControl(topLevel);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if (visible) {
+			modelNameText.setFocus();
+		}
+	}
 
 	private String findAvailableModelName(IContainer parentFolder, String modelName) {
 		String name = modelName;
@@ -239,7 +249,7 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 		} else if (!MODEL_NAME_PATTERN.matcher(modelNameText.getText()).matches()) {
 			errorMessage = "Invalid name";
 		} else if (modelExists(parentFolder, modelNameText.getText())) {
-			errorMessage = Strings.toFirstUpper(modelKind) + " already exists";
+			errorMessage = toFirstUpper(modelKind) + " already exists";
 		}
 
 		setErrorMessage(errorMessage);
@@ -252,6 +262,13 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 		return valid;
 	}
 	
+	private String toFirstUpper(String s) {
+		if (s == null || s.length() == 0) {
+			return s;
+		}
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
+
 	private boolean modelExists(IContainer parentFolder, String modelName) {
 		return parentFolder.findMember(modelName + "." + fileExtension) != null;
 	}
@@ -276,7 +293,7 @@ public class WizardNewDMLTextCreationPage extends WizardPage {
 	private IFile getSelectedBlockDiagramFile() {
 		if (selection.getFirstElement() instanceof IFile) {
 			IFile file = (IFile) selection.getFirstElement();
-			if (BLOCK_DIAGRAM_FILE_EXTENSION.equals(file.getFullPath().getFileExtension())) {
+			if (blockDiagramFileExtension.equals(file.getFullPath().getFileExtension())) {
 				return file;
 			}
 		}

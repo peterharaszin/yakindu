@@ -28,6 +28,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipselabs.damos.dml.ui.wizards.WizardNewQualifiedElementCreationPage;
 
 /**
  * @author Andreas Unger
@@ -36,7 +37,7 @@ import org.eclipse.ui.ide.IDE;
 public abstract class NewDMLTextCreationWizard extends Wizard implements INewWizard {
 
 	private IStructuredSelection selection;
-	private WizardNewDMLTextCreationPage mainPage;
+	private WizardNewQualifiedElementCreationPage mainPage;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
@@ -49,19 +50,19 @@ public abstract class NewDMLTextCreationWizard extends Wizard implements INewWiz
 		return selection;
 	}
 
-	protected abstract WizardNewDMLTextCreationPage createMainPage();
+	protected abstract WizardNewQualifiedElementCreationPage createMainPage();
 
 	/**
 	 * @return the mainPage
 	 */
-	protected WizardNewDMLTextCreationPage getMainPage() {
+	protected WizardNewQualifiedElementCreationPage getMainPage() {
 		return mainPage;
 	}
 
 	/**
 	 * @param mainPage the mainPage to set
 	 */
-	protected void setMainPage(WizardNewDMLTextCreationPage mainPage) {
+	protected void setMainPage(WizardNewQualifiedElementCreationPage mainPage) {
 		this.mainPage = mainPage;
 	}
 

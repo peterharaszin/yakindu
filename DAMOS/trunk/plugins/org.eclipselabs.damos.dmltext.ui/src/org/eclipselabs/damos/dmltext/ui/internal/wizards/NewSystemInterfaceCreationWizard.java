@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.ui.wizards.WizardNewQualifiedElementCreationPage;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 
 /**
@@ -34,8 +35,8 @@ public class NewSystemInterfaceCreationWizard extends NewDMLTextCreationWizard {
 	 * @see org.eclipselabs.damos.dmltext.ui.internal.wizards.NewDMLTextCreationWizard#createMainPage()
 	 */
 	@Override
-	protected WizardNewDMLTextCreationPage createMainPage() {
-		WizardNewDMLTextCreationPage mainPage = new WizardNewDMLTextCreationPage("main", "System Interface", null, "system interface", "systeminterface", getSelection());
+	protected WizardNewQualifiedElementCreationPage createMainPage() {
+		WizardNewQualifiedElementCreationPage mainPage = new WizardNewQualifiedElementCreationPage("main", "System Interface", null, "system interface", "blockdiagram", "systeminterface", getSelection());
 		mainPage.setDescription("Create new system interface");
 		return mainPage;
 	}

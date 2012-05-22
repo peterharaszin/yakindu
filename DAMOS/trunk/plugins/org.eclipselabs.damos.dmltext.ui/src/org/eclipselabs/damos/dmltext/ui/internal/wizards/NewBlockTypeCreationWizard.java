@@ -13,6 +13,8 @@ package org.eclipselabs.damos.dmltext.ui.internal.wizards;
 
 import java.io.IOException;
 
+import org.eclipselabs.damos.dml.ui.wizards.WizardNewQualifiedElementCreationPage;
+
 /**
  * @author Andreas Unger
  *
@@ -23,8 +25,8 @@ public class NewBlockTypeCreationWizard extends NewDMLTextCreationWizard {
 	 * @see org.eclipselabs.damos.dmltext.ui.internal.wizards.NewDMLTextCreationWizard#createMainPage()
 	 */
 	@Override
-	protected WizardNewDMLTextCreationPage createMainPage() {
-		WizardNewDMLTextCreationPage mainPage = new WizardNewDMLTextCreationPage("main", "Block Type", null, "block type", "blocktype", getSelection());
+	protected WizardNewQualifiedElementCreationPage createMainPage() {
+		WizardNewQualifiedElementCreationPage mainPage = new WizardNewQualifiedElementCreationPage("main", "Block Type", null, "block type", "blockdiagram", "blocktype", getSelection());
 		mainPage.setDescription("Create new block type");
 		mainPage.setInitialModelName("");
 		return mainPage;

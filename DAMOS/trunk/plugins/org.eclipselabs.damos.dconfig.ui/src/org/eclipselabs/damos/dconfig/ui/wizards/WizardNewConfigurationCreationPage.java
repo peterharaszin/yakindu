@@ -269,6 +269,17 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		setControl(topLevel);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
+	 */
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if (visible) {
+			configurationNameText.setFocus();
+		}
+	}
+
 	/**
 	 * @param parentFolder
 	 * @param configurationName

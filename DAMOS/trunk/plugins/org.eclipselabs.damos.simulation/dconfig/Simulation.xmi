@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ASCII"?>
 <dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript" packageName="damos.simulation">
   <members xsi:type="dconfig:SimplePropertyDeclaration" name="simulationTime">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </members>
   <members xsi:type="dconfig:SelectionPropertyDeclaration" name="solver"/>

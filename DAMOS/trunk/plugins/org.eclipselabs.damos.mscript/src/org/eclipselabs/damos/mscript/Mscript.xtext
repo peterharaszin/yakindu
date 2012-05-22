@@ -35,8 +35,8 @@ Declaration:
 DataTypeDeclaration:
 	('type' name=ValidID '=' typeSpecifier=DataTypeSpecifier) | ('struct' name=ValidID typeSpecifier=StructDeclarationTypeSpecifier);
 
-StructDeclarationTypeSpecifier returns DataTypeSpecifier:
-	anonymousType=StructDeclarationType;
+StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
+	type=StructDeclarationType;
 
 StructDeclarationType returns StructType:
 	'{' members+=StructMember (',' members+=StructMember)* '}';
@@ -114,7 +114,13 @@ Equation:
  */
 
 DataTypeSpecifier:
-	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
+
+AnonymousTypeSpecifier:
+	type=(PrimitiveType | ArrayType | StructType);
+	
+DeclaredTypeSpecifier:
+	typeDeclaration=[DataTypeDeclaration|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -141,11 +147,14 @@ StringType:
 	{StringType} 'string';
 	
 ArrayType:
-	elementTypeSpecifier=ArrayDataTypeSpecifier '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	elementTypeSpecifier=ArrayTypeSpecifier '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
-ArrayDataTypeSpecifier returns DataTypeSpecifier:
-	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+ArrayTypeSpecifier returns DataTypeSpecifier:
+	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
 	
+AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
+	type=PrimitiveType;
+
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;
 

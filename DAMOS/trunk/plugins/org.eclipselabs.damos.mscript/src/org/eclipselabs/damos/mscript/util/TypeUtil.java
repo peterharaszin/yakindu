@@ -16,10 +16,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -105,8 +105,8 @@ public class TypeUtil {
 	
 	private static ArrayType doCreateArrayType(DataType elementType) {
 		ArrayType arrayType = MscriptFactory.eINSTANCE.createArrayType();
-		DataTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		elementTypeSpecifier.setAnonymousType(elementType);
+		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		elementTypeSpecifier.setType(elementType);
 		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
 		return arrayType;
 	}
@@ -123,8 +123,8 @@ public class TypeUtil {
 	}
 	
 	public static void setArrayElementType(ArrayType arrayType, DataType elementType) {
-		DataTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		elementTypeSpecifier.setAnonymousType(elementType);
+		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		elementTypeSpecifier.setType(elementType);
 		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
 	}
 

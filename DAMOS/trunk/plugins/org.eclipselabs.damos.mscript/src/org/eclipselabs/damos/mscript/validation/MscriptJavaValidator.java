@@ -12,6 +12,7 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
@@ -20,6 +21,7 @@ import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeDeclaration;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
@@ -268,9 +270,9 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	private void checkCyclicDataTypeDeclaration(DataTypeSpecifier dataTypeSpecifier, Set<DataTypeDeclaration> visitedTypeDeclarations) {
-		DataType anonymousType = dataTypeSpecifier.getAnonymousType();
-		if (anonymousType != null) {
-			if (!(anonymousType instanceof PrimitiveType)) {
+		if (dataTypeSpecifier instanceof AnonymousTypeSpecifier) {
+			DataType anonymousType = dataTypeSpecifier.getType();
+			if (anonymousType != null && !(anonymousType instanceof PrimitiveType)) {
 				for (TreeIterator<EObject> it = anonymousType.eAllContents(); it.hasNext();) {
 					EObject next = it.next();
 					if (next instanceof DataTypeSpecifier) {
@@ -278,8 +280,8 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 					}
 				}
 			}
-		} else {
-			DataTypeDeclaration typeDeclaration = dataTypeSpecifier.getTypeDeclaration();
+		} else if (dataTypeSpecifier instanceof DeclaredTypeSpecifier) {
+			DataTypeDeclaration typeDeclaration = ((DeclaredTypeSpecifier) dataTypeSpecifier).getTypeDeclaration();
 			if (typeDeclaration != null && !typeDeclaration.eIsProxy()) {
 				if (visitedTypeDeclarations.add(typeDeclaration)) {
 					checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<DataTypeDeclaration>(visitedTypeDeclarations));

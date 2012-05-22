@@ -20,8 +20,8 @@ import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -58,8 +58,8 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 			@Override
 			protected void doExecute() {
 				MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-				DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-				dataTypeSpecifier.setAnonymousType(createDataType());
+				AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+				dataTypeSpecifier.setType(createDataType());
 				dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 				DMLTextUtil.setText(dataTypeSpecification, getDataTypeName());
 

@@ -1892,8 +1892,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataTypeDeclarationAccess().getRule();
 	}
 
-	//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
-	//	anonymousType=StructDeclarationType;
+	//StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
+	//	type=StructDeclarationType;
 	public MscriptGrammarAccess.StructDeclarationTypeSpecifierElements getStructDeclarationTypeSpecifierAccess() {
 		return gaMscript.getStructDeclarationTypeSpecifierAccess();
 	}
@@ -2069,13 +2069,33 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	//	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
 	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return gaMscript.getDataTypeSpecifierAccess();
 	}
 	
 	public ParserRule getDataTypeSpecifierRule() {
 		return getDataTypeSpecifierAccess().getRule();
+	}
+
+	//AnonymousTypeSpecifier:
+	//	type=(PrimitiveType | ArrayType | StructType);
+	public MscriptGrammarAccess.AnonymousTypeSpecifierElements getAnonymousTypeSpecifierAccess() {
+		return gaMscript.getAnonymousTypeSpecifierAccess();
+	}
+	
+	public ParserRule getAnonymousTypeSpecifierRule() {
+		return getAnonymousTypeSpecifierAccess().getRule();
+	}
+
+	//DeclaredTypeSpecifier:
+	//	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	public MscriptGrammarAccess.DeclaredTypeSpecifierElements getDeclaredTypeSpecifierAccess() {
+		return gaMscript.getDeclaredTypeSpecifierAccess();
+	}
+	
+	public ParserRule getDeclaredTypeSpecifierRule() {
+		return getDeclaredTypeSpecifierAccess().getRule();
 	}
 
 	//PrimitiveType:
@@ -2159,7 +2179,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.ArrayTypeElements getArrayTypeAccess() {
 		return gaMscript.getArrayTypeAccess();
 	}
@@ -2168,14 +2188,24 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//ArrayDataTypeSpecifier returns DataTypeSpecifier:
-	//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
-	public MscriptGrammarAccess.ArrayDataTypeSpecifierElements getArrayDataTypeSpecifierAccess() {
-		return gaMscript.getArrayDataTypeSpecifierAccess();
+	//ArrayTypeSpecifier returns DataTypeSpecifier:
+	//	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
+	public MscriptGrammarAccess.ArrayTypeSpecifierElements getArrayTypeSpecifierAccess() {
+		return gaMscript.getArrayTypeSpecifierAccess();
 	}
 	
-	public ParserRule getArrayDataTypeSpecifierRule() {
-		return getArrayDataTypeSpecifierAccess().getRule();
+	public ParserRule getArrayTypeSpecifierRule() {
+		return getArrayTypeSpecifierAccess().getRule();
+	}
+
+	//AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
+	//	type=PrimitiveType;
+	public MscriptGrammarAccess.AnonymousArrayTypeSpecifierElements getAnonymousArrayTypeSpecifierAccess() {
+		return gaMscript.getAnonymousArrayTypeSpecifierAccess();
+	}
+	
+	public ParserRule getAnonymousArrayTypeSpecifierRule() {
+		return getAnonymousArrayTypeSpecifierAccess().getRule();
 	}
 
 	//ArrayDimension:

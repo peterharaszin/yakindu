@@ -182,6 +182,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass anonymousTypeSpecifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredTypeSpecifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass letExpressionEClass = null;
 
 	/**
@@ -1449,8 +1463,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataTypeSpecifier_TypeDeclaration() {
-		return (EReference)dataTypeSpecifierEClass.getEStructuralFeatures().get(0);
+	public EClass getAnonymousTypeSpecifier() {
+		return anonymousTypeSpecifierEClass;
 	}
 
 	/**
@@ -1458,8 +1472,26 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataTypeSpecifier_AnonymousType() {
-		return (EReference)dataTypeSpecifierEClass.getEStructuralFeatures().get(1);
+	public EReference getAnonymousTypeSpecifier_Type() {
+		return (EReference)anonymousTypeSpecifierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredTypeSpecifier() {
+		return declaredTypeSpecifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredTypeSpecifier_TypeDeclaration() {
+		return (EReference)declaredTypeSpecifierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3539,8 +3571,12 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(equationEClass, EQUATION__RIGHT_HAND_SIDE);
 
 		dataTypeSpecifierEClass = createEClass(DATA_TYPE_SPECIFIER);
-		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__TYPE_DECLARATION);
-		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__ANONYMOUS_TYPE);
+
+		anonymousTypeSpecifierEClass = createEClass(ANONYMOUS_TYPE_SPECIFIER);
+		createEReference(anonymousTypeSpecifierEClass, ANONYMOUS_TYPE_SPECIFIER__TYPE);
+
+		declaredTypeSpecifierEClass = createEClass(DECLARED_TYPE_SPECIFIER);
+		createEReference(declaredTypeSpecifierEClass, DECLARED_TYPE_SPECIFIER__TYPE_DECLARATION);
 
 		letExpressionEClass = createEClass(LET_EXPRESSION);
 		createEReference(letExpressionEClass, LET_EXPRESSION__ASSIGNMENTS);
@@ -3896,6 +3932,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		constantDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		functionAliasDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		anonymousTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
+		declaredTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
 		letExpressionEClass.getESuperTypes().add(this.getExpression());
 		letExpressionVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		ifExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -4054,11 +4092,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getEquation_LeftHandSide(), this.getExpression(), null, "leftHandSide", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEquation_RightHandSide(), this.getExpression(), null, "rightHandSide", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataTypeSpecifierEClass, DataTypeSpecifier.class, "DataTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataTypeSpecifier_TypeDeclaration(), this.getDataTypeDeclaration(), null, "typeDeclaration", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataTypeSpecifier_AnonymousType(), this.getDataType(), null, "anonymousType", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dataTypeSpecifierEClass, DataTypeSpecifier.class, "DataTypeSpecifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(dataTypeSpecifierEClass, this.getDataType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(anonymousTypeSpecifierEClass, AnonymousTypeSpecifier.class, "AnonymousTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnonymousTypeSpecifier_Type(), this.getDataType(), null, "type", null, 0, 1, AnonymousTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredTypeSpecifierEClass, DeclaredTypeSpecifier.class, "DeclaredTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredTypeSpecifier_TypeDeclaration(), this.getDataTypeDeclaration(), null, "typeDeclaration", null, 0, 1, DeclaredTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLetExpression_Assignments(), this.getLetExpressionAssignment(), null, "assignments", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

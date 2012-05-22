@@ -58,10 +58,10 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataTypeDeclarationAccess().getAlternatives(), "rule__DataTypeDeclaration__Alternatives");
 					put(grammarAccess.getFunctionDeclarationAccess().getAlternatives_11(), "rule__FunctionDeclaration__Alternatives_11");
 					put(grammarAccess.getDataTypeSpecifierAccess().getAlternatives(), "rule__DataTypeSpecifier__Alternatives");
-					put(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAlternatives_0_0(), "rule__DataTypeSpecifier__AnonymousTypeAlternatives_0_0");
+					put(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeAlternatives_0(), "rule__AnonymousTypeSpecifier__TypeAlternatives_0");
 					put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
 					put(grammarAccess.getNumericTypeAccess().getAlternatives(), "rule__NumericType__Alternatives");
-					put(grammarAccess.getArrayDataTypeSpecifierAccess().getAlternatives(), "rule__ArrayDataTypeSpecifier__Alternatives");
+					put(grammarAccess.getArrayTypeSpecifierAccess().getAlternatives(), "rule__ArrayTypeSpecifier__Alternatives");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 					put(grammarAccess.getLetExpressionAssignmentAccess().getAlternatives_0(), "rule__LetExpressionAssignment__Alternatives_0");
 					put(grammarAccess.getRelationalExpressionAccess().getAlternatives_1_0(), "rule__RelationalExpression__Alternatives_1_0");
@@ -363,7 +363,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_0_3(), "rule__DataTypeDeclaration__TypeSpecifierAssignment_0_3");
 					put(grammarAccess.getDataTypeDeclarationAccess().getNameAssignment_1_1(), "rule__DataTypeDeclaration__NameAssignment_1_1");
 					put(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_1_2(), "rule__DataTypeDeclaration__TypeSpecifierAssignment_1_2");
-					put(grammarAccess.getStructDeclarationTypeSpecifierAccess().getAnonymousTypeAssignment(), "rule__StructDeclarationTypeSpecifier__AnonymousTypeAssignment");
+					put(grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeAssignment(), "rule__StructDeclarationTypeSpecifier__TypeAssignment");
 					put(grammarAccess.getStructDeclarationTypeAccess().getMembersAssignment_1(), "rule__StructDeclarationType__MembersAssignment_1");
 					put(grammarAccess.getStructDeclarationTypeAccess().getMembersAssignment_2_1(), "rule__StructDeclarationType__MembersAssignment_2_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1(), "rule__EnumerationDeclaration__NameAssignment_1");
@@ -407,8 +407,8 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEquationAccess().getInitialAssignment_0(), "rule__Equation__InitialAssignment_0");
 					put(grammarAccess.getEquationAccess().getLeftHandSideAssignment_2(), "rule__Equation__LeftHandSideAssignment_2");
 					put(grammarAccess.getEquationAccess().getRightHandSideAssignment_4(), "rule__Equation__RightHandSideAssignment_4");
-					put(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0(), "rule__DataTypeSpecifier__AnonymousTypeAssignment_0");
-					put(grammarAccess.getDataTypeSpecifierAccess().getTypeDeclarationAssignment_1(), "rule__DataTypeSpecifier__TypeDeclarationAssignment_1");
+					put(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeAssignment(), "rule__AnonymousTypeSpecifier__TypeAssignment");
+					put(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationAssignment(), "rule__DeclaredTypeSpecifier__TypeDeclarationAssignment");
 					put(grammarAccess.getRealTypeAccess().getUnitAssignment_2(), "rule__RealType__UnitAssignment_2");
 					put(grammarAccess.getIntegerTypeAccess().getUnitAssignment_2(), "rule__IntegerType__UnitAssignment_2");
 					put(grammarAccess.getComplexTypeAccess().getUnitAssignment_2(), "rule__ComplexType__UnitAssignment_2");
@@ -416,8 +416,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArrayTypeAccess().getElementTypeSpecifierAssignment_0(), "rule__ArrayType__ElementTypeSpecifierAssignment_0");
 					put(grammarAccess.getArrayTypeAccess().getDimensionsAssignment_2(), "rule__ArrayType__DimensionsAssignment_2");
 					put(grammarAccess.getArrayTypeAccess().getDimensionsAssignment_3_1(), "rule__ArrayType__DimensionsAssignment_3_1");
-					put(grammarAccess.getArrayDataTypeSpecifierAccess().getAnonymousTypeAssignment_0(), "rule__ArrayDataTypeSpecifier__AnonymousTypeAssignment_0");
-					put(grammarAccess.getArrayDataTypeSpecifierAccess().getTypeDeclarationAssignment_1(), "rule__ArrayDataTypeSpecifier__TypeDeclarationAssignment_1");
+					put(grammarAccess.getAnonymousArrayTypeSpecifierAccess().getTypeAssignment(), "rule__AnonymousArrayTypeSpecifier__TypeAssignment");
 					put(grammarAccess.getArrayDimensionAccess().getSizeAssignment_1(), "rule__ArrayDimension__SizeAssignment_1");
 					put(grammarAccess.getStructTypeAccess().getMembersAssignment_2(), "rule__StructType__MembersAssignment_2");
 					put(grammarAccess.getStructTypeAccess().getMembersAssignment_3_1(), "rule__StructType__MembersAssignment_3_1");

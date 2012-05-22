@@ -35,7 +35,7 @@ protected class ThisRootNode extends RootToken {
 			case 1: return new ImportDeclaration_Group(this, this, 1, inst);
 			case 2: return new Declaration_Alternatives(this, this, 2, inst);
 			case 3: return new DataTypeDeclaration_Alternatives(this, this, 3, inst);
-			case 4: return new StructDeclarationTypeSpecifier_AnonymousTypeAssignment(this, this, 4, inst);
+			case 4: return new StructDeclarationTypeSpecifier_TypeAssignment(this, this, 4, inst);
 			case 5: return new StructDeclarationType_Group(this, this, 5, inst);
 			case 6: return new EnumerationDeclaration_Group(this, this, 6, inst);
 			case 7: return new EnumerationLiteralDeclaration_NameAssignment(this, this, 7, inst);
@@ -50,90 +50,93 @@ protected class ThisRootNode extends RootToken {
 			case 16: return new FunctionAliasDeclaration_Group(this, this, 16, inst);
 			case 17: return new Equation_Group(this, this, 17, inst);
 			case 18: return new DataTypeSpecifier_Alternatives(this, this, 18, inst);
-			case 19: return new PrimitiveType_Alternatives(this, this, 19, inst);
-			case 20: return new NumericType_Alternatives(this, this, 20, inst);
-			case 21: return new RealType_Group(this, this, 21, inst);
-			case 22: return new IntegerType_Group(this, this, 22, inst);
-			case 23: return new ComplexType_Group(this, this, 23, inst);
-			case 24: return new GaussianType_Group(this, this, 24, inst);
-			case 25: return new BooleanType_Group(this, this, 25, inst);
-			case 26: return new StringType_Group(this, this, 26, inst);
-			case 27: return new ArrayType_Group(this, this, 27, inst);
-			case 28: return new ArrayDataTypeSpecifier_Alternatives(this, this, 28, inst);
-			case 29: return new ArrayDimension_Group(this, this, 29, inst);
-			case 30: return new StructType_Group(this, this, 30, inst);
-			case 31: return new StructMember_Group(this, this, 31, inst);
-			case 32: return new Expression_Alternatives(this, this, 32, inst);
-			case 33: return new LetExpression_Group(this, this, 33, inst);
-			case 34: return new LetExpressionAssignment_Group(this, this, 34, inst);
-			case 35: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 35, inst);
-			case 36: return new IfExpression_Group(this, this, 36, inst);
-			case 37: return new SwitchExpression_Group(this, this, 37, inst);
-			case 38: return new SwitchCase_Group(this, this, 38, inst);
-			case 39: return new RangeExpression_Group(this, this, 39, inst);
-			case 40: return new ImpliesExpression_Group(this, this, 40, inst);
-			case 41: return new LogicalOrExpression_Group(this, this, 41, inst);
-			case 42: return new LogicalAndExpression_Group(this, this, 42, inst);
-			case 43: return new EqualityExpression_Group(this, this, 43, inst);
-			case 44: return new RelationalExpression_Group(this, this, 44, inst);
-			case 45: return new AdditiveExpression_Group(this, this, 45, inst);
-			case 46: return new MultiplicativeExpression_Group(this, this, 46, inst);
-			case 47: return new PowerExpression_Group(this, this, 47, inst);
-			case 48: return new UnaryExpression_Alternatives(this, this, 48, inst);
-			case 49: return new PostfixExpression_Group(this, this, 49, inst);
-			case 50: return new MemberFeatureCall_Group(this, this, 50, inst);
-			case 51: return new AssignableMemberFeatureCall_Group(this, this, 51, inst);
-			case 52: return new IterationAccumulator_Group(this, this, 52, inst);
-			case 53: return new IterationVariableDeclaration_NameAssignment(this, this, 53, inst);
-			case 54: return new ArraySubscript_Alternatives(this, this, 54, inst);
-			case 55: return new PrimaryExpression_Alternatives(this, this, 55, inst);
-			case 56: return new AssignablePrimaryExpression_Alternatives(this, this, 56, inst);
-			case 57: return new Literal_Alternatives(this, this, 57, inst);
-			case 58: return new NumericLiteral_Alternatives(this, this, 58, inst);
-			case 59: return new RealLiteral_Group(this, this, 59, inst);
-			case 60: return new IntegerLiteral_Group(this, this, 60, inst);
-			case 61: return new BooleanLiteral_Group(this, this, 61, inst);
-			case 62: return new StringLiteral_ValueAssignment(this, this, 62, inst);
-			case 63: return new FeatureCall_Alternatives(this, this, 63, inst);
-			case 64: return new VariableReference_Group(this, this, 64, inst);
-			case 65: return new FunctionCall_Group(this, this, 65, inst);
-			case 66: return new QualifiedFeatureCall_Alternatives(this, this, 66, inst);
-			case 67: return new QualifiedVariableReference_Group(this, this, 67, inst);
-			case 68: return new QualifiedFunctionCall_Group(this, this, 68, inst);
-			case 69: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 69, inst);
-			case 70: return new RangeStepExpression_Group(this, this, 70, inst);
-			case 71: return new AdditiveStepExpression_Group(this, this, 71, inst);
-			case 72: return new NegateStepExpression_Alternatives(this, this, 72, inst);
-			case 73: return new PrimitiveStepExpression_Alternatives(this, this, 73, inst);
-			case 74: return new StepLiteral_ValueAssignment(this, this, 74, inst);
-			case 75: return new StepN_Group(this, this, 75, inst);
-			case 76: return new ArrayConstructionOperator_Group(this, this, 76, inst);
-			case 77: return new ArrayConstructionIterationClause_Group(this, this, 77, inst);
-			case 78: return new ArrayConcatenationOperator_Group(this, this, 78, inst);
-			case 79: return new ExpressionList_Group(this, this, 79, inst);
-			case 80: return new StructConstructionOperator_Group(this, this, 80, inst);
-			case 81: return new StructConstructionMember_Group(this, this, 81, inst);
-			case 82: return new UnitConstructionOperator_Group(this, this, 82, inst);
-			case 83: return new ParenthesizedExpression_Group(this, this, 83, inst);
-			case 84: return new EndExpression_Group(this, this, 84, inst);
-			case 85: return new AlgorithmExpression_Group(this, this, 85, inst);
-			case 86: return new Compound_Group(this, this, 86, inst);
-			case 87: return new Statement_Alternatives(this, this, 87, inst);
-			case 88: return new Assignment_Group(this, this, 88, inst);
-			case 89: return new LocalVariableDeclaration_Group(this, this, 89, inst);
-			case 90: return new IfStatement_Group(this, this, 90, inst);
-			case 91: return new WhileStatement_Group(this, this, 91, inst);
-			case 92: return new ForStatement_Group(this, this, 92, inst);
-			case 93: return new DoWhileStatement_Group(this, this, 93, inst);
-			case 94: return new ContinueStatement_Group(this, this, 94, inst);
-			case 95: return new BreakStatement_Group(this, this, 95, inst);
-			case 96: return new ReturnStatement_Group(this, this, 96, inst);
-			case 97: return new Unit_Group(this, this, 97, inst);
-			case 98: return new ExplicitUnit_Group(this, this, 98, inst);
-			case 99: return new UnitNumerator_Alternatives(this, this, 99, inst);
-			case 100: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 100, inst);
-			case 101: return new UnitDenominator_Alternatives(this, this, 101, inst);
-			case 102: return new UnitFactor_Group(this, this, 102, inst);
+			case 19: return new AnonymousTypeSpecifier_TypeAssignment(this, this, 19, inst);
+			case 20: return new DeclaredTypeSpecifier_TypeDeclarationAssignment(this, this, 20, inst);
+			case 21: return new PrimitiveType_Alternatives(this, this, 21, inst);
+			case 22: return new NumericType_Alternatives(this, this, 22, inst);
+			case 23: return new RealType_Group(this, this, 23, inst);
+			case 24: return new IntegerType_Group(this, this, 24, inst);
+			case 25: return new ComplexType_Group(this, this, 25, inst);
+			case 26: return new GaussianType_Group(this, this, 26, inst);
+			case 27: return new BooleanType_Group(this, this, 27, inst);
+			case 28: return new StringType_Group(this, this, 28, inst);
+			case 29: return new ArrayType_Group(this, this, 29, inst);
+			case 30: return new ArrayTypeSpecifier_Alternatives(this, this, 30, inst);
+			case 31: return new AnonymousArrayTypeSpecifier_TypeAssignment(this, this, 31, inst);
+			case 32: return new ArrayDimension_Group(this, this, 32, inst);
+			case 33: return new StructType_Group(this, this, 33, inst);
+			case 34: return new StructMember_Group(this, this, 34, inst);
+			case 35: return new Expression_Alternatives(this, this, 35, inst);
+			case 36: return new LetExpression_Group(this, this, 36, inst);
+			case 37: return new LetExpressionAssignment_Group(this, this, 37, inst);
+			case 38: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 38, inst);
+			case 39: return new IfExpression_Group(this, this, 39, inst);
+			case 40: return new SwitchExpression_Group(this, this, 40, inst);
+			case 41: return new SwitchCase_Group(this, this, 41, inst);
+			case 42: return new RangeExpression_Group(this, this, 42, inst);
+			case 43: return new ImpliesExpression_Group(this, this, 43, inst);
+			case 44: return new LogicalOrExpression_Group(this, this, 44, inst);
+			case 45: return new LogicalAndExpression_Group(this, this, 45, inst);
+			case 46: return new EqualityExpression_Group(this, this, 46, inst);
+			case 47: return new RelationalExpression_Group(this, this, 47, inst);
+			case 48: return new AdditiveExpression_Group(this, this, 48, inst);
+			case 49: return new MultiplicativeExpression_Group(this, this, 49, inst);
+			case 50: return new PowerExpression_Group(this, this, 50, inst);
+			case 51: return new UnaryExpression_Alternatives(this, this, 51, inst);
+			case 52: return new PostfixExpression_Group(this, this, 52, inst);
+			case 53: return new MemberFeatureCall_Group(this, this, 53, inst);
+			case 54: return new AssignableMemberFeatureCall_Group(this, this, 54, inst);
+			case 55: return new IterationAccumulator_Group(this, this, 55, inst);
+			case 56: return new IterationVariableDeclaration_NameAssignment(this, this, 56, inst);
+			case 57: return new ArraySubscript_Alternatives(this, this, 57, inst);
+			case 58: return new PrimaryExpression_Alternatives(this, this, 58, inst);
+			case 59: return new AssignablePrimaryExpression_Alternatives(this, this, 59, inst);
+			case 60: return new Literal_Alternatives(this, this, 60, inst);
+			case 61: return new NumericLiteral_Alternatives(this, this, 61, inst);
+			case 62: return new RealLiteral_Group(this, this, 62, inst);
+			case 63: return new IntegerLiteral_Group(this, this, 63, inst);
+			case 64: return new BooleanLiteral_Group(this, this, 64, inst);
+			case 65: return new StringLiteral_ValueAssignment(this, this, 65, inst);
+			case 66: return new FeatureCall_Alternatives(this, this, 66, inst);
+			case 67: return new VariableReference_Group(this, this, 67, inst);
+			case 68: return new FunctionCall_Group(this, this, 68, inst);
+			case 69: return new QualifiedFeatureCall_Alternatives(this, this, 69, inst);
+			case 70: return new QualifiedVariableReference_Group(this, this, 70, inst);
+			case 71: return new QualifiedFunctionCall_Group(this, this, 71, inst);
+			case 72: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 72, inst);
+			case 73: return new RangeStepExpression_Group(this, this, 73, inst);
+			case 74: return new AdditiveStepExpression_Group(this, this, 74, inst);
+			case 75: return new NegateStepExpression_Alternatives(this, this, 75, inst);
+			case 76: return new PrimitiveStepExpression_Alternatives(this, this, 76, inst);
+			case 77: return new StepLiteral_ValueAssignment(this, this, 77, inst);
+			case 78: return new StepN_Group(this, this, 78, inst);
+			case 79: return new ArrayConstructionOperator_Group(this, this, 79, inst);
+			case 80: return new ArrayConstructionIterationClause_Group(this, this, 80, inst);
+			case 81: return new ArrayConcatenationOperator_Group(this, this, 81, inst);
+			case 82: return new ExpressionList_Group(this, this, 82, inst);
+			case 83: return new StructConstructionOperator_Group(this, this, 83, inst);
+			case 84: return new StructConstructionMember_Group(this, this, 84, inst);
+			case 85: return new UnitConstructionOperator_Group(this, this, 85, inst);
+			case 86: return new ParenthesizedExpression_Group(this, this, 86, inst);
+			case 87: return new EndExpression_Group(this, this, 87, inst);
+			case 88: return new AlgorithmExpression_Group(this, this, 88, inst);
+			case 89: return new Compound_Group(this, this, 89, inst);
+			case 90: return new Statement_Alternatives(this, this, 90, inst);
+			case 91: return new Assignment_Group(this, this, 91, inst);
+			case 92: return new LocalVariableDeclaration_Group(this, this, 92, inst);
+			case 93: return new IfStatement_Group(this, this, 93, inst);
+			case 94: return new WhileStatement_Group(this, this, 94, inst);
+			case 95: return new ForStatement_Group(this, this, 95, inst);
+			case 96: return new DoWhileStatement_Group(this, this, 96, inst);
+			case 97: return new ContinueStatement_Group(this, this, 97, inst);
+			case 98: return new BreakStatement_Group(this, this, 98, inst);
+			case 99: return new ReturnStatement_Group(this, this, 99, inst);
+			case 100: return new Unit_Group(this, this, 100, inst);
+			case 101: return new ExplicitUnit_Group(this, this, 101, inst);
+			case 102: return new UnitNumerator_Alternatives(this, this, 102, inst);
+			case 103: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 103, inst);
+			case 104: return new UnitDenominator_Alternatives(this, this, 104, inst);
+			case 105: return new UnitFactor_Group(this, this, 105, inst);
 			default: return null;
 		}	
 	}	
@@ -858,7 +861,7 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends Assignme
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new StructDeclarationTypeSpecifier_AnonymousTypeAssignment(this, this, 0, inst);
+			case 0: return new StructDeclarationTypeSpecifier_TypeAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -896,21 +899,21 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends Assignme
 
 /************ begin Rule StructDeclarationTypeSpecifier ****************
  *
- * StructDeclarationTypeSpecifier returns DataTypeSpecifier:
- * 	anonymousType=StructDeclarationType;
+ * StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
+ * 	type=StructDeclarationType;
  *
  **/
 
-// anonymousType=StructDeclarationType
-protected class StructDeclarationTypeSpecifier_AnonymousTypeAssignment extends AssignmentToken  {
+// type=StructDeclarationType
+protected class StructDeclarationTypeSpecifier_TypeAssignment extends AssignmentToken  {
 	
-	public StructDeclarationTypeSpecifier_AnonymousTypeAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructDeclarationTypeSpecifier_TypeAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructDeclarationTypeSpecifierAccess().getAnonymousTypeAssignment();
+		return grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeAssignment();
 	}
 
     @Override
@@ -925,13 +928,13 @@ protected class StructDeclarationTypeSpecifier_AnonymousTypeAssignment extends A
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getStructDeclarationTypeSpecifierRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("anonymousType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousType");
+		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStructDeclarationTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getStructDeclarationTypeSpecifierAccess().getAnonymousTypeStructDeclarationTypeParserRuleCall_0(); 
+				element = grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeStructDeclarationTypeParserRuleCall_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -4452,11 +4455,11 @@ protected class Equation_RightHandSideAssignment_4 extends AssignmentToken  {
  * / *
  *  * Data type specifier
  *  * / DataTypeSpecifier:
- * 	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+ * 	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
  *
  **/
 
-// anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName]
+// AnonymousTypeSpecifier | DeclaredTypeSpecifier
 protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
 
 	public DataTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4471,31 +4474,115 @@ protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_AnonymousTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new DataTypeSpecifier_TypeDeclarationAssignment_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getAnonymousTypeSpecifierRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getDeclaredTypeSpecifierRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// anonymousType=(PrimitiveType | ArrayType | StructType)
-protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentToken  {
+// AnonymousTypeSpecifier
+protected class DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0 extends RuleCallToken {
 	
-	public DataTypeSpecifier_AnonymousTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeSpecifierParserRuleCall_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new AnonymousTypeSpecifier_TypeAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getAnonymousTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(AnonymousTypeSpecifier_TypeAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// DeclaredTypeSpecifier
+protected class DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1 extends RuleCallToken {
+	
+	public DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getDataTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new DeclaredTypeSpecifier_TypeDeclarationAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getDeclaredTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(DeclaredTypeSpecifier_TypeDeclarationAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule DataTypeSpecifier ****************/
+
+
+/************ begin Rule AnonymousTypeSpecifier ****************
+ *
+ * AnonymousTypeSpecifier:
+ * 	type=(PrimitiveType | ArrayType | StructType);
+ *
+ **/
+
+// type=(PrimitiveType | ArrayType | StructType)
+protected class AnonymousTypeSpecifier_TypeAssignment extends AssignmentToken  {
+	
+	public AnonymousTypeSpecifier_TypeAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeAssignment_0();
+		return grammarAccess.getAnonymousTypeSpecifierAccess().getTypeAssignment();
 	}
 
     @Override
@@ -4510,13 +4597,15 @@ protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentTo
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("anonymousType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousType");
+		if(getEObject().eClass() != grammarAccess.getAnonymousTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getPrimitiveTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0(); 
+				element = grammarAccess.getAnonymousTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -4525,7 +4614,7 @@ protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentTo
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getArrayTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1(); 
+				element = grammarAccess.getAnonymousTypeSpecifierAccess().getTypeArrayTypeParserRuleCall_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -4534,7 +4623,7 @@ protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentTo
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStructTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2(); 
+				element = grammarAccess.getAnonymousTypeSpecifierAccess().getTypeStructTypeParserRuleCall_0_2(); 
 				consumed = obj;
 				return param;
 			}
@@ -4551,16 +4640,26 @@ protected class DataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentTo
 	}	
 }
 
+/************ end Rule AnonymousTypeSpecifier ****************/
+
+
+/************ begin Rule DeclaredTypeSpecifier ****************
+ *
+ * DeclaredTypeSpecifier:
+ * 	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+ *
+ **/
+
 // typeDeclaration=[DataTypeDeclaration|QualifiedName]
-protected class DataTypeSpecifier_TypeDeclarationAssignment_1 extends AssignmentToken  {
+protected class DeclaredTypeSpecifier_TypeDeclarationAssignment extends AssignmentToken  {
 	
-	public DataTypeSpecifier_TypeDeclarationAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DeclaredTypeSpecifier_TypeDeclarationAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getTypeDeclarationAssignment_1();
+		return grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationAssignment();
 	}
 
     @Override
@@ -4572,13 +4671,15 @@ protected class DataTypeSpecifier_TypeDeclarationAssignment_1 extends Assignment
 
     @Override	
 	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getDeclaredTypeSpecifierRule().getType().getClassifier())
+			return null;
 		if((value = eObjectConsumer.getConsumable("typeDeclaration",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeDeclaration");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0(); 
+				element = grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_0(); 
 				return obj;
 			}
 		}
@@ -4587,8 +4688,7 @@ protected class DataTypeSpecifier_TypeDeclarationAssignment_1 extends Assignment
 
 }
 
-
-/************ end Rule DataTypeSpecifier ****************/
+/************ end Rule DeclaredTypeSpecifier ****************/
 
 
 /************ begin Rule PrimitiveType ****************
@@ -5654,11 +5754,11 @@ protected class StringType_StringKeyword_1 extends KeywordToken  {
 /************ begin Rule ArrayType ****************
  *
  * ArrayType:
- * 	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+ * 	elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
  *
  **/
 
-// elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
+// elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 protected class ArrayType_Group extends GroupToken {
 	
 	public ArrayType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5687,7 +5787,7 @@ protected class ArrayType_Group extends GroupToken {
 
 }
 
-// elementTypeSpecifier=ArrayDataTypeSpecifier
+// elementTypeSpecifier=ArrayTypeSpecifier
 protected class ArrayType_ElementTypeSpecifierAssignment_0 extends AssignmentToken  {
 	
 	public ArrayType_ElementTypeSpecifierAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5702,7 +5802,7 @@ protected class ArrayType_ElementTypeSpecifierAssignment_0 extends AssignmentTok
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ArrayDataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new ArrayTypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -5713,9 +5813,9 @@ protected class ArrayType_ElementTypeSpecifierAssignment_0 extends AssignmentTok
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("elementTypeSpecifier");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getArrayDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getArrayTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getArrayTypeAccess().getElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0(); 
+				element = grammarAccess.getArrayTypeAccess().getElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -5919,53 +6019,137 @@ protected class ArrayType_RightSquareBracketKeyword_4 extends KeywordToken  {
 /************ end Rule ArrayType ****************/
 
 
-/************ begin Rule ArrayDataTypeSpecifier ****************
+/************ begin Rule ArrayTypeSpecifier ****************
  *
- * ArrayDataTypeSpecifier returns DataTypeSpecifier:
- * 	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+ * ArrayTypeSpecifier returns DataTypeSpecifier:
+ * 	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
  *
  **/
 
-// anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName]
-protected class ArrayDataTypeSpecifier_Alternatives extends AlternativesToken {
+// AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier
+protected class ArrayTypeSpecifier_Alternatives extends AlternativesToken {
 
-	public ArrayDataTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ArrayTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getArrayDataTypeSpecifierAccess().getAlternatives();
+		return grammarAccess.getArrayTypeSpecifierAccess().getAlternatives();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ArrayDataTypeSpecifier_AnonymousTypeAssignment_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new ArrayDataTypeSpecifier_TypeDeclarationAssignment_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new ArrayTypeSpecifier_AnonymousArrayTypeSpecifierParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new ArrayTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getArrayDataTypeSpecifierRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getAnonymousArrayTypeSpecifierRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getDeclaredTypeSpecifierRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// anonymousType=PrimitiveType
-protected class ArrayDataTypeSpecifier_AnonymousTypeAssignment_0 extends AssignmentToken  {
+// AnonymousArrayTypeSpecifier
+protected class ArrayTypeSpecifier_AnonymousArrayTypeSpecifierParserRuleCall_0 extends RuleCallToken {
 	
-	public ArrayDataTypeSpecifier_AnonymousTypeAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ArrayTypeSpecifier_AnonymousArrayTypeSpecifierParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getArrayTypeSpecifierAccess().getAnonymousArrayTypeSpecifierParserRuleCall_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new AnonymousArrayTypeSpecifier_TypeAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getAnonymousArrayTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(AnonymousArrayTypeSpecifier_TypeAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// DeclaredTypeSpecifier
+protected class ArrayTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1 extends RuleCallToken {
+	
+	public ArrayTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getArrayTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new DeclaredTypeSpecifier_TypeDeclarationAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getDeclaredTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(DeclaredTypeSpecifier_TypeDeclarationAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule ArrayTypeSpecifier ****************/
+
+
+/************ begin Rule AnonymousArrayTypeSpecifier ****************
+ *
+ * AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
+ * 	type=PrimitiveType;
+ *
+ **/
+
+// type=PrimitiveType
+protected class AnonymousArrayTypeSpecifier_TypeAssignment extends AssignmentToken  {
+	
+	public AnonymousArrayTypeSpecifier_TypeAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getArrayDataTypeSpecifierAccess().getAnonymousTypeAssignment_0();
+		return grammarAccess.getAnonymousArrayTypeSpecifierAccess().getTypeAssignment();
 	}
 
     @Override
@@ -5978,13 +6162,15 @@ protected class ArrayDataTypeSpecifier_AnonymousTypeAssignment_0 extends Assignm
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("anonymousType",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("anonymousType");
+		if(getEObject().eClass() != grammarAccess.getAnonymousArrayTypeSpecifierRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getPrimitiveTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getArrayDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0(); 
+				element = grammarAccess.getAnonymousArrayTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -6001,44 +6187,7 @@ protected class ArrayDataTypeSpecifier_AnonymousTypeAssignment_0 extends Assignm
 	}	
 }
 
-// typeDeclaration=[DataTypeDeclaration|QualifiedName]
-protected class ArrayDataTypeSpecifier_TypeDeclarationAssignment_1 extends AssignmentToken  {
-	
-	public ArrayDataTypeSpecifier_TypeDeclarationAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getArrayDataTypeSpecifierAccess().getTypeDeclarationAssignment_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("typeDeclaration",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeDeclaration");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getArrayDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getArrayDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
-}
-
-
-/************ end Rule ArrayDataTypeSpecifier ****************/
+/************ end Rule AnonymousArrayTypeSpecifier ****************/
 
 
 /************ begin Rule ArrayDimension ****************

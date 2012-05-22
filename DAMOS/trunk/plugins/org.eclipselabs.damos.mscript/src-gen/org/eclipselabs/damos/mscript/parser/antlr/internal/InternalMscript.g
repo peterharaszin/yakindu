@@ -359,16 +359,16 @@ ruleStructDeclarationTypeSpecifier returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStructDeclarationTypeSpecifierAccess().getAnonymousTypeStructDeclarationTypeParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeStructDeclarationTypeParserRuleCall_0()); 
 	    }
-		lv_anonymousType_0_0=ruleStructDeclarationType		{
+		lv_type_0_0=ruleStructDeclarationType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStructDeclarationTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"anonymousType",
-        		lv_anonymousType_0_0, 
+       			"type",
+        		lv_type_0_0, 
         		"StructDeclarationType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1594,50 +1594,90 @@ ruleDataTypeSpecifier returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(
+    { 
+        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeSpecifierParserRuleCall_0()); 
+    }
+    this_AnonymousTypeSpecifier_0=ruleAnonymousTypeSpecifier
+    { 
+        $current = $this_AnonymousTypeSpecifier_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1()); 
+    }
+    this_DeclaredTypeSpecifier_1=ruleDeclaredTypeSpecifier
+    { 
+        $current = $this_DeclaredTypeSpecifier_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleAnonymousTypeSpecifier
+entryRuleAnonymousTypeSpecifier returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAnonymousTypeSpecifierRule()); }
+	 iv_ruleAnonymousTypeSpecifier=ruleAnonymousTypeSpecifier 
+	 { $current=$iv_ruleAnonymousTypeSpecifier.current; } 
+	 EOF 
+;
+
+// Rule AnonymousTypeSpecifier
+ruleAnonymousTypeSpecifier returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getAnonymousTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0_0()); 
 	    }
-		lv_anonymousType_0_1=rulePrimitiveType		{
+		lv_type_0_1=rulePrimitiveType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
+	            $current = createModelElementForParent(grammarAccess.getAnonymousTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"anonymousType",
-        		lv_anonymousType_0_1, 
+       			"type",
+        		lv_type_0_1, 
         		"PrimitiveType");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeArrayTypeParserRuleCall_0_0_1()); 
+	        newCompositeNode(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeArrayTypeParserRuleCall_0_1()); 
 	    }
-		lv_anonymousType_0_2=ruleArrayType		{
+		lv_type_0_2=ruleArrayType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
+	            $current = createModelElementForParent(grammarAccess.getAnonymousTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"anonymousType",
-        		lv_anonymousType_0_2, 
+       			"type",
+        		lv_type_0_2, 
         		"ArrayType");
 	        afterParserOrEnumRuleCall();
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeStructTypeParserRuleCall_0_0_2()); 
+	        newCompositeNode(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeStructTypeParserRuleCall_0_2()); 
 	    }
-		lv_anonymousType_0_3=ruleStructType		{
+		lv_type_0_3=ruleStructType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDataTypeSpecifierRule());
+	            $current = createModelElementForParent(grammarAccess.getAnonymousTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"anonymousType",
-        		lv_anonymousType_0_3, 
+       			"type",
+        		lv_type_0_3, 
         		"StructType");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1646,22 +1686,42 @@ ruleDataTypeSpecifier returns [EObject current=null]
 
 )
 )
-    |(
+;
+
+
+
+
+
+// Entry rule entryRuleDeclaredTypeSpecifier
+entryRuleDeclaredTypeSpecifier returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDeclaredTypeSpecifierRule()); }
+	 iv_ruleDeclaredTypeSpecifier=ruleDeclaredTypeSpecifier 
+	 { $current=$iv_ruleDeclaredTypeSpecifier.current; } 
+	 EOF 
+;
+
+// Rule DeclaredTypeSpecifier
+ruleDeclaredTypeSpecifier returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDataTypeSpecifierRule());
+	            $current = createModelElement(grammarAccess.getDeclaredTypeSpecifierRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))
+)
 ;
 
 
@@ -2053,9 +2113,9 @@ ruleArrayType returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArrayTypeAccess().getElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getArrayTypeAccess().getElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0()); 
 	    }
-		lv_elementTypeSpecifier_0_0=ruleArrayDataTypeSpecifier		{
+		lv_elementTypeSpecifier_0_0=ruleArrayTypeSpecifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArrayTypeRule());
 	        }
@@ -2063,7 +2123,7 @@ ruleArrayType returns [EObject current=null]
        			$current, 
        			"elementTypeSpecifier",
         		lv_elementTypeSpecifier_0_0, 
-        		"ArrayDataTypeSpecifier");
+        		"ArrayTypeSpecifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2123,55 +2183,79 @@ ruleArrayType returns [EObject current=null]
 
 
 
-// Entry rule entryRuleArrayDataTypeSpecifier
-entryRuleArrayDataTypeSpecifier returns [EObject current=null] 
+// Entry rule entryRuleArrayTypeSpecifier
+entryRuleArrayTypeSpecifier returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getArrayDataTypeSpecifierRule()); }
-	 iv_ruleArrayDataTypeSpecifier=ruleArrayDataTypeSpecifier 
-	 { $current=$iv_ruleArrayDataTypeSpecifier.current; } 
+	{ newCompositeNode(grammarAccess.getArrayTypeSpecifierRule()); }
+	 iv_ruleArrayTypeSpecifier=ruleArrayTypeSpecifier 
+	 { $current=$iv_ruleArrayTypeSpecifier.current; } 
 	 EOF 
 ;
 
-// Rule ArrayDataTypeSpecifier
-ruleArrayDataTypeSpecifier returns [EObject current=null] 
+// Rule ArrayTypeSpecifier
+ruleArrayTypeSpecifier returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(
+    { 
+        newCompositeNode(grammarAccess.getArrayTypeSpecifierAccess().getAnonymousArrayTypeSpecifierParserRuleCall_0()); 
+    }
+    this_AnonymousArrayTypeSpecifier_0=ruleAnonymousArrayTypeSpecifier
+    { 
+        $current = $this_AnonymousArrayTypeSpecifier_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getArrayTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1()); 
+    }
+    this_DeclaredTypeSpecifier_1=ruleDeclaredTypeSpecifier
+    { 
+        $current = $this_DeclaredTypeSpecifier_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleAnonymousArrayTypeSpecifier
+entryRuleAnonymousArrayTypeSpecifier returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAnonymousArrayTypeSpecifierRule()); }
+	 iv_ruleAnonymousArrayTypeSpecifier=ruleAnonymousArrayTypeSpecifier 
+	 { $current=$iv_ruleAnonymousArrayTypeSpecifier.current; } 
+	 EOF 
+;
+
+// Rule AnonymousArrayTypeSpecifier
+ruleAnonymousArrayTypeSpecifier returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArrayDataTypeSpecifierAccess().getAnonymousTypePrimitiveTypeParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getAnonymousArrayTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0()); 
 	    }
-		lv_anonymousType_0_0=rulePrimitiveType		{
+		lv_type_0_0=rulePrimitiveType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getArrayDataTypeSpecifierRule());
+	            $current = createModelElementForParent(grammarAccess.getAnonymousArrayTypeSpecifierRule());
 	        }
        		set(
        			$current, 
-       			"anonymousType",
-        		lv_anonymousType_0_0, 
+       			"type",
+        		lv_type_0_0, 
         		"PrimitiveType");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )
-    |(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getArrayDataTypeSpecifierRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getArrayDataTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_1_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

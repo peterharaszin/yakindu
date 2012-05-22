@@ -74,7 +74,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.CONSTANT_DECLARATION: return createConstantDeclaration();
 			case MscriptPackage.FUNCTION_ALIAS_DECLARATION: return createFunctionAliasDeclaration();
 			case MscriptPackage.EQUATION: return createEquation();
-			case MscriptPackage.DATA_TYPE_SPECIFIER: return createDataTypeSpecifier();
+			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER: return createAnonymousTypeSpecifier();
+			case MscriptPackage.DECLARED_TYPE_SPECIFIER: return createDeclaredTypeSpecifier();
 			case MscriptPackage.LET_EXPRESSION: return createLetExpression();
 			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT: return createLetExpressionAssignment();
 			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION: return createLetExpressionVariableDeclaration();
@@ -400,9 +401,19 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier createDataTypeSpecifier() {
-		DataTypeSpecifierImpl dataTypeSpecifier = new DataTypeSpecifierImpl();
-		return dataTypeSpecifier;
+	public AnonymousTypeSpecifier createAnonymousTypeSpecifier() {
+		AnonymousTypeSpecifierImpl anonymousTypeSpecifier = new AnonymousTypeSpecifierImpl();
+		return anonymousTypeSpecifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredTypeSpecifier createDeclaredTypeSpecifier() {
+		DeclaredTypeSpecifierImpl declaredTypeSpecifier = new DeclaredTypeSpecifierImpl();
+		return declaredTypeSpecifier;
 	}
 
 	/**

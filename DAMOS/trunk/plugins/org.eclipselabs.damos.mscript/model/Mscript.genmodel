@@ -157,9 +157,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Equation/rightHandSide"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//DataTypeSpecifier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//DataTypeSpecifier/typeDeclaration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DataTypeSpecifier/anonymousType"/>
       <genOperations ecoreOperation="Mscript.ecore#//DataTypeSpecifier/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//AnonymousTypeSpecifier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AnonymousTypeSpecifier/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//DeclaredTypeSpecifier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//DeclaredTypeSpecifier/typeDeclaration"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//LetExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//LetExpression/assignments"/>

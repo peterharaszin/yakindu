@@ -111,11 +111,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightHandSide" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecifier">
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecifier" abstract="true">
     <eOperations name="getType" eType="#//DataType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDeclaration" eType="#//DataTypeDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousType" eType="#//DataType"
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnonymousTypeSpecifier" eSuperTypes="#//DataTypeSpecifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DataType"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredTypeSpecifier" eSuperTypes="#//DataTypeSpecifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDeclaration" eType="#//DataTypeDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"

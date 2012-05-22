@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.computationmodel.util;
 
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
@@ -41,8 +41,8 @@ public class ComputationModelUtil {
 		NumberFormatMapping mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
 		RealType realType = MscriptFactory.eINSTANCE.createRealType();
 		realType.setUnit(MscriptFactory.eINSTANCE.createUnit());
-		DataTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		typeSpecifier.setAnonymousType(realType);
+		AnonymousTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		typeSpecifier.setType(realType);
 		mapping.setTypeSpecifier(typeSpecifier);
 		mapping.setNumberFormat(floatingPointFormat);
 		computationModel.getNumberFormatMappings().add(mapping);
@@ -50,8 +50,8 @@ public class ComputationModelUtil {
 		mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
 		IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
 		integerType.setUnit(MscriptFactory.eINSTANCE.createUnit());
-		typeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		typeSpecifier.setAnonymousType(integerType);
+		typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		typeSpecifier.setType(integerType);
 		mapping.setTypeSpecifier(typeSpecifier);
 		mapping.setNumberFormat(fixedPointFormat);
 		computationModel.getNumberFormatMappings().add(mapping);

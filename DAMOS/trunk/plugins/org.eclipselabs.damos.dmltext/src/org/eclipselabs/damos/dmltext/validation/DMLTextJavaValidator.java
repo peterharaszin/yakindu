@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IContainer;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -41,6 +43,9 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	
 	@Inject
 	private IContainer.Manager containerManager;
+	
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
 
 	private static final Set<String> GLOBAL_TEMPLATE_PARAMETERS = new HashSet<String>();
 	
@@ -65,13 +70,15 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	// TODO: This has to be reworked
 	@Check(CheckType.NORMAL)
 	public void checkUniqueFragment(Fragment fragment) {
-		Set<QualifiedName> names = new HashSet<QualifiedName>();
-		IResourceDescriptions resourceDescriptions = resourceDescriptionsProvider.getResourceDescriptions(fragment.eResource());
-		IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(fragment.eResource().getURI());
-		for (IContainer container : containerManager.getVisibleContainers(resourceDescription, resourceDescriptions)) {
-			for (IEObjectDescription eObjectDescription : container.getExportedObjectsByType(DMLPackage.eINSTANCE.getFragment())) {
-				if (!names.add(eObjectDescription.getQualifiedName())) {
-					error("Duplicate fragment " + eObjectDescription.getQualifiedName(), null);
+		QualifiedName qualifiedName = qualifiedNameProvider.getFullyQualifiedName(fragment);
+		if (qualifiedName != null) {
+			IResourceDescriptions resourceDescriptions = resourceDescriptionsProvider.getResourceDescriptions(fragment.eResource());
+			IResourceDescription resourceDescription = resourceDescriptions.getResourceDescription(fragment.eResource().getURI());
+			for (IContainer container : containerManager.getVisibleContainers(resourceDescription, resourceDescriptions)) {
+				for (IEObjectDescription eObjectDescription : container.getExportedObjectsByType(DMLPackage.eINSTANCE.getFragment())) {
+					if (!eObjectDescription.getEObjectURI().equals(EcoreUtil.getURI(fragment)) && qualifiedName.equals(eObjectDescription.getQualifiedName())) {
+						error("Duplicate fragment " + qualifiedName, null);
+					}
 				}
 			}
 		}

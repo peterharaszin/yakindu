@@ -64,6 +64,7 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.execution.ExecutionTestsPlugin;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
@@ -183,8 +184,8 @@ public abstract class AbstractExecutionTest {
 
 	protected MscriptDataTypeSpecification createRealTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setAnonymousType(TypeUtil.createRealType());
+		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		dataTypeSpecifier.setType(TypeUtil.createRealType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "real");
 		return dataTypeSpecification;
@@ -192,8 +193,8 @@ public abstract class AbstractExecutionTest {
 
 	protected MscriptDataTypeSpecification createIntegerTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setAnonymousType(TypeUtil.createIntegerType());
+		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		dataTypeSpecifier.setType(TypeUtil.createIntegerType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "int");
 		return dataTypeSpecification;
@@ -201,8 +202,8 @@ public abstract class AbstractExecutionTest {
 
 	protected MscriptDataTypeSpecification createBooleanTypeSpecification() {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setAnonymousType(MscriptFactory.eINSTANCE.createBooleanType());
+		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		dataTypeSpecifier.setType(MscriptFactory.eINSTANCE.createBooleanType());
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "boolean");
 		return dataTypeSpecification;
@@ -210,8 +211,8 @@ public abstract class AbstractExecutionTest {
 
 	protected MscriptDataTypeSpecification createArrayTypeSpecification(DataType elementType, int... sizes) {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setAnonymousType(TypeUtil.createArrayType(elementType, sizes));
+		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		dataTypeSpecifier.setType(TypeUtil.createArrayType(elementType, sizes));
 		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
 		return dataTypeSpecification;
 	}
@@ -410,8 +411,8 @@ public abstract class AbstractExecutionTest {
 		ComputationModel computationModel = ComputationModelFactory.eINSTANCE.createComputationModel();
 		
 		NumberFormatMapping realTypeMapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
-		DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-		dataTypeSpecifier.setAnonymousType(TypeUtil.createRealType(MscriptFactory.eINSTANCE.createUnit()));
+		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+		dataTypeSpecifier.setType(TypeUtil.createRealType(MscriptFactory.eINSTANCE.createUnit()));
 		realTypeMapping.setTypeSpecifier(dataTypeSpecifier);
 		
 		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();

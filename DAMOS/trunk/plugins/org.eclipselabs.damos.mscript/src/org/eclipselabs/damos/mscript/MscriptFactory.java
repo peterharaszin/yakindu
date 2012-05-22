@@ -170,13 +170,22 @@ public interface MscriptFactory extends EFactory {
 	Equation createEquation();
 
 	/**
-	 * Returns a new object of class '<em>Data Type Specifier</em>'.
+	 * Returns a new object of class '<em>Anonymous Type Specifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type Specifier</em>'.
+	 * @return a new object of class '<em>Anonymous Type Specifier</em>'.
 	 * @generated
 	 */
-	DataTypeSpecifier createDataTypeSpecifier();
+	AnonymousTypeSpecifier createAnonymousTypeSpecifier();
+
+	/**
+	 * Returns a new object of class '<em>Declared Type Specifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Type Specifier</em>'.
+	 * @generated
+	 */
+	DeclaredTypeSpecifier createDeclaredTypeSpecifier();
 
 	/**
 	 * Returns a new object of class '<em>Let Expression</em>'.

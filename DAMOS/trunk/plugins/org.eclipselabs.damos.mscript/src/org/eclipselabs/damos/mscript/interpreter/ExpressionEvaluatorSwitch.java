@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayDimension;
@@ -17,7 +18,6 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Evaluable;
@@ -790,8 +790,8 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 
 				StructMember member = MscriptFactory.eINSTANCE.createStructMember();
 				member.setName(constructionMember.getName());
-				DataTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createDataTypeSpecifier();
-				dataTypeSpecifier.setAnonymousType(EcoreUtil.copy(value.getDataType()));
+				AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+				dataTypeSpecifier.setType(EcoreUtil.copy(value.getDataType()));
 				member.setTypeSpecifier(dataTypeSpecifier);
 				structType.getMembers().add(member);
 

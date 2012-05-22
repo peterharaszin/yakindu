@@ -234,6 +234,20 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER: {
+				AnonymousTypeSpecifier anonymousTypeSpecifier = (AnonymousTypeSpecifier)theEObject;
+				T result = caseAnonymousTypeSpecifier(anonymousTypeSpecifier);
+				if (result == null) result = caseDataTypeSpecifier(anonymousTypeSpecifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.DECLARED_TYPE_SPECIFIER: {
+				DeclaredTypeSpecifier declaredTypeSpecifier = (DeclaredTypeSpecifier)theEObject;
+				T result = caseDeclaredTypeSpecifier(declaredTypeSpecifier);
+				if (result == null) result = caseDataTypeSpecifier(declaredTypeSpecifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.LET_EXPRESSION: {
 				LetExpression letExpression = (LetExpression)theEObject;
 				T result = caseLetExpression(letExpression);
@@ -1234,6 +1248,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataTypeSpecifier(DataTypeSpecifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Anonymous Type Specifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Anonymous Type Specifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnonymousTypeSpecifier(AnonymousTypeSpecifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Type Specifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Type Specifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredTypeSpecifier(DeclaredTypeSpecifier object) {
 		return null;
 	}
 

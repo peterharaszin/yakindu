@@ -2,136 +2,136 @@
 <dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript" packageName="damos.simulation.solvers">
   <members xsi:type="dconfig:SelectionPropertyOption" name="ClassicalRungeKutta">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="stepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince54">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="maximumStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="initialStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="absoluteTolerance">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator/>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="relativeTolerance">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator/>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince853">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="maximumStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="initialStepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="absoluteTolerance">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator/>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="relativeTolerance">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator/>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="Euler">
   <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="stepSize">
-    <typeSpecifier>
-      <anonymousType xsi:type="mscript:RealType">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
             <factors symbol="s"/>
           </numerator>
         </unit>
-      </anonymousType>
+      </type>
     </typeSpecifier>
   </propertyDeclarations>
   <target href="../../org.eclipselabs.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>

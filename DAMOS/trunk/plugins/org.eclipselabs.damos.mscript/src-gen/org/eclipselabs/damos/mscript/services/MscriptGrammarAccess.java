@@ -174,18 +174,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class StructDeclarationTypeSpecifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDeclarationTypeSpecifier");
-		private final Assignment cAnonymousTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cAnonymousTypeStructDeclarationTypeParserRuleCall_0 = (RuleCall)cAnonymousTypeAssignment.eContents().get(0);
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypeStructDeclarationTypeParserRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
 		
-		//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
-		//	anonymousType=StructDeclarationType;
+		//StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
+		//	type=StructDeclarationType;
 		public ParserRule getRule() { return rule; }
 
-		//anonymousType=StructDeclarationType
-		public Assignment getAnonymousTypeAssignment() { return cAnonymousTypeAssignment; }
+		//type=StructDeclarationType
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
 		//StructDeclarationType
-		public RuleCall getAnonymousTypeStructDeclarationTypeParserRuleCall_0() { return cAnonymousTypeStructDeclarationTypeParserRuleCall_0; }
+		public RuleCall getTypeStructDeclarationTypeParserRuleCall_0() { return cTypeStructDeclarationTypeParserRuleCall_0; }
 	}
 
 	public class StructDeclarationTypeElements extends AbstractParserRuleElementFinder {
@@ -925,47 +925,71 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class DataTypeSpecifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeSpecifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cAnonymousTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Alternatives cAnonymousTypeAlternatives_0_0 = (Alternatives)cAnonymousTypeAssignment_0.eContents().get(0);
-		private final RuleCall cAnonymousTypePrimitiveTypeParserRuleCall_0_0_0 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(0);
-		private final RuleCall cAnonymousTypeArrayTypeParserRuleCall_0_0_1 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(1);
-		private final RuleCall cAnonymousTypeStructTypeParserRuleCall_0_0_2 = (RuleCall)cAnonymousTypeAlternatives_0_0.eContents().get(2);
-		private final Assignment cTypeDeclarationAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cTypeDeclarationDataTypeDeclarationCrossReference_1_0 = (CrossReference)cTypeDeclarationAssignment_1.eContents().get(0);
-		private final RuleCall cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDeclarationDataTypeDeclarationCrossReference_1_0.eContents().get(1);
+		private final RuleCall cAnonymousTypeSpecifierParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDeclaredTypeSpecifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		/// *
 		// * Data type specifier
 		// * / DataTypeSpecifier:
-		//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+		//	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
 		public ParserRule getRule() { return rule; }
 
-		//anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName]
+		//AnonymousTypeSpecifier | DeclaredTypeSpecifier
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//anonymousType=(PrimitiveType | ArrayType | StructType)
-		public Assignment getAnonymousTypeAssignment_0() { return cAnonymousTypeAssignment_0; }
+		//AnonymousTypeSpecifier
+		public RuleCall getAnonymousTypeSpecifierParserRuleCall_0() { return cAnonymousTypeSpecifierParserRuleCall_0; }
+
+		//DeclaredTypeSpecifier
+		public RuleCall getDeclaredTypeSpecifierParserRuleCall_1() { return cDeclaredTypeSpecifierParserRuleCall_1; }
+	}
+
+	public class AnonymousTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnonymousTypeSpecifier");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cTypeAlternatives_0 = (Alternatives)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypePrimitiveTypeParserRuleCall_0_0 = (RuleCall)cTypeAlternatives_0.eContents().get(0);
+		private final RuleCall cTypeArrayTypeParserRuleCall_0_1 = (RuleCall)cTypeAlternatives_0.eContents().get(1);
+		private final RuleCall cTypeStructTypeParserRuleCall_0_2 = (RuleCall)cTypeAlternatives_0.eContents().get(2);
+		
+		//AnonymousTypeSpecifier:
+		//	type=(PrimitiveType | ArrayType | StructType);
+		public ParserRule getRule() { return rule; }
+
+		//type=(PrimitiveType | ArrayType | StructType)
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
 		//PrimitiveType | ArrayType | StructType
-		public Alternatives getAnonymousTypeAlternatives_0_0() { return cAnonymousTypeAlternatives_0_0; }
+		public Alternatives getTypeAlternatives_0() { return cTypeAlternatives_0; }
 
 		//PrimitiveType
-		public RuleCall getAnonymousTypePrimitiveTypeParserRuleCall_0_0_0() { return cAnonymousTypePrimitiveTypeParserRuleCall_0_0_0; }
+		public RuleCall getTypePrimitiveTypeParserRuleCall_0_0() { return cTypePrimitiveTypeParserRuleCall_0_0; }
 
 		//ArrayType
-		public RuleCall getAnonymousTypeArrayTypeParserRuleCall_0_0_1() { return cAnonymousTypeArrayTypeParserRuleCall_0_0_1; }
+		public RuleCall getTypeArrayTypeParserRuleCall_0_1() { return cTypeArrayTypeParserRuleCall_0_1; }
 
 		//StructType
-		public RuleCall getAnonymousTypeStructTypeParserRuleCall_0_0_2() { return cAnonymousTypeStructTypeParserRuleCall_0_0_2; }
+		public RuleCall getTypeStructTypeParserRuleCall_0_2() { return cTypeStructTypeParserRuleCall_0_2; }
+	}
+
+	public class DeclaredTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DeclaredTypeSpecifier");
+		private final Assignment cTypeDeclarationAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeDeclarationDataTypeDeclarationCrossReference_0 = (CrossReference)cTypeDeclarationAssignment.eContents().get(0);
+		private final RuleCall cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_0_1 = (RuleCall)cTypeDeclarationDataTypeDeclarationCrossReference_0.eContents().get(1);
+		
+		//DeclaredTypeSpecifier:
+		//	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+		public ParserRule getRule() { return rule; }
 
 		//typeDeclaration=[DataTypeDeclaration|QualifiedName]
-		public Assignment getTypeDeclarationAssignment_1() { return cTypeDeclarationAssignment_1; }
+		public Assignment getTypeDeclarationAssignment() { return cTypeDeclarationAssignment; }
 
 		//[DataTypeDeclaration|QualifiedName]
-		public CrossReference getTypeDeclarationDataTypeDeclarationCrossReference_1_0() { return cTypeDeclarationDataTypeDeclarationCrossReference_1_0; }
+		public CrossReference getTypeDeclarationDataTypeDeclarationCrossReference_0() { return cTypeDeclarationDataTypeDeclarationCrossReference_0; }
 
 		//QualifiedName
-		public RuleCall getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1() { return cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_0_1() { return cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_0_1; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
@@ -1176,7 +1200,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cElementTypeSpecifierAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0 = (RuleCall)cElementTypeSpecifierAssignment_0.eContents().get(0);
+		private final RuleCall cElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0 = (RuleCall)cElementTypeSpecifierAssignment_0.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDimensionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDimensionsArrayDimensionParserRuleCall_2_0 = (RuleCall)cDimensionsAssignment_2.eContents().get(0);
@@ -1187,17 +1211,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ArrayType:
-		//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+		//	elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 		public ParserRule getRule() { return rule; }
 
-		//elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
+		//elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]"
 		public Group getGroup() { return cGroup; }
 
-		//elementTypeSpecifier=ArrayDataTypeSpecifier
+		//elementTypeSpecifier=ArrayTypeSpecifier
 		public Assignment getElementTypeSpecifierAssignment_0() { return cElementTypeSpecifierAssignment_0; }
 
-		//ArrayDataTypeSpecifier
-		public RuleCall getElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0() { return cElementTypeSpecifierArrayDataTypeSpecifierParserRuleCall_0_0; }
+		//ArrayTypeSpecifier
+		public RuleCall getElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0() { return cElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
@@ -1224,36 +1248,40 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
-	public class ArrayDataTypeSpecifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayDataTypeSpecifier");
+	public class ArrayTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayTypeSpecifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cAnonymousTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cAnonymousTypePrimitiveTypeParserRuleCall_0_0 = (RuleCall)cAnonymousTypeAssignment_0.eContents().get(0);
-		private final Assignment cTypeDeclarationAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cTypeDeclarationDataTypeDeclarationCrossReference_1_0 = (CrossReference)cTypeDeclarationAssignment_1.eContents().get(0);
-		private final RuleCall cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeDeclarationDataTypeDeclarationCrossReference_1_0.eContents().get(1);
+		private final RuleCall cAnonymousArrayTypeSpecifierParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDeclaredTypeSpecifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//ArrayDataTypeSpecifier returns DataTypeSpecifier:
-		//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+		//ArrayTypeSpecifier returns DataTypeSpecifier:
+		//	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
 		public ParserRule getRule() { return rule; }
 
-		//anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName]
+		//AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//anonymousType=PrimitiveType
-		public Assignment getAnonymousTypeAssignment_0() { return cAnonymousTypeAssignment_0; }
+		//AnonymousArrayTypeSpecifier
+		public RuleCall getAnonymousArrayTypeSpecifierParserRuleCall_0() { return cAnonymousArrayTypeSpecifierParserRuleCall_0; }
+
+		//DeclaredTypeSpecifier
+		public RuleCall getDeclaredTypeSpecifierParserRuleCall_1() { return cDeclaredTypeSpecifierParserRuleCall_1; }
+	}
+
+	public class AnonymousArrayTypeSpecifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnonymousArrayTypeSpecifier");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypePrimitiveTypeParserRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
+		
+		//AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
+		//	type=PrimitiveType;
+		public ParserRule getRule() { return rule; }
+
+		//type=PrimitiveType
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
 		//PrimitiveType
-		public RuleCall getAnonymousTypePrimitiveTypeParserRuleCall_0_0() { return cAnonymousTypePrimitiveTypeParserRuleCall_0_0; }
-
-		//typeDeclaration=[DataTypeDeclaration|QualifiedName]
-		public Assignment getTypeDeclarationAssignment_1() { return cTypeDeclarationAssignment_1; }
-
-		//[DataTypeDeclaration|QualifiedName]
-		public CrossReference getTypeDeclarationDataTypeDeclarationCrossReference_1_0() { return cTypeDeclarationDataTypeDeclarationCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1() { return cTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getTypePrimitiveTypeParserRuleCall_0() { return cTypePrimitiveTypeParserRuleCall_0; }
 	}
 
 	public class ArrayDimensionElements extends AbstractParserRuleElementFinder {
@@ -4930,6 +4958,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private FunctionAliasDeclarationElements pFunctionAliasDeclaration;
 	private EquationElements pEquation;
 	private DataTypeSpecifierElements pDataTypeSpecifier;
+	private AnonymousTypeSpecifierElements pAnonymousTypeSpecifier;
+	private DeclaredTypeSpecifierElements pDeclaredTypeSpecifier;
 	private PrimitiveTypeElements pPrimitiveType;
 	private NumericTypeElements pNumericType;
 	private RealTypeElements pRealType;
@@ -4939,7 +4969,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanTypeElements pBooleanType;
 	private StringTypeElements pStringType;
 	private ArrayTypeElements pArrayType;
-	private ArrayDataTypeSpecifierElements pArrayDataTypeSpecifier;
+	private ArrayTypeSpecifierElements pArrayTypeSpecifier;
+	private AnonymousArrayTypeSpecifierElements pAnonymousArrayTypeSpecifier;
 	private ArrayDimensionElements pArrayDimension;
 	private StructTypeElements pStructType;
 	private StructMemberElements pStructMember;
@@ -5098,8 +5129,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataTypeDeclarationAccess().getRule();
 	}
 
-	//StructDeclarationTypeSpecifier returns DataTypeSpecifier:
-	//	anonymousType=StructDeclarationType;
+	//StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
+	//	type=StructDeclarationType;
 	public StructDeclarationTypeSpecifierElements getStructDeclarationTypeSpecifierAccess() {
 		return (pStructDeclarationTypeSpecifier != null) ? pStructDeclarationTypeSpecifier : (pStructDeclarationTypeSpecifier = new StructDeclarationTypeSpecifierElements());
 	}
@@ -5275,13 +5306,33 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	anonymousType=(PrimitiveType | ArrayType | StructType) | typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	//	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
 	public DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return (pDataTypeSpecifier != null) ? pDataTypeSpecifier : (pDataTypeSpecifier = new DataTypeSpecifierElements());
 	}
 	
 	public ParserRule getDataTypeSpecifierRule() {
 		return getDataTypeSpecifierAccess().getRule();
+	}
+
+	//AnonymousTypeSpecifier:
+	//	type=(PrimitiveType | ArrayType | StructType);
+	public AnonymousTypeSpecifierElements getAnonymousTypeSpecifierAccess() {
+		return (pAnonymousTypeSpecifier != null) ? pAnonymousTypeSpecifier : (pAnonymousTypeSpecifier = new AnonymousTypeSpecifierElements());
+	}
+	
+	public ParserRule getAnonymousTypeSpecifierRule() {
+		return getAnonymousTypeSpecifierAccess().getRule();
+	}
+
+	//DeclaredTypeSpecifier:
+	//	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	public DeclaredTypeSpecifierElements getDeclaredTypeSpecifierAccess() {
+		return (pDeclaredTypeSpecifier != null) ? pDeclaredTypeSpecifier : (pDeclaredTypeSpecifier = new DeclaredTypeSpecifierElements());
+	}
+	
+	public ParserRule getDeclaredTypeSpecifierRule() {
+		return getDeclaredTypeSpecifierAccess().getRule();
 	}
 
 	//PrimitiveType:
@@ -5365,7 +5416,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	elementTypeSpecifier=ArrayDataTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
+	//	elementTypeSpecifier=ArrayTypeSpecifier "[" dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public ArrayTypeElements getArrayTypeAccess() {
 		return (pArrayType != null) ? pArrayType : (pArrayType = new ArrayTypeElements());
 	}
@@ -5374,14 +5425,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//ArrayDataTypeSpecifier returns DataTypeSpecifier:
-	//	anonymousType=PrimitiveType | typeDeclaration=[DataTypeDeclaration|QualifiedName];
-	public ArrayDataTypeSpecifierElements getArrayDataTypeSpecifierAccess() {
-		return (pArrayDataTypeSpecifier != null) ? pArrayDataTypeSpecifier : (pArrayDataTypeSpecifier = new ArrayDataTypeSpecifierElements());
+	//ArrayTypeSpecifier returns DataTypeSpecifier:
+	//	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
+	public ArrayTypeSpecifierElements getArrayTypeSpecifierAccess() {
+		return (pArrayTypeSpecifier != null) ? pArrayTypeSpecifier : (pArrayTypeSpecifier = new ArrayTypeSpecifierElements());
 	}
 	
-	public ParserRule getArrayDataTypeSpecifierRule() {
-		return getArrayDataTypeSpecifierAccess().getRule();
+	public ParserRule getArrayTypeSpecifierRule() {
+		return getArrayTypeSpecifierAccess().getRule();
+	}
+
+	//AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
+	//	type=PrimitiveType;
+	public AnonymousArrayTypeSpecifierElements getAnonymousArrayTypeSpecifierAccess() {
+		return (pAnonymousArrayTypeSpecifier != null) ? pAnonymousArrayTypeSpecifier : (pAnonymousArrayTypeSpecifier = new AnonymousArrayTypeSpecifierElements());
+	}
+	
+	public ParserRule getAnonymousArrayTypeSpecifierRule() {
+		return getAnonymousArrayTypeSpecifierAccess().getRule();
 	}
 
 	//ArrayDimension:

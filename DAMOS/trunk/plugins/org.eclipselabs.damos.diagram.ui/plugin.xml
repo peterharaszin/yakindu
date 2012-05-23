@@ -70,6 +70,23 @@
                  </and>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipselabs.damos.diagram.ui.commands.renameFragment"
+               label="Rename Fragment..."
+               style="push">
+            <visibleWhen>
+                 <and>
+                    <count
+                          value="1">
+                    </count>
+                    <iterate>
+                       <instanceof
+                          value="org.eclipselabs.damos.diagram.ui.editparts.BlockDiagramEditPart">
+                       </instanceof>
+                    </iterate>
+                 </and>
+            </visibleWhen>
+         </command>
          <menu
                id="org.eclipselabs.damos.diagram.ui.refactor"
                label="Refactor">
@@ -157,9 +174,14 @@
             commandId="org.eclipselabs.damos.diagram.ui.commands.renameFragment">
          <enabledWhen>
             <iterate>
-               <instanceof
-                     value="org.eclipselabs.damos.dml.Fragment">
-               </instanceof>
+               <or>
+                  <instanceof
+                        value="org.eclipselabs.damos.dml.Fragment">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipselabs.damos.diagram.ui.editparts.BlockDiagramEditPart">
+                  </instanceof>
+               </or>
             </iterate>
          </enabledWhen>
       </handler>

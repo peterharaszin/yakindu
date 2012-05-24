@@ -17,7 +17,7 @@ h2. Creating a New Damos Model
 
 # In the *Project Explorer*, select the model folder and select the menu item *File > New > Other...* to open the *New* wizard.
 # Select *Damos > Block Diagram* then click *Next* to start the *New Block Diagram* wizard: !01_GettingStarted_images/NewBlockDiagram.png(New Block Diagram Wizard)!
-# Enter a file name (or keep the default) and click *Finish*.
+# Enter a new model name and click *Finish*.
 
 After clicking *Finish*, an empty block diagram file will be created in the model folder, and will be opened in a block diagram editor.
 

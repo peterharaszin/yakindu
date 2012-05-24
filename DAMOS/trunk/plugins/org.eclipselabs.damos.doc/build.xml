@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project default="generate-help">
+
+	<property name="wikitext.standalone" value="lib"/>
+
+	<path id="wikitext.classpath">
+		<fileset dir="${wikitext.standalone}">
+			<include name="org.eclipse.mylyn.wikitext.*core*.jar"/>
+		</fileset>
+	</path>
+
+	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
+
+	<target name="assembleUserGuide">
+		<loadfile srcfile="help/02_UserGuide/index.txt" property="inputfiles">
+			<filterchain>
+				<tokenfilter>
+					<replacestring from="\n" to="," />
+				</tokenfilter>
+			</filterchain>
+		</loadfile>
+		<concat destfile="help/02_UserGuide/UserGuide.textile" append="false" fixlastline="yes">
+			<filelist dir="help/02_UserGuide" files="${inputfiles}" />
+		</concat>
+	</target>
+
+	<target name="generate-help" depends="assembleUserGuide" description="Generate Eclipse help from textile source">
+		<wikitext-to-eclipse-help markupLanguage="Textile"
+			multipleOutputFiles="true"
+			navigationImages="true"
+			title="Overview">
+			<fileset dir="${basedir}">
+				<include name="help/01_Overview/Overview.textile"/>
+			</fileset>
+			<stylesheet url="../content/PLUGINS_ROOT/PRODUCT_PLUGIN/book.css"/>
+			<stylesheet url="../style.css"/>
+		</wikitext-to-eclipse-help>
+		<wikitext-to-eclipse-help markupLanguage="Textile"
+			multipleOutputFiles="true"
+			navigationImages="true"
+			title="User Guide">
+			<fileset dir="${basedir}">
+				<include name="help/02_UserGuide/UserGuide.textile"/>
+			</fileset>
+			<stylesheet url="../content/PLUGINS_ROOT/PRODUCT_PLUGIN/book.css"/>
+			<stylesheet url="../style.css"/>
+		</wikitext-to-eclipse-help>
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="help/02_UserGuide/UserGuide.textile"/>
+			</fileset>
+		</delete>
+	</target>
+
+</project>

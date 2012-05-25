@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.yakindu.org/sct/statechart/SText" 
+       class = "org.yakindu.sct.model.stext.stext.StextPackage"
+       genModel = "model/SText.genmodel" /> 
+	
+  </extension>
+   <extension
+         point="org.yakindu.base.types.libraries">
+      <TypeLibrary
+            location="libraries/Primitives.types">
+      </TypeLibrary>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="platform:/resource/org.yakindu.sct.model.stext/model/"
+            target="model/">
+      </mapping>
+
+   </extension>
+   
+</plugin>

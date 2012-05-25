@@ -5215,11 +5215,11 @@ protected class StructDeclarationTypeSpecifier_TypeAssignment extends Assignment
 /************ begin Rule StructDeclarationType ****************
  *
  * StructDeclarationType returns StructType:
- * 	"{" members+=StructMember ("," members+=StructMember)* "}";
+ * 	"{" members+=StructMember (";" members+=StructMember)* ";"? "}";
  *
  **/
 
-// "{" members+=StructMember ("," members+=StructMember)* "}"
+// "{" members+=StructMember (";" members+=StructMember)* ";"? "}"
 protected class StructDeclarationType_Group extends GroupToken {
 	
 	public StructDeclarationType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5234,7 +5234,7 @@ protected class StructDeclarationType_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new StructDeclarationType_RightCurlyBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new StructDeclarationType_RightCurlyBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -5315,7 +5315,7 @@ protected class StructDeclarationType_MembersAssignment_1 extends AssignmentToke
 	}	
 }
 
-// ("," members+=StructMember)*
+// (";" members+=StructMember)*
 protected class StructDeclarationType_Group_2 extends GroupToken {
 	
 	public StructDeclarationType_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5337,16 +5337,16 @@ protected class StructDeclarationType_Group_2 extends GroupToken {
 
 }
 
-// ","
-protected class StructDeclarationType_CommaKeyword_2_0 extends KeywordToken  {
+// ";"
+protected class StructDeclarationType_SemicolonKeyword_2_0 extends KeywordToken  {
 	
-	public StructDeclarationType_CommaKeyword_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructDeclarationType_SemicolonKeyword_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getStructDeclarationTypeAccess().getCommaKeyword_2_0();
+		return grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_2_0();
 	}
 
     @Override
@@ -5400,7 +5400,7 @@ protected class StructDeclarationType_MembersAssignment_2_1 extends AssignmentTo
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new StructDeclarationType_CommaKeyword_2_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new StructDeclarationType_SemicolonKeyword_2_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -5408,15 +5408,15 @@ protected class StructDeclarationType_MembersAssignment_2_1 extends AssignmentTo
 
 
 // "}"
-protected class StructDeclarationType_RightCurlyBracketKeyword_3 extends KeywordToken  {
+protected class StructDeclarationType_RightCurlyBracketKeyword_4 extends KeywordToken  {
 	
-	public StructDeclarationType_RightCurlyBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructDeclarationType_RightCurlyBracketKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_3();
+		return grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_4();
 	}
 
     @Override
@@ -5440,12 +5440,12 @@ protected class StructDeclarationType_RightCurlyBracketKeyword_3 extends Keyword
  *  * Enumeration
  *  * / EnumerationDeclaration:
  * 	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
- * 	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
+ * 	literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}";
  *
  **/
 
 // "enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
-// literalDeclarations+=EnumerationLiteralDeclaration)*)? "}"
+// literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}"
 protected class EnumerationDeclaration_Group extends GroupToken {
 	
 	public EnumerationDeclaration_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5551,7 +5551,7 @@ protected class EnumerationDeclaration_LeftCurlyBracketKeyword_2 extends Keyword
 
 }
 
-// (literalDeclarations+=EnumerationLiteralDeclaration ("," literalDeclarations+=EnumerationLiteralDeclaration)*)?
+// (literalDeclarations+=EnumerationLiteralDeclaration ("," literalDeclarations+=EnumerationLiteralDeclaration)* ","?)?
 protected class EnumerationDeclaration_Group_3 extends GroupToken {
 	
 	public EnumerationDeclaration_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10564,11 +10564,11 @@ protected class ArrayDimension_SizeAssignment_1 extends AssignmentToken  {
 /************ begin Rule StructType ****************
  *
  * StructType:
- * 	"struct" "{" members+=StructMember ("," members+=StructMember)* "}";
+ * 	"struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}";
  *
  **/
 
-// "struct" "{" members+=StructMember ("," members+=StructMember)* "}"
+// "struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}"
 protected class StructType_Group extends GroupToken {
 	
 	public StructType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10583,7 +10583,7 @@ protected class StructType_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new StructType_RightCurlyBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new StructType_RightCurlyBracketKeyword_5(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -10686,7 +10686,7 @@ protected class StructType_MembersAssignment_2 extends AssignmentToken  {
 	}	
 }
 
-// ("," members+=StructMember)*
+// (";" members+=StructMember)*
 protected class StructType_Group_3 extends GroupToken {
 	
 	public StructType_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10708,16 +10708,16 @@ protected class StructType_Group_3 extends GroupToken {
 
 }
 
-// ","
-protected class StructType_CommaKeyword_3_0 extends KeywordToken  {
+// ";"
+protected class StructType_SemicolonKeyword_3_0 extends KeywordToken  {
 	
-	public StructType_CommaKeyword_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructType_SemicolonKeyword_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getStructTypeAccess().getCommaKeyword_3_0();
+		return grammarAccess.getStructTypeAccess().getSemicolonKeyword_3_0();
 	}
 
     @Override
@@ -10771,7 +10771,7 @@ protected class StructType_MembersAssignment_3_1 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new StructType_CommaKeyword_3_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new StructType_SemicolonKeyword_3_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -10779,15 +10779,15 @@ protected class StructType_MembersAssignment_3_1 extends AssignmentToken  {
 
 
 // "}"
-protected class StructType_RightCurlyBracketKeyword_4 extends KeywordToken  {
+protected class StructType_RightCurlyBracketKeyword_5 extends KeywordToken  {
 	
-	public StructType_RightCurlyBracketKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructType_RightCurlyBracketKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_4();
+		return grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_5();
 	}
 
     @Override

@@ -39,7 +39,7 @@ StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
 	type=StructDeclarationType;
 
 StructDeclarationType returns StructType:
-	'{' members+=StructMember (',' members+=StructMember)* '}';
+	'{' members+=StructMember (';' members+=StructMember)* ';'? '}';
 
 /*
  * Enumeration
@@ -47,7 +47,7 @@ StructDeclarationType returns StructType:
  	
 EnumerationDeclaration:
 	'enum' name=ValidID '{'
-		(literalDeclarations+=EnumerationLiteralDeclaration (',' literalDeclarations+=EnumerationLiteralDeclaration)*)?
+		(literalDeclarations+=EnumerationLiteralDeclaration (',' literalDeclarations+=EnumerationLiteralDeclaration)* ','?)?
 	'}';
 	
 EnumerationLiteralDeclaration:
@@ -160,7 +160,7 @@ ArrayDimension:
 
 StructType:
 	'struct' '{'
-		members+=StructMember (',' members+=StructMember)*
+		members+=StructMember (';' members+=StructMember)* ';'?
 	'}'; 
 
 StructMember:

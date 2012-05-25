@@ -1903,7 +1903,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructDeclarationType returns StructType:
-	//	"{" members+=StructMember ("," members+=StructMember)* "}";
+	//	"{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 	public MscriptGrammarAccess.StructDeclarationTypeElements getStructDeclarationTypeAccess() {
 		return gaMscript.getStructDeclarationTypeAccess();
 	}
@@ -1916,7 +1916,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	// * Enumeration
 	// * / EnumerationDeclaration:
 	//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
-	//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
+	//	literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}";
 	public MscriptGrammarAccess.EnumerationDeclarationElements getEnumerationDeclarationAccess() {
 		return gaMscript.getEnumerationDeclarationAccess();
 	}
@@ -2219,7 +2219,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructType:
-	//	"struct" "{" members+=StructMember ("," members+=StructMember)* "}";
+	//	"struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 	public MscriptGrammarAccess.StructTypeElements getStructTypeAccess() {
 		return gaMscript.getStructTypeAccess();
 	}

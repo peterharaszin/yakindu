@@ -6,19 +6,19 @@ blockType StructTest {
 	output y1
 	output y2
 	
-	struct StructA { int a, int[2] b }
-	struct StructB { int x, StructA y }
+	struct StructA { int a; int[2] b }
+	struct StructB { int x; StructA y }
 
 	struct MyNamedStruct {
-		int x,
-		int y
+		int x;
+		int y;
 	}
 
 	function main(x) -> y1, y2 {
-		check(struct { int x, int y }) -> MyNamedStruct, StructB
+		check(struct { int x; int y }) -> MyNamedStruct, StructB
 
-		static assert x is struct { int x, int y } :
-			error "X must be struct { int x, int y }"
+		static assert x is struct { int x; int y } :
+			error "X must be struct { int x; int y }"
 
 		eq y1 = x
 		eq y2 = {

@@ -9046,6 +9046,7 @@ rule__StructDeclarationType__Group__3
     }
 :
 	rule__StructDeclarationType__Group__3__Impl
+	rule__StructDeclarationType__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -9057,17 +9058,49 @@ rule__StructDeclarationType__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_3()); }
-
-	'}' 
-
-{ after(grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_3()); }
+{ before(grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_3()); }
+(
+	';' 
+)?
+{ after(grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_3()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__StructDeclarationType__Group__4
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__StructDeclarationType__Group__4__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__StructDeclarationType__Group__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_4()); }
+
+	'}' 
+
+{ after(grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_4()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -9096,11 +9129,11 @@ rule__StructDeclarationType__Group_2__0__Impl
     }
 :
 (
-{ before(grammarAccess.getStructDeclarationTypeAccess().getCommaKeyword_2_0()); }
+{ before(grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_2_0()); }
 
-	',' 
+	';' 
 
-{ after(grammarAccess.getStructDeclarationTypeAccess().getCommaKeyword_2_0()); }
+{ after(grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_2_0()); }
 )
 
 ;
@@ -9336,6 +9369,7 @@ rule__EnumerationDeclaration__Group_3__1
     }
 :
 	rule__EnumerationDeclaration__Group_3__1__Impl
+	rule__EnumerationDeclaration__Group_3__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -9356,6 +9390,38 @@ rule__EnumerationDeclaration__Group_3__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__EnumerationDeclaration__Group_3__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__EnumerationDeclaration__Group_3__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EnumerationDeclaration__Group_3__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_2()); }
+(
+	',' 
+)?
+{ after(grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -12657,6 +12723,7 @@ rule__StructType__Group__4
     }
 :
 	rule__StructType__Group__4__Impl
+	rule__StructType__Group__5
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -12668,17 +12735,49 @@ rule__StructType__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_4()); }
-
-	'}' 
-
-{ after(grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_4()); }
+{ before(grammarAccess.getStructTypeAccess().getSemicolonKeyword_4()); }
+(
+	';' 
+)?
+{ after(grammarAccess.getStructTypeAccess().getSemicolonKeyword_4()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__StructType__Group__5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__StructType__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__StructType__Group__5__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_5()); }
+
+	'}' 
+
+{ after(grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_5()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -12709,11 +12808,11 @@ rule__StructType__Group_3__0__Impl
     }
 :
 (
-{ before(grammarAccess.getStructTypeAccess().getCommaKeyword_3_0()); }
+{ before(grammarAccess.getStructTypeAccess().getSemicolonKeyword_3_0()); }
 
-	',' 
+	';' 
 
-{ after(grammarAccess.getStructTypeAccess().getCommaKeyword_3_0()); }
+{ after(grammarAccess.getStructTypeAccess().getSemicolonKeyword_3_0()); }
 )
 
 ;

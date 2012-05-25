@@ -2391,9 +2391,9 @@ ruleStructDeclarationType returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_2=',' 
+)(	otherlv_2=';' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getStructDeclarationTypeAccess().getCommaKeyword_2_0());
+    	newLeafNode(otherlv_2, grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_2_0());
     }
 (
 (
@@ -2413,9 +2413,13 @@ ruleStructDeclarationType returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_4='}' 
+))*(	otherlv_4=';' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getStructDeclarationTypeAccess().getSemicolonKeyword_3());
+    }
+)?	otherlv_5='}' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getStructDeclarationTypeAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;
@@ -2504,9 +2508,13 @@ ruleEnumerationDeclaration returns [EObject current=null]
 	    }
 
 )
-))*)?	otherlv_6='}' 
+))*(	otherlv_6=',' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getEnumerationDeclarationAccess().getRightCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_6, grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_2());
+    }
+)?)?	otherlv_7='}' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getEnumerationDeclarationAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;
@@ -4321,9 +4329,9 @@ ruleStructType returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_3=',' 
+)(	otherlv_3=';' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getStructTypeAccess().getCommaKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getStructTypeAccess().getSemicolonKeyword_3_0());
     }
 (
 (
@@ -4343,9 +4351,13 @@ ruleStructType returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_5='}' 
+))*(	otherlv_5=';' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_5, grammarAccess.getStructTypeAccess().getSemicolonKeyword_4());
+    }
+)?	otherlv_6='}' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_5());
     }
 )
 ;

@@ -195,16 +195,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cMembersAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cMembersStructMemberParserRuleCall_1_0 = (RuleCall)cMembersAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cMembersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cMembersStructMemberParserRuleCall_2_1_0 = (RuleCall)cMembersAssignment_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//StructDeclarationType returns StructType:
-		//	"{" members+=StructMember ("," members+=StructMember)* "}";
+		//	"{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 		public ParserRule getRule() { return rule; }
 
-		//"{" members+=StructMember ("," members+=StructMember)* "}"
+		//"{" members+=StructMember (";" members+=StructMember)* ";"? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
@@ -216,11 +217,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//StructMember
 		public RuleCall getMembersStructMemberParserRuleCall_1_0() { return cMembersStructMemberParserRuleCall_1_0; }
 
-		//("," members+=StructMember)*
+		//(";" members+=StructMember)*
 		public Group getGroup_2() { return cGroup_2; }
 
-		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		//";"
+		public Keyword getSemicolonKeyword_2_0() { return cSemicolonKeyword_2_0; }
 
 		//members+=StructMember
 		public Assignment getMembersAssignment_2_1() { return cMembersAssignment_2_1; }
@@ -228,8 +229,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//StructMember
 		public RuleCall getMembersStructMemberParserRuleCall_2_1_0() { return cMembersStructMemberParserRuleCall_2_1_0; }
 
+		//";"?
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class EnumerationDeclarationElements extends AbstractParserRuleElementFinder {
@@ -246,17 +250,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
 		private final Assignment cLiteralDeclarationsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
 		private final RuleCall cLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0 = (RuleCall)cLiteralDeclarationsAssignment_3_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		/// *
 		// * Enumeration
 		// * / EnumerationDeclaration:
 		//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
-		//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
+		//	literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}";
 		public ParserRule getRule() { return rule; }
 
 		//"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
-		//literalDeclarations+=EnumerationLiteralDeclaration)*)? "}"
+		//literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"enum"
@@ -271,7 +276,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//(literalDeclarations+=EnumerationLiteralDeclaration ("," literalDeclarations+=EnumerationLiteralDeclaration)*)?
+		//(literalDeclarations+=EnumerationLiteralDeclaration ("," literalDeclarations+=EnumerationLiteralDeclaration)* ","?)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//literalDeclarations+=EnumerationLiteralDeclaration
@@ -291,6 +296,9 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//EnumerationLiteralDeclaration
 		public RuleCall getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0() { return cLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0; }
+
+		//","?
+		public Keyword getCommaKeyword_3_2() { return cCommaKeyword_3_2; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -1316,16 +1324,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cMembersAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cMembersStructMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cMembersStructMemberParserRuleCall_3_1_0 = (RuleCall)cMembersAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//StructType:
-		//	"struct" "{" members+=StructMember ("," members+=StructMember)* "}";
+		//	"struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 		public ParserRule getRule() { return rule; }
 
-		//"struct" "{" members+=StructMember ("," members+=StructMember)* "}"
+		//"struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"struct"
@@ -1340,11 +1349,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//StructMember
 		public RuleCall getMembersStructMemberParserRuleCall_2_0() { return cMembersStructMemberParserRuleCall_2_0; }
 
-		//("," members+=StructMember)*
+		//(";" members+=StructMember)*
 		public Group getGroup_3() { return cGroup_3; }
 
-		//","
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		//";"
+		public Keyword getSemicolonKeyword_3_0() { return cSemicolonKeyword_3_0; }
 
 		//members+=StructMember
 		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
@@ -1352,8 +1361,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//StructMember
 		public RuleCall getMembersStructMemberParserRuleCall_3_1_0() { return cMembersStructMemberParserRuleCall_3_1_0; }
 
+		//";"?
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
 	public class StructMemberElements extends AbstractParserRuleElementFinder {
@@ -5140,7 +5152,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructDeclarationType returns StructType:
-	//	"{" members+=StructMember ("," members+=StructMember)* "}";
+	//	"{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 	public StructDeclarationTypeElements getStructDeclarationTypeAccess() {
 		return (pStructDeclarationType != null) ? pStructDeclarationType : (pStructDeclarationType = new StructDeclarationTypeElements());
 	}
@@ -5153,7 +5165,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	// * Enumeration
 	// * / EnumerationDeclaration:
 	//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
-	//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
+	//	literalDeclarations+=EnumerationLiteralDeclaration)* ","?)? "}";
 	public EnumerationDeclarationElements getEnumerationDeclarationAccess() {
 		return (pEnumerationDeclaration != null) ? pEnumerationDeclaration : (pEnumerationDeclaration = new EnumerationDeclarationElements());
 	}
@@ -5456,7 +5468,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructType:
-	//	"struct" "{" members+=StructMember ("," members+=StructMember)* "}";
+	//	"struct" "{" members+=StructMember (";" members+=StructMember)* ";"? "}";
 	public StructTypeElements getStructTypeAccess() {
 		return (pStructType != null) ? pStructType : (pStructType = new StructTypeElements());
 	}

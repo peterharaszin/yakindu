@@ -7,15 +7,15 @@ blockType StructExtractXY {
 	output outY
 	
 	struct MyNamedStruct {
-		int x,
-		int y
+		int x;
+		int y;
 	}
 
 	function main(x) -> outX, outY {
-		check(struct { int x, int y }) -> int, int
+		check(struct { int x; int y }) -> int, int
 
-		static assert x is struct { int x, int y } :
-			error "X must be struct { int x, int y }"
+		static assert x is struct { int x; int y } :
+			error "X must be struct { int x; int y }"
 
 		eq outX = x.x
 		eq outY = x.y

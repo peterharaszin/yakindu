@@ -34,7 +34,7 @@ public class StructConstructionTest extends AbstractGeneratorGTest {
 		Inport inA = createInport("InA", createIntegerTypeSpecification(), 1);
 		Inport inB = createInport("InB", createIntegerTypeSpecification(), 1);
 		Block structConstructionTest = createTestBlock("StructConstructionTest", "StructConstructionTest");
-		Outport outport = createOutport("Out", createDataTypeSpecification("struct { int x, int y, int z }"));
+		Outport outport = createOutport("Out", createDataTypeSpecification("struct { int x; int y; int z }"));
 		
 		connect(inA, structConstructionTest, 0);
 		connect(inB, structConstructionTest, 1);

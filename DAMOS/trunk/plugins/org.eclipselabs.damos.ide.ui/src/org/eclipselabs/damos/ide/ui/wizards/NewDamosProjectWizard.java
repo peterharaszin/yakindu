@@ -2,6 +2,8 @@ package org.eclipselabs.damos.ide.ui.wizards;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -11,13 +13,30 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
+import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 import org.eclipse.xtext.ui.XtextProjectHelper;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.internal.util.DamosProjectUtil;
 
-public class NewDamosProjectWizard extends Wizard implements INewWizard {
+public class NewDamosProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
 	
 	private WizardNewProjectCreationPage mainPage;
+	private IConfigurationElement configurationElement;
+	
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		setWindowTitle("New Damos Project");
+	}
+	
+	public void setInitializationData(IConfigurationElement configurationElement, String propertyName, Object data)
+			throws CoreException {
+		this.configurationElement = configurationElement;
+	}
+
+	public void addPages() {
+		super.addPages();
+		mainPage = new WizardNewDamosProjectCreationPage();
+		addPage(mainPage);
+	}
 	
 	public boolean performFinish() {
 		IProgressMonitor monitor = new NullProgressMonitor();
@@ -31,19 +50,10 @@ public class NewDamosProjectWizard extends Wizard implements INewWizard {
 					"Creation of project '" + project.getName() + "' failed", e));
 			return false;
 		}
+		BasicNewProjectResourceWizard.updatePerspective(configurationElement);
 		return true;
 	}
 
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		setWindowTitle("New Damos Project");
-	}
-	
-	public void addPages() {
-		super.addPages();
-		mainPage = new WizardNewDamosProjectCreationPage();
-		addPage(mainPage);
-	}
-	
 	private static class WizardNewDamosProjectCreationPage extends WizardNewProjectCreationPage {
 		
 		public WizardNewDamosProjectCreationPage() {

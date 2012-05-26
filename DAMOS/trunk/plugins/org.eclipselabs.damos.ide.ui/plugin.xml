@@ -50,6 +50,7 @@
       <wizard
             category="org.eclipselabs.damos.ide.ui.damosCategory"
             class="org.eclipselabs.damos.ide.ui.wizards.NewDamosProjectWizard"
+            finalPerspective="org.eclipselabs.damos.ide.ui.damosPerspective"
             icon="icons/DamosProject.gif"
             id="org.eclipselabs.damos.ide.ui.newDamosProjectWizard"
             name="Damos Project"
@@ -97,6 +98,15 @@
                style="push">
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.eclipselabs.damos.ide.ui.internal.DamosPerspectiveFactory"
+            icon="icons/BlockDiagram.png"
+            id="org.eclipselabs.damos.ide.ui.damosPerspective"
+            name="Damos">
+      </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">

@@ -30,6 +30,7 @@
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
             class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.FragmentExplorerView"
+            icon="icons/FragmentExplorer.png"
             id="org.eclipselabs.damos.ide.ui.fragmentExplorerView"
             name="Fragment Explorer"
             restorable="true">
@@ -37,6 +38,7 @@
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
             class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.BlockLibraryView"
+            icon="icons/BlockLibrary.png"
             id="org.eclipselabs.damos.ide.ui.blockLibraryView"
             name="Block Library">
       </view>

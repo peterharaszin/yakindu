@@ -2,5 +2,13 @@
 	<extension point="org.eclipse.help.toc">
 		<toc primary="true" file="help/toc.xml"></toc>
 		<toc file="help/02_UserGuide/UserGuide-toc.xml" primary="false"></toc>
+  <toc
+        file="help/02_UserGuide/01_GettingStarted/GettingStarted-toc.xml"
+        primary="false">
+  </toc>
+  <toc
+        file="help/02_UserGuide/02_Concepts/Concepts-toc.xml"
+        primary="false">
+  </toc>
 	</extension>
 </plugin>

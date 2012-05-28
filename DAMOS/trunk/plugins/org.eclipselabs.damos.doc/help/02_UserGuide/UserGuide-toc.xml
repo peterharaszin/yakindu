@@ -1,22 +1,9 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc topic="help/02_UserGuide/UserGuide.html" label="User Guide">
-	<topic href="help/02_UserGuide/UserGuide.html" label="Getting Started">
-		<topic href="help/02_UserGuide/UserGuide.html#CreatingaNewDamosProject" label="Creating a New Damos Project"></topic>
-		<topic href="help/02_UserGuide/UserGuide.html#CreatingaNewDamosModel" label="Creating a New Damos Model"></topic>
-		<topic href="help/02_UserGuide/UserGuide.html#DesigningtheModel" label="Designing the Model">
-			<topic href="help/02_UserGuide/UserGuide.html#AddingBlockstotheBlockDiagram" label="Adding Blocks to the Block Diagram"></topic>
-			<topic href="help/02_UserGuide/UserGuide.html#SettingBlockandPortProperties" label="Setting Block and Port Properties"></topic>
-			<topic href="help/02_UserGuide/UserGuide.html#ConnectingBlocks" label="Connecting Blocks"></topic>
-		</topic>
-		<topic href="help/02_UserGuide/UserGuide.html#SimulatingtheModel" label="Simulating the Model"></topic>
+	<topic label="Getting Started">
+    <link toc="help/02_UserGuide/01_GettingStarted/GettingStarted-toc.xml"/>
 	</topic>
-	<topic href="help/02_UserGuide/Concepts.html" label="Concepts">
-		<topic href="help/02_UserGuide/Concepts.html#SystemInterfacesandSubsystems" label="System Interfaces and Subsystems"></topic>
-		<topic href="help/02_UserGuide/Concepts.html#SystemFragments" label="System Fragments"></topic>
-		<topic href="help/02_UserGuide/Concepts.html#ConditionalIterationConstructs" label="Conditional &amp; Iteration Constructs">
-			<topic href="help/02_UserGuide/Concepts.html#ActionCompounds" label="Action Compounds"></topic>
-			<topic href="help/02_UserGuide/Concepts.html#WhileLoops" label="While Loops"></topic>
-		</topic>
-		<topic href="help/02_UserGuide/Concepts.html#UnitsofMeasurement" label="Units of Measurement"></topic>
-	</topic>
+ <topic label="Concepts">
+    <link toc="help/02_UserGuide/02_Concepts/Concepts-toc.xml"/>
+ </topic>
 </toc>

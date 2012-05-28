@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="help/02_UserGuide/01_GettingStarted/GettingStarted.html" label="Getting Started">
+	<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html" label="Creating and Simulating a Damos Model">
+		<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#CreatingaNewDamosProject" label="Creating a New Damos Project"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#CreatingaNewDamosModel" label="Creating a New Damos Model"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#DesigningtheModel" label="Designing the Model">
+			<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#AddingBlockstotheBlockDiagram" label="Adding Blocks to the Block Diagram"></topic>
+			<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#SettingBlockandPortProperties" label="Setting Block and Port Properties"></topic>
+			<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#ConnectingBlocks" label="Connecting Blocks"></topic>
+		</topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#SimulatingtheModel" label="Simulating the Model"></topic>
+	</topic>
+	<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html" label="Generating C Code"></topic>
+</toc>

@@ -11,20 +11,33 @@
 
 	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
 
-	<target name="assembleUserGuide">
-		<loadfile srcfile="help/02_UserGuide/index.txt" property="inputfiles">
+	<target name="assembleGettingStarted">
+		<loadfile srcfile="help/02_UserGuide/01_GettingStarted/index.txt" property="gettingStartedInputfiles">
 			<filterchain>
 				<tokenfilter>
 					<replacestring from="\n" to="," />
 				</tokenfilter>
 			</filterchain>
 		</loadfile>
-		<concat destfile="help/02_UserGuide/UserGuide.textile" append="false" fixlastline="yes">
-			<filelist dir="help/02_UserGuide" files="${inputfiles}" />
+		<concat destfile="help/02_UserGuide/01_GettingStarted/GettingStarted.textile" append="false" fixlastline="yes">
+			<filelist dir="help/02_UserGuide/01_GettingStarted" files="${gettingStartedInputfiles}" />
 		</concat>
 	</target>
 
-	<target name="generate-help" depends="assembleUserGuide" description="Generate Eclipse help from textile source">
+	<target name="assembleConcepts">
+		<loadfile srcfile="help/02_UserGuide/02_Concepts/index.txt" property="conceptsInputfiles">
+			<filterchain>
+				<tokenfilter>
+					<replacestring from="\n" to="," />
+				</tokenfilter>
+			</filterchain>
+		</loadfile>
+		<concat destfile="help/02_UserGuide/02_Concepts/Concepts.textile" append="false" fixlastline="yes">
+			<filelist dir="help/02_UserGuide/02_Concepts" files="${conceptsInputfiles}" />
+		</concat>
+	</target>
+	
+	<target name="generate-help" depends="assembleGettingStarted, assembleConcepts" description="Generate Eclipse help from textile source">
 		<wikitext-to-eclipse-help markupLanguage="Textile"
 			multipleOutputFiles="true"
 			navigationImages="true"
@@ -38,16 +51,27 @@
 		<wikitext-to-eclipse-help markupLanguage="Textile"
 			multipleOutputFiles="true"
 			navigationImages="true"
-			title="User Guide">
+			title="Getting Started">
 			<fileset dir="${basedir}">
-				<include name="help/02_UserGuide/UserGuide.textile"/>
+				<include name="help/02_UserGuide/01_GettingStarted/GettingStarted.textile"/>
 			</fileset>
 			<stylesheet url="../content/PLUGINS_ROOT/PRODUCT_PLUGIN/book.css"/>
-			<stylesheet url="../style.css"/>
+			<stylesheet url="../../style.css"/>
+		</wikitext-to-eclipse-help>
+		<wikitext-to-eclipse-help markupLanguage="Textile"
+			multipleOutputFiles="true"
+			navigationImages="true"
+			title="Concepts">
+			<fileset dir="${basedir}">
+				<include name="help/02_UserGuide/02_Concepts/Concepts.textile"/>
+			</fileset>
+			<stylesheet url="../content/PLUGINS_ROOT/PRODUCT_PLUGIN/book.css"/>
+			<stylesheet url="../../style.css"/>
 		</wikitext-to-eclipse-help>
 		<delete>
 			<fileset dir="${basedir}">
-				<include name="help/02_UserGuide/UserGuide.textile"/>
+				<include name="help/02_UserGuide/01_GettingStarted/GettingStarted.textile"/>
+				<include name="help/02_UserGuide/02_Concepts/Concepts.textile"/>
 			</fileset>
 		</delete>
 	</target>

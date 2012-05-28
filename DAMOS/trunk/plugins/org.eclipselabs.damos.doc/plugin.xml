@@ -1,5 +1,6 @@
-<plugin><extension point="org.eclipse.help.toc"><toc primary="true" file="help/toc.xml"></toc>
-                                                <toc
-                                                      file="help/02_UserGuide/UserGuide-toc.xml"
-                                                      primary="false">
-                                                </toc></extension></plugin>
+<plugin>
+	<extension point="org.eclipse.help.toc">
+		<toc primary="true" file="help/toc.xml"></toc>
+		<toc file="help/02_UserGuide/UserGuide-toc.xml" primary="false"></toc>
+	</extension>
+</plugin>

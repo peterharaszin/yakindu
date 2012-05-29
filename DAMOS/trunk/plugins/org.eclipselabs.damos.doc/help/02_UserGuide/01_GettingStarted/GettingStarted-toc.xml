@@ -10,5 +10,10 @@
 		</topic>
 		<topic href="help/02_UserGuide/01_GettingStarted/GettingStarted.html#SimulatingtheModel" label="Simulating the Model"></topic>
 	</topic>
-	<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html" label="Generating C Code"></topic>
+	<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html" label="Generating C Code">
+		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#ExampleModel" label="Example Model"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#CreatingGeneratorConfiguration" label="Creating Generator Configuration"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#GeneratingSourceCode" label="Generating Source Code"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#IntegratingtheGeneratedCodeinExistingApplications" label="Integrating the Generated Code in Existing Applications"></topic>
+	</topic>
 </toc>

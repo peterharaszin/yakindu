@@ -21,7 +21,7 @@ To create the example model:
 The block diagram should look as follows:
 !02_GeneratingCode_images/InitialBlockDiagram.png(Initial block diagram)!
 
-You may ask, why do we need these Inports and Outports? As we will later see, those blocks will represent the interface of our system in the generated code. 
+You may ask, why do we need these Inports and Outports? As we will see later, those blocks will represent the interface of our system in the generated code. 
 
 h2. Creating Generator Configuration
 

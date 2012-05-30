@@ -47,6 +47,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -263,7 +264,11 @@ public class BehavioredBlockHelper {
 			if (status.getSeverity() > IStatus.WARNING) {
 				throw new CoreException(status);
 			}
-			return staticEvaluationContext.getValue(expression);
+			IValue value = staticEvaluationContext.getValue(expression);
+			if (value instanceof InvalidValue) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' is invalid"));
+			}
+			return value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' must be an expression"));
 	}

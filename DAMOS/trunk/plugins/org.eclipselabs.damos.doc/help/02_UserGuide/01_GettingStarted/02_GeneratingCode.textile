@@ -19,12 +19,61 @@ To create the example model:
 * Optionally, for each Inport and Outport select *Show Name* in the *Appearance* property tab to show their names.
 
 The block diagram should look as follows:
+
 !02_GeneratingCode_images/InitialBlockDiagram.png(Initial block diagram)!
 
-You may ask, why do we need these Inports and Outports? As we will see later, those blocks will represent the interface of our system in the generated code. 
+You may ask, why do we need these Inports and Outports? As we will see later, those blocks will represent the interface of our system in the generated code.
+
+Next, we add the following block to the block diagram:
+
+* 2 *Sum* blocks
+* *Gain* block with a gain value of 0.1
+* *Constant* block with a value of 0
+* *Switch* block
+* *Discrete Integrator* block with an initial value of 0 and a gain value of 0.075(1/s)
+* *Saturate* block with upper limit of 1 and lower limit of 0
+* *Compare* block with an equals ('==') operator
+
+After connecting the blocks, the block diagram should look as follows: 
+
+!02_GeneratingCode_images/FinalBlockDiagram.png(Final block diagram)!
 
 h2. Creating Generator Configuration
 
+To generate code from a Damos model, we need to create a _generator configuration_. To create the generator configuration:
+
+* Right-click the block diagram in the project explorer, and then *New > Other...*.
+* Select *Damos > C Code Generator Configuration*: !02_GeneratingCode_images/NewCCodeGeneratorConfiguration.png(New C code generator configuration wizard)!
+* Click *Finish*
+
+After clicking *Finish*, the new generator configuration file with the extension _.dconfig_ should be opened in a text editor. It should have the following contents:
+
+bc.. package speedcontrol
+
+import damos.codegen.*
+import damos.codegen.c.*
+
+configuration GenerateSpeedControl {
+
+	select generator DefaultGenerator {
+		projectName = "SpeedControl"
+		sourceFolder = "src-gen"
+		systemSourceFile = "SpeedControl.c"
+	}
+
+	system SpeedControl {
+		prefix = "SpeedControl_"
+		//propagate computation {
+		//	map real() to float64
+		//	map int() to int32
+		//}
+	}
+
+}
+p. The @projectName@ and @sourceFolder@ properties specify the target project and source folder, respectively. If you want to generate the code into another project or folder, you can change those properties accordingly.
+
 h2. Generating Source Code
+
+To start the code generation process, right-click on the generator configuration file (in our example _GenerateSpeedControl.dconfig_) and select *Generate Code*. The target source folder should now contain a C header file (.h) and a C source file (.c).
 
 h2. Integrating the Generated Code in Existing Applications

@@ -77,3 +77,29 @@ h2. Generating Source Code
 To start the code generation process, right-click on the generator configuration file (in our example _GenerateSpeedControl.dconfig_) and select *Generate Code*. The target source folder should now contain a C header file (.h) and a C source file (.c).
 
 h2. Integrating the Generated Code in Existing Applications
+
+The public interface of the generated code is defined in the header file. It consists of two functions:
+
+* @SpeedControl_initialize(void)@ function, which must be called only once, and the
+* @SpeedControl_execute(const SpeedControl_Input *input, SpeedControl_Output *output)@ function, which must be invoked periodically.
+
+The @input@ and @output@ parameters of the _execute_ function are pointers to structures containing a member variable for each Inport and Output, respectively. Before invoking the _execute_ function, the member variables of the input structure must be set (e.g. from sensor data). After returning from the _execute_ function, the results can be read from the member variables of the output structure for further processing (e.g. new actuator value).
+
+A simplified application may look as follows:
+
+bc.. void speedControlTask(void) {
+	SpeedControl_Input input;
+	SpeedControl_Output output;
+	
+	SpeedControl_initialize();
+	
+	for (;;) {
+		input.desiredSpeed = getDesiredSpeed();
+		input.actualSpeed = getActualSpeed();
+		
+		SpeedControl_execute(&input, &output);
+		
+		setEnginePower(output.power);
+	}
+}
+p. _Note:_ Damos allows you to provide _target generators_ for specific systems. In this case you do not need to write the glue code for accessing the hardware. See the topic _Concepts_ for more information on target generators.

@@ -74,4 +74,4 @@ The default simulation run configuration utilizes a commonly used adaptive step 
 
 !01_CreatingModel_images/SimulationRunConfiguration.png(Simulation run configuration)!
 
-If you need more control over the simulation, you can define a _simulation model_, which will directly be passed to the simulator by the simulation launcher. See subsequent user guide sections for more information on the simulation model.
+If you need more control over the simulation, you can define a _simulation model_, which will directly be passed to the simulator by the simulation launcher. See the topic _Concepts_ for more information on the simulation model.

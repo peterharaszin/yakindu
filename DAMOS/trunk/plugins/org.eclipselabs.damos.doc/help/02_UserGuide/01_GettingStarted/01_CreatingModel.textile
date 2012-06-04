@@ -6,7 +6,7 @@ This tutorial provides a step by step walk-through of the basic features of Damo
 h2. Creating a New Damos Project
 
 # Inside Eclipse select the menu item *File > New > Project...* to open the *New Project* wizard.
-# Select *Damos > Damos Project* then click *Next* to start the *New Damos Project* wizard: !01_CreatingModel_images/NewDamosProject.png(New Damos Project Wizard)!
+# Select *Damos > Damos Project* and then click *Next* to start the *New Damos Project* wizard: !01_CreatingModel_images/NewDamosProject.png(New Damos Project Wizard)!
 # Enter a project name and click *Finish*.
 # In the *Project Explorer*, select the newly created Damos project and select the menu item *File > New > Folder*: !01_CreatingModel_images/NewModelFolder.png(New Damos Project Wizard)!
 # Enter a name for the model folder and click *Finish*.
@@ -16,7 +16,7 @@ _Note:_ Instead of creating a Damos project, any kind of project (e.g. C/C++) ca
 h2. Creating a New Damos Model
 
 # In the *Project Explorer*, select the model folder and select the menu item *File > New > Other...* to open the *New* wizard.
-# Select *Damos > Block Diagram* then click *Next* to start the *New Block Diagram* wizard: !01_CreatingModel_images/NewBlockDiagram.png(New Block Diagram Wizard)!
+# Select *Damos > Block Diagram* and then click *Next* to start the *New Block Diagram* wizard: !01_CreatingModel_images/NewBlockDiagram.png(New Block Diagram Wizard)!
 # Enter a new model name and click *Finish*.
 
 After clicking *Finish*, an empty block diagram file will be created in the model folder, and will be opened in a block diagram editor.

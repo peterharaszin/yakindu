@@ -54,6 +54,8 @@ public class SystemInterfaceProvider implements ISystemInterfaceProvider {
 					false,
 					ResourcesPlugin.getWorkspace().getRoot(),
 					IResource.FILE);
+			d.setTitle("Select System Interface");
+			d.setMessage("Select a system interface for the new subsystem (*, ?, or camel case):");
 			d.setInitialPattern("*.systeminterface");
 			
 			if (d.open() == Dialog.OK) {

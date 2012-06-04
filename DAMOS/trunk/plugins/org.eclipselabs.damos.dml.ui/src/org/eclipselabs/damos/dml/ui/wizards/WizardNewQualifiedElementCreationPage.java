@@ -220,6 +220,9 @@ public class WizardNewQualifiedElementCreationPage extends WizardPage {
 		super.setVisible(visible);
 		if (visible) {
 			modelNameText.setFocus();
+			if (modelNameText.getText().length() > 0) {
+				modelNameText.selectAll();
+			}
 		}
 	}
 

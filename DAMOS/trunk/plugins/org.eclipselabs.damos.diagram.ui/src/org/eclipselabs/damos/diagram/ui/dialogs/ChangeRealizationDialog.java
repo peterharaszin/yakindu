@@ -169,7 +169,7 @@ public class ChangeRealizationDialog extends Dialog {
 		fragmentViewer.setInput(editingDomain.getResourceSet());
 
 		searchButton = new Button(composite, SWT.PUSH);
-		searchButton.setText("Load Resource...");
+		searchButton.setText("Load...");
 		GridDataFactory.defaultsFor(searchButton).align(SWT.CENTER, SWT.BEGINNING).applyTo(searchButton);
 		searchButton.addSelectionListener(new SelectionAdapter() {
 			
@@ -216,6 +216,8 @@ public class ChangeRealizationDialog extends Dialog {
 				false,
 				ResourcesPlugin.getWorkspace().getRoot(),
 				IResource.FILE);
+		d.setTitle("Select Block Diagram");
+		d.setMessage("Select block diagram to load (*, ?, or camel case):");
 		d.setInitialPattern("*.blockdiagram");
 		
 		if (d.open() == Dialog.OK) {

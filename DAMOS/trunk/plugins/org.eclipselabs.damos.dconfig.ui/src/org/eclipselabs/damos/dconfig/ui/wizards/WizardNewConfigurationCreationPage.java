@@ -277,6 +277,9 @@ public class WizardNewConfigurationCreationPage extends WizardPage {
 		super.setVisible(visible);
 		if (visible) {
 			configurationNameText.setFocus();
+			if (configurationNameText.getText().length() > 0) {
+				configurationNameText.selectAll();
+			}
 		}
 	}
 

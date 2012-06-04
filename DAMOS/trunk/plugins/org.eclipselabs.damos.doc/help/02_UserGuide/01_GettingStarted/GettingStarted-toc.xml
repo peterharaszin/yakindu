@@ -16,4 +16,9 @@
 		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#GeneratingSourceCode" label="Generating Source Code"></topic>
 		<topic href="help/02_UserGuide/01_GettingStarted/Generating-C-Code.html#IntegratingtheGeneratedCodeinExistingApplications" label="Integrating the Generated Code in Existing Applications"></topic>
 	</topic>
+	<topic href="help/02_UserGuide/01_GettingStarted/Structuring-Models-using-Subsystems.html" label="Structuring Models using Subsystems">
+		<topic href="help/02_UserGuide/01_GettingStarted/Structuring-Models-using-Subsystems.html#CreatingaSystemInterface" label="Creating a System Interface"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/Structuring-Models-using-Subsystems.html#CreatingtheEnvironmentModel" label="Creating the Environment Model"></topic>
+		<topic href="help/02_UserGuide/01_GettingStarted/Structuring-Models-using-Subsystems.html#SimulatingtheEnvironmentModel" label="Simulating the Environment Model"></topic>
+	</topic>
 </toc>

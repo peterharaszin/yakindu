@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="shieldGenerators" name="Shield Generators" schema="schema/shieldGenerators.exsd"/>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.codegen.targets.arduino/dconfig/Arduino.xmi">
+      </resource>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.codegen.c.targetGenerators">
+      <generator
+            class="org.eclipselabs.damos.codegen.targets.arduino.ArduinoUnoTargetGenerator"
+            target="damos.codegen.targets.arduino.ArduinoUno">
+      </generator>
+   </extension>
+
+</plugin>

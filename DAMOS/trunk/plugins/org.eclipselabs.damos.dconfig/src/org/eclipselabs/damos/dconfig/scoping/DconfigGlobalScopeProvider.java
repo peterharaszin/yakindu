@@ -73,21 +73,25 @@ public class DconfigGlobalScopeProvider extends DefaultGlobalScopeProvider {
 			if (eObjectDescriptions == null) {
 				List<IEObjectDescription> eObjectDescriptions = new ArrayList<IEObjectDescription>();
 				for (URI uri : DefinitionRegistry.getInstance().getDefinitionResourceURIs()) {
-					Resource resource = resourceSet.getResource(uri, true);
-					if (resource == null) {
-						DconfigPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DconfigPlugin.PLUGIN_ID, "Resource not found: " + uri.toString()));
-						continue;
-					}
-					for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
-						EObject next = it.next();
-						if (next instanceof ConfigurationDefinitionMember) {
-							eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(next), next));
+					try {
+						Resource resource = resourceSet.getResource(uri, true);
+						if (resource == null) {
+							DconfigPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DconfigPlugin.PLUGIN_ID, "Resource not found: " + uri.toString()));
+							continue;
 						}
-						if (!(next instanceof ConfigurationDefinition)) {
-							it.prune();
+						for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
+							EObject next = it.next();
+							if (next instanceof ConfigurationDefinitionMember) {
+								eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(next), next));
+							}
+							if (!(next instanceof ConfigurationDefinition)) {
+								it.prune();
+							}
 						}
+						resource.unload();
+					} catch (RuntimeException e) {
+						DconfigPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DconfigPlugin.PLUGIN_ID, "Error loading resource " + uri.toString(), e));
 					}
-					resource.unload();
 				}
 				DconfigGlobalScopeProvider.eObjectDescriptions = eObjectDescriptions;
 			}

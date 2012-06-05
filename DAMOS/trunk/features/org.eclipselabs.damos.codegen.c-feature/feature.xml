@@ -44,6 +44,20 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipselabs.damos.codegen.targets.arduino"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipselabs.damos.codegen.targets.arduino.shields"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipselabs.damos.codegen.c.ui"
          download-size="0"
          install-size="0"

@@ -15,6 +15,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
+import org.eclipselabs.damos.dconfig.internal.DconfigPlugin;
 import org.eclipselabs.damos.dconfig.internal.registry.DefinitionRegistry;
 
 /**
@@ -57,20 +60,24 @@ public class PropertyEnumerationHelper {
 		}
 		
 		for (URI uri : DefinitionRegistry.getInstance().getDefinitionResourceURIs()) {
-			Resource resource = resourceSet.getResource(uri, true);
-			for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
-				EObject next = it.next();
-				if (next instanceof PropertyDeclaration) {
-					PropertyDeclaration propertyDeclaration = (PropertyDeclaration) next;
-					propertyDeclarations.put(propertyDeclaration.getQualifiedName(), propertyDeclaration);
-				} else if (next instanceof SelectionPropertyOption) {
-					SelectionPropertyOption option = (SelectionPropertyOption) next;
-					Map<String, SelectionPropertyOption> optionMap = selectionPropertyOption.get(option.getTarget().getQualifiedName());
-					if (optionMap != null) {
-						optionMap.put(option.getQualifiedName(), option);
+			try {
+				Resource resource = resourceSet.getResource(uri, true);
+				for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
+					EObject next = it.next();
+					if (next instanceof PropertyDeclaration) {
+						PropertyDeclaration propertyDeclaration = (PropertyDeclaration) next;
+						propertyDeclarations.put(propertyDeclaration.getQualifiedName(), propertyDeclaration);
+					} else if (next instanceof SelectionPropertyOption) {
+						SelectionPropertyOption option = (SelectionPropertyOption) next;
+						Map<String, SelectionPropertyOption> optionMap = selectionPropertyOption.get(option.getTarget().getQualifiedName());
+						if (optionMap != null) {
+							optionMap.put(option.getQualifiedName(), option);
+						}
+						it.prune();
 					}
-					it.prune();
 				}
+			} catch (RuntimeException e) {
+				DconfigPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, DconfigPlugin.PLUGIN_ID, "Error loading resource " + uri.toString(), e));
 			}
 		}
 	}

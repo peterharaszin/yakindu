@@ -9,12 +9,13 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.internal.registry;
+package org.eclipselabs.damos.codegen.targets.arduino.internal.registry;
+
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
-import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
+import org.eclipselabs.damos.codegen.targets.arduino.ArduinoPlugin;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 
@@ -22,17 +23,17 @@ import org.eclipselabs.damos.common.registry.IRegistryConstants;
  * @author Andreas Unger
  *
  */
-public class TargetGeneratorRegistryReader extends AbstractRegistryReader implements IRegistryConstants {
+public class ShieldGeneratorRegistryReader extends AbstractRegistryReader implements IRegistryConstants {
 
-	private static final String EXTENSION_POINT_NAME = "targetGenerators";
+	private static final String EXTENSION_POINT_NAME = "shieldGenerators";
 
 	private static final String TAG = "generator";
 	
-	private static final String ATT_TARGET_ID = "target";
+	private static final String ATT_TARGET_ID = "shield";
 
-	private TargetGeneratorRegistry registry;
+	private ShieldGeneratorRegistry registry;
 	
-	public void registerProviders(TargetGeneratorRegistry registry) {
+	public void registerProviders(ShieldGeneratorRegistry registry) {
 		this.registry = registry;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
 	}
@@ -42,7 +43,7 @@ public class TargetGeneratorRegistryReader extends AbstractRegistryReader implem
 	 */
 	@Override
 	protected String getPluginId() {
-		return CodegenCPlugin.PLUGIN_ID;
+		return ArduinoPlugin.PLUGIN_ID;
 	}
 
 	/* (non-Javadoc)
@@ -50,7 +51,7 @@ public class TargetGeneratorRegistryReader extends AbstractRegistryReader implem
 	 */
 	@Override
 	protected ILog getLog() {
-		return CodegenCPlugin.getDefault().getLog();
+		return ArduinoPlugin.getDefault().getLog();
 	}
 
 	/* (non-Javadoc)
@@ -65,8 +66,8 @@ public class TargetGeneratorRegistryReader extends AbstractRegistryReader implem
 		String id = getRequiredAttribute(element, ATT_TARGET_ID);
 		String className = getRequiredAttribute(element, ATT_CLASS);
 		
-		TargetGeneratorDescriptor generator = new TargetGeneratorDescriptor();
-		generator.setTargetId(id);
+		ShieldGeneratorDescriptor generator = new ShieldGeneratorDescriptor();
+		generator.setShieldId(id);
 		generator.setClassName(className);
 		generator.setConfigurationElement(element);
 		registry.register(generator);

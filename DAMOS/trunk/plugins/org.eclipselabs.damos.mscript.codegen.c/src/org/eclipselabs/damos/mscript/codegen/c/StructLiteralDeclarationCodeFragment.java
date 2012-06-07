@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -51,11 +49,8 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -83,12 +78,11 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("extern const %s %s;\n", typeName, name);
+		return sb;
 	}
 	
 	/* (non-Javadoc)
@@ -99,18 +93,17 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		PrintAppendable out = new PrintAppendable(appendable);
+		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("const %s %s = ", typeName, name);
 		out.print(body);
 		out.print(";\n");
+		return sb;
 	}
 	
 	/* (non-Javadoc)

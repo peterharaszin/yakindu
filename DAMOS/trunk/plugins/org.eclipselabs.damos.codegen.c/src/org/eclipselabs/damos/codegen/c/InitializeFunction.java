@@ -51,27 +51,27 @@ public class InitializeFunction extends PrimaryCodeFragment {
 		this.taskGenerator = taskGenerator;
 	}
 	
-	@Override
-	public Collection<Include> getImplementationIncludes() {
-		return implementationIncludes;
-	}
-	
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(IMPLEMENTATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
 				return other instanceof ContextVariable;
 			}
-
+	
 		});
 		PrintAppendable out = new PrintAppendable(content);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
-
+	
 		functionSignature = "void " + prefix + "initialize(void)";
 		
 		out.print(functionSignature);
 		out.print(" {\n");
-		taskGenerator.writeInitializeTasks(context, out, monitor);
+		try {
+			taskGenerator.writeInitializeTasks(context, out, monitor);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (!(node instanceof ComponentNode)) {
@@ -92,18 +92,17 @@ public class InitializeFunction extends PrimaryCodeFragment {
 		}
 		out.print("}\n");
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
+
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		appendable.append(functionSignature);
-		appendable.append(";\n");
+		sb.append(functionSignature);
+		sb.append(";\n");
+		return sb;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#contributesImplementation()
 	 */
@@ -111,16 +110,20 @@ public class InitializeFunction extends PrimaryCodeFragment {
 	public boolean contributesImplementation() {
 		return true;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
+
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public Collection<Include> getImplementationIncludes() {
+		return implementationIncludes;
+	}
+	
+	@Override
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		appendable.append(content);
+		sb.append(content);
+		return sb;
 	}
 
 }

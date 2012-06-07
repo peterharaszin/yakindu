@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.ITaskInfoStruct;
@@ -28,20 +26,19 @@ public class TaskInfoStruct extends PrimaryCodeFragment implements ITaskInfoStru
 	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append("#ifndef DAMOS_POSIX_TASK_INFO_DEFINED\n");
-		appendable.append("#define DAMOS_POSIX_TASK_INFO_DEFINED\n\n");
-		appendable.append("typedef struct {\n");
-		appendable.append("void *(*function)(void *context);\n");
-		appendable.append("int priority;\n");
-		appendable.append("} Damos_Posix_TaskInfo;\n\n");
-		appendable.append("#endif /* DAMOS_POSIX_TASK_INFO_DEFINED */\n");
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("#ifndef DAMOS_POSIX_TASK_INFO_DEFINED\n");
+		sb.append("#define DAMOS_POSIX_TASK_INFO_DEFINED\n\n");
+		sb.append("typedef struct {\n");
+		sb.append("void *(*function)(void *context);\n");
+		sb.append("int priority;\n");
+		sb.append("} Damos_Posix_TaskInfo;\n\n");
+		sb.append("#endif /* DAMOS_POSIX_TASK_INFO_DEFINED */\n");
+		return sb;
 	}
 	
 	/* (non-Javadoc)

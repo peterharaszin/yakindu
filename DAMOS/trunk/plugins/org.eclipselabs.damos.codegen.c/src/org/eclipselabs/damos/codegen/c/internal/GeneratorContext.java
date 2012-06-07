@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -68,12 +67,8 @@ public class GeneratorContext extends PlatformObject implements IGeneratorContex
 		if (existing != null) {
 			return existing;
 		}
-		try {
-			codeFragment.initialize(this, monitor);
-			codeFragments.put(codeFragment, codeFragment);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		codeFragment.initialize(this, monitor);
+		codeFragments.put(codeFragment, codeFragment);
 		return codeFragment;
 	}
 	

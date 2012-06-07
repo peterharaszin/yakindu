@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -26,11 +24,8 @@ public class ContextVariable extends PrimaryCodeFragment {
 	
 	private String prefix;
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -50,12 +45,11 @@ public class ContextVariable extends PrimaryCodeFragment {
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append("extern ");
-		writeImplementation(appendable, false);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("extern ");
+		sb.append(generateImplementation(false));
+		return sb;
 	}
 
 	/* (non-Javadoc)
@@ -66,16 +60,15 @@ public class ContextVariable extends PrimaryCodeFragment {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		if (internal) {
 			out.print("static ");
 		}
 		out.printf("%sContext %scontext;\n", prefix, prefix);
+		return sb;
 	}
 
 }

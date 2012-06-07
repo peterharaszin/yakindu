@@ -46,12 +46,7 @@ public class ContextStruct extends PrimaryCodeFragment {
 		this.taskGenerator = taskGenerator;
 	}
 	
-	@Override
-	public Collection<Include> getForwardDeclarationIncludes() {
-		return forwardDeclarationIncludes;
-	}
-	
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -63,10 +58,10 @@ public class ContextStruct extends PrimaryCodeFragment {
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
 			context.addCodeFragment(new TaskMessageStruct(), monitor);
 		}
-
+	
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-
+	
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
@@ -81,14 +76,19 @@ public class ContextStruct extends PrimaryCodeFragment {
 					forwardDeclarationIncludes.addAll(includes);
 				}
 				if (generator.getContextTypeName() == null) {
-					out.append(generator.generateContextCode(getContextTypeName(context, componentNode), monitor));
-					out.append("\n");
+					out.print(generator.generateContextCode(getContextTypeName(context, componentNode), monitor));
+					out.print("\n");
 				}
 			}
 		}
 		
 		out.println("typedef struct {");
-		taskGenerator.writeTaskContexts(context, out, monitor);
+		try {
+			taskGenerator.writeTaskContexts(context, out, monitor);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -103,17 +103,19 @@ public class ContextStruct extends PrimaryCodeFragment {
 				out.printf("%s %s;\n", typeName, InternalGeneratorUtil.getPrefix(context.getConfiguration(), node) + componentNode.getComponent().getName());
 			}
 		}
-
+	
 		out.printf("} %sContext;\n", prefix);
 		
 		content = sb.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append(content);
+	@Override
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return forwardDeclarationIncludes;
+	}
+	
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		return content;
 	}
 
 	/**

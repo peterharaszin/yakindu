@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,10 +26,7 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 
 	private final Collection<Dependency> dependencies = new ArrayList<Dependency>();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 	}
 	
 	public final void addDependency(int kind, IDependencyRule rule) {
@@ -77,10 +73,8 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 		return Collections.emptyList();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateImplementation(boolean internal) {
+		return "";
 	}
 	
 	private static class Dependency {

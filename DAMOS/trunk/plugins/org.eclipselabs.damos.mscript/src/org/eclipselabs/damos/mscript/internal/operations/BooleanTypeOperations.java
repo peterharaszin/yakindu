@@ -31,6 +31,8 @@ public class BooleanTypeOperations extends PrimitiveTypeOperations {
 			case LOGICAL_OR:
 			case IMPLIES:
 				return MscriptFactory.eINSTANCE.createBooleanType();
+			default:
+				break;
 			}
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();

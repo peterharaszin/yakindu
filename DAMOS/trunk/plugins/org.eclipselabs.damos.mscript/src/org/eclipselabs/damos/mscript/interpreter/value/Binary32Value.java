@@ -220,6 +220,8 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 			switch (floatingPointFormat.getKind()) {
 			case BINARY64:
 				return new Binary64Value(getContext(), numericType, floatingPointFormat, value);
+			default:
+				break;
 			}
 		}
 

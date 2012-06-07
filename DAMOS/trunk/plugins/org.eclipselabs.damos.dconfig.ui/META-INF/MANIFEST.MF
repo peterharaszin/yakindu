@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.xtext.ui,
  org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0"
 Export-Package: org.eclipselabs.damos.dconfig.ui.contentassist.antlr,
  org.eclipselabs.damos.dconfig.ui.internal,
- org.eclipselabs.damos.dconfig.ui.wizards
+ org.eclipselabs.damos.dconfig.ui.wizards,
+ org.eclipselabs.damos.dconfig.ui.contentassist
 Import-Package: org.apache.log4j
 Bundle-Activator: org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator
 Bundle-ActivationPolicy: lazy

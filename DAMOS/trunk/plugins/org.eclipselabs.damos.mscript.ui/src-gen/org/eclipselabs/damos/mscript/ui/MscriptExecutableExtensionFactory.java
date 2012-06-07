@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipselabs.damos.mscript.ui.internal.MscriptActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class MscriptExecutableExtensionFactory extends AbstractGuiceAwareExecuta
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipselabs.damos.mscript.ui.internal.MscriptActivator.getInstance().getBundle();
+		return MscriptActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipselabs.damos.mscript.ui.internal.MscriptActivator.getInstance().getInjector("org.eclipselabs.damos.mscript.Mscript");
+		return MscriptActivator.getInstance().getInjector(MscriptActivator.ORG_ECLIPSELABS_DAMOS_MSCRIPT_MSCRIPT);
 	}
 	
 }

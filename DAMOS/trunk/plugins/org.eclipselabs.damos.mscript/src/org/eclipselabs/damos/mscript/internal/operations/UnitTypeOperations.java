@@ -30,6 +30,8 @@ public class UnitTypeOperations extends DataTypeOperations {
 		case EQUAL_TO:
 		case NOT_EQUAL_TO:
 			return MscriptFactory.eINSTANCE.createBooleanType();
+		default:
+			break;
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}

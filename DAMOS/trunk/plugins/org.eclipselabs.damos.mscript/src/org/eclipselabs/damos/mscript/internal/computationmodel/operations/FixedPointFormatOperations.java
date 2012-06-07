@@ -167,6 +167,9 @@ public class FixedPointFormatOperations {
 			fixedPointFormat.setFractionLength(127);
 			fixedPointFormat.setBias(0);
 			fixedPointFormat.setSlope(1);
+			break;
+		default:
+			// Do nothing
 			break;	
 		}
 	}

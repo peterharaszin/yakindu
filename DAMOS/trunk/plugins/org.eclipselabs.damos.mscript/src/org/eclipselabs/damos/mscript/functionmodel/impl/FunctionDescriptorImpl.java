@@ -343,6 +343,9 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 		case OUTPUT_PARAMETER:
 		case STATE_VARIABLE:
 			return hasPrecedentEquationsFor(variableStep.getDescriptor(), index, diagnostics);
+		default:
+			// Do nothing
+			break;
 		}
 		return true;
 	}

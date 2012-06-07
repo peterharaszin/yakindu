@@ -24,5 +24,6 @@ Import-Package: org.apache.log4j,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipselabs.damos.dmltext.ui,
  org.eclipselabs.damos.dmltext.ui.contentassist.antlr,
- org.eclipselabs.damos.dmltext.ui.internal
+ org.eclipselabs.damos.dmltext.ui.internal,
+ org.eclipselabs.damos.dmltext.ui.contentassist
 Bundle-Activator: org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator

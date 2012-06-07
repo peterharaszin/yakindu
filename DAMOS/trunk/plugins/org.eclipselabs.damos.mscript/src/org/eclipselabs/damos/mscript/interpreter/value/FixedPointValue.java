@@ -356,6 +356,8 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 				return castToBinary32(numericType, floatingPointFormat);
 			case BINARY64:
 				return castToBinary64(numericType, floatingPointFormat);
+			default:
+				break;
 			}
 		}
 		

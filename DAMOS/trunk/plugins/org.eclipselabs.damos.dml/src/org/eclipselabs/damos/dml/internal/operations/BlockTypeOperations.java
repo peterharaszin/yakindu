@@ -34,6 +34,8 @@ public class BlockTypeOperations {
 		case ASYNCHRONOUS:
 			block.setTimingConstraint(DMLFactory.eINSTANCE.createAsynchronousTimingConstraint());
 			break;
+		default:
+			break;
 		}
 		
 		ConfigureUtil.configureParameters(block);

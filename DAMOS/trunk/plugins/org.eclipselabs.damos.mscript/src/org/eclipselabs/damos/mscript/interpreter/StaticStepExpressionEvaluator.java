@@ -83,6 +83,8 @@ public class StaticStepExpressionEvaluator {
 				return leftOperand + rightOperand;
 			case SUBTRACT:
 				return leftOperand - rightOperand;
+			default:
+				break;
 			}
 			throw new IllegalArgumentException();
 		}

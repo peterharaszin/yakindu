@@ -13,6 +13,10 @@ Workflow {
     bean = StandaloneSetup {
 	    scanClassPath = true
 		platformUri = "${runtimeProject}/.."
+		registerGeneratedEPackage = "org.eclipselabs.damos.dml.DMLPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.MscriptPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.dconfig.DconfigPackage"
 	}
 
 	component = DirectoryCleaner {
@@ -26,7 +30,7 @@ Workflow {
 	component = Generator {
 		pathRtProject = runtimeProject
 		pathUiProject = "${runtimeProject}.ui"
-		pathTestProject = "${runtimeProject}.tests"
+		// pathTestProject = "${runtimeProject}.tests"
 		projectNameRt = projectName
 		projectNameUi = "${projectName}.ui"
 		language = {
@@ -94,7 +98,7 @@ Workflow {
 			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
 
 			// generates junit test support classes into Generator#pathTestProject
-			fragment = junit.Junit4Fragment {}
+			// fragment = junit.Junit4Fragment {}
 
 			// project wizard (optional) 
 			// fragment = projectWizard.SimpleProjectWizardFragment {

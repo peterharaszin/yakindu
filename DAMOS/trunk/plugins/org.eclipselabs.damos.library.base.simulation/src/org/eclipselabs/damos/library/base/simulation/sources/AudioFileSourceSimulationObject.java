@@ -47,6 +47,7 @@ public class AudioFileSourceSimulationObject extends AbstractBlockSimulationObje
 	private double[] rawOutputValues;
 	private IValue[] outputValue;
 
+	@SuppressWarnings("resource")
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		String fileURIString = getComponent().getArgumentStringValue(AudioFileSourceConstants.PARAMETER__FILE_URI);

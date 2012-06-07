@@ -65,6 +65,8 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 				return result;
 			}
 			break;
+		default:
+			break;
 		}
 
 		return MscriptFactory.eINSTANCE.createInvalidDataType();

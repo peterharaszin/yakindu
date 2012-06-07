@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.util.Formatter;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
@@ -98,7 +96,7 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
-					new Formatter(out).format("%s.data = %s;\n", contextVariable, outputVariable);
+					out.printf("%s.data = %s;\n", contextVariable, outputVariable);
 					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateUnlockCode(variableName));
 				}
 			}

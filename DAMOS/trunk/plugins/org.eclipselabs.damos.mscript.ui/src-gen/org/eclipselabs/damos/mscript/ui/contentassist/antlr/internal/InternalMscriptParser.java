@@ -66016,54 +66016,6 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__UnitFactor__ExponentAssignment_1_1"
 
-    // $ANTLR start synpred10_InternalMscript
-    public final void synpred10_InternalMscript_fragment() throws RecognitionException {   
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3538:1: ( ( rulePrimitiveType ) )
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3538:1: ( rulePrimitiveType )
-        {
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3538:1: ( rulePrimitiveType )
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3539:1: rulePrimitiveType
-        {
-        if ( state.backtracking==0 ) {
-           before(grammarAccess.getAnonymousTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0_0()); 
-        }
-        pushFollow(FOLLOW_rulePrimitiveType_in_synpred10_InternalMscript7490);
-        rulePrimitiveType();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-
-        }
-    }
-    // $ANTLR end synpred10_InternalMscript
-
-    // $ANTLR start synpred11_InternalMscript
-    public final void synpred11_InternalMscript_fragment() throws RecognitionException {   
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3544:6: ( ( ruleArrayType ) )
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3544:6: ( ruleArrayType )
-        {
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3544:6: ( ruleArrayType )
-        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3545:1: ruleArrayType
-        {
-        if ( state.backtracking==0 ) {
-           before(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeArrayTypeParserRuleCall_0_1()); 
-        }
-        pushFollow(FOLLOW_ruleArrayType_in_synpred11_InternalMscript7507);
-        ruleArrayType();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-
-        }
-    }
-    // $ANTLR end synpred11_InternalMscript
-
     // $ANTLR start synpred130_InternalMscript
     public final void synpred130_InternalMscript_fragment() throws RecognitionException {   
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:11110:2: ( rule__RelationalExpression__Group_1__0 )
@@ -66110,39 +66062,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred10_InternalMscript() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred10_InternalMscript_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred130_InternalMscript() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred130_InternalMscript_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred11_InternalMscript() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred11_InternalMscript_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -66253,33 +66177,301 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String DFA5_eotS =
-        "\16\uffff";
+        "\u00e2\uffff";
     static final String DFA5_eofS =
-        "\16\uffff";
+        "\1\uffff\6\12\15\uffff\2\12\6\uffff\1\12\14\uffff\1\12\1\uffff\1"+
+        "\12\3\uffff\1\12\3\uffff\1\12\3\uffff\1\12\u00aa\uffff";
     static final String DFA5_minS =
-        "\1\4\6\0\7\uffff";
+        "\7\4\2\uffff\1\4\1\uffff\3\4\1\45\5\44\2\4\1\45\5\44\1\4\1\45\5"+
+        "\44\1\45\5\44\3\4\1\6\3\4\1\6\3\4\1\6\3\4\1\6\1\4\5\51\1\4\1\6\7"+
+        "\44\5\51\1\4\1\6\7\44\5\51\1\4\1\6\7\44\5\51\1\4\1\6\7\44\1\6\5"+
+        "\44\2\6\5\44\2\6\5\44\2\6\5\44\2\6\2\70\1\6\1\4\1\70\1\6\2\44\1"+
+        "\6\2\70\1\6\1\4\1\70\1\6\2\44\1\6\2\70\1\6\1\4\1\70\1\6\2\44\1\6"+
+        "\2\70\1\6\1\4\1\70\1\6\2\44\1\6\7\44\1\6\7\44\1\6\7\44\1\6\7\44"+
+        "\5\6\2\44\1\6\2\44\1\6\2\44\1\6\2\44";
     static final String DFA5_maxS =
-        "\1\105\6\0\7\uffff";
+        "\1\105\6\142\2\uffff\1\70\1\uffff\11\70\2\142\6\70\1\142\14\70\1"+
+        "\142\1\67\1\142\1\23\1\12\1\67\1\142\1\23\1\12\1\67\1\142\1\23\1"+
+        "\12\1\67\1\142\1\23\1\12\5\70\1\12\1\7\14\70\1\12\1\7\14\70\1\12"+
+        "\1\7\14\70\1\12\1\7\7\70\1\23\5\70\2\23\5\70\2\23\5\70\2\23\5\70"+
+        "\1\23\1\7\2\70\1\23\1\12\1\70\1\7\2\70\1\7\2\70\1\23\1\12\1\70\1"+
+        "\7\2\70\1\7\2\70\1\23\1\12\1\70\1\7\2\70\1\7\2\70\1\23\1\12\1\70"+
+        "\1\7\2\70\1\7\7\70\1\7\7\70\1\7\7\70\1\7\7\70\4\23\1\7\2\70\1\7"+
+        "\2\70\1\7\2\70\1\7\2\70";
     static final String DFA5_acceptS =
-        "\7\uffff\1\2\4\uffff\1\3\1\1";
+        "\7\uffff\1\2\1\3\1\uffff\1\1\u00d7\uffff";
     static final String DFA5_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\7\uffff}>";
+        "\u00e2\uffff}>";
     static final String[] DFA5_transitionS = {
-            "\2\7\2\uffff\3\7\45\uffff\1\14\17\uffff\1\1\1\2\1\3\1\4\1\5"+
+            "\2\7\2\uffff\3\7\45\uffff\1\10\17\uffff\1\1\1\2\1\3\1\4\1\5"+
             "\1\6",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\11\1\12\1\uffff\6\12\6\uffff\1"+
+            "\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\13\1\12\1\uffff\6\12\6\uffff\1"+
+            "\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\14\1\12\1\uffff\6\12\6\uffff\1"+
+            "\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\15\1\12\1\uffff\6\12\6\uffff\1"+
+            "\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
             "",
             "",
+            "\1\20\1\22\1\16\1\uffff\1\17\1\21\1\23\55\uffff\1\24",
             "",
-            "",
-            "",
-            "",
-            ""
+            "\1\30\1\32\1\26\1\uffff\1\27\1\31\1\33\55\uffff\1\25",
+            "\1\37\1\41\1\35\1\uffff\1\36\1\40\1\42\55\uffff\1\34",
+            "\1\45\1\47\1\43\1\uffff\1\44\1\46\1\50\55\uffff\1\51",
+            "\1\52\22\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\56\22\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\60\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\60\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\60\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\60\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\60\16\uffff\1\57",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\62\22\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\64\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\64\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\64\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\64\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\64\16\uffff\1\63",
+            "\1\66\22\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\70\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\70\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\70\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\70\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\70\16\uffff\1\67",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\73\1\75\2\uffff\1\72\1\74\1\76\54\uffff\1\77",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\101\1\102\13\uffff\1\100",
+            "\1\104\1\106\2\uffff\1\103\1\105\1\107",
+            "\1\111\1\113\2\uffff\1\110\1\112\1\114\54\uffff\1\115",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\117\1\120\13\uffff\1\116",
+            "\1\122\1\124\2\uffff\1\121\1\123\1\125",
+            "\1\127\1\131\2\uffff\1\126\1\130\1\132\54\uffff\1\133",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\135\1\136\13\uffff\1\134",
+            "\1\140\1\142\2\uffff\1\137\1\141\1\143",
+            "\1\145\1\147\2\uffff\1\144\1\146\1\150\54\uffff\1\151",
+            "\2\12\2\uffff\3\12\13\uffff\2\12\4\uffff\2\12\2\uffff\1\12"+
+            "\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff\6\12\6\uffff"+
+            "\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12\2\uffff\1\12"+
+            "\2\uffff\1\12\10\uffff\2\12",
+            "\1\153\1\154\13\uffff\1\152",
+            "\1\156\1\160\2\uffff\1\155\1\157\1\161",
+            "\1\162\16\uffff\1\53",
+            "\1\162\16\uffff\1\53",
+            "\1\162\16\uffff\1\53",
+            "\1\162\16\uffff\1\53",
+            "\1\162\16\uffff\1\53",
+            "\1\164\1\166\2\uffff\1\163\1\165\1\167",
+            "\1\101\1\102",
+            "\1\55\1\52\22\uffff\1\53",
+            "\1\55\1\52\22\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\170\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\170\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\170\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\170\16\uffff\1\53",
+            "\1\55\1\52\3\uffff\1\170\16\uffff\1\53",
+            "\1\171\16\uffff\1\57",
+            "\1\171\16\uffff\1\57",
+            "\1\171\16\uffff\1\57",
+            "\1\171\16\uffff\1\57",
+            "\1\171\16\uffff\1\57",
+            "\1\173\1\175\2\uffff\1\172\1\174\1\176",
+            "\1\117\1\120",
+            "\1\61\1\56\22\uffff\1\57",
+            "\1\61\1\56\22\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\177\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\177\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\177\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\177\16\uffff\1\57",
+            "\1\61\1\56\3\uffff\1\177\16\uffff\1\57",
+            "\1\u0080\16\uffff\1\63",
+            "\1\u0080\16\uffff\1\63",
+            "\1\u0080\16\uffff\1\63",
+            "\1\u0080\16\uffff\1\63",
+            "\1\u0080\16\uffff\1\63",
+            "\1\u0082\1\u0084\2\uffff\1\u0081\1\u0083\1\u0085",
+            "\1\135\1\136",
+            "\1\65\1\62\22\uffff\1\63",
+            "\1\65\1\62\22\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\u0086\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\u0086\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\u0086\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\u0086\16\uffff\1\63",
+            "\1\65\1\62\3\uffff\1\u0086\16\uffff\1\63",
+            "\1\u0087\16\uffff\1\67",
+            "\1\u0087\16\uffff\1\67",
+            "\1\u0087\16\uffff\1\67",
+            "\1\u0087\16\uffff\1\67",
+            "\1\u0087\16\uffff\1\67",
+            "\1\u0089\1\u008b\2\uffff\1\u0088\1\u008a\1\u008c",
+            "\1\153\1\154",
+            "\1\71\1\66\22\uffff\1\67",
+            "\1\71\1\66\22\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\u008d\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\u008d\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\u008d\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\u008d\16\uffff\1\67",
+            "\1\71\1\66\3\uffff\1\u008d\16\uffff\1\67",
+            "\1\u008f\1\u0090\13\uffff\1\u008e",
+            "\1\u0092\4\uffff\1\u0091\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u0091\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u0091\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u0091\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u0091\16\uffff\1\u0093",
+            "\1\u0095\1\u0096\13\uffff\1\u0094",
+            "\1\u0098\1\u0099\13\uffff\1\u0097",
+            "\1\u009b\4\uffff\1\u009a\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u009a\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u009a\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u009a\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u009a\16\uffff\1\u009c",
+            "\1\u009e\1\u009f\13\uffff\1\u009d",
+            "\1\u00a1\1\u00a2\13\uffff\1\u00a0",
+            "\1\u00a4\4\uffff\1\u00a3\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00a3\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00a3\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00a3\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00a3\16\uffff\1\u00a5",
+            "\1\u00a7\1\u00a8\13\uffff\1\u00a6",
+            "\1\u00aa\1\u00ab\13\uffff\1\u00a9",
+            "\1\u00ad\4\uffff\1\u00ac\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00ac\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00ac\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00ac\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00ac\16\uffff\1\u00ae",
+            "\1\u00b0\1\u00b1\13\uffff\1\u00af",
+            "\1\u008f\1\u0090",
+            "\1\53",
+            "\1\53",
+            "\1\u00b3\1\u00b4\13\uffff\1\u00b2",
+            "\1\u00b6\1\u00b8\2\uffff\1\u00b5\1\u00b7\1\u00b9",
+            "\1\53",
+            "\1\u0095\1\u0096",
+            "\1\55\1\52\22\uffff\1\53",
+            "\1\55\1\52\22\uffff\1\53",
+            "\1\u0098\1\u0099",
+            "\1\57",
+            "\1\57",
+            "\1\u00bb\1\u00bc\13\uffff\1\u00ba",
+            "\1\u00be\1\u00c0\2\uffff\1\u00bd\1\u00bf\1\u00c1",
+            "\1\57",
+            "\1\u009e\1\u009f",
+            "\1\61\1\56\22\uffff\1\57",
+            "\1\61\1\56\22\uffff\1\57",
+            "\1\u00a1\1\u00a2",
+            "\1\63",
+            "\1\63",
+            "\1\u00c3\1\u00c4\13\uffff\1\u00c2",
+            "\1\u00c6\1\u00c8\2\uffff\1\u00c5\1\u00c7\1\u00c9",
+            "\1\63",
+            "\1\u00a7\1\u00a8",
+            "\1\65\1\62\22\uffff\1\63",
+            "\1\65\1\62\22\uffff\1\63",
+            "\1\u00aa\1\u00ab",
+            "\1\67",
+            "\1\67",
+            "\1\u00cb\1\u00cc\13\uffff\1\u00ca",
+            "\1\u00ce\1\u00d0\2\uffff\1\u00cd\1\u00cf\1\u00d1",
+            "\1\67",
+            "\1\u00b0\1\u00b1",
+            "\1\71\1\66\22\uffff\1\67",
+            "\1\71\1\66\22\uffff\1\67",
+            "\1\u00b3\1\u00b4",
+            "\1\u0092\23\uffff\1\u0093",
+            "\1\u0092\23\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u00d2\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u00d2\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u00d2\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u00d2\16\uffff\1\u0093",
+            "\1\u0092\4\uffff\1\u00d2\16\uffff\1\u0093",
+            "\1\u00bb\1\u00bc",
+            "\1\u009b\23\uffff\1\u009c",
+            "\1\u009b\23\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u00d3\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u00d3\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u00d3\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u00d3\16\uffff\1\u009c",
+            "\1\u009b\4\uffff\1\u00d3\16\uffff\1\u009c",
+            "\1\u00c3\1\u00c4",
+            "\1\u00a4\23\uffff\1\u00a5",
+            "\1\u00a4\23\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00d4\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00d4\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00d4\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00d4\16\uffff\1\u00a5",
+            "\1\u00a4\4\uffff\1\u00d4\16\uffff\1\u00a5",
+            "\1\u00cb\1\u00cc",
+            "\1\u00ad\23\uffff\1\u00ae",
+            "\1\u00ad\23\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00d5\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00d5\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00d5\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00d5\16\uffff\1\u00ae",
+            "\1\u00ad\4\uffff\1\u00d5\16\uffff\1\u00ae",
+            "\1\u00d7\1\u00d8\13\uffff\1\u00d6",
+            "\1\u00da\1\u00db\13\uffff\1\u00d9",
+            "\1\u00dd\1\u00de\13\uffff\1\u00dc",
+            "\1\u00e0\1\u00e1\13\uffff\1\u00df",
+            "\1\u00d7\1\u00d8",
+            "\1\u0092\23\uffff\1\u0093",
+            "\1\u0092\23\uffff\1\u0093",
+            "\1\u00da\1\u00db",
+            "\1\u009b\23\uffff\1\u009c",
+            "\1\u009b\23\uffff\1\u009c",
+            "\1\u00dd\1\u00de",
+            "\1\u00a4\23\uffff\1\u00a5",
+            "\1\u00a4\23\uffff\1\u00a5",
+            "\1\u00e0\1\u00e1",
+            "\1\u00ad\23\uffff\1\u00ae",
+            "\1\u00ad\23\uffff\1\u00ae"
     };
 
     static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
@@ -66313,107 +66505,6 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         public String getDescription() {
             return "3533:1: rule__AnonymousTypeSpecifier__TypeAlternatives_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) | ( ruleStructType ) );";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA5_1 = input.LA(1);
-
-                         
-                        int index5_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA5_2 = input.LA(1);
-
-                         
-                        int index5_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA5_3 = input.LA(1);
-
-                         
-                        int index5_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA5_4 = input.LA(1);
-
-                         
-                        int index5_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA5_5 = input.LA(1);
-
-                         
-                        int index5_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA5_6 = input.LA(1);
-
-                         
-                        int index5_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred10_InternalMscript()) ) {s = 13;}
-
-                        else if ( (synpred11_InternalMscript()) ) {s = 7;}
-
-                         
-                        input.seek(index5_6);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 5, _s, input);
-            error(nvae);
-            throw nvae;
         }
     }
     static final String DFA14_eotS =
@@ -68741,8 +68832,6 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_146442 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_046473 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_146504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_synpred10_InternalMscript7490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayType_in_synpred11_InternalMscript7507 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__0_in_synpred130_InternalMscript22897 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred161_InternalMscript35989 = new BitSet(new long[]{0x0000000000000002L});
 

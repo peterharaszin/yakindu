@@ -11,12 +11,10 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
-
 
 /**
  * @author Andreas Unger
@@ -27,14 +25,14 @@ public interface IRuntimeEnvironmentAPI {
 	Collection<Include> getImplementationIncludes();
 	Collection<Include> getForwardDeclarationIncludes();
 	
-    void writeTaskInfoStructName(IGeneratorContext context, Appendable appendable) throws IOException;
+    CharSequence generateTaskInfoStructName(IGeneratorContext context);
 	
 	IFastLockGenerator getFastLockGenerator();
 	ISemaphoreGenerator getSemaphoreGenerator();
 	IMessageQueueGenerator getMessageQueueGenerator();
 	
-	void writeTaskFunctionType(Appendable appendable, String name) throws IOException;
-	void writeTaskSignature(Appendable appendable, String name) throws IOException;
-	void writeTaskReturnStatement(Appendable appendable, String name) throws IOException;
+	CharSequence generateTaskFunctionType(String name);
+	CharSequence generateTaskSignature(String name);
+	CharSequence generateTaskReturnStatement(String name);
 	
 }

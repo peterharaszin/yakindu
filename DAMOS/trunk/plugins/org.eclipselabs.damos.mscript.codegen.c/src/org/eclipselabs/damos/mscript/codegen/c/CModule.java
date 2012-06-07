@@ -15,7 +15,6 @@ import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.DEPENDS_ON;
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.REQUIRED_BY;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -90,8 +89,9 @@ public class CModule {
 		return entries;
 	}
 	
-	public void writeHeader(Appendable appendable) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateHeader() {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		if (headerComment != null) {
 			out.println(headerComment);
@@ -138,10 +138,13 @@ public class CModule {
 		out.println("#endif /* __cplusplus */");
 		out.println();
 		out.printf("#endif /* %s */\n", headerMacro);
+		
+		return sb;
 	}
 	
-	public void writeSource(Appendable appendable) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateSource() {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		if (sourceComment != null) {
 			out.println(sourceComment);
@@ -209,6 +212,8 @@ public class CModule {
 				out.println();
 			}
 		}
+		
+		return sb;
 	}
 
 	public boolean isPrivate() {

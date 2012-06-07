@@ -1,0 +1,32 @@
+package damos.library.base._discrete
+
+blockType Delay {
+
+	input u {
+		directFeedthrough never
+	}
+	output y
+	
+	parameter initialCondition = 0
+	parameter delay = 1
+
+	stateful function main<initialCondition, delay>(u) -> y {
+		check<0, 1>(real) -> real
+		
+		static assert delay == 1 :
+			error "Only delay value '1' is supported currently"
+	
+		static assert u is real() :
+			error "Input value must be numeric"
+	
+		static assert initialCondition is real() :
+			error "Initial condition must be numeric"
+			
+		static assert initialCondition is real() && u is real() => unit(initialCondition) == unit(u) :
+			error "Initial condition and input value must have same unit"
+	
+		eq u{-1} = initialCondition
+		eq y{n} = u{n-1}
+	}
+	
+}

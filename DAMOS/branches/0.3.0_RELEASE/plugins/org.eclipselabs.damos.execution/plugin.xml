@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipselabs.org/damos/2011/Execution"
+            class="org.eclipselabs.damos.execution.ExecutionPackage"
+            genModel="model/Execution.genmodel"/>
+   </extension>
+   <extension-point id="componentSignaturePolicyProviders" name="Component Signature Policy Providers" schema="schema/componentSignaturePolicyProviders.exsd"/>
+   <extension-point id="blockSignaturePolicies" name="Block Signature Policies" schema="schema/blockSignaturePolicies.exsd"/>
+   <extension
+         point="org.eclipselabs.damos.execution.componentSignaturePolicyProviders">
+      <provider
+            class="org.eclipselabs.damos.execution.internal.providers.BuiltinComponentSignaturePolicyProvider">
+      </provider>
+      <provider
+            class="org.eclipselabs.damos.execution.internal.registry.BlockSignaturePolicyProvider">
+      </provider>
+      <provider
+            class="org.eclipselabs.damos.execution.internal.providers.BehavioredBlockSignaturePolicyProvider">
+      </provider>
+   </extension>
+
+</plugin>

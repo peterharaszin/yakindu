@@ -1,0 +1,23 @@
+package damos.tests
+
+blockType ArrayTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	function main(a, b) -> y1, y2 {
+		check(int, int) -> int[3], int[2]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y1 = { a, b, 16 }
+		eq y2 = { 21, 15 }
+	}
+
+}

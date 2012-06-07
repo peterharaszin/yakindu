@@ -1,0 +1,76 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.codegen.c;
+
+import java.io.IOException;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.common.util.PrintAppendable;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.TaskGraph;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public class TaskMessageStruct extends PrimaryCodeFragment {
+
+	private String content;
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
+		
+		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+			EList<Input> inputSockets = TaskGeneratorUtil.getInputSockets(taskGraph);
+			if (!inputSockets.isEmpty()) {
+				out.append("typedef struct {\n");
+				out.append("int kind;\n");
+				out.append("union {\n");
+				for (Input input : inputSockets) {
+					if (!input.getPorts().isEmpty()) {
+						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
+						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+						IComponentSignature signature = generator.getContext().getComponentSignature();
+						out.append(MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
+						out.append(" ");
+						out.append(input.getName());
+						out.append(";\n");
+					}
+				}
+				out.append("} data;\n");
+				out.printf("} %s_Message;\n", TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+			}
+		}
+		
+		content = sb.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
+	 */
+	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
+		appendable.append(content);
+	}
+
+}

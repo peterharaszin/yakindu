@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Dconfig UI
+Bundle-SymbolicName: org.eclipselabs.damos.dconfig.ui;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: Damos Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui.editors,
+ org.eclipse.ui,
+ org.eclipse.ui.ide;bundle-version="3.7.0",
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipselabs.damos.dml;bundle-version="0.3.0",
+ org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
+ org.eclipselabs.damos.common.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0"
+Export-Package: org.eclipselabs.damos.dconfig.ui.contentassist.antlr,
+ org.eclipselabs.damos.dconfig.ui.internal,
+ org.eclipselabs.damos.dconfig.ui.wizards
+Import-Package: org.apache.log4j
+Bundle-Activator: org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator
+Bundle-ActivationPolicy: lazy

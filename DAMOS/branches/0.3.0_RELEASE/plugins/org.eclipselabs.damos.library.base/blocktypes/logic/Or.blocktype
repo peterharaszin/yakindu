@@ -1,0 +1,17 @@
+package damos.library.base.logic
+
+blockType Or {
+
+	input _input[2..*]
+	output y
+
+	function main(_input) -> y {
+		check(boolean[2]) -> boolean
+		
+		static assert _input is boolean[] :
+			error "Input values must be boolean"
+	
+		eq y = _input.iterate(e; result = false | result || e)
+	}
+	
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="languages" name="Languages" schema="schema/languages.exsd"/>
+   <extension-point id="blockGroups" name="Block Groups" schema="schema/blockGroups.exsd"/>
+   <extension-point id="blockTypes" name="Block Types" schema="schema/blockTypes.exsd"/>
+   <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipselabs.damos.dml.DMLPackage"
+            genModel="model/DML.genmodel"
+            uri="http://www.eclipselabs.org/damos/2011/DML">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipselabs.damos.dml.resource.DMLResourceFactory"
+            type="dml">
+      </parser>
+   </extension>
+
+
+</plugin>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Common Math
+Bundle-SymbolicName: org.eclipselabs.damos.common.math
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: Damos Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipselabs.damos.common.math,
+ org.eclipselabs.damos.common.math.jama

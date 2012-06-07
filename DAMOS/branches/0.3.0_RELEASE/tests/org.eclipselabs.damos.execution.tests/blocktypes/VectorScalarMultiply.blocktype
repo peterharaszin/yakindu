@@ -1,0 +1,26 @@
+package damos.tests
+
+blockType VectorScalarMultiply {
+
+	input x
+	output y
+
+	parameter gain1 = 7
+	parameter gain2 = 1.7
+
+	function main<gain1, gain2>(x) -> y {
+		check<1, 1>(real[3]) -> real[3]
+
+		static assert gain1 is real() :
+			error "Gain must be real value"
+
+		static assert gain2 is real() :
+			error "Gain must be real value"
+
+		static assert x is real()[] :
+			error "X must be real value"
+
+		eq y = x * gain1 * gain2
+	}
+
+}

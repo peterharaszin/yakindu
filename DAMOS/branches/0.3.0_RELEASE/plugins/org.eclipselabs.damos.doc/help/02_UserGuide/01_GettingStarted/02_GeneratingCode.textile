@@ -1,0 +1,113 @@
+
+h1. Generating C Code
+
+In this topic you will learn how to generate C code from a Damos model and how to integrate the generated C code in existing applications. We assume that you read the previous topic and know how to create a basic Damos model.
+
+h2. Example Model
+
+The example model will be a simple PI controller-based cruise control with an anti-windup circuit. The inputs of the controller will be the desired speed and the actual speed. The output value (i.e. engine power) will be limited to a value between 0.0 and 1.0 (0% to 100%). The anti-windup circuit is needed to prevent the integrator to windup when the maximum output power is reached.
+
+To create the example model:
+
+# Create a new block diagram in the model folder of a new Damos project (see previous topic for more details):
+** Create a new Damos project (*File > New > Project...* and then select *Damos > Damos Project*).
+** Create a model folder in the new Damos project.
+** Create a new block diagram in the model folder (right-click on the model folder *File > New > Other...* and then select *Damos > Block Diagram*).
+# From the *General* palette drawer, add two *Inport* blocks and one *Outport* block to the block diagram.
+# Red markers will indicate that the data types are missing. To fix this, specify *real* as data type for all Inports and Outports using the Properties view. Alternatively, you can use the quick fix from the tool tip of the error marker.
+# Name the two Inports _DesiredSpeed_ and _ActualSpeed_, and the Outport _Power_.
+# Optionally, for each Inport and Outport select *Show Name* in the *Appearance* property tab to show their names.
+
+The block diagram should look as follows:
+
+!02_GeneratingCode_images/InitialBlockDiagram.png(Initial block diagram)!
+
+You may ask, why do we need these Inports and Outports? As we will see later, those blocks will represent the interface of our system in the generated code.
+
+Next, we add the following block to the block diagram:
+
+* 2 *Sum* blocks
+* *Gain* block with a gain value of @0.1@
+* *Constant* block with a value of @0@
+* *Switch* block
+* *Discrete Integrator* block with an initial value of 0 and a gain value of @0.075(1/s)@
+* *Saturate* block with upper limit of @1@ and lower limit of @0@
+* *Compare* block with an equals (@==@) operator
+
+After connecting the blocks, the block diagram should look as follows: 
+
+!02_GeneratingCode_images/FinalBlockDiagram.png(Final block diagram)!
+
+_Important:_ Before we can generate code from the model, we must specify the sample time for model:
+
+# Select the leftmost *Sum* block.
+# In the *General* tab of the Properties view, set the *Timing Constraint* property to _Synchronous_.
+# Enter @0.1(s)@ into the *Sample Time (second)* field.
+
+The other blocks will automatically inherit the timing constraint from the Sum block. If you forget to set this property, you will get an error stating that the sample time could not be resolved for certain blocks when invoking the code generator or simulator.
+
+h2. Creating Generator Configuration
+
+To generate code from a Damos model, we need to create a _generator configuration_. To create the generator configuration:
+
+# Right-click the block diagram in the project explorer, and then *New > Other...*.
+# Select *Damos > C Code Generator Configuration*: !02_GeneratingCode_images/NewCCodeGeneratorConfiguration.png(New C code generator configuration wizard)!
+# Keep the default name _GenerateCruiseControl_ and click *Finish*.
+
+After clicking *Finish*, the new generator configuration file with the extension _.dconfig_ will be opened in a text editor. It should have the following contents:
+
+bc.. package cruisecontrol
+
+import damos.codegen.*
+import damos.codegen.c.*
+
+configuration GenerateCruiseControl {
+
+	select generator DefaultGenerator {
+		projectName = "CruiseControl"
+		sourceFolder = "src-gen"
+		systemSourceFile = "CruiseControl.c"
+	}
+
+	system CruiseControl {
+		prefix = "CruiseControl_"
+		//propagate computation {
+		//	map real() to float64
+		//	map int() to int32
+		//}
+	}
+
+}
+p. The @projectName@ and @sourceFolder@ properties specify the target project and source folder, respectively. If you want to generate the code into another project or folder, you can change those properties accordingly.
+
+h2. Generating Source Code
+
+To start the code generation process, right-click on the generator configuration file (in our example _GenerateCruiseControl.dconfig_) and select *Generate Code*. The target source folder should now contain a C header file (.h) and a C source file (.c).
+
+h2. Integrating the Generated Code in Existing Applications
+
+The public interface of the generated code is defined in the header file. It consists of two functions:
+
+* @CruiseControl_initialize(void)@ function, which must be called only once, and the
+* @CruiseControl_execute(const CruiseControl_Input *input, CruiseControl_Output *output)@ function, which must be invoked periodically.
+
+The @input@ and @output@ parameters of the _execute_ function are pointers to structures containing a member variable for each Inport and Output, respectively. Before invoking the _execute_ function, the member variables of the input structure must be set (e.g. from sensor data). After returning from the _execute_ function, the results can be read from the member variables of the output structure for further processing (e.g. new actuator value).
+
+A simplified application may look as follows:
+
+bc.. void cruiseControlTask(void) {
+	CruiseControl_Input input;
+	CruiseControl_Output output;
+	
+	CruiseControl_initialize();
+	
+	for (;;) {
+		input.desiredSpeed = getDesiredSpeed();
+		input.actualSpeed = getActualSpeed();
+		
+		CruiseControl_execute(&input, &output);
+		
+		setEnginePower(output.power);
+	}
+}
+p. _Note:_ Damos allows you to provide _target generators_ for specific systems. In this case you do not need to write the glue code for accessing the hardware. See the topic _Concepts_ for more information on target generators.

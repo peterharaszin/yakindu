@@ -1,0 +1,67 @@
+
+h1. Structuring Models using Subsystems
+
+In this topic you will learn how to structure Damos models for better clarity and reusability. For illustration purposes we will reuse the example model of the previous topic. Therefore, before starting this topic, you should have a working model of the previous topic.
+
+The goal will be to create an enclosing model for the cruise control model, which contains the cruise control model as a subsystem. The enclosing model will include blocks that describe the physical environment (e.g. a car) of the cruise control. This will allow us to simulate the cruise control model within its environment.
+
+h2. Creating a System Interface
+
+Before we can add the cruise control subsystem to our environment model, we need to define the _system interface_ of our cruise control model. To create the system interface:
+
+# Right-click on the _CruiseControl.blockdiagram_ file and select *New > Other...* to open the *New* wizard.
+# Select *Damos > System Interface* and then click *Next* to start the *New System Interface* wizard: !03_StructuringModels_images/NewSystemInterface.png(New System Interface Wizard)!
+# Keep the default name _CruiseControl_ and click *Finish*.
+
+After clicking *Finish*, the new system interface definition will be opened in a text editor. It should have the following contents:
+
+bc.. package cruisecontrol
+
+systemInterface CruiseControl {
+
+	inlet real DesiredSpeed
+	inlet real ActualSpeed
+
+	outlet real Power
+
+}
+p. The @inlet@ and @outlet@ declarations are used to specify the inputs and outputs of the cruise control subsystem.
+
+h2. Creating the Environment Model
+
+To create the environment model:
+
+# Create a new block diagram in the model folder (right-click on the model folder *New > Other...* and then *Damos > Block Diagram*) with the name _Environment_.
+# Use the subsystem creation tool from the *General* palette drawer to create a new subsystem. When releasing the mouse on the block diagram, the system interface selection dialog will appear: !03_StructuringModels_images/SelectSystemInterface.png(Select System Interface Dialog)!
+# Select _CruiseControl.systeminterface_ and click *OK*.
+
+A subsystem _CruiseControl_ has now been added to the block diagram. Note that the subsystem has a dashed border, which means that no _subsystem realization_ has been specified. To specify the subsystem realization:
+
+# Right-click on the subsystem and select *Change Realization...*.
+# In the *Change Subsystem Realization* dialog, enable the *Provide subsystem realization* check box.
+# Click the *Load...* button.
+# In the *Select Block Diagram* dialog, select _CruiseControl.blockdiagram_ and then click *OK*.
+# Back in the *Change Subsystem Realization* dialog, select *CruiseControl* as the realizing fragment: !03_StructuringModels_images/ChangeSubsystemRealization.png(Change Subsystem Realization Dialog)!
+# Click *OK*.
+
+The block diagram should now look as follows (notice the solid subsystem border):
+
+!03_StructuringModels_images/InitialEnvironmentModel.png(Initial Environment Model)!
+
+Finally, we need to add the following blocks:
+
+* *Step* block with initial value of @0@, final value of @100@, and step time of @1(s)@
+* *Transfer Function* block with numerator coefficient of <code>{ 200 }</code> and denominator coefficients of <code>{ 10, 1 }</code>
+* 2 *Scope* blocks
+
+After connecting the blocks, the block diagram should look as follows:
+
+!03_StructuringModels_images/FinalEnvironmentModel.png(Final Environment Model)!
+
+h2. Simulating the Environment Model
+
+To simulate the cruise control model within its environment model, select *Run > Run As > Damos Simulation* or click the *Run* (!01_CreatingModel_images/run_exc.gif!) icon in the toolbar. The simulation result should look as follows:
+
+!03_StructuringModels_images/SimulationResult.png(Simulation Result)!
+
+_Note:_ If you get an error stating that the sample time could not be resolved for certain blocks, you probably forgot to set the sample time on the leftmost Sum block of your cruise control model (see previous topic for more details).

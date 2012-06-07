@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos DMLText UI
+Bundle-Vendor: Damos Project
+Bundle-Version: 0.3.0.qualifier
+Bundle-SymbolicName: org.eclipselabs.damos.dmltext.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipselabs.damos.dmltext;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.dml;bundle-version="0.3.0",
+ org.eclipselabs.damos.dml.ui;bundle-version="0.3.0"
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipselabs.damos.dmltext.ui,
+ org.eclipselabs.damos.dmltext.ui.contentassist.antlr,
+ org.eclipselabs.damos.dmltext.ui.internal
+Bundle-Activator: org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator

@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -51,8 +49,10 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 		this.graphGenerator = graphGenerator;
 	}
 
-	public void writeChoiceVariableDeclarations(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor) {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		
+		PrintAppendable out = new PrintAppendable(sb);
 		boolean hasChoices = false;
 		for (Node node : graph.getAllNodes()) {
 			if (node instanceof ComponentNode) {
@@ -69,11 +69,15 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 		if (hasChoices) {
 			out.println();
 		}
+		
+		return sb;
 	}
 
-	public void writeCompoundCode(IGeneratorContext context, Appendable appendable, CompoundNode compoundNode, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateCompoundCode(IGeneratorContext context, CompoundNode compoundNode, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		
 		if (compoundNode instanceof ActionNode) {
-			PrintAppendable out = new PrintAppendable(appendable);
+			PrintAppendable out = new PrintAppendable(sb);
 			
 			ActionNode actionNode = (ActionNode) compoundNode;
 			Action action = (Action) actionNode.getCompound();
@@ -121,6 +125,8 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 
 			out.print("}\n");
 		}
+		
+		return sb;
 	}
 
 	private int getActionIndex(Choice choice, Action action) {

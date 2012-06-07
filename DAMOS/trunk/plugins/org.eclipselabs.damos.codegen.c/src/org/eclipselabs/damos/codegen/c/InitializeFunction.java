@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -66,12 +65,7 @@ public class InitializeFunction extends PrimaryCodeFragment {
 		
 		out.print(functionSignature);
 		out.print(" {\n");
-		try {
-			taskGenerator.writeInitializeTasks(context, out, monitor);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(taskGenerator.generateInitializeTasks(context, monitor));
 		
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (!(node instanceof ComponentNode)) {

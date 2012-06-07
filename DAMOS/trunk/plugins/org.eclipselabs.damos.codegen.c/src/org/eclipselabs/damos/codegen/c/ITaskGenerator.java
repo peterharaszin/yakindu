@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.ComponentNode;
 
@@ -22,14 +20,12 @@ import org.eclipselabs.damos.execution.ComponentNode;
  */
 public interface ITaskGenerator {
 
-	void writeTaskContexts(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
+	CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor);
 
-	void writeInitializeTasks(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException;
+	CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor);
 
-	void writeLatchUpdate(IGeneratorContext context, Appendable appendable, ComponentNode componentNode, IProgressMonitor monitor)
-			throws IOException;
+	CharSequence generateLatchUpdate(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor);
 
-	void writeMessageQueueSend(IGeneratorContext context, Appendable appendable, ComponentNode componentNode, IProgressMonitor monitor)
-			throws IOException;
+	CharSequence generateMessageQueueSend(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor);
 
 }

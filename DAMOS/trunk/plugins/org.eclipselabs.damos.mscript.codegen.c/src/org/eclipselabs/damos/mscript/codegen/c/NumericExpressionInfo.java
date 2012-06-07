@@ -23,14 +23,14 @@ import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormat
 public class NumericExpressionInfo {
 
 	private final NumberFormat numberFormat;
-	private final IWriter writer;
+	private final CharSequence text;
 	
 	/**
 	 * 
 	 */
-	private NumericExpressionInfo(NumberFormat numberFormat, IWriter writer) {
+	private NumericExpressionInfo(NumberFormat numberFormat, CharSequence text) {
 		this.numberFormat = numberFormat;
-		this.writer = writer;
+		this.text = text;
 	}
 	
 	/**
@@ -41,20 +41,20 @@ public class NumericExpressionInfo {
 	}
 	
 	/**
-	 * @return the writer
+	 * @return the text
 	 */
-	public IWriter getWriter() {
-		return writer;
+	public CharSequence getText() {
+		return text;
 	}
 	
-	public static NumericExpressionInfo create(NumberFormat numberFormat, IWriter writer) {
-		return new NumericExpressionInfo(numberFormat, writer);
+	public static NumericExpressionInfo create(NumberFormat numberFormat, CharSequence text) {
+		return new NumericExpressionInfo(numberFormat, text);
 	}
 	
-	public static NumericExpressionInfo create(PredefinedFixedPointFormatKind predefinedFixedPointFormatKind, IWriter writer) {
+	public static NumericExpressionInfo create(PredefinedFixedPointFormatKind predefinedFixedPointFormatKind, CharSequence text) {
 		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
 		fixedPointFormat.setPredefinedKind(predefinedFixedPointFormatKind);
-		return new NumericExpressionInfo(fixedPointFormat, writer);
+		return new NumericExpressionInfo(fixedPointFormat, text);
 	}
 
 }

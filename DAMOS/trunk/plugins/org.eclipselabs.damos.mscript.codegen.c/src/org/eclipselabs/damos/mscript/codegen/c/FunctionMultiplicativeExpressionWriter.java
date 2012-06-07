@@ -26,20 +26,33 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  */
 public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeExpressionWriter {
 	
-	protected void writeFixedPointMultiplicationExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		
 		out.printf("Mscript_mulfix%d_%d(", targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength());
-		NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, leftOperand);
+		try {
+			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, leftOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		out.print(", ");
-		NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, rightOperand);
+		try {
+			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, rightOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		out.print(")");
 		
 		codeFragmentCollector.addCodeFragment(new MultiplyFunctionCodeFragment(targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength()), new NullProgressMonitor());
+		return sb;
 	}
 
-	protected void writeFixedPointDivisionExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
@@ -52,7 +65,12 @@ public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeEx
 			out.print("((");
 		}
 
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -60,11 +78,18 @@ public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeEx
 
 		out.print(" / ");
 		
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");
 		}
+		
+		return sb;
 	}
 
 	private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {

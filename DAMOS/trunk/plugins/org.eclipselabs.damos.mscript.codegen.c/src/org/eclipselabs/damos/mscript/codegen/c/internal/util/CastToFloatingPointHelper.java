@@ -27,21 +27,21 @@ public class CastToFloatingPointHelper {
 		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) expression.getNumberFormat();
 			if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 			} else {
 				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				out.print("))");
 			}
 		} else if (expression.getNumberFormat() instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) expression.getNumberFormat();
 			if (fixedPointFormat.getFractionLength() > 0) {
 				out.printf("((%s) ((", getCDataType(targetFloatingPointFormat));
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				out.printf(") * pow(2, -%d)))", fixedPointFormat.getFractionLength());
 			} else {
 				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				out.print("))");
 			}
 		}

@@ -24,7 +24,6 @@ import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.IWriter;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
@@ -42,7 +41,6 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 	
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		StringBuilder sb = new StringBuilder();
-		final PrintAppendable out = new PrintAppendable(sb);
 		
 		final Expression argument = functionCall.getArguments().get(0);
 		
@@ -58,42 +56,31 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 		NumberFormat argumentNumberFormat = context.getComputationModel().getNumberFormat(argumentDataType);
 		NumberFormat resultNumberFormat = context.getComputationModel().getNumberFormat(resultDataType);
 		
-		IWriter writer;
+		StringBuilder text = new StringBuilder();
 		
 		if (argumentNumberFormat instanceof FixedPointFormat) {
 			final FixedPointFormat fixedPointFormat = (FixedPointFormat) argumentNumberFormat;
 			final int fractionLength = fixedPointFormat.getFractionLength();
-			writer = new IWriter() {
-				
-				public void write(Appendable appendable) throws IOException {
-					if (fractionLength > 0) {
-						out.print("((");
-						out.print(expressionGenerator.generate(context, argument));
-						out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
-								MscriptGeneratorUtil.getCDataType(context, argumentDataType, null),
-								(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
-					} else {
-						out.print(expressionGenerator.generate(context, argument));
-					}
-				}
-				
-			};
+			if (fractionLength > 0) {
+				PrintAppendable out = new PrintAppendable(text);
+				out.print("((");
+				out.print(expressionGenerator.generate(context, argument));
+				out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
+						MscriptGeneratorUtil.getCDataType(context, argumentDataType, null),
+						(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
+			} else {
+				text.append(expressionGenerator.generate(context, argument));
+			}
 		} else if (argumentNumberFormat instanceof FloatingPointFormat) {
-			writer = new IWriter() {
-
-				public void write(Appendable appendable) throws IOException {
-					out.print("floor((");
-					out.print(expressionGenerator.generate(context, argument));
-					out.print(") + 0.5)");
-				}
-				
-			};
+			text.append("floor((");
+			text.append(expressionGenerator.generate(context, argument));
+			text.append(") + 0.5)");
 		} else {
 			throw new IllegalArgumentException();
 		}
 		
 		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, writer));
+			NumericExpressionCaster.INSTANCE.cast(sb, resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, text));
 		} catch (IOException e) {
 			// TODO REMOVE
 			e.printStackTrace();

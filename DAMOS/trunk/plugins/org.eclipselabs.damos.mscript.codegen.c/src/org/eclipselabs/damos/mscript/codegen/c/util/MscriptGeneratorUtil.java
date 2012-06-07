@@ -25,7 +25,6 @@ import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.IWriter;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.codegen.c.StructLiteralDeclarationCodeFragment;
@@ -122,13 +121,7 @@ public class MscriptGeneratorUtil {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
 			try {
-				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
-					
-					public void write(Appendable appendable) throws IOException {
-						appendable.append(expression);
-					}
-					
-				}));
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, expression));
 			} catch (IOException e) {
 				// TODO REMOVE
 				e.printStackTrace();
@@ -152,13 +145,7 @@ public class MscriptGeneratorUtil {
 		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
 		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
-				
-				public void write(Appendable appendable) throws IOException {
-					appendable.append(new ExpressionGenerator().generate(context, expression));
-				}
-				
-			}));
+			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new ExpressionGenerator().generate(context, expression)));
 		} catch (IOException e) {
 			// TODO REMOVE
 			e.printStackTrace();

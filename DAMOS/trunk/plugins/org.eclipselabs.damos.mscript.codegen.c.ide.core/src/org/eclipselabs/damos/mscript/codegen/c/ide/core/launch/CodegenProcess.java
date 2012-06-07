@@ -229,14 +229,9 @@ public class CodegenProcess implements IProcess {
 
 	private class HeaderGeneratorThread extends GeneratorThread {
 		
-		public void generate() {
+		public void generate() throws IOException {
 			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
-			try {
-				writer.append(generator.generateHeaderCode());
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			writer.append(generator.generateHeaderCode());
 		}
 		
 	}
@@ -245,12 +240,7 @@ public class CodegenProcess implements IProcess {
 		
 		public void generate() throws IOException {
 			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
-			try {
-				writer.append(generator.generateImplementationCode());
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			writer.append(generator.generateImplementationCode());
 		}
 		
 	}

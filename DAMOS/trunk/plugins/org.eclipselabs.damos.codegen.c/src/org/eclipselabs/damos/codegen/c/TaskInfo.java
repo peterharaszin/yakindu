@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -77,12 +76,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 	
 		out.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), context.getExecutionFlow().getTaskGraphs().size());
 		out.print("extern const ");
-		try {
-			rteAPI.writeTaskInfoStructName(context, out);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(rteAPI.generateTaskInfoStructName(context));
 		out.printf(" %staskInfos[];\n", prefix);
 	
 		forwardDeclaration = sb.toString();
@@ -97,12 +91,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 		PrintAppendable out = new PrintAppendable(sb);
 		
 		out.print("const ");
-		try {
-			rteAPI.writeTaskInfoStructName(context, out);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		out.print(rteAPI.generateTaskInfoStructName(context));
 		out.printf(" %staskInfos[] = {\n", prefix);
 		boolean first = true;
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {

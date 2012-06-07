@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -51,9 +50,9 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 		return Collections.emptyList();
 	}
 	
-	public void writeTaskInfoStructName(IGeneratorContext context, Appendable appendable) throws IOException {
+	public CharSequence generateTaskInfoStructName(IGeneratorContext context) {
 		context.addCodeFragment(new TaskInfoStruct(), new NullProgressMonitor());
-		appendable.append("Damos_Posix_TaskInfo");
+		return "Damos_Posix_TaskInfo";
 	}
 	
 	public IFastLockGenerator getFastLockGenerator() {
@@ -74,25 +73,16 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 		return new MessageQueueGenerator();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskFunctionType(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeTaskFunctionType(Appendable appendable, String name) throws IOException {
-		appendable.append("void *(*").append(name).append(")(void *context)");
+	public CharSequence generateTaskFunctionType(String name) {
+		return new StringBuilder().append("void *(*").append(name).append(")(void *context)");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskFunction(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeTaskSignature(Appendable appendable, String name) throws IOException {
-		appendable.append("void *").append(name).append("(void *context)");
+	public CharSequence generateTaskSignature(String name) {
+		return new StringBuilder().append("void *").append(name).append("(void *context)");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI#writeTaskReturnStatement(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeTaskReturnStatement(Appendable appendable, String name) throws IOException {
-		appendable.append("return NULL;\n");
+	public CharSequence generateTaskReturnStatement(String name) {
+		return new StringBuilder().append("return NULL;\n");
 	}
 	
 }

@@ -64,12 +64,7 @@ public class Task extends PrimaryCodeFragment {
 		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			StringBuilder sb = new StringBuilder();
-			try {
-				rteAPI.writeTaskSignature(sb, TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			sb.append(rteAPI.generateTaskSignature(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph)));
 			sb.append(";\n");
 			forwardDeclarations.add(sb.toString());
 		}
@@ -87,12 +82,7 @@ public class Task extends PrimaryCodeFragment {
 			StringBuilder sb = new StringBuilder();
 			
 			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
-			try {
-				runtimeEnvironmentAPI.writeTaskSignature(sb, taskName);
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			sb.append(runtimeEnvironmentAPI.generateTaskSignature(taskName));
 			sb.append(" {\n");
 			try {
 				graphGenerator.writeOutputVariableDeclarations(context, sb, taskGraph, monitor);
@@ -140,12 +130,7 @@ public class Task extends PrimaryCodeFragment {
 			}
 							
 			sb.append("}\n");
-			try {
-				runtimeEnvironmentAPI.writeTaskReturnStatement(sb, taskName);
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			sb.append(runtimeEnvironmentAPI.generateTaskReturnStatement(taskName));
 			sb.append("}\n");
 			
 			implementations.add(sb.toString());

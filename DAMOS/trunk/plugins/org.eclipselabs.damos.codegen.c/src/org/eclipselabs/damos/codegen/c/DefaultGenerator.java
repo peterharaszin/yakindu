@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,27 +126,18 @@ public class DefaultGenerator extends AbstractGenerator {
 			}
 		}
 		
-		try {
-			final StringBuilder headerContent = new StringBuilder();
-			module.writeHeader(headerContent);
-			InputStream is = new StringInputStream(headerContent.toString());
-			if (headerFile.exists()) {
-				headerFile.setContents(is, true, true, monitor);
-			} else {
-				headerFile.create(is, true, monitor);
-			}
+		InputStream is = new StringInputStream(module.generateHeader().toString());
+		if (headerFile.exists()) {
+			headerFile.setContents(is, true, true, monitor);
+		} else {
+			headerFile.create(is, true, monitor);
+		}
 
-			final StringBuilder sourceContent = new StringBuilder();
-			module.writeSource(sourceContent);
-			is = new StringInputStream(sourceContent.toString());
-			if (sourceFile.exists()) {
-				sourceFile.setContents(is, true, true, monitor);
-			} else {
-				sourceFile.create(is, true, monitor);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		is = new StringInputStream(module.generateSource().toString());
+		if (sourceFile.exists()) {
+			sourceFile.setContents(is, true, true, monitor);
+		} else {
+			sourceFile.create(is, true, monitor);
 		}
 	}
 

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -100,9 +99,11 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 			return Collections.singletonList(new Include("stdint.h"));
 		}
 		
-		public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-			writeFunctionSignature(appendable, internal);
-			appendable.append(";\n");
+		public CharSequence generateForwardDeclaration(boolean internal) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(generateFunctionSignature(internal));
+			sb.append(";\n");
+			return sb;
 		}
 		
 		/* (non-Javadoc)
@@ -113,16 +114,14 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 			return true;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-		 */
 		@Override
-		public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
-			PrintAppendable out = new PrintAppendable(appendable);
+		public CharSequence generateImplementation(boolean internal) {
+			StringBuilder sb = new StringBuilder();
+			PrintAppendable out = new PrintAppendable(sb);
 			
 			int wordSize = integerLength + fractionLength;
 
-			writeFunctionSignature(appendable, internal);
+			sb.append(generateFunctionSignature(internal));
 			
 			out.print(" {\n");
 			out.printf("const uint%d_t mask = (INT%d_C(1) << %d) - 1;\n\n", wordSize, wordSize, fractionLength);
@@ -141,10 +140,13 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 
 			out.printf("return result;\n");
 			out.println("}");
+			
+			return sb;
 		}
 		
-		private void writeFunctionSignature(Appendable appendable, boolean internal) throws IOException {
-			PrintAppendable out = new PrintAppendable(appendable);
+		private CharSequence generateFunctionSignature(boolean internal) {
+			StringBuilder sb = new StringBuilder();
+			PrintAppendable out = new PrintAppendable(sb);
 
 			int wordSize = integerLength + fractionLength;
 
@@ -153,6 +155,7 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 			}
 			
 			out.printf("int%d_t Mscript_mulfix%d_%d(int%d_t a, int%d_t b)", wordSize, integerLength, fractionLength, wordSize, wordSize);
+			return sb;
 		}
 		
 		/* (non-Javadoc)

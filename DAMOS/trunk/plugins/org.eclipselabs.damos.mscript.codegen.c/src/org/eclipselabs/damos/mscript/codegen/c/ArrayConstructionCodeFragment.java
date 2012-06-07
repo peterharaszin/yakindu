@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -49,11 +47,8 @@ public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -81,15 +76,14 @@ public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		appendable.append(functionSignature);
-		appendable.append(";\n");
+		sb.append(functionSignature);
+		sb.append(";\n");
+		return sb;
 	}
 	
 	/* (non-Javadoc)
@@ -100,15 +94,13 @@ public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		PrintAppendable out = new PrintAppendable(appendable);
+		PrintAppendable out = new PrintAppendable(sb);
 		out.print(functionSignature);
 		out.println(" {");
 		out.printf("%s a;\n", typeName);
@@ -117,6 +109,7 @@ public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 		}
 		out.println("return a;");
 		out.println("}");
+		return sb;
 	}
 	
 	private String getFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {

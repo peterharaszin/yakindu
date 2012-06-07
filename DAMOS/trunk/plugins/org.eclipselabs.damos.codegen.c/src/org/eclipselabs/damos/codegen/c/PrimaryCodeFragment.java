@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
@@ -23,11 +21,8 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
  */
 public abstract class PrimaryCodeFragment extends AbstractCodeFragment {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public final void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public final void initialize(IAdaptable context, IProgressMonitor monitor) {
 		IGeneratorContext generatorContext = (IGeneratorContext) context.getAdapter(IGeneratorContext.class);
 		if (generatorContext == null) {
 			throw new IllegalArgumentException("Context argument must be adaptable to " + IGeneratorContext.class.getCanonicalName());
@@ -35,6 +30,6 @@ public abstract class PrimaryCodeFragment extends AbstractCodeFragment {
 		doInitialize(generatorContext, monitor);
 	}
 	
-	protected abstract void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException;
+	protected abstract void doInitialize(IGeneratorContext context, IProgressMonitor monitor);
 	
 }

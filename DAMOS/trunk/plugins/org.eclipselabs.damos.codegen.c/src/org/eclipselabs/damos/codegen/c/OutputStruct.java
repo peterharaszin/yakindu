@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
@@ -49,11 +47,8 @@ public class OutputStruct extends PrimaryCodeFragment {
 		content = sb.toString();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append(content);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		return content;
 	}
 
 }

@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -33,32 +31,29 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 
 	private String content;
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			EList<Input> inputSockets = TaskGeneratorUtil.getInputSockets(taskGraph);
 			if (!inputSockets.isEmpty()) {
-				out.append("typedef struct {\n");
-				out.append("int kind;\n");
-				out.append("union {\n");
+				out.print("typedef struct {\n");
+				out.print("int kind;\n");
+				out.print("union {\n");
 				for (Input input : inputSockets) {
 					if (!input.getPorts().isEmpty()) {
 						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 						IComponentSignature signature = generator.getContext().getComponentSignature();
-						out.append(MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
-						out.append(" ");
-						out.append(input.getName());
-						out.append(";\n");
+						out.print(MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
+						out.print(" ");
+						out.print(input.getName());
+						out.print(";\n");
 					}
 				}
-				out.append("} data;\n");
+				out.print("} data;\n");
 				out.printf("} %s_Message;\n", TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 			}
 		}
@@ -66,11 +61,8 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 		content = sb.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append(content);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		return content;
 	}
 
 }

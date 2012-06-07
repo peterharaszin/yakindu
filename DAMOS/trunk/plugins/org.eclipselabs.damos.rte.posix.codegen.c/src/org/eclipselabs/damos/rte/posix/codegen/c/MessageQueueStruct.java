@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -38,19 +37,8 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	
 	private String prefix;
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
-	 */
 	@Override
-	public Collection<Include> getForwardDeclarationIncludes() {
-		return FORWARD_DECLARATION_INCLUDES;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	@Override
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_REQUIRED_BY, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -63,23 +51,30 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		appendable.append("typedef struct {\n");
-		appendable.append("pthread_mutex_t mutex;\n");
-		appendable.append("sem_t fillCount;\n");
-		appendable.append("sem_t emptyCount;\n");
-		appendable.append("int tail;\n");
-		appendable.append("int head;\n");
-		appendable.append("int size;\n");
-		appendable.append("int elementSize;\n");
-		appendable.append("} ").append(prefix).append("MessageQueue;\n\n");
+	@Override
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return FORWARD_DECLARATION_INCLUDES;
+	}
+	
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("typedef struct {\n");
+		sb.append("pthread_mutex_t mutex;\n");
+		sb.append("sem_t fillCount;\n");
+		sb.append("sem_t emptyCount;\n");
+		sb.append("int tail;\n");
+		sb.append("int head;\n");
+		sb.append("int size;\n");
+		sb.append("int elementSize;\n");
+		sb.append("} ").append(prefix).append("MessageQueue;\n\n");
 
-		appendable.append("typedef struct {\n");
-		appendable.append(prefix).append("MessageQueue base;\n");
-		appendable.append("unsigned char buffer[1];\n");
-		appendable.append("} ").append(prefix).append("MessageQueueWithBuffer;\n");
+		sb.append("typedef struct {\n");
+		sb.append(prefix).append("MessageQueue base;\n");
+		sb.append("unsigned char buffer[1];\n");
+		sb.append("} ").append(prefix).append("MessageQueueWithBuffer;\n");
+		return sb;
 	}
 	
 	/* (non-Javadoc)

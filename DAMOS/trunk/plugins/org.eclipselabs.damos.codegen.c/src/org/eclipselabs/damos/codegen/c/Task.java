@@ -54,26 +54,28 @@ public class Task extends PrimaryCodeFragment {
 		return implementationIncludes;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.PrimaryCodeFragment#doInitialize(org.eclipselabs.damos.codegen.c.IGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		initializeForwardDeclarations(context);
 		initializeImplementations(context, monitor);
 	}
 
-	private void initializeForwardDeclarations(IGeneratorContext context) throws IOException {
+	private void initializeForwardDeclarations(IGeneratorContext context) {
 		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			StringBuilder sb = new StringBuilder();
-			rteAPI.writeTaskSignature(sb, TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+			try {
+				rteAPI.writeTaskSignature(sb, TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
 			sb.append(";\n");
 			forwardDeclarations.add(sb.toString());
 		}
 	}
 
-	private void initializeImplementations(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	private void initializeImplementations(IGeneratorContext context, IProgressMonitor monitor) {
 		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI == null) {
 			throw new IllegalArgumentException("No runtime environment specified");
@@ -85,9 +87,19 @@ public class Task extends PrimaryCodeFragment {
 			StringBuilder sb = new StringBuilder();
 			
 			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
-			runtimeEnvironmentAPI.writeTaskSignature(sb, taskName);
+			try {
+				runtimeEnvironmentAPI.writeTaskSignature(sb, taskName);
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
 			sb.append(" {\n");
-			graphGenerator.writeOutputVariableDeclarations(context, sb, taskGraph, monitor);
+			try {
+				graphGenerator.writeOutputVariableDeclarations(context, sb, taskGraph, monitor);
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
 			
 			EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 
@@ -120,26 +132,35 @@ public class Task extends PrimaryCodeFragment {
 				}
 			}
 
-			graphGenerator.writeGraph(context, sb, taskGraph, monitor);
+			try {
+				graphGenerator.writeGraph(context, sb, taskGraph, monitor);
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
 							
 			sb.append("}\n");
-			runtimeEnvironmentAPI.writeTaskReturnStatement(sb, taskName);
+			try {
+				runtimeEnvironmentAPI.writeTaskReturnStatement(sb, taskName);
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
 			sb.append("}\n");
 			
 			implementations.add(sb.toString());
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		for (String forwardDeclaration : forwardDeclarations) {
 			if (internal) {
-				appendable.append("static ");
+				sb.append("static ");
 			}
-			appendable.append(forwardDeclaration);
+			sb.append(forwardDeclaration);
 		}
+		return sb;
 	}
 	
 	/* (non-Javadoc)
@@ -150,25 +171,24 @@ public class Task extends PrimaryCodeFragment {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		for (String implementation : implementations) {
 			if (first) {
 				first = false;
 			} else {
-				appendable.append("\n");
+				sb.append("\n");
 			}
 			
 			if (internal) {
-				appendable.append("static ");
+				sb.append("static ");
 			}
 			
-			appendable.append(implementation);
+			sb.append(implementation);
 		}
+		return sb;
 	}
 
 }

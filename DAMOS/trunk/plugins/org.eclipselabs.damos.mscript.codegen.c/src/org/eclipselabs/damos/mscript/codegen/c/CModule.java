@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.DEPENDS_ON;
-import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.REQUIRED_BY;
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.REQUIRED_BY;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,7 +128,7 @@ public class CModule {
 		// Write external forward declarations
 		for (CModuleEntry entry : entries) {
 			if (!entry.isInternal()) {
-				entry.getCodeFragment().writeForwardDeclaration(appendable, false);
+				out.print(entry.getCodeFragment().generateForwardDeclaration(false));
 				out.println();
 			}
 		}
@@ -188,7 +188,7 @@ public class CModule {
 		for (CModuleEntry entry : entries) {
 			ICodeFragment codeFragment = entry.getCodeFragment();
 			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
-				codeFragment.writeForwardDeclaration(appendable, true);
+				out.print(codeFragment.generateForwardDeclaration(true));
 				out.println();
 			}
 		}
@@ -197,7 +197,7 @@ public class CModule {
 		for (CModuleEntry entry : entries) {
 			ICodeFragment codeFragment = entry.getCodeFragment();
 			if (codeFragment.contributesImplementation() && !codeFragment.contributesInternalForwardDeclaration()) {
-				codeFragment.writeImplementation(appendable, entry.isInternal());
+				out.print(codeFragment.generateImplementation(entry.isInternal()));
 				out.println();
 			}
 		}
@@ -205,7 +205,7 @@ public class CModule {
 		for (CModuleEntry entry : entries) {
 			ICodeFragment codeFragment = entry.getCodeFragment();
 			if (codeFragment.contributesImplementation() && codeFragment.contributesInternalForwardDeclaration()) {
-				codeFragment.writeImplementation(appendable, entry.isInternal());
+				out.print(codeFragment.generateImplementation(entry.isInternal()));
 				out.println();
 			}
 		}

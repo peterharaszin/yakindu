@@ -51,23 +51,7 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 		this.graphGenerator = graphGenerator;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
-	 */
-	@Override
-	public Collection<Include> getForwardDeclarationIncludes() {
-		return Collections.singleton(new Include("stdint.h"));
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getImplementationIncludes()
-	 */
-	@Override
-	public Collection<Include> getImplementationIncludes() {
-		return implementationIncludes;
-	}
-	
-	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
+	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -80,38 +64,55 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 			public boolean applies(ICodeFragment other) {
 				return other instanceof ContextVariable;
 			}
-
+	
 		});
 		
 		PrintAppendable out = new PrintAppendable(content);
 		
 		Graph graph = context.getExecutionFlow().getGraph();
-
+	
 		implementationIncludes.addAll(graphGenerator.getImplementationIncludes(context, graph));
 		
 		functionSignature = getFunctionSignature(context);
 		
-		out.append(functionSignature);
+		out.print(functionSignature);
 		out.print(" {\n");
 		
-		graphGenerator.writeOutputVariableDeclarations(context, out, graph, monitor);
+		try {
+			graphGenerator.writeOutputVariableDeclarations(context, out, graph, monitor);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		out.println();
-		graphGenerator.writeGraph(context, out, graph, monitor);
+		try {
+			graphGenerator.writeGraph(context, out, graph, monitor);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		out.println("}");
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getForwardDeclarationIncludes()
 	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		if (internal) {
-			appendable.append("static ");
-		}
-		appendable.append(functionSignature);
-		appendable.append(";\n");
+	@Override
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return Collections.singleton(new Include("stdint.h"));
 	}
 	
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		if (internal) {
+			sb.append("static ");
+		}
+		sb.append(functionSignature);
+		sb.append(";\n");
+		return sb;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#contributesImplementation()
 	 */
@@ -119,16 +120,23 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 	public boolean contributesImplementation() {
 		return true;
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#getImplementationIncludes()
 	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	public Collection<Include> getImplementationIncludes() {
+		return implementationIncludes;
+	}
+	
+	@Override
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
 		if (internal) {
-			appendable.append("static ");
+			sb.append("static ");
 		}
-		appendable.append(content);
+		sb.append(content);
+		return sb;
 	}
 
 	protected String getFunctionSignature(IGeneratorContext context) {

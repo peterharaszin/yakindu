@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -72,11 +70,8 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -115,12 +110,11 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 		functionBody = sb.toString();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		writeFunctionSignature(appendable, internal);
-		appendable.append(";\n");
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generateFunctionSignature(internal));
+		sb.append(";\n");
+		return sb;
 	}
 
 	/* (non-Javadoc)
@@ -131,25 +125,22 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#writeImplementation(java.lang.Appendable, boolean)
-	 */
 	@Override
-	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
-		writeFunctionSignature(appendable, internal);
-		appendable.append(functionBody);
+	public CharSequence generateImplementation(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generateFunctionSignature(internal));
+		sb.append(functionBody);
+		return sb;
 	}
 	
-	/**
-	 * @param appendable
-	 * @param internal
-	 */
-	private void writeFunctionSignature(Appendable appendable, boolean internal) {
-		PrintAppendable out = new PrintAppendable(appendable);
+	private CharSequence generateFunctionSignature(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		if (internal) {
 			out.print("static ");
 		}
 		out.printf("%s %s(%s scalar, const %s vector[], int size)", resultTypeString, name, scalarTypeString, elementTypeString);
+		return sb;
 	}
 
 	/* (non-Javadoc)

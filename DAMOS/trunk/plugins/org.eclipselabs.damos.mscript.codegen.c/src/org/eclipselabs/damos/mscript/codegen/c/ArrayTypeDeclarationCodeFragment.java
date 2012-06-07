@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -46,26 +44,22 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 		elementTypeString = arrayType.getElementType().getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), this);
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
 		name = globalNameProvider.getName("Array");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("typedef struct { %s data[%d]; } %s;\n", elementTypeString, arrayType.getDimension(0), name);
 		if (!internal) {
 			out.printf("#define %s_SIZE %d\n", name.toUpperCase(), arrayType.getDimension(0));
 		}
+		return sb;
 	}
 	
 	/* (non-Javadoc)

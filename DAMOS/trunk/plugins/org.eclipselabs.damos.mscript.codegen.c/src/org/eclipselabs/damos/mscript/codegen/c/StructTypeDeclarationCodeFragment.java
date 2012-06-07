@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +48,8 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
+	public void initialize(IAdaptable context, IProgressMonitor monitor) {
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
@@ -64,11 +60,9 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeForwardDeclaration(java.lang.Appendable, boolean)
-	 */
-	public void writeForwardDeclaration(Appendable appendable, boolean internal) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateForwardDeclaration(boolean internal) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		out.println("typedef struct {");
 		for (int i = 0; i < memberTypeNames.size(); ++i) {
 			String memberTypeName = memberTypeNames.get(i);
@@ -76,6 +70,7 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 			out.printf("%s %s;\n", memberTypeName, memberName);
 		}
 		out.printf("} %s;\n", name);
+		return sb;
 	}
 	
 	/* (non-Javadoc)

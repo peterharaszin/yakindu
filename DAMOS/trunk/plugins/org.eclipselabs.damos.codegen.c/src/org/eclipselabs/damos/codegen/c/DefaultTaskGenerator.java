@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.Formatter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -38,53 +37,58 @@ import org.eclipselabs.damos.execution.TaskInputNode;
  */
 public class DefaultTaskGenerator implements ITaskGenerator {
 	
-	public void writeTaskContexts(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
 		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
-				appendable.append("struct {\n");
+				sb.append("struct {\n");
 				if (!inputNodes.isEmpty()) {
 					if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-						appendable.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateContextCode(context, "queue", messageQueueInfo));
+						sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateContextCode(context, "queue", messageQueueInfo));
 					} else {
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
-						appendable.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateContextCode(context, "queue", messageQueueInfo));
+						sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateContextCode(context, "queue", messageQueueInfo));
 					}
 				}
-				appendable.append("} ").append(taskName).append(";\n");
+				sb.append("} ").append(taskName).append(";\n");
 			}
 		}
+		return sb;
 	}
 
-	public void writeInitializeTasks(IGeneratorContext context, Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
 		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 				if (!inputNodes.isEmpty()) {
-					appendable.append(" {\n");
+					sb.append(" {\n");
 					String qualifier = TaskGeneratorUtil.getTaskContextVariable(context, taskName, false) + "." + "queue";
 					if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
 						TaskInputNode inputNode = inputNodes.get(0);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-						appendable.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateInitializationCode(context, qualifier, messageQueueInfo));
+						sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateInitializationCode(context, qualifier, messageQueueInfo));
 					} else {
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
-						appendable.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateInitializationCode(context, qualifier, messageQueueInfo));
+						sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateInitializationCode(context, qualifier, messageQueueInfo));
 					}
-					appendable.append("}\n");
+					sb.append("}\n");
 				}
 			}
 		}
+		return sb;
 	}
 
-	public void writeLatchUpdate(IGeneratorContext context, Appendable appendable, ComponentNode componentNode, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateLatchUpdate(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
 			if (end.getNode() instanceof ComponentNode) {
 				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
@@ -99,10 +103,12 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 				}
 			}
 		}
+		return sb;
 	}
 
-	public void writeMessageQueueSend(IGeneratorContext context, Appendable appendable, ComponentNode componentNode, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateMessageQueueSend(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
 			if (end.getNode() instanceof TaskInputNode) {
 				TaskInputNode inputNode = (TaskInputNode) end.getNode();
@@ -116,13 +122,13 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 					InputPort inputPort = (InputPort) firstEnd.getConnector();
 					Input input = inputPort.getInput();
 					if (input.isSocket()) {
-						out.append("{\n");
-						out.append(TaskGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph()) + "_Message message;\n");
+						out.print("{\n");
+						out.print(TaskGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph()) + "_Message message;\n");
 						out.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
 						out.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode.getTaskGraph());
 						out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&message", messageQueueInfo));
-						out.append("}\n");
+						out.print("}\n");
 						continue;
 					}
 				}
@@ -131,6 +137,7 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 				out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&" + outputVariable, messageQueueInfo));
 			}
 		}
+		return sb;
 	}
 
 }

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -83,12 +82,7 @@ public class ContextStruct extends PrimaryCodeFragment {
 		}
 		
 		out.println("typedef struct {");
-		try {
-			taskGenerator.writeTaskContexts(context, out, monitor);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(taskGenerator.generateTaskContexts(context, monitor));
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;

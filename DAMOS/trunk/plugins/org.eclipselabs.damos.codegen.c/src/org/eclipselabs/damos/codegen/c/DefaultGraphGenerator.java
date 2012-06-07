@@ -86,15 +86,15 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 	
 	public void writeGraph(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor)
 			throws IOException {
-		PrintAppendable writer = new PrintAppendable(appendable);
+		PrintAppendable out = new PrintAppendable(appendable);
 		
-		compoundGenerator.writeChoiceVariableDeclarations(context, writer, graph, monitor);
+		compoundGenerator.writeChoiceVariableDeclarations(context, out, graph, monitor);
 
-		writer.print("/*\n * Compute outputs\n */\n\n");
+		out.print("/*\n * Compute outputs\n */\n\n");
 		for (Node node : graph.getNodes()) {
 			if (node instanceof CompoundNode) {
-				compoundGenerator.writeCompoundCode(context, writer, (CompoundNode) node, monitor);
-				writer.println();
+				compoundGenerator.writeCompoundCode(context, out, (CompoundNode) node, monitor);
+				out.println();
 				continue;
 			} else if (!(node instanceof ComponentNode)) {
 				continue;
@@ -103,16 +103,16 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 			
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesComputeOutputsCode()) {
-				writer.printf("/* %s */\n", componentNode.getComponent().getName());
-				writer.println("{");
-				writer.print(generator.generateComputeOutputsCode(monitor));
-				writer.println("}\n");
+				out.printf("/* %s */\n", componentNode.getComponent().getName());
+				out.println("{");
+				out.print(generator.generateComputeOutputsCode(monitor));
+				out.println("}\n");
 			}
-			taskGenerator.writeLatchUpdate(context, appendable, componentNode, monitor);
-			taskGenerator.writeMessageQueueSend(context, appendable, componentNode, monitor);
+			out.print(taskGenerator.generateLatchUpdate(context, componentNode, monitor));
+			out.print(taskGenerator.generateMessageQueueSend(context, componentNode, monitor));
 		}
 		
-		writer.print("\n/*\n * Update states\n */\n\n");
+		out.print("\n/*\n * Update states\n */\n\n");
 		for (Node node : graph.getNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -121,10 +121,10 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 			
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesUpdateCode()) {
-				writer.printf("/* %s */\n", componentNode.getComponent().getName());
-				writer.println("{");
-				writer.print(generator.generateUpdateCode(monitor));
-				writer.println("}\n");
+				out.printf("/* %s */\n", componentNode.getComponent().getName());
+				out.println("{");
+				out.print(generator.generateUpdateCode(monitor));
+				out.println("}\n");
 			}
 		}
 	}

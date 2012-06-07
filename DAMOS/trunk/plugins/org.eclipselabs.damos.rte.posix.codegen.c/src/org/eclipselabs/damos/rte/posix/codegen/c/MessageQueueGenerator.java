@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator;
@@ -32,15 +30,18 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	@Override
-	public void writeContextCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public CharSequence generateContextCode(IGeneratorContext context, String variableName, IMessageQueueInfo info) {
 		context.addCodeFragment(new MessageQueueStruct(), new NullProgressMonitor());
 
-		PrintAppendable out = new PrintAppendable(appendable);
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		out.println("struct {");
 		out.printf("%sMessageQueue base;\n", prefix);
 		out.printf("unsigned char buffer[%s * %s];\n", info.getCapacity(), info.getElementSize());
 		out.printf("} %s;\n", variableName);
+		
+		return sb;
 	}
 	
 	@Override
@@ -49,30 +50,36 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	}
 	
 	@Override
-	public void writeInitializationCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
+	public CharSequence generateInitializationCode(IGeneratorContext context, String variableName, IMessageQueueInfo info) {
 		context.addCodeFragment(new MessageQueueFunction.Init(), new NullProgressMonitor());
-		
-		PrintAppendable out = new PrintAppendable(appendable);
+	
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_init((%sMessageQueue *) &%s, %s, %s);\n", prefix, prefix, variableName, info.getCapacity(), info.getElementSize());
+		return sb;
 	}
 	
 	@Override
-	public void writeSendCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public CharSequence generateSendCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info) {
 		context.addCodeFragment(new MessageQueueFunction.Send(), new NullProgressMonitor());
 
-		PrintAppendable out = new PrintAppendable(appendable);
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_send((%sMessageQueue *) &%s, %s);\n", prefix, prefix, variableName, dataPointer);
+		return sb;
 	}
 	
 	@Override
-	public void writeReceiveCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
+	public CharSequence generateReceiveCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info) {
 		context.addCodeFragment(new MessageQueueFunction.Receive(), new NullProgressMonitor());
 
-		PrintAppendable out = new PrintAppendable(appendable);
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_receive((%sMessageQueue *) &%s, %s);\n", prefix, prefix, variableName, dataPointer);
+		return sb;
 	}
 	
 }

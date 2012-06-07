@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
-
 /**
  * @author Andreas Unger
  *
@@ -20,12 +18,12 @@ import java.io.IOException;
 public interface ISemaphoreGenerator {
 
 	boolean contributesContextCode();
-	void writeContextCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException;
+	CharSequence generateContextCode(String variableName, ISemaphoreInfo info);
 
 	boolean contributesInitializationCode();
-	void writeInitializationCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException;
+	CharSequence generateInitializationCode(String variableName, ISemaphoreInfo info);
 
-	void writeDownCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException;
-	void writeUpCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException;
+	CharSequence generateDownCode(String variableName, ISemaphoreInfo info);
+	CharSequence generateUpCode(String variableName, ISemaphoreInfo info);
 
 }

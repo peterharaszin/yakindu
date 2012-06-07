@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.rte.SemaphoreInfo;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -40,19 +38,21 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 	}
 	
 	@Override
-	public void writeContextCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
-		appendable.append("struct {\n");
-		appendable.append("int ").append("tail;\n");
-		appendable.append("int ").append("head;\n");
-		appendable.append("unsigned char ").append("buffer[").append(info.getCapacity()).append(" * ").append(info.getElementSize()).append("];\n");
+	public CharSequence generateContextCode(IGeneratorContext context, String variableName, IMessageQueueInfo info) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("struct {\n");
+		sb.append("int ").append("tail;\n");
+		sb.append("int ").append("head;\n");
+		sb.append("unsigned char ").append("buffer[").append(info.getCapacity()).append(" * ").append(info.getElementSize()).append("];\n");
 		if (fastLockGenerator.contributesContextCode()) {
-			appendable.append(fastLockGenerator.generateContextCode("mutex"));
+			sb.append(fastLockGenerator.generateContextCode("mutex"));
 		}
 		if (semaphoreGenerator.contributesContextCode()) {
-			semaphoreGenerator.writeContextCode(appendable, "fillCount", createFillCountSemaphoreInfo(info));
-			semaphoreGenerator.writeContextCode(appendable, "emptyCount", createEmptyCountSemaphoreInfo(info));
+			sb.append(semaphoreGenerator.generateContextCode("fillCount", createFillCountSemaphoreInfo(info)));
+			sb.append(semaphoreGenerator.generateContextCode("emptyCount", createEmptyCountSemaphoreInfo(info)));
 		}
-		appendable.append("} ").append(variableName).append(";\n");
+		sb.append("} ").append(variableName).append(";\n");
+		return sb;
 	}
 
 	@Override
@@ -61,49 +61,57 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 	}
 	
 	@Override
-	public void writeInitializationCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException {
-		appendable.append(variableName).append(".tail = 0;\n");
-		appendable.append(variableName).append(".head = 0;\n");
+	public CharSequence generateInitializationCode(IGeneratorContext context, String variableName, IMessageQueueInfo info) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(variableName).append(".tail = 0;\n");
+		sb.append(variableName).append(".head = 0;\n");
 		if (fastLockGenerator.contributesInitializationCode()) {
 			String createMutexQualifier = createMutexQualifier(variableName);
-			appendable.append(fastLockGenerator.generateInitializationCode(createMutexQualifier));
+			sb.append(fastLockGenerator.generateInitializationCode(createMutexQualifier));
 		}
 		if (semaphoreGenerator.contributesInitializationCode()) {
-			semaphoreGenerator.writeInitializationCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
-			semaphoreGenerator.writeInitializationCode(appendable, createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info));
+			sb.append(semaphoreGenerator.generateInitializationCode(createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info)));
+			sb.append(semaphoreGenerator.generateInitializationCode(createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info)));
 		}
+		return sb;
 	}
 
 	@Override
-	public void writeSendCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateSendCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		out.println("{");
-		semaphoreGenerator.writeDownCode(appendable, createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info));
+		out.print(semaphoreGenerator.generateDownCode(createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info)));
 		out.print(fastLockGenerator.generateLockCode(createMutexQualifier(variableName)));
 		
 		out.printf("memcpy(%s.buffer + %s.tail, %s, %s);\n", variableName, variableName, dataPointer, info.getElementSize());
 		out.printf("%s.tail = (%s.tail + %s) %% %s;\n", variableName, variableName, info.getElementSize(), info.getCapacity());
 		
 		out.print(fastLockGenerator.generateUnlockCode(createMutexQualifier(variableName)));
-		semaphoreGenerator.writeUpCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
+		out.print(semaphoreGenerator.generateUpCode(createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info)));
 		out.println("}");
+		
+		return sb;
 	}
 
 	@Override
-	public void writeReceiveCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateReceiveCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		out.println("{");
-		semaphoreGenerator.writeDownCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
+		out.print(semaphoreGenerator.generateDownCode(createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info)));
 		out.print(fastLockGenerator.generateLockCode(createMutexQualifier(variableName)));
 		
 		out.printf("memcpy(%s, %s.buffer + %s.head, %s);\n", dataPointer, variableName, variableName, info.getElementSize());
 		out.printf("%s.head = (%s.head + %s) %% %s;\n", variableName, variableName, info.getElementSize(), info.getCapacity());
 
 		out.print(fastLockGenerator.generateUnlockCode(createMutexQualifier(variableName)));
-		semaphoreGenerator.writeUpCode(appendable, createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info));
+		out.print(semaphoreGenerator.generateUpCode(createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info)));
 		out.println("}");
+		
+		return sb;
 	}
 
 	/**

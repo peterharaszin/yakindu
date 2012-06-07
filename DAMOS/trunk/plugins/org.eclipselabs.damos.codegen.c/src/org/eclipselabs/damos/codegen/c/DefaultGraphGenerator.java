@@ -105,7 +105,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 			if (generator.contributesComputeOutputsCode()) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 				writer.println("{");
-				generator.writeComputeOutputsCode(writer, monitor);
+				writer.print(generator.generateComputeOutputsCode(monitor));
 				writer.println("}\n");
 			}
 			taskGenerator.writeLatchUpdate(context, appendable, componentNode, monitor);
@@ -123,7 +123,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 			if (generator.contributesUpdateCode()) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 				writer.println("{");
-				generator.writeUpdateCode(writer, monitor);
+				writer.print(generator.generateUpdateCode(monitor));
 				writer.println("}\n");
 			}
 		}

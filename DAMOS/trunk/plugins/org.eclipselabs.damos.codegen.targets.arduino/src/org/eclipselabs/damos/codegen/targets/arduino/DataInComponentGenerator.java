@@ -55,26 +55,21 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 		return outputDataType instanceof BooleanType;		
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeInitializationCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		appendable.append("pinMode(").append(Integer.toString(getPinIndex())).append(", INPUT);\n");
+	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+		return new StringBuilder().append("pinMode(").append(getPinIndex()).append(", INPUT);\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeComputeOutputsCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
 		String outputVariable = getContext().getVariableAccessor().getOutputVariable(getContext().getNode().getComponent().getFirstOutputPort(), false);
 		DataType outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		if (outputDataType instanceof BooleanType) {
-			appendable.append(outputVariable).append(" = digitalRead(").append(Integer.toString(getPinIndex())).append(");\n");
+			sb.append(outputVariable).append(" = digitalRead(").append(Integer.toString(getPinIndex())).append(");\n");
 		} else {
 			NumberFormat outputNumberFormat = getComputationModel().getNumberFormat(outputDataType);
-			appendable.append(outputVariable).append(" = ");
+			sb.append(outputVariable).append(" = ");
 			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, new IWriter() {
 				
 				public void write(Appendable appendable) throws IOException {
@@ -89,9 +84,15 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 				}
 				
 			});
-			multiplicativeExpressionWriter.write(appendable, getContext().getCodeFragmentCollector(), MultiplicativeOperator.DIVIDE, outputNumberFormat, leftOperand, rightOperand);
-			appendable.append(";\n");
+			try {
+				multiplicativeExpressionWriter.write(sb, getContext().getCodeFragmentCollector(), MultiplicativeOperator.DIVIDE, outputNumberFormat, leftOperand, rightOperand);
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
+			sb.append(";\n");
 		}
+		return sb;
 	}
 	
 	protected int getAnalogRange() {

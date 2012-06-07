@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -46,12 +45,10 @@ public class JoinGenerator extends AbstractComponentGenerator {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeComputeOutputsCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		
 		Map<Integer, String> variableNameMap = new TreeMap<Integer, String>();
 		ComponentNode choiceNode = null;
@@ -75,6 +72,7 @@ public class JoinGenerator extends AbstractComponentGenerator {
 			out.println("break;");
 		}
 		out.println("}");
+		return sb;
 	}
 	
 	private CompoundNode findEnclosingActionNodeWithActionLink(Node node) {

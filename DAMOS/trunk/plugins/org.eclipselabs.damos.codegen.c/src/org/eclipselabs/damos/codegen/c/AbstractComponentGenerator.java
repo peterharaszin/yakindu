@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
@@ -73,11 +72,12 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextTypeName()
 	 */
-	public String getContextTypeName() {
+	public CharSequence getContextTypeName() {
 		return null;
 	}
 	
-	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateContextCode(String typeName, IProgressMonitor monitor) {
+		return "";
 	}
 	
 	/* (non-Javadoc)
@@ -94,10 +94,8 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return getImplementationIncludes();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#generateInitializationCode(org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+		return "";
 	}
 
 	/* (non-Javadoc)
@@ -114,10 +112,8 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return getImplementationIncludes();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#generateComputeOutputsCode(org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		return "";
 	}
 	
 	/* (non-Javadoc)
@@ -134,10 +130,8 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return getImplementationIncludes();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#generateUpdateCode(org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateUpdateCode(IProgressMonitor monitor) {
+		return "";
 	}
 	
 	protected Collection<Include> getImplementationIncludes() {

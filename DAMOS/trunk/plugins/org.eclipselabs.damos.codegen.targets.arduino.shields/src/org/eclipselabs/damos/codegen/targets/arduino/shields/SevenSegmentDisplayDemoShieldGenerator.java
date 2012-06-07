@@ -4,9 +4,6 @@
 
 package org.eclipselabs.damos.codegen.targets.arduino.shields;
 
-import java.io.IOException;
-
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
@@ -62,14 +59,16 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 		}
 
 		@Override
-		public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-			appendable.append("pinMode(3, OUTPUT);\n"); // a
-			appendable.append("pinMode(2, OUTPUT);\n"); // b
-			appendable.append("pinMode(8, OUTPUT);\n"); // c
-			appendable.append("pinMode(4, OUTPUT);\n"); // d
-			appendable.append("pinMode(7, OUTPUT);\n"); // e
-			appendable.append("pinMode(5, OUTPUT);\n"); // f
-			appendable.append("pinMode(6, OUTPUT);\n"); // g
+		public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("pinMode(3, OUTPUT);\n"); // a
+			sb.append("pinMode(2, OUTPUT);\n"); // b
+			sb.append("pinMode(8, OUTPUT);\n"); // c
+			sb.append("pinMode(4, OUTPUT);\n"); // d
+			sb.append("pinMode(7, OUTPUT);\n"); // e
+			sb.append("pinMode(5, OUTPUT);\n"); // f
+			sb.append("pinMode(6, OUTPUT);\n"); // g
+			return sb;
 		}
 
 		@Override
@@ -78,8 +77,9 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 		}
 
 		@Override
-		public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-			PrintAppendable out = new PrintAppendable(appendable);
+		public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+			StringBuilder sb = new StringBuilder();
+			PrintAppendable out = new PrintAppendable(sb);
 			String v = GeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getFirstInputPort());
 			out.printf("digitalWrite(3, !(%s == 0 || %s == 2 || %s == 3 || %s == 5 || %s == 6 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
 			out.printf("digitalWrite(2, !(%s == 0 || %s == 1 || %s == 2 || %s == 3 || %s == 4 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
@@ -88,6 +88,7 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 			out.printf("digitalWrite(7, !(%s == 0 || %s == 2 || %s == 6 || %s == 8));\n", v, v, v, v);
 			out.printf("digitalWrite(5, !(%s == 0 || %s == 4 || %s == 5 || %s == 6 || %s == 8 || %s == 9));\n", v, v, v, v, v, v);
 			out.printf("digitalWrite(6, !(%s == 2 || %s == 3 || %s == 4 || %s == 5 || %s == 6 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v);
+			return sb;
 		}
 
 	}

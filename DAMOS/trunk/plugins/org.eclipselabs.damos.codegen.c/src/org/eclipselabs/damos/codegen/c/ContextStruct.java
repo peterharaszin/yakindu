@@ -22,7 +22,6 @@ import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
@@ -53,13 +52,12 @@ public class ContextStruct extends PrimaryCodeFragment {
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
-		addDependency(new ICodeFragmentDependency.Stub() {
-		
-			@Override
-			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
+			
+			public boolean applies(ICodeFragment other) {
 				return other instanceof TaskMessageStruct;
 			}
-
+			
 		});
 		
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {

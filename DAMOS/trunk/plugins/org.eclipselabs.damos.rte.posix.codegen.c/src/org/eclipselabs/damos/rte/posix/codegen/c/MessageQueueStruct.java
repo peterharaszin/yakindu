@@ -21,7 +21,6 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
@@ -52,10 +51,9 @@ public class MessageQueueStruct extends PrimaryCodeFragment {
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
-		addDependency(new ICodeFragmentDependency.Stub() {
+		addDependency(FORWARD_DECLARATION_REQUIRED_BY, new IDependencyRule() {
 			
-			@Override
-			public boolean forwardDeclarationRequiredBy(ICodeFragment other) {
+			public boolean applies(ICodeFragment other) {
 				return other instanceof ContextStruct;
 			}
 			

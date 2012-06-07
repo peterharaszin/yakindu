@@ -11,6 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.DEPENDS_ON;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.REQUIRED_BY;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -219,7 +223,7 @@ public class CModule {
 	public boolean dependsOn(CModule other) {
 		for (CModuleEntry entry : entries) {
 			for (CModuleEntry otherEntry : other.entries) {
-				if (entry.getCodeFragment().forwardDeclarationDependsOn(otherEntry.getCodeFragment())) {
+				if (entry.getCodeFragment().hasDependency(FORWARD_DECLARATION_DEPENDS_ON, otherEntry.getCodeFragment())) {
 					return true;
 				}
 			}
@@ -242,10 +246,8 @@ public class CModule {
 	private void resolveDependencies(Collection<CModuleEntry> backlog, CModuleEntry nextEntry, Collection<CModuleEntry> resolvedEntries, Collection<CModuleEntry> unresolvedEntries) {
 		unresolvedEntries.add(nextEntry);
 		for (CModuleEntry entry : backlog) {
-			if (!resolvedEntries.contains(entry) && (nextEntry.getCodeFragment().forwardDeclarationDependsOn(entry.getCodeFragment())
-					|| entry.getCodeFragment().forwardDeclarationRequiredBy(nextEntry.getCodeFragment())
-					|| nextEntry.getCodeFragment().implementationDependsOn(entry.getCodeFragment())
-					|| entry.getCodeFragment().implementationRequiredBy(nextEntry.getCodeFragment()))) {
+			if (!resolvedEntries.contains(entry) && (nextEntry.getCodeFragment().hasDependency(DEPENDS_ON, entry.getCodeFragment())
+					|| entry.getCodeFragment().hasDependency(REQUIRED_BY, nextEntry.getCodeFragment()))) {
 				if (unresolvedEntries.contains(entry)) {
 					throw new IllegalStateException("Circular dependency encountered");
 				}

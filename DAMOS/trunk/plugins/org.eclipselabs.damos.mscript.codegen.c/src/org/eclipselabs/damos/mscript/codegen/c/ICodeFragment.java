@@ -23,19 +23,21 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public interface ICodeFragment {
 	
+	int FORWARD_DECLARATION_DEPENDS_ON = 0x01;
+	int FORWARD_DECLARATION_REQUIRED_BY = 0x02;
+	int IMPLEMENTATION_DEPENDS_ON = 0x04;
+	int IMPLEMENTATION_REQUIRED_BY = 0x08;
+	
+	int DEPENDS_ON = FORWARD_DECLARATION_DEPENDS_ON | IMPLEMENTATION_DEPENDS_ON;
+	int REQUIRED_BY = FORWARD_DECLARATION_REQUIRED_BY | IMPLEMENTATION_REQUIRED_BY;
+	
 	void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException;
 
-	void addDependency(ICodeFragmentDependency dependency);
+	void addDependency(int kind, IDependencyRule rule);
+	
+	boolean hasDependency(int kind, ICodeFragment other);
 	
 	boolean contributesInternalForwardDeclaration();
-
-	boolean forwardDeclarationDependsOn(ICodeFragment other);
-	
-	boolean implementationDependsOn(ICodeFragment other);
-
-	boolean forwardDeclarationRequiredBy(ICodeFragment other);
-	
-	boolean implementationRequiredBy(ICodeFragment other);
 
 	Collection<Include> getForwardDeclarationIncludes();
 	
@@ -52,5 +54,11 @@ public interface ICodeFragment {
 	
 	@Override
 	boolean equals(Object obj);
+	
+	interface IDependencyRule {
+		
+		boolean applies(ICodeFragment other);
+		
+	}
 	
 }

@@ -11,12 +11,14 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.datatype;
 
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
+
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 import org.eclipselabs.damos.mscript.codegen.c.StructTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
@@ -40,13 +42,9 @@ public class MachineStructType extends MachineDataType {
 			ICodeFragment dependentCodeFragment) {
 		final StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(new StructTypeDeclarationCodeFragment(computationModel, this), new NullProgressMonitor());
 		if (dependentCodeFragment != null) {
-			dependentCodeFragment.addDependency(new ICodeFragmentDependency.Stub() {
+			dependentCodeFragment.addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 				
-				/* (non-Javadoc)
-				 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-				 */
-				@Override
-				public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+				public boolean applies(ICodeFragment other) {
 					return other == codeFragment;
 				}
 				

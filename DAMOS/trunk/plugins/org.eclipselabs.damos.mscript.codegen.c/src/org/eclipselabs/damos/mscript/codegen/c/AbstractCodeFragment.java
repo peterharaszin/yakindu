@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public abstract class AbstractCodeFragment implements ICodeFragment {
 
-	private final Collection<ICodeFragmentDependency> dependencies = new ArrayList<ICodeFragmentDependency>();
+	private final Collection<Dependency> dependencies = new ArrayList<Dependency>();
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#initialize(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IProgressMonitor)
@@ -33,55 +33,16 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#addDependency(org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency)
-	 */
-	public final void addDependency(ICodeFragmentDependency dependency) {
-		dependencies.add(dependency);
+	public final void addDependency(int kind, IDependencyRule rule) {
+		dependencies.add(new Dependency(kind, rule));
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#dependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#hasDependency(int, org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
 	 */
-	public final boolean forwardDeclarationDependsOn(ICodeFragment other) {
-		for (ICodeFragmentDependency dependency : dependencies) {
-			if (dependency.forwardDeclarationDependsOn(other)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#implementationDependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	public boolean implementationDependsOn(ICodeFragment other) {
-		for (ICodeFragmentDependency dependency : dependencies) {
-			if (dependency.implementationDependsOn(other)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#requiredBy(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	public final boolean forwardDeclarationRequiredBy(ICodeFragment other) {
-		for (ICodeFragmentDependency dependency : dependencies) {
-			if (dependency.forwardDeclarationRequiredBy(other)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#implementationRequiredBy(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-	 */
-	public boolean implementationRequiredBy(ICodeFragment other) {
-		for (ICodeFragmentDependency dependency : dependencies) {
-			if (dependency.implementationRequiredBy(other)) {
+	public boolean hasDependency(int kind, ICodeFragment other) {
+		for (Dependency dependency : dependencies) {
+			if ((dependency.kind & kind) != 0 && dependency.rule.applies(other)) {
 				return true;
 			}
 		}
@@ -120,6 +81,21 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragment#writeImplementation(java.lang.Appendable, boolean)
 	 */
 	public void writeImplementation(Appendable appendable, boolean internal) throws IOException {
+	}
+	
+	private static class Dependency {
+		
+		private final int kind;
+		private final IDependencyRule rule;
+		
+		/**
+		 * 
+		 */
+		public Dependency(int kind, IDependencyRule rule) {
+			this.kind = kind;
+			this.rule = rule;
+		}
+		
 	}
 	
 }

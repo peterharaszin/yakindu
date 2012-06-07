@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 
 /**
  * @author Andreas Unger
@@ -32,10 +31,9 @@ public class ContextVariable extends PrimaryCodeFragment {
 	 */
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
-		addDependency(new ICodeFragmentDependency.Stub() {
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
-			@Override
-			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+			public boolean applies(ICodeFragment other) {
 				return other instanceof ContextStruct;
 			}
 

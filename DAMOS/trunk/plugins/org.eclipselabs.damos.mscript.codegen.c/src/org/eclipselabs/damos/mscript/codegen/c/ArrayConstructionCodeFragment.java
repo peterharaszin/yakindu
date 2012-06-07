@@ -54,9 +54,9 @@ public class ArrayConstructionCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public void initialize(IAdaptable context, IProgressMonitor monitor) throws IOException {
-		addDependency(new ICodeFragmentDependency.Stub() {
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
-			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+			public boolean applies(ICodeFragment other) {
 				return other instanceof ArrayTypeDeclarationCodeFragment;
 			}
 			

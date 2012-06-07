@@ -25,7 +25,7 @@ class CSourceGenerator implements ICModuleGenerator {
 		return doGenerate(it, includes);
 	}
 
-	def doGenerate(CModule it, Collection<Include> includes) '''
+	def private doGenerate(CModule it, Collection<Include> includes) '''
 		«IF sourceComment != null»
 			«sourceComment»
 		«ENDIF»
@@ -44,13 +44,13 @@ class CSourceGenerator implements ICModuleGenerator {
 		«generateImplementations(true)»
 	'''
 
-	def generateInternalForwardDeclarations(CModule it) '''
+	def private generateInternalForwardDeclarations(CModule it) '''
 		«FOR entry : entries.filter(e | e.internal && e.codeFragment.contributesInternalForwardDeclaration) SEPARATOR "\n"»
 			«entry.codeFragment.generateForwardDeclaration(true)»
 		«ENDFOR»
 	'''
 	
-	def generateImplementations(CModule it, boolean contributesInternalForwardDeclaration) '''
+	def private generateImplementations(CModule it, boolean contributesInternalForwardDeclaration) '''
 		«FOR entry : entries.filter(e | e.codeFragment.contributesImplementation && e.codeFragment.contributesInternalForwardDeclaration == contributesInternalForwardDeclaration) SEPARATOR "\n"»
 			«entry.codeFragment.generateImplementation(entry.internal)»
 		«ENDFOR»
@@ -60,7 +60,7 @@ class CSourceGenerator implements ICModuleGenerator {
 	 * @param module
 	 * @return
 	 */
-	def Collection<Include> getIncludes(CModule it) {
+	def private Collection<Include> getIncludes(CModule it) {
 		// Add internal forward declaration includes
 		val Set<Include> includes = new TreeSet<Include>();
 		for (entry : entries) {

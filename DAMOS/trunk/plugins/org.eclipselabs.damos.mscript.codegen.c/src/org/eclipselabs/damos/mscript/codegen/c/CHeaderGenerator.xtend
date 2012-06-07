@@ -25,7 +25,7 @@ class CHeaderGenerator implements ICModuleGenerator {
 		return doGenerate(it, headerMacro, includes);
 	}
 	
-	def doGenerate(CModule it, String headerMacro, Collection<Include> includes) '''
+	def private doGenerate(CModule it, String headerMacro, Collection<Include> includes) '''
 		«IF headerComment != null»
 			«headerComment»
 		«ENDIF»
@@ -54,7 +54,7 @@ class CHeaderGenerator implements ICModuleGenerator {
 	 * @param module
 	 * @return
 	 */
-	def Collection<Include> getIncludes(CModule it) {
+	def private Collection<Include> getIncludes(CModule it) {
 		// Add external forward declaration includes
 		val Collection<Include> includes = new TreeSet<Include>();
 		for (entry : entries) {

@@ -26,7 +26,7 @@ public class CHeaderGenerator implements ICModuleGenerator {
     return this.doGenerate(it, headerMacro, _includes);
   }
   
-  public CharSequence doGenerate(final CModule it, final String headerMacro, final Collection<Include> includes) {
+  private CharSequence doGenerate(final CModule it, final String headerMacro, final Collection<Include> includes) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _headerComment = it.getHeaderComment();
@@ -106,7 +106,7 @@ public class CHeaderGenerator implements ICModuleGenerator {
    * @param module
    * @return
    */
-  public Collection<Include> getIncludes(final CModule it) {
+  private Collection<Include> getIncludes(final CModule it) {
     TreeSet<Include> _treeSet = new TreeSet<Include>();
     final Collection<Include> includes = _treeSet;
     Collection<CModuleEntry> _entries = it.getEntries();

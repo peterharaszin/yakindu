@@ -46,7 +46,7 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		appendable.append("int ").append("head;\n");
 		appendable.append("unsigned char ").append("buffer[").append(info.getCapacity()).append(" * ").append(info.getElementSize()).append("];\n");
 		if (fastLockGenerator.contributesContextCode()) {
-			fastLockGenerator.writeContextCode(appendable, "mutex");
+			appendable.append(fastLockGenerator.generateContextCode("mutex"));
 		}
 		if (semaphoreGenerator.contributesContextCode()) {
 			semaphoreGenerator.writeContextCode(appendable, "fillCount", createFillCountSemaphoreInfo(info));
@@ -66,7 +66,7 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 		appendable.append(variableName).append(".head = 0;\n");
 		if (fastLockGenerator.contributesInitializationCode()) {
 			String createMutexQualifier = createMutexQualifier(variableName);
-			fastLockGenerator.writeInitializationCode(appendable, createMutexQualifier);
+			appendable.append(fastLockGenerator.generateInitializationCode(createMutexQualifier));
 		}
 		if (semaphoreGenerator.contributesInitializationCode()) {
 			semaphoreGenerator.writeInitializationCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
@@ -80,12 +80,12 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 
 		out.println("{");
 		semaphoreGenerator.writeDownCode(appendable, createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info));
-		fastLockGenerator.writeLockCode(appendable, createMutexQualifier(variableName));
+		out.print(fastLockGenerator.generateLockCode(createMutexQualifier(variableName)));
 		
 		out.printf("memcpy(%s.buffer + %s.tail, %s, %s);\n", variableName, variableName, dataPointer, info.getElementSize());
 		out.printf("%s.tail = (%s.tail + %s) %% %s;\n", variableName, variableName, info.getElementSize(), info.getCapacity());
 		
-		fastLockGenerator.writeUnlockCode(appendable, createMutexQualifier(variableName));
+		out.print(fastLockGenerator.generateUnlockCode(createMutexQualifier(variableName)));
 		semaphoreGenerator.writeUpCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
 		out.println("}");
 	}
@@ -96,12 +96,12 @@ public class BoundedBufferMessageQueueGenerator extends AbstractMessageQueueGene
 
 		out.println("{");
 		semaphoreGenerator.writeDownCode(appendable, createFillCountQualifier(variableName), createFillCountSemaphoreInfo(info));
-		fastLockGenerator.writeLockCode(appendable, createMutexQualifier(variableName));
+		out.print(fastLockGenerator.generateLockCode(createMutexQualifier(variableName)));
 		
 		out.printf("memcpy(%s, %s.buffer + %s.head, %s);\n", dataPointer, variableName, variableName, info.getElementSize());
 		out.printf("%s.head = (%s.head + %s) %% %s;\n", variableName, variableName, info.getElementSize(), info.getCapacity());
 
-		fastLockGenerator.writeUnlockCode(appendable, createMutexQualifier(variableName));
+		out.print(fastLockGenerator.generateUnlockCode(createMutexQualifier(variableName)));
 		semaphoreGenerator.writeUpCode(appendable, createEmptyCountQualifier(variableName), createEmptyCountSemaphoreInfo(info));
 		out.println("}");
 	}

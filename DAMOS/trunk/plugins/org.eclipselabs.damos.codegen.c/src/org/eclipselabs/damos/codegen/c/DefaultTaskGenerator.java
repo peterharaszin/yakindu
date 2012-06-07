@@ -94,9 +94,9 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 					String variableName = contextVariable + "." + "lock";
 					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
-					GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().writeLockCode(out, variableName);
+					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
 					new Formatter(out).format("%s.data = %s;\n", contextVariable, outputVariable);
-					GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().writeUnlockCode(out, variableName);
+					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateUnlockCode(variableName));
 				}
 			}
 		}

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
 
 /**
  * @author Andreas Unger
@@ -19,42 +18,28 @@ import java.io.IOException;
  */
 public class AbstractFastLockGenerator implements IFastLockGenerator {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesContextStructCode()
-	 */
 	public boolean contributesContextCode() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeContextStructCode(java.lang.Appendable)
-	 */
-	public void writeContextCode(Appendable appendable, String variableName) throws IOException {
+	public CharSequence generateContextCode(String variableName) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#contributesInitializationCode()
-	 */
 	public boolean contributesInitializationCode() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeInitializationCode(Appendable appendable, String variableName) throws IOException {
+	public CharSequence generateInitializationCode(String variableName) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeLockCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeLockCode(Appendable appendable, String variableName) throws IOException {
+	public CharSequence generateLockCode(String variableName) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISimpleLockGenerator#writeUnlockCode(java.lang.Appendable, java.lang.String)
-	 */
-	public void writeUnlockCode(Appendable appendable, String variableName) throws IOException {
+	public CharSequence generateUnlockCode(String variableName) {
+		return "";
 	}
 
 }

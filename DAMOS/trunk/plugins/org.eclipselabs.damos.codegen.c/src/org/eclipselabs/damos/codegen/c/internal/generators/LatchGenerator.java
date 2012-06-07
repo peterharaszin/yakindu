@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
-import java.io.IOException;
 import java.util.Formatter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -40,12 +39,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, null);
 		sb.append("typedef struct {\n").append(cDataType).append(" ").append("data;\n");
-		try {
-			getFastLockGenerator().writeContextCode(sb, "lock");
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		sb.append(getFastLockGenerator().generateContextCode("lock"));
 		sb.append("} ").append(typeName).append(";\n");
 		return sb;
 	}
@@ -60,15 +54,8 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	
 	@Override
 	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
-		StringBuilder sb = new StringBuilder();
 		String contextVariable = getVariableAccessor().getContextVariable(false);
-		try {
-			getFastLockGenerator().writeInitializationCode(sb, contextVariable + "." + "lock");
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
-		return sb;
+		return getFastLockGenerator().generateInitializationCode(contextVariable + "." + "lock");
 	}
 	
 	/* (non-Javadoc)
@@ -86,19 +73,9 @@ public class LatchGenerator extends AbstractComponentGenerator {
 		String variableName = contextVariable + "." + "lock";
 		String outputVariable = getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false);
 
-		try {
-			getFastLockGenerator().writeLockCode(sb, variableName);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		sb.append(getFastLockGenerator().generateLockCode(variableName));
 		new Formatter(sb).format("%s = %s.data;\n", outputVariable, contextVariable);
-		try {
-			getFastLockGenerator().writeUnlockCode(sb, variableName);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		sb.append(getFastLockGenerator().generateUnlockCode( variableName));
 		return sb;
 	}
 	

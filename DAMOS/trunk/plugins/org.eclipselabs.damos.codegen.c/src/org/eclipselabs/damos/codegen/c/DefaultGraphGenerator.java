@@ -84,16 +84,26 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 		return allIncludes;
 	}
 	
-	public void writeGraph(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor)
-			throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateGraph(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		
-		compoundGenerator.writeChoiceVariableDeclarations(context, out, graph, monitor);
+		try {
+			compoundGenerator.writeChoiceVariableDeclarations(context, out, graph, monitor);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 
 		out.print("/*\n * Compute outputs\n */\n\n");
 		for (Node node : graph.getNodes()) {
 			if (node instanceof CompoundNode) {
-				compoundGenerator.writeCompoundCode(context, out, (CompoundNode) node, monitor);
+				try {
+					compoundGenerator.writeCompoundCode(context, out, (CompoundNode) node, monitor);
+				} catch (IOException e) {
+					// TODO REMOVE
+					e.printStackTrace();
+				}
 				out.println();
 				continue;
 			} else if (!(node instanceof ComponentNode)) {
@@ -127,10 +137,13 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 				out.println("}\n");
 			}
 		}
+		
+		return sb;
 	}
 
-	public void writeOutputVariableDeclarations(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor) {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateOutputVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		for (Node node : graph.getAllNodes()) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -155,6 +168,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 				}
 			}
 		}
+		return sb;
 	}
 
 }

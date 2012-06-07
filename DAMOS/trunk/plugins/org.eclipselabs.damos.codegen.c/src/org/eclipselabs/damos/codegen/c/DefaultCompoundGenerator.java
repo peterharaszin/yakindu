@@ -105,7 +105,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 				out.print("do {\n");
 			}
 			
-			graphGenerator.writeGraph(context, appendable, compoundNode, monitor);
+			out.print(graphGenerator.generateGraph(context, compoundNode, monitor));
 			
 			if (action instanceof WhileLoop) {
 				WhileLoop whileLoop = (WhileLoop) action;

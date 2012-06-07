@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,9 +25,8 @@ public interface IGraphGenerator {
 	
 	Collection<Include> getImplementationIncludes(IGeneratorContext context, Graph graph);
 
-	void writeGraph(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor)
-			throws IOException;
+	CharSequence generateGraph(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
 
-	void writeOutputVariableDeclarations(IGeneratorContext context, Appendable appendable, Graph graph, IProgressMonitor monitor) throws IOException;
+	CharSequence generateOutputVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
 
 }

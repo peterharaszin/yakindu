@@ -102,6 +102,7 @@ public class CSourceGenerator implements ICModuleGenerator {
 				includes.add(include);
 			}
 		}
+		
 		return includes;
 	}
 

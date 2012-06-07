@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -78,19 +77,9 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 		out.print(functionSignature);
 		out.print(" {\n");
 		
-		try {
-			graphGenerator.writeOutputVariableDeclarations(context, out, graph, monitor);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(graphGenerator.generateOutputVariableDeclarations(context, graph, monitor));
 		out.println();
-		try {
-			graphGenerator.writeGraph(context, out, graph, monitor);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(graphGenerator.generateGraph(context, graph, monitor));
 		
 		out.println("}");
 	}

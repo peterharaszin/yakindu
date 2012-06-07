@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -84,12 +83,7 @@ public class Task extends PrimaryCodeFragment {
 			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 			sb.append(runtimeEnvironmentAPI.generateTaskSignature(taskName));
 			sb.append(" {\n");
-			try {
-				graphGenerator.writeOutputVariableDeclarations(context, sb, taskGraph, monitor);
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			sb.append(graphGenerator.generateOutputVariableDeclarations(context, taskGraph, monitor));
 			
 			EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 
@@ -122,12 +116,7 @@ public class Task extends PrimaryCodeFragment {
 				}
 			}
 
-			try {
-				graphGenerator.writeGraph(context, sb, taskGraph, monitor);
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
+			sb.append(graphGenerator.generateGraph(context, taskGraph, monitor));
 							
 			sb.append("}\n");
 			sb.append(runtimeEnvironmentAPI.generateTaskReturnStatement(taskName));

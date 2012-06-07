@@ -1,0 +1,19 @@
+package damos.library.base.math
+
+blockType Gain {
+
+	input u
+	output y
+	
+	parameter gain = 1
+
+	function main<gain>(u) -> y {
+		check<1>(real) -> real
+		
+		static assert u is real() :
+			error "Input value must be numeric"
+	
+		eq y = gain * u
+	}
+	
+}

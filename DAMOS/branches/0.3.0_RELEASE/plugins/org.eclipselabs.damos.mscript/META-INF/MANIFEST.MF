@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mscript
+Bundle-Vendor: Damos Project
+Bundle-Version: 0.3.0.qualifier
+Bundle-SymbolicName: org.eclipselabs.damos.mscript; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
+ org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipselabs.damos.mscript,
+ org.eclipselabs.damos.mscript.builtin,
+ org.eclipselabs.damos.mscript.computationmodel,
+ org.eclipselabs.damos.mscript.computationmodel.impl,
+ org.eclipselabs.damos.mscript.computationmodel.util,
+ org.eclipselabs.damos.mscript.conversion,
+ org.eclipselabs.damos.mscript.formatting,
+ org.eclipselabs.damos.mscript.functionmodel,
+ org.eclipselabs.damos.mscript.functionmodel.impl,
+ org.eclipselabs.damos.mscript.functionmodel.transform,
+ org.eclipselabs.damos.mscript.functionmodel.util,
+ org.eclipselabs.damos.mscript.impl,
+ org.eclipselabs.damos.mscript.interpreter,
+ org.eclipselabs.damos.mscript.interpreter.util,
+ org.eclipselabs.damos.mscript.interpreter.value,
+ org.eclipselabs.damos.mscript.linking,
+ org.eclipselabs.damos.mscript.naming,
+ org.eclipselabs.damos.mscript.parseTreeConstruction,
+ org.eclipselabs.damos.mscript.parser.antlr,
+ org.eclipselabs.damos.mscript.parser.antlr.internal,
+ org.eclipselabs.damos.mscript.scoping,
+ org.eclipselabs.damos.mscript.services,
+ org.eclipselabs.damos.mscript.util,
+ org.eclipselabs.damos.mscript.validation
+

@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Common UI
+Bundle-SymbolicName: org.eclipselabs.damos.common.ui;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: org.eclipselabs.damos.common.ui.CommonUIPlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.forms;bundle-version="3.5.0",
+ org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.0",
+ org.eclipselabs.damos.dml;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipselabs.damos.common.ui.dialogs,
+ org.eclipselabs.damos.common.ui.util,
+ org.eclipselabs.damos.common.ui.viewers,
+ org.eclipselabs.damos.common.ui.widgets

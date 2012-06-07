@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.dconfig/src"
+    modelPluginID="org.eclipselabs.damos.dconfig" modelName="Dconfig" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipselabs.damos.mscript/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript">
+  <foreignModel>Dconfig.ecore</foreignModel>
+  <genPackages prefix="Dconfig" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+      ecorePackage="Dconfig.ecore#/">
+    <genDataTypes ecoreDataType="Dconfig.ecore#//PropertyPath"/>
+    <genDataTypes ecoreDataType="Dconfig.ecore#//SystemPath"/>
+    <genDataTypes ecoreDataType="Dconfig.ecore#//NumberedList">
+      <genTypeParameters ecoreTypeParameter="Dconfig.ecore#//NumberedList/V"/>
+    </genDataTypes>
+    <genClasses ecoreClass="Dconfig.ecore#//Configuration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/packageName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/baseConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/importDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/rootSystemConfiguration"/>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getContextFragment"/>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertyValue">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertyValue.1">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertyValue.1/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionName">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionName.1">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionName.1/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionNames">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertySelectionNames.1">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/systemPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getPropertySelectionNames.1/propertyPath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getBinding">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBinding/propertyPath"/>
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getBinding/sourcePath"/>
+      </genOperations>
+      <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getComputationModel">
+        <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/systemPath"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ConfigurationDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ConfigurationDefinition/packageName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ConfigurationDefinition/members"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//ConfigurationDefinitionMember">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//ConfigurationDefinitionMember/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ConfigurationDefinitionMember/name"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ConfigurationDefinitionMember/qualifiedName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//PropertyContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//PropertyContainer/properties"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Property/propagate"/>
+      <genOperations ecoreOperation="Dconfig.ecore#//Property/getId"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//DeclaredProperty">
+      <genOperations ecoreOperation="Dconfig.ecore#//DeclaredProperty/getDeclaration"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SimpleProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SimpleProperty/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SimpleProperty/declaration"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SimplePropertyDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SimplePropertyDeclaration/typeSpecifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SimplePropertyDeclaration/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SelectionProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/declaration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//SelectionProperty/index"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/selection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionProperty/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyBody">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyBody/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyBody/bindings"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//SelectionPropertyDeclaration/count"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SelectionPropertyOption">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyOption/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SelectionPropertyOption/resourceDeclarations"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//PropertyDeclaration"/>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//PropertyDeclarationContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//PropertyDeclarationContainer/propertyDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ComponentPath">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ComponentPath/references"/>
+      <genOperations ecoreOperation="Dconfig.ecore#//ComponentPath/getComponent"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ComponentReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ComponentReference/component"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//Binding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Binding/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Binding/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Binding/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//BindingResourceReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//BindingResourceReference/resourceDeclaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//BindingResourceReference/subscript"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//BindingResourceSubscript">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//BindingResourceSubscript/index"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//BindingBody">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//BindingBody/owner"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ResourceDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ResourceDeclaration/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ResourceDeclaration/count"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ComputationProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ComputationProperty/computationModel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Dconfig.ecore#//SystemConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SystemConfiguration/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SystemConfigurationBody">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//SystemConfigurationBody/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SystemConfigurationBody/componentConfigurations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SystemConfigurationBody/fragmentConfigurations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SystemConfigurationBody/subsystemConfigurations"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//RootSystemConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//RootSystemConfiguration/contextFragment"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//SubsystemConfiguration">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//SubsystemConfiguration/parent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//SubsystemConfiguration/subsystem"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//FragmentConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//FragmentConfiguration/startFragment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//FragmentConfiguration/endFragment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//FragmentConfiguration/range"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//FragmentConfiguration/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//FragmentConfigurationBody">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//FragmentConfigurationBody/owner"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ComponentConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ComponentConfiguration/component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//ComponentConfiguration/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Dconfig.ecore#//ComponentConfigurationBody">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dconfig.ecore#//ComponentConfigurationBody/owner"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

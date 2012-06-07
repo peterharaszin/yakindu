@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Codegen C
+Bundle-SymbolicName: org.eclipselabs.damos.codegen.c;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: org.eclipselabs.damos.codegen.c.CodegenCPlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
+ org.eclipselabs.damos.common;bundle-version="0.3.0",
+ org.eclipselabs.damos.execution;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript.codegen.c;bundle-version="0.1.0",
+ org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
+ org.eclipselabs.damos.codegen;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipselabs.damos.codegen.c,
+ org.eclipselabs.damos.codegen.c.rte,
+ org.eclipselabs.damos.codegen.c.util

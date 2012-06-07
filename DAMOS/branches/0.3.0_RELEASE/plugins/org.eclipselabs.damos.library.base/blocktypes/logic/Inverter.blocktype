@@ -1,0 +1,17 @@
+package damos.library.base.logic
+
+blockType Inverter {
+
+	input u
+	output y
+
+	function main(u) -> y {
+		check(boolean) -> boolean
+		
+		static assert u is boolean :
+			error "Input value must be boolean"
+			
+		eq y = !u
+	}
+	
+}

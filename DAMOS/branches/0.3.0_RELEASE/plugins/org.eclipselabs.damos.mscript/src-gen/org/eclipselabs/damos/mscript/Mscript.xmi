@@ -1,0 +1,2402 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipselabs.damos.mscript.Mscript" definesHiddenTokens="true" hiddenTokens="//@rules.133 //@rules.131 //@rules.132">
+  <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+    <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  </metamodelDeclarations>
+  <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
+    <ePackage href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#/"/>
+  </metamodelDeclarations>
+  <rules xsi:type="xtext:ParserRule" name="Module">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Module"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="package"/>
+      <elements xsi:type="xtext:Assignment" feature="packageName" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" cardinality="*" feature="importDeclarations" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.1"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" cardinality="*" feature="declarations" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.2"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ImportDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ImportDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="import"/>
+      <elements xsi:type="xtext:Assignment" feature="importedNamespace" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.119"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Declaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Declaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.3"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.6"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.8"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DataTypeDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="type"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="="/>
+        <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="struct"/>
+        <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.4"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructDeclarationTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AnonymousTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="type" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.5"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructDeclarationType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="EnumerationDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EnumerationDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="enum"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="literalDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.7"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="literalDeclarations" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.7"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value=","/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="EnumerationLiteralDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EnumerationLiteralDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="FunctionDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="kind" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.9"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="function"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="templateParameterDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.10"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="templateParameterDeclarations" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.10"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=">"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="inputParameterDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="inputParameterDeclarations" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Keyword" value="->"/>
+      <elements xsi:type="xtext:Assignment" feature="outputParameterDeclarations" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.12"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="outputParameterDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.12"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Alternatives" cardinality="*">
+        <elements xsi:type="xtext:Assignment" feature="checks" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.13"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="assertions" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.15"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="functionAliasDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.18"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="stateVariableDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.16"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="constantDeclarations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="equations" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="FunctionKind">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind/Stateful"/>
+        <literal value="stateful"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind/Continuous"/>
+        <literal value="continuous"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="TemplateParameterDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TemplateParameterDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="InputParameterDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//InputParameterDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="OutputParameterDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OutputParameterDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Check">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Check"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="check"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="templateArguments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="templateArguments" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=">"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="inputParameterTypes" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="inputParameterTypes" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Keyword" value="->"/>
+      <elements xsi:type="xtext:Assignment" feature="outputParameterTypes" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="outputParameterTypes" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="AssertionStatusKind">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AssertionStatusKind"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AssertionStatusKind/Info"/>
+        <literal value="info"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AssertionStatusKind/Warning"/>
+        <literal value="warning"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AssertionStatusKind/Error"/>
+        <literal value="error"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AssertionStatusKind/Fatal"/>
+        <literal value="fatal"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Assertion">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Assertion"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="static" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value="static"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="assert"/>
+      <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=":"/>
+      <elements xsi:type="xtext:Assignment" feature="statusKind" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.14"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="message" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StateVariableDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StateVariableDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="var"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ConstantDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ConstantDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="const"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="initializer" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="FunctionAliasDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionAliasDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="function"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="functionDeclaration" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDeclaration"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="templateArguments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="templateArguments" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=">"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Equation">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Equation"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="initial" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value="initial"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="eq"/>
+      <elements xsi:type="xtext:Assignment" feature="leftHandSide" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="rightHandSide" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DataTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.21"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AnonymousTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AnonymousTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="type" operator="=">
+      <terminal xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.23"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.35"/>
+      </terminal>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DeclaredTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DeclaredTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="typeDeclaration" operator="=">
+      <terminal xsi:type="xtext:CrossReference">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDeclaration"/>
+        </type>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+      </terminal>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="PrimitiveType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PrimitiveType"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NumericType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//NumericType"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.25"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.26"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.27"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RealType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RealType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RealType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="real"/>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IntegerType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IntegerType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IntegerType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="int"/>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ComplexType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ComplexType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ComplexType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="complex"/>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="GaussianType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//GaussianType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//GaussianType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="gaussian"/>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BooleanType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BooleanType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BooleanType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="boolean"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StringType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StringType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StringType"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="string"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="elementTypeSpecifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="["/>
+      <elements xsi:type="xtext:Assignment" feature="dimensions" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.34"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="dimensions" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.34"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="]"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.33"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AnonymousArrayTypeSpecifier">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AnonymousTypeSpecifier"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="type" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.23"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayDimension">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayDimension"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayDimension"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="size" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="struct"/>
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructMember">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructMember"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Expression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.38"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.41"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.42"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.44"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LetExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LetExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="let"/>
+      <elements xsi:type="xtext:Assignment" feature="assignments" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="assignments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="in"/>
+      <elements xsi:type="xtext:Assignment" feature="target" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LetExpressionAssignment">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LetExpressionAssignment"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="variables" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="variables" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="+">
+            <elements xsi:type="xtext:Keyword" value=","/>
+            <elements xsi:type="xtext:Assignment" feature="variables" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="assignedExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LetExpressionVariableDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LetExpressionVariableDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IfExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IfExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="static" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value="static"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="if"/>
+      <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="then"/>
+      <elements xsi:type="xtext:Assignment" feature="thenExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="else"/>
+      <elements xsi:type="xtext:Assignment" feature="elseExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="SwitchExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//SwitchExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="static" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value="static"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="switch"/>
+      <elements xsi:type="xtext:Assignment" feature="controlExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" cardinality="*" feature="cases" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="default"/>
+      <elements xsi:type="xtext:Keyword" value=":"/>
+      <elements xsi:type="xtext:Assignment" feature="defaultExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="SwitchCase">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//SwitchCase"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="case"/>
+      <elements xsi:type="xtext:Assignment" feature="caseExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=":"/>
+      <elements xsi:type="xtext:Assignment" feature="resultExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RangeExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Action" feature="operands" operator="+=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RangeExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=":"/>
+        <elements xsi:type="xtext:Assignment" feature="operands" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value=":"/>
+          <elements xsi:type="xtext:Assignment" feature="operands" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+          </elements>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ImpliesExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.46"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ImpliesExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="=>"/>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.46"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LogicalOrExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.47"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LogicalOrExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="||"/>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.47"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LogicalAndExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.48"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LogicalAndExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="&amp;&amp;"/>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.48"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="EqualityExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.50"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.49"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.50"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="EqualityOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator/EqualTo"/>
+        <literal value="=="/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator/NotEqualTo"/>
+        <literal value="!="/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RelationalExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.52"/>
+      <elements xsi:type="xtext:Group" cardinality="?" predicated="true">
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+              <type metamodel="//@metamodelDeclarations.1">
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalExpression"/>
+              </type>
+            </elements>
+            <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+            </elements>
+            <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.52"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Action" feature="expression" operator="=">
+              <type metamodel="//@metamodelDeclarations.1">
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TypeTestExpression"/>
+              </type>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value="is"/>
+            <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+            </elements>
+          </elements>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="RelationalOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/LessThan"/>
+        <literal value="&lt;"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/LessThanOrEqualTo"/>
+        <literal value="&lt;="/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/GreaterThan"/>
+        <literal value=">"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/GreaterThanOrEqualTo"/>
+        <literal value=">="/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AdditiveExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.54"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.53"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.54"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="AdditiveOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/Add"/>
+        <literal value="+"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/Subtract"/>
+        <literal value="-"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseAdd"/>
+        <literal value=".+"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseSubtract"/>
+        <literal value=".-"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="MultiplicativeExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.56"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.55"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.56"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="MultiplicativeOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Multiply"/>
+        <literal value="*"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Divide"/>
+        <literal value="/"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Modulo"/>
+        <literal value="%"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseMultiply"/>
+        <literal value=".*"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseDivide"/>
+        <literal value="./"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseModulo"/>
+        <literal value=".%"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="PowerExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.58"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Action" feature="operand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.57"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="exponent" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.58"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="PowerOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator/Power"/>
+        <literal value="^"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator/ElementWisePower"/>
+        <literal value=".^"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnaryExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.60"/>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.59"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.60"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="UnaryOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator/Negate"/>
+        <literal value="-"/>
+      </elements>
+      <elements xsi:type="xtext:EnumLiteralDeclaration">
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator/LogicalNot"/>
+        <literal value="!"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="PostfixExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.80"/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.62"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Action" feature="operand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PostfixExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.61"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:EnumRule" name="PostfixOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PostfixOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:EnumLiteralDeclaration">
+      <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PostfixOperator/Derivative"/>
+      <literal value="'"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="MemberFeatureCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.67"/>
+      <elements xsi:type="xtext:Alternatives" cardinality="*">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="array" operator="=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayElementAccess"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="["/>
+          <elements xsi:type="xtext:Assignment" feature="subscripts" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.66"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="*">
+            <elements xsi:type="xtext:Keyword" value=","/>
+            <elements xsi:type="xtext:Assignment" feature="subscripts" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.66"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="]"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="target" operator="=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MemberVariableAccess"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Assignment" feature="memberVariable" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="arguments" operator="+=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionCall"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
+            <terminal xsi:type="xtext:CrossReference">
+              <type metamodel="//@metamodelDeclarations.1">
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//CallableElement"/>
+              </type>
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+            </terminal>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+            </elements>
+            <elements xsi:type="xtext:Group" cardinality="*">
+              <elements xsi:type="xtext:Keyword" value=","/>
+              <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+                <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+              </elements>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="target" operator="=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IterationCall"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="iterationVariables" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.65"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="*">
+            <elements xsi:type="xtext:Keyword" value=","/>
+            <elements xsi:type="xtext:Assignment" feature="iterationVariables" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.65"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Keyword" value=";"/>
+            <elements xsi:type="xtext:Assignment" feature="accumulator" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.64"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Keyword" value=";"/>
+            <elements xsi:type="xtext:Assignment" feature="breakCondition" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="|"/>
+          <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AssignableMemberFeatureCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.68"/>
+      <elements xsi:type="xtext:Alternatives" cardinality="*">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="array" operator="=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayElementAccess"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="["/>
+          <elements xsi:type="xtext:Assignment" feature="subscripts" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.66"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="*">
+            <elements xsi:type="xtext:Keyword" value=","/>
+            <elements xsi:type="xtext:Assignment" feature="subscripts" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.66"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="]"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Action" feature="target" operator="=">
+            <type metamodel="//@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MemberVariableAccess"/>
+            </type>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Assignment" feature="memberVariable" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+          </elements>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IterationAccumulator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IterationAccumulator"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="initializer" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IterationVariableDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IterationVariableDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArraySubscript">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArraySubscript"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Assignment" feature="slice" operator="?=">
+        <terminal xsi:type="xtext:Keyword" value=":"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="PrimaryExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.69"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.77"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.96"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.90"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.92"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.94"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.97"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.98"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.99"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AssignablePrimaryExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.78"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.97"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Literal">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Literal"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.70"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.75"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.76"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NumericLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//NumericLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.73"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.71"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RealLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RealLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="data" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.72"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RealData" definesHiddenTokens="true">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RealData"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+          <elements xsi:type="xtext:Alternatives" cardinality="?">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.123"/>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.126"/>
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:RuleCall" rule="//@rules.124"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="+"/>
+                <elements xsi:type="xtext:Keyword" value="-"/>
+              </elements>
+              <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+              <elements xsi:type="xtext:RuleCall" cardinality="?" rule="//@rules.123"/>
+            </elements>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.126"/>
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.124"/>
+            <elements xsi:type="xtext:Alternatives">
+              <elements xsi:type="xtext:Keyword" value="+"/>
+              <elements xsi:type="xtext:Keyword" value="-"/>
+            </elements>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+            <elements xsi:type="xtext:RuleCall" cardinality="?" rule="//@rules.123"/>
+          </elements>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IntegerLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IntegerLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="data" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.74"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.111"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IntegerData" definesHiddenTokens="true">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IntegerData"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+      <elements xsi:type="xtext:RuleCall" cardinality="?" rule="//@rules.123"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BooleanLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BooleanLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BooleanLiteral"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="true" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="true"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="false"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StringLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StringLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.130"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="FeatureCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.78"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.79"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="VariableReference">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//VariableReference"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//CallableElement"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" feature="stepExpression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.83"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="FunctionCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionCall"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//CallableElement"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedFeatureCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.81"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.82"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedVariableReference">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//VariableReference"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="::"/>
+      <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//CallableElement"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+        </terminal>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedFunctionCall">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionCall"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="::"/>
+      <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
+        <terminal xsi:type="xtext:CrossReference">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//CallableElement"/>
+          </type>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="arguments" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StepExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.84"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RangeStepExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.85"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Action" feature="start" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RangeStepExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=".."/>
+        <elements xsi:type="xtext:Assignment" feature="end" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.85"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AdditiveStepExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.86"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Action" feature="leftOperand" operator="=">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveStepExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="operator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.53"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="rightOperand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.86"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NegateStepExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.87"/>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//NegateStepExpression"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="-"/>
+        <elements xsi:type="xtext:Assignment" feature="operand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.87"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="PrimitiveStepExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.88"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.89"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StepLiteral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepLiteral"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StepN">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepN"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StepN"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.122"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayConstructionOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayConstructionOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value=","/>
+          <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="for"/>
+          <elements xsi:type="xtext:Assignment" feature="iterationClauses" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.91"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="*">
+            <elements xsi:type="xtext:Keyword" value=","/>
+            <elements xsi:type="xtext:Assignment" feature="iterationClauses" operator="+=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.91"/>
+            </elements>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayConstructionIterationClause">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayConstructionIterationClause"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="variableName" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="in"/>
+      <elements xsi:type="xtext:Assignment" feature="collectionExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ArrayConcatenationOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ArrayConcatenationOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="["/>
+      <elements xsi:type="xtext:Assignment" feature="rows" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.93"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="rows" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.93"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="]"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ExpressionList">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ExpressionList"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructConstructionOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructConstructionOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.95"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="members" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.95"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="StructConstructionMember">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructConstructionMember"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnitConstructionOperator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitConstructionOperator"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="unitlit"/>
+      <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.112"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ParenthesizedExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ParenthesizedExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="expressions" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="EndExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EndExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EndExpression"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="end"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="AlgorithmExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AlgorithmExpression"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="algorithm"/>
+      <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.100"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Compound">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Compound"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Compound"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" cardinality="*" feature="statements" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Statement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Statement"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.100"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.102"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.103"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.104"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.105"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.107"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.106"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.108"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.109"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.110"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Assignment">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Assignment"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="target" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.63"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="assignedExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LocalVariableDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//LocalVariableDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="var"/>
+      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="initializer" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="IfStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//IfStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="if"/>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Assignment" feature="thenStatement" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" predicated="true" value="else"/>
+        <elements xsi:type="xtext:Assignment" feature="elseStatement" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="WhileStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//WhileStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="while"/>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ForStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ForStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="for"/>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="iterationVariable" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.65"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="in"/>
+      <elements xsi:type="xtext:Assignment" feature="collectionExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DoWhileStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DoWhileStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="do"/>
+      <elements xsi:type="xtext:Assignment" feature="body" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.101"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="while"/>
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ContinueStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ContinueStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ContinueStatement"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="continue"/>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BreakStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BreakStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//BreakStatement"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="break"/>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ReturnStatement">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//ReturnStatement"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="return"/>
+      <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Unit">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Unit"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Action">
+        <type metamodel="//@metamodelDeclarations.1">
+          <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Unit"/>
+        </type>
+      </elements>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="("/>
+          <elements xsi:type="xtext:Assignment" feature="numerator" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.113"/>
+          </elements>
+          <elements xsi:type="xtext:Group" cardinality="?">
+            <elements xsi:type="xtext:Keyword" value="/"/>
+            <elements xsi:type="xtext:Assignment" feature="denominator" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.115"/>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=")"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="numerator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.114"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ExplicitUnit">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Unit"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="numerator" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.113"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="/"/>
+        <elements xsi:type="xtext:Assignment" feature="denominator" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.115"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnitNumerator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitNumerator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="//@metamodelDeclarations.1">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitNumerator"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.127"/>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.116"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value="*"/>
+          <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.116"/>
+          </elements>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ImplicitUnitNumerator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitNumerator"/>
+    </type>
+    <alternatives xsi:type="xtext:Action">
+      <type metamodel="//@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitNumerator"/>
+      </type>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnitDenominator">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitDenominator"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.116"/>
+      </elements>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="("/>
+        <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.116"/>
+        </elements>
+        <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Keyword" value="*"/>
+          <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.116"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=")"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnitFactor">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitFactor"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="symbol" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="^"/>
+        <elements xsi:type="xtext:Assignment" feature="exponent" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.117"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="UnitExponent">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" cardinality="?" value="-"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.120"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedName">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value="."/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.121"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedNameWithWildcard">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.118"/>
+      <elements xsi:type="xtext:Alternatives" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value=".*"/>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="."/>
+          <elements xsi:type="xtext:Keyword" value="*"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ValidInt">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.127"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.128"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ValidID">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.122"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.123"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.124"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.126"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.129"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="N">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Keyword" value="n"/>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="IJ">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Keyword" value="i"/>
+      <elements xsi:type="xtext:Keyword" value="j"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="E">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Keyword" value="e"/>
+      <elements xsi:type="xtext:Keyword" value="E"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="EXP">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.124"/>
+      <elements xsi:type="xtext:CharacterRange" cardinality="+">
+        <left value="0"/>
+        <right value="9"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="EXPIJ">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.125"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.123"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="ONE">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Keyword" value="1"/>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="INT">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:CharacterRange" cardinality="+">
+      <left value="0"/>
+      <right value="9"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="ID">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" cardinality="?" value="_"/>
+      <elements xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:CharacterRange">
+          <left value="a"/>
+          <right value="z"/>
+        </elements>
+        <elements xsi:type="xtext:CharacterRange">
+          <left value="A"/>
+          <right value="Z"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Alternatives" cardinality="*">
+        <elements xsi:type="xtext:CharacterRange">
+          <left value="0"/>
+          <right value="9"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="_"/>
+        <elements xsi:type="xtext:CharacterRange">
+          <left value="a"/>
+          <right value="z"/>
+        </elements>
+        <elements xsi:type="xtext:CharacterRange">
+          <left value="A"/>
+          <right value="Z"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="STRING">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="&quot;"/>
+      <elements xsi:type="xtext:Alternatives" cardinality="*">
+        <elements xsi:type="xtext:NegatedToken">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:Keyword" value="\"/>
+            <elements xsi:type="xtext:Keyword" value="&quot;"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Group">
+          <elements xsi:type="xtext:Keyword" value="\"/>
+          <elements xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:Keyword" value="'"/>
+            <elements xsi:type="xtext:Keyword" value="&quot;"/>
+            <elements xsi:type="xtext:Keyword" value="?"/>
+            <elements xsi:type="xtext:Keyword" value="\"/>
+            <elements xsi:type="xtext:Keyword" value="a"/>
+            <elements xsi:type="xtext:Keyword" value="b"/>
+            <elements xsi:type="xtext:Keyword" value="f"/>
+            <elements xsi:type="xtext:Keyword" value="n"/>
+            <elements xsi:type="xtext:Keyword" value="r"/>
+            <elements xsi:type="xtext:Keyword" value="t"/>
+            <elements xsi:type="xtext:Keyword" value="v"/>
+          </elements>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="&quot;"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="ML_COMMENT">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="/*"/>
+      <elements xsi:type="xtext:UntilToken">
+        <terminal xsi:type="xtext:Keyword" value="*/"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="//"/>
+      <elements xsi:type="xtext:NegatedToken" cardinality="*">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+          <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="&#xD;"/>
+        <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="WS">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives" cardinality="+">
+      <elements xsi:type="xtext:Keyword" value=" "/>
+      <elements xsi:type="xtext:Keyword" value="&#x9;"/>
+      <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+      <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="ANY_OTHER">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Wildcard"/>
+  </rules>
+</xtext:Grammar>

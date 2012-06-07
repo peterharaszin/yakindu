@@ -1,0 +1,33 @@
+package damos.library.base._continuous
+
+continuous blockType Integrator {
+
+	input u {
+		directFeedthrough never
+	}
+	output y
+
+	parameter gain = 1(1/s) // normalize
+	parameter initialCondition = 0
+
+	continuous function main<gain, initialCondition>(u) -> y {
+		check<1(1/s), 0>(real) -> real
+		check<1(1/s), 0(m)>(real(m)) -> real(m)
+
+		static assert u is real() :
+			error "Input value must be numeric"
+
+		static assert gain is real() :
+			error "Gain must be numeric"
+
+		static assert initialCondition is real() :
+			error "Initial value must be numeric"
+
+		static assert initialCondition is real() && u is real() && gain is real() => unit(initialCondition) == unit(gain) * unit(u) * unitlit(s) :
+			error "Initial condition unit must be input value unit times gain unit times second"
+
+		initial eq y = initialCondition
+		eq y' = gain * u
+	}
+
+}

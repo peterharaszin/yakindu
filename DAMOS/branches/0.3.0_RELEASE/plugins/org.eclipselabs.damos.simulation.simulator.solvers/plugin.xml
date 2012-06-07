@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipselabs.damos.simulation.simulator.solvers">
+      <solver
+            id="damos.simulation.solvers.Euler"
+            class="org.eclipselabs.damos.simulation.simulator.solvers.EulerSolver"
+            name="Euler">
+      </solver>
+      <solver
+            id="damos.simulation.solvers.ClassicalRungeKutta"
+            class="org.eclipselabs.damos.simulation.simulator.solvers.ClassicalRungeKuttaSolver"
+            name="Classical Runge-Kutta">
+      </solver>
+      <solver
+            id="damos.simulation.solvers.DormandPrince54"
+            class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince54Solver"
+            name="Dormand-Prince 5(4)">
+      </solver>
+      <solver
+            id="damos.simulation.solvers.DormandPrince853"
+            class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince853Solver"
+            name="Dormand-Prince 8(5,3)">
+      </solver>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/Solvers.xmi">
+      </resource>
+   </extension>
+</plugin>

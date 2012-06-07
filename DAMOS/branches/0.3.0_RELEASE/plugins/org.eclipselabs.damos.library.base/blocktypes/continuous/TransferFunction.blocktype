@@ -1,0 +1,13 @@
+package damos.library.base._continuous
+
+continuous blockType TransferFunction {
+
+	input u {
+		directFeedthrough never
+	}
+	output y
+	
+	parameter numeratorCoefficients = { 1 }
+	parameter denominatorCoefficients = { 1, 1 }
+
+}

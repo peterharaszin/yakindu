@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos IDE UI
+Bundle-SymbolicName: org.eclipselabs.damos.ide.ui;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: org.eclipselabs.damos.ide.ui.IDEUIPlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: com.google.inject;bundle-version="2.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.core.databinding.property;bundle-version="1.4.0",
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.jface.databinding;bundle-version="1.5.0",
+ org.eclipse.debug.ui;bundle-version="3.7.0",
+ org.eclipse.emf.databinding;bundle-version="1.2.0",
+ org.eclipse.emf.databinding.edit;bundle-version="1.2.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.5.0",
+ org.eclipse.gmf.runtime.diagram.ui.printing.render;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.4.0",
+ org.eclipse.xtext.ui;bundle-version="2.0.0",
+ org.eclipse.xtext.ui.shared;bundle-version="2.0.0",
+ org.eclipselabs.damos.common;bundle-version="0.3.0",
+ org.eclipselabs.damos.common.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.dml;bundle-version="0.3.0",
+ org.eclipselabs.damos.dml.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
+ org.eclipselabs.damos.dmltext.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.diagram.ui;bundle-version="0.3.0",
+ org.eclipselabs.damos.ide.core;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

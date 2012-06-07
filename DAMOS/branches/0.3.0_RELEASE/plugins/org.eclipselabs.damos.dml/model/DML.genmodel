@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.dml/src"
+    editorDirectory="/org.eclipselabs.damos.dml.ui/src" modelPluginID="org.eclipselabs.damos.dml"
+    modelName="DML" modelPluginClass="DMLPlugin" editPluginClass="org.eclipselabs.damos.dml.edit.DMLEditPlugin"
+    editorPluginClass="org.eclipselabs.damos.dml.ui.DMLUIPlugin" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="">
+  <foreignModel>DML.ecore</foreignModel>
+  <genPackages prefix="DML" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+      providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
+      ecorePackage="DML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//ParameterVisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Public"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Private"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//PrimitiveTypeKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//PrimitiveTypeKind/String"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//TimingKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Any"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Continuous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Synchronous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Asynchronous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Discrete"/>
+    </genEnums>
+    <genClasses ecoreClass="DML.ecore#//Fragment">
+      <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/fragmentElements"/>
+      <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/connections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/parent"/>
+      <genOperations ecoreOperation="DML.ecore#//Fragment/getChildren"/>
+      <genOperations ecoreOperation="DML.ecore#//Fragment/getAllFragmentElements"/>
+      <genOperations ecoreOperation="DML.ecore#//Fragment/getAllComponents"/>
+      <genOperations ecoreOperation="DML.ecore#//Fragment/getAllConnections"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//Component">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/outputs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Component/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/timingConstraint"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getInput">
+        <genParameters ecoreParameter="DML.ecore#//Component/getInput/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/getOutput">
+        <genParameters ecoreParameter="DML.ecore#//Component/getOutput/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/getInputPorts"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getOutputPorts"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstInputPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstInputPort.1">
+        <genParameters ecoreParameter="DML.ecore#//Component/getFirstInputPort.1/inputName"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstOutputPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getFirstOutputPort.1">
+        <genParameters ecoreParameter="DML.ecore#//Component/getFirstOutputPort.1/outputName"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryInputPorts"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryOutputPorts"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getInputSockets"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getOutputSockets"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/isSource"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/isSink"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/isTimingConstraintApplicable">
+        <genParameters ecoreParameter="DML.ecore#//Component/isTimingConstraintApplicable/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Component/isBoundary"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//TimingConstraint"/>
+    <genClasses ecoreClass="DML.ecore#//ContinuousTimingConstraint"/>
+    <genClasses ecoreClass="DML.ecore#//SynchronousTimingConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SynchronousTimingConstraint/sampleTime"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//AsynchronousTimingConstraint"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//FragmentElement">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//FragmentElement/owningFragment"/>
+      <genOperations ecoreOperation="DML.ecore#//FragmentElement/getEnclosingFragment"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Connection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Connection/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Connection/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//Connector">
+      <genOperations ecoreOperation="DML.ecore#//Connector/getConnections"/>
+      <genOperations ecoreOperation="DML.ecore#//Connector/getConnections.1">
+        <genParameters ecoreParameter="DML.ecore#//Connector/getConnections.1/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Connector/getFirstConnection">
+        <genParameters ecoreParameter="DML.ecore#//Connector/getFirstConnection/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//InputConnector"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//OutputConnector"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//Inoutput">
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/getName"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/canAddPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/canRemovePort"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/createPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/isTestPoint"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/isSocket"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//Input">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Input/ports"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//Input/component"/>
+      <genOperations ecoreOperation="DML.ecore#//Input/isDirectFeedthrough"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//Output">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//Output/component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Output/ports"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//Port">
+      <genOperations ecoreOperation="DML.ecore#//Port/getIndex"/>
+      <genOperations ecoreOperation="DML.ecore#//Port/getComponent"/>
+      <genOperations ecoreOperation="DML.ecore#//Port/getInoutput"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//InputPort">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//InputPort/input"/>
+      <genOperations ecoreOperation="DML.ecore#//InputPort/getIncomingConnections"/>
+      <genOperations ecoreOperation="DML.ecore#//InputPort/getIncomingConnection">
+        <genParameters ecoreParameter="DML.ecore#//InputPort/getIncomingConnection/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//OutputPort">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//OutputPort/output"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//OutputPort/signal"/>
+      <genOperations ecoreOperation="DML.ecore#//OutputPort/getOutgoingConnections"/>
+      <genOperations ecoreOperation="DML.ecore#//OutputPort/getOutgoingConnections.1">
+        <genParameters ecoreParameter="DML.ecore#//OutputPort/getOutgoingConnections.1/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//SignalSpecification"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//BlockInoutput">
+      <genOperations ecoreOperation="DML.ecore#//BlockInoutput/getDefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//BlockInput">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//BlockInput/definition"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//BlockOutput">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//BlockOutput/definition"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//InoutputDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/minimumPortCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/maximumPortCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/defaultPortCount"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/manyPorts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/testPoint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/socket"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//InoutputDefinition/dataType"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//InputDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//InputDefinition/directFeedthroughPolicy"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//OutputDefinition"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//ParameterableElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterableElement/parameters"/>
+      <genOperations ecoreOperation="DML.ecore#//ParameterableElement/getParameter">
+        <genParameters ecoreParameter="DML.ecore#//ParameterableElement/getParameter/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/visibility"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/ownedDefaultValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/predefinedValues"/>
+      <genOperations ecoreOperation="DML.ecore#//Parameter/getDefaultValue"/>
+      <genOperations ecoreOperation="DML.ecore#//Parameter/getPredefinedValue">
+        <genParameters ecoreParameter="DML.ecore#//Parameter/getPredefinedValue/stringValue"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Parameter/getPredefinedValueByAlias">
+        <genParameters ecoreParameter="DML.ecore#//Parameter/getPredefinedValueByAlias/alias"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//ParameterPredefinedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//ParameterPredefinedValue/alias"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterPredefinedValue/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//ValueSpecification">
+      <genOperations ecoreOperation="DML.ecore#//ValueSpecification/stringValue"/>
+      <genOperations ecoreOperation="DML.ecore#//ValueSpecification/copy"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//LiteralValueSpecification"/>
+    <genClasses ecoreClass="DML.ecore#//StringValueSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//StringValueSpecification/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//DataTypeSpecification">
+      <genOperations ecoreOperation="DML.ecore#//DataTypeSpecification/copy"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//PrimitiveTypeSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//PrimitiveTypeSpecification/kind"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//DirectFeedthroughPolicy">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//DirectFeedthroughPolicy/inputDefinition"/>
+      <genOperations ecoreOperation="DML.ecore#//DirectFeedthroughPolicy/computeDirectFeedthrough"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//ParameterizedElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterizedElement/arguments"/>
+      <genOperations ecoreOperation="DML.ecore#//ParameterizedElement/getArgument">
+        <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgument/parameterName"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//ParameterizedElement/getArgumentStringValue">
+        <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgumentStringValue/parameterName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Argument">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference DML.ecore#//Argument/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Argument/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//BlockType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/timing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/boundary"/>
+      <genOperations ecoreOperation="DML.ecore#//BlockType/newInstance">
+        <genParameters ecoreParameter="DML.ecore#//BlockType/newInstance/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//QualifiedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifiedName"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/packageName"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//CategorizedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//CategorizedElement/belongingCategories"/>
+      <genOperations ecoreOperation="DML.ecore#//CategorizedElement/belongsTo">
+        <genParameters ecoreParameter="DML.ecore#//CategorizedElement/belongsTo/categoryName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Category"/>
+    <genClasses ecoreClass="DML.ecore#//Block">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Block/type"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Model"/>
+    <genClasses ecoreClass="DML.ecore#//System"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//BlockPort"/>
+    <genClasses ecoreClass="DML.ecore#//BlockInputPort"/>
+    <genClasses ecoreClass="DML.ecore#//BlockOutputPort"/>
+    <genClasses ecoreClass="DML.ecore#//Subsystem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Subsystem/interface"/>
+      <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealizations"/>
+      <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealization">
+        <genParameters ecoreParameter="DML.ecore#//Subsystem/getRealization/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//SystemInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/inlets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/outlets"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Inlet"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//Inoutlet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Inoutlet/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Inoutlet/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Outlet"/>
+    <genClasses ecoreClass="DML.ecore#//SubsystemRealization">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemRealization/realizedSubsystem"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemRealization/realizingFragment"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Inport"/>
+    <genClasses ecoreClass="DML.ecore#//InportInput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//Inoutport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Inoutport/dataType"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Outport"/>
+    <genClasses ecoreClass="DML.ecore#//OutportOutput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//SubsystemInoutput">
+      <genOperations ecoreOperation="DML.ecore#//SubsystemInoutput/getInoutlet"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//SubsystemInput">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemInput/inlet"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//SubsystemOutput">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemOutput/outlet"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//BooleanDirectFeedthroughPolicy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BooleanDirectFeedthroughPolicy/directFeedthrough"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Latch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//LatchInput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//Compound">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Compound/members"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//CompoundMember">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//CompoundMember/owningCompound"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//CompoundConnector">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//CompoundConnector/compound"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//CompoundInputConnector"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//CompoundOutputConnector"/>
+    <genClasses ecoreClass="DML.ecore#//Choice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Choice/actionLinks"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//ChoiceInput"/>
+    <genClasses ecoreClass="DML.ecore#//ChoiceInputPort">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//ChoiceInputPort/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Action">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Action/link"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//ActionLink">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/choice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Join"/>
+    <genClasses ecoreClass="DML.ecore#//JoinInput"/>
+    <genClasses ecoreClass="DML.ecore#//WhileLoop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//WhileLoop/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//WhileLoopCondition"/>
+    <genClasses ecoreClass="DML.ecore#//Memory"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryInitialCondition"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryInput"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryOutput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//INamedElement">
+      <genOperations ecoreOperation="DML.ecore#//INamedElement/getName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//ITextualElement">
+      <genOperations ecoreOperation="DML.ecore#//ITextualElement/getText"/>
+      <genOperations ecoreOperation="DML.ecore#//ITextualElement/setText">
+        <genParameters ecoreParameter="DML.ecore#//ITextualElement/setText/text"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -88,22 +87,12 @@ public class DefaultGraphGenerator implements IGraphGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		
-		try {
-			compoundGenerator.writeChoiceVariableDeclarations(context, out, graph, monitor);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(compoundGenerator.generateChoiceVariableDeclarations(context, graph, monitor));
 
 		out.print("/*\n * Compute outputs\n */\n\n");
 		for (Node node : graph.getNodes()) {
 			if (node instanceof CompoundNode) {
-				try {
-					compoundGenerator.writeCompoundCode(context, out, (CompoundNode) node, monitor);
-				} catch (IOException e) {
-					// TODO REMOVE
-					e.printStackTrace();
-				}
+				out.print(compoundGenerator.generateCompoundCode(context, (CompoundNode) node, monitor));
 				out.println();
 				continue;
 			} else if (!(node instanceof ComponentNode)) {

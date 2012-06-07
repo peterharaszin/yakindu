@@ -23,7 +23,8 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  */
 public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpressionWriter {
 	
-	protected void writeFixedPointMultiplicationExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder appendable = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(appendable);
 		
 		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
@@ -37,7 +38,12 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("(");
 		}
 		
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		} catch (IOException e1) {
+			// TODO REMOVE
+			e1.printStackTrace();
+		}
 		
 		out.print(" * ");
 		
@@ -45,7 +51,12 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("(");
 		}
 
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") >> %d", targetNumberFormat.getFractionLength());
@@ -54,10 +65,13 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 		if (hasIntermediateWordSize || targetNumberFormat.getFractionLength() > 0) {
 			out.print(")");
 		}
+		
+		return appendable;
 	}
 
-	protected void writeFixedPointDivisionExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
@@ -70,7 +84,12 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("((");
 		}
 
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
+		} catch (IOException e1) {
+			// TODO REMOVE
+			e1.printStackTrace();
+		}
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -78,11 +97,18 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 
 		out.print(" / ");
 		
-		CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		try {
+			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");
 		}
+		
+		return sb;
 	}
 
 	private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {

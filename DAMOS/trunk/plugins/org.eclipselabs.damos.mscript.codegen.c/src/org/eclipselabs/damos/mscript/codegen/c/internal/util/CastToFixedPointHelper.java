@@ -27,11 +27,11 @@ public class CastToFixedPointHelper {
 		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
 			if (fractionLength > 0) {
 				out.printf("((%s) floor((", getCDataType(wordSize));
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				out.printf(") * pow(2, %d) + 0.5))", fractionLength);
 			} else {
 				out.printf("((%s) (", getCDataType(wordSize));
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				out.print("))");
 			}
 		} else if (expression.getNumberFormat() instanceof FixedPointFormat) {
@@ -47,14 +47,14 @@ public class CastToFixedPointHelper {
 				if (wordSize == fixedPointFormat.getWordSize()) {
 					out.print("((");
 				}
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				if (fractionLength > fixedPointFormat.getFractionLength()) {
 					out.printf(") << %d)", fractionLength - fixedPointFormat.getFractionLength());
 				} else {
 					out.printf(") >> %d)", fixedPointFormat.getFractionLength() - fractionLength);
 				}
 			} else {
-				expression.getWriter().write(appendable);
+				out.print(expression.getText());
 				if (wordSize != fixedPointFormat.getWordSize()) {
 					out.print("))");
 				}

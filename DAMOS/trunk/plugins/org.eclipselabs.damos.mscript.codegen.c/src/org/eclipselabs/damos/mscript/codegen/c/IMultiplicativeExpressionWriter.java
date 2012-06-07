@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
@@ -22,8 +20,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public interface IMultiplicativeExpressionWriter {
 
-	void write(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator,
-			NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand)
-			throws IOException;
+	CharSequence generate(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator,
+			NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand);
 
 }

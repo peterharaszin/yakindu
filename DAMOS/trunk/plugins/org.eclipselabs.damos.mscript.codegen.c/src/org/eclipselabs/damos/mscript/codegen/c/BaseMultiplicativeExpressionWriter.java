@@ -24,52 +24,66 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public abstract class BaseMultiplicativeExpressionWriter implements IMultiplicativeExpressionWriter {
 	
-	public void write(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
+	public CharSequence generate(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		if (targetNumberFormat instanceof FloatingPointFormat) {
-			writeFloatingPointMultiplicativeExpression(appendable, codeFragmentCollector, operator, targetNumberFormat, leftOperand, rightOperand);
+			return generateFloatingPointMultiplicativeExpression(codeFragmentCollector, operator, targetNumberFormat, leftOperand, rightOperand);
 		} else if (targetNumberFormat instanceof FixedPointFormat) {
-			writeFixedPointMultiplicativeExpression(appendable, codeFragmentCollector, operator, (FixedPointFormat) targetNumberFormat, leftOperand, rightOperand);
+			return generateFixedPointMultiplicativeExpression(codeFragmentCollector, operator, (FixedPointFormat) targetNumberFormat, leftOperand, rightOperand);
 		} else {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	private void writeFloatingPointMultiplicativeExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		if (operator == MultiplicativeOperator.MODULO) {
-			appendable.append("fmod(");
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, leftOperand);
-			appendable.append(", ");
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, rightOperand);
-			appendable.append(")");
-		} else {
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, leftOperand);
-			appendable.append(" ");
-			appendable.append(operator.getLiteral());
-			appendable.append(" ");
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, rightOperand);
+	private CharSequence generateFloatingPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder sb = new StringBuilder();
+		try {
+			if (operator == MultiplicativeOperator.MODULO) {
+				sb.append("fmod(");
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, leftOperand);
+				sb.append(", ");
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, rightOperand);
+				sb.append(")");
+			} else {
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, leftOperand);
+				sb.append(" ");
+				sb.append(operator.getLiteral());
+				sb.append(" ");
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, rightOperand);
+			}
+		} catch (IOException e) {
+			// TODO: REMOVE
+			e.printStackTrace();
 		}
+		return sb;
 	}
 	
-	private void writeFixedPointMultiplicativeExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException {
-		switch (operator) {
-		case MULTIPLY:
-			writeFixedPointMultiplicationExpression(appendable, codeFragmentCollector, targetNumberFormat, leftOperand, rightOperand);
-			break;
-		case DIVIDE:
-			writeFixedPointDivisionExpression(appendable, codeFragmentCollector, targetNumberFormat, leftOperand, rightOperand);
-			break;
-		case MODULO:
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, leftOperand);
-			appendable.append(" % ");
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, rightOperand);
-			break;
-		default:
-			throw new IllegalArgumentException();
+	private CharSequence generateFixedPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+		StringBuilder sb = new StringBuilder();
+		try {
+			switch (operator) {
+			case MULTIPLY:
+				sb.append(generateFixedPointMultiplicationExpression(codeFragmentCollector, targetNumberFormat, leftOperand, rightOperand));
+				break;
+			case DIVIDE:
+				sb.append(generateFixedPointDivisionExpression(codeFragmentCollector, targetNumberFormat, leftOperand, rightOperand));
+				break;
+			case MODULO:
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, leftOperand);
+				sb.append(" % ");
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, rightOperand);
+				break;
+			default:
+				throw new IllegalArgumentException();
+			}
+		} catch (IOException e) {
+			// TODO: REMOVE
+			e.printStackTrace();
 		}
+		return sb;
 	}
 	
-	protected abstract void writeFixedPointMultiplicationExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException;
+	protected abstract CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand);
 
-	protected abstract void writeFixedPointDivisionExpression(Appendable appendable, ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) throws IOException;
+	protected abstract CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand);
 
 }

@@ -194,40 +194,26 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseMultiplicativeExpression(final MultiplicativeExpression multiplicativeExpression) {
-			try {
-				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
+			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
 
-				DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
-				DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
-				
-				if (leftDataType instanceof NumericType && TypeUtil.isTensor(rightDataType)) {
-					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
-				}
-				if (TypeUtil.isTensor(leftDataType) && rightDataType instanceof NumericType) {
-					return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
-				}
-				
-				NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
-				NumberFormat rightNumberFormat = context.getComputationModel().getNumberFormat(rightDataType);
-				
-				NumericExpressionInfo leftOperand = NumericExpressionInfo.create(leftNumberFormat, new IWriter() {
-					
-					public void write(Appendable appendable) throws IOException {
-						doSwitch(multiplicativeExpression.getLeftOperand());
-					}
-					
-				});
-				NumericExpressionInfo rightOperand = NumericExpressionInfo.create(rightNumberFormat, new IWriter() {
-					
-					public void write(Appendable appendable) throws IOException {
-						doSwitch(multiplicativeExpression.getRightOperand());
-					}
-					
-				});
-				multiplicativeExpressionWriter.write(out, context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
-			} catch (IOException e) {
-				throw new WrappedException(e);
+			DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
+			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
+			
+			if (leftDataType instanceof NumericType && TypeUtil.isTensor(rightDataType)) {
+				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
+			if (TypeUtil.isTensor(leftDataType) && rightDataType instanceof NumericType) {
+				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+			}
+			
+			NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
+			NumberFormat rightNumberFormat = context.getComputationModel().getNumberFormat(rightDataType);
+			
+			IExpressionGenerator expressionGenerator = new ExpressionGenerator();
+			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(leftNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getLeftOperand()));
+			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(rightNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getRightOperand()));
+			out.print(multiplicativeExpressionWriter.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand));
+
 			return true;
 		}
 	

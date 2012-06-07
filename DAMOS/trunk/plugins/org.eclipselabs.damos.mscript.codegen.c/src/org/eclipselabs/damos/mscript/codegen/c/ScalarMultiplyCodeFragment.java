@@ -103,21 +103,9 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 		out.println("for (i = 0; i < size; ++i) {");
 		out.print("result.data[i] = ");
 
-		NumericExpressionInfo leftOperand = NumericExpressionInfo.create(scalarNumberFormat, new IWriter() {
-			
-			public void write(Appendable appendable) throws IOException {
-				appendable.append("scalar");
-			}
-			
-		});
-		NumericExpressionInfo rightOperand = NumericExpressionInfo.create(elementNumberFormat, new IWriter() {
-			
-			public void write(Appendable appendable) throws IOException {
-				appendable.append("vector[i]");
-			}
-			
-		});
-		multiplicativeExpressionWriter.write(out, codeFragmentCollector, MultiplicativeOperator.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand);
+		NumericExpressionInfo leftOperand = NumericExpressionInfo.create(scalarNumberFormat, "scalar");
+		NumericExpressionInfo rightOperand = NumericExpressionInfo.create(elementNumberFormat, "vector[i]");
+		out.print(multiplicativeExpressionWriter.generate(codeFragmentCollector, MultiplicativeOperator.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand));
 		
 		out.println(";");
 		out.println("}");

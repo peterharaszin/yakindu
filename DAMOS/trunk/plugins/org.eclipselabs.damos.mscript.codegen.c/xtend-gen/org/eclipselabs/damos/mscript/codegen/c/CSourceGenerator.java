@@ -24,7 +24,7 @@ public class CSourceGenerator implements ICModuleGenerator {
     return this.doGenerate(it, _includes);
   }
   
-  public CharSequence doGenerate(final CModule it, final Collection<Include> includes) {
+  private CharSequence doGenerate(final CModule it, final Collection<Include> includes) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _sourceComment = it.getSourceComment();
@@ -100,7 +100,7 @@ public class CSourceGenerator implements ICModuleGenerator {
     return _builder;
   }
   
-  public CharSequence generateInternalForwardDeclarations(final CModule it) {
+  private CharSequence generateInternalForwardDeclarations(final CModule it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       Collection<CModuleEntry> _entries = it.getEntries();
@@ -135,7 +135,7 @@ public class CSourceGenerator implements ICModuleGenerator {
     return _builder;
   }
   
-  public CharSequence generateImplementations(final CModule it, final boolean contributesInternalForwardDeclaration) {
+  private CharSequence generateImplementations(final CModule it, final boolean contributesInternalForwardDeclaration) {
     StringConcatenation _builder = new StringConcatenation();
     {
       Collection<CModuleEntry> _entries = it.getEntries();
@@ -177,7 +177,7 @@ public class CSourceGenerator implements ICModuleGenerator {
    * @param module
    * @return
    */
-  public Collection<Include> getIncludes(final CModule it) {
+  private Collection<Include> getIncludes(final CModule it) {
     TreeSet<Include> _treeSet = new TreeSet<Include>();
     final Set<Include> includes = _treeSet;
     Collection<CModuleEntry> _entries = it.getEntries();

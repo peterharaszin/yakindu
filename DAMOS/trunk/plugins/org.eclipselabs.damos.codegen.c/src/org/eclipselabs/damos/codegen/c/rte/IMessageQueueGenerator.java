@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 
 /**
@@ -22,12 +20,12 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 public interface IMessageQueueGenerator {
 
 	boolean contributesContextCode();
-	void writeContextCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException;
+	CharSequence generateContextCode(IGeneratorContext context, String variableName, IMessageQueueInfo info);
 
 	boolean contributesInitializationCode();
-	void writeInitializationCode(IGeneratorContext context, Appendable appendable, String variableName, IMessageQueueInfo info) throws IOException;
+	CharSequence generateInitializationCode(IGeneratorContext context, String variableName, IMessageQueueInfo info);
 
-	void writeSendCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException;
-	void writeReceiveCode(IGeneratorContext context, Appendable appendable, String variableName, String dataPointer, IMessageQueueInfo info) throws IOException;
+	CharSequence generateSendCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info);
+	CharSequence generateReceiveCode(IGeneratorContext context, String variableName, String dataPointer, IMessageQueueInfo info);
 
 }

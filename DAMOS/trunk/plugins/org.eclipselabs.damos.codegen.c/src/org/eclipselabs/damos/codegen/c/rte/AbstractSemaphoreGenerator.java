@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
 
 /**
  * @author Andreas Unger
@@ -26,35 +25,24 @@ public abstract class AbstractSemaphoreGenerator implements ISemaphoreGenerator 
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
-	public void writeContextCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
+	public CharSequence generateContextCode(String variableName, ISemaphoreInfo info) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator#contributesInitializationCode()
-	 */
 	public boolean contributesInitializationCode() {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
-	public void writeInitializationCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
+	public CharSequence generateInitializationCode(String variableName, ISemaphoreInfo info) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator#writeDownCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
-	public void writeDownCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
+	public CharSequence generateDownCode(String variableName, ISemaphoreInfo info) {
+		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.ISemaphoreGenerator#writeUpCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
-	public void writeUpCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
+	public CharSequence generateUpCode(String variableName, ISemaphoreInfo info) {
+		return "";
 	}
 	
 }

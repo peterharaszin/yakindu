@@ -112,11 +112,11 @@ public class Task extends PrimaryCodeFragment {
 					TaskInputNode inputNode = inputNodes.get(0);
 					String taskInputVariableName = TaskGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
 					MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-					runtimeEnvironmentAPI.getMessageQueueGenerator().writeReceiveCode(context, sb, qualifier, "&" + taskInputVariableName, messageQueueInfo);
+					sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateReceiveCode(context, qualifier, "&" + taskInputVariableName, messageQueueInfo));
 				} else {
 					String taskInputVariableName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph) + "_message";
 					MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
-					runtimeEnvironmentAPI.getMessageQueueGenerator().writeReceiveCode(context, sb, qualifier, "&" + taskInputVariableName, messageQueueInfo);
+					sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateReceiveCode(context, qualifier, "&" + taskInputVariableName, messageQueueInfo));
 				}
 			}
 

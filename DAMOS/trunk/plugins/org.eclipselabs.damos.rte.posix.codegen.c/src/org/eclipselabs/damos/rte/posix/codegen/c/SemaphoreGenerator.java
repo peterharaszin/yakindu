@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator;
 import org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo;
 
@@ -22,52 +20,34 @@ import org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo;
  */
 public class SemaphoreGenerator extends AbstractSemaphoreGenerator {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#contributesContextCode()
-	 */
 	@Override
 	public boolean contributesContextCode() {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeContextCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
 	@Override
-	public void writeContextCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
-		appendable.append("sem_t ").append(variableName).append(";\n");
+	public CharSequence generateContextCode(String variableName, ISemaphoreInfo info) {
+		return new StringBuilder().append("sem_t ").append(variableName).append(";\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#contributesInitializationCode()
-	 */
 	@Override
 	public boolean contributesInitializationCode() {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeInitializationCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
-		appendable.append("sem_init(&").append(variableName).append(", 0, ").append(info.getInitialCount()).append(");\n");
+	public CharSequence generateInitializationCode(String variableName, ISemaphoreInfo info) {
+		return new StringBuilder().append("sem_init(&").append(variableName).append(", 0, ").append(info.getInitialCount()).append(");\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeDownCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
 	@Override
-	public void writeDownCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
-		appendable.append("sem_wait(&").append(variableName).append(");\n");
+	public CharSequence generateDownCode(String variableName, ISemaphoreInfo info) {
+		return new StringBuilder().append("sem_wait(&").append(variableName).append(");\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSemaphoreGenerator#writeUpCode(java.lang.Appendable, java.lang.String, org.eclipselabs.damos.codegen.c.rte.ISemaphoreInfo)
-	 */
 	@Override
-	public void writeUpCode(Appendable appendable, String variableName, ISemaphoreInfo info) throws IOException {
-		appendable.append("sem_post(&").append(variableName).append(");\n");
+	public CharSequence generateUpCode(String variableName, ISemaphoreInfo info) {
+		return new StringBuilder().append("sem_post(&").append(variableName).append(");\n");
 	}
 	
 }

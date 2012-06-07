@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -21,7 +19,7 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  * @author Andreas Unger
  *
  */
-public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpressionWriter {
+public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeExpressionGenerator {
 	
 	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		StringBuilder appendable = new StringBuilder();
@@ -38,12 +36,7 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("(");
 		}
 		
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
-		} catch (IOException e1) {
-			// TODO REMOVE
-			e1.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
 		
 		out.print(" * ");
 		
@@ -51,12 +44,7 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("(");
 		}
 
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") >> %d", targetNumberFormat.getFractionLength());
@@ -84,12 +72,7 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 			out.print("((");
 		}
 
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
-		} catch (IOException e1) {
-			// TODO REMOVE
-			e1.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -97,12 +80,7 @@ public class InlineMultiplicativeExpressionWriter extends BaseMultiplicativeExpr
 
 		out.print(" / ");
 		
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");

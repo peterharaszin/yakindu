@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 	
-	private final IMultiplicativeExpressionWriter multiplicativeExpressionWriter = new InlineMultiplicativeExpressionWriter();
+	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 
 	private final ComputationModel computationModel;
 	private final DataType scalarType;
@@ -105,7 +105,7 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 
 		NumericExpressionInfo leftOperand = NumericExpressionInfo.create(scalarNumberFormat, "scalar");
 		NumericExpressionInfo rightOperand = NumericExpressionInfo.create(elementNumberFormat, "vector[i]");
-		out.print(multiplicativeExpressionWriter.generate(codeFragmentCollector, MultiplicativeOperator.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand));
+		out.print(multiplicativeExpressionGenerator.generate(codeFragmentCollector, MultiplicativeOperator.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand));
 		
 		out.println(";");
 		out.println("}");

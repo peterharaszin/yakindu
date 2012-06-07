@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -22,8 +20,9 @@ public class CastToFixedPointHelper {
 
 	public static final CastToFixedPointHelper INSTANCE = new CastToFixedPointHelper();
 	
-	public void cast(Appendable appendable, int wordSize, int fractionLength, NumericExpressionInfo expression) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence cast(int wordSize, int fractionLength, NumericExpressionInfo expression) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
 			if (fractionLength > 0) {
 				out.printf("((%s) floor((", getCDataType(wordSize));
@@ -60,6 +59,7 @@ public class CastToFixedPointHelper {
 				}
 			}
 		}
+		return sb;
 	}
 	
 	private String getCDataType(int wordSize) {

@@ -34,7 +34,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	private String typeName;
 	private String name;
 	
-	private String body;
+	private CharSequence body;
 	
 	/**
 	 * 
@@ -72,9 +72,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
 		name = globalNameProvider.getName("structure");
 
-		StringBuilder sb = new StringBuilder();
-		MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), structValue);
-		body = sb.toString();
+		body = MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, structValue);
 	}
 
 	/* (non-Javadoc)

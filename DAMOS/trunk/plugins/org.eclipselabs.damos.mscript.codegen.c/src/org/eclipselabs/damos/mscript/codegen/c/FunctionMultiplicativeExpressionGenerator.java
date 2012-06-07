@@ -24,26 +24,16 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  * @author Andreas Unger
  *
  */
-public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeExpressionWriter {
+public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativeExpressionGenerator {
 	
 	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		
 		out.printf("Mscript_mulfix%d_%d(", targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength());
-		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, leftOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, leftOperand));
 		out.print(", ");
-		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, rightOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, rightOperand));
 		out.print(")");
 		
 		codeFragmentCollector.addCodeFragment(new MultiplyFunctionCodeFragment(targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength()), new NullProgressMonitor());
@@ -65,12 +55,7 @@ public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeEx
 			out.print("((");
 		}
 
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -78,12 +63,7 @@ public class FunctionMultiplicativeExpressionWriter extends BaseMultiplicativeEx
 
 		out.print(" / ");
 		
-		try {
-			CastToFixedPointHelper.INSTANCE.cast(out, intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand);
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");

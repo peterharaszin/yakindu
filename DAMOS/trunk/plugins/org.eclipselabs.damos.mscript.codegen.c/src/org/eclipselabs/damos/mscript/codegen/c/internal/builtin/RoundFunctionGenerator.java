@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import java.io.IOException;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
@@ -40,8 +38,6 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
-		StringBuilder sb = new StringBuilder();
-		
 		final Expression argument = functionCall.getArguments().get(0);
 		
 		final DataType argumentDataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
@@ -79,13 +75,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 			throw new IllegalArgumentException();
 		}
 		
-		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, text));
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
-		return sb;
+		return NumericExpressionCaster.INSTANCE.cast(resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, text));
 	}
 	
 }

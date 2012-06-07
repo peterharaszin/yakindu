@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
 
-import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.CModuleEntry.Visibility;
 
 /**
@@ -65,10 +62,24 @@ public class CModule {
 	}
 	
 	/**
+	 * @return the headerComment
+	 */
+	public String getHeaderComment() {
+		return headerComment;
+	}
+	
+	/**
 	 * @param headerComment the headerComment to set
 	 */
 	public void setHeaderComment(String headerComment) {
 		this.headerComment = headerComment;
+	}
+	
+	/**
+	 * @return the sourceComment
+	 */
+	public String getSourceComment() {
+		return sourceComment;
 	}
 	
 	/**
@@ -89,133 +100,6 @@ public class CModule {
 		return entries;
 	}
 	
-	public CharSequence generateHeader() {
-		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
-
-		if (headerComment != null) {
-			out.println(headerComment);
-		}
-
-		String headerMacro = name.replaceAll("\\W", "_").toUpperCase() + "_H_";
-		out.printf("#ifndef %s\n", headerMacro);
-		out.printf("#define %s\n", headerMacro);
-		out.println();
-		
-		// Add external forward declaration includes
-		Set<Include> includes = new TreeSet<Include>();
-		for (CModuleEntry entry : entries) {
-			if (!entry.isInternal()) {
-				for (Include include : entry.getCodeFragment().getForwardDeclarationIncludes()) {
-					includes.add(include);
-				}
-			}
-		}
-		
-		for (Include include : includes) {
-			out.println(include.toString());
-		}
-		
-		if (!includes.isEmpty()) {
-			out.println();
-		}
-		
-		out.println("#ifdef __cplusplus");
-		out.println("extern \"C\" {");
-		out.println("#endif /* __cplusplus */");
-		out.println();
-		
-		// Write external forward declarations
-		for (CModuleEntry entry : entries) {
-			if (!entry.isInternal()) {
-				out.print(entry.getCodeFragment().generateForwardDeclaration(false));
-				out.println();
-			}
-		}
-		
-		out.println("#ifdef __cplusplus");
-		out.println("}");
-		out.println("#endif /* __cplusplus */");
-		out.println();
-		out.printf("#endif /* %s */\n", headerMacro);
-		
-		return sb;
-	}
-	
-	public CharSequence generateSource() {
-		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
-
-		if (sourceComment != null) {
-			out.println(sourceComment);
-		}
-		
-		// Add internal forward declaration includes
-		Set<Include> includes = new TreeSet<Include>();
-		
-		for (CModuleEntry entry : entries) {
-			ICodeFragment codeFragment = entry.getCodeFragment();
-			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
-				for (Include include : codeFragment.getForwardDeclarationIncludes()) {
-					includes.add(include);
-				}
-			}
-		}
-
-		// Add implementation includes
-		for (CModuleEntry entry : entries) {
-			for (Include include : entry.getCodeFragment().getImplementationIncludes()) {
-				includes.add(include);
-			}
-		}
-		
-		for (Include include : includes) {
-			out.println(include.toString());
-		}
-
-		if (!includes.isEmpty()) {
-			out.println();
-		}
-		
-		out.printf("#include \"%s.h\"\n", name);
-		
-		for (CModule otherModule : moduleSet.getModules()) {
-			if (otherModule != this && dependsOn(otherModule)) {
-				out.printf("#include \"%s.h\"\n", otherModule.getName());
-			}
-		}
-		
-		out.println();
-
-		// Write internal forward declarations
-		for (CModuleEntry entry : entries) {
-			ICodeFragment codeFragment = entry.getCodeFragment();
-			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
-				out.print(codeFragment.generateForwardDeclaration(true));
-				out.println();
-			}
-		}
-
-		// Write implementations which do not contribute forward declarations first
-		for (CModuleEntry entry : entries) {
-			ICodeFragment codeFragment = entry.getCodeFragment();
-			if (codeFragment.contributesImplementation() && !codeFragment.contributesInternalForwardDeclaration()) {
-				out.print(codeFragment.generateImplementation(entry.isInternal()));
-				out.println();
-			}
-		}
-
-		for (CModuleEntry entry : entries) {
-			ICodeFragment codeFragment = entry.getCodeFragment();
-			if (codeFragment.contributesImplementation() && codeFragment.contributesInternalForwardDeclaration()) {
-				out.print(codeFragment.generateImplementation(entry.isInternal()));
-				out.println();
-			}
-		}
-		
-		return sb;
-	}
-
 	public boolean isPrivate() {
 		for (CModuleEntry entry : entries) {
 			if (entry.getVisibility() != Visibility.PRIVATE) {

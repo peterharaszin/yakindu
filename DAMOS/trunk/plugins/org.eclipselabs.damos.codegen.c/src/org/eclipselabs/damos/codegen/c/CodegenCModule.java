@@ -12,6 +12,11 @@
 package org.eclipselabs.damos.codegen.c;
 
 import org.eclipselabs.damos.codegen.IGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.CHeader;
+import org.eclipselabs.damos.mscript.codegen.c.CHeaderGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.CSource;
+import org.eclipselabs.damos.mscript.codegen.c.CSourceGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.ICModuleGenerator;
 
 import com.google.inject.AbstractModule;
 
@@ -27,6 +32,8 @@ public class CodegenCModule extends AbstractModule {
 		bind(IGraphGenerator.class).to(DefaultGraphGenerator.class);
 		bind(ICompoundGenerator.class).to(DefaultCompoundGenerator.class);
 		bind(ITaskGenerator.class).to(DefaultTaskGenerator.class);
+		bind(ICModuleGenerator.class).annotatedWith(CHeader.class).to(CHeaderGenerator.class);
+		bind(ICModuleGenerator.class).annotatedWith(CSource.class).to(CSourceGenerator.class);
 	}
 
 }

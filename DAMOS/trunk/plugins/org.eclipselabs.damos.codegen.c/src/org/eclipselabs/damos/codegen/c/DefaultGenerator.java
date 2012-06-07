@@ -44,9 +44,12 @@ import org.eclipselabs.damos.execution.datatype.DataTypeResolver;
 import org.eclipselabs.damos.execution.datatype.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.transform.ExecutionFlowBuilder;
+import org.eclipselabs.damos.mscript.codegen.c.CHeader;
 import org.eclipselabs.damos.mscript.codegen.c.CModule;
 import org.eclipselabs.damos.mscript.codegen.c.CModuleEntry.Visibility;
 import org.eclipselabs.damos.mscript.codegen.c.CModuleSet;
+import org.eclipselabs.damos.mscript.codegen.c.CSource;
+import org.eclipselabs.damos.mscript.codegen.c.ICModuleGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.Inject;
@@ -61,14 +64,20 @@ public class DefaultGenerator extends AbstractGenerator {
 	
 	private final IGraphGenerator graphGenerator;
 	private final ITaskGenerator taskGenerator;
+	
+	private final ICModuleGenerator headerGenerator;
+	private final ICModuleGenerator sourceGenerator;
 		
 	/**
 	 * 
 	 */
 	@Inject
-	DefaultGenerator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator) {
+	DefaultGenerator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator,
+			@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator) {
 		this.graphGenerator = graphGenerator;
 		this.taskGenerator = taskGenerator;
+		this.headerGenerator = headerGenerator;
+		this.sourceGenerator = sourceGenerator;
 	}
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
@@ -126,14 +135,14 @@ public class DefaultGenerator extends AbstractGenerator {
 			}
 		}
 		
-		InputStream is = new StringInputStream(module.generateHeader().toString());
+		InputStream is = new StringInputStream(headerGenerator.generate(module).toString());
 		if (headerFile.exists()) {
 			headerFile.setContents(is, true, true, monitor);
 		} else {
 			headerFile.create(is, true, monitor);
 		}
 
-		is = new StringInputStream(module.generateSource().toString());
+		is = new StringInputStream(sourceGenerator.generate(module).toString());
 		if (sourceFile.exists()) {
 			sourceFile.setContents(is, true, true, monitor);
 		} else {

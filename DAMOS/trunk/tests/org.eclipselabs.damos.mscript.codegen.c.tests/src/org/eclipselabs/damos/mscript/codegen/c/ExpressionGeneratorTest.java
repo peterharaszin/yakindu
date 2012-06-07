@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.io.StringReader;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -157,26 +156,19 @@ public class ExpressionGeneratorTest {
 	}
 
 	private String generate(String expressionString) {
-		try {
-			IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
 
-			Expression expression = parseExpression(expressionString);
-			staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
+		Expression expression = parseExpression(expressionString);
+		staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
+		
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
 			
-			StringBuilder stringBuilder = new StringBuilder();
-			IMscriptGeneratorContext context = new MscriptGeneratorContext(stringBuilder, ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
-				
-				public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
-					return codeFragment;
-				}
-				
-			});
-			expressionGenerator.generate(context, expression);
+			public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+				return codeFragment;
+			}
 			
-			return stringBuilder.toString();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		});
+		return expressionGenerator.generate(context, expression).toString();
 	}
 	
 	private Expression parseExpression(String expressionString) {

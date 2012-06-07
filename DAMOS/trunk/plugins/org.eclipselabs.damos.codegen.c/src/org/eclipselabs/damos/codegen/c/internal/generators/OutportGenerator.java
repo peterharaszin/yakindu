@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
@@ -45,12 +43,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 
 		out.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
 		String inputVariableString = getVariableAccessor().getInputVariable(inputPort, false);
-		try {
-			MscriptGeneratorUtil.cast(getComputationModel(), sb, inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort));
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
+		out.print(MscriptGeneratorUtil.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
 		out.println(";");
 		return sb;
 	}

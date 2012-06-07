@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
@@ -31,8 +29,9 @@ public class SumFunctionGenerator implements IFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
-	public void generate(IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException {
-		PrintAppendable out = new PrintAppendable(context.getAppendable());
+	public CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
@@ -49,9 +48,11 @@ public class SumFunctionGenerator implements IFunctionGenerator {
 				out.print(" + ");
 			}
 			out.print("(");
-			expressionGenerator.generate(context, argument);
+			out.print(expressionGenerator.generate(context, argument));
 			out.printf(")[%d]", i);
 		}
+		
+		return sb;
 	}
 	
 }

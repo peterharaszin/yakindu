@@ -65,18 +65,10 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ExpressionGenerator implements IExpressionGenerator {
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IExpressionGenerator#generate(org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext, org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy, org.eclipselabs.mscript.language.ast.Expression)
-	 */
-	public void generate(IMscriptGeneratorContext context, Expression expression) throws IOException {
-		try {
-			new ExpressionGeneratorSwitch(context).doSwitch(expression);
-		} catch (WrappedException e) {
-			if (e.exception() instanceof IOException) {
-				throw (IOException) e.exception();
-			}
-			throw e;
-		}
+	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
+		StringBuilder sb = new StringBuilder();
+		new ExpressionGeneratorSwitch(context, sb).doSwitch(expression);
+		return sb;
 	}
 	
 	private static class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
@@ -88,9 +80,9 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		
 		private PrintAppendable out;
 
-		public ExpressionGeneratorSwitch(IMscriptGeneratorContext context) {
+		public ExpressionGeneratorSwitch(IMscriptGeneratorContext context, StringBuilder sb) {
 			this.context = context;
-			out = new PrintAppendable(context.getAppendable());
+			out = new PrintAppendable(sb);
 		}
 	
 		/* (non-Javadoc)
@@ -167,11 +159,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				
 				NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
 	
-				MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, leftOperand);
+				out.print(MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, leftOperand));
 				out.print(" ");
 				out.print(operator);
 				out.print(" ");
-				MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, rightOperand);
+				out.print(MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, rightOperand));
 			} else {
 				doSwitch(leftOperand);
 				out.print(" ");
@@ -186,18 +178,14 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
-			try {
-				DataType dataType = getDataType(additiveExpression);
-				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
-		
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getLeftOperand());
-				out.print(" ");
-				out.print(additiveExpression.getOperator().getLiteral());
-				out.print(" ");
-				MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getRightOperand());
-			} catch (IOException e) {
-				new WrappedException(e);
-			}
+			DataType dataType = getDataType(additiveExpression);
+			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+	
+			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getLeftOperand()));
+			out.print(" ");
+			out.print(additiveExpression.getOperator().getLiteral());
+			out.print(" ");
+			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getRightOperand()));
 			return true;
 		}
 		
@@ -290,30 +278,26 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean casePowerExpression(PowerExpression powerExpression) {
-			try {
-				DataType dataType = getDataType(powerExpression);
-				NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
-		
-				if (numberFormat instanceof FixedPointFormat) {
-					FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-					if (fixedPointFormat.getWordSize() > 32) {
-						out.print("DamosMath_powfix32(");
-					} else {
-						out.print("DamosMath_powfix64(");
-					}
-					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
-					out.print(", ");
-					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
-					out.printf(", %d)", fixedPointFormat.getFractionLength());
-				} else if (numberFormat instanceof FloatingPointFormat) {
-					out.print("pow(");
-					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
-					out.print(", ");
-					MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
-					out.print(")");
+			DataType dataType = getDataType(powerExpression);
+			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+	
+			if (numberFormat instanceof FixedPointFormat) {
+				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
+				if (fixedPointFormat.getWordSize() > 32) {
+					out.print("DamosMath_powfix32(");
+				} else {
+					out.print("DamosMath_powfix64(");
 				}
-			} catch (IOException e) {
-				throw new WrappedException(e);
+				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand()));
+				out.print(", ");
+				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent()));
+				out.printf(", %d)", fixedPointFormat.getFractionLength());
+			} else if (numberFormat instanceof FloatingPointFormat) {
+				out.print("pow(");
+				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand()));
+				out.print(", ");
+				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent()));
+				out.print(")");
 			}
 
 			return true;
@@ -372,11 +356,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (descriptor != null) {
 				IFunctionGenerator generator = builtinFunctionGeneratorLookupTable.getFunctionGenerator(descriptor);
 				if (generator != null) {
-					try {
-						generator.generate(context, functionCall);
-					} catch (IOException e) {
-						throw new WrappedException(e);
-					}
+					out.print(generator.generate(context, functionCall));
 				}
 			}
 

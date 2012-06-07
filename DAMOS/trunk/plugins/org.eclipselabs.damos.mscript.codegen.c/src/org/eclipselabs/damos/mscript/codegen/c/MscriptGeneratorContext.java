@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
-	private Appendable appendable;
 	private ComputationModel computationModel;
 	private IStaticEvaluationContext staticEvaluationContext;
 	private IVariableAccessStrategy variableAccessStrategy;
@@ -30,26 +29,18 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, ICodeFragmentCollector codeFragmentCollector) {
-		this(appendable, computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext), codeFragmentCollector);
+	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, ICodeFragmentCollector codeFragmentCollector) {
+		this(computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext), codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
-		this.appendable = appendable;
+	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.computationModel = computationModel;
 		this.staticEvaluationContext = staticEvaluationContext;
 		this.variableAccessStrategy = variableAccessStrategy;
 		this.codeFragmentCollector = codeFragmentCollector;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IGeneratorContext#getWriter()
-	 */
-	public Appendable getAppendable() {
-		return appendable;
 	}
 
 	/* (non-Javadoc)

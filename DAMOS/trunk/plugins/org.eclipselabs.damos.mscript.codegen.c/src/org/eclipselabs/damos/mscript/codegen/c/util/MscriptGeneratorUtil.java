@@ -112,45 +112,58 @@ public class MscriptGeneratorUtil {
 		return String.format("(%s) %d", cDataType, value);
 	}
 
-	public static void cast(IMscriptGeneratorContext context, String expression, DataType expressionDataType, DataType targetDataType) throws IOException {
-		cast(context.getComputationModel(), context.getAppendable(), expression, expressionDataType, targetDataType);
+	public static CharSequence cast(IMscriptGeneratorContext context, String expression, DataType expressionDataType, DataType targetDataType) {
+		return cast(context.getComputationModel(), expression, expressionDataType, targetDataType);
 	}
 	
-	public static void cast(ComputationModel computationModel, final Appendable appendable, final String expression, DataType expressionDataType, DataType targetDataType) throws IOException {
+	public static CharSequence cast(ComputationModel computationModel, final String expression, DataType expressionDataType, DataType targetDataType) {
+		StringBuilder sb = new StringBuilder();
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
+			try {
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
+					
+					public void write(Appendable appendable) throws IOException {
+						appendable.append(expression);
+					}
+					
+				}));
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
+		} else {
+			new PrintAppendable(sb).print(expression);
+		}
+		return sb;
+	}
+
+	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
+		if (targetDataType instanceof NumericType) {
+			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(targetDataType);
+			return castNumericType(context, numberFormat, expression);
+		}
+		return new ExpressionGenerator().generate(context, expression);
+	}
+
+	public static CharSequence castNumericType(final IMscriptGeneratorContext context, NumberFormat targetNumberFormat, final Expression expression) {
+		StringBuilder sb = new StringBuilder();
+		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
+		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
+		try {
+			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
 				
 				public void write(Appendable appendable) throws IOException {
-					appendable.append(expression);
+					appendable.append(new ExpressionGenerator().generate(context, expression));
 				}
 				
 			}));
-		} else {
-			new PrintAppendable(appendable).print(expression);
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
 		}
-	}
-
-	public static void cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) throws IOException {
-		if (targetDataType instanceof NumericType) {
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(targetDataType);
-			castNumericType(context, numberFormat, expression);
-		} else {
-			new ExpressionGenerator().generate(context, expression);
-		}
-	}
-
-	public static void castNumericType(final IMscriptGeneratorContext context, NumberFormat targetNumberFormat, final Expression expression) throws IOException {
-		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
-		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
-		NumericExpressionCaster.INSTANCE.cast(context.getAppendable(), targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new IWriter() {
-			
-			public void write(Appendable appendable) throws IOException {
-				new ExpressionGenerator().generate(context, expression);
-			}
-			
-		}));
+		return sb;
 	}
 
 	public static String getLiteralString(IMscriptGeneratorContext context, IValue value) {

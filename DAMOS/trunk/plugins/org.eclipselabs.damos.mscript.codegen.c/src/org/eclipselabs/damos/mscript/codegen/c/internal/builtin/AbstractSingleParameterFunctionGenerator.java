@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
@@ -31,8 +29,9 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public abstract class AbstractSingleParameterFunctionGenerator implements IFunctionGenerator {
 
-	public void generate(IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException {
-		PrintAppendable out = new PrintAppendable(context.getAppendable());
+	public CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
@@ -45,18 +44,19 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IFunct
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			out.printf("%s(", getFixedPointFunctionName(fixedPointFormat));
-			MscriptGeneratorUtil.castNumericType(context, numberFormat, argument);
+			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, argument));
 			out.printf(", %d)", fixedPointFormat.getFractionLength());
 		} else if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			out.printf("%s(", getFloatingPointFunctionName(floatingPointFormat));
-			MscriptGeneratorUtil.castNumericType(context, numberFormat, argument);
+			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, argument));
 			out.print(")");
 		} else {
 			throw new IllegalArgumentException();
 		}
 		
 		contributeCodeFragments(context.getCodeFragmentCollector());
+		return sb;
 	}
 	
 	protected void contributeCodeFragments(ICodeFragmentCollector codeFragmentCollector) {

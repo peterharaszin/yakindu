@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -27,16 +25,16 @@ public class NumericExpressionCaster {
 	
 	public static final NumericExpressionCaster INSTANCE = new NumericExpressionCaster();
 	
-	public void cast(final Appendable appendable, NumberFormat targetNumberFormat, NumericExpressionInfo expression) throws IOException {
+	public CharSequence cast(NumberFormat targetNumberFormat, NumericExpressionInfo expression) {
 		if (targetNumberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) targetNumberFormat;
-			CastToFloatingPointHelper.INSTANCE.cast(appendable, floatingPointFormat, expression);
-		} else if (targetNumberFormat instanceof FixedPointFormat) {
-			FixedPointFormat fixedPointFormat = (FixedPointFormat) targetNumberFormat;
-			CastToFixedPointHelper.INSTANCE.cast(appendable, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength(), expression);
-		} else {
-			throw new IllegalArgumentException();
+			return CastToFloatingPointHelper.INSTANCE.cast(floatingPointFormat, expression);
 		}
+		if (targetNumberFormat instanceof FixedPointFormat) {
+			FixedPointFormat fixedPointFormat = (FixedPointFormat) targetNumberFormat;
+			return CastToFixedPointHelper.INSTANCE.cast(fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength(), expression);
+		}
+		throw new IllegalArgumentException();
 	}
 	
 }

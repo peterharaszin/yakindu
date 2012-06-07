@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -22,8 +20,9 @@ public class CastToFloatingPointHelper {
 	
 	public static final CastToFloatingPointHelper INSTANCE = new CastToFloatingPointHelper();
 
-	public void cast(Appendable appendable, FloatingPointFormat targetFloatingPointFormat, NumericExpressionInfo expression) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence cast(FloatingPointFormat targetFloatingPointFormat, NumericExpressionInfo expression) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) expression.getNumberFormat();
 			if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
@@ -45,6 +44,7 @@ public class CastToFloatingPointHelper {
 				out.print("))");
 			}
 		}
+		return sb;
 	}
 	
 	private String getCDataType(FloatingPointFormat floatingPointFormat) {

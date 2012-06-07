@@ -18,7 +18,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  *
  */
-public interface IMultiplicativeExpressionWriter {
+public interface IMultiplicativeExpressionGenerator {
 
 	CharSequence generate(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator,
 			NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand);

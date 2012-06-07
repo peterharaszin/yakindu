@@ -10,7 +10,7 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
-public class VariableAccessGenerator extends MscriptSwitch<String> {
+public class VariableAccessGenerator extends MscriptSwitch<CharSequence> {
 
 	private IMscriptGeneratorContext context;
 	private VariableReference variableReference;
@@ -20,18 +20,18 @@ public class VariableAccessGenerator extends MscriptSwitch<String> {
 		this.variableReference = variableReference;
 	}
 
-	public String generate() {
+	public CharSequence generate() {
 		return doSwitch(variableReference.getFeature());
 	}
 	
 	@Override
-	public String caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
+	public CharSequence caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
 		IValue templateArgument = context.getStaticEvaluationContext().getValue(templateParameterDeclaration);
 		return MscriptGeneratorUtil.getLiteralString(context, templateArgument);
 	}
 		
 	@Override
-	public String caseParameterDeclaration(ParameterDeclaration parameterDeclaration) {
+	public CharSequence caseParameterDeclaration(ParameterDeclaration parameterDeclaration) {
 		return context.getVariableAccessStrategy().getVariableAccessString(variableReference);
 	}
 	
@@ -39,7 +39,7 @@ public class VariableAccessGenerator extends MscriptSwitch<String> {
 	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStateVariableDeclaration(org.eclipselabs.damos.mscript.StateVariableDeclaration)
 	 */
 	@Override
-	public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
+	public CharSequence caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
 		return context.getVariableAccessStrategy().getVariableAccessString(variableReference);
 	}
 	
@@ -47,7 +47,7 @@ public class VariableAccessGenerator extends MscriptSwitch<String> {
 	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseVariableDeclaration(org.eclipselabs.damos.mscript.VariableDeclaration)
 	 */
 	@Override
-	public String caseVariableDeclaration(VariableDeclaration variableDeclaration) {
+	public CharSequence caseVariableDeclaration(VariableDeclaration variableDeclaration) {
 		return variableDeclaration.getName();
 	}
 

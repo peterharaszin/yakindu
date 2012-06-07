@@ -11,8 +11,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
-import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionWriter;
-import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionWriter;
+import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormat
  */
 public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerator {
 	
-	private final IMultiplicativeExpressionWriter multiplicativeExpressionWriter = new InlineMultiplicativeExpressionWriter();
+	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 
 	/**
 	 * @param pinIndex
@@ -72,7 +72,7 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, leftOperandText);
 			CharSequence rightOperandText = Integer.toString(getAnalogRange());
 			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, rightOperandText);
-			sb.append(multiplicativeExpressionWriter.generate(getContext().getCodeFragmentCollector(), MultiplicativeOperator.DIVIDE, outputNumberFormat, leftOperand, rightOperand));
+			sb.append(multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), MultiplicativeOperator.DIVIDE, outputNumberFormat, leftOperand, rightOperand));
 			sb.append(";\n");
 		}
 		return sb;

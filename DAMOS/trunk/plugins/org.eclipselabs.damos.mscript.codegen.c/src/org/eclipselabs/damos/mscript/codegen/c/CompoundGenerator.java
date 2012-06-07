@@ -143,7 +143,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 			out.print(expressionGenerator.generate(context, expression));
 		}
 		
-		private void writeAssignment(DataType targetDataType, String target, Expression assignedExpression) {
+		private void writeAssignment(DataType targetDataType, CharSequence target, Expression assignedExpression) {
 			out.print(target);
 			out.print(" = ");
 			out.print(cast(targetDataType, assignedExpression));

@@ -11,10 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -116,20 +113,12 @@ public class MscriptGeneratorUtil {
 	}
 	
 	public static CharSequence cast(ComputationModel computationModel, final String expression, DataType expressionDataType, DataType targetDataType) {
-		StringBuilder sb = new StringBuilder();
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
-			try {
-				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, expression));
-			} catch (IOException e) {
-				// TODO REMOVE
-				e.printStackTrace();
-			}
-		} else {
-			new PrintAppendable(sb).print(expression);
+			return NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, expression));
 		}
-		return sb;
+		return expression;
 	}
 
 	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
@@ -141,23 +130,16 @@ public class MscriptGeneratorUtil {
 	}
 
 	public static CharSequence castNumericType(final IMscriptGeneratorContext context, NumberFormat targetNumberFormat, final Expression expression) {
-		StringBuilder sb = new StringBuilder();
 		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
-		try {
-			NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new ExpressionGenerator().generate(context, expression)));
-		} catch (IOException e) {
-			// TODO REMOVE
-			e.printStackTrace();
-		}
-		return sb;
+		return NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new ExpressionGenerator().generate(context, expression)));
 	}
 
-	public static String getLiteralString(IMscriptGeneratorContext context, IValue value) {
+	public static CharSequence getLiteralString(IMscriptGeneratorContext context, IValue value) {
 		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), value);
 	}
 	
-	public static String getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
+	public static CharSequence getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof IArrayValue) {
 			ArrayLiteralDeclarationCodeFragment codeFragment = new ArrayLiteralDeclarationCodeFragment(computationModel, (IArrayValue) value);
 			codeFragment = (ArrayLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
@@ -168,52 +150,54 @@ public class MscriptGeneratorUtil {
 			codeFragment = (StructLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
-		StringBuilder sb = new StringBuilder();
-		createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), value);
-		return sb.toString();
+		return createInitializer(computationModel, codeFragmentCollector, value);
 	}
 
-	public static void createInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, IValue value) {
+	public static CharSequence createInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericTemplateArgument = (ISimpleNumericValue) value;
 			if (value.getDataType() instanceof RealType) {
-				out.print(MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue(), null));
-			} else if (value.getDataType() instanceof IntegerType) {
-				out.print(MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue(), null));
+				return MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue(), null);
+			}
+			if (value.getDataType() instanceof IntegerType) {
+				return MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue(), null);
 			}
 		} else if (value instanceof IBooleanValue) {
 			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
-			out.print(booleanTemplateArgument.booleanValue() ? "1" : "0");
+			return booleanTemplateArgument.booleanValue() ? "1" : "0";
 		} else if (value instanceof IArrayValue) {
-			createArrayInitializer(computationModel, codeFragmentCollector, out, (IArrayValue) value);
+			return createArrayInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
 		} else if (value instanceof StructValue) {
-			createStructInitializer(computationModel, codeFragmentCollector, out, (StructValue) value);
-		} else {
-			throw new IllegalArgumentException();
+			return createStructInitializer(computationModel, codeFragmentCollector, (StructValue) value);
 		}
+		throw new IllegalArgumentException();
 	}
 
-	private static void createArrayInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, IArrayValue value) {
-		out.print("{ { ");
+	private static CharSequence createArrayInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{ { ");
 		int size = TypeUtil.getArraySize(value.getDataType());
 		for (int i = 0; i < size; ++i) {
 			if (i > 0) {
-				out.print(", ");
+				sb.append(", ");
 			}
-			createInitializer(computationModel, codeFragmentCollector, out, value.get(i));
+			sb.append(createInitializer(computationModel, codeFragmentCollector, value.get(i)));
 		}
-		out.print(" } }");
+		sb.append(" } }");
+		return sb;
 	}
 
-	private static void createStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, PrintAppendable out, StructValue value) {
-		out.print("{ ");
+	private static CharSequence createStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, StructValue value) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{ ");
 		for (int i = 0; i < value.getDataType().getMembers().size(); ++i) {
 			if (i > 0) {
-				out.print(", ");
+				sb.append(", ");
 			}
-			createInitializer(computationModel, codeFragmentCollector, out, value.get(i));
+			sb.append(createInitializer(computationModel, codeFragmentCollector, value.get(i)));
 		}
-		out.print(" }");
+		sb.append(" }");
+		return sb;
 	}
 
 }

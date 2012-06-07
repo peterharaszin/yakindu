@@ -73,7 +73,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 	
 	private static class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
 
-		private final IMultiplicativeExpressionWriter multiplicativeExpressionWriter = new InlineMultiplicativeExpressionWriter();
+		private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 		
 		private IMscriptGeneratorContext context;
 		private IBuiltinFunctionGeneratorLookupTable builtinFunctionGeneratorLookupTable = new BuiltinFunctionGeneratorLookupTable();
@@ -212,7 +212,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(leftNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getLeftOperand()));
 			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(rightNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getRightOperand()));
-			out.print(multiplicativeExpressionWriter.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand));
+			out.print(multiplicativeExpressionGenerator.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand));
 
 			return true;
 		}
@@ -428,8 +428,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 
 		public Boolean caseVariableReference(VariableReference variableReference) {
-			String variableAccessString = new VariableAccessGenerator(context, variableReference).generate();
-			out.print(variableAccessString);
+			out.print(new VariableAccessGenerator(context, variableReference).generate());
 			return true;
 		}
 

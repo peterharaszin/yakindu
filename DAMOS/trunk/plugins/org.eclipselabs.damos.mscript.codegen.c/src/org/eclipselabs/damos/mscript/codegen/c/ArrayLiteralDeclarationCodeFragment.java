@@ -34,7 +34,7 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	
 	private String name;
 	private String typeName;
-	private String body;
+	private CharSequence body;
 
 	/**
 	 * 
@@ -73,9 +73,7 @@ public class ArrayLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
 		name = globalNameProvider.getName("array");
 
-		StringBuilder sb = new StringBuilder();
-		MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, new PrintAppendable(sb), arrayValue);
-		body = sb.toString();
+		body = MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, arrayValue);
 	}
 	
 	/* (non-Javadoc)

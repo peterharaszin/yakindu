@@ -11,6 +11,11 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.DEPENDS_ON;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_REQUIRED_BY;
+import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.REQUIRED_BY;
+
 /**
  * @author Andreas Unger
  *
@@ -63,16 +68,14 @@ public class CModuleEntry {
 		for (CModule otherModule : module.getModuleSet().getModules()) {
 			if (otherModule != module) {
 				for (CModuleEntry otherEntry : otherModule.getEntries()) {
-					if (otherEntry.codeFragment.forwardDeclarationDependsOn(codeFragment)
-							|| codeFragment.forwardDeclarationRequiredBy(otherEntry.codeFragment)
-							|| otherEntry.codeFragment.implementationDependsOn(codeFragment)
-							|| codeFragment.implementationRequiredBy(otherEntry.codeFragment)) {
+					if (otherEntry.codeFragment.hasDependency(DEPENDS_ON, codeFragment)
+							|| codeFragment.hasDependency(REQUIRED_BY, otherEntry.codeFragment)) {
 						return false;
 					}
 				}
 			}
 			for (CModuleEntry otherEntry : otherModule.getEntries()) {
-				if ((otherEntry.codeFragment.forwardDeclarationDependsOn(codeFragment) || codeFragment.forwardDeclarationRequiredBy(otherEntry.codeFragment)) && !otherEntry.isInternal()) {
+				if ((otherEntry.codeFragment.hasDependency(FORWARD_DECLARATION_DEPENDS_ON, codeFragment) || codeFragment.hasDependency(FORWARD_DECLARATION_REQUIRED_BY, otherEntry.codeFragment)) && !otherEntry.isInternal()) {
 					return false;
 				}
 			}

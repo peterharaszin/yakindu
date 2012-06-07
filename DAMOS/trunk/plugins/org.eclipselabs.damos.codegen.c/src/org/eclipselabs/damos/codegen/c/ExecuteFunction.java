@@ -22,7 +22,6 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 import com.google.inject.Inject;
@@ -69,18 +68,16 @@ public class ExecuteFunction extends PrimaryCodeFragment {
 	}
 	
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) throws IOException {
-		addDependency(new ICodeFragmentDependency.Stub() {
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
-			@Override
-			public boolean forwardDeclarationDependsOn(ICodeFragment other) {
+			public boolean applies(ICodeFragment other) {
 				return other instanceof InputStruct || other instanceof OutputStruct;
 			}
 			
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentDependency.Stub#implementationDependsOn(org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
-			 */
-			@Override
-			public boolean implementationDependsOn(ICodeFragment other) {
+		});
+		addDependency(IMPLEMENTATION_DEPENDS_ON, new IDependencyRule() {
+			
+			public boolean applies(ICodeFragment other) {
 				return other instanceof ContextVariable;
 			}
 

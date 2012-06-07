@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.rte;
 
-import java.io.IOException;
-
 /**
  * @author Andreas Unger
  *
@@ -20,12 +18,12 @@ import java.io.IOException;
 public interface IFastLockGenerator {
 
 	boolean contributesContextCode();
-	void writeContextCode(Appendable appendable, String variableName) throws IOException;
+	CharSequence generateContextCode(String variableName);
 
 	boolean contributesInitializationCode();
-	void writeInitializationCode(Appendable appendable, String variableName) throws IOException;
+	CharSequence generateInitializationCode(String variableName);
 
-	void writeLockCode(Appendable appendable, String variableName) throws IOException;
-	void writeUnlockCode(Appendable appendable, String variableName) throws IOException;
+	CharSequence generateLockCode(String variableName);
+	CharSequence generateUnlockCode(String variableName);
 	
 }

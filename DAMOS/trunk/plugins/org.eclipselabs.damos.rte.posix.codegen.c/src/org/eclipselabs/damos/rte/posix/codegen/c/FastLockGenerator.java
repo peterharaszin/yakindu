@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.rte.posix.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.codegen.c.rte.AbstractFastLockGenerator;
 
 /**
@@ -26,12 +24,9 @@ public class FastLockGenerator extends AbstractFastLockGenerator {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.rte.AbstractSimpleLockGenerator#writeContextCode(java.lang.Appendable, java.lang.String)
-	 */
 	@Override
-	public void writeContextCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_t ").append(variableName).append(";\n");
+	public CharSequence generateContextCode(String variableName) {
+		return new StringBuilder().append("pthread_mutex_t ").append(variableName).append(";\n");
 	}
 	
 	@Override
@@ -40,18 +35,18 @@ public class FastLockGenerator extends AbstractFastLockGenerator {
 	}
 	
 	@Override
-	public void writeInitializationCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_init(&").append(variableName).append(", NULL);\n");
+	public CharSequence generateInitializationCode(String variableName) {
+		return new StringBuilder().append("pthread_mutex_init(&").append(variableName).append(", NULL);\n");
 	}
 
 	@Override
-	public void writeLockCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_lock(&").append(variableName).append(");\n");
+	public CharSequence generateLockCode(String variableName) {
+		return new StringBuilder().append("pthread_mutex_lock(&").append(variableName).append(");\n");
 	}
 	
 	@Override
-	public void writeUnlockCode(Appendable appendable, String variableName) throws IOException {
-		appendable.append("pthread_mutex_unlock(&").append(variableName).append(");\n");
+	public CharSequence generateUnlockCode(String variableName) {
+		return new StringBuilder().append("pthread_mutex_unlock(&").append(variableName).append(");\n");
 	}
 
 }

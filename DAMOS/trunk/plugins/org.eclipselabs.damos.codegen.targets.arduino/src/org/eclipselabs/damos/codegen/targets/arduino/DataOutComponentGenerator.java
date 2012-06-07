@@ -57,53 +57,53 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeInitializationCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		int pin = getPinIndex();
-		appendable.append("pinMode(").append(Integer.toString(pin)).append(", OUTPUT);\n");
+	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+		return new StringBuilder().append("pinMode(").append(getPinIndex()).append(", OUTPUT);\n");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeComputeOutputsCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
 		final String inputVariable = getContext().getVariableAccessor().getInputVariable(getContext().getNode().getComponent().getFirstInputPort(), false);
 		int pin = getPinIndex();
 		DataType inputDataType = getContext().getComponentSignature().getInputDataType(getComponent().getFirstInputPort());
 		if (inputDataType instanceof BooleanType) {
-			appendable.append("digitalWrite(").append(Integer.toString(pin)).append(", ").append(inputVariable).append(");\n");
+			sb.append("digitalWrite(").append(Integer.toString(pin)).append(", ").append(inputVariable).append(");\n");
 		} else {
 			FixedPointFormat targetNumberFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
 			targetNumberFormat.setPredefinedKind(PredefinedFixedPointFormatKind.UINT16);
 			final NumberFormat inputNumberFormat = getComputationModel().getNumberFormat(inputDataType);
-			appendable.append("analogWrite(").append(Integer.toString(pin)).append(", ");
-			NumericExpressionCaster.INSTANCE.cast(appendable, targetNumberFormat, NumericExpressionInfo.create(inputNumberFormat, new IWriter() {
-				
-				public void write(Appendable appendable) throws IOException {
-					NumericExpressionInfo leftOperand = NumericExpressionInfo.create(inputNumberFormat, new IWriter() {
-						
-						public void write(Appendable appendable) throws IOException {
-							appendable.append(inputVariable);
-						}
-						
-					});
-					NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, new IWriter() {
-						
-						public void write(Appendable appendable) throws IOException {
-							appendable.append(Integer.toString(getAnalogRange()));
-						}
-						
-					});
-					multiplicativeExpressionWriter.write(appendable, getContext().getCodeFragmentCollector(), MultiplicativeOperator.MULTIPLY, inputNumberFormat, leftOperand, rightOperand);
-				}
-				
-			}));
-			appendable.append(");\n");
+			sb.append("analogWrite(").append(Integer.toString(pin)).append(", ");
+			try {
+				NumericExpressionCaster.INSTANCE.cast(sb, targetNumberFormat, NumericExpressionInfo.create(inputNumberFormat, new IWriter() {
+					
+					public void write(Appendable appendable) throws IOException {
+						NumericExpressionInfo leftOperand = NumericExpressionInfo.create(inputNumberFormat, new IWriter() {
+							
+							public void write(Appendable appendable) throws IOException {
+								appendable.append(inputVariable);
+							}
+							
+						});
+						NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, new IWriter() {
+							
+							public void write(Appendable appendable) throws IOException {
+								appendable.append(Integer.toString(getAnalogRange()));
+							}
+							
+						});
+						multiplicativeExpressionWriter.write(appendable, getContext().getCodeFragmentCollector(), MultiplicativeOperator.MULTIPLY, inputNumberFormat, leftOperand, rightOperand);
+					}
+					
+				}));
+			} catch (IOException e) {
+				// TODO REMOVE
+				e.printStackTrace();
+			}
+			sb.append(");\n");
 		}
+		return sb;
 	}
 
 	protected int getAnalogRange() {

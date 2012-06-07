@@ -35,20 +35,24 @@ public class OutportGenerator extends AbstractComponentGenerator {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipselabs.damos.codegen.c.IVariableAccessor, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 
 		InputPort inputPort = getComponent().getFirstInputPort();
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
 		out.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
 		String inputVariableString = getVariableAccessor().getInputVariable(inputPort, false);
-		MscriptGeneratorUtil.cast(getComputationModel(), appendable, inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort));
+		try {
+			MscriptGeneratorUtil.cast(getComputationModel(), sb, inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort));
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
 		out.println(";");
+		return sb;
 	}
 	
 }

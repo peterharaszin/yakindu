@@ -42,12 +42,10 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#writeComputeOutputsCode(java.lang.Appendable, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		Choice choice = (Choice) getComponent();
 		
 		String incomingVariableName = GeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), choice.getFirstInputPort());
@@ -65,7 +63,12 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
 					ComputationModel computationModel = getComputationModel();
 					ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
-					new ExpressionGenerator().generate(new MscriptGeneratorContext(out, computationModel, new StaticEvaluationContext(), variableAccessStrategy, getContext().getCodeFragmentCollector()), condition.getExpression());
+					try {
+						new ExpressionGenerator().generate(new MscriptGeneratorContext(out, computationModel, new StaticEvaluationContext(), variableAccessStrategy, getContext().getCodeFragmentCollector()), condition.getExpression());
+					} catch (IOException e) {
+						// TODO REMOVE
+						e.printStackTrace();
+					}
 				} else {
 					// TODO: Handle error
 				}
@@ -84,6 +87,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 			++i;
 		}
 		out.println("}");
+		return sb;
 	}
 	
 	/**

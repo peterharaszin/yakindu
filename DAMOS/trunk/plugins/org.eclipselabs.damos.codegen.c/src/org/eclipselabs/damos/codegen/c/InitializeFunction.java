@@ -86,7 +86,7 @@ public class InitializeFunction extends PrimaryCodeFragment {
 				}
 				out.printf("/* %s */\n", componentNode.getComponent().getName());
 				out.println("{");
-				generator.writeInitializationCode(out, monitor);
+				out.print(generator.generateInitializationCode(monitor));
 				out.println("}\n");
 			}
 		}

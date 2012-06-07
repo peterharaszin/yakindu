@@ -81,7 +81,7 @@ public class ContextStruct extends PrimaryCodeFragment {
 					forwardDeclarationIncludes.addAll(includes);
 				}
 				if (generator.getContextTypeName() == null) {
-					generator.writeContextCode(out, getContextTypeName(context, componentNode), monitor);
+					out.append(generator.generateContextCode(getContextTypeName(context, componentNode), monitor));
 					out.append("\n");
 				}
 			}
@@ -96,7 +96,7 @@ public class ContextStruct extends PrimaryCodeFragment {
 			ComponentNode componentNode = (ComponentNode) node;
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesContextCode()) {
-				String typeName = generator.getContextTypeName();
+				CharSequence typeName = generator.getContextTypeName();
 				if (typeName == null) {
 					typeName = getContextTypeName(context, componentNode);
 				}

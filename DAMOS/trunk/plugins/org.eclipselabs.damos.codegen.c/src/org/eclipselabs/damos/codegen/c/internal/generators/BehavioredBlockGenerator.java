@@ -130,12 +130,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateContextCode(String typeName, IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		out.println("typedef struct {");
 		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
 			if (staticEvaluationContext.getCircularBufferSize(inputParameterDeclaration) > 1) {
@@ -155,6 +153,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			prefix = "";
 		}
 		out.printf("} %s;\n", typeName);
+		return sb;
 	}
 
 	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, VariableDeclaration variableDeclaration) {
@@ -180,18 +179,22 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 		
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
+	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
-		compoundGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		try {
+			compoundGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound());
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
+		return sb;
 	}
 	
 	private void writeInitializeIndexStatements(PrintAppendable out, List<? extends VariableDeclaration> variableDeclarations) {
@@ -216,19 +219,22 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
-		writeInputVariables(out);
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
+		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				compoundGenerator.generate(mscriptGeneratorContext, compound);
+				try {
+					compoundGenerator.generate(mscriptGeneratorContext, compound);
+				} catch (IOException e) {
+					// TODO REMOVE
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -245,6 +251,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputParameterAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputParameterDeclaration));
 			}
 		}
+		return sb;
 	}
 
 	/* (non-Javadoc)
@@ -255,19 +262,22 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#generateUpdateCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
-	 */
 	@Override
-	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		PrintAppendable out = new PrintAppendable(appendable);
-		writeInputVariables(out);
+	public CharSequence generateUpdateCode(IProgressMonitor monitor) {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
+		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				compoundGenerator.generate(mscriptGeneratorContext, compound);
+				try {
+					compoundGenerator.generate(mscriptGeneratorContext, compound);
+				} catch (IOException e) {
+					// TODO REMOVE
+					e.printStackTrace();
+				}
 			}
 		}
 		
@@ -281,6 +291,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
 		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
 		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
+		
+		return sb;
 	}
 	
 	private void writeUpdateIndexStatements(PrintAppendable out, List<? extends VariableDeclaration> variableDeclarations) {
@@ -293,7 +305,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 	}
 	
-	private void writeInputVariables(PrintAppendable out) throws IOException {
+	private CharSequence writeInputVariables() {
+		StringBuilder sb = new StringBuilder();
+		PrintAppendable out = new PrintAppendable(sb);
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
@@ -316,7 +330,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						out.print(", ");
 					}
-					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType());
+					try {
+						MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType());
+					} catch (IOException e) {
+						// TODO REMOVE
+						e.printStackTrace();
+					}
 				}
 				out.println(" } };");
 			} else {
@@ -325,11 +344,17 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					out.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
-					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType);
+					try {
+						MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType);
+					} catch (IOException e) {
+						// TODO REMOVE
+						e.printStackTrace();
+					}
 					out.println(";");
 				}
 			}
 		}
+		return sb;
 	}
 
 	private void writeUpdateInputContextStatement(PrintAppendable out, InputParameterDeclaration inputParameterDeclaration) {

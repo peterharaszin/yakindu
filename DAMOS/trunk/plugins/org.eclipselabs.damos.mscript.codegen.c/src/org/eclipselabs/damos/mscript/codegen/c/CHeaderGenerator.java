@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -35,15 +36,7 @@ public class CHeaderGenerator implements ICModuleGenerator {
 		out.printf("#define %s\n", headerMacro);
 		out.println();
 		
-		// Add external forward declaration includes
-		Set<Include> includes = new TreeSet<Include>();
-		for (CModuleEntry entry : module.getEntries()) {
-			if (!entry.isInternal()) {
-				for (Include include : entry.getCodeFragment().getForwardDeclarationIncludes()) {
-					includes.add(include);
-				}
-			}
-		}
+		Collection<Include> includes = getIncludes(module);
 		
 		for (Include include : includes) {
 			out.println(include.toString());
@@ -73,6 +66,23 @@ public class CHeaderGenerator implements ICModuleGenerator {
 		out.printf("#endif /* %s */\n", headerMacro);
 		
 		return sb;
+	}
+
+	/**
+	 * @param module
+	 * @return
+	 */
+	private Collection<Include> getIncludes(CModule module) {
+		// Add external forward declaration includes
+		Set<Include> includes = new TreeSet<Include>();
+		for (CModuleEntry entry : module.getEntries()) {
+			if (!entry.isInternal()) {
+				for (Include include : entry.getCodeFragment().getForwardDeclarationIncludes()) {
+					includes.add(include);
+				}
+			}
+		}
+		return includes;
 	}
 
 }

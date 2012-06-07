@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,24 +31,7 @@ public class CSourceGenerator implements ICModuleGenerator {
 			out.println(module.getSourceComment());
 		}
 		
-		// Add internal forward declaration includes
-		Set<Include> includes = new TreeSet<Include>();
-		
-		for (CModuleEntry entry : module.getEntries()) {
-			ICodeFragment codeFragment = entry.getCodeFragment();
-			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
-				for (Include include : codeFragment.getForwardDeclarationIncludes()) {
-					includes.add(include);
-				}
-			}
-		}
-
-		// Add implementation includes
-		for (CModuleEntry entry : module.getEntries()) {
-			for (Include include : entry.getCodeFragment().getImplementationIncludes()) {
-				includes.add(include);
-			}
-		}
+		Collection<Include> includes = getIncludes(module);
 		
 		for (Include include : includes) {
 			out.println(include.toString());
@@ -94,6 +78,31 @@ public class CSourceGenerator implements ICModuleGenerator {
 		}
 		
 		return sb;
+	}
+
+	/**
+	 * @param module
+	 * @return
+	 */
+	private Collection<Include> getIncludes(CModule module) {
+		// Add internal forward declaration includes
+		Set<Include> includes = new TreeSet<Include>();
+		for (CModuleEntry entry : module.getEntries()) {
+			ICodeFragment codeFragment = entry.getCodeFragment();
+			if (entry.isInternal() && codeFragment.contributesInternalForwardDeclaration()) {
+				for (Include include : codeFragment.getForwardDeclarationIncludes()) {
+					includes.add(include);
+				}
+			}
+		}
+
+		// Add implementation includes
+		for (CModuleEntry entry : module.getEntries()) {
+			for (Include include : entry.getCodeFragment().getImplementationIncludes()) {
+				includes.add(include);
+			}
+		}
+		return includes;
 	}
 
 }

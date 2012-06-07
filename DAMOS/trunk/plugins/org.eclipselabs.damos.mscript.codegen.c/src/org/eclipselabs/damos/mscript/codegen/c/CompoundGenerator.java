@@ -11,9 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
@@ -39,18 +36,10 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class CompoundGenerator implements ICompoundGenerator {
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.ICompoundGenerator#generate(org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext, org.eclipselabs.mscript.language.il.Compound, org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy)
-	 */
-	public void generate(IMscriptGeneratorContext context, Compound compound) throws IOException {
-		try {
-			new CompoundGeneratorSwitch(context).doSwitch(compound);
-		} catch (WrappedException e) {
-			if (e.exception() instanceof IOException) {
-				throw (IOException) e.exception();
-			}
-			throw e;
-		}
+	public CharSequence generate(IMscriptGeneratorContext context, Compound compound) {
+		StringBuilder sb = new StringBuilder();
+		new CompoundGeneratorSwitch(context, sb).doSwitch(compound);
+		return sb;
 	}
 	
 	private class CompoundGeneratorSwitch extends MscriptSwitch<Boolean> {
@@ -64,9 +53,9 @@ public class CompoundGenerator implements ICompoundGenerator {
 		/**
 		 * 
 		 */
-		public CompoundGeneratorSwitch(IMscriptGeneratorContext context) {
+		public CompoundGeneratorSwitch(IMscriptGeneratorContext context, StringBuilder sb) {
 			this.context = context;
-			out = new PrintAppendable(context.getAppendable());
+			out = new PrintAppendable(sb);
 		}
 
 		@Override
@@ -151,26 +140,18 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		private void generate(Expression expression) {
-			try {
-				expressionGenerator.generate(context, expression);
-			} catch (IOException e) {
-				throw new WrappedException(e);
-			}
+			out.print(expressionGenerator.generate(context, expression));
 		}
 		
 		private void writeAssignment(DataType targetDataType, String target, Expression assignedExpression) {
 			out.print(target);
 			out.print(" = ");
-			cast(targetDataType, assignedExpression);
+			out.print(cast(targetDataType, assignedExpression));
 			out.print(";\n");
 		}
 		
-		private void cast(DataType targetDataType, Expression expression) {
-			try {
-				MscriptGeneratorUtil.cast(context, expression, targetDataType);
-			} catch (IOException e) {
-				throw new WrappedException(e);
-			}
+		private CharSequence cast(DataType targetDataType, Expression expression) {
+			return MscriptGeneratorUtil.cast(context, expression, targetDataType);
 		}
 		
 		/**

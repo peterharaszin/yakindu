@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
-
 import org.eclipselabs.damos.mscript.Expression;
 
 
@@ -22,6 +20,6 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IExpressionGenerator {
 
-	void generate(IMscriptGeneratorContext context, Expression expression) throws IOException;
+	CharSequence generate(IMscriptGeneratorContext context, Expression expression);
 
 }

@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
-import java.io.IOException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil;
@@ -63,12 +61,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
 					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
 					ComputationModel computationModel = getComputationModel();
 					ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
-					try {
-						new ExpressionGenerator().generate(new MscriptGeneratorContext(out, computationModel, new StaticEvaluationContext(), variableAccessStrategy, getContext().getCodeFragmentCollector()), condition.getExpression());
-					} catch (IOException e) {
-						// TODO REMOVE
-						e.printStackTrace();
-					}
+					out.print(new ExpressionGenerator().generate(new MscriptGeneratorContext(computationModel, new StaticEvaluationContext(), variableAccessStrategy, getContext().getCodeFragmentCollector()), condition.getExpression()));
 				} else {
 					// TODO: Handle error
 				}

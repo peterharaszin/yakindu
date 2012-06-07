@@ -22,7 +22,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public interface IMscriptGeneratorContext {
 
-	Appendable getAppendable();
 	ComputationModel getComputationModel();
 	IStaticEvaluationContext getStaticEvaluationContext();
 	IVariableAccessStrategy getVariableAccessStrategy();

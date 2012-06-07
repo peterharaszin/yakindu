@@ -40,8 +40,9 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
-	public void generate(final IMscriptGeneratorContext context, FunctionCall functionCall) throws IOException {
-		final PrintAppendable out = new PrintAppendable(context.getAppendable());
+	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
+		StringBuilder sb = new StringBuilder();
+		final PrintAppendable out = new PrintAppendable(sb);
 		
 		final Expression argument = functionCall.getArguments().get(0);
 		
@@ -67,12 +68,12 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 				public void write(Appendable appendable) throws IOException {
 					if (fractionLength > 0) {
 						out.print("((");
-						expressionGenerator.generate(context, argument);
+						out.print(expressionGenerator.generate(context, argument));
 						out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
 								MscriptGeneratorUtil.getCDataType(context, argumentDataType, null),
 								(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
 					} else {
-						expressionGenerator.generate(context, argument);
+						out.print(expressionGenerator.generate(context, argument));
 					}
 				}
 				
@@ -82,7 +83,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 
 				public void write(Appendable appendable) throws IOException {
 					out.print("floor((");
-					expressionGenerator.generate(context, argument);
+					out.print(expressionGenerator.generate(context, argument));
 					out.print(") + 0.5)");
 				}
 				
@@ -91,7 +92,13 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 			throw new IllegalArgumentException();
 		}
 		
-		NumericExpressionCaster.INSTANCE.cast(context.getAppendable(), resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, writer));
+		try {
+			NumericExpressionCaster.INSTANCE.cast(sb, resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, writer));
+		} catch (IOException e) {
+			// TODO REMOVE
+			e.printStackTrace();
+		}
+		return sb;
 	}
 	
 }

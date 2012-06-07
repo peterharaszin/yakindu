@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.internal.generators;
 
-import java.util.Formatter;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
@@ -74,7 +72,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 		String outputVariable = getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false);
 
 		sb.append(getFastLockGenerator().generateLockCode(variableName));
-		new Formatter(sb).format("%s = %s.data;\n", outputVariable, contextVariable);
+		sb.append(String.format("%s = %s.data;\n", outputVariable, contextVariable));
 		sb.append(getFastLockGenerator().generateUnlockCode( variableName));
 		return sb;
 	}

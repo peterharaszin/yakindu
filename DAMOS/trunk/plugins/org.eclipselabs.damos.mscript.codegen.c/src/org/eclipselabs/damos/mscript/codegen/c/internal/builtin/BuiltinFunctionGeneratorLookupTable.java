@@ -40,6 +40,9 @@ public class BuiltinFunctionGeneratorLookupTable implements IBuiltinFunctionGene
 			return new CosFunctionGenerator();
 		case TAN:
 			return new TanFunctionGenerator();
+		default:
+			// Do nothing
+			break;
 		}
 		return null;
 	}

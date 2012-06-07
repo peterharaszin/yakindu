@@ -47,6 +47,8 @@ public class StructTypeOperations extends DataTypeOperations {
 			if (structType.isAssignableFrom(other) || other.isAssignableFrom(structType)) {
 				return MscriptFactory.eINSTANCE.createBooleanType();
 			}
+		default:
+			break;
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}

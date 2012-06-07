@@ -176,8 +176,14 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 					case CONTINUOUS:
 						message = "Variable references of continuous functions must not specify step expressions";
 						break;
+					default:
+						// Do nothing
+						break;
 					}
 				}
+				break;
+			default:
+				// Do nothing
 				break;
 			}
 			

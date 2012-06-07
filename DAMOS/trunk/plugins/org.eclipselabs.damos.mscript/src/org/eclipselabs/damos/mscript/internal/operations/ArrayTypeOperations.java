@@ -69,6 +69,8 @@ public class ArrayTypeOperations extends DataTypeOperations {
 				return evaluateElementWise(arrayType, operator, other);
 			case NEGATE:
 				return EcoreUtil.copy(arrayType);
+			default:
+				break;
 			}
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();

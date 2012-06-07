@@ -7,6 +7,8 @@ package org.eclipselabs.damos.mscript.services;
 import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
+import java.util.List;
+
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
@@ -5085,15 +5087,32 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tWS;
 	private TerminalRule tANY_OTHER;
 	
-	private final GrammarProvider grammarProvider;
+	private final Grammar grammar;
 
 	@Inject
 	public MscriptGrammarAccess(GrammarProvider grammarProvider) {
-		this.grammarProvider = grammarProvider;
+		this.grammar = internalFindGrammar(grammarProvider);
 	}
 	
-	public Grammar getGrammar() {	
-		return grammarProvider.getGrammar(this);
+	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
+		Grammar grammar = grammarProvider.getGrammar(this);
+		while (grammar != null) {
+			if ("org.eclipselabs.damos.mscript.Mscript".equals(grammar.getName())) {
+				return grammar;
+			}
+			List<Grammar> grammars = grammar.getUsedGrammars();
+			if (!grammars.isEmpty()) {
+				grammar = grammars.iterator().next();
+			} else {
+				return null;
+			}
+		}
+		return grammar;
+	}
+	
+	
+	public Grammar getGrammar() {
+		return grammar;
 	}
 	
 

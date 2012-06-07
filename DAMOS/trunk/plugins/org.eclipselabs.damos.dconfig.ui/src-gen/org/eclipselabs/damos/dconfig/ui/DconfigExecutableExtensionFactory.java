@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class DconfigExecutableExtensionFactory extends AbstractGuiceAwareExecuta
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator.getInstance().getBundle();
+		return DconfigActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipselabs.damos.dconfig.ui.internal.DconfigActivator.getInstance().getInjector("org.eclipselabs.damos.dconfig.Dconfig");
+		return DconfigActivator.getInstance().getInjector(DconfigActivator.ORG_ECLIPSELABS_DAMOS_DCONFIG_DCONFIG);
 	}
 	
 }

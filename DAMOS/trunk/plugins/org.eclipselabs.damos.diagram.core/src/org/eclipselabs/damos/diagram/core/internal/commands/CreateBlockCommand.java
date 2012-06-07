@@ -84,6 +84,9 @@ public class CreateBlockCommand extends CreateElementCommand {
 				}
 			}
 			break;
+		default:
+			// To nothing
+			break;
 		}
     	
     	@SuppressWarnings("unchecked")

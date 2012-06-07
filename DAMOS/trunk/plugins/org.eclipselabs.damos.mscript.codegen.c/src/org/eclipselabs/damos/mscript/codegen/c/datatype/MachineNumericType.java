@@ -45,6 +45,9 @@ public class MachineNumericType extends MachineDataType {
 				return "float";
 			case BINARY64:
 				return "double";
+			default:
+				// Do nothing
+				break;
 			}
 		} else if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;

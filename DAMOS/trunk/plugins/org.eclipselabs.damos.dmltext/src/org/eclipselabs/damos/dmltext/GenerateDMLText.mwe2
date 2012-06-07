@@ -13,6 +13,9 @@ Workflow {
     bean = StandaloneSetup {
 	    scanClassPath = true
 		platformUri = "${runtimeProject}/.."
+		registerGeneratedEPackage = "org.eclipselabs.damos.dml.DMLPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.MscriptPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.dmltext.DMLTextPackage"
 	}
 
 	component = DirectoryCleaner {

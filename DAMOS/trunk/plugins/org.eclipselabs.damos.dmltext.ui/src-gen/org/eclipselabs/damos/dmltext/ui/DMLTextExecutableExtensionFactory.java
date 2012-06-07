@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class DMLTextExecutableExtensionFactory extends AbstractGuiceAwareExecuta
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator.getInstance().getBundle();
+		return DMLTextActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipselabs.damos.dmltext.ui.internal.DMLTextActivator.getInstance().getInjector("org.eclipselabs.damos.dmltext.DMLText");
+		return DMLTextActivator.getInstance().getInjector(DMLTextActivator.ORG_ECLIPSELABS_DAMOS_DMLTEXT_DMLTEXT);
 	}
 	
 }

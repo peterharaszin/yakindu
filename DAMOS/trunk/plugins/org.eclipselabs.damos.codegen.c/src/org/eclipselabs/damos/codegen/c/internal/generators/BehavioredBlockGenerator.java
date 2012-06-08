@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
+import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
@@ -37,7 +38,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -48,6 +48,7 @@ import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
@@ -130,44 +131,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	}
 	
 	@Override
-	public CharSequence generateContextCode(String typeName, IProgressMonitor monitor) {
-		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
-		out.println("typedef struct {");
-		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
-			if (staticEvaluationContext.getCircularBufferSize(inputParameterDeclaration) > 1) {
-				writeContextStructureMember(out, monitor, inputParameterDeclaration);
-			}
-		}
-		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
-			if (staticEvaluationContext.getCircularBufferSize(outputParameterDeclaration) > 1) {
-				writeContextStructureMember(out, monitor, outputParameterDeclaration);
-			}
-		}
-		for (StateVariableDeclaration instanceVariableDeclaration: functionInstance.getFunctionDeclaration().getStateVariableDeclarations()) {
-			writeContextStructureMember(out, monitor, instanceVariableDeclaration);
-		}
-		String prefix = InternalGeneratorUtil.getPrefix(getConfiguration());
-		if (prefix == null) {
-			prefix = "";
-		}
-		out.printf("} %s;\n", typeName);
-		return sb;
-	}
-
-	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, VariableDeclaration variableDeclaration) {
-		String name = variableDeclaration.getName();
-		DataType dataType = staticEvaluationContext.getValue(variableDeclaration).getDataType();
-		if (staticEvaluationContext.getCircularBufferSize(variableDeclaration) > 1) {
-			int bufferSize = staticEvaluationContext.getCircularBufferSize(variableDeclaration);
-			out.printf("%s[%d];\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, name, false, null),
-					bufferSize);
-			out.printf("%s %s_index;\n", MscriptGeneratorUtil.getIndexCDataType(getComputationModel(), 2 * bufferSize), name);
-		} else {
-			out.printf("%s;\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, name, false, null));
-		}
+	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
+		return new BehavioredBlockContextCodeGenerator().generateContextCode(new BehavioredBlockGeneratorContext(), typeName, monitor);
 	}
 	
 	/* (non-Javadoc)
@@ -373,6 +338,35 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}
 			return super.getGlobalTemplateArgumentValue(name);
+		}
+		
+	}
+	
+	private class BehavioredBlockGeneratorContext implements IBehavioredBlockGeneratorContext {
+
+		public IComponentGeneratorContext getComponentGeneratorContext() {
+			return getContext();
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.codegen.c.internal.generators.IBehavioredBlockGeneratorContext#getStaticEvaluationContext()
+		 */
+		public IStaticEvaluationContext getStaticEvaluationContext() {
+			return staticEvaluationContext;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.codegen.c.internal.generators.IBehavioredBlockGeneratorContext#getComputationModel()
+		 */
+		public ComputationModel getComputationModel() {
+			return BehavioredBlockGenerator.this.getComputationModel();
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.codegen.c.internal.generators.IBehavioredBlockGeneratorContext#getFunctionInstance()
+		 */
+		public FunctionInstance getFunctionInstance() {
+			return functionInstance;
 		}
 		
 	}

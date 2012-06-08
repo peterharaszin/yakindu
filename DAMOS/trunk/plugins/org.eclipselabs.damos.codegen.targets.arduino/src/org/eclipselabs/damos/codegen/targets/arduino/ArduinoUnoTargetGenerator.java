@@ -38,6 +38,8 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	private static final PropertyPath SHIELD_PROPERTY_PATH = PropertyPath.create("damos.codegen.target/shield");
 	
+	private final InoFileGenerator inoFileGenerator = new InoFileGenerator();
+	
 	@Override
 	public Configuration createConfiguration(Configuration baseConfiguration, IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = baseConfiguration.getContextFragment();
@@ -96,63 +98,12 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 			return;
 		}
 		
-		double fundamentalSampleTime = context.getExecutionFlow().getFundamentalSampleTime();
-		boolean micro = fundamentalSampleTime <= 0.01;
-		long stepSize = Math.round(fundamentalSampleTime * (micro ? 1000000 : 1000));
+		CharSequence content = inoFileGenerator.generate(context, monitor);
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("#include \"");
-		sb.append(GeneratorConfigurationUtil.getSystemHeaderFile(context.getConfiguration()));
-		sb.append("\"\n\n");
-		
-		sb.append("unsigned long Damos_time;\n\n");
-		
-		sb.append("void setup() {\n");
-		sb.append(GeneratorConfigurationUtil.getPrefix(context.getConfiguration()));
-		sb.append("initialize();\n");
-		sb.append("Damos_time = ");
-		if (micro) {
-			sb.append("micros();\n");
-		} else {
-			sb.append("millis();\n");
-		}
-		sb.append("}\n\n");
-
-		sb.append("void loop() {\n");
-		sb.append(GeneratorConfigurationUtil.getPrefix(context.getConfiguration()));
-		sb.append("execute();\n");
-		sb.append("{\n");
-		sb.append("Damos_time += ");
-		sb.append(stepSize);
-		sb.append("UL;\n");
-		sb.append("unsigned long delayTime = Damos_time - ");
-		if (micro) {
-			sb.append("micros();\n");
-		} else {
-			sb.append("millis();\n");
-		}
-		
-		sb.append("if (delayTime > ");
-		sb.append(stepSize);
-		sb.append("UL) {\n");
-		sb.append("delayTime += ~(0UL);\n");
-		sb.append("}\n");
-
-		sb.append("if (delayTime <= ");
-		sb.append(stepSize);
-		sb.append("UL) {\n");
-		if (micro) {
-			sb.append("delayMicroseconds(delayTime);\n");
-		} else {
-			sb.append("delay(delayTime);\n");
-		}
-		sb.append("}\n");
-		
-		sb.append("}\n");
-		sb.append("}\n");
-		
+		// The name of the .ino file must be the name of the source folder + '.ino',
+		// otherwise the folder is not recognized as a sketchbook by the Arduino IDE.
 		IFile file = folder.getFile(sourceFolder + ".ino");
-		ByteArrayInputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+		ByteArrayInputStream is = new ByteArrayInputStream(content.toString().getBytes());
 		if (file.exists()) {
 			file.setContents(is, true, true, monitor);
 		} else {

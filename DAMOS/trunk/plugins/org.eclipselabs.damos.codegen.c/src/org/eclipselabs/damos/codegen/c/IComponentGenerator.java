@@ -36,7 +36,7 @@ public interface IComponentGenerator {
 	
 	CharSequence getContextTypeName();
 	
-	CharSequence generateContextCode(String typeName, IProgressMonitor monitor);
+	CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor);
 
 	boolean contributesInitializationCode();
 	

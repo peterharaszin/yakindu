@@ -76,7 +76,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return null;
 	}
 	
-	public CharSequence generateContextCode(String typeName, IProgressMonitor monitor) {
+	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
 		return "";
 	}
 	

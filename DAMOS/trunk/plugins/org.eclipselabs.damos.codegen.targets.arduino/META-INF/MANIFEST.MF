@@ -7,6 +7,7 @@ Bundle-Activator: org.eclipselabs.damos.codegen.targets.arduino.Activator
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.100",
+ org.eclipse.xtend2.lib;bundle-version="2.3.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
  org.eclipselabs.damos.execution;bundle-version="0.3.0",

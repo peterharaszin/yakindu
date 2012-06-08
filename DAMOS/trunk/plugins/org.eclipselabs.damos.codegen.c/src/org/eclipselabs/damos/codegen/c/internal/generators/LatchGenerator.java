@@ -32,7 +32,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	}
 	
 	@Override
-	public CharSequence generateContextCode(String typeName, IProgressMonitor monitor) {
+	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, null);

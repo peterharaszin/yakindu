@@ -49,11 +49,25 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 		this.graphGenerator = graphGenerator;
 	}
 
+	public boolean contributesChoiceVariableDeclarations(IGeneratorContext context, Graph graph) {
+		for (Node node : graph.getAllNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				Component component = componentNode.getComponent();
+				
+				if (component instanceof Choice) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+
 	public CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		
 		PrintAppendable out = new PrintAppendable(sb);
-		boolean hasChoices = false;
 		for (Node node : graph.getAllNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
@@ -61,15 +75,10 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 				
 				if (component instanceof Choice) {
 					out.printf("uint_fast8_t %s;\n", CompoundGeneratorUtil.getChoiceVariableName(context.getConfiguration(), componentNode));
-					hasChoices = true;
 				}
 			}
 		}
-		
-		if (hasChoices) {
-			out.println();
-		}
-		
+				
 		return sb;
 	}
 

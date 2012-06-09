@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 
 /**
  * @author Andreas Unger
@@ -22,13 +22,20 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
  */
 public abstract class PrimaryCodeFragment extends AbstractCodeFragment {
 
+	/**
+	 * Initializes this code fragment. The passed context must be an instance of {@link IGeneratorContext}.
+	 * 
+	 * @param context
+	 * @param monitor
+	 * @throws IllegalArgumentException if context is not an instance of {@link IGeneratorContext}
+	 * @see AbstractCodeFragment#initialize(ICodeFragmentContext, IProgressMonitor)
+	 */
 	@Override
-	public final void initialize(IAdaptable context, IProgressMonitor monitor) {
-		IGeneratorContext generatorContext = (IGeneratorContext) context.getAdapter(IGeneratorContext.class);
-		if (generatorContext == null) {
-			throw new IllegalArgumentException("Context argument must be adaptable to " + IGeneratorContext.class.getCanonicalName());
+	public final void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
+		if (!(context instanceof IGeneratorContext)) {
+			throw new IllegalArgumentException("Context must be instanceof " + IGeneratorContext.class.getCanonicalName());
 		}
-		doInitialize(generatorContext, monitor);
+		doInitialize((IGeneratorContext) context, monitor);
 	}
 	
 	protected abstract void doInitialize(IGeneratorContext context, IProgressMonitor monitor);

@@ -11,13 +11,13 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -52,7 +52,7 @@ public class ArrayConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -62,12 +62,12 @@ public class ArrayConstructionFunction extends AbstractCodeFragment {
 		});
 
 		ArrayTypeDeclaration arrayTypeDeclaration = new ArrayTypeDeclaration(computationModel, arrayType);
-		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
+		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 		ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector.addCodeFragment(arrayTypeDeclaration, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
-		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("createArray");
+		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
+		name = globalNameProvider.newGlobalName("createArray");
 
 		functionSignature = getFunctionSignature(codeFragmentCollector);
 	}

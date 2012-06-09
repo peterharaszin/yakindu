@@ -11,11 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -48,11 +47,11 @@ public class ArrayTypeDeclaration extends AbstractCodeFragment {
 	}
 	
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
-		elementTypeString = arrayType.getElementType().getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), this);
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
+		elementTypeString = arrayType.getElementType().getCDataType(computationModel, context.getCodeFragmentCollector(), this);
 		
-		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("Array");
+		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
+		name = globalNameProvider.newGlobalName("Array");
 	}
 	
 	public CharSequence generateForwardDeclaration(boolean internal) {

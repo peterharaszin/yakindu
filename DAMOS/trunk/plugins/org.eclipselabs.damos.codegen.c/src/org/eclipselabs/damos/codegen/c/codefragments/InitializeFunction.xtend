@@ -11,15 +11,13 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
-import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
+import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import org.eclipselabs.damos.codegen.c.ITaskGenerator
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.Include
-import org.eclipselabs.damos.codegen.c.ITaskGenerator
-import org.eclipselabs.damos.codegen.c.IGeneratorContext
-import org.eclipselabs.damos.codegen.c.codefragments.ContextVariable
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -38,7 +36,6 @@ class InitializeFunction extends PrimaryCodeFragment {
 	CharSequence functionSignature
 	CharSequence functionBody
 
-	@Inject
 	new(ITaskGenerator taskGenerator) {
 		this.taskGenerator = taskGenerator
 		implementationIncludes.add(new Include("math.h"))

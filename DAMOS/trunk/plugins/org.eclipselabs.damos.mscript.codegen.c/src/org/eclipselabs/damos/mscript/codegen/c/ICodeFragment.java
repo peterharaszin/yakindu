@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.util.Collection;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
@@ -30,7 +29,7 @@ public interface ICodeFragment {
 	int DEPENDS_ON = FORWARD_DECLARATION_DEPENDS_ON | IMPLEMENTATION_DEPENDS_ON;
 	int REQUIRED_BY = FORWARD_DECLARATION_REQUIRED_BY | IMPLEMENTATION_REQUIRED_BY;
 	
-	void initialize(IAdaptable context, IProgressMonitor monitor);
+	void initialize(ICodeFragmentContext context, IProgressMonitor monitor);
 
 	void addDependency(int kind, IDependencyRule rule);
 	

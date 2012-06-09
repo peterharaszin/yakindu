@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayType;
@@ -20,6 +19,7 @@ import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
@@ -78,7 +78,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 	}
 	
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -87,14 +87,14 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 			
 		});
 		
-		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
+		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 
-		scalarTypeString = MscriptGeneratorUtil.getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), scalarType, this);
-		elementTypeString = MscriptGeneratorUtil.getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), elementType, this);
-		resultTypeString = MscriptGeneratorUtil.getCDataType(computationModel, (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class), resultType, this);
+		scalarTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), scalarType, this);
+		elementTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), elementType, this);
+		resultTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), resultType, this);
 		
-		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("scalarMultiply");
+		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
+		name = globalNameProvider.newGlobalName("scalarMultiply");
 		
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);

@@ -12,11 +12,11 @@
 package org.eclipselabs.damos.codegen.c.codefragments
 
 import org.eclipse.core.runtime.IProgressMonitor
+import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
-import org.eclipselabs.damos.codegen.c.IGeneratorContext
 
 /**
  * @author Andreas Unger

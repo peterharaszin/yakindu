@@ -15,8 +15,10 @@ package org.eclipselabs.damos.mscript.codegen.c;
  * @author Andreas Unger
  *
  */
-public interface IGlobalNameProvider {
+public interface ICodeFragmentContext {
 
-	String newGlobalName(String preferredName);
-	
+	ICodeFragmentCollector getCodeFragmentCollector();
+
+	IGlobalNameProvider getGlobalNameProvider();
+
 }

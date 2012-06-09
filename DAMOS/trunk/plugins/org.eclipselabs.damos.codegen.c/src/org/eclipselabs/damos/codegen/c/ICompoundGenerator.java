@@ -21,6 +21,8 @@ import org.eclipselabs.damos.execution.Graph;
  */
 public interface ICompoundGenerator {
 
+	boolean contributesChoiceVariableDeclarations(IGeneratorContext context, Graph graph);
+	
 	CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
 
 	CharSequence generateCompoundCode(IGeneratorContext context, CompoundNode compoundNode, IProgressMonitor monitor);

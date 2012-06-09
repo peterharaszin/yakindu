@@ -14,11 +14,11 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
@@ -52,11 +52,11 @@ public class StructTypeDeclaration extends AbstractCodeFragment {
 	}
 	
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
-		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
+		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 		
-		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("Struct");
+		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
+		name = globalNameProvider.newGlobalName("Struct");
 		
 		for (MachineStructMember member : structType.getMembers()) {
 			memberTypeNames.add(member.getType().getCDataType(computationModel, codeFragmentCollector, this));

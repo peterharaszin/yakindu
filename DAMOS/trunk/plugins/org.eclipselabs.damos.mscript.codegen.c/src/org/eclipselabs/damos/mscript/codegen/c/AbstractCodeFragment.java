@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
@@ -26,7 +25,7 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 
 	private final Collection<Dependency> dependencies = new ArrayList<Dependency>();
 	
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 	}
 	
 	public final void addDependency(int kind, IDependencyRule rule) {

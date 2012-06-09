@@ -11,13 +11,13 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
@@ -53,7 +53,7 @@ public class StructConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	@Override
-	public void initialize(IAdaptable context, IProgressMonitor monitor) {
+	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
@@ -63,12 +63,12 @@ public class StructConstructionFunction extends AbstractCodeFragment {
 		});
 
 		StructTypeDeclaration structTypeDeclaration = new StructTypeDeclaration(computationModel, structType);
-		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
+		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 		StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(structTypeDeclaration, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
-		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("createStructure");
+		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
+		name = globalNameProvider.newGlobalName("createStructure");
 
 		functionSignature = getFunctionSignature(codeFragmentCollector);
 	}

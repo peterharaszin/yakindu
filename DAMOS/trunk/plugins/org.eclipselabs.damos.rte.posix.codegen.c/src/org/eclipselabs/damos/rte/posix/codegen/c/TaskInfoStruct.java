@@ -13,8 +13,8 @@ package org.eclipselabs.damos.rte.posix.codegen.c;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.ITaskInfoStruct;
-import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
+import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
+import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 
 /**
  * @author Andreas Unger

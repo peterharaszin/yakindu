@@ -13,12 +13,12 @@ package org.eclipselabs.damos.codegen.c.internal.providers;
 
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
-import org.eclipselabs.damos.codegen.c.internal.generators.ChoiceGenerator;
-import org.eclipselabs.damos.codegen.c.internal.generators.InportGenerator;
-import org.eclipselabs.damos.codegen.c.internal.generators.JoinGenerator;
-import org.eclipselabs.damos.codegen.c.internal.generators.LatchGenerator;
-import org.eclipselabs.damos.codegen.c.internal.generators.MemoryGenerator;
-import org.eclipselabs.damos.codegen.c.internal.generators.OutportGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.ChoiceGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.InportGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.JoinGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.LatchGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.MemoryGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.OutportGenerator;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inport;

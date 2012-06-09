@@ -18,8 +18,8 @@ import java.util.List;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.StructTypeDeclarationCodeFragment;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**

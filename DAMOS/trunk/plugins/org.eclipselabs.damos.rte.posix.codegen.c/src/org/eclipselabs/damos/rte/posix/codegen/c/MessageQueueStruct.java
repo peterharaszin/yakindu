@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.codegen.c.ContextStruct;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.PrimaryCodeFragment;
+import org.eclipselabs.damos.codegen.c.codefragments.ContextStruct;
+import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.Include;

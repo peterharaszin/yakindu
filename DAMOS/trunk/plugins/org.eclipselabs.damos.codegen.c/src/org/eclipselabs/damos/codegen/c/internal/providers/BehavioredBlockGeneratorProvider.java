@@ -13,7 +13,7 @@ package org.eclipselabs.damos.codegen.c.internal.providers;
 
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
-import org.eclipselabs.damos.codegen.c.internal.generators.BehavioredBlockGenerator;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.BehavioredBlockGenerator;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.execution.ComponentNode;

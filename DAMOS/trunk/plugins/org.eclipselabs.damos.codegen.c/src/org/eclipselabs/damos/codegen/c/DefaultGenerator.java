@@ -67,17 +67,21 @@ public class DefaultGenerator extends AbstractGenerator {
 	
 	private final ICModuleGenerator headerGenerator;
 	private final ICModuleGenerator sourceGenerator;
+	
+	private final IContextStructFactory contextStructFactory;
 		
 	/**
 	 * 
 	 */
 	@Inject
 	DefaultGenerator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator,
-			@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator) {
+			@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
+			IContextStructFactory contextStructFactory) {
 		this.graphGenerator = graphGenerator;
 		this.taskGenerator = taskGenerator;
 		this.headerGenerator = headerGenerator;
 		this.sourceGenerator = sourceGenerator;
+		this.contextStructFactory = contextStructFactory;
 	}
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
@@ -167,7 +171,7 @@ public class DefaultGenerator extends AbstractGenerator {
 			context.addCodeFragment(new TaskInfo(graphGenerator), monitor);
 		}
 		
-		context.addCodeFragment(new ContextStruct(taskGenerator), monitor);
+		context.addCodeFragment(contextStructFactory.create(), monitor);
 		context.addCodeFragment(new ContextVariable(), monitor);
 		context.addCodeFragment(new InitializeFunction(taskGenerator), monitor);
 		context.addCodeFragment(new ExecuteFunction(graphGenerator), monitor);

@@ -84,6 +84,18 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 		return sb;
 	}
 
+	public boolean contributesLatchUpdate(IGeneratorContext context, ComponentNode componentNode) {
+		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
+			if (end.getNode() instanceof ComponentNode) {
+				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
+				if (otherComponentNode.getComponent() instanceof Latch) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public CharSequence generateLatchUpdate(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
@@ -102,6 +114,15 @@ public class DefaultTaskGenerator implements ITaskGenerator {
 			}
 		}
 		return sb;
+	}
+
+	public boolean contributesMessageQueueSend(IGeneratorContext context, ComponentNode componentNode) {
+		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
+			if (end.getNode() instanceof TaskInputNode) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public CharSequence generateMessageQueueSend(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor) {

@@ -23,9 +23,13 @@ public interface ITaskGenerator {
 	CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor);
 
 	CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor);
-
+	
+	boolean contributesLatchUpdate(IGeneratorContext context, ComponentNode componentNode);
+	
 	CharSequence generateLatchUpdate(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor);
 
+	boolean contributesMessageQueueSend(IGeneratorContext context, ComponentNode componentNode);
+	
 	CharSequence generateMessageQueueSend(IGeneratorContext context, ComponentNode componentNode, IProgressMonitor monitor);
 
 }

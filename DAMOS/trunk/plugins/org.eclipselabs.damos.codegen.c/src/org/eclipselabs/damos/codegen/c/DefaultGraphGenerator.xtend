@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Inoutport
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.execution.CompoundNode
 import org.eclipselabs.damos.execution.Graph
+import org.eclipselabs.damos.execution.Node
 import org.eclipselabs.damos.mscript.codegen.c.Include
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 
@@ -68,8 +69,8 @@ class DefaultGraphGenerator implements IGraphGenerator {
 	
 	override CharSequence generateGraph(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
 		val computeOutputsNodes = graph.nodes
-				.filter(n | n instanceof CompoundNode || n instanceof ComponentNode)
-				
+				.filter(n | contributesComputeOutputsCode(context, n))
+		
 		val updateNodes = graph.nodes
 				.filter(typeof(ComponentNode))
 				.filter(n | InternalGeneratorUtil::getComponentGenerator(n).contributesUpdateCode)
@@ -100,10 +101,23 @@ class DefaultGraphGenerator implements IGraphGenerator {
 		'''
 	}
 	
+	def private contributesComputeOutputsCode(IGeneratorContext context, Node node) {
+		if (node instanceof CompoundNode) {
+			return true
+		}
+		if (node instanceof ComponentNode) {
+			val componentNode = node as ComponentNode
+			return InternalGeneratorUtil::getComponentGenerator(componentNode).contributesComputeOutputsCode
+					|| taskGenerator.contributesLatchUpdate(context, componentNode)
+					|| taskGenerator.contributesMessageQueueSend(context, componentNode)
+		}
+		return false
+	}
+
 	def private dispatch generateComputeOutputsCode(IGeneratorContext context, CompoundNode node, IProgressMonitor monitor) {
 		compoundGenerator.generateCompoundCode(context, node, monitor)
 	}
-
+	
 	def private dispatch generateComputeOutputsCode(IGeneratorContext context, ComponentNode node, IProgressMonitor monitor) {
 		val generator = InternalGeneratorUtil::getComponentGenerator(node)
 		'''

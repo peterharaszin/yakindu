@@ -23,8 +23,8 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclarationCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclarationCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -141,13 +141,13 @@ public class MscriptGeneratorUtil {
 	
 	public static CharSequence getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof IArrayValue) {
-			ArrayLiteralDeclarationCodeFragment codeFragment = new ArrayLiteralDeclarationCodeFragment(computationModel, (IArrayValue) value);
-			codeFragment = (ArrayLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(computationModel, (IArrayValue) value);
+			codeFragment = (ArrayLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
 		if (value instanceof StructValue) {
-			StructLiteralDeclarationCodeFragment codeFragment = new StructLiteralDeclarationCodeFragment(computationModel, (StructValue) value);
-			codeFragment = (StructLiteralDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(computationModel, (StructValue) value);
+			codeFragment = (StructLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
 		return createInitializer(computationModel, codeFragmentCollector, value);

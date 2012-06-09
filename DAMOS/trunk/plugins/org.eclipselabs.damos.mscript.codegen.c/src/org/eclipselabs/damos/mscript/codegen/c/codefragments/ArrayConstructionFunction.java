@@ -19,17 +19,16 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger
  *
  */
-public class StructConstructionCodeFragment extends AbstractCodeFragment {
+public class ArrayConstructionFunction extends AbstractCodeFragment {
 
-	private MachineStructType structType;
+	private MachineArrayType arrayType;
 	private ComputationModel computationModel;
 	
 	private String typeName;
@@ -40,9 +39,9 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public StructConstructionCodeFragment(ComputationModel computationModel, MachineStructType structType) {
+	public ArrayConstructionFunction(ComputationModel computationModel, MachineArrayType arrayType) {
 		this.computationModel = computationModel;
-		this.structType = structType;
+		this.arrayType = arrayType;
 	}
 	
 	/**
@@ -57,18 +56,18 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
-				return other instanceof StructTypeDeclarationCodeFragment;
+				return other instanceof ArrayTypeDeclaration;
 			}
 			
 		});
 
-		StructTypeDeclarationCodeFragment structTypeDeclarationCodeFragment = new StructTypeDeclarationCodeFragment(computationModel, structType);
+		ArrayTypeDeclaration arrayTypeDeclaration = new ArrayTypeDeclaration(computationModel, arrayType);
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
-		StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(structTypeDeclarationCodeFragment, new NullProgressMonitor());
+		ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector.addCodeFragment(arrayTypeDeclaration, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("createStructure");
+		name = globalNameProvider.getName("createArray");
 
 		functionSignature = getFunctionSignature(codeFragmentCollector);
 	}
@@ -108,11 +107,11 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(functionSignature);
 		out.println(" {");
-		out.printf("%s _s;\n", typeName);
-		for (MachineStructMember member : structType.getMembers()) {
-			out.printf("_s.%s = %s;\n", member.getName(), member.getName());
+		out.printf("%s a;\n", typeName);
+		for (int i = 0; i < arrayType.getDimension(0); ++i) {
+			out.printf("a.data[%d] = e%d;\n", i, i);
 		}
-		out.println("return _s;");
+		out.println("return a;");
 		out.println("}");
 		return sb;
 	}
@@ -124,15 +123,16 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 		sb.append(name);
 		sb.append("(");
 		boolean first = true;
-		for (MachineStructMember member : structType.getMembers()) {
+		for (int i = 0; i < arrayType.getDimension(0); ++i) {
 			if (first) {
 				first = false;
 			} else {
 				sb.append(", ");
 			}
-			sb.append(member.getType().getCDataType(computationModel, codeFragmentCollector, this));
+			sb.append(arrayType.getElementType().getCDataType(computationModel, codeFragmentCollector, this));
 			sb.append(" ");
-			sb.append(member.getName());
+			sb.append("e");
+			sb.append(i);
 		}
 		sb.append(")");
 		return sb.toString();
@@ -143,7 +143,7 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public int hashCode() {
-		return getClass().hashCode() ^ structType.hashCode();
+		return getClass().hashCode() ^ arrayType.hashCode();
 	}
 	
 	/* (non-Javadoc)
@@ -151,9 +151,9 @@ public class StructConstructionCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof StructConstructionCodeFragment) {
-			StructConstructionCodeFragment other = (StructConstructionCodeFragment) obj;
-			return other.structType.equals(structType);
+		if (obj instanceof ArrayConstructionFunction) {
+			ArrayConstructionFunction other = (ArrayConstructionFunction) obj;
+			return other.arrayType.equals(arrayType);
 		}
 		return false;
 	}

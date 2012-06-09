@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @author Andreas Unger
  *
  */
-public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
+public class ArrayTypeDeclaration extends AbstractCodeFragment {
 
 	private final ComputationModel computationModel;
 	private final MachineArrayType arrayType;
@@ -35,7 +35,7 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public ArrayTypeDeclarationCodeFragment(ComputationModel computationModel, MachineArrayType arrayType) {
+	public ArrayTypeDeclaration(ComputationModel computationModel, MachineArrayType arrayType) {
 		this.computationModel = computationModel;
 		this.arrayType = arrayType;
 	}
@@ -78,8 +78,8 @@ public class ArrayTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ArrayTypeDeclarationCodeFragment) {
-			ArrayTypeDeclarationCodeFragment other = (ArrayTypeDeclarationCodeFragment) obj;
+		if (obj instanceof ArrayTypeDeclaration) {
+			ArrayTypeDeclaration other = (ArrayTypeDeclaration) obj;
 			return other.arrayType.equals(arrayType);
 		}
 		return false;

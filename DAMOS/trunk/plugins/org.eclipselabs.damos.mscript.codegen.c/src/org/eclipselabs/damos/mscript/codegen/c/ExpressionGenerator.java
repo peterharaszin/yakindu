@@ -47,9 +47,9 @@ import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyCodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
@@ -232,7 +232,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			ArrayType arrayType = (ArrayType) getDataType(tensorExpression);
 			DataType elementType = EcoreUtil.copy(arrayType.getElementType());
 			ArrayType resultType = EcoreUtil.copy((ArrayType) getDataType(multiplicativeExpression));
-			ScalarMultiplyCodeFragment codeFragment = (ScalarMultiplyCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new ScalarMultiplyCodeFragment(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
+			ScalarMultiplyFunction codeFragment = (ScalarMultiplyFunction) context.getCodeFragmentCollector().addCodeFragment(new ScalarMultiplyFunction(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
 			out.printf("%s(", codeFragment.getName());
 			doSwitch(scalarExpression);
 			out.print(", &(");
@@ -376,7 +376,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (value instanceof IArrayValue) {
 				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
 			} else {
-				ArrayConstructionCodeFragment codeFragment = (ArrayConstructionCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionCodeFragment(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (ArrayType) value.getDataType())), new NullProgressMonitor());
+				ArrayConstructionFunction codeFragment = (ArrayConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (ArrayType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
 				boolean first = true;
@@ -402,7 +402,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (value instanceof StructValue) {
 				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
 			} else {
-				StructConstructionCodeFragment codeFragment = (StructConstructionCodeFragment) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionCodeFragment(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (StructType) value.getDataType())), new NullProgressMonitor());
+				StructConstructionFunction codeFragment = (StructConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (StructType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
 				boolean first = true;

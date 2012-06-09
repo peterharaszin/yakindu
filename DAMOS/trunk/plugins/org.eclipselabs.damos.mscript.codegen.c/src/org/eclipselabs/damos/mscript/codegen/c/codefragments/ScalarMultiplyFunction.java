@@ -32,7 +32,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  *
  */
-public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
+public class ScalarMultiplyFunction extends AbstractCodeFragment {
 	
 	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 
@@ -56,7 +56,7 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public ScalarMultiplyCodeFragment(ComputationModel computationModel, DataType scalarType, DataType elementType, ArrayType resultType) {
+	public ScalarMultiplyFunction(ComputationModel computationModel, DataType scalarType, DataType elementType, ArrayType resultType) {
 		this.computationModel = computationModel;
 		this.scalarType = scalarType;
 		this.elementType = elementType;
@@ -82,7 +82,7 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
-				return other instanceof ArrayTypeDeclarationCodeFragment;
+				return other instanceof ArrayTypeDeclaration;
 			}
 			
 		});
@@ -164,8 +164,8 @@ public class ScalarMultiplyCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ScalarMultiplyCodeFragment) {
-			ScalarMultiplyCodeFragment other = (ScalarMultiplyCodeFragment) obj;
+		if (obj instanceof ScalarMultiplyFunction) {
+			ScalarMultiplyFunction other = (ScalarMultiplyFunction) obj;
 			return other.scalarNumberFormat.isEquivalentTo(scalarNumberFormat) && other.elementNumberFormat.isEquivalentTo(elementNumberFormat) && other.resultElementNumberFormat.isEquivalentTo(resultElementNumberFormat);
 		}
 		return false;

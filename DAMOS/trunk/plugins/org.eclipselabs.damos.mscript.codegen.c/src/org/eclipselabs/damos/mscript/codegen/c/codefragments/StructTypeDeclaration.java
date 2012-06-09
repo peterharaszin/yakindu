@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @author Andreas Unger
  *
  */
-public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
+public class StructTypeDeclaration extends AbstractCodeFragment {
 
 	private ComputationModel computationModel;
 	private MachineStructType structType;
@@ -39,7 +39,7 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	/**
 	 * 
 	 */
-	public StructTypeDeclarationCodeFragment(ComputationModel computationModel, MachineStructType structType) {
+	public StructTypeDeclaration(ComputationModel computationModel, MachineStructType structType) {
 		this.computationModel = computationModel;
 		this.structType = structType;
 	}
@@ -89,8 +89,8 @@ public class StructTypeDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof StructTypeDeclarationCodeFragment) {
-			StructTypeDeclarationCodeFragment other = (StructTypeDeclarationCodeFragment) obj;
+		if (obj instanceof StructTypeDeclaration) {
+			StructTypeDeclaration other = (StructTypeDeclaration) obj;
 			return other.structType.equals(structType);
 		}
 		return false;

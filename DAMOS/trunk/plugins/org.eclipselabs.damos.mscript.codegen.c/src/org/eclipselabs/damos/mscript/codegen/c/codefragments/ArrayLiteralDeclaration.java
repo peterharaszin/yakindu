@@ -19,31 +19,31 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
+public class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
-	private StructValue structValue;
-	private ComputationModel computationModel;
+	private final ComputationModel computationModel;
+	private final IArrayValue arrayValue;
 	
-	private String typeName;
 	private String name;
-	
+	private String typeName;
 	private CharSequence body;
-	
+
 	/**
 	 * 
 	 */
-	public StructLiteralDeclarationCodeFragment(ComputationModel computationModel, StructValue value) {
+	public ArrayLiteralDeclaration(ComputationModel computationModel, IArrayValue value) {
 		this.computationModel = computationModel;
-		this.structValue = value;
+		this.arrayValue = value;
 	}
 	
 	/**
@@ -58,22 +58,23 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
-				return other instanceof StructTypeDeclarationCodeFragment;
+				return other instanceof ArrayTypeDeclaration;
 			}
 			
 		});
-
-		StructTypeDeclarationCodeFragment structTypeDeclarationCodeFragment = new StructTypeDeclarationCodeFragment(computationModel, MachineDataTypes.create(computationModel, structValue.getDataType()));
+		
+		MachineArrayType arrayType = MachineDataTypes.create(computationModel, arrayValue.getDataType());
+		ArrayTypeDeclaration arrayTypeDeclaration = new ArrayTypeDeclaration(computationModel, arrayType);
 		ICodeFragmentCollector codeFragmentCollector = (ICodeFragmentCollector) context.getAdapter(ICodeFragmentCollector.class);
-		StructTypeDeclarationCodeFragment codeFragment = (StructTypeDeclarationCodeFragment) codeFragmentCollector.addCodeFragment(structTypeDeclarationCodeFragment, new NullProgressMonitor());
+		ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector.addCodeFragment(arrayTypeDeclaration, new NullProgressMonitor());
 		typeName = codeFragment.getName();
 		
 		IGlobalNameProvider globalNameProvider = (IGlobalNameProvider) context.getAdapter(IGlobalNameProvider.class);
-		name = globalNameProvider.getName("structure");
+		name = globalNameProvider.getName("array");
 
-		body = MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, structValue);
+		body = MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, arrayValue);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment#contributesInternalForwardDeclaration()
 	 */
@@ -83,10 +84,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	}
 	
 	public CharSequence generateForwardDeclaration(boolean internal) {
-		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
-		out.printf("extern const %s %s;\n", typeName, name);
-		return sb;
+		return String.format("extern const %s %s;\n", typeName, name);
 	}
 	
 	/* (non-Javadoc)
@@ -109,7 +107,7 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 		out.print(";\n");
 		return sb;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -123,8 +121,8 @@ public class StructLiteralDeclarationCodeFragment extends AbstractCodeFragment {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof StructLiteralDeclarationCodeFragment) {
-//			StructLiteralDeclarationCodeFragment other = (StructLiteralDeclarationCodeFragment) obj;
+		if (obj instanceof ArrayLiteralDeclaration) {
+//			ArrayLiteralDeclarationCodeFragment other = (ArrayLiteralDeclarationCodeFragment) obj;
 			// TODO: check equals using value
 		}
 		return false;

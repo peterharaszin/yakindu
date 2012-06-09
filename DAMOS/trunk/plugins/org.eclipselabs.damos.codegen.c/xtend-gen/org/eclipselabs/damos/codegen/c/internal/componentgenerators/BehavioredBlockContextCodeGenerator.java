@@ -1,0 +1,120 @@
+package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
+import org.eclipselabs.damos.codegen.c.internal.componentgenerators.IBehavioredBlockGeneratorContext;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+
+/**
+ * @author Andreas Unger
+ */
+@SuppressWarnings("all")
+public class BehavioredBlockContextCodeGenerator {
+  public CharSequence generateContextCode(final IBehavioredBlockGeneratorContext context, final CharSequence typeName, final IProgressMonitor monitor) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("typedef struct {");
+    _builder.newLine();
+    {
+      FunctionInstance _functionInstance = context.getFunctionInstance();
+      FunctionDeclaration _functionDeclaration = _functionInstance.getFunctionDeclaration();
+      EList<InputParameterDeclaration> _inputParameterDeclarations = _functionDeclaration.getInputParameterDeclarations();
+      for(final InputParameterDeclaration d : _inputParameterDeclarations) {
+        {
+          boolean _hasContext = this.hasContext(context, d);
+          if (_hasContext) {
+            _builder.append("\t");
+            CharSequence _generateContextStructureMember = this.generateContextStructureMember(context, monitor, d);
+            _builder.append(_generateContextStructureMember, "	");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      FunctionInstance _functionInstance_1 = context.getFunctionInstance();
+      FunctionDeclaration _functionDeclaration_1 = _functionInstance_1.getFunctionDeclaration();
+      EList<OutputParameterDeclaration> _outputParameterDeclarations = _functionDeclaration_1.getOutputParameterDeclarations();
+      for(final OutputParameterDeclaration d_1 : _outputParameterDeclarations) {
+        {
+          boolean _hasContext_1 = this.hasContext(context, d_1);
+          if (_hasContext_1) {
+            _builder.append("\t");
+            CharSequence _generateContextStructureMember_1 = this.generateContextStructureMember(context, monitor, d_1);
+            _builder.append(_generateContextStructureMember_1, "	");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      FunctionInstance _functionInstance_2 = context.getFunctionInstance();
+      FunctionDeclaration _functionDeclaration_2 = _functionInstance_2.getFunctionDeclaration();
+      EList<StateVariableDeclaration> _stateVariableDeclarations = _functionDeclaration_2.getStateVariableDeclarations();
+      for(final StateVariableDeclaration d_2 : _stateVariableDeclarations) {
+        _builder.append("\t");
+        CharSequence _generateContextStructureMember_2 = this.generateContextStructureMember(context, monitor, d_2);
+        _builder.append(_generateContextStructureMember_2, "	");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("} ");
+    _builder.append(typeName, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  private CharSequence generateContextStructureMember(final IBehavioredBlockGeneratorContext context, final IProgressMonitor monitor, final VariableDeclaration variableDeclaration) {
+    final String name = variableDeclaration.getName();
+    IStaticEvaluationContext _staticEvaluationContext = context.getStaticEvaluationContext();
+    IValue _value = _staticEvaluationContext.getValue(variableDeclaration);
+    final DataType dataType = _value.getDataType();
+    ComputationModel _computationModel = context.getComputationModel();
+    IComponentGeneratorContext _componentGeneratorContext = context.getComponentGeneratorContext();
+    ICodeFragmentCollector _codeFragmentCollector = _componentGeneratorContext.getCodeFragmentCollector();
+    final String cVariableDeclaration = MscriptGeneratorUtil.getCVariableDeclaration(_computationModel, _codeFragmentCollector, dataType, name, false, null);
+    boolean _hasContext = this.hasContext(context, variableDeclaration);
+    if (_hasContext) {
+      IStaticEvaluationContext _staticEvaluationContext_1 = context.getStaticEvaluationContext();
+      final int bufferSize = _staticEvaluationContext_1.getCircularBufferSize(variableDeclaration);
+      ComputationModel _computationModel_1 = context.getComputationModel();
+      int _multiply = (2 * bufferSize);
+      final String indexCDataType = MscriptGeneratorUtil.getIndexCDataType(_computationModel_1, _multiply);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(cVariableDeclaration, "");
+      _builder.append("[");
+      _builder.append(bufferSize, "");
+      _builder.append("];");
+      _builder.newLineIfNotEmpty();
+      _builder.append(indexCDataType, "");
+      _builder.append(" ");
+      _builder.append(name, "");
+      _builder.append("_index;");
+      _builder.newLineIfNotEmpty();
+      return _builder;
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append(cVariableDeclaration, "");
+    _builder_1.append(";");
+    return _builder_1;
+  }
+  
+  private boolean hasContext(final IBehavioredBlockGeneratorContext context, final VariableDeclaration variableDeclaration) {
+    IStaticEvaluationContext _staticEvaluationContext = context.getStaticEvaluationContext();
+    int _circularBufferSize = _staticEvaluationContext.getCircularBufferSize(variableDeclaration);
+    return (_circularBufferSize > 1);
+  }
+}

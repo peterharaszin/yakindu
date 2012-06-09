@@ -35,7 +35,7 @@ import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.InputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
-import org.eclipselabs.damos.codegen.c.codefragments.TaskInfo;
+import org.eclipselabs.damos.codegen.c.codefragments.TaskInfoArray;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
@@ -140,7 +140,7 @@ public class DefaultGenerator extends AbstractGenerator {
 		for (ICodeFragment codeFragment : codeFragments) {
 			if (codeFragment instanceof InputStruct || codeFragment instanceof OutputStruct
 					|| codeFragment instanceof InitializeFunction || codeFragment instanceof ExecuteFunction
-					|| codeFragment instanceof TaskInfo || codeFragment instanceof ITaskInfoStruct) {
+					|| codeFragment instanceof TaskInfoArray || codeFragment instanceof ITaskInfoStruct) {
 				module.addEntry(codeFragment, Visibility.PUBLIC);
 			} else {
 				module.addEntry(codeFragment, Visibility.PRIVATE);
@@ -176,7 +176,7 @@ public class DefaultGenerator extends AbstractGenerator {
 		}
 		
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
-			context.addCodeFragment(new TaskInfo(graphGenerator), monitor);
+			context.addCodeFragment(new TaskInfoArray(graphGenerator), monitor);
 		}
 		
 		context.addCodeFragment(contextStructFactory.create(), monitor);

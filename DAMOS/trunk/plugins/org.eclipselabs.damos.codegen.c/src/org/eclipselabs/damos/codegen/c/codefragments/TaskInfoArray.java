@@ -30,7 +30,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class TaskInfo extends PrimaryCodeFragment {
+public class TaskInfoArray extends PrimaryCodeFragment {
 
 	private final IGraphGenerator graphGenerator;
 	
@@ -44,7 +44,7 @@ public class TaskInfo extends PrimaryCodeFragment {
 	 * 
 	 */
 	@Inject
-	public TaskInfo(IGraphGenerator graphGenerator) {
+	public TaskInfoArray(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;
 	}
 	
@@ -60,11 +60,11 @@ public class TaskInfo extends PrimaryCodeFragment {
 		addDependency(IMPLEMENTATION_DEPENDS_ON, new IDependencyRule() {
 			
 			public boolean applies(ICodeFragment other) {
-				return other instanceof Task;
+				return other instanceof TaskFunction;
 			}
 	
 		});
-		context.addCodeFragment(new Task(graphGenerator), monitor);
+		context.addCodeFragment(new TaskFunction(graphGenerator), monitor);
 		initializeForwardDeclaration(context);
 		initializeImplementation(context);
 	}

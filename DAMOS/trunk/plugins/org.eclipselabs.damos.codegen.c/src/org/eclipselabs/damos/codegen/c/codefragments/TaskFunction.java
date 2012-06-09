@@ -33,7 +33,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class Task extends PrimaryCodeFragment {
+public class TaskFunction extends PrimaryCodeFragment {
 
 	private final IGraphGenerator graphGenerator;
 	
@@ -46,7 +46,7 @@ public class Task extends PrimaryCodeFragment {
 	 * 
 	 */
 	@Inject
-	Task(IGraphGenerator graphGenerator) {
+	TaskFunction(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;
 	}
 	

@@ -17,12 +17,13 @@ import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.Include
+import org.eclipselabs.damos.codegen.c.ITaskGenerator
+import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import org.eclipselabs.damos.codegen.c.codefragments.ContextVariable
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
-import org.eclipselabs.damos.codegen.c.ITaskGenerator
-import org.eclipselabs.damos.codegen.c.IGeneratorContext
 
 /**
  * @author Andreas Unger

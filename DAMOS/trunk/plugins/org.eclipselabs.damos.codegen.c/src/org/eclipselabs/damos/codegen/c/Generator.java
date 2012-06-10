@@ -66,7 +66,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DefaultGenerator extends AbstractGenerator {
+public class Generator extends AbstractGenerator {
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
@@ -82,7 +82,7 @@ public class DefaultGenerator extends AbstractGenerator {
 	 * 
 	 */
 	@Inject
-	DefaultGenerator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator,
+	Generator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator,
 			@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
 			IContextStructFactory contextStructFactory) {
 		this.graphGenerator = graphGenerator;

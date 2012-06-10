@@ -37,7 +37,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DefaultCompoundGenerator implements ICompoundGenerator {
+public class CompoundGenerator implements ICompoundGenerator {
 
 	private final IGraphGenerator graphGenerator;
 	
@@ -45,7 +45,7 @@ public class DefaultCompoundGenerator implements ICompoundGenerator {
 	 * 
 	 */
 	@Inject
-	DefaultCompoundGenerator(IGraphGenerator graphGenerator) {
+	CompoundGenerator(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;
 	}
 

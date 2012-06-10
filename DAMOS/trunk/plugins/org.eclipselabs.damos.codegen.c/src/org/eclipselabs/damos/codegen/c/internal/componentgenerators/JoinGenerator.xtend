@@ -32,35 +32,35 @@ import org.eclipselabs.damos.execution.Node
 class JoinGenerator extends AbstractComponentGenerator {
 
 	override boolean contributesComputeOutputsCode() {
-		return true;
+		return true
 	}
 	
 	override CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
-		val variableNameMap = new TreeMap<Integer, String>();
-		var choiceNode = null as ComponentNode;
-		for (InputPort inputPort : getComponent().getInputPorts()) {
-			val targetEnd = getNode().getIncomingDataFlow(inputPort);
-			val sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			val enclosingCompoundNode = findEnclosingActionNodeWithActionLink(sourceEnd.getNode());
+		val variableNameMap = new TreeMap<Integer, String>()
+		var choiceNode = null as ComponentNode
+		for (InputPort inputPort : component.inputPorts) {
+			val targetEnd = node.getIncomingDataFlow(inputPort)
+			val sourceEnd = targetEnd.sourceEnd
+			val enclosingCompoundNode = findEnclosingActionNodeWithActionLink(sourceEnd.node)
 			if (enclosingCompoundNode instanceof ActionNode) {
-				val actionNode = enclosingCompoundNode as ActionNode;
-				val action = actionNode.getCompound() as Action;
-				if (actionNode.getChoiceNode() != null) {
-					val incomingVariableName = GeneratorUtil::getIncomingVariableName(getConfiguration(), getNode(), inputPort);
-					variableNameMap.put(DMLUtil::indexOf(action.getLink()), incomingVariableName);
-					choiceNode = actionNode.getChoiceNode();
+				val actionNode = enclosingCompoundNode as ActionNode
+				val action = actionNode.compound as Action
+				if (actionNode.choiceNode != null) {
+					val incomingVariableName = GeneratorUtil::getIncomingVariableName(configuration, node, inputPort)
+					variableNameMap.put(DMLUtil::indexOf(action.link), incomingVariableName)
+					choiceNode = actionNode.choiceNode
 				}
 			}
 		}
 		
-		val choiceVariableName = CompoundGeneratorUtil::getChoiceVariableName(getConfiguration(), choiceNode);
-		val outputVariableName = GeneratorUtil::getOutputVariableName(getConfiguration(), getNode(), getComponent().getFirstOutputPort());
+		val choiceVariableName = CompoundGeneratorUtil::getChoiceVariableName(configuration, choiceNode)
+		val outputVariableName = GeneratorUtil::getOutputVariableName(configuration, node, component.firstOutputPort)
 
 		'''
 			switch («choiceVariableName») {
-			«FOR entry : variableNameMap.entrySet()»
+			«FOR entry : variableNameMap.entrySet»
 				case «entry.key»:
-					«outputVariableName» = «entry.getValue()»;
+					«outputVariableName» = «entry.value»;
 					break;
 			«ENDFOR»
 			}
@@ -73,18 +73,18 @@ class JoinGenerator extends AbstractComponentGenerator {
 		while (true) {
 			graph = node.graph
 			if (graph instanceof CompoundNode) {
-				val compoundNode = graph as CompoundNode;
+				val compoundNode = graph as CompoundNode
 				if (compoundNode.compound instanceof Action) {
-					val action = compoundNode.compound as Action;
+					val action = compoundNode.compound as Action
 					if (action.link != null) {
-						return compoundNode;
+						return compoundNode
 					}
 				}
 			}
 			if (graph instanceof Node) {
-				node = graph as Node;
+				node = graph as Node
 			} else {
-				return null;
+				return null
 			}
 		}
 	}

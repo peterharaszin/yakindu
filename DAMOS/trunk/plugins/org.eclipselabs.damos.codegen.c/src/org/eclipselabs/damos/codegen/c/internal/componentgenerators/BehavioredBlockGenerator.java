@@ -41,7 +41,6 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.CompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
@@ -64,19 +63,26 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
-	private final ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator();
+	private final ICompoundStatementGenerator compoundStatementGenerator;
 
 	private FunctionInstance functionInstance;
 	
 	private IStaticEvaluationContext staticEvaluationContext;
 	
 	private IVariableAccessStrategy cachedVariableAccessStrategy;
+	
+	@Inject
+	public BehavioredBlockGenerator(ICompoundStatementGenerator compoundStatementGenerator) {
+		this.compoundStatementGenerator = compoundStatementGenerator;
+	}
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {

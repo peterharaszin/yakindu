@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c
 
+import com.google.inject.Inject
 import org.eclipselabs.damos.mscript.ArrayType
 import org.eclipselabs.damos.mscript.Assignment
 import org.eclipselabs.damos.mscript.Compound
@@ -26,7 +27,6 @@ import org.eclipselabs.damos.mscript.VariableReference
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
-import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator
 
 /**
  * @author Andreas Unger
@@ -34,8 +34,13 @@ import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator
  */
 class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
-	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
+	val IExpressionGenerator expressionGenerator
 
+	@Inject
+	new(IExpressionGenerator expressionGenerator) {
+		this.expressionGenerator = expressionGenerator
+	}
+	
 	override CharSequence generate(IMscriptGeneratorContext context, Compound compound) {
 		doGenerate(context, compound)
 	}

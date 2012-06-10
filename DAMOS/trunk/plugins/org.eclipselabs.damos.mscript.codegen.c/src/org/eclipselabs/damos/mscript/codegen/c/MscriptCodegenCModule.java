@@ -22,11 +22,21 @@ public class MscriptCodegenCModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bindICModuleGenerator();
+		bindICompoundStatementGenerator();
+		bindIExpressionGenerator();
 	}
 
 	protected void bindICModuleGenerator() {
 		bind(ICModuleGenerator.class).annotatedWith(CHeader.class).to(CHeaderGenerator.class);
 		bind(ICModuleGenerator.class).annotatedWith(CSource.class).to(CSourceGenerator.class);
+	}
+
+	protected void bindICompoundStatementGenerator() {
+		bind(ICompoundStatementGenerator.class).to(CompoundStatementGenerator.class);
+	}
+
+	private void bindIExpressionGenerator() {
+		bind(IExpressionGenerator.class).to(ExpressionGenerator.class);
 	}
 
 }

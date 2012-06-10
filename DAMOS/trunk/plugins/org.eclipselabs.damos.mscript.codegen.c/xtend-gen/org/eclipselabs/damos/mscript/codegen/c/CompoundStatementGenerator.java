@@ -1,10 +1,10 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.CallableElement;
@@ -19,7 +19,6 @@ import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
-import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
@@ -35,12 +34,12 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 @SuppressWarnings("all")
 public class CompoundStatementGenerator implements ICompoundStatementGenerator {
-  private final IExpressionGenerator expressionGenerator = new Function0<IExpressionGenerator>() {
-    public IExpressionGenerator apply() {
-      ExpressionGenerator _expressionGenerator = new ExpressionGenerator();
-      return _expressionGenerator;
-    }
-  }.apply();
+  private final IExpressionGenerator expressionGenerator;
+  
+  @Inject
+  public CompoundStatementGenerator(final IExpressionGenerator expressionGenerator) {
+    this.expressionGenerator = expressionGenerator;
+  }
   
   public CharSequence generate(final IMscriptGeneratorContext context, final Compound compound) {
     CharSequence _doGenerate = this.doGenerate(context, compound);

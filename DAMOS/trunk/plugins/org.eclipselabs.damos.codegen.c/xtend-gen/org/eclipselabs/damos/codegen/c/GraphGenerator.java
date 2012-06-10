@@ -39,13 +39,13 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class DefaultGraphGenerator implements IGraphGenerator {
+public class GraphGenerator implements IGraphGenerator {
   private final ICompoundGenerator compoundGenerator;
   
   private final ITaskGenerator taskGenerator;
   
   @Inject
-  public DefaultGraphGenerator(final ICompoundGenerator compoundGenerator, final ITaskGenerator taskGenerator) {
+  public GraphGenerator(final ICompoundGenerator compoundGenerator, final ITaskGenerator taskGenerator) {
     this.compoundGenerator = compoundGenerator;
     this.taskGenerator = taskGenerator;
   }
@@ -93,7 +93,7 @@ public class DefaultGraphGenerator implements IGraphGenerator {
       EList<Node> _nodes = graph.getNodes();
       final Function1<Node,Boolean> _function = new Function1<Node,Boolean>() {
           public Boolean apply(final Node n) {
-            boolean _contributesComputeOutputsCode = DefaultGraphGenerator.this.contributesComputeOutputsCode(context, n);
+            boolean _contributesComputeOutputsCode = GraphGenerator.this.contributesComputeOutputsCode(context, n);
             return Boolean.valueOf(_contributesComputeOutputsCode);
           }
         };

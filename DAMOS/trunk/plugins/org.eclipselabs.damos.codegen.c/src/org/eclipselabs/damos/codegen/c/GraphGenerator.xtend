@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
  * @author Andreas Unger
  *
  */
-class DefaultGraphGenerator implements IGraphGenerator {
+class GraphGenerator implements IGraphGenerator {
 
 	val ICompoundGenerator compoundGenerator
 	val ITaskGenerator taskGenerator

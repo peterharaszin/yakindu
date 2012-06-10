@@ -33,7 +33,7 @@ import org.eclipselabs.damos.execution.TaskInputNode;
  * @author Andreas Unger
  *
  */
-public class DefaultTaskGenerator implements ITaskGenerator {
+public class TaskGenerator implements ITaskGenerator {
 	
 	public CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();

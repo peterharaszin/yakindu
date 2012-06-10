@@ -118,15 +118,21 @@ public class GraphGenerator implements IGraphGenerator {
           _builder.newLine();
         }
       }
-      _builder.append("/*");
-      _builder.newLine();
-      _builder.append(" ");
-      _builder.append("* Compute outputs");
-      _builder.newLine();
-      _builder.append(" ");
-      _builder.append("*/");
-      _builder.newLine();
-      _builder.newLine();
+      {
+        boolean _isEmpty = IterableExtensions.isEmpty(computeOutputsNodes);
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          _builder.append("/*");
+          _builder.newLine();
+          _builder.append(" ");
+          _builder.append("* Compute outputs");
+          _builder.newLine();
+          _builder.append(" ");
+          _builder.append("*/");
+          _builder.newLine();
+          _builder.newLine();
+        }
+      }
       {
         boolean _hasElements = false;
         for(final Node node : computeOutputsNodes) {
@@ -140,16 +146,36 @@ public class GraphGenerator implements IGraphGenerator {
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.newLine();
-      _builder.append("/*");
-      _builder.newLine();
-      _builder.append(" ");
-      _builder.append("* Update states");
-      _builder.newLine();
-      _builder.append(" ");
-      _builder.append("*/");
-      _builder.newLine();
-      _builder.newLine();
+      {
+        boolean _and = false;
+        boolean _isEmpty_1 = IterableExtensions.isEmpty(computeOutputsNodes);
+        boolean _not_1 = (!_isEmpty_1);
+        if (!_not_1) {
+          _and = false;
+        } else {
+          boolean _isEmpty_2 = IterableExtensions.isEmpty(updateNodes);
+          boolean _not_2 = (!_isEmpty_2);
+          _and = (_not_1 && _not_2);
+        }
+        if (_and) {
+          _builder.newLine();
+        }
+      }
+      {
+        boolean _isEmpty_3 = IterableExtensions.isEmpty(updateNodes);
+        boolean _not_3 = (!_isEmpty_3);
+        if (_not_3) {
+          _builder.append("/*");
+          _builder.newLine();
+          _builder.append(" ");
+          _builder.append("* Update states");
+          _builder.newLine();
+          _builder.append(" ");
+          _builder.append("*/");
+          _builder.newLine();
+          _builder.newLine();
+        }
+      }
       {
         boolean _hasElements_1 = false;
         for(final ComponentNode node_1 : updateNodes) {

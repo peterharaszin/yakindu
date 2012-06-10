@@ -17,7 +17,7 @@ import org.eclipselabs.damos.mscript.Compound;
  * @author Andreas Unger
  *
  */
-public interface ICompoundGenerator {
+public interface ICompoundStatementGenerator {
 
 	CharSequence generate(IMscriptGeneratorContext context, Compound compound);
 

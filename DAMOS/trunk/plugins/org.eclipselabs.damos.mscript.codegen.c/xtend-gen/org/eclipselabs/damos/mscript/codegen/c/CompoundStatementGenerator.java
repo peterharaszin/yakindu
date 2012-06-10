@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.ICompoundGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
@@ -34,7 +34,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class CompoundGenerator implements ICompoundGenerator {
+public class CompoundStatementGenerator implements ICompoundStatementGenerator {
   private final IExpressionGenerator expressionGenerator = new Function0<IExpressionGenerator>() {
     public IExpressionGenerator apply() {
       ExpressionGenerator _expressionGenerator = new ExpressionGenerator();

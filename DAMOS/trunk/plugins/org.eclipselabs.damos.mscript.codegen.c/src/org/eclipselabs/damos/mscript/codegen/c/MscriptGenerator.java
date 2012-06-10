@@ -35,7 +35,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class MscriptGenerator {
 	
-	private final ICompoundGenerator compoundGenerator = new CompoundGenerator();
+	private final ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator();
 	
 	private FunctionInstance functionInstance;
 	
@@ -181,7 +181,7 @@ public class MscriptGenerator {
 			out.print(generateStatelessFunctionHeader());
 			out.println(" {");
 			for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
-				out.print(compoundGenerator.generate(context, compound));
+				out.print(compoundStatementGenerator.generate(context, compound));
 			}
 			out.println("}");
 		}
@@ -210,7 +210,7 @@ public class MscriptGenerator {
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getInputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getStateVariableDeclarations()));
-		out.print(compoundGenerator.generate(context, functionInstance.getInitializationCompound()));
+		out.print(compoundStatementGenerator.generate(context, functionInstance.getInitializationCompound()));
 		out.println("}");
 		return sb;
 	}
@@ -254,7 +254,7 @@ public class MscriptGenerator {
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				out.print(compoundGenerator.generate(context, compound));
+				out.print(compoundStatementGenerator.generate(context, compound));
 			}
 		}
 		
@@ -299,7 +299,7 @@ public class MscriptGenerator {
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				compoundGenerator.generate(context, compound);
+				compoundStatementGenerator.generate(context, compound);
 			}
 		}
 		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {

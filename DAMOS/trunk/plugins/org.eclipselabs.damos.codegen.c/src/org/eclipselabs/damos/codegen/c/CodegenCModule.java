@@ -30,29 +30,24 @@ import org.eclipselabs.damos.codegen.c.codefragments.factories.IOutputStructFact
 import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskFunctionFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskInfoArrayFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskMessageStructFactory;
-import org.eclipselabs.damos.mscript.codegen.c.CHeader;
-import org.eclipselabs.damos.mscript.codegen.c.CHeaderGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.CSource;
-import org.eclipselabs.damos.mscript.codegen.c.CSourceGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.ICModuleGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.MscriptCodegenCModule;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 /**
  * @author Andreas Unger
  *
  */
-public class CodegenCModule extends AbstractModule {
+public class CodegenCModule extends MscriptCodegenCModule {
 
 	@Override
 	protected void configure() {
+		super.configure();
 		bindIGenerator();
 		bindIGraphGenerator();
 		bindICompoundGenerator();
 		bindITaskGenerator();
-		bindICModuleGenerator();
 		
 		buildIInputStructFactory();
 		buildIOutputStructFactory();
@@ -79,11 +74,6 @@ public class CodegenCModule extends AbstractModule {
 
 	protected void bindITaskGenerator() {
 		bind(ITaskGenerator.class).to(TaskGenerator.class);
-	}
-
-	protected void bindICModuleGenerator() {
-		bind(ICModuleGenerator.class).annotatedWith(CHeader.class).to(CHeaderGenerator.class);
-		bind(ICModuleGenerator.class).annotatedWith(CSource.class).to(CSourceGenerator.class);
 	}
 
 	protected void buildIInputStructFactory() {

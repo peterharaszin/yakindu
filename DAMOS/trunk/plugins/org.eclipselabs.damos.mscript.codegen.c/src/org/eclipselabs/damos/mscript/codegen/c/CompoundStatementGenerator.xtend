@@ -26,12 +26,13 @@ import org.eclipselabs.damos.mscript.VariableReference
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
+import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator
 
 /**
  * @author Andreas Unger
  *
  */
-class CompoundGenerator implements ICompoundGenerator {
+class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
 	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
 

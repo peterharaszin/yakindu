@@ -80,18 +80,24 @@ class GraphGenerator implements IGraphGenerator {
 				«compoundGenerator.generateChoiceVariableDeclarations(context, graph, monitor)»
 				
 			«ENDIF»
-			/*
-			 * Compute outputs
-			 */
-			
+			«IF !computeOutputsNodes.empty»
+				/*
+				 * Compute outputs
+				 */
+				
+			«ENDIF»
 			«FOR node : computeOutputsNodes SEPARATOR "\n"»
 				«generateComputeOutputsCode(context, node, monitor)»
 			«ENDFOR»
+			«IF !computeOutputsNodes.empty && !updateNodes.empty»
 			
-			/*
-			 * Update states
-			 */
-			
+			«ENDIF»
+			«IF !updateNodes.empty»
+				/*
+				 * Update states
+				 */
+				
+			«ENDIF»
 			«FOR node : updateNodes SEPARATOR "\n"»
 				/* «node.component.name» */
 				{

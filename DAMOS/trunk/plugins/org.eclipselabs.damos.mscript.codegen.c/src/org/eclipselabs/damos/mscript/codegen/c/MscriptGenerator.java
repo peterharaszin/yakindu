@@ -35,7 +35,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class MscriptGenerator {
 	
-	private final ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator();
+	private final ICompoundStatementGenerator compoundStatementGenerator;
 	
 	private FunctionInstance functionInstance;
 	
@@ -43,10 +43,8 @@ public class MscriptGenerator {
 	
 	private String functionName;
 	
-	/**
-	 * 
-	 */
-	public MscriptGenerator(FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
+	public MscriptGenerator(ICompoundStatementGenerator compoundStatementGenerator, FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
+		this.compoundStatementGenerator = compoundStatementGenerator;
 		this.functionInstance = functionInstance;
 		this.context = context;
 		this.functionName = functionName;

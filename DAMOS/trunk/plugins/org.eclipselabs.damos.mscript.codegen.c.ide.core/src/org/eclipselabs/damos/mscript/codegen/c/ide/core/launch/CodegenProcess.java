@@ -33,10 +33,6 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.MscriptGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
 import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -55,8 +51,8 @@ public class CodegenProcess implements IProcess {
 	private IFolder targetFolder;
 	private String functionName;
 	private FunctionInstance functionInstance;
-	private IStaticEvaluationContext staticEvaluationContext;
-	private ComputationModel computationModel;
+//	private IStaticEvaluationContext staticEvaluationContext;
+//	private ComputationModel computationModel;
 
 	private boolean terminated;
 
@@ -69,8 +65,8 @@ public class CodegenProcess implements IProcess {
 		this.targetFolder = targetFolder;
 		this.functionName = functionName;
 		this.functionInstance = functionInstance;
-		this.staticEvaluationContext = staticEvaluationContext;
-		this.computationModel = computationModel;
+//		this.staticEvaluationContext = staticEvaluationContext;
+//		this.computationModel = computationModel;
 		launch.addProcess(this);
 		fireCreationEvent();
 	}
@@ -230,8 +226,8 @@ public class CodegenProcess implements IProcess {
 	private class HeaderGeneratorThread extends GeneratorThread {
 		
 		public void generate() throws IOException {
-			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
-			writer.append(generator.generateHeaderCode());
+//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
+//			writer.append(generator.generateHeaderCode());
 		}
 		
 	}
@@ -239,19 +235,19 @@ public class CodegenProcess implements IProcess {
 	private class ImplementationGeneratorThread extends GeneratorThread {
 		
 		public void generate() throws IOException {
-			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
-			writer.append(generator.generateImplementationCode());
+//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
+//			writer.append(generator.generateImplementationCode());
 		}
 		
 	}
 	
 	// TODO: Implement real shared code collector
-	private class DummySharedCodeCollector implements ICodeFragmentCollector {
-
-		public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
-			return codeFragment;
-		}
-		
-	}
+//	private class DummySharedCodeCollector implements ICodeFragmentCollector {
+//
+//		public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+//			return codeFragment;
+//		}
+//		
+//	}
 
 }

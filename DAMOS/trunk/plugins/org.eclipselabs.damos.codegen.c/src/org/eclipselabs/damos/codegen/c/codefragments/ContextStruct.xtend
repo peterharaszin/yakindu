@@ -11,11 +11,13 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.ITaskGenerator
+import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskMessageStructFactory
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.Include
 
@@ -31,19 +33,23 @@ class ContextStruct extends PrimaryCodeFragment {
 
 	val ITaskGenerator taskGenerator
 	
+	val ITaskMessageStructFactory taskMessageStructFactory
+	
 	val Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>()
 	
 	var CharSequence content
 	
-	new(ITaskGenerator taskGenerator) {
+	@Inject
+	new(ITaskGenerator taskGenerator, ITaskMessageStructFactory taskMessageStructFactory) {
 		this.taskGenerator = taskGenerator
+		this.taskMessageStructFactory = taskMessageStructFactory
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [other | other instanceof TaskMessageStruct])
 		
 		if (!context.executionFlow.taskGraphs.empty) {
-			context.addCodeFragment(new TaskMessageStruct(), monitor)
+			context.addCodeFragment(taskMessageStructFactory.create(), monitor)
 		}
 	
 		val prefix = getPrefix(context.configuration);

@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
+import com.google.inject.Inject
 
 /**
  * @author Andreas Unger
@@ -36,6 +37,7 @@ class InitializeFunction extends PrimaryCodeFragment {
 	CharSequence functionSignature
 	CharSequence functionBody
 
+	@Inject
 	new(ITaskGenerator taskGenerator) {
 		this.taskGenerator = taskGenerator
 		implementationIncludes.add(new Include("math.h"))

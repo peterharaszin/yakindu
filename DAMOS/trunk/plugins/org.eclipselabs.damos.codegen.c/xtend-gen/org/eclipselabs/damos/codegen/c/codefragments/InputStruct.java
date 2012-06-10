@@ -1,5 +1,6 @@
 package org.eclipselabs.damos.codegen.c.codefragments;
 
+import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -24,6 +25,10 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 @SuppressWarnings("all")
 public class InputStruct extends PrimaryCodeFragment {
   private CharSequence content;
+  
+  @Inject
+  public InputStruct() {
+  }
   
   public void doInitialize(final IGeneratorContext context, final IProgressMonitor monitor) {
     Configuration _configuration = context.getConfiguration();

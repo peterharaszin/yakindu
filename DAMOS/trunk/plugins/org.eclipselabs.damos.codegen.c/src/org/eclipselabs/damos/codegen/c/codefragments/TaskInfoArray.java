@@ -15,7 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.IGraphGenerator;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskFunctionFactory;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
@@ -32,7 +32,7 @@ import com.google.inject.Inject;
  */
 public class TaskInfoArray extends PrimaryCodeFragment {
 
-	private final IGraphGenerator graphGenerator;
+	private final ITaskFunctionFactory taskFunctionFactory;
 	
 	private Collection<Include> forwardDeclarationIncludes;
 	private Collection<Include> implementationIncludes;
@@ -40,12 +40,9 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 	private String forwardDeclaration;
 	private String implementation;
 	
-	/**
-	 * 
-	 */
 	@Inject
-	public TaskInfoArray(IGraphGenerator graphGenerator) {
-		this.graphGenerator = graphGenerator;
+	TaskInfoArray(ITaskFunctionFactory taskFunctionFactory) {
+		this.taskFunctionFactory = taskFunctionFactory;
 	}
 	
 	@Override
@@ -64,7 +61,7 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 			}
 	
 		});
-		context.addCodeFragment(new TaskFunction(graphGenerator), monitor);
+		context.addCodeFragment(taskFunctionFactory.create(), monitor);
 		initializeForwardDeclaration(context);
 		initializeImplementation(context);
 	}

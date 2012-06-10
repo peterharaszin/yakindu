@@ -25,6 +25,8 @@ import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
@@ -32,6 +34,10 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 public class TaskMessageStruct extends PrimaryCodeFragment {
 
 	private String content;
+	
+	@Inject
+	TaskMessageStruct() {
+	}
 
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {

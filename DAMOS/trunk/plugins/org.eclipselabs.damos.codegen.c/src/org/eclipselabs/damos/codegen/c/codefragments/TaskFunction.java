@@ -42,9 +42,6 @@ public class TaskFunction extends PrimaryCodeFragment {
 	private List<String> forwardDeclarations = new ArrayList<String>();
 	private List<String> implementations = new ArrayList<String>();
 	
-	/**
-	 * 
-	 */
 	@Inject
 	TaskFunction(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;

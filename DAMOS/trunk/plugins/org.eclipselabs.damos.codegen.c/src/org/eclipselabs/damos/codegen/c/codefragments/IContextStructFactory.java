@@ -16,6 +16,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
  * @author Andreas Unger
@@ -28,15 +29,15 @@ public interface IContextStructFactory {
 	
 	class Default implements IContextStructFactory {
 
-		private final ITaskGenerator taskGenerator;
+		private final Provider<ITaskGenerator> taskGeneratorProvider;
 		
 		@Inject
-		Default(ITaskGenerator taskGenerator) {
-			this.taskGenerator = taskGenerator;
+		Default(Provider<ITaskGenerator> taskGeneratorProvider) {
+			this.taskGeneratorProvider = taskGeneratorProvider;
 		}
 		
 		public ICodeFragment create() {
-			return new ContextStruct(taskGenerator);
+			return new ContextStruct(taskGeneratorProvider.get());
 		}
 		
 	}

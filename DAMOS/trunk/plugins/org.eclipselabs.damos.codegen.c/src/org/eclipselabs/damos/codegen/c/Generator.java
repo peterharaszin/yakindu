@@ -28,14 +28,19 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
-import org.eclipselabs.damos.codegen.c.codefragments.ContextVariable;
 import org.eclipselabs.damos.codegen.c.codefragments.ExecuteFunction;
-import org.eclipselabs.damos.codegen.c.codefragments.IContextStructFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.InputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.TaskInfoArray;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextStructFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextVariableFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IExecuteFunctionFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IInitializeFunctionFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IInputStructFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IOutputStructFactory;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskInfoArrayFactory;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
@@ -70,26 +75,32 @@ public class Generator extends AbstractGenerator {
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
-	private final IGraphGenerator graphGenerator;
-	private final ITaskGenerator taskGenerator;
-	
 	private final ICModuleGenerator headerGenerator;
 	private final ICModuleGenerator sourceGenerator;
 	
+	private final IInputStructFactory inputStructFactory;
+	private final IOutputStructFactory outputStructFactory;
 	private final IContextStructFactory contextStructFactory;
+	private final IContextVariableFactory contextVariableFactory;
+	private final ITaskInfoArrayFactory taskInfoArrayFactory;
+	private final IInitializeFunctionFactory initializeFunctionFactory;
+	private final IExecuteFunctionFactory executeFunctionFactory;
 		
-	/**
-	 * 
-	 */
 	@Inject
-	Generator(IGraphGenerator graphGenerator, ITaskGenerator taskGenerator,
-			@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
-			IContextStructFactory contextStructFactory) {
-		this.graphGenerator = graphGenerator;
-		this.taskGenerator = taskGenerator;
+	Generator(@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
+			IInputStructFactory inputStructFactory, IOutputStructFactory outputStructFactory,
+			IContextStructFactory contextStructFactory, IContextVariableFactory contextVariableFactory,
+			ITaskInfoArrayFactory taskInfoArrayFactory, IInitializeFunctionFactory initializeFunctionFactory,
+			IExecuteFunctionFactory executeFunctionFactory) {
 		this.headerGenerator = headerGenerator;
 		this.sourceGenerator = sourceGenerator;
+		this.inputStructFactory = inputStructFactory;
+		this.outputStructFactory = outputStructFactory;
 		this.contextStructFactory = contextStructFactory;
+		this.contextVariableFactory = contextVariableFactory;
+		this.taskInfoArrayFactory = taskInfoArrayFactory;
+		this.initializeFunctionFactory = initializeFunctionFactory;
+		this.executeFunctionFactory = executeFunctionFactory;
 	}
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
@@ -168,21 +179,21 @@ public class Generator extends AbstractGenerator {
 	 */
 	private void addCodeFragments(IGeneratorContext context, IProgressMonitor monitor) {
 		if (!InternalGeneratorUtil.getInportNodes(context).isEmpty()) {
-			context.addCodeFragment(new InputStruct(), monitor);
+			context.addCodeFragment(inputStructFactory.create(), monitor);
 		}
 		
 		if (!InternalGeneratorUtil.getOutportNodes(context).isEmpty()) {
-			context.addCodeFragment(new OutputStruct(), monitor);
+			context.addCodeFragment(outputStructFactory.create(), monitor);
 		}
 		
 		if (!context.getExecutionFlow().getTaskGraphs().isEmpty()) {
-			context.addCodeFragment(new TaskInfoArray(graphGenerator), monitor);
+			context.addCodeFragment(taskInfoArrayFactory.create(), monitor);
 		}
 		
 		context.addCodeFragment(contextStructFactory.create(), monitor);
-		context.addCodeFragment(new ContextVariable(), monitor);
-		context.addCodeFragment(new InitializeFunction(taskGenerator), monitor);
-		context.addCodeFragment(new ExecuteFunction(graphGenerator), monitor);
+		context.addCodeFragment(contextVariableFactory.create(), monitor);
+		context.addCodeFragment(initializeFunctionFactory.create(), monitor);
+		context.addCodeFragment(executeFunctionFactory.create(), monitor);
 	}
 
 	/**

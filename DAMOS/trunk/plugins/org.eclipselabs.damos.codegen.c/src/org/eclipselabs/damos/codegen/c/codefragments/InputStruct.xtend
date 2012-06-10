@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
@@ -25,6 +26,11 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 class InputStruct extends PrimaryCodeFragment {
 
 	CharSequence content;
+	
+	@Inject
+	new() {
+		
+	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		val prefix = GeneratorConfigurationUtil::getPrefix(context.getConfiguration());

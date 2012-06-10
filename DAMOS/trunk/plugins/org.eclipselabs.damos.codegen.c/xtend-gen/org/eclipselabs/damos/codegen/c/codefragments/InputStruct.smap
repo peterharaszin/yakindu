@@ -1,0 +1,23 @@
+SMAP
+InputStruct.java
+Xtend
+*S Xtend
+*F
++ 0 InputStruct.xtend
+src/org/eclipselabs/damos/codegen/c/codefragments/InputStruct.xtend
+*L
+36:34,2
+37:36,4
+39:40,3
+40:43,4
+37:47,2
+41:49
+42:50,3
+37:53
+52:62
+53:63,2
+54:65,2
+55:67
+56:68,6
+60:77
+*E

@@ -17,6 +17,8 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
@@ -24,6 +26,10 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 public class ContextVariable extends PrimaryCodeFragment {
 	
 	private String prefix;
+	
+	@Inject
+	ContextVariable() {
+	}
 	
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {

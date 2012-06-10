@@ -1,0 +1,18 @@
+var Q
+var I
+
+var A
+var B
+var C
+
+eq Q = (denominatorCoefficients / denominatorCoefficients[0])[1 : end]
+eq I = 0 : size(Q) - 1 // indices
+
+eq A = { if i == 0 then Q[j] else if i == j + 1 then 1 else 0 for i in I, j in I }
+eq B = { if i == 0 then 1 else 0 for i in I }
+eq C = numeratorCoefficients
+
+initial eq x = { 0 for i in I, j in I } // zero matrix
+eq x' = A * x + B * u
+eq y = C * x
+

@@ -68,13 +68,15 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ExpressionGenerator implements IExpressionGenerator {
 	
+	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		StringBuilder sb = new StringBuilder();
 		new ExpressionGeneratorSwitch(context, sb).doSwitch(expression);
 		return sb;
 	}
 	
-	private static class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
+	private class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
 
 		private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 		
@@ -298,7 +300,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseRealLiteral(RealLiteral realLiteral) {
 			DataType dataType = getDataType(realLiteral);
-			out.print(MscriptGeneratorUtil.getLiteralString(context, dataType, realLiteral.getValue(), null));
+			out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, realLiteral.getValue(), null));
 			return true;
 		}
 	
@@ -308,7 +310,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
 			DataType dataType = getDataType(integerLiteral);
-			out.print(MscriptGeneratorUtil.getLiteralString(context, dataType, integerLiteral.getValue(), null));
+			out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, integerLiteral.getValue(), null));
 			return true;
 		}
 		
@@ -374,7 +376,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
 			IValue value = context.getStaticEvaluationContext().getValue(arrayConstructionOperator);
 			if (value instanceof IArrayValue) {
-				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
+				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
 			} else {
 				ArrayConstructionFunction codeFragment = (ArrayConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (ArrayType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());
@@ -400,7 +402,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		public Boolean caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
 			IValue value = context.getStaticEvaluationContext().getValue(structConstructionOperator);
 			if (value instanceof StructValue) {
-				out.print(MscriptGeneratorUtil.getLiteralString(context, value));
+				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
 			} else {
 				StructConstructionFunction codeFragment = (StructConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (StructType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());

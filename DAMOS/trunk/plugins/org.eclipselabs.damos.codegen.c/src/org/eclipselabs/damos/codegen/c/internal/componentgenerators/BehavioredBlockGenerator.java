@@ -41,6 +41,7 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
@@ -70,6 +71,8 @@ import com.google.inject.Inject;
  *
  */
 public class BehavioredBlockGenerator extends AbstractBlockGenerator {
+
+	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 
 	private final ICompoundStatementGenerator compoundStatementGenerator;
 
@@ -277,7 +280,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
-				out.printf("%s %s_%s = { { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), arrayType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), arrayType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -285,7 +288,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						out.print(", ");
 					}
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
+					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getComputationModel(), getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
 				}
 				out.println(" } };");
 			} else {
@@ -293,8 +296,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
-					out.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType));
+					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
+					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getComputationModel(), getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType));
 					out.println(";");
 				}
 			}

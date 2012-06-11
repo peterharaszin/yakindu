@@ -17,13 +17,16 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 import org.eclipselabs.damos.execution.ComponentNode
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
+import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 /**
  * @author Andreas Unger
  *
  */
 class InputStruct extends PrimaryCodeFragment {
+
+	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
 
 	CharSequence content;
 	
@@ -53,7 +56,7 @@ class InputStruct extends PrimaryCodeFragment {
 		val signature = generator.getContext().getComponentSignature();
 		val outputPort = node.getComponent().getFirstOutputPort();
 		val dataType = signature.getOutputDataType(outputPort);
-		return MscriptGeneratorUtil::getCVariableDeclaration(GeneratorConfigurationUtil::getComputationModel(context.getConfiguration(), node), context, dataType, InternalGeneratorUtil::uncapitalize(node.getComponent().getName()), false, this);
+		return variableDeclarationGenerator.generateVariableDeclaration(GeneratorConfigurationUtil::getComputationModel(context.getConfiguration(), node), context, dataType, InternalGeneratorUtil::uncapitalize(node.getComponent().getName()), false, this);
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) {

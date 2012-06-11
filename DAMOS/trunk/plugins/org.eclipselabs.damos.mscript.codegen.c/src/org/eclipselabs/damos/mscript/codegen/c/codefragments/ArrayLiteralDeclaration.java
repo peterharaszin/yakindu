@@ -15,13 +15,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
+import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 
@@ -31,6 +32,8 @@ import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
  */
 public class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
+	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	
 	private final ComputationModel computationModel;
 	private final IArrayValue arrayValue;
 	
@@ -72,7 +75,7 @@ public class ArrayLiteralDeclaration extends AbstractCodeFragment {
 		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
 		name = globalNameProvider.newGlobalName("array");
 
-		body = MscriptGeneratorUtil.createInitializer(computationModel, codeFragmentCollector, arrayValue);
+		body = literalGenerator.generateInitializer(computationModel, codeFragmentCollector, arrayValue);
 	}
 	
 	/* (non-Javadoc)

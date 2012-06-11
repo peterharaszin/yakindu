@@ -13,13 +13,17 @@ package org.eclipselabs.damos.codegen.c.internal.componentgenerators
 
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.VariableDeclaration
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
+import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 /**
  * @author Andreas Unger
  *
  */
 class BehavioredBlockContextCodeGenerator {
+	
+	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
+	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
 
 	def generateContextCode(IBehavioredBlockGeneratorContext context, CharSequence typeName, IProgressMonitor monitor) '''
 		typedef struct {
@@ -42,10 +46,10 @@ class BehavioredBlockContextCodeGenerator {
 	def private generateContextStructureMember(IBehavioredBlockGeneratorContext context, IProgressMonitor monitor, VariableDeclaration variableDeclaration) {
 		val name = variableDeclaration.getName();
 		val dataType = context.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
-		val cVariableDeclaration = MscriptGeneratorUtil::getCVariableDeclaration(context.getComputationModel(), context.getComponentGeneratorContext().getCodeFragmentCollector(), dataType, name, false, null);
+		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getComponentGeneratorContext().getCodeFragmentCollector(), dataType, name, false, null);
 		if (hasContext(context, variableDeclaration)) {
 			val bufferSize = context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration);
-			val indexCDataType = MscriptGeneratorUtil::getIndexCDataType(context.getComputationModel(), 2 * bufferSize);
+			val indexCDataType = dataTypeGenerator.generateIndexDataType(context.getComputationModel(), 2 * bufferSize);
 			return '''
 				«cVariableDeclaration»[«bufferSize»];
 				«indexCDataType» «name»_index;

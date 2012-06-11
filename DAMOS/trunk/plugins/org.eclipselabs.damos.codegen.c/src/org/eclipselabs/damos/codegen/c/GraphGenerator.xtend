@@ -23,14 +23,16 @@ import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.execution.CompoundNode
 import org.eclipselabs.damos.execution.Graph
 import org.eclipselabs.damos.execution.Node
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.Include
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 
 /**
  * @author Andreas Unger
  *
  */
 class GraphGenerator implements IGraphGenerator {
+
+	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 
 	val ICompoundGenerator compoundGenerator
 	val ITaskGenerator taskGenerator
@@ -148,7 +150,7 @@ class GraphGenerator implements IGraphGenerator {
 				«FOR outputPort : node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten()»
 					«val computationModel = GeneratorConfigurationUtil::getComputationModel(context.configuration, node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
-					«val cDataType = MscriptGeneratorUtil::getCDataType(computationModel, context, outputDataType, null)»
+					«val cDataType = dataTypeGenerator.generateDataType(computationModel, context, outputDataType, null)»
 					«cDataType» «GeneratorUtil::getOutputVariableName(context.configuration, node, outputPort)»;
 				«ENDFOR»
 			«ENDFOR»

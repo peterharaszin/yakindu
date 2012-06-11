@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 
 import com.google.inject.Inject;
 
@@ -33,6 +33,8 @@ import com.google.inject.Inject;
  */
 public class TaskMessageStruct extends PrimaryCodeFragment {
 
+	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
+	
 	private String content;
 	
 	@Inject
@@ -55,7 +57,7 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 						IComponentSignature signature = generator.getContext().getComponentSignature();
-						out.print(MscriptGeneratorUtil.getCDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
+						out.print(dataTypeGenerator.generateDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
 						out.print(" ");
 						out.print(input.getName());
 						out.print(";\n");

@@ -17,6 +17,7 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
@@ -24,7 +25,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
@@ -34,6 +34,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public class ScalarMultiplyFunction extends AbstractCodeFragment {
 	
+	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 
 	private final ComputationModel computationModel;
@@ -41,9 +42,9 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 	private final DataType elementType;
 	private final ArrayType resultType;
 	
-	private String scalarTypeString;
-	private String elementTypeString;
-	private String resultTypeString;
+	private CharSequence scalarTypeText;
+	private CharSequence elementTypeText;
+	private CharSequence resultTypeText;
 	
 	private NumberFormat scalarNumberFormat;
 	private NumberFormat elementNumberFormat;
@@ -89,9 +90,9 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 		
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 
-		scalarTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), scalarType, this);
-		elementTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), elementType, this);
-		resultTypeString = MscriptGeneratorUtil.getCDataType(computationModel, context.getCodeFragmentCollector(), resultType, this);
+		scalarTypeText = dataTypeGenerator.generateDataType(computationModel, context.getCodeFragmentCollector(), scalarType, this);
+		elementTypeText = dataTypeGenerator.generateDataType(computationModel, context.getCodeFragmentCollector(), elementType, this);
+		resultTypeText = dataTypeGenerator.generateDataType(computationModel, context.getCodeFragmentCollector(), resultType, this);
 		
 		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
 		name = globalNameProvider.newGlobalName("scalarMultiply");
@@ -100,7 +101,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 		PrintAppendable out = new PrintAppendable(sb);
 		
 		out.println(" {");
-		out.printf("%s result;\n", resultTypeString);
+		out.printf("%s result;\n", resultTypeText);
 		out.println("int i;");
 		out.println("for (i = 0; i < size; ++i) {");
 		out.print("result.data[i] = ");
@@ -146,7 +147,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 		if (internal) {
 			out.print("static ");
 		}
-		out.printf("%s %s(%s scalar, const %s vector[], int size)", resultTypeString, name, scalarTypeString, elementTypeString);
+		out.printf("%s %s(%s scalar, const %s vector[], int size)", resultTypeText, name, scalarTypeText, elementTypeText);
 		return sb;
 	}
 

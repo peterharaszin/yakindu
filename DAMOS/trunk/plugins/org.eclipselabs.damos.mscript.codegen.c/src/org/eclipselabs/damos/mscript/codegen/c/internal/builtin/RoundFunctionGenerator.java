@@ -19,12 +19,12 @@ import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -35,6 +35,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public class RoundFunctionGenerator implements IFunctionGenerator {
 
+	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
@@ -62,7 +63,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 				out.print("((");
 				out.print(expressionGenerator.generate(context, argument));
 				out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
-						MscriptGeneratorUtil.getCDataType(context, argumentDataType, null),
+						dataTypeGenerator.generateDataType(context.getComputationModel(), context.getCodeFragmentCollector(), argumentDataType, null),
 						(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
 			} else {
 				text.append(expressionGenerator.generate(context, argument));

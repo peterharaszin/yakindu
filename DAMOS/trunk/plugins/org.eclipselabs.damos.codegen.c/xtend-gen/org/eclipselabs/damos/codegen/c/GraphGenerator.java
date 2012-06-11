@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
@@ -31,8 +32,8 @@ import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -40,6 +41,13 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 @SuppressWarnings("all")
 public class GraphGenerator implements IGraphGenerator {
+  private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
+    public DataTypeGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      return _dataTypeGenerator;
+    }
+  }.apply();
+  
   private final ICompoundGenerator compoundGenerator;
   
   private final ITaskGenerator taskGenerator;
@@ -318,7 +326,7 @@ public class GraphGenerator implements IGraphGenerator {
               IComponentSignature _componentSignature = _context.getComponentSignature();
               final DataType outputDataType = _componentSignature.getOutputDataType(outputPort);
               _builder.newLineIfNotEmpty();
-              final String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, context, outputDataType, null);
+              final CharSequence cDataType = this.dataTypeGenerator.generateDataType(computationModel, context, outputDataType, null);
               _builder.newLineIfNotEmpty();
               _builder.append(cDataType, "");
               _builder.append(" ");

@@ -23,7 +23,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelUtil;
@@ -35,6 +34,8 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class MscriptGenerator {
 	
+	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
+	private final VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator());
 	private final ICompoundStatementGenerator compoundStatementGenerator;
 	
 	private FunctionInstance functionInstance;
@@ -117,12 +118,12 @@ public class MscriptGenerator {
 		if (circularBufferSize > 1) {
 			int bufferSize = circularBufferSize;
 			out.printf("%s[%d];\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(context, dataType, name, false, null),
+					variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, name, false, null),
 					bufferSize);
-			out.printf("%s %s_index;\n", MscriptGeneratorUtil.getIndexCDataType(context.getComputationModel(), 2 * bufferSize), name);
+			out.printf("%s %s_index;\n", dataTypeGenerator.generateIndexDataType(context.getComputationModel(), 2 * bufferSize), name);
 		} else {
 			out.printf("%s;\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(context, dataType, name, false, null));
+					variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, name, false, null));
 		}
 		return sb;
 	}
@@ -232,10 +233,10 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("void %s(%s_Context *context", functionName, functionName);
 		for (InputParameterDeclaration inputParameterDeclaration : FunctionModelUtil.getDirectFeedthroughInputs(functionInstance)) {
-			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
+			out.printf(", %s", variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
 		}
 		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
-			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(outputParameterDeclaration), outputParameterDeclaration.getName(), true, null));
+			out.printf(", %s", variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), getDataType(outputParameterDeclaration), outputParameterDeclaration.getName(), true, null));
 		}
 		out.print(")");
 		return sb;
@@ -280,7 +281,7 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("void %s_update(%s_Context *context", functionName, functionName);
 		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {
-			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
+			out.printf(", %s", variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
 		}
 		out.print(")");
 		return sb;
@@ -355,7 +356,7 @@ public class MscriptGenerator {
 			} else {
 				out.print(", ");
 			}
-			out.print(MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
+			out.print(variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false, null));
 		}
 		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
 			if (first) {
@@ -363,7 +364,7 @@ public class MscriptGenerator {
 			} else {
 				out.print(", ");
 			}
-			out.print(MscriptGeneratorUtil.getCVariableDeclaration(context, getDataType(outputParameterDeclaration), outputParameterDeclaration.getName(), true, null));
+			out.print(variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), getDataType(outputParameterDeclaration), outputParameterDeclaration.getName(), true, null));
 		}
 		out.print(")");
 		return sb;

@@ -25,13 +25,15 @@ import org.eclipselabs.damos.execution.ActionNode
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.execution.CompoundNode
 import org.eclipselabs.damos.execution.Graph
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 
 /**
  * @author Andreas Unger
  *
  */
 class CompoundGenerator implements ICompoundGenerator {
+
+	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 
 	val IGraphGenerator graphGenerator
 	
@@ -92,7 +94,7 @@ class CompoundGenerator implements ICompoundGenerator {
 		val generator = InternalGeneratorUtil::getComponentGenerator(node)
 		val computationModel = GeneratorConfigurationUtil::getComputationModel(context.configuration, node)
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
-		val cDataType = MscriptGeneratorUtil::getCDataType(computationModel, generator.context.codeFragmentCollector, outputDataType, null)
+		val cDataType = dataTypeGenerator.generateDataType(computationModel, generator.context.codeFragmentCollector, outputDataType, null)
 		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
 		val variableName = CompoundGeneratorUtil::getMemoryPreviousValueVariableName(context.configuration, node)
 		

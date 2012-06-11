@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -36,8 +37,8 @@ import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -45,6 +46,13 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 @SuppressWarnings("all")
 public class CompoundGenerator implements ICompoundGenerator {
+  private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
+    public DataTypeGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      return _dataTypeGenerator;
+    }
+  }.apply();
+  
   private final IGraphGenerator graphGenerator;
   
   @Inject
@@ -197,7 +205,7 @@ public class CompoundGenerator implements ICompoundGenerator {
       final DataType outputDataType = _componentSignature.getOutputDataType(_firstOutputPort);
       IComponentGeneratorContext _context_1 = generator.getContext();
       ICodeFragmentCollector _codeFragmentCollector = _context_1.getCodeFragmentCollector();
-      final String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, _codeFragmentCollector, outputDataType, null);
+      final CharSequence cDataType = this.dataTypeGenerator.generateDataType(computationModel, _codeFragmentCollector, outputDataType, null);
       Configuration _configuration_1 = context.getConfiguration();
       Component _component_1 = node.getComponent();
       InputPort _firstInputPort = _component_1.getFirstInputPort();

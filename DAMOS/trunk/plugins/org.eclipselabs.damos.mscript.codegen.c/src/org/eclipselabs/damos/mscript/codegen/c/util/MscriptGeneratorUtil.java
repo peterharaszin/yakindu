@@ -11,30 +11,15 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
-import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -42,77 +27,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class MscriptGeneratorUtil {
 	
-	public static String getCVariableDeclaration(IMscriptGeneratorContext context, DataType dataType, String name, boolean pointer, ICodeFragment dependentCodeFragment) {
-		return getCVariableDeclaration(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, name, pointer, dependentCodeFragment);
-	}
-	
-	public static String getCVariableDeclaration(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, String name, boolean pointer, ICodeFragment dependentCodeFragment) {
-		StringBuilder cDataType = new StringBuilder();
-
-		cDataType.append(getCDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment));
-		cDataType.append(" ");
-		if (pointer) {
-			cDataType.append("*");
-		}
-		cDataType.append(name);
-
-		return cDataType.toString();
-	}
-
-	public static String getIndexCDataType(ComputationModel computationModel, long maximumIndex) {
-		if (maximumIndex <= 0xffL) {
-			return "uint_fast8_t";
-		}
-		if (maximumIndex <= 0xffffL) {
-			return "uint_fast16_t";
-		}
-		if (maximumIndex <= 0xffffffffL) {
-			return "uint_fast32_t";
-		}
-		return "uint_fast64_t";
-	}
-
-	public static String getCDataType(IMscriptGeneratorContext context, DataType dataType, ICodeFragment dependentCodeFragment) {
-		return getCDataType(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, dependentCodeFragment);
-	}
-	
-	public static String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, ICodeFragment dependentCodeFragment) {
-		return MachineDataTypes.create(computationModel, dataType).getCDataType(computationModel, codeFragmentCollector, dependentCodeFragment);
-	}
-	
-	public static String getLiteralString(IMscriptGeneratorContext context, DataType dataType, double value, ICodeFragment dependentCodeFragment) {
-		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, value, dependentCodeFragment);
-	}
-	
-	public static String getLiteralString(IMscriptGeneratorContext context, DataType dataType, long value, ICodeFragment dependentCodeFragment) {
-		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, value, dependentCodeFragment);
-	}
-
-	public static String getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, double value, ICodeFragment dependentCodeFragment) {
-		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
-		String cDataType = getCDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment);
-		if (numberFormat instanceof FixedPointFormat) {
-			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			return String.format("(%s) %d", cDataType, Math.round(value * Math.pow(2, fixedPointFormat.getFractionLength())));
-		}
-		return String.format("(%s) %s", cDataType, Double.toString(value));
-	}
-
-	public static String getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, long value, ICodeFragment dependentCodeFragment) {
-		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
-		String cDataType = getCDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment);
-		if (numberFormat instanceof FixedPointFormat) {
-			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			value <<= fixedPointFormat.getFractionLength();
-		}
-		return String.format("(%s) %d", cDataType, value);
-	}
-
-	public static CharSequence cast(IMscriptGeneratorContext context, String expression, DataType expressionDataType, DataType targetDataType) {
-		return cast(context.getComputationModel(), expression, expressionDataType, targetDataType);
-	}
-	
-	public static CharSequence cast(ComputationModel computationModel, final String expression, DataType expressionDataType, DataType targetDataType) {
+	public static CharSequence cast(ComputationModel computationModel, String expression, DataType expressionDataType, DataType targetDataType) {
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
@@ -121,83 +36,10 @@ public class MscriptGeneratorUtil {
 		return expression;
 	}
 
-	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
-		if (targetDataType instanceof NumericType) {
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(targetDataType);
-			return castNumericType(context, numberFormat, expression);
-		}
-		return new ExpressionGenerator().generate(context, expression);
-	}
-
-	public static CharSequence castNumericType(final IMscriptGeneratorContext context, NumberFormat targetNumberFormat, final Expression expression) {
+	public static CharSequence castNumericType(IMscriptGeneratorContext context, NumberFormat targetNumberFormat, Expression expression) {
 		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
 		return NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new ExpressionGenerator().generate(context, expression)));
-	}
-
-	public static CharSequence getLiteralString(IMscriptGeneratorContext context, IValue value) {
-		return getLiteralString(context.getComputationModel(), context.getCodeFragmentCollector(), value);
-	}
-	
-	public static CharSequence getLiteralString(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
-		if (value instanceof IArrayValue) {
-			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(computationModel, (IArrayValue) value);
-			codeFragment = (ArrayLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
-			return codeFragment.getName();
-		}
-		if (value instanceof StructValue) {
-			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(computationModel, (StructValue) value);
-			codeFragment = (StructLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
-			return codeFragment.getName();
-		}
-		return createInitializer(computationModel, codeFragmentCollector, value);
-	}
-
-	public static CharSequence createInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
-		if (value instanceof ISimpleNumericValue) {
-			ISimpleNumericValue numericTemplateArgument = (ISimpleNumericValue) value;
-			if (value.getDataType() instanceof RealType) {
-				return MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue(), null);
-			}
-			if (value.getDataType() instanceof IntegerType) {
-				return MscriptGeneratorUtil.getLiteralString(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue(), null);
-			}
-		} else if (value instanceof IBooleanValue) {
-			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
-			return booleanTemplateArgument.booleanValue() ? "1" : "0";
-		} else if (value instanceof IArrayValue) {
-			return createArrayInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
-		} else if (value instanceof StructValue) {
-			return createStructInitializer(computationModel, codeFragmentCollector, (StructValue) value);
-		}
-		throw new IllegalArgumentException();
-	}
-
-	private static CharSequence createArrayInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{ { ");
-		int size = TypeUtil.getArraySize(value.getDataType());
-		for (int i = 0; i < size; ++i) {
-			if (i > 0) {
-				sb.append(", ");
-			}
-			sb.append(createInitializer(computationModel, codeFragmentCollector, value.get(i)));
-		}
-		sb.append(" } }");
-		return sb;
-	}
-
-	private static CharSequence createStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, StructValue value) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{ ");
-		for (int i = 0; i < value.getDataType().getMembers().size(); ++i) {
-			if (i > 0) {
-				sb.append(", ");
-			}
-			sb.append(createInitializer(computationModel, codeFragmentCollector, value.get(i)));
-		}
-		sb.append(" }");
-		return sb;
 	}
 
 }

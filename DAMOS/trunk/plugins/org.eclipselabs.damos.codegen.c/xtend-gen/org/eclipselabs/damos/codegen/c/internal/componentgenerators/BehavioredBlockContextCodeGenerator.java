@@ -3,6 +3,7 @@ package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.componentgenerators.IBehavioredBlockGeneratorContext;
 import org.eclipselabs.damos.mscript.DataType;
@@ -11,8 +12,9 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
@@ -23,6 +25,21 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 @SuppressWarnings("all")
 public class BehavioredBlockContextCodeGenerator {
+  private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
+    public DataTypeGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      return _dataTypeGenerator;
+    }
+  }.apply();
+  
+  private final VariableDeclarationGenerator variableDeclarationGenerator = new Function0<VariableDeclarationGenerator>() {
+    public VariableDeclarationGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      VariableDeclarationGenerator _variableDeclarationGenerator = new VariableDeclarationGenerator(_dataTypeGenerator);
+      return _variableDeclarationGenerator;
+    }
+  }.apply();
+  
   public CharSequence generateContextCode(final IBehavioredBlockGeneratorContext context, final CharSequence typeName, final IProgressMonitor monitor) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("typedef struct {");
@@ -85,14 +102,14 @@ public class BehavioredBlockContextCodeGenerator {
     ComputationModel _computationModel = context.getComputationModel();
     IComponentGeneratorContext _componentGeneratorContext = context.getComponentGeneratorContext();
     ICodeFragmentCollector _codeFragmentCollector = _componentGeneratorContext.getCodeFragmentCollector();
-    final String cVariableDeclaration = MscriptGeneratorUtil.getCVariableDeclaration(_computationModel, _codeFragmentCollector, dataType, name, false, null);
+    final CharSequence cVariableDeclaration = this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, _codeFragmentCollector, dataType, name, false, null);
     boolean _hasContext = this.hasContext(context, variableDeclaration);
     if (_hasContext) {
       IStaticEvaluationContext _staticEvaluationContext_1 = context.getStaticEvaluationContext();
       final int bufferSize = _staticEvaluationContext_1.getCircularBufferSize(variableDeclaration);
       ComputationModel _computationModel_1 = context.getComputationModel();
       int _multiply = (2 * bufferSize);
-      final String indexCDataType = MscriptGeneratorUtil.getIndexCDataType(_computationModel_1, _multiply);
+      final CharSequence indexCDataType = this.dataTypeGenerator.generateIndexDataType(_computationModel_1, _multiply);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(cVariableDeclaration, "");
       _builder.append("[");

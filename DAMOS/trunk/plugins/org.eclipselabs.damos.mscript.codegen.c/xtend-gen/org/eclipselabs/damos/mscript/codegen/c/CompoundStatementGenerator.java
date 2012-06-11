@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.CallableElement;
@@ -16,15 +17,20 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -34,6 +40,21 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 @SuppressWarnings("all")
 public class CompoundStatementGenerator implements ICompoundStatementGenerator {
+  private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
+    public DataTypeGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      return _dataTypeGenerator;
+    }
+  }.apply();
+  
+  private final VariableDeclarationGenerator variableDeclarationGenerator = new Function0<VariableDeclarationGenerator>() {
+    public VariableDeclarationGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      VariableDeclarationGenerator _variableDeclarationGenerator = new VariableDeclarationGenerator(_dataTypeGenerator);
+      return _variableDeclarationGenerator;
+    }
+  }.apply();
+  
   private final IExpressionGenerator expressionGenerator;
   
   @Inject
@@ -114,16 +135,18 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
         throw _runtimeException_1;
       }
       final String itVarName = iterationVariableDeclaration.getName();
+      ComputationModel _computationModel = context.getComputationModel();
+      ICodeFragmentCollector _codeFragmentCollector = context.getCodeFragmentCollector();
       DataType _dataType = this.getDataType(context, iterationVariableDeclaration);
-      final String itVarDecl = MscriptGeneratorUtil.getCVariableDeclaration(context, _dataType, itVarName, false, null);
+      final CharSequence itVarDecl = this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, _codeFragmentCollector, _dataType, itVarName, false, null);
       final int size = TypeUtil.getArraySize(collectionArrayType);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("{");
       _builder.newLine();
       _builder.append("\t");
-      ComputationModel _computationModel = context.getComputationModel();
-      String _indexCDataType = MscriptGeneratorUtil.getIndexCDataType(_computationModel, size);
-      _builder.append(_indexCDataType, "	");
+      ComputationModel _computationModel_1 = context.getComputationModel();
+      CharSequence _generateIndexDataType = this.dataTypeGenerator.generateIndexDataType(_computationModel_1, size);
+      _builder.append(_generateIndexDataType, "	");
       _builder.append(" ");
       _builder.append(itVarName, "	");
       _builder.append("_i;");
@@ -200,10 +223,12 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
       EList<LocalVariableDeclaration> _localVariableDeclarations = compound.getLocalVariableDeclarations();
       for(final LocalVariableDeclaration localVariableDeclaration : _localVariableDeclarations) {
         _builder.append("\t");
+        ComputationModel _computationModel = context.getComputationModel();
+        ICodeFragmentCollector _codeFragmentCollector = context.getCodeFragmentCollector();
         DataType _dataType = this.getDataType(context, localVariableDeclaration);
         String _name = localVariableDeclaration.getName();
-        String _cVariableDeclaration = MscriptGeneratorUtil.getCVariableDeclaration(context, _dataType, _name, false, null);
-        _builder.append(_cVariableDeclaration, "	");
+        CharSequence _generateVariableDeclaration = this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, _codeFragmentCollector, _dataType, _name, false, null);
+        _builder.append(_generateVariableDeclaration, "	");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
@@ -225,15 +250,20 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append(target, "");
     _builder.append(" = ");
-    CharSequence _cast = this.cast(context, targetDataType, assignedExpression);
-    _builder.append(_cast, "");
+    CharSequence _generateAssignedExpression = this.generateAssignedExpression(context, targetDataType, assignedExpression);
+    _builder.append(_generateAssignedExpression, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
   
-  public CharSequence cast(final IMscriptGeneratorContext context, final DataType targetDataType, final Expression expression) {
-    return MscriptGeneratorUtil.cast(context, expression, targetDataType);
+  public CharSequence generateAssignedExpression(final IMscriptGeneratorContext context, final DataType targetDataType, final Expression expression) {
+    if ((targetDataType instanceof NumericType)) {
+      ComputationModel _computationModel = context.getComputationModel();
+      final NumberFormat numberFormat = _computationModel.getNumberFormat(targetDataType);
+      return MscriptGeneratorUtil.castNumericType(context, numberFormat, expression);
+    }
+    return this.expressionGenerator.generate(context, expression);
   }
   
   public DataType getDataType(final IMscriptGeneratorContext context, final Evaluable evaluable) {

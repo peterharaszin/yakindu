@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
@@ -16,7 +17,8 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -24,6 +26,14 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 @SuppressWarnings("all")
 public class InputStruct extends PrimaryCodeFragment {
+  private final VariableDeclarationGenerator variableDeclarationGenerator = new Function0<VariableDeclarationGenerator>() {
+    public VariableDeclarationGenerator apply() {
+      DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
+      VariableDeclarationGenerator _variableDeclarationGenerator = new VariableDeclarationGenerator(_dataTypeGenerator);
+      return _variableDeclarationGenerator;
+    }
+  }.apply();
+  
   private CharSequence content;
   
   @Inject
@@ -40,7 +50,7 @@ public class InputStruct extends PrimaryCodeFragment {
       List<ComponentNode> _inportNodes = InternalGeneratorUtil.getInportNodes(context);
       for(final ComponentNode node : _inportNodes) {
         _builder.append("\t");
-        String _cVariableDeclaration = this.getCVariableDeclaration(context, node);
+        CharSequence _cVariableDeclaration = this.getCVariableDeclaration(context, node);
         _builder.append(_cVariableDeclaration, "	");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -58,7 +68,7 @@ public class InputStruct extends PrimaryCodeFragment {
    * @param node
    * @return
    */
-  private String getCVariableDeclaration(final IGeneratorContext context, final ComponentNode node) {
+  private CharSequence getCVariableDeclaration(final IGeneratorContext context, final ComponentNode node) {
     final IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
     IComponentGeneratorContext _context = generator.getContext();
     final IComponentSignature signature = _context.getComponentSignature();
@@ -70,7 +80,7 @@ public class InputStruct extends PrimaryCodeFragment {
     Component _component_1 = node.getComponent();
     String _name = _component_1.getName();
     String _uncapitalize = InternalGeneratorUtil.uncapitalize(_name);
-    return MscriptGeneratorUtil.getCVariableDeclaration(_computationModel, context, dataType, _uncapitalize, false, this);
+    return this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, context, dataType, _uncapitalize, false, this);
   }
   
   public CharSequence generateForwardDeclaration(final boolean internal) {

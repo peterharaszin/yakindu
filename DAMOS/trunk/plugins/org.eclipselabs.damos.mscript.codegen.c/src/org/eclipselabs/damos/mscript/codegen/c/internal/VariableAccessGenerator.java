@@ -5,13 +5,16 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 public class VariableAccessGenerator extends MscriptSwitch<CharSequence> {
 
+	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	
 	private IMscriptGeneratorContext context;
 	private VariableReference variableReference;
 	
@@ -27,7 +30,7 @@ public class VariableAccessGenerator extends MscriptSwitch<CharSequence> {
 	@Override
 	public CharSequence caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
 		IValue templateArgument = context.getStaticEvaluationContext().getValue(templateParameterDeclaration);
-		return MscriptGeneratorUtil.getLiteralString(context, templateArgument);
+		return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), templateArgument);
 	}
 		
 	@Override

@@ -19,10 +19,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -280,7 +280,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
-				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), arrayType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), arrayType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -296,7 +296,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
-					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
+					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName());
 					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getComputationModel(), getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType));
 					out.println(";");
 				}

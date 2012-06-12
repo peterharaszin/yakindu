@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
@@ -79,8 +80,8 @@ public class InputStruct extends PrimaryCodeFragment {
     ComputationModel _computationModel = GeneratorConfigurationUtil.getComputationModel(_configuration, node);
     Component _component_1 = node.getComponent();
     String _name = _component_1.getName();
-    String _uncapitalize = InternalGeneratorUtil.uncapitalize(_name);
-    return this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, context, dataType, _uncapitalize, false, this);
+    String _firstLower = StringExtensions.toFirstLower(_name);
+    return this.variableDeclarationGenerator.generateVariableDeclaration(_computationModel, context, dataType, _firstLower, false, this);
   }
   
   public CharSequence generateForwardDeclaration(final boolean internal) {

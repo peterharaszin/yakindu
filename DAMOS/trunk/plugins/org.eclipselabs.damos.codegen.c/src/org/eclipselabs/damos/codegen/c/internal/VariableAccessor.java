@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.internal;
 
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
@@ -96,7 +97,7 @@ public class VariableAccessor implements IVariableAccessor {
 		}
 		if (outputPort.getComponent() instanceof Inport) {
 			sb.append("input->");
-			sb.append(InternalGeneratorUtil.uncapitalize(outputPort.getComponent().getName()));
+			sb.append(StringExtensions.toFirstLower(outputPort.getComponent().getName()));
 		} else {
 			sb.append(InternalGeneratorUtil.getPrefix(configuration, node));
 			sb.append(outputPort.getComponent().getName());

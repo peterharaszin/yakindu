@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -41,7 +41,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 		InputPort inputPort = getComponent().getFirstInputPort();
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
-		out.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
+		out.printf("output->%s = ", StringExtensions.toFirstLower(getComponent().getName()));
 		String inputVariableString = getVariableAccessor().getInputVariable(inputPort, false);
 		out.print(MscriptGeneratorUtil.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
 		out.println(";");

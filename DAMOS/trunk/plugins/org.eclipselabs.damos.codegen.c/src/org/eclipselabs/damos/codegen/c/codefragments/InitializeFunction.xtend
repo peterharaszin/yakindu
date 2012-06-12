@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
@@ -22,7 +23,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
-import com.google.inject.Inject
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
  * @author Andreas Unger
@@ -57,7 +58,7 @@ class InitializeFunction extends PrimaryCodeFragment {
 			}
 		}
 		
-		functionSignature = '''void «getPrefix(context.getConfiguration())»initialize(void)'''
+		functionSignature = '''void «context.configuration.prefix»initialize(void)'''
 
 		functionBody = '''
 			{

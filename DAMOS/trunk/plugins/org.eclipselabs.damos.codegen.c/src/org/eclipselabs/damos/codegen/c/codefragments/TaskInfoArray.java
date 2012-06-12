@@ -18,7 +18,7 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskFunctionFactory;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
@@ -67,8 +67,8 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 	}
 
 	private void initializeForwardDeclaration(IGeneratorContext context) {
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
-		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
+		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 	
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
@@ -83,8 +83,8 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 	}
 
 	private void initializeImplementation(IGeneratorContext context) {
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
-		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
+		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);

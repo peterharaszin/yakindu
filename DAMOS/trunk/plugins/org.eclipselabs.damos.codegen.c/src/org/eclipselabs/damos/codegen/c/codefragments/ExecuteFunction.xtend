@@ -18,7 +18,6 @@ import java.util.Collections
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.IGraphGenerator
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 import org.eclipselabs.damos.mscript.codegen.c.Include
 
 import static org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
@@ -82,7 +81,7 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	'''
 
 	def private CharSequence generateFunctionSignature(IGeneratorContext context) {
-		val prefix = GeneratorConfigurationUtil::getPrefix(context.getConfiguration())
+		val prefix = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getPrefix(context.getConfiguration())
 		
 		val hasInput = !getInportNodes(context).isEmpty()
 		val hasOutput = !getOutportNodes(context).isEmpty()

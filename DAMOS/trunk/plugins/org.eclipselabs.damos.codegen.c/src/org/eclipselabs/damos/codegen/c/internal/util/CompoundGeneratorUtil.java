@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.internal.util;
 
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ComponentNode;
 
@@ -21,11 +22,11 @@ import org.eclipselabs.damos.execution.ComponentNode;
 public class CompoundGeneratorUtil {
 
 	public static String getChoiceVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_result", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
+		return String.format("%s%s_result", GeneratorConfigurationExtensions.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
 	}
 
 	public static String getMemoryPreviousValueVariableName(Configuration configuration, ComponentNode componentNode) {
-		return String.format("%s%s_previousValue", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
+		return String.format("%s%s_previousValue", GeneratorConfigurationExtensions.getPrefix(configuration, componentNode), componentNode.getComponent().getName());
 	}
 
 }

@@ -42,7 +42,7 @@ public class GeneratorUtil {
 	}
 
 	public static String getOutputVariableName(Configuration configuration, ComponentNode componentNode, OutputPort outputPort) {
-		return String.format("%s%s_%s", InternalGeneratorUtil.getPrefix(configuration, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
+		return String.format("%s%s_%s", GeneratorConfigurationExtensions.getPrefix(configuration, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
 	}
 
 }

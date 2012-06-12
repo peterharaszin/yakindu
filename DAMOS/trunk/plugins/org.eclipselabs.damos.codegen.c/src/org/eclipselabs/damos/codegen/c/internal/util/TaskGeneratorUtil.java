@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -50,7 +50,7 @@ public class TaskGeneratorUtil {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = InternalGeneratorUtil.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return new DataTypeGenerator().generateDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context, dataType, null);
+		return new DataTypeGenerator().generateDataType(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context, dataType, null);
 	}
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {
@@ -58,7 +58,7 @@ public class TaskGeneratorUtil {
 		if (pointer) {
 			sb.append("(&");
 		}
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		if (prefix != null) {
 			sb.append(prefix);
 		}
@@ -79,7 +79,7 @@ public class TaskGeneratorUtil {
 	}
 
 	public static String getTaskName(Configuration configuration, TaskGraph taskGraph) {
-		return InternalGeneratorUtil.getPrefix(configuration, taskGraph.getInitialNodes().get(0)) + ((ComponentNode) taskGraph.getInitialNodes().get(0)).getComponent().getName() + "_Task";
+		return GeneratorConfigurationExtensions.getPrefix(configuration, taskGraph.getInitialNodes().get(0)) + ((ComponentNode) taskGraph.getInitialNodes().get(0)).getComponent().getName() + "_Task";
 	}
 	
 	public static String getTaskInputVariableName(Configuration configuration, TaskInputNode inputNode) {

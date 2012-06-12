@@ -15,6 +15,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
@@ -53,12 +54,12 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("(&");
 		}
-		String prefix = InternalGeneratorUtil.getPrefix(configuration);
+		String prefix = GeneratorConfigurationExtensions.getPrefix(configuration);
 		if (prefix != null) {
 			sb.append(prefix);
 		}
 		sb.append("context.");
-		sb.append(InternalGeneratorUtil.getPrefix(configuration, node) + node.getComponent().getName());
+		sb.append(GeneratorConfigurationExtensions.getPrefix(configuration, node) + node.getComponent().getName());
 		if (pointer) {
 			sb.append(")");
 		}
@@ -99,7 +100,7 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append("input->");
 			sb.append(StringExtensions.toFirstLower(outputPort.getComponent().getName()));
 		} else {
-			sb.append(InternalGeneratorUtil.getPrefix(configuration, node));
+			sb.append(GeneratorConfigurationExtensions.getPrefix(configuration, node));
 			sb.append(outputPort.getComponent().getName());
 			sb.append("_");
 			sb.append(InternalGeneratorUtil.getOutputPortName(outputPort));

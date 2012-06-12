@@ -11,7 +11,7 @@ import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
@@ -43,7 +43,7 @@ public class OutputStruct extends PrimaryCodeFragment {
   
   public void doInitialize(final IGeneratorContext context, final IProgressMonitor monitor) {
     Configuration _configuration = context.getConfiguration();
-    final String prefix = GeneratorConfigurationUtil.getPrefix(_configuration);
+    final String prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("typedef struct {");
     _builder.newLine();
@@ -77,7 +77,7 @@ public class OutputStruct extends PrimaryCodeFragment {
     final InputPort inputPort = _component.getFirstInputPort();
     final DataType dataType = signature.getInputDataType(inputPort);
     Configuration _configuration = context.getConfiguration();
-    ComputationModel _computationModel = GeneratorConfigurationUtil.getComputationModel(_configuration, node);
+    ComputationModel _computationModel = GeneratorConfigurationExtensions.getComputationModel(_configuration, node);
     Component _component_1 = node.getComponent();
     String _name = _component_1.getName();
     String _firstLower = StringExtensions.toFirstLower(_name);

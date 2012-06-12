@@ -46,7 +46,7 @@ import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
@@ -109,7 +109,7 @@ public class Generator extends AbstractGenerator {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No system configuration specified"));
 		}
 		
-		ITargetGenerator targetGenerator = GeneratorConfigurationUtil.getTargetGenerator(configuration);
+		ITargetGenerator targetGenerator = GeneratorConfigurationExtensions.getTargetGenerator(configuration);
 		if (targetGenerator != null) {
 			Configuration newConfiguration = targetGenerator.createConfiguration(configuration, monitor);
 			if (newConfiguration != null) {
@@ -117,18 +117,18 @@ public class Generator extends AbstractGenerator {
 			}
 		}
 
-		String projectName = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
+		String projectName = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
 		if (projectName == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing configuration property projectName"));
 		}
 
 		final IGeneratorContext context = createContext(configuration, monitor);
 		
-		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
-		String headerFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
+		String sourceFolder = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
+		String headerFolder = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
 		
-		String systemSourceFile = GeneratorConfigurationUtil.getSystemSourceFile(context.getConfiguration());
-		String systemHeaderFile = GeneratorConfigurationUtil.getSystemHeaderFile(context.getConfiguration());
+		String systemSourceFile = GeneratorConfigurationExtensions.getSystemSourceFile(context.getConfiguration());
+		String systemHeaderFile = GeneratorConfigurationExtensions.getSystemHeaderFile(context.getConfiguration());
 		
 		IProject project = getProject(projectName, monitor);
 		IContainer sourceContainer = getContainer(monitor, project, sourceFolder);
@@ -261,7 +261,7 @@ public class Generator extends AbstractGenerator {
 		IGeneratorContext context = new GeneratorContext(configuration, executionFlow);
 		new ComponentGeneratorAdaptor().adaptGenerators(context, monitor);
 
-		if (executionFlow.getAsynchronousZoneCount() > 0 && GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()) == null) {
+		if (executionFlow.getAsynchronousZoneCount() > 0 && GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()) == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));
 		}
 

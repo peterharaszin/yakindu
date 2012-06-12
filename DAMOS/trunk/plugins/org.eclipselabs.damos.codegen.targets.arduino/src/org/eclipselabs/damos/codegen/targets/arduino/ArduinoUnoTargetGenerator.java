@@ -6,7 +6,6 @@ package org.eclipselabs.damos.codegen.targets.arduino;
 
 import java.io.ByteArrayInputStream;
 
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -85,11 +84,11 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 			}
 		}
 		
-		String project = GeneratorConfigurationExtensions.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/projectName", null);
+		String project = GeneratorConfigurationExtensions.getProjectName(context.getConfiguration());
 		if (project == null) {
 			return;
 		}
-		String sourceFolder = GeneratorConfigurationExtensions.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/sourceFolder", null);
+		String sourceFolder = GeneratorConfigurationExtensions.getSourceFolder(context.getConfiguration());
 		if (sourceFolder == null) {
 			return;
 		}

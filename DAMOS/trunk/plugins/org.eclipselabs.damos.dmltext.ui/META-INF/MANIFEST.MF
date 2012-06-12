@@ -6,7 +6,7 @@ Bundle-Version: 0.3.0.qualifier
 Bundle-SymbolicName: org.eclipselabs.damos.dmltext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipselabs.damos.dmltext;visibility:=reexport,
- org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui;bundle-version="2.3.0",
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
  org.eclipse.xtext.ui.shared,

@@ -117,15 +117,15 @@ public class Generator extends AbstractGenerator {
 			}
 		}
 
-		String projectName = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
+		String projectName = GeneratorConfigurationExtensions.getProjectName(configuration);
 		if (projectName == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "Missing configuration property projectName"));
 		}
 
 		final IGeneratorContext context = createContext(configuration, monitor);
 		
-		String sourceFolder = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
-		String headerFolder = GeneratorConfigurationExtensions.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
+		String sourceFolder = GeneratorConfigurationExtensions.getSourceFolder(configuration);
+		String headerFolder = GeneratorConfigurationExtensions.getHeaderFolder(configuration);
 		
 		String systemSourceFile = GeneratorConfigurationExtensions.getSystemSourceFile(context.getConfiguration());
 		String systemHeaderFile = GeneratorConfigurationExtensions.getSystemHeaderFile(context.getConfiguration());

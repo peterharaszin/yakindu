@@ -24,6 +24,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
  * @author Andreas Unger
@@ -52,7 +53,7 @@ class ContextStruct extends PrimaryCodeFragment {
 			context.addCodeFragment(taskMessageStructFactory.create(), monitor)
 		}
 	
-		val prefix = getPrefix(context.configuration);
+		val prefix = context.configuration.prefix;
 		val nodes = context.executionFlow.allNodes
 				.filter(typeof(ComponentNode))
 				.filter(n | n.componentGenerator.contributesContextCode)
@@ -71,7 +72,7 @@ class ContextStruct extends PrimaryCodeFragment {
 			typedef struct {
 				«taskGenerator.generateTaskContexts(context, monitor)»
 				«FOR node : nodes»
-					«getContextTypeName(context, node)» «getPrefix(context.configuration, node)»«node.component.name»;
+					«getContextTypeName(context, node)» «context.configuration.getPrefix(node)»«node.component.name»;
 				«ENDFOR»
 			} «prefix»Context;
 		'''
@@ -88,7 +89,7 @@ class ContextStruct extends PrimaryCodeFragment {
 	def private CharSequence getContextTypeName(IGeneratorContext context, ComponentNode node) {
 		var typeName = node.componentGenerator.contextTypeName
 		if (typeName == null) {
-			typeName = getPrefix(context.configuration, node) + node.component.name + "_Context"
+			typeName = context.configuration.getPrefix(node) + node.component.name + "_Context"
 		}
 		return typeName
 	}

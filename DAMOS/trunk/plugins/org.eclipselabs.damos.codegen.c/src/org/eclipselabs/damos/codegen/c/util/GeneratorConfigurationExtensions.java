@@ -16,12 +16,13 @@ import org.eclipselabs.damos.codegen.c.ITargetGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorRegistry;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -31,8 +32,9 @@ import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
  * @author Andreas Unger
  *
  */
-public class GeneratorConfigurationUtil {
+public class GeneratorConfigurationExtensions {
 
+	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
 	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
 	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	
@@ -61,8 +63,24 @@ public class GeneratorConfigurationUtil {
 		return getPropertyStringValue(configuration, "damos.codegen.generator/systemHeaderFile", defaultHeaderFile);
 	}
 
+	public static String getPrefix(Configuration configuration, Node node) {
+		String prefix = null;
+		Expression prefixValue = configuration.getPropertyValue(node.getSystemPath(), PREFIX_PROPERTY_PATH);
+		if (prefixValue instanceof StringLiteral) {
+			prefix = ((StringLiteral) prefixValue).getValue();
+		}
+		if (prefix == null) {
+			prefix = "";
+		}
+		return prefix;
+	}
+
 	public static String getPrefix(Configuration configuration) {
-		String prefix = InternalGeneratorUtil.getPrefix(configuration);
+		String prefix = null;
+		Expression prefixValue = configuration.getPropertyValue(SystemPath.create(configuration.getContextFragment()), PREFIX_PROPERTY_PATH);
+		if (prefixValue instanceof StringLiteral) {
+			prefix = ((StringLiteral) prefixValue).getValue();
+		}
 		if (prefix == null) {
 			prefix = "";
 		}

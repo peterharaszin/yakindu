@@ -17,7 +17,7 @@ import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
@@ -37,7 +37,7 @@ public class TaskGenerator implements ITaskGenerator {
 	
 	public CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
@@ -61,7 +61,7 @@ public class TaskGenerator implements ITaskGenerator {
 
 	public CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
@@ -107,9 +107,9 @@ public class TaskGenerator implements ITaskGenerator {
 					String variableName = contextVariable + "." + "lock";
 					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
-					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
+					out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
 					out.printf("%s.data = %s;\n", contextVariable, outputVariable);
-					out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateUnlockCode(variableName));
+					out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateUnlockCode(variableName));
 				}
 			}
 		}
@@ -146,14 +146,14 @@ public class TaskGenerator implements ITaskGenerator {
 						out.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
 						out.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode.getTaskGraph());
-						out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&message", messageQueueInfo));
+						out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&message", messageQueueInfo));
 						out.print("}\n");
 						continue;
 					}
 				}
 				
 				MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
-				out.print(GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&" + outputVariable, messageQueueInfo));
+				out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&" + outputVariable, messageQueueInfo));
 			}
 		}
 		return sb;

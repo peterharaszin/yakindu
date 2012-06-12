@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.rte.AbstractMessageQueueGenerator;
 import org.eclipselabs.damos.codegen.c.rte.IMessageQueueInfo;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 
 /**
@@ -35,7 +35,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		out.println("struct {");
 		out.printf("%sMessageQueue base;\n", prefix);
 		out.printf("unsigned char buffer[%s * %s];\n", info.getCapacity(), info.getElementSize());
@@ -55,7 +55,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 	
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_init((%sMessageQueue *) &%s, %s, %s);\n", prefix, prefix, variableName, info.getCapacity(), info.getElementSize());
 		return sb;
 	}
@@ -66,7 +66,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_send((%sMessageQueue *) &%s, %s);\n", prefix, prefix, variableName, dataPointer);
 		return sb;
 	}
@@ -77,7 +77,7 @@ public class MessageQueueGenerator extends AbstractMessageQueueGenerator {
 
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		String prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		out.printf("%sMessageQueue_receive((%sMessageQueue *) &%s, %s);\n", prefix, prefix, variableName, dataPointer);
 		return sb;
 	}

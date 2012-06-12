@@ -15,7 +15,6 @@ import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.internal.util.CompoundGeneratorUtil
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 import org.eclipselabs.damos.codegen.c.util.GeneratorUtil
 import org.eclipselabs.damos.dml.Action
 import org.eclipselabs.damos.dml.Choice
@@ -26,6 +25,8 @@ import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.execution.CompoundNode
 import org.eclipselabs.damos.execution.Graph
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
+
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
  * @author Andreas Unger
@@ -68,7 +69,7 @@ class CompoundGenerator implements ICompoundGenerator {
 			actionNode.choiceNode.component as Choice
 		}
 
-		val prefix = InternalGeneratorUtil::getPrefix(context.configuration, compoundNode)
+		val prefix = context.configuration.getPrefix(compoundNode)
 
 		'''
 			«IF choice != null»			
@@ -92,7 +93,7 @@ class CompoundGenerator implements ICompoundGenerator {
 	
 	def private generateMemoryVariableDeclaration(IGeneratorContext context, ComponentNode node) {
 		val generator = InternalGeneratorUtil::getComponentGenerator(node)
-		val computationModel = GeneratorConfigurationUtil::getComputationModel(context.configuration, node)
+		val computationModel = context.configuration.getComputationModel(node)
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
 		val cDataType = dataTypeGenerator.generateDataType(computationModel, generator.context.codeFragmentCollector, outputDataType, null)
 		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)

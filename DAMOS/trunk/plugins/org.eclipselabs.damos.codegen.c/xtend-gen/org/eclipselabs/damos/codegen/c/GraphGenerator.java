@@ -19,7 +19,7 @@ import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.IGraphGenerator;
 import org.eclipselabs.damos.codegen.c.ITaskGenerator;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.codegen.c.util.GeneratorUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
@@ -320,7 +320,7 @@ public class GraphGenerator implements IGraphGenerator {
             Iterable<OutputPort> _flatten = Iterables.<OutputPort>concat(_map);
             for(final OutputPort outputPort : _flatten) {
               Configuration _configuration = context.getConfiguration();
-              final ComputationModel computationModel = GeneratorConfigurationUtil.getComputationModel(_configuration, node);
+              final ComputationModel computationModel = GeneratorConfigurationExtensions.getComputationModel(_configuration, node);
               _builder.newLineIfNotEmpty();
               IComponentGeneratorContext _context = generator.getContext();
               IComponentSignature _componentSignature = _context.getComponentSignature();

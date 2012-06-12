@@ -17,7 +17,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
@@ -55,7 +55,7 @@ public abstract class MessageQueueFunction extends PrimaryCodeFragment {
 			
 		});
 	
-		prefix = GeneratorConfigurationUtil.getPrefix(context.getConfiguration());
+		prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
 		StringBuilder sb = new StringBuilder();
 		sb.append(generateFunctionSignature());
 		functionSignature = sb.toString();

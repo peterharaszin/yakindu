@@ -16,7 +16,7 @@ import org.eclipselabs.damos.codegen.c.codefragments.InputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.ExecutionFlow;
@@ -142,7 +142,7 @@ public class ExecuteFunction extends PrimaryCodeFragment {
   
   private CharSequence generateFunctionSignature(final IGeneratorContext context) {
     Configuration _configuration = context.getConfiguration();
-    final String prefix = GeneratorConfigurationUtil.getPrefix(_configuration);
+    final String prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);
     List<ComponentNode> _inportNodes = InternalGeneratorUtil.getInportNodes(context);
     boolean _isEmpty = _inportNodes.isEmpty();
     final boolean hasInput = (!_isEmpty);

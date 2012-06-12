@@ -17,7 +17,7 @@ import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.ComponentNode;
@@ -57,7 +57,7 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 						IComponentSignature signature = generator.getContext().getComponentSignature();
-						out.print(dataTypeGenerator.generateDataType(GeneratorConfigurationUtil.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
+						out.print(dataTypeGenerator.generateDataType(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
 						out.print(" ");
 						out.print(input.getName());
 						out.print(";\n");

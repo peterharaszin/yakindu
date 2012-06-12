@@ -22,7 +22,7 @@ import org.eclipselabs.damos.codegen.c.IGraphGenerator;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
@@ -59,7 +59,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 	}
 
 	private void initializeForwardDeclarations(IGeneratorContext context) {
-		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(rteAPI.generateTaskSignature(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph)));
@@ -69,7 +69,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 	}
 
 	private void initializeImplementations(IGeneratorContext context, IProgressMonitor monitor) {
-		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationUtil.getRuntimeEnvironmentAPI(context.getConfiguration());
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI == null) {
 			throw new IllegalArgumentException("No runtime environment specified");
 		}

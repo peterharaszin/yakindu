@@ -3,7 +3,7 @@ package org.eclipselabs.damos.codegen.targets.arduino;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ExecutionFlow;
 
@@ -13,9 +13,9 @@ public class InoFileGenerator {
     CharSequence _xblockexpression = null;
     {
       Configuration _configuration = context.getConfiguration();
-      final String prefix = GeneratorConfigurationUtil.getPrefix(_configuration);
+      final String prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);
       Configuration _configuration_1 = context.getConfiguration();
-      final String systemHeaderFile = GeneratorConfigurationUtil.getSystemHeaderFile(_configuration_1);
+      final String systemHeaderFile = GeneratorConfigurationExtensions.getSystemHeaderFile(_configuration_1);
       ExecutionFlow _executionFlow = context.getExecutionFlow();
       final double fundamentalSampleTime = _executionFlow.getFundamentalSampleTime();
       final boolean micro = (fundamentalSampleTime <= 0.01);

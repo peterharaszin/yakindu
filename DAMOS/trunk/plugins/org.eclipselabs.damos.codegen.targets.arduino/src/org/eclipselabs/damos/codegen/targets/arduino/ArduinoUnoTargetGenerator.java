@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.AbstractTargetGenerator;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.codegen.targets.arduino.internal.registry.ShieldGeneratorDescriptor;
 import org.eclipselabs.damos.codegen.targets.arduino.internal.registry.ShieldGeneratorRegistry;
 import org.eclipselabs.damos.common.util.NumberedList;
@@ -85,11 +85,11 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 			}
 		}
 		
-		String project = GeneratorConfigurationUtil.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/projectName", null);
+		String project = GeneratorConfigurationExtensions.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/projectName", null);
 		if (project == null) {
 			return;
 		}
-		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/sourceFolder", null);
+		String sourceFolder = GeneratorConfigurationExtensions.getPropertyStringValue(context.getConfiguration(), "damos.codegen.generator/sourceFolder", null);
 		if (sourceFolder == null) {
 			return;
 		}

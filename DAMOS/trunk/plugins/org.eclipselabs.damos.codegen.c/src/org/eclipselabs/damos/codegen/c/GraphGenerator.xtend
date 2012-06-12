@@ -16,7 +16,6 @@ import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 import org.eclipselabs.damos.codegen.c.util.GeneratorUtil
 import org.eclipselabs.damos.dml.Inoutport
 import org.eclipselabs.damos.execution.ComponentNode
@@ -25,6 +24,7 @@ import org.eclipselabs.damos.execution.Graph
 import org.eclipselabs.damos.execution.Node
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.Include
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
  * @author Andreas Unger
@@ -148,7 +148,7 @@ class GraphGenerator implements IGraphGenerator {
 			«FOR node : nodes»
 				«val generator = InternalGeneratorUtil::getComponentGenerator(node)»
 				«FOR outputPort : node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten()»
-					«val computationModel = GeneratorConfigurationUtil::getComputationModel(context.configuration, node)»
+					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
 					«val cDataType = dataTypeGenerator.generateDataType(computationModel, context, outputDataType, null)»
 					«cDataType» «GeneratorUtil::getOutputVariableName(context.configuration, node, outputPort)»;

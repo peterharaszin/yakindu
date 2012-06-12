@@ -19,7 +19,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.ExecutionFlow;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
@@ -46,7 +46,7 @@ public class GeneratorContext implements IGeneratorContext, ICodeFragmentContext
 	public GeneratorContext(Configuration configuration, ExecutionFlow executionFlow) {
 		this.configuration = configuration;
 		this.executionFlow = executionFlow;
-		this.prefix = InternalGeneratorUtil.getPrefix(configuration);
+		this.prefix = GeneratorConfigurationExtensions.getPrefix(configuration);
 	}
 	
 	/* (non-Javadoc)

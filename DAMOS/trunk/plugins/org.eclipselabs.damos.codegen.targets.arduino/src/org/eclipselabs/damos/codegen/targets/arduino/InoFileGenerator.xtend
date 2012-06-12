@@ -2,13 +2,12 @@ package org.eclipselabs.damos.codegen.targets.arduino
 
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
-import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationUtil
 
 class InoFileGenerator {
 	
 	def generate(IGeneratorContext context, IProgressMonitor monitor) {
-		val prefix = GeneratorConfigurationUtil::getPrefix(context.configuration)
-		val systemHeaderFile = GeneratorConfigurationUtil::getSystemHeaderFile(context.configuration)
+		val prefix = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getPrefix(context.configuration)
+		val systemHeaderFile = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getSystemHeaderFile(context.configuration)
 		
 		val fundamentalSampleTime = context.executionFlow.fundamentalSampleTime
 		val micro = fundamentalSampleTime <= 0.01

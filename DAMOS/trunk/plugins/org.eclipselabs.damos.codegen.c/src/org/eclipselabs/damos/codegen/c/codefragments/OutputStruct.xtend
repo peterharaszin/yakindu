@@ -56,7 +56,7 @@ class OutputStruct extends PrimaryCodeFragment {
 		val signature = generator.getContext().getComponentSignature();
 		val inputPort = node.getComponent().getFirstInputPort();
 		val dataType = signature.getInputDataType(inputPort);
-		return variableDeclarationGenerator.generateVariableDeclaration(GeneratorConfigurationUtil::getComputationModel(context.getConfiguration(), node), context, dataType, InternalGeneratorUtil::uncapitalize(node.getComponent().getName()), false, this);
+		return variableDeclarationGenerator.generateVariableDeclaration(GeneratorConfigurationUtil::getComputationModel(context.getConfiguration(), node), context, dataType, node.component.name.toFirstLower(), false, this);
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) {

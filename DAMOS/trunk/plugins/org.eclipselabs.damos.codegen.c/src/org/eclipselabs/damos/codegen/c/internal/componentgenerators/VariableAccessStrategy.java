@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.IVariableAccessor;
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.InputPort;
@@ -23,8 +23,8 @@ import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
@@ -73,13 +73,13 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		
 		BlockInput blockInput = (BlockInput) block.getInputs().get(index);
 		if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-			return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
+			return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
 			DataType targetDataType = staticEvaluationContext.getValue(inputParameterDeclaration).getDataType();
 			if (!inputDataType.isEquivalentTo(targetDataType)) {
-				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
+				return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 			}
 		}
 		return variableAccessor.getInputVariable(blockInput.getPorts().get(0), false);

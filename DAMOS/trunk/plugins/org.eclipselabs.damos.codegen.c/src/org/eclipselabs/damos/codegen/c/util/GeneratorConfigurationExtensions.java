@@ -34,28 +34,28 @@ import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
  */
 public class GeneratorConfigurationExtensions {
 
-	private static final PropertyPath PROJECT_NAME_PATH = PropertyPath.create("damos.codegen.generator/projectName");
+	private static final PropertyPath PROJECT_NAME_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/projectName");
 
-	private static final PropertyPath SOURCE_FOLDER_PATH = PropertyPath.create("damos.codegen.generator/sourceFolder");
-	private static final PropertyPath HEADER_FOLDER_PATH = PropertyPath.create("damos.codegen.generator/headerFolder");
+	private static final PropertyPath SOURCE_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/sourceFolder");
+	private static final PropertyPath HEADER_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/headerFolder");
 
-	private static final PropertyPath SYSTEM_SOURCE_FILE_PATH = PropertyPath.create("damos.codegen.generator/systemSourceFile");
-	private static final PropertyPath SYSTEM_HEADER_FILE_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
+	private static final PropertyPath SYSTEM_SOURCE_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemSourceFile");
+	private static final PropertyPath SYSTEM_HEADER_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
 
 	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
 	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
 	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	
 	public static String getProjectName(Configuration configuration) {
-		return getPropertyStringValue(configuration, PROJECT_NAME_PATH, null);
+		return getPropertyStringValue(configuration, PROJECT_NAME_PROPERTY_PATH, null);
 	}
 	
 	public static String getSourceFolder(Configuration configuration) {
-		return getPropertyStringValue(configuration, SOURCE_FOLDER_PATH, null);
+		return getPropertyStringValue(configuration, SOURCE_FOLDER_PROPERTY_PATH, null);
 	}
 
 	public static String getHeaderFolder(Configuration configuration) {
-		return getPropertyStringValue(configuration, HEADER_FOLDER_PATH, getSourceFolder(configuration));
+		return getPropertyStringValue(configuration, HEADER_FOLDER_PROPERTY_PATH, getSourceFolder(configuration));
 	}
 
 	public static String getSystemSourceFile(Configuration configuration) {
@@ -67,12 +67,12 @@ public class GeneratorConfigurationExtensions {
 			defaultSourceFile.replaceAll("\\W", "_");
 			defaultSourceFile += ".c";
 		}
-		return getPropertyStringValue(configuration, SYSTEM_SOURCE_FILE_PATH, defaultSourceFile);
+		return getPropertyStringValue(configuration, SYSTEM_SOURCE_FILE_PROPERTY_PATH, defaultSourceFile);
 	}
 
 	public static String getSystemHeaderFile(Configuration configuration) {
 		String defaultHeaderFile = new Path(getSystemSourceFile(configuration)).removeFileExtension().addFileExtension("h").toString();
-		return getPropertyStringValue(configuration, SYSTEM_HEADER_FILE_PATH, defaultHeaderFile);
+		return getPropertyStringValue(configuration, SYSTEM_HEADER_FILE_PROPERTY_PATH, defaultHeaderFile);
 	}
 
 	public static String getPrefix(Configuration configuration, Node node) {

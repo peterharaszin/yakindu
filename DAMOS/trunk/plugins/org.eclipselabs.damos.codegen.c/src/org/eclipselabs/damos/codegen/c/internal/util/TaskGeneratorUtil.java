@@ -17,6 +17,7 @@ import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
+import org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -48,7 +49,7 @@ public class TaskGeneratorUtil {
 
 	public static CharSequence getCDataTypeFor(IGeneratorContext context, TaskInputNode inputNode) {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
-		IComponentGenerator componentGenerator = InternalGeneratorUtil.getComponentGenerator((ComponentNode) end.getNode());
+		IComponentGenerator componentGenerator = GeneratorNodeExtensions.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
 		return new DataTypeGenerator().generateDataType(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context, dataType, null);
 	}

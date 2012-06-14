@@ -20,6 +20,7 @@ import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions.*
 
 /**
  * @author Andreas Unger
@@ -41,7 +42,7 @@ class InputStruct extends PrimaryCodeFragment {
 		content = '''
 			typedef struct {
 				«FOR node : InternalGeneratorUtil::getInportNodes(context)»
-					«getCVariableDeclaration(context, node)»;
+					«getVariableDeclaration(context, node)»;
 				«ENDFOR»
 			} «prefix»Input;
 		'''
@@ -52,12 +53,12 @@ class InputStruct extends PrimaryCodeFragment {
 	 * @param node
 	 * @return
 	 */
-	def private getCVariableDeclaration(IGeneratorContext context, ComponentNode node) {
-		val generator = InternalGeneratorUtil::getComponentGenerator(node);
-		val signature = generator.getContext().getComponentSignature();
-		val outputPort = node.getComponent().getFirstOutputPort();
-		val dataType = signature.getOutputDataType(outputPort);
-		return variableDeclarationGenerator.generateVariableDeclaration(context.configuration.getComputationModel(node), context, dataType, node.component.name.toFirstLower(), false, this);
+	def private getVariableDeclaration(IGeneratorContext context, ComponentNode node) {
+		val generator = node.componentGenerator
+		val signature = generator.context.componentSignature
+		val outputPort = node.component.firstOutputPort
+		val dataType = signature.getOutputDataType(outputPort)
+		return variableDeclarationGenerator.generateVariableDeclaration(context.configuration.getComputationModel(node), context, dataType, node.component.name.toFirstLower(), false, this)
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) {

@@ -14,10 +14,7 @@ package org.eclipselabs.damos.codegen.c.internal.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.internal.ComponentGeneratorAdapter;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
@@ -32,11 +29,6 @@ import org.eclipselabs.damos.execution.Node;
  *
  */
 public class InternalGeneratorUtil {
-	
-	public static IComponentGenerator getComponentGenerator(ComponentNode node) {
-		ComponentGeneratorAdapter adapter = (ComponentGeneratorAdapter) EcoreUtil.getAdapter(node.eAdapters(), ComponentGeneratorAdapter.class);
-		return adapter != null ? adapter.getGenerator() : null;
-	}
 	
 	public static String getOutputPortName(OutputPort outputPort) {
 		StringBuilder sb = new StringBuilder();

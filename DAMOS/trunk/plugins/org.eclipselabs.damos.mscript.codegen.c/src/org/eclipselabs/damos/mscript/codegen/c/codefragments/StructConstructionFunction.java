@@ -23,6 +23,9 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -37,10 +40,8 @@ public class StructConstructionFunction extends AbstractCodeFragment {
 	
 	private String functionSignature;
 	
-	/**
-	 * 
-	 */
-	public StructConstructionFunction(ComputationModel computationModel, MachineStructType structType) {
+	@Inject
+	public StructConstructionFunction(@Assisted ComputationModel computationModel, @Assisted MachineStructType structType) {
 		this.computationModel = computationModel;
 		this.structType = structType;
 	}

@@ -28,6 +28,9 @@ import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -54,10 +57,8 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 	
 	private String functionBody;
 	
-	/**
-	 * 
-	 */
-	public ScalarMultiplyFunction(ComputationModel computationModel, DataType scalarType, DataType elementType, ArrayType resultType) {
+	@Inject
+	public ScalarMultiplyFunction(@Assisted ComputationModel computationModel, @Assisted("scalarType") DataType scalarType, @Assisted("elementType") DataType elementType, @Assisted ArrayType resultType) {
 		this.computationModel = computationModel;
 		this.scalarType = scalarType;
 		this.elementType = elementType;

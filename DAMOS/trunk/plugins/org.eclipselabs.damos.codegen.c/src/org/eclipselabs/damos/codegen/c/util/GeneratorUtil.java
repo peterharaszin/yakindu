@@ -35,7 +35,7 @@ public class GeneratorUtil {
 			if (sourceNode instanceof ComponentNode && sourceEnd.getConnector() instanceof OutputPort) {
 				OutputPort outputPort = (OutputPort) sourceEnd.getConnector();
 				ComponentNode componentNode = (ComponentNode) sourceNode;
-				return new VariableAccessor(configuration, componentNode).getOutputVariable(outputPort, false);
+				return new VariableAccessor(configuration, componentNode).generateOutputVariableReference(outputPort, false);
 			}
 		}
 		return null;

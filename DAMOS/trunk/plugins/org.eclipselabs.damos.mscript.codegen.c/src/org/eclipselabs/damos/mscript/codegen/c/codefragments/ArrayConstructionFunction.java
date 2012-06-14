@@ -22,6 +22,9 @@ import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -36,10 +39,8 @@ public class ArrayConstructionFunction extends AbstractCodeFragment {
 	
 	private String functionSignature;
 	
-	/**
-	 * 
-	 */
-	public ArrayConstructionFunction(ComputationModel computationModel, MachineArrayType arrayType) {
+	@Inject
+	public ArrayConstructionFunction(@Assisted ComputationModel computationModel, @Assisted MachineArrayType arrayType) {
 		this.computationModel = computationModel;
 		this.arrayType = arrayType;
 	}

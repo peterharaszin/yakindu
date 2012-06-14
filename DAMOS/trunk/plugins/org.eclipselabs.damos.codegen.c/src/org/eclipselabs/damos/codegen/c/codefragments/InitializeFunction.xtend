@@ -22,8 +22,8 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
-import static extension org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions.*
 
 /**
  * @author Andreas Unger

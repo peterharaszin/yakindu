@@ -49,7 +49,7 @@ public class VariableAccessor implements IVariableAccessor {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IVariableAccessor#getContextVariable(boolean)
 	 */
-	public String getContextVariable(boolean pointer) {
+	public String generateContextVariableReference(boolean pointer) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
 			sb.append("(&");
@@ -69,7 +69,7 @@ public class VariableAccessor implements IVariableAccessor {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IVariableAccessor#getInputVariable(boolean)
 	 */
-	public String getInputVariable(InputPort inputPort, boolean pointer) {
+	public String generateInputVariableReference(InputPort inputPort, boolean pointer) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputPort);
 		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
 		if (sourceEnd.getNode() instanceof TaskInputNode) {
@@ -87,7 +87,7 @@ public class VariableAccessor implements IVariableAccessor {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IVariableAccessor#getOutputVariable(boolean)
 	 */
-	public String getOutputVariable(OutputPort outputPort, boolean pointer) {
+	public String generateOutputVariableReference(OutputPort outputPort, boolean pointer) {
 		return getOutputVariable(outputPort, pointer, node);
 	}
 	
@@ -111,7 +111,7 @@ public class VariableAccessor implements IVariableAccessor {
 		return sb.toString();
 	}
 	
-	public String getMessageKindVariable(boolean pointer) {
+	public String generateMessageKindVariableReference(boolean pointer) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
 			sb.append("(&");

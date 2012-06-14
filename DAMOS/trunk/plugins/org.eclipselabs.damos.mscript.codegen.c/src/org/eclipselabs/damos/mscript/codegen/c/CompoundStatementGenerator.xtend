@@ -25,9 +25,9 @@ import org.eclipselabs.damos.mscript.NumericType
 import org.eclipselabs.damos.mscript.Statement
 import org.eclipselabs.damos.mscript.VariableDeclaration
 import org.eclipselabs.damos.mscript.VariableReference
-import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
+import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 
 /**
  * @author Andreas Unger
@@ -35,14 +35,18 @@ import org.eclipselabs.damos.mscript.util.TypeUtil
  */
 class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
-	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
-	
 	val IExpressionGenerator expressionGenerator
 
+	val DataTypeGenerator dataTypeGenerator
+	val VariableDeclarationGenerator variableDeclarationGenerator
+	val VariableReferenceGenerator variableReferenceGenerator
+	
 	@Inject
-	new(IExpressionGenerator expressionGenerator) {
+	new(IExpressionGenerator expressionGenerator, DataTypeGenerator dataTypeGenerator, VariableDeclarationGenerator variableDeclarationGenerator, VariableReferenceGenerator variableAccessGenerator) {
 		this.expressionGenerator = expressionGenerator
+		this.dataTypeGenerator = dataTypeGenerator
+		this.variableDeclarationGenerator = variableDeclarationGenerator
+		this.variableReferenceGenerator = variableAccessGenerator
 	}
 	
 	override CharSequence generate(IMscriptGeneratorContext context, Compound compound) {
@@ -64,7 +68,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		}
 		val target = variableReference.feature as VariableDeclaration
 		
-		generateAssignment(context, getDataType(context, target), new VariableAccessGenerator(context, variableReference).generate(), assignment.assignedExpression);
+		generateAssignment(context, getDataType(context, target), variableReferenceGenerator.generate(context, variableReference), assignment.assignedExpression);
 	}
 	
 	def private dispatch doGenerate(IMscriptGeneratorContext context, LocalVariableDeclaration localVariableDeclaration) {

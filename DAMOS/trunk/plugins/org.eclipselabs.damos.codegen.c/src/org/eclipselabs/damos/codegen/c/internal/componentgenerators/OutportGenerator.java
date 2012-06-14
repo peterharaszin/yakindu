@@ -42,7 +42,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
 		out.printf("output->%s = ", StringExtensions.toFirstLower(getComponent().getName()));
-		String inputVariableString = getVariableAccessor().getInputVariable(inputPort, false);
+		String inputVariableString = getVariableAccessor().generateInputVariableReference(inputPort, false);
 		out.print(MscriptGeneratorUtil.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
 		out.println(";");
 		return sb;

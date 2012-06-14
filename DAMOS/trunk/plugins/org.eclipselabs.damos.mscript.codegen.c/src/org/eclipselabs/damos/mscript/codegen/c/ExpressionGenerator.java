@@ -51,7 +51,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFu
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
-import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookupTable;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IFunctionGenerator;
@@ -69,6 +69,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 public class ExpressionGenerator implements IExpressionGenerator {
 	
 	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	private final VariableReferenceGenerator variableReferenceGenerator = new VariableReferenceGenerator(literalGenerator);
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		StringBuilder sb = new StringBuilder();
@@ -433,7 +434,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 
 		public Boolean caseVariableReference(VariableReference variableReference) {
-			out.print(new VariableAccessGenerator(context, variableReference).generate());
+			out.print(variableReferenceGenerator.generate(context, variableReference));
 			return true;
 		}
 

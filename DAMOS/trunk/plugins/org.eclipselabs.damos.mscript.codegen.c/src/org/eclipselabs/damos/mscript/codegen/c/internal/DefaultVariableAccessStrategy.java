@@ -38,7 +38,7 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy#getVariableAccessString(org.eclipselabs.mscript.language.il.VariableAccess)
 	 */
-	public String getVariableAccessString(VariableReference variableReference) {
+	public String generateVariableReference(VariableReference variableReference) {
 		return new VariableAccessSwitch(variableReference).doSwitch(variableReference.getFeature());
 	}
 

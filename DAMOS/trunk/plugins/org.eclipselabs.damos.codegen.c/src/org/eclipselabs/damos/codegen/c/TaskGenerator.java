@@ -103,9 +103,9 @@ public class TaskGenerator implements ITaskGenerator {
 			if (end.getNode() instanceof ComponentNode) {
 				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
 				if (otherComponentNode.getComponent() instanceof Latch) {
-					String contextVariable = new VariableAccessor(context.getConfiguration(), otherComponentNode).getContextVariable(false);
+					String contextVariable = new VariableAccessor(context.getConfiguration(), otherComponentNode).generateContextVariableReference(false);
 					String variableName = contextVariable + "." + "lock";
-					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+					String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 					out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
 					out.printf("%s.data = %s;\n", contextVariable, outputVariable);
@@ -134,7 +134,7 @@ public class TaskGenerator implements ITaskGenerator {
 				
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph());
 				String qualifier = TaskGeneratorUtil.getTaskContextVariable(context, taskName, false) + "." + "queue";
-				String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+				String outputVariable = new VariableAccessor(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 				DataFlowTargetEnd firstEnd = inputNode.getDrivenEnds().get(0);
 				if (firstEnd.getConnector() instanceof InputPort) {

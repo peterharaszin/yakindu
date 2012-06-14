@@ -53,7 +53,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy#getVariableAccessString(org.eclipselabs.mscript.language.il.VariableAccess)
 	 */
-	public String getVariableAccessString(VariableReference variableReference) {
+	public String generateVariableReference(VariableReference variableReference) {
 		return new VariableAccessSwitch(variableReference).doSwitch(variableReference.getFeature());
 	}
 
@@ -66,7 +66,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		
 		if (!block.getInputSockets().isEmpty()) {
 			if (index == 0) {
-				return variableAccessor.getMessageKindVariable(false);
+				return variableAccessor.generateMessageKindVariableReference(false);
 			}
 			--index;
 		}
@@ -82,7 +82,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 				return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 			}
 		}
-		return variableAccessor.getInputVariable(blockInput.getPorts().get(0), false);
+		return variableAccessor.generateInputVariableReference(blockInput.getPorts().get(0), false);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	static String getOutputParameterAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, OutputParameterDeclaration outputParameterDeclaration) {
 		int index = DMLUtil.indexOf(outputParameterDeclaration);
 		Output output = block.getOutputs().get(index);
-		return variableAccessor.getOutputVariable(output.getPorts().get(0), false);
+		return variableAccessor.generateOutputVariableReference(output.getPorts().get(0), false);
 	}
 
 	public class VariableAccessSwitch extends MscriptSwitch<String> {
@@ -130,7 +130,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
 			int stepIndex = staticEvaluationContext.getStepIndex(variableReference);
 
-			String contextVariable = variableAccessor.getContextVariable(false);
+			String contextVariable = variableAccessor.generateContextVariableReference(false);
 			String targetName = target.getName();
 			int circularBufferSize = staticEvaluationContext.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {

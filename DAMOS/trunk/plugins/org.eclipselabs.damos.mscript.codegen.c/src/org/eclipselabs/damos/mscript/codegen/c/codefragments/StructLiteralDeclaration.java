@@ -25,6 +25,9 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -41,10 +44,8 @@ public class StructLiteralDeclaration extends AbstractCodeFragment {
 	
 	private CharSequence body;
 	
-	/**
-	 * 
-	 */
-	public StructLiteralDeclaration(ComputationModel computationModel, StructValue value) {
+	@Inject
+	public StructLiteralDeclaration(@Assisted ComputationModel computationModel, @Assisted StructValue value) {
 		this.computationModel = computationModel;
 		this.structValue = value;
 	}

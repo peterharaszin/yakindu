@@ -19,6 +19,9 @@ import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -31,10 +34,8 @@ public class ArrayTypeDeclaration extends AbstractCodeFragment {
 	private String elementTypeString;
 	private String name;
 	
-	/**
-	 * 
-	 */
-	public ArrayTypeDeclaration(ComputationModel computationModel, MachineArrayType arrayType) {
+	@Inject
+	public ArrayTypeDeclaration(@Assisted ComputationModel computationModel, @Assisted MachineArrayType arrayType) {
 		this.computationModel = computationModel;
 		this.arrayType = arrayType;
 	}

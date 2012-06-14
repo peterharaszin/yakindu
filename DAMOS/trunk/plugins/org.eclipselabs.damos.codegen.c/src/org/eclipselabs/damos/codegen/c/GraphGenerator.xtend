@@ -15,7 +15,6 @@ import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
-import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipselabs.damos.codegen.c.util.GeneratorUtil
 import org.eclipselabs.damos.dml.Inoutport
 import org.eclipselabs.damos.execution.ComponentNode
@@ -24,7 +23,9 @@ import org.eclipselabs.damos.execution.Graph
 import org.eclipselabs.damos.execution.Node
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.Include
+
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions.*
 
 /**
  * @author Andreas Unger
@@ -51,7 +52,7 @@ class GraphGenerator implements IGraphGenerator {
 				.filter(n | !(n.component instanceof Inoutport))
 		
 		for (node : nodes) {
-			val generator = InternalGeneratorUtil::getComponentGenerator(node)
+			val generator = node.componentGenerator
 			if (generator.contributesComputeOutputsCode) {
 				val includes = generator.getComputeOutputsCodeIncludes
 				if (includes != null) {
@@ -75,7 +76,7 @@ class GraphGenerator implements IGraphGenerator {
 		
 		val updateNodes = graph.nodes
 				.filter(typeof(ComponentNode))
-				.filter(n | InternalGeneratorUtil::getComponentGenerator(n).contributesUpdateCode)
+				.filter(n | n.componentGenerator.contributesUpdateCode)
 				
 		'''
 			«IF compoundGenerator.contributesChoiceVariableDeclarations(context, graph)»
@@ -103,7 +104,7 @@ class GraphGenerator implements IGraphGenerator {
 			«FOR node : updateNodes SEPARATOR "\n"»
 				/* «node.component.name» */
 				{
-					«InternalGeneratorUtil::getComponentGenerator(node).generateUpdateCode(monitor)»
+					«node.componentGenerator.generateUpdateCode(monitor)»
 				}
 			«ENDFOR»
 		'''
@@ -115,7 +116,7 @@ class GraphGenerator implements IGraphGenerator {
 		}
 		if (node instanceof ComponentNode) {
 			val componentNode = node as ComponentNode
-			return InternalGeneratorUtil::getComponentGenerator(componentNode).contributesComputeOutputsCode
+			return componentNode.componentGenerator.contributesComputeOutputsCode
 					|| taskGenerator.contributesLatchUpdate(context, componentNode)
 					|| taskGenerator.contributesMessageQueueSend(context, componentNode)
 		}
@@ -127,7 +128,7 @@ class GraphGenerator implements IGraphGenerator {
 	}
 	
 	def private dispatch generateComputeOutputsCode(IGeneratorContext context, ComponentNode node, IProgressMonitor monitor) {
-		val generator = InternalGeneratorUtil::getComponentGenerator(node)
+		val generator = node.componentGenerator
 		'''
 			«IF generator.contributesComputeOutputsCode»
 				/* «node.component.name» */
@@ -146,7 +147,7 @@ class GraphGenerator implements IGraphGenerator {
 				.filter(n | !(n.component instanceof Inoutport))
 		'''		
 			«FOR node : nodes»
-				«val generator = InternalGeneratorUtil::getComponentGenerator(node)»
+				«val generator = node.componentGenerator»
 				«FOR outputPort : node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten()»
 					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»

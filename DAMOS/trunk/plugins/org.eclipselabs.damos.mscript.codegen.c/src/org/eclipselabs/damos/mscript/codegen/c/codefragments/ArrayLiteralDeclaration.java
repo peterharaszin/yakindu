@@ -26,6 +26,9 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -41,10 +44,8 @@ public class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	private String typeName;
 	private CharSequence body;
 
-	/**
-	 * 
-	 */
-	public ArrayLiteralDeclaration(ComputationModel computationModel, IArrayValue value) {
+	@Inject
+	public ArrayLiteralDeclaration(@Assisted ComputationModel computationModel, @Assisted IArrayValue value) {
 		this.computationModel = computationModel;
 		this.arrayValue = value;
 	}

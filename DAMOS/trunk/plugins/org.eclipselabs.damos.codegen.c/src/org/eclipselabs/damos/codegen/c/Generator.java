@@ -47,6 +47,7 @@ import org.eclipselabs.damos.codegen.c.internal.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
+import org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
@@ -269,7 +270,7 @@ public class Generator extends AbstractGenerator {
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				IComponentGenerator generator = GeneratorNodeExtensions.getComponentGenerator(componentNode);
 				IVariableAccessor variableAccessor = new VariableAccessor(configuration, componentNode);
 				IComponentSignature componentSignature = signatures.get(componentNode.getComponent());
 				ComponentGeneratorContext componentGeneratorContext = new ComponentGeneratorContext(componentNode, componentSignature, variableAccessor, configuration, context);

@@ -24,6 +24,9 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 /**
  * @author Andreas Unger
  *
@@ -36,10 +39,8 @@ public class StructTypeDeclaration extends AbstractCodeFragment {
 	
 	private String name;
 	
-	/**
-	 * 
-	 */
-	public StructTypeDeclaration(ComputationModel computationModel, MachineStructType structType) {
+	@Inject
+	public StructTypeDeclaration(@Assisted ComputationModel computationModel, @Assisted MachineStructType structType) {
 		this.computationModel = computationModel;
 		this.structType = structType;
 	}

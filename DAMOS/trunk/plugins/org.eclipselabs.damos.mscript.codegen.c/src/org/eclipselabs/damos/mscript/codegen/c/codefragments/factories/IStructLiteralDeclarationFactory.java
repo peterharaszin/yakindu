@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,18 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
-import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IVariableAccessStrategy {
+public interface IStructLiteralDeclarationFactory {
 
-	CharSequence generateVariableReference(VariableReference variableReference);
+	ICodeFragment create(ComputationModel computationModel, StructValue value);
 	
 }

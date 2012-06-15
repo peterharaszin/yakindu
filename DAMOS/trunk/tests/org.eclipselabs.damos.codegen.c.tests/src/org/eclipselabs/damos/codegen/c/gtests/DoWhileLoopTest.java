@@ -29,8 +29,9 @@ import org.junit.Before;
 public class DoWhileLoopTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Inport initialValue = createInport("InitialValue", createRealTypeSpecification(), 1);
 		Inport upperLimit = createInport("UpperLimit", createRealTypeSpecification(), 1);

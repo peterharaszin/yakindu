@@ -18,6 +18,7 @@ import org.eclipselabs.damos.codegen.c.gtests.DoWhileLoopTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainFixedPointTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainTest;
 import org.eclipselabs.damos.codegen.c.gtests.InportOnlyTest;
+import org.eclipselabs.damos.codegen.c.gtests.IntegratorFixedPointTest;
 import org.eclipselabs.damos.codegen.c.gtests.IntegratorTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
 import org.eclipselabs.damos.codegen.c.gtests.StructConstructionTest;
@@ -41,6 +42,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	GainTest.class,
 	GainFixedPointTest.class,
 	IntegratorTest.class,
+	IntegratorFixedPointTest.class,
 	ActionTest.class,
 	DoWhileLoopTest.class,
 	WhileLoopTest.class,

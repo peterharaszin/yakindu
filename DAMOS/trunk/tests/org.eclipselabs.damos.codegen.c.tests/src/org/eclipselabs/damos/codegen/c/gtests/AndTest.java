@@ -26,8 +26,9 @@ import org.junit.Before;
 public class AndTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Block and = createBlock(AND, "And");
 		

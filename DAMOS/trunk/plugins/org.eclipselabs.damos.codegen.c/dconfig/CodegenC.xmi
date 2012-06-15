@@ -26,6 +26,11 @@
         <type xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
+    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="singleton">
+      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+        <type xsi:type="mscript:BooleanType"/>
+      </typeSpecifier>
+    </propertyDeclarations>
     <target href="../../org.eclipselabs.damos.codegen/dconfig/Codegen.xmi#//@members.0"/>
   </members>
   <members xsi:type="dconfig:SimplePropertyDeclaration" name="prefix">

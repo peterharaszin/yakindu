@@ -23,6 +23,7 @@ import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.dconfig.ComputationProperty;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
+import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
@@ -76,6 +77,7 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
 import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
+import org.junit.Before;
 
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -105,6 +107,12 @@ public abstract class AbstractExecutionTest {
 	protected ResourceSet resourceSet;
 	protected Configuration configuration;
 	protected System system;
+	
+	@Before
+	public void setUp() {
+		setUpInjector();
+		createConfiguration();
+	}
 	
 	protected void setUpInjector() {
 		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
@@ -385,6 +393,25 @@ public abstract class AbstractExecutionTest {
 		SelectionPropertyBody body = DconfigFactory.eINSTANCE.createSelectionPropertyBody();
 		property.setBody(body);
 		return property;
+	}
+
+	protected SimpleProperty createSimpleProperty(SelectionProperty generatorSelection, String propertyId, Expression value) {
+		SimpleProperty projectProperty = DconfigFactory.eINSTANCE.createSimpleProperty();
+		for (PropertyDeclaration declaration : generatorSelection.getSelection().getPropertyDeclarations()) {
+			if (declaration instanceof SimplePropertyDeclaration) {
+				SimplePropertyDeclaration simplePropertyDeclaration = (SimplePropertyDeclaration) declaration;
+				if (propertyId.equals(simplePropertyDeclaration.getName())) {
+					projectProperty.setDeclaration(simplePropertyDeclaration);
+					break;
+				}
+			}
+		}
+		projectProperty.setValue(value);
+		return projectProperty;
+	}
+
+	protected SimpleProperty createSimpleProperty(SelectionProperty generatorSelection, String propertyId, String valueExpressionString) {
+		return createSimpleProperty(generatorSelection, propertyId, parseExpression(valueExpressionString));
 	}
 
 	private void createSystem() {

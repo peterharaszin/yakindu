@@ -82,6 +82,15 @@ public class TaskFunction extends PrimaryCodeFragment {
 			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 			sb.append(runtimeEnvironmentAPI.generateTaskSignature(taskName));
 			sb.append(" {\n");
+
+			if (!GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
+				String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
+				sb.append(prefix);
+				sb.append("Context *context = (");
+				sb.append(prefix);
+				sb.append("Context *) data;\n\n");
+			}
+			
 			sb.append(graphGenerator.generateOutputVariableDeclarations(context, taskGraph, monitor));
 			
 			EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
@@ -98,6 +107,8 @@ public class TaskFunction extends PrimaryCodeFragment {
 					sb.append("_message;\n");
 				}
 			}
+			
+			sb.append("\n");
 			
 			sb.append("for (;;) {\n");
 			

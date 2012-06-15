@@ -26,8 +26,9 @@ import org.junit.Before;
 public class IntegratorTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Block integrator = createBlock(DISCRETE_INTEGRATOR, "Integrator");
 		

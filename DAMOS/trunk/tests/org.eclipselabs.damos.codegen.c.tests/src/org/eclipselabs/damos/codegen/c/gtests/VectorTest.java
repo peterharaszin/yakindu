@@ -27,10 +27,9 @@ import org.junit.Before;
 public class VectorTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		setUpInjector();
-		
-		createConfiguration();
+		super.setUp();
 		
 		Inport inport = createInport("In", createArrayTypeSpecification(TypeUtil.createRealType(), 3), 1);
 		Block arrayScalarMultiply = createTestBlock("VectorScalarMultiply", "VectorScalarMultiply");

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.gtests;
 
-import org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
@@ -20,7 +19,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  *
  */
 @GTest(sourceFile="gtests/IntegratorFixedPointTest.cpp", program="gtests/IntegratorFixedPointTest")
-public class IntegratorFixedPointTest extends AbstractGeneratorGTest {
+public class IntegratorFixedPointTest extends IntegratorTest {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.tests.util.AbstractGeneratorGTest#createSystemComputationModel()

@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
+import org.eclipselabs.damos.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.ExecuteFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
@@ -150,9 +151,14 @@ public class Generator extends AbstractGenerator {
 		List<ICodeFragment> codeFragments = new ArrayList<ICodeFragment>(context.getCodeFragments());
 		
 		for (ICodeFragment codeFragment : codeFragments) {
-			if (codeFragment instanceof InputStruct || codeFragment instanceof OutputStruct
-					|| codeFragment instanceof InitializeFunction || codeFragment instanceof ExecuteFunction
-					|| codeFragment instanceof TaskInfoArray || codeFragment instanceof ITaskInfoStruct) {
+			if (codeFragment instanceof InputStruct
+					|| codeFragment instanceof OutputStruct
+					|| codeFragment instanceof InitializeFunction
+					|| codeFragment instanceof ExecuteFunction
+					|| codeFragment instanceof TaskInfoArray
+					|| codeFragment instanceof ITaskInfoStruct
+					|| (codeFragment instanceof ContextStruct && !GeneratorConfigurationExtensions
+							.isSingleton(configuration))) {
 				module.addEntry(codeFragment, Visibility.PUBLIC);
 			} else {
 				module.addEntry(codeFragment, Visibility.PRIVATE);
@@ -192,7 +198,11 @@ public class Generator extends AbstractGenerator {
 		}
 		
 		context.addCodeFragment(contextStructFactory.create(), monitor);
-		context.addCodeFragment(contextVariableFactory.create(), monitor);
+		
+		if (GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
+			context.addCodeFragment(contextVariableFactory.create(), monitor);
+		}
+		
 		context.addCodeFragment(initializeFunctionFactory.create(), monitor);
 		context.addCodeFragment(executeFunctionFactory.create(), monitor);
 	}

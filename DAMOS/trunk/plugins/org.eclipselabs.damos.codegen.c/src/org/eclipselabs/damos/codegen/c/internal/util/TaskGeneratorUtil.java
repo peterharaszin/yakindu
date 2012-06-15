@@ -56,18 +56,23 @@ public class TaskGeneratorUtil {
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {
 		StringBuilder sb = new StringBuilder();
+		
 		if (pointer) {
-			sb.append("(&");
+			sb.append("&");
 		}
-		String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
-		if (prefix != null) {
-			sb.append(prefix);
+		
+		if (GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
+			String prefix = GeneratorConfigurationExtensions.getPrefix(context.getConfiguration());
+			if (prefix != null) {
+				sb.append(prefix);
+			}
+			sb.append("context.");
+		} else {
+			sb.append("context->");
 		}
-		sb.append("context.");
+
 		sb.append(taskName);
-		if (pointer) {
-			sb.append(")");
-		}
+
 		return sb.toString();
 	}
 

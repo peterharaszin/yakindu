@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.mscript.util;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
@@ -32,6 +34,60 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  *
  */
 public class MscriptUtil {
+
+	private static final Set<String> RESERVED_WORDS = new HashSet<String>();
+
+	{
+		// keywords
+		RESERVED_WORDS.add("auto");
+		RESERVED_WORDS.add("break");
+		RESERVED_WORDS.add("case");
+		RESERVED_WORDS.add("char");
+		RESERVED_WORDS.add("const");
+		RESERVED_WORDS.add("continue");
+		RESERVED_WORDS.add("default");
+		RESERVED_WORDS.add("do");
+		RESERVED_WORDS.add("double");
+		RESERVED_WORDS.add("else");
+		RESERVED_WORDS.add("enum");
+		RESERVED_WORDS.add("extern");
+		RESERVED_WORDS.add("float");
+		RESERVED_WORDS.add("for");
+		RESERVED_WORDS.add("goto");
+		RESERVED_WORDS.add("if");
+		RESERVED_WORDS.add("int");
+		RESERVED_WORDS.add("long");
+		RESERVED_WORDS.add("register");
+		RESERVED_WORDS.add("return");
+		RESERVED_WORDS.add("short");
+		RESERVED_WORDS.add("signed");
+		RESERVED_WORDS.add("sizeof");
+		RESERVED_WORDS.add("static");
+		RESERVED_WORDS.add("struct");
+		RESERVED_WORDS.add("switch");
+		RESERVED_WORDS.add("typedef");
+		RESERVED_WORDS.add("union");
+		RESERVED_WORDS.add("unsigned");
+		RESERVED_WORDS.add("void");
+		RESERVED_WORDS.add("volatile");
+		RESERVED_WORDS.add("while");
+		
+		// standard typedefs
+		RESERVED_WORDS.add("int8_t");
+		RESERVED_WORDS.add("int16_t");
+		RESERVED_WORDS.add("int32_t");
+		RESERVED_WORDS.add("int64_t");
+		RESERVED_WORDS.add("uint8_t");
+		RESERVED_WORDS.add("uint16_t");
+		RESERVED_WORDS.add("uint32_t");
+		RESERVED_WORDS.add("uint64_t");
+		RESERVED_WORDS.add("bool");
+		
+		// Mscript reserved
+		RESERVED_WORDS.add("context");
+		RESERVED_WORDS.add("input");
+		RESERVED_WORDS.add("output");
+	}
 
 	public static FunctionDeclaration getFunctionDefinition(Module module, String qualifiedName) {
 		return getFunctionDefinition(module.getDeclarations(), qualifiedName);
@@ -83,6 +139,10 @@ public class MscriptUtil {
 	}
 	
 	private static boolean isLocalVariableNameAvailable(Compound compound, String name) {
+		if (RESERVED_WORDS.contains(name)) {
+			return false;
+		}
+		
 		EObject container = compound;
 		while (container != null) {
 			if (container instanceof Compound) {
@@ -94,6 +154,7 @@ public class MscriptUtil {
 			}
 			container = container.eContainer();
 		}
+		
 		return true;
 	}
 	

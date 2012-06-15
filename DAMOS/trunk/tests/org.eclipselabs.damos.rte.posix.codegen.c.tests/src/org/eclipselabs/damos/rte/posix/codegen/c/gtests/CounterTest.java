@@ -29,8 +29,10 @@ import org.junit.Before;
 public class CounterTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
+		
 		configuration.getProperties().add(createSelectionProperty("damos.rte.runtime", "damos.rte.runtimes.Posix"));
 		
 		Block inverterA1 = createBlock(INVERTER, "InverterA1");

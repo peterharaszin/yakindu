@@ -2,12 +2,14 @@ package org.eclipselabs.damos.codegen.targets.arduino
 
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 class InoFileGenerator {
 	
 	def generate(IGeneratorContext context, IProgressMonitor monitor) {
-		val prefix = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getPrefix(context.configuration)
-		val systemHeaderFile = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getSystemHeaderFile(context.configuration)
+		val prefix = context.configuration.prefix
+		val systemHeaderFile = context.configuration.systemHeaderFile
+		val singleton = context.configuration.singleton
 		
 		val fundamentalSampleTime = context.executionFlow.fundamentalSampleTime
 		val micro = fundamentalSampleTime <= 0.01
@@ -16,20 +18,23 @@ class InoFileGenerator {
 		'''
 			#include "«systemHeaderFile»"
 			
-			unsigned long Damos_time;
+			«IF !singleton»
+				static «prefix»Context «prefix»context;
+			«ENDIF»
+			static unsigned long «prefix»time;
 			
 			void setup() {
-				«prefix»initialize();
-				Damos_time = «IF micro»micros«ELSE»millis«ENDIF»();
+				«prefix»initialize(«IF !singleton»&«prefix»context«ENDIF»);
+				«prefix»time = «IF micro»micros«ELSE»millis«ENDIF»();
 			}
 			
 			void loop() {
-				«prefix»execute();
+				«prefix»execute(«IF !singleton»&«prefix»context«ENDIF»);
 				
-				Damos_time += «stepSize»UL;
+				«prefix»time += «stepSize»UL;
 				
 				// Delay system, if necessary
-				unsigned long delayTime = Damos_time - «IF micro»micros«ELSE»millis«ENDIF»();
+				unsigned long delayTime = «prefix»time - «IF micro»micros«ELSE»millis«ENDIF»();
 				if (delayTime > «stepSize»UL) {
 					delayTime += ~(0UL);
 				}

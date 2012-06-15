@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 
 import static org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
+import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
  * @author Andreas Unger
@@ -81,8 +82,9 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	'''
 
 	def private CharSequence generateFunctionSignature(IGeneratorContext context) {
-		val prefix = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getPrefix(context.getConfiguration())
+		val prefix = context.configuration.prefix
 		
+		val hasContext = !context.configuration.singleton
 		val hasInput = !getInportNodes(context).isEmpty()
 		val hasOutput = !getOutportNodes(context).isEmpty()
 		
@@ -93,9 +95,11 @@ class ExecuteFunction extends PrimaryCodeFragment {
 			val outputParameter = if (hasOutput) {
 				'''«prefix»Output *output'''
 			}
-			'''«inputParameter»«outputParameter»'''
+			'''«IF hasContext»«prefix»Context *context, «ENDIF»«inputParameter»«outputParameter»'''
+		} else if (hasContext) {
+			'''«prefix»Context *context'''
 		} else {
-			'''void'''
+			"void"
 		}
 		return '''void «prefix»execute(«parameters»)'''
 	}

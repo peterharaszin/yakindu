@@ -12,13 +12,7 @@
 package org.eclipselabs.damos.rte.posix.codegen.c.gtests;
 
 import org.eclipselabs.damos.codegen.c.test.GTest;
-import org.eclipselabs.damos.dconfig.DconfigFactory;
-import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
-import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
-import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
-import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.StringLiteral;
 
 /**
  * Right now generated code is invalid if no prefix is specified.
@@ -29,18 +23,10 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 @GTest(sourceFile="gtests/CounterTestWithPrefix.cpp", program="gtests/CounterTestWithPrefix")
 public class CounterTestWithPrefix extends CounterTest {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.test.AbstractGeneratorGTest#createConfiguration()
-	 */
 	@Override
 	protected void createConfiguration() {
 		super.createConfiguration();
-		PropertyDeclaration prefixPropertyDeclaration = new PropertyEnumerationHelper().getPropertyDeclaration("damos.codegen.c.prefix");
-		SimpleProperty prefixProperty = DconfigFactory.eINSTANCE.createSimpleProperty();
-		prefixProperty.setDeclaration((SimplePropertyDeclaration) prefixPropertyDeclaration);
-		StringLiteral prefix = MscriptFactory.eINSTANCE.createStringLiteral();
-		prefix.setValue("CounterTest_");
-		prefixProperty.setValue(prefix);
+		SimpleProperty prefixProperty = createSimpleProperty("damos.codegen.c.prefix", "\"CounterTest_\"");
 		prefixProperty.setPropagate(true);
 		configuration.getRootSystemConfiguration().getBody().getProperties().add(prefixProperty);
 	}

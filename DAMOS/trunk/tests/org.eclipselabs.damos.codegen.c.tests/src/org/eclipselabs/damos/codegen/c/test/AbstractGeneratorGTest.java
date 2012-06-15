@@ -17,14 +17,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.codegen.IGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCModule;
-import org.eclipselabs.damos.dconfig.DconfigFactory;
-import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SimpleProperty;
-import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.execution.test.AbstractExecutionTest;
-import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.StringLiteral;
 import org.junit.runner.RunWith;
 
 import com.google.inject.Guice;
@@ -60,21 +55,11 @@ public abstract class AbstractGeneratorGTest extends AbstractExecutionTest {
 		super.createConfiguration();
 		SelectionProperty generatorSelection = createSelectionProperty("damos.codegen.generator", "damos.codegen.c.DefaultGenerator");
 		
-		SimpleProperty projectProperty = DconfigFactory.eINSTANCE.createSimpleProperty();
-		for (PropertyDeclaration declaration : generatorSelection.getSelection().getPropertyDeclarations()) {
-			if (declaration instanceof SimplePropertyDeclaration) {
-				SimplePropertyDeclaration simplePropertyDeclaration = (SimplePropertyDeclaration) declaration;
-				if ("projectName".equals(simplePropertyDeclaration.getName())) {
-					projectProperty.setDeclaration(simplePropertyDeclaration);
-					break;
-				}
-			}
-		}
-		StringLiteral stringLiteral = MscriptFactory.eINSTANCE.createStringLiteral();
-		stringLiteral.setValue(helper.getTargetPath().toString());
-		projectProperty.setValue(stringLiteral);
+		SimpleProperty projectProperty = createSimpleProperty(generatorSelection, "projectName", '"' + helper.getTargetPath().toString() + '"');
+		SimpleProperty singletonProperty = createSimpleProperty(generatorSelection, "singleton", "true");
 		
 		generatorSelection.getBody().getProperties().add(projectProperty);
+		generatorSelection.getBody().getProperties().add(singletonProperty);
 		configuration.getProperties().add(generatorSelection);
 	}
 

@@ -6,17 +6,27 @@ import damos.codegen.c.*
 configuration GenerateCruiseControl {
 
 	select generator DefaultGenerator {
+		// The target project
 		projectName = "CruiseControl"
+
+		// The target source folder within the target project
 		sourceFolder = "src-gen"
+
+		// The source file containing the top-level system
 		systemSourceFile = "CruiseControl.c"
+
+		// Instantiate system using a static variable, because only one instance is needed
+		singleton = true
 	}
 
 	system CruiseControl {
 		prefix = "CruiseControl_"
-		//propagate computation {
-		//	map real() to float64
-		//	map int() to int32
-		//}
+
+		// Specify which machine data types to use
+		propagate computation {
+			map real() to float64
+			map int() to int32
+		}
 	}
 
 }

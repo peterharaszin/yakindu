@@ -28,10 +28,9 @@ import org.junit.Before;
 public class StructTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		setUpInjector();
-		
-		createConfiguration();
+		super.setUp();
 		
 		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("struct { int x; int y }");
 

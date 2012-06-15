@@ -51,18 +51,23 @@ public class VariableAccessor implements IVariableAccessor {
 	 */
 	public String generateContextVariableReference(boolean pointer) {
 		StringBuilder sb = new StringBuilder();
+
 		if (pointer) {
-			sb.append("(&");
+			sb.append("&");
 		}
-		String prefix = GeneratorConfigurationExtensions.getPrefix(configuration);
-		if (prefix != null) {
-			sb.append(prefix);
+
+		if (GeneratorConfigurationExtensions.isSingleton(configuration)) {
+			String prefix = GeneratorConfigurationExtensions.getPrefix(configuration);
+			if (prefix != null) {
+				sb.append(prefix);
+			}
+			sb.append("context.");
+			sb.append(GeneratorConfigurationExtensions.getPrefix(configuration, node) + node.getComponent().getName());
+		} else {
+			sb.append("context->");
+			sb.append(GeneratorConfigurationExtensions.getPrefix(configuration, node) + node.getComponent().getName());
 		}
-		sb.append("context.");
-		sb.append(GeneratorConfigurationExtensions.getPrefix(configuration, node) + node.getComponent().getName());
-		if (pointer) {
-			sb.append(")");
-		}
+		
 		return sb.toString();
 	}
 
@@ -94,7 +99,7 @@ public class VariableAccessor implements IVariableAccessor {
 	private String getOutputVariable(OutputPort outputPort, boolean pointer, Node node) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
-			sb.append("(&");
+			sb.append("&");
 		}
 		if (outputPort.getComponent() instanceof Inport) {
 			sb.append("input->");
@@ -105,22 +110,16 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append("_");
 			sb.append(InternalGeneratorUtil.getOutputPortName(outputPort));
 		}
-		if (pointer) {
-			sb.append(")");
-		}
 		return sb.toString();
 	}
 	
 	public String generateMessageKindVariableReference(boolean pointer) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
-			sb.append("(&");
+			sb.append("&");
 		}
 		sb.append(TaskGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
 		sb.append("_message.kind");
-		if (pointer) {
-			sb.append(")");
-		}
 		return sb.toString();
 	}
 	

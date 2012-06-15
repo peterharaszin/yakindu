@@ -23,6 +23,7 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
+import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -41,6 +42,8 @@ public class GeneratorConfigurationExtensions {
 
 	private static final PropertyPath SYSTEM_SOURCE_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemSourceFile");
 	private static final PropertyPath SYSTEM_HEADER_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
+
+	private static final PropertyPath SINGLETON_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/singleton");
 
 	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
 	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
@@ -73,6 +76,10 @@ public class GeneratorConfigurationExtensions {
 	public static String getSystemHeaderFile(Configuration configuration) {
 		String defaultHeaderFile = new Path(getSystemSourceFile(configuration)).removeFileExtension().addFileExtension("h").toString();
 		return getPropertyStringValue(configuration, SYSTEM_HEADER_FILE_PROPERTY_PATH, defaultHeaderFile);
+	}
+	
+	public static boolean isSingleton(Configuration configuration) {
+		return getPropertyBooleanValue(configuration, SINGLETON_PROPERTY_PATH, false);
 	}
 
 	public static String getPrefix(Configuration configuration, Node node) {
@@ -130,6 +137,14 @@ public class GeneratorConfigurationExtensions {
 		Expression expression = configuration.getPropertyValue(propertyPath);
 		if (expression instanceof StringLiteral) {
 			return ((StringLiteral) expression).getValue();
+		}
+		return defaultValue;
+	}
+
+	private static boolean getPropertyBooleanValue(Configuration configuration, PropertyPath propertyPath, boolean defaultValue) {
+		Expression expression = configuration.getPropertyValue(propertyPath);
+		if (expression instanceof BooleanLiteral) {
+			return ((BooleanLiteral) expression).isTrue();
 		}
 		return defaultValue;
 	}

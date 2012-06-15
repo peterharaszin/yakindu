@@ -30,8 +30,9 @@ import org.junit.Before;
 public class ActionTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Block gain = createBlock(GAIN, "gain");
 		setArgument(gain, GainConstants.PARAMETER__GAIN, getGain());

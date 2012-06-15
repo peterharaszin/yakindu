@@ -74,11 +74,11 @@ public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	}
 	
 	public CharSequence generateTaskFunctionType(String name) {
-		return new StringBuilder().append("void *(*").append(name).append(")(void *context)");
+		return new StringBuilder().append("void *(*").append(name).append(")(void *data)");
 	}
 	
 	public CharSequence generateTaskSignature(String name) {
-		return new StringBuilder().append("void *").append(name).append("(void *context)");
+		return new StringBuilder().append("void *").append(name).append("(void *data)");
 	}
 
 	public CharSequence generateTaskReturnStatement(String name) {

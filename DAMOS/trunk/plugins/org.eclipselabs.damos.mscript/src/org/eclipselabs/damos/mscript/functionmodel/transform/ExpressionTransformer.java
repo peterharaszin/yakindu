@@ -144,7 +144,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	@Override
 	public Expression caseLetExpression(LetExpression letExpression) {
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "_temp"));
+		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "temp"));
 		IValue expressionValue = context.getStaticEvaluationContext().getValue(letExpression);
 		context.getStaticEvaluationContext().setValue(localVariableDeclaration, expressionValue);
 		context.getCompound().getStatements().add(localVariableDeclaration);
@@ -163,7 +163,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			
 			IValue partValue = context.getStaticEvaluationContext().getValue(variable);
 			context.getStaticEvaluationContext().setValue(localVariable, partValue);
-			localVariable.setName(variable.getName());
+			localVariable.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), variable.getName()));
 			Expression assignedExpression = doTransform(assignment.getAssignedExpression());
 			localVariable.setInitializer(assignedExpression);
 			compoundStatement.getStatements().add(localVariable);
@@ -195,7 +195,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		Expression conditionExpression = doTransform(ifExpression.getCondition());
 
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "_ifResult"));
+		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "ifresult"));
 		
 		IValue ifExpressionValue = context.getStaticEvaluationContext().getValue(ifExpression);
 		context.getStaticEvaluationContext().setValue(localVariableDeclaration, ifExpressionValue);

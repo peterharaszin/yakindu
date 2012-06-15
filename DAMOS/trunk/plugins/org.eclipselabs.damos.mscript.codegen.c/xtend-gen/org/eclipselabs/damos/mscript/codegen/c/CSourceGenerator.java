@@ -85,15 +85,12 @@ public class CSourceGenerator implements ICModuleGenerator {
         _builder.append("\n", "");
       }
     }
-    _builder.newLine();
     CharSequence _generateInternalForwardDeclarations = this.generateInternalForwardDeclarations(it);
     _builder.append(_generateInternalForwardDeclarations, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
     CharSequence _generateImplementations = this.generateImplementations(it, false);
     _builder.append(_generateImplementations, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
     CharSequence _generateImplementations_1 = this.generateImplementations(it, true);
     _builder.append(_generateImplementations_1, "");
     _builder.newLineIfNotEmpty();
@@ -123,6 +120,7 @@ public class CSourceGenerator implements ICModuleGenerator {
       for(final CModuleEntry entry : _filter) {
         if (!_hasElements) {
           _hasElements = true;
+          _builder.append("\n", "");
         } else {
           _builder.appendImmediate("\n", "");
         }
@@ -160,6 +158,7 @@ public class CSourceGenerator implements ICModuleGenerator {
       for(final CModuleEntry entry : _filter) {
         if (!_hasElements) {
           _hasElements = true;
+          _builder.append("\n", "");
         } else {
           _builder.appendImmediate("\n", "");
         }

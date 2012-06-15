@@ -26,10 +26,9 @@ import org.junit.Before;
 public class VectorScalarMultiplyTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		setUpInjector();
-		
-		createConfiguration();
+		super.setUp();
 		
 		Block constant = createBlock(CONSTANT, "Constant");
 		setSynchronousTimingConstraint(constant, 1);

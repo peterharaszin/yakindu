@@ -26,8 +26,9 @@ import org.junit.Before;
 public class OutportOnlyTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Block constant = createBlock(CONSTANT, "Constant");
 		setSynchronousTimingConstraint(constant, 1);

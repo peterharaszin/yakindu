@@ -58,7 +58,9 @@ class InitializeFunction extends PrimaryCodeFragment {
 			}
 		}
 		
-		functionSignature = '''void «context.configuration.prefix»initialize(void)'''
+		val prefix = context.configuration.prefix
+		val parameters = '''«IF context.configuration.singleton»void«ELSE»«prefix»Context *context«ENDIF»'''
+		functionSignature = '''void «prefix»initialize(«parameters»)'''
 
 		functionBody = '''
 			{

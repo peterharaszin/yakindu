@@ -23,8 +23,9 @@ import org.junit.Before;
 public class InportOnlyTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		createInport("In", createRealTypeSpecification(), 1);
 

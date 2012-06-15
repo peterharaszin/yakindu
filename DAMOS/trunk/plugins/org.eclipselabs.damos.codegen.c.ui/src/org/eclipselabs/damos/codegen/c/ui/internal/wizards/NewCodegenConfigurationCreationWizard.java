@@ -66,21 +66,27 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 		appendable.append(indent);
 		appendable.append("select generator DefaultGenerator {\n");
 		
+		appendable.append(indent).append("\t// The target project\n");
 		appendable.append(indent);
 		appendable.append("\tprojectName = \"");
 		appendable.append(getMainPage().getParentFolder().getProject().getName());
-		appendable.append("\"\n");
+		appendable.append("\"\n\n");
 
+		appendable.append(indent).append("\t// The target source folder within the target project\n");
 		appendable.append(indent);
-		appendable.append("\tsourceFolder = \"src-gen\"\n");
+		appendable.append("\tsourceFolder = \"src-gen\"\n\n");
 
 		String fragmentName = getMainPage().getFragment().getName();
 		if (fragmentName != null && fragmentName.trim().length() > 0) {
+			appendable.append(indent).append("\t// The source file containing the top-level system\n");
 			appendable.append(indent);
 			appendable.append("\tsystemSourceFile = \"");
 			appendable.append(fragmentName.trim());
-			appendable.append(".c\"\n");
+			appendable.append(".c\"\n\n");
 		}
+		
+		appendable.append(indent).append("\t// Instantiate system using a static variable, because only one instance is needed\n");
+		appendable.append(indent).append("\tsingleton = true\n");
 
 		appendable.append(indent);
 		appendable.append("}\n");
@@ -112,13 +118,15 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 		writeSubsystemProperties(indent, fragment, prefixes, appendable);
 
 		appendable.append(indent);
-		appendable.append("//propagate computation {\n");
+		appendable.append("// Specify which machine data types to use\n");
 		appendable.append(indent);
-		appendable.append("//\tmap real() to float64\n");
+		appendable.append("propagate computation {\n");
 		appendable.append(indent);
-		appendable.append("//\tmap int() to int32\n");
+		appendable.append("\tmap real() to float64\n");
 		appendable.append(indent);
-		appendable.append("//}\n");
+		appendable.append("\tmap int() to int32\n");
+		appendable.append(indent);
+		appendable.append("}\n");
 	}
 
 	/**
@@ -168,7 +176,7 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 		appendable.append(indent);
 		appendable.append("prefix = \"");
 		appendable.append(prefix);
-		appendable.append("_\"\n");
+		appendable.append("_\"\n\n");
 	}
 	
 	private String createPrefix(String preferredPrefix, Set<String> prefixes) {

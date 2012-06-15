@@ -26,10 +26,9 @@ import org.junit.Before;
 public class StructConstructionTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		setUpInjector();
-		
-		createConfiguration();
+		super.setUp();
 		
 		Inport inA = createInport("InA", createIntegerTypeSpecification(), 1);
 		Inport inB = createInport("InB", createIntegerTypeSpecification(), 1);

@@ -83,52 +83,66 @@ public class InitializeFunction extends PrimaryCodeFragment {
         }
       }
     }
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("void ");
     Configuration _configuration = context.getConfiguration();
-    String _prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);
-    _builder.append(_prefix, "");
-    _builder.append("initialize(void)");
-    this.functionSignature = _builder;
+    final String prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      Configuration _configuration_1 = context.getConfiguration();
+      boolean _isSingleton = GeneratorConfigurationExtensions.isSingleton(_configuration_1);
+      if (_isSingleton) {
+        _builder.append("void");
+      } else {
+        _builder.append(prefix, "");
+        _builder.append("Context *context");
+      }
+    }
+    final CharSequence parameters = _builder;
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("{");
-    _builder_1.newLine();
-    _builder_1.append("\t");
+    _builder_1.append("void ");
+    _builder_1.append(prefix, "");
+    _builder_1.append("initialize(");
+    _builder_1.append(parameters, "");
+    _builder_1.append(")");
+    this.functionSignature = _builder_1;
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("{");
+    _builder_2.newLine();
+    _builder_2.append("\t");
     CharSequence _generateInitializeTasks = this.taskGenerator.generateInitializeTasks(context, monitor);
-    _builder_1.append(_generateInitializeTasks, "	");
-    _builder_1.newLineIfNotEmpty();
+    _builder_2.append(_generateInitializeTasks, "	");
+    _builder_2.newLineIfNotEmpty();
     {
       boolean _hasElements = false;
       for(final ComponentNode node_1 : nodes) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder_1.appendImmediate("\n", "	");
+          _builder_2.appendImmediate("\n", "	");
         }
-        _builder_1.append("\t");
-        _builder_1.append("/* ");
+        _builder_2.append("\t");
+        _builder_2.append("/* ");
         Component _component = node_1.getComponent();
         String _name = _component.getName();
-        _builder_1.append(_name, "	");
-        _builder_1.append(" */");
-        _builder_1.newLineIfNotEmpty();
-        _builder_1.append("\t");
-        _builder_1.append("{");
-        _builder_1.newLine();
-        _builder_1.append("\t");
-        _builder_1.append("\t");
+        _builder_2.append(_name, "	");
+        _builder_2.append(" */");
+        _builder_2.newLineIfNotEmpty();
+        _builder_2.append("\t");
+        _builder_2.append("{");
+        _builder_2.newLine();
+        _builder_2.append("\t");
+        _builder_2.append("\t");
         IComponentGenerator _componentGenerator = GeneratorNodeExtensions.getComponentGenerator(node_1);
         CharSequence _generateInitializationCode = _componentGenerator.generateInitializationCode(monitor);
-        _builder_1.append(_generateInitializationCode, "		");
-        _builder_1.newLineIfNotEmpty();
-        _builder_1.append("\t");
-        _builder_1.append("}");
-        _builder_1.newLine();
+        _builder_2.append(_generateInitializationCode, "		");
+        _builder_2.newLineIfNotEmpty();
+        _builder_2.append("\t");
+        _builder_2.append("}");
+        _builder_2.newLine();
       }
     }
-    _builder_1.append("}");
-    _builder_1.newLine();
-    this.functionBody = _builder_1;
+    _builder_2.append("}");
+    _builder_2.newLine();
+    this.functionBody = _builder_2;
   }
   
   public CharSequence generateForwardDeclaration(final boolean internal) {

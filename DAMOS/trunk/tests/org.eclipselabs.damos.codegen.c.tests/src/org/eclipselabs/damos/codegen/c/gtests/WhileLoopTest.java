@@ -33,8 +33,9 @@ import org.junit.Before;
 public class WhileLoopTest extends AbstractGeneratorGTest {
 
 	@Before
+	@Override
 	public void setUp() {
-		createConfiguration();
+		super.setUp();
 		
 		Inport precondition = createInport("Precondition", createBooleanTypeSpecification(), 1);
 		Inport initialValue = createInport("InitialValue", createRealTypeSpecification(), 1);

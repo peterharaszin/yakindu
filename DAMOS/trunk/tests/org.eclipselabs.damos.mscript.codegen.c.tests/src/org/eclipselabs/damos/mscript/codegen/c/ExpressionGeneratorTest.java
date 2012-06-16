@@ -163,7 +163,7 @@ public class ExpressionGeneratorTest {
 		
 		IMscriptGeneratorContext context = new MscriptGeneratorContext(ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
 			
-			public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+			public <T extends ICodeFragment> T addCodeFragment(T codeFragment, IProgressMonitor monitor) {
 				return codeFragment;
 			}
 			

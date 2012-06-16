@@ -68,6 +68,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
+import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
@@ -690,17 +691,42 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 			return InvalidValue.SINGLETON;
 		}
 
-		setStaticValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(getComputationContext(), TypeUtil.createIntegerType(), size));
-
+		// Vector
+		if (arrayType.getDimensionality() == 1) {
+			setStaticValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(getComputationContext(), TypeUtil.createIntegerType(), size));
+	
+			if (anyValue) {
+				return new AnyValue(getComputationContext(), arrayType);
+			}
+	
+			if (arrayType.isTensor()) {
+				return new VectorValue(getComputationContext(), arrayType, elements);
+			}
+	
+			return new ArrayValue(getComputationContext(), arrayType, elements);
+		}
+		
+		// Matrix
+		int rowSize = TypeUtil.getArrayRowSize(arrayType);
+		setStaticValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(getComputationContext(), TypeUtil.createIntegerType(), rowSize));
+		int columnSize = TypeUtil.getArrayColumnSize(arrayType);
+		setStaticValue(arrayType.getDimensions().get(1).getSize(), Values.valueOf(getComputationContext(), TypeUtil.createIntegerType(), columnSize));
+		
 		if (anyValue) {
 			return new AnyValue(getComputationContext(), arrayType);
 		}
 
 		if (arrayType.isTensor()) {
-			return new VectorValue(getComputationContext(), arrayType, elements);
+			IValue[][] values = new IValue[rowSize][columnSize];
+			for (int i = 0; i < rowSize; ++i) {
+				for (int j = 0; j < columnSize; ++j) {
+					values[i][j] = ((IArrayValue) elements[i]).get(j);
+				}
+			}
+			return new MatrixValue(getComputationContext(), arrayType, values);
 		}
 
-		return new ArrayValue(getComputationContext(), arrayType, elements);
+		return InvalidValue.SINGLETON;
 	}
 
 	private ArrayType createArrayType(IValue[] elements) {
@@ -722,6 +748,15 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 			}
 
 			elementType = dataType;
+		}
+		
+		if (elementType instanceof ArrayType) {
+			ArrayType elementArrayType = (ArrayType) elementType;
+			if (elementArrayType.getDimensionality() != 1) {
+				// We do not support tensors yet
+				return null;
+			}
+			return TypeUtil.createArrayType(elementArrayType.getElementType(), elements.length, TypeUtil.getArraySize(elementArrayType));
 		}
 
 		return TypeUtil.createArrayType(elementType, elements.length);

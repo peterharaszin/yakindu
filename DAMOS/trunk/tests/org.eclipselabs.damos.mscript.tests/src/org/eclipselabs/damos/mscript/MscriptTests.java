@@ -9,8 +9,9 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript;
 
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluatorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -21,8 +22,8 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	ExpressionGeneratorTest.class
+	ExpressionEvaluatorTest.class
 })
-public class MscriptGeneratorTests {
+public class MscriptTests {
 
 }

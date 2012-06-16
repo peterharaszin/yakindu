@@ -17,13 +17,13 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isTensor <em>Tensor</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isDimensional <em>Dimensional</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isMultidimensional <em>Multidimensional</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isVector <em>Vector</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isMatrix <em>Matrix</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isNumeric <em>Numeric</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isNumericVector <em>Numeric Vector</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isNumericMatrix <em>Numeric Matrix</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,19 +59,19 @@ public interface ArrayType extends DataType {
 	void setElementTypeSpecifier(DataTypeSpecifier value);
 
 	/**
-	 * Returns the value of the '<em><b>Tensor</b></em>' attribute.
+	 * Returns the value of the '<em><b>Numeric</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tensor</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tensor</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Tensor()
+	 * @return the value of the '<em>Numeric</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Numeric()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	boolean isTensor();
+	boolean isNumeric();
 
 	/**
 	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
@@ -135,34 +135,34 @@ public interface ArrayType extends DataType {
 	boolean isMultidimensional();
 
 	/**
-	 * Returns the value of the '<em><b>Vector</b></em>' attribute.
+	 * Returns the value of the '<em><b>Numeric Vector</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Vector</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vector</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Vector()
+	 * @return the value of the '<em>Numeric Vector</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_NumericVector()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	boolean isVector();
+	boolean isNumericVector();
 
 	/**
-	 * Returns the value of the '<em><b>Matrix</b></em>' attribute.
+	 * Returns the value of the '<em><b>Numeric Matrix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Matrix</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matrix</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_Matrix()
+	 * @return the value of the '<em>Numeric Matrix</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_NumericMatrix()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	boolean isMatrix();
+	boolean isNumericMatrix();
 
 	/**
 	 * <!-- begin-user-doc -->

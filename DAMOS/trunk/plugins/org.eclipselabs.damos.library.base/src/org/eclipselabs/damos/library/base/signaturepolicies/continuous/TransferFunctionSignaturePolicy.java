@@ -56,11 +56,11 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		if (!TypeUtil.isVector(numerator.getDataType())) {
+		if (!TypeUtil.isNumericVector(numerator.getDataType())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator must be be vector"));
 		}
 		
-		if (!TypeUtil.isVector(denominator.getDataType())) {
+		if (!TypeUtil.isNumericVector(denominator.getDataType())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator must be be vector"));
 		}
 

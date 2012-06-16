@@ -3002,17 +3002,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArrayType_Tensor() {
-		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getArrayType_Dimensions() {
-		return (EReference)arrayTypeEClass.getEStructuralFeatures().get(2);
+		return (EReference)arrayTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3021,7 +3012,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	public EAttribute getArrayType_Dimensionality() {
-		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3030,7 +3021,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	public EAttribute getArrayType_Dimensional() {
-		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3039,6 +3030,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	public EAttribute getArrayType_Multidimensional() {
+		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getArrayType_Numeric() {
 		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -3047,7 +3047,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArrayType_Vector() {
+	public EAttribute getArrayType_NumericVector() {
 		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -3056,7 +3056,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArrayType_Matrix() {
+	public EAttribute getArrayType_NumericMatrix() {
 		return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -3816,13 +3816,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		arrayTypeEClass = createEClass(ARRAY_TYPE);
 		createEReference(arrayTypeEClass, ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER);
-		createEAttribute(arrayTypeEClass, ARRAY_TYPE__TENSOR);
 		createEReference(arrayTypeEClass, ARRAY_TYPE__DIMENSIONS);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONALITY);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__DIMENSIONAL);
 		createEAttribute(arrayTypeEClass, ARRAY_TYPE__MULTIDIMENSIONAL);
-		createEAttribute(arrayTypeEClass, ARRAY_TYPE__VECTOR);
-		createEAttribute(arrayTypeEClass, ARRAY_TYPE__MATRIX);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__NUMERIC);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__NUMERIC_VECTOR);
+		createEAttribute(arrayTypeEClass, ARRAY_TYPE__NUMERIC_MATRIX);
 
 		arrayDimensionEClass = createEClass(ARRAY_DIMENSION);
 		createEReference(arrayDimensionEClass, ARRAY_DIMENSION__SIZE);
@@ -4358,13 +4358,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayType_ElementTypeSpecifier(), this.getDataTypeSpecifier(), null, "elementTypeSpecifier", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getArrayType_Tensor(), ecorePackage.getEBoolean(), "tensor", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getArrayType_Dimensions(), this.getArrayDimension(), null, "dimensions", null, 0, -1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensionality(), ecorePackage.getEInt(), "dimensionality", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensional(), ecorePackage.getEBoolean(), "dimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Multidimensional(), ecorePackage.getEBoolean(), "multidimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getArrayType_Vector(), ecorePackage.getEBoolean(), "vector", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getArrayType_Matrix(), ecorePackage.getEBoolean(), "matrix", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_Numeric(), ecorePackage.getEBoolean(), "numeric", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_NumericVector(), ecorePackage.getEBoolean(), "numericVector", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrayType_NumericMatrix(), ecorePackage.getEBoolean(), "numericMatrix", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		addEOperation(arrayTypeEClass, this.getDataType(), "getElementType", 0, 1, IS_UNIQUE, IS_ORDERED);
 

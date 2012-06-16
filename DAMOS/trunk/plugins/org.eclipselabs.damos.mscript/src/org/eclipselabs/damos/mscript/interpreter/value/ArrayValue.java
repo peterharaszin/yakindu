@@ -29,7 +29,7 @@ public class ArrayValue extends AbstractExplicitDataTypeValue implements IArrayV
 	 */
 	public ArrayValue(IComputationContext context, ArrayType dataType, IValue[] elements) {
 		super(context, dataType);
-		if (dataType.isTensor()) {
+		if (dataType.isNumeric()) {
 			throw new IllegalArgumentException("Array type must not be tensor type");
 		}
 		if (dataType.getDimensionality() == 1) {

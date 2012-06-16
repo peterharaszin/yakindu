@@ -139,7 +139,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		double[] coefficients = null;
 		IValue coefficientVector = ExpressionUtil.evaluateArgumentExpression(getComponent(), parameterName);
 
-		if (!(TypeUtil.isTensor(coefficientVector.getDataType()))) {
+		if (!(TypeUtil.isNumericArray(coefficientVector.getDataType()))) {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Parameter '"
 					+ parameterName + "' of block '" + getComponent().getName() + "' must be vector"));
 		}

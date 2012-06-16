@@ -208,7 +208,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		DataType dataType = interpreterContext.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
 		if (dataType instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) dataType;
-			if (arrayType.isTensor()) {
+			if (arrayType.isNumeric()) {
 				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new INumericValue[TypeUtil.getArraySize(arrayType)]));
 			} else {
 				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));

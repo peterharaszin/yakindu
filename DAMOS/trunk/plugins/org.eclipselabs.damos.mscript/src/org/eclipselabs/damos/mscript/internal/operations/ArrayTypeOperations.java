@@ -53,7 +53,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 	}
 
 	public static DataType evaluate(ArrayType arrayType, OperatorKind operator, DataType other) {
-		if (arrayType.isTensor()) {
+		if (arrayType.isNumeric()) {
 			switch (operator) {
 			case ADD:
 				return evaluateElementWise(arrayType, operator, other);
@@ -81,7 +81,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE) {
 				return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 			}
-		} else if (TypeUtil.isTensor(other)) {
+		} else if (TypeUtil.isNumericArray(other)) {
 			return evaluateElementWiseTensor(arrayType, operator, (ArrayType) other);
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
@@ -114,7 +114,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		if (other instanceof NumericType) {
 			return evaluateElementWiseScalar(arrayType, OperatorKind.MULTIPLY, (NumericType) other);
 		}
-		if (!TypeUtil.isTensor(other)) {
+		if (!TypeUtil.isNumericArray(other)) {
 			return MscriptFactory.eINSTANCE.createInvalidDataType();
 		}
 		
@@ -123,14 +123,14 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		int rowSize;
 		int columnSize;
 		
-		if (arrayType.isVector()) {
-			if (!otherArrayType.isVector() || TypeUtil.getArraySize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
+		if (arrayType.isNumericVector()) {
+			if (!otherArrayType.isNumericVector() || TypeUtil.getArraySize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
 				return MscriptFactory.eINSTANCE.createInvalidDataType();
 			}
 			rowSize = 1;
 			columnSize = 1;
-		} else if (arrayType.isMatrix()) {
-			if (!otherArrayType.isMatrix() || TypeUtil.getArrayColumnSize(arrayType) !=  TypeUtil.getArrayRowSize(otherArrayType)) {
+		} else if (arrayType.isNumericMatrix()) {
+			if (!otherArrayType.isNumericMatrix() || TypeUtil.getArrayColumnSize(arrayType) !=  TypeUtil.getArrayRowSize(otherArrayType)) {
 				return MscriptFactory.eINSTANCE.createInvalidDataType();
 			}
 			rowSize =  TypeUtil.getArrayRowSize(arrayType);

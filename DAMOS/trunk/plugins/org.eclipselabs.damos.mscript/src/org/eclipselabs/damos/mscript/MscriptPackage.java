@@ -3300,22 +3300,13 @@ public interface MscriptPackage extends EPackage {
 	int ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Tensor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_TYPE__TENSOR = DATA_TYPE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Dimensions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__DIMENSIONS = DATA_TYPE_FEATURE_COUNT + 2;
+	int ARRAY_TYPE__DIMENSIONS = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dimensionality</b></em>' attribute.
@@ -3324,7 +3315,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__DIMENSIONALITY = DATA_TYPE_FEATURE_COUNT + 3;
+	int ARRAY_TYPE__DIMENSIONALITY = DATA_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dimensional</b></em>' attribute.
@@ -3333,7 +3324,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__DIMENSIONAL = DATA_TYPE_FEATURE_COUNT + 4;
+	int ARRAY_TYPE__DIMENSIONAL = DATA_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Multidimensional</b></em>' attribute.
@@ -3342,25 +3333,34 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__MULTIDIMENSIONAL = DATA_TYPE_FEATURE_COUNT + 5;
+	int ARRAY_TYPE__MULTIDIMENSIONAL = DATA_TYPE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Vector</b></em>' attribute.
+	 * The feature id for the '<em><b>Numeric</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__VECTOR = DATA_TYPE_FEATURE_COUNT + 6;
+	int ARRAY_TYPE__NUMERIC = DATA_TYPE_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Matrix</b></em>' attribute.
+	 * The feature id for the '<em><b>Numeric Vector</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_TYPE__MATRIX = DATA_TYPE_FEATURE_COUNT + 7;
+	int ARRAY_TYPE__NUMERIC_VECTOR = DATA_TYPE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Numeric Matrix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_TYPE__NUMERIC_MATRIX = DATA_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Array Type</em>' class.
@@ -6370,17 +6370,6 @@ public interface MscriptPackage extends EPackage {
 	EReference getArrayType_ElementTypeSpecifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isTensor <em>Tensor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tensor</em>'.
-	 * @see org.eclipselabs.damos.mscript.ArrayType#isTensor()
-	 * @see #getArrayType()
-	 * @generated
-	 */
-	EAttribute getArrayType_Tensor();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6425,26 +6414,37 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getArrayType_Multidimensional();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isVector <em>Vector</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isNumeric <em>Numeric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vector</em>'.
-	 * @see org.eclipselabs.damos.mscript.ArrayType#isVector()
+	 * @return the meta object for the attribute '<em>Numeric</em>'.
+	 * @see org.eclipselabs.damos.mscript.ArrayType#isNumeric()
 	 * @see #getArrayType()
 	 * @generated
 	 */
-	EAttribute getArrayType_Vector();
+	EAttribute getArrayType_Numeric();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isMatrix <em>Matrix</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isNumericVector <em>Numeric Vector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Matrix</em>'.
-	 * @see org.eclipselabs.damos.mscript.ArrayType#isMatrix()
+	 * @return the meta object for the attribute '<em>Numeric Vector</em>'.
+	 * @see org.eclipselabs.damos.mscript.ArrayType#isNumericVector()
 	 * @see #getArrayType()
 	 * @generated
 	 */
-	EAttribute getArrayType_Matrix();
+	EAttribute getArrayType_NumericVector();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayType#isNumericMatrix <em>Numeric Matrix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Numeric Matrix</em>'.
+	 * @see org.eclipselabs.damos.mscript.ArrayType#isNumericMatrix()
+	 * @see #getArrayType()
+	 * @generated
+	 */
+	EAttribute getArrayType_NumericMatrix();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ArrayDimension <em>Array Dimension</em>}'.
@@ -8955,14 +8955,6 @@ public interface MscriptPackage extends EPackage {
 		EReference ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER = eINSTANCE.getArrayType_ElementTypeSpecifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Tensor</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ARRAY_TYPE__TENSOR = eINSTANCE.getArrayType_Tensor();
-
-		/**
 		 * The meta object literal for the '<em><b>Dimensions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8995,20 +8987,28 @@ public interface MscriptPackage extends EPackage {
 		EAttribute ARRAY_TYPE__MULTIDIMENSIONAL = eINSTANCE.getArrayType_Multidimensional();
 
 		/**
-		 * The meta object literal for the '<em><b>Vector</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Numeric</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ARRAY_TYPE__VECTOR = eINSTANCE.getArrayType_Vector();
+		EAttribute ARRAY_TYPE__NUMERIC = eINSTANCE.getArrayType_Numeric();
 
 		/**
-		 * The meta object literal for the '<em><b>Matrix</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Numeric Vector</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ARRAY_TYPE__MATRIX = eINSTANCE.getArrayType_Matrix();
+		EAttribute ARRAY_TYPE__NUMERIC_VECTOR = eINSTANCE.getArrayType_NumericVector();
+
+		/**
+		 * The meta object literal for the '<em><b>Numeric Matrix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARRAY_TYPE__NUMERIC_MATRIX = eINSTANCE.getArrayType_NumericMatrix();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ArrayDimensionImpl <em>Array Dimension</em>}' class.

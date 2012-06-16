@@ -33,13 +33,13 @@ import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getElementTypeSpecifier <em>Element Type Specifier</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isTensor <em>Tensor</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isDimensional <em>Dimensional</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isMultidimensional <em>Multidimensional</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isVector <em>Vector</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isMatrix <em>Matrix</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isNumeric <em>Numeric</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isNumericVector <em>Numeric Vector</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isNumericMatrix <em>Numeric Matrix</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,16 +55,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * @ordered
 	 */
 	protected DataTypeSpecifier elementTypeSpecifier;
-
-	/**
-	 * The default value of the '{@link #isTensor() <em>Tensor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTensor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean TENSOR_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' containment reference list.
@@ -107,24 +97,34 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	protected static final boolean MULTIDIMENSIONAL_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #isVector() <em>Vector</em>}' attribute.
+	 * The default value of the '{@link #isNumeric() <em>Numeric</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isVector()
+	 * @see #isNumeric()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean VECTOR_EDEFAULT = false;
+	protected static final boolean NUMERIC_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #isMatrix() <em>Matrix</em>}' attribute.
+	 * The default value of the '{@link #isNumericVector() <em>Numeric Vector</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMatrix()
+	 * @see #isNumericVector()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean MATRIX_EDEFAULT = false;
+	protected static final boolean NUMERIC_VECTOR_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #isNumericMatrix() <em>Numeric Matrix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNumericMatrix()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NUMERIC_MATRIX_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,15 +186,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, newElementTypeSpecifier, newElementTypeSpecifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean isTensor() {
-		return getElementType() instanceof NumericType;
 	}
 
 	/**
@@ -265,8 +256,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isVector() {
-		return isTensor() && getDimensions().size() == 1;
+	public boolean isNumeric() {
+		return getElementType() instanceof NumericType;
 	}
 
 	/**
@@ -274,8 +265,17 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isMatrix() {
-		return isTensor() && getDimensions().size() == 2;
+	public boolean isNumericVector() {
+		return isNumeric() && getDimensions().size() == 1;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isNumericMatrix() {
+		return isNumeric() && getDimensions().size() == 2;
 	}
 
 	/**
@@ -313,8 +313,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
 				return getElementTypeSpecifier();
-			case MscriptPackage.ARRAY_TYPE__TENSOR:
-				return isTensor();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return getDimensions();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:
@@ -323,10 +321,12 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 				return isDimensional();
 			case MscriptPackage.ARRAY_TYPE__MULTIDIMENSIONAL:
 				return isMultidimensional();
-			case MscriptPackage.ARRAY_TYPE__VECTOR:
-				return isVector();
-			case MscriptPackage.ARRAY_TYPE__MATRIX:
-				return isMatrix();
+			case MscriptPackage.ARRAY_TYPE__NUMERIC:
+				return isNumeric();
+			case MscriptPackage.ARRAY_TYPE__NUMERIC_VECTOR:
+				return isNumericVector();
+			case MscriptPackage.ARRAY_TYPE__NUMERIC_MATRIX:
+				return isNumericMatrix();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -379,8 +379,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
 				return elementTypeSpecifier != null;
-			case MscriptPackage.ARRAY_TYPE__TENSOR:
-				return isTensor() != TENSOR_EDEFAULT;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return dimensions != null && !dimensions.isEmpty();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:
@@ -389,10 +387,12 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 				return isDimensional() != DIMENSIONAL_EDEFAULT;
 			case MscriptPackage.ARRAY_TYPE__MULTIDIMENSIONAL:
 				return isMultidimensional() != MULTIDIMENSIONAL_EDEFAULT;
-			case MscriptPackage.ARRAY_TYPE__VECTOR:
-				return isVector() != VECTOR_EDEFAULT;
-			case MscriptPackage.ARRAY_TYPE__MATRIX:
-				return isMatrix() != MATRIX_EDEFAULT;
+			case MscriptPackage.ARRAY_TYPE__NUMERIC:
+				return isNumeric() != NUMERIC_EDEFAULT;
+			case MscriptPackage.ARRAY_TYPE__NUMERIC_VECTOR:
+				return isNumericVector() != NUMERIC_VECTOR_EDEFAULT;
+			case MscriptPackage.ARRAY_TYPE__NUMERIC_MATRIX:
+				return isNumericMatrix() != NUMERIC_MATRIX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

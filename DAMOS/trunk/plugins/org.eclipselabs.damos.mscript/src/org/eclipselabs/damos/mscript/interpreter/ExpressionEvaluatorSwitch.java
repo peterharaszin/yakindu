@@ -699,7 +699,7 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 				return new AnyValue(getComputationContext(), arrayType);
 			}
 	
-			if (arrayType.isTensor()) {
+			if (arrayType.isNumeric()) {
 				return new VectorValue(getComputationContext(), arrayType, elements);
 			}
 	
@@ -716,7 +716,7 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 			return new AnyValue(getComputationContext(), arrayType);
 		}
 
-		if (arrayType.isTensor()) {
+		if (arrayType.isNumeric()) {
 			IValue[][] values = new IValue[rowSize][columnSize];
 			for (int i = 0; i < rowSize; ++i) {
 				for (int j = 0; j < columnSize; ++j) {

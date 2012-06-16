@@ -95,10 +95,10 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 				if (leftOperand instanceof VariableReference && rightOperand instanceof VariableReference) {
 					DataType leftDataType = getDataType(leftOperand);
 					DataType rightDataType = getDataType(rightOperand);
-					if (TypeUtil.isTensor(leftDataType) && TypeUtil.isTensor(rightDataType)) {
+					if (TypeUtil.isNumericArray(leftDataType) && TypeUtil.isNumericArray(rightDataType)) {
 						ArrayType leftArrayType = (ArrayType) leftDataType;
 						ArrayType rightArrayType = (ArrayType) rightDataType;
-						if (leftArrayType.isVector() && rightArrayType.isVector()) {
+						if (leftArrayType.isNumericVector() && rightArrayType.isNumericVector()) {
 							Expression transformedExpression = createVectorMultiplicationExpression((VariableReference) leftOperand, (VariableReference) rightOperand);
 							EcoreUtil.replace(multiplicativeExpression, transformedExpression);
 						}

@@ -244,7 +244,7 @@ public class BehavioredBlockHelper {
 					values.add(value);
 				}
 				ArrayType arrayType = TypeUtil.createArrayType(elementType, values.size());
-				if (arrayType.isTensor()) {
+				if (arrayType.isNumeric()) {
 					return new VectorValue(new ComputationContext(), arrayType, values.toArray(new INumericValue[values.size()]));
 				}
 				return new ArrayValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));

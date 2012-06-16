@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript"
-    nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript" nsPrefix="mscript">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+    nsPrefix="mscript">
   <eClassifiers xsi:type="ecore:EClass" name="Module">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
@@ -490,9 +489,6 @@
     <eOperations name="getElementType" eType="#//DataType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeSpecifier" eType="#//DataTypeSpecifier"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tensor" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
-        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
         eType="#//ArrayDimension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimensionality" lowerBound="1"
@@ -504,10 +500,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multidimensional" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vector" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeric" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="matrix" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numericVector" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numericMatrix" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
   </eClassifiers>

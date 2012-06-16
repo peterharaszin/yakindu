@@ -205,10 +205,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
 			
-			if (leftDataType instanceof NumericType && TypeUtil.isTensor(rightDataType)) {
+			if (leftDataType instanceof NumericType && TypeUtil.isNumericArray(rightDataType)) {
 				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
-			if (TypeUtil.isTensor(leftDataType) && rightDataType instanceof NumericType) {
+			if (TypeUtil.isNumericArray(leftDataType) && rightDataType instanceof NumericType) {
 				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
 			}
 			

@@ -29,7 +29,7 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 		}
 		
 		if (!(other instanceof NumericType)) {
-			if (TypeUtil.isTensor(other) && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
+			if (TypeUtil.isNumericArray(other) && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
 				return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, realType);
 			}
 			return MscriptFactory.eINSTANCE.createInvalidDataType();

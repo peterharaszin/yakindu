@@ -191,25 +191,25 @@ public class TypeUtil {
 		return null;
 	}
 	
-	public static boolean isTensor(DataType dataType) {
+	public static boolean isNumericArray(DataType dataType) {
 		if (!(dataType instanceof ArrayType)) {
 			return false;
 		}
-		return ((ArrayType) dataType).isTensor();
+		return ((ArrayType) dataType).isNumeric();
 	}
 	
-	public static boolean isVector(DataType dataType) {
+	public static boolean isNumericVector(DataType dataType) {
 		if (dataType instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) dataType;
-			return arrayType.isVector();
+			return arrayType.isNumericVector();
 		}
 		return false;
 	}
 	
-	public static boolean isMatrix(DataType dataType) {
+	public static boolean isNumericMatrix(DataType dataType) {
 		if (dataType instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) dataType;
-			return arrayType.isMatrix();
+			return arrayType.isNumericMatrix();
 		}
 		return false;
 	}

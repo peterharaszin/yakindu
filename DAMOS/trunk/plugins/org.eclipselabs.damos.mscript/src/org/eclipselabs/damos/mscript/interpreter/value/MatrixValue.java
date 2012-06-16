@@ -32,7 +32,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	public MatrixValue(IComputationContext context, ArrayType dataType, IValue[][] elements) {
 		super(context, dataType);
-		if (!dataType.isMatrix()) {
+		if (!dataType.isNumericMatrix()) {
 			throw new IllegalArgumentException("Array type must be matrix");
 		}
 		this.elements = elements;
@@ -53,7 +53,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (!TypeUtil.isMatrix(dataType)) {
+		if (!TypeUtil.isNumericMatrix(dataType)) {
 			throw new IllegalArgumentException("Data type must be matrix type");
 		}
 		ArrayType arrayType = (ArrayType) dataType;

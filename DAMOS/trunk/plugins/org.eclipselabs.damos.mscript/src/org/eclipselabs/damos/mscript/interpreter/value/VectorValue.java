@@ -30,7 +30,7 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	public VectorValue(IComputationContext context, ArrayType dataType, IValue[] elements) {
 		super(context, dataType);
-		if (!dataType.isVector()) {
+		if (!dataType.isNumericVector()) {
 			throw new IllegalArgumentException("Array type must be vector");
 		}
 		if (elements.length != TypeUtil.getArraySize(dataType)) {
@@ -52,7 +52,7 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (!TypeUtil.isVector(dataType)) {
+		if (!TypeUtil.isNumericVector(dataType)) {
 			throw new IllegalArgumentException("Data type must be vector");
 		}
 		ArrayType arrayType = (ArrayType) dataType;

@@ -36,7 +36,7 @@ public class SumFunctionGenerator implements IFunctionGenerator {
 		Expression argument = functionCall.getArguments().get(0);
 		
 		DataType dataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
-		if (!TypeUtil.isTensor(dataType)) {
+		if (!TypeUtil.isNumericArray(dataType)) {
 			throw new RuntimeException("Target type of sum() method must be tensor type");
 		}
 		

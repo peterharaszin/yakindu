@@ -68,10 +68,10 @@ public class ArrayLiteralDeclaration extends AbstractCodeFragment {
 		});
 		
 		MachineArrayType arrayType = MachineDataTypes.create(computationModel, arrayValue.getDataType());
-		ArrayTypeDeclaration arrayTypeDeclaration = new ArrayTypeDeclaration(computationModel, arrayType);
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-		ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector.addCodeFragment(arrayTypeDeclaration, new NullProgressMonitor());
-		typeName = codeFragment.getName();
+		ArrayTypeDeclaration arrayTypeDeclaration = new ArrayTypeDeclaration(computationModel, arrayType);
+		arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(arrayTypeDeclaration, new NullProgressMonitor());
+		typeName = arrayTypeDeclaration.getName();
 		
 		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
 		name = globalNameProvider.newGlobalName("array");

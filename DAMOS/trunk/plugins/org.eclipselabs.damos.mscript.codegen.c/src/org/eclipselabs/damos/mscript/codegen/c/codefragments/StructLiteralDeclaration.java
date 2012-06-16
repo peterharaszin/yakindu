@@ -67,10 +67,10 @@ public class StructLiteralDeclaration extends AbstractCodeFragment {
 			
 		});
 
-		StructTypeDeclaration structTypeDeclaration = new StructTypeDeclaration(computationModel, MachineDataTypes.create(computationModel, structValue.getDataType()));
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-		StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(structTypeDeclaration, new NullProgressMonitor());
-		typeName = codeFragment.getName();
+		StructTypeDeclaration structTypeDeclaration = new StructTypeDeclaration(computationModel, MachineDataTypes.create(computationModel, structValue.getDataType()));
+		structTypeDeclaration = codeFragmentCollector.addCodeFragment(structTypeDeclaration, new NullProgressMonitor());
+		typeName = structTypeDeclaration.getName();
 		
 		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
 		name = globalNameProvider.newGlobalName("structure");

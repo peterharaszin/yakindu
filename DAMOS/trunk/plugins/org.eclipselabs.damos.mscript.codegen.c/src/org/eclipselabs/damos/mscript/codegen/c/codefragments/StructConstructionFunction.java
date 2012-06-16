@@ -63,13 +63,13 @@ public class StructConstructionFunction extends AbstractCodeFragment {
 			
 		});
 
-		StructTypeDeclaration structTypeDeclaration = new StructTypeDeclaration(computationModel, structType);
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-		StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(structTypeDeclaration, new NullProgressMonitor());
-		typeName = codeFragment.getName();
+		StructTypeDeclaration structTypeDeclaration = new StructTypeDeclaration(computationModel, structType);
+		structTypeDeclaration = codeFragmentCollector.addCodeFragment(structTypeDeclaration, new NullProgressMonitor());
+		typeName = structTypeDeclaration.getName();
 		
 		IGlobalNameProvider globalNameProvider = context.getGlobalNameProvider();
-		name = globalNameProvider.newGlobalName("createStructure");
+		name = globalNameProvider.newGlobalName("newStruct");
 
 		functionSignature = getFunctionSignature(codeFragmentCollector);
 	}

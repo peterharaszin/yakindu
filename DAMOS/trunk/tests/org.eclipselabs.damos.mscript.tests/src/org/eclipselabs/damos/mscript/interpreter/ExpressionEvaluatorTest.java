@@ -66,7 +66,7 @@ public class ExpressionEvaluatorTest {
 	}
 
 	@Test
-	public void createMatix2x3() {
+	public void createMatrix2x3() {
 		IValue value = evaluate("{ { 1, 2, 3 }, { 4, 5.1, 6 } }");
 		
 		assertTrue(value instanceof IArrayValue);
@@ -86,6 +86,48 @@ public class ExpressionEvaluatorTest {
 		assertValueEquals(6.0, arrayValue.get(1, 2), 1e-10);
 	}
 	
+	@Test
+	public void createMatrix2x3ScalarMultiplyPre() {
+		IValue value = evaluate("10 * { { 1, 2, 3 }, { 4, 5.1, 6 } }");
+		
+		assertTrue(value instanceof IArrayValue);
+		IArrayValue arrayValue = (IArrayValue) value;
+		
+		assertTrue(arrayValue.getDataType() instanceof ArrayType);
+		assertTrue(arrayValue.getDataType().getElementType() instanceof RealType);
+		assertEquals("Array must have 2 dimensions", 2, arrayValue.getDataType().getDimensionality());
+		assertEquals("Row size must be 2", 2, TypeUtil.getArrayRowSize(arrayValue.getDataType()));
+		assertEquals("Column size must be 3", 3, TypeUtil.getArrayColumnSize(arrayValue.getDataType()));
+		
+		assertValueEquals(10.0, arrayValue.get(0, 0), 1e-10);
+		assertValueEquals(20.0, arrayValue.get(0, 1), 1e-10);
+		assertValueEquals(30.0, arrayValue.get(0, 2), 1e-10);
+		assertValueEquals(40.0, arrayValue.get(1, 0), 1e-10);
+		assertValueEquals(51.0, arrayValue.get(1, 1), 1e-10);
+		assertValueEquals(60.0, arrayValue.get(1, 2), 1e-10);
+	}
+
+	@Test
+	public void createMatrix2x3ScalarMultiplyPost() {
+		IValue value = evaluate("{ { 1, 2, 3 }, { 4, 5.1, 6 } } * 10");
+		
+		assertTrue(value instanceof IArrayValue);
+		IArrayValue arrayValue = (IArrayValue) value;
+		
+		assertTrue(arrayValue.getDataType() instanceof ArrayType);
+		assertTrue(arrayValue.getDataType().getElementType() instanceof RealType);
+		assertEquals("Array must have 2 dimensions", 2, arrayValue.getDataType().getDimensionality());
+		assertEquals("Row size must be 2", 2, TypeUtil.getArrayRowSize(arrayValue.getDataType()));
+		assertEquals("Column size must be 3", 3, TypeUtil.getArrayColumnSize(arrayValue.getDataType()));
+		
+		assertValueEquals(10.0, arrayValue.get(0, 0), 1e-10);
+		assertValueEquals(20.0, arrayValue.get(0, 1), 1e-10);
+		assertValueEquals(30.0, arrayValue.get(0, 2), 1e-10);
+		assertValueEquals(40.0, arrayValue.get(1, 0), 1e-10);
+		assertValueEquals(51.0, arrayValue.get(1, 1), 1e-10);
+		assertValueEquals(60.0, arrayValue.get(1, 2), 1e-10);
+	}
+
 	private void assertValueEquals(double expected, IValue actual, double delta) {
 		assertTrue("Value must be ISimpleNumericValue", actual instanceof ISimpleNumericValue);
 		assertEquals(expected, ((ISimpleNumericValue) actual).doubleValue(), delta);

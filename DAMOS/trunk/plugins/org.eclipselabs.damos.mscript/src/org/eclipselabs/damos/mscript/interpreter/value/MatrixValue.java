@@ -32,7 +32,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	public MatrixValue(IComputationContext context, ArrayType dataType, IValue[][] elements) {
 		super(context, dataType);
-		if (!dataType.isNumericMatrix()) {
+		if (dataType.getDimensionality() != 2) {
 			throw new IllegalArgumentException("Array type must be matrix");
 		}
 		this.elements = elements;
@@ -53,32 +53,32 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (!TypeUtil.isNumericMatrix(dataType)) {
-			throw new IllegalArgumentException("Data type must be matrix type");
-		}
-		ArrayType arrayType = (ArrayType) dataType;
-		INumericValue[][] convertedElements = new INumericValue[rowSize][columnSize];
-		for (int i = 0; i < rowSize; ++i) {
-			for (int j = 0; j < columnSize; ++j) {
-				convertedElements[i][j] = (INumericValue) elements[i][j].convert(arrayType.getElementType());
+		if (TypeUtil.isNumericMatrix(dataType)) {
+			ArrayType arrayType = (ArrayType) dataType;
+			INumericValue[][] convertedElements = new INumericValue[rowSize][columnSize];
+			for (int i = 0; i < rowSize; ++i) {
+				for (int j = 0; j < columnSize; ++j) {
+					convertedElements[i][j] = (INumericValue) elements[i][j].convert(arrayType.getElementType());
+				}
 			}
+			return new MatrixValue(getContext(), arrayType, convertedElements);
 		}
-		return new MatrixValue(getContext(), arrayType, convertedElements);
+		return this;
 	}
 	
-	public INumericValue get(int index) {
+	public IValue get(int index) {
 		throw new UnsupportedOperationException();
 	}
 
-	public INumericValue get(int rowIndex, int columnIndex) {
-		return (INumericValue) elements[rowIndex][columnIndex];
+	public IValue get(int rowIndex, int columnIndex) {
+		return elements[rowIndex][columnIndex];
 	}
 	
-	public INumericValue get(int... indices) {
+	public IValue get(int... indices) {
 		if (indices.length != 2) {
 			throw new IllegalArgumentException("Index array length must be 2");
 		}
-		return (INumericValue) elements[indices[0]][indices[1]];
+		return elements[indices[0]][indices[1]];
 	}
 	
 	public void set(int index, IValue value) {
@@ -86,10 +86,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	}
 	
 	public void set(int rowIndex, int columnIndex, IValue value) {
-		if (!(value instanceof INumericValue)) {
-			throw new IllegalArgumentException("Value must be numeric");
-		}
-		elements[rowIndex][columnIndex] = (INumericValue) value;
+		elements[rowIndex][columnIndex] = value;
 	}
 	
 	/* (non-Javadoc)
@@ -99,10 +96,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 		if (indices.length != 2) {
 			throw new IllegalArgumentException("Index array length must be 2");
 		}
-		if (!(value instanceof INumericValue)) {
-			throw new IllegalArgumentException("Value must be numeric");
-		}
-		elements[indices[0]][indices[1]] = (INumericValue) value;
+		elements[indices[0]][indices[1]] = value;
 	}
 	
 	/* (non-Javadoc)
@@ -110,6 +104,9 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doMultiply(IValue other, DataType resultDataType) {
+		if (!TypeUtil.isNumericMatrix(getDataType())) {
+			return InvalidValue.SINGLETON;
+		}
 		if (other instanceof INumericValue) {
 			INumericValue otherNumericValue = (INumericValue) other;
 			INumericValue[][] resultElements = new INumericValue[rowSize][columnSize];

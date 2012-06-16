@@ -716,17 +716,13 @@ abstract class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 			return new AnyValue(getComputationContext(), arrayType);
 		}
 
-		if (arrayType.isNumeric()) {
-			IValue[][] values = new IValue[rowSize][columnSize];
-			for (int i = 0; i < rowSize; ++i) {
-				for (int j = 0; j < columnSize; ++j) {
-					values[i][j] = ((IArrayValue) elements[i]).get(j);
-				}
+		IValue[][] values = new IValue[rowSize][columnSize];
+		for (int i = 0; i < rowSize; ++i) {
+			for (int j = 0; j < columnSize; ++j) {
+				values[i][j] = ((IArrayValue) elements[i]).get(j);
 			}
-			return new MatrixValue(getComputationContext(), arrayType, values);
 		}
-
-		return InvalidValue.SINGLETON;
+		return new MatrixValue(getComputationContext(), arrayType, values);
 	}
 
 	private ArrayType createArrayType(IValue[] elements) {

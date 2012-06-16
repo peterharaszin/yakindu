@@ -70,7 +70,7 @@ public class ContextStruct extends PrimaryCodeFragment {
     boolean _not = (!_isEmpty);
     if (_not) {
       ICodeFragment _create = this.taskMessageStructFactory.create();
-      context.addCodeFragment(_create, monitor);
+      context.<ICodeFragment>addCodeFragment(_create, monitor);
     }
     Configuration _configuration = context.getConfiguration();
     final String prefix = GeneratorConfigurationExtensions.getPrefix(_configuration);

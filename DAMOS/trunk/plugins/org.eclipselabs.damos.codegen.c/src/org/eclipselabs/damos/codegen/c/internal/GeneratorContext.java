@@ -77,10 +77,11 @@ public class GeneratorContext implements IGeneratorContext, ICodeFragmentContext
 		return this;
 	}
 	
-	public ICodeFragment addCodeFragment(ICodeFragment codeFragment, IProgressMonitor monitor) {
+	@SuppressWarnings("unchecked")
+	public <T extends ICodeFragment> T addCodeFragment(T codeFragment, IProgressMonitor monitor) {
 		ICodeFragment existing = codeFragments.get(codeFragment);
 		if (existing != null) {
-			return existing;
+			return (T) existing;
 		}
 		codeFragment.initialize(this, monitor);
 		codeFragments.put(codeFragment, codeFragment);

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public abstract class BaseMultiplicativeExpressionGenerator implements IMultiplicativeExpressionGenerator {
 	
-	public CharSequence generate(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	public CharSequence generate(ICodeFragmentCollector codeFragmentCollector, OperatorKind operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		if (targetNumberFormat instanceof FloatingPointFormat) {
 			return generateFloatingPointMultiplicativeExpression(codeFragmentCollector, operator, targetNumberFormat, leftOperand, rightOperand);
 		} else if (targetNumberFormat instanceof FixedPointFormat) {
@@ -32,9 +32,9 @@ public abstract class BaseMultiplicativeExpressionGenerator implements IMultipli
 		}
 	}
 
-	private CharSequence generateFloatingPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	private CharSequence generateFloatingPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, OperatorKind operator, NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		StringBuilder sb = new StringBuilder();
-		if (operator == MultiplicativeOperator.MODULO) {
+		if (operator == OperatorKind.MODULO) {
 			sb.append("fmod(");
 			sb.append(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, leftOperand));
 			sb.append(", ");
@@ -50,7 +50,7 @@ public abstract class BaseMultiplicativeExpressionGenerator implements IMultipli
 		return sb;
 	}
 	
-	private CharSequence generateFixedPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	private CharSequence generateFixedPointMultiplicativeExpression(ICodeFragmentCollector codeFragmentCollector, OperatorKind operator, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
 		StringBuilder sb = new StringBuilder();
 		switch (operator) {
 		case MULTIPLY:

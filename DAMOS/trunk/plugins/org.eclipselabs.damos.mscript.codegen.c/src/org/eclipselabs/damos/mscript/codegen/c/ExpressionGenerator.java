@@ -36,6 +36,7 @@ import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
@@ -260,7 +261,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseUnaryExpression(UnaryExpression unaryExpression) {
-			out.print(unaryExpression.getOperator().getLiteral());
+			if (unaryExpression.getOperator() == OperatorKind.NEGATE) {
+				out.print("-");
+			} else {
+				out.print(unaryExpression.getOperator().getLiteral());
+			}
 			doSwitch(unaryExpression.getOperand());
 			return true;
 		}

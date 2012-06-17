@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
-import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +40,7 @@ public class AdditiveExpressionImpl extends ExpressionImpl implements AdditiveEx
 	 * @generated
 	 * @ordered
 	 */
-	protected static final AdditiveOperator OPERATOR_EDEFAULT = AdditiveOperator.ADD;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -50,7 +50,7 @@ public class AdditiveExpressionImpl extends ExpressionImpl implements AdditiveEx
 	 * @generated
 	 * @ordered
 	 */
-	protected AdditiveOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLeftOperand() <em>Left Operand</em>}' containment reference.
@@ -96,7 +96,7 @@ public class AdditiveExpressionImpl extends ExpressionImpl implements AdditiveEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AdditiveOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -105,8 +105,8 @@ public class AdditiveExpressionImpl extends ExpressionImpl implements AdditiveEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(AdditiveOperator newOperator) {
-		AdditiveOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ADDITIVE_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -241,7 +241,7 @@ public class AdditiveExpressionImpl extends ExpressionImpl implements AdditiveEx
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.ADDITIVE_EXPRESSION__OPERATOR:
-				setOperator((AdditiveOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.ADDITIVE_EXPRESSION__LEFT_OPERAND:
 				setLeftOperand((Expression)newValue);

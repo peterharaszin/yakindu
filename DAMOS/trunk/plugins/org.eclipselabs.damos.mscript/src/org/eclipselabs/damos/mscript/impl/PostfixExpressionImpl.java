@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.PostfixOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class PostfixExpressionImpl extends ExpressionImpl implements PostfixExpr
 	 * @generated
 	 * @ordered
 	 */
-	protected static final PostfixOperator OPERATOR_EDEFAULT = PostfixOperator.DERIVATIVE;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -59,7 +59,7 @@ public class PostfixExpressionImpl extends ExpressionImpl implements PostfixExpr
 	 * @generated
 	 * @ordered
 	 */
-	protected PostfixOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public class PostfixExpressionImpl extends ExpressionImpl implements PostfixExpr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PostfixOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -137,8 +137,8 @@ public class PostfixExpressionImpl extends ExpressionImpl implements PostfixExpr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(PostfixOperator newOperator) {
-		PostfixOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.POSTFIX_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -186,7 +186,7 @@ public class PostfixExpressionImpl extends ExpressionImpl implements PostfixExpr
 				setOperand((Expression)newValue);
 				return;
 			case MscriptPackage.POSTFIX_EXPRESSION__OPERATOR:
-				setOperator((PostfixOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

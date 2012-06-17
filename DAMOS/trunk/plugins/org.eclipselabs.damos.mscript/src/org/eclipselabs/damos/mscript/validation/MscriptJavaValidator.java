@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
-import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
@@ -36,6 +35,7 @@ import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.PrimitiveType;
@@ -194,7 +194,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 	@Check
 	public void checkStepNNotNegated(AdditiveStepExpression additiveStepExpression) {
-		if (additiveStepExpression.getRightOperand() instanceof StepN && additiveStepExpression.getOperator() == AdditiveOperator.SUBTRACT) {
+		if (additiveStepExpression.getRightOperand() instanceof StepN && additiveStepExpression.getOperator() == OperatorKind.SUBTRACT) {
 			warning("Subtracting step n has no effect, use addition instead", null);
 		}
 	}

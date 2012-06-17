@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.RelationalOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class RelationalExpressionImpl extends ExpressionImpl implements Relation
 	 * @generated
 	 * @ordered
 	 */
-	protected static final RelationalOperator OPERATOR_EDEFAULT = RelationalOperator.LESS_THAN;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -60,7 +60,7 @@ public class RelationalExpressionImpl extends ExpressionImpl implements Relation
 	 * @generated
 	 * @ordered
 	 */
-	protected RelationalOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRightOperand() <em>Right Operand</em>}' containment reference.
@@ -139,7 +139,7 @@ public class RelationalExpressionImpl extends ExpressionImpl implements Relation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelationalOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -148,8 +148,8 @@ public class RelationalExpressionImpl extends ExpressionImpl implements Relation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(RelationalOperator newOperator) {
-		RelationalOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.RELATIONAL_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -244,7 +244,7 @@ public class RelationalExpressionImpl extends ExpressionImpl implements Relation
 				setLeftOperand((Expression)newValue);
 				return;
 			case MscriptPackage.RELATIONAL_EXPRESSION__OPERATOR:
-				setOperator((RelationalOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.RELATIONAL_EXPRESSION__RIGHT_OPERAND:
 				setRightOperand((Expression)newValue);

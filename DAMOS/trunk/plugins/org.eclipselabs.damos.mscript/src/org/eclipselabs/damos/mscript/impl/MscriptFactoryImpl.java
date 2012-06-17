@@ -174,20 +174,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 				return createFunctionKindFromString(eDataType, initialValue);
 			case MscriptPackage.ASSERTION_STATUS_KIND:
 				return createAssertionStatusKindFromString(eDataType, initialValue);
-			case MscriptPackage.EQUALITY_OPERATOR:
-				return createEqualityOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.RELATIONAL_OPERATOR:
-				return createRelationalOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.ADDITIVE_OPERATOR:
-				return createAdditiveOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.MULTIPLICATIVE_OPERATOR:
-				return createMultiplicativeOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.POWER_OPERATOR:
-				return createPowerOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.UNARY_OPERATOR:
-				return createUnaryOperatorFromString(eDataType, initialValue);
-			case MscriptPackage.POSTFIX_OPERATOR:
-				return createPostfixOperatorFromString(eDataType, initialValue);
 			case MscriptPackage.OPERATOR_KIND:
 				return createOperatorKindFromString(eDataType, initialValue);
 			case MscriptPackage.REAL_DATA:
@@ -211,20 +197,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 				return convertFunctionKindToString(eDataType, instanceValue);
 			case MscriptPackage.ASSERTION_STATUS_KIND:
 				return convertAssertionStatusKindToString(eDataType, instanceValue);
-			case MscriptPackage.EQUALITY_OPERATOR:
-				return convertEqualityOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.RELATIONAL_OPERATOR:
-				return convertRelationalOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.ADDITIVE_OPERATOR:
-				return convertAdditiveOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.MULTIPLICATIVE_OPERATOR:
-				return convertMultiplicativeOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.POWER_OPERATOR:
-				return convertPowerOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.UNARY_OPERATOR:
-				return convertUnaryOperatorToString(eDataType, instanceValue);
-			case MscriptPackage.POSTFIX_OPERATOR:
-				return convertPostfixOperatorToString(eDataType, instanceValue);
 			case MscriptPackage.OPERATOR_KIND:
 				return convertOperatorKindToString(eDataType, instanceValue);
 			case MscriptPackage.REAL_DATA:
@@ -1263,146 +1235,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * @generated
 	 */
 	public String convertAssertionStatusKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EqualityOperator createEqualityOperatorFromString(EDataType eDataType, String initialValue) {
-		EqualityOperator result = EqualityOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertEqualityOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RelationalOperator createRelationalOperatorFromString(EDataType eDataType, String initialValue) {
-		RelationalOperator result = RelationalOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRelationalOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AdditiveOperator createAdditiveOperatorFromString(EDataType eDataType, String initialValue) {
-		AdditiveOperator result = AdditiveOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAdditiveOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultiplicativeOperator createMultiplicativeOperatorFromString(EDataType eDataType, String initialValue) {
-		MultiplicativeOperator result = MultiplicativeOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertMultiplicativeOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PowerOperator createPowerOperatorFromString(EDataType eDataType, String initialValue) {
-		PowerOperator result = PowerOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPowerOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryOperator createUnaryOperatorFromString(EDataType eDataType, String initialValue) {
-		UnaryOperator result = UnaryOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PostfixOperator createPostfixOperatorFromString(EDataType eDataType, String initialValue) {
-		PostfixOperator result = PostfixOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPostfixOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

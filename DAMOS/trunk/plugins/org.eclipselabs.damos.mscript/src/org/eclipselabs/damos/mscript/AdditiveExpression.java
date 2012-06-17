@@ -28,7 +28,7 @@ package org.eclipselabs.damos.mscript;
 public interface AdditiveExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.AdditiveOperator}.
+	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.OperatorKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operator</em>' attribute isn't clear,
@@ -36,24 +36,24 @@ public interface AdditiveExpression extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.AdditiveOperator
-	 * @see #setOperator(AdditiveOperator)
+	 * @see org.eclipselabs.damos.mscript.OperatorKind
+	 * @see #setOperator(OperatorKind)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getAdditiveExpression_Operator()
 	 * @model
 	 * @generated
 	 */
-	AdditiveOperator getOperator();
+	OperatorKind getOperator();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.AdditiveExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.AdditiveOperator
+	 * @see org.eclipselabs.damos.mscript.OperatorKind
 	 * @see #getOperator()
 	 * @generated
 	 */
-	void setOperator(AdditiveOperator value);
+	void setOperator(OperatorKind value);
 
 	/**
 	 * Returns the value of the '<em><b>Left Operand</b></em>' containment reference.

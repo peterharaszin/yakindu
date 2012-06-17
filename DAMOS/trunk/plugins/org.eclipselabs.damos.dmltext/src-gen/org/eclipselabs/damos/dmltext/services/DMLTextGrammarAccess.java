@@ -1886,7 +1886,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getEqualityExpressionAccess().getRule();
 	}
 
-	//enum EqualityOperator:
+	//enum EqualityOperator returns OperatorKind:
 	//	EqualTo="==" | NotEqualTo="!=";
 	public MscriptGrammarAccess.EqualityOperatorElements getEqualityOperatorAccess() {
 		return gaMscript.getEqualityOperatorAccess();
@@ -1907,7 +1907,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getRelationalExpressionAccess().getRule();
 	}
 
-	//enum RelationalOperator:
+	//enum RelationalOperator returns OperatorKind:
 	//	LessThan="<" | LessThanOrEqualTo="<=" | GreaterThan=">" | GreaterThanOrEqualTo=">=";
 	public MscriptGrammarAccess.RelationalOperatorElements getRelationalOperatorAccess() {
 		return gaMscript.getRelationalOperatorAccess();
@@ -1928,7 +1928,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getAdditiveExpressionAccess().getRule();
 	}
 
-	//enum AdditiveOperator:
+	//enum AdditiveOperator returns OperatorKind:
 	//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 	public MscriptGrammarAccess.AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return gaMscript.getAdditiveOperatorAccess();
@@ -1949,7 +1949,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicativeExpressionAccess().getRule();
 	}
 
-	//enum MultiplicativeOperator:
+	//enum MultiplicativeOperator returns OperatorKind:
 	//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 	public MscriptGrammarAccess.MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return gaMscript.getMultiplicativeOperatorAccess();
@@ -1969,7 +1969,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getPowerExpressionAccess().getRule();
 	}
 
-	//enum PowerOperator:
+	//enum PowerOperator returns OperatorKind:
 	//	Power="^" | ElementWisePower=".^";
 	public MscriptGrammarAccess.PowerOperatorElements getPowerOperatorAccess() {
 		return gaMscript.getPowerOperatorAccess();
@@ -1989,7 +1989,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnaryExpressionAccess().getRule();
 	}
 
-	//enum UnaryOperator:
+	//enum UnaryOperator returns OperatorKind:
 	//	Negate="-" | LogicalNot="!";
 	public MscriptGrammarAccess.UnaryOperatorElements getUnaryOperatorAccess() {
 		return gaMscript.getUnaryOperatorAccess();
@@ -2009,7 +2009,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getPostfixExpressionAccess().getRule();
 	}
 
-	//enum PostfixOperator:
+	//enum PostfixOperator returns OperatorKind:
 	//	Derivative="\'";
 	public MscriptGrammarAccess.PostfixOperatorElements getPostfixOperatorAccess() {
 		return gaMscript.getPostfixOperatorAccess();

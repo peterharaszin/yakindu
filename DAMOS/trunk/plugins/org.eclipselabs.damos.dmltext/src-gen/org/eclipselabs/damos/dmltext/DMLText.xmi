@@ -1321,15 +1321,15 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="EqualityOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator/EqualTo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/EqualTo"/>
           <literal value="=="/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EqualityOperator/NotEqualTo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/NotEqualTo"/>
           <literal value="!="/>
         </elements>
       </alternatives>
@@ -1372,23 +1372,23 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="RelationalOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/LessThan"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/LessThan"/>
           <literal value="&lt;"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/LessThanOrEqualTo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/LessThanOrEqualTo"/>
           <literal value="&lt;="/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/GreaterThan"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/GreaterThan"/>
           <literal value=">"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RelationalOperator/GreaterThanOrEqualTo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/GreaterThanOrEqualTo"/>
           <literal value=">="/>
         </elements>
       </alternatives>
@@ -1416,23 +1416,23 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="AdditiveOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/Add"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Add"/>
           <literal value="+"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/Subtract"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Subtract"/>
           <literal value="-"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseAdd"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWiseAdd"/>
           <literal value=".+"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//AdditiveOperator/ElementWiseSubtract"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWiseSubtract"/>
           <literal value=".-"/>
         </elements>
       </alternatives>
@@ -1460,31 +1460,31 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="MultiplicativeOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Multiply"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Multiply"/>
           <literal value="*"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Divide"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Divide"/>
           <literal value="/"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/Modulo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Modulo"/>
           <literal value="%"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseMultiply"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWiseMultiply"/>
           <literal value=".*"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseDivide"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWiseDivide"/>
           <literal value="./"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//MultiplicativeOperator/ElementWiseModulo"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWiseModulo"/>
           <literal value=".%"/>
         </elements>
       </alternatives>
@@ -1512,15 +1512,15 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="PowerOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator/Power"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Power"/>
           <literal value="^"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PowerOperator/ElementWisePower"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/ElementWisePower"/>
           <literal value=".^"/>
         </elements>
       </alternatives>
@@ -1548,15 +1548,15 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="UnaryOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator/Negate"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Negate"/>
           <literal value="-"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnaryOperator/LogicalNot"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/LogicalNot"/>
           <literal value="!"/>
         </elements>
       </alternatives>
@@ -1584,10 +1584,10 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="PostfixOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PostfixOperator"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind"/>
       </type>
       <alternatives xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//PostfixOperator/Derivative"/>
+        <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OperatorKind/Derivative"/>
         <literal value="'"/>
       </alternatives>
     </rules>

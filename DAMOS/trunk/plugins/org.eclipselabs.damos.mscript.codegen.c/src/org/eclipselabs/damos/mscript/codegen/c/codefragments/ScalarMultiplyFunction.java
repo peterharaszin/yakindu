@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
@@ -109,7 +109,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
 
 		NumericExpressionInfo leftOperand = NumericExpressionInfo.create(scalarNumberFormat, "scalar");
 		NumericExpressionInfo rightOperand = NumericExpressionInfo.create(elementNumberFormat, "vector[i]");
-		out.print(multiplicativeExpressionGenerator.generate(codeFragmentCollector, MultiplicativeOperator.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand));
+		out.print(multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind.MULTIPLY, resultElementNumberFormat, leftOperand, rightOperand));
 		
 		out.println(";");
 		out.println("}");

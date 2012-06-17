@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.OperatorKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +40,7 @@ public class MultiplicativeExpressionImpl extends ExpressionImpl implements Mult
 	 * @generated
 	 * @ordered
 	 */
-	protected static final MultiplicativeOperator OPERATOR_EDEFAULT = MultiplicativeOperator.MULTIPLY;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -50,7 +50,7 @@ public class MultiplicativeExpressionImpl extends ExpressionImpl implements Mult
 	 * @generated
 	 * @ordered
 	 */
-	protected MultiplicativeOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLeftOperand() <em>Left Operand</em>}' containment reference.
@@ -96,7 +96,7 @@ public class MultiplicativeExpressionImpl extends ExpressionImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiplicativeOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -105,8 +105,8 @@ public class MultiplicativeExpressionImpl extends ExpressionImpl implements Mult
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(MultiplicativeOperator newOperator) {
-		MultiplicativeOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.MULTIPLICATIVE_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -241,7 +241,7 @@ public class MultiplicativeExpressionImpl extends ExpressionImpl implements Mult
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.MULTIPLICATIVE_EXPRESSION__OPERATOR:
-				setOperator((MultiplicativeOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.MULTIPLICATIVE_EXPRESSION__LEFT_OPERAND:
 				setLeftOperand((Expression)newValue);

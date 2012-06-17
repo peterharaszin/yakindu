@@ -3856,77 +3856,6 @@ public interface MscriptPackage extends EPackage {
 	int ASSERTION_STATUS_KIND = 112;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.EqualityOperator <em>Equality Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.EqualityOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getEqualityOperator()
-	 * @generated
-	 */
-	int EQUALITY_OPERATOR = 113;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.RelationalOperator <em>Relational Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.RelationalOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRelationalOperator()
-	 * @generated
-	 */
-	int RELATIONAL_OPERATOR = 114;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AdditiveOperator <em>Additive Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.AdditiveOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAdditiveOperator()
-	 * @generated
-	 */
-	int ADDITIVE_OPERATOR = 115;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.MultiplicativeOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiplicativeOperator()
-	 * @generated
-	 */
-	int MULTIPLICATIVE_OPERATOR = 116;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.PowerOperator <em>Power Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.PowerOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPowerOperator()
-	 * @generated
-	 */
-	int POWER_OPERATOR = 117;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.UnaryOperator <em>Unary Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.UnaryOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnaryOperator()
-	 * @generated
-	 */
-	int UNARY_OPERATOR = 118;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.PostfixOperator <em>Postfix Operator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.PostfixOperator
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPostfixOperator()
-	 * @generated
-	 */
-	int POSTFIX_OPERATOR = 119;
-
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3934,7 +3863,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 120;
+	int OPERATOR_KIND = 113;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -3944,7 +3873,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 121;
+	int REAL_DATA = 114;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -3954,7 +3883,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 122;
+	int INTEGER_DATA = 115;
 
 
 	/**
@@ -6815,76 +6744,6 @@ public interface MscriptPackage extends EPackage {
 	EEnum getAssertionStatusKind();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.EqualityOperator <em>Equality Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Equality Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.EqualityOperator
-	 * @generated
-	 */
-	EEnum getEqualityOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.RelationalOperator <em>Relational Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Relational Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.RelationalOperator
-	 * @generated
-	 */
-	EEnum getRelationalOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.AdditiveOperator <em>Additive Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Additive Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.AdditiveOperator
-	 * @generated
-	 */
-	EEnum getAdditiveOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.MultiplicativeOperator <em>Multiplicative Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Multiplicative Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiplicativeOperator
-	 * @generated
-	 */
-	EEnum getMultiplicativeOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.PowerOperator <em>Power Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Power Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.PowerOperator
-	 * @generated
-	 */
-	EEnum getPowerOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.UnaryOperator <em>Unary Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Unary Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.UnaryOperator
-	 * @generated
-	 */
-	EEnum getUnaryOperator();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.PostfixOperator <em>Postfix Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Postfix Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.PostfixOperator
-	 * @generated
-	 */
-	EEnum getPostfixOperator();
-
-	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9323,76 +9182,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ASSERTION_STATUS_KIND = eINSTANCE.getAssertionStatusKind();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.EqualityOperator <em>Equality Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.EqualityOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getEqualityOperator()
-		 * @generated
-		 */
-		EEnum EQUALITY_OPERATOR = eINSTANCE.getEqualityOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.RelationalOperator <em>Relational Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.RelationalOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRelationalOperator()
-		 * @generated
-		 */
-		EEnum RELATIONAL_OPERATOR = eINSTANCE.getRelationalOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.AdditiveOperator <em>Additive Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.AdditiveOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAdditiveOperator()
-		 * @generated
-		 */
-		EEnum ADDITIVE_OPERATOR = eINSTANCE.getAdditiveOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.MultiplicativeOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiplicativeOperator()
-		 * @generated
-		 */
-		EEnum MULTIPLICATIVE_OPERATOR = eINSTANCE.getMultiplicativeOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.PowerOperator <em>Power Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.PowerOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPowerOperator()
-		 * @generated
-		 */
-		EEnum POWER_OPERATOR = eINSTANCE.getPowerOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.UnaryOperator <em>Unary Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.UnaryOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnaryOperator()
-		 * @generated
-		 */
-		EEnum UNARY_OPERATOR = eINSTANCE.getUnaryOperator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.PostfixOperator <em>Postfix Operator</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.PostfixOperator
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPostfixOperator()
-		 * @generated
-		 */
-		EEnum POSTFIX_OPERATOR = eINSTANCE.getPostfixOperator();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.

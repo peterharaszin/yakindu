@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Declaration;
@@ -24,6 +23,7 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StepLiteral;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -116,9 +116,9 @@ public class MscriptUtil {
 			AdditiveStepExpression stepExpression = MscriptFactory.eINSTANCE.createAdditiveStepExpression();
 			stepExpression.setLeftOperand(MscriptFactory.eINSTANCE.createStepN());
 			if (stepIndex < 0) {
-				stepExpression.setOperator(AdditiveOperator.SUBTRACT);
+				stepExpression.setOperator(OperatorKind.SUBTRACT);
 			} else {
-				stepExpression.setOperator(AdditiveOperator.ADD);
+				stepExpression.setOperator(OperatorKind.ADD);
 			}
 			StepLiteral stepLiteral = MscriptFactory.eINSTANCE.createStepLiteral();
 			stepLiteral.setValue(Math.abs(stepIndex));

@@ -88,6 +88,109 @@ public interface ArrayType extends DataType {
 	 * @generated
 	 */
 	EList<ArrayDimension> getDimensions();
+	
+	/**
+	 * The following data type rules apply for array operations.
+	 * 
+	 * <h4>Array element-wise Addition and Subtraction</h4>
+	 * <p>
+	 * Addition <code>a+b</code> and subtraction <code>a-b</code> is defined as element-wise operation
+	 * for <code>a</code> and <code>b</code> of the same dimensionality:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a+/-b</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Vector[n]</td><td>Vector[n]</td><td>Vector[n]</td></tr>
+	 * <tr><td>Matrix[m, n]</td><td>Matrix[m, n]</td><td>Matrix[m, n]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * <p>
+	 * Element-wise addition <code>a.+b</code> and subtraction <code>a.-b</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a.+/.-b</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Scalar</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Scalar</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * <h4>Array Element-wise Multiplication</h4>
+	 * 
+	 * <p>
+	 * Scalar multiplication <code>s*a</code> and <code>a*s</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of s</th><th>Type of a</th><th>Type of s*a and a*s</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Scalar</td><td>Vector[n]</td><td>Vector[n]</td></tr>
+	 * <tr><td>Scalar</td><td>Matrix[m, n]</td><td>Matrix[m, n]</td></tr>
+	 * <tr><td>Scalar</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * <p>
+	 * Element-wise multiplication <code>a.*b</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a.*b</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Scalar</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Scalar</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * <h4>Matrix and Vector Multiplication of Numeric Arrays</h4>
+	 * 
+	 * <p>
+	 * Multiplication <code>a*b</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a*b</th>
+	 * <tr><td>Vector[n]</td><td>Vector[n]</td><td>Scalar</td></tr>
+	 * <tr><td>Vector[m]</td><td>Matrix[m, n]</td><td>Vector[n]</td></tr>
+	 * <tr><td>Matrix[m, n]</td><td>Vector[n]</td><td>Vector[m]</td></tr>
+	 * <tr><td>Matrix[m, n]</td><td>Matrix[n, p]</td><td>Matrix[m, p]</td></tr>
+	 * </table>
+	 * 
+	 * <h4>Division of Scalars or Numeric Arrays by Numeric Scalars</h4>
+	 * 
+	 * <p>
+	 * Division <code>a/s</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of s</th><th>Type of a</th><th>Type of a/s</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Vector[n]</td><td>Scalar</td><td>Vector[n]</td></tr>
+	 * <tr><td>Matrix[m, n]</td><td>Scalar</td><td>Matrix[m, n]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Scalar</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * <h4>Array Element-wise Division</h4>
+	 * 
+	 * <p>
+	 * Element-wise division <code>a./b</code> is defined as follows:
+	 * 
+	 * <p>
+	 * <table border="1">
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a./b</th>
+	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
+	 * <tr><td>Scalar</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Scalar</td><td>Array[m, n, ...]</td></tr>
+	 * <tr><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
+	 * </table>
+	 * 
+	 * @param operator
+	 * @param other
+	 * @return
+	 */
+	public DataType evaluate(OperatorKind operator, DataType other);
 
 	/**
 	 * Returns the value of the '<em><b>Dimensionality</b></em>' attribute.

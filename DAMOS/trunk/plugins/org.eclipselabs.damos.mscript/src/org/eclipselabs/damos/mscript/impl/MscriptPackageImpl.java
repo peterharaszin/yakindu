@@ -819,55 +819,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum equalityOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum relationalOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum additiveOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum multiplicativeOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum powerOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum unaryOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum postfixOperatorEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum operatorKindEEnum = null;
 
 	/**
@@ -3380,69 +3331,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getEqualityOperator() {
-		return equalityOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getRelationalOperator() {
-		return relationalOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getAdditiveOperator() {
-		return additiveOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getMultiplicativeOperator() {
-		return multiplicativeOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getPowerOperator() {
-		return powerOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getUnaryOperator() {
-		return unaryOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getPostfixOperator() {
-		return postfixOperatorEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getOperatorKind() {
 		return operatorKindEEnum;
 	}
@@ -3875,13 +3763,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		// Create enums
 		functionKindEEnum = createEEnum(FUNCTION_KIND);
 		assertionStatusKindEEnum = createEEnum(ASSERTION_STATUS_KIND);
-		equalityOperatorEEnum = createEEnum(EQUALITY_OPERATOR);
-		relationalOperatorEEnum = createEEnum(RELATIONAL_OPERATOR);
-		additiveOperatorEEnum = createEEnum(ADDITIVE_OPERATOR);
-		multiplicativeOperatorEEnum = createEEnum(MULTIPLICATIVE_OPERATOR);
-		powerOperatorEEnum = createEEnum(POWER_OPERATOR);
-		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
-		postfixOperatorEEnum = createEEnum(POSTFIX_OPERATOR);
 		operatorKindEEnum = createEEnum(OPERATOR_KIND);
 
 		// Create data types
@@ -4196,12 +4077,12 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(equalityExpressionEClass, EqualityExpression.class, "EqualityExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEqualityExpression_LeftOperand(), this.getExpression(), null, "leftOperand", null, 0, 1, EqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEqualityExpression_Operator(), this.getEqualityOperator(), "operator", null, 0, 1, EqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEqualityExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, EqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEqualityExpression_RightOperand(), this.getExpression(), null, "rightOperand", null, 0, 1, EqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relationalExpressionEClass, RelationalExpression.class, "RelationalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRelationalExpression_LeftOperand(), this.getExpression(), null, "leftOperand", null, 0, 1, RelationalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRelationalExpression_Operator(), this.getRelationalOperator(), "operator", null, 0, 1, RelationalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelationalExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, RelationalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRelationalExpression_RightOperand(), this.getExpression(), null, "rightOperand", null, 0, 1, RelationalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeTestExpressionEClass, TypeTestExpression.class, "TypeTestExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4209,27 +4090,27 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getTypeTestExpression_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveExpressionEClass, AdditiveExpression.class, "AdditiveExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAdditiveExpression_Operator(), this.getAdditiveOperator(), "operator", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdditiveExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAdditiveExpression_LeftOperand(), this.getExpression(), null, "leftOperand", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAdditiveExpression_RightOperand(), this.getExpression(), null, "rightOperand", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiplicativeExpressionEClass, MultiplicativeExpression.class, "MultiplicativeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultiplicativeExpression_Operator(), this.getMultiplicativeOperator(), "operator", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiplicativeExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiplicativeExpression_LeftOperand(), this.getExpression(), null, "leftOperand", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiplicativeExpression_RightOperand(), this.getExpression(), null, "rightOperand", null, 0, 1, MultiplicativeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(powerExpressionEClass, PowerExpression.class, "PowerExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPowerExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, PowerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPowerExpression_Operator(), this.getPowerOperator(), "operator", null, 0, 1, PowerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPowerExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, PowerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPowerExpression_Exponent(), this.getExpression(), null, "exponent", null, 0, 1, PowerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUnaryExpression_Operator(), this.getUnaryOperator(), "operator", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnaryExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUnaryExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(postfixExpressionEClass, PostfixExpression.class, "PostfixExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPostfixExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, PostfixExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPostfixExpression_Operator(), this.getPostfixOperator(), "operator", null, 0, 1, PostfixExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPostfixExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, PostfixExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureCallEClass, FeatureCall.class, "FeatureCall", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureCall_Feature(), this.getCallableElement(), null, "feature", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4246,7 +4127,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getRangeStepExpression_End(), this.getStepExpression(), null, "end", null, 0, 1, RangeStepExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveStepExpressionEClass, AdditiveStepExpression.class, "AdditiveStepExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAdditiveStepExpression_Operator(), this.getAdditiveOperator(), "operator", null, 0, 1, AdditiveStepExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdditiveStepExpression_Operator(), this.getOperatorKind(), "operator", null, 0, 1, AdditiveStepExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAdditiveStepExpression_LeftOperand(), this.getStepExpression(), null, "leftOperand", null, 0, 1, AdditiveStepExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAdditiveStepExpression_RightOperand(), this.getStepExpression(), null, "rightOperand", null, 0, 1, AdditiveStepExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4453,54 +4334,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEEnumLiteral(assertionStatusKindEEnum, AssertionStatusKind.ERROR);
 		addEEnumLiteral(assertionStatusKindEEnum, AssertionStatusKind.FATAL);
 
-		initEEnum(equalityOperatorEEnum, EqualityOperator.class, "EqualityOperator");
-		addEEnumLiteral(equalityOperatorEEnum, EqualityOperator.EQUAL_TO);
-		addEEnumLiteral(equalityOperatorEEnum, EqualityOperator.NOT_EQUAL_TO);
-
-		initEEnum(relationalOperatorEEnum, RelationalOperator.class, "RelationalOperator");
-		addEEnumLiteral(relationalOperatorEEnum, RelationalOperator.LESS_THAN);
-		addEEnumLiteral(relationalOperatorEEnum, RelationalOperator.LESS_THAN_OR_EQUAL_TO);
-		addEEnumLiteral(relationalOperatorEEnum, RelationalOperator.GREATER_THAN);
-		addEEnumLiteral(relationalOperatorEEnum, RelationalOperator.GREATER_THAN_OR_EQUAL_TO);
-
-		initEEnum(additiveOperatorEEnum, AdditiveOperator.class, "AdditiveOperator");
-		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ADD);
-		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.SUBTRACT);
-		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ELEMENT_WISE_ADD);
-		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ELEMENT_WISE_SUBTRACT);
-
-		initEEnum(multiplicativeOperatorEEnum, MultiplicativeOperator.class, "MultiplicativeOperator");
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MULTIPLY);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.DIVIDE);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MODULO);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_MULTIPLY);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_DIVIDE);
-		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_MODULO);
-
-		initEEnum(powerOperatorEEnum, PowerOperator.class, "PowerOperator");
-		addEEnumLiteral(powerOperatorEEnum, PowerOperator.POWER);
-		addEEnumLiteral(powerOperatorEEnum, PowerOperator.ELEMENT_WISE_POWER);
-
-		initEEnum(unaryOperatorEEnum, UnaryOperator.class, "UnaryOperator");
-		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.NEGATE);
-		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.LOGICAL_NOT);
-
-		initEEnum(postfixOperatorEEnum, PostfixOperator.class, "PostfixOperator");
-		addEEnumLiteral(postfixOperatorEEnum, PostfixOperator.DERIVATIVE);
-
 		initEEnum(operatorKindEEnum, OperatorKind.class, "OperatorKind");
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ADD);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.SUBTRACT);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_ADD);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_SUBTRACT);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.MULTIPLY);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.DIVIDE);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.MODULO);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_MULTIPLY);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_DIVIDE);
-		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_POWER);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_MODULO);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.NEGATE);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.POWER);
-		addEEnumLiteral(operatorKindEEnum, OperatorKind.ROOT);
-		addEEnumLiteral(operatorKindEEnum, OperatorKind.TRANSPOSE);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_POWER);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.LOGICAL_AND);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.LOGICAL_OR);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.LOGICAL_NOT);
@@ -4511,6 +4358,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.GREATER_THAN_OR_EQUAL_TO);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.EQUAL_TO);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.NOT_EQUAL_TO);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.DERIVATIVE);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.ROOT);
 
 		// Initialize data types
 		initEDataType(realDataEDataType, RealData.class, "RealData", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

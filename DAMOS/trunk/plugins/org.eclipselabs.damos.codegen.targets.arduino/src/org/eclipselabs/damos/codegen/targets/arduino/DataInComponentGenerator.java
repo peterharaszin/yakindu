@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
@@ -72,7 +72,7 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, leftOperandText);
 			CharSequence rightOperandText = Integer.toString(getAnalogRange());
 			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, rightOperandText);
-			sb.append(multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), MultiplicativeOperator.DIVIDE, outputNumberFormat, leftOperand, rightOperand));
+			sb.append(multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), OperatorKind.DIVIDE, outputNumberFormat, leftOperand, rightOperand));
 			sb.append(";\n");
 		}
 		return sb;

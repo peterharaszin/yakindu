@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
@@ -254,7 +254,7 @@ public class EquationDescriptorImpl extends EObjectImpl implements EquationDescr
 				}
 				break;
 			}
-		} else if (lhsExpression instanceof PostfixExpression && ((PostfixExpression) lhsExpression).getOperator() == PostfixOperator.DERIVATIVE) {
+		} else if (lhsExpression instanceof PostfixExpression && ((PostfixExpression) lhsExpression).getOperator() == OperatorKind.DERIVATIVE) {
 			
 		} else {
 			message = "Left-hand side must be single variable reference";

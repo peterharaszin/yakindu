@@ -4711,7 +4711,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cNotEqualToEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cNotEqualToExclamationMarkEqualsSignKeyword_1_0 = (Keyword)cNotEqualToEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum EqualityOperator:
+		//enum EqualityOperator returns OperatorKind:
 		//	EqualTo="==" | NotEqualTo="!=";
 		public EnumRule getRule() { return rule; }
 
@@ -4743,7 +4743,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cGreaterThanOrEqualToEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cGreaterThanOrEqualToGreaterThanSignEqualsSignKeyword_3_0 = (Keyword)cGreaterThanOrEqualToEnumLiteralDeclaration_3.eContents().get(0);
 		
-		//enum RelationalOperator:
+		//enum RelationalOperator returns OperatorKind:
 		//	LessThan="<" | LessThanOrEqualTo="<=" | GreaterThan=">" | GreaterThanOrEqualTo=">=";
 		public EnumRule getRule() { return rule; }
 
@@ -4787,7 +4787,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cElementWiseSubtractEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cElementWiseSubtractFullStopHyphenMinusKeyword_3_0 = (Keyword)cElementWiseSubtractEnumLiteralDeclaration_3.eContents().get(0);
 		
-		//enum AdditiveOperator:
+		//enum AdditiveOperator returns OperatorKind:
 		//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 		public EnumRule getRule() { return rule; }
 
@@ -4835,7 +4835,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cElementWiseModuloEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
 		private final Keyword cElementWiseModuloFullStopPercentSignKeyword_5_0 = (Keyword)cElementWiseModuloEnumLiteralDeclaration_5.eContents().get(0);
 		
-		//enum MultiplicativeOperator:
+		//enum MultiplicativeOperator returns OperatorKind:
 		//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 		public EnumRule getRule() { return rule; }
 
@@ -4887,7 +4887,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cElementWisePowerEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cElementWisePowerFullStopCircumflexAccentKeyword_1_0 = (Keyword)cElementWisePowerEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum PowerOperator:
+		//enum PowerOperator returns OperatorKind:
 		//	Power="^" | ElementWisePower=".^";
 		public EnumRule getRule() { return rule; }
 
@@ -4915,7 +4915,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cLogicalNotEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cLogicalNotExclamationMarkKeyword_1_0 = (Keyword)cLogicalNotEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum UnaryOperator:
+		//enum UnaryOperator returns OperatorKind:
 		//	Negate="-" | LogicalNot="!";
 		public EnumRule getRule() { return rule; }
 
@@ -4940,7 +4940,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cDerivativeEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
 		private final Keyword cDerivativeApostropheKeyword_0 = (Keyword)cDerivativeEnumLiteralDeclaration.eContents().get(0);
 		
-		//enum PostfixOperator:
+		//enum PostfixOperator returns OperatorKind:
 		//	Derivative="\'";
 		public EnumRule getRule() { return rule; }
 
@@ -5631,7 +5631,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getEqualityExpressionAccess().getRule();
 	}
 
-	//enum EqualityOperator:
+	//enum EqualityOperator returns OperatorKind:
 	//	EqualTo="==" | NotEqualTo="!=";
 	public EqualityOperatorElements getEqualityOperatorAccess() {
 		return (unknownRuleEqualityOperator != null) ? unknownRuleEqualityOperator : (unknownRuleEqualityOperator = new EqualityOperatorElements());
@@ -5652,7 +5652,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getRelationalExpressionAccess().getRule();
 	}
 
-	//enum RelationalOperator:
+	//enum RelationalOperator returns OperatorKind:
 	//	LessThan="<" | LessThanOrEqualTo="<=" | GreaterThan=">" | GreaterThanOrEqualTo=">=";
 	public RelationalOperatorElements getRelationalOperatorAccess() {
 		return (unknownRuleRelationalOperator != null) ? unknownRuleRelationalOperator : (unknownRuleRelationalOperator = new RelationalOperatorElements());
@@ -5673,7 +5673,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getAdditiveExpressionAccess().getRule();
 	}
 
-	//enum AdditiveOperator:
+	//enum AdditiveOperator returns OperatorKind:
 	//	Add="+" | Subtract="-" | ElementWiseAdd=".+" | ElementWiseSubtract=".-";
 	public AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return (unknownRuleAdditiveOperator != null) ? unknownRuleAdditiveOperator : (unknownRuleAdditiveOperator = new AdditiveOperatorElements());
@@ -5694,7 +5694,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicativeExpressionAccess().getRule();
 	}
 
-	//enum MultiplicativeOperator:
+	//enum MultiplicativeOperator returns OperatorKind:
 	//	Multiply="*" | Divide="/" | Modulo="%" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | ElementWiseModulo=".%";
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return (unknownRuleMultiplicativeOperator != null) ? unknownRuleMultiplicativeOperator : (unknownRuleMultiplicativeOperator = new MultiplicativeOperatorElements());
@@ -5714,7 +5714,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getPowerExpressionAccess().getRule();
 	}
 
-	//enum PowerOperator:
+	//enum PowerOperator returns OperatorKind:
 	//	Power="^" | ElementWisePower=".^";
 	public PowerOperatorElements getPowerOperatorAccess() {
 		return (unknownRulePowerOperator != null) ? unknownRulePowerOperator : (unknownRulePowerOperator = new PowerOperatorElements());
@@ -5734,7 +5734,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnaryExpressionAccess().getRule();
 	}
 
-	//enum UnaryOperator:
+	//enum UnaryOperator returns OperatorKind:
 	//	Negate="-" | LogicalNot="!";
 	public UnaryOperatorElements getUnaryOperatorAccess() {
 		return (unknownRuleUnaryOperator != null) ? unknownRuleUnaryOperator : (unknownRuleUnaryOperator = new UnaryOperatorElements());
@@ -5754,7 +5754,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getPostfixExpressionAccess().getRule();
 	}
 
-	//enum PostfixOperator:
+	//enum PostfixOperator returns OperatorKind:
 	//	Derivative="\'";
 	public PostfixOperatorElements getPostfixOperatorAccess() {
 		return (unknownRulePostfixOperator != null) ? unknownRulePostfixOperator : (unknownRulePostfixOperator = new PostfixOperatorElements());

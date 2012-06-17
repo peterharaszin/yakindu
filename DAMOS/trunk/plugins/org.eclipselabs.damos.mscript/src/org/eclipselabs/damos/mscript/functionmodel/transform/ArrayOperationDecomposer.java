@@ -24,7 +24,6 @@ import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
@@ -89,7 +88,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 		@Override
 		public Boolean caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
 			// TODO: Implement better support for vector multiplication expressions
-			if (multiplicativeExpression.getOperator() == MultiplicativeOperator.MULTIPLY) {
+			if (multiplicativeExpression.getOperator() == OperatorKind.MULTIPLY) {
 				Expression leftOperand = multiplicativeExpression.getLeftOperand();
 				Expression rightOperand = multiplicativeExpression.getRightOperand();
 				if (leftOperand instanceof VariableReference && rightOperand instanceof VariableReference) {
@@ -124,7 +123,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 				Expression leftMultiplicationOperand = createArrayElementAccess(leftOperand, leftArrayType, i);
 				Expression rightMultiplicationOperand = createArrayElementAccess(rightOperand, rightArrayType, i);
 
-				multiplicativeExpression.setOperator(MultiplicativeOperator.MULTIPLY);
+				multiplicativeExpression.setOperator(OperatorKind.MULTIPLY);
 				multiplicativeExpression.setLeftOperand(leftMultiplicationOperand);
 				multiplicativeExpression.setRightOperand(rightMultiplicationOperand);
 				

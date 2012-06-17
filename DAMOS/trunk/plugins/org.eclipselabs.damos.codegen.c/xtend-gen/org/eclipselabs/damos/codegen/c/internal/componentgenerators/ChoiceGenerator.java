@@ -138,7 +138,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
       IComponentGeneratorContext _context = this.getContext();
       ICodeFragmentCollector _codeFragmentCollector = _context.getCodeFragmentCollector();
       MscriptGeneratorContext _mscriptGeneratorContext = new MscriptGeneratorContext(_computationModel, _staticEvaluationContext, new IVariableAccessStrategy() {
-          public String generateVariableReference(VariableReference variableReference) {
+          public CharSequence generateVariableReference(VariableReference variableReference) {
             return _function.apply(variableReference);
           }
       }, _codeFragmentCollector);

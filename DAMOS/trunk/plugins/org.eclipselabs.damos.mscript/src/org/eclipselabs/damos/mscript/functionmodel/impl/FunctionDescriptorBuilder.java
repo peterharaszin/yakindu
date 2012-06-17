@@ -19,9 +19,9 @@ import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -104,7 +104,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		 */
 		@Override
 		public Boolean casePostfixExpression(PostfixExpression postfixExpression) {
-			if (postfixExpression.getOperator() == PostfixOperator.DERIVATIVE) {
+			if (postfixExpression.getOperator() == OperatorKind.DERIVATIVE) {
 				derivative = true;
 				evaluateContents(postfixExpression);
 				derivative = false;

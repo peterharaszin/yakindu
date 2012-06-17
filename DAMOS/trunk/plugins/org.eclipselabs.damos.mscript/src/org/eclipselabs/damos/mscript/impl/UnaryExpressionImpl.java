@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.UnaryOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public class UnaryExpressionImpl extends ExpressionImpl implements UnaryExpressi
 	 * @generated
 	 * @ordered
 	 */
-	protected static final UnaryOperator OPERATOR_EDEFAULT = UnaryOperator.NEGATE;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -49,7 +49,7 @@ public class UnaryExpressionImpl extends ExpressionImpl implements UnaryExpressi
 	 * @generated
 	 * @ordered
 	 */
-	protected UnaryOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
@@ -85,7 +85,7 @@ public class UnaryExpressionImpl extends ExpressionImpl implements UnaryExpressi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnaryOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -94,8 +94,8 @@ public class UnaryExpressionImpl extends ExpressionImpl implements UnaryExpressi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(UnaryOperator newOperator) {
-		UnaryOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNARY_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -183,7 +183,7 @@ public class UnaryExpressionImpl extends ExpressionImpl implements UnaryExpressi
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.UNARY_EXPRESSION__OPERATOR:
-				setOperator((UnaryOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.UNARY_EXPRESSION__OPERAND:
 				setOperand((Expression)newValue);

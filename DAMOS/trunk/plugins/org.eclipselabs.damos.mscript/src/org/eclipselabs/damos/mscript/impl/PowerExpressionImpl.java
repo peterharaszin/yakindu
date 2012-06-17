@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PowerExpression;
-import org.eclipselabs.damos.mscript.PowerOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class PowerExpressionImpl extends ExpressionImpl implements PowerExpressi
 	 * @generated
 	 * @ordered
 	 */
-	protected static final PowerOperator OPERATOR_EDEFAULT = PowerOperator.POWER;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -60,7 +60,7 @@ public class PowerExpressionImpl extends ExpressionImpl implements PowerExpressi
 	 * @generated
 	 * @ordered
 	 */
-	protected PowerOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getExponent() <em>Exponent</em>}' containment reference.
@@ -139,7 +139,7 @@ public class PowerExpressionImpl extends ExpressionImpl implements PowerExpressi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PowerOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -148,8 +148,8 @@ public class PowerExpressionImpl extends ExpressionImpl implements PowerExpressi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(PowerOperator newOperator) {
-		PowerOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.POWER_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -244,7 +244,7 @@ public class PowerExpressionImpl extends ExpressionImpl implements PowerExpressi
 				setOperand((Expression)newValue);
 				return;
 			case MscriptPackage.POWER_EXPRESSION__OPERATOR:
-				setOperator((PowerOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.POWER_EXPRESSION__EXPONENT:
 				setExponent((Expression)newValue);

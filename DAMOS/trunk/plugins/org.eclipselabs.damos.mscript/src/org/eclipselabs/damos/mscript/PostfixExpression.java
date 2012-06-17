@@ -53,7 +53,7 @@ public interface PostfixExpression extends Expression {
 
 	/**
 	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.PostfixOperator}.
+	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.OperatorKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operator</em>' attribute isn't clear,
@@ -61,23 +61,23 @@ public interface PostfixExpression extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.PostfixOperator
-	 * @see #setOperator(PostfixOperator)
+	 * @see org.eclipselabs.damos.mscript.OperatorKind
+	 * @see #setOperator(OperatorKind)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getPostfixExpression_Operator()
 	 * @model
 	 * @generated
 	 */
-	PostfixOperator getOperator();
+	OperatorKind getOperator();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.PostfixExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operator</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.PostfixOperator
+	 * @see org.eclipselabs.damos.mscript.OperatorKind
 	 * @see #getOperator()
 	 * @generated
 	 */
-	void setOperator(PostfixOperator value);
+	void setOperator(OperatorKind value);
 
 } // PostfixExpression

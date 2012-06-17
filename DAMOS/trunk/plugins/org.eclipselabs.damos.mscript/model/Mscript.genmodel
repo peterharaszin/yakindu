@@ -22,54 +22,20 @@
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AssertionStatusKind/Error"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AssertionStatusKind/Fatal"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//EqualityOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//EqualityOperator/EqualTo"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//EqualityOperator/NotEqualTo"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//RelationalOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//RelationalOperator/LessThan"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//RelationalOperator/LessThanOrEqualTo"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//RelationalOperator/GreaterThan"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//RelationalOperator/GreaterThanOrEqualTo"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//AdditiveOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AdditiveOperator/Add"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AdditiveOperator/Subtract"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AdditiveOperator/ElementWiseAdd"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//AdditiveOperator/ElementWiseSubtract"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//MultiplicativeOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/Multiply"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/Divide"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/Modulo"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/ElementWiseMultiply"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/ElementWiseDivide"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//MultiplicativeOperator/ElementWiseModulo"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//PowerOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//PowerOperator/Power"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//PowerOperator/ElementWisePower"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//UnaryOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnaryOperator/Negate"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnaryOperator/LogicalNot"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//PostfixOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//PostfixOperator/Derivative"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//OperatorKind">
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Add"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Subtract"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWiseAdd"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWiseSubtract"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Multiply"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Divide"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Modulo"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWiseMultiply"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWiseDivide"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWisePower"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWiseModulo"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Negate"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Power"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Root"/>
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Transpose"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/ElementWisePower"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/LogicalAnd"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/LogicalOr"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/LogicalNot"/>
@@ -80,6 +46,8 @@
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/GreaterThanOrEqualTo"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/EqualTo"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/NotEqualTo"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Derivative"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Root"/>
     </genEnums>
     <genDataTypes ecoreDataType="Mscript.ecore#//RealData"/>
     <genDataTypes ecoreDataType="Mscript.ecore#//IntegerData"/>

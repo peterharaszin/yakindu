@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.MultiplicativeOperator;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 /**
@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  */
 public interface IMultiplicativeExpressionGenerator {
 
-	CharSequence generate(ICodeFragmentCollector codeFragmentCollector, MultiplicativeOperator operator,
+	CharSequence generate(ICodeFragmentCollector codeFragmentCollector, OperatorKind operator,
 			NumberFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand);
 
 }

@@ -34,7 +34,6 @@ public interface IValue {
 	IValue modulo(IValue other);
 	IValue negate();
 	IValue power(IValue other);
-	IValue transpose();
 	IValue lessThan(IValue other);
 	IValue lessThanOrEqualTo(IValue other);
 	IValue greaterThan(IValue other);

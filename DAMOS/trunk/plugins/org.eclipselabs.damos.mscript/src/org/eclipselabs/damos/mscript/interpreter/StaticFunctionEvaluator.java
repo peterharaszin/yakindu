@@ -34,7 +34,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.PostfixOperator;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -217,7 +216,7 @@ public class StaticFunctionEvaluator {
 					Expression expression = equationDescriptor.getLeftHandSide().getExpression();
 					if (expression instanceof PostfixExpression) {
 						PostfixExpression postfixExpression = (PostfixExpression) expression;
-						if (postfixExpression.getOperator() == PostfixOperator.DERIVATIVE) {
+						if (postfixExpression.getOperator() == OperatorKind.DERIVATIVE) {
 							expression = postfixExpression.getOperand();
 						}
 					}

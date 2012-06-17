@@ -203,18 +203,6 @@ public abstract class AbstractValue implements IValue {
 		return InvalidValue.SINGLETON;
 	}
 
-	public IValue transpose() {
-		DataType dataType = getDataType().evaluate(OperatorKind.TRANSPOSE, null);
-		if (dataType instanceof InvalidDataType) { 
-			return InvalidValue.SINGLETON;
-		}
-		return doTranspose(dataType);
-	}
-	
-	public IValue doTranspose(DataType resultDataType) {
-		return InvalidValue.SINGLETON;
-	}
-	
 	public IValue lessThan(IValue other) {
 		DataType dataType = getDataType().evaluate(OperatorKind.LESS_THAN, other.getDataType());
 		if (dataType instanceof InvalidDataType) { 

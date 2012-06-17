@@ -208,14 +208,14 @@ LogicalAndExpression returns Expression:
 EqualityExpression returns Expression:
 	RelationalExpression ({EqualityExpression.leftOperand=current} operator=EqualityOperator rightOperand=RelationalExpression)*;
 
-enum EqualityOperator:
+enum EqualityOperator returns OperatorKind:
 	EqualTo='==' |
 	NotEqualTo='!=';
 	
 RelationalExpression returns Expression:
 	AdditiveExpression =>({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} 'is' typeSpecifier=DataTypeSpecifier)?;
 
-enum RelationalOperator:
+enum RelationalOperator returns OperatorKind:
 	LessThan='<' |
 	LessThanOrEqualTo='<=' |
 	GreaterThan='>' |
@@ -224,7 +224,7 @@ enum RelationalOperator:
 AdditiveExpression returns Expression:
 	MultiplicativeExpression ({AdditiveExpression.leftOperand=current} operator=AdditiveOperator rightOperand=MultiplicativeExpression)*;
 
-enum AdditiveOperator:
+enum AdditiveOperator returns OperatorKind:
 	Add='+' |
 	Subtract='-' |
 	ElementWiseAdd='.+' |
@@ -233,7 +233,7 @@ enum AdditiveOperator:
 MultiplicativeExpression returns Expression:
 	PowerExpression ({MultiplicativeExpression.leftOperand=current} operator=MultiplicativeOperator rightOperand=PowerExpression)*;
 
-enum MultiplicativeOperator:
+enum MultiplicativeOperator returns OperatorKind:
 	Multiply='*' |
 	Divide='/' |
 	Modulo='%' |
@@ -244,21 +244,21 @@ enum MultiplicativeOperator:
 PowerExpression returns Expression:
 	UnaryExpression ({PowerExpression.operand=current} operator=PowerOperator exponent=UnaryExpression)?;
 
-enum PowerOperator:
+enum PowerOperator returns OperatorKind:
 	Power='^' |
 	ElementWisePower='.^';
 	
 UnaryExpression returns Expression:
 	PostfixExpression | {UnaryExpression} operator=UnaryOperator operand=PostfixExpression;
 	
-enum UnaryOperator:
+enum UnaryOperator returns OperatorKind:
 	Negate='-' |
 	LogicalNot='!';
 	
 PostfixExpression returns Expression:
 	(QualifiedFeatureCall | MemberFeatureCall) ({PostfixExpression.operand=current} operator=PostfixOperator)?;
 
-enum PostfixOperator:
+enum PostfixOperator returns OperatorKind:
 	Derivative="'";
 
 MemberFeatureCall returns Expression:

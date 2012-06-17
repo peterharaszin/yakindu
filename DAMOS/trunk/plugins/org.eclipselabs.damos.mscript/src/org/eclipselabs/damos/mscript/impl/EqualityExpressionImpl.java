@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.EqualityExpression;
-import org.eclipselabs.damos.mscript.EqualityOperator;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class EqualityExpressionImpl extends ExpressionImpl implements EqualityEx
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EqualityOperator OPERATOR_EDEFAULT = EqualityOperator.EQUAL_TO;
+	protected static final OperatorKind OPERATOR_EDEFAULT = OperatorKind.ADD;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -60,7 +60,7 @@ public class EqualityExpressionImpl extends ExpressionImpl implements EqualityEx
 	 * @generated
 	 * @ordered
 	 */
-	protected EqualityOperator operator = OPERATOR_EDEFAULT;
+	protected OperatorKind operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRightOperand() <em>Right Operand</em>}' containment reference.
@@ -139,7 +139,7 @@ public class EqualityExpressionImpl extends ExpressionImpl implements EqualityEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EqualityOperator getOperator() {
+	public OperatorKind getOperator() {
 		return operator;
 	}
 
@@ -148,8 +148,8 @@ public class EqualityExpressionImpl extends ExpressionImpl implements EqualityEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(EqualityOperator newOperator) {
-		EqualityOperator oldOperator = operator;
+	public void setOperator(OperatorKind newOperator) {
+		OperatorKind oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.EQUALITY_EXPRESSION__OPERATOR, oldOperator, operator));
@@ -244,7 +244,7 @@ public class EqualityExpressionImpl extends ExpressionImpl implements EqualityEx
 				setLeftOperand((Expression)newValue);
 				return;
 			case MscriptPackage.EQUALITY_EXPRESSION__OPERATOR:
-				setOperator((EqualityOperator)newValue);
+				setOperator((OperatorKind)newValue);
 				return;
 			case MscriptPackage.EQUALITY_EXPRESSION__RIGHT_OPERAND:
 				setRightOperand((Expression)newValue);

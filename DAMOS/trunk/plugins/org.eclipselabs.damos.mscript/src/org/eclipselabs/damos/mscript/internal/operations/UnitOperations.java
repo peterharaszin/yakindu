@@ -291,6 +291,8 @@ public class UnitOperations {
 		switch (operator) {
 		case ADD:
 		case SUBTRACT:
+		case ELEMENT_WISE_ADD:
+		case ELEMENT_WISE_SUBTRACT:
 			if (unit.isEquivalentTo(other, false)) {
 				if (isLongerThan(unit, other)) {
 					return EcoreUtil.copy(other); 
@@ -299,6 +301,7 @@ public class UnitOperations {
 			}
 			return null;
 		case MULTIPLY:
+		case ELEMENT_WISE_MULTIPLY:
 			unit = unit.getNormalized();
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() + other.getScale());
@@ -313,6 +316,7 @@ public class UnitOperations {
 			}
 			return unit;
 		case DIVIDE:
+		case ELEMENT_WISE_DIVIDE:
 			unit = unit.getNormalized();
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() - other.getScale());
@@ -327,6 +331,7 @@ public class UnitOperations {
 			}
 			return unit;
 		case MODULO:
+		case ELEMENT_WISE_MODULO:
 		case NEGATE:
 			return EcoreUtil.copy(unit);
 		default:
@@ -338,6 +343,7 @@ public class UnitOperations {
 	public static Unit evaluate(Unit unit, OperatorKind operator, int n) {
 		switch (operator) {
 		case POWER:
+		case ELEMENT_WISE_POWER:
 			unit = unit.getNormalized();
 			
 			unit.setScale(unit.getScale() * n);

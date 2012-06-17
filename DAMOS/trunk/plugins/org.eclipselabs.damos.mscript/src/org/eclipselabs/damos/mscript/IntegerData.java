@@ -50,6 +50,26 @@ public class IntegerData extends NumericData {
 	}
 	
 	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return (int) value;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof IntegerData) {
+			IntegerData other = (IntegerData) obj;
+			return other.value == value;
+		}
+		return false;
+	}
+	
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

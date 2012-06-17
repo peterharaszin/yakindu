@@ -50,6 +50,27 @@ public class RealData extends NumericData {
 	}
 	
 	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+        long bits = Double.doubleToLongBits(value);
+        return (int)(bits ^ (bits >>> 32));
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof RealData) {
+			RealData other = (RealData) obj;
+			return other.value == value;
+		}
+		return false;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

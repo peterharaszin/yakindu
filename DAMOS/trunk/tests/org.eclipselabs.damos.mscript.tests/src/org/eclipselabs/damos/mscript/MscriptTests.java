@@ -22,6 +22,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+	NumericTypeTest.class,
 	ExpressionEvaluatorTest.class
 })
 public class MscriptTests {

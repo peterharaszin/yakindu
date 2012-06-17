@@ -11,59 +11,24 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class RealTypeOperations extends PrimitiveTypeOperations {
-
-	public static DataType evaluate(RealType realType, OperatorKind operator, DataType other) {
-		if (operator == OperatorKind.NEGATE) {
-			return EcoreUtil.copy(realType);
+	
+	private static final NumericTypeEvaluator NUMERIC_TYPE_EVALUATOR = new NumericTypeEvaluator() {
+		
+		protected NumericType createResultType(OperatorKind operator, NumericType otherNumericType) {
+			return MscriptFactory.eINSTANCE.createRealType();
 		}
 		
-		if (!(other instanceof NumericType)) {
-			if (TypeUtil.isNumericArray(other) && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
-				return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, realType);
-			}
-			return MscriptFactory.eINSTANCE.createInvalidDataType();
-		}
-		NumericType otherNumericType = (NumericType) other;
+	};
 
-		switch (operator) {
-		case LESS_THAN:
-		case LESS_THAN_OR_EQUAL_TO:
-		case GREATER_THAN:
-		case GREATER_THAN_OR_EQUAL_TO:
-		case EQUAL_TO:
-		case NOT_EQUAL_TO:
-			if (!realType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false)) {
-				return MscriptFactory.eINSTANCE.createInvalidDataType();
-			}
-			return MscriptFactory.eINSTANCE.createBooleanType();
-		case ADD:
-		case SUBTRACT:
-		case MULTIPLY:
-		case DIVIDE:
-		case MODULO:
-			Unit unit = realType.getUnit().evaluate(operator, otherNumericType.getUnit());
-			if (unit != null) {
-				NumericType result = MscriptFactory.eINSTANCE.createRealType();
-				result.setUnit(unit);
-				return result;
-			}
-			break;
-		default:
-			break;
-		}
-
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+	public static DataType evaluate(RealType realType, OperatorKind operator, DataType other) {
+		return NUMERIC_TYPE_EVALUATOR.evaluate(realType, operator, other);
 	}
 
 	public static DataType evaluate(RealType realType, OperatorKind operator, int n) {

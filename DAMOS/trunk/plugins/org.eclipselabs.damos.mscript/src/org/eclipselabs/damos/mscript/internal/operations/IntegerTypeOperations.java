@@ -24,7 +24,7 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 		
 		protected NumericType createResultType(OperatorKind operator, NumericType otherNumericType) {
 			NumericType result;
-			if (otherNumericType instanceof IntegerType && operator != OperatorKind.DIVIDE) {
+			if (otherNumericType instanceof IntegerType && operator != OperatorKind.DIVIDE && operator != OperatorKind.ELEMENT_WISE_DIVIDE) {
 				result = MscriptFactory.eINSTANCE.createIntegerType();
 			} else {
 				result = MscriptFactory.eINSTANCE.createRealType();

@@ -67,6 +67,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 			case ELEMENT_WISE_SUBTRACT:
 			case ELEMENT_WISE_MULTIPLY:
 			case ELEMENT_WISE_DIVIDE:
+			case ELEMENT_WISE_MODULO:
 				return evaluateElementWise(arrayType, operator, other);
 			case NEGATE:
 				return EcoreUtil.copy(arrayType);
@@ -79,7 +80,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 	
 	private static DataType evaluateElementWise(ArrayType arrayType, OperatorKind operator, DataType other) {
 		if (other instanceof NumericType) {
-			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE
+			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE || operator == OperatorKind.ELEMENT_WISE_MODULO
 					|| operator == OperatorKind.ELEMENT_WISE_ADD || operator == OperatorKind.ELEMENT_WISE_SUBTRACT) {
 				return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 			}
@@ -89,8 +90,18 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}
 	
-	static DataType evaluateElementWiseScalar(ArrayType arrayType, OperatorKind operator, NumericType other) {
-		DataType elementType = arrayType.getElementType().evaluate(operator, other);
+	static DataType evaluateElementWiseScalar(ArrayType arrayType, OperatorKind operator, NumericType numericType) {
+		DataType elementType = arrayType.getElementType().evaluate(operator, numericType);
+		if (elementType instanceof InvalidDataType) {
+			return elementType;
+		}
+		ArrayType result = EcoreUtil.copy(arrayType);
+		TypeUtil.setArrayElementType(result, elementType);
+		return result;
+	}
+
+	static DataType evaluateElementWiseScalar(NumericType numericType, OperatorKind operator, ArrayType arrayType) {
+		DataType elementType = numericType.evaluate(operator, arrayType.getElementType());
 		if (elementType instanceof InvalidDataType) {
 			return elementType;
 		}
@@ -181,7 +192,6 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		if (other instanceof NumericType) {
 			return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 		}
-		// TODO
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}
 

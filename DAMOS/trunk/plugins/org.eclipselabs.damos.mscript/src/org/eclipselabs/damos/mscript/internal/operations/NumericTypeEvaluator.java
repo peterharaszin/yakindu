@@ -32,10 +32,19 @@ public abstract class NumericTypeEvaluator {
 		}
 		
 		if (!(other instanceof NumericType)) {
-			if (TypeUtil.isNumericArray(other)
-					&& (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY
-							|| operator == OperatorKind.ELEMENT_WISE_ADD || operator == OperatorKind.ELEMENT_WISE_SUBTRACT)) {
-				return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, numericType);
+			if (TypeUtil.isNumericArray(other)) {
+				switch (operator) {
+				case MULTIPLY:
+				case ELEMENT_WISE_ADD:
+				case ELEMENT_WISE_SUBTRACT:
+				case ELEMENT_WISE_MULTIPLY:
+					return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, numericType);
+				case ELEMENT_WISE_DIVIDE:
+				case ELEMENT_WISE_MODULO:
+					return ArrayTypeOperations.evaluateElementWiseScalar(numericType, operator, (ArrayType) other);
+				default:
+					break;
+				}
 			}
 			return MscriptFactory.eINSTANCE.createInvalidDataType();
 		}

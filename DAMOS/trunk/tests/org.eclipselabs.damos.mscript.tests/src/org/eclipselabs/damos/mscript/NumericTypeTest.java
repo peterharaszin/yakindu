@@ -15,6 +15,8 @@ import static junit.framework.Assert.assertTrue;
 import static org.eclipselabs.damos.mscript.OperatorKind.ADD;
 import static org.eclipselabs.damos.mscript.OperatorKind.DIVIDE;
 import static org.eclipselabs.damos.mscript.OperatorKind.ELEMENT_WISE_ADD;
+import static org.eclipselabs.damos.mscript.OperatorKind.ELEMENT_WISE_DIVIDE;
+import static org.eclipselabs.damos.mscript.OperatorKind.ELEMENT_WISE_MODULO;
 import static org.eclipselabs.damos.mscript.OperatorKind.ELEMENT_WISE_MULTIPLY;
 import static org.eclipselabs.damos.mscript.OperatorKind.ELEMENT_WISE_SUBTRACT;
 import static org.eclipselabs.damos.mscript.OperatorKind.MODULO;
@@ -281,7 +283,7 @@ public class NumericTypeTest {
 	}
 
 	@Test
-	public void divideVectorMatrix() {
+	public void divideMatrixScalar() {
 		assertNonCommutative(DIVIDE, real(3, 2), real(), real(3, 2));
 		assertNonCommutative(DIVIDE, real(3, 2, KG), real(KG), real(3, 2));
 
@@ -293,7 +295,7 @@ public class NumericTypeTest {
 	}
 
 	@Test
-	public void moduloVectorMatrix() {
+	public void moduloMatrixScalar() {
 		assertNonCommutative(MODULO, real(3, 2), real(), real(3, 2));
 		assertNonCommutative(MODULO, real(3, 2, KG), real(KG), real(3, 2, KG));
 		assertInvalid(MODULO, real(3, 2, KG), real());
@@ -310,6 +312,180 @@ public class NumericTypeTest {
 		assertNonCommutative(MODULO, integer(3, 2), real(), real(3, 2));
 		assertNonCommutative(MODULO, integer(3, 2, KG), real(KG), real(3, 2, KG));
 		assertInvalid(MODULO, integer(3, 2, KG), real());
+	}
+
+	@Test
+	public void elementWiseDivideScalarScalar() {
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), real(), real());
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), real(KG), real());
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(), integer(), real());
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(KG), integer(KG), real());
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), integer(), real());
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), integer(KG), real());
+	}
+
+	@Test
+	public void elementWiseModuloScalarScalar() {
+		assertCommutative(ELEMENT_WISE_MODULO, real(), real(), real());
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), real(KG), real(KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), real());
+
+		// integer % integer results always in integer, e.g. 5 % 3 = 2
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), integer(), integer());
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), integer(KG), integer(KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), integer());
+
+		assertCommutative(ELEMENT_WISE_MODULO, real(), integer(), real());
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), integer(KG), real(KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), integer());
+
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), real(), real());
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), real(KG), real(KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), real());
+	}
+
+	@Test
+	public void elementWiseDivideScalarVector() {
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), real(3, KG), real(3));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(KG), integer(3, KG), real(3));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), integer(3, KG), real(3));
+	}
+
+	@Test
+	public void elementWiseModuloScalarVector() {
+		assertCommutative(ELEMENT_WISE_MODULO, real(), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), real(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), real(3));
+
+		// integer % integer results always in integer, e.g. 5 % 3 = 2
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), integer(3), integer(3));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), integer(3, KG), integer(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), integer(3));
+
+		assertCommutative(ELEMENT_WISE_MODULO, real(), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), integer(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), integer(3));
+
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), real(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), real(3));
+	}
+
+	@Test
+	public void elementWiseDivideScalarMatrix() {
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), real(3, 2, KG), real(3, 2));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(KG), integer(3, 2, KG), real(3, 2));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(KG), integer(3, 2, KG), real(3, 2));
+	}
+
+	@Test
+	public void elementWiseModuloScalarMatrix() {
+		assertCommutative(ELEMENT_WISE_MODULO, real(), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), real(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), real(3, 2));
+
+		// integer % integer results always in integer, e.g. 5 % 3 = 2
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), integer(3, 2), integer(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), integer(3, 2, KG), integer(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), integer(3, 2));
+
+		assertCommutative(ELEMENT_WISE_MODULO, real(), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, real(KG), integer(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(KG), integer(3, 2));
+
+		assertCommutative(ELEMENT_WISE_MODULO, integer(), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(KG), real(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(KG), real(3, 2));
+	}
+
+	@Test
+	public void elementWiseDivideVectorVector() {
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, KG), real(3, KG), real(3));
+		assertInvalid(ELEMENT_WISE_DIVIDE, real(3, KG), real(2, KG));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(3), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(3, KG), integer(3, KG), real(3));
+		assertInvalid(ELEMENT_WISE_DIVIDE, integer(3, KG), integer(2, KG));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, KG), integer(3, KG), real(3));
+		assertInvalid(ELEMENT_WISE_DIVIDE, real(3, KG), integer(2, KG));
+	}
+
+	@Test
+	public void elementWiseModuloVectorVector() {
+		assertCommutative(ELEMENT_WISE_MODULO, real(3), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, KG), real(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, KG), real(3));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, KG), real(2, KG));
+
+		// integer % integer results always in integer, e.g. 5 % 3 = 2
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3), integer(3), integer(3));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, KG), integer(3, KG), integer(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, KG), integer(3));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, KG), integer(2, KG));
+
+		assertCommutative(ELEMENT_WISE_MODULO, real(3), integer(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, KG), integer(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, KG), integer(3));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, KG), integer(2, KG));
+
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3), real(3), real(3));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, KG), real(3, KG), real(3, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, KG), real(3));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, KG), real(2, KG));
+	}
+
+	@Test
+	public void elementWiseDivideMatrixMatrix() {
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, 2), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, 2, KG), real(3, 2, KG), real(3, 2));
+		assertInvalid(ELEMENT_WISE_DIVIDE, real(3, 2, KG), real(2, 2, KG));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(3, 2), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, integer(3, 2, KG), integer(3, 2, KG), real(3, 2));
+		assertInvalid(ELEMENT_WISE_DIVIDE, integer(3, 2, KG), integer(2, 2, KG));
+
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, 2), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_DIVIDE, real(3, 2, KG), integer(3, 2, KG), real(3, 2));
+		assertInvalid(ELEMENT_WISE_DIVIDE, real(3, 2, KG), integer(2, 2, KG));
+	}
+
+	@Test
+	public void elementWiseModuloMatrixMatrix() {
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, 2), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, 2, KG), real(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, 2, KG), real(3, 2));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, 2, KG), real(2, 2, KG));
+
+		// integer % integer results always in integer, e.g. 5 % 3 = 2
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, 2), integer(3, 2), integer(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, 2, KG), integer(3, 2, KG), integer(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, 2, KG), integer(3, 2));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, 2, KG), integer(2, 2, KG));
+
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, 2), integer(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, real(3, 2, KG), integer(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, 2, KG), integer(3, 2));
+		assertInvalid(ELEMENT_WISE_MODULO, real(3, 2, KG), integer(2, 2, KG));
+
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, 2), real(3, 2), real(3, 2));
+		assertCommutative(ELEMENT_WISE_MODULO, integer(3, 2, KG), real(3, 2, KG), real(3, 2, KG));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, 2, KG), real(3, 2));
+		assertInvalid(ELEMENT_WISE_MODULO, integer(3, 2, KG), real(2, KG));
 	}
 
 	private void assertInvalid(OperatorKind operator, DataType type1, DataType type2) {

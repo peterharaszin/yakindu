@@ -36,9 +36,11 @@ import org.eclipselabs.damos.execution.Graph;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -52,7 +54,7 @@ public class TimingContraintPropagationHelper {
 	private static final double CONTINUOUS = 0;
 	private static final double ASYNCHRONOUS = Double.POSITIVE_INFINITY;
 
-	private final StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	
 	private int asynchronousZone;
 
@@ -153,10 +155,9 @@ public class TimingContraintPropagationHelper {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
 			ValueSpecification sampleTimeSpecification = synchronousTimingConstraint.getSampleTime();
 			if (sampleTimeSpecification instanceof MscriptValueSpecification) {
-				IStaticEvaluationContext context = new StaticEvaluationContext();
+				IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 				Expression sampleTimeExpression = ((MscriptValueSpecification) sampleTimeSpecification).getExpression();
-				staticExpressionEvaluator.evaluate(context, sampleTimeExpression);
-				IValue sampleTime = context.getValue(sampleTimeExpression);
+				IValue sampleTime = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), sampleTimeExpression);
 				if (sampleTime instanceof ISimpleNumericValue) {
 					return ((ISimpleNumericValue) sampleTime).doubleValue();
 				}

@@ -30,7 +30,6 @@ import org.eclipselabs.damos.simulation.ISimulation;
 import org.eclipselabs.damos.simulation.ISimulationAgent;
 import org.eclipselabs.damos.simulation.IXYChartData;
 import org.eclipselabs.damos.simulation.IXYChartDataProvider;
-import org.junit.Before;
 
 /**
  * @author Andreas Unger
@@ -43,11 +42,6 @@ public class AbstractSimulationTest extends AbstractExecutionTest {
 	protected static final String SCOPE = "damos.library.base.sinks.Scope";
 
 	private static final Pattern COMMA_PATTERN = Pattern.compile(",");
-	
-	@Before
-	public void bectorScalarMultiply() {
-		setUpInjector();
-	}
 	
 	@Override
 	protected void createConfiguration() {

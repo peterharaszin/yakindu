@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,20 +9,26 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.internal.builtin;
+package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.FunctionCall;
-import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
- * @noextend
- * @noimplement
  */
-public interface IBuiltinFunction {
+public interface IExpressionEvaluationContext {
 
-	IValue call(IExpressionEvaluationContext context, FunctionCall functionCall);
+	IComputationContext getComputationContext();
+
+	void enterStaticScope();
+	void leaveStaticScope();
+	boolean isStaticScope();
+	
+	IValue getValue(Evaluable evaluable);
+	void processValue(Evaluable evaluable, IValue value);
+	
+	IStatusCollector getStatusCollector();
 	
 }

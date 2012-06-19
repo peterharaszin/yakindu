@@ -41,8 +41,8 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -56,8 +56,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 
-		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
-		Helper helper = new Helper(staticEvaluationContext, block);
+		Helper helper = new Helper(block);
 
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
@@ -81,17 +80,15 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult();
 		}
 
-		try {
-			helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
-		} catch (CoreException e) {
-			status.add(e.getStatus());
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
+		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, templateArguments, inputParameterDataTypes);
+		if (!staticEvaluationResult.getStatus().isOK()) {
+			status.merge(staticEvaluationResult.getStatus());
+		}
+		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		if (!helper.getStatus().isOK()) {
-			status.merge(helper.getStatus());
-		}
-
 		Iterator<OutputParameterDeclaration> outputParameterDeclarationIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 		for (Output output : block.getOutputs()) {
 			BlockOutput blockOutput = (BlockOutput) output;
@@ -102,7 +99,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			}
 			
 			OutputParameterDeclaration outputParameterDeclaration = outputParameterDeclarationIt.next();
-			DataType dataType = staticEvaluationContext.getValue(outputParameterDeclaration).getDataType();
+			DataType dataType = staticEvaluationResult.getValue(outputParameterDeclaration).getDataType();
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {
@@ -137,8 +134,8 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		/**
 		 * @param block
 		 */
-		public Helper(IStaticEvaluationContext staticEvaluationContext, Block block) {
-			super(staticEvaluationContext, block);
+		public Helper(Block block) {
+			super(block);
 		}
 
 		@Override

@@ -11,25 +11,39 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class NumFunction implements IBuiltinFunction {
+public class NumFunction extends AbstractBuiltinFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
-		INumericValue argument = (INumericValue) arguments.get(0);
-		UnitValue unitValue = (UnitValue) arguments.get(1);
-		return Collections.<IValue>singletonList(argument.convertUnit(EcoreUtil.copy(unitValue.getValue())));
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+		if (functionCall.getArguments().size() != 2) {
+			return InvalidValue.SINGLETON;
+		}
+
+		IValue argument1 = evaluate(context, functionCall.getArguments().get(0));
+		
+		if (!(argument1 instanceof INumericValue)) {
+			return InvalidValue.SINGLETON;
+		}
+		
+		IValue argument2 = evaluate(context, functionCall.getArguments().get(1));
+		if (!(argument2 instanceof UnitValue)) {
+			return InvalidValue.SINGLETON;
+		}
+		
+		INumericValue argument = (INumericValue) argument1;
+		UnitValue unitValue = (UnitValue) argument2;
+		return argument.convertUnit(EcoreUtil.copy(unitValue.getValue()));
 	}
-	
+
 }

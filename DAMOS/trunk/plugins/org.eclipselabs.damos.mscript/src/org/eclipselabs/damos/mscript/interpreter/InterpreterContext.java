@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.internal.util.Scope;
  */
 public class InterpreterContext implements IInterpreterContext {
 
-	private IStaticEvaluationContext staticEvaluationContext;
+	private IStaticEvaluationResult staticEvaluationResult;
 	private IComputationContext computationContext;
 
 	private InterpreterScope scope = new InterpreterScope(null);
@@ -32,16 +32,16 @@ public class InterpreterContext implements IInterpreterContext {
 	/**
 	 * 
 	 */
-	public InterpreterContext(IStaticEvaluationContext staticEvaluationContext, IComputationContext computationContext) {
-		this.staticEvaluationContext = staticEvaluationContext;
+	public InterpreterContext(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext) {
+		this.staticEvaluationResult = staticEvaluationResult;
 		this.computationContext = computationContext;
 	}
 
 	/**
-	 * @return the staticEvaluationContext
+	 * @return the staticEvaluationResult
 	 */
-	public IStaticEvaluationContext getStaticEvaluationContext() {
-		return staticEvaluationContext;
+	public IStaticEvaluationResult getStaticEvaluationResult() {
+		return staticEvaluationResult;
 	}
 	
 	/**

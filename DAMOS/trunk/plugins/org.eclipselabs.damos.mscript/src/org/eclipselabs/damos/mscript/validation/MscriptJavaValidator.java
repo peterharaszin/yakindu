@@ -47,9 +47,11 @@ import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -57,6 +59,8 @@ import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 
 public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
+	
+	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 
 	@Check
 	public void checkStatelessFunction(FunctionDeclaration functionDeclaration) {
@@ -211,38 +215,37 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	
 	@Check
 	public void checkTypes(FunctionDeclaration functionDeclaration) {
-		StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
 		for (org.eclipselabs.damos.mscript.Check check : functionDeclaration.getChecks()) {
 			if (!checkFunctionCheckSignatures(check)) {
 				continue;
 			}
 				
-			IStaticEvaluationContext context = new StaticEvaluationContext();
+			IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 			Iterator<TemplateParameterDeclaration> templateParameterIt = functionDeclaration.getTemplateParameterDeclarations().iterator();
 			for (Expression argument : check.getTemplateArguments()) {
-				staticExpressionEvaluator.evaluate(context, argument);
-				context.setValue(templateParameterIt.next(), context.getValue(argument));
+				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), argument);
+				staticEvaluationResult.setValue(templateParameterIt.next(), staticEvaluationResult.getValue(argument));
 			}
 			
 			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getInputParameterDeclarations().iterator();
 			for (DataTypeSpecifier dataTypeSpecifier : check.getInputParameterTypes()) {
-				context.setValue(inputParameterIt.next(), new AnyValue(new ComputationContext(), dataTypeSpecifier.getType()));
+				staticEvaluationResult.setValue(inputParameterIt.next(), new AnyValue(new ComputationContext(), dataTypeSpecifier.getType()));
 			}
 
-			IStatus status = new StaticFunctionEvaluator().evaluate(context, functionDeclaration);
+			new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
 			
-			if (status.getSeverity() < IStatus.ERROR) {
+			if (staticEvaluationResult.getStatus().getSeverity() < IStatus.ERROR) {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (DataTypeSpecifier dataTypeSpecifier : check.getOutputParameterTypes()) {
-					IValue value = context.getValue(outputParameterIt.next());
+					IValue value = staticEvaluationResult.getValue(outputParameterIt.next());
 					if (!(value instanceof InvalidValue) && !dataTypeSpecifier.getType().isEquivalentTo(value.getDataType())) {
 						error("Check does not return specified data type", dataTypeSpecifier, null, -1);
 					}
 				}
 			}
 			
-			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(status, getChain());
+			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(staticEvaluationResult.getStatus(), getChain());
 		}
 		
 	}

@@ -40,7 +40,7 @@ public class VariableReferenceGenerator {
 		
 		@Override
 		public CharSequence caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
-			IValue templateArgument = context.getStaticEvaluationContext().getValue(templateParameterDeclaration);
+			IValue templateArgument = context.getStaticEvaluationResult().getValue(templateParameterDeclaration);
 			return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), templateArgument);
 		}
 			

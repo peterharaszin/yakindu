@@ -11,38 +11,46 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
+import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  *
  */
-public abstract class AbstractMathFunction implements IBuiltinFunction {
+public abstract class AbstractMathFunction extends AbstractSingleParameterFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+		if (!(argument.getDataType() instanceof RealType || argument.getDataType() instanceof IntegerType)) {
+			return InvalidValue.SINGLETON;
+		}
+		
+		if (!((NumericType) argument.getDataType()).getUnit().isEquivalentTo(TypeUtil.createUnit(), true)) {
+			return InvalidValue.SINGLETON;
+		}
+
 		RealType dataType = TypeUtil.createRealType();
 
-		IValue argument = arguments.get(0);
 		if (argument instanceof AnyValue) {
-			return Collections.<IValue> singletonList(new AnyValue(context, dataType));
+			return new AnyValue(context.getComputationContext(), dataType);
 		}
 
 		argument = argument.convert(dataType);
 
 		if (argument instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericValue = (ISimpleNumericValue) argument;
-			return Collections.singletonList(compute(numericValue));
+			return compute(numericValue);
 		}
 		
-		throw new IllegalArgumentException();
+		return InvalidValue.SINGLETON;
 	}
 	
 	protected abstract IValue compute(ISimpleNumericValue x);

@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractSingleParameterFunctionGenerator implements IFunctionGenerator {
+public abstract class AbstractSingleParameterFunctionGenerator implements IBuiltinFunctionGenerator {
 
 	public CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
 		StringBuilder sb = new StringBuilder();
@@ -35,7 +35,7 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IFunct
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
-		DataType argumentDataType = context.getStaticEvaluationContext().getValue(functionCall).getDataType();
+		DataType argumentDataType = context.getStaticEvaluationResult().getValue(functionCall).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

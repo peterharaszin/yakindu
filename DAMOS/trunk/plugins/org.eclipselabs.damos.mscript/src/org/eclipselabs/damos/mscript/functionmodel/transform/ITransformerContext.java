@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public interface ITransformerContext {
 
-	IStaticEvaluationContext getStaticEvaluationContext();
+	IStaticEvaluationResult getStaticEvaluationResult();
 	
 	void enterScope();
 	void leaveScope();

@@ -11,17 +11,15 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
@@ -30,32 +28,39 @@ import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
  * @author Andreas Unger
  *
  */
-public class SizeFunction implements IBuiltinFunction {
+public class SizeFunction extends AbstractBuiltinFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
-		IValue argument = arguments.get(0);
-		if (argument.getDataType() instanceof ArrayType) {
-			int dimension = 0;
-			if (arguments.size() == 2) {
-				IValue dimensionValue = arguments.get(1);
-				if (dimensionValue instanceof ISimpleNumericValue) {
-					dimension = (int) ((ISimpleNumericValue) dimensionValue).longValue();
-				}
-			}
-			
-			EList<ArrayDimension> dimensions = ((ArrayType) argument.getDataType()).getDimensions();
-			if (dimension >= dimensions.size()) {
-				// TODO: throw EvaluationException
-				return Collections.<IValue>singletonList(InvalidValue.SINGLETON);
-			}
-
-			Expression sizeExpression = dimensions.get(dimension).getSize();
-			IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
-			
-			new StaticExpressionEvaluator().evaluate(staticEvaluationContext, sizeExpression);
-			return Collections.singletonList(staticEvaluationContext.getValue(sizeExpression));
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+		if (functionCall.getArguments().isEmpty()) {
+			return InvalidValue.SINGLETON;
 		}
-		throw new IllegalArgumentException();
+		
+		if (functionCall.getArguments().size() > 2) {
+			return InvalidValue.SINGLETON;
+		}
+
+		IValue argument = evaluate(context, functionCall.getArguments().get(0));
+		if (argument.getDataType() instanceof ArrayType) {
+			return InvalidValue.SINGLETON;
+		}
+
+		int dimension = 0;
+		if (functionCall.getArguments().size() == 2) {
+			IValue dimensionValue = evaluate(context, functionCall.getArguments().get(1));
+			if (dimensionValue.getDataType() instanceof IntegerType && dimensionValue instanceof ISimpleNumericValue) {
+				dimension = (int) ((ISimpleNumericValue) dimensionValue).longValue();
+			} else {
+				return InvalidValue.SINGLETON;
+			}
+		}
+		
+		EList<ArrayDimension> dimensions = ((ArrayType) argument.getDataType()).getDimensions();
+		if (dimension >= dimensions.size()) {
+			return InvalidValue.SINGLETON;
+		}
+
+		Expression sizeExpression = dimensions.get(dimension).getSize();
+		return evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationResult()), sizeExpression);
 	}
-	
+
 }

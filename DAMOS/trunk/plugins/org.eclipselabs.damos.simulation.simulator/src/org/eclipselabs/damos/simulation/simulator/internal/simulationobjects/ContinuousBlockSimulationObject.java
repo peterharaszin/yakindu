@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.ICompoundInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -118,11 +118,8 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 			this.yDot = yDot;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.interpreter.IInterpreterContext#getStaticEvaluationContext()
-		 */
-		public IStaticEvaluationContext getStaticEvaluationContext() {
-			return context.getStaticEvaluationContext();
+		public IStaticEvaluationResult getStaticEvaluationResult() {
+			return context.getStaticEvaluationResult();
 		}
 
 		/* (non-Javadoc)

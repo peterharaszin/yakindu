@@ -22,44 +22,44 @@ import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
  */
 class BehavioredBlockContextCodeGenerator {
 	
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
+	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
 	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
 
 	def generateContextCode(IBehavioredBlockGeneratorContext context, CharSequence typeName, IProgressMonitor monitor) '''
 		typedef struct {
-			«FOR d : context.getFunctionInstance().getFunctionDeclaration().getInputParameterDeclarations()»
+			«FOR d : context.functionInstance.functionDeclaration.inputParameterDeclarations»
 				«IF hasContext(context, d)»
 					«generateContextStructureMember(context, monitor, d)»
 				«ENDIF»
 			«ENDFOR»
-			«FOR d : context.getFunctionInstance().getFunctionDeclaration().getOutputParameterDeclarations()»
+			«FOR d : context.functionInstance.functionDeclaration.outputParameterDeclarations»
 				«IF hasContext(context, d)»
 					«generateContextStructureMember(context, monitor, d)»
 				«ENDIF»
 			«ENDFOR»
-			«FOR d : context.getFunctionInstance().getFunctionDeclaration().getStateVariableDeclarations()»
+			«FOR d : context.functionInstance.functionDeclaration.stateVariableDeclarations»
 				«generateContextStructureMember(context, monitor, d)»
 			«ENDFOR»
 		} «typeName»;
 	'''
 	
 	def private generateContextStructureMember(IBehavioredBlockGeneratorContext context, IProgressMonitor monitor, VariableDeclaration variableDeclaration) {
-		val name = variableDeclaration.getName();
-		val dataType = context.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
-		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(context.getComputationModel(), context.getComponentGeneratorContext().getCodeFragmentCollector(), dataType, name, false, null);
+		val name = variableDeclaration.name
+		val dataType = context.staticEvaluationResult.getValue(variableDeclaration).dataType
+		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(context.computationModel, context.getContext.codeFragmentCollector, dataType, name, false, null)
 		if (hasContext(context, variableDeclaration)) {
-			val bufferSize = context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration);
-			val indexCDataType = dataTypeGenerator.generateIndexDataType(context.getComputationModel(), 2 * bufferSize);
+			val bufferSize = context.staticEvaluationResult.getCircularBufferSize(variableDeclaration)
+			val indexCDataType = dataTypeGenerator.generateIndexDataType(context.computationModel, 2 * bufferSize)
 			return '''
 				«cVariableDeclaration»[«bufferSize»];
 				«indexCDataType» «name»_index;
 			''';
 		}
-		return '''«cVariableDeclaration»;''';
+		return '''«cVariableDeclaration»;'''
 	}
 
 	def private boolean hasContext(IBehavioredBlockGeneratorContext context, VariableDeclaration variableDeclaration) {
-		return context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration) > 1;
+		return context.staticEvaluationResult.getCircularBufferSize(variableDeclaration) > 1
 	}
 
 }

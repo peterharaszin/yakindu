@@ -31,7 +31,7 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -45,15 +45,12 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> implements IArrayOperationDecomposer {
 
-	private IStaticEvaluationContext context;
+	private IStaticEvaluationResult staticEvaluationResult;
 	
 	private ArrayExpressionTransformer arrayExpressionTransformer = new ArrayExpressionTransformer();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IArrayOperationDecomposer#decompose(org.eclipselabs.mscript.language.il.Compound)
-	 */
-	public void decompose(IStaticEvaluationContext context, Compound compound) {
-		this.context = context;
+	public void decompose(IStaticEvaluationResult staticEvaluationResult, Compound compound) {
+		this.staticEvaluationResult = staticEvaluationResult;
 		doSwitch(compound);
 	}
 	
@@ -73,11 +70,11 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 	}
 	
 	private DataType getDataType(Expression expression) {
-		return context.getValue(expression).getDataType();
+		return staticEvaluationResult.getValue(expression).getDataType();
 	}
 	
 	private void setDataType(Expression expression, DataType dataType) {
-		context.setValue(expression, new AnyValue(new ComputationContext(), dataType));
+		staticEvaluationResult.setValue(expression, new AnyValue(new ComputationContext(), dataType));
 	}
 
 	private class ArrayExpressionTransformer extends MscriptSwitch<Boolean> {
@@ -153,7 +150,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 		 * @return
 		 */
 		private Expression createArrayElementAccess(VariableReference operand, ArrayType arrayType, int index) {
-			IValue value = context.getValue(operand);
+			IValue value = staticEvaluationResult.getValue(operand);
 			if (value instanceof IArrayValue) {
 				IValue elementValue = ((IArrayValue) value).get(index);
 				if (elementValue instanceof ISimpleNumericValue) {
@@ -163,13 +160,13 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 						RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
 						realLiteral.setUnit(EcoreUtil.copy(((RealType) elementType).getUnit()));
 						realLiteral.setValue(numericValue.doubleValue());
-						context.setValue(realLiteral, numericValue);
+						staticEvaluationResult.setValue(realLiteral, numericValue);
 						return realLiteral;
 					} else if (elementType instanceof IntegerType) {
 						IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 						integerLiteral.setUnit(EcoreUtil.copy(((IntegerType) elementType).getUnit()));
 						integerLiteral.setValue(numericValue.longValue());
-						context.setValue(integerLiteral, numericValue);
+						staticEvaluationResult.setValue(integerLiteral, numericValue);
 						return integerLiteral;
 					}
 				}

@@ -33,7 +33,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  *
  */
-public class RoundFunctionGenerator implements IFunctionGenerator {
+public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 
 	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
@@ -41,7 +41,7 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final Expression argument = functionCall.getArguments().get(0);
 		
-		final DataType argumentDataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
+		final DataType argumentDataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

@@ -26,7 +26,7 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipselabs.damos.mscript.util.MscriptSwitch;
  */
 public class VariableAccessStrategy implements IVariableAccessStrategy {
 
-	private IStaticEvaluationContext staticEvaluationContext;
+	private IStaticEvaluationResult staticEvaluationResult;
 	private Block block;
 	private IComponentSignature signature;
 	private IVariableAccessor variableAccessor;
@@ -43,8 +43,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	/**
 	 * 
 	 */
-	public VariableAccessStrategy(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor) {
-		this.staticEvaluationContext = staticEvaluationContext;
+	public VariableAccessStrategy(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor) {
+		this.staticEvaluationResult = staticEvaluationResult;
 		this.block = block;
 		this.signature = signature;
 		this.variableAccessor = variableAccessor;
@@ -61,7 +61,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 * @param inputVariableDeclaration
 	 * @return
 	 */
-	static String getInputParameterAccessString(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
+	static String getInputParameterAccessString(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
 		int index = DMLUtil.indexOf(inputParameterDeclaration);
 		
 		if (!block.getInputSockets().isEmpty()) {
@@ -77,7 +77,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
-			DataType targetDataType = staticEvaluationContext.getValue(inputParameterDeclaration).getDataType();
+			DataType targetDataType = staticEvaluationResult.getValue(inputParameterDeclaration).getDataType();
 			if (!inputDataType.isEquivalentTo(targetDataType)) {
 				return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 			}
@@ -105,16 +105,16 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 
 		@Override
 		public String caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
-			int stepIndex = staticEvaluationContext.getStepIndex(variableReference);
+			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 			if (stepIndex == 0) {
-				return getInputParameterAccessString(staticEvaluationContext, block, signature, variableAccessor, inputParameterDeclaration);
+				return getInputParameterAccessString(staticEvaluationResult, block, signature, variableAccessor, inputParameterDeclaration);
 			}
 			return getContextAccess();
 		}
 		
 		@Override
 		public String caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
-			int stepIndex = staticEvaluationContext.getStepIndex(variableReference);
+			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return getOutputParameterAccessString(block, signature, variableAccessor, outputParameterDeclaration);
 			}
@@ -128,11 +128,11 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		
 		private String getContextAccess() {
 			VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
-			int stepIndex = staticEvaluationContext.getStepIndex(variableReference);
+			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 
 			String contextVariable = variableAccessor.generateContextVariableReference(false);
 			String targetName = target.getName();
-			int circularBufferSize = staticEvaluationContext.getCircularBufferSize(target);
+			int circularBufferSize = staticEvaluationResult.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

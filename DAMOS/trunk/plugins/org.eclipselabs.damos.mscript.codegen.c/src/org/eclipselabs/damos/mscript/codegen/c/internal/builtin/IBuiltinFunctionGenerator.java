@@ -9,16 +9,17 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.internal.builtin;
+package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
+import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IBuiltinFunctionLookupTable {
+public interface IBuiltinFunctionGenerator {
 
-	IBuiltinFunction getFunction(BuiltinFunctionKind descriptor);
-
+	CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall);
+	
 }

@@ -37,7 +37,7 @@ public class MscriptGeneratorUtil {
 	}
 
 	public static CharSequence castNumericType(IMscriptGeneratorContext context, NumberFormat targetNumberFormat, Expression expression) {
-		DataType expressionDataType = context.getStaticEvaluationContext().getValue(expression).getDataType();
+		DataType expressionDataType = context.getStaticEvaluationResult().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
 		return NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, NumericExpressionInfo.create(expressionNumberFormat, new ExpressionGenerator().generate(context, expression)));
 	}

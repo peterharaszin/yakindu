@@ -120,7 +120,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 		assignment.setAssignedExpression(result);
-		assignment.setTarget(MscriptUtil.createVariableReference(context.getStaticEvaluationContext(), target.getVariableDeclaration(), target.getStepIndex(), false));
+		assignment.setTarget(MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), target.getVariableDeclaration(), target.getStepIndex(), false));
 		context.getCompound().getStatements().add(assignment);
 		
 		return status.isOK() ? Status.OK_STATUS : status;
@@ -128,12 +128,12 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	
 	private Expression doTransform(Expression expression) {
 		Expression newExpression = doSwitch(expression);
-		IValue value = context.getStaticEvaluationContext().getValue(expression);
+		IValue value = context.getStaticEvaluationResult().getValue(expression);
 		if (value != null) {
 			if (!(expression instanceof Literal)) {
 				newExpression = condenseExpression(value, newExpression);
 			}
-			context.getStaticEvaluationContext().setValue(newExpression, value);
+			context.getStaticEvaluationResult().setValue(newExpression, value);
 		}
 		return newExpression;
 	}
@@ -145,8 +145,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseLetExpression(LetExpression letExpression) {
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "temp"));
-		IValue expressionValue = context.getStaticEvaluationContext().getValue(letExpression);
-		context.getStaticEvaluationContext().setValue(localVariableDeclaration, expressionValue);
+		IValue expressionValue = context.getStaticEvaluationResult().getValue(letExpression);
+		context.getStaticEvaluationResult().setValue(localVariableDeclaration, expressionValue);
 		context.getCompound().getStatements().add(localVariableDeclaration);
 
 		Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
@@ -161,8 +161,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			
 			context.addVariableDeclarationMapping(variable, localVariable);
 			
-			IValue partValue = context.getStaticEvaluationContext().getValue(variable);
-			context.getStaticEvaluationContext().setValue(localVariable, partValue);
+			IValue partValue = context.getStaticEvaluationResult().getValue(variable);
+			context.getStaticEvaluationResult().setValue(localVariable, partValue);
 			localVariable.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), variable.getName()));
 			Expression assignedExpression = doTransform(assignment.getAssignedExpression());
 			localVariable.setInitializer(assignedExpression);
@@ -185,7 +185,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	 */
 	@Override
 	public Expression caseIfExpression(IfExpression ifExpression) {
-		IValue ifConditionValue = context.getStaticEvaluationContext().getValue(ifExpression.getCondition());
+		IValue ifConditionValue = context.getStaticEvaluationResult().getValue(ifExpression.getCondition());
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression expression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
@@ -197,8 +197,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "ifresult"));
 		
-		IValue ifExpressionValue = context.getStaticEvaluationContext().getValue(ifExpression);
-		context.getStaticEvaluationContext().setValue(localVariableDeclaration, ifExpressionValue);
+		IValue ifExpressionValue = context.getStaticEvaluationResult().getValue(ifExpression);
+		context.getStaticEvaluationResult().setValue(localVariableDeclaration, ifExpressionValue);
 		
 		context.getCompound().getStatements().add(localVariableDeclaration);
 		IfStatement ifStatement = MscriptFactory.eINSTANCE.createIfStatement();
@@ -235,8 +235,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseVariableReference(VariableReference variableReference) {
 		VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 		if (variableDeclaration != null) {
-			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableReference);
-			return MscriptUtil.createVariableReference(context.getStaticEvaluationContext(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
+			int stepIndex = context.getStaticEvaluationResult().getStepIndex(variableReference);
+			return MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
 		}
 		return null;
 	}

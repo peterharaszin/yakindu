@@ -21,6 +21,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public interface IExpressionEvaluator {
 
-	IValue evaluate(IInterpreterContext context, Expression expression);
+	IValue evaluate(IExpressionEvaluationContext context, Expression expression);
 
 }

@@ -14,18 +14,22 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
+import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class StaticEvaluationContext implements IStaticEvaluationContext {
+public class StaticEvaluationResult implements IStaticEvaluationResult {
 
 	private final IComputationContext computationContext = new ComputationContext();
 	
@@ -35,10 +39,20 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	private Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
 	
 	private Map<FunctionDeclaration, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDeclaration, FunctionDescriptor>();
+	
+	private MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Expression evaluation", null);
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IEvaluationContext#getComputationContext()
+	/**
+	 * @return the status
 	 */
+	public MultiStatus getStatus() {
+		return status;
+	}
+	
+	public void collectStatus(IStatus status) {
+		StatusUtil.merge(this.status, status);
+	}
+
 	public IComputationContext getComputationContext() {
 		return computationContext;
 	}
@@ -52,7 +66,7 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#getStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess)
 	 */
 	public int getStepIndex(VariableReference variableReference) {
 		Integer stepIndex = stepIndices.get(variableReference);
@@ -63,14 +77,14 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#setStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess, int)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess, int)
 	 */
 	public void setStepIndex(VariableReference variableReference, int stepIndex) {
 		stepIndices.put(variableReference, stepIndex);
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext#getCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult#getCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration)
 	 */
 	public int getCircularBufferSize(VariableDeclaration variableDeclaration) {
 		Integer size = circularBufferSizes.get(variableDeclaration);
@@ -78,21 +92,21 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext#setCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration, int)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult#setCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration, int)
 	 */
 	public void setCircularBufferSize(VariableDeclaration variableDeclaration, int size) {
 		circularBufferSizes.put(variableDeclaration, size);
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#getFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition)
 	 */
 	public FunctionDescriptor getFunctionDescriptor(FunctionDeclaration functionDeclaration) {
 		return functionDescriptors.get(functionDeclaration);
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor)
 	 */
 	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescriptor functionDescriptor) {
 		functionDescriptors.put(functionDeclaration, functionDescriptor);

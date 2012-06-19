@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -129,7 +129,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
     if ((valueSpecification instanceof MscriptValueSpecification)) {
       final MscriptValueSpecification condition = ((MscriptValueSpecification) valueSpecification);
       ComputationModel _computationModel = this.getComputationModel();
-      StaticEvaluationContext _staticEvaluationContext = new StaticEvaluationContext();
+      StaticEvaluationResult _staticEvaluationResult = new StaticEvaluationResult();
       final Function1<VariableReference,String> _function = new Function1<VariableReference,String>() {
           public String apply(final VariableReference v) {
             return "";
@@ -137,7 +137,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
         };
       IComponentGeneratorContext _context = this.getContext();
       ICodeFragmentCollector _codeFragmentCollector = _context.getCodeFragmentCollector();
-      MscriptGeneratorContext _mscriptGeneratorContext = new MscriptGeneratorContext(_computationModel, _staticEvaluationContext, new IVariableAccessStrategy() {
+      MscriptGeneratorContext _mscriptGeneratorContext = new MscriptGeneratorContext(_computationModel, _staticEvaluationResult, new IVariableAccessStrategy() {
           public CharSequence generateVariableReference(VariableReference variableReference) {
             return _function.apply(variableReference);
           }

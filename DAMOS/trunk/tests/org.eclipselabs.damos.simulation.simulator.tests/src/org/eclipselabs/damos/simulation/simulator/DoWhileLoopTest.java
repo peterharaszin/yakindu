@@ -29,8 +29,6 @@ public class DoWhileLoopTest extends AbstractSimulationTest {
 
 	@Test
 	public void doWhileLoop() {
-		createConfiguration();
-		
 		Block initialValue = createBlock(CONSTANT, "InitialValue");
 		setSynchronousTimingConstraint(initialValue, 1);
 		Block upperLimit = createBlock(CONSTANT, "UpperLimit");

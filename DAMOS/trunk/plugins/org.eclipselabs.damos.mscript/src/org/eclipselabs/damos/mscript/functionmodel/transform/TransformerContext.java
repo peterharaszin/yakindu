@@ -17,7 +17,7 @@ import java.util.Map;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.util.Scope;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public class TransformerContext implements ITransformerContext {
 
-	private IStaticEvaluationContext staticEvaluationContext;
+	private IStaticEvaluationResult staticEvaluationResult;
 	
 	private TransformerScope scope = new TransformerScope(null);
 	
@@ -34,56 +34,35 @@ public class TransformerContext implements ITransformerContext {
 	/**
 	 * 
 	 */
-	public TransformerContext(IStaticEvaluationContext staticEvaluationContext) {
-		this.staticEvaluationContext = staticEvaluationContext;
+	public TransformerContext(IStaticEvaluationResult staticEvaluationResult) {
+		this.staticEvaluationResult = staticEvaluationResult;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.ITransformerContext#getStaticEvaluationContext()
-	 */
-	public IStaticEvaluationContext getStaticEvaluationContext() {
-		return staticEvaluationContext;
+	public IStaticEvaluationResult getStaticEvaluationResult() {
+		return staticEvaluationResult;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#enterScope()
-	 */
 	public void enterScope() {
 		scope = new TransformerScope(scope);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#leaveScope()
-	 */
 	public void leaveScope() {
 		scope = scope.getOuterScope();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#getCompound()
-	 */
 	public Compound getCompound() {
 		return scope.getCompound();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#setCompound(org.eclipselabs.mscript.language.il.Compound)
-	 */
 	public void setCompound(Compound compound) {
 		scope.setCompound(compound);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.il.transform.ITransformerContext#addVariableDeclarationMapping(org.eclipselabs.damos.mscript.VariableDeclaration, org.eclipselabs.damos.mscript.VariableDeclaration)
-	 */
 	public void addVariableDeclarationMapping(VariableDeclaration oldVariableDeclaration,
 			VariableDeclaration newVariableDeclaration) {
 		variableDeclarationMappings.put(oldVariableDeclaration, newVariableDeclaration);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.il.transform.ITransformerContext#mapVariableDeclaration(org.eclipselabs.damos.mscript.VariableDeclaration)
-	 */
 	public VariableDeclaration mapVariableDeclaration(VariableDeclaration variableDeclaration) {
 		VariableDeclaration newVariableDeclaration = variableDeclarationMappings.get(variableDeclaration);
 		return newVariableDeclaration != null ? newVariableDeclaration : variableDeclaration;

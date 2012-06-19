@@ -37,7 +37,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
 import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -51,7 +51,7 @@ public class CodegenProcess implements IProcess {
 	private IFolder targetFolder;
 	private String functionName;
 	private FunctionInstance functionInstance;
-//	private IStaticEvaluationContext staticEvaluationContext;
+//	private IStaticEvaluationResult staticEvaluationResult;
 //	private ComputationModel computationModel;
 
 	private boolean terminated;
@@ -59,13 +59,13 @@ public class CodegenProcess implements IProcess {
 	/**
 	 * 
 	 */
-	public CodegenProcess(ILaunch launch, String name, IFolder targetFolder, String functionName, FunctionInstance functionInstance, IStaticEvaluationContext staticEvaluationContext, ComputationModel computationModel) {
+	public CodegenProcess(ILaunch launch, String name, IFolder targetFolder, String functionName, FunctionInstance functionInstance, IStaticEvaluationResult staticEvaluationResult, ComputationModel computationModel) {
 		this.launch = launch;
 		this.name = name;
 		this.targetFolder = targetFolder;
 		this.functionName = functionName;
 		this.functionInstance = functionInstance;
-//		this.staticEvaluationContext = staticEvaluationContext;
+//		this.staticEvaluationResult = staticEvaluationResult;
 //		this.computationModel = computationModel;
 		launch.addProcess(this);
 		fireCreationEvent();
@@ -226,7 +226,7 @@ public class CodegenProcess implements IProcess {
 	private class HeaderGeneratorThread extends GeneratorThread {
 		
 		public void generate() throws IOException {
-//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
+//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationResult, new DummySharedCodeCollector()), functionName);
 //			writer.append(generator.generateHeaderCode());
 		}
 		
@@ -235,7 +235,7 @@ public class CodegenProcess implements IProcess {
 	private class ImplementationGeneratorThread extends GeneratorThread {
 		
 		public void generate() throws IOException {
-//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationContext, new DummySharedCodeCollector()), functionName);
+//			MscriptGenerator generator = new MscriptGenerator(functionInstance, new MscriptGeneratorContext(computationModel, staticEvaluationResult, new DummySharedCodeCollector()), functionName);
 //			writer.append(generator.generateImplementationCode());
 		}
 		

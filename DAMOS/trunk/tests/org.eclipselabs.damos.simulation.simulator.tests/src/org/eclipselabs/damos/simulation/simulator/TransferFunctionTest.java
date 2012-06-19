@@ -25,8 +25,6 @@ public class TransferFunctionTest extends AbstractSimulationTest {
 
 	@Test
 	public void stepResponse() {
-		createConfiguration();
-		
 		Block step = createBlock(STEP, "Step");
 		setArgument(step, StepConstants.PARAMETER__STEP_TIME, "0(s)");
 		

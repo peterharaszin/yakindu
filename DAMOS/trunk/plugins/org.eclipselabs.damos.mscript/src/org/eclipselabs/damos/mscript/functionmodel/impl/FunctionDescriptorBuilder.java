@@ -31,13 +31,12 @@ import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
 import org.eclipselabs.damos.mscript.functionmodel.IFunctionDescriptorBuilder;
-import org.eclipselabs.damos.mscript.functionmodel.IFunctionDescriptorBuilderResult;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 
@@ -47,7 +46,7 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
  */
 public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 
-	public IFunctionDescriptorBuilderResult build(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
+	public FunctionDescriptor build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function descriptor construction", null);
 
 		FunctionDescriptor functionDescriptor = FunctionModelFactory.eINSTANCE.createFunctionDescriptor();
@@ -62,25 +61,23 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			EquationSide lhs = FunctionModelFactory.eINSTANCE.createEquationSide();
 			lhs.setDescriptor(equationDescriptor);
 			lhs.setExpression(lhsExpression);
-			StatusUtil.merge(status, new EquationSideInitializer(context, lhs).initialize());
+			StatusUtil.merge(status, new EquationSideInitializer(result, lhs).initialize());
 			
 			Expression rhsExpression = equation.getRightHandSide();
 			EquationSide rhs = FunctionModelFactory.eINSTANCE.createEquationSide();
 			rhs.setDescriptor(equationDescriptor);
 			rhs.setExpression(rhsExpression);
-			StatusUtil.merge(status, new EquationSideInitializer(context, rhs).initialize());
+			StatusUtil.merge(status, new EquationSideInitializer(result, rhs).initialize());
 		}
 		
-		if (status.getSeverity() > IStatus.WARNING) {
-			return new FunctionDescriptorBuilderResult(functionDescriptor, status);
-		}
-		
-		return new FunctionDescriptorBuilderResult(functionDescriptor);
+		result.collectStatus(status);
+
+		return functionDescriptor;
 	}
 			
 	private static class EquationSideInitializer extends MscriptSwitch<Boolean> {
 		
-		private IStaticEvaluationContext context;
+		private IStaticEvaluationResult context;
 		private EquationSide equationSide;
 		private MultiStatus status;
 		private boolean derivative;
@@ -88,8 +85,8 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		/**
 		 * 
 		 */
-		public EquationSideInitializer(IStaticEvaluationContext context, EquationSide equationSide) {
-			this.context = context;
+		public EquationSideInitializer(IStaticEvaluationResult result, EquationSide equationSide) {
+			this.context = result;
 			this.equationSide = equationSide;
 		}
 		

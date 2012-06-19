@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.codegen.c.internal.DefaultVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -22,23 +22,23 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
 	private ComputationModel computationModel;
-	private IStaticEvaluationContext staticEvaluationContext;
+	private IStaticEvaluationResult staticEvaluationResult;
 	private IVariableAccessStrategy variableAccessStrategy;
 	private ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, ICodeFragmentCollector codeFragmentCollector) {
-		this(computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext), codeFragmentCollector);
+	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult, ICodeFragmentCollector codeFragmentCollector) {
+		this(computationModel, staticEvaluationResult, new DefaultVariableAccessStrategy(staticEvaluationResult), codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
+	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.computationModel = computationModel;
-		this.staticEvaluationContext = staticEvaluationContext;
+		this.staticEvaluationResult = staticEvaluationResult;
 		this.variableAccessStrategy = variableAccessStrategy;
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
@@ -51,10 +51,10 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	}
 
 	/**
-	 * @return the staticEvaluationContext
+	 * @return the staticEvaluationResult
 	 */
-	public IStaticEvaluationContext getStaticEvaluationContext() {
-		return staticEvaluationContext;
+	public IStaticEvaluationResult getStaticEvaluationResult() {
+		return staticEvaluationResult;
 	}
 
 	/**

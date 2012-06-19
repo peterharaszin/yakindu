@@ -56,15 +56,16 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		if (arrayType.isNumeric()) {
 			switch (operator) {
 			case ADD:
-				return evaluateElementWise(arrayType, operator, other);
 			case SUBTRACT:
 				return evaluateElementWise(arrayType, operator, other);
 			case MULTIPLY:
 				return evaluateMultiply(arrayType, other);
 			case DIVIDE:
-				return evaluateDivide(arrayType, other);
+			case MODULO:
+				return evaluateDivideModulo(arrayType, operator, other);
+			case ELEMENT_WISE_ADD:
+			case ELEMENT_WISE_SUBTRACT:
 			case ELEMENT_WISE_MULTIPLY:
-				return evaluateElementWise(arrayType, operator, other);
 			case ELEMENT_WISE_DIVIDE:
 				return evaluateElementWise(arrayType, operator, other);
 			case NEGATE:
@@ -78,11 +79,12 @@ public class ArrayTypeOperations extends DataTypeOperations {
 	
 	private static DataType evaluateElementWise(ArrayType arrayType, OperatorKind operator, DataType other) {
 		if (other instanceof NumericType) {
-			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE) {
+			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE
+					|| operator == OperatorKind.ELEMENT_WISE_ADD || operator == OperatorKind.ELEMENT_WISE_SUBTRACT) {
 				return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 			}
 		} else if (TypeUtil.isNumericArray(other)) {
-			return evaluateElementWiseTensor(arrayType, operator, (ArrayType) other);
+			return evaluateElementWiseArray(arrayType, operator, (ArrayType) other);
 		}
 		return MscriptFactory.eINSTANCE.createInvalidDataType();
 	}
@@ -97,7 +99,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return result;
 	}
 
-	private static DataType evaluateElementWiseTensor(ArrayType arrayType, OperatorKind operator, ArrayType otherArrayType) {
+	private static DataType evaluateElementWiseArray(ArrayType arrayType, OperatorKind operator, ArrayType otherArrayType) {
 		if (TypeUtil.equalArrayDimensions(arrayType, otherArrayType)) {
 			DataType elementType = arrayType.getElementType().evaluate(operator, otherArrayType.getElementType());
 			if (elementType instanceof InvalidDataType) {
@@ -124,17 +126,37 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		int columnSize;
 		
 		if (arrayType.isNumericVector()) {
-			if (!otherArrayType.isNumericVector() || TypeUtil.getArraySize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
+			if (otherArrayType.isNumericVector()) {
+				if (TypeUtil.getArraySize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
+					return MscriptFactory.eINSTANCE.createInvalidDataType();
+				}
+				rowSize = -1;
+				columnSize = -1;
+			} else if (otherArrayType.isNumericMatrix()) {
+				if (TypeUtil.getArraySize(arrayType) != TypeUtil.getArrayRowSize(otherArrayType)) {
+					return MscriptFactory.eINSTANCE.createInvalidDataType();
+				}
+				rowSize = TypeUtil.getArrayColumnSize(otherArrayType);
+				columnSize = -1;
+			} else {
 				return MscriptFactory.eINSTANCE.createInvalidDataType();
 			}
-			rowSize = 1;
-			columnSize = 1;
 		} else if (arrayType.isNumericMatrix()) {
-			if (!otherArrayType.isNumericMatrix() || TypeUtil.getArrayColumnSize(arrayType) !=  TypeUtil.getArrayRowSize(otherArrayType)) {
+			if (otherArrayType.isNumericVector()) {
+				if (TypeUtil.getArrayColumnSize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
+					return MscriptFactory.eINSTANCE.createInvalidDataType();
+				}
+				rowSize = TypeUtil.getArrayRowSize(arrayType);
+				columnSize = -1;
+			} else if (otherArrayType.isNumericMatrix()) {
+				if (TypeUtil.getArrayColumnSize(arrayType) !=  TypeUtil.getArrayRowSize(otherArrayType)) {
+					return MscriptFactory.eINSTANCE.createInvalidDataType();
+				}
+				rowSize =  TypeUtil.getArrayRowSize(arrayType);
+				columnSize = TypeUtil.getArrayColumnSize(otherArrayType);
+			} else {
 				return MscriptFactory.eINSTANCE.createInvalidDataType();
 			}
-			rowSize =  TypeUtil.getArrayRowSize(arrayType);
-			columnSize = TypeUtil.getArrayColumnSize(otherArrayType);
 		} else {
 			return MscriptFactory.eINSTANCE.createInvalidDataType();
 		}
@@ -144,19 +166,20 @@ public class ArrayTypeOperations extends DataTypeOperations {
 			return elementType;
 		}
 		
-		if (rowSize == 1 && columnSize == 1) {
+		if (rowSize == -1 && columnSize == -1) {
 			return elementType;
 		}
 
-		return TypeUtil.createArrayType(
-				elementType,
-				rowSize,
-				columnSize);
+		if (columnSize == -1) {
+			return TypeUtil.createArrayType(elementType, rowSize);
+		}
+		
+		return TypeUtil.createArrayType(elementType, rowSize, columnSize);
 	}
 	
-	private static DataType evaluateDivide(ArrayType arrayType, DataType other) {
+	private static DataType evaluateDivideModulo(ArrayType arrayType, OperatorKind operator, DataType other) {
 		if (other instanceof NumericType) {
-			return evaluateElementWiseScalar(arrayType, OperatorKind.DIVIDE, (NumericType) other);
+			return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 		}
 		// TODO
 		return MscriptFactory.eINSTANCE.createInvalidDataType();

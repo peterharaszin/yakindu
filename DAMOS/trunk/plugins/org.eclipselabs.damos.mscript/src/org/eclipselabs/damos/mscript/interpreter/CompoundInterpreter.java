@@ -79,9 +79,9 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 				}
 				VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 				
-				IValue value = expressionEvaluator.evaluate(context, assignment.getAssignedExpression());
+				IValue value = expressionEvaluator.evaluate(new ExpressionEvaluationContext(context), assignment.getAssignedExpression());
 				IVariable variable = context.getVariable(variableDeclaration);
-				variable.setValue(context.getStaticEvaluationContext().getStepIndex(variableReference), value);
+				variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), value);
 				return true;
 			}
 		
@@ -101,7 +101,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			
 			@Override
 			public Boolean caseForStatement(ForStatement forStatement) {
-				IValue value = expressionEvaluator.evaluate(context, forStatement.getCollectionExpression());
+				IValue value = expressionEvaluator.evaluate(new ExpressionEvaluationContext(context), forStatement.getCollectionExpression());
 		
 				if (!(value.getDataType() instanceof ArrayType)) {
 					throw new RuntimeException("Collection type must be array type");
@@ -140,7 +140,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
 				IValue value;
 				if (localVariableDeclaration.getInitializer() != null) {
-					value = expressionEvaluator.evaluate(context, localVariableDeclaration.getInitializer());
+					value = expressionEvaluator.evaluate(new ExpressionEvaluationContext(context), localVariableDeclaration.getInitializer());
 				} else {
 					value = new UninitializedValue(context.getComputationContext());
 				}
@@ -152,7 +152,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 
 			@Override
 			public Boolean caseIfStatement(IfStatement ifStatement) {
-				IValue conditionValue = expressionEvaluator.evaluate(context, ifStatement.getCondition());
+				IValue conditionValue = expressionEvaluator.evaluate(new ExpressionEvaluationContext(context), ifStatement.getCondition());
 				if (conditionValue instanceof IBooleanValue) {
 					IBooleanValue booleanConditionValue = (IBooleanValue) conditionValue;
 					if (booleanConditionValue.booleanValue()) {

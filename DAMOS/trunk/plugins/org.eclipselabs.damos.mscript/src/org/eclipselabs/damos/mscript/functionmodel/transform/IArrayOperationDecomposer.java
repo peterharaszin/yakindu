@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public interface IArrayOperationDecomposer {
 
-	void decompose(IStaticEvaluationContext context, Compound compound);
+	void decompose(IStaticEvaluationResult staticEvaluationResult, Compound compound);
 
 }

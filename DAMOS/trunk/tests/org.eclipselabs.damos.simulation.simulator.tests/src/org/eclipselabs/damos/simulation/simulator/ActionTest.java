@@ -34,10 +34,8 @@ public class ActionTest extends AbstractSimulationTest {
 	private Block scope;
 
 	@Before
-	public void bectorScalarMultiply() {
-		super.bectorScalarMultiply();
-		
-		createConfiguration();
+	public void setUp() {
+		super.setUp();
 		
 		Block gain = createBlock(GAIN, "gain");
 		setArgument(gain, GainConstants.PARAMETER__GAIN, getGain());

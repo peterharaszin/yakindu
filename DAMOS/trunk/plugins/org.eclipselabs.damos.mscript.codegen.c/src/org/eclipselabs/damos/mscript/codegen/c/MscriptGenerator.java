@@ -93,12 +93,12 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("typedef struct {\n");
 		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				out.print(generateContextStructureMember(inputParameterDeclaration));
 			}
 		}
 		for (OutputParameterDeclaration outputParameterDeclaration : functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(outputParameterDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(outputParameterDeclaration) > 1) {
 				out.print(generateContextStructureMember(outputParameterDeclaration));
 			}
 		}
@@ -114,7 +114,7 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		String name = variableDeclaration.getName();
 		DataType dataType = getDataType(variableDeclaration);
-		int circularBufferSize = context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration);
+		int circularBufferSize = context.getStaticEvaluationResult().getCircularBufferSize(variableDeclaration);
 		if (circularBufferSize > 1) {
 			int bufferSize = circularBufferSize;
 			out.printf("%s[%d];\n",
@@ -218,7 +218,7 @@ public class MscriptGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		for (VariableDeclaration variableDeclaration : variableDeclarations) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(variableDeclaration) > 1) {
 				out.printf("context->%s_index = 0;\n", variableDeclaration.getName());
 			}
 		}
@@ -258,13 +258,13 @@ public class MscriptGenerator {
 		}
 		
 		for (InputParameterDeclaration inputParameterDeclaration : FunctionModelUtil.getDirectFeedthroughInputs(functionInstance)) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				out.print(generateUpdateInputContextStatement(inputParameterDeclaration));
 			}
 		}
 		
 		for (OutputParameterDeclaration outputVariableDeclaration : functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(outputVariableDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(outputVariableDeclaration) > 1) {
 				String name = outputVariableDeclaration.getName();
 				out.printf("context->%s[context->%s_index] = *%s;\n", name, name, name);
 			}
@@ -302,7 +302,7 @@ public class MscriptGenerator {
 			}
 		}
 		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				out.print(generateUpdateInputContextStatement(inputParameterDeclaration));
 			}
 		}
@@ -334,9 +334,9 @@ public class MscriptGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		for (VariableDeclaration variableDeclaration : variableDeclarations) {
-			if (context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration) > 1) {
+			if (context.getStaticEvaluationResult().getCircularBufferSize(variableDeclaration) > 1) {
 				String name = variableDeclaration.getName();
-				out.printf("context->%s_index = (context->%s_index + 1) %% %d;\n", name, name, context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration));
+				out.printf("context->%s_index = (context->%s_index + 1) %% %d;\n", name, name, context.getStaticEvaluationResult().getCircularBufferSize(variableDeclaration));
 			}
 		}
 		return sb;
@@ -375,7 +375,7 @@ public class MscriptGenerator {
 	 * @return
 	 */
 	private DataType getDataType(Evaluable evaluable) {
-		IValue value = context.getStaticEvaluationContext().getValue(evaluable);
+		IValue value = context.getStaticEvaluationResult().getValue(evaluable);
 		return value != null ? value.getDataType() : null;
 	}
 

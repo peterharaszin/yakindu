@@ -40,8 +40,11 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
@@ -61,31 +64,16 @@ public class BehavioredBlockHelper {
 	protected static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "Ts";
 	protected static final String SAMPLE_RATE_TEMPLATE_PARAMETER_NAME = "fs";
 	
-	private MultiStatus multiStatus;
-
-	private final IStaticEvaluationContext staticEvaluationContext;
 	private final Block block;
 	
-	private final StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	private final StaticFunctionEvaluator staticFunctionEvaluator = new StaticFunctionEvaluator();
 	
 	/**
 	 * 
 	 */
-	public BehavioredBlockHelper(IStaticEvaluationContext staticEvaluationContext, Block block) {
-		this.staticEvaluationContext = staticEvaluationContext;
+	public BehavioredBlockHelper(Block block) {
 		this.block = block;
-	}
-	
-	/**
-	 * @return the staticEvaluationContext
-	 */
-	public IStaticEvaluationContext getStaticEvaluationContext() {
-		return staticEvaluationContext;
-	}
-	
-	public IStatus getStatus() {
-		return multiStatus;
 	}
 	
 	public FunctionDeclaration createFunctionDefinition() throws CoreException {
@@ -98,31 +86,18 @@ public class BehavioredBlockHelper {
 		return functionDeclaration;
 	}
 
-	public void evaluateFunctionDefinition(FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) throws CoreException {
-		multiStatus = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
-		
-		if (multiStatus.getSeverity() > IStatus.WARNING) {
-			throw new CoreException(multiStatus);
-		}
-		
+	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
 		Iterator<IValue> templateArgumentIt = templateArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
-			staticEvaluationContext.setValue(parameterDeclaration, templateArgumentIt.next());
+			staticEvaluationResult.setValue(parameterDeclaration, templateArgumentIt.next());
 		}
 
 		Iterator<DataType> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
-			staticEvaluationContext.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
+			staticEvaluationResult.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
 		}
 
-		IStatus status = staticFunctionEvaluator.evaluate(staticEvaluationContext, functionDeclaration);
-		if (status.getSeverity() > IStatus.WARNING) {
-			throw new CoreException(status);
-		}
-		
-		if (!status.isOK()) {
-			multiStatus.merge(status);
-		}
+		staticFunctionEvaluator.evaluate(staticEvaluationResult, functionDeclaration);
 	}
 
 	public List<IValue> getTemplateArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
@@ -260,11 +235,11 @@ public class BehavioredBlockHelper {
 	private IValue evaluateParameterValue(Parameter parameter, ValueSpecification valueSpecification) throws CoreException {
 		if (valueSpecification instanceof MscriptValueSpecification) {
 			Expression expression = ((MscriptValueSpecification) valueSpecification).getExpression();
-			IStatus status = staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
-			if (status.getSeverity() > IStatus.WARNING) {
-				throw new CoreException(status);
+			IStaticEvaluationResult context = new StaticEvaluationResult();
+			IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(context), expression);
+			if (context.getStatus().getSeverity() > IStatus.WARNING) {
+				throw new CoreException(context.getStatus());
 			}
-			IValue value = staticEvaluationContext.getValue(expression);
 			if (value instanceof InvalidValue) {
 				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' is invalid"));
 			}

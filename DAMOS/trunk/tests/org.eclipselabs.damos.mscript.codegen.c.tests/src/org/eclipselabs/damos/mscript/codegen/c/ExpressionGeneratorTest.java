@@ -21,9 +21,11 @@ import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +40,7 @@ import com.google.inject.Injector;
  */
 public class ExpressionGeneratorTest {
 
-	private final StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	private final ExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
 	@Inject
@@ -156,12 +158,12 @@ public class ExpressionGeneratorTest {
 	}
 
 	private String generate(String expressionString) {
-		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 		Expression expression = parseExpression(expressionString);
-		staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
+		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationContext, new ICodeFragmentCollector() {
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationResult, new ICodeFragmentCollector() {
 			
 			public <T extends ICodeFragment> T addCodeFragment(T codeFragment, IProgressMonitor monitor) {
 				return codeFragment;

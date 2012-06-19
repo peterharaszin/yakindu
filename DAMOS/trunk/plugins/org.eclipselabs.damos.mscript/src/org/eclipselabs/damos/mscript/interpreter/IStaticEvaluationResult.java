@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -22,9 +23,11 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  *
  */
-public interface IStaticEvaluationContext {
+public interface IStaticEvaluationResult extends IStatusCollector {
 
 	IComputationContext getComputationContext();
+	
+	IStatus getStatus();
 	
 	IValue getValue(Evaluable evaluable);
 	void setValue(Evaluable evaluable, IValue value);

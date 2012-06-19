@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,18 +11,21 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
- * @noextend
- * @noimplement
  */
-public interface IBuiltinFunction {
+public abstract class AbstractBuiltinFunction implements IBuiltinFunction {
 
-	IValue call(IExpressionEvaluationContext context, FunctionCall functionCall);
+	private final ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
+	
+	protected IValue evaluate(IExpressionEvaluationContext context, Expression expression) {
+		return expressionEvaluator.evaluate(context, expression);
+	}
 	
 }

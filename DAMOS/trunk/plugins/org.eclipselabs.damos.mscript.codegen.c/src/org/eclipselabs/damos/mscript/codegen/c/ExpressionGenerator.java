@@ -12,8 +12,6 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.WrappedException;
@@ -25,6 +23,7 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
+import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
@@ -47,15 +46,14 @@ import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
-import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookupTable;
-import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -63,6 +61,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -83,7 +82,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 		
 		private IMscriptGeneratorContext context;
-		private IBuiltinFunctionGeneratorLookupTable builtinFunctionGeneratorLookupTable = new BuiltinFunctionGeneratorLookupTable();
+		private IBuiltinFunctionGeneratorLookup builtinFunctionGeneratorLookup = new BuiltinFunctionGeneratorLookup();
 		
 		private PrintAppendable out;
 
@@ -343,18 +342,23 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseFunctionCall(FunctionCall functionCall) {
-			String name = functionCall.getFeature().getName();
-
-			List<DataType> inputParameterDataTypes = new ArrayList<DataType>();
-			for (Expression argument : functionCall.getArguments()) {
-				inputParameterDataTypes.add(getDataType(argument));
+			CallableElement feature = functionCall.getFeature();
+			if (feature == null || feature.eIsProxy() || feature.getName() == null) {
+				return true;
 			}
-			BuiltinFunctionKind descriptor = BuiltinFunctionKind.get(name, inputParameterDataTypes);
-			if (descriptor != null) {
-				IFunctionGenerator generator = builtinFunctionGeneratorLookupTable.getFunctionGenerator(descriptor);
-				if (generator != null) {
-					out.print(generator.generate(context, functionCall));
-				}
+			
+			IValue value = context.getStaticEvaluationResult().getValue(functionCall);
+			if (value == null) {
+				throw new IllegalStateException("No static value found for " + functionCall.getFeature().getName());
+			}
+			
+			if (value instanceof InvalidValue) {
+				return true;
+			}
+
+			IBuiltinFunctionGenerator generator = builtinFunctionGeneratorLookup.getFunctionGenerator(functionCall);
+			if (generator != null) {
+				out.print(generator.generate(context, functionCall));
 			}
 
 			return true;
@@ -380,7 +384,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
-			IValue value = context.getStaticEvaluationContext().getValue(arrayConstructionOperator);
+			IValue value = context.getStaticEvaluationResult().getValue(arrayConstructionOperator);
 			if (value instanceof IArrayValue) {
 				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
 			} else {
@@ -406,7 +410,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
-			IValue value = context.getStaticEvaluationContext().getValue(structConstructionOperator);
+			IValue value = context.getStaticEvaluationResult().getValue(structConstructionOperator);
 			if (value instanceof StructValue) {
 				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
 			} else {
@@ -444,7 +448,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 
 		private DataType getDataType(Expression expression) {
-			return context.getStaticEvaluationContext().getValue(expression).getDataType();
+			return context.getStaticEvaluationResult().getValue(expression).getDataType();
 		}
 	
 	}

@@ -21,8 +21,10 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -32,7 +34,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  *
  */
 public class ExpressionUtil {
-
+	
 	public static IValue evaluateArgumentExpression(ParameterizedElement element, String parameterName) throws CoreException {
 		Argument argument = element.getArgument(parameterName);
 		if (argument != null) {
@@ -73,12 +75,12 @@ public class ExpressionUtil {
 	}
 
 	public static IValue evaluateExpression(Expression expression) throws CoreException {
-		StaticEvaluationContext context = new StaticEvaluationContext();
-		IStatus status = new StaticExpressionEvaluator().evaluate(context, expression);
-		if (status.getSeverity() > IStatus.WARNING) {
-			throw new CoreException(status);
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
+			throw new CoreException(staticEvaluationResult.getStatus());
 		}
-		return context.getValue(expression);
+		return value;
 	}
 
 }

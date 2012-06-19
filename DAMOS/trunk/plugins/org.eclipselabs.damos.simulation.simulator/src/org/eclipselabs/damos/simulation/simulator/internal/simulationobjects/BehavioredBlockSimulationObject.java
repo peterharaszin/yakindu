@@ -48,10 +48,10 @@ import org.eclipselabs.damos.mscript.interpreter.FunctionObject;
 import org.eclipselabs.damos.mscript.interpreter.ICompoundInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
@@ -95,8 +95,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		Block block = getComponent();
 
-		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
-		Helper helper = new Helper(staticEvaluationContext, block);
+		Helper helper = new Helper(block);
 		
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
@@ -128,12 +127,18 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
-		helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
-		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDeclaration);
-
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
+		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, templateArguments, inputParameterDataTypes);
+		if (!staticEvaluationResult.getStatus().isOK()) {
+			status.add(staticEvaluationResult.getStatus());
+		}
+		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
+			throw new CoreException(status);
+		}
+		
+		FunctionDescriptor functionDescriptor = staticEvaluationResult.getFunctionDescriptor(functionDeclaration);
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(staticEvaluationContext, functionDescriptor, templateArguments, inputParameterDataTypes);
-
+				.transform(staticEvaluationResult, functionDescriptor, templateArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());
 			throw new CoreException(status);
@@ -141,7 +146,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		FunctionInstance functionInstance = functionDefinitionTransformerResult.getFunctionInstance();
 		
-		interpreterContext = new InterpreterContext(staticEvaluationContext, getComputationContext());
+		interpreterContext = new InterpreterContext(staticEvaluationResult, getComputationContext());
 		functionObject = FunctionObject.create(interpreterContext, functionInstance);
 
 		for (IVariable variable : functionObject.getVariables()) {
@@ -205,7 +210,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
-		DataType dataType = interpreterContext.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
+		DataType dataType = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration).getDataType();
 		if (dataType instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) dataType;
 			if (arrayType.isNumeric()) {
@@ -295,8 +300,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		/**
 		 * @param block
 		 */
-		public Helper(IStaticEvaluationContext staticEvaluationContext, Block block) {
-			super(staticEvaluationContext, block);
+		public Helper(Block block) {
+			super(block);
 		}
 
 		@Override

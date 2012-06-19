@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -25,8 +25,8 @@ public class FunctionDefinitionTransformerContext extends TransformerContext imp
 	/**
 	 * 
 	 */
-	public FunctionDefinitionTransformerContext(IStaticEvaluationContext staticEvaluationContext, FunctionInstance functionInstance) {
-		super(staticEvaluationContext);
+	public FunctionDefinitionTransformerContext(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance) {
+		super(staticEvaluationResult);
 		this.functionInstance = functionInstance;
 	}
 	

@@ -26,8 +26,6 @@ public class VectorTest extends AbstractSimulationTest {
 
 	@Test
 	public void vector() {
-		createConfiguration();
-		
 		Block in = createBlock(CONSTANT, "In");
 		setSynchronousTimingConstraint(in, 1);
 		setArgument(in, ConstantConstants.PARAMETER__VALUE, "{ 1, 2, 3 }");

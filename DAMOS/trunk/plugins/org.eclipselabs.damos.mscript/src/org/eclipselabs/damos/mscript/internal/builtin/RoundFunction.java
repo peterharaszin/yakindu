@@ -11,36 +11,39 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class RoundFunction implements IBuiltinFunction {
+public class RoundFunction extends AbstractSingleParameterFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
-		IValue argument = arguments.get(0);
+	@Override
+	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+		if (!(argument.getDataType() instanceof RealType || argument.getDataType() instanceof IntegerType)) {
+			return InvalidValue.SINGLETON;
+		}
 		if (argument instanceof AnyValue) {
 			IntegerType outputDataType = MscriptFactory.eINSTANCE.createIntegerType();
 			outputDataType.setUnit(EcoreUtil.copy(((NumericType) argument.getDataType()).getUnit()));
-			return Collections.<IValue>singletonList(new AnyValue(context, outputDataType));
+			return new AnyValue(context.getComputationContext(), outputDataType);
 		}
 		if (argument instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericValue = (ISimpleNumericValue) argument;
-			return Collections.singletonList(numericValue.round());
+			return numericValue.round();
 		}
 		throw new IllegalArgumentException();
 	}
-	
+
 }

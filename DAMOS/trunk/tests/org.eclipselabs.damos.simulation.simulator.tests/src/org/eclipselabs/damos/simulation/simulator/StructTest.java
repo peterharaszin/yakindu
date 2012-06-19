@@ -26,8 +26,6 @@ public class StructTest extends AbstractSimulationTest {
 
 	@Test
 	public void struct() {
-		createConfiguration();
-		
 		Block in = createBlock(CONSTANT, "In");
 		setSynchronousTimingConstraint(in, 1);
 		setArgument(in, ConstantConstants.PARAMETER__VALUE, "{ x = 3, y = 7 }");

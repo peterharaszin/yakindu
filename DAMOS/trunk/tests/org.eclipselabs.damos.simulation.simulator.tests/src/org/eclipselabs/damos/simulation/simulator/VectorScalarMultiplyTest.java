@@ -26,8 +26,6 @@ public class VectorScalarMultiplyTest extends AbstractSimulationTest {
 
 	@Test
 	public void vectorScalarMultiply() {
-		createConfiguration();
-		
 		Block constant = createBlock(CONSTANT, "Constant");
 		setSynchronousTimingConstraint(constant, 1);
 		setArgument(constant, ConstantConstants.PARAMETER__VALUE, "{ 1, 2, 3 }");

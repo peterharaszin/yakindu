@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 public interface IMscriptGeneratorContext {
 
 	ComputationModel getComputationModel();
-	IStaticEvaluationContext getStaticEvaluationContext();
+	IStaticEvaluationResult getStaticEvaluationResult();
 	IVariableAccessStrategy getVariableAccessStrategy();
 	ICodeFragmentCollector getCodeFragmentCollector();
 	

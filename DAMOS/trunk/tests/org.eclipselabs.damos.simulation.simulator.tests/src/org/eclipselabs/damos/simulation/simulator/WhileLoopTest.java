@@ -36,10 +36,8 @@ public class WhileLoopTest extends AbstractSimulationTest {
 	private Block scope;
 
 	@Before
-	public void bectorScalarMultiply() {
-		super.bectorScalarMultiply();
-		
-		createConfiguration();
+	public void setUp() {
+		super.setUp();
 		
 		preconditionBlock = createBlock(CONSTANT, "Precondition");
 		setSynchronousTimingConstraint(preconditionBlock, 1);

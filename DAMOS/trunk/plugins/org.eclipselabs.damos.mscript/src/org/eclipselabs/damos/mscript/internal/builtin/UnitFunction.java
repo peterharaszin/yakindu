@@ -11,28 +11,39 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
+import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
+import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class UnitFunction implements IBuiltinFunction {
+public class UnitFunction extends AbstractSingleParameterFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
-		IValue argument = arguments.get(0);
-		if (argument.getDataType() instanceof NumericType) {
-			NumericType numericType = (NumericType) argument.getDataType();
-			return Collections.<IValue>singletonList(new UnitValue(context, EcoreUtil.copy(numericType.getUnit())));
+	@Override
+	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+		if (!context.isStaticScope()) {
+			if (context.getStatusCollector() != null) {
+				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Unit function can only be used in static scope", functionCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature()));
+			}
+			return InvalidValue.SINGLETON;
 		}
-		throw new IllegalArgumentException();
+		
+		if (!(argument.getDataType() instanceof NumericType)) {
+			return InvalidValue.SINGLETON;
+		}
+
+		NumericType numericType = (NumericType) argument.getDataType();
+		return new UnitValue(context.getComputationContext(), EcoreUtil.copy(numericType.getUnit()));
 	}
-	
+
 }

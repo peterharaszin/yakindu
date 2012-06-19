@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  */
 public interface IInterpreterContext {
 	
-	IStaticEvaluationContext getStaticEvaluationContext();
+	IStaticEvaluationResult getStaticEvaluationResult();
 	IComputationContext getComputationContext();
 
 	void enterScope();

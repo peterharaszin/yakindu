@@ -40,7 +40,7 @@ import com.google.inject.Injector;
  */
 public class ExpressionEvaluatorTest {
 	
-	private final StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	private final IExpressionEvaluator staticExpressionEvaluator = new ExpressionEvaluator();
 	
 	@Inject
 	private IParser parser;
@@ -139,12 +139,12 @@ public class ExpressionEvaluatorTest {
 //	}
 
 	private IValue evaluate(String expressionString) {
-		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 		Expression expression = parseExpression(expressionString);
-		staticExpressionEvaluator.evaluate(staticEvaluationContext, expression);
+		staticExpressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
 		
-		return staticEvaluationContext.getValue(expression);
+		return staticEvaluationResult.getValue(expression);
 	}
 	
 	private Expression parseExpression(String expressionString) {

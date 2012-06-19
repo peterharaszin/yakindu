@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,17 +9,16 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
+package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.FunctionCall;
-import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IFunctionGenerator {
+public interface IStatusCollector {
 
-	CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall);
+	void collectStatus(IStatus status);
 	
 }

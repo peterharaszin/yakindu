@@ -46,21 +46,21 @@ public class FunctionObject implements IFunctionObject {
 		
 		for (TemplateParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getTemplateParameterDeclarations()) {
 			IVariable variable = new Variable(context, declaration);
-			IValue value = context.getStaticEvaluationContext().getValue(declaration);
+			IValue value = context.getStaticEvaluationResult().getValue(declaration);
 			variable.setValue(0, Values.transform(context.getComputationContext(), value));
 			functionObject.variables.put(declaration, variable);
 		}
 		
 		for (InputParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		
 		for (OutputParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		
 		for (StateVariableDeclaration declaration : functionInstance.getFunctionDeclaration().getStateVariableDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		
 		return functionObject;

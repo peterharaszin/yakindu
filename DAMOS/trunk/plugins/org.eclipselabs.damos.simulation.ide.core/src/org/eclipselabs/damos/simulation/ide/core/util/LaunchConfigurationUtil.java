@@ -42,9 +42,10 @@ import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
@@ -57,9 +58,6 @@ import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunc
  */
 public class LaunchConfigurationUtil {
 
-	/**
-	 * 
-	 */
 	private static final String PROPERTY__SIMULATION_TIME = "damos.simulation.simulationTime";
 	
 	public static void initializeLaunchConfiguration(ILaunchConfigurationWorkingCopy launchConfiguration, Fragment contextFragment) {
@@ -193,12 +191,11 @@ public class LaunchConfigurationUtil {
 		}
 		
 		Expression expression = (Expression) result.getRootASTElement();
-		IStaticEvaluationContext context = new StaticEvaluationContext();
-		IStatus status = new StaticExpressionEvaluator().evaluate(context, expression);
-		if (status.getSeverity() > IStatus.WARNING) {
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
 		}
-		IValue value = context.getValue(expression);
 		if (value instanceof InvalidValue) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
 		}

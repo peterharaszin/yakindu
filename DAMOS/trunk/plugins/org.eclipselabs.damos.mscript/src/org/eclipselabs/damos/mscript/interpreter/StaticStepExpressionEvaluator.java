@@ -33,11 +33,8 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
  */
 public class StaticStepExpressionEvaluator {
 		
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IExpressionValueEvaluator#evaluate(org.eclipselabs.mscript.language.interpreter.IEvaluationContext, org.eclipselabs.mscript.language.ast.Expression)
-	 */
-	public IStatus evaluate(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
-		Evaluator evaluator = new Evaluator(context);
+	public void evaluate(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
+		Evaluator evaluator = new Evaluator(result);
 		for (Equation equation : functionDeclaration.getEquations()) {
 			for (Iterator<EObject> it = equation.eAllContents(); it.hasNext();) {
 				EObject next = it.next();
@@ -45,12 +42,12 @@ public class StaticStepExpressionEvaluator {
 					VariableReference variableReference = (VariableReference) next;
 					if (variableReference.getStepExpression() != null) {
 						Integer stepIndex = evaluator.doSwitch(variableReference.getStepExpression());
-						context.setStepIndex(variableReference, stepIndex);
+						result.setStepIndex(variableReference, stepIndex);
 					}
 				}
 			}
 		}
-		return evaluator.getStatus();
+		result.collectStatus(evaluator.getStatus());
 	}
 	
 	private static class Evaluator extends MscriptSwitch<Integer> {
@@ -60,7 +57,7 @@ public class StaticStepExpressionEvaluator {
 		/**
 		 * 
 		 */
-		public Evaluator(IStaticEvaluationContext context) {
+		public Evaluator(IStaticEvaluationResult result) {
 			status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Step expression evaluation", null);
 		}
 		

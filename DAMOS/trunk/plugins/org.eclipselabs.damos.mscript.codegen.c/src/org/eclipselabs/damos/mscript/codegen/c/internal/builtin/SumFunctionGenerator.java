@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class SumFunctionGenerator implements IFunctionGenerator {
+public class SumFunctionGenerator implements IBuiltinFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
@@ -35,7 +35,7 @@ public class SumFunctionGenerator implements IFunctionGenerator {
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
-		DataType dataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
+		DataType dataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
 		if (!TypeUtil.isNumericArray(dataType)) {
 			throw new RuntimeException("Target type of sum() method must be tensor type");
 		}

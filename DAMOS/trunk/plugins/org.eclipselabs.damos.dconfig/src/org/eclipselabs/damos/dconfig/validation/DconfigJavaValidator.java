@@ -34,9 +34,10 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
-import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
@@ -145,14 +146,13 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 			return;
 		}
 
-		IStaticEvaluationContext context = new StaticEvaluationContext();
-		IStatus status = new StaticExpressionEvaluator().evaluate(context, property.getValue());
-		if (status.getSeverity() > IStatus.WARNING) {
-			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(status, getChain());
+		IStaticEvaluationResult result = new StaticEvaluationResult();
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(result), property.getValue());
+		if (result.getStatus().getSeverity() > IStatus.WARNING) {
+			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(result.getStatus(), getChain());
 			return;
 		}
 		
-		IValue value = context.getValue(property.getValue());
 		if (value == null || value instanceof InvalidValue || value.getDataType() == null) {
 			return;
 		}

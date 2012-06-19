@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.AssertionStatusKind;
 import org.eclipselabs.damos.mscript.CallableElement;
@@ -40,12 +40,10 @@ import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
-import org.eclipselabs.damos.mscript.functionmodel.IFunctionDescriptorBuilderResult;
 import org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorBuilder;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelValidator;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.EObjectTreeIterator;
-import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -59,45 +57,48 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class StaticFunctionEvaluator {
 	
-	public IStatus evaluate(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
-		MultiStatus multiStatus = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Static function evaluation", null);
-		StatusUtil.merge(multiStatus, new StaticStepExpressionEvaluator().evaluate(context, functionDeclaration));
+	private final StaticStepExpressionEvaluator staticStepExpressionEvaluator = new StaticStepExpressionEvaluator();
+	private final FunctionDescriptorBuilder functionDescriptorBuilder = new FunctionDescriptorBuilder();
+	private final EValidator functionModelValidator = new FunctionModelValidator();
+	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
+	
+	public void evaluate(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
+		staticStepExpressionEvaluator.evaluate(result, functionDeclaration);
 
-		IFunctionDescriptorBuilderResult functionDescriptorBuilderResult = new FunctionDescriptorBuilder().build(context, functionDeclaration);
-		StatusUtil.merge(multiStatus, functionDescriptorBuilderResult.getStatus());
-		FunctionDescriptor functionDescriptor = functionDescriptorBuilderResult.getFunctionDescriptor();
-		context.setFunctionDescriptor(functionDeclaration, functionDescriptor);
+		FunctionDescriptor functionDescriptor = functionDescriptorBuilder.build(result, functionDeclaration);
+		result.setFunctionDescriptor(functionDeclaration, functionDescriptor);
 
-		FunctionModelValidator validator = new FunctionModelValidator();
 		BasicDiagnostic diagnostics = new BasicDiagnostic();
 		for (EObjectTreeIterator it = new EObjectTreeIterator(functionDescriptor, true); it.hasNext();) {
-			validator.validate(it.next(), diagnostics, new HashMap<Object, Object>());
+			functionModelValidator.validate(it.next(), diagnostics, new HashMap<Object, Object>());
 		}
+		
 		if (diagnostics.getSeverity() != Diagnostic.OK) {
-			StatusUtil.merge(multiStatus, SyntaxStatus.toStatus(diagnostics));
+			result.collectStatus(SyntaxStatus.toStatus(diagnostics));
 		}
 
-		StatusUtil.merge(multiStatus, evaluate(context, functionDescriptor));
+		if (!evaluateStaticAssertions(result, functionDescriptor)) {
+			return;
+		}
 		
-		return multiStatus;
+		evaluateAssertions(result, functionDescriptor);
+		
+		evaluateEquations(result, functionDescriptor);
 	}
 
-	private IStatus evaluate(IStaticEvaluationContext context, FunctionDescriptor functionDescriptor) {
-		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Static function evaluation", null);
-		StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	private boolean evaluateStaticAssertions(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
+		boolean passed = true;
 		
 		for (Assertion assertion : functionDescriptor.getDeclaration().getAssertions()) {
 			if (assertion.isStatic()) {
-				IStatus assertStatus = staticExpressionEvaluator.evaluate(context, assertion.getCondition(), true);
-				if (!assertStatus.isOK()) {
-					status.merge(assertStatus);
-				}
-				IValue value = context.getValue(assertion.getCondition());
+				IExpressionEvaluationContext expressionEvaluationContext = new StaticExpressionEvaluationContext(result);
+				expressionEvaluationContext.enterStaticScope();
+				IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assertion.getCondition());
 				if (value instanceof InvalidValue) {
 					continue;
 				}
 				if (!(value instanceof IBooleanValue)) {
-					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Assertion condition must result to boolean value", assertion.getCondition()));
+					result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Assertion condition must result to boolean value", assertion.getCondition()));
 					continue;
 				}
 				if (!((IBooleanValue) value).booleanValue()) {
@@ -116,32 +117,45 @@ public class StaticFunctionEvaluator {
 							severity = IStatus.ERROR;
 							break;
 						}
-						status.add(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getValue(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
+						if (severity > IStatus.WARNING) {
+							passed = false;
+						}
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getValue(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
-							return status;
+							break;
 						}
 					}
 				}
 			}
 		}
 		
-		if (status.getSeverity() > IStatus.WARNING) {
-			return status;
-		}
-		
+		return passed;
+	}
+
+	/**
+	 * @param result
+	 * @param functionDescriptor
+	 */
+	private void evaluateAssertions(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
 		for (Assertion assertion : functionDescriptor.getDeclaration().getAssertions()) {
 			if (!assertion.isStatic()) {
-				staticExpressionEvaluator.evaluate(context, assertion.getCondition());
+				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), assertion.getCondition());
 			}
 		}
-		
-		Collection<EquationDescriptor> sortedEquations = getSortedEquations(functionDescriptor, status);
+	}
+
+	/**
+	 * @param result
+	 * @param functionDescriptor
+	 */
+	private void evaluateEquations(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
+		Collection<EquationDescriptor> sortedEquations = getSortedEquations(result, functionDescriptor);
 		
 		boolean changed;
 		do {
 			changed = false;
 			for (EquationDescriptor equationDescriptor : sortedEquations) {
-				StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
+				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), equationDescriptor.getRightHandSide().getExpression());
 				
 				boolean derivative = false;
 				Expression leftHandSideExpression = equationDescriptor.getLeftHandSide().getExpression();
@@ -151,8 +165,8 @@ public class StaticFunctionEvaluator {
 				}
 				VariableReference variableReference = (VariableReference) leftHandSideExpression;
 				
-				IValue leftHandSideValue = context.getValue(variableReference.getFeature());
-				IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
+				IValue leftHandSideValue = result.getValue(variableReference.getFeature());
+				IValue rightHandSideValue = result.getValue(equationDescriptor.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
 					DataType dataType;
 					
@@ -168,18 +182,18 @@ public class StaticFunctionEvaluator {
 					
 					if (dataType != null) {
 						DataType previousDataType = null;
-						IValue previousValue = context.getValue(variableReference.getFeature());
+						IValue previousValue = result.getValue(variableReference.getFeature());
 						if (previousValue != null) {
 							previousDataType = previousValue.getDataType();
 						}
 						if (previousDataType == null || !previousDataType.isEquivalentTo(dataType)) {
 							changed = true;
 						}
-						AnyValue value = new AnyValue(context.getComputationContext(), dataType);
-						context.setValue(variableReference, value);
-						context.setValue(variableReference.getFeature(), value);
+						AnyValue value = new AnyValue(result.getComputationContext(), dataType);
+						result.setValue(variableReference, value);
+						result.setValue(variableReference.getFeature(), value);
 					} else {
-						status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 								"The data type of the variable " + variableReference.getFeature().getName()
 										+ " could not be determined",
 								variableReference.getFeature()));
@@ -187,11 +201,9 @@ public class StaticFunctionEvaluator {
 				}
 			}
 		} while (changed);
-		
-		return status;
 	}
 	
-	private Collection<EquationDescriptor> getSortedEquations(FunctionDescriptor functionDescriptor, MultiStatus status) {
+	private Collection<EquationDescriptor> getSortedEquations(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
 		Set<CallableElement> definedFeatures = new HashSet<CallableElement>();
 		List<EquationDescriptor> sortedEquations = new ArrayList<EquationDescriptor>();
 		List<EquationDescriptor> backlog = new LinkedList<EquationDescriptor>(functionDescriptor.getEquationDescriptors());
@@ -235,7 +247,7 @@ public class StaticFunctionEvaluator {
 			for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
 				VariableReference variableReference = (VariableReference) part.getVariableAccess();
 				if (!definedFeatures.contains(variableReference.getFeature())) {
-					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+					result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 							"The data type of the variable " + variableReference.getFeature().getName()
 									+ " could not be determined",
 							variableReference));

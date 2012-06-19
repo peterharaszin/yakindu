@@ -45,7 +45,7 @@ import org.eclipselabs.damos.mscript.functionmodel.util.EquationCompoundHelper;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.functionmodel.util.InternalFunctionModelUtil;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -58,7 +58,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor, java.lang.String, java.util.List, java.util.List)
 	 */
-	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationContext staticEvaluationContext, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
+	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
@@ -66,11 +66,11 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		
 		Map<VariableDescriptor, VariableDeclaration> variableDeclarations = new HashMap<VariableDescriptor, VariableDeclaration>();
 		
-		initializeVariableDeclarations(staticEvaluationContext, functionInstance, functionDescriptor, templateArguments, inputParameterDataTypes, variableDeclarations);
+		initializeVariableDeclarations(staticEvaluationResult, functionInstance, functionDescriptor, templateArguments, inputParameterDataTypes, variableDeclarations);
 
 		Collection<List<EquationDescriptor>> equationCompounds = new EquationCompoundHelper().getEquationCompounds(functionDescriptor);
 		
-		IFunctionDefinitionTransformerContext context = new FunctionDefinitionTransformerContext(staticEvaluationContext, functionInstance);
+		IFunctionDefinitionTransformerContext context = new FunctionDefinitionTransformerContext(staticEvaluationResult, functionInstance);
 		StatusUtil.merge(status, constructInitializationCompound(context, equationCompounds, variableDeclarations));
 		StatusUtil.merge(status, constructComputationCompounds(context, equationCompounds, variableDeclarations));
 		
@@ -85,12 +85,12 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		return new FunctionDefinitionTransformerResult(functionInstance);
 	}
 	
-	private void initializeVariableDeclarations(IStaticEvaluationContext staticEvaluationContext, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> templateArgumentIterator = templateArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getTemplateParameterDeclarations()) {
 			if (templateArgumentIterator.hasNext()) {
 				IValue value = templateArgumentIterator.next();
-				staticEvaluationContext.setValue(parameterDeclaration, value);
+				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
@@ -102,13 +102,13 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getInputParameterDeclarations()) {
 			if (inputParameterDataTypesIterator.hasNext()) {
 				DataType dataType = EcoreUtil.copy(inputParameterDataTypesIterator.next());
-				IValue value = new AnyValue(staticEvaluationContext.getComputationContext(), dataType);
-				staticEvaluationContext.setValue(parameterDeclaration, value);
+				IValue value = new AnyValue(staticEvaluationResult.getComputationContext(), dataType);
+				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
-				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
+				staticEvaluationResult.setCircularBufferSize(parameterDeclaration, circularBufferSize);
 				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
 		}
@@ -117,10 +117,10 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
-				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
-				IValue value = staticEvaluationContext.getValue(parameterDeclaration);
+				staticEvaluationResult.setCircularBufferSize(parameterDeclaration, circularBufferSize);
+				IValue value = staticEvaluationResult.getValue(parameterDeclaration);
 				if (value != null) {
-					staticEvaluationContext.setValue(parameterDeclaration, value);
+					staticEvaluationResult.setValue(parameterDeclaration, value);
 				}
 				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
@@ -130,10 +130,10 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(stateVariableDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1;
-				staticEvaluationContext.setCircularBufferSize(stateVariableDeclaration, circularBufferSize);
-				IValue value = staticEvaluationContext.getValue(stateVariableDeclaration);
+				staticEvaluationResult.setCircularBufferSize(stateVariableDeclaration, circularBufferSize);
+				IValue value = staticEvaluationResult.getValue(stateVariableDeclaration);
 				if (value != null) {
-					staticEvaluationContext.setValue(stateVariableDeclaration, value);
+					staticEvaluationResult.setValue(stateVariableDeclaration, value);
 				}
 				variableDeclarations.put(variableDescriptor, stateVariableDeclaration);
 			}

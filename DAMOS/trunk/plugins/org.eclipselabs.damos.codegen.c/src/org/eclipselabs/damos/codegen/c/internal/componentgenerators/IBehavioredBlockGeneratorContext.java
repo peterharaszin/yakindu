@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
  * @author Andreas Unger
@@ -22,9 +22,9 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public interface IBehavioredBlockGeneratorContext {
 
-	IComponentGeneratorContext getComponentGeneratorContext();
+	IComponentGeneratorContext getContext();
 
-	IStaticEvaluationContext getStaticEvaluationContext();
+	IStaticEvaluationResult getStaticEvaluationResult();
 	
 	ComputationModel getComputationModel();
 	

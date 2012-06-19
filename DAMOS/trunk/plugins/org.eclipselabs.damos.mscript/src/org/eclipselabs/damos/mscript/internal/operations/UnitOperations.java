@@ -291,8 +291,10 @@ public class UnitOperations {
 		switch (operator) {
 		case ADD:
 		case SUBTRACT:
+		case MODULO:
 		case ELEMENT_WISE_ADD:
 		case ELEMENT_WISE_SUBTRACT:
+		case ELEMENT_WISE_MODULO:
 			if (unit.isEquivalentTo(other, false)) {
 				if (isLongerThan(unit, other)) {
 					return EcoreUtil.copy(other); 
@@ -330,8 +332,6 @@ public class UnitOperations {
 				}
 			}
 			return unit;
-		case MODULO:
-		case ELEMENT_WISE_MODULO:
 		case NEGATE:
 			return EcoreUtil.copy(unit);
 		default:

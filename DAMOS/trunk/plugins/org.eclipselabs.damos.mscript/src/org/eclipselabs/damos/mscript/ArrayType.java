@@ -161,11 +161,11 @@ public interface ArrayType extends DataType {
 	 * <h4>Division of Scalars or Numeric Arrays by Numeric Scalars</h4>
 	 * 
 	 * <p>
-	 * Division <code>a/s</code> is defined as follows:
+	 * Division <code>a/s</code> and modulo <code>a%s</code> is defined as follows:
 	 * 
 	 * <p>
 	 * <table border="1">
-	 * <th>Type of s</th><th>Type of a</th><th>Type of a/s</th>
+	 * <th>Type of s</th><th>Type of a</th><th>Type of a/s and a%s</th>
 	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
 	 * <tr><td>Vector[n]</td><td>Scalar</td><td>Vector[n]</td></tr>
 	 * <tr><td>Matrix[m, n]</td><td>Scalar</td><td>Matrix[m, n]</td></tr>
@@ -175,11 +175,11 @@ public interface ArrayType extends DataType {
 	 * <h4>Array Element-wise Division</h4>
 	 * 
 	 * <p>
-	 * Element-wise division <code>a./b</code> is defined as follows:
+	 * Element-wise division <code>a./b</code> and modulo <code>a.%s</code> is defined as follows:
 	 * 
 	 * <p>
 	 * <table border="1">
-	 * <th>Type of a</th><th>Type of b</th><th>Type of a./b</th>
+	 * <th>Type of a</th><th>Type of b</th><th>Type of a./b and a.%s</th>
 	 * <tr><td>Scalar</td><td>Scalar</td><td>Scalar</td></tr>
 	 * <tr><td>Scalar</td><td>Array[m, n, ...]</td><td>Array[m, n, ...]</td></tr>
 	 * <tr><td>Array[m, n, ...]</td><td>Scalar</td><td>Array[m, n, ...]</td></tr>

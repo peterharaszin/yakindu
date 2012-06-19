@@ -32,7 +32,9 @@ public abstract class NumericTypeEvaluator {
 		}
 		
 		if (!(other instanceof NumericType)) {
-			if (TypeUtil.isNumericArray(other) && (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY)) {
+			if (TypeUtil.isNumericArray(other)
+					&& (operator == OperatorKind.MULTIPLY || operator == OperatorKind.ELEMENT_WISE_MULTIPLY
+							|| operator == OperatorKind.ELEMENT_WISE_ADD || operator == OperatorKind.ELEMENT_WISE_SUBTRACT)) {
 				return ArrayTypeOperations.evaluateElementWiseScalar((ArrayType) other, operator, numericType);
 			}
 			return MscriptFactory.eINSTANCE.createInvalidDataType();

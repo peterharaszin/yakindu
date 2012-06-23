@@ -26,6 +26,7 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
@@ -48,6 +49,7 @@ import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
+import org.eclipselabs.damos.mscript.RangeExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
@@ -229,14 +231,30 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseRangeExpression(org.eclipselabs.damos.mscript.RangeExpression)
+	 */
+	@Override
+	public Expression caseRangeExpression(RangeExpression rangeExpression) {
+		RangeExpression transformedRangeExpression = MscriptFactory.eINSTANCE.createRangeExpression();
+		for (Expression operand : rangeExpression.getOperands()) {
+			transformedRangeExpression.getOperands().add(doTransform(operand));
+		}
+		return transformedRangeExpression;
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseVariableAccess(org.eclipselabs.mscript.language.ast.VariableAccess)
 	 */
 	@Override
 	public Expression caseVariableReference(VariableReference variableReference) {
-		VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
-		if (variableDeclaration != null) {
-			int stepIndex = context.getStaticEvaluationResult().getStepIndex(variableReference);
-			return MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
+		if (variableReference.getFeature() instanceof VariableDeclaration) {
+			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
+			if (variableDeclaration != null) {
+				int stepIndex = context.getStaticEvaluationResult().getStepIndex(variableReference);
+				return MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
+			}
+		} else {
+			return EcoreUtil.copy(variableReference);
 		}
 		return null;
 	}
@@ -423,7 +441,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		for (ArrayConstructionIterationClause iterationClause : arrayConstructionOperator.getIterationClauses()) {
 			Expression transformedCollectionExpression = doTransform(iterationClause.getCollectionExpression());
 			ArrayConstructionIterationClause transformedIterationClause = MscriptFactory.eINSTANCE.createArrayConstructionIterationClause();
-			transformedIterationClause.setVariableName(iterationClause.getVariableName());
+			transformedIterationClause.setIterationVariable(EcoreUtil.copy(iterationClause.getIterationVariable()));
 			transformedIterationClause.setCollectionExpression(transformedCollectionExpression);
 			transformedExpression.getIterationClauses().add(transformedIterationClause);
 		}
@@ -533,6 +551,15 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseUnitConstructionOperator(UnitConstructionOperator unitConstructionOperator) {
 		UnitConstructionOperator transformedUnitConstructionOperator = EcoreUtil.copy(unitConstructionOperator);
 		return transformedUnitConstructionOperator;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseEndExpression(org.eclipselabs.damos.mscript.EndExpression)
+	 */
+	@Override
+	public Expression caseEndExpression(EndExpression endExpression) {
+		EndExpression transformedEndExpression = EcoreUtil.copy(endExpression);
+		return transformedEndExpression;
 	}
 	
 }

@@ -19918,9 +19918,9 @@ rule__ArrayConstructionIterationClause__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0()); }
-(rule__ArrayConstructionIterationClause__VariableNameAssignment_0)
-{ after(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0()); }
+{ before(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0()); }
+(rule__ArrayConstructionIterationClause__IterationVariableAssignment_0)
+{ after(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0()); }
 )
 
 ;
@@ -27292,14 +27292,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ArrayConstructionIterationClause__VariableNameAssignment_0
+rule__ArrayConstructionIterationClause__IterationVariableAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0()); }
-	ruleValidID{ after(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0()); }
+{ before(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); }
+	ruleIterationVariableDeclaration{ after(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); }
 )
 
 ;

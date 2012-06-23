@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
@@ -26,9 +25,12 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
+import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 
 /**
  * @author Andreas Unger
@@ -39,6 +41,8 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 	private final ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
 
 	private double[] stateVector;
+	private int[] stateVectorIndices;
+	
 	private boolean initialComputeDerivatives;
 	private List<VariableDeclaration> derivatives = new ArrayList<VariableDeclaration>();
 	
@@ -52,11 +56,53 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 		super.initialize(monitor);
 		
 		if (!derivatives.isEmpty()) {
-			stateVector = new double[derivatives.size()];
+			stateVectorIndices = new int[derivatives.size()];
+			int n = 0;
+
 			int i = 0;
 			for (VariableDeclaration derivative : derivatives) {
-				ISimpleNumericValue value = (ISimpleNumericValue) getInterpreterContext().getVariable(derivative).getValue(0);
-				stateVector[i++] = value.doubleValue();
+				stateVectorIndices[i] = n;
+				IValue value = getInterpreterContext().getVariable(derivative).getValue(0);
+				if (value instanceof ISimpleNumericValue) {
+					++n;
+				} else if (value instanceof VectorValue) {
+					VectorValue vectorValue = (VectorValue) value;
+					n += vectorValue.getSize();
+				} else if (value instanceof MatrixValue) {
+					MatrixValue matrixValue = (MatrixValue) value;
+					n += matrixValue.getRowSize() * matrixValue.getColumnSize();
+				}
+				++i;
+			}
+			
+			stateVector = new double[n];
+			i = 0;
+			for (VariableDeclaration derivative : derivatives) {
+				IValue value = getInterpreterContext().getVariable(derivative).getValue(0);
+				if (value instanceof ISimpleNumericValue) {
+					stateVector[i] = ((ISimpleNumericValue) value).doubleValue();
+					++i;
+				} else if (value instanceof VectorValue) {
+					VectorValue vectorValue = (VectorValue) value;
+					for (int j = 0; j < vectorValue.getSize(); ++j) {
+						IValue elementValue = vectorValue.get(j);
+						if (elementValue instanceof ISimpleNumericValue) {
+							stateVector[i] = ((ISimpleNumericValue) elementValue).doubleValue();
+						}
+						++i;
+					}
+				} else if (value instanceof MatrixValue) {
+					MatrixValue matrixValue = (MatrixValue) value;
+					for (int j = 0; j < matrixValue.getRowSize(); ++j) {
+						for (int k = 0; k < matrixValue.getColumnSize(); ++k) {
+							IValue elementValue = matrixValue.get(j, k);
+							if (elementValue instanceof ISimpleNumericValue) {
+								stateVector[i] = ((ISimpleNumericValue) elementValue).doubleValue();
+							}
+							++i;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -91,7 +137,7 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 		if (initialComputeDerivatives) {
 			initialComputeDerivatives = false;
 		} else {
-			IInterpreterContext context = new DerivativeInterpreterContext(getInterpreterContext(), yDot);
+			IInterpreterContext context = new DerivativeInterpreterContext(getInterpreterContext(), y, yDot);
 			for (ComputationCompound compound : computeDerivativesCompounds) {
 				compoundInterpreter.execute(context, compound);
 			}
@@ -100,21 +146,41 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 		int i = 0;
 		for (VariableDeclaration derivative : derivatives) {
 			IVariable variable = getInterpreterContext().getVariable(derivative);
-			DataType dataType = variable.getValue(0).getDataType();
-			variable.setValue(0, Values.valueOf(getComputationContext(), (NumericType) dataType, y[i++]));
+			IValue value = variable.getValue(0);
+			if (value instanceof INumericValue) {
+				variable.setValue(0, Values.valueOf(getComputationContext(), (NumericType) value.getDataType(), y[i++]));
+			} else if (value instanceof VectorValue) {
+				VectorValue vectorValue = (VectorValue) value;
+				IValue[] elements = new IValue[vectorValue.getSize()];
+				for (int j = 0; j < vectorValue.getSize(); ++j) {
+					elements[j] = Values.valueOf(getComputationContext(), (NumericType) vectorValue.getDataType().getElementType(), y[i++]);
+				}
+				variable.setValue(0, new VectorValue(getComputationContext(), vectorValue.getDataType(), elements));
+			} else if (value instanceof MatrixValue) {
+				MatrixValue matrixValue = (MatrixValue) value;
+				IValue[][] elements = new IValue[matrixValue.getRowSize()][matrixValue.getColumnSize()];
+				for (int j = 0; j < matrixValue.getRowSize(); ++j) {
+					for (int k = 0; k < matrixValue.getColumnSize(); ++k) {
+						elements[j][k] = Values.valueOf(getComputationContext(), (NumericType) matrixValue.getDataType().getElementType(), y[i++]);
+					}
+				}
+				variable.setValue(0, new MatrixValue(getComputationContext(), matrixValue.getDataType(), elements));
+			}
 		}
 	}
 	
 	private class DerivativeInterpreterContext implements IInterpreterContext {
 
 		private final IInterpreterContext context;
+		private final double[] y;
 		private final double[] yDot;
 		
 		/**
 		 * 
 		 */
-		public DerivativeInterpreterContext(IInterpreterContext context, double[] yDot) {
+		public DerivativeInterpreterContext(IInterpreterContext context, double[] y, double[] yDot) {
 			this.context = context;
+			this.y = y;
 			this.yDot = yDot;
 		}
 		
@@ -132,42 +198,24 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.damos.mscript.interpreter.IInterpreterContext#enterScope()
 		 */
-		public void enterScope() {
-			context.enterScope();
+		public void enterVariableScope() {
+			context.enterVariableScope();
 		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.damos.mscript.interpreter.IInterpreterContext#leaveScope()
 		 */
-		public void leaveScope() {
-			context.leaveScope();
+		public void leaveVariableScope() {
+			context.leaveVariableScope();
 		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.damos.mscript.interpreter.IInterpreterContext#getVariable(org.eclipselabs.damos.mscript.VariableDeclaration)
 		 */
-		public IVariable getVariable(final VariableDeclaration variableDeclaration) {
-			final int index = derivatives.indexOf(variableDeclaration);
+		public IVariable getVariable(VariableDeclaration variableDeclaration) {
+			int index = derivatives.indexOf(variableDeclaration);
 			if (index != -1) {
-				return new IVariable() {
-					
-					public void setValue(int stepIndex, IValue value) {
-						yDot[index] = ((ISimpleNumericValue) value).doubleValue();
-					}
-					
-					public void incrementStepIndex() {
-						throw new UnsupportedOperationException("Derivative variables cannot be incremented");
-					}
-					
-					public IValue getValue(int stepIndex) {
-						return context.getVariable(variableDeclaration).getValue(stepIndex);
-					}
-					
-					public VariableDeclaration getDeclaration() {
-						return variableDeclaration;
-					}
-					
-				};
+				return new DerivativeVariable(context, variableDeclaration, stateVectorIndices[index], y, yDot);
 			}
 			return context.getVariable(variableDeclaration);
 		}
@@ -193,6 +241,76 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 			return context.isCanceled();
 		}
 		
+	}
+
+	private static class DerivativeVariable implements IVariable {
+
+		private final IInterpreterContext context;
+		private final VariableDeclaration variableDeclaration;
+		private final int index;
+		private final double[] y;
+		private final double[] yDot;
+
+		public DerivativeVariable(IInterpreterContext context, VariableDeclaration variableDeclaration, int index, double[] y, double[] yDot) {
+			this.context = context;
+			this.variableDeclaration = variableDeclaration;
+			this.index = index;
+			this.y = y;
+			this.yDot = yDot;
+		}
+
+		public VariableDeclaration getDeclaration() {
+			return variableDeclaration;
+		}
+		
+		public IValue getValue(int stepIndex) {
+			IValue value = context.getVariable(variableDeclaration).getValue(stepIndex);
+			int i = index;
+			if (value instanceof ISimpleNumericValue) {
+				return Values.valueOf(context.getComputationContext(), (NumericType) value.getDataType(), y[i++]);
+			} else if (value instanceof VectorValue) {
+				VectorValue vectorValue = (VectorValue) value;
+				IValue[] elements = new IValue[vectorValue.getSize()];
+				for (int j = 0; j < vectorValue.getSize(); ++j) {
+					elements[j] = Values.valueOf(context.getComputationContext(), (NumericType) vectorValue.getDataType().getElementType(), y[i++]);
+				}
+				return new VectorValue(context.getComputationContext(), vectorValue.getDataType(), elements);
+			} else if (value instanceof MatrixValue) {
+				MatrixValue matrixValue = (MatrixValue) value;
+				IValue[][] elements = new IValue[matrixValue.getRowSize()][matrixValue.getColumnSize()];
+				for (int j = 0; j < matrixValue.getRowSize(); ++j) {
+					for (int k = 0; k < matrixValue.getColumnSize(); ++k) {
+						elements[j][k] = Values.valueOf(context.getComputationContext(), (NumericType) matrixValue.getDataType().getElementType(), y[i++]);
+					}
+				}
+				return new MatrixValue(context.getComputationContext(), matrixValue.getDataType(), elements);
+			}
+			throw new IllegalStateException();
+		}
+
+		public void setValue(int stepIndex, IValue value) {
+			int i = index;
+			if (value instanceof ISimpleNumericValue) {
+				yDot[i] = ((ISimpleNumericValue) value).doubleValue();
+			} else if (value instanceof VectorValue) {
+				VectorValue vectorValue = (VectorValue) value;
+				for (int j = 0; j < vectorValue.getSize(); ++j) {
+					yDot[i++] = ((ISimpleNumericValue) vectorValue.get(j)).doubleValue();
+				}
+			} else if (value instanceof MatrixValue) {
+				MatrixValue matrixValue = (MatrixValue) value;
+				for (int j = 0; j < matrixValue.getRowSize(); ++j) {
+					for (int k = 0; k < matrixValue.getColumnSize(); ++k) {
+						yDot[i++] = ((ISimpleNumericValue) matrixValue.get(j, k)).doubleValue();
+					}
+				}
+			}
+		}
+
+		public void incrementStepIndex() {
+			throw new UnsupportedOperationException("Derivative variables cannot be incremented");
+		}
+
 	}
 
 }

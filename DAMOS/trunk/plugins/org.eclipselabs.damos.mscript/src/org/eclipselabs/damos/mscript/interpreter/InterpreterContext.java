@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.internal.util.Scope;
 
 
 
@@ -25,7 +24,7 @@ public class InterpreterContext implements IInterpreterContext {
 	private IStaticEvaluationResult staticEvaluationResult;
 	private IComputationContext computationContext;
 
-	private InterpreterScope scope = new InterpreterScope(null);
+	private VariableScope scope = new VariableScope(null);
 
 	private volatile boolean canceled;
 		
@@ -51,64 +50,28 @@ public class InterpreterContext implements IInterpreterContext {
 		return computationContext;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.interpreter.IInterpreterContext#isCanceled()
-	 */
 	public boolean isCanceled() {
 		return canceled;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.interpreter.IInterpreterContext#setCanceled(boolean)
-	 */
 	public void setCanceled(boolean canceled) {
 		this.canceled = canceled;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreterContext#enterScope()
-	 */
-	public void enterScope() {
-		scope = new InterpreterScope(scope);
+	public void enterVariableScope() {
+		scope = new VariableScope(scope);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreterContext#leaveScope()
-	 */
-	public void leaveScope() {
+	public void leaveVariableScope() {
 		scope = scope.getOuterScope();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreterContext#getVariable(org.eclipselabs.mscript.language.il.VariableDeclaration)
-	 */
 	public IVariable getVariable(VariableDeclaration variableDeclaration) {
 		return scope.findInEnclosingScopes(variableDeclaration);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreterContext#addVariable(org.eclipselabs.mscript.language.il.VariableDeclaration, org.eclipselabs.mscript.language.interpreter.IVariable)
-	 */
 	public void addVariable(IVariable variable) {
 		scope.add(variable);
-	}
-	
-	public static class InterpreterScope extends Scope<InterpreterScope, VariableDeclaration, IVariable> {
-
-		/**
-		 * 
-		 */
-		public InterpreterScope(InterpreterScope outerScope) {
-			super(outerScope);
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.interpreter.IInterpreterScope#add(org.eclipselabs.mscript.language.interpreter.IVariable)
-		 */
-		public void add(IVariable element) {
-			super.add(element.getDeclaration(), element);
-		}
-		
 	}
 	
 }

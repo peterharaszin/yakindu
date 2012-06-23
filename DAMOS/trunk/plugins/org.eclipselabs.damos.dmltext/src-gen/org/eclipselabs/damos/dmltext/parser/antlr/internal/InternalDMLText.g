@@ -7614,17 +7614,17 @@ ruleArrayConstructionIterationClause returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); 
 	    }
-		lv_variableName_0_0=ruleValidID		{
+		lv_iterationVariable_0_0=ruleIterationVariableDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArrayConstructionIterationClauseRule());
 	        }
        		set(
        			$current, 
-       			"variableName",
-        		lv_variableName_0_0, 
-        		"ValidID");
+       			"iterationVariable",
+        		lv_iterationVariable_0_0, 
+        		"IterationVariableDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 

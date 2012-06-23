@@ -20,7 +20,6 @@ import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -63,7 +62,7 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 					VectorValue vectorValue = (VectorValue) value;
 					double[] coefficients = new double[vectorValue.getSize()];
 					for (int i = 0; i < coefficients.length; ++i) {
-						INumericValue elementValue = vectorValue.get(i);
+						IValue elementValue = vectorValue.get(i);
 						if (!(elementValue instanceof ISimpleNumericValue)) {
 							return null;
 						}

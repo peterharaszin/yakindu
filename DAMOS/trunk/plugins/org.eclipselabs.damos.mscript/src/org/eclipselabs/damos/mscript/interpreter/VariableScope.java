@@ -11,29 +11,17 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.Evaluable;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.internal.util.Scope;
 
-/**
- * @author Andreas Unger
- *
- */
-public interface IExpressionEvaluationContext {
+public class VariableScope extends Scope<VariableScope, VariableDeclaration, IVariable> {
 
-	IComputationContext getComputationContext();
+	public VariableScope(VariableScope outerScope) {
+		super(outerScope);
+	}
 
-	void enterStaticScope();
-	void leaveStaticScope();
-	boolean isStaticScope();
-	
-	void enterVariableScope();
-	void leaveVariableScope();
+	public void add(IVariable element) {
+		super.add(element.getDeclaration(), element);
+	}
 
-	void addVariable(IVariable variable);
-	
-	IValue getValue(Evaluable evaluable);
-	void processValue(Evaluable evaluable, IValue value);
-	
-	IStatusCollector getStatusCollector();
-	
 }

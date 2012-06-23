@@ -25,9 +25,9 @@ import org.eclipselabs.damos.mscript.NumericType
 import org.eclipselabs.damos.mscript.Statement
 import org.eclipselabs.damos.mscript.VariableDeclaration
 import org.eclipselabs.damos.mscript.VariableReference
+import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
-import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 
 /**
  * @author Andreas Unger

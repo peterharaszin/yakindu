@@ -33,6 +33,18 @@ public class ExpressionEvaluationContext extends AbstractExpressionEvaluationCon
 		return interpreterContext.getComputationContext();
 	}
 	
+	public void enterVariableScope() {
+		interpreterContext.leaveVariableScope();
+	}
+	
+	public void leaveVariableScope() {
+		interpreterContext.leaveVariableScope();
+	}
+	
+	public void addVariable(IVariable variable) {
+		interpreterContext.addVariable(variable);
+	}
+	
 	public IValue getValue(Evaluable evaluable) {
 		if (evaluable instanceof VariableReference) {
 			VariableReference variableReference = (VariableReference) evaluable;

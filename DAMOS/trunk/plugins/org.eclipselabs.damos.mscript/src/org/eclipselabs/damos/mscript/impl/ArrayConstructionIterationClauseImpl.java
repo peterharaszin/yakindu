@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -23,7 +24,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionIterationClauseImpl#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionIterationClauseImpl#getIterationVariable <em>Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionIterationClauseImpl#getCollectionExpression <em>Collection Expression</em>}</li>
  * </ul>
  * </p>
@@ -32,24 +33,14 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  */
 public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Container implements ArrayConstructionIterationClause {
 	/**
-	 * The default value of the '{@link #getVariableName() <em>Variable Name</em>}' attribute.
+	 * The cached value of the '{@link #getIterationVariable() <em>Iteration Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariableName()
+	 * @see #getIterationVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VARIABLE_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getVariableName() <em>Variable Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariableName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String variableName = VARIABLE_NAME_EDEFAULT;
+	protected IterationVariableDeclaration iterationVariable;
 
 	/**
 	 * The cached value of the '{@link #getCollectionExpression() <em>Collection Expression</em>}' containment reference.
@@ -85,8 +76,8 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getVariableName() {
-		return variableName;
+	public IterationVariableDeclaration getIterationVariable() {
+		return iterationVariable;
 	}
 
 	/**
@@ -94,11 +85,33 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVariableName(String newVariableName) {
-		String oldVariableName = variableName;
-		variableName = newVariableName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME, oldVariableName, variableName));
+	public NotificationChain basicSetIterationVariable(IterationVariableDeclaration newIterationVariable, NotificationChain msgs) {
+		IterationVariableDeclaration oldIterationVariable = iterationVariable;
+		iterationVariable = newIterationVariable;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE, oldIterationVariable, newIterationVariable);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIterationVariable(IterationVariableDeclaration newIterationVariable) {
+		if (newIterationVariable != iterationVariable) {
+			NotificationChain msgs = null;
+			if (iterationVariable != null)
+				msgs = ((InternalEObject)iterationVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE, null, msgs);
+			if (newIterationVariable != null)
+				msgs = ((InternalEObject)newIterationVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE, null, msgs);
+			msgs = basicSetIterationVariable(newIterationVariable, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE, newIterationVariable, newIterationVariable));
 	}
 
 	/**
@@ -152,6 +165,8 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE:
+				return basicSetIterationVariable(null, msgs);
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION:
 				return basicSetCollectionExpression(null, msgs);
 		}
@@ -166,8 +181,8 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME:
-				return getVariableName();
+			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE:
+				return getIterationVariable();
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION:
 				return getCollectionExpression();
 		}
@@ -182,8 +197,8 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME:
-				setVariableName((String)newValue);
+			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE:
+				setIterationVariable((IterationVariableDeclaration)newValue);
 				return;
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)newValue);
@@ -200,8 +215,8 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME:
-				setVariableName(VARIABLE_NAME_EDEFAULT);
+			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE:
+				setIterationVariable((IterationVariableDeclaration)null);
 				return;
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)null);
@@ -218,28 +233,12 @@ public class ArrayConstructionIterationClauseImpl extends MinimalEObjectImpl.Con
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME:
-				return VARIABLE_NAME_EDEFAULT == null ? variableName != null : !VARIABLE_NAME_EDEFAULT.equals(variableName);
+			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE:
+				return iterationVariable != null;
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION:
 				return collectionExpression != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (variableName: ");
-		result.append(variableName);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ArrayConstructionIterationClauseImpl

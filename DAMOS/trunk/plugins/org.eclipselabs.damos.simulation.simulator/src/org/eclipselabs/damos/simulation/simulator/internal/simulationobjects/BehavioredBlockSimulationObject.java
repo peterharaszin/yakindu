@@ -52,9 +52,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
-import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -213,11 +211,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		DataType dataType = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration).getDataType();
 		if (dataType instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) dataType;
-			if (arrayType.isNumeric()) {
-				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new INumericValue[TypeUtil.getArraySize(arrayType)]));
-			} else {
-				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
-			}
+			variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID,
 					"Variable declaration type must be array type"));

@@ -2816,7 +2816,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayConstructionIterationClause:
-	//	variableName=ValidID "in" collectionExpression=Expression;
+	//	iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression;
 	public MscriptGrammarAccess.ArrayConstructionIterationClauseElements getArrayConstructionIterationClauseAccess() {
 		return gaMscript.getArrayConstructionIterationClauseAccess();
 	}

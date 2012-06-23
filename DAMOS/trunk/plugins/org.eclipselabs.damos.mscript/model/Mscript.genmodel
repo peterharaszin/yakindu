@@ -110,7 +110,6 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StateVariableDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//ConstantDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ConstantDeclaration/initializer"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//FunctionAliasDeclaration">
@@ -183,7 +182,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionOperator/iterationClauses"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayConstructionIterationClause">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ArrayConstructionIterationClause/variableName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionIterationClause/iterationVariable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionIterationClause/collectionExpression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayConcatenationOperator">

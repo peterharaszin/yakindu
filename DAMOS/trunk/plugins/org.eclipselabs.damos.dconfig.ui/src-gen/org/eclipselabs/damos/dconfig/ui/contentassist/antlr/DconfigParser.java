@@ -503,7 +503,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_2_0_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesAssignment_2_1_1(), "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesAssignment_2_1_2_1(), "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1");
-					put(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0(), "rule__ArrayConstructionIterationClause__VariableNameAssignment_0");
+					put(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0(), "rule__ArrayConstructionIterationClause__IterationVariableAssignment_0");
 					put(grammarAccess.getArrayConstructionIterationClauseAccess().getCollectionExpressionAssignment_2(), "rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getRowsAssignment_1(), "rule__ArrayConcatenationOperator__RowsAssignment_1");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getRowsAssignment_2_1(), "rule__ArrayConcatenationOperator__RowsAssignment_2_1");

@@ -3480,24 +3480,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class ArrayConstructionIterationClauseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayConstructionIterationClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVariableNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVariableNameValidIDParserRuleCall_0_0 = (RuleCall)cVariableNameAssignment_0.eContents().get(0);
+		private final Assignment cIterationVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cIterationVariableIterationVariableDeclarationParserRuleCall_0_0 = (RuleCall)cIterationVariableAssignment_0.eContents().get(0);
 		private final Keyword cInKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCollectionExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCollectionExpressionExpressionParserRuleCall_2_0 = (RuleCall)cCollectionExpressionAssignment_2.eContents().get(0);
 		
 		//ArrayConstructionIterationClause:
-		//	variableName=ValidID "in" collectionExpression=Expression;
+		//	iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression;
 		public ParserRule getRule() { return rule; }
 
-		//variableName=ValidID "in" collectionExpression=Expression
+		//iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression
 		public Group getGroup() { return cGroup; }
 
-		//variableName=ValidID
-		public Assignment getVariableNameAssignment_0() { return cVariableNameAssignment_0; }
+		//iterationVariable=IterationVariableDeclaration
+		public Assignment getIterationVariableAssignment_0() { return cIterationVariableAssignment_0; }
 
-		//ValidID
-		public RuleCall getVariableNameValidIDParserRuleCall_0_0() { return cVariableNameValidIDParserRuleCall_0_0; }
+		//IterationVariableDeclaration
+		public RuleCall getIterationVariableIterationVariableDeclarationParserRuleCall_0_0() { return cIterationVariableIterationVariableDeclarationParserRuleCall_0_0; }
 
 		//"in"
 		public Keyword getInKeyword_1() { return cInKeyword_1; }
@@ -6065,7 +6065,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayConstructionIterationClause:
-	//	variableName=ValidID "in" collectionExpression=Expression;
+	//	iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression;
 	public ArrayConstructionIterationClauseElements getArrayConstructionIterationClauseAccess() {
 		return (pArrayConstructionIterationClause != null) ? pArrayConstructionIterationClause : (pArrayConstructionIterationClause = new ArrayConstructionIterationClauseElements());
 	}

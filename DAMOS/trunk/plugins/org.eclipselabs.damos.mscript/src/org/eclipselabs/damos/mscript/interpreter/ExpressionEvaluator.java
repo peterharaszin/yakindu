@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
+import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
@@ -66,13 +67,13 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookup;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookup;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -109,11 +110,19 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		}
 
 		public IValue evaluate(Expression expression) {
-			IValue value = doSwitch(expression);
+			IValue value = doEvaluate(expression);
 			context.processValue(expression, value);
 			return value;
 		}
 
+		/**
+		 * @param expression
+		 * @return
+		 */
+		protected IValue doEvaluate(Expression expression) {
+			return doSwitch(expression);
+		}
+		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseLetExpression(org.eclipselabs.mscript.language.ast.LetExpression)
 		 */
@@ -150,7 +159,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			if (ifExpression.isStatic()) {
+			if (ifExpression.isStatic() || context.isStaticScope()) {
 				if (conditionValue instanceof IBooleanValue) {
 					boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
 					if (booleanValue) {
@@ -159,7 +168,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					return evaluate(ifExpression.getElseExpression());
 				}
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Static if expression condition cannot be evaluated", ifExpression.getCondition()));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "If expression condition within static scope must evaluate to boolean", ifExpression.getCondition()));
 				}
 				return InvalidValue.SINGLETON;
 			}
@@ -294,11 +303,11 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				long end = numericEndValue.longValue();
 				if (increment > 0 && x <= end) {
 					for (; x <= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
 					}
 				} else if (increment < 0 && x >= end) {
 					for (; x >= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
 					}
 				}
 			} else {
@@ -307,16 +316,16 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				double end = numericEndValue.doubleValue();
 				if (increment > 0.0 && x <= end) {
 					for (; x <= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
 					}
 				} else if (increment < 0.0 && x >= end) {
 					for (; x >= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), (NumericType) dataType, x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
 					}
 				}
 			}
 
-			return new VectorValue(context.getComputationContext(), TypeUtil.createArrayType(dataType, values.size()), values.toArray(new IValue[values.size()]));
+			return new VectorValue(context.getComputationContext(), TypeUtil.createArrayType(EcoreUtil.copy(dataType), values.size()), values.toArray(new IValue[values.size()]));
 		}
 
 		/* (non-Javadoc)
@@ -556,7 +565,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			if (value instanceof InvalidValue) {
 				return value;
 			}
-			DataType dataType = EcoreUtil.copy(typeTestExpression.getTypeSpecifier().getType());
+			DataType dataType = typeTestExpression.getTypeSpecifier().getType();
 			return Values.valueOf(context.getComputationContext(), dataType.isAssignableFrom(value.getDataType()));
 		}
 
@@ -675,27 +684,86 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
-			int size = arrayConstructionOperator.getExpressions().size();
-
-			IValue[] elements = new IValue[size];
 			boolean anyValue = false;
+			IValue[] elements = null;
+			
+			if (!arrayConstructionOperator.getIterationClauses().isEmpty()) {
+				if (arrayConstructionOperator.getIterationClauses().size() > 1) {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Only one iteration clause supported", arrayConstructionOperator));
+					}
+					return InvalidValue.SINGLETON;
+				}
+				
+				ArrayConstructionIterationClause clause = arrayConstructionOperator.getIterationClauses().get(0);
+				
+				IValue collectionValue = evaluate(clause.getCollectionExpression());
+				if (collectionValue instanceof InvalidValue) {
+					return InvalidValue.SINGLETON;
+				}
+				
+				if (!(collectionValue.getDataType() instanceof ArrayType) || ((ArrayType) collectionValue.getDataType()).getDimensionality() != 1) {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration expression must be vector", clause.getCollectionExpression()));
+					}
+					return InvalidValue.SINGLETON;
+				}
+				
+				ArrayType collectionType = (ArrayType) collectionValue.getDataType();
+				int size = TypeUtil.getArraySize(collectionType);
 
-			{
-				int i = 0;
-				for (Expression expression : arrayConstructionOperator.getExpressions()) {
-					IValue value = evaluate(expression);
-					if (value instanceof InvalidValue) {
-						return value;
+				if (collectionValue instanceof VectorValue) {
+					VectorValue vectorValue = (VectorValue) collectionValue;
+					elements = new IValue[vectorValue.getSize()];
+					for (int i = 0; i < vectorValue.getSize(); ++i) {
+						context.enterVariableScope();
+						context.addVariable(new IteratorVariable(clause.getIterationVariable(), vectorValue.get(i)));
+						elements[i] = doEvaluate(arrayConstructionOperator.getExpressions().get(0));
+						context.leaveVariableScope();
+						if (elements[i] instanceof InvalidValue) {
+							return InvalidValue.SINGLETON;
+						}
+						if (elements[i] instanceof AnyValue) {
+							anyValue = true;
+						}
 					}
-					if (value instanceof AnyValue) {
-						anyValue = true;
+				} else {
+					elements = new IValue[size];
+					for (int i = 0; i < size; ++i) {
+						context.enterVariableScope();
+						context.addVariable(new IteratorVariable(clause.getIterationVariable(), new AnyValue(context.getComputationContext(), EcoreUtil.copy(collectionType.getElementType()))));
+						elements[i] = doEvaluate(arrayConstructionOperator.getExpressions().get(0));
+						context.leaveVariableScope();
+						if (elements[i] instanceof InvalidValue) {
+							return InvalidValue.SINGLETON;
+						}
+						if (elements[i] instanceof AnyValue) {
+							anyValue = true;
+						}
 					}
-					elements[i++] = value;
+				}
+			} else {
+				int size = arrayConstructionOperator.getExpressions().size();
+	
+				elements = new IValue[size];
+	
+				{
+					int i = 0;
+					for (Expression expression : arrayConstructionOperator.getExpressions()) {
+						IValue value = evaluate(expression);
+						if (value instanceof InvalidValue) {
+							return value;
+						}
+						if (value instanceof AnyValue) {
+							anyValue = true;
+						}
+						elements[i++] = value;
+					}
 				}
 			}
 
 			if (anyValue) {
-				for (int i = 0; i < size; ++i) {
+				for (int i = 0; i < elements.length; ++i) {
 					if (!(elements[i] instanceof AnyValue)) {
 						elements[i] = new AnyValue(context.getComputationContext(), elements[i].getDataType());
 					}
@@ -713,17 +781,13 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			// Vector
 			if (arrayType.getDimensionality() == 1) {
-				context.processValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), size));
+				context.processValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), elements.length));
 		
 				if (anyValue) {
 					return new AnyValue(context.getComputationContext(), arrayType);
 				}
 		
-				if (arrayType.isNumeric()) {
-					return new VectorValue(context.getComputationContext(), arrayType, elements);
-				}
-		
-				return new ArrayValue(context.getComputationContext(), arrayType, elements);
+				return new VectorValue(context.getComputationContext(), arrayType, elements);
 			}
 			
 			// Matrix
@@ -772,10 +836,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					// We do not support tensors yet
 					return null;
 				}
-				return TypeUtil.createArrayType(elementArrayType.getElementType(), elements.length, TypeUtil.getArraySize(elementArrayType));
+				return TypeUtil.createArrayType(EcoreUtil.copy(elementArrayType.getElementType()), elements.length, TypeUtil.getArraySize(elementArrayType));
 			}
 
-			return TypeUtil.createArrayType(elementType, elements.length);
+			return TypeUtil.createArrayType(EcoreUtil.copy(elementType), elements.length);
 		}
 
 		@Override
@@ -987,77 +1051,146 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			ArrayType arrayType = (ArrayType) value.getDataType();
 
-			if (arrayElementAccess.getSubscripts().size() != 1) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript dimensionality must be 1", arrayElementAccess));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
+			EList<ArraySubscript> subscripts = arrayElementAccess.getSubscripts();
 			EList<ArrayDimension> dimensions = arrayType.getDimensions();
-			if (dimensions.size() != 1) {
+
+			if (subscripts.size() != dimensions.size()) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array dimensionality must be 1", arrayElementAccess));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript dimensionality must be " + dimensions.size(), arrayElementAccess));
 				}
 				return InvalidValue.SINGLETON;
 			}
 
-			Expression sizeExpression = dimensions.get(0).getSize();
-			IValue sizeValue = context.getValue(sizeExpression);
-			// TODO: This has to be redesigned
-			if (sizeValue == null) {
-				sizeValue = evaluate(sizeExpression);
-			}
-			if (sizeValue == null || !(sizeValue.getDataType() instanceof IntegerType) || !(sizeValue instanceof ISimpleNumericValue)) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array size data type", arrayElementAccess));
+			boolean anyValue = !(value instanceof IArrayValue);
+
+			boolean slice = false;
+			int[][] sliceIndices = new int[subscripts.size()][];
+			
+			for (int i = 0; i < sliceIndices.length; ++i) {
+				Expression sizeExpression = dimensions.get(i).getSize();
+				IValue sizeValue = context.getValue(sizeExpression);
+				
+				// TODO: This has to be redesigned
+				if (sizeValue == null) {
+					sizeValue = evaluate(sizeExpression);
 				}
-				return InvalidValue.SINGLETON;
-			}
-
-			int size = (int) ((ISimpleNumericValue) sizeValue).longValue();
-
-			ArraySubscript subscript = arrayElementAccess.getSubscripts().get(0);
-			if (subscript.getExpression() == null) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript not set", subscript));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			IValue subsciptValue = evaluate(subscript.getExpression());
-			if (subsciptValue instanceof InvalidValue) {
-				return InvalidValue.SINGLETON;
-			}
-
-			if (!(subsciptValue.getDataType() instanceof IntegerType)) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript data type must be integer", arrayElementAccess));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			if (subsciptValue instanceof ISimpleNumericValue) {
-				int index = (int) ((ISimpleNumericValue) subsciptValue).longValue();
-				if (index < 0) {
+				
+				if (sizeValue == null || !(sizeValue.getDataType() instanceof IntegerType) || !(sizeValue instanceof ISimpleNumericValue)) {
 					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be greater than or equal to 0", arrayElementAccess));
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array size data type", arrayElementAccess));
 					}
 					return InvalidValue.SINGLETON;
 				}
-				if (index < size) {
-					if (value instanceof IArrayValue) {
-						return ((IArrayValue) value).get(index);
+	
+				int size = (int) ((ISimpleNumericValue) sizeValue).longValue();
+	
+				ArraySubscript subscript = subscripts.get(i);
+				if (subscript.getExpression() == null) {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript not set", subscript));
 					}
+					return InvalidValue.SINGLETON;
+				}
+	
+				IValue subsciptValue = evaluate(subscript.getExpression());
+				if (subsciptValue instanceof InvalidValue) {
+					return InvalidValue.SINGLETON;
+				}
+	
+				if (!(subsciptValue.getDataType() instanceof IntegerType || subsciptValue.getDataType() instanceof ArrayType)) {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript data type must be integer or integer vector", subscript));
+					}
+					return InvalidValue.SINGLETON;
+				}
+				
+				if (subsciptValue.getDataType() instanceof ArrayType && !(subsciptValue instanceof VectorValue)) {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript array must be static", subscript));
+					}
+					return InvalidValue.SINGLETON;
+				}
+				
+				if (subsciptValue instanceof ISimpleNumericValue) {
+					sliceIndices[i] = new int[] { (int) ((ISimpleNumericValue) subsciptValue).longValue() };
+				} else if (subsciptValue instanceof VectorValue) {
+					VectorValue vectorSubscriptValue = (VectorValue) subsciptValue;
+					sliceIndices[i] = new int[vectorSubscriptValue.getSize()];
+					for (int j = 0; j < vectorSubscriptValue.getSize(); ++j) {
+						IValue sliceValue = vectorSubscriptValue.get(j);
+						if (!(sliceValue instanceof ISimpleNumericValue)) {
+							if (context.getStatusCollector() != null) {
+								context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript array elements must be numeric", subscript));
+							}
+							return InvalidValue.SINGLETON;
+						}
+						sliceIndices[i][j] = (int) ((ISimpleNumericValue) sliceValue).longValue();
+					}
+					slice = true;
 				} else {
-					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be less than " + size, arrayElementAccess));
+					anyValue = true;
+					continue;
+				}
+	
+				for (int j = 0; j < sliceIndices[i].length; ++j) {
+					int index = sliceIndices[i][j];
+					if (index < 0) {
+						if (context.getStatusCollector() != null) {
+							context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be greater than or equal to 0", subscript));
+						}
+						return InvalidValue.SINGLETON;
 					}
-					return InvalidValue.SINGLETON;
+					if (index >= size) {
+						if (context.getStatusCollector() != null) {
+							context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be less than " + size, subscript));
+						}
+						return InvalidValue.SINGLETON;
+					}
 				}
 			}
+			
+			if (slice) {
+				int[] sizes = new int[subscripts.size()];
+				for (int i = 0; i < sizes.length; ++i) {
+					sizes[i] = sliceIndices[i].length;
+				}
+				ArrayType sliceType = TypeUtil.createArrayType(EcoreUtil.copy(arrayType.getElementType()), sizes);
+				
+				if (anyValue) {
+					return new AnyValue(context.getComputationContext(), sliceType);
+				}
 
-			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(arrayType.getElementType()));
+				IArrayValue arrayValue = (IArrayValue) value;
+				
+				if (subscripts.size() == 1) {
+					IValue[] elements = new IValue[sizes[0]];
+					for (int i = 0; i < elements.length; ++i) {
+						elements[i] = arrayValue.get(sliceIndices[0][i]);
+					}
+					return new VectorValue(context.getComputationContext(), sliceType, elements);
+				}
+				
+				IValue[][] elements = new IValue[sizes[0]][sizes[1]];
+				for (int i = 0; i < sizes[0]; ++i) {
+					for (int j = 0; j < sizes[1]; ++j) {
+						elements[i][j] = arrayValue.get(sliceIndices[0][i], sliceIndices[1][j]);
+					}
+				}
+				return new MatrixValue(context.getComputationContext(), sliceType, elements);
+			}
+
+			if (anyValue) {
+				return new AnyValue(context.getComputationContext(), EcoreUtil.copy(arrayType.getElementType()));
+			}
+
+			IArrayValue arrayValue = (IArrayValue) value;
+			
+			int[] indices = new int[sliceIndices.length];
+			for (int i = 0; i < sliceIndices.length; ++i) {
+				indices[i] = sliceIndices[i][0];
+			}
+			
+			return arrayValue.get(indices);
 		}
 
 		/* (non-Javadoc)
@@ -1332,6 +1465,37 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
 			}
 			return InvalidValue.SINGLETON;
+		}
+		
+		private class IteratorVariable implements IVariable {
+
+			private final VariableDeclaration declaration;
+			private IValue value;
+			
+			/**
+			 * 
+			 */
+			public IteratorVariable(VariableDeclaration declaration, IValue value) {
+				this.declaration = declaration;
+				this.value = value;
+			}
+			
+			public VariableDeclaration getDeclaration() {
+				return declaration;
+			}
+
+			public IValue getValue(int stepIndex) {
+				return value;
+			}
+
+			public void setValue(int stepIndex, IValue value) {
+				throw new UnsupportedOperationException("Iteration variables cannot be set");
+			}
+
+			public void incrementStepIndex() {
+				throw new UnsupportedOperationException("Iteration variables cannot be incremented");
+			}
+			
 		}
 		
 	}

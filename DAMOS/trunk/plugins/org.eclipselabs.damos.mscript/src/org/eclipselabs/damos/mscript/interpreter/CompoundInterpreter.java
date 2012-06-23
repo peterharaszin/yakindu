@@ -91,11 +91,11 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			 */
 			@Override
 			public Boolean caseCompound(Compound compound) {
-				context.enterScope();
+				context.enterVariableScope();
 				for (Statement statement : compound.getStatements()) {
 					CompoundInterpreterSwitch.this.doSwitch(statement);
 				}
-				context.leaveScope();
+				context.leaveVariableScope();
 				return true;
 			}
 			
@@ -122,12 +122,12 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 				
 				VariableDeclaration iterationVariableDeclaration = forStatement.getIterationVariable();
 				for (int i = 0; i < size; ++i) {
-					context.enterScope();
+					context.enterVariableScope();
 					IVariable variable = new Variable(context, iterationVariableDeclaration);
 					variable.setValue(0, arrayValue.get(i));
 					context.addVariable(variable);
 					CompoundInterpreterSwitch.this.doSwitch(forStatement.getBody());
-					context.leaveScope();
+					context.leaveVariableScope();
 				}
 		
 				return true;

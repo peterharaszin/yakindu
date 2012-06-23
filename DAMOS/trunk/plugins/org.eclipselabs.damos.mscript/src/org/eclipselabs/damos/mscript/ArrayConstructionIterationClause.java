@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getIterationVariable <em>Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getCollectionExpression <em>Collection Expression</em>}</li>
  * </ul>
  * </p>
@@ -27,30 +27,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ArrayConstructionIterationClause extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Variable Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Iteration Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variable Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Iteration Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable Name</em>' attribute.
-	 * @see #setVariableName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayConstructionIterationClause_VariableName()
-	 * @model
+	 * @return the value of the '<em>Iteration Variable</em>' containment reference.
+	 * @see #setIterationVariable(IterationVariableDeclaration)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayConstructionIterationClause_IterationVariable()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getVariableName();
+	IterationVariableDeclaration getIterationVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getVariableName <em>Variable Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getIterationVariable <em>Iteration Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variable Name</em>' attribute.
-	 * @see #getVariableName()
+	 * @param value the new value of the '<em>Iteration Variable</em>' containment reference.
+	 * @see #getIterationVariable()
 	 * @generated
 	 */
-	void setVariableName(String value);
+	void setIterationVariable(IterationVariableDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Collection Expression</b></em>' containment reference.

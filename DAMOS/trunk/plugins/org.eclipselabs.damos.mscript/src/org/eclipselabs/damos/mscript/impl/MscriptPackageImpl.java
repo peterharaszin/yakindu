@@ -1315,17 +1315,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstantDeclaration_Name() {
-		return (EAttribute)constantDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getConstantDeclaration_Initializer() {
-		return (EReference)constantDeclarationEClass.getEStructuralFeatures().get(1);
+		return (EReference)constantDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1819,8 +1810,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArrayConstructionIterationClause_VariableName() {
-		return (EAttribute)arrayConstructionIterationClauseEClass.getEStructuralFeatures().get(0);
+	public EReference getArrayConstructionIterationClause_IterationVariable() {
+		return (EReference)arrayConstructionIterationClauseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3445,7 +3436,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stateVariableDeclarationEClass = createEClass(STATE_VARIABLE_DECLARATION);
 
 		constantDeclarationEClass = createEClass(CONSTANT_DECLARATION);
-		createEAttribute(constantDeclarationEClass, CONSTANT_DECLARATION__NAME);
 		createEReference(constantDeclarationEClass, CONSTANT_DECLARATION__INITIALIZER);
 
 		functionAliasDeclarationEClass = createEClass(FUNCTION_ALIAS_DECLARATION);
@@ -3519,7 +3509,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(arrayConstructionOperatorEClass, ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES);
 
 		arrayConstructionIterationClauseEClass = createEClass(ARRAY_CONSTRUCTION_ITERATION_CLAUSE);
-		createEAttribute(arrayConstructionIterationClauseEClass, ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME);
+		createEReference(arrayConstructionIterationClauseEClass, ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE);
 		createEReference(arrayConstructionIterationClauseEClass, ARRAY_CONSTRUCTION_ITERATION_CLAUSE__COLLECTION_EXPRESSION);
 
 		arrayConcatenationOperatorEClass = createEClass(ARRAY_CONCATENATION_OPERATOR);
@@ -3811,7 +3801,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		inputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
-		constantDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		constantDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		functionAliasDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		anonymousTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
 		declaredTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
@@ -3960,7 +3950,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(stateVariableDeclarationEClass, StateVariableDeclaration.class, "StateVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(constantDeclarationEClass, ConstantDeclaration.class, "ConstantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstantDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstantDeclaration_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionAliasDeclarationEClass, FunctionAliasDeclaration.class, "FunctionAliasDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4036,7 +4025,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getArrayConstructionOperator_IterationClauses(), this.getArrayConstructionIterationClause(), null, "iterationClauses", null, 0, -1, ArrayConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arrayConstructionIterationClauseEClass, ArrayConstructionIterationClause.class, "ArrayConstructionIterationClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getArrayConstructionIterationClause_VariableName(), ecorePackage.getEString(), "variableName", null, 0, 1, ArrayConstructionIterationClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrayConstructionIterationClause_IterationVariable(), this.getIterationVariableDeclaration(), null, "iterationVariable", null, 0, 1, ArrayConstructionIterationClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrayConstructionIterationClause_CollectionExpression(), this.getExpression(), null, "collectionExpression", null, 0, 1, ArrayConstructionIterationClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arrayConcatenationOperatorEClass, ArrayConcatenationOperator.class, "ArrayConcatenationOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

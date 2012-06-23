@@ -762,7 +762,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int CONSTANT_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Initializer</b></em>' containment reference.
@@ -771,7 +771,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_DECLARATION__INITIALIZER = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int CONSTANT_DECLARATION__INITIALIZER = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Constant Declaration</em>' class.
@@ -780,7 +780,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
+	int CONSTANT_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl <em>Function Alias Declaration</em>}' class.
@@ -1486,13 +1486,13 @@ public interface MscriptPackage extends EPackage {
 	int ARRAY_CONSTRUCTION_ITERATION_CLAUSE = 36;
 
 	/**
-	 * The feature id for the '<em><b>Variable Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Iteration Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME = 0;
+	int ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Collection Expression</b></em>' containment reference.
@@ -4374,17 +4374,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getConstantDeclaration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantDeclaration#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.ConstantDeclaration#getName()
-	 * @see #getConstantDeclaration()
-	 * @generated
-	 */
-	EAttribute getConstantDeclaration_Name();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ConstantDeclaration#getInitializer <em>Initializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4972,15 +4961,15 @@ public interface MscriptPackage extends EPackage {
 	EClass getArrayConstructionIterationClause();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getVariableName <em>Variable Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getIterationVariable <em>Iteration Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Variable Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getVariableName()
+	 * @return the meta object for the containment reference '<em>Iteration Variable</em>'.
+	 * @see org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getIterationVariable()
 	 * @see #getArrayConstructionIterationClause()
 	 * @generated
 	 */
-	EAttribute getArrayConstructionIterationClause_VariableName();
+	EReference getArrayConstructionIterationClause_IterationVariable();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause#getCollectionExpression <em>Collection Expression</em>}'.
@@ -7204,14 +7193,6 @@ public interface MscriptPackage extends EPackage {
 		EClass CONSTANT_DECLARATION = eINSTANCE.getConstantDeclaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTANT_DECLARATION__NAME = eINSTANCE.getConstantDeclaration_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Initializer</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7688,12 +7669,12 @@ public interface MscriptPackage extends EPackage {
 		EClass ARRAY_CONSTRUCTION_ITERATION_CLAUSE = eINSTANCE.getArrayConstructionIterationClause();
 
 		/**
-		 * The meta object literal for the '<em><b>Variable Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Iteration Variable</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ARRAY_CONSTRUCTION_ITERATION_CLAUSE__VARIABLE_NAME = eINSTANCE.getArrayConstructionIterationClause_VariableName();
+		EReference ARRAY_CONSTRUCTION_ITERATION_CLAUSE__ITERATION_VARIABLE = eINSTANCE.getArrayConstructionIterationClause_IterationVariable();
 
 		/**
 		 * The meta object literal for the '<em><b>Collection Expression</b></em>' containment reference feature.

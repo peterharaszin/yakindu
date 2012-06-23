@@ -22,9 +22,9 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class MatrixValue extends AbstractExplicitDataTypeValue implements IArrayValue {
 
-	private IValue[][] elements;
-	private int rowSize;
-	private int columnSize;
+	IValue[][] elements;
+	int rowSize;
+	int columnSize;
 	
 	/**
 	 * @param context
@@ -53,17 +53,31 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 */
 	@Override
 	protected IValue doConvert(DataType dataType) {
-		if (TypeUtil.isNumericMatrix(dataType)) {
-			ArrayType arrayType = (ArrayType) dataType;
-			INumericValue[][] convertedElements = new INumericValue[rowSize][columnSize];
-			for (int i = 0; i < rowSize; ++i) {
-				for (int j = 0; j < columnSize; ++j) {
-					convertedElements[i][j] = (INumericValue) elements[i][j].convert(arrayType.getElementType());
-				}
-			}
-			return new MatrixValue(getContext(), arrayType, convertedElements);
+		if (!TypeUtil.isNumericMatrix(getDataType())) {
+			return InvalidValue.SINGLETON;
 		}
-		return this;
+		ArrayType arrayType = (ArrayType) dataType;
+		IValue[][] convertedElements = new IValue[rowSize][columnSize];
+		for (int i = 0; i < rowSize; ++i) {
+			for (int j = 0; j < columnSize; ++j) {
+				convertedElements[i][j] = elements[i][j].convert(arrayType.getElementType());
+			}
+		}
+		return new MatrixValue(getContext(), arrayType, convertedElements);
+	}
+	
+	/**
+	 * @return the rowSize
+	 */
+	public int getRowSize() {
+		return rowSize;
+	}
+	
+	/**
+	 * @return the columnSize
+	 */
+	public int getColumnSize() {
+		return columnSize;
 	}
 	
 	public IValue get(int index) {
@@ -100,13 +114,35 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
+	 */
+	@Override
+	protected IValue doAdd(IValue other, DataType resultDataType) {
+		if (other instanceof MatrixValue) {
+			MatrixValue otherMatrixValue = (MatrixValue) other;
+			if (rowSize != otherMatrixValue.rowSize || columnSize != otherMatrixValue.columnSize) {
+				return InvalidValue.SINGLETON;
+			}
+			IValue[][] result = new IValue[rowSize][columnSize];
+			for (int i = 0; i < rowSize; ++i) {
+				for (int j = 0; j < columnSize; ++j) {
+					IValue sum = elements[i][j].add(otherMatrixValue.elements[i][j]);
+					if (sum instanceof InvalidValue) {
+						return InvalidValue.SINGLETON;
+					}
+					result[i][j] = sum;
+				}
+			}
+			return new MatrixValue(getContext(), (ArrayType) resultDataType, result);
+		}
+		return super.doAdd(other, resultDataType);
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractValue#doMultiply(org.eclipselabs.mscript.computation.core.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
 	protected IValue doMultiply(IValue other, DataType resultDataType) {
-		if (!TypeUtil.isNumericMatrix(getDataType())) {
-			return InvalidValue.SINGLETON;
-		}
 		if (other instanceof INumericValue) {
 			INumericValue otherNumericValue = (INumericValue) other;
 			INumericValue[][] resultElements = new INumericValue[rowSize][columnSize];
@@ -120,31 +156,82 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 				}
 			}
 			return new MatrixValue(getContext(), (ArrayType) resultDataType, resultElements);
-//		} else if (other instanceof VectorValue) {
-//			VectorValue otherVectorValue = (VectorValue) other;
-//			if (elements.length != otherVectorValue.elements.length) {
-//				return InvalidValue.SINGLETON;
-//			}
-//			INumericValue result = null;
-//			for (int i = 0; i < elements.length; ++i) {
-//				IValue product = elements[i].multiply(otherVectorValue.elements[i]);
-//				if (!(product instanceof INumericValue)) {
-//					return InvalidValue.SINGLETON;
-//				}
-//				INumericValue numericProduct = (INumericValue) product;
-//				if (result == null) {
-//					result = numericProduct;
-//				} else {
-//					IValue sum = result.add(numericProduct);
-//					if (!(sum instanceof INumericValue)) {
-//						return InvalidValue.SINGLETON;
-//					}
-//					result = (INumericValue) sum;
-//				}
-//			}
-//			return result;
+		} else if (other instanceof VectorValue) {
+			VectorValue otherVectorValue = (VectorValue) other;
+			if (columnSize != otherVectorValue.elements.length) {
+				return InvalidValue.SINGLETON;
+			}
+			IValue[] result = new IValue[rowSize];
+			for (int i = 0; i < rowSize; ++i) {
+				for (int j = 0; j < columnSize; ++j) {
+					IValue product = elements[i][j].multiply(otherVectorValue.elements[j]);
+					if (!(product instanceof INumericValue)) {
+						return InvalidValue.SINGLETON;
+					}
+					INumericValue numericProduct = (INumericValue) product;
+					if (result[i] == null) {
+						result[i] = numericProduct;
+					} else {
+						IValue sum = result[i].add(numericProduct);
+						if (!(sum instanceof INumericValue)) {
+							return InvalidValue.SINGLETON;
+						}
+						result[i] = sum;
+					}
+				}
+			}
+			return new VectorValue(getContext(), (ArrayType) resultDataType, result);
+		} else if (other instanceof MatrixValue) {
+			MatrixValue otherMatrixValue = (MatrixValue) other;
+			if (columnSize != otherMatrixValue.rowSize) {
+				return InvalidValue.SINGLETON;
+			}
+			IValue[][] result = new IValue[rowSize][otherMatrixValue.columnSize];
+			for (int k = 0; k < otherMatrixValue.columnSize; ++k) {
+				for (int i = 0; i < rowSize; ++i) {
+					for (int j = 0; j < columnSize; ++j) {
+						IValue product = elements[i][j].multiply(otherMatrixValue.elements[j][k]);
+						if (!(product instanceof INumericValue)) {
+							return InvalidValue.SINGLETON;
+						}
+						INumericValue numericProduct = (INumericValue) product;
+						if (result[i][k] == null) {
+							result[i][k] = numericProduct;
+						} else {
+							IValue sum = result[i][k].add(numericProduct);
+							if (!(sum instanceof INumericValue)) {
+								return InvalidValue.SINGLETON;
+							}
+							result[i][k] = sum;
+						}
+					}
+				}
+			}
+			return new MatrixValue(getContext(), (ArrayType) resultDataType, result);
 		}
 		return super.doMultiply(other, resultDataType);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doDivide(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
+	 */
+	@Override
+	protected IValue doDivide(IValue other, DataType resultDataType) {
+		if (other instanceof INumericValue) {
+			INumericValue otherNumericValue = (INumericValue) other;
+			INumericValue[][] resultElements = new INumericValue[rowSize][columnSize];
+			for (int i = 0; i < rowSize; ++i) {
+				for (int j = 0; j < columnSize; ++j) {
+					IValue resultElement = elements[i][j].divide(otherNumericValue);
+					if (!(resultElement instanceof INumericValue)) {
+						return InvalidValue.SINGLETON;
+					}
+					resultElements[i][j] = (INumericValue) resultElement;
+				}
+			}
+			return new MatrixValue(getContext(), (ArrayType) resultDataType, resultElements);
+		}
+		return super.doDivide(other, resultDataType);
 	}
 
 }

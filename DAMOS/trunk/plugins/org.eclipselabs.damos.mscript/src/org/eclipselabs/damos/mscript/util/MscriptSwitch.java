@@ -209,6 +209,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.CONSTANT_DECLARATION: {
 				ConstantDeclaration constantDeclaration = (ConstantDeclaration)theEObject;
 				T result = caseConstantDeclaration(constantDeclaration);
+				if (result == null) result = caseVariableDeclaration(constantDeclaration);
 				if (result == null) result = caseCallableElement(constantDeclaration);
 				if (result == null) result = caseEvaluable(constantDeclaration);
 				if (result == null) result = defaultCase(theEObject);

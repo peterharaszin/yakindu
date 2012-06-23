@@ -13,8 +13,6 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 
-
-
 /**
  * @author Andreas Unger
  * 
@@ -26,8 +24,8 @@ public interface IInterpreterContext {
 	IStaticEvaluationResult getStaticEvaluationResult();
 	IComputationContext getComputationContext();
 
-	void enterScope();
-	void leaveScope();
+	void enterVariableScope();
+	void leaveVariableScope();
 	
 	IVariable getVariable(VariableDeclaration variableDeclaration);
 	void addVariable(IVariable variable);

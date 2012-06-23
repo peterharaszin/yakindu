@@ -79,7 +79,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	@Check
-	public void checkVariableAccessReferencesVariable(VariableReference variableReference) {
+	public void checkVariableReferenceReferencesVariable(VariableReference variableReference) {
 		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
 			return;
 		}

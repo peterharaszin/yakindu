@@ -21662,11 +21662,11 @@ protected class ArrayConstructionOperator_RightCurlyBracketKeyword_3 extends Key
 /************ begin Rule ArrayConstructionIterationClause ****************
  *
  * ArrayConstructionIterationClause:
- * 	variableName=ValidID "in" collectionExpression=Expression;
+ * 	iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression;
  *
  **/
 
-// variableName=ValidID "in" collectionExpression=Expression
+// iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression
 protected class ArrayConstructionIterationClause_Group extends GroupToken {
 	
 	public ArrayConstructionIterationClause_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -21695,37 +21695,49 @@ protected class ArrayConstructionIterationClause_Group extends GroupToken {
 
 }
 
-// variableName=ValidID
-protected class ArrayConstructionIterationClause_VariableNameAssignment_0 extends AssignmentToken  {
+// iterationVariable=IterationVariableDeclaration
+protected class ArrayConstructionIterationClause_IterationVariableAssignment_0 extends AssignmentToken  {
 	
-	public ArrayConstructionIterationClause_VariableNameAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ArrayConstructionIterationClause_IterationVariableAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0();
+		return grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+			case 0: return new IterationVariableDeclaration_NameAssignment(this, this, 0, inst);
+			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("variableName",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variableName");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("iterationVariable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("iterationVariable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getIterationVariableDeclarationRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, consumed);
+		}	
+	}	
 }
 
 // "in"
@@ -21743,7 +21755,7 @@ protected class ArrayConstructionIterationClause_InKeyword_1 extends KeywordToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ArrayConstructionIterationClause_VariableNameAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ArrayConstructionIterationClause_IterationVariableAssignment_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

@@ -40,7 +40,7 @@ public class SizeFunction extends AbstractBuiltinFunction {
 		}
 
 		IValue argument = evaluate(context, functionCall.getArguments().get(0));
-		if (argument.getDataType() instanceof ArrayType) {
+		if (!(argument.getDataType() instanceof ArrayType)) {
 			return InvalidValue.SINGLETON;
 		}
 

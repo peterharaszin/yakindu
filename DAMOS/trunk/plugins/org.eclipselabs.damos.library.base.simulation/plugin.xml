@@ -4,11 +4,6 @@
    <extension
          point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="damos.library.base.continuous.TransferFunction"
-            class="org.eclipselabs.damos.library.base.simulation.continuous.TransferFunctionSimulationObject"
-            name="Transfer Function">
-      </simulationObject>
-      <simulationObject
             blockType="damos.library.base.sources.Step"
             class="org.eclipselabs.damos.library.base.simulation.sources.StepSimulationObject"
             name="Step">

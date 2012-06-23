@@ -23,10 +23,13 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.AssertionStatusKind;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -80,9 +83,9 @@ public class StaticFunctionEvaluator {
 		if (!evaluateStaticAssertions(result, functionDescriptor)) {
 			return;
 		}
-		
 		evaluateAssertions(result, functionDescriptor);
 		
+		evaluateConstants(result, functionDescriptor);
 		evaluateEquations(result, functionDescriptor);
 	}
 
@@ -144,6 +147,22 @@ public class StaticFunctionEvaluator {
 		}
 	}
 
+	/**
+	 * @param result
+	 * @param functionDescriptor
+	 */
+	private void evaluateConstants(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
+		for (ConstantDeclaration constant : getSortedConstants(result, functionDescriptor)) {
+			IExpressionEvaluationContext expressionEvaluationContext = new StaticExpressionEvaluationContext(result);
+			expressionEvaluationContext.enterStaticScope();
+			IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, constant.getInitializer());
+			if (value instanceof InvalidValue) {
+				continue;
+			}
+			result.setValue(constant, value);
+		}
+	}
+	
 	/**
 	 * @param result
 	 * @param functionDescriptor
@@ -258,5 +277,55 @@ public class StaticFunctionEvaluator {
 		return sortedEquations;
 	}
 		
+	private Collection<ConstantDeclaration> getSortedConstants(IStaticEvaluationResult result, FunctionDescriptor functionDescriptor) {
+		Set<ConstantDeclaration> definedConstants = new HashSet<ConstantDeclaration>();
+		List<ConstantDeclaration> sortedConstants = new ArrayList<ConstantDeclaration>();
+		List<ConstantDeclaration> backlog = new LinkedList<ConstantDeclaration>(functionDescriptor.getDeclaration().getConstantDeclarations());
+		
+		boolean changed;
+		do {
+			changed = false;
+			for (Iterator<ConstantDeclaration> it = backlog.iterator(); it.hasNext();) {
+				ConstantDeclaration constant = it.next();
+				boolean defined = true;
+				for (TreeIterator<EObject> initializerIt = constant.getInitializer().eAllContents(); initializerIt.hasNext();) {
+					EObject next = initializerIt.next();
+					if (next instanceof VariableReference) {
+						VariableReference variableReference = (VariableReference) next;
+						if (!(variableReference.getFeature() instanceof ConstantDeclaration)) {
+							continue;
+						}
+						if (!definedConstants.contains(variableReference.getFeature())) {
+							defined = false;
+							break;
+						}
+					}
+				}
+				if (defined) {
+					definedConstants.add(constant);
+					sortedConstants.add(constant);
+					it.remove();
+					changed = true;
+				}
+			}
+		} while (changed);
+		
+		for (ConstantDeclaration constant : backlog) {
+			for (TreeIterator<EObject> initializerIt = constant.getInitializer().eAllContents(); initializerIt.hasNext();) {
+				EObject next = initializerIt.next();
+				if (next instanceof VariableReference) {
+					VariableReference variableReference = (VariableReference) next;
+					if (!definedConstants.contains(variableReference.getFeature())) {
+						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+								"The value of the constant " + variableReference.getFeature().getName()
+										+ " could not be determined",
+								variableReference));
+					}
+				}
+			}
+		}
+		
+		return sortedConstants;
+	}
 
 }

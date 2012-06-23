@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipselabs.damos.mscript.ArrayType;
 
-
 /**
  * @author Andreas Unger
  *

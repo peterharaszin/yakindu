@@ -260,11 +260,6 @@
    <extension
          point="org.eclipselabs.damos.execution.blockSignaturePolicies">
       <policy
-            blockType="damos.library.base.continuous.TransferFunction"
-            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.TransferFunctionSignaturePolicy"
-            name="Transfer Function">
-      </policy>
-      <policy
             blockType="damos.library.base.sinks.Scope"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.ScopeSignaturePolicy"
             name="Scope">

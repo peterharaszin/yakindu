@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -45,12 +46,13 @@ public class FunctionObject implements IFunctionObject {
 		functionObject.functionInstance = functionInstance;
 		
 		for (TemplateParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getTemplateParameterDeclarations()) {
-			IVariable variable = new Variable(context, declaration);
-			IValue value = context.getStaticEvaluationResult().getValue(declaration);
-			variable.setValue(0, Values.transform(context.getComputationContext(), value));
-			functionObject.variables.put(declaration, variable);
+			createStaticVariable(context, functionObject, declaration);
 		}
 		
+		for (ConstantDeclaration declaration : functionInstance.getFunctionDeclaration().getConstantDeclarations()) {
+			createStaticVariable(context, functionObject, declaration);
+		}
+
 		for (InputParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
 			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
@@ -64,6 +66,19 @@ public class FunctionObject implements IFunctionObject {
 		}
 		
 		return functionObject;
+	}
+
+	/**
+	 * @param context
+	 * @param functionObject
+	 * @param variableDeclaration
+	 */
+	private static void createStaticVariable(IInterpreterContext context, FunctionObject functionObject,
+			VariableDeclaration variableDeclaration) {
+		IVariable variable = new Variable(context, variableDeclaration);
+		IValue value = context.getStaticEvaluationResult().getValue(variableDeclaration);
+		variable.setValue(0, Values.transform(context.getComputationContext(), value));
+		functionObject.variables.put(variableDeclaration, variable);
 	}
 	
 	public FunctionInstance getFunctionInstance() {

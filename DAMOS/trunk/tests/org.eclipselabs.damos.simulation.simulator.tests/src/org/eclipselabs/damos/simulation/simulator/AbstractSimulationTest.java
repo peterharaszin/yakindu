@@ -137,7 +137,7 @@ public class AbstractSimulationTest extends AbstractExecutionTest {
 			
 			int minimumComparisonCount = xValues.length / 4;
 			if (comparisonCount < minimumComparisonCount) {
-				throw new RuntimeException("Number of comparisons must be at least " + minimumComparisonCount);
+				throw new RuntimeException("Number of comparisons must be at least " + minimumComparisonCount + " but was " + comparisonCount);
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);

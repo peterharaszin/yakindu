@@ -361,7 +361,7 @@ ArrayConstructionOperator:
 	'{' expressions+=Expression ((',' expressions+=Expression)* | 'for' iterationClauses+=ArrayConstructionIterationClause (',' iterationClauses+=ArrayConstructionIterationClause)*) '}';
 
 ArrayConstructionIterationClause:
-	variableName=ValidID 'in' collectionExpression=Expression;
+	iterationVariable=IterationVariableDeclaration 'in' collectionExpression=Expression;
 
 ArrayConcatenationOperator:
 	'[' rows+=ExpressionList (';' rows+=ExpressionList)* ']';

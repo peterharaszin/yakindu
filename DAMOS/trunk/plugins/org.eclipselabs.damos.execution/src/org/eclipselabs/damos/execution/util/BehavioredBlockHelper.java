@@ -47,8 +47,6 @@ import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -219,10 +217,7 @@ public class BehavioredBlockHelper {
 					values.add(value);
 				}
 				ArrayType arrayType = TypeUtil.createArrayType(elementType, values.size());
-				if (arrayType.isNumeric()) {
-					return new VectorValue(new ComputationContext(), arrayType, values.toArray(new INumericValue[values.size()]));
-				}
-				return new ArrayValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
+				return new VectorValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
 			}
 		}
 		return null;

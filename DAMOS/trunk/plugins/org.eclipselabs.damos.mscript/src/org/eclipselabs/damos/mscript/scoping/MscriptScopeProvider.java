@@ -13,7 +13,10 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
+import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
+import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -55,8 +58,17 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					elements.add(accumulator);
 				}
 				elements.addAll(iterationCall.getIterationVariables());
+			} else if (container instanceof ArrayConstructionOperator) {
+				ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator) container;
+				for (ArrayConstructionIterationClause clause : arrayConstructionOperator.getIterationClauses()) {
+					elements.add(clause.getIterationVariable());
+				}
 			} else if (container instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) container;
+				
+				for (ConstantDeclaration constantDeclaration : functionDeclaration.getConstantDeclarations()) {
+					elements.add(constantDeclaration);
+				}
 
 				for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {
 					elements.add(stateVariableDeclaration);

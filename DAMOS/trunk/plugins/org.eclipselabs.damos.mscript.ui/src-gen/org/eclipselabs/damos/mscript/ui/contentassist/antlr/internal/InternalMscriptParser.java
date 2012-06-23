@@ -46850,26 +46850,26 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArrayConstructionIterationClause__Group__0__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16101:1: rule__ArrayConstructionIterationClause__Group__0__Impl : ( ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16101:1: rule__ArrayConstructionIterationClause__Group__0__Impl : ( ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 ) ) ;
     public final void rule__ArrayConstructionIterationClause__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16105:1: ( ( ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16106:1: ( ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16105:1: ( ( ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16106:1: ( ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16106:1: ( ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16107:1: ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16106:1: ( ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16107:1: ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0()); 
+               before(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16108:1: ( rule__ArrayConstructionIterationClause__VariableNameAssignment_0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16108:2: rule__ArrayConstructionIterationClause__VariableNameAssignment_0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16108:1: ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16108:2: rule__ArrayConstructionIterationClause__IterationVariableAssignment_0
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__VariableNameAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl32706);
-            rule__ArrayConstructionIterationClause__VariableNameAssignment_0();
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl32706);
+            rule__ArrayConstructionIterationClause__IterationVariableAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -46877,7 +46877,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameAssignment_0()); 
+               after(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0()); 
             }
 
             }
@@ -64127,29 +64127,29 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1"
 
 
-    // $ANTLR start "rule__ArrayConstructionIterationClause__VariableNameAssignment_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22387:1: rule__ArrayConstructionIterationClause__VariableNameAssignment_0 : ( ruleValidID ) ;
-    public final void rule__ArrayConstructionIterationClause__VariableNameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__ArrayConstructionIterationClause__IterationVariableAssignment_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22387:1: rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 : ( ruleIterationVariableDeclaration ) ;
+    public final void rule__ArrayConstructionIterationClause__IterationVariableAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22391:1: ( ( ruleValidID ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22392:1: ( ruleValidID )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22391:1: ( ( ruleIterationVariableDeclaration ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22392:1: ( ruleIterationVariableDeclaration )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22392:1: ( ruleValidID )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22393:1: ruleValidID
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22392:1: ( ruleIterationVariableDeclaration )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22393:1: ruleIterationVariableDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0()); 
+               before(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__ArrayConstructionIterationClause__VariableNameAssignment_045233);
-            ruleValidID();
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_045233);
+            ruleIterationVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayConstructionIterationClauseAccess().getVariableNameValidIDParserRuleCall_0_0()); 
+               after(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); 
             }
 
             }
@@ -64169,7 +64169,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ArrayConstructionIterationClause__VariableNameAssignment_0"
+    // $ANTLR end "rule__ArrayConstructionIterationClause__IterationVariableAssignment_0"
 
 
     // $ANTLR start "rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2"
@@ -68315,7 +68315,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1_in_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl32642 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__0__Impl_in_rule__ArrayConstructionIterationClause__Group__032676 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
     public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1_in_rule__ArrayConstructionIterationClause__Group__032679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__VariableNameAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl32706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl32706 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1__Impl_in_rule__ArrayConstructionIterationClause__Group__132736 = new BitSet(new long[]{0x0082080000180FF0L,0x0000000A0E402540L});
     public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__2_in_rule__ArrayConstructionIterationClause__Group__132739 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_73_in_rule__ArrayConstructionIterationClause__Group__1__Impl32767 = new BitSet(new long[]{0x0000000000000002L});
@@ -68790,7 +68790,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_145140 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_145171 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_145202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__ArrayConstructionIterationClause__VariableNameAssignment_045233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_045233 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_245264 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_145295 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_2_145326 = new BitSet(new long[]{0x0000000000000002L});

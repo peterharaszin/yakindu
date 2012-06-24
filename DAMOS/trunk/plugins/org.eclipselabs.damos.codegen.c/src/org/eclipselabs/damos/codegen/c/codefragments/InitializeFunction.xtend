@@ -45,7 +45,7 @@ class InitializeFunction extends PrimaryCodeFragment {
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		addDependency(IMPLEMENTATION_DEPENDS_ON, [other | other instanceof ContextVariable])
+		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof ContextVariable])
 
 		val nodes = context.executionFlow.allNodes
 				.filter(typeof(ComponentNode))

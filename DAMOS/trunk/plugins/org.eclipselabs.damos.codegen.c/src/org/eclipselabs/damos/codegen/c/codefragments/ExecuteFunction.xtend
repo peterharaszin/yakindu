@@ -44,8 +44,8 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [other | other instanceof InputStruct || other instanceof OutputStruct])
-		addDependency(IMPLEMENTATION_DEPENDS_ON, [other | other instanceof ContextVariable])
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof InputStruct || it instanceof OutputStruct])
+		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof ContextVariable])
 		
 		val graph = context.executionFlow.graph
 		implementationIncludes.addAll(graphGenerator.getImplementationIncludes(context, graph))

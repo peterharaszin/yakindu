@@ -28,7 +28,7 @@ public class MachineBooleanType extends MachineDataType {
 	}
 	
 	@Override
-	public String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		return "uint_fast8_t";
 	}
 	

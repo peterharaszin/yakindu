@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarVectorMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructTypeDeclaration;
@@ -76,7 +76,7 @@ public class MscriptCodegenCModule extends AbstractModule {
 	}
 
 	protected void buildIScalarMultiplyFunctionFactory() {
-		install(new FactoryModuleBuilder().implement(ICodeFragment.class, ScalarMultiplyFunction.class).build(IScalarMultiplyFunctionFactory.class));
+		install(new FactoryModuleBuilder().implement(ICodeFragment.class, ScalarVectorMultiplyFunction.class).build(IScalarMultiplyFunctionFactory.class));
 	}
 
 	protected void buildIStructConstructionFunctionFactory() {

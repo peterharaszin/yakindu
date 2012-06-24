@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class ScalarMultiplyFunction extends AbstractCodeFragment {
+public class ScalarVectorMultiplyFunction extends AbstractCodeFragment {
   private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
     public DataTypeGenerator apply() {
       DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();
@@ -67,7 +67,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
   private String functionBody;
   
   @Inject
-  public ScalarMultiplyFunction(@Assisted final ComputationModel computationModel, @Assisted(value = "scalarType") final DataType scalarType, @Assisted(value = "elementType") final DataType elementType, @Assisted final ArrayType resultType) {
+  public ScalarVectorMultiplyFunction(@Assisted final ComputationModel computationModel, @Assisted(value = "scalarType") final DataType scalarType, @Assisted(value = "elementType") final DataType elementType, @Assisted final ArrayType resultType) {
     this.computationModel = computationModel;
     this.scalarType = scalarType;
     this.elementType = elementType;
@@ -104,7 +104,7 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
     CharSequence _generateDataType_2 = this.dataTypeGenerator.generateDataType(this.computationModel, codeFragmentCollector, this.resultType, this);
     this.resultTypeText = _generateDataType_2;
     IGlobalNameProvider _globalNameProvider = context.getGlobalNameProvider();
-    String _newGlobalName = _globalNameProvider.newGlobalName("scalarMultiply");
+    String _newGlobalName = _globalNameProvider.newGlobalName("multiply");
     this.name = _newGlobalName;
     final NumericExpressionInfo leftOperand = NumericExpressionInfo.create(this.scalarNumberFormat, "scalar");
     final NumericExpressionInfo rightOperand = NumericExpressionInfo.create(this.elementNumberFormat, "vector[i]");
@@ -194,8 +194,8 @@ public class ScalarMultiplyFunction extends AbstractCodeFragment {
   }
   
   public boolean equals(final Object obj) {
-    if ((obj instanceof ScalarMultiplyFunction)) {
-      final ScalarMultiplyFunction other = ((ScalarMultiplyFunction) obj);
+    if ((obj instanceof ScalarVectorMultiplyFunction)) {
+      final ScalarVectorMultiplyFunction other = ((ScalarVectorMultiplyFunction) obj);
       boolean _and = false;
       boolean _and_1 = false;
       boolean _isEquivalentTo = other.scalarNumberFormat.isEquivalentTo(this.scalarNumberFormat);

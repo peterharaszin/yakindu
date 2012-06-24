@@ -32,7 +32,7 @@ import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
  * @author Andreas Unger
  *
  */
-class ScalarMultiplyFunction extends AbstractCodeFragment {
+class ScalarVectorMultiplyFunction extends AbstractCodeFragment {
 	
 	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
@@ -79,7 +79,7 @@ class ScalarMultiplyFunction extends AbstractCodeFragment {
 		elementTypeText = dataTypeGenerator.generateDataType(computationModel, codeFragmentCollector, elementType, this)
 		resultTypeText = dataTypeGenerator.generateDataType(computationModel, codeFragmentCollector, resultType, this)
 		
-		name = context.globalNameProvider.newGlobalName("scalarMultiply");
+		name = context.globalNameProvider.newGlobalName("multiply");
 		
 		val leftOperand = NumericExpressionInfo::create(scalarNumberFormat, "scalar");
 		val rightOperand = NumericExpressionInfo::create(elementNumberFormat, "vector[i]");
@@ -117,8 +117,8 @@ class ScalarMultiplyFunction extends AbstractCodeFragment {
 	}
 	
 	override boolean equals(Object obj) {
-		if (obj instanceof ScalarMultiplyFunction) {
-			val other = obj as ScalarMultiplyFunction
+		if (obj instanceof ScalarVectorMultiplyFunction) {
+			val other = obj as ScalarVectorMultiplyFunction
 			return other.scalarNumberFormat.isEquivalentTo(scalarNumberFormat) && other.elementNumberFormat.isEquivalentTo(elementNumberFormat) && other.resultElementNumberFormat.isEquivalentTo(resultElementNumberFormat)
 		}
 		return false;

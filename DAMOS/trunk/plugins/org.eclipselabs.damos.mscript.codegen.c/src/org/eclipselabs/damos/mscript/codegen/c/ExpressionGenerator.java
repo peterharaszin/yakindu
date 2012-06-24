@@ -47,7 +47,7 @@ import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarVectorMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
@@ -205,11 +205,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
 			
-			if (leftDataType instanceof NumericType && TypeUtil.isNumericArray(rightDataType)) {
-				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+			if (leftDataType instanceof NumericType && TypeUtil.isNumericVector(rightDataType)) {
+				return writeScalarVectorMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
-			if (TypeUtil.isNumericArray(leftDataType) && rightDataType instanceof NumericType) {
-				return writeScalarMultiplicativeExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+			if (TypeUtil.isNumericVector(leftDataType) && rightDataType instanceof NumericType) {
+				return writeScalarVectorMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
 			}
 			
 			NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
@@ -226,20 +226,20 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		/**
 		 * @param operator
 		 * @param scalarExpression
-		 * @param tensorExpression
+		 * @param arrayExpression
 		 * @return
 		 */
-		private Boolean writeScalarMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
-				Expression tensorExpression) {
+		private Boolean writeScalarVectorMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
+				Expression arrayExpression) {
 			DataType scalarType = EcoreUtil.copy(getDataType(scalarExpression));
-			ArrayType arrayType = (ArrayType) getDataType(tensorExpression);
+			ArrayType arrayType = (ArrayType) getDataType(arrayExpression);
 			DataType elementType = EcoreUtil.copy(arrayType.getElementType());
 			ArrayType resultType = EcoreUtil.copy((ArrayType) getDataType(multiplicativeExpression));
-			ScalarMultiplyFunction codeFragment = (ScalarMultiplyFunction) context.getCodeFragmentCollector().addCodeFragment(new ScalarMultiplyFunction(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
+			ScalarVectorMultiplyFunction codeFragment = (ScalarVectorMultiplyFunction) context.getCodeFragmentCollector().addCodeFragment(new ScalarVectorMultiplyFunction(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
 			out.printf("%s(", codeFragment.getName());
 			doSwitch(scalarExpression);
 			out.print(", &(");
-			doSwitch(tensorExpression);
+			doSwitch(arrayExpression);
 			out.printf(").data[0], %d)", TypeUtil.getArraySize(arrayType));
 			return true;
 		}

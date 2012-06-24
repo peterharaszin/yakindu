@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public abstract class MachineDataType {
 	
-	public abstract String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
+	public abstract CharSequence generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

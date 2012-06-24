@@ -47,7 +47,7 @@ class ContextStruct extends PrimaryCodeFragment {
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [other | other instanceof TaskMessageStruct])
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof TaskMessageStruct])
 		
 		if (!context.executionFlow.taskGraphs.empty) {
 			context.addCodeFragment(taskMessageStructFactory.create(), monitor)

@@ -38,7 +38,7 @@ public class MachineStructType extends MachineDataType {
 	}
 	
 	@Override
-	public String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector,
+	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
 		final StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(computationModel, this), new NullProgressMonitor());
 		if (dependentCodeFragment != null) {

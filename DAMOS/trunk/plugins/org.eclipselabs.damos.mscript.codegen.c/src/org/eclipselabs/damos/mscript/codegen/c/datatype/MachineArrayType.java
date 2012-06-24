@@ -51,7 +51,7 @@ public class MachineArrayType extends MachineDataType {
 	}
 	
 	@Override
-	public String getCDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		final ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector
 				.addCodeFragment(new ArrayTypeDeclaration(computationModel, this),
 						new NullProgressMonitor());

@@ -32,7 +32,7 @@ class ContextVariable extends PrimaryCodeFragment {
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [other | other instanceof ContextStruct])
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ContextStruct])
 		
 		prefix = context.configuration.prefix
 	}

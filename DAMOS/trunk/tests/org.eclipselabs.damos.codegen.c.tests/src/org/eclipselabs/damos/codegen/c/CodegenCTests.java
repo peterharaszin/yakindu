@@ -20,6 +20,7 @@ import org.eclipselabs.damos.codegen.c.gtests.GainTest;
 import org.eclipselabs.damos.codegen.c.gtests.InportOnlyTest;
 import org.eclipselabs.damos.codegen.c.gtests.IntegratorFixedPointTest;
 import org.eclipselabs.damos.codegen.c.gtests.IntegratorTest;
+import org.eclipselabs.damos.codegen.c.gtests.MatrixMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
@@ -51,6 +52,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	ArrayTest.class,
 	VectorTest.class,
 	MatrixTest.class,
+	MatrixMultiplyTest.class,
 	VectorScalarMultiplyTest.class,
 	MatrixScalarMultiplyTest.class,
 	StructTest.class,

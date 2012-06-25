@@ -58,9 +58,18 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 		val codeFragmentCollector = context.codeFragmentCollector
 		val arrayType = MachineDataTypes::create(computationModel, arrayValue.dataType)
 		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(computationModel, arrayType), monitor)
+		
+		val preferredName = switch (arrayType.dimensionality) {
+		case 1:
+			"vector"
+		case 2:
+			"matrix"
+		default:
+			"array"
+		}
 
 		typeName = arrayTypeDeclaration.name
-		name = context.globalNameProvider.newGlobalName("array")
+		name = context.globalNameProvider.newGlobalName(preferredName)
 		body = literalGenerator.generateInitializer(computationModel, codeFragmentCollector, arrayValue)
 	}
 	

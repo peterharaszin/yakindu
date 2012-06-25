@@ -24,7 +24,9 @@ import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
+import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 import com.google.inject.Inject;
@@ -88,18 +90,21 @@ public class LiteralGenerator {
 		} else if (value instanceof IBooleanValue) {
 			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
 			return booleanTemplateArgument.booleanValue() ? "1" : "0";
-		} else if (value instanceof IArrayValue) {
-			return generateArrayInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
+		} else if (value instanceof VectorValue) {
+			return generateVectorInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
+		} else if (value instanceof MatrixValue) {
+			return generateMatrixInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
 		} else if (value instanceof StructValue) {
 			return generateStructInitializer(computationModel, codeFragmentCollector, (StructValue) value);
 		}
 		throw new IllegalArgumentException();
 	}
 
-	private CharSequence generateArrayInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {
+	private CharSequence generateVectorInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {
+		int size = TypeUtil.getArraySize(value.getDataType());
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("{ { ");
-		int size = TypeUtil.getArraySize(value.getDataType());
 		for (int i = 0; i < size; ++i) {
 			if (i > 0) {
 				sb.append(", ");
@@ -107,6 +112,31 @@ public class LiteralGenerator {
 			sb.append(generateInitializer(computationModel, codeFragmentCollector, value.get(i)));
 		}
 		sb.append(" } }");
+		
+		return sb;
+	}
+
+	private CharSequence generateMatrixInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {
+		int rowSize = TypeUtil.getArrayRowSize(value.getDataType());
+		int columnSize = TypeUtil.getArrayColumnSize(value.getDataType());
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("{ { ");
+		for (int i = 0; i < rowSize; ++i) {
+			if (i > 0) {
+				sb.append(", ");
+			}
+			sb.append("{ ");
+			for (int j = 0; j < columnSize; ++j) {
+				if (j > 0) {
+					sb.append(", ");
+				}
+				sb.append(generateInitializer(computationModel, codeFragmentCollector, value.get(i, j)));
+			}
+			sb.append(" }");
+		}
+		sb.append(" } }");
+		
 		return sb;
 	}
 

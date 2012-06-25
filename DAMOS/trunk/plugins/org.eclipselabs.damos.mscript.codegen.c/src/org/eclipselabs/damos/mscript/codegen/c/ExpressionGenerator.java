@@ -12,10 +12,10 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
@@ -47,9 +47,11 @@ import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarVectorMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayScalarMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
@@ -205,11 +207,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
 			
-			if (leftDataType instanceof NumericType && TypeUtil.isNumericVector(rightDataType)) {
-				return writeScalarVectorMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+			if (leftDataType instanceof NumericType && TypeUtil.isNumericArray(rightDataType)) {
+				return writeScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
-			if (TypeUtil.isNumericVector(leftDataType) && rightDataType instanceof NumericType) {
-				return writeScalarVectorMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+			if (TypeUtil.isNumericArray(leftDataType) && rightDataType instanceof NumericType) {
+				return writeScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
 			}
 			
 			NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
@@ -222,25 +224,18 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 			return true;
 		}
-	
-		/**
-		 * @param operator
-		 * @param scalarExpression
-		 * @param arrayExpression
-		 * @return
-		 */
-		private Boolean writeScalarVectorMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
+
+		private Boolean writeScalarMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
 				Expression arrayExpression) {
-			DataType scalarType = EcoreUtil.copy(getDataType(scalarExpression));
-			ArrayType arrayType = (ArrayType) getDataType(arrayExpression);
-			DataType elementType = EcoreUtil.copy(arrayType.getElementType());
-			ArrayType resultType = EcoreUtil.copy((ArrayType) getDataType(multiplicativeExpression));
-			ScalarVectorMultiplyFunction codeFragment = (ScalarVectorMultiplyFunction) context.getCodeFragmentCollector().addCodeFragment(new ScalarVectorMultiplyFunction(context.getComputationModel(), scalarType, elementType, resultType), new NullProgressMonitor());
+			MachineNumericType scalarType = MachineDataTypes.create(context.getComputationModel(), (NumericType) getDataType(scalarExpression));
+			MachineArrayType arrayType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(arrayExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
+			ArrayScalarMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayScalarMultiplyFunction(context.getComputationModel(), scalarType, arrayType, resultType), new NullProgressMonitor());
 			out.printf("%s(", codeFragment.getName());
 			doSwitch(scalarExpression);
 			out.print(", &(");
 			doSwitch(arrayExpression);
-			out.printf(").data[0], %d)", TypeUtil.getArraySize(arrayType));
+			out.print(").data[0])");
 			return true;
 		}
 
@@ -388,23 +383,32 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (value instanceof IArrayValue) {
 				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
 			} else {
-				ArrayConstructionFunction codeFragment = (ArrayConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (ArrayType) value.getDataType())), new NullProgressMonitor());
+				ArrayType arrayType = (ArrayType) value.getDataType();
+				ArrayConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), arrayType)), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
-				boolean first = true;
-				for (Expression expression : arrayConstructionOperator.getExpressions()) {
-					if (first) {
-						first = false;
-					} else {
-						out.print(", ");
-					}
-					doSwitch(expression);
-				}
+				generateConstructArrayDimension(arrayType, 0, arrayConstructionOperator.getExpressions());
 				out.print(")");
 			}
 			return true;
 		}
 		
+		private void generateConstructArrayDimension(ArrayType arrayType, int dimension, List<Expression> expressions) {
+			boolean first = true;
+			for (Expression expression : expressions) {
+				if (first) {
+					first = false;
+				} else {
+					out.print(", ");
+				}
+				if (dimension == arrayType.getDimensionality() - 1) {
+					doSwitch(expression);
+				} else {
+					generateConstructArrayDimension(arrayType, dimension + 1, ((ArrayConstructionOperator) expression).getExpressions());
+				}
+			}
+		}
+
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
 		 */

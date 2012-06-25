@@ -18,8 +18,8 @@ import java.util.Arrays;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -29,14 +29,14 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 public class MachineArrayType extends MachineDataType {
 
 	private final MachineDataType elementType;
-	private final int[] dimensions;
+	private final int[] dimensionSizes;
 	
 	/**
 	 * 
 	 */
-	MachineArrayType(MachineDataType elementType, int[] dimensions) {
+	MachineArrayType(MachineDataType elementType, int[] dimensionSizes) {
 		this.elementType = elementType;
-		this.dimensions = dimensions;
+		this.dimensionSizes = dimensionSizes;
 	}
 	
 	/**
@@ -46,8 +46,24 @@ public class MachineArrayType extends MachineDataType {
 		return elementType;
 	}
 	
-	public int getDimension(int index) {
-		return dimensions[index];
+	public boolean isNumeric() {
+		return elementType instanceof MachineNumericType;
+	}
+	
+	public MachineNumericType getNumericElementType() {
+		return (MachineNumericType) getElementType();
+	}
+	
+	public int getDimensionality() {
+		return dimensionSizes.length;
+	}
+	
+	public int[] getDimensionSizes() {
+		return dimensionSizes;
+	}
+
+	public int getDimensionSize(int index) {
+		return dimensionSizes[index];
 	}
 	
 	@Override
@@ -72,7 +88,7 @@ public class MachineArrayType extends MachineDataType {
 	 */
 	@Override
 	public int hashCode() {
-		return super.hashCode() ^ elementType.hashCode() ^ Arrays.hashCode(dimensions);
+		return super.hashCode() ^ elementType.hashCode() ^ Arrays.hashCode(dimensionSizes);
 	}
 	
 	/* (non-Javadoc)
@@ -82,7 +98,7 @@ public class MachineArrayType extends MachineDataType {
 	public boolean equals(Object obj) {
 		if (obj instanceof MachineArrayType) {
 			MachineArrayType other = (MachineArrayType) obj;
-			return other.elementType.equals(elementType) && Arrays.equals(other.dimensions, dimensions);
+			return other.elementType.equals(elementType) && Arrays.equals(other.dimensionSizes, dimensionSizes);
 		}
 		return super.equals(obj);
 	}

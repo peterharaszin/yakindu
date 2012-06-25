@@ -239,7 +239,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (DataTypeSpecifier dataTypeSpecifier : check.getOutputParameterTypes()) {
 					IValue value = staticEvaluationResult.getValue(outputParameterIt.next());
-					if (!(value instanceof InvalidValue) && !dataTypeSpecifier.getType().isEquivalentTo(value.getDataType())) {
+					if (value != null && !(value instanceof InvalidValue) && !dataTypeSpecifier.getType().isEquivalentTo(value.getDataType())) {
 						error("Check does not return specified data type", dataTypeSpecifier, null, -1);
 					}
 				}

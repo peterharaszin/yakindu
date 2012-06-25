@@ -13,6 +13,9 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
 import com.google.inject.Inject
 import com.google.inject.assistedinject.Assisted
+import java.util.ArrayList
+import java.util.Collections
+import java.util.List
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector
@@ -21,6 +24,7 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
+import static org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction.*
 
 /**
  * @author Andreas Unger
@@ -34,7 +38,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	String typeName
 	String name
 	
-	String functionSignature
+	CharSequence functionSignature
 	
 	@Inject
 	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType arrayType) {
@@ -54,9 +58,17 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 
 		val codeFragmentCollector = context.codeFragmentCollector
 		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(computationModel, arrayType), monitor)
+		val preferredName = switch (arrayType.dimensionality) {
+		case 1:
+			"newVector"
+		case 2:
+			"newMatrix"
+		default:
+			"newArray"
+		}
 
 		typeName = arrayTypeDeclaration.name
-		name = context.globalNameProvider.newGlobalName("newArray")
+		name = context.globalNameProvider.newGlobalName(preferredName)
 		functionSignature = generateFunctionSignature(codeFragmentCollector)
 	}
 
@@ -74,19 +86,58 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	
 	override CharSequence generateImplementation(boolean internal) '''
 		«IF internal»static «ENDIF»«functionSignature» {
-			«typeName» a;
-			«FOR i : 0 .. arrayType.getDimension(0) - 1»
-				a.data[«i»] = e«i»;
-			«ENDFOR»
-			return a;
+			«typeName» «variableName»;
+			«generateArrayElementAssignments(0, Collections::emptyList)»
+			return «variableName»;
 		}
 	'''
 	
-	def private String generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
-		val indices = 0 .. arrayType.getDimension(0) - 1
+	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
 		val dataType = arrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
 		
-		'''«typeName» «name»(«FOR i : indices SEPARATOR ", "»«dataType» e«i»«ENDFOR»)'''
+		'''«typeName» «name»(«generateFunctionParameters(dataType, 0, Collections::emptyList)»)'''
+	}
+	
+	def private CharSequence generateFunctionParameters(CharSequence dataType, int dimension, List<Integer> previousIndices) {
+		val indices = 0 .. arrayType.getDimensionSize(dimension) - 1
+		if (dimension == arrayType.dimensionality - 1) {
+			'''«FOR i : indices SEPARATOR ", "»«dataType» e«concat(previousIndices, i).join("_")»«ENDFOR»'''
+		} else {
+			'''«FOR i : indices SEPARATOR ", "»«generateFunctionParameters(dataType, dimension + 1, concat(previousIndices, i))»«ENDFOR»'''
+		}
+	}
+	
+	def private CharSequence generateArrayElementAssignments(int dimension, List<Integer> previousIndices) {
+		val indices = 0 .. arrayType.getDimensionSize(dimension) - 1
+		'''
+			«IF dimension == arrayType.dimensionality - 1»
+				«FOR i : indices»
+					«variableName».data«FOR j : concat(previousIndices, i)»[«j»]«ENDFOR» = e«concat(previousIndices, i).join("_")»;
+				«ENDFOR»
+			«ELSE»
+				«FOR i : indices»
+					«generateArrayElementAssignments(dimension + 1, concat(previousIndices, i))»
+				«ENDFOR»
+			«ENDIF»
+		'''
+	}
+	
+	def private CharSequence getVariableName() {
+		switch (arrayType.dimensionality) {
+		case 1:
+			"v"
+		case 2:
+			"m"
+		default:
+			"a"
+		}
+	}
+	
+	def private static <T> List<T> concat(List<? extends T> collection, T element) {
+		val result = new ArrayList<T>(collection.size + 1)
+		result += collection
+		result += element
+		return result
 	}
 	
 	override int hashCode() {
@@ -100,5 +151,5 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 		}
 		return false
 	}
-
+	
 }

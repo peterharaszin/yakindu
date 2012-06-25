@@ -256,7 +256,7 @@ public class Generator extends AbstractGenerator {
 
 	private Map<Component, IComponentSignature> resolveDataTypes(IGeneratorContext context) throws CoreException {
 		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
-		if (!dataTypeResolverResult.getStatus().isOK()) {
+		if (dataTypeResolverResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(dataTypeResolverResult.getStatus());
 		}
 		return dataTypeResolverResult.getSignatures();

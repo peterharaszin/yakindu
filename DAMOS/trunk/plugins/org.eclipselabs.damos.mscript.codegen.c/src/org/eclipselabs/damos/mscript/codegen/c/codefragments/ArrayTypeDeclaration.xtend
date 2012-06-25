@@ -46,13 +46,30 @@ class ArrayTypeDeclaration extends AbstractCodeFragment {
 	
 	override initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 		elementType = arrayType.elementType.generateDataType(computationModel, context.codeFragmentCollector, this)
-		name = context.globalNameProvider.newGlobalName("Array")
+		val preferredName = switch (arrayType.dimensionality) {
+		case 1:
+			"Vector"
+		case 2:
+			"Matrix"
+		default:
+			"Array"
+		}
+		name = context.globalNameProvider.newGlobalName(preferredName)
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		typedef struct { «elementType» data[«arrayType.getDimension(0)»]; } «name»;
+		typedef struct { «elementType» data«FOR size : arrayType.dimensionSizes»[«size»]«ENDFOR»; } «name»;
 		«IF !internal»
-			#define «name.toUpperCase()»_SIZE «arrayType.getDimension(0)»
+			«IF arrayType.dimensionality == 1»
+				#define «name.toUpperCase()»_SIZE «arrayType.getDimensionSize(0)»
+			«ELSEIF arrayType.dimensionality == 2»
+				#define «name.toUpperCase()»_ROW_SIZE «arrayType.getDimensionSize(0)»
+				#define «name.toUpperCase()»_COLUMN_SIZE «arrayType.getDimensionSize(1)»
+			«ELSE»
+				«FOR i : 0 .. arrayType.dimensionality - 1»
+					#define «name.toUpperCase()»_SIZE«i» «arrayType.getDimensionSize(i)»
+				«ENDFOR»
+			«ENDIF»
 		«ENDIF»
 	'''
 	

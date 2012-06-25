@@ -14,14 +14,12 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ScalarVectorMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IArrayConstructionFunctionFactory;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IArrayLiteralDeclarationFactory;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IArrayTypeDeclarationFactory;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IScalarMultiplyFunctionFactory;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IStructConstructionFunctionFactory;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IStructLiteralDeclarationFactory;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IStructTypeDeclarationFactory;
@@ -44,7 +42,6 @@ public class MscriptCodegenCModule extends AbstractModule {
 		buildIArrayConstructionFunctionFactory();
 		buildIArrayLiteralDeclarationFactory();
 		buildIArrayTypeDeclarationFactory();
-		buildIScalarMultiplyFunctionFactory();
 		buildIStructConstructionFunctionFactory();
 		buildIStructLiteralDeclarationFactory();
 		buildIStructTypeDeclarationFactory();
@@ -73,10 +70,6 @@ public class MscriptCodegenCModule extends AbstractModule {
 
 	protected void buildIArrayTypeDeclarationFactory() {
 		install(new FactoryModuleBuilder().implement(ICodeFragment.class, ArrayTypeDeclaration.class).build(IArrayTypeDeclarationFactory.class));
-	}
-
-	protected void buildIScalarMultiplyFunctionFactory() {
-		install(new FactoryModuleBuilder().implement(ICodeFragment.class, ScalarVectorMultiplyFunction.class).build(IScalarMultiplyFunctionFactory.class));
 	}
 
 	protected void buildIStructConstructionFunctionFactory() {

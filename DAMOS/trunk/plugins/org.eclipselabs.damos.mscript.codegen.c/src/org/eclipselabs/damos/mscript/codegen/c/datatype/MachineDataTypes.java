@@ -55,11 +55,11 @@ public class MachineDataTypes {
 	}
 
 	public static MachineArrayType create(ComputationModel computationModel, ArrayType arrayType) {
-		int[] dimensions = new int[arrayType.getDimensionality()];
-		for (int i = 0; i < dimensions.length; ++i) {
-			dimensions[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
+		int[] dimensionSizes = new int[arrayType.getDimensionality()];
+		for (int i = 0; i < dimensionSizes.length; ++i) {
+			dimensionSizes[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
 		}
-		return new MachineArrayType(create(computationModel, arrayType.getElementType()), dimensions);
+		return new MachineArrayType(create(computationModel, arrayType.getElementType()), dimensionSizes);
 	}
 
 	public static MachineStructType create(ComputationModel computationModel, StructType structType) {

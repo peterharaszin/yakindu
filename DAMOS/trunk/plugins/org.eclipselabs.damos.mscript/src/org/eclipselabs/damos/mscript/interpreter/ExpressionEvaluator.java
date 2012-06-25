@@ -128,8 +128,15 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseLetExpression(LetExpression letExpression) {
+			if (letExpression.getTarget() == null) {
+				return InvalidValue.SINGLETON;
+			}
 			for (LetExpressionAssignment assignment : letExpression.getAssignments()) {
-				IValue value = evaluate(assignment.getAssignedExpression());
+				Expression assignedExpression = assignment.getAssignedExpression();
+				if (assignedExpression == null) {
+					return InvalidValue.SINGLETON;
+				}
+				IValue value = evaluate(assignedExpression);
 				context.processValue(assignment.getVariables().get(0), value);
 			}
 			return evaluate(letExpression.getTarget());
@@ -140,6 +147,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseIfExpression(IfExpression ifExpression) {
+			if (ifExpression.getCondition() == null || ifExpression.getThenExpression() == null || ifExpression.getElseExpression() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			if (ifExpression.isStatic()) {
 				context.enterStaticScope();
 			}
@@ -333,6 +344,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseImpliesExpression(ImpliesExpression impliesExpression) {
+			if (impliesExpression.getLeftOperand() == null || impliesExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue leftValue = evaluate(impliesExpression.getLeftOperand());
 
 			if (leftValue instanceof InvalidValue) {
@@ -385,6 +400,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseLogicalOrExpression(LogicalOrExpression logicalOrExpression) {
+			if (logicalOrExpression.getLeftOperand() == null || logicalOrExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue leftValue = evaluate(logicalOrExpression.getLeftOperand());
 
 			if (leftValue instanceof InvalidValue) {
@@ -437,6 +456,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseLogicalAndExpression(LogicalAndExpression logicalAndExpression) {
+			if (logicalAndExpression.getLeftOperand() == null || logicalAndExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue leftValue = evaluate(logicalAndExpression.getLeftOperand());
 
 			if (leftValue instanceof InvalidValue) {
@@ -489,6 +512,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseEqualityExpression(EqualityExpression equalityExpression) {
+			if (equalityExpression.getLeftOperand() == null || equalityExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue leftValue = evaluate(equalityExpression.getLeftOperand());
 			IValue rightValue = evaluate(equalityExpression.getRightOperand());
 
@@ -522,6 +549,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseRelationalExpression(RelationalExpression relationalExpression) {
+			if (relationalExpression.getLeftOperand() == null || relationalExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+
 			IValue leftValue = evaluate(relationalExpression.getLeftOperand());
 			IValue rightValue = evaluate(relationalExpression.getRightOperand());
 
@@ -561,6 +592,9 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseTypeTestExpression(TypeTestExpression typeTestExpression) {
+			if (typeTestExpression.getExpression() == null || typeTestExpression.getTypeSpecifier() == null) {
+				return InvalidValue.SINGLETON;
+			}
 			IValue value = evaluate(typeTestExpression.getExpression());
 			if (value instanceof InvalidValue) {
 				return value;
@@ -574,6 +608,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseAdditiveExpression(AdditiveExpression additiveExpression) {
+			if (additiveExpression.getLeftOperand() == null || additiveExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue leftValue = evaluate(additiveExpression.getLeftOperand());
 			IValue rightValue = evaluate(additiveExpression.getRightOperand());
 
@@ -608,6 +646,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
+			if (multiplicativeExpression.getLeftOperand() == null || multiplicativeExpression.getRightOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+
 			IValue leftValue = evaluate(multiplicativeExpression.getLeftOperand());
 			IValue rightValue = evaluate(multiplicativeExpression.getRightOperand());
 
@@ -645,6 +687,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseUnaryExpression(UnaryExpression unaryExpression) {
+			if (unaryExpression.getOperand() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue operandValue = evaluate(unaryExpression.getOperand());
 			if (operandValue instanceof InvalidValue) {
 				return operandValue;
@@ -696,6 +742,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				}
 				
 				ArrayConstructionIterationClause clause = arrayConstructionOperator.getIterationClauses().get(0);
+				
+				if (clause.getCollectionExpression() == null || clause.getIterationVariable() == null) {
+					return InvalidValue.SINGLETON;
+				}
 				
 				IValue collectionValue = evaluate(clause.getCollectionExpression());
 				if (collectionValue instanceof InvalidValue) {
@@ -893,6 +943,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			{
 				int i = 0;
 				for (StructConstructionMember constructionMember : structConstructionOperator.getMembers()) {
+					if (constructionMember.getValue() == null) {
+						return InvalidValue.SINGLETON;
+					}
+					
 					IValue value = evaluate(constructionMember.getValue());
 
 					if (value instanceof InvalidValue) {
@@ -931,6 +985,9 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseUnitConstructionOperator(UnitConstructionOperator unitConstructionOperator) {
+			if (unitConstructionOperator.getUnit() == null) {
+				return InvalidValue.SINGLETON;
+			}
 			Unit unit = null;
 			if (unitConstructionOperator.getUnit().getNumerator() != null) {
 				unit = EcoreUtil.copy(unitConstructionOperator.getUnit());
@@ -943,6 +1000,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue casePowerExpression(PowerExpression powerExpression) {
+			if (powerExpression.getOperand() == null || powerExpression.getExponent() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue operandValue = evaluate(powerExpression.getOperand());
 			IValue exponentValue = evaluate(powerExpression.getExponent());
 
@@ -1030,6 +1091,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
+			if (arrayElementAccess.getArray() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue value = evaluate(arrayElementAccess.getArray());
 			if (value instanceof InvalidValue) {
 				return InvalidValue.SINGLETON;
@@ -1068,6 +1133,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			
 			for (int i = 0; i < sliceIndices.length; ++i) {
 				Expression sizeExpression = dimensions.get(i).getSize();
+				if (sizeExpression == null) {
+					return InvalidValue.SINGLETON;
+				}
+				
 				IValue sizeValue = context.getValue(sizeExpression);
 				
 				// TODO: This has to be redesigned
@@ -1216,6 +1285,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
+			if (memberVariableAccess.getTarget() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue value = evaluate(memberVariableAccess.getTarget());
 			if (value instanceof InvalidValue) {
 				return InvalidValue.SINGLETON;
@@ -1286,6 +1359,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
+			if (iterationCall.getTarget() == null) {
+				return InvalidValue.SINGLETON;
+			}
+			
 			IValue targetValue = evaluate(iterationCall.getTarget());
 			if (targetValue instanceof InvalidValue) {
 				return InvalidValue.SINGLETON;

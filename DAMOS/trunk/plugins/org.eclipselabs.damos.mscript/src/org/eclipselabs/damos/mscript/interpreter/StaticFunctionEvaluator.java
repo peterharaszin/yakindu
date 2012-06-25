@@ -174,7 +174,10 @@ public class StaticFunctionEvaluator {
 		do {
 			changed = false;
 			for (EquationDescriptor equationDescriptor : sortedEquations) {
-				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), equationDescriptor.getRightHandSide().getExpression());
+				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), equationDescriptor.getRightHandSide().getExpression());
+				if (value instanceof InvalidValue) {
+					continue;
+				}
 				
 				boolean derivative = false;
 				Expression leftHandSideExpression = equationDescriptor.getLeftHandSide().getExpression();
@@ -208,9 +211,9 @@ public class StaticFunctionEvaluator {
 						if (previousDataType == null || !previousDataType.isEquivalentTo(dataType)) {
 							changed = true;
 						}
-						AnyValue value = new AnyValue(result.getComputationContext(), dataType);
-						result.setValue(variableReference, value);
-						result.setValue(variableReference.getFeature(), value);
+						AnyValue anyValue = new AnyValue(result.getComputationContext(), dataType);
+						result.setValue(variableReference, anyValue);
+						result.setValue(variableReference.getFeature(), anyValue);
 					} else {
 						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 								"The data type of the variable " + variableReference.getFeature().getName()

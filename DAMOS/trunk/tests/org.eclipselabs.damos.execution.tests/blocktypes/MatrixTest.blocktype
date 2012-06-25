@@ -1,0 +1,23 @@
+package damos.tests
+
+blockType MatrixTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	function main(a, b) -> y1, y2 {
+		check(int, int) -> int[3, 2], int[3, 2]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y1 = { { a, b }, { 16, b }, { a, 19 } }
+		eq y2 = { { 21, 15 }, { 13, 18 }, { 34, 47 } }
+	}
+
+}

@@ -36,6 +36,13 @@ public class MachineNumericType extends MachineDataType {
 		this.numberFormat = numberFormat;
 	}
 	
+	/**
+	 * @return the numberFormat
+	 */
+	public NumberFormat getNumberFormat() {
+		return numberFormat;
+	}
+	
 	@Override
 	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		if (numberFormat instanceof FloatingPointFormat) {

@@ -18,9 +18,9 @@ blockType VectorScalarMultiply {
 			error "Gain must be real value"
 
 		static assert x is real()[] :
-			error "X must be real value"
+			error "X must be real[] value"
 
-		eq y = x * gain1 * gain2
+		eq y = gain1 * x * gain2
 	}
 
 }

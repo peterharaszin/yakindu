@@ -120,16 +120,22 @@ public class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
     _builder.append(this.resultTypeText, "	");
     _builder.append(" result;");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("int ");
     {
       Iterable<String> _indexVariables_1 = this.getIndexVariables();
+      boolean _hasElements = false;
       for(final String indexVariable : _indexVariables_1) {
-        _builder.append("\t");
-        _builder.append("int ");
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "	");
+        }
         _builder.append(indexVariable, "	");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
     Iterable<String> _indexVariables_2 = this.getIndexVariables();
     Iterator<String> _iterator = _indexVariables_2.iterator();

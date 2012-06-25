@@ -48,6 +48,7 @@ import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayScalarMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
@@ -134,7 +135,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
 			try {
-				writeCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
+				generateCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
 			} catch (IOException e) {
 				throw new WrappedException(e);
 			}
@@ -147,14 +148,14 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseRelationalExpression(RelationalExpression relationalExpression) {
 			try {
-				writeCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
+				generateCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
 			} catch (IOException e) {
 				throw new WrappedException(e);
 			}
 			return true;
 		}
 		
-		private void writeCompareExpression(Expression leftOperand, Expression rightOperand, String operator) throws IOException {
+		private void generateCompareExpression(Expression leftOperand, Expression rightOperand, String operator) throws IOException {
 			DataType leftDataType = getDataType(leftOperand);
 			DataType rightDataType = getDataType(rightOperand);
 			
@@ -208,10 +209,14 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
 			
 			if (leftDataType instanceof NumericType && TypeUtil.isNumericArray(rightDataType)) {
-				return writeScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+				return generateScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
 			if (TypeUtil.isNumericArray(leftDataType) && rightDataType instanceof NumericType) {
-				return writeScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+				return generateScalarMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getRightOperand(), multiplicativeExpression.getLeftOperand());
+			}
+			
+			if (TypeUtil.isNumericMatrix(leftDataType) && TypeUtil.isNumericMatrix(rightDataType)) {
+				return generateMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
 			
 			NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
@@ -225,7 +230,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 
-		private Boolean writeScalarMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
+		private Boolean generateScalarMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
 				Expression arrayExpression) {
 			MachineNumericType scalarType = MachineDataTypes.create(context.getComputationModel(), (NumericType) getDataType(scalarExpression));
 			MachineArrayType arrayType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(arrayExpression));
@@ -235,6 +240,20 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			doSwitch(scalarExpression);
 			out.print(", &(");
 			doSwitch(arrayExpression);
+			out.print(").data[0])");
+			return true;
+		}
+
+		private Boolean generateMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression leftMatrixExpression,
+				Expression rightMatrixExpression) {
+			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(leftMatrixExpression));
+			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(rightMatrixExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
+			MatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixMultiplyFunction(context.getComputationModel(), leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
+			out.printf("%s(&(", codeFragment.getName());
+			doSwitch(leftMatrixExpression);
+			out.print(").data[0], &(");
+			doSwitch(rightMatrixExpression);
 			out.print(").data[0])");
 			return true;
 		}

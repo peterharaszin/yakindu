@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
 import com.google.inject.Inject
 import com.google.inject.assistedinject.Assisted
-import java.util.Iterator
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.OperatorKind
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
@@ -22,7 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerato
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
@@ -31,18 +29,18 @@ import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
  * @author Andreas Unger
  *
  */
-class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
+class VectorMatrixMultiplyFunction extends AbstractCodeFragment {
 	
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
 	val ComputationModel computationModel
 	
-	val MachineNumericType scalarType
-	val MachineArrayType arrayType
+	val MachineArrayType vectorType
+	val MachineArrayType matrixType
 	val MachineArrayType resultType
 
-	CharSequence scalarTypeText
-	CharSequence elementTypeText
+	CharSequence vectorElementTypeText
+	CharSequence matrixElementTypeText
 	CharSequence resultTypeText
 	
 	String name
@@ -50,11 +48,11 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 	String functionBody
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineNumericType scalarType, @Assisted MachineArrayType arrayType, @Assisted MachineArrayType resultType) {
+	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType vectorType, @Assisted MachineArrayType matrixType, @Assisted MachineArrayType resultType) {
 		this.computationModel = computationModel
 		
-		this.scalarType = scalarType
-		this.arrayType = arrayType
+		this.vectorType = vectorType
+		this.matrixType = matrixType
 		this.resultType = resultType
 	}
 	
@@ -67,42 +65,28 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		scalarTypeText = scalarType.generateDataType(computationModel, codeFragmentCollector, this)
-		elementTypeText = arrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
+		vectorElementTypeText = vectorType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
+		matrixElementTypeText = matrixType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
 		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
-		val leftOperand = new TextualNumericExpressionOperand("scalar", scalarType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(arrayVariableName + indexVariables.map(["[" + it + "]"]).join(), arrayType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand("matrix[j][i]", matrixType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand("vector[j]", vectorType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		functionBody = '''
 			{
-				«resultTypeText» result;
-				int «FOR indexVariable : indexVariables SEPARATOR ", "»«indexVariable»«ENDFOR»;
-				«generateLoop(0, indexVariables.iterator, multiplyExpression)»
+				«resultTypeText» result = { 0 };
+				int i, j;
+				for (i = 0; i < «matrixType.columnSize»; ++i) {
+					for (j = 0; j < «matrixType.rowSize»; ++j) {
+						result.data[i] += «multiplyExpression»;
+					}
+				}
 				return result;
 			}
 		'''
-	}
-	
-	def private generateLoop(int dimension, Iterator<String> indexVariableIt, CharSequence multiplyExpression) '''
-		«IF dimension < arrayType.dimensionality»
-			«var indexVariable = indexVariableIt.next»
-			for («indexVariable» = 0; «indexVariable» < «arrayType.getDimensionSize(dimension)»; ++«indexVariable») {
-				«generateLoop(dimension + 1, indexVariableIt, multiplyExpression)»
-			}
-		«ELSE»
-			result.data«FOR indexVariable : indexVariables»[«indexVariable»]«ENDFOR» = «multiplyExpression»;
-		«ENDIF»
-	'''
-	
-	def private getIndexVariables() {
-		if (arrayType.dimensionality <= 4) {
-			return newArrayList("i", "j", "k", "l").take(arrayType.dimensionality);
-		}
-		return (0 .. arrayType.dimensionality - 1).map(["i" + it])
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
@@ -118,28 +102,17 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 	'''
 	
 	def private CharSequence generateFunctionSignature(boolean internal) '''
-		«IF internal»static «ENDIF»«resultTypeText» «name»(«scalarTypeText» scalar, «elementTypeText» «arrayVariableName»«FOR size : arrayType.dimensionSizes»[«size»]«ENDFOR»)'''
+		«IF internal»static «ENDIF»«resultTypeText» «name»(«vectorElementTypeText» vector[«vectorType.size»], «matrixElementTypeText» matrix[«matrixType.rowSize»][«matrixType.columnSize»])'''
 
-	def private getArrayVariableName() {
-		switch (arrayType.dimensionality) {
-		case 1:
-			"vector"
-		case 2:
-			"matrix"
-		default:
-			"array"
-		}
-	}
-	
 	override int hashCode() {
-		return ^class.hashCode.bitwiseXor(scalarType.hashCode).bitwiseXor(arrayType.hashCode).bitwiseXor(resultType.hashCode)
+		return ^class.hashCode.bitwiseXor(matrixType.hashCode).bitwiseXor(vectorType.hashCode).bitwiseXor(resultType.hashCode)
 	}
 	
 	override boolean equals(Object obj) {
-		if (obj instanceof ArrayScalarMultiplyFunction) {
-			val other = obj as ArrayScalarMultiplyFunction
-			return other.scalarType == scalarType
-					&& other.arrayType == arrayType
+		if (obj instanceof VectorMatrixMultiplyFunction) {
+			val other = obj as VectorMatrixMultiplyFunction
+			return other.matrixType == matrixType
+					&& other.vectorType == vectorType
 					&& other.resultType == resultType
 		}
 		return false;

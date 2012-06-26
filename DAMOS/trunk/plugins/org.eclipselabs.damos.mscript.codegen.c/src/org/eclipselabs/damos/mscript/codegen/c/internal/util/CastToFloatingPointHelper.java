@@ -12,35 +12,35 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 public class CastToFloatingPointHelper {
 	
 	public static final CastToFloatingPointHelper INSTANCE = new CastToFloatingPointHelper();
 
-	public CharSequence cast(FloatingPointFormat targetFloatingPointFormat, NumericExpressionInfo expression) {
+	public CharSequence cast(CharSequence expression, NumberFormat numberFormat, FloatingPointFormat targetFloatingPointFormat) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		if (expression.getNumberFormat() instanceof FloatingPointFormat) {
-			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) expression.getNumberFormat();
+		if (numberFormat instanceof FloatingPointFormat) {
+			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
-				out.print(expression.getText());
+				out.print(expression);
 			} else {
 				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
-				out.print(expression.getText());
+				out.print(expression);
 				out.print("))");
 			}
-		} else if (expression.getNumberFormat() instanceof FixedPointFormat) {
-			FixedPointFormat fixedPointFormat = (FixedPointFormat) expression.getNumberFormat();
+		} else if (numberFormat instanceof FixedPointFormat) {
+			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			if (fixedPointFormat.getFractionLength() > 0) {
 				out.printf("((%s) ((", getCDataType(targetFloatingPointFormat));
-				out.print(expression.getText());
+				out.print(expression);
 				out.printf(") * pow(2, -%d)))", fixedPointFormat.getFractionLength());
 			} else {
 				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
-				out.print(expression.getText());
+				out.print(expression);
 				out.print("))");
 			}
 		}

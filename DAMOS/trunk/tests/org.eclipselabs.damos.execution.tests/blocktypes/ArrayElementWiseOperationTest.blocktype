@@ -1,0 +1,23 @@
+package damos.tests
+
+blockType ArrayElementWiseOperationTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	function main(a, b) -> y1, y2 {
+		check(int, int) -> int[3], int[3, 2]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y1 = { 10, a, 30 } + { 1, 2.1, b } - { a, 7, 9 }
+		eq y2 = { { 10, a }, { 30, 40 }, { 50, 60 } } + { { 1, 2.1 }, { b, 3 }, { 2, 4 } } - { { a, 7 }, { 3, 3 }, { 1, 2 } }
+	}
+
+}

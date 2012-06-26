@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c;
 
 import org.eclipselabs.damos.codegen.c.gtests.ActionTest;
 import org.eclipselabs.damos.codegen.c.gtests.AndTest;
+import org.eclipselabs.damos.codegen.c.gtests.ArrayElementWiseOperationTest;
 import org.eclipselabs.damos.codegen.c.gtests.ArrayTest;
 import org.eclipselabs.damos.codegen.c.gtests.DoWhileLoopTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainFixedPointTest;
@@ -23,9 +24,11 @@ import org.eclipselabs.damos.codegen.c.gtests.IntegratorTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixTest;
+import org.eclipselabs.damos.codegen.c.gtests.MatrixVectorMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
 import org.eclipselabs.damos.codegen.c.gtests.StructConstructionTest;
 import org.eclipselabs.damos.codegen.c.gtests.StructTest;
+import org.eclipselabs.damos.codegen.c.gtests.VectorMatrixMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorTest;
 import org.eclipselabs.damos.codegen.c.gtests.WhileLoopTest;
@@ -50,9 +53,12 @@ import org.junit.runners.Suite.SuiteClasses;
 	DoWhileLoopTest.class,
 	WhileLoopTest.class,
 	ArrayTest.class,
+	ArrayElementWiseOperationTest.class,
 	VectorTest.class,
+	VectorMatrixMultiplyTest.class,
 	MatrixTest.class,
 	MatrixMultiplyTest.class,
+	MatrixVectorMultiplyTest.class,
 	VectorScalarMultiplyTest.class,
 	MatrixScalarMultiplyTest.class,
 	StructTest.class,

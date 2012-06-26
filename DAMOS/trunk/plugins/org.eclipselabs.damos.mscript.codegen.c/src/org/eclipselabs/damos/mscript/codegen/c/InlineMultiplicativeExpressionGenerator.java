@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 
 /**
@@ -21,13 +20,13 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  */
 public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeExpressionGenerator {
 	
-	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
 		StringBuilder appendable = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(appendable);
 		
-		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
-		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
-	
+		FixedPointFormat intermediateNumberFormat = getIntermediateNumberFormat(targetNumberFormat);
+		boolean hasIntermediateWordSize = intermediateNumberFormat != targetNumberFormat;
+		
 		if (hasIntermediateWordSize) {
 			out.printf("(int%d_t) ", targetNumberFormat.getWordSize());
 		}
@@ -36,7 +35,7 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 			out.print("(");
 		}
 		
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
+		out.print(leftOperand.generate(intermediateNumberFormat));
 		
 		out.print(" * ");
 		
@@ -44,7 +43,7 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 			out.print("(");
 		}
 
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
+		out.print(rightOperand.generate(intermediateNumberFormat));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") >> %d", targetNumberFormat.getFractionLength());
@@ -57,12 +56,12 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 		return appendable;
 	}
 
-	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 
-		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
-		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
+		FixedPointFormat intermediateNumberFormat = getIntermediateNumberFormat(targetNumberFormat);
+		boolean hasIntermediateWordSize = intermediateNumberFormat != targetNumberFormat;
 	
 		if (hasIntermediateWordSize) {
 			out.printf("(int%d_t) (", targetNumberFormat.getWordSize());
@@ -72,7 +71,7 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 			out.print("((");
 		}
 
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
+		out.print(leftOperand.generate(intermediateNumberFormat));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -80,7 +79,7 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 
 		out.print(" / ");
 		
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
+		out.print(rightOperand.generate(intermediateNumberFormat));
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");
@@ -88,12 +87,5 @@ public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeE
 		
 		return sb;
 	}
-
-	private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {
-		if (fixedPointFormat.getFractionLength() != 0) {
-			return 2 * fixedPointFormat.getWordSize();
-		}
-		return fixedPointFormat.getWordSize();
-	}
-
+	
 }

@@ -12,10 +12,12 @@ import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
+import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -67,11 +69,11 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 		} else {
 			NumberFormat outputNumberFormat = getComputationModel().getNumberFormat(outputDataType);
 			sb.append(outputVariable).append(" = ");
-
+			
 			CharSequence leftOperandText = new StringBuilder().append("analogRead(").append(Integer.toString(getPinIndex())).append(")");
-			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, leftOperandText);
+			INumericExpressionOperand leftOperand = new TextualNumericExpressionOperand(leftOperandText, ComputationModelUtil.createFixedPointFormat(PredefinedFixedPointFormatKind.UINT16));
 			CharSequence rightOperandText = Integer.toString(getAnalogRange());
-			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, rightOperandText);
+			INumericExpressionOperand rightOperand = new TextualNumericExpressionOperand(rightOperandText, ComputationModelUtil.createFixedPointFormat(PredefinedFixedPointFormatKind.UINT16));
 			sb.append(multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), OperatorKind.DIVIDE, outputNumberFormat, leftOperand, rightOperand));
 			sb.append(";\n");
 		}

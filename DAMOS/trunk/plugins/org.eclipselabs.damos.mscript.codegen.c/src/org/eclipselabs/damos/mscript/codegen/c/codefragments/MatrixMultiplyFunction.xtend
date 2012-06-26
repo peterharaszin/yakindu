@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo
+import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
@@ -71,17 +71,17 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
-		val leftOperand = NumericExpressionInfo::create(leftMatrixType.numericElementType.numberFormat, "leftMatrix[i][j]");
-		val rightOperand = NumericExpressionInfo::create(rightMatrixType.numericElementType.numberFormat, "rightMatrix[j][k]");
+		val leftOperand = new TextualNumericExpressionOperand("leftMatrix[i][j]", leftMatrixType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand("rightMatrix[j][k]", rightMatrixType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		functionBody = '''
 			{
 				«resultTypeText» result = { 0 };
 				int k, i, j;
-				for (k = 0; k < «rightMatrixType.getDimensionSize(1)»; ++k) {
-					for (i = 0; i < «leftMatrixType.getDimensionSize(0)»; ++i) {
-						for (j = 0; j < «leftMatrixType.getDimensionSize(1)»; ++j) {
+				for (k = 0; k < «rightMatrixType.columnSize»; ++k) {
+					for (i = 0; i < «leftMatrixType.rowSize»; ++i) {
+						for (j = 0; j < «leftMatrixType.columnSize»; ++j) {
 							result.data[i][k] += «multiplyExpression»;
 						}
 					}
@@ -104,7 +104,7 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 	'''
 	
 	def private CharSequence generateFunctionSignature(boolean internal) '''
-		«IF internal»static «ENDIF»«resultTypeText» «name»(«leftMatrixElementTypeText» leftMatrix[«leftMatrixType.getDimensionSize(0)»][«leftMatrixType.getDimensionSize(1)»], «rightMatrixElementTypeText» rightMatrix[«rightMatrixType.getDimensionSize(0)»][«rightMatrixType.getDimensionSize(1)»])'''
+		«IF internal»static «ENDIF»«resultTypeText» «name»(«leftMatrixElementTypeText» leftMatrix[«leftMatrixType.rowSize»][«leftMatrixType.columnSize»], «rightMatrixElementTypeText» rightMatrix[«rightMatrixType.rowSize»][«rightMatrixType.columnSize»])'''
 
 	override int hashCode() {
 		return ^class.hashCode.bitwiseXor(leftMatrixType.hashCode).bitwiseXor(rightMatrixType.hashCode).bitwiseXor(resultType.hashCode)

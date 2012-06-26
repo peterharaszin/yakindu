@@ -66,6 +66,18 @@ public class MachineArrayType extends MachineDataType {
 		return dimensionSizes[index];
 	}
 	
+	public int getSize() {
+		return dimensionSizes[0];
+	}
+	
+	public int getRowSize() {
+		return dimensionSizes[0];
+	}
+	
+	public int getColumnSize() {
+		return dimensionSizes[1];
+	}
+
 	@Override
 	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		final ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector

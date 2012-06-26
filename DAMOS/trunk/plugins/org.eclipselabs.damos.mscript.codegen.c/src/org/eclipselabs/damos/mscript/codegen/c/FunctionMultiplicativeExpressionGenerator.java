@@ -16,7 +16,6 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 
 /**
@@ -25,26 +24,26 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
  */
 public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativeExpressionGenerator {
 	
-	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		
 		out.printf("Mscript_mulfix%d_%d(", targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength());
-		out.print(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, leftOperand));
+		out.print(leftOperand.generate(targetNumberFormat));
 		out.print(", ");
-		out.print(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, rightOperand));
+		out.print(rightOperand.generate(targetNumberFormat));
 		out.print(")");
 		
 		codeFragmentCollector.addCodeFragment(new MultiplyFunctionCodeFragment(targetNumberFormat.getIntegerLength(), targetNumberFormat.getFractionLength()), new NullProgressMonitor());
 		return sb;
 	}
 
-	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, NumericExpressionInfo leftOperand, NumericExpressionInfo rightOperand) {
+	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 
-		int intermediateWordSize = getIntermediateWordSize(targetNumberFormat);
-		boolean hasIntermediateWordSize = intermediateWordSize != targetNumberFormat.getWordSize();
+		FixedPointFormat intermediateNumberFormat = getIntermediateNumberFormat(targetNumberFormat);
+		boolean hasIntermediateWordSize = intermediateNumberFormat != targetNumberFormat;
 	
 		if (hasIntermediateWordSize) {
 			out.printf("(int%d_t) (", targetNumberFormat.getWordSize());
@@ -54,7 +53,7 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 			out.print("((");
 		}
 
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), leftOperand));
+		out.print(leftOperand.generate(intermediateNumberFormat));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
 			out.printf(") << %d)", targetNumberFormat.getFractionLength());
@@ -62,7 +61,7 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 
 		out.print(" / ");
 		
-		out.print(CastToFixedPointHelper.INSTANCE.cast(intermediateWordSize, targetNumberFormat.getFractionLength(), rightOperand));
+		out.print(rightOperand.generate(intermediateNumberFormat));
 		
 		if (hasIntermediateWordSize) {
 			out.print(")");
@@ -71,13 +70,6 @@ public class FunctionMultiplicativeExpressionGenerator extends BaseMultiplicativ
 		return sb;
 	}
 
-	private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {
-		if (fixedPointFormat.getFractionLength() != 0) {
-			return 2 * fixedPointFormat.getWordSize();
-		}
-		return fixedPointFormat.getWordSize();
-	}
-	
 	private static class MultiplyFunctionCodeFragment extends AbstractCodeFragment {
 		
 		private final int integerLength;

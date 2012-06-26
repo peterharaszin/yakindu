@@ -133,7 +133,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	def generateAssignedExpression(IMscriptGeneratorContext context, DataType targetDataType, Expression expression) {
 		if (targetDataType instanceof NumericType) {
 			val numberFormat = context.computationModel.getNumberFormat(targetDataType);
-			return MscriptGeneratorUtil::castNumericType(context, numberFormat, expression);
+			return MscriptGeneratorUtil::castNumericType(context, expression, numberFormat);
 		}
 		return expressionGenerator.generate(context, expression);
 	}

@@ -147,7 +147,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	override boolean equals(Object obj) {
 		if (obj instanceof ArrayConstructionFunction) {
 			val other = obj as ArrayConstructionFunction
-			return other == arrayType
+			return other.arrayType == arrayType
 		}
 		return false
 	}

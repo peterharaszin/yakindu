@@ -25,14 +25,14 @@ public class NumericExpressionCaster {
 	
 	public static final NumericExpressionCaster INSTANCE = new NumericExpressionCaster();
 	
-	public CharSequence cast(NumberFormat targetNumberFormat, NumericExpressionInfo expression) {
+	public CharSequence cast(CharSequence expression, NumberFormat numberFormat, NumberFormat targetNumberFormat) {
 		if (targetNumberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) targetNumberFormat;
-			return CastToFloatingPointHelper.INSTANCE.cast(floatingPointFormat, expression);
+			return CastToFloatingPointHelper.INSTANCE.cast(expression, numberFormat, floatingPointFormat);
 		}
 		if (targetNumberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) targetNumberFormat;
-			return CastToFixedPointHelper.INSTANCE.cast(fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength(), expression);
+			return CastToFixedPointHelper.INSTANCE.cast(expression, numberFormat, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength());
 		}
 		throw new IllegalArgumentException();
 	}

@@ -12,13 +12,15 @@ import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
+import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -73,10 +75,10 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 			final NumberFormat inputNumberFormat = getComputationModel().getNumberFormat(inputDataType);
 			sb.append("analogWrite(").append(Integer.toString(pin)).append(", ");
 
-			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(inputNumberFormat, inputVariable);
-			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(PredefinedFixedPointFormatKind.UINT16, Integer.toString(getAnalogRange()));
+			INumericExpressionOperand leftOperand = new TextualNumericExpressionOperand(inputVariable, inputNumberFormat);
+			INumericExpressionOperand rightOperand = new TextualNumericExpressionOperand(Integer.toString(getAnalogRange()), ComputationModelUtil.createFixedPointFormat(PredefinedFixedPointFormatKind.UINT16));
 			CharSequence product = multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), OperatorKind.MULTIPLY, inputNumberFormat, leftOperand, rightOperand);
-			sb.append(NumericExpressionCaster.INSTANCE.cast(targetNumberFormat, NumericExpressionInfo.create(inputNumberFormat, product)));
+			sb.append(NumericExpressionCaster.INSTANCE.cast(product, inputNumberFormat, targetNumberFormat));
 
 			sb.append(");\n");
 		}

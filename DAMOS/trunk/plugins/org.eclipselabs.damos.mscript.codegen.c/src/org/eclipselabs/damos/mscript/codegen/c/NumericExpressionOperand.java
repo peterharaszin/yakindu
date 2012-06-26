@@ -11,16 +11,29 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IMultiplicativeExpressionGenerator {
+public class NumericExpressionOperand implements INumericExpressionOperand {
+	
+	private final IMscriptGeneratorContext context;
+	private final Expression expression;
+	
+	/**
+	 * 
+	 */
+	public NumericExpressionOperand(IMscriptGeneratorContext context, Expression expression) {
+		this.context = context;
+		this.expression = expression;
+	}
 
-	CharSequence generate(ICodeFragmentCollector codeFragmentCollector, OperatorKind operator,
-			NumberFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand);
+	public CharSequence generate(NumberFormat targetNumberFormat) {
+		return MscriptGeneratorUtil.castNumericType(context, expression, targetNumberFormat);
+	}
 
 }

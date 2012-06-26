@@ -24,7 +24,6 @@ import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -76,7 +75,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 			throw new IllegalArgumentException();
 		}
 		
-		return NumericExpressionCaster.INSTANCE.cast(resultNumberFormat, NumericExpressionInfo.create(argumentNumberFormat, text));
+		return NumericExpressionCaster.INSTANCE.cast(text, argumentNumberFormat, resultNumberFormat);
 	}
 	
 }

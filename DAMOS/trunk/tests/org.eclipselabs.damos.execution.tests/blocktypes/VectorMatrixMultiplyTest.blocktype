@@ -1,0 +1,21 @@
+package damos.tests
+
+blockType VectorMatrixMultiplyTest {
+
+	input a
+	input b
+	output y
+	
+	function main(a, b) -> y {
+		check(int, int) -> int[2]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y = { 1, a, 3 } * { { 4, 5.1 }, { 7, b }, { 9, 10 } }
+	}
+
+}

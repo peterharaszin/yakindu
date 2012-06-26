@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionInfo;
+import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataType;
@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class MatrixMultiplyFunction extends AbstractCodeFragment {
+public class VectorMatrixMultiplyFunction extends AbstractCodeFragment {
   private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new Function0<IMultiplicativeExpressionGenerator>() {
     public IMultiplicativeExpressionGenerator apply() {
       InlineMultiplicativeExpressionGenerator _inlineMultiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
@@ -38,15 +38,15 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
   
   private final ComputationModel computationModel;
   
-  private final MachineArrayType leftMatrixType;
+  private final MachineArrayType vectorType;
   
-  private final MachineArrayType rightMatrixType;
+  private final MachineArrayType matrixType;
   
   private final MachineArrayType resultType;
   
-  private CharSequence leftMatrixElementTypeText;
+  private CharSequence vectorElementTypeText;
   
-  private CharSequence rightMatrixElementTypeText;
+  private CharSequence matrixElementTypeText;
   
   private CharSequence resultTypeText;
   
@@ -55,10 +55,10 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
   private String functionBody;
   
   @Inject
-  public MatrixMultiplyFunction(@Assisted final ComputationModel computationModel, @Assisted final MachineArrayType leftMatrixType, @Assisted final MachineArrayType rightMatrixType, @Assisted final MachineArrayType resultType) {
+  public VectorMatrixMultiplyFunction(@Assisted final ComputationModel computationModel, @Assisted final MachineArrayType vectorType, @Assisted final MachineArrayType matrixType, @Assisted final MachineArrayType resultType) {
     this.computationModel = computationModel;
-    this.leftMatrixType = leftMatrixType;
-    this.rightMatrixType = rightMatrixType;
+    this.vectorType = vectorType;
+    this.matrixType = matrixType;
     this.resultType = resultType;
   }
   
@@ -78,23 +78,25 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
         }
     });
     final ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-    MachineDataType _elementType = this.leftMatrixType.getElementType();
+    MachineDataType _elementType = this.vectorType.getElementType();
     CharSequence _generateDataType = _elementType.generateDataType(this.computationModel, codeFragmentCollector, this);
-    this.leftMatrixElementTypeText = _generateDataType;
-    MachineDataType _elementType_1 = this.rightMatrixType.getElementType();
+    this.vectorElementTypeText = _generateDataType;
+    MachineDataType _elementType_1 = this.matrixType.getElementType();
     CharSequence _generateDataType_1 = _elementType_1.generateDataType(this.computationModel, codeFragmentCollector, this);
-    this.rightMatrixElementTypeText = _generateDataType_1;
+    this.matrixElementTypeText = _generateDataType_1;
     String _generateDataType_2 = this.resultType.generateDataType(this.computationModel, codeFragmentCollector, this);
     this.resultTypeText = _generateDataType_2;
     IGlobalNameProvider _globalNameProvider = context.getGlobalNameProvider();
     String _newGlobalName = _globalNameProvider.newGlobalName("multiply");
     this.name = _newGlobalName;
-    MachineNumericType _numericElementType = this.leftMatrixType.getNumericElementType();
+    MachineNumericType _numericElementType = this.matrixType.getNumericElementType();
     NumberFormat _numberFormat = _numericElementType.getNumberFormat();
-    final NumericExpressionInfo leftOperand = NumericExpressionInfo.create(_numberFormat, "leftMatrix[i][j]");
-    MachineNumericType _numericElementType_1 = this.rightMatrixType.getNumericElementType();
+    TextualNumericExpressionOperand _textualNumericExpressionOperand = new TextualNumericExpressionOperand("matrix[j][i]", _numberFormat);
+    final TextualNumericExpressionOperand leftOperand = _textualNumericExpressionOperand;
+    MachineNumericType _numericElementType_1 = this.vectorType.getNumericElementType();
     NumberFormat _numberFormat_1 = _numericElementType_1.getNumberFormat();
-    final NumericExpressionInfo rightOperand = NumericExpressionInfo.create(_numberFormat_1, "rightMatrix[j][k]");
+    TextualNumericExpressionOperand _textualNumericExpressionOperand_1 = new TextualNumericExpressionOperand("vector[j]", _numberFormat_1);
+    final TextualNumericExpressionOperand rightOperand = _textualNumericExpressionOperand_1;
     MachineNumericType _numericElementType_2 = this.resultType.getNumericElementType();
     NumberFormat _numberFormat_2 = _numericElementType_2.getNumberFormat();
     final CharSequence multiplyExpression = this.multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind.MULTIPLY, _numberFormat_2, leftOperand, rightOperand);
@@ -106,34 +108,25 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
     _builder.append(" result = { 0 };");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("int k, i, j;");
+    _builder.append("int i, j;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("for (k = 0; k < ");
-    int _dimensionSize = this.rightMatrixType.getDimensionSize(1);
-    _builder.append(_dimensionSize, "	");
-    _builder.append("; ++k) {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
     _builder.append("for (i = 0; i < ");
-    int _dimensionSize_1 = this.leftMatrixType.getDimensionSize(0);
-    _builder.append(_dimensionSize_1, "		");
+    int _columnSize = this.matrixType.getColumnSize();
+    _builder.append(_columnSize, "	");
     _builder.append("; ++i) {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t");
+    _builder.append("\t\t");
     _builder.append("for (j = 0; j < ");
-    int _dimensionSize_2 = this.leftMatrixType.getDimensionSize(1);
-    _builder.append(_dimensionSize_2, "			");
+    int _rowSize = this.matrixType.getRowSize();
+    _builder.append(_rowSize, "		");
     _builder.append("; ++j) {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t\t");
-    _builder.append("result.data[i][k] += ");
-    _builder.append(multiplyExpression, "				");
+    _builder.append("\t\t\t");
+    _builder.append("result.data[i] += ");
+    _builder.append(multiplyExpression, "			");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t");
-    _builder.append("}");
-    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
     _builder.newLine();
@@ -182,21 +175,18 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
     _builder.append(" ");
     _builder.append(this.name, "");
     _builder.append("(");
-    _builder.append(this.leftMatrixElementTypeText, "");
-    _builder.append(" leftMatrix[");
-    int _dimensionSize = this.leftMatrixType.getDimensionSize(0);
-    _builder.append(_dimensionSize, "");
-    _builder.append("][");
-    int _dimensionSize_1 = this.leftMatrixType.getDimensionSize(1);
-    _builder.append(_dimensionSize_1, "");
+    _builder.append(this.vectorElementTypeText, "");
+    _builder.append(" vector[");
+    int _size = this.vectorType.getSize();
+    _builder.append(_size, "");
     _builder.append("], ");
-    _builder.append(this.rightMatrixElementTypeText, "");
-    _builder.append(" rightMatrix[");
-    int _dimensionSize_2 = this.rightMatrixType.getDimensionSize(0);
-    _builder.append(_dimensionSize_2, "");
+    _builder.append(this.matrixElementTypeText, "");
+    _builder.append(" matrix[");
+    int _rowSize = this.matrixType.getRowSize();
+    _builder.append(_rowSize, "");
     _builder.append("][");
-    int _dimensionSize_3 = this.rightMatrixType.getDimensionSize(1);
-    _builder.append(_dimensionSize_3, "");
+    int _columnSize = this.matrixType.getColumnSize();
+    _builder.append(_columnSize, "");
     _builder.append("])");
     return _builder;
   }
@@ -204,24 +194,24 @@ public class MatrixMultiplyFunction extends AbstractCodeFragment {
   public int hashCode() {
     Class<? extends Object> _class = this.getClass();
     int _hashCode = _class.hashCode();
-    int _hashCode_1 = this.leftMatrixType.hashCode();
+    int _hashCode_1 = this.matrixType.hashCode();
     int _bitwiseXor = (_hashCode ^ _hashCode_1);
-    int _hashCode_2 = this.rightMatrixType.hashCode();
+    int _hashCode_2 = this.vectorType.hashCode();
     int _bitwiseXor_1 = (_bitwiseXor ^ _hashCode_2);
     int _hashCode_3 = this.resultType.hashCode();
     return (_bitwiseXor_1 ^ _hashCode_3);
   }
   
   public boolean equals(final Object obj) {
-    if ((obj instanceof MatrixMultiplyFunction)) {
-      final MatrixMultiplyFunction other = ((MatrixMultiplyFunction) obj);
+    if ((obj instanceof VectorMatrixMultiplyFunction)) {
+      final VectorMatrixMultiplyFunction other = ((VectorMatrixMultiplyFunction) obj);
       boolean _and = false;
       boolean _and_1 = false;
-      boolean _equals = Objects.equal(other.leftMatrixType, this.leftMatrixType);
+      boolean _equals = Objects.equal(other.matrixType, this.matrixType);
       if (!_equals) {
         _and_1 = false;
       } else {
-        boolean _equals_1 = Objects.equal(other.rightMatrixType, this.rightMatrixType);
+        boolean _equals_1 = Objects.equal(other.vectorType, this.vectorType);
         _and_1 = (_equals && _equals_1);
       }
       if (!_and_1) {

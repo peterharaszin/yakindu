@@ -47,9 +47,12 @@ import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayElementWiseOperationFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayScalarMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixVectorMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.VectorMatrixMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType;
@@ -168,11 +171,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				
 				NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
 	
-				out.print(MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, leftOperand));
+				out.print(MscriptGeneratorUtil.castNumericType(context, leftOperand, widestNumberFormat));
 				out.print(" ");
 				out.print(operator);
 				out.print(" ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, widestNumberFormat, rightOperand));
+				out.print(MscriptGeneratorUtil.castNumericType(context, rightOperand, widestNumberFormat));
 			} else {
 				doSwitch(leftOperand);
 				out.print(" ");
@@ -189,15 +192,58 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
 			DataType dataType = getDataType(additiveExpression);
 			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+			
+			DataType leftDataType = getDataType(additiveExpression.getLeftOperand());
+			DataType rightDataType = getDataType(additiveExpression.getRightOperand());
+
+			if (TypeUtil.isNumericArray(leftDataType) && TypeUtil.isNumericArray(rightDataType)) {
+				return generateArrayElementWiseExpression(additiveExpression);
+			}
 	
-			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getLeftOperand()));
+			out.print(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getLeftOperand(), numberFormat));
 			out.print(" ");
 			out.print(additiveExpression.getOperator().getLiteral());
 			out.print(" ");
-			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, additiveExpression.getRightOperand()));
+			out.print(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getRightOperand(), numberFormat));
 			return true;
 		}
 		
+		private Boolean generateArrayElementWiseExpression(AdditiveExpression additiveExpression) {
+			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression.getLeftOperand()));
+			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression.getRightOperand()));
+			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression));
+			OperatorKind operator = additiveExpression.getOperator();
+			
+			switch (additiveExpression.getOperator()) {
+			case ELEMENT_WISE_ADD:
+				operator = OperatorKind.ADD;
+				break;
+			case ELEMENT_WISE_SUBTRACT:
+				operator = OperatorKind.SUBTRACT;
+				break;
+			case ELEMENT_WISE_MULTIPLY:
+				operator = OperatorKind.MULTIPLY;
+				break;
+			case ELEMENT_WISE_DIVIDE:
+				operator = OperatorKind.DIVIDE;
+				break;
+			case ELEMENT_WISE_MODULO:
+				operator = OperatorKind.MODULO;
+				break;
+			default:
+				break;
+			}
+			
+			ArrayElementWiseOperationFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayElementWiseOperationFunction(context.getComputationModel(), operator, leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
+
+			out.printf("%s(&(", codeFragment.getName());
+			doSwitch(additiveExpression.getLeftOperand());
+			out.print(").data[0], &(");
+			doSwitch(additiveExpression.getRightOperand());
+			out.print(").data[0])");
+			return true;
+		}
+
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipselabs.mscript.language.ast.MultiplicativeExpression)
 		 */
@@ -219,12 +265,16 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				return generateMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
 			}
 			
-			NumberFormat leftNumberFormat = context.getComputationModel().getNumberFormat(leftDataType);
-			NumberFormat rightNumberFormat = context.getComputationModel().getNumberFormat(rightDataType);
-			
-			IExpressionGenerator expressionGenerator = new ExpressionGenerator();
-			NumericExpressionInfo leftOperand = NumericExpressionInfo.create(leftNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getLeftOperand()));
-			NumericExpressionInfo rightOperand = NumericExpressionInfo.create(rightNumberFormat, expressionGenerator.generate(context, multiplicativeExpression.getRightOperand()));
+			if (TypeUtil.isNumericMatrix(leftDataType) && TypeUtil.isNumericVector(rightDataType)) {
+				return generateMatrixVectorMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+			}
+
+			if (TypeUtil.isNumericVector(leftDataType) && TypeUtil.isNumericMatrix(rightDataType)) {
+				return generateVectorMatrixMultiplyExpression(multiplicativeExpression, multiplicativeExpression.getLeftOperand(), multiplicativeExpression.getRightOperand());
+			}
+
+			INumericExpressionOperand leftOperand = new NumericExpressionOperand(context, multiplicativeExpression.getLeftOperand());
+			INumericExpressionOperand rightOperand = new NumericExpressionOperand(context, multiplicativeExpression.getRightOperand());
 			out.print(multiplicativeExpressionGenerator.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand));
 
 			return true;
@@ -254,6 +304,34 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			doSwitch(leftMatrixExpression);
 			out.print(").data[0], &(");
 			doSwitch(rightMatrixExpression);
+			out.print(").data[0])");
+			return true;
+		}
+
+		private Boolean generateMatrixVectorMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression matrixExpression,
+				Expression vectorExpression) {
+			MachineArrayType matrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(matrixExpression));
+			MachineArrayType vectorType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(vectorExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
+			MatrixVectorMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixVectorMultiplyFunction(context.getComputationModel(), matrixType, vectorType, resultType), new NullProgressMonitor());
+			out.printf("%s(&(", codeFragment.getName());
+			doSwitch(matrixExpression);
+			out.print(").data[0], &(");
+			doSwitch(vectorExpression);
+			out.print(").data[0])");
+			return true;
+		}
+
+		private Boolean generateVectorMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression,
+				Expression vectorExpression, Expression matrixExpression) {
+			MachineArrayType vectorType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(vectorExpression));
+			MachineArrayType matrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(matrixExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
+			VectorMatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new VectorMatrixMultiplyFunction(context.getComputationModel(), vectorType, matrixType, resultType), new NullProgressMonitor());
+			out.printf("%s(&(", codeFragment.getName());
+			doSwitch(vectorExpression);
+			out.print(").data[0], &(");
+			doSwitch(matrixExpression);
 			out.print(").data[0])");
 			return true;
 		}
@@ -298,15 +376,15 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				} else {
 					out.print("DamosMath_powfix64(");
 				}
-				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand()));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getOperand(), numberFormat));
 				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent()));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getExponent(), numberFormat));
 				out.printf(", %d)", fixedPointFormat.getFractionLength());
 			} else if (numberFormat instanceof FloatingPointFormat) {
 				out.print("pow(");
-				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand()));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getOperand(), numberFormat));
 				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent()));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getExponent(), numberFormat));
 				out.print(")");
 			}
 
@@ -319,7 +397,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseRealLiteral(RealLiteral realLiteral) {
 			DataType dataType = getDataType(realLiteral);
-			out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, realLiteral.getValue(), null));
+			out.print(literalGenerator.generateLiteral(context.getComputationModel(), dataType, realLiteral.getValue()));
 			return true;
 		}
 	
@@ -329,7 +407,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
 			DataType dataType = getDataType(integerLiteral);
-			out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), dataType, integerLiteral.getValue(), null));
+			out.print(literalGenerator.generateLiteral(context.getComputationModel(), dataType, integerLiteral.getValue()));
 			return true;
 		}
 		
@@ -421,7 +499,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 					out.print(", ");
 				}
 				if (dimension == arrayType.getDimensionality() - 1) {
-					doSwitch(expression);
+					out.print(MscriptGeneratorUtil.cast(context, expression, arrayType.getElementType()));
 				} else {
 					generateConstructArrayDimension(arrayType, dimension + 1, ((ArrayConstructionOperator) expression).getExpressions());
 				}

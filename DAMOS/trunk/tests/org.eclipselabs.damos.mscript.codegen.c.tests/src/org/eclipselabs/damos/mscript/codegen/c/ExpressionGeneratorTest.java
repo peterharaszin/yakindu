@@ -57,12 +57,12 @@ public class ExpressionGeneratorTest {
 	
 	@Test
 	public void realLiteral() {
-		assertEquals("(double) 100.0", generate("100.0"));
+		assertEquals("100.0", generate("100.0"));
 	}
 
 	@Test
 	public void integerLiteral() {
-		assertEquals("(int64_t) 100", generate("100"));
+		assertEquals("INT64_C(100)", generate("100"));
 	}
 	
 	@Test
@@ -98,42 +98,42 @@ public class ExpressionGeneratorTest {
 
 	@Test
 	public void lessThanExpression() {
-		assertEquals("(double) 1.0 < (double) 1.0", generate("1.0 < 1.0"));
+		assertEquals("1.0 < 1.0", generate("1.0 < 1.0"));
 	}
 
 	@Test
 	public void lessThanOrEqualToExpression() {
-		assertEquals("(double) 1.0 <= (double) 1.0", generate("1.0 <= 1.0"));
+		assertEquals("1.0 <= 1.0", generate("1.0 <= 1.0"));
 	}
 
 	@Test
 	public void greaterThanExpression() {
-		assertEquals("(double) 1.0 > (double) 1.0", generate("1.0 > 1.0"));
+		assertEquals("1.0 > 1.0", generate("1.0 > 1.0"));
 	}
 	
 	@Test
 	public void greaterThanOrEqualToExpression() {
-		assertEquals("(double) 1.0 >= (double) 1.0", generate("1.0 >= 1.0"));
+		assertEquals("1.0 >= 1.0", generate("1.0 >= 1.0"));
 	}
 
 	@Test
 	public void additionExpression() {
-		assertEquals("(double) 1.0 + (double) 1.0", generate("1.0 + 1.0"));
+		assertEquals("1.0 + 1.0", generate("1.0 + 1.0"));
 	}
 
 	@Test
 	public void subtractionExpression() {
-		assertEquals("(double) 1.0 + (double) 1.0", generate("1.0 + 1.0"));
+		assertEquals("1.0 + 1.0", generate("1.0 + 1.0"));
 	}
 
 	@Test
 	public void multiplicationExpression() {
-		assertEquals("(double) 1.0 * (double) 1.0", generate("1.0 * 1.0"));
+		assertEquals("1.0 * 1.0", generate("1.0 * 1.0"));
 	}
 
 	@Test
 	public void divisionExpression() {
-		assertEquals("(double) 1.0 / (double) 1.0", generate("1.0 / 1.0"));
+		assertEquals("1.0 / 1.0", generate("1.0 / 1.0"));
 	}
 
 	@Test
@@ -144,12 +144,12 @@ public class ExpressionGeneratorTest {
 
 	@Test
 	public void negateExpression() {
-		assertEquals("-(double) 1.0", generate("-1.0"));
+		assertEquals("-1.0", generate("-1.0"));
 	}
 
 	@Test
 	public void powerExpression() {
-		assertEquals("pow((double) 2.0, (double) 10.0)", generate("2.0^10.0"));
+		assertEquals("pow(2.0, 10.0)", generate("2.0^10.0"));
 	}
 
 	@Test

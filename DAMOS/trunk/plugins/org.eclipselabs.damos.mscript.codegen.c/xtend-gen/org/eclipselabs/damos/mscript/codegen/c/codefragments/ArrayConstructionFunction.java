@@ -311,7 +311,7 @@ public class ArrayConstructionFunction extends AbstractCodeFragment {
   public boolean equals(final Object obj) {
     if ((obj instanceof ArrayConstructionFunction)) {
       final ArrayConstructionFunction other = ((ArrayConstructionFunction) obj);
-      return Objects.equal(other, this.arrayType);
+      return Objects.equal(other.arrayType, this.arrayType);
     }
     return false;
   }

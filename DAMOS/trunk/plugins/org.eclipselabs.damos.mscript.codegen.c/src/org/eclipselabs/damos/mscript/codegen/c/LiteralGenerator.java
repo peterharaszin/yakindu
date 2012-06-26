@@ -19,6 +19,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclara
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -37,31 +38,57 @@ import com.google.inject.Inject;
  */
 public class LiteralGenerator {
 	
-	private final DataTypeGenerator dataTypeGenerator;
-	
 	@Inject
 	public LiteralGenerator(DataTypeGenerator dataTypeGenerator) {
-		this.dataTypeGenerator = dataTypeGenerator;
 	}
 
-	public CharSequence generateLiteral(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, double value, ICodeFragment dependentCodeFragment) {
+	public CharSequence generateLiteral(ComputationModel computationModel, DataType dataType, double value) {
 		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
-		CharSequence cDataType = dataTypeGenerator.generateDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment);
+		return generateLiteral(computationModel, numberFormat, value);
+	}
+	
+	public CharSequence generateLiteral(ComputationModel computationModel, NumberFormat numberFormat, double value) {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			return String.format("(%s) %d", cDataType, Math.round(value * Math.pow(2, fixedPointFormat.getFractionLength())));
+			return String.format("INT%d_C(%d)", fixedPointFormat.getWordSize(), Math.round(value * Math.pow(2, fixedPointFormat.getFractionLength())));
 		}
-		return String.format("(%s) %s", cDataType, Double.toString(value));
+		if (numberFormat instanceof FloatingPointFormat) {
+			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
+			switch (floatingPointFormat.getKind()) {
+			case BINARY32:
+				return Double.toString(value) + "f";
+			case BINARY64:
+				return Double.toString(value);
+			default:
+				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
+			}
+		}
+		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
 
-	public CharSequence generateLiteral(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, long value, ICodeFragment dependentCodeFragment) {
+	public CharSequence generateLiteral(ComputationModel computationModel, DataType dataType, long value) {
 		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
-		CharSequence cDataType = dataTypeGenerator.generateDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment);
+		return generateLiteral(computationModel, numberFormat, value);
+	}
+
+	public CharSequence generateLiteral(ComputationModel computationModel, NumberFormat numberFormat, long value) {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			value <<= fixedPointFormat.getFractionLength();
+			return String.format("INT%d_C(%d)", fixedPointFormat.getWordSize(), value);
 		}
-		return String.format("(%s) %d", cDataType, value);
+		if (numberFormat instanceof FloatingPointFormat) {
+			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
+			switch (floatingPointFormat.getKind()) {
+			case BINARY32:
+				return Long.toString(value) + ".0f";
+			case BINARY64:
+				return Long.toString(value) + ".0";
+			default:
+				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
+			}
+		}
+		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
 
 	public CharSequence generateLiteral(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
@@ -82,10 +109,10 @@ public class LiteralGenerator {
 		if (value instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericTemplateArgument = (ISimpleNumericValue) value;
 			if (value.getDataType() instanceof RealType) {
-				return generateLiteral(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue(), null);
+				return generateLiteral(computationModel, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue());
 			}
 			if (value.getDataType() instanceof IntegerType) {
-				return generateLiteral(computationModel, codeFragmentCollector, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue(), null);
+				return generateLiteral(computationModel, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue());
 			}
 		} else if (value instanceof IBooleanValue) {
 			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;

@@ -44,12 +44,12 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IBuilt
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			out.printf("%s(", getFixedPointFunctionName(fixedPointFormat));
-			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, argument));
+			out.print(MscriptGeneratorUtil.castNumericType(context, argument, numberFormat));
 			out.printf(", %d)", fixedPointFormat.getFractionLength());
 		} else if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			out.printf("%s(", getFloatingPointFunctionName(floatingPointFormat));
-			out.print(MscriptGeneratorUtil.castNumericType(context, numberFormat, argument));
+			out.print(MscriptGeneratorUtil.castNumericType(context, argument, numberFormat));
 			out.print(")");
 		} else {
 			throw new IllegalArgumentException();

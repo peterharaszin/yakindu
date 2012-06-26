@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
 
 /**
  * @author Andreas Unger
@@ -57,6 +58,12 @@ public class ComputationModelUtil {
 		computationModel.getNumberFormatMappings().add(mapping);
 
 		return computationModel;
+	}
+	
+	public static FixedPointFormat createFixedPointFormat(PredefinedFixedPointFormatKind predefinedFixedPointFormatKind) {
+		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
+		fixedPointFormat.setPredefinedKind(predefinedFixedPointFormatKind);
+		return fixedPointFormat;
 	}
 	
 	public static NumberFormat getWidestNumberFormat(NumberFormat numberFormat1, NumberFormat numberFormat2) {

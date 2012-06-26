@@ -53,8 +53,7 @@ public class MachineNumericType extends MachineDataType {
 			case BINARY64:
 				return "double";
 			default:
-				// Do nothing
-				break;
+				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
 			}
 		} else if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;

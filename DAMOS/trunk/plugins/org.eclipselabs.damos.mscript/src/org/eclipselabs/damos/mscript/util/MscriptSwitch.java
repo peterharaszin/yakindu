@@ -918,6 +918,46 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.SIMPLE_STRING_LITERAL: {
+				SimpleStringLiteral simpleStringLiteral = (SimpleStringLiteral)theEObject;
+				T result = caseSimpleStringLiteral(simpleStringLiteral);
+				if (result == null) result = caseStringLiteral(simpleStringLiteral);
+				if (result == null) result = caseLiteral(simpleStringLiteral);
+				if (result == null) result = caseExpression(simpleStringLiteral);
+				if (result == null) result = caseEvaluable(simpleStringLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.MULTI_LINE_STRING_LITERAL: {
+				MultiLineStringLiteral multiLineStringLiteral = (MultiLineStringLiteral)theEObject;
+				T result = caseMultiLineStringLiteral(multiLineStringLiteral);
+				if (result == null) result = caseStringLiteral(multiLineStringLiteral);
+				if (result == null) result = caseLiteral(multiLineStringLiteral);
+				if (result == null) result = caseExpression(multiLineStringLiteral);
+				if (result == null) result = caseEvaluable(multiLineStringLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STRING_SEGMENT: {
+				StringSegment stringSegment = (StringSegment)theEObject;
+				T result = caseStringSegment(stringSegment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.CONSTANT_STRING_SEGMENT: {
+				ConstantStringSegment constantStringSegment = (ConstantStringSegment)theEObject;
+				T result = caseConstantStringSegment(constantStringSegment);
+				if (result == null) result = caseStringSegment(constantStringSegment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT: {
+				DynamicStringSegment dynamicStringSegment = (DynamicStringSegment)theEObject;
+				T result = caseDynamicStringSegment(dynamicStringSegment);
+				if (result == null) result = caseStringSegment(dynamicStringSegment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -2584,6 +2624,81 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStringLiteral(StringLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple String Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleStringLiteral(SimpleStringLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Line String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Line String Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiLineStringLiteral(MultiLineStringLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Segment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Segment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringSegment(StringSegment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constant String Segment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constant String Segment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstantStringSegment(ConstantStringSegment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic String Segment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic String Segment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDynamicStringSegment(DynamicStringSegment object) {
 		return null;
 	}
 

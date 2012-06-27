@@ -5,15 +5,21 @@ package org.eclipselabs.damos.dmltext.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
+import org.eclipse.xtext.ui.LexerUIBindings;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.shared.Access;
+import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
+import org.eclipselabs.damos.dmltext.ui.contentassist.antlr.DMLTextContentAssistLexer;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptHighlightingConfiguration;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptSemanticHighlightingCalculator;
 
+import com.google.inject.Binder;
 import com.google.inject.Provider;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -36,12 +42,19 @@ public class DMLTextUiModule extends org.eclipselabs.damos.dmltext.ui.AbstractDM
 		return MscriptSemanticHighlightingCalculator.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.dmltext.ui.AbstractDMLTextUiModule#provideIAllContainersState()
-	 */
 	@Override
 	public Provider<IAllContainersState> provideIAllContainersState() {
 		return Access.getWorkspaceProjectsState();
+	}
+	
+	@Override
+	public void configureContentAssistLexer(Binder binder) {
+		binder.bind(Lexer.class).annotatedWith(com.google.inject.name.Names.named(LexerUIBindings.CONTENT_ASSIST)).to(DMLTextContentAssistLexer.class);
+	}
+	
+	@Override
+	public void configureHighlightingLexer(Binder binder) {
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(Names.named(LexerUIBindings.HIGHLIGHTING)).to(DMLTextLexer.class);
 	}
 
 }

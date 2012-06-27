@@ -156,7 +156,10 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.REAL_LITERAL: return createRealLiteral();
 			case MscriptPackage.INTEGER_LITERAL: return createIntegerLiteral();
 			case MscriptPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
-			case MscriptPackage.STRING_LITERAL: return createStringLiteral();
+			case MscriptPackage.SIMPLE_STRING_LITERAL: return createSimpleStringLiteral();
+			case MscriptPackage.MULTI_LINE_STRING_LITERAL: return createMultiLineStringLiteral();
+			case MscriptPackage.CONSTANT_STRING_SEGMENT: return createConstantStringSegment();
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT: return createDynamicStringSegment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1193,9 +1196,39 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringLiteral createStringLiteral() {
-		StringLiteralImpl stringLiteral = new StringLiteralImpl();
-		return stringLiteral;
+	public SimpleStringLiteral createSimpleStringLiteral() {
+		SimpleStringLiteralImpl simpleStringLiteral = new SimpleStringLiteralImpl();
+		return simpleStringLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiLineStringLiteral createMultiLineStringLiteral() {
+		MultiLineStringLiteralImpl multiLineStringLiteral = new MultiLineStringLiteralImpl();
+		return multiLineStringLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstantStringSegment createConstantStringSegment() {
+		ConstantStringSegmentImpl constantStringSegment = new ConstantStringSegmentImpl();
+		return constantStringSegment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DynamicStringSegment createDynamicStringSegment() {
+		DynamicStringSegmentImpl dynamicStringSegment = new DynamicStringSegmentImpl();
+		return dynamicStringSegment;
 	}
 
 	/**

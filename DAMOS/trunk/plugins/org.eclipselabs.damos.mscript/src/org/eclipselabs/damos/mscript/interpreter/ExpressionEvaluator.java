@@ -58,7 +58,7 @@ import org.eclipselabs.damos.mscript.RangeExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.SimpleStringLiteral;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructMember;
@@ -1525,12 +1525,9 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			return Values.valueOf(context.getComputationContext(), booleanLiteral.isTrue());
 		}
 
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
-		 */
 		@Override
-		public IValue caseStringLiteral(StringLiteral stringLiteral) {
-			return new StringValue(context.getComputationContext(), stringLiteral.getValue());
+		public IValue caseSimpleStringLiteral(SimpleStringLiteral stringLiteral) {
+			return new StringValue(context.getComputationContext(), stringLiteral.getText());
 		}
 
 		/* (non-Javadoc)

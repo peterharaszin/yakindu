@@ -37,7 +37,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.SimpleStringLiteral;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -106,8 +106,8 @@ public class StaticFunctionEvaluator {
 				}
 				if (!((IBooleanValue) value).booleanValue()) {
 					Expression message = assertion.getMessage();
-					if (message instanceof StringLiteral) {
-						StringLiteral stringMessage = (StringLiteral) message;
+					if (message instanceof SimpleStringLiteral) {
+						SimpleStringLiteral stringMessage = (SimpleStringLiteral) message;
 						int severity;
 						switch (assertion.getStatusKind()) {
 						case INFO:
@@ -123,7 +123,7 @@ public class StaticFunctionEvaluator {
 						if (severity > IStatus.WARNING) {
 							passed = false;
 						}
-						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getValue(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getText(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							break;
 						}

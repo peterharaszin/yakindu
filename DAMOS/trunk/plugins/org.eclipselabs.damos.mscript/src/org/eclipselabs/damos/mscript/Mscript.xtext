@@ -316,8 +316,23 @@ BooleanLiteral:
 	{BooleanLiteral} (true?='true' | 'false');
 
 StringLiteral:
-	value=STRING;
-		
+	SimpleStringLiteral | MultiLineStringLiteral;
+	
+SimpleStringLiteral:
+	text=STRING;
+	
+MultiLineStringLiteral hidden():
+	{MultiLineStringLiteral} '"""' segments+=ConstantStringSegment? (segments+=DynamicStringSegment segments+=ConstantStringSegment)* '"""';
+
+ConstantStringSegment:
+	text=ConstantString;
+
+ConstantString:
+	(ID | ANY_OTHER)+;
+	
+DynamicStringSegment hidden(WS, ML_COMMENT):
+	'${' expression=Expression '}';
+	
 FeatureCall returns Expression:
 	VariableReference | FunctionCall;
 	
@@ -501,10 +516,10 @@ terminal ML_COMMENT:
 	'/*' -> '*/';
 
 terminal SL_COMMENT:
-	'//' !('\n'|'\r')* ('\r'? '\n')?;
+	'//' !('\n' | '\r')* ('\r'? '\n')?;
 
 terminal WS:
-	(' '|'\t'|'\r'|'\n')+;
+	(' ' | '\t' | '\r' | '\n')+;
 
 terminal ANY_OTHER:
 	.;

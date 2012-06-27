@@ -513,6 +513,26 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createStringLiteralAdapter();
 			}
 			@Override
+			public Adapter caseSimpleStringLiteral(SimpleStringLiteral object) {
+				return createSimpleStringLiteralAdapter();
+			}
+			@Override
+			public Adapter caseMultiLineStringLiteral(MultiLineStringLiteral object) {
+				return createMultiLineStringLiteralAdapter();
+			}
+			@Override
+			public Adapter caseStringSegment(StringSegment object) {
+				return createStringSegmentAdapter();
+			}
+			@Override
+			public Adapter caseConstantStringSegment(ConstantStringSegment object) {
+				return createConstantStringSegmentAdapter();
+			}
+			@Override
+			public Adapter caseDynamicStringSegment(DynamicStringSegment object) {
+				return createDynamicStringSegmentAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -2083,6 +2103,76 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.SimpleStringLiteral <em>Simple String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.SimpleStringLiteral
+	 * @generated
+	 */
+	public Adapter createSimpleStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.MultiLineStringLiteral <em>Multi Line String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.MultiLineStringLiteral
+	 * @generated
+	 */
+	public Adapter createMultiLineStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StringSegment <em>String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.StringSegment
+	 * @generated
+	 */
+	public Adapter createStringSegmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.ConstantStringSegment <em>Constant String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment
+	 * @generated
+	 */
+	public Adapter createConstantStringSegmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DynamicStringSegment <em>Dynamic String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment
+	 * @generated
+	 */
+	public Adapter createDynamicStringSegmentAdapter() {
 		return null;
 	}
 

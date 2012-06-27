@@ -8,13 +8,19 @@ import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.parser.antlr.Lexer;
+import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
+import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexer;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -30,9 +36,6 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 		return MscriptTerminalConverters.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.AbstractMscriptRuntimeModule#bindIGlobalScopeProvider()
-	 */
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return MscriptGlobalScopeProvider.class;
@@ -42,21 +45,19 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 		return MscriptQualifiedNameValueConverter.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.AbstractMscriptRuntimeModule#bindIQualifiedNameProvider()
-	 */
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return MscriptQualifiedNameProvider.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindILinker()
-	 */
 	@Override
 	public Class<? extends ILinker> bindILinker() {
-		// TODO: Remove this binding, use LazyLinker instead
 		return MscriptLinker.class;
 	}
 	
+	@Override
+	public void configureRuntimeLexer(Binder binder) {
+		binder.bind(Lexer.class).annotatedWith(Names.named(LexerBindings.RUNTIME)).to(MscriptLexer.class);
+	}
+
 }

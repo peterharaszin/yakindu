@@ -5,15 +5,21 @@ package org.eclipselabs.damos.dconfig.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
+import org.eclipse.xtext.ui.LexerUIBindings;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.shared.Access;
+import org.eclipselabs.damos.dconfig.parser.antlr.DconfigLexer;
+import org.eclipselabs.damos.dconfig.ui.contentassist.antlr.DconfigContentAssistLexer;
 import org.eclipselabs.damos.dconfig.ui.syntaxcoloring.DconfigHighlightingConfiguration;
 import org.eclipselabs.damos.dconfig.ui.syntaxcoloring.DconfigSemanticHighlightingCalculator;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
 
+import com.google.inject.Binder;
 import com.google.inject.Provider;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -38,6 +44,16 @@ public class DconfigUiModule extends org.eclipselabs.damos.dconfig.ui.AbstractDc
 	@Override
 	public Provider<IAllContainersState> provideIAllContainersState() {
 		return Access.getWorkspaceProjectsState();
+	}
+
+	@Override
+	public void configureContentAssistLexer(Binder binder) {
+		binder.bind(Lexer.class).annotatedWith(com.google.inject.name.Names.named(LexerUIBindings.CONTENT_ASSIST)).to(DconfigContentAssistLexer.class);
+	}
+	
+	@Override
+	public void configureHighlightingLexer(Binder binder) {
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(Names.named(LexerUIBindings.HIGHLIGHTING)).to(DconfigLexer.class);
 	}
 
 }

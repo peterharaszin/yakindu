@@ -25,7 +25,7 @@ import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.SimpleStringLiteral;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
@@ -85,8 +85,8 @@ public class GeneratorConfigurationExtensions {
 	public static String getPrefix(Configuration configuration, Node node) {
 		String prefix = null;
 		Expression prefixValue = configuration.getPropertyValue(node.getSystemPath(), PREFIX_PROPERTY_PATH);
-		if (prefixValue instanceof StringLiteral) {
-			prefix = ((StringLiteral) prefixValue).getValue();
+		if (prefixValue instanceof SimpleStringLiteral) {
+			prefix = ((SimpleStringLiteral) prefixValue).getText();
 		}
 		if (prefix == null) {
 			prefix = "";
@@ -97,8 +97,8 @@ public class GeneratorConfigurationExtensions {
 	public static String getPrefix(Configuration configuration) {
 		String prefix = null;
 		Expression prefixValue = configuration.getPropertyValue(SystemPath.create(configuration.getContextFragment()), PREFIX_PROPERTY_PATH);
-		if (prefixValue instanceof StringLiteral) {
-			prefix = ((StringLiteral) prefixValue).getValue();
+		if (prefixValue instanceof SimpleStringLiteral) {
+			prefix = ((SimpleStringLiteral) prefixValue).getText();
 		}
 		if (prefix == null) {
 			prefix = "";
@@ -135,8 +135,8 @@ public class GeneratorConfigurationExtensions {
 
 	private static String getPropertyStringValue(Configuration configuration, PropertyPath propertyPath, String defaultValue) {
 		Expression expression = configuration.getPropertyValue(propertyPath);
-		if (expression instanceof StringLiteral) {
-			return ((StringLiteral) expression).getValue();
+		if (expression instanceof SimpleStringLiteral) {
+			return ((SimpleStringLiteral) expression).getText();
 		}
 		return defaultValue;
 	}

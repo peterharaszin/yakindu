@@ -80,6 +80,8 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1(), "rule__RealData__Alternatives_1_1");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1_1_1(), "rule__RealData__Alternatives_1_1_1_1");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
+					put(grammarAccess.getStringLiteralAccess().getAlternatives(), "rule__StringLiteral__Alternatives");
+					put(grammarAccess.getConstantStringAccess().getAlternatives(), "rule__ConstantString__Alternatives");
 					put(grammarAccess.getFeatureCallAccess().getAlternatives(), "rule__FeatureCall__Alternatives");
 					put(grammarAccess.getQualifiedFeatureCallAccess().getAlternatives(), "rule__QualifiedFeatureCall__Alternatives");
 					put(grammarAccess.getNegateStepExpressionAccess().getAlternatives(), "rule__NegateStepExpression__Alternatives");
@@ -238,6 +240,9 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIntegerLiteralAccess().getGroup(), "rule__IntegerLiteral__Group__0");
 					put(grammarAccess.getIntegerDataAccess().getGroup(), "rule__IntegerData__Group__0");
 					put(grammarAccess.getBooleanLiteralAccess().getGroup(), "rule__BooleanLiteral__Group__0");
+					put(grammarAccess.getMultiLineStringLiteralAccess().getGroup(), "rule__MultiLineStringLiteral__Group__0");
+					put(grammarAccess.getMultiLineStringLiteralAccess().getGroup_3(), "rule__MultiLineStringLiteral__Group_3__0");
+					put(grammarAccess.getDynamicStringSegmentAccess().getGroup(), "rule__DynamicStringSegment__Group__0");
 					put(grammarAccess.getVariableReferenceAccess().getGroup(), "rule__VariableReference__Group__0");
 					put(grammarAccess.getVariableReferenceAccess().getGroup_2(), "rule__VariableReference__Group_2__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
@@ -484,7 +489,12 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIntegerLiteralAccess().getDataAssignment_0(), "rule__IntegerLiteral__DataAssignment_0");
 					put(grammarAccess.getIntegerLiteralAccess().getUnitAssignment_1(), "rule__IntegerLiteral__UnitAssignment_1");
 					put(grammarAccess.getBooleanLiteralAccess().getTrueAssignment_1_0(), "rule__BooleanLiteral__TrueAssignment_1_0");
-					put(grammarAccess.getStringLiteralAccess().getValueAssignment(), "rule__StringLiteral__ValueAssignment");
+					put(grammarAccess.getSimpleStringLiteralAccess().getTextAssignment(), "rule__SimpleStringLiteral__TextAssignment");
+					put(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_2(), "rule__MultiLineStringLiteral__SegmentsAssignment_2");
+					put(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_3_0(), "rule__MultiLineStringLiteral__SegmentsAssignment_3_0");
+					put(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_3_1(), "rule__MultiLineStringLiteral__SegmentsAssignment_3_1");
+					put(grammarAccess.getConstantStringSegmentAccess().getTextAssignment(), "rule__ConstantStringSegment__TextAssignment");
+					put(grammarAccess.getDynamicStringSegmentAccess().getExpressionAssignment_1(), "rule__DynamicStringSegment__ExpressionAssignment_1");
 					put(grammarAccess.getVariableReferenceAccess().getFeatureAssignment_1(), "rule__VariableReference__FeatureAssignment_1");
 					put(grammarAccess.getVariableReferenceAccess().getStepExpressionAssignment_2_1(), "rule__VariableReference__StepExpressionAssignment_2_1");
 					put(grammarAccess.getFunctionCallAccess().getFeatureAssignment_1(), "rule__FunctionCall__FeatureAssignment_1");

@@ -8,13 +8,19 @@ import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.parser.antlr.Lexer;
+import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
 import org.eclipselabs.damos.dmltext.naming.DMLTextQualifiedNameProvider;
+import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -34,9 +40,6 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 		return DMLTextTerminalConverters.class;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.AbstractMscriptRuntimeModule#bindIGlobalScopeProvider()
-	 */
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return MscriptGlobalScopeProvider.class;
@@ -46,12 +49,14 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 		return MscriptQualifiedNameValueConverter.class;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.AbstractMscriptRuntimeModule#bindIQualifiedNameProvider()
-	 */
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return DMLTextQualifiedNameProvider.class;
+	}
+	
+	@Override
+	public void configureRuntimeLexer(Binder binder) {
+		binder.bind(Lexer.class).annotatedWith(Names.named(LexerBindings.RUNTIME)).to(DMLTextLexer.class);
 	}
 	
 }

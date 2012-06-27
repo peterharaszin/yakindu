@@ -2167,13 +2167,64 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral:
-	//	value=STRING;
+	//	SimpleStringLiteral | MultiLineStringLiteral;
 	public MscriptGrammarAccess.StringLiteralElements getStringLiteralAccess() {
 		return gaMscript.getStringLiteralAccess();
 	}
 	
 	public ParserRule getStringLiteralRule() {
 		return getStringLiteralAccess().getRule();
+	}
+
+	//SimpleStringLiteral:
+	//	text=STRING;
+	public MscriptGrammarAccess.SimpleStringLiteralElements getSimpleStringLiteralAccess() {
+		return gaMscript.getSimpleStringLiteralAccess();
+	}
+	
+	public ParserRule getSimpleStringLiteralRule() {
+		return getSimpleStringLiteralAccess().getRule();
+	}
+
+	//MultiLineStringLiteral hidden():
+	//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
+	//	segments+=ConstantStringSegment)* "\"\"\"";
+	public MscriptGrammarAccess.MultiLineStringLiteralElements getMultiLineStringLiteralAccess() {
+		return gaMscript.getMultiLineStringLiteralAccess();
+	}
+	
+	public ParserRule getMultiLineStringLiteralRule() {
+		return getMultiLineStringLiteralAccess().getRule();
+	}
+
+	//ConstantStringSegment:
+	//	text=ConstantString;
+	public MscriptGrammarAccess.ConstantStringSegmentElements getConstantStringSegmentAccess() {
+		return gaMscript.getConstantStringSegmentAccess();
+	}
+	
+	public ParserRule getConstantStringSegmentRule() {
+		return getConstantStringSegmentAccess().getRule();
+	}
+
+	//ConstantString:
+	//	(ID | ANY_OTHER)+;
+	public MscriptGrammarAccess.ConstantStringElements getConstantStringAccess() {
+		return gaMscript.getConstantStringAccess();
+	}
+	
+	public ParserRule getConstantStringRule() {
+		return getConstantStringAccess().getRule();
+	}
+
+	//DynamicStringSegment hidden(WS, ML_COMMENT):
+	//	"${" expression=Expression "}";
+	public MscriptGrammarAccess.DynamicStringSegmentElements getDynamicStringSegmentAccess() {
+		return gaMscript.getDynamicStringSegmentAccess();
+	}
+	
+	public ParserRule getDynamicStringSegmentRule() {
+		return getDynamicStringSegmentAccess().getRule();
 	}
 
 	//FeatureCall returns Expression:

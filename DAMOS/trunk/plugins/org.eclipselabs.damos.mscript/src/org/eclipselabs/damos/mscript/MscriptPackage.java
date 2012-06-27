@@ -3818,22 +3818,144 @@ public interface MscriptPackage extends EPackage {
 	int STRING_LITERAL = 110;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL__VALUE = LITERAL_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>String Literal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+	int STRING_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl <em>Simple String Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSimpleStringLiteral()
+	 * @generated
+	 */
+	int SIMPLE_STRING_LITERAL = 111;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_STRING_LITERAL__TEXT = STRING_LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Simple String Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_STRING_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl <em>Multi Line String Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiLineStringLiteral()
+	 * @generated
+	 */
+	int MULTI_LINE_STRING_LITERAL = 112;
+
+	/**
+	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_LINE_STRING_LITERAL__SEGMENTS = STRING_LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Multi Line String Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_LINE_STRING_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StringSegmentImpl <em>String Segment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.StringSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringSegment()
+	 * @generated
+	 */
+	int STRING_SEGMENT = 113;
+
+	/**
+	 * The number of structural features of the '<em>String Segment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SEGMENT_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl <em>Constant String Segment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantStringSegment()
+	 * @generated
+	 */
+	int CONSTANT_STRING_SEGMENT = 114;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_STRING_SEGMENT__TEXT = STRING_SEGMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Constant String Segment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDynamicStringSegment()
+	 * @generated
+	 */
+	int DYNAMIC_STRING_SEGMENT = 115;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_STRING_SEGMENT__EXPRESSION = STRING_SEGMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic String Segment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.
@@ -3843,7 +3965,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionKind()
 	 * @generated
 	 */
-	int FUNCTION_KIND = 111;
+	int FUNCTION_KIND = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AssertionStatusKind <em>Assertion Status Kind</em>}' enum.
@@ -3853,7 +3975,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssertionStatusKind()
 	 * @generated
 	 */
-	int ASSERTION_STATUS_KIND = 112;
+	int ASSERTION_STATUS_KIND = 117;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
@@ -3863,7 +3985,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 113;
+	int OPERATOR_KIND = 118;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -3873,7 +3995,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 114;
+	int REAL_DATA = 119;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -3883,7 +4005,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 115;
+	int INTEGER_DATA = 120;
 
 
 	/**
@@ -6702,15 +6824,98 @@ public interface MscriptPackage extends EPackage {
 	EClass getStringLiteral();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.StringLiteral#getValue <em>Value</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.SimpleStringLiteral <em>Simple String Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipselabs.damos.mscript.StringLiteral#getValue()
-	 * @see #getStringLiteral()
+	 * @return the meta object for class '<em>Simple String Literal</em>'.
+	 * @see org.eclipselabs.damos.mscript.SimpleStringLiteral
 	 * @generated
 	 */
-	EAttribute getStringLiteral_Value();
+	EClass getSimpleStringLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.SimpleStringLiteral#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see org.eclipselabs.damos.mscript.SimpleStringLiteral#getText()
+	 * @see #getSimpleStringLiteral()
+	 * @generated
+	 */
+	EAttribute getSimpleStringLiteral_Text();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.MultiLineStringLiteral <em>Multi Line String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Line String Literal</em>'.
+	 * @see org.eclipselabs.damos.mscript.MultiLineStringLiteral
+	 * @generated
+	 */
+	EClass getMultiLineStringLiteral();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.MultiLineStringLiteral#getSegments <em>Segments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Segments</em>'.
+	 * @see org.eclipselabs.damos.mscript.MultiLineStringLiteral#getSegments()
+	 * @see #getMultiLineStringLiteral()
+	 * @generated
+	 */
+	EReference getMultiLineStringLiteral_Segments();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StringSegment <em>String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.StringSegment
+	 * @generated
+	 */
+	EClass getStringSegment();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ConstantStringSegment <em>Constant String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constant String Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment
+	 * @generated
+	 */
+	EClass getConstantStringSegment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment#getText()
+	 * @see #getConstantStringSegment()
+	 * @generated
+	 */
+	EAttribute getConstantStringSegment_Text();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.DynamicStringSegment <em>Dynamic String Segment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dynamic String Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment
+	 * @generated
+	 */
+	EClass getDynamicStringSegment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment#getExpression()
+	 * @see #getDynamicStringSegment()
+	 * @generated
+	 */
+	EReference getDynamicStringSegment_Expression();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}'.
@@ -9137,12 +9342,86 @@ public interface MscriptPackage extends EPackage {
 		EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl <em>Simple String Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSimpleStringLiteral()
+		 * @generated
+		 */
+		EClass SIMPLE_STRING_LITERAL = eINSTANCE.getSimpleStringLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_LITERAL__VALUE = eINSTANCE.getStringLiteral_Value();
+		EAttribute SIMPLE_STRING_LITERAL__TEXT = eINSTANCE.getSimpleStringLiteral_Text();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl <em>Multi Line String Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiLineStringLiteral()
+		 * @generated
+		 */
+		EClass MULTI_LINE_STRING_LITERAL = eINSTANCE.getMultiLineStringLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Segments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_LINE_STRING_LITERAL__SEGMENTS = eINSTANCE.getMultiLineStringLiteral_Segments();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StringSegmentImpl <em>String Segment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.StringSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringSegment()
+		 * @generated
+		 */
+		EClass STRING_SEGMENT = eINSTANCE.getStringSegment();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl <em>Constant String Segment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantStringSegment()
+		 * @generated
+		 */
+		EClass CONSTANT_STRING_SEGMENT = eINSTANCE.getConstantStringSegment();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTANT_STRING_SEGMENT__TEXT = eINSTANCE.getConstantStringSegment_Text();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDynamicStringSegment()
+		 * @generated
+		 */
+		EClass DYNAMIC_STRING_SEGMENT = eINSTANCE.getDynamicStringSegment();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DYNAMIC_STRING_SEGMENT__EXPRESSION = eINSTANCE.getDynamicStringSegment_Expression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.

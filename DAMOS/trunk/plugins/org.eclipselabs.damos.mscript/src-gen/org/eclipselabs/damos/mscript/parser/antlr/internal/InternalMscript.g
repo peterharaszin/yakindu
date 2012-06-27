@@ -5033,25 +5033,296 @@ ruleStringLiteral returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
+    { 
+        newCompositeNode(grammarAccess.getStringLiteralAccess().getSimpleStringLiteralParserRuleCall_0()); 
+    }
+    this_SimpleStringLiteral_0=ruleSimpleStringLiteral
+    { 
+        $current = $this_SimpleStringLiteral_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getStringLiteralAccess().getMultiLineStringLiteralParserRuleCall_1()); 
+    }
+    this_MultiLineStringLiteral_1=ruleMultiLineStringLiteral
+    { 
+        $current = $this_MultiLineStringLiteral_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleSimpleStringLiteral
+entryRuleSimpleStringLiteral returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSimpleStringLiteralRule()); }
+	 iv_ruleSimpleStringLiteral=ruleSimpleStringLiteral 
+	 { $current=$iv_ruleSimpleStringLiteral.current; } 
+	 EOF 
+;
+
+// Rule SimpleStringLiteral
+ruleSimpleStringLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 (
-		lv_value_0_0=RULE_STRING
+(
+		lv_text_0_0=RULE_STRING
 		{
-			newLeafNode(lv_value_0_0, grammarAccess.getStringLiteralAccess().getValueSTRINGTerminalRuleCall_0()); 
+			newLeafNode(lv_text_0_0, grammarAccess.getSimpleStringLiteralAccess().getTextSTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getStringLiteralRule());
+	            $current = createModelElement(grammarAccess.getSimpleStringLiteralRule());
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"value",
-        		lv_value_0_0, 
+       			"text",
+        		lv_text_0_0, 
         		"STRING");
 	    }
 
 )
 )
 ;
+
+
+
+
+
+// Entry rule entryRuleMultiLineStringLiteral
+entryRuleMultiLineStringLiteral returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
+	:
+	{ newCompositeNode(grammarAccess.getMultiLineStringLiteralRule()); }
+	 iv_ruleMultiLineStringLiteral=ruleMultiLineStringLiteral 
+	 { $current=$iv_ruleMultiLineStringLiteral.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule MultiLineStringLiteral
+ruleMultiLineStringLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getMultiLineStringLiteralAccess().getMultiLineStringLiteralAction_0(),
+            $current);
+    }
+)	otherlv_1='"""' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMultiLineStringLiteralAccess().getQuotationMarkQuotationMarkQuotationMarkKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsConstantStringSegmentParserRuleCall_2_0()); 
+	    }
+		lv_segments_2_0=ruleConstantStringSegment		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiLineStringLiteralRule());
+	        }
+       		add(
+       			$current, 
+       			"segments",
+        		lv_segments_2_0, 
+        		"ConstantStringSegment");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsDynamicStringSegmentParserRuleCall_3_0_0()); 
+	    }
+		lv_segments_3_0=ruleDynamicStringSegment		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiLineStringLiteralRule());
+	        }
+       		add(
+       			$current, 
+       			"segments",
+        		lv_segments_3_0, 
+        		"DynamicStringSegment");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsConstantStringSegmentParserRuleCall_3_1_0()); 
+	    }
+		lv_segments_4_0=ruleConstantStringSegment		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiLineStringLiteralRule());
+	        }
+       		add(
+       			$current, 
+       			"segments",
+        		lv_segments_4_0, 
+        		"ConstantStringSegment");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_5='"""' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getMultiLineStringLiteralAccess().getQuotationMarkQuotationMarkQuotationMarkKeyword_4());
+    }
+)
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
+// Entry rule entryRuleConstantStringSegment
+entryRuleConstantStringSegment returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getConstantStringSegmentRule()); }
+	 iv_ruleConstantStringSegment=ruleConstantStringSegment 
+	 { $current=$iv_ruleConstantStringSegment.current; } 
+	 EOF 
+;
+
+// Rule ConstantStringSegment
+ruleConstantStringSegment returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getConstantStringSegmentAccess().getTextConstantStringParserRuleCall_0()); 
+	    }
+		lv_text_0_0=ruleConstantString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getConstantStringSegmentRule());
+	        }
+       		set(
+       			$current, 
+       			"text",
+        		lv_text_0_0, 
+        		"ConstantString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleConstantString
+entryRuleConstantString returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getConstantStringRule()); } 
+	 iv_ruleConstantString=ruleConstantString 
+	 { $current=$iv_ruleConstantString.current.getText(); }  
+	 EOF 
+;
+
+// Rule ConstantString
+ruleConstantString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_ID_0=RULE_ID    {
+		$current.merge(this_ID_0);
+    }
+
+    { 
+    newLeafNode(this_ID_0, grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_0()); 
+    }
+
+    |    this_ANY_OTHER_1=RULE_ANY_OTHER    {
+		$current.merge(this_ANY_OTHER_1);
+    }
+
+    { 
+    newLeafNode(this_ANY_OTHER_1, grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_1()); 
+    }
+)+
+    ;
+
+
+
+
+
+// Entry rule entryRuleDynamicStringSegment
+entryRuleDynamicStringSegment returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT");
+	}
+	:
+	{ newCompositeNode(grammarAccess.getDynamicStringSegmentRule()); }
+	 iv_ruleDynamicStringSegment=ruleDynamicStringSegment 
+	 { $current=$iv_ruleDynamicStringSegment.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule DynamicStringSegment
+ruleDynamicStringSegment returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT");
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='${' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getDynamicStringSegmentAccess().getDollarSignLeftCurlyBracketKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDynamicStringSegmentAccess().getExpressionExpressionParserRuleCall_1_0()); 
+	    }
+		lv_expression_1_0=ruleExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDynamicStringSegmentRule());
+	        }
+       		set(
+       			$current, 
+       			"expression",
+        		lv_expression_1_0, 
+        		"Expression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='}' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getDynamicStringSegmentAccess().getRightCurlyBracketKeyword_2());
+    }
+)
+;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 

@@ -908,13 +908,40 @@ public interface MscriptFactory extends EFactory {
 	BooleanLiteral createBooleanLiteral();
 
 	/**
-	 * Returns a new object of class '<em>String Literal</em>'.
+	 * Returns a new object of class '<em>Simple String Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Literal</em>'.
+	 * @return a new object of class '<em>Simple String Literal</em>'.
 	 * @generated
 	 */
-	StringLiteral createStringLiteral();
+	SimpleStringLiteral createSimpleStringLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Multi Line String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Line String Literal</em>'.
+	 * @generated
+	 */
+	MultiLineStringLiteral createMultiLineStringLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Constant String Segment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constant String Segment</em>'.
+	 * @generated
+	 */
+	ConstantStringSegment createConstantStringSegment();
+
+	/**
+	 * Returns a new object of class '<em>Dynamic String Segment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dynamic String Segment</em>'.
+	 * @generated
+	 */
+	DynamicStringSegment createDynamicStringSegment();
 
 	/**
 	 * Returns the package supported by this factory.

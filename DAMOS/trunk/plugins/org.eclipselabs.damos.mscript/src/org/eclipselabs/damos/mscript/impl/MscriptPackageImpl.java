@@ -805,6 +805,41 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass simpleStringLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiLineStringLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringSegmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constantStringSegmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dynamicStringSegmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum functionKindEEnum = null;
 
 	/**
@@ -3295,8 +3330,80 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStringLiteral_Value() {
-		return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(0);
+	public EClass getSimpleStringLiteral() {
+		return simpleStringLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleStringLiteral_Text() {
+		return (EAttribute)simpleStringLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiLineStringLiteral() {
+		return multiLineStringLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiLineStringLiteral_Segments() {
+		return (EReference)multiLineStringLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringSegment() {
+		return stringSegmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstantStringSegment() {
+		return constantStringSegmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstantStringSegment_Text() {
+		return (EAttribute)constantStringSegmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDynamicStringSegment() {
+		return dynamicStringSegmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDynamicStringSegment_Expression() {
+		return (EReference)dynamicStringSegmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3748,7 +3855,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__TRUE);
 
 		stringLiteralEClass = createEClass(STRING_LITERAL);
-		createEAttribute(stringLiteralEClass, STRING_LITERAL__VALUE);
+
+		simpleStringLiteralEClass = createEClass(SIMPLE_STRING_LITERAL);
+		createEAttribute(simpleStringLiteralEClass, SIMPLE_STRING_LITERAL__TEXT);
+
+		multiLineStringLiteralEClass = createEClass(MULTI_LINE_STRING_LITERAL);
+		createEReference(multiLineStringLiteralEClass, MULTI_LINE_STRING_LITERAL__SEGMENTS);
+
+		stringSegmentEClass = createEClass(STRING_SEGMENT);
+
+		constantStringSegmentEClass = createEClass(CONSTANT_STRING_SEGMENT);
+		createEAttribute(constantStringSegmentEClass, CONSTANT_STRING_SEGMENT__TEXT);
+
+		dynamicStringSegmentEClass = createEClass(DYNAMIC_STRING_SEGMENT);
+		createEReference(dynamicStringSegmentEClass, DYNAMIC_STRING_SEGMENT__EXPRESSION);
 
 		// Create enums
 		functionKindEEnum = createEEnum(FUNCTION_KIND);
@@ -3880,6 +4000,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		integerLiteralEClass.getESuperTypes().add(this.getNumericLiteral());
 		booleanLiteralEClass.getESuperTypes().add(this.getLiteral());
 		stringLiteralEClass.getESuperTypes().add(this.getLiteral());
+		simpleStringLiteralEClass.getESuperTypes().add(this.getStringLiteral());
+		multiLineStringLiteralEClass.getESuperTypes().add(this.getStringLiteral());
+		constantStringSegmentEClass.getESuperTypes().add(this.getStringSegment());
+		dynamicStringSegmentEClass.getESuperTypes().add(this.getStringSegment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4308,8 +4432,21 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(booleanLiteralEClass, BooleanLiteral.class, "BooleanLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBooleanLiteral_True(), ecorePackage.getEBoolean(), "true", null, 0, 1, BooleanLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(simpleStringLiteralEClass, SimpleStringLiteral.class, "SimpleStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleStringLiteral_Text(), ecorePackage.getEString(), "text", null, 0, 1, SimpleStringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiLineStringLiteralEClass, MultiLineStringLiteral.class, "MultiLineStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiLineStringLiteral_Segments(), this.getStringSegment(), null, "segments", null, 0, -1, MultiLineStringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringSegmentEClass, StringSegment.class, "StringSegment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(constantStringSegmentEClass, ConstantStringSegment.class, "ConstantStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstantStringSegment_Text(), ecorePackage.getEString(), "text", null, 0, 1, ConstantStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dynamicStringSegmentEClass, DynamicStringSegment.class, "DynamicStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDynamicStringSegment_Expression(), this.getExpression(), null, "expression", null, 0, 1, DynamicStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(functionKindEEnum, FunctionKind.class, "FunctionKind");

@@ -23,6 +23,7 @@ import org.eclipse.xtext.ui.editor.utils.TextStyle;
  */
 public class MscriptHighlightingConfiguration extends DefaultHighlightingConfiguration {
 
+	public static final String MULTI_LINE_STRING_ID = "multiLineString";
 	public static final String FUNCTION_ID = "function";
 	public static final String ITERATION_ID = "iteration";
 	public static final String BUILTIN_ID = "builtin";
@@ -31,11 +32,18 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
+		acceptor.acceptDefaultHighlighting(MULTI_LINE_STRING_ID, "Multi-line string", multiLineStringTextStyle());
 		acceptor.acceptDefaultHighlighting(FUNCTION_ID, "Function", functionTextStyle());
 		acceptor.acceptDefaultHighlighting(ITERATION_ID, "Iteration", iterationTextStyle());
 		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in symbol", builtinTextStyle());
 		acceptor.acceptDefaultHighlighting(UNIT_ID, "Unit", unitTextStyle());
 		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_ID, "Step expression", stepExpressionTextStyle());
+	}
+
+	public TextStyle multiLineStringTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(42, 0, 255));
+		return textStyle;
 	}
 
 	public TextStyle numberTextStyle() {

@@ -2944,18 +2944,156 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class StringLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteral");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSimpleStringLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMultiLineStringLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//StringLiteral:
-		//	value=STRING;
+		//	SimpleStringLiteral | MultiLineStringLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//value=STRING
-		public Assignment getValueAssignment() { return cValueAssignment; }
+		//SimpleStringLiteral | MultiLineStringLiteral
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SimpleStringLiteral
+		public RuleCall getSimpleStringLiteralParserRuleCall_0() { return cSimpleStringLiteralParserRuleCall_0; }
+
+		//MultiLineStringLiteral
+		public RuleCall getMultiLineStringLiteralParserRuleCall_1() { return cMultiLineStringLiteralParserRuleCall_1; }
+	}
+
+	public class SimpleStringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleStringLiteral");
+		private final Assignment cTextAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTextSTRINGTerminalRuleCall_0 = (RuleCall)cTextAssignment.eContents().get(0);
+		
+		//SimpleStringLiteral:
+		//	text=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//text=STRING
+		public Assignment getTextAssignment() { return cTextAssignment; }
 
 		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
+		public RuleCall getTextSTRINGTerminalRuleCall_0() { return cTextSTRINGTerminalRuleCall_0; }
+	}
+
+	public class MultiLineStringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiLineStringLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMultiLineStringLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cQuotationMarkQuotationMarkQuotationMarkKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSegmentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSegmentsConstantStringSegmentParserRuleCall_2_0 = (RuleCall)cSegmentsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cSegmentsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cSegmentsDynamicStringSegmentParserRuleCall_3_0_0 = (RuleCall)cSegmentsAssignment_3_0.eContents().get(0);
+		private final Assignment cSegmentsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSegmentsConstantStringSegmentParserRuleCall_3_1_0 = (RuleCall)cSegmentsAssignment_3_1.eContents().get(0);
+		private final Keyword cQuotationMarkQuotationMarkQuotationMarkKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//MultiLineStringLiteral hidden():
+		//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
+		//	segments+=ConstantStringSegment)* "\"\"\"";
+		public ParserRule getRule() { return rule; }
+
+		//{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
+		//segments+=ConstantStringSegment)* "\"\"\""
+		public Group getGroup() { return cGroup; }
+
+		//{MultiLineStringLiteral}
+		public Action getMultiLineStringLiteralAction_0() { return cMultiLineStringLiteralAction_0; }
+
+		//"\"\"\""
+		public Keyword getQuotationMarkQuotationMarkQuotationMarkKeyword_1() { return cQuotationMarkQuotationMarkQuotationMarkKeyword_1; }
+
+		//segments+=ConstantStringSegment?
+		public Assignment getSegmentsAssignment_2() { return cSegmentsAssignment_2; }
+
+		//ConstantStringSegment
+		public RuleCall getSegmentsConstantStringSegmentParserRuleCall_2_0() { return cSegmentsConstantStringSegmentParserRuleCall_2_0; }
+
+		//(segments+=DynamicStringSegment segments+=ConstantStringSegment)*
+		public Group getGroup_3() { return cGroup_3; }
+
+		//segments+=DynamicStringSegment
+		public Assignment getSegmentsAssignment_3_0() { return cSegmentsAssignment_3_0; }
+
+		//DynamicStringSegment
+		public RuleCall getSegmentsDynamicStringSegmentParserRuleCall_3_0_0() { return cSegmentsDynamicStringSegmentParserRuleCall_3_0_0; }
+
+		//segments+=ConstantStringSegment
+		public Assignment getSegmentsAssignment_3_1() { return cSegmentsAssignment_3_1; }
+
+		//ConstantStringSegment
+		public RuleCall getSegmentsConstantStringSegmentParserRuleCall_3_1_0() { return cSegmentsConstantStringSegmentParserRuleCall_3_1_0; }
+
+		//"\"\"\""
+		public Keyword getQuotationMarkQuotationMarkQuotationMarkKeyword_4() { return cQuotationMarkQuotationMarkQuotationMarkKeyword_4; }
+	}
+
+	public class ConstantStringSegmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantStringSegment");
+		private final Assignment cTextAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTextConstantStringParserRuleCall_0 = (RuleCall)cTextAssignment.eContents().get(0);
+		
+		//ConstantStringSegment:
+		//	text=ConstantString;
+		public ParserRule getRule() { return rule; }
+
+		//text=ConstantString
+		public Assignment getTextAssignment() { return cTextAssignment; }
+
+		//ConstantString
+		public RuleCall getTextConstantStringParserRuleCall_0() { return cTextConstantStringParserRuleCall_0; }
+	}
+
+	public class ConstantStringElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantString");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cANY_OTHERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ConstantString:
+		//	(ID | ANY_OTHER)+;
+		public ParserRule getRule() { return rule; }
+
+		//(ID | ANY_OTHER)+
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_1() { return cANY_OTHERTerminalRuleCall_1; }
+	}
+
+	public class DynamicStringSegmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DynamicStringSegment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpressionExpressionParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//DynamicStringSegment hidden(WS, ML_COMMENT):
+		//	"${" expression=Expression "}";
+		public ParserRule getRule() { return rule; }
+
+		//"${" expression=Expression "}"
+		public Group getGroup() { return cGroup; }
+
+		//"${"
+		public Keyword getDollarSignLeftCurlyBracketKeyword_0() { return cDollarSignLeftCurlyBracketKeyword_0; }
+
+		//expression=Expression
+		public Assignment getExpressionAssignment_1() { return cExpressionAssignment_1; }
+
+		//Expression
+		public RuleCall getExpressionExpressionParserRuleCall_1_0() { return cExpressionExpressionParserRuleCall_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
 	}
 
 	public class FeatureCallElements extends AbstractParserRuleElementFinder {
@@ -5028,6 +5166,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private IntegerDataElements pIntegerData;
 	private BooleanLiteralElements pBooleanLiteral;
 	private StringLiteralElements pStringLiteral;
+	private SimpleStringLiteralElements pSimpleStringLiteral;
+	private MultiLineStringLiteralElements pMultiLineStringLiteral;
+	private ConstantStringSegmentElements pConstantStringSegment;
+	private ConstantStringElements pConstantString;
+	private DynamicStringSegmentElements pDynamicStringSegment;
 	private FeatureCallElements pFeatureCall;
 	private VariableReferenceElements pVariableReference;
 	private FunctionCallElements pFunctionCall;
@@ -5912,13 +6055,64 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral:
-	//	value=STRING;
+	//	SimpleStringLiteral | MultiLineStringLiteral;
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
 	
 	public ParserRule getStringLiteralRule() {
 		return getStringLiteralAccess().getRule();
+	}
+
+	//SimpleStringLiteral:
+	//	text=STRING;
+	public SimpleStringLiteralElements getSimpleStringLiteralAccess() {
+		return (pSimpleStringLiteral != null) ? pSimpleStringLiteral : (pSimpleStringLiteral = new SimpleStringLiteralElements());
+	}
+	
+	public ParserRule getSimpleStringLiteralRule() {
+		return getSimpleStringLiteralAccess().getRule();
+	}
+
+	//MultiLineStringLiteral hidden():
+	//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
+	//	segments+=ConstantStringSegment)* "\"\"\"";
+	public MultiLineStringLiteralElements getMultiLineStringLiteralAccess() {
+		return (pMultiLineStringLiteral != null) ? pMultiLineStringLiteral : (pMultiLineStringLiteral = new MultiLineStringLiteralElements());
+	}
+	
+	public ParserRule getMultiLineStringLiteralRule() {
+		return getMultiLineStringLiteralAccess().getRule();
+	}
+
+	//ConstantStringSegment:
+	//	text=ConstantString;
+	public ConstantStringSegmentElements getConstantStringSegmentAccess() {
+		return (pConstantStringSegment != null) ? pConstantStringSegment : (pConstantStringSegment = new ConstantStringSegmentElements());
+	}
+	
+	public ParserRule getConstantStringSegmentRule() {
+		return getConstantStringSegmentAccess().getRule();
+	}
+
+	//ConstantString:
+	//	(ID | ANY_OTHER)+;
+	public ConstantStringElements getConstantStringAccess() {
+		return (pConstantString != null) ? pConstantString : (pConstantString = new ConstantStringElements());
+	}
+	
+	public ParserRule getConstantStringRule() {
+		return getConstantStringAccess().getRule();
+	}
+
+	//DynamicStringSegment hidden(WS, ML_COMMENT):
+	//	"${" expression=Expression "}";
+	public DynamicStringSegmentElements getDynamicStringSegmentAccess() {
+		return (pDynamicStringSegment != null) ? pDynamicStringSegment : (pDynamicStringSegment = new DynamicStringSegmentElements());
+	}
+	
+	public ParserRule getDynamicStringSegmentRule() {
+		return getDynamicStringSegmentAccess().getRule();
 	}
 
 	//FeatureCall returns Expression:

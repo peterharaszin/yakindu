@@ -15,7 +15,6 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexerDelegate;
 import org.eclipselabs.damos.mscript.ui.contentassist.antlr.internal.InternalMscriptLexer;
-import org.eclipselabs.damos.mscript.ui.contentassist.antlr.internal.InternalMscriptParser;
 
 /**
  * @author Andreas Unger
@@ -23,7 +22,7 @@ import org.eclipselabs.damos.mscript.ui.contentassist.antlr.internal.InternalMsc
  */
 public class MscriptContentAssistLexer extends InternalMscriptLexer {
 
-	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(InternalMscriptParser.tokenNames, RULE_ANY_OTHER);
+	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_ANY_OTHER);
 	
 	public Token nextToken() {
 		return delegate.nextToken(super.nextToken());
@@ -31,8 +30,9 @@ public class MscriptContentAssistLexer extends InternalMscriptLexer {
 	
 	@Override
 	public void mTokens() throws RecognitionException {
-		super.mTokens();
-		delegate.mTokens(state);
+		if (delegate.mTokens(input, state)) {
+			super.mTokens();
+		}
 	}
 
 }

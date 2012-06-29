@@ -14,7 +14,6 @@ package org.eclipselabs.damos.dconfig.parser.antlr;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipselabs.damos.dconfig.parser.antlr.internal.InternalDconfigLexer;
-import org.eclipselabs.damos.dconfig.parser.antlr.internal.InternalDconfigParser;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexerDelegate;
 
 /**
@@ -23,7 +22,7 @@ import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexerDelegate;
  */
 public class DconfigLexer extends InternalDconfigLexer {
 	
-	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(InternalDconfigParser.tokenNames, RULE_ANY_OTHER);
+	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_ANY_OTHER);
 	
 	public Token nextToken() {
 		return delegate.nextToken(super.nextToken());
@@ -31,8 +30,9 @@ public class DconfigLexer extends InternalDconfigLexer {
 	
 	@Override
 	public void mTokens() throws RecognitionException {
-		super.mTokens();
-		delegate.mTokens(state);
+		if (delegate.mTokens(input, state)) {
+			super.mTokens();
+		}
 	}
 
 }

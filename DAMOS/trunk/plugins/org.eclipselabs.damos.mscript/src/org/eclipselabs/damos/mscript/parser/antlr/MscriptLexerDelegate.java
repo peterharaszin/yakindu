@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.parser.antlr;
 
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.CharStream;
 import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 
@@ -20,7 +22,6 @@ import org.antlr.runtime.Token;
  */
 public class MscriptLexerDelegate {
 	
-	private final String[] tokenNames;
 	private final int ruleAnyOther;
 	
 	private boolean inMultiLineString;
@@ -29,8 +30,7 @@ public class MscriptLexerDelegate {
 	/**
 	 * 
 	 */
-	public MscriptLexerDelegate(String[] tokenNames, int ruleAnyOther) {
-		this.tokenNames = tokenNames;
+	public MscriptLexerDelegate(int ruleAnyOther) {
 		this.ruleAnyOther = ruleAnyOther;
 	}
 	
@@ -56,13 +56,16 @@ public class MscriptLexerDelegate {
 		return nextToken;
 	}
 	
-	public void mTokens(RecognizerSharedState state) {
+	public boolean mTokens(CharStream input, RecognizerSharedState state) {
 		if (inMultiLineString && inDynamicStringCounter == 0) {
-			String tokenName = tokenNames[state.type];
-			if (!"'\"\"\"'".equals(tokenName) && !"'${'".equals(tokenName)) {
+			if (!(input.LA(1) == '"' && input.LA(2) == '"' && input.LA(3) == '"') && !(input.LA(1) == '$' && input.LA(2) == '{')) {
+				input.consume();
+				state.channel = BaseRecognizer.DEFAULT_TOKEN_CHANNEL;
 				state.type = ruleAnyOther;
+				return false;
 			}
 		}
+		return true;
 	}
 
 }

@@ -37,7 +37,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.SimpleStringLiteral;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -51,6 +50,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -105,9 +105,12 @@ public class StaticFunctionEvaluator {
 					continue;
 				}
 				if (!((IBooleanValue) value).booleanValue()) {
-					Expression message = assertion.getMessage();
-					if (message instanceof SimpleStringLiteral) {
-						SimpleStringLiteral stringMessage = (SimpleStringLiteral) message;
+					IValue message = expressionEvaluator.evaluate(expressionEvaluationContext, assertion.getMessage());
+					if (message instanceof InvalidValue) {
+						continue;
+					}
+					if (message instanceof StringValue) {
+						String messageText = ((StringValue) message).stringValue();
 						int severity;
 						switch (assertion.getStatusKind()) {
 						case INFO:
@@ -123,10 +126,12 @@ public class StaticFunctionEvaluator {
 						if (severity > IStatus.WARNING) {
 							passed = false;
 						}
-						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getText(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							break;
 						}
+					} else {
+						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Assertion message must result to string", assertion.getMessage()));
 					}
 				}
 			}

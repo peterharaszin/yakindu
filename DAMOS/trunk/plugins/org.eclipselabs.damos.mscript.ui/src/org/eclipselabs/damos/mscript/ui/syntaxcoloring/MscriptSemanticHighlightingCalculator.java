@@ -21,12 +21,10 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipselabs.damos.mscript.BuiltinDeclaration;
-import org.eclipselabs.damos.mscript.ConstantStringSegment;
 import org.eclipselabs.damos.mscript.FeatureCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.MultiLineStringLiteral;
 import org.eclipselabs.damos.mscript.StepExpression;
 import org.eclipselabs.damos.mscript.Unit;
 
@@ -59,15 +57,7 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 	
 	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
 		boolean proceed = true;
-		if (eObject instanceof ConstantStringSegment) {
-			INode node = NodeModelUtils.getNode(eObject);
-			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.MULTI_LINE_STRING_ID);
-			proceed = false;
-		} else if (eObject instanceof MultiLineStringLiteral) {
-			INode node = NodeModelUtils.findActualNodeFor(eObject);
-			acceptor.addPosition(node.getOffset(), 3, MscriptHighlightingConfiguration.MULTI_LINE_STRING_ID);
-			acceptor.addPosition(node.getTotalEndOffset() - 3, 3, MscriptHighlightingConfiguration.MULTI_LINE_STRING_ID);
-		} else if (eObject instanceof FunctionDeclaration) {
+		if (eObject instanceof FunctionDeclaration) {
 			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name());
 			for (INode node : nodes) {
 				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.FUNCTION_ID);

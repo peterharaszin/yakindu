@@ -11,9 +11,15 @@
 
 package org.eclipselabs.damos.dmltext.ui;
 
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.LanguageSpecific;
+import org.eclipse.xtext.ui.editor.IURIEditorOpener;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.IContentAssistParser;
 import org.eclipselabs.damos.dmltext.ui.contentassist.antlr.SystemInterfaceContentAssistParser;
+import org.eclipselabs.damos.dmltext.ui.editor.SystemInterfaceURIEditorOpener;
+
+import com.google.inject.Binder;
 
 /**
  * @author Andreas Unger
@@ -28,12 +34,17 @@ public class SystemInterfaceUiModule extends DMLTextUiModule {
 		super(plugin);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.dmltext.ui.AbstractDMLTextUiModule#bindIContentAssistParser()
-	 */
 	@Override
 	public Class<? extends IContentAssistParser> bindIContentAssistParser() {
 		return SystemInterfaceContentAssistParser.class;
+	}
+	
+	@Override
+	public void configureLanguageSpecificURIEditorOpener(Binder binder) {
+		if (PlatformUI.isWorkbenchRunning()) {
+			binder.bind(IURIEditorOpener.class).annotatedWith(LanguageSpecific.class)
+					.to(SystemInterfaceURIEditorOpener.class);
+		}
 	}
 	
 }

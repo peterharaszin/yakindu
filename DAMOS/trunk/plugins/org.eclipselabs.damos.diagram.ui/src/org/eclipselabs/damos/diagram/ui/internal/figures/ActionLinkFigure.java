@@ -31,6 +31,7 @@ public class ActionLinkFigure extends PolylineConnectionEx implements IFigureCon
 			}
 			
 		};
+		decoration.setLineWidth(DEFAULT_LINE_WIDTH);
 		decoration.setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
 		setTargetDecoration(decoration);
 		setLineWidth(DEFAULT_LINE_WIDTH);

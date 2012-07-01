@@ -22,7 +22,7 @@ import org.antlr.runtime.Token;
  */
 public class MscriptLexerDelegate {
 	
-	private final int ruleAnyOther;
+	private final int constantStringRule;
 	
 	private boolean inMultiLineString;
 	private int inDynamicStringCounter;
@@ -30,8 +30,8 @@ public class MscriptLexerDelegate {
 	/**
 	 * 
 	 */
-	public MscriptLexerDelegate(int ruleAnyOther) {
-		this.ruleAnyOther = ruleAnyOther;
+	public MscriptLexerDelegate(int constantStringRule) {
+		this.constantStringRule = constantStringRule;
 	}
 	
 	public Token nextToken(Token nextToken) {
@@ -61,7 +61,7 @@ public class MscriptLexerDelegate {
 			if (!(input.LA(1) == '"' && input.LA(2) == '"' && input.LA(3) == '"') && !(input.LA(1) == '$' && input.LA(2) == '{')) {
 				input.consume();
 				state.channel = BaseRecognizer.DEFAULT_TOKEN_CHANNEL;
-				state.type = ruleAnyOther;
+				state.type = constantStringRule;
 				return false;
 			}
 		}

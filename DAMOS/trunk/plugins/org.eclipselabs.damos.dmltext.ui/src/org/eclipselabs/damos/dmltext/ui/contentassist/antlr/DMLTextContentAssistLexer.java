@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexerDelegate;
  */
 public class DMLTextContentAssistLexer extends InternalDMLTextLexer {
 
-	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_ANY_OTHER);
+	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_CONSTANT_STRING);
 	
 	public Token nextToken() {
 		return delegate.nextToken(super.nextToken());

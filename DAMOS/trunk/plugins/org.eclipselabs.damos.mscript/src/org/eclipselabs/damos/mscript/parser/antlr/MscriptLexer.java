@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.parser.antlr.internal.InternalMscriptLexer;
  */
 public class MscriptLexer extends InternalMscriptLexer {
 	
-	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_ANY_OTHER);
+	private final MscriptLexerDelegate delegate = new MscriptLexerDelegate(RULE_CONSTANT_STRING);
 	
 	public Token nextToken() {
 		return delegate.nextToken(super.nextToken());

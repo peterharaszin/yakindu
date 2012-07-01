@@ -3051,21 +3051,25 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class ConstantStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantString");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cANY_OTHERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cCONSTANT_STRINGTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cANY_OTHERTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ConstantString:
-		//	(ID | ANY_OTHER)+;
+		//	(CONSTANT_STRING | ID | ANY_OTHER)+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | ANY_OTHER)+
+		//(CONSTANT_STRING | ID | ANY_OTHER)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//CONSTANT_STRING
+		public RuleCall getCONSTANT_STRINGTerminalRuleCall_0() { return cCONSTANT_STRINGTerminalRuleCall_0; }
+
 		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		public RuleCall getIDTerminalRuleCall_1() { return cIDTerminalRuleCall_1; }
 
 		//ANY_OTHER
-		public RuleCall getANY_OTHERTerminalRuleCall_1() { return cANY_OTHERTerminalRuleCall_1; }
+		public RuleCall getANY_OTHERTerminalRuleCall_2() { return cANY_OTHERTerminalRuleCall_2; }
 	}
 
 	public class DynamicStringSegmentElements extends AbstractParserRuleElementFinder {
@@ -5225,6 +5229,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tINT;
 	private TerminalRule tID;
 	private TerminalRule tSTRING;
+	private TerminalRule tCONSTANT_STRING;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
@@ -6096,7 +6101,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantString:
-	//	(ID | ANY_OTHER)+;
+	//	(CONSTANT_STRING | ID | ANY_OTHER)+;
 	public ConstantStringElements getConstantStringAccess() {
 		return (pConstantString != null) ? pConstantString : (pConstantString = new ConstantStringElements());
 	}
@@ -6626,6 +6631,12 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	//	"\"" (!("\\" | "\"") | "\\" ("\'" | "\"" | "?" | "\\" | "a" | "b" | "f" | "n" | "r" | "t" | "v"))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+	} 
+
+	//terminal CONSTANT_STRING:
+	//	"­";
+	public TerminalRule getCONSTANT_STRINGRule() {
+		return (tCONSTANT_STRING != null) ? tCONSTANT_STRING : (tCONSTANT_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CONSTANT_STRING"));
 	} 
 
 	//terminal ML_COMMENT:

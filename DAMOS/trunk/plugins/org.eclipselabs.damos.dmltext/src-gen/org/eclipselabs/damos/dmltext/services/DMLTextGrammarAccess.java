@@ -2208,7 +2208,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantString:
-	//	(ID | ANY_OTHER)+;
+	//	(CONSTANT_STRING | ID | ANY_OTHER)+;
 	public MscriptGrammarAccess.ConstantStringElements getConstantStringAccess() {
 		return gaMscript.getConstantStringAccess();
 	}
@@ -2728,6 +2728,12 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	//	"\"" (!("\\" | "\"") | "\\" ("\'" | "\"" | "?" | "\\" | "a" | "b" | "f" | "n" | "r" | "t" | "v"))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return gaMscript.getSTRINGRule();
+	} 
+
+	//terminal CONSTANT_STRING:
+	//	"­";
+	public TerminalRule getCONSTANT_STRINGRule() {
+		return gaMscript.getCONSTANT_STRINGRule();
 	} 
 
 	//terminal ML_COMMENT:

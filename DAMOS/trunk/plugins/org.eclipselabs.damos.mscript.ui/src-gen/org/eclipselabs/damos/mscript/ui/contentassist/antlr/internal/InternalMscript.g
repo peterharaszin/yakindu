@@ -4317,15 +4317,21 @@ rule__ConstantString__Alternatives
     }
 :
 (
-{ before(grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_0()); }
-	RULE_ID
-{ after(grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_0()); }
+{ before(grammarAccess.getConstantStringAccess().getCONSTANT_STRINGTerminalRuleCall_0()); }
+	RULE_CONSTANT_STRING
+{ after(grammarAccess.getConstantStringAccess().getCONSTANT_STRINGTerminalRuleCall_0()); }
 )
 
     |(
-{ before(grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_1()); }
+{ before(grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_1()); }
+	RULE_ID
+{ after(grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_1()); }
+)
+
+    |(
+{ before(grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_2()); }
 	RULE_ANY_OTHER
-{ after(grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_1()); }
+{ after(grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_2()); }
 )
 
 ;
@@ -23631,6 +23637,8 @@ RULE_INT : ('0'..'9')+;
 RULE_ID : '_'? ('a'..'z'|'A'..'Z') ('0'..'9'|'_'|'a'..'z'|'A'..'Z')*;
 
 RULE_STRING : '"' (~(('\\'|'"'))|'\\' ('\''|'"'|'?'|'\\'|'a'|'b'|'f'|'n'|'r'|'t'|'v'))* '"';
+
+RULE_CONSTANT_STRING : '\u00AD';
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

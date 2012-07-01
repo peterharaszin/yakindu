@@ -11,7 +11,7 @@
               default="true"
               extensions="blocktype"
               icon="icons/BlockType.png"
-              id="org.eclipselabs.damos.dmltext.blockType"
+              id="org.eclipselabs.damos.dmltext.ui.blockType"
               name="Block Type Editor">
         </editor>
         <editor
@@ -20,7 +20,7 @@
               default="true"
               extensions="systeminterface"
               icon="icons/SystemInterface.png"
-              id="org.eclipselabs.damos.dmltext.systemInterface"
+              id="org.eclipselabs.damos.dmltext.ui.systemInterface"
               name="System Interface Editor">
         </editor>
     </extension>

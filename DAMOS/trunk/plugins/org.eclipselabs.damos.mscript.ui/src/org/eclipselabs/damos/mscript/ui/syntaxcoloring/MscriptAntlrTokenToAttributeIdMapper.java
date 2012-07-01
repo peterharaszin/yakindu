@@ -28,7 +28,7 @@ public class MscriptAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAtt
 		if("RULE_INT".equals(tokenName)) {
 			return DefaultHighlightingConfiguration.NUMBER_ID;
 		}
-		if("'\"\"\"'".equals(tokenName) || "RULE_ANY_OTHER".equals(tokenName)) {
+		if("'\"\"\"'".equals(tokenName) || "RULE_CONSTANT_STRING".equals(tokenName)) {
 			return MscriptHighlightingConfiguration.MULTI_LINE_STRING_ID;
 		}
 		return super.calculateId(tokenName, tokenType);

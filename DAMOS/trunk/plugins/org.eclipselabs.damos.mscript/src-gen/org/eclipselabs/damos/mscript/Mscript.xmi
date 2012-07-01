@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipselabs.damos.mscript.Mscript" definesHiddenTokens="true" hiddenTokens="//@rules.138 //@rules.136 //@rules.137">
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipselabs.damos.mscript.Mscript" definesHiddenTokens="true" hiddenTokens="//@rules.139 //@rules.137 //@rules.138">
   <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
     <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   </metamodelDeclarations>
@@ -1511,11 +1511,12 @@
       <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives" cardinality="+">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.136"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.134"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.139"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.140"/>
     </alternatives>
   </rules>
-  <rules xsi:type="xtext:ParserRule" name="DynamicStringSegment" definesHiddenTokens="true" hiddenTokens="//@rules.138 //@rules.136">
+  <rules xsi:type="xtext:ParserRule" name="DynamicStringSegment" definesHiddenTokens="true" hiddenTokens="//@rules.139 //@rules.137">
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DynamicStringSegment"/>
     </type>
@@ -2415,6 +2416,12 @@
       </elements>
       <elements xsi:type="xtext:Keyword" value="&quot;"/>
     </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="CONSTANT_STRING">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Keyword" value="&#xad;"/>
   </rules>
   <rules xsi:type="xtext:TerminalRule" name="ML_COMMENT">
     <type metamodel="//@metamodelDeclarations.0">

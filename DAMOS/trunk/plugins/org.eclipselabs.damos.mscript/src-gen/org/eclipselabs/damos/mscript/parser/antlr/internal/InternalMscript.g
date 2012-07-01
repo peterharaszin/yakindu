@@ -5249,20 +5249,28 @@ ruleConstantString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_ID_0=RULE_ID    {
-		$current.merge(this_ID_0);
+(    this_CONSTANT_STRING_0=RULE_CONSTANT_STRING    {
+		$current.merge(this_CONSTANT_STRING_0);
     }
 
     { 
-    newLeafNode(this_ID_0, grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_0()); 
+    newLeafNode(this_CONSTANT_STRING_0, grammarAccess.getConstantStringAccess().getCONSTANT_STRINGTerminalRuleCall_0()); 
     }
 
-    |    this_ANY_OTHER_1=RULE_ANY_OTHER    {
-		$current.merge(this_ANY_OTHER_1);
+    |    this_ID_1=RULE_ID    {
+		$current.merge(this_ID_1);
     }
 
     { 
-    newLeafNode(this_ANY_OTHER_1, grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_1()); 
+    newLeafNode(this_ID_1, grammarAccess.getConstantStringAccess().getIDTerminalRuleCall_1()); 
+    }
+
+    |    this_ANY_OTHER_2=RULE_ANY_OTHER    {
+		$current.merge(this_ANY_OTHER_2);
+    }
+
+    { 
+    newLeafNode(this_ANY_OTHER_2, grammarAccess.getConstantStringAccess().getANY_OTHERTerminalRuleCall_2()); 
     }
 )+
     ;
@@ -8311,6 +8319,8 @@ RULE_INT : ('0'..'9')+;
 RULE_ID : '_'? ('a'..'z'|'A'..'Z') ('0'..'9'|'_'|'a'..'z'|'A'..'Z')*;
 
 RULE_STRING : '"' (~(('\\'|'"'))|'\\' ('\''|'"'|'?'|'\\'|'a'|'b'|'f'|'n'|'r'|'t'|'v'))* '"';
+
+RULE_CONSTANT_STRING : '\u00AD';
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

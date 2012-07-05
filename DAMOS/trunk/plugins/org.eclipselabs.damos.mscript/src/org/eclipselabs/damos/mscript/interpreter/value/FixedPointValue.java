@@ -18,6 +18,7 @@ import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -60,11 +61,28 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 
 	@Override
 	protected IValue doConvert(DataType dataType) {
+		if (dataType instanceof StringType) {
+			if (getDataType() instanceof IntegerType) {
+				return new StringValue(getContext(), Long.toString(longValue()));
+			}
+			return InvalidValue.SINGLETON;
+		}
 		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(dataType);
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {
 			return new FixedPointValue(getContext(), (NumericType) dataType, getNumberFormat(), rawValue);
 		}
 		return doCast((NumericType) dataType, numberFormat);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
+	 */
+	@Override
+	protected IValue doAdd(IValue other, DataType resultDataType) {
+		if (resultDataType instanceof StringType) {
+			return new StringValue(getContext(), Long.toString(longValue()) + other);
+		}
+		return super.doAdd(other, resultDataType);
 	}
 	
 	@Override

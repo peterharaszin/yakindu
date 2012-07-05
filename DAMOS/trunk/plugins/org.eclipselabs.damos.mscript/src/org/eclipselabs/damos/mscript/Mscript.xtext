@@ -322,7 +322,7 @@ SimpleStringLiteral:
 	text=STRING;
 	
 MultiLineStringLiteral hidden():
-	{MultiLineStringLiteral} '"""' segments+=ConstantStringSegment? (segments+=DynamicStringSegment segments+=ConstantStringSegment)* '"""';
+	{MultiLineStringLiteral} '"""' segments+=ConstantStringSegment? (segments+=DynamicStringSegment (segments+=ConstantStringSegment)?)* '"""';
 
 ConstantStringSegment:
 	text=ConstantString;

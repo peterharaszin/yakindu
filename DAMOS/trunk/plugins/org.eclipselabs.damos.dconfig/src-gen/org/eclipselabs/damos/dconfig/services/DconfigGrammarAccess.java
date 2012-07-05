@@ -2684,7 +2684,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MultiLineStringLiteral hidden():
 	//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-	//	segments+=ConstantStringSegment)* "\"\"\"";
+	//	segments+=ConstantStringSegment?)* "\"\"\"";
 	public MscriptGrammarAccess.MultiLineStringLiteralElements getMultiLineStringLiteralAccess() {
 		return gaMscript.getMultiLineStringLiteralAccess();
 	}

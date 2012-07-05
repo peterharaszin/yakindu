@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.MultiLineStringLiteral;
 import org.eclipselabs.damos.mscript.StringSegment;
+import org.eclipselabs.damos.mscript.internal.operations.MultiLineStringLiteralOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +68,15 @@ public class MultiLineStringLiteralImpl extends StringLiteralImpl implements Mul
 			segments = new EObjectContainmentEList<StringSegment>(StringSegment.class, this, MscriptPackage.MULTI_LINE_STRING_LITERAL__SEGMENTS);
 		}
 		return segments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void normalizeSegments() {
+		MultiLineStringLiteralOperations.normalizeSegments(this);
 	}
 
 	/**

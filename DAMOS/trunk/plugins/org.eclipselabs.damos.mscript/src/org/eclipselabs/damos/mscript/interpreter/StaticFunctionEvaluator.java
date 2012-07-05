@@ -110,7 +110,7 @@ public class StaticFunctionEvaluator {
 						continue;
 					}
 					if (message instanceof StringValue) {
-						String messageText = ((StringValue) message).stringValue();
+						String messageText = message.toString();
 						int severity;
 						switch (assertion.getStatusKind()) {
 						case INFO:

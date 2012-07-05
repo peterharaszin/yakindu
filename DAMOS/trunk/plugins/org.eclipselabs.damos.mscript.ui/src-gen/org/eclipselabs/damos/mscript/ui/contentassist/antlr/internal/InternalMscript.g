@@ -14801,7 +14801,7 @@ rule__MultiLineStringLiteral__Group_3__1__Impl
 :
 (
 { before(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_3_1()); }
-(rule__MultiLineStringLiteral__SegmentsAssignment_3_1)
+(rule__MultiLineStringLiteral__SegmentsAssignment_3_1)?
 { after(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_3_1()); }
 )
 

@@ -29,7 +29,7 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 
 	private static final float LOG_2 = (float) Math.log(2);
 
-	private float value;
+	private final float value;
 	
 	public Binary32Value(IComputationContext context, NumericType dataType, FloatingPointFormat numberFormat, float value) {
 		super(context, dataType, numberFormat);

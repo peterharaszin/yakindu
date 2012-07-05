@@ -19,6 +19,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl#getIndentation <em>Indentation</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,6 +35,24 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 	 * @ordered
 	 */
 	protected Expression expression;
+	/**
+	 * The default value of the '{@link #getIndentation() <em>Indentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String INDENTATION_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getIndentation() <em>Indentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String indentation = INDENTATION_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,6 +120,27 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getIndentation() {
+		return indentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndentation(String newIndentation) {
+		String oldIndentation = indentation;
+		indentation = newIndentation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DYNAMIC_STRING_SEGMENT__INDENTATION, oldIndentation, indentation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -120,6 +160,8 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 		switch (featureID) {
 			case MscriptPackage.DYNAMIC_STRING_SEGMENT__EXPRESSION:
 				return getExpression();
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT__INDENTATION:
+				return getIndentation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,6 +176,9 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 		switch (featureID) {
 			case MscriptPackage.DYNAMIC_STRING_SEGMENT__EXPRESSION:
 				setExpression((Expression)newValue);
+				return;
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT__INDENTATION:
+				setIndentation((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,6 +195,9 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 			case MscriptPackage.DYNAMIC_STRING_SEGMENT__EXPRESSION:
 				setExpression((Expression)null);
 				return;
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT__INDENTATION:
+				setIndentation(INDENTATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -164,8 +212,26 @@ public class DynamicStringSegmentImpl extends StringSegmentImpl implements Dynam
 		switch (featureID) {
 			case MscriptPackage.DYNAMIC_STRING_SEGMENT__EXPRESSION:
 				return expression != null;
+			case MscriptPackage.DYNAMIC_STRING_SEGMENT__INDENTATION:
+				return INDENTATION_EDEFAULT == null ? indentation != null : !INDENTATION_EDEFAULT.equals(indentation);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (indentation: ");
+		result.append(indentation);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DynamicStringSegmentImpl

@@ -29,7 +29,7 @@ public class Binary64Value extends AbstractNumericValue implements ISimpleNumeri
 
 	private static final double LOG_2 = Math.log(2);
 
-	private double value;
+	private final double value;
 	
 	public Binary64Value(IComputationContext context, NumericType dataType, FloatingPointFormat numberFormat, double value) {
 		super(context, dataType, numberFormat);

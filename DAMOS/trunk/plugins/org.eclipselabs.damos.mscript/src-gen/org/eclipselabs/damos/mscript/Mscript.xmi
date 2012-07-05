@@ -1491,7 +1491,7 @@
         <elements xsi:type="xtext:Assignment" feature="segments" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.81"/>
         </elements>
-        <elements xsi:type="xtext:Assignment" feature="segments" operator="+=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="segments" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.79"/>
         </elements>
       </elements>

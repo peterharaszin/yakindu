@@ -1540,16 +1540,27 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseMultiLineStringLiteral(MultiLineStringLiteral stringLiteral) {
+			stringLiteral.normalizeSegments();
+			
+			boolean endsWithNewLine = false;
+			
 			StringBuilder sb = new StringBuilder();
 			for (StringSegment segment : stringLiteral.getSegments()) {
 				if (segment instanceof ConstantStringSegment) {
-					sb.append(((ConstantStringSegment) segment).getText());
+					String text = ((ConstantStringSegment) segment).getNormalizedText();
+					if (endsWithNewLine && (text.length() > 0 && text.charAt(0) == '\n' || text.length() > 1 && text.charAt(0) == '\r' && text.charAt(1) == '\n')) {
+						sb.append(text, text.charAt(0) == '\r' ? 2 : 1, text.length());
+					} else {
+						sb.append(text);
+					}
+					endsWithNewLine = false;
 				} else if (segment instanceof DynamicStringSegment) {
 					DynamicStringSegment dynamicSegment = (DynamicStringSegment) segment;
 					IValue value = evaluate(dynamicSegment.getExpression());
 					if (value instanceof InvalidValue) {
 						return InvalidValue.SINGLETON;
 					}
+					value = value.convert(MscriptFactory.eINSTANCE.createStringType());
 					if (!(value.getDataType() instanceof StringType)) {
 						if (context.getStatusCollector() != null) {
 							context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Expression must result to string", dynamicSegment.getExpression()));
@@ -1559,11 +1570,22 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					if (value instanceof AnyValue) {
 						return new AnyValue(context.getComputationContext(), MscriptFactory.eINSTANCE.createStringType());
 					}
-					sb.append(((StringValue) value).stringValue());
+					String text = value.toString();
+					boolean indent = false;
+					for (int i = 0; i < text.length(); ++i) {
+						if (indent) {
+							sb.append(dynamicSegment.getIndentation());
+						}
+						char c = text.charAt(i);
+						sb.append(c);
+						indent = c == '\n';
+					}
+					endsWithNewLine = indent;
 				} else {
 					throw new IllegalStateException("Unknown string segment type " + segment.getClass().getCanonicalName());
 				}
 			}
+			
 			return new StringValue(context.getComputationContext(), sb.toString());
 		}
 

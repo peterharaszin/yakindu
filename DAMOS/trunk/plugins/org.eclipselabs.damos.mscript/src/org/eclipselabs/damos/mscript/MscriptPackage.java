@@ -3921,13 +3921,22 @@ public interface MscriptPackage extends EPackage {
 	int CONSTANT_STRING_SEGMENT__TEXT = STRING_SEGMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Normalized Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT = STRING_SEGMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Constant String Segment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 1;
+	int CONSTANT_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
@@ -3949,13 +3958,22 @@ public interface MscriptPackage extends EPackage {
 	int DYNAMIC_STRING_SEGMENT__EXPRESSION = STRING_SEGMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Indentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_STRING_SEGMENT__INDENTATION = STRING_SEGMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Dynamic String Segment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 1;
+	int DYNAMIC_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.
@@ -6897,6 +6915,17 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getConstantStringSegment_Text();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText <em>Normalized Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Normalized Text</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText()
+	 * @see #getConstantStringSegment()
+	 * @generated
+	 */
+	EAttribute getConstantStringSegment_NormalizedText();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.DynamicStringSegment <em>Dynamic String Segment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6916,6 +6945,17 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDynamicStringSegment_Expression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation <em>Indentation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Indentation</em>'.
+	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation()
+	 * @see #getDynamicStringSegment()
+	 * @generated
+	 */
+	EAttribute getDynamicStringSegment_Indentation();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}'.
@@ -9406,6 +9446,14 @@ public interface MscriptPackage extends EPackage {
 		EAttribute CONSTANT_STRING_SEGMENT__TEXT = eINSTANCE.getConstantStringSegment_Text();
 
 		/**
+		 * The meta object literal for the '<em><b>Normalized Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT = eINSTANCE.getConstantStringSegment_NormalizedText();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9422,6 +9470,14 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DYNAMIC_STRING_SEGMENT__EXPRESSION = eINSTANCE.getDynamicStringSegment_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Indentation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DYNAMIC_STRING_SEGMENT__INDENTATION = eINSTANCE.getDynamicStringSegment_Indentation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.

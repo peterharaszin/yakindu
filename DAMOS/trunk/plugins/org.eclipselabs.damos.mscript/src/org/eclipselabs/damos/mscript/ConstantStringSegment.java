@@ -12,6 +12,7 @@ package org.eclipselabs.damos.mscript;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getText <em>Text</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText <em>Normalized Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,5 +46,31 @@ public interface ConstantStringSegment extends StringSegment {
 	 * @generated
 	 */
 	void setText(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Normalized Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Normalized Text</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Normalized Text</em>' attribute.
+	 * @see #setNormalizedText(String)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getConstantStringSegment_NormalizedText()
+	 * @model transient="true"
+	 * @generated
+	 */
+	String getNormalizedText();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText <em>Normalized Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Normalized Text</em>' attribute.
+	 * @see #getNormalizedText()
+	 * @generated
+	 */
+	void setNormalizedText(String value);
 
 } // ConstantStringSegment

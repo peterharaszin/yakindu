@@ -37,4 +37,12 @@ public interface MultiLineStringLiteral extends StringLiteral {
 	 */
 	EList<StringSegment> getSegments();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void normalizeSegments();
+
 } // MultiLineStringLiteral

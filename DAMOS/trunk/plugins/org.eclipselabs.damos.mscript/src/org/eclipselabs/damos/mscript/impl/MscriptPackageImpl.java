@@ -3393,6 +3393,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstantStringSegment_NormalizedText() {
+		return (EAttribute)constantStringSegmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDynamicStringSegment() {
 		return dynamicStringSegmentEClass;
 	}
@@ -3404,6 +3413,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EReference getDynamicStringSegment_Expression() {
 		return (EReference)dynamicStringSegmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDynamicStringSegment_Indentation() {
+		return (EAttribute)dynamicStringSegmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3866,9 +3884,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		constantStringSegmentEClass = createEClass(CONSTANT_STRING_SEGMENT);
 		createEAttribute(constantStringSegmentEClass, CONSTANT_STRING_SEGMENT__TEXT);
+		createEAttribute(constantStringSegmentEClass, CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT);
 
 		dynamicStringSegmentEClass = createEClass(DYNAMIC_STRING_SEGMENT);
 		createEReference(dynamicStringSegmentEClass, DYNAMIC_STRING_SEGMENT__EXPRESSION);
+		createEAttribute(dynamicStringSegmentEClass, DYNAMIC_STRING_SEGMENT__INDENTATION);
 
 		// Create enums
 		functionKindEEnum = createEEnum(FUNCTION_KIND);
@@ -4440,13 +4460,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(multiLineStringLiteralEClass, MultiLineStringLiteral.class, "MultiLineStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiLineStringLiteral_Segments(), this.getStringSegment(), null, "segments", null, 0, -1, MultiLineStringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		addEOperation(multiLineStringLiteralEClass, null, "normalizeSegments", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(stringSegmentEClass, StringSegment.class, "StringSegment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(constantStringSegmentEClass, ConstantStringSegment.class, "ConstantStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstantStringSegment_Text(), ecorePackage.getEString(), "text", null, 0, 1, ConstantStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantStringSegment_NormalizedText(), ecorePackage.getEString(), "normalizedText", null, 0, 1, ConstantStringSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicStringSegmentEClass, DynamicStringSegment.class, "DynamicStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDynamicStringSegment_Expression(), this.getExpression(), null, "expression", null, 0, 1, DynamicStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicStringSegment_Indentation(), ecorePackage.getEString(), "indentation", null, 0, 1, DynamicStringSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(functionKindEEnum, FunctionKind.class, "FunctionKind");

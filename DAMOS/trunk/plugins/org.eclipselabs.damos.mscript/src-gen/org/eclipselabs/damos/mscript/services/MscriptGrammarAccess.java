@@ -2994,11 +2994,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MultiLineStringLiteral hidden():
 		//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-		//	segments+=ConstantStringSegment)* "\"\"\"";
+		//	segments+=ConstantStringSegment?)* "\"\"\"";
 		public ParserRule getRule() { return rule; }
 
 		//{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-		//segments+=ConstantStringSegment)* "\"\"\""
+		//segments+=ConstantStringSegment?)* "\"\"\""
 		public Group getGroup() { return cGroup; }
 
 		//{MultiLineStringLiteral}
@@ -3013,7 +3013,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//ConstantStringSegment
 		public RuleCall getSegmentsConstantStringSegmentParserRuleCall_2_0() { return cSegmentsConstantStringSegmentParserRuleCall_2_0; }
 
-		//(segments+=DynamicStringSegment segments+=ConstantStringSegment)*
+		//(segments+=DynamicStringSegment segments+=ConstantStringSegment?)*
 		public Group getGroup_3() { return cGroup_3; }
 
 		//segments+=DynamicStringSegment
@@ -3022,7 +3022,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//DynamicStringSegment
 		public RuleCall getSegmentsDynamicStringSegmentParserRuleCall_3_0_0() { return cSegmentsDynamicStringSegmentParserRuleCall_3_0_0; }
 
-		//segments+=ConstantStringSegment
+		//segments+=ConstantStringSegment?
 		public Assignment getSegmentsAssignment_3_1() { return cSegmentsAssignment_3_1; }
 
 		//ConstantStringSegment
@@ -6081,7 +6081,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MultiLineStringLiteral hidden():
 	//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-	//	segments+=ConstantStringSegment)* "\"\"\"";
+	//	segments+=ConstantStringSegment?)* "\"\"\"";
 	public MultiLineStringLiteralElements getMultiLineStringLiteralAccess() {
 		return (pMultiLineStringLiteral != null) ? pMultiLineStringLiteral : (pMultiLineStringLiteral = new MultiLineStringLiteralElements());
 	}

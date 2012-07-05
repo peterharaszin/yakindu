@@ -19228,12 +19228,12 @@ protected class SimpleStringLiteral_TextAssignment extends AssignmentToken  {
  *
  * MultiLineStringLiteral hidden():
  * 	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
- * 	segments+=ConstantStringSegment)* "\"\"\"";
+ * 	segments+=ConstantStringSegment?)* "\"\"\"";
  *
  **/
 
 // {MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-// segments+=ConstantStringSegment)* "\"\"\""
+// segments+=ConstantStringSegment?)* "\"\"\""
 protected class MultiLineStringLiteral_Group extends GroupToken {
 	
 	public MultiLineStringLiteral_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19356,7 +19356,7 @@ protected class MultiLineStringLiteral_SegmentsAssignment_2 extends AssignmentTo
 	}	
 }
 
-// (segments+=DynamicStringSegment segments+=ConstantStringSegment)*
+// (segments+=DynamicStringSegment segments+=ConstantStringSegment?)*
 protected class MultiLineStringLiteral_Group_3 extends GroupToken {
 	
 	public MultiLineStringLiteral_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19372,6 +19372,7 @@ protected class MultiLineStringLiteral_Group_3 extends GroupToken {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new MultiLineStringLiteral_SegmentsAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new MultiLineStringLiteral_SegmentsAssignment_3_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -19426,7 +19427,7 @@ protected class MultiLineStringLiteral_SegmentsAssignment_3_0 extends Assignment
 	}	
 }
 
-// segments+=ConstantStringSegment
+// segments+=ConstantStringSegment?
 protected class MultiLineStringLiteral_SegmentsAssignment_3_1 extends AssignmentToken  {
 	
 	public MultiLineStringLiteral_SegmentsAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19448,7 +19449,7 @@ protected class MultiLineStringLiteral_SegmentsAssignment_3_1 extends Assignment
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("segments",true)) == null) return null;
+		if((value = eObjectConsumer.getConsumable("segments",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("segments");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);

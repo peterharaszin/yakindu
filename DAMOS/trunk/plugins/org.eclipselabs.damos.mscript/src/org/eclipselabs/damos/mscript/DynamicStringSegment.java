@@ -12,6 +12,7 @@ package org.eclipselabs.damos.mscript;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation <em>Indentation</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,5 +46,27 @@ public interface DynamicStringSegment extends StringSegment {
 	 * @generated
 	 */
 	void setExpression(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Indentation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indentation</em>' attribute.
+	 * @see #setIndentation(String)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDynamicStringSegment_Indentation()
+	 * @model transient="true"
+	 * @generated
+	 */
+	String getIndentation();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation <em>Indentation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Indentation</em>' attribute.
+	 * @see #getIndentation()
+	 * @generated
+	 */
+	void setIndentation(String value);
 
 } // DynamicStringSegment

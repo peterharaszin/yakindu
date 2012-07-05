@@ -9,6 +9,7 @@ package org.eclipselabs.damos.mscript.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.internal.operations.StringTypeOperations;
 
@@ -42,11 +43,19 @@ public class StringTypeImpl extends PrimitiveTypeImpl implements StringType {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, org.eclipselabs.damos.mscript.DataType)
+	 */
+	@Override
+	public DataType evaluate(OperatorKind operator, DataType other) {
+		return StringTypeOperations.evaluate(this, operator, other);
+	}
+
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.typesystem.impl.DataTypeImpl#isAssignableFrom(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
 	public boolean isAssignableFrom(DataType other) {
 		return StringTypeOperations.isAssignableFrom(this, other);
 	}
-
+	
 } //StringTypeSpecifierImpl

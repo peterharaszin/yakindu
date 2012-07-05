@@ -7156,7 +7156,7 @@ ruleMultiLineStringLiteral returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_5='"""' 
+)?)*	otherlv_5='"""' 
     {
     	newLeafNode(otherlv_5, grammarAccess.getMultiLineStringLiteralAccess().getQuotationMarkQuotationMarkQuotationMarkKeyword_4());
     }

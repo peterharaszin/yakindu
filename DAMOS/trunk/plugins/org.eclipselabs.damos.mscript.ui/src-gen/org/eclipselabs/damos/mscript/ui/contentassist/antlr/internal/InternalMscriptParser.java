@@ -13077,31 +13077,6 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
             if ( (LA21_0==RULE_ONE) ) {
                 switch ( input.LA(2) ) {
-                case 85:
-                    {
-                    int LA21_3 = input.LA(3);
-
-                    if ( ((LA21_3>=RULE_ONE && LA21_3<=RULE_INT)) ) {
-                        alt21=2;
-                    }
-                    else if ( ((LA21_3>=RULE_IJ && LA21_3<=RULE_EXPIJ)||LA21_3==RULE_ID||(LA21_3>=RULE_N && LA21_3<=RULE_E)) ) {
-                        alt21=1;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return ;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 21, 3, input);
-
-                        throw nvae;
-                    }
-                    }
-                    break;
-                case RULE_EXPIJ:
-                case RULE_E:
-                    {
-                    alt21=2;
-                    }
-                    break;
                 case EOF:
                 case RULE_IJ:
                 case 18:
@@ -13155,6 +13130,31 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                     alt21=1;
                     }
                     break;
+                case 85:
+                    {
+                    int LA21_4 = input.LA(3);
+
+                    if ( ((LA21_4>=RULE_ONE && LA21_4<=RULE_INT)) ) {
+                        alt21=2;
+                    }
+                    else if ( ((LA21_4>=RULE_IJ && LA21_4<=RULE_EXPIJ)||LA21_4==RULE_ID||(LA21_4>=RULE_N && LA21_4<=RULE_E)) ) {
+                        alt21=1;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return ;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 21, 4, input);
+
+                        throw nvae;
+                    }
+                    }
+                    break;
+                case RULE_EXPIJ:
+                case RULE_E:
+                    {
+                    alt21=2;
+                    }
+                    break;
                 default:
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
@@ -13168,18 +13168,18 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                 switch ( input.LA(2) ) {
                 case 85:
                     {
-                    int LA21_3 = input.LA(3);
+                    int LA21_4 = input.LA(3);
 
-                    if ( ((LA21_3>=RULE_ONE && LA21_3<=RULE_INT)) ) {
+                    if ( ((LA21_4>=RULE_ONE && LA21_4<=RULE_INT)) ) {
                         alt21=2;
                     }
-                    else if ( ((LA21_3>=RULE_IJ && LA21_3<=RULE_EXPIJ)||LA21_3==RULE_ID||(LA21_3>=RULE_N && LA21_3<=RULE_E)) ) {
+                    else if ( ((LA21_4>=RULE_IJ && LA21_4<=RULE_EXPIJ)||LA21_4==RULE_ID||(LA21_4>=RULE_N && LA21_4<=RULE_E)) ) {
                         alt21=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 21, 3, input);
+                            new NoViableAltException("", 21, 4, input);
 
                         throw nvae;
                     }
@@ -14130,11 +14130,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                 {
                 int LA30_3 = input.LA(2);
 
-                if ( (LA30_3==56) ) {
-                    alt30=2;
-                }
-                else if ( (LA30_3==EOF||(LA30_3>=18 && LA30_3<=20)||LA30_3==22||(LA30_3>=29 && LA30_3<=43)||LA30_3==48||(LA30_3>=50 && LA30_3<=52)||(LA30_3>=54 && LA30_3<=55)||LA30_3==57||(LA30_3>=59 && LA30_3<=64)||(LA30_3>=71 && LA30_3<=72)||LA30_3==74||(LA30_3>=76 && LA30_3<=77)||(LA30_3>=79 && LA30_3<=86)||LA30_3==91||(LA30_3>=100 && LA30_3<=101)) ) {
+                if ( (LA30_3==EOF||(LA30_3>=18 && LA30_3<=20)||LA30_3==22||(LA30_3>=29 && LA30_3<=43)||LA30_3==48||(LA30_3>=50 && LA30_3<=52)||(LA30_3>=54 && LA30_3<=55)||LA30_3==57||(LA30_3>=59 && LA30_3<=64)||(LA30_3>=71 && LA30_3<=72)||LA30_3==74||(LA30_3>=76 && LA30_3<=77)||(LA30_3>=79 && LA30_3<=86)||LA30_3==91||(LA30_3>=100 && LA30_3<=101)) ) {
                     alt30=1;
+                }
+                else if ( (LA30_3==56) ) {
+                    alt30=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -14964,11 +14964,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( (LA37_0==56) ) {
                 int LA37_1 = input.LA(2);
 
-                if ( (LA37_1==57) ) {
-                    alt37=1;
-                }
-                else if ( ((LA37_1>=RULE_IJ && LA37_1<=RULE_EXPIJ)||LA37_1==RULE_ID||LA37_1==RULE_ONE||(LA37_1>=RULE_N && LA37_1<=RULE_E)) ) {
+                if ( ((LA37_1>=RULE_IJ && LA37_1<=RULE_EXPIJ)||LA37_1==RULE_ID||LA37_1==RULE_ONE||(LA37_1>=RULE_N && LA37_1<=RULE_E)) ) {
                     alt37=2;
+                }
+                else if ( (LA37_1==57) ) {
+                    alt37=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -43507,29 +43507,40 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiLineStringLiteral__Group_3__1__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14797:1: rule__MultiLineStringLiteral__Group_3__1__Impl : ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14797:1: rule__MultiLineStringLiteral__Group_3__1__Impl : ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )? ) ;
     public final void rule__MultiLineStringLiteral__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14801:1: ( ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14802:1: ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14801:1: ( ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )? ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14802:1: ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )? )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14802:1: ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14803:1: ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14802:1: ( ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )? )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14803:1: ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsAssignment_3_1()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14804:1: ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14804:2: rule__MultiLineStringLiteral__SegmentsAssignment_3_1
-            {
-            pushFollow(FOLLOW_rule__MultiLineStringLiteral__SegmentsAssignment_3_1_in_rule__MultiLineStringLiteral__Group_3__1__Impl30189);
-            rule__MultiLineStringLiteral__SegmentsAssignment_3_1();
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14804:1: ( rule__MultiLineStringLiteral__SegmentsAssignment_3_1 )?
+            int alt109=2;
+            int LA109_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( ((LA109_0>=RULE_CONSTANT_STRING && LA109_0<=RULE_ANY_OTHER)) ) {
+                alt109=1;
+            }
+            switch (alt109) {
+                case 1 :
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14804:2: rule__MultiLineStringLiteral__SegmentsAssignment_3_1
+                    {
+                    pushFollow(FOLLOW_rule__MultiLineStringLiteral__SegmentsAssignment_3_1_in_rule__MultiLineStringLiteral__Group_3__1__Impl30189);
+                    rule__MultiLineStringLiteral__SegmentsAssignment_3_1();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
 
@@ -43567,12 +43578,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14822:1: ( rule__DynamicStringSegment__Group__0__Impl rule__DynamicStringSegment__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14823:2: rule__DynamicStringSegment__Group__0__Impl rule__DynamicStringSegment__Group__1
             {
-            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__0__Impl_in_rule__DynamicStringSegment__Group__030223);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__0__Impl_in_rule__DynamicStringSegment__Group__030224);
             rule__DynamicStringSegment__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__1_in_rule__DynamicStringSegment__Group__030226);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__1_in_rule__DynamicStringSegment__Group__030227);
             rule__DynamicStringSegment__Group__1();
 
             state._fsp--;
@@ -43611,7 +43622,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDynamicStringSegmentAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
             }
-            match(input,88,FOLLOW_88_in_rule__DynamicStringSegment__Group__0__Impl30254); if (state.failed) return ;
+            match(input,88,FOLLOW_88_in_rule__DynamicStringSegment__Group__0__Impl30255); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDynamicStringSegmentAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
             }
@@ -43646,12 +43657,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14853:1: ( rule__DynamicStringSegment__Group__1__Impl rule__DynamicStringSegment__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14854:2: rule__DynamicStringSegment__Group__1__Impl rule__DynamicStringSegment__Group__2
             {
-            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__1__Impl_in_rule__DynamicStringSegment__Group__130285);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__1__Impl_in_rule__DynamicStringSegment__Group__130286);
             rule__DynamicStringSegment__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__2_in_rule__DynamicStringSegment__Group__130288);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__2_in_rule__DynamicStringSegment__Group__130289);
             rule__DynamicStringSegment__Group__2();
 
             state._fsp--;
@@ -43693,7 +43704,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14868:1: ( rule__DynamicStringSegment__ExpressionAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14868:2: rule__DynamicStringSegment__ExpressionAssignment_1
             {
-            pushFollow(FOLLOW_rule__DynamicStringSegment__ExpressionAssignment_1_in_rule__DynamicStringSegment__Group__1__Impl30315);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__ExpressionAssignment_1_in_rule__DynamicStringSegment__Group__1__Impl30316);
             rule__DynamicStringSegment__ExpressionAssignment_1();
 
             state._fsp--;
@@ -43735,7 +43746,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14882:1: ( rule__DynamicStringSegment__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14883:2: rule__DynamicStringSegment__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__2__Impl_in_rule__DynamicStringSegment__Group__230345);
+            pushFollow(FOLLOW_rule__DynamicStringSegment__Group__2__Impl_in_rule__DynamicStringSegment__Group__230346);
             rule__DynamicStringSegment__Group__2__Impl();
 
             state._fsp--;
@@ -43774,7 +43785,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDynamicStringSegmentAccess().getRightCurlyBracketKeyword_2()); 
             }
-            match(input,52,FOLLOW_52_in_rule__DynamicStringSegment__Group__2__Impl30373); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__DynamicStringSegment__Group__2__Impl30374); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDynamicStringSegmentAccess().getRightCurlyBracketKeyword_2()); 
             }
@@ -43809,12 +43820,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14918:1: ( rule__VariableReference__Group__0__Impl rule__VariableReference__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14919:2: rule__VariableReference__Group__0__Impl rule__VariableReference__Group__1
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__030410);
+            pushFollow(FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__030411);
             rule__VariableReference__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__030413);
+            pushFollow(FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__030414);
             rule__VariableReference__Group__1();
 
             state._fsp--;
@@ -43888,12 +43899,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14949:1: ( rule__VariableReference__Group__1__Impl rule__VariableReference__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14950:2: rule__VariableReference__Group__1__Impl rule__VariableReference__Group__2
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__130471);
+            pushFollow(FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__130472);
             rule__VariableReference__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__130474);
+            pushFollow(FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__130475);
             rule__VariableReference__Group__2();
 
             state._fsp--;
@@ -43935,7 +43946,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14964:1: ( rule__VariableReference__FeatureAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14964:2: rule__VariableReference__FeatureAssignment_1
             {
-            pushFollow(FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl30501);
+            pushFollow(FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl30502);
             rule__VariableReference__FeatureAssignment_1();
 
             state._fsp--;
@@ -43977,7 +43988,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14978:1: ( rule__VariableReference__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14979:2: rule__VariableReference__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__230531);
+            pushFollow(FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__230532);
             rule__VariableReference__Group__2__Impl();
 
             state._fsp--;
@@ -44017,17 +44028,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getVariableReferenceAccess().getGroup_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14992:1: ( rule__VariableReference__Group_2__0 )?
-            int alt109=2;
-            int LA109_0 = input.LA(1);
+            int alt110=2;
+            int LA110_0 = input.LA(1);
 
-            if ( (LA109_0==50) ) {
-                alt109=1;
+            if ( (LA110_0==50) ) {
+                alt110=1;
             }
-            switch (alt109) {
+            switch (alt110) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14992:2: rule__VariableReference__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl30558);
+                    pushFollow(FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl30559);
                     rule__VariableReference__Group_2__0();
 
                     state._fsp--;
@@ -44072,12 +44083,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15012:1: ( rule__VariableReference__Group_2__0__Impl rule__VariableReference__Group_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15013:2: rule__VariableReference__Group_2__0__Impl rule__VariableReference__Group_2__1
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__030595);
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__030596);
             rule__VariableReference__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__030598);
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__030599);
             rule__VariableReference__Group_2__1();
 
             state._fsp--;
@@ -44116,7 +44127,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0()); 
             }
-            match(input,50,FOLLOW_50_in_rule__VariableReference__Group_2__0__Impl30626); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_rule__VariableReference__Group_2__0__Impl30627); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0()); 
             }
@@ -44151,12 +44162,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15043:1: ( rule__VariableReference__Group_2__1__Impl rule__VariableReference__Group_2__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15044:2: rule__VariableReference__Group_2__1__Impl rule__VariableReference__Group_2__2
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__130657);
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__130658);
             rule__VariableReference__Group_2__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__130660);
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__130661);
             rule__VariableReference__Group_2__2();
 
             state._fsp--;
@@ -44198,7 +44209,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15058:1: ( rule__VariableReference__StepExpressionAssignment_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15058:2: rule__VariableReference__StepExpressionAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl30687);
+            pushFollow(FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl30688);
             rule__VariableReference__StepExpressionAssignment_2_1();
 
             state._fsp--;
@@ -44240,7 +44251,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15072:1: ( rule__VariableReference__Group_2__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15073:2: rule__VariableReference__Group_2__2__Impl
             {
-            pushFollow(FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__230717);
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__230718);
             rule__VariableReference__Group_2__2__Impl();
 
             state._fsp--;
@@ -44279,7 +44290,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2()); 
             }
-            match(input,52,FOLLOW_52_in_rule__VariableReference__Group_2__2__Impl30745); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__VariableReference__Group_2__2__Impl30746); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2()); 
             }
@@ -44314,12 +44325,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15108:1: ( rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15109:2: rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group__0__Impl_in_rule__FunctionCall__Group__030782);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__0__Impl_in_rule__FunctionCall__Group__030783);
             rule__FunctionCall__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group__1_in_rule__FunctionCall__Group__030785);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__1_in_rule__FunctionCall__Group__030786);
             rule__FunctionCall__Group__1();
 
             state._fsp--;
@@ -44393,12 +44404,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15139:1: ( rule__FunctionCall__Group__1__Impl rule__FunctionCall__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15140:2: rule__FunctionCall__Group__1__Impl rule__FunctionCall__Group__2
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group__1__Impl_in_rule__FunctionCall__Group__130843);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__1__Impl_in_rule__FunctionCall__Group__130844);
             rule__FunctionCall__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group__2_in_rule__FunctionCall__Group__130846);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__2_in_rule__FunctionCall__Group__130847);
             rule__FunctionCall__Group__2();
 
             state._fsp--;
@@ -44440,7 +44451,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15154:1: ( rule__FunctionCall__FeatureAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15154:2: rule__FunctionCall__FeatureAssignment_1
             {
-            pushFollow(FOLLOW_rule__FunctionCall__FeatureAssignment_1_in_rule__FunctionCall__Group__1__Impl30873);
+            pushFollow(FOLLOW_rule__FunctionCall__FeatureAssignment_1_in_rule__FunctionCall__Group__1__Impl30874);
             rule__FunctionCall__FeatureAssignment_1();
 
             state._fsp--;
@@ -44482,12 +44493,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15168:1: ( rule__FunctionCall__Group__2__Impl rule__FunctionCall__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15169:2: rule__FunctionCall__Group__2__Impl rule__FunctionCall__Group__3
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group__2__Impl_in_rule__FunctionCall__Group__230903);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__2__Impl_in_rule__FunctionCall__Group__230904);
             rule__FunctionCall__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group__3_in_rule__FunctionCall__Group__230906);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__3_in_rule__FunctionCall__Group__230907);
             rule__FunctionCall__Group__3();
 
             state._fsp--;
@@ -44526,7 +44537,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_2()); 
             }
-            match(input,56,FOLLOW_56_in_rule__FunctionCall__Group__2__Impl30934); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__FunctionCall__Group__2__Impl30935); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_2()); 
             }
@@ -44561,12 +44572,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15199:1: ( rule__FunctionCall__Group__3__Impl rule__FunctionCall__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15200:2: rule__FunctionCall__Group__3__Impl rule__FunctionCall__Group__4
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group__3__Impl_in_rule__FunctionCall__Group__330965);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__3__Impl_in_rule__FunctionCall__Group__330966);
             rule__FunctionCall__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group__4_in_rule__FunctionCall__Group__330968);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__4_in_rule__FunctionCall__Group__330969);
             rule__FunctionCall__Group__4();
 
             state._fsp--;
@@ -44606,17 +44617,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFunctionCallAccess().getGroup_3()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15214:1: ( rule__FunctionCall__Group_3__0 )?
-            int alt110=2;
-            int LA110_0 = input.LA(1);
+            int alt111=2;
+            int LA111_0 = input.LA(1);
 
-            if ( ((LA110_0>=RULE_IJ && LA110_0<=RULE_EXPIJ)||LA110_0==RULE_ID||(LA110_0>=RULE_ONE && LA110_0<=RULE_STRING)||(LA110_0>=20 && LA110_0<=21)||LA110_0==44||LA110_0==50||LA110_0==56||LA110_0==71||LA110_0==73||LA110_0==75||LA110_0==78||LA110_0==87||LA110_0==89||(LA110_0>=92 && LA110_0<=94)||LA110_0==100||LA110_0==102) ) {
-                alt110=1;
+            if ( ((LA111_0>=RULE_IJ && LA111_0<=RULE_EXPIJ)||LA111_0==RULE_ID||(LA111_0>=RULE_ONE && LA111_0<=RULE_STRING)||(LA111_0>=20 && LA111_0<=21)||LA111_0==44||LA111_0==50||LA111_0==56||LA111_0==71||LA111_0==73||LA111_0==75||LA111_0==78||LA111_0==87||LA111_0==89||(LA111_0>=92 && LA111_0<=94)||LA111_0==100||LA111_0==102) ) {
+                alt111=1;
             }
-            switch (alt110) {
+            switch (alt111) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15214:2: rule__FunctionCall__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__FunctionCall__Group_3__0_in_rule__FunctionCall__Group__3__Impl30995);
+                    pushFollow(FOLLOW_rule__FunctionCall__Group_3__0_in_rule__FunctionCall__Group__3__Impl30996);
                     rule__FunctionCall__Group_3__0();
 
                     state._fsp--;
@@ -44661,7 +44672,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15228:1: ( rule__FunctionCall__Group__4__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15229:2: rule__FunctionCall__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group__4__Impl_in_rule__FunctionCall__Group__431026);
+            pushFollow(FOLLOW_rule__FunctionCall__Group__4__Impl_in_rule__FunctionCall__Group__431027);
             rule__FunctionCall__Group__4__Impl();
 
             state._fsp--;
@@ -44700,7 +44711,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_4()); 
             }
-            match(input,57,FOLLOW_57_in_rule__FunctionCall__Group__4__Impl31054); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__FunctionCall__Group__4__Impl31055); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_4()); 
             }
@@ -44735,12 +44746,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15268:1: ( rule__FunctionCall__Group_3__0__Impl rule__FunctionCall__Group_3__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15269:2: rule__FunctionCall__Group_3__0__Impl rule__FunctionCall__Group_3__1
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3__0__Impl_in_rule__FunctionCall__Group_3__031095);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3__0__Impl_in_rule__FunctionCall__Group_3__031096);
             rule__FunctionCall__Group_3__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3__1_in_rule__FunctionCall__Group_3__031098);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3__1_in_rule__FunctionCall__Group_3__031099);
             rule__FunctionCall__Group_3__1();
 
             state._fsp--;
@@ -44782,7 +44793,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15283:1: ( rule__FunctionCall__ArgumentsAssignment_3_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15283:2: rule__FunctionCall__ArgumentsAssignment_3_0
             {
-            pushFollow(FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_0_in_rule__FunctionCall__Group_3__0__Impl31125);
+            pushFollow(FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_0_in_rule__FunctionCall__Group_3__0__Impl31126);
             rule__FunctionCall__ArgumentsAssignment_3_0();
 
             state._fsp--;
@@ -44824,7 +44835,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15297:1: ( rule__FunctionCall__Group_3__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15298:2: rule__FunctionCall__Group_3__1__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3__1__Impl_in_rule__FunctionCall__Group_3__131155);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3__1__Impl_in_rule__FunctionCall__Group_3__131156);
             rule__FunctionCall__Group_3__1__Impl();
 
             state._fsp--;
@@ -44864,21 +44875,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFunctionCallAccess().getGroup_3_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15311:1: ( rule__FunctionCall__Group_3_1__0 )*
-            loop111:
+            loop112:
             do {
-                int alt111=2;
-                int LA111_0 = input.LA(1);
+                int alt112=2;
+                int LA112_0 = input.LA(1);
 
-                if ( (LA111_0==54) ) {
-                    alt111=1;
+                if ( (LA112_0==54) ) {
+                    alt112=1;
                 }
 
 
-                switch (alt111) {
+                switch (alt112) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15311:2: rule__FunctionCall__Group_3_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__0_in_rule__FunctionCall__Group_3__1__Impl31182);
+            	    pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__0_in_rule__FunctionCall__Group_3__1__Impl31183);
             	    rule__FunctionCall__Group_3_1__0();
 
             	    state._fsp--;
@@ -44888,7 +44899,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop111;
+            	    break loop112;
                 }
             } while (true);
 
@@ -44926,12 +44937,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15329:1: ( rule__FunctionCall__Group_3_1__0__Impl rule__FunctionCall__Group_3_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15330:2: rule__FunctionCall__Group_3_1__0__Impl rule__FunctionCall__Group_3_1__1
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__0__Impl_in_rule__FunctionCall__Group_3_1__031217);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__0__Impl_in_rule__FunctionCall__Group_3_1__031218);
             rule__FunctionCall__Group_3_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__1_in_rule__FunctionCall__Group_3_1__031220);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__1_in_rule__FunctionCall__Group_3_1__031221);
             rule__FunctionCall__Group_3_1__1();
 
             state._fsp--;
@@ -44970,7 +44981,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getCommaKeyword_3_1_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__FunctionCall__Group_3_1__0__Impl31248); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__FunctionCall__Group_3_1__0__Impl31249); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFunctionCallAccess().getCommaKeyword_3_1_0()); 
             }
@@ -45005,7 +45016,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15360:1: ( rule__FunctionCall__Group_3_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15361:2: rule__FunctionCall__Group_3_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__1__Impl_in_rule__FunctionCall__Group_3_1__131279);
+            pushFollow(FOLLOW_rule__FunctionCall__Group_3_1__1__Impl_in_rule__FunctionCall__Group_3_1__131280);
             rule__FunctionCall__Group_3_1__1__Impl();
 
             state._fsp--;
@@ -45047,7 +45058,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15374:1: ( rule__FunctionCall__ArgumentsAssignment_3_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15374:2: rule__FunctionCall__ArgumentsAssignment_3_1_1
             {
-            pushFollow(FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_1_1_in_rule__FunctionCall__Group_3_1__1__Impl31306);
+            pushFollow(FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_1_1_in_rule__FunctionCall__Group_3_1__1__Impl31307);
             rule__FunctionCall__ArgumentsAssignment_3_1_1();
 
             state._fsp--;
@@ -45089,12 +45100,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15392:1: ( rule__QualifiedVariableReference__Group__0__Impl rule__QualifiedVariableReference__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15393:2: rule__QualifiedVariableReference__Group__0__Impl rule__QualifiedVariableReference__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__0__Impl_in_rule__QualifiedVariableReference__Group__031340);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__0__Impl_in_rule__QualifiedVariableReference__Group__031341);
             rule__QualifiedVariableReference__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__1_in_rule__QualifiedVariableReference__Group__031343);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__1_in_rule__QualifiedVariableReference__Group__031344);
             rule__QualifiedVariableReference__Group__1();
 
             state._fsp--;
@@ -45168,12 +45179,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15423:1: ( rule__QualifiedVariableReference__Group__1__Impl rule__QualifiedVariableReference__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15424:2: rule__QualifiedVariableReference__Group__1__Impl rule__QualifiedVariableReference__Group__2
             {
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__1__Impl_in_rule__QualifiedVariableReference__Group__131401);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__1__Impl_in_rule__QualifiedVariableReference__Group__131402);
             rule__QualifiedVariableReference__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__2_in_rule__QualifiedVariableReference__Group__131404);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__2_in_rule__QualifiedVariableReference__Group__131405);
             rule__QualifiedVariableReference__Group__2();
 
             state._fsp--;
@@ -45212,7 +45223,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedVariableReferenceAccess().getColonColonKeyword_1()); 
             }
-            match(input,89,FOLLOW_89_in_rule__QualifiedVariableReference__Group__1__Impl31432); if (state.failed) return ;
+            match(input,89,FOLLOW_89_in_rule__QualifiedVariableReference__Group__1__Impl31433); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedVariableReferenceAccess().getColonColonKeyword_1()); 
             }
@@ -45247,7 +45258,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15454:1: ( rule__QualifiedVariableReference__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15455:2: rule__QualifiedVariableReference__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__2__Impl_in_rule__QualifiedVariableReference__Group__231463);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__Group__2__Impl_in_rule__QualifiedVariableReference__Group__231464);
             rule__QualifiedVariableReference__Group__2__Impl();
 
             state._fsp--;
@@ -45289,7 +45300,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15468:1: ( rule__QualifiedVariableReference__FeatureAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15468:2: rule__QualifiedVariableReference__FeatureAssignment_2
             {
-            pushFollow(FOLLOW_rule__QualifiedVariableReference__FeatureAssignment_2_in_rule__QualifiedVariableReference__Group__2__Impl31490);
+            pushFollow(FOLLOW_rule__QualifiedVariableReference__FeatureAssignment_2_in_rule__QualifiedVariableReference__Group__2__Impl31491);
             rule__QualifiedVariableReference__FeatureAssignment_2();
 
             state._fsp--;
@@ -45331,12 +45342,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15488:1: ( rule__QualifiedFunctionCall__Group__0__Impl rule__QualifiedFunctionCall__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15489:2: rule__QualifiedFunctionCall__Group__0__Impl rule__QualifiedFunctionCall__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__0__Impl_in_rule__QualifiedFunctionCall__Group__031526);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__0__Impl_in_rule__QualifiedFunctionCall__Group__031527);
             rule__QualifiedFunctionCall__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__1_in_rule__QualifiedFunctionCall__Group__031529);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__1_in_rule__QualifiedFunctionCall__Group__031530);
             rule__QualifiedFunctionCall__Group__1();
 
             state._fsp--;
@@ -45410,12 +45421,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15519:1: ( rule__QualifiedFunctionCall__Group__1__Impl rule__QualifiedFunctionCall__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15520:2: rule__QualifiedFunctionCall__Group__1__Impl rule__QualifiedFunctionCall__Group__2
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__1__Impl_in_rule__QualifiedFunctionCall__Group__131587);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__1__Impl_in_rule__QualifiedFunctionCall__Group__131588);
             rule__QualifiedFunctionCall__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__2_in_rule__QualifiedFunctionCall__Group__131590);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__2_in_rule__QualifiedFunctionCall__Group__131591);
             rule__QualifiedFunctionCall__Group__2();
 
             state._fsp--;
@@ -45454,7 +45465,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getColonColonKeyword_1()); 
             }
-            match(input,89,FOLLOW_89_in_rule__QualifiedFunctionCall__Group__1__Impl31618); if (state.failed) return ;
+            match(input,89,FOLLOW_89_in_rule__QualifiedFunctionCall__Group__1__Impl31619); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedFunctionCallAccess().getColonColonKeyword_1()); 
             }
@@ -45489,12 +45500,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15550:1: ( rule__QualifiedFunctionCall__Group__2__Impl rule__QualifiedFunctionCall__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15551:2: rule__QualifiedFunctionCall__Group__2__Impl rule__QualifiedFunctionCall__Group__3
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__2__Impl_in_rule__QualifiedFunctionCall__Group__231649);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__2__Impl_in_rule__QualifiedFunctionCall__Group__231650);
             rule__QualifiedFunctionCall__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__3_in_rule__QualifiedFunctionCall__Group__231652);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__3_in_rule__QualifiedFunctionCall__Group__231653);
             rule__QualifiedFunctionCall__Group__3();
 
             state._fsp--;
@@ -45536,7 +45547,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15565:1: ( rule__QualifiedFunctionCall__FeatureAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15565:2: rule__QualifiedFunctionCall__FeatureAssignment_2
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__FeatureAssignment_2_in_rule__QualifiedFunctionCall__Group__2__Impl31679);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__FeatureAssignment_2_in_rule__QualifiedFunctionCall__Group__2__Impl31680);
             rule__QualifiedFunctionCall__FeatureAssignment_2();
 
             state._fsp--;
@@ -45578,12 +45589,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15579:1: ( rule__QualifiedFunctionCall__Group__3__Impl rule__QualifiedFunctionCall__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15580:2: rule__QualifiedFunctionCall__Group__3__Impl rule__QualifiedFunctionCall__Group__4
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__3__Impl_in_rule__QualifiedFunctionCall__Group__331709);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__3__Impl_in_rule__QualifiedFunctionCall__Group__331710);
             rule__QualifiedFunctionCall__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__4_in_rule__QualifiedFunctionCall__Group__331712);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__4_in_rule__QualifiedFunctionCall__Group__331713);
             rule__QualifiedFunctionCall__Group__4();
 
             state._fsp--;
@@ -45622,7 +45633,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getLeftParenthesisKeyword_3()); 
             }
-            match(input,56,FOLLOW_56_in_rule__QualifiedFunctionCall__Group__3__Impl31740); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__QualifiedFunctionCall__Group__3__Impl31741); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedFunctionCallAccess().getLeftParenthesisKeyword_3()); 
             }
@@ -45657,12 +45668,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15610:1: ( rule__QualifiedFunctionCall__Group__4__Impl rule__QualifiedFunctionCall__Group__5 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15611:2: rule__QualifiedFunctionCall__Group__4__Impl rule__QualifiedFunctionCall__Group__5
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__4__Impl_in_rule__QualifiedFunctionCall__Group__431771);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__4__Impl_in_rule__QualifiedFunctionCall__Group__431772);
             rule__QualifiedFunctionCall__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__5_in_rule__QualifiedFunctionCall__Group__431774);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__5_in_rule__QualifiedFunctionCall__Group__431775);
             rule__QualifiedFunctionCall__Group__5();
 
             state._fsp--;
@@ -45702,17 +45713,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getQualifiedFunctionCallAccess().getGroup_4()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15625:1: ( rule__QualifiedFunctionCall__Group_4__0 )?
-            int alt112=2;
-            int LA112_0 = input.LA(1);
+            int alt113=2;
+            int LA113_0 = input.LA(1);
 
-            if ( ((LA112_0>=RULE_IJ && LA112_0<=RULE_EXPIJ)||LA112_0==RULE_ID||(LA112_0>=RULE_ONE && LA112_0<=RULE_STRING)||(LA112_0>=20 && LA112_0<=21)||LA112_0==44||LA112_0==50||LA112_0==56||LA112_0==71||LA112_0==73||LA112_0==75||LA112_0==78||LA112_0==87||LA112_0==89||(LA112_0>=92 && LA112_0<=94)||LA112_0==100||LA112_0==102) ) {
-                alt112=1;
+            if ( ((LA113_0>=RULE_IJ && LA113_0<=RULE_EXPIJ)||LA113_0==RULE_ID||(LA113_0>=RULE_ONE && LA113_0<=RULE_STRING)||(LA113_0>=20 && LA113_0<=21)||LA113_0==44||LA113_0==50||LA113_0==56||LA113_0==71||LA113_0==73||LA113_0==75||LA113_0==78||LA113_0==87||LA113_0==89||(LA113_0>=92 && LA113_0<=94)||LA113_0==100||LA113_0==102) ) {
+                alt113=1;
             }
-            switch (alt112) {
+            switch (alt113) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15625:2: rule__QualifiedFunctionCall__Group_4__0
                     {
-                    pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__0_in_rule__QualifiedFunctionCall__Group__4__Impl31801);
+                    pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__0_in_rule__QualifiedFunctionCall__Group__4__Impl31802);
                     rule__QualifiedFunctionCall__Group_4__0();
 
                     state._fsp--;
@@ -45757,7 +45768,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15639:1: ( rule__QualifiedFunctionCall__Group__5__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15640:2: rule__QualifiedFunctionCall__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__5__Impl_in_rule__QualifiedFunctionCall__Group__531832);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group__5__Impl_in_rule__QualifiedFunctionCall__Group__531833);
             rule__QualifiedFunctionCall__Group__5__Impl();
 
             state._fsp--;
@@ -45796,7 +45807,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getRightParenthesisKeyword_5()); 
             }
-            match(input,57,FOLLOW_57_in_rule__QualifiedFunctionCall__Group__5__Impl31860); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__QualifiedFunctionCall__Group__5__Impl31861); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedFunctionCallAccess().getRightParenthesisKeyword_5()); 
             }
@@ -45831,12 +45842,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15681:1: ( rule__QualifiedFunctionCall__Group_4__0__Impl rule__QualifiedFunctionCall__Group_4__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15682:2: rule__QualifiedFunctionCall__Group_4__0__Impl rule__QualifiedFunctionCall__Group_4__1
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__0__Impl_in_rule__QualifiedFunctionCall__Group_4__031903);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__0__Impl_in_rule__QualifiedFunctionCall__Group_4__031904);
             rule__QualifiedFunctionCall__Group_4__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__1_in_rule__QualifiedFunctionCall__Group_4__031906);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__1_in_rule__QualifiedFunctionCall__Group_4__031907);
             rule__QualifiedFunctionCall__Group_4__1();
 
             state._fsp--;
@@ -45878,7 +45889,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15696:1: ( rule__QualifiedFunctionCall__ArgumentsAssignment_4_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15696:2: rule__QualifiedFunctionCall__ArgumentsAssignment_4_0
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_0_in_rule__QualifiedFunctionCall__Group_4__0__Impl31933);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_0_in_rule__QualifiedFunctionCall__Group_4__0__Impl31934);
             rule__QualifiedFunctionCall__ArgumentsAssignment_4_0();
 
             state._fsp--;
@@ -45920,7 +45931,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15710:1: ( rule__QualifiedFunctionCall__Group_4__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15711:2: rule__QualifiedFunctionCall__Group_4__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__1__Impl_in_rule__QualifiedFunctionCall__Group_4__131963);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4__1__Impl_in_rule__QualifiedFunctionCall__Group_4__131964);
             rule__QualifiedFunctionCall__Group_4__1__Impl();
 
             state._fsp--;
@@ -45960,21 +45971,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getQualifiedFunctionCallAccess().getGroup_4_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15724:1: ( rule__QualifiedFunctionCall__Group_4_1__0 )*
-            loop113:
+            loop114:
             do {
-                int alt113=2;
-                int LA113_0 = input.LA(1);
+                int alt114=2;
+                int LA114_0 = input.LA(1);
 
-                if ( (LA113_0==54) ) {
-                    alt113=1;
+                if ( (LA114_0==54) ) {
+                    alt114=1;
                 }
 
 
-                switch (alt113) {
+                switch (alt114) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15724:2: rule__QualifiedFunctionCall__Group_4_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0_in_rule__QualifiedFunctionCall__Group_4__1__Impl31990);
+            	    pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0_in_rule__QualifiedFunctionCall__Group_4__1__Impl31991);
             	    rule__QualifiedFunctionCall__Group_4_1__0();
 
             	    state._fsp--;
@@ -45984,7 +45995,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop113;
+            	    break loop114;
                 }
             } while (true);
 
@@ -46022,12 +46033,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15742:1: ( rule__QualifiedFunctionCall__Group_4_1__0__Impl rule__QualifiedFunctionCall__Group_4_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15743:2: rule__QualifiedFunctionCall__Group_4_1__0__Impl rule__QualifiedFunctionCall__Group_4_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0__Impl_in_rule__QualifiedFunctionCall__Group_4_1__032025);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0__Impl_in_rule__QualifiedFunctionCall__Group_4_1__032026);
             rule__QualifiedFunctionCall__Group_4_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1_in_rule__QualifiedFunctionCall__Group_4_1__032028);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1_in_rule__QualifiedFunctionCall__Group_4_1__032029);
             rule__QualifiedFunctionCall__Group_4_1__1();
 
             state._fsp--;
@@ -46066,7 +46077,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getCommaKeyword_4_1_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__QualifiedFunctionCall__Group_4_1__0__Impl32056); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__QualifiedFunctionCall__Group_4_1__0__Impl32057); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedFunctionCallAccess().getCommaKeyword_4_1_0()); 
             }
@@ -46101,7 +46112,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15773:1: ( rule__QualifiedFunctionCall__Group_4_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15774:2: rule__QualifiedFunctionCall__Group_4_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1__Impl_in_rule__QualifiedFunctionCall__Group_4_1__132087);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1__Impl_in_rule__QualifiedFunctionCall__Group_4_1__132088);
             rule__QualifiedFunctionCall__Group_4_1__1__Impl();
 
             state._fsp--;
@@ -46143,7 +46154,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15787:1: ( rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15787:2: rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1
             {
-            pushFollow(FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1_in_rule__QualifiedFunctionCall__Group_4_1__1__Impl32114);
+            pushFollow(FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1_in_rule__QualifiedFunctionCall__Group_4_1__1__Impl32115);
             rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1();
 
             state._fsp--;
@@ -46185,12 +46196,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15805:1: ( rule__RangeStepExpression__Group__0__Impl rule__RangeStepExpression__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15806:2: rule__RangeStepExpression__Group__0__Impl rule__RangeStepExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group__0__Impl_in_rule__RangeStepExpression__Group__032148);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group__0__Impl_in_rule__RangeStepExpression__Group__032149);
             rule__RangeStepExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group__1_in_rule__RangeStepExpression__Group__032151);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group__1_in_rule__RangeStepExpression__Group__032152);
             rule__RangeStepExpression__Group__1();
 
             state._fsp--;
@@ -46229,7 +46240,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeStepExpressionAccess().getAdditiveStepExpressionParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__Group__0__Impl32178);
+            pushFollow(FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__Group__0__Impl32179);
             ruleAdditiveStepExpression();
 
             state._fsp--;
@@ -46268,7 +46279,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15834:1: ( rule__RangeStepExpression__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15835:2: rule__RangeStepExpression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group__1__Impl_in_rule__RangeStepExpression__Group__132207);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group__1__Impl_in_rule__RangeStepExpression__Group__132208);
             rule__RangeStepExpression__Group__1__Impl();
 
             state._fsp--;
@@ -46308,17 +46319,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getRangeStepExpressionAccess().getGroup_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15848:1: ( rule__RangeStepExpression__Group_1__0 )?
-            int alt114=2;
-            int LA114_0 = input.LA(1);
+            int alt115=2;
+            int LA115_0 = input.LA(1);
 
-            if ( (LA114_0==90) ) {
-                alt114=1;
+            if ( (LA115_0==90) ) {
+                alt115=1;
             }
-            switch (alt114) {
+            switch (alt115) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15848:2: rule__RangeStepExpression__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__0_in_rule__RangeStepExpression__Group__1__Impl32234);
+                    pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__0_in_rule__RangeStepExpression__Group__1__Impl32235);
                     rule__RangeStepExpression__Group_1__0();
 
                     state._fsp--;
@@ -46363,12 +46374,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15866:1: ( rule__RangeStepExpression__Group_1__0__Impl rule__RangeStepExpression__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15867:2: rule__RangeStepExpression__Group_1__0__Impl rule__RangeStepExpression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__0__Impl_in_rule__RangeStepExpression__Group_1__032269);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__0__Impl_in_rule__RangeStepExpression__Group_1__032270);
             rule__RangeStepExpression__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__1_in_rule__RangeStepExpression__Group_1__032272);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__1_in_rule__RangeStepExpression__Group_1__032273);
             rule__RangeStepExpression__Group_1__1();
 
             state._fsp--;
@@ -46442,12 +46453,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15897:1: ( rule__RangeStepExpression__Group_1__1__Impl rule__RangeStepExpression__Group_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15898:2: rule__RangeStepExpression__Group_1__1__Impl rule__RangeStepExpression__Group_1__2
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__1__Impl_in_rule__RangeStepExpression__Group_1__132330);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__1__Impl_in_rule__RangeStepExpression__Group_1__132331);
             rule__RangeStepExpression__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__2_in_rule__RangeStepExpression__Group_1__132333);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__2_in_rule__RangeStepExpression__Group_1__132334);
             rule__RangeStepExpression__Group_1__2();
 
             state._fsp--;
@@ -46486,7 +46497,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeStepExpressionAccess().getFullStopFullStopKeyword_1_1()); 
             }
-            match(input,90,FOLLOW_90_in_rule__RangeStepExpression__Group_1__1__Impl32361); if (state.failed) return ;
+            match(input,90,FOLLOW_90_in_rule__RangeStepExpression__Group_1__1__Impl32362); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRangeStepExpressionAccess().getFullStopFullStopKeyword_1_1()); 
             }
@@ -46521,7 +46532,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15928:1: ( rule__RangeStepExpression__Group_1__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15929:2: rule__RangeStepExpression__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__2__Impl_in_rule__RangeStepExpression__Group_1__232392);
+            pushFollow(FOLLOW_rule__RangeStepExpression__Group_1__2__Impl_in_rule__RangeStepExpression__Group_1__232393);
             rule__RangeStepExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -46563,7 +46574,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15942:1: ( rule__RangeStepExpression__EndAssignment_1_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15942:2: rule__RangeStepExpression__EndAssignment_1_2
             {
-            pushFollow(FOLLOW_rule__RangeStepExpression__EndAssignment_1_2_in_rule__RangeStepExpression__Group_1__2__Impl32419);
+            pushFollow(FOLLOW_rule__RangeStepExpression__EndAssignment_1_2_in_rule__RangeStepExpression__Group_1__2__Impl32420);
             rule__RangeStepExpression__EndAssignment_1_2();
 
             state._fsp--;
@@ -46605,12 +46616,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15962:1: ( rule__AdditiveStepExpression__Group__0__Impl rule__AdditiveStepExpression__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15963:2: rule__AdditiveStepExpression__Group__0__Impl rule__AdditiveStepExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__0__Impl_in_rule__AdditiveStepExpression__Group__032455);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__0__Impl_in_rule__AdditiveStepExpression__Group__032456);
             rule__AdditiveStepExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__1_in_rule__AdditiveStepExpression__Group__032458);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__1_in_rule__AdditiveStepExpression__Group__032459);
             rule__AdditiveStepExpression__Group__1();
 
             state._fsp--;
@@ -46649,7 +46660,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAdditiveStepExpressionAccess().getNegateStepExpressionParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__Group__0__Impl32485);
+            pushFollow(FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__Group__0__Impl32486);
             ruleNegateStepExpression();
 
             state._fsp--;
@@ -46688,7 +46699,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15991:1: ( rule__AdditiveStepExpression__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15992:2: rule__AdditiveStepExpression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__1__Impl_in_rule__AdditiveStepExpression__Group__132514);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group__1__Impl_in_rule__AdditiveStepExpression__Group__132515);
             rule__AdditiveStepExpression__Group__1__Impl();
 
             state._fsp--;
@@ -46728,21 +46739,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAdditiveStepExpressionAccess().getGroup_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16005:1: ( rule__AdditiveStepExpression__Group_1__0 )*
-            loop115:
+            loop116:
             do {
-                int alt115=2;
-                int LA115_0 = input.LA(1);
+                int alt116=2;
+                int LA116_0 = input.LA(1);
 
-                if ( ((LA115_0>=19 && LA115_0<=20)||(LA115_0>=35 && LA115_0<=36)) ) {
-                    alt115=1;
+                if ( ((LA116_0>=19 && LA116_0<=20)||(LA116_0>=35 && LA116_0<=36)) ) {
+                    alt116=1;
                 }
 
 
-                switch (alt115) {
+                switch (alt116) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16005:2: rule__AdditiveStepExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__0_in_rule__AdditiveStepExpression__Group__1__Impl32541);
+            	    pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__0_in_rule__AdditiveStepExpression__Group__1__Impl32542);
             	    rule__AdditiveStepExpression__Group_1__0();
 
             	    state._fsp--;
@@ -46752,7 +46763,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop115;
+            	    break loop116;
                 }
             } while (true);
 
@@ -46790,12 +46801,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16023:1: ( rule__AdditiveStepExpression__Group_1__0__Impl rule__AdditiveStepExpression__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16024:2: rule__AdditiveStepExpression__Group_1__0__Impl rule__AdditiveStepExpression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__0__Impl_in_rule__AdditiveStepExpression__Group_1__032576);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__0__Impl_in_rule__AdditiveStepExpression__Group_1__032577);
             rule__AdditiveStepExpression__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__1_in_rule__AdditiveStepExpression__Group_1__032579);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__1_in_rule__AdditiveStepExpression__Group_1__032580);
             rule__AdditiveStepExpression__Group_1__1();
 
             state._fsp--;
@@ -46869,12 +46880,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16054:1: ( rule__AdditiveStepExpression__Group_1__1__Impl rule__AdditiveStepExpression__Group_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16055:2: rule__AdditiveStepExpression__Group_1__1__Impl rule__AdditiveStepExpression__Group_1__2
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__1__Impl_in_rule__AdditiveStepExpression__Group_1__132637);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__1__Impl_in_rule__AdditiveStepExpression__Group_1__132638);
             rule__AdditiveStepExpression__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__2_in_rule__AdditiveStepExpression__Group_1__132640);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__2_in_rule__AdditiveStepExpression__Group_1__132641);
             rule__AdditiveStepExpression__Group_1__2();
 
             state._fsp--;
@@ -46916,7 +46927,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16069:1: ( rule__AdditiveStepExpression__OperatorAssignment_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16069:2: rule__AdditiveStepExpression__OperatorAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__OperatorAssignment_1_1_in_rule__AdditiveStepExpression__Group_1__1__Impl32667);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__OperatorAssignment_1_1_in_rule__AdditiveStepExpression__Group_1__1__Impl32668);
             rule__AdditiveStepExpression__OperatorAssignment_1_1();
 
             state._fsp--;
@@ -46958,7 +46969,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16083:1: ( rule__AdditiveStepExpression__Group_1__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16084:2: rule__AdditiveStepExpression__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__2__Impl_in_rule__AdditiveStepExpression__Group_1__232697);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__Group_1__2__Impl_in_rule__AdditiveStepExpression__Group_1__232698);
             rule__AdditiveStepExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -47000,7 +47011,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16097:1: ( rule__AdditiveStepExpression__RightOperandAssignment_1_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16097:2: rule__AdditiveStepExpression__RightOperandAssignment_1_2
             {
-            pushFollow(FOLLOW_rule__AdditiveStepExpression__RightOperandAssignment_1_2_in_rule__AdditiveStepExpression__Group_1__2__Impl32724);
+            pushFollow(FOLLOW_rule__AdditiveStepExpression__RightOperandAssignment_1_2_in_rule__AdditiveStepExpression__Group_1__2__Impl32725);
             rule__AdditiveStepExpression__RightOperandAssignment_1_2();
 
             state._fsp--;
@@ -47042,12 +47053,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16117:1: ( rule__NegateStepExpression__Group_1__0__Impl rule__NegateStepExpression__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16118:2: rule__NegateStepExpression__Group_1__0__Impl rule__NegateStepExpression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__0__Impl_in_rule__NegateStepExpression__Group_1__032760);
+            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__0__Impl_in_rule__NegateStepExpression__Group_1__032761);
             rule__NegateStepExpression__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__1_in_rule__NegateStepExpression__Group_1__032763);
+            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__1_in_rule__NegateStepExpression__Group_1__032764);
             rule__NegateStepExpression__Group_1__1();
 
             state._fsp--;
@@ -47121,12 +47132,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16148:1: ( rule__NegateStepExpression__Group_1__1__Impl rule__NegateStepExpression__Group_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16149:2: rule__NegateStepExpression__Group_1__1__Impl rule__NegateStepExpression__Group_1__2
             {
-            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__1__Impl_in_rule__NegateStepExpression__Group_1__132821);
+            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__1__Impl_in_rule__NegateStepExpression__Group_1__132822);
             rule__NegateStepExpression__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__2_in_rule__NegateStepExpression__Group_1__132824);
+            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__2_in_rule__NegateStepExpression__Group_1__132825);
             rule__NegateStepExpression__Group_1__2();
 
             state._fsp--;
@@ -47165,7 +47176,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNegateStepExpressionAccess().getHyphenMinusKeyword_1_1()); 
             }
-            match(input,20,FOLLOW_20_in_rule__NegateStepExpression__Group_1__1__Impl32852); if (state.failed) return ;
+            match(input,20,FOLLOW_20_in_rule__NegateStepExpression__Group_1__1__Impl32853); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getNegateStepExpressionAccess().getHyphenMinusKeyword_1_1()); 
             }
@@ -47200,7 +47211,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16179:1: ( rule__NegateStepExpression__Group_1__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16180:2: rule__NegateStepExpression__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__2__Impl_in_rule__NegateStepExpression__Group_1__232883);
+            pushFollow(FOLLOW_rule__NegateStepExpression__Group_1__2__Impl_in_rule__NegateStepExpression__Group_1__232884);
             rule__NegateStepExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -47242,7 +47253,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16193:1: ( rule__NegateStepExpression__OperandAssignment_1_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16193:2: rule__NegateStepExpression__OperandAssignment_1_2
             {
-            pushFollow(FOLLOW_rule__NegateStepExpression__OperandAssignment_1_2_in_rule__NegateStepExpression__Group_1__2__Impl32910);
+            pushFollow(FOLLOW_rule__NegateStepExpression__OperandAssignment_1_2_in_rule__NegateStepExpression__Group_1__2__Impl32911);
             rule__NegateStepExpression__OperandAssignment_1_2();
 
             state._fsp--;
@@ -47284,12 +47295,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16213:1: ( rule__StepN__Group__0__Impl rule__StepN__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16214:2: rule__StepN__Group__0__Impl rule__StepN__Group__1
             {
-            pushFollow(FOLLOW_rule__StepN__Group__0__Impl_in_rule__StepN__Group__032946);
+            pushFollow(FOLLOW_rule__StepN__Group__0__Impl_in_rule__StepN__Group__032947);
             rule__StepN__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StepN__Group__1_in_rule__StepN__Group__032949);
+            pushFollow(FOLLOW_rule__StepN__Group__1_in_rule__StepN__Group__032950);
             rule__StepN__Group__1();
 
             state._fsp--;
@@ -47363,7 +47374,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16244:1: ( rule__StepN__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16245:2: rule__StepN__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__StepN__Group__1__Impl_in_rule__StepN__Group__133007);
+            pushFollow(FOLLOW_rule__StepN__Group__1__Impl_in_rule__StepN__Group__133008);
             rule__StepN__Group__1__Impl();
 
             state._fsp--;
@@ -47402,7 +47413,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStepNAccess().getNTerminalRuleCall_1()); 
             }
-            match(input,RULE_N,FOLLOW_RULE_N_in_rule__StepN__Group__1__Impl33034); if (state.failed) return ;
+            match(input,RULE_N,FOLLOW_RULE_N_in_rule__StepN__Group__1__Impl33035); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStepNAccess().getNTerminalRuleCall_1()); 
             }
@@ -47437,12 +47448,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16276:1: ( rule__ArrayConstructionOperator__Group__0__Impl rule__ArrayConstructionOperator__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16277:2: rule__ArrayConstructionOperator__Group__0__Impl rule__ArrayConstructionOperator__Group__1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__0__Impl_in_rule__ArrayConstructionOperator__Group__033067);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__0__Impl_in_rule__ArrayConstructionOperator__Group__033068);
             rule__ArrayConstructionOperator__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__1_in_rule__ArrayConstructionOperator__Group__033070);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__1_in_rule__ArrayConstructionOperator__Group__033071);
             rule__ArrayConstructionOperator__Group__1();
 
             state._fsp--;
@@ -47481,7 +47492,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getLeftCurlyBracketKeyword_0()); 
             }
-            match(input,50,FOLLOW_50_in_rule__ArrayConstructionOperator__Group__0__Impl33098); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_rule__ArrayConstructionOperator__Group__0__Impl33099); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionOperatorAccess().getLeftCurlyBracketKeyword_0()); 
             }
@@ -47516,12 +47527,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16307:1: ( rule__ArrayConstructionOperator__Group__1__Impl rule__ArrayConstructionOperator__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16308:2: rule__ArrayConstructionOperator__Group__1__Impl rule__ArrayConstructionOperator__Group__2
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__1__Impl_in_rule__ArrayConstructionOperator__Group__133129);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__1__Impl_in_rule__ArrayConstructionOperator__Group__133130);
             rule__ArrayConstructionOperator__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__2_in_rule__ArrayConstructionOperator__Group__133132);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__2_in_rule__ArrayConstructionOperator__Group__133133);
             rule__ArrayConstructionOperator__Group__2();
 
             state._fsp--;
@@ -47563,7 +47574,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16322:1: ( rule__ArrayConstructionOperator__ExpressionsAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16322:2: rule__ArrayConstructionOperator__ExpressionsAssignment_1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_1_in_rule__ArrayConstructionOperator__Group__1__Impl33159);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_1_in_rule__ArrayConstructionOperator__Group__1__Impl33160);
             rule__ArrayConstructionOperator__ExpressionsAssignment_1();
 
             state._fsp--;
@@ -47605,12 +47616,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16336:1: ( rule__ArrayConstructionOperator__Group__2__Impl rule__ArrayConstructionOperator__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16337:2: rule__ArrayConstructionOperator__Group__2__Impl rule__ArrayConstructionOperator__Group__3
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__2__Impl_in_rule__ArrayConstructionOperator__Group__233189);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__2__Impl_in_rule__ArrayConstructionOperator__Group__233190);
             rule__ArrayConstructionOperator__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__3_in_rule__ArrayConstructionOperator__Group__233192);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__3_in_rule__ArrayConstructionOperator__Group__233193);
             rule__ArrayConstructionOperator__Group__3();
 
             state._fsp--;
@@ -47652,7 +47663,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16351:1: ( rule__ArrayConstructionOperator__Alternatives_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16351:2: rule__ArrayConstructionOperator__Alternatives_2
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Alternatives_2_in_rule__ArrayConstructionOperator__Group__2__Impl33219);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Alternatives_2_in_rule__ArrayConstructionOperator__Group__2__Impl33220);
             rule__ArrayConstructionOperator__Alternatives_2();
 
             state._fsp--;
@@ -47694,7 +47705,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16365:1: ( rule__ArrayConstructionOperator__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16366:2: rule__ArrayConstructionOperator__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__3__Impl_in_rule__ArrayConstructionOperator__Group__333249);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group__3__Impl_in_rule__ArrayConstructionOperator__Group__333250);
             rule__ArrayConstructionOperator__Group__3__Impl();
 
             state._fsp--;
@@ -47733,7 +47744,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,52,FOLLOW_52_in_rule__ArrayConstructionOperator__Group__3__Impl33277); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__ArrayConstructionOperator__Group__3__Impl33278); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionOperatorAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -47768,12 +47779,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16403:1: ( rule__ArrayConstructionOperator__Group_2_0__0__Impl rule__ArrayConstructionOperator__Group_2_0__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16404:2: rule__ArrayConstructionOperator__Group_2_0__0__Impl rule__ArrayConstructionOperator__Group_2_0__1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__0__Impl_in_rule__ArrayConstructionOperator__Group_2_0__033316);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__0__Impl_in_rule__ArrayConstructionOperator__Group_2_0__033317);
             rule__ArrayConstructionOperator__Group_2_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1_in_rule__ArrayConstructionOperator__Group_2_0__033319);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1_in_rule__ArrayConstructionOperator__Group_2_0__033320);
             rule__ArrayConstructionOperator__Group_2_0__1();
 
             state._fsp--;
@@ -47812,7 +47823,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_0_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_0__0__Impl33347); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_0__0__Impl33348); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_0_0()); 
             }
@@ -47847,7 +47858,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16434:1: ( rule__ArrayConstructionOperator__Group_2_0__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16435:2: rule__ArrayConstructionOperator__Group_2_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1__Impl_in_rule__ArrayConstructionOperator__Group_2_0__133378);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1__Impl_in_rule__ArrayConstructionOperator__Group_2_0__133379);
             rule__ArrayConstructionOperator__Group_2_0__1__Impl();
 
             state._fsp--;
@@ -47889,7 +47900,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16448:1: ( rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16448:2: rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1_in_rule__ArrayConstructionOperator__Group_2_0__1__Impl33405);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1_in_rule__ArrayConstructionOperator__Group_2_0__1__Impl33406);
             rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1();
 
             state._fsp--;
@@ -47931,12 +47942,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16466:1: ( rule__ArrayConstructionOperator__Group_2_1__0__Impl rule__ArrayConstructionOperator__Group_2_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16467:2: rule__ArrayConstructionOperator__Group_2_1__0__Impl rule__ArrayConstructionOperator__Group_2_1__1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1__033439);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1__033440);
             rule__ArrayConstructionOperator__Group_2_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1_in_rule__ArrayConstructionOperator__Group_2_1__033442);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1_in_rule__ArrayConstructionOperator__Group_2_1__033443);
             rule__ArrayConstructionOperator__Group_2_1__1();
 
             state._fsp--;
@@ -47975,7 +47986,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getForKeyword_2_1_0()); 
             }
-            match(input,91,FOLLOW_91_in_rule__ArrayConstructionOperator__Group_2_1__0__Impl33470); if (state.failed) return ;
+            match(input,91,FOLLOW_91_in_rule__ArrayConstructionOperator__Group_2_1__0__Impl33471); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionOperatorAccess().getForKeyword_2_1_0()); 
             }
@@ -48010,12 +48021,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16497:1: ( rule__ArrayConstructionOperator__Group_2_1__1__Impl rule__ArrayConstructionOperator__Group_2_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16498:2: rule__ArrayConstructionOperator__Group_2_1__1__Impl rule__ArrayConstructionOperator__Group_2_1__2
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1__133501);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1__133502);
             rule__ArrayConstructionOperator__Group_2_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2_in_rule__ArrayConstructionOperator__Group_2_1__133504);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2_in_rule__ArrayConstructionOperator__Group_2_1__133505);
             rule__ArrayConstructionOperator__Group_2_1__2();
 
             state._fsp--;
@@ -48057,7 +48068,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16512:1: ( rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16512:2: rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1_in_rule__ArrayConstructionOperator__Group_2_1__1__Impl33531);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1_in_rule__ArrayConstructionOperator__Group_2_1__1__Impl33532);
             rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1();
 
             state._fsp--;
@@ -48099,7 +48110,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16526:1: ( rule__ArrayConstructionOperator__Group_2_1__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16527:2: rule__ArrayConstructionOperator__Group_2_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2__Impl_in_rule__ArrayConstructionOperator__Group_2_1__233561);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2__Impl_in_rule__ArrayConstructionOperator__Group_2_1__233562);
             rule__ArrayConstructionOperator__Group_2_1__2__Impl();
 
             state._fsp--;
@@ -48139,21 +48150,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_1_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16540:1: ( rule__ArrayConstructionOperator__Group_2_1_2__0 )*
-            loop116:
+            loop117:
             do {
-                int alt116=2;
-                int LA116_0 = input.LA(1);
+                int alt117=2;
+                int LA117_0 = input.LA(1);
 
-                if ( (LA116_0==54) ) {
-                    alt116=1;
+                if ( (LA117_0==54) ) {
+                    alt117=1;
                 }
 
 
-                switch (alt116) {
+                switch (alt117) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16540:2: rule__ArrayConstructionOperator__Group_2_1_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0_in_rule__ArrayConstructionOperator__Group_2_1__2__Impl33588);
+            	    pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0_in_rule__ArrayConstructionOperator__Group_2_1__2__Impl33589);
             	    rule__ArrayConstructionOperator__Group_2_1_2__0();
 
             	    state._fsp--;
@@ -48163,7 +48174,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop116;
+            	    break loop117;
                 }
             } while (true);
 
@@ -48201,12 +48212,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16560:1: ( rule__ArrayConstructionOperator__Group_2_1_2__0__Impl rule__ArrayConstructionOperator__Group_2_1_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16561:2: rule__ArrayConstructionOperator__Group_2_1_2__0__Impl rule__ArrayConstructionOperator__Group_2_1_2__1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__033625);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__033626);
             rule__ArrayConstructionOperator__Group_2_1_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1_in_rule__ArrayConstructionOperator__Group_2_1_2__033628);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1_in_rule__ArrayConstructionOperator__Group_2_1_2__033629);
             rule__ArrayConstructionOperator__Group_2_1_2__1();
 
             state._fsp--;
@@ -48245,7 +48256,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_1_2_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl33656); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl33657); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_1_2_0()); 
             }
@@ -48280,7 +48291,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16591:1: ( rule__ArrayConstructionOperator__Group_2_1_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16592:2: rule__ArrayConstructionOperator__Group_2_1_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__133687);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__133688);
             rule__ArrayConstructionOperator__Group_2_1_2__1__Impl();
 
             state._fsp--;
@@ -48322,7 +48333,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16605:1: ( rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16605:2: rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1_in_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl33714);
+            pushFollow(FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1_in_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl33715);
             rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1();
 
             state._fsp--;
@@ -48364,12 +48375,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16623:1: ( rule__ArrayConstructionIterationClause__Group__0__Impl rule__ArrayConstructionIterationClause__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16624:2: rule__ArrayConstructionIterationClause__Group__0__Impl rule__ArrayConstructionIterationClause__Group__1
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__0__Impl_in_rule__ArrayConstructionIterationClause__Group__033748);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__0__Impl_in_rule__ArrayConstructionIterationClause__Group__033749);
             rule__ArrayConstructionIterationClause__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__1_in_rule__ArrayConstructionIterationClause__Group__033751);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__1_in_rule__ArrayConstructionIterationClause__Group__033752);
             rule__ArrayConstructionIterationClause__Group__1();
 
             state._fsp--;
@@ -48411,7 +48422,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16638:1: ( rule__ArrayConstructionIterationClause__IterationVariableAssignment_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16638:2: rule__ArrayConstructionIterationClause__IterationVariableAssignment_0
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl33778);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl33779);
             rule__ArrayConstructionIterationClause__IterationVariableAssignment_0();
 
             state._fsp--;
@@ -48453,12 +48464,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16652:1: ( rule__ArrayConstructionIterationClause__Group__1__Impl rule__ArrayConstructionIterationClause__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16653:2: rule__ArrayConstructionIterationClause__Group__1__Impl rule__ArrayConstructionIterationClause__Group__2
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__1__Impl_in_rule__ArrayConstructionIterationClause__Group__133808);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__1__Impl_in_rule__ArrayConstructionIterationClause__Group__133809);
             rule__ArrayConstructionIterationClause__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__2_in_rule__ArrayConstructionIterationClause__Group__133811);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__2_in_rule__ArrayConstructionIterationClause__Group__133812);
             rule__ArrayConstructionIterationClause__Group__2();
 
             state._fsp--;
@@ -48497,7 +48508,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionIterationClauseAccess().getInKeyword_1()); 
             }
-            match(input,74,FOLLOW_74_in_rule__ArrayConstructionIterationClause__Group__1__Impl33839); if (state.failed) return ;
+            match(input,74,FOLLOW_74_in_rule__ArrayConstructionIterationClause__Group__1__Impl33840); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConstructionIterationClauseAccess().getInKeyword_1()); 
             }
@@ -48532,7 +48543,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16683:1: ( rule__ArrayConstructionIterationClause__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16684:2: rule__ArrayConstructionIterationClause__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__2__Impl_in_rule__ArrayConstructionIterationClause__Group__233870);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__Group__2__Impl_in_rule__ArrayConstructionIterationClause__Group__233871);
             rule__ArrayConstructionIterationClause__Group__2__Impl();
 
             state._fsp--;
@@ -48574,7 +48585,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16697:1: ( rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16697:2: rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2
             {
-            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2_in_rule__ArrayConstructionIterationClause__Group__2__Impl33897);
+            pushFollow(FOLLOW_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2_in_rule__ArrayConstructionIterationClause__Group__2__Impl33898);
             rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2();
 
             state._fsp--;
@@ -48616,12 +48627,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16717:1: ( rule__ArrayConcatenationOperator__Group__0__Impl rule__ArrayConcatenationOperator__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16718:2: rule__ArrayConcatenationOperator__Group__0__Impl rule__ArrayConcatenationOperator__Group__1
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__0__Impl_in_rule__ArrayConcatenationOperator__Group__033933);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__0__Impl_in_rule__ArrayConcatenationOperator__Group__033934);
             rule__ArrayConcatenationOperator__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__1_in_rule__ArrayConcatenationOperator__Group__033936);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__1_in_rule__ArrayConcatenationOperator__Group__033937);
             rule__ArrayConcatenationOperator__Group__1();
 
             state._fsp--;
@@ -48660,7 +48671,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getLeftSquareBracketKeyword_0()); 
             }
-            match(input,71,FOLLOW_71_in_rule__ArrayConcatenationOperator__Group__0__Impl33964); if (state.failed) return ;
+            match(input,71,FOLLOW_71_in_rule__ArrayConcatenationOperator__Group__0__Impl33965); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConcatenationOperatorAccess().getLeftSquareBracketKeyword_0()); 
             }
@@ -48695,12 +48706,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16748:1: ( rule__ArrayConcatenationOperator__Group__1__Impl rule__ArrayConcatenationOperator__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16749:2: rule__ArrayConcatenationOperator__Group__1__Impl rule__ArrayConcatenationOperator__Group__2
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__1__Impl_in_rule__ArrayConcatenationOperator__Group__133995);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__1__Impl_in_rule__ArrayConcatenationOperator__Group__133996);
             rule__ArrayConcatenationOperator__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__2_in_rule__ArrayConcatenationOperator__Group__133998);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__2_in_rule__ArrayConcatenationOperator__Group__133999);
             rule__ArrayConcatenationOperator__Group__2();
 
             state._fsp--;
@@ -48742,7 +48753,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16763:1: ( rule__ArrayConcatenationOperator__RowsAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16763:2: rule__ArrayConcatenationOperator__RowsAssignment_1
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_1_in_rule__ArrayConcatenationOperator__Group__1__Impl34025);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_1_in_rule__ArrayConcatenationOperator__Group__1__Impl34026);
             rule__ArrayConcatenationOperator__RowsAssignment_1();
 
             state._fsp--;
@@ -48784,12 +48795,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16777:1: ( rule__ArrayConcatenationOperator__Group__2__Impl rule__ArrayConcatenationOperator__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16778:2: rule__ArrayConcatenationOperator__Group__2__Impl rule__ArrayConcatenationOperator__Group__3
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__2__Impl_in_rule__ArrayConcatenationOperator__Group__234055);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__2__Impl_in_rule__ArrayConcatenationOperator__Group__234056);
             rule__ArrayConcatenationOperator__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__3_in_rule__ArrayConcatenationOperator__Group__234058);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__3_in_rule__ArrayConcatenationOperator__Group__234059);
             rule__ArrayConcatenationOperator__Group__3();
 
             state._fsp--;
@@ -48829,21 +48840,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getGroup_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16792:1: ( rule__ArrayConcatenationOperator__Group_2__0 )*
-            loop117:
+            loop118:
             do {
-                int alt117=2;
-                int LA117_0 = input.LA(1);
+                int alt118=2;
+                int LA118_0 = input.LA(1);
 
-                if ( (LA117_0==51) ) {
-                    alt117=1;
+                if ( (LA118_0==51) ) {
+                    alt118=1;
                 }
 
 
-                switch (alt117) {
+                switch (alt118) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16792:2: rule__ArrayConcatenationOperator__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__0_in_rule__ArrayConcatenationOperator__Group__2__Impl34085);
+            	    pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__0_in_rule__ArrayConcatenationOperator__Group__2__Impl34086);
             	    rule__ArrayConcatenationOperator__Group_2__0();
 
             	    state._fsp--;
@@ -48853,7 +48864,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop117;
+            	    break loop118;
                 }
             } while (true);
 
@@ -48891,7 +48902,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16806:1: ( rule__ArrayConcatenationOperator__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16807:2: rule__ArrayConcatenationOperator__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__3__Impl_in_rule__ArrayConcatenationOperator__Group__334116);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group__3__Impl_in_rule__ArrayConcatenationOperator__Group__334117);
             rule__ArrayConcatenationOperator__Group__3__Impl();
 
             state._fsp--;
@@ -48930,7 +48941,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getRightSquareBracketKeyword_3()); 
             }
-            match(input,72,FOLLOW_72_in_rule__ArrayConcatenationOperator__Group__3__Impl34144); if (state.failed) return ;
+            match(input,72,FOLLOW_72_in_rule__ArrayConcatenationOperator__Group__3__Impl34145); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConcatenationOperatorAccess().getRightSquareBracketKeyword_3()); 
             }
@@ -48965,12 +48976,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16844:1: ( rule__ArrayConcatenationOperator__Group_2__0__Impl rule__ArrayConcatenationOperator__Group_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16845:2: rule__ArrayConcatenationOperator__Group_2__0__Impl rule__ArrayConcatenationOperator__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__0__Impl_in_rule__ArrayConcatenationOperator__Group_2__034183);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__0__Impl_in_rule__ArrayConcatenationOperator__Group_2__034184);
             rule__ArrayConcatenationOperator__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__1_in_rule__ArrayConcatenationOperator__Group_2__034186);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__1_in_rule__ArrayConcatenationOperator__Group_2__034187);
             rule__ArrayConcatenationOperator__Group_2__1();
 
             state._fsp--;
@@ -49009,7 +49020,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getSemicolonKeyword_2_0()); 
             }
-            match(input,51,FOLLOW_51_in_rule__ArrayConcatenationOperator__Group_2__0__Impl34214); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__ArrayConcatenationOperator__Group_2__0__Impl34215); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayConcatenationOperatorAccess().getSemicolonKeyword_2_0()); 
             }
@@ -49044,7 +49055,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16875:1: ( rule__ArrayConcatenationOperator__Group_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16876:2: rule__ArrayConcatenationOperator__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__1__Impl_in_rule__ArrayConcatenationOperator__Group_2__134245);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__Group_2__1__Impl_in_rule__ArrayConcatenationOperator__Group_2__134246);
             rule__ArrayConcatenationOperator__Group_2__1__Impl();
 
             state._fsp--;
@@ -49086,7 +49097,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16889:1: ( rule__ArrayConcatenationOperator__RowsAssignment_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16889:2: rule__ArrayConcatenationOperator__RowsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_2_1_in_rule__ArrayConcatenationOperator__Group_2__1__Impl34272);
+            pushFollow(FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_2_1_in_rule__ArrayConcatenationOperator__Group_2__1__Impl34273);
             rule__ArrayConcatenationOperator__RowsAssignment_2_1();
 
             state._fsp--;
@@ -49128,12 +49139,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16907:1: ( rule__ExpressionList__Group__0__Impl rule__ExpressionList__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16908:2: rule__ExpressionList__Group__0__Impl rule__ExpressionList__Group__1
             {
-            pushFollow(FOLLOW_rule__ExpressionList__Group__0__Impl_in_rule__ExpressionList__Group__034306);
+            pushFollow(FOLLOW_rule__ExpressionList__Group__0__Impl_in_rule__ExpressionList__Group__034307);
             rule__ExpressionList__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExpressionList__Group__1_in_rule__ExpressionList__Group__034309);
+            pushFollow(FOLLOW_rule__ExpressionList__Group__1_in_rule__ExpressionList__Group__034310);
             rule__ExpressionList__Group__1();
 
             state._fsp--;
@@ -49175,7 +49186,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16922:1: ( rule__ExpressionList__ExpressionsAssignment_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16922:2: rule__ExpressionList__ExpressionsAssignment_0
             {
-            pushFollow(FOLLOW_rule__ExpressionList__ExpressionsAssignment_0_in_rule__ExpressionList__Group__0__Impl34336);
+            pushFollow(FOLLOW_rule__ExpressionList__ExpressionsAssignment_0_in_rule__ExpressionList__Group__0__Impl34337);
             rule__ExpressionList__ExpressionsAssignment_0();
 
             state._fsp--;
@@ -49217,7 +49228,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16936:1: ( rule__ExpressionList__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16937:2: rule__ExpressionList__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExpressionList__Group__1__Impl_in_rule__ExpressionList__Group__134366);
+            pushFollow(FOLLOW_rule__ExpressionList__Group__1__Impl_in_rule__ExpressionList__Group__134367);
             rule__ExpressionList__Group__1__Impl();
 
             state._fsp--;
@@ -49257,21 +49268,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getExpressionListAccess().getGroup_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16950:1: ( rule__ExpressionList__Group_1__0 )*
-            loop118:
+            loop119:
             do {
-                int alt118=2;
-                int LA118_0 = input.LA(1);
+                int alt119=2;
+                int LA119_0 = input.LA(1);
 
-                if ( (LA118_0==54) ) {
-                    alt118=1;
+                if ( (LA119_0==54) ) {
+                    alt119=1;
                 }
 
 
-                switch (alt118) {
+                switch (alt119) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16950:2: rule__ExpressionList__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__ExpressionList__Group_1__0_in_rule__ExpressionList__Group__1__Impl34393);
+            	    pushFollow(FOLLOW_rule__ExpressionList__Group_1__0_in_rule__ExpressionList__Group__1__Impl34394);
             	    rule__ExpressionList__Group_1__0();
 
             	    state._fsp--;
@@ -49281,7 +49292,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop118;
+            	    break loop119;
                 }
             } while (true);
 
@@ -49319,12 +49330,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16968:1: ( rule__ExpressionList__Group_1__0__Impl rule__ExpressionList__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16969:2: rule__ExpressionList__Group_1__0__Impl rule__ExpressionList__Group_1__1
             {
-            pushFollow(FOLLOW_rule__ExpressionList__Group_1__0__Impl_in_rule__ExpressionList__Group_1__034428);
+            pushFollow(FOLLOW_rule__ExpressionList__Group_1__0__Impl_in_rule__ExpressionList__Group_1__034429);
             rule__ExpressionList__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExpressionList__Group_1__1_in_rule__ExpressionList__Group_1__034431);
+            pushFollow(FOLLOW_rule__ExpressionList__Group_1__1_in_rule__ExpressionList__Group_1__034432);
             rule__ExpressionList__Group_1__1();
 
             state._fsp--;
@@ -49363,7 +49374,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExpressionListAccess().getCommaKeyword_1_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__ExpressionList__Group_1__0__Impl34459); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__ExpressionList__Group_1__0__Impl34460); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExpressionListAccess().getCommaKeyword_1_0()); 
             }
@@ -49398,7 +49409,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16999:1: ( rule__ExpressionList__Group_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17000:2: rule__ExpressionList__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExpressionList__Group_1__1__Impl_in_rule__ExpressionList__Group_1__134490);
+            pushFollow(FOLLOW_rule__ExpressionList__Group_1__1__Impl_in_rule__ExpressionList__Group_1__134491);
             rule__ExpressionList__Group_1__1__Impl();
 
             state._fsp--;
@@ -49440,7 +49451,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17013:1: ( rule__ExpressionList__ExpressionsAssignment_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17013:2: rule__ExpressionList__ExpressionsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__ExpressionList__ExpressionsAssignment_1_1_in_rule__ExpressionList__Group_1__1__Impl34517);
+            pushFollow(FOLLOW_rule__ExpressionList__ExpressionsAssignment_1_1_in_rule__ExpressionList__Group_1__1__Impl34518);
             rule__ExpressionList__ExpressionsAssignment_1_1();
 
             state._fsp--;
@@ -49482,12 +49493,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17031:1: ( rule__StructConstructionOperator__Group__0__Impl rule__StructConstructionOperator__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17032:2: rule__StructConstructionOperator__Group__0__Impl rule__StructConstructionOperator__Group__1
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__0__Impl_in_rule__StructConstructionOperator__Group__034551);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__0__Impl_in_rule__StructConstructionOperator__Group__034552);
             rule__StructConstructionOperator__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__1_in_rule__StructConstructionOperator__Group__034554);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__1_in_rule__StructConstructionOperator__Group__034555);
             rule__StructConstructionOperator__Group__1();
 
             state._fsp--;
@@ -49526,7 +49537,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionOperatorAccess().getLeftCurlyBracketKeyword_0()); 
             }
-            match(input,50,FOLLOW_50_in_rule__StructConstructionOperator__Group__0__Impl34582); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_rule__StructConstructionOperator__Group__0__Impl34583); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStructConstructionOperatorAccess().getLeftCurlyBracketKeyword_0()); 
             }
@@ -49561,12 +49572,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17062:1: ( rule__StructConstructionOperator__Group__1__Impl rule__StructConstructionOperator__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17063:2: rule__StructConstructionOperator__Group__1__Impl rule__StructConstructionOperator__Group__2
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__1__Impl_in_rule__StructConstructionOperator__Group__134613);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__1__Impl_in_rule__StructConstructionOperator__Group__134614);
             rule__StructConstructionOperator__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__2_in_rule__StructConstructionOperator__Group__134616);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__2_in_rule__StructConstructionOperator__Group__134617);
             rule__StructConstructionOperator__Group__2();
 
             state._fsp--;
@@ -49608,7 +49619,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17077:1: ( rule__StructConstructionOperator__MembersAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17077:2: rule__StructConstructionOperator__MembersAssignment_1
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__MembersAssignment_1_in_rule__StructConstructionOperator__Group__1__Impl34643);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__MembersAssignment_1_in_rule__StructConstructionOperator__Group__1__Impl34644);
             rule__StructConstructionOperator__MembersAssignment_1();
 
             state._fsp--;
@@ -49650,12 +49661,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17091:1: ( rule__StructConstructionOperator__Group__2__Impl rule__StructConstructionOperator__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17092:2: rule__StructConstructionOperator__Group__2__Impl rule__StructConstructionOperator__Group__3
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__2__Impl_in_rule__StructConstructionOperator__Group__234673);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__2__Impl_in_rule__StructConstructionOperator__Group__234674);
             rule__StructConstructionOperator__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__3_in_rule__StructConstructionOperator__Group__234676);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__3_in_rule__StructConstructionOperator__Group__234677);
             rule__StructConstructionOperator__Group__3();
 
             state._fsp--;
@@ -49695,21 +49706,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getStructConstructionOperatorAccess().getGroup_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17106:1: ( rule__StructConstructionOperator__Group_2__0 )*
-            loop119:
+            loop120:
             do {
-                int alt119=2;
-                int LA119_0 = input.LA(1);
+                int alt120=2;
+                int LA120_0 = input.LA(1);
 
-                if ( (LA119_0==54) ) {
-                    alt119=1;
+                if ( (LA120_0==54) ) {
+                    alt120=1;
                 }
 
 
-                switch (alt119) {
+                switch (alt120) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17106:2: rule__StructConstructionOperator__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__0_in_rule__StructConstructionOperator__Group__2__Impl34703);
+            	    pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__0_in_rule__StructConstructionOperator__Group__2__Impl34704);
             	    rule__StructConstructionOperator__Group_2__0();
 
             	    state._fsp--;
@@ -49719,7 +49730,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop119;
+            	    break loop120;
                 }
             } while (true);
 
@@ -49757,7 +49768,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17120:1: ( rule__StructConstructionOperator__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17121:2: rule__StructConstructionOperator__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__3__Impl_in_rule__StructConstructionOperator__Group__334734);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group__3__Impl_in_rule__StructConstructionOperator__Group__334735);
             rule__StructConstructionOperator__Group__3__Impl();
 
             state._fsp--;
@@ -49796,7 +49807,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionOperatorAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,52,FOLLOW_52_in_rule__StructConstructionOperator__Group__3__Impl34762); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__StructConstructionOperator__Group__3__Impl34763); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStructConstructionOperatorAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -49831,12 +49842,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17158:1: ( rule__StructConstructionOperator__Group_2__0__Impl rule__StructConstructionOperator__Group_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17159:2: rule__StructConstructionOperator__Group_2__0__Impl rule__StructConstructionOperator__Group_2__1
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__0__Impl_in_rule__StructConstructionOperator__Group_2__034801);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__0__Impl_in_rule__StructConstructionOperator__Group_2__034802);
             rule__StructConstructionOperator__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__1_in_rule__StructConstructionOperator__Group_2__034804);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__1_in_rule__StructConstructionOperator__Group_2__034805);
             rule__StructConstructionOperator__Group_2__1();
 
             state._fsp--;
@@ -49875,7 +49886,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionOperatorAccess().getCommaKeyword_2_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__StructConstructionOperator__Group_2__0__Impl34832); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__StructConstructionOperator__Group_2__0__Impl34833); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStructConstructionOperatorAccess().getCommaKeyword_2_0()); 
             }
@@ -49910,7 +49921,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17189:1: ( rule__StructConstructionOperator__Group_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17190:2: rule__StructConstructionOperator__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__1__Impl_in_rule__StructConstructionOperator__Group_2__134863);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__Group_2__1__Impl_in_rule__StructConstructionOperator__Group_2__134864);
             rule__StructConstructionOperator__Group_2__1__Impl();
 
             state._fsp--;
@@ -49952,7 +49963,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17203:1: ( rule__StructConstructionOperator__MembersAssignment_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17203:2: rule__StructConstructionOperator__MembersAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__StructConstructionOperator__MembersAssignment_2_1_in_rule__StructConstructionOperator__Group_2__1__Impl34890);
+            pushFollow(FOLLOW_rule__StructConstructionOperator__MembersAssignment_2_1_in_rule__StructConstructionOperator__Group_2__1__Impl34891);
             rule__StructConstructionOperator__MembersAssignment_2_1();
 
             state._fsp--;
@@ -49994,12 +50005,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17221:1: ( rule__StructConstructionMember__Group__0__Impl rule__StructConstructionMember__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17222:2: rule__StructConstructionMember__Group__0__Impl rule__StructConstructionMember__Group__1
             {
-            pushFollow(FOLLOW_rule__StructConstructionMember__Group__0__Impl_in_rule__StructConstructionMember__Group__034924);
+            pushFollow(FOLLOW_rule__StructConstructionMember__Group__0__Impl_in_rule__StructConstructionMember__Group__034925);
             rule__StructConstructionMember__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionMember__Group__1_in_rule__StructConstructionMember__Group__034927);
+            pushFollow(FOLLOW_rule__StructConstructionMember__Group__1_in_rule__StructConstructionMember__Group__034928);
             rule__StructConstructionMember__Group__1();
 
             state._fsp--;
@@ -50041,7 +50052,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17236:1: ( rule__StructConstructionMember__NameAssignment_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17236:2: rule__StructConstructionMember__NameAssignment_0
             {
-            pushFollow(FOLLOW_rule__StructConstructionMember__NameAssignment_0_in_rule__StructConstructionMember__Group__0__Impl34954);
+            pushFollow(FOLLOW_rule__StructConstructionMember__NameAssignment_0_in_rule__StructConstructionMember__Group__0__Impl34955);
             rule__StructConstructionMember__NameAssignment_0();
 
             state._fsp--;
@@ -50083,12 +50094,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17250:1: ( rule__StructConstructionMember__Group__1__Impl rule__StructConstructionMember__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17251:2: rule__StructConstructionMember__Group__1__Impl rule__StructConstructionMember__Group__2
             {
-            pushFollow(FOLLOW_rule__StructConstructionMember__Group__1__Impl_in_rule__StructConstructionMember__Group__134984);
+            pushFollow(FOLLOW_rule__StructConstructionMember__Group__1__Impl_in_rule__StructConstructionMember__Group__134985);
             rule__StructConstructionMember__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructConstructionMember__Group__2_in_rule__StructConstructionMember__Group__134987);
+            pushFollow(FOLLOW_rule__StructConstructionMember__Group__2_in_rule__StructConstructionMember__Group__134988);
             rule__StructConstructionMember__Group__2();
 
             state._fsp--;
@@ -50127,7 +50138,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionMemberAccess().getEqualsSignKeyword_1()); 
             }
-            match(input,48,FOLLOW_48_in_rule__StructConstructionMember__Group__1__Impl35015); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__StructConstructionMember__Group__1__Impl35016); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStructConstructionMemberAccess().getEqualsSignKeyword_1()); 
             }
@@ -50162,7 +50173,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17281:1: ( rule__StructConstructionMember__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17282:2: rule__StructConstructionMember__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__StructConstructionMember__Group__2__Impl_in_rule__StructConstructionMember__Group__235046);
+            pushFollow(FOLLOW_rule__StructConstructionMember__Group__2__Impl_in_rule__StructConstructionMember__Group__235047);
             rule__StructConstructionMember__Group__2__Impl();
 
             state._fsp--;
@@ -50204,7 +50215,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17295:1: ( rule__StructConstructionMember__ValueAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17295:2: rule__StructConstructionMember__ValueAssignment_2
             {
-            pushFollow(FOLLOW_rule__StructConstructionMember__ValueAssignment_2_in_rule__StructConstructionMember__Group__2__Impl35073);
+            pushFollow(FOLLOW_rule__StructConstructionMember__ValueAssignment_2_in_rule__StructConstructionMember__Group__2__Impl35074);
             rule__StructConstructionMember__ValueAssignment_2();
 
             state._fsp--;
@@ -50246,12 +50257,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17315:1: ( rule__UnitConstructionOperator__Group__0__Impl rule__UnitConstructionOperator__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17316:2: rule__UnitConstructionOperator__Group__0__Impl rule__UnitConstructionOperator__Group__1
             {
-            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__0__Impl_in_rule__UnitConstructionOperator__Group__035109);
+            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__0__Impl_in_rule__UnitConstructionOperator__Group__035110);
             rule__UnitConstructionOperator__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__1_in_rule__UnitConstructionOperator__Group__035112);
+            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__1_in_rule__UnitConstructionOperator__Group__035113);
             rule__UnitConstructionOperator__Group__1();
 
             state._fsp--;
@@ -50290,7 +50301,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); 
             }
-            match(input,92,FOLLOW_92_in_rule__UnitConstructionOperator__Group__0__Impl35140); if (state.failed) return ;
+            match(input,92,FOLLOW_92_in_rule__UnitConstructionOperator__Group__0__Impl35141); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); 
             }
@@ -50325,7 +50336,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17346:1: ( rule__UnitConstructionOperator__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17347:2: rule__UnitConstructionOperator__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__1__Impl_in_rule__UnitConstructionOperator__Group__135171);
+            pushFollow(FOLLOW_rule__UnitConstructionOperator__Group__1__Impl_in_rule__UnitConstructionOperator__Group__135172);
             rule__UnitConstructionOperator__Group__1__Impl();
 
             state._fsp--;
@@ -50367,7 +50378,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17360:1: ( rule__UnitConstructionOperator__UnitAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17360:2: rule__UnitConstructionOperator__UnitAssignment_1
             {
-            pushFollow(FOLLOW_rule__UnitConstructionOperator__UnitAssignment_1_in_rule__UnitConstructionOperator__Group__1__Impl35198);
+            pushFollow(FOLLOW_rule__UnitConstructionOperator__UnitAssignment_1_in_rule__UnitConstructionOperator__Group__1__Impl35199);
             rule__UnitConstructionOperator__UnitAssignment_1();
 
             state._fsp--;
@@ -50409,12 +50420,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17378:1: ( rule__ParenthesizedExpression__Group__0__Impl rule__ParenthesizedExpression__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17379:2: rule__ParenthesizedExpression__Group__0__Impl rule__ParenthesizedExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__0__Impl_in_rule__ParenthesizedExpression__Group__035232);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__0__Impl_in_rule__ParenthesizedExpression__Group__035233);
             rule__ParenthesizedExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__1_in_rule__ParenthesizedExpression__Group__035235);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__1_in_rule__ParenthesizedExpression__Group__035236);
             rule__ParenthesizedExpression__Group__1();
 
             state._fsp--;
@@ -50453,7 +50464,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0()); 
             }
-            match(input,56,FOLLOW_56_in_rule__ParenthesizedExpression__Group__0__Impl35263); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__ParenthesizedExpression__Group__0__Impl35264); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0()); 
             }
@@ -50488,12 +50499,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17409:1: ( rule__ParenthesizedExpression__Group__1__Impl rule__ParenthesizedExpression__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17410:2: rule__ParenthesizedExpression__Group__1__Impl rule__ParenthesizedExpression__Group__2
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__1__Impl_in_rule__ParenthesizedExpression__Group__135294);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__1__Impl_in_rule__ParenthesizedExpression__Group__135295);
             rule__ParenthesizedExpression__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__2_in_rule__ParenthesizedExpression__Group__135297);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__2_in_rule__ParenthesizedExpression__Group__135298);
             rule__ParenthesizedExpression__Group__2();
 
             state._fsp--;
@@ -50535,7 +50546,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17424:1: ( rule__ParenthesizedExpression__ExpressionsAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17424:2: rule__ParenthesizedExpression__ExpressionsAssignment_1
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_1_in_rule__ParenthesizedExpression__Group__1__Impl35324);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_1_in_rule__ParenthesizedExpression__Group__1__Impl35325);
             rule__ParenthesizedExpression__ExpressionsAssignment_1();
 
             state._fsp--;
@@ -50577,12 +50588,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17438:1: ( rule__ParenthesizedExpression__Group__2__Impl rule__ParenthesizedExpression__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17439:2: rule__ParenthesizedExpression__Group__2__Impl rule__ParenthesizedExpression__Group__3
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__2__Impl_in_rule__ParenthesizedExpression__Group__235354);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__2__Impl_in_rule__ParenthesizedExpression__Group__235355);
             rule__ParenthesizedExpression__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__3_in_rule__ParenthesizedExpression__Group__235357);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__3_in_rule__ParenthesizedExpression__Group__235358);
             rule__ParenthesizedExpression__Group__3();
 
             state._fsp--;
@@ -50622,21 +50633,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getParenthesizedExpressionAccess().getGroup_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17453:1: ( rule__ParenthesizedExpression__Group_2__0 )*
-            loop120:
+            loop121:
             do {
-                int alt120=2;
-                int LA120_0 = input.LA(1);
+                int alt121=2;
+                int LA121_0 = input.LA(1);
 
-                if ( (LA120_0==54) ) {
-                    alt120=1;
+                if ( (LA121_0==54) ) {
+                    alt121=1;
                 }
 
 
-                switch (alt120) {
+                switch (alt121) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17453:2: rule__ParenthesizedExpression__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__0_in_rule__ParenthesizedExpression__Group__2__Impl35384);
+            	    pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__0_in_rule__ParenthesizedExpression__Group__2__Impl35385);
             	    rule__ParenthesizedExpression__Group_2__0();
 
             	    state._fsp--;
@@ -50646,7 +50657,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop120;
+            	    break loop121;
                 }
             } while (true);
 
@@ -50684,7 +50695,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17467:1: ( rule__ParenthesizedExpression__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17468:2: rule__ParenthesizedExpression__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__3__Impl_in_rule__ParenthesizedExpression__Group__335415);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group__3__Impl_in_rule__ParenthesizedExpression__Group__335416);
             rule__ParenthesizedExpression__Group__3__Impl();
 
             state._fsp--;
@@ -50723,7 +50734,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParenthesizedExpressionAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__ParenthesizedExpression__Group__3__Impl35443); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__ParenthesizedExpression__Group__3__Impl35444); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getParenthesizedExpressionAccess().getRightParenthesisKeyword_3()); 
             }
@@ -50758,12 +50769,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17505:1: ( rule__ParenthesizedExpression__Group_2__0__Impl rule__ParenthesizedExpression__Group_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17506:2: rule__ParenthesizedExpression__Group_2__0__Impl rule__ParenthesizedExpression__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__0__Impl_in_rule__ParenthesizedExpression__Group_2__035482);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__0__Impl_in_rule__ParenthesizedExpression__Group_2__035483);
             rule__ParenthesizedExpression__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__1_in_rule__ParenthesizedExpression__Group_2__035485);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__1_in_rule__ParenthesizedExpression__Group_2__035486);
             rule__ParenthesizedExpression__Group_2__1();
 
             state._fsp--;
@@ -50802,7 +50813,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParenthesizedExpressionAccess().getCommaKeyword_2_0()); 
             }
-            match(input,54,FOLLOW_54_in_rule__ParenthesizedExpression__Group_2__0__Impl35513); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__ParenthesizedExpression__Group_2__0__Impl35514); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getParenthesizedExpressionAccess().getCommaKeyword_2_0()); 
             }
@@ -50837,7 +50848,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17536:1: ( rule__ParenthesizedExpression__Group_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17537:2: rule__ParenthesizedExpression__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__1__Impl_in_rule__ParenthesizedExpression__Group_2__135544);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__Group_2__1__Impl_in_rule__ParenthesizedExpression__Group_2__135545);
             rule__ParenthesizedExpression__Group_2__1__Impl();
 
             state._fsp--;
@@ -50879,7 +50890,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17550:1: ( rule__ParenthesizedExpression__ExpressionsAssignment_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17550:2: rule__ParenthesizedExpression__ExpressionsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_2_1_in_rule__ParenthesizedExpression__Group_2__1__Impl35571);
+            pushFollow(FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_2_1_in_rule__ParenthesizedExpression__Group_2__1__Impl35572);
             rule__ParenthesizedExpression__ExpressionsAssignment_2_1();
 
             state._fsp--;
@@ -50921,12 +50932,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17568:1: ( rule__EndExpression__Group__0__Impl rule__EndExpression__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17569:2: rule__EndExpression__Group__0__Impl rule__EndExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__EndExpression__Group__0__Impl_in_rule__EndExpression__Group__035605);
+            pushFollow(FOLLOW_rule__EndExpression__Group__0__Impl_in_rule__EndExpression__Group__035606);
             rule__EndExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EndExpression__Group__1_in_rule__EndExpression__Group__035608);
+            pushFollow(FOLLOW_rule__EndExpression__Group__1_in_rule__EndExpression__Group__035609);
             rule__EndExpression__Group__1();
 
             state._fsp--;
@@ -51000,7 +51011,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17599:1: ( rule__EndExpression__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17600:2: rule__EndExpression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__EndExpression__Group__1__Impl_in_rule__EndExpression__Group__135666);
+            pushFollow(FOLLOW_rule__EndExpression__Group__1__Impl_in_rule__EndExpression__Group__135667);
             rule__EndExpression__Group__1__Impl();
 
             state._fsp--;
@@ -51039,7 +51050,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEndExpressionAccess().getEndKeyword_1()); 
             }
-            match(input,93,FOLLOW_93_in_rule__EndExpression__Group__1__Impl35694); if (state.failed) return ;
+            match(input,93,FOLLOW_93_in_rule__EndExpression__Group__1__Impl35695); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getEndExpressionAccess().getEndKeyword_1()); 
             }
@@ -51074,12 +51085,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17633:1: ( rule__AlgorithmExpression__Group__0__Impl rule__AlgorithmExpression__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17634:2: rule__AlgorithmExpression__Group__0__Impl rule__AlgorithmExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__0__Impl_in_rule__AlgorithmExpression__Group__035729);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__0__Impl_in_rule__AlgorithmExpression__Group__035730);
             rule__AlgorithmExpression__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__1_in_rule__AlgorithmExpression__Group__035732);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__1_in_rule__AlgorithmExpression__Group__035733);
             rule__AlgorithmExpression__Group__1();
 
             state._fsp--;
@@ -51153,12 +51164,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17664:1: ( rule__AlgorithmExpression__Group__1__Impl rule__AlgorithmExpression__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17665:2: rule__AlgorithmExpression__Group__1__Impl rule__AlgorithmExpression__Group__2
             {
-            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__1__Impl_in_rule__AlgorithmExpression__Group__135790);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__1__Impl_in_rule__AlgorithmExpression__Group__135791);
             rule__AlgorithmExpression__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__2_in_rule__AlgorithmExpression__Group__135793);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__2_in_rule__AlgorithmExpression__Group__135794);
             rule__AlgorithmExpression__Group__2();
 
             state._fsp--;
@@ -51197,7 +51208,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAlgorithmExpressionAccess().getAlgorithmKeyword_1()); 
             }
-            match(input,94,FOLLOW_94_in_rule__AlgorithmExpression__Group__1__Impl35821); if (state.failed) return ;
+            match(input,94,FOLLOW_94_in_rule__AlgorithmExpression__Group__1__Impl35822); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAlgorithmExpressionAccess().getAlgorithmKeyword_1()); 
             }
@@ -51232,7 +51243,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17695:1: ( rule__AlgorithmExpression__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17696:2: rule__AlgorithmExpression__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__2__Impl_in_rule__AlgorithmExpression__Group__235852);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__Group__2__Impl_in_rule__AlgorithmExpression__Group__235853);
             rule__AlgorithmExpression__Group__2__Impl();
 
             state._fsp--;
@@ -51274,7 +51285,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17709:1: ( rule__AlgorithmExpression__BodyAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17709:2: rule__AlgorithmExpression__BodyAssignment_2
             {
-            pushFollow(FOLLOW_rule__AlgorithmExpression__BodyAssignment_2_in_rule__AlgorithmExpression__Group__2__Impl35879);
+            pushFollow(FOLLOW_rule__AlgorithmExpression__BodyAssignment_2_in_rule__AlgorithmExpression__Group__2__Impl35880);
             rule__AlgorithmExpression__BodyAssignment_2();
 
             state._fsp--;
@@ -51316,12 +51327,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17729:1: ( rule__Compound__Group__0__Impl rule__Compound__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17730:2: rule__Compound__Group__0__Impl rule__Compound__Group__1
             {
-            pushFollow(FOLLOW_rule__Compound__Group__0__Impl_in_rule__Compound__Group__035915);
+            pushFollow(FOLLOW_rule__Compound__Group__0__Impl_in_rule__Compound__Group__035916);
             rule__Compound__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Compound__Group__1_in_rule__Compound__Group__035918);
+            pushFollow(FOLLOW_rule__Compound__Group__1_in_rule__Compound__Group__035919);
             rule__Compound__Group__1();
 
             state._fsp--;
@@ -51395,12 +51406,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17760:1: ( rule__Compound__Group__1__Impl rule__Compound__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17761:2: rule__Compound__Group__1__Impl rule__Compound__Group__2
             {
-            pushFollow(FOLLOW_rule__Compound__Group__1__Impl_in_rule__Compound__Group__135976);
+            pushFollow(FOLLOW_rule__Compound__Group__1__Impl_in_rule__Compound__Group__135977);
             rule__Compound__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Compound__Group__2_in_rule__Compound__Group__135979);
+            pushFollow(FOLLOW_rule__Compound__Group__2_in_rule__Compound__Group__135980);
             rule__Compound__Group__2();
 
             state._fsp--;
@@ -51439,7 +51450,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompoundAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,50,FOLLOW_50_in_rule__Compound__Group__1__Impl36007); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_rule__Compound__Group__1__Impl36008); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCompoundAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -51474,12 +51485,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17791:1: ( rule__Compound__Group__2__Impl rule__Compound__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17792:2: rule__Compound__Group__2__Impl rule__Compound__Group__3
             {
-            pushFollow(FOLLOW_rule__Compound__Group__2__Impl_in_rule__Compound__Group__236038);
+            pushFollow(FOLLOW_rule__Compound__Group__2__Impl_in_rule__Compound__Group__236039);
             rule__Compound__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Compound__Group__3_in_rule__Compound__Group__236041);
+            pushFollow(FOLLOW_rule__Compound__Group__3_in_rule__Compound__Group__236042);
             rule__Compound__Group__3();
 
             state._fsp--;
@@ -51519,21 +51530,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getCompoundAccess().getStatementsAssignment_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17806:1: ( rule__Compound__StatementsAssignment_2 )*
-            loop121:
+            loop122:
             do {
-                int alt121=2;
-                int LA121_0 = input.LA(1);
+                int alt122=2;
+                int LA122_0 = input.LA(1);
 
-                if ( ((LA121_0>=RULE_IJ && LA121_0<=RULE_EXPIJ)||LA121_0==RULE_ID||(LA121_0>=RULE_N && LA121_0<=RULE_E)||LA121_0==50||LA121_0==56||LA121_0==62||LA121_0==75||LA121_0==91||(LA121_0>=95 && LA121_0<=99)) ) {
-                    alt121=1;
+                if ( ((LA122_0>=RULE_IJ && LA122_0<=RULE_EXPIJ)||LA122_0==RULE_ID||(LA122_0>=RULE_N && LA122_0<=RULE_E)||LA122_0==50||LA122_0==56||LA122_0==62||LA122_0==75||LA122_0==91||(LA122_0>=95 && LA122_0<=99)) ) {
+                    alt122=1;
                 }
 
 
-                switch (alt121) {
+                switch (alt122) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17806:2: rule__Compound__StatementsAssignment_2
             	    {
-            	    pushFollow(FOLLOW_rule__Compound__StatementsAssignment_2_in_rule__Compound__Group__2__Impl36068);
+            	    pushFollow(FOLLOW_rule__Compound__StatementsAssignment_2_in_rule__Compound__Group__2__Impl36069);
             	    rule__Compound__StatementsAssignment_2();
 
             	    state._fsp--;
@@ -51543,7 +51554,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop121;
+            	    break loop122;
                 }
             } while (true);
 
@@ -51581,7 +51592,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17820:1: ( rule__Compound__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17821:2: rule__Compound__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Compound__Group__3__Impl_in_rule__Compound__Group__336099);
+            pushFollow(FOLLOW_rule__Compound__Group__3__Impl_in_rule__Compound__Group__336100);
             rule__Compound__Group__3__Impl();
 
             state._fsp--;
@@ -51620,7 +51631,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompoundAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,52,FOLLOW_52_in_rule__Compound__Group__3__Impl36127); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__Compound__Group__3__Impl36128); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCompoundAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -51655,12 +51666,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17858:1: ( rule__Assignment__Group__0__Impl rule__Assignment__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17859:2: rule__Assignment__Group__0__Impl rule__Assignment__Group__1
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__036166);
+            pushFollow(FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__036167);
             rule__Assignment__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__036169);
+            pushFollow(FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__036170);
             rule__Assignment__Group__1();
 
             state._fsp--;
@@ -51702,7 +51713,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17873:1: ( rule__Assignment__TargetAssignment_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17873:2: rule__Assignment__TargetAssignment_0
             {
-            pushFollow(FOLLOW_rule__Assignment__TargetAssignment_0_in_rule__Assignment__Group__0__Impl36196);
+            pushFollow(FOLLOW_rule__Assignment__TargetAssignment_0_in_rule__Assignment__Group__0__Impl36197);
             rule__Assignment__TargetAssignment_0();
 
             state._fsp--;
@@ -51744,12 +51755,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17887:1: ( rule__Assignment__Group__1__Impl rule__Assignment__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17888:2: rule__Assignment__Group__1__Impl rule__Assignment__Group__2
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__136226);
+            pushFollow(FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__136227);
             rule__Assignment__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__136229);
+            pushFollow(FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__136230);
             rule__Assignment__Group__2();
 
             state._fsp--;
@@ -51788,7 +51799,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
             }
-            match(input,48,FOLLOW_48_in_rule__Assignment__Group__1__Impl36257); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__Assignment__Group__1__Impl36258); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
             }
@@ -51823,12 +51834,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17918:1: ( rule__Assignment__Group__2__Impl rule__Assignment__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17919:2: rule__Assignment__Group__2__Impl rule__Assignment__Group__3
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__236288);
+            pushFollow(FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__236289);
             rule__Assignment__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__236291);
+            pushFollow(FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__236292);
             rule__Assignment__Group__3();
 
             state._fsp--;
@@ -51870,7 +51881,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17933:1: ( rule__Assignment__AssignedExpressionAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17933:2: rule__Assignment__AssignedExpressionAssignment_2
             {
-            pushFollow(FOLLOW_rule__Assignment__AssignedExpressionAssignment_2_in_rule__Assignment__Group__2__Impl36318);
+            pushFollow(FOLLOW_rule__Assignment__AssignedExpressionAssignment_2_in_rule__Assignment__Group__2__Impl36319);
             rule__Assignment__AssignedExpressionAssignment_2();
 
             state._fsp--;
@@ -51912,7 +51923,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17947:1: ( rule__Assignment__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17948:2: rule__Assignment__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__336348);
+            pushFollow(FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__336349);
             rule__Assignment__Group__3__Impl();
 
             state._fsp--;
@@ -51951,7 +51962,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignmentAccess().getSemicolonKeyword_3()); 
             }
-            match(input,51,FOLLOW_51_in_rule__Assignment__Group__3__Impl36376); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__Assignment__Group__3__Impl36377); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAssignmentAccess().getSemicolonKeyword_3()); 
             }
@@ -51986,12 +51997,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17985:1: ( rule__LocalVariableDeclaration__Group__0__Impl rule__LocalVariableDeclaration__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17986:2: rule__LocalVariableDeclaration__Group__0__Impl rule__LocalVariableDeclaration__Group__1
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__036415);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__036416);
             rule__LocalVariableDeclaration__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__036418);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__036419);
             rule__LocalVariableDeclaration__Group__1();
 
             state._fsp--;
@@ -52030,7 +52041,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0()); 
             }
-            match(input,62,FOLLOW_62_in_rule__LocalVariableDeclaration__Group__0__Impl36446); if (state.failed) return ;
+            match(input,62,FOLLOW_62_in_rule__LocalVariableDeclaration__Group__0__Impl36447); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0()); 
             }
@@ -52065,12 +52076,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18016:1: ( rule__LocalVariableDeclaration__Group__1__Impl rule__LocalVariableDeclaration__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18017:2: rule__LocalVariableDeclaration__Group__1__Impl rule__LocalVariableDeclaration__Group__2
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__136477);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__136478);
             rule__LocalVariableDeclaration__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__136480);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__136481);
             rule__LocalVariableDeclaration__Group__2();
 
             state._fsp--;
@@ -52112,7 +52123,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18031:1: ( rule__LocalVariableDeclaration__NameAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18031:2: rule__LocalVariableDeclaration__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl36507);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl36508);
             rule__LocalVariableDeclaration__NameAssignment_1();
 
             state._fsp--;
@@ -52154,12 +52165,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18045:1: ( rule__LocalVariableDeclaration__Group__2__Impl rule__LocalVariableDeclaration__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18046:2: rule__LocalVariableDeclaration__Group__2__Impl rule__LocalVariableDeclaration__Group__3
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__236537);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__236538);
             rule__LocalVariableDeclaration__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__236540);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__236541);
             rule__LocalVariableDeclaration__Group__3();
 
             state._fsp--;
@@ -52198,7 +52209,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2()); 
             }
-            match(input,48,FOLLOW_48_in_rule__LocalVariableDeclaration__Group__2__Impl36568); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__LocalVariableDeclaration__Group__2__Impl36569); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2()); 
             }
@@ -52233,12 +52244,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18076:1: ( rule__LocalVariableDeclaration__Group__3__Impl rule__LocalVariableDeclaration__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18077:2: rule__LocalVariableDeclaration__Group__3__Impl rule__LocalVariableDeclaration__Group__4
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__336599);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__336600);
             rule__LocalVariableDeclaration__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__336602);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__336603);
             rule__LocalVariableDeclaration__Group__4();
 
             state._fsp--;
@@ -52280,7 +52291,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18091:1: ( rule__LocalVariableDeclaration__InitializerAssignment_3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18091:2: rule__LocalVariableDeclaration__InitializerAssignment_3
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl36629);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl36630);
             rule__LocalVariableDeclaration__InitializerAssignment_3();
 
             state._fsp--;
@@ -52322,7 +52333,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18105:1: ( rule__LocalVariableDeclaration__Group__4__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18106:2: rule__LocalVariableDeclaration__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__436659);
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__436660);
             rule__LocalVariableDeclaration__Group__4__Impl();
 
             state._fsp--;
@@ -52361,7 +52372,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4()); 
             }
-            match(input,51,FOLLOW_51_in_rule__LocalVariableDeclaration__Group__4__Impl36687); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__LocalVariableDeclaration__Group__4__Impl36688); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4()); 
             }
@@ -52396,12 +52407,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18145:1: ( rule__IfStatement__Group__0__Impl rule__IfStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18146:2: rule__IfStatement__Group__0__Impl rule__IfStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__0__Impl_in_rule__IfStatement__Group__036728);
+            pushFollow(FOLLOW_rule__IfStatement__Group__0__Impl_in_rule__IfStatement__Group__036729);
             rule__IfStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group__1_in_rule__IfStatement__Group__036731);
+            pushFollow(FOLLOW_rule__IfStatement__Group__1_in_rule__IfStatement__Group__036732);
             rule__IfStatement__Group__1();
 
             state._fsp--;
@@ -52440,7 +52451,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getIfKeyword_0()); 
             }
-            match(input,75,FOLLOW_75_in_rule__IfStatement__Group__0__Impl36759); if (state.failed) return ;
+            match(input,75,FOLLOW_75_in_rule__IfStatement__Group__0__Impl36760); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getIfStatementAccess().getIfKeyword_0()); 
             }
@@ -52475,12 +52486,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18176:1: ( rule__IfStatement__Group__1__Impl rule__IfStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18177:2: rule__IfStatement__Group__1__Impl rule__IfStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__1__Impl_in_rule__IfStatement__Group__136790);
+            pushFollow(FOLLOW_rule__IfStatement__Group__1__Impl_in_rule__IfStatement__Group__136791);
             rule__IfStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group__2_in_rule__IfStatement__Group__136793);
+            pushFollow(FOLLOW_rule__IfStatement__Group__2_in_rule__IfStatement__Group__136794);
             rule__IfStatement__Group__2();
 
             state._fsp--;
@@ -52519,7 +52530,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,56,FOLLOW_56_in_rule__IfStatement__Group__1__Impl36821); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__IfStatement__Group__1__Impl36822); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getIfStatementAccess().getLeftParenthesisKeyword_1()); 
             }
@@ -52554,12 +52565,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18207:1: ( rule__IfStatement__Group__2__Impl rule__IfStatement__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18208:2: rule__IfStatement__Group__2__Impl rule__IfStatement__Group__3
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__2__Impl_in_rule__IfStatement__Group__236852);
+            pushFollow(FOLLOW_rule__IfStatement__Group__2__Impl_in_rule__IfStatement__Group__236853);
             rule__IfStatement__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group__3_in_rule__IfStatement__Group__236855);
+            pushFollow(FOLLOW_rule__IfStatement__Group__3_in_rule__IfStatement__Group__236856);
             rule__IfStatement__Group__3();
 
             state._fsp--;
@@ -52601,7 +52612,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18222:1: ( rule__IfStatement__ConditionAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18222:2: rule__IfStatement__ConditionAssignment_2
             {
-            pushFollow(FOLLOW_rule__IfStatement__ConditionAssignment_2_in_rule__IfStatement__Group__2__Impl36882);
+            pushFollow(FOLLOW_rule__IfStatement__ConditionAssignment_2_in_rule__IfStatement__Group__2__Impl36883);
             rule__IfStatement__ConditionAssignment_2();
 
             state._fsp--;
@@ -52643,12 +52654,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18236:1: ( rule__IfStatement__Group__3__Impl rule__IfStatement__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18237:2: rule__IfStatement__Group__3__Impl rule__IfStatement__Group__4
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__3__Impl_in_rule__IfStatement__Group__336912);
+            pushFollow(FOLLOW_rule__IfStatement__Group__3__Impl_in_rule__IfStatement__Group__336913);
             rule__IfStatement__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group__4_in_rule__IfStatement__Group__336915);
+            pushFollow(FOLLOW_rule__IfStatement__Group__4_in_rule__IfStatement__Group__336916);
             rule__IfStatement__Group__4();
 
             state._fsp--;
@@ -52687,7 +52698,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__IfStatement__Group__3__Impl36943); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__IfStatement__Group__3__Impl36944); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getIfStatementAccess().getRightParenthesisKeyword_3()); 
             }
@@ -52722,12 +52733,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18267:1: ( rule__IfStatement__Group__4__Impl rule__IfStatement__Group__5 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18268:2: rule__IfStatement__Group__4__Impl rule__IfStatement__Group__5
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__4__Impl_in_rule__IfStatement__Group__436974);
+            pushFollow(FOLLOW_rule__IfStatement__Group__4__Impl_in_rule__IfStatement__Group__436975);
             rule__IfStatement__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group__5_in_rule__IfStatement__Group__436977);
+            pushFollow(FOLLOW_rule__IfStatement__Group__5_in_rule__IfStatement__Group__436978);
             rule__IfStatement__Group__5();
 
             state._fsp--;
@@ -52769,7 +52780,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18282:1: ( rule__IfStatement__ThenStatementAssignment_4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18282:2: rule__IfStatement__ThenStatementAssignment_4
             {
-            pushFollow(FOLLOW_rule__IfStatement__ThenStatementAssignment_4_in_rule__IfStatement__Group__4__Impl37004);
+            pushFollow(FOLLOW_rule__IfStatement__ThenStatementAssignment_4_in_rule__IfStatement__Group__4__Impl37005);
             rule__IfStatement__ThenStatementAssignment_4();
 
             state._fsp--;
@@ -52811,7 +52822,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18296:1: ( rule__IfStatement__Group__5__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18297:2: rule__IfStatement__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group__5__Impl_in_rule__IfStatement__Group__537034);
+            pushFollow(FOLLOW_rule__IfStatement__Group__5__Impl_in_rule__IfStatement__Group__537035);
             rule__IfStatement__Group__5__Impl();
 
             state._fsp--;
@@ -52851,21 +52862,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getIfStatementAccess().getGroup_5()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18310:1: ( rule__IfStatement__Group_5__0 )?
-            int alt122=2;
-            int LA122_0 = input.LA(1);
+            int alt123=2;
+            int LA123_0 = input.LA(1);
 
-            if ( (LA122_0==77) ) {
-                int LA122_1 = input.LA(2);
+            if ( (LA123_0==77) ) {
+                int LA123_1 = input.LA(2);
 
-                if ( (synpred167_InternalMscript()) ) {
-                    alt122=1;
+                if ( (synpred168_InternalMscript()) ) {
+                    alt123=1;
                 }
             }
-            switch (alt122) {
+            switch (alt123) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18310:2: rule__IfStatement__Group_5__0
                     {
-                    pushFollow(FOLLOW_rule__IfStatement__Group_5__0_in_rule__IfStatement__Group__5__Impl37061);
+                    pushFollow(FOLLOW_rule__IfStatement__Group_5__0_in_rule__IfStatement__Group__5__Impl37062);
                     rule__IfStatement__Group_5__0();
 
                     state._fsp--;
@@ -52910,12 +52921,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18336:1: ( rule__IfStatement__Group_5__0__Impl rule__IfStatement__Group_5__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18337:2: rule__IfStatement__Group_5__0__Impl rule__IfStatement__Group_5__1
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group_5__0__Impl_in_rule__IfStatement__Group_5__037104);
+            pushFollow(FOLLOW_rule__IfStatement__Group_5__0__Impl_in_rule__IfStatement__Group_5__037105);
             rule__IfStatement__Group_5__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__IfStatement__Group_5__1_in_rule__IfStatement__Group_5__037107);
+            pushFollow(FOLLOW_rule__IfStatement__Group_5__1_in_rule__IfStatement__Group_5__037108);
             rule__IfStatement__Group_5__1();
 
             state._fsp--;
@@ -52957,7 +52968,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18351:1: ( 'else' )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18352:2: 'else'
             {
-            match(input,77,FOLLOW_77_in_rule__IfStatement__Group_5__0__Impl37136); if (state.failed) return ;
+            match(input,77,FOLLOW_77_in_rule__IfStatement__Group_5__0__Impl37137); if (state.failed) return ;
 
             }
 
@@ -52995,7 +53006,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18367:1: ( rule__IfStatement__Group_5__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18368:2: rule__IfStatement__Group_5__1__Impl
             {
-            pushFollow(FOLLOW_rule__IfStatement__Group_5__1__Impl_in_rule__IfStatement__Group_5__137168);
+            pushFollow(FOLLOW_rule__IfStatement__Group_5__1__Impl_in_rule__IfStatement__Group_5__137169);
             rule__IfStatement__Group_5__1__Impl();
 
             state._fsp--;
@@ -53037,7 +53048,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18381:1: ( rule__IfStatement__ElseStatementAssignment_5_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18381:2: rule__IfStatement__ElseStatementAssignment_5_1
             {
-            pushFollow(FOLLOW_rule__IfStatement__ElseStatementAssignment_5_1_in_rule__IfStatement__Group_5__1__Impl37195);
+            pushFollow(FOLLOW_rule__IfStatement__ElseStatementAssignment_5_1_in_rule__IfStatement__Group_5__1__Impl37196);
             rule__IfStatement__ElseStatementAssignment_5_1();
 
             state._fsp--;
@@ -53079,12 +53090,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18399:1: ( rule__WhileStatement__Group__0__Impl rule__WhileStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18400:2: rule__WhileStatement__Group__0__Impl rule__WhileStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__WhileStatement__Group__0__Impl_in_rule__WhileStatement__Group__037229);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__0__Impl_in_rule__WhileStatement__Group__037230);
             rule__WhileStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__WhileStatement__Group__1_in_rule__WhileStatement__Group__037232);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__1_in_rule__WhileStatement__Group__037233);
             rule__WhileStatement__Group__1();
 
             state._fsp--;
@@ -53123,7 +53134,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileStatementAccess().getWhileKeyword_0()); 
             }
-            match(input,95,FOLLOW_95_in_rule__WhileStatement__Group__0__Impl37260); if (state.failed) return ;
+            match(input,95,FOLLOW_95_in_rule__WhileStatement__Group__0__Impl37261); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWhileStatementAccess().getWhileKeyword_0()); 
             }
@@ -53158,12 +53169,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18430:1: ( rule__WhileStatement__Group__1__Impl rule__WhileStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18431:2: rule__WhileStatement__Group__1__Impl rule__WhileStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__WhileStatement__Group__1__Impl_in_rule__WhileStatement__Group__137291);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__1__Impl_in_rule__WhileStatement__Group__137292);
             rule__WhileStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__WhileStatement__Group__2_in_rule__WhileStatement__Group__137294);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__2_in_rule__WhileStatement__Group__137295);
             rule__WhileStatement__Group__2();
 
             state._fsp--;
@@ -53202,7 +53213,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileStatementAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,56,FOLLOW_56_in_rule__WhileStatement__Group__1__Impl37322); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__WhileStatement__Group__1__Impl37323); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWhileStatementAccess().getLeftParenthesisKeyword_1()); 
             }
@@ -53237,12 +53248,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18461:1: ( rule__WhileStatement__Group__2__Impl rule__WhileStatement__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18462:2: rule__WhileStatement__Group__2__Impl rule__WhileStatement__Group__3
             {
-            pushFollow(FOLLOW_rule__WhileStatement__Group__2__Impl_in_rule__WhileStatement__Group__237353);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__2__Impl_in_rule__WhileStatement__Group__237354);
             rule__WhileStatement__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__WhileStatement__Group__3_in_rule__WhileStatement__Group__237356);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__3_in_rule__WhileStatement__Group__237357);
             rule__WhileStatement__Group__3();
 
             state._fsp--;
@@ -53284,7 +53295,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18476:1: ( rule__WhileStatement__ConditionAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18476:2: rule__WhileStatement__ConditionAssignment_2
             {
-            pushFollow(FOLLOW_rule__WhileStatement__ConditionAssignment_2_in_rule__WhileStatement__Group__2__Impl37383);
+            pushFollow(FOLLOW_rule__WhileStatement__ConditionAssignment_2_in_rule__WhileStatement__Group__2__Impl37384);
             rule__WhileStatement__ConditionAssignment_2();
 
             state._fsp--;
@@ -53326,12 +53337,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18490:1: ( rule__WhileStatement__Group__3__Impl rule__WhileStatement__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18491:2: rule__WhileStatement__Group__3__Impl rule__WhileStatement__Group__4
             {
-            pushFollow(FOLLOW_rule__WhileStatement__Group__3__Impl_in_rule__WhileStatement__Group__337413);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__3__Impl_in_rule__WhileStatement__Group__337414);
             rule__WhileStatement__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__WhileStatement__Group__4_in_rule__WhileStatement__Group__337416);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__4_in_rule__WhileStatement__Group__337417);
             rule__WhileStatement__Group__4();
 
             state._fsp--;
@@ -53370,7 +53381,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileStatementAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__WhileStatement__Group__3__Impl37444); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__WhileStatement__Group__3__Impl37445); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getWhileStatementAccess().getRightParenthesisKeyword_3()); 
             }
@@ -53405,7 +53416,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18521:1: ( rule__WhileStatement__Group__4__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18522:2: rule__WhileStatement__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__WhileStatement__Group__4__Impl_in_rule__WhileStatement__Group__437475);
+            pushFollow(FOLLOW_rule__WhileStatement__Group__4__Impl_in_rule__WhileStatement__Group__437476);
             rule__WhileStatement__Group__4__Impl();
 
             state._fsp--;
@@ -53447,7 +53458,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18535:1: ( rule__WhileStatement__BodyAssignment_4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18535:2: rule__WhileStatement__BodyAssignment_4
             {
-            pushFollow(FOLLOW_rule__WhileStatement__BodyAssignment_4_in_rule__WhileStatement__Group__4__Impl37502);
+            pushFollow(FOLLOW_rule__WhileStatement__BodyAssignment_4_in_rule__WhileStatement__Group__4__Impl37503);
             rule__WhileStatement__BodyAssignment_4();
 
             state._fsp--;
@@ -53489,12 +53500,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18559:1: ( rule__ForStatement__Group__0__Impl rule__ForStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18560:2: rule__ForStatement__Group__0__Impl rule__ForStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__0__Impl_in_rule__ForStatement__Group__037542);
+            pushFollow(FOLLOW_rule__ForStatement__Group__0__Impl_in_rule__ForStatement__Group__037543);
             rule__ForStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__1_in_rule__ForStatement__Group__037545);
+            pushFollow(FOLLOW_rule__ForStatement__Group__1_in_rule__ForStatement__Group__037546);
             rule__ForStatement__Group__1();
 
             state._fsp--;
@@ -53533,7 +53544,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getForKeyword_0()); 
             }
-            match(input,91,FOLLOW_91_in_rule__ForStatement__Group__0__Impl37573); if (state.failed) return ;
+            match(input,91,FOLLOW_91_in_rule__ForStatement__Group__0__Impl37574); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getForStatementAccess().getForKeyword_0()); 
             }
@@ -53568,12 +53579,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18590:1: ( rule__ForStatement__Group__1__Impl rule__ForStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18591:2: rule__ForStatement__Group__1__Impl rule__ForStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__1__Impl_in_rule__ForStatement__Group__137604);
+            pushFollow(FOLLOW_rule__ForStatement__Group__1__Impl_in_rule__ForStatement__Group__137605);
             rule__ForStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__2_in_rule__ForStatement__Group__137607);
+            pushFollow(FOLLOW_rule__ForStatement__Group__2_in_rule__ForStatement__Group__137608);
             rule__ForStatement__Group__2();
 
             state._fsp--;
@@ -53612,7 +53623,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,56,FOLLOW_56_in_rule__ForStatement__Group__1__Impl37635); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__ForStatement__Group__1__Impl37636); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getForStatementAccess().getLeftParenthesisKeyword_1()); 
             }
@@ -53647,12 +53658,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18621:1: ( rule__ForStatement__Group__2__Impl rule__ForStatement__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18622:2: rule__ForStatement__Group__2__Impl rule__ForStatement__Group__3
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__2__Impl_in_rule__ForStatement__Group__237666);
+            pushFollow(FOLLOW_rule__ForStatement__Group__2__Impl_in_rule__ForStatement__Group__237667);
             rule__ForStatement__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__3_in_rule__ForStatement__Group__237669);
+            pushFollow(FOLLOW_rule__ForStatement__Group__3_in_rule__ForStatement__Group__237670);
             rule__ForStatement__Group__3();
 
             state._fsp--;
@@ -53694,7 +53705,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18636:1: ( rule__ForStatement__IterationVariableAssignment_2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18636:2: rule__ForStatement__IterationVariableAssignment_2
             {
-            pushFollow(FOLLOW_rule__ForStatement__IterationVariableAssignment_2_in_rule__ForStatement__Group__2__Impl37696);
+            pushFollow(FOLLOW_rule__ForStatement__IterationVariableAssignment_2_in_rule__ForStatement__Group__2__Impl37697);
             rule__ForStatement__IterationVariableAssignment_2();
 
             state._fsp--;
@@ -53736,12 +53747,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18650:1: ( rule__ForStatement__Group__3__Impl rule__ForStatement__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18651:2: rule__ForStatement__Group__3__Impl rule__ForStatement__Group__4
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__3__Impl_in_rule__ForStatement__Group__337726);
+            pushFollow(FOLLOW_rule__ForStatement__Group__3__Impl_in_rule__ForStatement__Group__337727);
             rule__ForStatement__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__4_in_rule__ForStatement__Group__337729);
+            pushFollow(FOLLOW_rule__ForStatement__Group__4_in_rule__ForStatement__Group__337730);
             rule__ForStatement__Group__4();
 
             state._fsp--;
@@ -53780,7 +53791,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getInKeyword_3()); 
             }
-            match(input,74,FOLLOW_74_in_rule__ForStatement__Group__3__Impl37757); if (state.failed) return ;
+            match(input,74,FOLLOW_74_in_rule__ForStatement__Group__3__Impl37758); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getForStatementAccess().getInKeyword_3()); 
             }
@@ -53815,12 +53826,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18681:1: ( rule__ForStatement__Group__4__Impl rule__ForStatement__Group__5 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18682:2: rule__ForStatement__Group__4__Impl rule__ForStatement__Group__5
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__437788);
+            pushFollow(FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__437789);
             rule__ForStatement__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__5_in_rule__ForStatement__Group__437791);
+            pushFollow(FOLLOW_rule__ForStatement__Group__5_in_rule__ForStatement__Group__437792);
             rule__ForStatement__Group__5();
 
             state._fsp--;
@@ -53862,7 +53873,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18696:1: ( rule__ForStatement__CollectionExpressionAssignment_4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18696:2: rule__ForStatement__CollectionExpressionAssignment_4
             {
-            pushFollow(FOLLOW_rule__ForStatement__CollectionExpressionAssignment_4_in_rule__ForStatement__Group__4__Impl37818);
+            pushFollow(FOLLOW_rule__ForStatement__CollectionExpressionAssignment_4_in_rule__ForStatement__Group__4__Impl37819);
             rule__ForStatement__CollectionExpressionAssignment_4();
 
             state._fsp--;
@@ -53904,12 +53915,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18710:1: ( rule__ForStatement__Group__5__Impl rule__ForStatement__Group__6 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18711:2: rule__ForStatement__Group__5__Impl rule__ForStatement__Group__6
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__537848);
+            pushFollow(FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__537849);
             rule__ForStatement__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ForStatement__Group__6_in_rule__ForStatement__Group__537851);
+            pushFollow(FOLLOW_rule__ForStatement__Group__6_in_rule__ForStatement__Group__537852);
             rule__ForStatement__Group__6();
 
             state._fsp--;
@@ -53948,7 +53959,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getRightParenthesisKeyword_5()); 
             }
-            match(input,57,FOLLOW_57_in_rule__ForStatement__Group__5__Impl37879); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__ForStatement__Group__5__Impl37880); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getForStatementAccess().getRightParenthesisKeyword_5()); 
             }
@@ -53983,7 +53994,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18741:1: ( rule__ForStatement__Group__6__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18742:2: rule__ForStatement__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__ForStatement__Group__6__Impl_in_rule__ForStatement__Group__637910);
+            pushFollow(FOLLOW_rule__ForStatement__Group__6__Impl_in_rule__ForStatement__Group__637911);
             rule__ForStatement__Group__6__Impl();
 
             state._fsp--;
@@ -54025,7 +54036,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18755:1: ( rule__ForStatement__BodyAssignment_6 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18755:2: rule__ForStatement__BodyAssignment_6
             {
-            pushFollow(FOLLOW_rule__ForStatement__BodyAssignment_6_in_rule__ForStatement__Group__6__Impl37937);
+            pushFollow(FOLLOW_rule__ForStatement__BodyAssignment_6_in_rule__ForStatement__Group__6__Impl37938);
             rule__ForStatement__BodyAssignment_6();
 
             state._fsp--;
@@ -54067,12 +54078,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18783:1: ( rule__DoWhileStatement__Group__0__Impl rule__DoWhileStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18784:2: rule__DoWhileStatement__Group__0__Impl rule__DoWhileStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__0__Impl_in_rule__DoWhileStatement__Group__037981);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__0__Impl_in_rule__DoWhileStatement__Group__037982);
             rule__DoWhileStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__1_in_rule__DoWhileStatement__Group__037984);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__1_in_rule__DoWhileStatement__Group__037985);
             rule__DoWhileStatement__Group__1();
 
             state._fsp--;
@@ -54111,7 +54122,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getDoKeyword_0()); 
             }
-            match(input,96,FOLLOW_96_in_rule__DoWhileStatement__Group__0__Impl38012); if (state.failed) return ;
+            match(input,96,FOLLOW_96_in_rule__DoWhileStatement__Group__0__Impl38013); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDoWhileStatementAccess().getDoKeyword_0()); 
             }
@@ -54146,12 +54157,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18814:1: ( rule__DoWhileStatement__Group__1__Impl rule__DoWhileStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18815:2: rule__DoWhileStatement__Group__1__Impl rule__DoWhileStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__1__Impl_in_rule__DoWhileStatement__Group__138043);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__1__Impl_in_rule__DoWhileStatement__Group__138044);
             rule__DoWhileStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__2_in_rule__DoWhileStatement__Group__138046);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__2_in_rule__DoWhileStatement__Group__138047);
             rule__DoWhileStatement__Group__2();
 
             state._fsp--;
@@ -54193,7 +54204,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18829:1: ( rule__DoWhileStatement__BodyAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18829:2: rule__DoWhileStatement__BodyAssignment_1
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__BodyAssignment_1_in_rule__DoWhileStatement__Group__1__Impl38073);
+            pushFollow(FOLLOW_rule__DoWhileStatement__BodyAssignment_1_in_rule__DoWhileStatement__Group__1__Impl38074);
             rule__DoWhileStatement__BodyAssignment_1();
 
             state._fsp--;
@@ -54235,12 +54246,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18843:1: ( rule__DoWhileStatement__Group__2__Impl rule__DoWhileStatement__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18844:2: rule__DoWhileStatement__Group__2__Impl rule__DoWhileStatement__Group__3
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__2__Impl_in_rule__DoWhileStatement__Group__238103);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__2__Impl_in_rule__DoWhileStatement__Group__238104);
             rule__DoWhileStatement__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__3_in_rule__DoWhileStatement__Group__238106);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__3_in_rule__DoWhileStatement__Group__238107);
             rule__DoWhileStatement__Group__3();
 
             state._fsp--;
@@ -54279,7 +54290,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getWhileKeyword_2()); 
             }
-            match(input,95,FOLLOW_95_in_rule__DoWhileStatement__Group__2__Impl38134); if (state.failed) return ;
+            match(input,95,FOLLOW_95_in_rule__DoWhileStatement__Group__2__Impl38135); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDoWhileStatementAccess().getWhileKeyword_2()); 
             }
@@ -54314,12 +54325,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18874:1: ( rule__DoWhileStatement__Group__3__Impl rule__DoWhileStatement__Group__4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18875:2: rule__DoWhileStatement__Group__3__Impl rule__DoWhileStatement__Group__4
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__3__Impl_in_rule__DoWhileStatement__Group__338165);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__3__Impl_in_rule__DoWhileStatement__Group__338166);
             rule__DoWhileStatement__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__4_in_rule__DoWhileStatement__Group__338168);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__4_in_rule__DoWhileStatement__Group__338169);
             rule__DoWhileStatement__Group__4();
 
             state._fsp--;
@@ -54358,7 +54369,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getLeftParenthesisKeyword_3()); 
             }
-            match(input,56,FOLLOW_56_in_rule__DoWhileStatement__Group__3__Impl38196); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__DoWhileStatement__Group__3__Impl38197); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDoWhileStatementAccess().getLeftParenthesisKeyword_3()); 
             }
@@ -54393,12 +54404,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18905:1: ( rule__DoWhileStatement__Group__4__Impl rule__DoWhileStatement__Group__5 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18906:2: rule__DoWhileStatement__Group__4__Impl rule__DoWhileStatement__Group__5
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__4__Impl_in_rule__DoWhileStatement__Group__438227);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__4__Impl_in_rule__DoWhileStatement__Group__438228);
             rule__DoWhileStatement__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__5_in_rule__DoWhileStatement__Group__438230);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__5_in_rule__DoWhileStatement__Group__438231);
             rule__DoWhileStatement__Group__5();
 
             state._fsp--;
@@ -54440,7 +54451,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18920:1: ( rule__DoWhileStatement__ConditionAssignment_4 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18920:2: rule__DoWhileStatement__ConditionAssignment_4
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__ConditionAssignment_4_in_rule__DoWhileStatement__Group__4__Impl38257);
+            pushFollow(FOLLOW_rule__DoWhileStatement__ConditionAssignment_4_in_rule__DoWhileStatement__Group__4__Impl38258);
             rule__DoWhileStatement__ConditionAssignment_4();
 
             state._fsp--;
@@ -54482,12 +54493,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18934:1: ( rule__DoWhileStatement__Group__5__Impl rule__DoWhileStatement__Group__6 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18935:2: rule__DoWhileStatement__Group__5__Impl rule__DoWhileStatement__Group__6
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__5__Impl_in_rule__DoWhileStatement__Group__538287);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__5__Impl_in_rule__DoWhileStatement__Group__538288);
             rule__DoWhileStatement__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__6_in_rule__DoWhileStatement__Group__538290);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__6_in_rule__DoWhileStatement__Group__538291);
             rule__DoWhileStatement__Group__6();
 
             state._fsp--;
@@ -54526,7 +54537,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getRightParenthesisKeyword_5()); 
             }
-            match(input,57,FOLLOW_57_in_rule__DoWhileStatement__Group__5__Impl38318); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__DoWhileStatement__Group__5__Impl38319); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDoWhileStatementAccess().getRightParenthesisKeyword_5()); 
             }
@@ -54561,7 +54572,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18965:1: ( rule__DoWhileStatement__Group__6__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18966:2: rule__DoWhileStatement__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__DoWhileStatement__Group__6__Impl_in_rule__DoWhileStatement__Group__638349);
+            pushFollow(FOLLOW_rule__DoWhileStatement__Group__6__Impl_in_rule__DoWhileStatement__Group__638350);
             rule__DoWhileStatement__Group__6__Impl();
 
             state._fsp--;
@@ -54600,7 +54611,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getSemicolonKeyword_6()); 
             }
-            match(input,51,FOLLOW_51_in_rule__DoWhileStatement__Group__6__Impl38377); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__DoWhileStatement__Group__6__Impl38378); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getDoWhileStatementAccess().getSemicolonKeyword_6()); 
             }
@@ -54635,12 +54646,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19009:1: ( rule__ContinueStatement__Group__0__Impl rule__ContinueStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19010:2: rule__ContinueStatement__Group__0__Impl rule__ContinueStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__ContinueStatement__Group__0__Impl_in_rule__ContinueStatement__Group__038422);
+            pushFollow(FOLLOW_rule__ContinueStatement__Group__0__Impl_in_rule__ContinueStatement__Group__038423);
             rule__ContinueStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ContinueStatement__Group__1_in_rule__ContinueStatement__Group__038425);
+            pushFollow(FOLLOW_rule__ContinueStatement__Group__1_in_rule__ContinueStatement__Group__038426);
             rule__ContinueStatement__Group__1();
 
             state._fsp--;
@@ -54714,12 +54725,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19040:1: ( rule__ContinueStatement__Group__1__Impl rule__ContinueStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19041:2: rule__ContinueStatement__Group__1__Impl rule__ContinueStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__ContinueStatement__Group__1__Impl_in_rule__ContinueStatement__Group__138483);
+            pushFollow(FOLLOW_rule__ContinueStatement__Group__1__Impl_in_rule__ContinueStatement__Group__138484);
             rule__ContinueStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ContinueStatement__Group__2_in_rule__ContinueStatement__Group__138486);
+            pushFollow(FOLLOW_rule__ContinueStatement__Group__2_in_rule__ContinueStatement__Group__138487);
             rule__ContinueStatement__Group__2();
 
             state._fsp--;
@@ -54758,7 +54769,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getContinueStatementAccess().getContinueKeyword_1()); 
             }
-            match(input,97,FOLLOW_97_in_rule__ContinueStatement__Group__1__Impl38514); if (state.failed) return ;
+            match(input,97,FOLLOW_97_in_rule__ContinueStatement__Group__1__Impl38515); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getContinueStatementAccess().getContinueKeyword_1()); 
             }
@@ -54793,7 +54804,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19071:1: ( rule__ContinueStatement__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19072:2: rule__ContinueStatement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__ContinueStatement__Group__2__Impl_in_rule__ContinueStatement__Group__238545);
+            pushFollow(FOLLOW_rule__ContinueStatement__Group__2__Impl_in_rule__ContinueStatement__Group__238546);
             rule__ContinueStatement__Group__2__Impl();
 
             state._fsp--;
@@ -54832,7 +54843,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getContinueStatementAccess().getSemicolonKeyword_2()); 
             }
-            match(input,51,FOLLOW_51_in_rule__ContinueStatement__Group__2__Impl38573); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__ContinueStatement__Group__2__Impl38574); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getContinueStatementAccess().getSemicolonKeyword_2()); 
             }
@@ -54867,12 +54878,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19107:1: ( rule__BreakStatement__Group__0__Impl rule__BreakStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19108:2: rule__BreakStatement__Group__0__Impl rule__BreakStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__BreakStatement__Group__0__Impl_in_rule__BreakStatement__Group__038610);
+            pushFollow(FOLLOW_rule__BreakStatement__Group__0__Impl_in_rule__BreakStatement__Group__038611);
             rule__BreakStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__BreakStatement__Group__1_in_rule__BreakStatement__Group__038613);
+            pushFollow(FOLLOW_rule__BreakStatement__Group__1_in_rule__BreakStatement__Group__038614);
             rule__BreakStatement__Group__1();
 
             state._fsp--;
@@ -54946,12 +54957,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19138:1: ( rule__BreakStatement__Group__1__Impl rule__BreakStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19139:2: rule__BreakStatement__Group__1__Impl rule__BreakStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__BreakStatement__Group__1__Impl_in_rule__BreakStatement__Group__138671);
+            pushFollow(FOLLOW_rule__BreakStatement__Group__1__Impl_in_rule__BreakStatement__Group__138672);
             rule__BreakStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__BreakStatement__Group__2_in_rule__BreakStatement__Group__138674);
+            pushFollow(FOLLOW_rule__BreakStatement__Group__2_in_rule__BreakStatement__Group__138675);
             rule__BreakStatement__Group__2();
 
             state._fsp--;
@@ -54990,7 +55001,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBreakStatementAccess().getBreakKeyword_1()); 
             }
-            match(input,98,FOLLOW_98_in_rule__BreakStatement__Group__1__Impl38702); if (state.failed) return ;
+            match(input,98,FOLLOW_98_in_rule__BreakStatement__Group__1__Impl38703); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBreakStatementAccess().getBreakKeyword_1()); 
             }
@@ -55025,7 +55036,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19169:1: ( rule__BreakStatement__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19170:2: rule__BreakStatement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__BreakStatement__Group__2__Impl_in_rule__BreakStatement__Group__238733);
+            pushFollow(FOLLOW_rule__BreakStatement__Group__2__Impl_in_rule__BreakStatement__Group__238734);
             rule__BreakStatement__Group__2__Impl();
 
             state._fsp--;
@@ -55064,7 +55075,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBreakStatementAccess().getSemicolonKeyword_2()); 
             }
-            match(input,51,FOLLOW_51_in_rule__BreakStatement__Group__2__Impl38761); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__BreakStatement__Group__2__Impl38762); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBreakStatementAccess().getSemicolonKeyword_2()); 
             }
@@ -55099,12 +55110,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19205:1: ( rule__ReturnStatement__Group__0__Impl rule__ReturnStatement__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19206:2: rule__ReturnStatement__Group__0__Impl rule__ReturnStatement__Group__1
             {
-            pushFollow(FOLLOW_rule__ReturnStatement__Group__0__Impl_in_rule__ReturnStatement__Group__038798);
+            pushFollow(FOLLOW_rule__ReturnStatement__Group__0__Impl_in_rule__ReturnStatement__Group__038799);
             rule__ReturnStatement__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ReturnStatement__Group__1_in_rule__ReturnStatement__Group__038801);
+            pushFollow(FOLLOW_rule__ReturnStatement__Group__1_in_rule__ReturnStatement__Group__038802);
             rule__ReturnStatement__Group__1();
 
             state._fsp--;
@@ -55143,7 +55154,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getReturnStatementAccess().getReturnKeyword_0()); 
             }
-            match(input,99,FOLLOW_99_in_rule__ReturnStatement__Group__0__Impl38829); if (state.failed) return ;
+            match(input,99,FOLLOW_99_in_rule__ReturnStatement__Group__0__Impl38830); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getReturnStatementAccess().getReturnKeyword_0()); 
             }
@@ -55178,12 +55189,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19236:1: ( rule__ReturnStatement__Group__1__Impl rule__ReturnStatement__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19237:2: rule__ReturnStatement__Group__1__Impl rule__ReturnStatement__Group__2
             {
-            pushFollow(FOLLOW_rule__ReturnStatement__Group__1__Impl_in_rule__ReturnStatement__Group__138860);
+            pushFollow(FOLLOW_rule__ReturnStatement__Group__1__Impl_in_rule__ReturnStatement__Group__138861);
             rule__ReturnStatement__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ReturnStatement__Group__2_in_rule__ReturnStatement__Group__138863);
+            pushFollow(FOLLOW_rule__ReturnStatement__Group__2_in_rule__ReturnStatement__Group__138864);
             rule__ReturnStatement__Group__2();
 
             state._fsp--;
@@ -55225,7 +55236,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19251:1: ( rule__ReturnStatement__ExpressionAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19251:2: rule__ReturnStatement__ExpressionAssignment_1
             {
-            pushFollow(FOLLOW_rule__ReturnStatement__ExpressionAssignment_1_in_rule__ReturnStatement__Group__1__Impl38890);
+            pushFollow(FOLLOW_rule__ReturnStatement__ExpressionAssignment_1_in_rule__ReturnStatement__Group__1__Impl38891);
             rule__ReturnStatement__ExpressionAssignment_1();
 
             state._fsp--;
@@ -55267,7 +55278,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19265:1: ( rule__ReturnStatement__Group__2__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19266:2: rule__ReturnStatement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__ReturnStatement__Group__2__Impl_in_rule__ReturnStatement__Group__238920);
+            pushFollow(FOLLOW_rule__ReturnStatement__Group__2__Impl_in_rule__ReturnStatement__Group__238921);
             rule__ReturnStatement__Group__2__Impl();
 
             state._fsp--;
@@ -55306,7 +55317,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getReturnStatementAccess().getSemicolonKeyword_2()); 
             }
-            match(input,51,FOLLOW_51_in_rule__ReturnStatement__Group__2__Impl38948); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__ReturnStatement__Group__2__Impl38949); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getReturnStatementAccess().getSemicolonKeyword_2()); 
             }
@@ -55341,12 +55352,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19301:1: ( rule__Unit__Group__0__Impl rule__Unit__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19302:2: rule__Unit__Group__0__Impl rule__Unit__Group__1
             {
-            pushFollow(FOLLOW_rule__Unit__Group__0__Impl_in_rule__Unit__Group__038985);
+            pushFollow(FOLLOW_rule__Unit__Group__0__Impl_in_rule__Unit__Group__038986);
             rule__Unit__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group__1_in_rule__Unit__Group__038988);
+            pushFollow(FOLLOW_rule__Unit__Group__1_in_rule__Unit__Group__038989);
             rule__Unit__Group__1();
 
             state._fsp--;
@@ -55420,7 +55431,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19332:1: ( rule__Unit__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19333:2: rule__Unit__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Unit__Group__1__Impl_in_rule__Unit__Group__139046);
+            pushFollow(FOLLOW_rule__Unit__Group__1__Impl_in_rule__Unit__Group__139047);
             rule__Unit__Group__1__Impl();
 
             state._fsp--;
@@ -55462,7 +55473,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19346:1: ( rule__Unit__Alternatives_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19346:2: rule__Unit__Alternatives_1
             {
-            pushFollow(FOLLOW_rule__Unit__Alternatives_1_in_rule__Unit__Group__1__Impl39073);
+            pushFollow(FOLLOW_rule__Unit__Alternatives_1_in_rule__Unit__Group__1__Impl39074);
             rule__Unit__Alternatives_1();
 
             state._fsp--;
@@ -55504,12 +55515,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19364:1: ( rule__Unit__Group_1_0__0__Impl rule__Unit__Group_1_0__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19365:2: rule__Unit__Group_1_0__0__Impl rule__Unit__Group_1_0__1
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_0__0__Impl_in_rule__Unit__Group_1_0__039107);
+            pushFollow(FOLLOW_rule__Unit__Group_1_0__0__Impl_in_rule__Unit__Group_1_0__039108);
             rule__Unit__Group_1_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group_1_0__1_in_rule__Unit__Group_1_0__039110);
+            pushFollow(FOLLOW_rule__Unit__Group_1_0__1_in_rule__Unit__Group_1_0__039111);
             rule__Unit__Group_1_0__1();
 
             state._fsp--;
@@ -55548,7 +55559,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_0_0()); 
             }
-            match(input,56,FOLLOW_56_in_rule__Unit__Group_1_0__0__Impl39138); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__Unit__Group_1_0__0__Impl39139); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_0_0()); 
             }
@@ -55583,7 +55594,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19395:1: ( rule__Unit__Group_1_0__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19396:2: rule__Unit__Group_1_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_0__1__Impl_in_rule__Unit__Group_1_0__139169);
+            pushFollow(FOLLOW_rule__Unit__Group_1_0__1__Impl_in_rule__Unit__Group_1_0__139170);
             rule__Unit__Group_1_0__1__Impl();
 
             state._fsp--;
@@ -55622,7 +55633,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_0_1()); 
             }
-            match(input,57,FOLLOW_57_in_rule__Unit__Group_1_0__1__Impl39197); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__Unit__Group_1_0__1__Impl39198); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_0_1()); 
             }
@@ -55657,12 +55668,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19429:1: ( rule__Unit__Group_1_1__0__Impl rule__Unit__Group_1_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19430:2: rule__Unit__Group_1_1__0__Impl rule__Unit__Group_1_1__1
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__0__Impl_in_rule__Unit__Group_1_1__039232);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__0__Impl_in_rule__Unit__Group_1_1__039233);
             rule__Unit__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__1_in_rule__Unit__Group_1_1__039235);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__1_in_rule__Unit__Group_1_1__039236);
             rule__Unit__Group_1_1__1();
 
             state._fsp--;
@@ -55701,7 +55712,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_1_0()); 
             }
-            match(input,56,FOLLOW_56_in_rule__Unit__Group_1_1__0__Impl39263); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__Unit__Group_1_1__0__Impl39264); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_1_0()); 
             }
@@ -55736,12 +55747,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19460:1: ( rule__Unit__Group_1_1__1__Impl rule__Unit__Group_1_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19461:2: rule__Unit__Group_1_1__1__Impl rule__Unit__Group_1_1__2
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__1__Impl_in_rule__Unit__Group_1_1__139294);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__1__Impl_in_rule__Unit__Group_1_1__139295);
             rule__Unit__Group_1_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__2_in_rule__Unit__Group_1_1__139297);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__2_in_rule__Unit__Group_1_1__139298);
             rule__Unit__Group_1_1__2();
 
             state._fsp--;
@@ -55783,7 +55794,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19475:1: ( rule__Unit__NumeratorAssignment_1_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19475:2: rule__Unit__NumeratorAssignment_1_1_1
             {
-            pushFollow(FOLLOW_rule__Unit__NumeratorAssignment_1_1_1_in_rule__Unit__Group_1_1__1__Impl39324);
+            pushFollow(FOLLOW_rule__Unit__NumeratorAssignment_1_1_1_in_rule__Unit__Group_1_1__1__Impl39325);
             rule__Unit__NumeratorAssignment_1_1_1();
 
             state._fsp--;
@@ -55825,12 +55836,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19489:1: ( rule__Unit__Group_1_1__2__Impl rule__Unit__Group_1_1__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19490:2: rule__Unit__Group_1_1__2__Impl rule__Unit__Group_1_1__3
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__2__Impl_in_rule__Unit__Group_1_1__239354);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__2__Impl_in_rule__Unit__Group_1_1__239355);
             rule__Unit__Group_1_1__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__3_in_rule__Unit__Group_1_1__239357);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__3_in_rule__Unit__Group_1_1__239358);
             rule__Unit__Group_1_1__3();
 
             state._fsp--;
@@ -55870,17 +55881,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnitAccess().getGroup_1_1_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19504:1: ( rule__Unit__Group_1_1_2__0 )?
-            int alt123=2;
-            int LA123_0 = input.LA(1);
+            int alt124=2;
+            int LA124_0 = input.LA(1);
 
-            if ( (LA123_0==38) ) {
-                alt123=1;
+            if ( (LA124_0==38) ) {
+                alt124=1;
             }
-            switch (alt123) {
+            switch (alt124) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19504:2: rule__Unit__Group_1_1_2__0
                     {
-                    pushFollow(FOLLOW_rule__Unit__Group_1_1_2__0_in_rule__Unit__Group_1_1__2__Impl39384);
+                    pushFollow(FOLLOW_rule__Unit__Group_1_1_2__0_in_rule__Unit__Group_1_1__2__Impl39385);
                     rule__Unit__Group_1_1_2__0();
 
                     state._fsp--;
@@ -55925,7 +55936,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19518:1: ( rule__Unit__Group_1_1__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19519:2: rule__Unit__Group_1_1__3__Impl
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1__3__Impl_in_rule__Unit__Group_1_1__339415);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1__3__Impl_in_rule__Unit__Group_1_1__339416);
             rule__Unit__Group_1_1__3__Impl();
 
             state._fsp--;
@@ -55964,7 +55975,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_1_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__Unit__Group_1_1__3__Impl39443); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__Unit__Group_1_1__3__Impl39444); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_1_3()); 
             }
@@ -55999,12 +56010,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19556:1: ( rule__Unit__Group_1_1_2__0__Impl rule__Unit__Group_1_1_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19557:2: rule__Unit__Group_1_1_2__0__Impl rule__Unit__Group_1_1_2__1
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__0__Impl_in_rule__Unit__Group_1_1_2__039482);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__0__Impl_in_rule__Unit__Group_1_1_2__039483);
             rule__Unit__Group_1_1_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__1_in_rule__Unit__Group_1_1_2__039485);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__1_in_rule__Unit__Group_1_1_2__039486);
             rule__Unit__Group_1_1_2__1();
 
             state._fsp--;
@@ -56043,7 +56054,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getSolidusKeyword_1_1_2_0()); 
             }
-            match(input,38,FOLLOW_38_in_rule__Unit__Group_1_1_2__0__Impl39513); if (state.failed) return ;
+            match(input,38,FOLLOW_38_in_rule__Unit__Group_1_1_2__0__Impl39514); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitAccess().getSolidusKeyword_1_1_2_0()); 
             }
@@ -56078,7 +56089,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19587:1: ( rule__Unit__Group_1_1_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19588:2: rule__Unit__Group_1_1_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__1__Impl_in_rule__Unit__Group_1_1_2__139544);
+            pushFollow(FOLLOW_rule__Unit__Group_1_1_2__1__Impl_in_rule__Unit__Group_1_1_2__139545);
             rule__Unit__Group_1_1_2__1__Impl();
 
             state._fsp--;
@@ -56120,7 +56131,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19601:1: ( rule__Unit__DenominatorAssignment_1_1_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19601:2: rule__Unit__DenominatorAssignment_1_1_2_1
             {
-            pushFollow(FOLLOW_rule__Unit__DenominatorAssignment_1_1_2_1_in_rule__Unit__Group_1_1_2__1__Impl39571);
+            pushFollow(FOLLOW_rule__Unit__DenominatorAssignment_1_1_2_1_in_rule__Unit__Group_1_1_2__1__Impl39572);
             rule__Unit__DenominatorAssignment_1_1_2_1();
 
             state._fsp--;
@@ -56162,12 +56173,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19619:1: ( rule__ExplicitUnit__Group__0__Impl rule__ExplicitUnit__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19620:2: rule__ExplicitUnit__Group__0__Impl rule__ExplicitUnit__Group__1
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__0__Impl_in_rule__ExplicitUnit__Group__039605);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__0__Impl_in_rule__ExplicitUnit__Group__039606);
             rule__ExplicitUnit__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__1_in_rule__ExplicitUnit__Group__039608);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__1_in_rule__ExplicitUnit__Group__039609);
             rule__ExplicitUnit__Group__1();
 
             state._fsp--;
@@ -56206,7 +56217,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExplicitUnitAccess().getLeftParenthesisKeyword_0()); 
             }
-            match(input,56,FOLLOW_56_in_rule__ExplicitUnit__Group__0__Impl39636); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__ExplicitUnit__Group__0__Impl39637); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExplicitUnitAccess().getLeftParenthesisKeyword_0()); 
             }
@@ -56241,12 +56252,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19650:1: ( rule__ExplicitUnit__Group__1__Impl rule__ExplicitUnit__Group__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19651:2: rule__ExplicitUnit__Group__1__Impl rule__ExplicitUnit__Group__2
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__1__Impl_in_rule__ExplicitUnit__Group__139667);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__1__Impl_in_rule__ExplicitUnit__Group__139668);
             rule__ExplicitUnit__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__2_in_rule__ExplicitUnit__Group__139670);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__2_in_rule__ExplicitUnit__Group__139671);
             rule__ExplicitUnit__Group__2();
 
             state._fsp--;
@@ -56288,7 +56299,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19665:1: ( rule__ExplicitUnit__NumeratorAssignment_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19665:2: rule__ExplicitUnit__NumeratorAssignment_1
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__NumeratorAssignment_1_in_rule__ExplicitUnit__Group__1__Impl39697);
+            pushFollow(FOLLOW_rule__ExplicitUnit__NumeratorAssignment_1_in_rule__ExplicitUnit__Group__1__Impl39698);
             rule__ExplicitUnit__NumeratorAssignment_1();
 
             state._fsp--;
@@ -56330,12 +56341,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19679:1: ( rule__ExplicitUnit__Group__2__Impl rule__ExplicitUnit__Group__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19680:2: rule__ExplicitUnit__Group__2__Impl rule__ExplicitUnit__Group__3
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__2__Impl_in_rule__ExplicitUnit__Group__239727);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__2__Impl_in_rule__ExplicitUnit__Group__239728);
             rule__ExplicitUnit__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__3_in_rule__ExplicitUnit__Group__239730);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__3_in_rule__ExplicitUnit__Group__239731);
             rule__ExplicitUnit__Group__3();
 
             state._fsp--;
@@ -56375,17 +56386,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getExplicitUnitAccess().getGroup_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19694:1: ( rule__ExplicitUnit__Group_2__0 )?
-            int alt124=2;
-            int LA124_0 = input.LA(1);
+            int alt125=2;
+            int LA125_0 = input.LA(1);
 
-            if ( (LA124_0==38) ) {
-                alt124=1;
+            if ( (LA125_0==38) ) {
+                alt125=1;
             }
-            switch (alt124) {
+            switch (alt125) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19694:2: rule__ExplicitUnit__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__0_in_rule__ExplicitUnit__Group__2__Impl39757);
+                    pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__0_in_rule__ExplicitUnit__Group__2__Impl39758);
                     rule__ExplicitUnit__Group_2__0();
 
                     state._fsp--;
@@ -56430,7 +56441,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19708:1: ( rule__ExplicitUnit__Group__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19709:2: rule__ExplicitUnit__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group__3__Impl_in_rule__ExplicitUnit__Group__339788);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group__3__Impl_in_rule__ExplicitUnit__Group__339789);
             rule__ExplicitUnit__Group__3__Impl();
 
             state._fsp--;
@@ -56469,7 +56480,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExplicitUnitAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__ExplicitUnit__Group__3__Impl39816); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__ExplicitUnit__Group__3__Impl39817); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExplicitUnitAccess().getRightParenthesisKeyword_3()); 
             }
@@ -56504,12 +56515,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19746:1: ( rule__ExplicitUnit__Group_2__0__Impl rule__ExplicitUnit__Group_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19747:2: rule__ExplicitUnit__Group_2__0__Impl rule__ExplicitUnit__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__0__Impl_in_rule__ExplicitUnit__Group_2__039855);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__0__Impl_in_rule__ExplicitUnit__Group_2__039856);
             rule__ExplicitUnit__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__1_in_rule__ExplicitUnit__Group_2__039858);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__1_in_rule__ExplicitUnit__Group_2__039859);
             rule__ExplicitUnit__Group_2__1();
 
             state._fsp--;
@@ -56548,7 +56559,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExplicitUnitAccess().getSolidusKeyword_2_0()); 
             }
-            match(input,38,FOLLOW_38_in_rule__ExplicitUnit__Group_2__0__Impl39886); if (state.failed) return ;
+            match(input,38,FOLLOW_38_in_rule__ExplicitUnit__Group_2__0__Impl39887); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExplicitUnitAccess().getSolidusKeyword_2_0()); 
             }
@@ -56583,7 +56594,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19777:1: ( rule__ExplicitUnit__Group_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19778:2: rule__ExplicitUnit__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__1__Impl_in_rule__ExplicitUnit__Group_2__139917);
+            pushFollow(FOLLOW_rule__ExplicitUnit__Group_2__1__Impl_in_rule__ExplicitUnit__Group_2__139918);
             rule__ExplicitUnit__Group_2__1__Impl();
 
             state._fsp--;
@@ -56625,7 +56636,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19791:1: ( rule__ExplicitUnit__DenominatorAssignment_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19791:2: rule__ExplicitUnit__DenominatorAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__ExplicitUnit__DenominatorAssignment_2_1_in_rule__ExplicitUnit__Group_2__1__Impl39944);
+            pushFollow(FOLLOW_rule__ExplicitUnit__DenominatorAssignment_2_1_in_rule__ExplicitUnit__Group_2__1__Impl39945);
             rule__ExplicitUnit__DenominatorAssignment_2_1();
 
             state._fsp--;
@@ -56667,12 +56678,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19809:1: ( rule__UnitNumerator__Group_0__0__Impl rule__UnitNumerator__Group_0__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19810:2: rule__UnitNumerator__Group_0__0__Impl rule__UnitNumerator__Group_0__1
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__0__Impl_in_rule__UnitNumerator__Group_0__039978);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__0__Impl_in_rule__UnitNumerator__Group_0__039979);
             rule__UnitNumerator__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__1_in_rule__UnitNumerator__Group_0__039981);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__1_in_rule__UnitNumerator__Group_0__039982);
             rule__UnitNumerator__Group_0__1();
 
             state._fsp--;
@@ -56746,7 +56757,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19840:1: ( rule__UnitNumerator__Group_0__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19841:2: rule__UnitNumerator__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__1__Impl_in_rule__UnitNumerator__Group_0__140039);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_0__1__Impl_in_rule__UnitNumerator__Group_0__140040);
             rule__UnitNumerator__Group_0__1__Impl();
 
             state._fsp--;
@@ -56785,7 +56796,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitNumeratorAccess().getONETerminalRuleCall_0_1()); 
             }
-            match(input,RULE_ONE,FOLLOW_RULE_ONE_in_rule__UnitNumerator__Group_0__1__Impl40066); if (state.failed) return ;
+            match(input,RULE_ONE,FOLLOW_RULE_ONE_in_rule__UnitNumerator__Group_0__1__Impl40067); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitNumeratorAccess().getONETerminalRuleCall_0_1()); 
             }
@@ -56820,12 +56831,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19872:1: ( rule__UnitNumerator__Group_1__0__Impl rule__UnitNumerator__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19873:2: rule__UnitNumerator__Group_1__0__Impl rule__UnitNumerator__Group_1__1
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__0__Impl_in_rule__UnitNumerator__Group_1__040099);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__0__Impl_in_rule__UnitNumerator__Group_1__040100);
             rule__UnitNumerator__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__1_in_rule__UnitNumerator__Group_1__040102);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__1_in_rule__UnitNumerator__Group_1__040103);
             rule__UnitNumerator__Group_1__1();
 
             state._fsp--;
@@ -56867,7 +56878,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19887:1: ( rule__UnitNumerator__FactorsAssignment_1_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19887:2: rule__UnitNumerator__FactorsAssignment_1_0
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__FactorsAssignment_1_0_in_rule__UnitNumerator__Group_1__0__Impl40129);
+            pushFollow(FOLLOW_rule__UnitNumerator__FactorsAssignment_1_0_in_rule__UnitNumerator__Group_1__0__Impl40130);
             rule__UnitNumerator__FactorsAssignment_1_0();
 
             state._fsp--;
@@ -56909,7 +56920,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19901:1: ( rule__UnitNumerator__Group_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19902:2: rule__UnitNumerator__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__1__Impl_in_rule__UnitNumerator__Group_1__140159);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1__1__Impl_in_rule__UnitNumerator__Group_1__140160);
             rule__UnitNumerator__Group_1__1__Impl();
 
             state._fsp--;
@@ -56949,21 +56960,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnitNumeratorAccess().getGroup_1_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19915:1: ( rule__UnitNumerator__Group_1_1__0 )*
-            loop125:
+            loop126:
             do {
-                int alt125=2;
-                int LA125_0 = input.LA(1);
+                int alt126=2;
+                int LA126_0 = input.LA(1);
 
-                if ( (LA125_0==37) ) {
-                    alt125=1;
+                if ( (LA126_0==37) ) {
+                    alt126=1;
                 }
 
 
-                switch (alt125) {
+                switch (alt126) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19915:2: rule__UnitNumerator__Group_1_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__0_in_rule__UnitNumerator__Group_1__1__Impl40186);
+            	    pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__0_in_rule__UnitNumerator__Group_1__1__Impl40187);
             	    rule__UnitNumerator__Group_1_1__0();
 
             	    state._fsp--;
@@ -56973,7 +56984,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop125;
+            	    break loop126;
                 }
             } while (true);
 
@@ -57011,12 +57022,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19933:1: ( rule__UnitNumerator__Group_1_1__0__Impl rule__UnitNumerator__Group_1_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19934:2: rule__UnitNumerator__Group_1_1__0__Impl rule__UnitNumerator__Group_1_1__1
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__0__Impl_in_rule__UnitNumerator__Group_1_1__040221);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__0__Impl_in_rule__UnitNumerator__Group_1_1__040222);
             rule__UnitNumerator__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__1_in_rule__UnitNumerator__Group_1_1__040224);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__1_in_rule__UnitNumerator__Group_1_1__040225);
             rule__UnitNumerator__Group_1_1__1();
 
             state._fsp--;
@@ -57055,7 +57066,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitNumeratorAccess().getAsteriskKeyword_1_1_0()); 
             }
-            match(input,37,FOLLOW_37_in_rule__UnitNumerator__Group_1_1__0__Impl40252); if (state.failed) return ;
+            match(input,37,FOLLOW_37_in_rule__UnitNumerator__Group_1_1__0__Impl40253); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitNumeratorAccess().getAsteriskKeyword_1_1_0()); 
             }
@@ -57090,7 +57101,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19964:1: ( rule__UnitNumerator__Group_1_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19965:2: rule__UnitNumerator__Group_1_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__1__Impl_in_rule__UnitNumerator__Group_1_1__140283);
+            pushFollow(FOLLOW_rule__UnitNumerator__Group_1_1__1__Impl_in_rule__UnitNumerator__Group_1_1__140284);
             rule__UnitNumerator__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -57132,7 +57143,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19978:1: ( rule__UnitNumerator__FactorsAssignment_1_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19978:2: rule__UnitNumerator__FactorsAssignment_1_1_1
             {
-            pushFollow(FOLLOW_rule__UnitNumerator__FactorsAssignment_1_1_1_in_rule__UnitNumerator__Group_1_1__1__Impl40310);
+            pushFollow(FOLLOW_rule__UnitNumerator__FactorsAssignment_1_1_1_in_rule__UnitNumerator__Group_1_1__1__Impl40311);
             rule__UnitNumerator__FactorsAssignment_1_1_1();
 
             state._fsp--;
@@ -57174,12 +57185,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19996:1: ( rule__UnitDenominator__Group_1__0__Impl rule__UnitDenominator__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19997:2: rule__UnitDenominator__Group_1__0__Impl rule__UnitDenominator__Group_1__1
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__0__Impl_in_rule__UnitDenominator__Group_1__040344);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__0__Impl_in_rule__UnitDenominator__Group_1__040345);
             rule__UnitDenominator__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__1_in_rule__UnitDenominator__Group_1__040347);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__1_in_rule__UnitDenominator__Group_1__040348);
             rule__UnitDenominator__Group_1__1();
 
             state._fsp--;
@@ -57218,7 +57229,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getLeftParenthesisKeyword_1_0()); 
             }
-            match(input,56,FOLLOW_56_in_rule__UnitDenominator__Group_1__0__Impl40375); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__UnitDenominator__Group_1__0__Impl40376); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitDenominatorAccess().getLeftParenthesisKeyword_1_0()); 
             }
@@ -57253,12 +57264,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20027:1: ( rule__UnitDenominator__Group_1__1__Impl rule__UnitDenominator__Group_1__2 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20028:2: rule__UnitDenominator__Group_1__1__Impl rule__UnitDenominator__Group_1__2
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__1__Impl_in_rule__UnitDenominator__Group_1__140406);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__1__Impl_in_rule__UnitDenominator__Group_1__140407);
             rule__UnitDenominator__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__2_in_rule__UnitDenominator__Group_1__140409);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__2_in_rule__UnitDenominator__Group_1__140410);
             rule__UnitDenominator__Group_1__2();
 
             state._fsp--;
@@ -57300,7 +57311,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20042:1: ( rule__UnitDenominator__FactorsAssignment_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20042:2: rule__UnitDenominator__FactorsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__FactorsAssignment_1_1_in_rule__UnitDenominator__Group_1__1__Impl40436);
+            pushFollow(FOLLOW_rule__UnitDenominator__FactorsAssignment_1_1_in_rule__UnitDenominator__Group_1__1__Impl40437);
             rule__UnitDenominator__FactorsAssignment_1_1();
 
             state._fsp--;
@@ -57342,12 +57353,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20056:1: ( rule__UnitDenominator__Group_1__2__Impl rule__UnitDenominator__Group_1__3 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20057:2: rule__UnitDenominator__Group_1__2__Impl rule__UnitDenominator__Group_1__3
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__2__Impl_in_rule__UnitDenominator__Group_1__240466);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__2__Impl_in_rule__UnitDenominator__Group_1__240467);
             rule__UnitDenominator__Group_1__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__3_in_rule__UnitDenominator__Group_1__240469);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__3_in_rule__UnitDenominator__Group_1__240470);
             rule__UnitDenominator__Group_1__3();
 
             state._fsp--;
@@ -57387,21 +57398,21 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnitDenominatorAccess().getGroup_1_2()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20071:1: ( rule__UnitDenominator__Group_1_2__0 )*
-            loop126:
+            loop127:
             do {
-                int alt126=2;
-                int LA126_0 = input.LA(1);
+                int alt127=2;
+                int LA127_0 = input.LA(1);
 
-                if ( (LA126_0==37) ) {
-                    alt126=1;
+                if ( (LA127_0==37) ) {
+                    alt127=1;
                 }
 
 
-                switch (alt126) {
+                switch (alt127) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20071:2: rule__UnitDenominator__Group_1_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__0_in_rule__UnitDenominator__Group_1__2__Impl40496);
+            	    pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__0_in_rule__UnitDenominator__Group_1__2__Impl40497);
             	    rule__UnitDenominator__Group_1_2__0();
 
             	    state._fsp--;
@@ -57411,7 +57422,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop126;
+            	    break loop127;
                 }
             } while (true);
 
@@ -57449,7 +57460,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20085:1: ( rule__UnitDenominator__Group_1__3__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20086:2: rule__UnitDenominator__Group_1__3__Impl
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__3__Impl_in_rule__UnitDenominator__Group_1__340527);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1__3__Impl_in_rule__UnitDenominator__Group_1__340528);
             rule__UnitDenominator__Group_1__3__Impl();
 
             state._fsp--;
@@ -57488,7 +57499,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getRightParenthesisKeyword_1_3()); 
             }
-            match(input,57,FOLLOW_57_in_rule__UnitDenominator__Group_1__3__Impl40555); if (state.failed) return ;
+            match(input,57,FOLLOW_57_in_rule__UnitDenominator__Group_1__3__Impl40556); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitDenominatorAccess().getRightParenthesisKeyword_1_3()); 
             }
@@ -57523,12 +57534,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20123:1: ( rule__UnitDenominator__Group_1_2__0__Impl rule__UnitDenominator__Group_1_2__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20124:2: rule__UnitDenominator__Group_1_2__0__Impl rule__UnitDenominator__Group_1_2__1
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__0__Impl_in_rule__UnitDenominator__Group_1_2__040594);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__0__Impl_in_rule__UnitDenominator__Group_1_2__040595);
             rule__UnitDenominator__Group_1_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__1_in_rule__UnitDenominator__Group_1_2__040597);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__1_in_rule__UnitDenominator__Group_1_2__040598);
             rule__UnitDenominator__Group_1_2__1();
 
             state._fsp--;
@@ -57567,7 +57578,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getAsteriskKeyword_1_2_0()); 
             }
-            match(input,37,FOLLOW_37_in_rule__UnitDenominator__Group_1_2__0__Impl40625); if (state.failed) return ;
+            match(input,37,FOLLOW_37_in_rule__UnitDenominator__Group_1_2__0__Impl40626); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitDenominatorAccess().getAsteriskKeyword_1_2_0()); 
             }
@@ -57602,7 +57613,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20154:1: ( rule__UnitDenominator__Group_1_2__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20155:2: rule__UnitDenominator__Group_1_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__1__Impl_in_rule__UnitDenominator__Group_1_2__140656);
+            pushFollow(FOLLOW_rule__UnitDenominator__Group_1_2__1__Impl_in_rule__UnitDenominator__Group_1_2__140657);
             rule__UnitDenominator__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -57644,7 +57655,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20168:1: ( rule__UnitDenominator__FactorsAssignment_1_2_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20168:2: rule__UnitDenominator__FactorsAssignment_1_2_1
             {
-            pushFollow(FOLLOW_rule__UnitDenominator__FactorsAssignment_1_2_1_in_rule__UnitDenominator__Group_1_2__1__Impl40683);
+            pushFollow(FOLLOW_rule__UnitDenominator__FactorsAssignment_1_2_1_in_rule__UnitDenominator__Group_1_2__1__Impl40684);
             rule__UnitDenominator__FactorsAssignment_1_2_1();
 
             state._fsp--;
@@ -57686,12 +57697,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20186:1: ( rule__UnitFactor__Group__0__Impl rule__UnitFactor__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20187:2: rule__UnitFactor__Group__0__Impl rule__UnitFactor__Group__1
             {
-            pushFollow(FOLLOW_rule__UnitFactor__Group__0__Impl_in_rule__UnitFactor__Group__040717);
+            pushFollow(FOLLOW_rule__UnitFactor__Group__0__Impl_in_rule__UnitFactor__Group__040718);
             rule__UnitFactor__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitFactor__Group__1_in_rule__UnitFactor__Group__040720);
+            pushFollow(FOLLOW_rule__UnitFactor__Group__1_in_rule__UnitFactor__Group__040721);
             rule__UnitFactor__Group__1();
 
             state._fsp--;
@@ -57733,7 +57744,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20201:1: ( rule__UnitFactor__SymbolAssignment_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20201:2: rule__UnitFactor__SymbolAssignment_0
             {
-            pushFollow(FOLLOW_rule__UnitFactor__SymbolAssignment_0_in_rule__UnitFactor__Group__0__Impl40747);
+            pushFollow(FOLLOW_rule__UnitFactor__SymbolAssignment_0_in_rule__UnitFactor__Group__0__Impl40748);
             rule__UnitFactor__SymbolAssignment_0();
 
             state._fsp--;
@@ -57775,7 +57786,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20215:1: ( rule__UnitFactor__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20216:2: rule__UnitFactor__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitFactor__Group__1__Impl_in_rule__UnitFactor__Group__140777);
+            pushFollow(FOLLOW_rule__UnitFactor__Group__1__Impl_in_rule__UnitFactor__Group__140778);
             rule__UnitFactor__Group__1__Impl();
 
             state._fsp--;
@@ -57815,17 +57826,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnitFactorAccess().getGroup_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20229:1: ( rule__UnitFactor__Group_1__0 )?
-            int alt127=2;
-            int LA127_0 = input.LA(1);
+            int alt128=2;
+            int LA128_0 = input.LA(1);
 
-            if ( (LA127_0==42) ) {
-                alt127=1;
+            if ( (LA128_0==42) ) {
+                alt128=1;
             }
-            switch (alt127) {
+            switch (alt128) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20229:2: rule__UnitFactor__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__UnitFactor__Group_1__0_in_rule__UnitFactor__Group__1__Impl40804);
+                    pushFollow(FOLLOW_rule__UnitFactor__Group_1__0_in_rule__UnitFactor__Group__1__Impl40805);
                     rule__UnitFactor__Group_1__0();
 
                     state._fsp--;
@@ -57870,12 +57881,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20247:1: ( rule__UnitFactor__Group_1__0__Impl rule__UnitFactor__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20248:2: rule__UnitFactor__Group_1__0__Impl rule__UnitFactor__Group_1__1
             {
-            pushFollow(FOLLOW_rule__UnitFactor__Group_1__0__Impl_in_rule__UnitFactor__Group_1__040839);
+            pushFollow(FOLLOW_rule__UnitFactor__Group_1__0__Impl_in_rule__UnitFactor__Group_1__040840);
             rule__UnitFactor__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitFactor__Group_1__1_in_rule__UnitFactor__Group_1__040842);
+            pushFollow(FOLLOW_rule__UnitFactor__Group_1__1_in_rule__UnitFactor__Group_1__040843);
             rule__UnitFactor__Group_1__1();
 
             state._fsp--;
@@ -57914,7 +57925,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitFactorAccess().getCircumflexAccentKeyword_1_0()); 
             }
-            match(input,42,FOLLOW_42_in_rule__UnitFactor__Group_1__0__Impl40870); if (state.failed) return ;
+            match(input,42,FOLLOW_42_in_rule__UnitFactor__Group_1__0__Impl40871); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnitFactorAccess().getCircumflexAccentKeyword_1_0()); 
             }
@@ -57949,7 +57960,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20278:1: ( rule__UnitFactor__Group_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20279:2: rule__UnitFactor__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitFactor__Group_1__1__Impl_in_rule__UnitFactor__Group_1__140901);
+            pushFollow(FOLLOW_rule__UnitFactor__Group_1__1__Impl_in_rule__UnitFactor__Group_1__140902);
             rule__UnitFactor__Group_1__1__Impl();
 
             state._fsp--;
@@ -57991,7 +58002,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20292:1: ( rule__UnitFactor__ExponentAssignment_1_1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20292:2: rule__UnitFactor__ExponentAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__UnitFactor__ExponentAssignment_1_1_in_rule__UnitFactor__Group_1__1__Impl40928);
+            pushFollow(FOLLOW_rule__UnitFactor__ExponentAssignment_1_1_in_rule__UnitFactor__Group_1__1__Impl40929);
             rule__UnitFactor__ExponentAssignment_1_1();
 
             state._fsp--;
@@ -58033,12 +58044,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20310:1: ( rule__UnitExponent__Group__0__Impl rule__UnitExponent__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20311:2: rule__UnitExponent__Group__0__Impl rule__UnitExponent__Group__1
             {
-            pushFollow(FOLLOW_rule__UnitExponent__Group__0__Impl_in_rule__UnitExponent__Group__040962);
+            pushFollow(FOLLOW_rule__UnitExponent__Group__0__Impl_in_rule__UnitExponent__Group__040963);
             rule__UnitExponent__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__UnitExponent__Group__1_in_rule__UnitExponent__Group__040965);
+            pushFollow(FOLLOW_rule__UnitExponent__Group__1_in_rule__UnitExponent__Group__040966);
             rule__UnitExponent__Group__1();
 
             state._fsp--;
@@ -58078,17 +58089,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnitExponentAccess().getHyphenMinusKeyword_0()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20325:1: ( '-' )?
-            int alt128=2;
-            int LA128_0 = input.LA(1);
+            int alt129=2;
+            int LA129_0 = input.LA(1);
 
-            if ( (LA128_0==20) ) {
-                alt128=1;
+            if ( (LA129_0==20) ) {
+                alt129=1;
             }
-            switch (alt128) {
+            switch (alt129) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20326:2: '-'
                     {
-                    match(input,20,FOLLOW_20_in_rule__UnitExponent__Group__0__Impl40994); if (state.failed) return ;
+                    match(input,20,FOLLOW_20_in_rule__UnitExponent__Group__0__Impl40995); if (state.failed) return ;
 
                     }
                     break;
@@ -58129,7 +58140,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20341:1: ( rule__UnitExponent__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20342:2: rule__UnitExponent__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__UnitExponent__Group__1__Impl_in_rule__UnitExponent__Group__141027);
+            pushFollow(FOLLOW_rule__UnitExponent__Group__1__Impl_in_rule__UnitExponent__Group__141028);
             rule__UnitExponent__Group__1__Impl();
 
             state._fsp--;
@@ -58168,7 +58179,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitExponentAccess().getValidIntParserRuleCall_1()); 
             }
-            pushFollow(FOLLOW_ruleValidInt_in_rule__UnitExponent__Group__1__Impl41054);
+            pushFollow(FOLLOW_ruleValidInt_in_rule__UnitExponent__Group__1__Impl41055);
             ruleValidInt();
 
             state._fsp--;
@@ -58207,12 +58218,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20373:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20374:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__041087);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__041088);
             rule__QualifiedName__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__041090);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__041091);
             rule__QualifiedName__Group__1();
 
             state._fsp--;
@@ -58251,7 +58262,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__QualifiedName__Group__0__Impl41117);
+            pushFollow(FOLLOW_ruleValidID_in_rule__QualifiedName__Group__0__Impl41118);
             ruleValidID();
 
             state._fsp--;
@@ -58290,7 +58301,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20402:1: ( rule__QualifiedName__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20403:2: rule__QualifiedName__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__141146);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__141147);
             rule__QualifiedName__Group__1__Impl();
 
             state._fsp--;
@@ -58330,27 +58341,27 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20416:1: ( rule__QualifiedName__Group_1__0 )*
-            loop129:
+            loop130:
             do {
-                int alt129=2;
-                int LA129_0 = input.LA(1);
+                int alt130=2;
+                int LA130_0 = input.LA(1);
 
-                if ( (LA129_0==85) ) {
-                    int LA129_2 = input.LA(2);
+                if ( (LA130_0==85) ) {
+                    int LA130_2 = input.LA(2);
 
-                    if ( ((LA129_2>=RULE_IJ && LA129_2<=RULE_EXPIJ)||LA129_2==RULE_ID||(LA129_2>=RULE_N && LA129_2<=RULE_E)) ) {
-                        alt129=1;
+                    if ( ((LA130_2>=RULE_IJ && LA130_2<=RULE_EXPIJ)||LA130_2==RULE_ID||(LA130_2>=RULE_N && LA130_2<=RULE_E)) ) {
+                        alt130=1;
                     }
 
 
                 }
 
 
-                switch (alt129) {
+                switch (alt130) {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20416:2: rule__QualifiedName__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl41173);
+            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl41174);
             	    rule__QualifiedName__Group_1__0();
 
             	    state._fsp--;
@@ -58360,7 +58371,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop129;
+            	    break loop130;
                 }
             } while (true);
 
@@ -58398,12 +58409,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20434:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20435:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__041208);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__041209);
             rule__QualifiedName__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__041211);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__041212);
             rule__QualifiedName__Group_1__1();
 
             state._fsp--;
@@ -58442,7 +58453,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             }
-            match(input,85,FOLLOW_85_in_rule__QualifiedName__Group_1__0__Impl41239); if (state.failed) return ;
+            match(input,85,FOLLOW_85_in_rule__QualifiedName__Group_1__0__Impl41240); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             }
@@ -58477,7 +58488,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20465:1: ( rule__QualifiedName__Group_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20466:2: rule__QualifiedName__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__141270);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__141271);
             rule__QualifiedName__Group_1__1__Impl();
 
             state._fsp--;
@@ -58516,7 +58527,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_1_1()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__QualifiedName__Group_1__1__Impl41297);
+            pushFollow(FOLLOW_ruleValidID_in_rule__QualifiedName__Group_1__1__Impl41298);
             ruleValidID();
 
             state._fsp--;
@@ -58555,12 +58566,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20497:1: ( rule__QualifiedNameWithWildcard__Group__0__Impl rule__QualifiedNameWithWildcard__Group__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20498:2: rule__QualifiedNameWithWildcard__Group__0__Impl rule__QualifiedNameWithWildcard__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__0__Impl_in_rule__QualifiedNameWithWildcard__Group__041330);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__0__Impl_in_rule__QualifiedNameWithWildcard__Group__041331);
             rule__QualifiedNameWithWildcard__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__1_in_rule__QualifiedNameWithWildcard__Group__041333);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__1_in_rule__QualifiedNameWithWildcard__Group__041334);
             rule__QualifiedNameWithWildcard__Group__1();
 
             state._fsp--;
@@ -58599,7 +58610,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameWithWildcardAccess().getQualifiedNameParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildcard__Group__0__Impl41360);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildcard__Group__0__Impl41361);
             ruleQualifiedName();
 
             state._fsp--;
@@ -58638,7 +58649,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20526:1: ( rule__QualifiedNameWithWildcard__Group__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20527:2: rule__QualifiedNameWithWildcard__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__1__Impl_in_rule__QualifiedNameWithWildcard__Group__141389);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group__1__Impl_in_rule__QualifiedNameWithWildcard__Group__141390);
             rule__QualifiedNameWithWildcard__Group__1__Impl();
 
             state._fsp--;
@@ -58678,17 +58689,17 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getQualifiedNameWithWildcardAccess().getAlternatives_1()); 
             }
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20540:1: ( rule__QualifiedNameWithWildcard__Alternatives_1 )?
-            int alt130=2;
-            int LA130_0 = input.LA(1);
+            int alt131=2;
+            int LA131_0 = input.LA(1);
 
-            if ( (LA130_0==22||LA130_0==85) ) {
-                alt130=1;
+            if ( (LA131_0==22||LA131_0==85) ) {
+                alt131=1;
             }
-            switch (alt130) {
+            switch (alt131) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20540:2: rule__QualifiedNameWithWildcard__Alternatives_1
                     {
-                    pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Alternatives_1_in_rule__QualifiedNameWithWildcard__Group__1__Impl41416);
+                    pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Alternatives_1_in_rule__QualifiedNameWithWildcard__Group__1__Impl41417);
                     rule__QualifiedNameWithWildcard__Alternatives_1();
 
                     state._fsp--;
@@ -58733,12 +58744,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20558:1: ( rule__QualifiedNameWithWildcard__Group_1_1__0__Impl rule__QualifiedNameWithWildcard__Group_1_1__1 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20559:2: rule__QualifiedNameWithWildcard__Group_1_1__0__Impl rule__QualifiedNameWithWildcard__Group_1_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__041451);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__041452);
             rule__QualifiedNameWithWildcard__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1_in_rule__QualifiedNameWithWildcard__Group_1_1__041454);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1_in_rule__QualifiedNameWithWildcard__Group_1_1__041455);
             rule__QualifiedNameWithWildcard__Group_1_1__1();
 
             state._fsp--;
@@ -58777,7 +58788,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopKeyword_1_1_0()); 
             }
-            match(input,85,FOLLOW_85_in_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl41482); if (state.failed) return ;
+            match(input,85,FOLLOW_85_in_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl41483); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopKeyword_1_1_0()); 
             }
@@ -58812,7 +58823,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20589:1: ( rule__QualifiedNameWithWildcard__Group_1_1__1__Impl )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20590:2: rule__QualifiedNameWithWildcard__Group_1_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__141513);
+            pushFollow(FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__141514);
             rule__QualifiedNameWithWildcard__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -58851,7 +58862,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameWithWildcardAccess().getAsteriskKeyword_1_1_1()); 
             }
-            match(input,37,FOLLOW_37_in_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl41541); if (state.failed) return ;
+            match(input,37,FOLLOW_37_in_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl41542); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getQualifiedNameWithWildcardAccess().getAsteriskKeyword_1_1_1()); 
             }
@@ -58892,7 +58903,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getModuleAccess().getPackageNameQualifiedNameParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Module__PackageNameAssignment_141581);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Module__PackageNameAssignment_141582);
             ruleQualifiedName();
 
             state._fsp--;
@@ -58937,7 +58948,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getModuleAccess().getImportDeclarationsImportDeclarationParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleImportDeclaration_in_rule__Module__ImportDeclarationsAssignment_241612);
+            pushFollow(FOLLOW_ruleImportDeclaration_in_rule__Module__ImportDeclarationsAssignment_241613);
             ruleImportDeclaration();
 
             state._fsp--;
@@ -58982,7 +58993,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getModuleAccess().getDeclarationsDeclarationParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleDeclaration_in_rule__Module__DeclarationsAssignment_341643);
+            pushFollow(FOLLOW_ruleDeclaration_in_rule__Module__DeclarationsAssignment_341644);
             ruleDeclaration();
 
             state._fsp--;
@@ -59027,7 +59038,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__ImportDeclaration__ImportedNamespaceAssignment_141674);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__ImportDeclaration__ImportedNamespaceAssignment_141675);
             ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -59072,7 +59083,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_0_141705);
+            pushFollow(FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_0_141706);
             ruleValidID();
 
             state._fsp--;
@@ -59117,7 +59128,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_3_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_0_341736);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_0_341737);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -59162,7 +59173,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_1_141767);
+            pushFollow(FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_1_141768);
             ruleValidID();
 
             state._fsp--;
@@ -59207,7 +59218,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleStructDeclarationTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_1_241798);
+            pushFollow(FOLLOW_ruleStructDeclarationTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_1_241799);
             ruleStructDeclarationTypeSpecifier();
 
             state._fsp--;
@@ -59252,7 +59263,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeStructDeclarationTypeParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleStructDeclarationType_in_rule__StructDeclarationTypeSpecifier__TypeAssignment41829);
+            pushFollow(FOLLOW_ruleStructDeclarationType_in_rule__StructDeclarationTypeSpecifier__TypeAssignment41830);
             ruleStructDeclarationType();
 
             state._fsp--;
@@ -59297,7 +59308,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructDeclarationTypeAccess().getMembersStructMemberParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_141860);
+            pushFollow(FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_141861);
             ruleStructMember();
 
             state._fsp--;
@@ -59342,7 +59353,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructDeclarationTypeAccess().getMembersStructMemberParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_2_141891);
+            pushFollow(FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_2_141892);
             ruleStructMember();
 
             state._fsp--;
@@ -59387,7 +59398,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumerationDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_141922);
+            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_141923);
             ruleValidID();
 
             state._fsp--;
@@ -59432,7 +59443,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_041953);
+            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_041954);
             ruleEnumerationLiteralDeclaration();
 
             state._fsp--;
@@ -59477,7 +59488,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_141984);
+            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_141985);
             ruleEnumerationLiteralDeclaration();
 
             state._fsp--;
@@ -59522,7 +59533,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEnumerationLiteralDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment42015);
+            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment42016);
             ruleValidID();
 
             state._fsp--;
@@ -59567,7 +59578,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getKindFunctionKindEnumRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_042046);
+            pushFollow(FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_042047);
             ruleFunctionKind();
 
             state._fsp--;
@@ -59612,7 +59623,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getNameValidIDParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_242077);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_242078);
             ruleValidID();
 
             state._fsp--;
@@ -59657,7 +59668,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_142108);
+            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_142109);
             ruleTemplateParameterDeclaration();
 
             state._fsp--;
@@ -59702,7 +59713,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_142139);
+            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_142140);
             ruleTemplateParameterDeclaration();
 
             state._fsp--;
@@ -59747,7 +59758,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
             }
-            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_042170);
+            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_042171);
             ruleInputParameterDeclaration();
 
             state._fsp--;
@@ -59792,7 +59803,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_142201);
+            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_142202);
             ruleInputParameterDeclaration();
 
             state._fsp--;
@@ -59837,7 +59848,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
             }
-            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_842232);
+            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_842233);
             ruleOutputParameterDeclaration();
 
             state._fsp--;
@@ -59882,7 +59893,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
             }
-            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_142263);
+            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_142264);
             ruleOutputParameterDeclaration();
 
             state._fsp--;
@@ -59927,7 +59938,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getChecksCheckParserRuleCall_11_0_0()); 
             }
-            pushFollow(FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_042294);
+            pushFollow(FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_042295);
             ruleCheck();
 
             state._fsp--;
@@ -59972,7 +59983,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_142325);
+            pushFollow(FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_142326);
             ruleAssertion();
 
             state._fsp--;
@@ -60017,7 +60028,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getFunctionAliasDeclarationsFunctionAliasDeclarationParserRuleCall_11_2_0()); 
             }
-            pushFollow(FOLLOW_ruleFunctionAliasDeclaration_in_rule__FunctionDeclaration__FunctionAliasDeclarationsAssignment_11_242356);
+            pushFollow(FOLLOW_ruleFunctionAliasDeclaration_in_rule__FunctionDeclaration__FunctionAliasDeclarationsAssignment_11_242357);
             ruleFunctionAliasDeclaration();
 
             state._fsp--;
@@ -60062,7 +60073,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
             }
-            pushFollow(FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_342387);
+            pushFollow(FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_342388);
             ruleStateVariableDeclaration();
 
             state._fsp--;
@@ -60107,7 +60118,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
             }
-            pushFollow(FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_442418);
+            pushFollow(FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_442419);
             ruleConstantDeclaration();
 
             state._fsp--;
@@ -60152,7 +60163,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_11_5_0()); 
             }
-            pushFollow(FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_542449);
+            pushFollow(FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_542450);
             ruleEquation();
 
             state._fsp--;
@@ -60197,7 +60208,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTemplateParameterDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__TemplateParameterDeclaration__NameAssignment42480);
+            pushFollow(FOLLOW_ruleValidID_in_rule__TemplateParameterDeclaration__NameAssignment42481);
             ruleValidID();
 
             state._fsp--;
@@ -60242,7 +60253,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputParameterDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__InputParameterDeclaration__NameAssignment42511);
+            pushFollow(FOLLOW_ruleValidID_in_rule__InputParameterDeclaration__NameAssignment42512);
             ruleValidID();
 
             state._fsp--;
@@ -60287,7 +60298,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputParameterDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__OutputParameterDeclaration__NameAssignment42542);
+            pushFollow(FOLLOW_ruleValidID_in_rule__OutputParameterDeclaration__NameAssignment42543);
             ruleValidID();
 
             state._fsp--;
@@ -60332,7 +60343,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getTemplateArgumentsExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_142573);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_142574);
             ruleExpression();
 
             state._fsp--;
@@ -60377,7 +60388,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getTemplateArgumentsExpressionParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_2_142604);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_2_142605);
             ruleExpression();
 
             state._fsp--;
@@ -60422,7 +60433,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getInputParameterTypesDataTypeSpecifierParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_042635);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_042636);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -60467,7 +60478,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getInputParameterTypesDataTypeSpecifierParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_1_142666);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_1_142667);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -60512,7 +60523,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getOutputParameterTypesDataTypeSpecifierParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_642697);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_642698);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -60557,7 +60568,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckAccess().getOutputParameterTypesDataTypeSpecifierParserRuleCall_7_1_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_7_142728);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_7_142729);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -60608,7 +60619,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssertionAccess().getStaticStaticKeyword_0_0()); 
             }
-            match(input,100,FOLLOW_100_in_rule__Assertion__StaticAssignment_042764); if (state.failed) return ;
+            match(input,100,FOLLOW_100_in_rule__Assertion__StaticAssignment_042765); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAssertionAccess().getStaticStaticKeyword_0_0()); 
             }
@@ -60655,7 +60666,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssertionAccess().getConditionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Assertion__ConditionAssignment_242803);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Assertion__ConditionAssignment_242804);
             ruleExpression();
 
             state._fsp--;
@@ -60700,7 +60711,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssertionAccess().getStatusKindAssertionStatusKindEnumRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleAssertionStatusKind_in_rule__Assertion__StatusKindAssignment_442834);
+            pushFollow(FOLLOW_ruleAssertionStatusKind_in_rule__Assertion__StatusKindAssignment_442835);
             ruleAssertionStatusKind();
 
             state._fsp--;
@@ -60745,7 +60756,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssertionAccess().getMessageExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Assertion__MessageAssignment_542865);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Assertion__MessageAssignment_542866);
             ruleExpression();
 
             state._fsp--;
@@ -60790,7 +60801,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStateVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__StateVariableDeclaration__NameAssignment_142896);
+            pushFollow(FOLLOW_ruleValidID_in_rule__StateVariableDeclaration__NameAssignment_142897);
             ruleValidID();
 
             state._fsp--;
@@ -60835,7 +60846,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__ConstantDeclaration__NameAssignment_142927);
+            pushFollow(FOLLOW_ruleValidID_in_rule__ConstantDeclaration__NameAssignment_142928);
             ruleValidID();
 
             state._fsp--;
@@ -60880,7 +60891,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ConstantDeclaration__InitializerAssignment_342958);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ConstantDeclaration__InitializerAssignment_342959);
             ruleExpression();
 
             state._fsp--;
@@ -60925,7 +60936,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAliasDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionAliasDeclaration__NameAssignment_142989);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionAliasDeclaration__NameAssignment_142990);
             ruleValidID();
 
             state._fsp--;
@@ -60976,7 +60987,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAliasDeclarationAccess().getFunctionDeclarationFunctionDeclarationQualifiedNameParserRuleCall_3_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__FunctionAliasDeclaration__FunctionDeclarationAssignment_343024);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__FunctionAliasDeclaration__FunctionDeclarationAssignment_343025);
             ruleQualifiedName();
 
             state._fsp--;
@@ -61027,7 +61038,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAliasDeclarationAccess().getTemplateArgumentsExpressionParserRuleCall_4_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_143059);
+            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_143060);
             ruleExpression();
 
             state._fsp--;
@@ -61072,7 +61083,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAliasDeclarationAccess().getTemplateArgumentsExpressionParserRuleCall_4_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_2_143090);
+            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_2_143091);
             ruleExpression();
 
             state._fsp--;
@@ -61123,7 +61134,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEquationAccess().getInitialInitialKeyword_0_0()); 
             }
-            match(input,101,FOLLOW_101_in_rule__Equation__InitialAssignment_043126); if (state.failed) return ;
+            match(input,101,FOLLOW_101_in_rule__Equation__InitialAssignment_043127); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getEquationAccess().getInitialInitialKeyword_0_0()); 
             }
@@ -61170,7 +61181,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEquationAccess().getLeftHandSideExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_243165);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_243166);
             ruleExpression();
 
             state._fsp--;
@@ -61215,7 +61226,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEquationAccess().getRightHandSideExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_443196);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_443197);
             ruleExpression();
 
             state._fsp--;
@@ -61263,7 +61274,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21427:1: ( rule__AnonymousTypeSpecifier__TypeAlternatives_0 )
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21427:2: rule__AnonymousTypeSpecifier__TypeAlternatives_0
             {
-            pushFollow(FOLLOW_rule__AnonymousTypeSpecifier__TypeAlternatives_0_in_rule__AnonymousTypeSpecifier__TypeAssignment43227);
+            pushFollow(FOLLOW_rule__AnonymousTypeSpecifier__TypeAlternatives_0_in_rule__AnonymousTypeSpecifier__TypeAssignment43228);
             rule__AnonymousTypeSpecifier__TypeAlternatives_0();
 
             state._fsp--;
@@ -61317,7 +61328,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationQualifiedNameParserRuleCall_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__DeclaredTypeSpecifier__TypeDeclarationAssignment43264);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__DeclaredTypeSpecifier__TypeDeclarationAssignment43265);
             ruleQualifiedName();
 
             state._fsp--;
@@ -61368,7 +61379,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRealTypeAccess().getUnitUnitParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_243299);
+            pushFollow(FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_243300);
             ruleUnit();
 
             state._fsp--;
@@ -61413,7 +61424,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIntegerTypeAccess().getUnitUnitParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_243330);
+            pushFollow(FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_243331);
             ruleUnit();
 
             state._fsp--;
@@ -61458,7 +61469,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getComplexTypeAccess().getUnitUnitParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_243361);
+            pushFollow(FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_243362);
             ruleUnit();
 
             state._fsp--;
@@ -61503,7 +61514,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGaussianTypeAccess().getUnitUnitParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_243392);
+            pushFollow(FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_243393);
             ruleUnit();
 
             state._fsp--;
@@ -61548,7 +61559,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayTypeAccess().getElementTypeSpecifierArrayTypeSpecifierParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayTypeSpecifier_in_rule__ArrayType__ElementTypeSpecifierAssignment_043423);
+            pushFollow(FOLLOW_ruleArrayTypeSpecifier_in_rule__ArrayType__ElementTypeSpecifierAssignment_043424);
             ruleArrayTypeSpecifier();
 
             state._fsp--;
@@ -61593,7 +61604,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayTypeAccess().getDimensionsArrayDimensionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_243454);
+            pushFollow(FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_243455);
             ruleArrayDimension();
 
             state._fsp--;
@@ -61638,7 +61649,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayTypeAccess().getDimensionsArrayDimensionParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_3_143485);
+            pushFollow(FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_3_143486);
             ruleArrayDimension();
 
             state._fsp--;
@@ -61683,7 +61694,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnonymousArrayTypeSpecifierAccess().getTypePrimitiveTypeParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_rulePrimitiveType_in_rule__AnonymousArrayTypeSpecifier__TypeAssignment43516);
+            pushFollow(FOLLOW_rulePrimitiveType_in_rule__AnonymousArrayTypeSpecifier__TypeAssignment43517);
             rulePrimitiveType();
 
             state._fsp--;
@@ -61728,7 +61739,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayDimensionAccess().getSizeExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_143547);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_143548);
             ruleExpression();
 
             state._fsp--;
@@ -61773,7 +61784,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructTypeAccess().getMembersStructMemberParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_243578);
+            pushFollow(FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_243579);
             ruleStructMember();
 
             state._fsp--;
@@ -61818,7 +61829,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructTypeAccess().getMembersStructMemberParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_3_143609);
+            pushFollow(FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_3_143610);
             ruleStructMember();
 
             state._fsp--;
@@ -61863,7 +61874,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructMemberAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMember__TypeSpecifierAssignment_043640);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMember__TypeSpecifierAssignment_043641);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -61908,7 +61919,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructMemberAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__StructMember__NameAssignment_143671);
+            pushFollow(FOLLOW_ruleValidID_in_rule__StructMember__NameAssignment_143672);
             ruleValidID();
 
             state._fsp--;
@@ -61953,7 +61964,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAccess().getAssignmentsLetExpressionAssignmentParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_143702);
+            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_143703);
             ruleLetExpressionAssignment();
 
             state._fsp--;
@@ -61998,7 +62009,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAccess().getAssignmentsLetExpressionAssignmentParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_2_143733);
+            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_2_143734);
             ruleLetExpressionAssignment();
 
             state._fsp--;
@@ -62043,7 +62054,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAccess().getTargetExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__LetExpression__TargetAssignment_443764);
+            pushFollow(FOLLOW_ruleExpression_in_rule__LetExpression__TargetAssignment_443765);
             ruleExpression();
 
             state._fsp--;
@@ -62088,7 +62099,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_043795);
+            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_043796);
             ruleLetExpressionVariableDeclaration();
 
             state._fsp--;
@@ -62133,7 +62144,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_143826);
+            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_143827);
             ruleLetExpressionVariableDeclaration();
 
             state._fsp--;
@@ -62178,7 +62189,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_2_143857);
+            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_2_143858);
             ruleLetExpressionVariableDeclaration();
 
             state._fsp--;
@@ -62223,7 +62234,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionAssignmentAccess().getAssignedExpressionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__LetExpressionAssignment__AssignedExpressionAssignment_243888);
+            pushFollow(FOLLOW_ruleExpression_in_rule__LetExpressionAssignment__AssignedExpressionAssignment_243889);
             ruleExpression();
 
             state._fsp--;
@@ -62268,7 +62279,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLetExpressionVariableDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__LetExpressionVariableDeclaration__NameAssignment43919);
+            pushFollow(FOLLOW_ruleValidID_in_rule__LetExpressionVariableDeclaration__NameAssignment43920);
             ruleValidID();
 
             state._fsp--;
@@ -62319,7 +62330,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfExpressionAccess().getStaticStaticKeyword_0_0()); 
             }
-            match(input,100,FOLLOW_100_in_rule__IfExpression__StaticAssignment_043955); if (state.failed) return ;
+            match(input,100,FOLLOW_100_in_rule__IfExpression__StaticAssignment_043956); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getIfExpressionAccess().getStaticStaticKeyword_0_0()); 
             }
@@ -62366,7 +62377,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfExpressionAccess().getConditionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ConditionAssignment_243994);
+            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ConditionAssignment_243995);
             ruleExpression();
 
             state._fsp--;
@@ -62411,7 +62422,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfExpressionAccess().getThenExpressionExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ThenExpressionAssignment_444025);
+            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ThenExpressionAssignment_444026);
             ruleExpression();
 
             state._fsp--;
@@ -62456,7 +62467,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfExpressionAccess().getElseExpressionExpressionParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ElseExpressionAssignment_644056);
+            pushFollow(FOLLOW_ruleExpression_in_rule__IfExpression__ElseExpressionAssignment_644057);
             ruleExpression();
 
             state._fsp--;
@@ -62507,7 +62518,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchExpressionAccess().getStaticStaticKeyword_0_0()); 
             }
-            match(input,100,FOLLOW_100_in_rule__SwitchExpression__StaticAssignment_044092); if (state.failed) return ;
+            match(input,100,FOLLOW_100_in_rule__SwitchExpression__StaticAssignment_044093); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSwitchExpressionAccess().getStaticStaticKeyword_0_0()); 
             }
@@ -62554,7 +62565,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchExpressionAccess().getControlExpressionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchExpression__ControlExpressionAssignment_244131);
+            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchExpression__ControlExpressionAssignment_244132);
             ruleExpression();
 
             state._fsp--;
@@ -62599,7 +62610,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchExpressionAccess().getCasesSwitchCaseParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleSwitchCase_in_rule__SwitchExpression__CasesAssignment_344162);
+            pushFollow(FOLLOW_ruleSwitchCase_in_rule__SwitchExpression__CasesAssignment_344163);
             ruleSwitchCase();
 
             state._fsp--;
@@ -62644,7 +62655,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchExpressionAccess().getDefaultExpressionExpressionParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchExpression__DefaultExpressionAssignment_644193);
+            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchExpression__DefaultExpressionAssignment_644194);
             ruleExpression();
 
             state._fsp--;
@@ -62689,7 +62700,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchCaseAccess().getCaseExpressionImpliesExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__SwitchCase__CaseExpressionAssignment_144224);
+            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__SwitchCase__CaseExpressionAssignment_144225);
             ruleImpliesExpression();
 
             state._fsp--;
@@ -62734,7 +62745,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSwitchCaseAccess().getResultExpressionExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchCase__ResultExpressionAssignment_344255);
+            pushFollow(FOLLOW_ruleExpression_in_rule__SwitchCase__ResultExpressionAssignment_344256);
             ruleExpression();
 
             state._fsp--;
@@ -62779,7 +62790,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeExpressionAccess().getOperandsImpliesExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_244286);
+            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_244287);
             ruleImpliesExpression();
 
             state._fsp--;
@@ -62824,7 +62835,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeExpressionAccess().getOperandsImpliesExpressionParserRuleCall_1_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_3_144317);
+            pushFollow(FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_3_144318);
             ruleImpliesExpression();
 
             state._fsp--;
@@ -62869,7 +62880,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getImpliesExpressionAccess().getRightOperandLogicalOrExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleLogicalOrExpression_in_rule__ImpliesExpression__RightOperandAssignment_1_244348);
+            pushFollow(FOLLOW_ruleLogicalOrExpression_in_rule__ImpliesExpression__RightOperandAssignment_1_244349);
             ruleLogicalOrExpression();
 
             state._fsp--;
@@ -62914,7 +62925,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLogicalOrExpressionAccess().getRightOperandLogicalAndExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleLogicalAndExpression_in_rule__LogicalOrExpression__RightOperandAssignment_1_244379);
+            pushFollow(FOLLOW_ruleLogicalAndExpression_in_rule__LogicalOrExpression__RightOperandAssignment_1_244380);
             ruleLogicalAndExpression();
 
             state._fsp--;
@@ -62959,7 +62970,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLogicalAndExpressionAccess().getRightOperandEqualityExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleEqualityExpression_in_rule__LogicalAndExpression__RightOperandAssignment_1_244410);
+            pushFollow(FOLLOW_ruleEqualityExpression_in_rule__LogicalAndExpression__RightOperandAssignment_1_244411);
             ruleEqualityExpression();
 
             state._fsp--;
@@ -63004,7 +63015,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEqualityExpressionAccess().getOperatorEqualityOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleEqualityOperator_in_rule__EqualityExpression__OperatorAssignment_1_144441);
+            pushFollow(FOLLOW_ruleEqualityOperator_in_rule__EqualityExpression__OperatorAssignment_1_144442);
             ruleEqualityOperator();
 
             state._fsp--;
@@ -63049,7 +63060,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEqualityExpressionAccess().getRightOperandRelationalExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_244472);
+            pushFollow(FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_244473);
             ruleRelationalExpression();
 
             state._fsp--;
@@ -63094,7 +63105,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExpressionAccess().getOperatorRelationalOperatorEnumRuleCall_1_0_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_144503);
+            pushFollow(FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_144504);
             ruleRelationalOperator();
 
             state._fsp--;
@@ -63139,7 +63150,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExpressionAccess().getRightOperandAdditiveExpressionParserRuleCall_1_0_0_2_0()); 
             }
-            pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_244534);
+            pushFollow(FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_244535);
             ruleAdditiveExpression();
 
             state._fsp--;
@@ -63184,7 +63195,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_244565);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_244566);
             ruleDataTypeSpecifier();
 
             state._fsp--;
@@ -63229,7 +63240,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAdditiveExpressionAccess().getOperatorAdditiveOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_144596);
+            pushFollow(FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_144597);
             ruleAdditiveOperator();
 
             state._fsp--;
@@ -63274,7 +63285,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAdditiveExpressionAccess().getRightOperandMultiplicativeExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_244627);
+            pushFollow(FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_244628);
             ruleMultiplicativeExpression();
 
             state._fsp--;
@@ -63319,7 +63330,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorMultiplicativeOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_144658);
+            pushFollow(FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_144659);
             ruleMultiplicativeOperator();
 
             state._fsp--;
@@ -63364,7 +63375,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiplicativeExpressionAccess().getRightOperandPowerExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_rulePowerExpression_in_rule__MultiplicativeExpression__RightOperandAssignment_1_244689);
+            pushFollow(FOLLOW_rulePowerExpression_in_rule__MultiplicativeExpression__RightOperandAssignment_1_244690);
             rulePowerExpression();
 
             state._fsp--;
@@ -63409,7 +63420,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPowerExpressionAccess().getOperatorPowerOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_rulePowerOperator_in_rule__PowerExpression__OperatorAssignment_1_144720);
+            pushFollow(FOLLOW_rulePowerOperator_in_rule__PowerExpression__OperatorAssignment_1_144721);
             rulePowerOperator();
 
             state._fsp--;
@@ -63454,7 +63465,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPowerExpressionAccess().getExponentUnaryExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleUnaryExpression_in_rule__PowerExpression__ExponentAssignment_1_244751);
+            pushFollow(FOLLOW_ruleUnaryExpression_in_rule__PowerExpression__ExponentAssignment_1_244752);
             ruleUnaryExpression();
 
             state._fsp--;
@@ -63499,7 +63510,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getOperatorUnaryOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnaryOperator_in_rule__UnaryExpression__OperatorAssignment_1_144782);
+            pushFollow(FOLLOW_ruleUnaryOperator_in_rule__UnaryExpression__OperatorAssignment_1_144783);
             ruleUnaryOperator();
 
             state._fsp--;
@@ -63544,7 +63555,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getOperandPostfixExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_rulePostfixExpression_in_rule__UnaryExpression__OperandAssignment_1_244813);
+            pushFollow(FOLLOW_rulePostfixExpression_in_rule__UnaryExpression__OperandAssignment_1_244814);
             rulePostfixExpression();
 
             state._fsp--;
@@ -63589,7 +63600,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPostfixExpressionAccess().getOperatorPostfixOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_rulePostfixOperator_in_rule__PostfixExpression__OperatorAssignment_1_144844);
+            pushFollow(FOLLOW_rulePostfixOperator_in_rule__PostfixExpression__OperatorAssignment_1_144845);
             rulePostfixOperator();
 
             state._fsp--;
@@ -63634,7 +63645,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getSubscriptsArraySubscriptParserRuleCall_1_0_2_0()); 
             }
-            pushFollow(FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_244875);
+            pushFollow(FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_244876);
             ruleArraySubscript();
 
             state._fsp--;
@@ -63679,7 +63690,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getSubscriptsArraySubscriptParserRuleCall_1_0_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_3_144906);
+            pushFollow(FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_3_144907);
             ruleArraySubscript();
 
             state._fsp--;
@@ -63724,7 +63735,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getMemberVariableValidIDParserRuleCall_1_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__MemberVariableAssignment_1_1_244937);
+            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__MemberVariableAssignment_1_1_244938);
             ruleValidID();
 
             state._fsp--;
@@ -63775,7 +63786,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getFeatureCallableElementValidIDParserRuleCall_1_2_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__FeatureAssignment_1_2_244972);
+            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__FeatureAssignment_1_2_244973);
             ruleValidID();
 
             state._fsp--;
@@ -63826,7 +63837,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getArgumentsExpressionParserRuleCall_1_2_4_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_045007);
+            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_045008);
             ruleExpression();
 
             state._fsp--;
@@ -63871,7 +63882,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getArgumentsExpressionParserRuleCall_1_2_4_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_1_145038);
+            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_1_145039);
             ruleExpression();
 
             state._fsp--;
@@ -63916,7 +63927,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getIdentifierValidIDParserRuleCall_1_3_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__IdentifierAssignment_1_3_245069);
+            pushFollow(FOLLOW_ruleValidID_in_rule__MemberFeatureCall__IdentifierAssignment_1_3_245070);
             ruleValidID();
 
             state._fsp--;
@@ -63961,7 +63972,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesIterationVariableDeclarationParserRuleCall_1_3_4_0()); 
             }
-            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_445100);
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_445101);
             ruleIterationVariableDeclaration();
 
             state._fsp--;
@@ -64006,7 +64017,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesIterationVariableDeclarationParserRuleCall_1_3_5_1_0()); 
             }
-            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_5_145131);
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_5_145132);
             ruleIterationVariableDeclaration();
 
             state._fsp--;
@@ -64051,7 +64062,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getAccumulatorIterationAccumulatorParserRuleCall_1_3_6_1_0()); 
             }
-            pushFollow(FOLLOW_ruleIterationAccumulator_in_rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_145162);
+            pushFollow(FOLLOW_ruleIterationAccumulator_in_rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_145163);
             ruleIterationAccumulator();
 
             state._fsp--;
@@ -64096,7 +64107,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getBreakConditionExpressionParserRuleCall_1_3_7_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_145193);
+            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_145194);
             ruleExpression();
 
             state._fsp--;
@@ -64141,7 +64152,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMemberFeatureCallAccess().getExpressionExpressionParserRuleCall_1_3_9_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ExpressionAssignment_1_3_945224);
+            pushFollow(FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ExpressionAssignment_1_3_945225);
             ruleExpression();
 
             state._fsp--;
@@ -64186,7 +64197,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsArraySubscriptParserRuleCall_1_0_2_0()); 
             }
-            pushFollow(FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_245255);
+            pushFollow(FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_245256);
             ruleArraySubscript();
 
             state._fsp--;
@@ -64231,7 +64242,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsArraySubscriptParserRuleCall_1_0_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_145286);
+            pushFollow(FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_145287);
             ruleArraySubscript();
 
             state._fsp--;
@@ -64276,7 +64287,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignableMemberFeatureCallAccess().getMemberVariableValidIDParserRuleCall_1_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_245317);
+            pushFollow(FOLLOW_ruleValidID_in_rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_245318);
             ruleValidID();
 
             state._fsp--;
@@ -64321,7 +64332,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIterationAccumulatorAccess().getNameValidIDParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__IterationAccumulator__NameAssignment_045348);
+            pushFollow(FOLLOW_ruleValidID_in_rule__IterationAccumulator__NameAssignment_045349);
             ruleValidID();
 
             state._fsp--;
@@ -64366,7 +64377,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIterationAccumulatorAccess().getInitializerExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__IterationAccumulator__InitializerAssignment_245379);
+            pushFollow(FOLLOW_ruleExpression_in_rule__IterationAccumulator__InitializerAssignment_245380);
             ruleExpression();
 
             state._fsp--;
@@ -64411,7 +64422,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIterationVariableDeclarationAccess().getNameValidIDParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__IterationVariableDeclaration__NameAssignment45410);
+            pushFollow(FOLLOW_ruleValidID_in_rule__IterationVariableDeclaration__NameAssignment45411);
             ruleValidID();
 
             state._fsp--;
@@ -64462,7 +64473,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArraySubscriptAccess().getSliceColonKeyword_0_0()); 
             }
-            match(input,61,FOLLOW_61_in_rule__ArraySubscript__SliceAssignment_045446); if (state.failed) return ;
+            match(input,61,FOLLOW_61_in_rule__ArraySubscript__SliceAssignment_045447); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArraySubscriptAccess().getSliceColonKeyword_0_0()); 
             }
@@ -64509,7 +64520,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArraySubscriptAccess().getExpressionExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ArraySubscript__ExpressionAssignment_145485);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ArraySubscript__ExpressionAssignment_145486);
             ruleExpression();
 
             state._fsp--;
@@ -64554,7 +64565,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRealLiteralAccess().getDataRealDataParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleRealData_in_rule__RealLiteral__DataAssignment_045516);
+            pushFollow(FOLLOW_ruleRealData_in_rule__RealLiteral__DataAssignment_045517);
             ruleRealData();
 
             state._fsp--;
@@ -64599,7 +64610,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRealLiteralAccess().getUnitUnitParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__RealLiteral__UnitAssignment_145547);
+            pushFollow(FOLLOW_ruleUnit_in_rule__RealLiteral__UnitAssignment_145548);
             ruleUnit();
 
             state._fsp--;
@@ -64644,7 +64655,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIntegerLiteralAccess().getDataIntegerDataParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleIntegerData_in_rule__IntegerLiteral__DataAssignment_045578);
+            pushFollow(FOLLOW_ruleIntegerData_in_rule__IntegerLiteral__DataAssignment_045579);
             ruleIntegerData();
 
             state._fsp--;
@@ -64689,7 +64700,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIntegerLiteralAccess().getUnitUnitParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_rule__IntegerLiteral__UnitAssignment_145609);
+            pushFollow(FOLLOW_ruleUnit_in_rule__IntegerLiteral__UnitAssignment_145610);
             ruleUnit();
 
             state._fsp--;
@@ -64740,7 +64751,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBooleanLiteralAccess().getTrueTrueKeyword_1_0_0()); 
             }
-            match(input,102,FOLLOW_102_in_rule__BooleanLiteral__TrueAssignment_1_045645); if (state.failed) return ;
+            match(input,102,FOLLOW_102_in_rule__BooleanLiteral__TrueAssignment_1_045646); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getBooleanLiteralAccess().getTrueTrueKeyword_1_0_0()); 
             }
@@ -64787,7 +64798,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleStringLiteralAccess().getTextSTRINGTerminalRuleCall_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SimpleStringLiteral__TextAssignment45684); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SimpleStringLiteral__TextAssignment45685); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getSimpleStringLiteralAccess().getTextSTRINGTerminalRuleCall_0()); 
             }
@@ -64828,7 +64839,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsConstantStringSegmentParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_245715);
+            pushFollow(FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_245716);
             ruleConstantStringSegment();
 
             state._fsp--;
@@ -64873,7 +64884,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsDynamicStringSegmentParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDynamicStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_045746);
+            pushFollow(FOLLOW_ruleDynamicStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_045747);
             ruleDynamicStringSegment();
 
             state._fsp--;
@@ -64918,7 +64929,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultiLineStringLiteralAccess().getSegmentsConstantStringSegmentParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_145777);
+            pushFollow(FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_145778);
             ruleConstantStringSegment();
 
             state._fsp--;
@@ -64963,7 +64974,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantStringSegmentAccess().getTextConstantStringParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleConstantString_in_rule__ConstantStringSegment__TextAssignment45808);
+            pushFollow(FOLLOW_ruleConstantString_in_rule__ConstantStringSegment__TextAssignment45809);
             ruleConstantString();
 
             state._fsp--;
@@ -65008,7 +65019,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDynamicStringSegmentAccess().getExpressionExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__DynamicStringSegment__ExpressionAssignment_145839);
+            pushFollow(FOLLOW_ruleExpression_in_rule__DynamicStringSegment__ExpressionAssignment_145840);
             ruleExpression();
 
             state._fsp--;
@@ -65059,7 +65070,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementValidIDParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__VariableReference__FeatureAssignment_145874);
+            pushFollow(FOLLOW_ruleValidID_in_rule__VariableReference__FeatureAssignment_145875);
             ruleValidID();
 
             state._fsp--;
@@ -65110,7 +65121,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableReferenceAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_145909);
+            pushFollow(FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_145910);
             ruleStepExpression();
 
             state._fsp--;
@@ -65161,7 +65172,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getFeatureCallableElementValidIDParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionCall__FeatureAssignment_145944);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionCall__FeatureAssignment_145945);
             ruleValidID();
 
             state._fsp--;
@@ -65212,7 +65223,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getArgumentsExpressionParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_045979);
+            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_045980);
             ruleExpression();
 
             state._fsp--;
@@ -65257,7 +65268,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionCallAccess().getArgumentsExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_1_146010);
+            pushFollow(FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_1_146011);
             ruleExpression();
 
             state._fsp--;
@@ -65308,7 +65319,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedVariableReferenceAccess().getFeatureCallableElementQualifiedNameParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedVariableReference__FeatureAssignment_246045);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedVariableReference__FeatureAssignment_246046);
             ruleQualifiedName();
 
             state._fsp--;
@@ -65365,7 +65376,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getFeatureCallableElementQualifiedNameParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedFunctionCall__FeatureAssignment_246084);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedFunctionCall__FeatureAssignment_246085);
             ruleQualifiedName();
 
             state._fsp--;
@@ -65416,7 +65427,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsExpressionParserRuleCall_4_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_046119);
+            pushFollow(FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_046120);
             ruleExpression();
 
             state._fsp--;
@@ -65461,7 +65472,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsExpressionParserRuleCall_4_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_146150);
+            pushFollow(FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_146151);
             ruleExpression();
 
             state._fsp--;
@@ -65506,7 +65517,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeStepExpressionAccess().getEndAdditiveStepExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__EndAssignment_1_246181);
+            pushFollow(FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__EndAssignment_1_246182);
             ruleAdditiveStepExpression();
 
             state._fsp--;
@@ -65551,7 +65562,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAdditiveStepExpressionAccess().getOperatorAdditiveOperatorEnumRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAdditiveOperator_in_rule__AdditiveStepExpression__OperatorAssignment_1_146212);
+            pushFollow(FOLLOW_ruleAdditiveOperator_in_rule__AdditiveStepExpression__OperatorAssignment_1_146213);
             ruleAdditiveOperator();
 
             state._fsp--;
@@ -65596,7 +65607,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAdditiveStepExpressionAccess().getRightOperandNegateStepExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__RightOperandAssignment_1_246243);
+            pushFollow(FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__RightOperandAssignment_1_246244);
             ruleNegateStepExpression();
 
             state._fsp--;
@@ -65641,7 +65652,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNegateStepExpressionAccess().getOperandPrimitiveStepExpressionParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_rulePrimitiveStepExpression_in_rule__NegateStepExpression__OperandAssignment_1_246274);
+            pushFollow(FOLLOW_rulePrimitiveStepExpression_in_rule__NegateStepExpression__OperandAssignment_1_246275);
             rulePrimitiveStepExpression();
 
             state._fsp--;
@@ -65686,7 +65697,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStepLiteralAccess().getValueValidIntParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleValidInt_in_rule__StepLiteral__ValueAssignment46305);
+            pushFollow(FOLLOW_ruleValidInt_in_rule__StepLiteral__ValueAssignment46306);
             ruleValidInt();
 
             state._fsp--;
@@ -65731,7 +65742,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_146336);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_146337);
             ruleExpression();
 
             state._fsp--;
@@ -65776,7 +65787,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsExpressionParserRuleCall_2_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_146367);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_146368);
             ruleExpression();
 
             state._fsp--;
@@ -65821,7 +65832,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesArrayConstructionIterationClauseParserRuleCall_2_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_146398);
+            pushFollow(FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_146399);
             ruleArrayConstructionIterationClause();
 
             state._fsp--;
@@ -65866,7 +65877,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesArrayConstructionIterationClauseParserRuleCall_2_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_146429);
+            pushFollow(FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_146430);
             ruleArrayConstructionIterationClause();
 
             state._fsp--;
@@ -65911,7 +65922,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_046460);
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_046461);
             ruleIterationVariableDeclaration();
 
             state._fsp--;
@@ -65956,7 +65967,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConstructionIterationClauseAccess().getCollectionExpressionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_246491);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_246492);
             ruleExpression();
 
             state._fsp--;
@@ -66001,7 +66012,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getRowsExpressionListParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_146522);
+            pushFollow(FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_146523);
             ruleExpressionList();
 
             state._fsp--;
@@ -66046,7 +66057,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayConcatenationOperatorAccess().getRowsExpressionListParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_2_146553);
+            pushFollow(FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_2_146554);
             ruleExpressionList();
 
             state._fsp--;
@@ -66091,7 +66102,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExpressionListAccess().getExpressionsExpressionParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_046584);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_046585);
             ruleExpression();
 
             state._fsp--;
@@ -66136,7 +66147,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExpressionListAccess().getExpressionsExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_1_146615);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_1_146616);
             ruleExpression();
 
             state._fsp--;
@@ -66181,7 +66192,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionOperatorAccess().getMembersStructConstructionMemberParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_146646);
+            pushFollow(FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_146647);
             ruleStructConstructionMember();
 
             state._fsp--;
@@ -66226,7 +66237,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionOperatorAccess().getMembersStructConstructionMemberParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_2_146677);
+            pushFollow(FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_2_146678);
             ruleStructConstructionMember();
 
             state._fsp--;
@@ -66271,7 +66282,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionMemberAccess().getNameValidIDParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__StructConstructionMember__NameAssignment_046708);
+            pushFollow(FOLLOW_ruleValidID_in_rule__StructConstructionMember__NameAssignment_046709);
             ruleValidID();
 
             state._fsp--;
@@ -66316,7 +66327,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStructConstructionMemberAccess().getValueExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__StructConstructionMember__ValueAssignment_246739);
+            pushFollow(FOLLOW_ruleExpression_in_rule__StructConstructionMember__ValueAssignment_246740);
             ruleExpression();
 
             state._fsp--;
@@ -66361,7 +66372,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitConstructionOperatorAccess().getUnitExplicitUnitParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExplicitUnit_in_rule__UnitConstructionOperator__UnitAssignment_146770);
+            pushFollow(FOLLOW_ruleExplicitUnit_in_rule__UnitConstructionOperator__UnitAssignment_146771);
             ruleExplicitUnit();
 
             state._fsp--;
@@ -66406,7 +66417,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParenthesizedExpressionAccess().getExpressionsExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_146801);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_146802);
             ruleExpression();
 
             state._fsp--;
@@ -66451,7 +66462,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getParenthesizedExpressionAccess().getExpressionsExpressionParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_2_146832);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_2_146833);
             ruleExpression();
 
             state._fsp--;
@@ -66496,7 +66507,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAlgorithmExpressionAccess().getBodyCompoundParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleCompound_in_rule__AlgorithmExpression__BodyAssignment_246863);
+            pushFollow(FOLLOW_ruleCompound_in_rule__AlgorithmExpression__BodyAssignment_246864);
             ruleCompound();
 
             state._fsp--;
@@ -66541,7 +66552,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompoundAccess().getStatementsStatementParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__Compound__StatementsAssignment_246894);
+            pushFollow(FOLLOW_ruleStatement_in_rule__Compound__StatementsAssignment_246895);
             ruleStatement();
 
             state._fsp--;
@@ -66586,7 +66597,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignmentAccess().getTargetAssignableMemberFeatureCallParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleAssignableMemberFeatureCall_in_rule__Assignment__TargetAssignment_046925);
+            pushFollow(FOLLOW_ruleAssignableMemberFeatureCall_in_rule__Assignment__TargetAssignment_046926);
             ruleAssignableMemberFeatureCall();
 
             state._fsp--;
@@ -66631,7 +66642,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAssignmentAccess().getAssignedExpressionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__Assignment__AssignedExpressionAssignment_246956);
+            pushFollow(FOLLOW_ruleExpression_in_rule__Assignment__AssignedExpressionAssignment_246957);
             ruleExpression();
 
             state._fsp--;
@@ -66676,7 +66687,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_146987);
+            pushFollow(FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_146988);
             ruleValidID();
 
             state._fsp--;
@@ -66721,7 +66732,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_347018);
+            pushFollow(FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_347019);
             ruleExpression();
 
             state._fsp--;
@@ -66766,7 +66777,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getConditionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__IfStatement__ConditionAssignment_247049);
+            pushFollow(FOLLOW_ruleExpression_in_rule__IfStatement__ConditionAssignment_247050);
             ruleExpression();
 
             state._fsp--;
@@ -66811,7 +66822,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getThenStatementStatementParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__IfStatement__ThenStatementAssignment_447080);
+            pushFollow(FOLLOW_ruleStatement_in_rule__IfStatement__ThenStatementAssignment_447081);
             ruleStatement();
 
             state._fsp--;
@@ -66856,7 +66867,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIfStatementAccess().getElseStatementStatementParserRuleCall_5_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__IfStatement__ElseStatementAssignment_5_147111);
+            pushFollow(FOLLOW_ruleStatement_in_rule__IfStatement__ElseStatementAssignment_5_147112);
             ruleStatement();
 
             state._fsp--;
@@ -66901,7 +66912,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileStatementAccess().getConditionExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__WhileStatement__ConditionAssignment_247142);
+            pushFollow(FOLLOW_ruleExpression_in_rule__WhileStatement__ConditionAssignment_247143);
             ruleExpression();
 
             state._fsp--;
@@ -66946,7 +66957,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getWhileStatementAccess().getBodyStatementParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__WhileStatement__BodyAssignment_447173);
+            pushFollow(FOLLOW_ruleStatement_in_rule__WhileStatement__BodyAssignment_447174);
             ruleStatement();
 
             state._fsp--;
@@ -66991,7 +67002,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__ForStatement__IterationVariableAssignment_247204);
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_rule__ForStatement__IterationVariableAssignment_247205);
             ruleIterationVariableDeclaration();
 
             state._fsp--;
@@ -67036,7 +67047,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getCollectionExpressionExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ForStatement__CollectionExpressionAssignment_447235);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ForStatement__CollectionExpressionAssignment_447236);
             ruleExpression();
 
             state._fsp--;
@@ -67081,7 +67092,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__ForStatement__BodyAssignment_647266);
+            pushFollow(FOLLOW_ruleStatement_in_rule__ForStatement__BodyAssignment_647267);
             ruleStatement();
 
             state._fsp--;
@@ -67126,7 +67137,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getBodyStatementParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStatement_in_rule__DoWhileStatement__BodyAssignment_147297);
+            pushFollow(FOLLOW_ruleStatement_in_rule__DoWhileStatement__BodyAssignment_147298);
             ruleStatement();
 
             state._fsp--;
@@ -67171,7 +67182,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoWhileStatementAccess().getConditionExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__DoWhileStatement__ConditionAssignment_447328);
+            pushFollow(FOLLOW_ruleExpression_in_rule__DoWhileStatement__ConditionAssignment_447329);
             ruleExpression();
 
             state._fsp--;
@@ -67216,7 +67227,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getReturnStatementAccess().getExpressionExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__ReturnStatement__ExpressionAssignment_147359);
+            pushFollow(FOLLOW_ruleExpression_in_rule__ReturnStatement__ExpressionAssignment_147360);
             ruleExpression();
 
             state._fsp--;
@@ -67261,7 +67272,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getNumeratorUnitNumeratorParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitNumerator_in_rule__Unit__NumeratorAssignment_1_1_147390);
+            pushFollow(FOLLOW_ruleUnitNumerator_in_rule__Unit__NumeratorAssignment_1_1_147391);
             ruleUnitNumerator();
 
             state._fsp--;
@@ -67306,7 +67317,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getDenominatorUnitDenominatorParserRuleCall_1_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitDenominator_in_rule__Unit__DenominatorAssignment_1_1_2_147421);
+            pushFollow(FOLLOW_ruleUnitDenominator_in_rule__Unit__DenominatorAssignment_1_1_2_147422);
             ruleUnitDenominator();
 
             state._fsp--;
@@ -67351,7 +67362,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitAccess().getNumeratorImplicitUnitNumeratorParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_rule__Unit__NumeratorAssignment_1_247452);
+            pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_rule__Unit__NumeratorAssignment_1_247453);
             ruleImplicitUnitNumerator();
 
             state._fsp--;
@@ -67396,7 +67407,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExplicitUnitAccess().getNumeratorUnitNumeratorParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitNumerator_in_rule__ExplicitUnit__NumeratorAssignment_147483);
+            pushFollow(FOLLOW_ruleUnitNumerator_in_rule__ExplicitUnit__NumeratorAssignment_147484);
             ruleUnitNumerator();
 
             state._fsp--;
@@ -67441,7 +67452,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExplicitUnitAccess().getDenominatorUnitDenominatorParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitDenominator_in_rule__ExplicitUnit__DenominatorAssignment_2_147514);
+            pushFollow(FOLLOW_ruleUnitDenominator_in_rule__ExplicitUnit__DenominatorAssignment_2_147515);
             ruleUnitDenominator();
 
             state._fsp--;
@@ -67486,7 +67497,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitNumeratorAccess().getFactorsUnitFactorParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_047545);
+            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_047546);
             ruleUnitFactor();
 
             state._fsp--;
@@ -67531,7 +67542,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitNumeratorAccess().getFactorsUnitFactorParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_1_147576);
+            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_1_147577);
             ruleUnitFactor();
 
             state._fsp--;
@@ -67576,7 +67587,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_047607);
+            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_047608);
             ruleUnitFactor();
 
             state._fsp--;
@@ -67621,7 +67632,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_147638);
+            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_147639);
             ruleUnitFactor();
 
             state._fsp--;
@@ -67666,7 +67677,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_147669);
+            pushFollow(FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_147670);
             ruleUnitFactor();
 
             state._fsp--;
@@ -67711,7 +67722,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitFactorAccess().getSymbolValidIDParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_047700);
+            pushFollow(FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_047701);
             ruleValidID();
 
             state._fsp--;
@@ -67756,7 +67767,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnitFactorAccess().getExponentUnitExponentParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_147731);
+            pushFollow(FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_147732);
             ruleUnitExponent();
 
             state._fsp--;
@@ -67799,12 +67810,12 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end synpred134_InternalMscript
 
-    // $ANTLR start synpred167_InternalMscript
-    public final void synpred167_InternalMscript_fragment() throws RecognitionException {   
+    // $ANTLR start synpred168_InternalMscript
+    public final void synpred168_InternalMscript_fragment() throws RecognitionException {   
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18310:2: ( rule__IfStatement__Group_5__0 )
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18310:2: rule__IfStatement__Group_5__0
         {
-        pushFollow(FOLLOW_rule__IfStatement__Group_5__0_in_synpred167_InternalMscript37061);
+        pushFollow(FOLLOW_rule__IfStatement__Group_5__0_in_synpred168_InternalMscript37062);
         rule__IfStatement__Group_5__0();
 
         state._fsp--;
@@ -67812,7 +67823,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred167_InternalMscript
+    // $ANTLR end synpred168_InternalMscript
 
     // Delegated rules
 
@@ -67830,11 +67841,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred167_InternalMscript() {
+    public final boolean synpred168_InternalMscript() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred167_InternalMscript_fragment(); // can never throw exception
+            synpred168_InternalMscript_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -67948,10 +67959,10 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     static final String DFA6_eotS =
         "\u00e2\uffff";
     static final String DFA6_eofS =
-        "\1\uffff\6\12\7\uffff\1\12\6\uffff\1\12\14\uffff\1\12\6\uffff\1"+
-        "\12\1\uffff\1\12\3\uffff\1\12\3\uffff\1\12\3\uffff\1\12\u00aa\uffff";
+        "\1\uffff\6\12\15\uffff\2\12\14\uffff\1\12\6\uffff\1\12\1\uffff\1"+
+        "\12\3\uffff\1\12\3\uffff\1\12\3\uffff\1\12\u00aa\uffff";
     static final String DFA6_minS =
-        "\7\4\2\uffff\1\4\1\uffff\4\4\1\46\5\45\1\4\1\46\5\45\1\46\5\45\1"+
+        "\7\4\2\uffff\1\4\1\uffff\3\4\1\46\5\45\2\4\1\46\5\45\1\46\5\45\1"+
         "\4\1\46\5\45\3\4\1\11\3\4\1\11\3\4\1\11\3\4\1\11\1\4\5\52\1\4\1"+
         "\11\7\45\5\52\1\4\1\11\7\45\5\52\1\4\1\11\7\45\5\52\1\4\1\11\7\45"+
         "\1\11\5\45\2\11\5\45\2\11\5\45\2\11\5\45\2\11\2\71\1\11\1\4\1\71"+
@@ -67959,14 +67970,14 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         "\1\71\1\11\2\45\1\11\2\71\1\11\1\4\1\71\1\11\2\45\1\11\7\45\1\11"+
         "\7\45\1\11\7\45\1\11\7\45\5\11\2\45\1\11\2\45\1\11\2\45\1\11\2\45";
     static final String DFA6_maxS =
-        "\1\106\6\145\2\uffff\1\71\1\uffff\3\71\1\145\6\71\1\145\14\71\1"+
-        "\145\6\71\1\145\1\70\1\145\1\24\1\14\1\70\1\145\1\24\1\14\1\70\1"+
-        "\145\1\24\1\14\1\70\1\145\1\24\1\14\5\71\1\14\1\12\14\71\1\14\1"+
-        "\12\14\71\1\14\1\12\14\71\1\14\1\12\7\71\1\24\5\71\2\24\5\71\2\24"+
-        "\5\71\2\24\5\71\1\24\1\12\2\71\1\24\1\14\1\71\1\12\2\71\1\12\2\71"+
-        "\1\24\1\14\1\71\1\12\2\71\1\12\2\71\1\24\1\14\1\71\1\12\2\71\1\12"+
-        "\2\71\1\24\1\14\1\71\1\12\2\71\1\12\7\71\1\12\7\71\1\12\7\71\1\12"+
-        "\7\71\4\24\1\12\2\71\1\12\2\71\1\12\2\71\1\12\2\71";
+        "\1\106\6\145\2\uffff\1\71\1\uffff\11\71\2\145\14\71\1\145\6\71\1"+
+        "\145\1\70\1\145\1\24\1\14\1\70\1\145\1\24\1\14\1\70\1\145\1\24\1"+
+        "\14\1\70\1\145\1\24\1\14\5\71\1\14\1\12\14\71\1\14\1\12\14\71\1"+
+        "\14\1\12\14\71\1\14\1\12\7\71\1\24\5\71\2\24\5\71\2\24\5\71\2\24"+
+        "\5\71\1\24\1\12\2\71\1\24\1\14\1\71\1\12\2\71\1\12\2\71\1\24\1\14"+
+        "\1\71\1\12\2\71\1\12\2\71\1\24\1\14\1\71\1\12\2\71\1\12\2\71\1\24"+
+        "\1\14\1\71\1\12\2\71\1\12\7\71\1\12\7\71\1\12\7\71\1\12\7\71\4\24"+
+        "\1\12\2\71\1\12\2\71\1\12\2\71\1\12\2\71";
     static final String DFA6_acceptS =
         "\7\uffff\1\2\1\3\1\uffff\1\1\u00d7\uffff";
     static final String DFA6_specialS =
@@ -68000,8 +68011,8 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             "\2\uffff\1\12\4\uffff\1\12\10\uffff\2\12",
             "",
             "",
-            "\1\21\1\23\1\uffff\1\24\1\uffff\1\17\1\uffff\1\20\1\22\54\uffff"+
-            "\1\16",
+            "\1\20\1\22\1\uffff\1\23\1\uffff\1\16\1\uffff\1\17\1\21\54\uffff"+
+            "\1\24",
             "",
             "\1\30\1\32\1\uffff\1\33\1\uffff\1\26\1\uffff\1\27\1\31\54\uffff"+
             "\1\25",
@@ -68009,16 +68020,16 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             "\1\42",
             "\1\45\1\47\1\uffff\1\50\1\uffff\1\43\1\uffff\1\44\1\46\54\uffff"+
             "\1\51",
-            "\2\12\1\uffff\1\12\3\uffff\2\12\12\uffff\2\12\4\uffff\2\12"+
-            "\2\uffff\1\12\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff"+
-            "\6\12\6\uffff\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12"+
-            "\2\uffff\1\12\4\uffff\1\12\10\uffff\2\12",
             "\1\52\22\uffff\1\53",
             "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
             "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
             "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
             "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
             "\1\55\1\52\3\uffff\1\54\16\uffff\1\53",
+            "\2\12\1\uffff\1\12\3\uffff\2\12\12\uffff\2\12\4\uffff\2\12"+
+            "\2\uffff\1\12\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff"+
+            "\6\12\6\uffff\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12"+
+            "\2\uffff\1\12\4\uffff\1\12\10\uffff\2\12",
             "\2\12\1\uffff\1\12\3\uffff\2\12\12\uffff\2\12\4\uffff\2\12"+
             "\2\uffff\1\12\15\uffff\3\12\1\uffff\5\12\1\uffff\1\12\1\uffff"+
             "\6\12\6\uffff\1\7\1\12\1\uffff\1\12\1\uffff\2\12\1\uffff\5\12"+
@@ -68285,12 +68296,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     static final String DFA15_eofS =
         "\3\uffff\5\11\17\uffff";
     static final String DFA15_minS =
-        "\1\107\1\uffff\1\4\5\22\1\4\1\uffff\5\22\1\uffff\1\4\1\uffff\5\22";
+        "\1\107\1\uffff\1\4\5\22\1\4\2\uffff\5\22\1\4\1\uffff\5\22";
     static final String DFA15_maxS =
-        "\1\125\1\uffff\1\14\5\145\1\146\1\uffff\5\126\1\uffff\1\146\1\uffff"+
-        "\5\126";
+        "\1\125\1\uffff\1\14\5\145\1\146\2\uffff\5\126\1\146\1\uffff\5\126";
     static final String DFA15_acceptS =
-        "\1\uffff\1\1\7\uffff\1\2\5\uffff\1\3\1\uffff\1\4\5\uffff";
+        "\1\uffff\1\1\7\uffff\1\2\1\3\6\uffff\1\4\5\uffff";
     static final String DFA15_specialS =
         "\27\uffff}>";
     static final String[] DFA15_transitionS = {
@@ -68312,46 +68322,46 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
             "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\6\uffff\2\11\1\uffff\1"+
             "\11\1\uffff\2\11\1\uffff\10\11\4\uffff\1\11\10\uffff\2\11",
-            "\1\13\1\15\1\uffff\1\16\1\uffff\2\17\1\12\1\14\1\17\6\uffff"+
-            "\2\17\26\uffff\1\17\5\uffff\1\17\5\uffff\2\17\15\uffff\1\17"+
-            "\1\uffff\1\17\1\uffff\1\17\2\uffff\1\17\10\uffff\1\17\1\uffff"+
-            "\1\17\2\uffff\3\17\5\uffff\1\17\1\uffff\1\17",
+            "\1\14\1\16\1\uffff\1\17\1\uffff\2\12\1\13\1\15\1\12\6\uffff"+
+            "\2\12\26\uffff\1\12\5\uffff\1\12\5\uffff\2\12\15\uffff\1\12"+
+            "\1\uffff\1\12\1\uffff\1\12\2\uffff\1\12\10\uffff\1\12\1\uffff"+
+            "\1\12\2\uffff\3\12\5\uffff\1\12\1\uffff\1\12",
             "",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
-            "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
-            "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
-            "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
-            "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
-            "\1\21",
             "",
-            "\1\23\1\25\1\uffff\1\26\1\uffff\2\17\1\22\1\24\1\17\6\uffff"+
-            "\2\17\26\uffff\1\17\5\uffff\1\17\5\uffff\1\17\16\uffff\1\17"+
-            "\1\uffff\1\17\1\uffff\1\17\2\uffff\1\17\10\uffff\1\17\1\uffff"+
-            "\1\17\2\uffff\3\17\5\uffff\1\17\1\uffff\1\17",
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
+            "\1\21",
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
+            "\1\21",
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
+            "\1\21",
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
+            "\1\21",
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
+            "\1\21",
+            "\1\23\1\25\1\uffff\1\26\1\uffff\2\12\1\22\1\24\1\12\6\uffff"+
+            "\2\12\26\uffff\1\12\5\uffff\1\12\5\uffff\1\12\16\uffff\1\12"+
+            "\1\uffff\1\12\1\uffff\1\12\2\uffff\1\12\10\uffff\1\12\1\uffff"+
+            "\1\12\2\uffff\3\12\5\uffff\1\12\1\uffff\1\12",
             "",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
             "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
             "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
             "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
             "\1\21",
-            "\3\17\1\uffff\1\17\6\uffff\17\17\6\uffff\1\17\1\21\2\uffff"+
-            "\1\20\1\uffff\2\17\3\uffff\1\17\11\uffff\1\17\11\uffff\5\17"+
+            "\3\12\1\uffff\1\12\6\uffff\17\12\6\uffff\1\12\1\21\2\uffff"+
+            "\1\20\1\uffff\2\12\3\uffff\1\12\11\uffff\1\12\11\uffff\5\12"+
             "\1\21"
     };
 
@@ -68470,61 +68480,61 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     static final String DFA31_eotS =
         "\17\uffff";
     static final String DFA31_eofS =
-        "\2\uffff\5\11\3\uffff\5\11";
+        "\2\uffff\5\10\3\uffff\5\10";
     static final String DFA31_minS =
         "\1\131\1\4\5\22\1\4\2\uffff\5\22";
     static final String DFA31_maxS =
         "\1\131\1\14\5\145\1\14\2\uffff\5\145";
     static final String DFA31_acceptS =
-        "\10\uffff\1\2\1\1\5\uffff";
+        "\10\uffff\1\1\1\2\5\uffff";
     static final String DFA31_specialS =
         "\17\uffff}>";
     static final String[] DFA31_transitionS = {
             "\1\1",
             "\1\3\1\5\1\uffff\1\6\3\uffff\1\2\1\4",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
             "\1\13\1\15\1\uffff\1\16\3\uffff\1\12\1\14",
             "",
             "",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11",
-            "\3\11\1\uffff\1\11\6\uffff\17\11\4\uffff\1\11\2\uffff\2\11"+
-            "\1\uffff\2\11\1\10\1\11\1\uffff\6\11\7\uffff\1\11\1\uffff\1"+
-            "\11\1\uffff\2\11\1\uffff\6\11\1\7\1\11\4\uffff\1\11\10\uffff"+
-            "\2\11"
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10",
+            "\3\10\1\uffff\1\10\6\uffff\17\10\4\uffff\1\10\2\uffff\2\10"+
+            "\1\uffff\2\10\1\11\1\10\1\uffff\6\10\7\uffff\1\10\1\uffff\1"+
+            "\10\1\uffff\2\10\1\uffff\6\10\1\7\1\10\4\uffff\1\10\10\uffff"+
+            "\2\10"
     };
 
     static final short[] DFA31_eot = DFA.unpackEncodedString(DFA31_eotS);
@@ -69991,674 +70001,674 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__MultiLineStringLiteral__SegmentsAssignment_3_0_in_rule__MultiLineStringLiteral__Group_3__0__Impl30132 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiLineStringLiteral__Group_3__1__Impl_in_rule__MultiLineStringLiteral__Group_3__130162 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiLineStringLiteral__SegmentsAssignment_3_1_in_rule__MultiLineStringLiteral__Group_3__1__Impl30189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__0__Impl_in_rule__DynamicStringSegment__Group__030223 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__1_in_rule__DynamicStringSegment__Group__030226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_rule__DynamicStringSegment__Group__0__Impl30254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__1__Impl_in_rule__DynamicStringSegment__Group__130285 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__2_in_rule__DynamicStringSegment__Group__130288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__ExpressionAssignment_1_in_rule__DynamicStringSegment__Group__1__Impl30315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__2__Impl_in_rule__DynamicStringSegment__Group__230345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__DynamicStringSegment__Group__2__Impl30373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__030410 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__030413 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__130471 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__130474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl30501 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__230531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl30558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__030595 = new BitSet(new long[]{0x0000000000100E00L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__030598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__VariableReference__Group_2__0__Impl30626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__130657 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__130660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl30687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__230717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__VariableReference__Group_2__2__Impl30745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__0__Impl_in_rule__FunctionCall__Group__030782 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__1_in_rule__FunctionCall__Group__030785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__1__Impl_in_rule__FunctionCall__Group__130843 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__2_in_rule__FunctionCall__Group__130846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__FeatureAssignment_1_in_rule__FunctionCall__Group__1__Impl30873 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__2__Impl_in_rule__FunctionCall__Group__230903 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__3_in_rule__FunctionCall__Group__230906 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__FunctionCall__Group__2__Impl30934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__3__Impl_in_rule__FunctionCall__Group__330965 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__4_in_rule__FunctionCall__Group__330968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__0_in_rule__FunctionCall__Group__3__Impl30995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group__4__Impl_in_rule__FunctionCall__Group__431026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__FunctionCall__Group__4__Impl31054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__0__Impl_in_rule__FunctionCall__Group_3__031095 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__1_in_rule__FunctionCall__Group_3__031098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_0_in_rule__FunctionCall__Group_3__0__Impl31125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__1__Impl_in_rule__FunctionCall__Group_3__131155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__0_in_rule__FunctionCall__Group_3__1__Impl31182 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__0__Impl_in_rule__FunctionCall__Group_3_1__031217 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__1_in_rule__FunctionCall__Group_3_1__031220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__FunctionCall__Group_3_1__0__Impl31248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__1__Impl_in_rule__FunctionCall__Group_3_1__131279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_1_1_in_rule__FunctionCall__Group_3_1__1__Impl31306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__0__Impl_in_rule__QualifiedVariableReference__Group__031340 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__1_in_rule__QualifiedVariableReference__Group__031343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__1__Impl_in_rule__QualifiedVariableReference__Group__131401 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__2_in_rule__QualifiedVariableReference__Group__131404 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_rule__QualifiedVariableReference__Group__1__Impl31432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__2__Impl_in_rule__QualifiedVariableReference__Group__231463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedVariableReference__FeatureAssignment_2_in_rule__QualifiedVariableReference__Group__2__Impl31490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__0__Impl_in_rule__QualifiedFunctionCall__Group__031526 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__1_in_rule__QualifiedFunctionCall__Group__031529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__1__Impl_in_rule__QualifiedFunctionCall__Group__131587 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__2_in_rule__QualifiedFunctionCall__Group__131590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_rule__QualifiedFunctionCall__Group__1__Impl31618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__2__Impl_in_rule__QualifiedFunctionCall__Group__231649 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__3_in_rule__QualifiedFunctionCall__Group__231652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__FeatureAssignment_2_in_rule__QualifiedFunctionCall__Group__2__Impl31679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__3__Impl_in_rule__QualifiedFunctionCall__Group__331709 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__4_in_rule__QualifiedFunctionCall__Group__331712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__QualifiedFunctionCall__Group__3__Impl31740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__4__Impl_in_rule__QualifiedFunctionCall__Group__431771 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__5_in_rule__QualifiedFunctionCall__Group__431774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__0_in_rule__QualifiedFunctionCall__Group__4__Impl31801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__5__Impl_in_rule__QualifiedFunctionCall__Group__531832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__QualifiedFunctionCall__Group__5__Impl31860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__0__Impl_in_rule__QualifiedFunctionCall__Group_4__031903 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__1_in_rule__QualifiedFunctionCall__Group_4__031906 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_0_in_rule__QualifiedFunctionCall__Group_4__0__Impl31933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__1__Impl_in_rule__QualifiedFunctionCall__Group_4__131963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0_in_rule__QualifiedFunctionCall__Group_4__1__Impl31990 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0__Impl_in_rule__QualifiedFunctionCall__Group_4_1__032025 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1_in_rule__QualifiedFunctionCall__Group_4_1__032028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__QualifiedFunctionCall__Group_4_1__0__Impl32056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1__Impl_in_rule__QualifiedFunctionCall__Group_4_1__132087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1_in_rule__QualifiedFunctionCall__Group_4_1__1__Impl32114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__0__Impl_in_rule__RangeStepExpression__Group__032148 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__1_in_rule__RangeStepExpression__Group__032151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__Group__0__Impl32178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__1__Impl_in_rule__RangeStepExpression__Group__132207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__0_in_rule__RangeStepExpression__Group__1__Impl32234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__0__Impl_in_rule__RangeStepExpression__Group_1__032269 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__1_in_rule__RangeStepExpression__Group_1__032272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__1__Impl_in_rule__RangeStepExpression__Group_1__132330 = new BitSet(new long[]{0x0000000000100E00L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__2_in_rule__RangeStepExpression__Group_1__132333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_rule__RangeStepExpression__Group_1__1__Impl32361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__2__Impl_in_rule__RangeStepExpression__Group_1__232392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RangeStepExpression__EndAssignment_1_2_in_rule__RangeStepExpression__Group_1__2__Impl32419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__0__Impl_in_rule__AdditiveStepExpression__Group__032455 = new BitSet(new long[]{0x0000001800180000L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__1_in_rule__AdditiveStepExpression__Group__032458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__Group__0__Impl32485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__1__Impl_in_rule__AdditiveStepExpression__Group__132514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__0_in_rule__AdditiveStepExpression__Group__1__Impl32541 = new BitSet(new long[]{0x0000001800180002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__0__Impl_in_rule__AdditiveStepExpression__Group_1__032576 = new BitSet(new long[]{0x0000001800180000L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__1_in_rule__AdditiveStepExpression__Group_1__032579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__1__Impl_in_rule__AdditiveStepExpression__Group_1__132637 = new BitSet(new long[]{0x0000000000100E00L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__2_in_rule__AdditiveStepExpression__Group_1__132640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__OperatorAssignment_1_1_in_rule__AdditiveStepExpression__Group_1__1__Impl32667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__2__Impl_in_rule__AdditiveStepExpression__Group_1__232697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AdditiveStepExpression__RightOperandAssignment_1_2_in_rule__AdditiveStepExpression__Group_1__2__Impl32724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__0__Impl_in_rule__NegateStepExpression__Group_1__032760 = new BitSet(new long[]{0x0000000000100E00L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__1_in_rule__NegateStepExpression__Group_1__032763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__1__Impl_in_rule__NegateStepExpression__Group_1__132821 = new BitSet(new long[]{0x0000000000000E00L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__2_in_rule__NegateStepExpression__Group_1__132824 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__NegateStepExpression__Group_1__1__Impl32852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__2__Impl_in_rule__NegateStepExpression__Group_1__232883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NegateStepExpression__OperandAssignment_1_2_in_rule__NegateStepExpression__Group_1__2__Impl32910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StepN__Group__0__Impl_in_rule__StepN__Group__032946 = new BitSet(new long[]{0x0000000000000E00L});
-    public static final BitSet FOLLOW_rule__StepN__Group__1_in_rule__StepN__Group__032949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StepN__Group__1__Impl_in_rule__StepN__Group__133007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_N_in_rule__StepN__Group__1__Impl33034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__0__Impl_in_rule__ArrayConstructionOperator__Group__033067 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__1_in_rule__ArrayConstructionOperator__Group__033070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__ArrayConstructionOperator__Group__0__Impl33098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__1__Impl_in_rule__ArrayConstructionOperator__Group__133129 = new BitSet(new long[]{0x0040000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__2_in_rule__ArrayConstructionOperator__Group__133132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_1_in_rule__ArrayConstructionOperator__Group__1__Impl33159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__2__Impl_in_rule__ArrayConstructionOperator__Group__233189 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__3_in_rule__ArrayConstructionOperator__Group__233192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Alternatives_2_in_rule__ArrayConstructionOperator__Group__2__Impl33219 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__3__Impl_in_rule__ArrayConstructionOperator__Group__333249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__ArrayConstructionOperator__Group__3__Impl33277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__0__Impl_in_rule__ArrayConstructionOperator__Group_2_0__033316 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1_in_rule__ArrayConstructionOperator__Group_2_0__033319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_0__0__Impl33347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1__Impl_in_rule__ArrayConstructionOperator__Group_2_0__133378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1_in_rule__ArrayConstructionOperator__Group_2_0__1__Impl33405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1__033439 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1_in_rule__ArrayConstructionOperator__Group_2_1__033442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_rule__ArrayConstructionOperator__Group_2_1__0__Impl33470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1__133501 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2_in_rule__ArrayConstructionOperator__Group_2_1__133504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1_in_rule__ArrayConstructionOperator__Group_2_1__1__Impl33531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2__Impl_in_rule__ArrayConstructionOperator__Group_2_1__233561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0_in_rule__ArrayConstructionOperator__Group_2_1__2__Impl33588 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__033625 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1_in_rule__ArrayConstructionOperator__Group_2_1_2__033628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl33656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__133687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1_in_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl33714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__0__Impl_in_rule__ArrayConstructionIterationClause__Group__033748 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1_in_rule__ArrayConstructionIterationClause__Group__033751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl33778 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1__Impl_in_rule__ArrayConstructionIterationClause__Group__133808 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__2_in_rule__ArrayConstructionIterationClause__Group__133811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_rule__ArrayConstructionIterationClause__Group__1__Impl33839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__2__Impl_in_rule__ArrayConstructionIterationClause__Group__233870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2_in_rule__ArrayConstructionIterationClause__Group__2__Impl33897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__0__Impl_in_rule__ArrayConcatenationOperator__Group__033933 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__1_in_rule__ArrayConcatenationOperator__Group__033936 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_rule__ArrayConcatenationOperator__Group__0__Impl33964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__1__Impl_in_rule__ArrayConcatenationOperator__Group__133995 = new BitSet(new long[]{0x0008000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__2_in_rule__ArrayConcatenationOperator__Group__133998 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_1_in_rule__ArrayConcatenationOperator__Group__1__Impl34025 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__2__Impl_in_rule__ArrayConcatenationOperator__Group__234055 = new BitSet(new long[]{0x0008000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__3_in_rule__ArrayConcatenationOperator__Group__234058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__0_in_rule__ArrayConcatenationOperator__Group__2__Impl34085 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__3__Impl_in_rule__ArrayConcatenationOperator__Group__334116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_rule__ArrayConcatenationOperator__Group__3__Impl34144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__0__Impl_in_rule__ArrayConcatenationOperator__Group_2__034183 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__1_in_rule__ArrayConcatenationOperator__Group_2__034186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__ArrayConcatenationOperator__Group_2__0__Impl34214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__1__Impl_in_rule__ArrayConcatenationOperator__Group_2__134245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_2_1_in_rule__ArrayConcatenationOperator__Group_2__1__Impl34272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group__0__Impl_in_rule__ExpressionList__Group__034306 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group__1_in_rule__ExpressionList__Group__034309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__ExpressionsAssignment_0_in_rule__ExpressionList__Group__0__Impl34336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group__1__Impl_in_rule__ExpressionList__Group__134366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__0_in_rule__ExpressionList__Group__1__Impl34393 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__0__Impl_in_rule__ExpressionList__Group_1__034428 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__1_in_rule__ExpressionList__Group_1__034431 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__ExpressionList__Group_1__0__Impl34459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__1__Impl_in_rule__ExpressionList__Group_1__134490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExpressionList__ExpressionsAssignment_1_1_in_rule__ExpressionList__Group_1__1__Impl34517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__0__Impl_in_rule__StructConstructionOperator__Group__034551 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__1_in_rule__StructConstructionOperator__Group__034554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__StructConstructionOperator__Group__0__Impl34582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__1__Impl_in_rule__StructConstructionOperator__Group__134613 = new BitSet(new long[]{0x0050000000000000L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__2_in_rule__StructConstructionOperator__Group__134616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__MembersAssignment_1_in_rule__StructConstructionOperator__Group__1__Impl34643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__2__Impl_in_rule__StructConstructionOperator__Group__234673 = new BitSet(new long[]{0x0050000000000000L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__3_in_rule__StructConstructionOperator__Group__234676 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__0_in_rule__StructConstructionOperator__Group__2__Impl34703 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__3__Impl_in_rule__StructConstructionOperator__Group__334734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__StructConstructionOperator__Group__3__Impl34762 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__0__Impl_in_rule__StructConstructionOperator__Group_2__034801 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__1_in_rule__StructConstructionOperator__Group_2__034804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__StructConstructionOperator__Group_2__0__Impl34832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__1__Impl_in_rule__StructConstructionOperator__Group_2__134863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionOperator__MembersAssignment_2_1_in_rule__StructConstructionOperator__Group_2__1__Impl34890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__0__Impl_in_rule__StructConstructionMember__Group__034924 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__1_in_rule__StructConstructionMember__Group__034927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__NameAssignment_0_in_rule__StructConstructionMember__Group__0__Impl34954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__1__Impl_in_rule__StructConstructionMember__Group__134984 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__2_in_rule__StructConstructionMember__Group__134987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__StructConstructionMember__Group__1__Impl35015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__2__Impl_in_rule__StructConstructionMember__Group__235046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructConstructionMember__ValueAssignment_2_in_rule__StructConstructionMember__Group__2__Impl35073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__0__Impl_in_rule__UnitConstructionOperator__Group__035109 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__1_in_rule__UnitConstructionOperator__Group__035112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_rule__UnitConstructionOperator__Group__0__Impl35140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__1__Impl_in_rule__UnitConstructionOperator__Group__135171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitConstructionOperator__UnitAssignment_1_in_rule__UnitConstructionOperator__Group__1__Impl35198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__0__Impl_in_rule__ParenthesizedExpression__Group__035232 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__1_in_rule__ParenthesizedExpression__Group__035235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__ParenthesizedExpression__Group__0__Impl35263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__1__Impl_in_rule__ParenthesizedExpression__Group__135294 = new BitSet(new long[]{0x0240000000000000L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__2_in_rule__ParenthesizedExpression__Group__135297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_1_in_rule__ParenthesizedExpression__Group__1__Impl35324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__2__Impl_in_rule__ParenthesizedExpression__Group__235354 = new BitSet(new long[]{0x0240000000000000L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__3_in_rule__ParenthesizedExpression__Group__235357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__0_in_rule__ParenthesizedExpression__Group__2__Impl35384 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__3__Impl_in_rule__ParenthesizedExpression__Group__335415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__ParenthesizedExpression__Group__3__Impl35443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__0__Impl_in_rule__ParenthesizedExpression__Group_2__035482 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__1_in_rule__ParenthesizedExpression__Group_2__035485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__ParenthesizedExpression__Group_2__0__Impl35513 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__1__Impl_in_rule__ParenthesizedExpression__Group_2__135544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_2_1_in_rule__ParenthesizedExpression__Group_2__1__Impl35571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EndExpression__Group__0__Impl_in_rule__EndExpression__Group__035605 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__EndExpression__Group__1_in_rule__EndExpression__Group__035608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EndExpression__Group__1__Impl_in_rule__EndExpression__Group__135666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_rule__EndExpression__Group__1__Impl35694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__0__Impl_in_rule__AlgorithmExpression__Group__035729 = new BitSet(new long[]{0x0104000000203EB0L,0x0000004072800080L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__1_in_rule__AlgorithmExpression__Group__035732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__1__Impl_in_rule__AlgorithmExpression__Group__135790 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__2_in_rule__AlgorithmExpression__Group__135793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_rule__AlgorithmExpression__Group__1__Impl35821 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__2__Impl_in_rule__AlgorithmExpression__Group__235852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AlgorithmExpression__BodyAssignment_2_in_rule__AlgorithmExpression__Group__2__Impl35879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound__Group__0__Impl_in_rule__Compound__Group__035915 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__Compound__Group__1_in_rule__Compound__Group__035918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound__Group__1__Impl_in_rule__Compound__Group__135976 = new BitSet(new long[]{0x41140000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__Compound__Group__2_in_rule__Compound__Group__135979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Compound__Group__1__Impl36007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound__Group__2__Impl_in_rule__Compound__Group__236038 = new BitSet(new long[]{0x41140000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__Compound__Group__3_in_rule__Compound__Group__236041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound__StatementsAssignment_2_in_rule__Compound__Group__2__Impl36068 = new BitSet(new long[]{0x41040000000018B2L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__Compound__Group__3__Impl_in_rule__Compound__Group__336099 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__Compound__Group__3__Impl36127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__036166 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__036169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__TargetAssignment_0_in_rule__Assignment__Group__0__Impl36196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__136226 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__136229 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__Assignment__Group__1__Impl36257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__236288 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__236291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__AssignedExpressionAssignment_2_in_rule__Assignment__Group__2__Impl36318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__336348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__Assignment__Group__3__Impl36376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__036415 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__036418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_rule__LocalVariableDeclaration__Group__0__Impl36446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__136477 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__136480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl36507 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__236537 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__236540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__LocalVariableDeclaration__Group__2__Impl36568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__336599 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__336602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl36629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__436659 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__LocalVariableDeclaration__Group__4__Impl36687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__0__Impl_in_rule__IfStatement__Group__036728 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__1_in_rule__IfStatement__Group__036731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_rule__IfStatement__Group__0__Impl36759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__1__Impl_in_rule__IfStatement__Group__136790 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__2_in_rule__IfStatement__Group__136793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__IfStatement__Group__1__Impl36821 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__2__Impl_in_rule__IfStatement__Group__236852 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__3_in_rule__IfStatement__Group__236855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__ConditionAssignment_2_in_rule__IfStatement__Group__2__Impl36882 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__3__Impl_in_rule__IfStatement__Group__336912 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__4_in_rule__IfStatement__Group__336915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__IfStatement__Group__3__Impl36943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__4__Impl_in_rule__IfStatement__Group__436974 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__5_in_rule__IfStatement__Group__436977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__ThenStatementAssignment_4_in_rule__IfStatement__Group__4__Impl37004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group__5__Impl_in_rule__IfStatement__Group__537034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_rule__IfStatement__Group__5__Impl37061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0__Impl_in_rule__IfStatement__Group_5__037104 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group_5__1_in_rule__IfStatement__Group_5__037107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_rule__IfStatement__Group_5__0__Impl37136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group_5__1__Impl_in_rule__IfStatement__Group_5__137168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__ElseStatementAssignment_5_1_in_rule__IfStatement__Group_5__1__Impl37195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__0__Impl_in_rule__WhileStatement__Group__037229 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__1_in_rule__WhileStatement__Group__037232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_rule__WhileStatement__Group__0__Impl37260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__1__Impl_in_rule__WhileStatement__Group__137291 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__2_in_rule__WhileStatement__Group__137294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__WhileStatement__Group__1__Impl37322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__2__Impl_in_rule__WhileStatement__Group__237353 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__3_in_rule__WhileStatement__Group__237356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__ConditionAssignment_2_in_rule__WhileStatement__Group__2__Impl37383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__3__Impl_in_rule__WhileStatement__Group__337413 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__4_in_rule__WhileStatement__Group__337416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__WhileStatement__Group__3__Impl37444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__Group__4__Impl_in_rule__WhileStatement__Group__437475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__WhileStatement__BodyAssignment_4_in_rule__WhileStatement__Group__4__Impl37502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__0__Impl_in_rule__ForStatement__Group__037542 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__1_in_rule__ForStatement__Group__037545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_rule__ForStatement__Group__0__Impl37573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__1__Impl_in_rule__ForStatement__Group__137604 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__2_in_rule__ForStatement__Group__137607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__ForStatement__Group__1__Impl37635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__2__Impl_in_rule__ForStatement__Group__237666 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__3_in_rule__ForStatement__Group__237669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__IterationVariableAssignment_2_in_rule__ForStatement__Group__2__Impl37696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__3__Impl_in_rule__ForStatement__Group__337726 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__4_in_rule__ForStatement__Group__337729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_rule__ForStatement__Group__3__Impl37757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__437788 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__5_in_rule__ForStatement__Group__437791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__CollectionExpressionAssignment_4_in_rule__ForStatement__Group__4__Impl37818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__537848 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__6_in_rule__ForStatement__Group__537851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__ForStatement__Group__5__Impl37879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__6__Impl_in_rule__ForStatement__Group__637910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__BodyAssignment_6_in_rule__ForStatement__Group__6__Impl37937 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__0__Impl_in_rule__DoWhileStatement__Group__037981 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__1_in_rule__DoWhileStatement__Group__037984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_rule__DoWhileStatement__Group__0__Impl38012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__1__Impl_in_rule__DoWhileStatement__Group__138043 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__2_in_rule__DoWhileStatement__Group__138046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__BodyAssignment_1_in_rule__DoWhileStatement__Group__1__Impl38073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__2__Impl_in_rule__DoWhileStatement__Group__238103 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__3_in_rule__DoWhileStatement__Group__238106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_rule__DoWhileStatement__Group__2__Impl38134 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__3__Impl_in_rule__DoWhileStatement__Group__338165 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__4_in_rule__DoWhileStatement__Group__338168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__DoWhileStatement__Group__3__Impl38196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__4__Impl_in_rule__DoWhileStatement__Group__438227 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__5_in_rule__DoWhileStatement__Group__438230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__ConditionAssignment_4_in_rule__DoWhileStatement__Group__4__Impl38257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__5__Impl_in_rule__DoWhileStatement__Group__538287 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__6_in_rule__DoWhileStatement__Group__538290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__DoWhileStatement__Group__5__Impl38318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__6__Impl_in_rule__DoWhileStatement__Group__638349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__DoWhileStatement__Group__6__Impl38377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ContinueStatement__Group__0__Impl_in_rule__ContinueStatement__Group__038422 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__ContinueStatement__Group__1_in_rule__ContinueStatement__Group__038425 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ContinueStatement__Group__1__Impl_in_rule__ContinueStatement__Group__138483 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__ContinueStatement__Group__2_in_rule__ContinueStatement__Group__138486 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_rule__ContinueStatement__Group__1__Impl38514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ContinueStatement__Group__2__Impl_in_rule__ContinueStatement__Group__238545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__ContinueStatement__Group__2__Impl38573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BreakStatement__Group__0__Impl_in_rule__BreakStatement__Group__038610 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_rule__BreakStatement__Group__1_in_rule__BreakStatement__Group__038613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BreakStatement__Group__1__Impl_in_rule__BreakStatement__Group__138671 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__BreakStatement__Group__2_in_rule__BreakStatement__Group__138674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_rule__BreakStatement__Group__1__Impl38702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BreakStatement__Group__2__Impl_in_rule__BreakStatement__Group__238733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__BreakStatement__Group__2__Impl38761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__Group__0__Impl_in_rule__ReturnStatement__Group__038798 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__Group__1_in_rule__ReturnStatement__Group__038801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_rule__ReturnStatement__Group__0__Impl38829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__Group__1__Impl_in_rule__ReturnStatement__Group__138860 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__Group__2_in_rule__ReturnStatement__Group__138863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__ExpressionAssignment_1_in_rule__ReturnStatement__Group__1__Impl38890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ReturnStatement__Group__2__Impl_in_rule__ReturnStatement__Group__238920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__ReturnStatement__Group__2__Impl38948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group__0__Impl_in_rule__Unit__Group__038985 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__Unit__Group__1_in_rule__Unit__Group__038988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group__1__Impl_in_rule__Unit__Group__139046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Alternatives_1_in_rule__Unit__Group__1__Impl39073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_0__0__Impl_in_rule__Unit__Group_1_0__039107 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_0__1_in_rule__Unit__Group_1_0__039110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__Unit__Group_1_0__0__Impl39138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_0__1__Impl_in_rule__Unit__Group_1_0__139169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__Unit__Group_1_0__1__Impl39197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__0__Impl_in_rule__Unit__Group_1_1__039232 = new BitSet(new long[]{0x0000000000001AB0L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__1_in_rule__Unit__Group_1_1__039235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__Unit__Group_1_1__0__Impl39263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__1__Impl_in_rule__Unit__Group_1_1__139294 = new BitSet(new long[]{0x0200004000000000L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__2_in_rule__Unit__Group_1_1__139297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__NumeratorAssignment_1_1_1_in_rule__Unit__Group_1_1__1__Impl39324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__2__Impl_in_rule__Unit__Group_1_1__239354 = new BitSet(new long[]{0x0200004000000000L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__3_in_rule__Unit__Group_1_1__239357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__0_in_rule__Unit__Group_1_1__2__Impl39384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1__3__Impl_in_rule__Unit__Group_1_1__339415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__Unit__Group_1_1__3__Impl39443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__0__Impl_in_rule__Unit__Group_1_1_2__039482 = new BitSet(new long[]{0x0100000000001AB0L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__1_in_rule__Unit__Group_1_1_2__039485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__Unit__Group_1_1_2__0__Impl39513 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__1__Impl_in_rule__Unit__Group_1_1_2__139544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Unit__DenominatorAssignment_1_1_2_1_in_rule__Unit__Group_1_1_2__1__Impl39571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__0__Impl_in_rule__ExplicitUnit__Group__039605 = new BitSet(new long[]{0x0000000000001AB0L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__1_in_rule__ExplicitUnit__Group__039608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__ExplicitUnit__Group__0__Impl39636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__1__Impl_in_rule__ExplicitUnit__Group__139667 = new BitSet(new long[]{0x0200004000000000L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__2_in_rule__ExplicitUnit__Group__139670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__NumeratorAssignment_1_in_rule__ExplicitUnit__Group__1__Impl39697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__2__Impl_in_rule__ExplicitUnit__Group__239727 = new BitSet(new long[]{0x0200004000000000L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__3_in_rule__ExplicitUnit__Group__239730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__0_in_rule__ExplicitUnit__Group__2__Impl39757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__3__Impl_in_rule__ExplicitUnit__Group__339788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__ExplicitUnit__Group__3__Impl39816 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__0__Impl_in_rule__ExplicitUnit__Group_2__039855 = new BitSet(new long[]{0x0100000000001AB0L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__1_in_rule__ExplicitUnit__Group_2__039858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__ExplicitUnit__Group_2__0__Impl39886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__1__Impl_in_rule__ExplicitUnit__Group_2__139917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExplicitUnit__DenominatorAssignment_2_1_in_rule__ExplicitUnit__Group_2__1__Impl39944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__0__Impl_in_rule__UnitNumerator__Group_0__039978 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__1_in_rule__UnitNumerator__Group_0__039981 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__1__Impl_in_rule__UnitNumerator__Group_0__140039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ONE_in_rule__UnitNumerator__Group_0__1__Impl40066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__0__Impl_in_rule__UnitNumerator__Group_1__040099 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__1_in_rule__UnitNumerator__Group_1__040102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__FactorsAssignment_1_0_in_rule__UnitNumerator__Group_1__0__Impl40129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__1__Impl_in_rule__UnitNumerator__Group_1__140159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__0_in_rule__UnitNumerator__Group_1__1__Impl40186 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__0__Impl_in_rule__UnitNumerator__Group_1_1__040221 = new BitSet(new long[]{0x0000000000001AB0L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__1_in_rule__UnitNumerator__Group_1_1__040224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__UnitNumerator__Group_1_1__0__Impl40252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__1__Impl_in_rule__UnitNumerator__Group_1_1__140283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitNumerator__FactorsAssignment_1_1_1_in_rule__UnitNumerator__Group_1_1__1__Impl40310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__0__Impl_in_rule__UnitDenominator__Group_1__040344 = new BitSet(new long[]{0x0000000000001AB0L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__1_in_rule__UnitDenominator__Group_1__040347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__UnitDenominator__Group_1__0__Impl40375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__1__Impl_in_rule__UnitDenominator__Group_1__140406 = new BitSet(new long[]{0x0200002000000000L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__2_in_rule__UnitDenominator__Group_1__140409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__FactorsAssignment_1_1_in_rule__UnitDenominator__Group_1__1__Impl40436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__2__Impl_in_rule__UnitDenominator__Group_1__240466 = new BitSet(new long[]{0x0200002000000000L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__3_in_rule__UnitDenominator__Group_1__240469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__0_in_rule__UnitDenominator__Group_1__2__Impl40496 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__3__Impl_in_rule__UnitDenominator__Group_1__340527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_rule__UnitDenominator__Group_1__3__Impl40555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__0__Impl_in_rule__UnitDenominator__Group_1_2__040594 = new BitSet(new long[]{0x0000000000001AB0L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__1_in_rule__UnitDenominator__Group_1_2__040597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__UnitDenominator__Group_1_2__0__Impl40625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__1__Impl_in_rule__UnitDenominator__Group_1_2__140656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitDenominator__FactorsAssignment_1_2_1_in_rule__UnitDenominator__Group_1_2__1__Impl40683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group__0__Impl_in_rule__UnitFactor__Group__040717 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group__1_in_rule__UnitFactor__Group__040720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__SymbolAssignment_0_in_rule__UnitFactor__Group__0__Impl40747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group__1__Impl_in_rule__UnitFactor__Group__140777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__0_in_rule__UnitFactor__Group__1__Impl40804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__0__Impl_in_rule__UnitFactor__Group_1__040839 = new BitSet(new long[]{0x0000000000100600L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__1_in_rule__UnitFactor__Group_1__040842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__UnitFactor__Group_1__0__Impl40870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__1__Impl_in_rule__UnitFactor__Group_1__140901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitFactor__ExponentAssignment_1_1_in_rule__UnitFactor__Group_1__1__Impl40928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitExponent__Group__0__Impl_in_rule__UnitExponent__Group__040962 = new BitSet(new long[]{0x0000000000100600L});
-    public static final BitSet FOLLOW_rule__UnitExponent__Group__1_in_rule__UnitExponent__Group__040965 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__UnitExponent__Group__0__Impl40994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UnitExponent__Group__1__Impl_in_rule__UnitExponent__Group__141027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidInt_in_rule__UnitExponent__Group__1__Impl41054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__041087 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__041090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__QualifiedName__Group__0__Impl41117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__141146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl41173 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__041208 = new BitSet(new long[]{0x00000000000018B0L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__041211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_rule__QualifiedName__Group_1__0__Impl41239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__141270 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__QualifiedName__Group_1__1__Impl41297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__0__Impl_in_rule__QualifiedNameWithWildcard__Group__041330 = new BitSet(new long[]{0x0000000000400000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__1_in_rule__QualifiedNameWithWildcard__Group__041333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildcard__Group__0__Impl41360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__1__Impl_in_rule__QualifiedNameWithWildcard__Group__141389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Alternatives_1_in_rule__QualifiedNameWithWildcard__Group__1__Impl41416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__041451 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1_in_rule__QualifiedNameWithWildcard__Group_1_1__041454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl41482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__141513 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl41541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Module__PackageNameAssignment_141581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImportDeclaration_in_rule__Module__ImportDeclarationsAssignment_241612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDeclaration_in_rule__Module__DeclarationsAssignment_341643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__ImportDeclaration__ImportedNamespaceAssignment_141674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_0_141705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_0_341736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_1_141767 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDeclarationTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_1_241798 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDeclarationType_in_rule__StructDeclarationTypeSpecifier__TypeAssignment41829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_141860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_2_141891 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_141922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_041953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_141984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment42015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_042046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_242077 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_142108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_142139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_042170 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_142201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_842232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_142263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_042294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_142325 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionAliasDeclaration_in_rule__FunctionDeclaration__FunctionAliasDeclarationsAssignment_11_242356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_342387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_442418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_542449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__TemplateParameterDeclaration__NameAssignment42480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__InputParameterDeclaration__NameAssignment42511 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__OutputParameterDeclaration__NameAssignment42542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_142573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_2_142604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_042635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_1_142666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_642697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_7_142728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_rule__Assertion__StaticAssignment_042764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Assertion__ConditionAssignment_242803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_rule__Assertion__StatusKindAssignment_442834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Assertion__MessageAssignment_542865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__StateVariableDeclaration__NameAssignment_142896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__ConstantDeclaration__NameAssignment_142927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ConstantDeclaration__InitializerAssignment_342958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionAliasDeclaration__NameAssignment_142989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__FunctionAliasDeclaration__FunctionDeclarationAssignment_343024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_143059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_2_143090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_rule__Equation__InitialAssignment_043126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_243165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_443196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AnonymousTypeSpecifier__TypeAlternatives_0_in_rule__AnonymousTypeSpecifier__TypeAssignment43227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__DeclaredTypeSpecifier__TypeDeclarationAssignment43264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_243299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_243330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_243361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_243392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayTypeSpecifier_in_rule__ArrayType__ElementTypeSpecifierAssignment_043423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_243454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_3_143485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__AnonymousArrayTypeSpecifier__TypeAssignment43516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_143547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_243578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_3_143609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMember__TypeSpecifierAssignment_043640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__StructMember__NameAssignment_143671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_143702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_2_143733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__LetExpression__TargetAssignment_443764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_043795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_143826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_2_143857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__LetExpressionAssignment__AssignedExpressionAssignment_243888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__LetExpressionVariableDeclaration__NameAssignment43919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_rule__IfExpression__StaticAssignment_043955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ConditionAssignment_243994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ThenExpressionAssignment_444025 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ElseExpressionAssignment_644056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_rule__SwitchExpression__StaticAssignment_044092 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchExpression__ControlExpressionAssignment_244131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSwitchCase_in_rule__SwitchExpression__CasesAssignment_344162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchExpression__DefaultExpressionAssignment_644193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__SwitchCase__CaseExpressionAssignment_144224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchCase__ResultExpressionAssignment_344255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_244286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_3_144317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLogicalOrExpression_in_rule__ImpliesExpression__RightOperandAssignment_1_244348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLogicalAndExpression_in_rule__LogicalOrExpression__RightOperandAssignment_1_244379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEqualityExpression_in_rule__LogicalAndExpression__RightOperandAssignment_1_244410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEqualityOperator_in_rule__EqualityExpression__OperatorAssignment_1_144441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_244472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_144503 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_244534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_244565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_144596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_244627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_144658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePowerExpression_in_rule__MultiplicativeExpression__RightOperandAssignment_1_244689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePowerOperator_in_rule__PowerExpression__OperatorAssignment_1_144720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_rule__PowerExpression__ExponentAssignment_1_244751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryOperator_in_rule__UnaryExpression__OperatorAssignment_1_144782 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePostfixExpression_in_rule__UnaryExpression__OperandAssignment_1_244813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePostfixOperator_in_rule__PostfixExpression__OperatorAssignment_1_144844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_244875 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_3_144906 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__MemberVariableAssignment_1_1_244937 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__FeatureAssignment_1_2_244972 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_045007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_1_145038 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__IdentifierAssignment_1_3_245069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_445100 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_5_145131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationAccumulator_in_rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_145162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_145193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ExpressionAssignment_1_3_945224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_245255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_145286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_245317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__IterationAccumulator__NameAssignment_045348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__IterationAccumulator__InitializerAssignment_245379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__IterationVariableDeclaration__NameAssignment45410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_rule__ArraySubscript__SliceAssignment_045446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ArraySubscript__ExpressionAssignment_145485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealData_in_rule__RealLiteral__DataAssignment_045516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__RealLiteral__UnitAssignment_145547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntegerData_in_rule__IntegerLiteral__DataAssignment_045578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerLiteral__UnitAssignment_145609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_rule__BooleanLiteral__TrueAssignment_1_045645 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__SimpleStringLiteral__TextAssignment45684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_245715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDynamicStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_045746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_145777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantString_in_rule__ConstantStringSegment__TextAssignment45808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__DynamicStringSegment__ExpressionAssignment_145839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__VariableReference__FeatureAssignment_145874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_145909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionCall__FeatureAssignment_145944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_045979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_1_146010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedVariableReference__FeatureAssignment_246045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedFunctionCall__FeatureAssignment_246084 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_046119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_146150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__EndAssignment_1_246181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveStepExpression__OperatorAssignment_1_146212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__RightOperandAssignment_1_246243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveStepExpression_in_rule__NegateStepExpression__OperandAssignment_1_246274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidInt_in_rule__StepLiteral__ValueAssignment46305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_146336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_146367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_146398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_146429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_046460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_246491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_146522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_2_146553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_046584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_1_146615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_146646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_2_146677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__StructConstructionMember__NameAssignment_046708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__StructConstructionMember__ValueAssignment_246739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExplicitUnit_in_rule__UnitConstructionOperator__UnitAssignment_146770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_146801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_2_146832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCompound_in_rule__AlgorithmExpression__BodyAssignment_246863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__Compound__StatementsAssignment_246894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_rule__Assignment__TargetAssignment_046925 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__Assignment__AssignedExpressionAssignment_246956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_146987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_347018 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__IfStatement__ConditionAssignment_247049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ThenStatementAssignment_447080 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ElseStatementAssignment_5_147111 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__WhileStatement__ConditionAssignment_247142 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__WhileStatement__BodyAssignment_447173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__ForStatement__IterationVariableAssignment_247204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ForStatement__CollectionExpressionAssignment_447235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__ForStatement__BodyAssignment_647266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStatement_in_rule__DoWhileStatement__BodyAssignment_147297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__DoWhileStatement__ConditionAssignment_447328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ReturnStatement__ExpressionAssignment_147359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitNumerator_in_rule__Unit__NumeratorAssignment_1_1_147390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitDenominator_in_rule__Unit__DenominatorAssignment_1_1_2_147421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_rule__Unit__NumeratorAssignment_1_247452 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitNumerator_in_rule__ExplicitUnit__NumeratorAssignment_147483 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitDenominator_in_rule__ExplicitUnit__DenominatorAssignment_2_147514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_047545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_1_147576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_047607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_147638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_147669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_047700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_147731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__0__Impl_in_rule__DynamicStringSegment__Group__030224 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__1_in_rule__DynamicStringSegment__Group__030227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_rule__DynamicStringSegment__Group__0__Impl30255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__1__Impl_in_rule__DynamicStringSegment__Group__130286 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__2_in_rule__DynamicStringSegment__Group__130289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__ExpressionAssignment_1_in_rule__DynamicStringSegment__Group__1__Impl30316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DynamicStringSegment__Group__2__Impl_in_rule__DynamicStringSegment__Group__230346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__DynamicStringSegment__Group__2__Impl30374 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__030411 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__030414 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__130472 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__130475 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl30502 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__230532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl30559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__030596 = new BitSet(new long[]{0x0000000000100E00L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__030599 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__VariableReference__Group_2__0__Impl30627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__130658 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__130661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl30688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__230718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__VariableReference__Group_2__2__Impl30746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__0__Impl_in_rule__FunctionCall__Group__030783 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__1_in_rule__FunctionCall__Group__030786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__1__Impl_in_rule__FunctionCall__Group__130844 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__2_in_rule__FunctionCall__Group__130847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__FeatureAssignment_1_in_rule__FunctionCall__Group__1__Impl30874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__2__Impl_in_rule__FunctionCall__Group__230904 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__3_in_rule__FunctionCall__Group__230907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__FunctionCall__Group__2__Impl30935 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__3__Impl_in_rule__FunctionCall__Group__330966 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__4_in_rule__FunctionCall__Group__330969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__0_in_rule__FunctionCall__Group__3__Impl30996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group__4__Impl_in_rule__FunctionCall__Group__431027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__FunctionCall__Group__4__Impl31055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__0__Impl_in_rule__FunctionCall__Group_3__031096 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__1_in_rule__FunctionCall__Group_3__031099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_0_in_rule__FunctionCall__Group_3__0__Impl31126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3__1__Impl_in_rule__FunctionCall__Group_3__131156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__0_in_rule__FunctionCall__Group_3__1__Impl31183 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__0__Impl_in_rule__FunctionCall__Group_3_1__031218 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__1_in_rule__FunctionCall__Group_3_1__031221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__FunctionCall__Group_3_1__0__Impl31249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__Group_3_1__1__Impl_in_rule__FunctionCall__Group_3_1__131280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionCall__ArgumentsAssignment_3_1_1_in_rule__FunctionCall__Group_3_1__1__Impl31307 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__0__Impl_in_rule__QualifiedVariableReference__Group__031341 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__1_in_rule__QualifiedVariableReference__Group__031344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__1__Impl_in_rule__QualifiedVariableReference__Group__131402 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__2_in_rule__QualifiedVariableReference__Group__131405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_rule__QualifiedVariableReference__Group__1__Impl31433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__Group__2__Impl_in_rule__QualifiedVariableReference__Group__231464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedVariableReference__FeatureAssignment_2_in_rule__QualifiedVariableReference__Group__2__Impl31491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__0__Impl_in_rule__QualifiedFunctionCall__Group__031527 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__1_in_rule__QualifiedFunctionCall__Group__031530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__1__Impl_in_rule__QualifiedFunctionCall__Group__131588 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__2_in_rule__QualifiedFunctionCall__Group__131591 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_rule__QualifiedFunctionCall__Group__1__Impl31619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__2__Impl_in_rule__QualifiedFunctionCall__Group__231650 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__3_in_rule__QualifiedFunctionCall__Group__231653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__FeatureAssignment_2_in_rule__QualifiedFunctionCall__Group__2__Impl31680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__3__Impl_in_rule__QualifiedFunctionCall__Group__331710 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__4_in_rule__QualifiedFunctionCall__Group__331713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__QualifiedFunctionCall__Group__3__Impl31741 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__4__Impl_in_rule__QualifiedFunctionCall__Group__431772 = new BitSet(new long[]{0x0304100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__5_in_rule__QualifiedFunctionCall__Group__431775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__0_in_rule__QualifiedFunctionCall__Group__4__Impl31802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group__5__Impl_in_rule__QualifiedFunctionCall__Group__531833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__QualifiedFunctionCall__Group__5__Impl31861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__0__Impl_in_rule__QualifiedFunctionCall__Group_4__031904 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__1_in_rule__QualifiedFunctionCall__Group_4__031907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_0_in_rule__QualifiedFunctionCall__Group_4__0__Impl31934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4__1__Impl_in_rule__QualifiedFunctionCall__Group_4__131964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0_in_rule__QualifiedFunctionCall__Group_4__1__Impl31991 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__0__Impl_in_rule__QualifiedFunctionCall__Group_4_1__032026 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1_in_rule__QualifiedFunctionCall__Group_4_1__032029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__QualifiedFunctionCall__Group_4_1__0__Impl32057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__Group_4_1__1__Impl_in_rule__QualifiedFunctionCall__Group_4_1__132088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1_in_rule__QualifiedFunctionCall__Group_4_1__1__Impl32115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__0__Impl_in_rule__RangeStepExpression__Group__032149 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__1_in_rule__RangeStepExpression__Group__032152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__Group__0__Impl32179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group__1__Impl_in_rule__RangeStepExpression__Group__132208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__0_in_rule__RangeStepExpression__Group__1__Impl32235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__0__Impl_in_rule__RangeStepExpression__Group_1__032270 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__1_in_rule__RangeStepExpression__Group_1__032273 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__1__Impl_in_rule__RangeStepExpression__Group_1__132331 = new BitSet(new long[]{0x0000000000100E00L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__2_in_rule__RangeStepExpression__Group_1__132334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_rule__RangeStepExpression__Group_1__1__Impl32362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__Group_1__2__Impl_in_rule__RangeStepExpression__Group_1__232393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RangeStepExpression__EndAssignment_1_2_in_rule__RangeStepExpression__Group_1__2__Impl32420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__0__Impl_in_rule__AdditiveStepExpression__Group__032456 = new BitSet(new long[]{0x0000001800180000L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__1_in_rule__AdditiveStepExpression__Group__032459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__Group__0__Impl32486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group__1__Impl_in_rule__AdditiveStepExpression__Group__132515 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__0_in_rule__AdditiveStepExpression__Group__1__Impl32542 = new BitSet(new long[]{0x0000001800180002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__0__Impl_in_rule__AdditiveStepExpression__Group_1__032577 = new BitSet(new long[]{0x0000001800180000L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__1_in_rule__AdditiveStepExpression__Group_1__032580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__1__Impl_in_rule__AdditiveStepExpression__Group_1__132638 = new BitSet(new long[]{0x0000000000100E00L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__2_in_rule__AdditiveStepExpression__Group_1__132641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__OperatorAssignment_1_1_in_rule__AdditiveStepExpression__Group_1__1__Impl32668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__Group_1__2__Impl_in_rule__AdditiveStepExpression__Group_1__232698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AdditiveStepExpression__RightOperandAssignment_1_2_in_rule__AdditiveStepExpression__Group_1__2__Impl32725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__0__Impl_in_rule__NegateStepExpression__Group_1__032761 = new BitSet(new long[]{0x0000000000100E00L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__1_in_rule__NegateStepExpression__Group_1__032764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__1__Impl_in_rule__NegateStepExpression__Group_1__132822 = new BitSet(new long[]{0x0000000000000E00L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__2_in_rule__NegateStepExpression__Group_1__132825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__NegateStepExpression__Group_1__1__Impl32853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__2__Impl_in_rule__NegateStepExpression__Group_1__232884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NegateStepExpression__OperandAssignment_1_2_in_rule__NegateStepExpression__Group_1__2__Impl32911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StepN__Group__0__Impl_in_rule__StepN__Group__032947 = new BitSet(new long[]{0x0000000000000E00L});
+    public static final BitSet FOLLOW_rule__StepN__Group__1_in_rule__StepN__Group__032950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StepN__Group__1__Impl_in_rule__StepN__Group__133008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_N_in_rule__StepN__Group__1__Impl33035 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__0__Impl_in_rule__ArrayConstructionOperator__Group__033068 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__1_in_rule__ArrayConstructionOperator__Group__033071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__ArrayConstructionOperator__Group__0__Impl33099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__1__Impl_in_rule__ArrayConstructionOperator__Group__133130 = new BitSet(new long[]{0x0040000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__2_in_rule__ArrayConstructionOperator__Group__133133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_1_in_rule__ArrayConstructionOperator__Group__1__Impl33160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__2__Impl_in_rule__ArrayConstructionOperator__Group__233190 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__3_in_rule__ArrayConstructionOperator__Group__233193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Alternatives_2_in_rule__ArrayConstructionOperator__Group__2__Impl33220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group__3__Impl_in_rule__ArrayConstructionOperator__Group__333250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__ArrayConstructionOperator__Group__3__Impl33278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__0__Impl_in_rule__ArrayConstructionOperator__Group_2_0__033317 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1_in_rule__ArrayConstructionOperator__Group_2_0__033320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_0__0__Impl33348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_0__1__Impl_in_rule__ArrayConstructionOperator__Group_2_0__133379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1_in_rule__ArrayConstructionOperator__Group_2_0__1__Impl33406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1__033440 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1_in_rule__ArrayConstructionOperator__Group_2_1__033443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_rule__ArrayConstructionOperator__Group_2_1__0__Impl33471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1__133502 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2_in_rule__ArrayConstructionOperator__Group_2_1__133505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1_in_rule__ArrayConstructionOperator__Group_2_1__1__Impl33532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__2__Impl_in_rule__ArrayConstructionOperator__Group_2_1__233562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0_in_rule__ArrayConstructionOperator__Group_2_1__2__Impl33589 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__033626 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1_in_rule__ArrayConstructionOperator__Group_2_1_2__033629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__ArrayConstructionOperator__Group_2_1_2__0__Impl33657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl_in_rule__ArrayConstructionOperator__Group_2_1_2__133688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1_in_rule__ArrayConstructionOperator__Group_2_1_2__1__Impl33715 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__0__Impl_in_rule__ArrayConstructionIterationClause__Group__033749 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1_in_rule__ArrayConstructionIterationClause__Group__033752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__IterationVariableAssignment_0_in_rule__ArrayConstructionIterationClause__Group__0__Impl33779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__1__Impl_in_rule__ArrayConstructionIterationClause__Group__133809 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__2_in_rule__ArrayConstructionIterationClause__Group__133812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_rule__ArrayConstructionIterationClause__Group__1__Impl33840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__Group__2__Impl_in_rule__ArrayConstructionIterationClause__Group__233871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2_in_rule__ArrayConstructionIterationClause__Group__2__Impl33898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__0__Impl_in_rule__ArrayConcatenationOperator__Group__033934 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__1_in_rule__ArrayConcatenationOperator__Group__033937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_rule__ArrayConcatenationOperator__Group__0__Impl33965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__1__Impl_in_rule__ArrayConcatenationOperator__Group__133996 = new BitSet(new long[]{0x0008000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__2_in_rule__ArrayConcatenationOperator__Group__133999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_1_in_rule__ArrayConcatenationOperator__Group__1__Impl34026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__2__Impl_in_rule__ArrayConcatenationOperator__Group__234056 = new BitSet(new long[]{0x0008000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__3_in_rule__ArrayConcatenationOperator__Group__234059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__0_in_rule__ArrayConcatenationOperator__Group__2__Impl34086 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group__3__Impl_in_rule__ArrayConcatenationOperator__Group__334117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_rule__ArrayConcatenationOperator__Group__3__Impl34145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__0__Impl_in_rule__ArrayConcatenationOperator__Group_2__034184 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__1_in_rule__ArrayConcatenationOperator__Group_2__034187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__ArrayConcatenationOperator__Group_2__0__Impl34215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__Group_2__1__Impl_in_rule__ArrayConcatenationOperator__Group_2__134246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ArrayConcatenationOperator__RowsAssignment_2_1_in_rule__ArrayConcatenationOperator__Group_2__1__Impl34273 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group__0__Impl_in_rule__ExpressionList__Group__034307 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group__1_in_rule__ExpressionList__Group__034310 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__ExpressionsAssignment_0_in_rule__ExpressionList__Group__0__Impl34337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group__1__Impl_in_rule__ExpressionList__Group__134367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__0_in_rule__ExpressionList__Group__1__Impl34394 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__0__Impl_in_rule__ExpressionList__Group_1__034429 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__1_in_rule__ExpressionList__Group_1__034432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__ExpressionList__Group_1__0__Impl34460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__Group_1__1__Impl_in_rule__ExpressionList__Group_1__134491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExpressionList__ExpressionsAssignment_1_1_in_rule__ExpressionList__Group_1__1__Impl34518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__0__Impl_in_rule__StructConstructionOperator__Group__034552 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__1_in_rule__StructConstructionOperator__Group__034555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__StructConstructionOperator__Group__0__Impl34583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__1__Impl_in_rule__StructConstructionOperator__Group__134614 = new BitSet(new long[]{0x0050000000000000L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__2_in_rule__StructConstructionOperator__Group__134617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__MembersAssignment_1_in_rule__StructConstructionOperator__Group__1__Impl34644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__2__Impl_in_rule__StructConstructionOperator__Group__234674 = new BitSet(new long[]{0x0050000000000000L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__3_in_rule__StructConstructionOperator__Group__234677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__0_in_rule__StructConstructionOperator__Group__2__Impl34704 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group__3__Impl_in_rule__StructConstructionOperator__Group__334735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__StructConstructionOperator__Group__3__Impl34763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__0__Impl_in_rule__StructConstructionOperator__Group_2__034802 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__1_in_rule__StructConstructionOperator__Group_2__034805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__StructConstructionOperator__Group_2__0__Impl34833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__Group_2__1__Impl_in_rule__StructConstructionOperator__Group_2__134864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionOperator__MembersAssignment_2_1_in_rule__StructConstructionOperator__Group_2__1__Impl34891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__0__Impl_in_rule__StructConstructionMember__Group__034925 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__1_in_rule__StructConstructionMember__Group__034928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__NameAssignment_0_in_rule__StructConstructionMember__Group__0__Impl34955 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__1__Impl_in_rule__StructConstructionMember__Group__134985 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__2_in_rule__StructConstructionMember__Group__134988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__StructConstructionMember__Group__1__Impl35016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__Group__2__Impl_in_rule__StructConstructionMember__Group__235047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructConstructionMember__ValueAssignment_2_in_rule__StructConstructionMember__Group__2__Impl35074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__0__Impl_in_rule__UnitConstructionOperator__Group__035110 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__1_in_rule__UnitConstructionOperator__Group__035113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_rule__UnitConstructionOperator__Group__0__Impl35141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitConstructionOperator__Group__1__Impl_in_rule__UnitConstructionOperator__Group__135172 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitConstructionOperator__UnitAssignment_1_in_rule__UnitConstructionOperator__Group__1__Impl35199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__0__Impl_in_rule__ParenthesizedExpression__Group__035233 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__1_in_rule__ParenthesizedExpression__Group__035236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__ParenthesizedExpression__Group__0__Impl35264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__1__Impl_in_rule__ParenthesizedExpression__Group__135295 = new BitSet(new long[]{0x0240000000000000L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__2_in_rule__ParenthesizedExpression__Group__135298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_1_in_rule__ParenthesizedExpression__Group__1__Impl35325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__2__Impl_in_rule__ParenthesizedExpression__Group__235355 = new BitSet(new long[]{0x0240000000000000L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__3_in_rule__ParenthesizedExpression__Group__235358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__0_in_rule__ParenthesizedExpression__Group__2__Impl35385 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group__3__Impl_in_rule__ParenthesizedExpression__Group__335416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__ParenthesizedExpression__Group__3__Impl35444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__0__Impl_in_rule__ParenthesizedExpression__Group_2__035483 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__1_in_rule__ParenthesizedExpression__Group_2__035486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__ParenthesizedExpression__Group_2__0__Impl35514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__Group_2__1__Impl_in_rule__ParenthesizedExpression__Group_2__135545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParenthesizedExpression__ExpressionsAssignment_2_1_in_rule__ParenthesizedExpression__Group_2__1__Impl35572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EndExpression__Group__0__Impl_in_rule__EndExpression__Group__035606 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__EndExpression__Group__1_in_rule__EndExpression__Group__035609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EndExpression__Group__1__Impl_in_rule__EndExpression__Group__135667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_rule__EndExpression__Group__1__Impl35695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__0__Impl_in_rule__AlgorithmExpression__Group__035730 = new BitSet(new long[]{0x0104000000203EB0L,0x0000004072800080L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__1_in_rule__AlgorithmExpression__Group__035733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__1__Impl_in_rule__AlgorithmExpression__Group__135791 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__2_in_rule__AlgorithmExpression__Group__135794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_rule__AlgorithmExpression__Group__1__Impl35822 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__Group__2__Impl_in_rule__AlgorithmExpression__Group__235853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AlgorithmExpression__BodyAssignment_2_in_rule__AlgorithmExpression__Group__2__Impl35880 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound__Group__0__Impl_in_rule__Compound__Group__035916 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__Compound__Group__1_in_rule__Compound__Group__035919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound__Group__1__Impl_in_rule__Compound__Group__135977 = new BitSet(new long[]{0x41140000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__Compound__Group__2_in_rule__Compound__Group__135980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__Compound__Group__1__Impl36008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound__Group__2__Impl_in_rule__Compound__Group__236039 = new BitSet(new long[]{0x41140000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__Compound__Group__3_in_rule__Compound__Group__236042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound__StatementsAssignment_2_in_rule__Compound__Group__2__Impl36069 = new BitSet(new long[]{0x41040000000018B2L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__Compound__Group__3__Impl_in_rule__Compound__Group__336100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__Compound__Group__3__Impl36128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__036167 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__036170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__TargetAssignment_0_in_rule__Assignment__Group__0__Impl36197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__136227 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__136230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__Assignment__Group__1__Impl36258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__236289 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__3_in_rule__Assignment__Group__236292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__AssignedExpressionAssignment_2_in_rule__Assignment__Group__2__Impl36319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__336349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__Assignment__Group__3__Impl36377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__036416 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__036419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_rule__LocalVariableDeclaration__Group__0__Impl36447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__136478 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__136481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl36508 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__236538 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__236541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__LocalVariableDeclaration__Group__2__Impl36569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__336600 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__336603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl36630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__436660 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__LocalVariableDeclaration__Group__4__Impl36688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__0__Impl_in_rule__IfStatement__Group__036729 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__1_in_rule__IfStatement__Group__036732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_rule__IfStatement__Group__0__Impl36760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__1__Impl_in_rule__IfStatement__Group__136791 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__2_in_rule__IfStatement__Group__136794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__IfStatement__Group__1__Impl36822 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__2__Impl_in_rule__IfStatement__Group__236853 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__3_in_rule__IfStatement__Group__236856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__ConditionAssignment_2_in_rule__IfStatement__Group__2__Impl36883 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__3__Impl_in_rule__IfStatement__Group__336913 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__4_in_rule__IfStatement__Group__336916 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__IfStatement__Group__3__Impl36944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__4__Impl_in_rule__IfStatement__Group__436975 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__5_in_rule__IfStatement__Group__436978 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__ThenStatementAssignment_4_in_rule__IfStatement__Group__4__Impl37005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group__5__Impl_in_rule__IfStatement__Group__537035 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_rule__IfStatement__Group__5__Impl37062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0__Impl_in_rule__IfStatement__Group_5__037105 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group_5__1_in_rule__IfStatement__Group_5__037108 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_rule__IfStatement__Group_5__0__Impl37137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group_5__1__Impl_in_rule__IfStatement__Group_5__137169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__ElseStatementAssignment_5_1_in_rule__IfStatement__Group_5__1__Impl37196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__0__Impl_in_rule__WhileStatement__Group__037230 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__1_in_rule__WhileStatement__Group__037233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_rule__WhileStatement__Group__0__Impl37261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__1__Impl_in_rule__WhileStatement__Group__137292 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__2_in_rule__WhileStatement__Group__137295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__WhileStatement__Group__1__Impl37323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__2__Impl_in_rule__WhileStatement__Group__237354 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__3_in_rule__WhileStatement__Group__237357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__ConditionAssignment_2_in_rule__WhileStatement__Group__2__Impl37384 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__3__Impl_in_rule__WhileStatement__Group__337414 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__4_in_rule__WhileStatement__Group__337417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__WhileStatement__Group__3__Impl37445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__Group__4__Impl_in_rule__WhileStatement__Group__437476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__WhileStatement__BodyAssignment_4_in_rule__WhileStatement__Group__4__Impl37503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__0__Impl_in_rule__ForStatement__Group__037543 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__1_in_rule__ForStatement__Group__037546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_rule__ForStatement__Group__0__Impl37574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__1__Impl_in_rule__ForStatement__Group__137605 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__2_in_rule__ForStatement__Group__137608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__ForStatement__Group__1__Impl37636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__2__Impl_in_rule__ForStatement__Group__237667 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__3_in_rule__ForStatement__Group__237670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__IterationVariableAssignment_2_in_rule__ForStatement__Group__2__Impl37697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__3__Impl_in_rule__ForStatement__Group__337727 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__4_in_rule__ForStatement__Group__337730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_rule__ForStatement__Group__3__Impl37758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__437789 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__5_in_rule__ForStatement__Group__437792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__CollectionExpressionAssignment_4_in_rule__ForStatement__Group__4__Impl37819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__537849 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__6_in_rule__ForStatement__Group__537852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__ForStatement__Group__5__Impl37880 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__6__Impl_in_rule__ForStatement__Group__637911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ForStatement__BodyAssignment_6_in_rule__ForStatement__Group__6__Impl37938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__0__Impl_in_rule__DoWhileStatement__Group__037982 = new BitSet(new long[]{0x41040000000018B0L,0x0000000F88000800L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__1_in_rule__DoWhileStatement__Group__037985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_rule__DoWhileStatement__Group__0__Impl38013 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__1__Impl_in_rule__DoWhileStatement__Group__138044 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__2_in_rule__DoWhileStatement__Group__138047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__BodyAssignment_1_in_rule__DoWhileStatement__Group__1__Impl38074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__2__Impl_in_rule__DoWhileStatement__Group__238104 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__3_in_rule__DoWhileStatement__Group__238107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_rule__DoWhileStatement__Group__2__Impl38135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__3__Impl_in_rule__DoWhileStatement__Group__338166 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__4_in_rule__DoWhileStatement__Group__338169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__DoWhileStatement__Group__3__Impl38197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__4__Impl_in_rule__DoWhileStatement__Group__438228 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__5_in_rule__DoWhileStatement__Group__438231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__ConditionAssignment_4_in_rule__DoWhileStatement__Group__4__Impl38258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__5__Impl_in_rule__DoWhileStatement__Group__538288 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__6_in_rule__DoWhileStatement__Group__538291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__DoWhileStatement__Group__5__Impl38319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DoWhileStatement__Group__6__Impl_in_rule__DoWhileStatement__Group__638350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__DoWhileStatement__Group__6__Impl38378 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ContinueStatement__Group__0__Impl_in_rule__ContinueStatement__Group__038423 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__ContinueStatement__Group__1_in_rule__ContinueStatement__Group__038426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ContinueStatement__Group__1__Impl_in_rule__ContinueStatement__Group__138484 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__ContinueStatement__Group__2_in_rule__ContinueStatement__Group__138487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_rule__ContinueStatement__Group__1__Impl38515 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ContinueStatement__Group__2__Impl_in_rule__ContinueStatement__Group__238546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__ContinueStatement__Group__2__Impl38574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BreakStatement__Group__0__Impl_in_rule__BreakStatement__Group__038611 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_rule__BreakStatement__Group__1_in_rule__BreakStatement__Group__038614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BreakStatement__Group__1__Impl_in_rule__BreakStatement__Group__138672 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__BreakStatement__Group__2_in_rule__BreakStatement__Group__138675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_rule__BreakStatement__Group__1__Impl38703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BreakStatement__Group__2__Impl_in_rule__BreakStatement__Group__238734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__BreakStatement__Group__2__Impl38762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__Group__0__Impl_in_rule__ReturnStatement__Group__038799 = new BitSet(new long[]{0x0104100000303EB0L,0x0000005072804A80L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__Group__1_in_rule__ReturnStatement__Group__038802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_rule__ReturnStatement__Group__0__Impl38830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__Group__1__Impl_in_rule__ReturnStatement__Group__138861 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__Group__2_in_rule__ReturnStatement__Group__138864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__ExpressionAssignment_1_in_rule__ReturnStatement__Group__1__Impl38891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ReturnStatement__Group__2__Impl_in_rule__ReturnStatement__Group__238921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__ReturnStatement__Group__2__Impl38949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group__0__Impl_in_rule__Unit__Group__038986 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__Unit__Group__1_in_rule__Unit__Group__038989 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group__1__Impl_in_rule__Unit__Group__139047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Alternatives_1_in_rule__Unit__Group__1__Impl39074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_0__0__Impl_in_rule__Unit__Group_1_0__039108 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_0__1_in_rule__Unit__Group_1_0__039111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__Unit__Group_1_0__0__Impl39139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_0__1__Impl_in_rule__Unit__Group_1_0__139170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__Unit__Group_1_0__1__Impl39198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__0__Impl_in_rule__Unit__Group_1_1__039233 = new BitSet(new long[]{0x0000000000001AB0L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__1_in_rule__Unit__Group_1_1__039236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__Unit__Group_1_1__0__Impl39264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__1__Impl_in_rule__Unit__Group_1_1__139295 = new BitSet(new long[]{0x0200004000000000L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__2_in_rule__Unit__Group_1_1__139298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__NumeratorAssignment_1_1_1_in_rule__Unit__Group_1_1__1__Impl39325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__2__Impl_in_rule__Unit__Group_1_1__239355 = new BitSet(new long[]{0x0200004000000000L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__3_in_rule__Unit__Group_1_1__239358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__0_in_rule__Unit__Group_1_1__2__Impl39385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1__3__Impl_in_rule__Unit__Group_1_1__339416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__Unit__Group_1_1__3__Impl39444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__0__Impl_in_rule__Unit__Group_1_1_2__039483 = new BitSet(new long[]{0x0100000000001AB0L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__1_in_rule__Unit__Group_1_1_2__039486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__Unit__Group_1_1_2__0__Impl39514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__Group_1_1_2__1__Impl_in_rule__Unit__Group_1_1_2__139545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Unit__DenominatorAssignment_1_1_2_1_in_rule__Unit__Group_1_1_2__1__Impl39572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__0__Impl_in_rule__ExplicitUnit__Group__039606 = new BitSet(new long[]{0x0000000000001AB0L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__1_in_rule__ExplicitUnit__Group__039609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__ExplicitUnit__Group__0__Impl39637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__1__Impl_in_rule__ExplicitUnit__Group__139668 = new BitSet(new long[]{0x0200004000000000L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__2_in_rule__ExplicitUnit__Group__139671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__NumeratorAssignment_1_in_rule__ExplicitUnit__Group__1__Impl39698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__2__Impl_in_rule__ExplicitUnit__Group__239728 = new BitSet(new long[]{0x0200004000000000L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__3_in_rule__ExplicitUnit__Group__239731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__0_in_rule__ExplicitUnit__Group__2__Impl39758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group__3__Impl_in_rule__ExplicitUnit__Group__339789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__ExplicitUnit__Group__3__Impl39817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__0__Impl_in_rule__ExplicitUnit__Group_2__039856 = new BitSet(new long[]{0x0100000000001AB0L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__1_in_rule__ExplicitUnit__Group_2__039859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ExplicitUnit__Group_2__0__Impl39887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__Group_2__1__Impl_in_rule__ExplicitUnit__Group_2__139918 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExplicitUnit__DenominatorAssignment_2_1_in_rule__ExplicitUnit__Group_2__1__Impl39945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__0__Impl_in_rule__UnitNumerator__Group_0__039979 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__1_in_rule__UnitNumerator__Group_0__039982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_0__1__Impl_in_rule__UnitNumerator__Group_0__140040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ONE_in_rule__UnitNumerator__Group_0__1__Impl40067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__0__Impl_in_rule__UnitNumerator__Group_1__040100 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__1_in_rule__UnitNumerator__Group_1__040103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__FactorsAssignment_1_0_in_rule__UnitNumerator__Group_1__0__Impl40130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1__1__Impl_in_rule__UnitNumerator__Group_1__140160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__0_in_rule__UnitNumerator__Group_1__1__Impl40187 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__0__Impl_in_rule__UnitNumerator__Group_1_1__040222 = new BitSet(new long[]{0x0000000000001AB0L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__1_in_rule__UnitNumerator__Group_1_1__040225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__UnitNumerator__Group_1_1__0__Impl40253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__Group_1_1__1__Impl_in_rule__UnitNumerator__Group_1_1__140284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitNumerator__FactorsAssignment_1_1_1_in_rule__UnitNumerator__Group_1_1__1__Impl40311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__0__Impl_in_rule__UnitDenominator__Group_1__040345 = new BitSet(new long[]{0x0000000000001AB0L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__1_in_rule__UnitDenominator__Group_1__040348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__UnitDenominator__Group_1__0__Impl40376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__1__Impl_in_rule__UnitDenominator__Group_1__140407 = new BitSet(new long[]{0x0200002000000000L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__2_in_rule__UnitDenominator__Group_1__140410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__FactorsAssignment_1_1_in_rule__UnitDenominator__Group_1__1__Impl40437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__2__Impl_in_rule__UnitDenominator__Group_1__240467 = new BitSet(new long[]{0x0200002000000000L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__3_in_rule__UnitDenominator__Group_1__240470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__0_in_rule__UnitDenominator__Group_1__2__Impl40497 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1__3__Impl_in_rule__UnitDenominator__Group_1__340528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__UnitDenominator__Group_1__3__Impl40556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__0__Impl_in_rule__UnitDenominator__Group_1_2__040595 = new BitSet(new long[]{0x0000000000001AB0L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__1_in_rule__UnitDenominator__Group_1_2__040598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__UnitDenominator__Group_1_2__0__Impl40626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__Group_1_2__1__Impl_in_rule__UnitDenominator__Group_1_2__140657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitDenominator__FactorsAssignment_1_2_1_in_rule__UnitDenominator__Group_1_2__1__Impl40684 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group__0__Impl_in_rule__UnitFactor__Group__040718 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group__1_in_rule__UnitFactor__Group__040721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__SymbolAssignment_0_in_rule__UnitFactor__Group__0__Impl40748 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group__1__Impl_in_rule__UnitFactor__Group__140778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__0_in_rule__UnitFactor__Group__1__Impl40805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__0__Impl_in_rule__UnitFactor__Group_1__040840 = new BitSet(new long[]{0x0000000000100600L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__1_in_rule__UnitFactor__Group_1__040843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_rule__UnitFactor__Group_1__0__Impl40871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__Group_1__1__Impl_in_rule__UnitFactor__Group_1__140902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitFactor__ExponentAssignment_1_1_in_rule__UnitFactor__Group_1__1__Impl40929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitExponent__Group__0__Impl_in_rule__UnitExponent__Group__040963 = new BitSet(new long[]{0x0000000000100600L});
+    public static final BitSet FOLLOW_rule__UnitExponent__Group__1_in_rule__UnitExponent__Group__040966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__UnitExponent__Group__0__Impl40995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnitExponent__Group__1__Impl_in_rule__UnitExponent__Group__141028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidInt_in_rule__UnitExponent__Group__1__Impl41055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__041088 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__041091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__QualifiedName__Group__0__Impl41118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__141147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl41174 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__041209 = new BitSet(new long[]{0x00000000000018B0L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__041212 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_rule__QualifiedName__Group_1__0__Impl41240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__141271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__QualifiedName__Group_1__1__Impl41298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__0__Impl_in_rule__QualifiedNameWithWildcard__Group__041331 = new BitSet(new long[]{0x0000000000400000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__1_in_rule__QualifiedNameWithWildcard__Group__041334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameWithWildcard__Group__0__Impl41361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group__1__Impl_in_rule__QualifiedNameWithWildcard__Group__141390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Alternatives_1_in_rule__QualifiedNameWithWildcard__Group__1__Impl41417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__041452 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1_in_rule__QualifiedNameWithWildcard__Group_1_1__041455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_rule__QualifiedNameWithWildcard__Group_1_1__0__Impl41483 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl_in_rule__QualifiedNameWithWildcard__Group_1_1__141514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__QualifiedNameWithWildcard__Group_1_1__1__Impl41542 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Module__PackageNameAssignment_141582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImportDeclaration_in_rule__Module__ImportDeclarationsAssignment_241613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDeclaration_in_rule__Module__DeclarationsAssignment_341644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__ImportDeclaration__ImportedNamespaceAssignment_141675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_0_141706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_0_341737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__DataTypeDeclaration__NameAssignment_1_141768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclarationTypeSpecifier_in_rule__DataTypeDeclaration__TypeSpecifierAssignment_1_241799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclarationType_in_rule__StructDeclarationTypeSpecifier__TypeAssignment41830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_141861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructDeclarationType__MembersAssignment_2_141892 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_141923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_041954 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_141985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment42016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_042047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_242078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_142109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_142140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_042171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_142202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_842233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_142264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_042295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_142326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionAliasDeclaration_in_rule__FunctionDeclaration__FunctionAliasDeclarationsAssignment_11_242357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_342388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_442419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_542450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__TemplateParameterDeclaration__NameAssignment42481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__InputParameterDeclaration__NameAssignment42512 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__OutputParameterDeclaration__NameAssignment42543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_142574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Check__TemplateArgumentsAssignment_1_2_142605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_042636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__InputParameterTypesAssignment_3_1_142667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_642698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__Check__OutputParameterTypesAssignment_7_142729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_rule__Assertion__StaticAssignment_042765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Assertion__ConditionAssignment_242804 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_rule__Assertion__StatusKindAssignment_442835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Assertion__MessageAssignment_542866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__StateVariableDeclaration__NameAssignment_142897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__ConstantDeclaration__NameAssignment_142928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ConstantDeclaration__InitializerAssignment_342959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionAliasDeclaration__NameAssignment_142990 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__FunctionAliasDeclaration__FunctionDeclarationAssignment_343025 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_143060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionAliasDeclaration__TemplateArgumentsAssignment_4_2_143091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_rule__Equation__InitialAssignment_043127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__LeftHandSideAssignment_243166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Equation__RightHandSideAssignment_443197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AnonymousTypeSpecifier__TypeAlternatives_0_in_rule__AnonymousTypeSpecifier__TypeAssignment43228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__DeclaredTypeSpecifier__TypeDeclarationAssignment43265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__RealType__UnitAssignment_243300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerType__UnitAssignment_243331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__ComplexType__UnitAssignment_243362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__GaussianType__UnitAssignment_243393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayTypeSpecifier_in_rule__ArrayType__ElementTypeSpecifierAssignment_043424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_243455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayDimension_in_rule__ArrayType__DimensionsAssignment_3_143486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_rule__AnonymousArrayTypeSpecifier__TypeAssignment43517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayDimension__SizeAssignment_143548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_243579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructMember_in_rule__StructType__MembersAssignment_3_143610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMember__TypeSpecifierAssignment_043641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__StructMember__NameAssignment_143672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_143703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_rule__LetExpression__AssignmentsAssignment_2_143734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__LetExpression__TargetAssignment_443765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_043796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_143827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_rule__LetExpressionAssignment__VariablesAssignment_0_1_2_143858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__LetExpressionAssignment__AssignedExpressionAssignment_243889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__LetExpressionVariableDeclaration__NameAssignment43920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_rule__IfExpression__StaticAssignment_043956 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ConditionAssignment_243995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ThenExpressionAssignment_444026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__IfExpression__ElseExpressionAssignment_644057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_rule__SwitchExpression__StaticAssignment_044093 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchExpression__ControlExpressionAssignment_244132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSwitchCase_in_rule__SwitchExpression__CasesAssignment_344163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchExpression__DefaultExpressionAssignment_644194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__SwitchCase__CaseExpressionAssignment_144225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__SwitchCase__ResultExpressionAssignment_344256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_244287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImpliesExpression_in_rule__RangeExpression__OperandsAssignment_1_3_144318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLogicalOrExpression_in_rule__ImpliesExpression__RightOperandAssignment_1_244349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLogicalAndExpression_in_rule__LogicalOrExpression__RightOperandAssignment_1_244380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEqualityExpression_in_rule__LogicalAndExpression__RightOperandAssignment_1_244411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEqualityOperator_in_rule__EqualityExpression__OperatorAssignment_1_144442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_244473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_144504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_244535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_244566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_144597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_244628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_144659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePowerExpression_in_rule__MultiplicativeExpression__RightOperandAssignment_1_244690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePowerOperator_in_rule__PowerExpression__OperatorAssignment_1_144721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_rule__PowerExpression__ExponentAssignment_1_244752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryOperator_in_rule__UnaryExpression__OperatorAssignment_1_144783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePostfixExpression_in_rule__UnaryExpression__OperandAssignment_1_244814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePostfixOperator_in_rule__PostfixExpression__OperatorAssignment_1_144845 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_244876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__MemberFeatureCall__SubscriptsAssignment_1_0_3_144907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__MemberVariableAssignment_1_1_244938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__FeatureAssignment_1_2_244973 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_045008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_1_145039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__MemberFeatureCall__IdentifierAssignment_1_3_245070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_445101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__MemberFeatureCall__IterationVariablesAssignment_1_3_5_145132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationAccumulator_in_rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_145163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_145194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__MemberFeatureCall__ExpressionAssignment_1_3_945225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_245256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArraySubscript_in_rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_145287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_245318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__IterationAccumulator__NameAssignment_045349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__IterationAccumulator__InitializerAssignment_245380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__IterationVariableDeclaration__NameAssignment45411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_rule__ArraySubscript__SliceAssignment_045447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ArraySubscript__ExpressionAssignment_145486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealData_in_rule__RealLiteral__DataAssignment_045517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__RealLiteral__UnitAssignment_145548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntegerData_in_rule__IntegerLiteral__DataAssignment_045579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerLiteral__UnitAssignment_145610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_rule__BooleanLiteral__TrueAssignment_1_045646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__SimpleStringLiteral__TextAssignment45685 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_245716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDynamicStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_045747 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantStringSegment_in_rule__MultiLineStringLiteral__SegmentsAssignment_3_145778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantString_in_rule__ConstantStringSegment__TextAssignment45809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__DynamicStringSegment__ExpressionAssignment_145840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__VariableReference__FeatureAssignment_145875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_145910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionCall__FeatureAssignment_145945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_045980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_1_146011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedVariableReference__FeatureAssignment_246046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedFunctionCall__FeatureAssignment_246085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_046120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_146151 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveStepExpression_in_rule__RangeStepExpression__EndAssignment_1_246182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveStepExpression__OperatorAssignment_1_146213 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNegateStepExpression_in_rule__AdditiveStepExpression__RightOperandAssignment_1_246244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveStepExpression_in_rule__NegateStepExpression__OperandAssignment_1_246275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidInt_in_rule__StepLiteral__ValueAssignment46306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_146337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_146368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_146399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_146430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__ArrayConstructionIterationClause__IterationVariableAssignment_046461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_246492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_146523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpressionList_in_rule__ArrayConcatenationOperator__RowsAssignment_2_146554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_046585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ExpressionList__ExpressionsAssignment_1_146616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_146647 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructConstructionMember_in_rule__StructConstructionOperator__MembersAssignment_2_146678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__StructConstructionMember__NameAssignment_046709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__StructConstructionMember__ValueAssignment_246740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExplicitUnit_in_rule__UnitConstructionOperator__UnitAssignment_146771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_146802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ParenthesizedExpression__ExpressionsAssignment_2_146833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCompound_in_rule__AlgorithmExpression__BodyAssignment_246864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__Compound__StatementsAssignment_246895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_rule__Assignment__TargetAssignment_046926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__Assignment__AssignedExpressionAssignment_246957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_146988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_347019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__IfStatement__ConditionAssignment_247050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ThenStatementAssignment_447081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ElseStatementAssignment_5_147112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__WhileStatement__ConditionAssignment_247143 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__WhileStatement__BodyAssignment_447174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_rule__ForStatement__IterationVariableAssignment_247205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ForStatement__CollectionExpressionAssignment_447236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__ForStatement__BodyAssignment_647267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStatement_in_rule__DoWhileStatement__BodyAssignment_147298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__DoWhileStatement__ConditionAssignment_447329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__ReturnStatement__ExpressionAssignment_147360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitNumerator_in_rule__Unit__NumeratorAssignment_1_1_147391 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitDenominator_in_rule__Unit__DenominatorAssignment_1_1_2_147422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_rule__Unit__NumeratorAssignment_1_247453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitNumerator_in_rule__ExplicitUnit__NumeratorAssignment_147484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitDenominator_in_rule__ExplicitUnit__DenominatorAssignment_2_147515 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_047546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitNumerator__FactorsAssignment_1_1_147577 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_047608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_147639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_147670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_047701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_147732 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__0_in_synpred134_InternalMscript23347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred167_InternalMscript37061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred168_InternalMscript37062 = new BitSet(new long[]{0x0000000000000002L});
 
 }

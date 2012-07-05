@@ -441,13 +441,16 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//MultiLineStringLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//MultiLineStringLiteral/segments"/>
+      <genOperations ecoreOperation="Mscript.ecore#//MultiLineStringLiteral/normalizeSegments"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//StringSegment"/>
     <genClasses ecoreClass="Mscript.ecore#//ConstantStringSegment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantStringSegment/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantStringSegment/normalizedText"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//DynamicStringSegment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DynamicStringSegment/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//DynamicStringSegment/indentation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

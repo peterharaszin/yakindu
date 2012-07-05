@@ -16,6 +16,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl#getText <em>Text</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl#getNormalizedText <em>Normalized Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +42,26 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 	 * @ordered
 	 */
 	protected String text = TEXT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNormalizedText() <em>Normalized Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNormalizedText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NORMALIZED_TEXT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNormalizedText() <em>Normalized Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNormalizedText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String normalizedText = NORMALIZED_TEXT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,11 +108,34 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getNormalizedText() {
+		return normalizedText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNormalizedText(String newNormalizedText) {
+		String oldNormalizedText = normalizedText;
+		normalizedText = newNormalizedText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT, oldNormalizedText, normalizedText));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MscriptPackage.CONSTANT_STRING_SEGMENT__TEXT:
 				return getText();
+			case MscriptPackage.CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT:
+				return getNormalizedText();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -106,6 +150,9 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 		switch (featureID) {
 			case MscriptPackage.CONSTANT_STRING_SEGMENT__TEXT:
 				setText((String)newValue);
+				return;
+			case MscriptPackage.CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT:
+				setNormalizedText((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,6 +169,9 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 			case MscriptPackage.CONSTANT_STRING_SEGMENT__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
+			case MscriptPackage.CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT:
+				setNormalizedText(NORMALIZED_TEXT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -136,6 +186,8 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 		switch (featureID) {
 			case MscriptPackage.CONSTANT_STRING_SEGMENT__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case MscriptPackage.CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT:
+				return NORMALIZED_TEXT_EDEFAULT == null ? normalizedText != null : !NORMALIZED_TEXT_EDEFAULT.equals(normalizedText);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -152,6 +204,8 @@ public class ConstantStringSegmentImpl extends StringSegmentImpl implements Cons
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (text: ");
 		result.append(text);
+		result.append(", normalizedText: ");
+		result.append(normalizedText);
 		result.append(')');
 		return result.toString();
 	}

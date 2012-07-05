@@ -17,10 +17,18 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.StringType;
 
 public class IntegerTypeOperations extends PrimitiveTypeOperations {
 
 	private static final NumericTypeEvaluator NUMERIC_TYPE_EVALUATOR = new NumericTypeEvaluator() {
+		
+		public DataType evaluate(NumericType numericType, OperatorKind operator, DataType other) {
+			if (operator == OperatorKind.ADD && other instanceof StringType) {
+				return MscriptFactory.eINSTANCE.createStringType();
+			}
+			return super.evaluate(numericType, operator, other);
+		}
 		
 		protected NumericType createResultType(OperatorKind operator, NumericType otherNumericType) {
 			NumericType result;

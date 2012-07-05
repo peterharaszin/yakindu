@@ -29,6 +29,7 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.simulation.ISimulationAgent;
 import org.eclipselabs.damos.simulation.ISimulationListener;
 import org.eclipselabs.damos.simulation.ISimulationTracePoint;
@@ -138,6 +139,8 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 					}
 				} else if (value instanceof IBooleanValue) {
 					args[i] = ((IBooleanValue) value).booleanValue();
+				} else if (value instanceof StringValue) {
+					args[i] = value.toString();
 				} else {
 					args[i] = "INVALID";
 				}

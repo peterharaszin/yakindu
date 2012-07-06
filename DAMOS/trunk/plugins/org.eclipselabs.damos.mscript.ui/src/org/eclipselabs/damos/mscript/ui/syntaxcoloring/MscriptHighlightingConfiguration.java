@@ -25,6 +25,9 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 
 	public static final String TEMPLATE_DELIMITER_ID = "templateDelimiter";
 	public static final String TEMPLATE_TEXT_ID = "templateText";
+	public static final String STATIC_PARAMETER_ID = "staticParameter";
+	public static final String CONSTANT_ID = "constant";
+	public static final String STATE_VARIABLE_ID = "stateVariable";
 	public static final String FUNCTION_ID = "function";
 	public static final String ITERATION_ID = "iteration";
 	public static final String BUILTIN_ID = "builtin";
@@ -35,6 +38,9 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(TEMPLATE_DELIMITER_ID, "Template delimiter", templateDelimiterTextStyle());
 		acceptor.acceptDefaultHighlighting(TEMPLATE_TEXT_ID, "Template expression", templateTextTextStyle());
+		acceptor.acceptDefaultHighlighting(STATIC_PARAMETER_ID, "Static parameter", staticParameterTextStyle());
+		acceptor.acceptDefaultHighlighting(CONSTANT_ID, "Constant", constantTextStyle());
+		acceptor.acceptDefaultHighlighting(STATE_VARIABLE_ID, "State variable", stateVariableTextStyle());
 		acceptor.acceptDefaultHighlighting(FUNCTION_ID, "Function", functionTextStyle());
 		acceptor.acceptDefaultHighlighting(ITERATION_ID, "Iteration", iterationTextStyle());
 		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in symbol", builtinTextStyle());
@@ -51,6 +57,26 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 	public TextStyle templateTextTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(42, 0, 255));
+		return textStyle;
+	}
+
+	public TextStyle staticParameterTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(0, 0, 0));
+		textStyle.setStyle(SWT.ITALIC);
+		return textStyle;
+	}
+
+	public TextStyle constantTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(0, 0, 0));
+		textStyle.setStyle(SWT.ITALIC);
+		return textStyle;
+	}
+
+	public TextStyle stateVariableTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(0, 0, 192));
 		return textStyle;
 	}
 

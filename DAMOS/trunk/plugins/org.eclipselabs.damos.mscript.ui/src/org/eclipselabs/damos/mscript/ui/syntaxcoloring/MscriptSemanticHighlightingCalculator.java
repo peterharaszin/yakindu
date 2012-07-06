@@ -15,16 +15,20 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipselabs.damos.mscript.BuiltinDeclaration;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.FeatureCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.StepExpression;
 import org.eclipselabs.damos.mscript.Unit;
 
@@ -58,23 +62,26 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
 		boolean proceed = true;
 		if (eObject instanceof FunctionDeclaration) {
-			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name());
-			for (INode node : nodes) {
-				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.FUNCTION_ID);
-			}
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
 		} else if (eObject instanceof FeatureCall) {
 			FeatureCall featureCall = (FeatureCall) eObject;
-			if (featureCall.getFeature() instanceof BuiltinDeclaration) {
-				List<INode> nodes = NodeModelUtils.findNodesForFeature(featureCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature());
-				for (INode node : nodes) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.BUILTIN_ID);
-				}
+			if (featureCall.getFeature() instanceof StateVariableDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
+			} else if (featureCall.getFeature() instanceof ConstantDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+			} else if (featureCall.getFeature() instanceof StaticParameterDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.STATIC_PARAMETER_ID, acceptor);
+			} else if (featureCall.getFeature() instanceof BuiltinDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.BUILTIN_ID, acceptor);
 			}
+		} else if (eObject instanceof ConstantDeclaration) {
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+		} else if (eObject instanceof StaticParameterDeclaration) {
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.STATIC_PARAMETER_ID, acceptor);
+		} else if (eObject instanceof StateVariableDeclaration) {
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
 		} else if (eObject instanceof IterationCall) {
-			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, MscriptPackage.eINSTANCE.getIterationCall_Identifier());
-			for (INode node : nodes) {
-				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.ITERATION_ID);
-			}
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getIterationCall_Identifier(), MscriptHighlightingConfiguration.ITERATION_ID, acceptor);
 		} else if (eObject instanceof Unit) {
 			INode node = NodeModelUtils.getNode(eObject);
 			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.UNIT_ID);
@@ -85,6 +92,13 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 			proceed = false;
 		}
 		return proceed;
+	}
+	
+	private void highlightFeature(EObject eObject, EStructuralFeature structuralFeature, String id, IHighlightedPositionAcceptor acceptor) {
+		List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, structuralFeature);
+		for (INode node : nodes) {
+			acceptor.addPosition(node.getOffset(), node.getLength(), id);
+		}
 	}
 
 }

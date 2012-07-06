@@ -14,55 +14,19 @@ package org.eclipselabs.damos.mscript.interpreter;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
-import java.io.StringReader;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.diagnostics.Severity;
-import org.eclipse.xtext.linking.ILinker;
-import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.IParser;
-import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
-import org.junit.Before;
 import org.junit.Test;
-
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ExpressionEvaluatorTest {
-	
-	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
-	
-	@Inject
-	private IParser parser;
-	
-	@Inject
-	private MscriptGrammarAccess grammarAccess;
-	
-	@Inject
-	private ILinker linker;
-	
-	@Before
-	public void setUp() {
-		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
-		injector.injectMembers(this);
-	}
+public class NumericExpressionEvaluatorTest extends AbstractExpressionEvaluatorTest {
 	
 	@Test
 	public void createVector() {
@@ -440,41 +404,5 @@ public class ExpressionEvaluatorTest {
 //		assertTrue("Value must be ISimpleNumericValue", actual instanceof ISimpleNumericValue);
 //		assertEquals(expected, ((ISimpleNumericValue) actual).doubleValue());
 //	}
-
-	private IValue evaluate(String expressionString) {
-		return evaluate(expressionString, false);
-	}
-	
-	private IValue evaluate(String expressionString, boolean link) {
-		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-
-		Expression expression = parseExpression(expressionString, link);
-		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
-		
-		return staticEvaluationResult.getValue(expression);
-	}
-
-	private Expression parseExpression(String expressionString, boolean link) {
-		IParseResult result = parser.parse(grammarAccess.getExpressionRule(), new StringReader(expressionString));
-		if (result.hasSyntaxErrors()) {
-			throw new RuntimeException("Syntax errors in '" + expressionString + "'");
-		}
-		
-		Expression expression = (Expression) result.getRootASTElement();
-		if (link) {
-			
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.createResource(URI.createURI("__test.mscript"));
-			resource.getContents().add(expression);
-			
-			ListBasedDiagnosticConsumer diagnosticsConsumer = new ListBasedDiagnosticConsumer();
-			linker.linkModel(expression, diagnosticsConsumer);
-			if (diagnosticsConsumer.hasConsumedDiagnostics(Severity.ERROR)) {
-				throw new RuntimeException("Linker errors in '" + expressionString + "'");
-			}
-		}
-		
-		return expression;
-	}
 
 }

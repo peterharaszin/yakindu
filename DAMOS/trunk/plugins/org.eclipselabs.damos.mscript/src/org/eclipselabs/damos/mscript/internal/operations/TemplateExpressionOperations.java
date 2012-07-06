@@ -31,6 +31,7 @@ public class TemplateExpressionOperations {
 		boolean first = true;
 		
 		boolean whiteSpaceOnly = false;
+		boolean hasNewLine = false;
 		StringBuilder line = null;
 		
 		for (Iterator<TemplateSegment> it = templateExpression.getSegments().iterator(); it.hasNext();) {
@@ -61,13 +62,14 @@ public class TemplateExpressionOperations {
 						char c = text.charAt(index[0]++);
 						line.append(c);
 						if (c == '\n') {
+							hasNewLine = true;
 							break;
 						}
 						if (!Character.isWhitespace(c)) {
 							whiteSpaceOnly = false;
 						}
 					}
-					if (index[0] == text.length() && whiteSpaceOnly && !it.hasNext()) {
+					if (index[0] == text.length() && whiteSpaceOnly && !it.hasNext() && hasNewLine) {
 						break;
 					}
 					sb.append(line);
@@ -91,11 +93,23 @@ public class TemplateExpressionOperations {
 		int[] index = new int[1];
 		int indentation = Integer.MAX_VALUE;
 		boolean first = true;
+		
+		boolean whiteSpaceOnly = true;
+		
 		for (Iterator<TemplateSegment> it = templateExpression.getSegments().iterator(); it.hasNext();) {
 			TemplateSegment templateSegment = it.next();
 			if (templateSegment instanceof ConstantTemplateSegment) {
 				ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
 				String text = constantTemplateSegment.getText();
+				
+				if (whiteSpaceOnly) {
+					for (int i = 0; i < text.length(); ++i) {
+						if (!Character.isWhitespace(text.charAt(i))) {
+							whiteSpaceOnly = false;
+							break;
+						}
+					}
+				}
 
 				index[0] = 0;
 
@@ -122,13 +136,22 @@ public class TemplateExpressionOperations {
 					proceedToEndOfLine(text, index);
 				}
 			} else if (templateSegment instanceof ExpressionTemplateSegment) {
+				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
+				if (expressionTemplateSegment.getExpression() != null) {
+					whiteSpaceOnly = false;
+				}
 				if (first) {
 					return 0;
 				}
 			}
 			first = false;
 		}
-		return indentation == Integer.MAX_VALUE ? 0 : indentation;
+		
+		if (whiteSpaceOnly || indentation == Integer.MAX_VALUE) {
+			return 0;
+		}
+		
+		return indentation;
 	}
 
 	/**

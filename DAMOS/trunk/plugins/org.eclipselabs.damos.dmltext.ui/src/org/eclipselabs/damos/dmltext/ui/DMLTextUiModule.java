@@ -6,6 +6,8 @@ package org.eclipselabs.damos.dmltext.ui;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.ui.LexerUIBindings;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
@@ -13,6 +15,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 import org.eclipse.xtext.ui.shared.Access;
 import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
 import org.eclipselabs.damos.dmltext.ui.contentassist.antlr.DMLTextContentAssistLexer;
+import org.eclipselabs.damos.mscript.ui.autoedit.MscriptAutoEditStrategyProvider;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptHighlightingConfiguration;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptSemanticHighlightingCalculator;
@@ -48,6 +51,11 @@ public class DMLTextUiModule extends org.eclipselabs.damos.dmltext.ui.AbstractDM
 	}
 	
 	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return MscriptAutoEditStrategyProvider.class;
+	}	
+	
+	@Override
 	public void configureContentAssistLexer(Binder binder) {
 		binder.bind(Lexer.class).annotatedWith(com.google.inject.name.Names.named(LexerUIBindings.CONTENT_ASSIST)).to(DMLTextContentAssistLexer.class);
 	}
@@ -55,6 +63,10 @@ public class DMLTextUiModule extends org.eclipselabs.damos.dmltext.ui.AbstractDM
 	@Override
 	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(Names.named(LexerUIBindings.HIGHLIGHTING)).to(DMLTextLexer.class);
+	}
+	
+	public void configureBindingScope(Binder binder) {
+		binder.bind(String.class).annotatedWith(Names.named(XtextEditor.KEY_BINDING_SCOPE)).toInstance("org.eclipselabs.damos.mscript.ui.mscriptEditorScope");
 	}
 
 }

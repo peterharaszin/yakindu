@@ -28,8 +28,11 @@ public class MscriptAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAtt
 		if("RULE_INT".equals(tokenName)) {
 			return DefaultHighlightingConfiguration.NUMBER_ID;
 		}
+		if("'\u00ab'".equals(tokenName) || "'\u00bb'".equals(tokenName)) {
+			return MscriptHighlightingConfiguration.TEMPLATE_DELIMITER_ID;
+		}
 		if("'\"\"\"'".equals(tokenName) || "RULE_CONSTANT_STRING".equals(tokenName)) {
-			return MscriptHighlightingConfiguration.MULTI_LINE_STRING_ID;
+			return MscriptHighlightingConfiguration.TEMPLATE_TEXT_ID;
 		}
 		return super.calculateId(tokenName, tokenType);
 	}

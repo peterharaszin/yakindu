@@ -32,7 +32,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getTemplateArguments <em>Template Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getStaticArguments <em>Static Arguments</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getInputParameterTypes <em>Input Parameter Types</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getOutputParameterTypes <em>Output Parameter Types</em>}</li>
  * </ul>
@@ -42,14 +42,14 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  */
 public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	/**
-	 * The cached value of the '{@link #getTemplateArguments() <em>Template Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getStaticArguments() <em>Static Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTemplateArguments()
+	 * @see #getStaticArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> templateArguments;
+	protected EList<Expression> staticArguments;
 
 	/**
 	 * The cached value of the '{@link #getInputParameterTypes() <em>Input Parameter Types</em>}' containment reference list.
@@ -136,11 +136,11 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Expression> getTemplateArguments() {
-		if (templateArguments == null) {
-			templateArguments = new EObjectContainmentEList<Expression>(Expression.class, this, MscriptPackage.CHECK__TEMPLATE_ARGUMENTS);
+	public EList<Expression> getStaticArguments() {
+		if (staticArguments == null) {
+			staticArguments = new EObjectContainmentEList<Expression>(Expression.class, this, MscriptPackage.CHECK__STATIC_ARGUMENTS);
 		}
-		return templateArguments;
+		return staticArguments;
 	}
 
 	/**
@@ -193,8 +193,8 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return basicSetFunction(null, msgs);
-			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
-				return ((InternalEList<?>)getTemplateArguments()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
+				return ((InternalEList<?>)getStaticArguments()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				return ((InternalEList<?>)getInputParameterTypes()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
@@ -227,8 +227,8 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return getFunction();
-			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
-				return getTemplateArguments();
+			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
+				return getStaticArguments();
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				return getInputParameterTypes();
 			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
@@ -249,9 +249,9 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			case MscriptPackage.CHECK__FUNCTION:
 				setFunction((FunctionDeclaration)newValue);
 				return;
-			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
-				getTemplateArguments().clear();
-				getTemplateArguments().addAll((Collection<? extends Expression>)newValue);
+			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
+				getStaticArguments().clear();
+				getStaticArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				getInputParameterTypes().clear();
@@ -276,8 +276,8 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			case MscriptPackage.CHECK__FUNCTION:
 				setFunction((FunctionDeclaration)null);
 				return;
-			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
-				getTemplateArguments().clear();
+			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
+				getStaticArguments().clear();
 				return;
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				getInputParameterTypes().clear();
@@ -299,8 +299,8 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return getFunction() != null;
-			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
-				return templateArguments != null && !templateArguments.isEmpty();
+			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
+				return staticArguments != null && !staticArguments.isEmpty();
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				return inputParameterTypes != null && !inputParameterTypes.isEmpty();
 			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:

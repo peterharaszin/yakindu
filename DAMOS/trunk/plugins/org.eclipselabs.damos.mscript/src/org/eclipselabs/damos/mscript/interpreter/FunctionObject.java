@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -45,7 +45,7 @@ public class FunctionObject implements IFunctionObject {
 		FunctionObject functionObject = new FunctionObject();
 		functionObject.functionInstance = functionInstance;
 		
-		for (TemplateParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getTemplateParameterDeclarations()) {
+		for (StaticParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getStaticParameterDeclarations()) {
 			createStaticVariable(context, functionObject, declaration);
 		}
 		

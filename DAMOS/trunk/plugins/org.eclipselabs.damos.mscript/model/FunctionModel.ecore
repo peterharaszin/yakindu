@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="functionmodel"
-    nsURI="http://www.eclipselabs.org/damos/mscript/2011/FunctionModel" nsPrefix="functionmodel">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="functionmodel" nsURI="http://www.eclipselabs.org/damos/mscript/2011/FunctionModel"
+    nsPrefix="functionmodel">
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDescriptor">
     <eOperations name="getVariableDescriptor" eType="#//VariableDescriptor">
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -125,7 +124,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VariableKind">
     <eLiterals name="Unknown" value="-1"/>
-    <eLiterals name="TemplateParameter"/>
+    <eLiterals name="StaticParameter"/>
     <eLiterals name="InputParameter" value="1"/>
     <eLiterals name="OutputParameter" value="2"/>
     <eLiterals name="StateVariable" value="3"/>

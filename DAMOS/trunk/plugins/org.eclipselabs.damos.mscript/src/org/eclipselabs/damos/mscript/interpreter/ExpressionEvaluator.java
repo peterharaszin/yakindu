@@ -30,13 +30,13 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.CallableElement;
-import org.eclipselabs.damos.mscript.ConstantStringSegment;
+import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DynamicStringSegment;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
+import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
@@ -51,7 +51,6 @@ import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MemberVariableAccess;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.MultiLineStringLiteral;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -61,13 +60,14 @@ import org.eclipselabs.damos.mscript.RangeExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.SimpleStringLiteral;
-import org.eclipselabs.damos.mscript.StringSegment;
+import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.TemplateExpression;
+import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -1531,39 +1531,36 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		}
 
 		@Override
-		public IValue caseSimpleStringLiteral(SimpleStringLiteral stringLiteral) {
+		public IValue caseStringLiteral(StringLiteral stringLiteral) {
 			return new StringValue(context.getComputationContext(), stringLiteral.getText());
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseMultiLineStringLiteral(org.eclipselabs.damos.mscript.MultiLineStringLiteral)
-		 */
 		@Override
-		public IValue caseMultiLineStringLiteral(MultiLineStringLiteral stringLiteral) {
-			stringLiteral.normalizeSegments();
+		public IValue caseTemplateExpression(TemplateExpression templateExpression) {
+			templateExpression.normalizeSegments();
 			
 			boolean endsWithNewLine = false;
 			
 			StringBuilder sb = new StringBuilder();
-			for (StringSegment segment : stringLiteral.getSegments()) {
-				if (segment instanceof ConstantStringSegment) {
-					String text = ((ConstantStringSegment) segment).getNormalizedText();
+			for (TemplateSegment segment : templateExpression.getSegments()) {
+				if (segment instanceof ConstantTemplateSegment) {
+					String text = ((ConstantTemplateSegment) segment).getNormalizedText();
 					if (endsWithNewLine && (text.length() > 0 && text.charAt(0) == '\n' || text.length() > 1 && text.charAt(0) == '\r' && text.charAt(1) == '\n')) {
 						sb.append(text, text.charAt(0) == '\r' ? 2 : 1, text.length());
 					} else {
 						sb.append(text);
 					}
 					endsWithNewLine = false;
-				} else if (segment instanceof DynamicStringSegment) {
-					DynamicStringSegment dynamicSegment = (DynamicStringSegment) segment;
-					IValue value = evaluate(dynamicSegment.getExpression());
+				} else if (segment instanceof ExpressionTemplateSegment) {
+					ExpressionTemplateSegment expressionSegment = (ExpressionTemplateSegment) segment;
+					IValue value = evaluate(expressionSegment.getExpression());
 					if (value instanceof InvalidValue) {
 						return InvalidValue.SINGLETON;
 					}
 					value = value.convert(MscriptFactory.eINSTANCE.createStringType());
 					if (!(value.getDataType() instanceof StringType)) {
 						if (context.getStatusCollector() != null) {
-							context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Expression must result to string", dynamicSegment.getExpression()));
+							context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Expression must result to string", expressionSegment.getExpression()));
 						}
 						return InvalidValue.SINGLETON;
 					}
@@ -1574,7 +1571,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					boolean indent = false;
 					for (int i = 0; i < text.length(); ++i) {
 						if (indent) {
-							sb.append(dynamicSegment.getIndentation());
+							sb.append(expressionSegment.getIndentation());
 						}
 						char c = text.charAt(i);
 						sb.append(c);

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStaticParameterDeclarations <em>Static Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks <em>Checks</em>}</li>
@@ -64,20 +64,20 @@ public interface FunctionDeclaration extends Declaration, CallableElement {
 	void setKind(FunctionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Template Parameter Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.TemplateParameterDeclaration}.
+	 * Returns the value of the '<em><b>Static Parameter Declarations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.StaticParameterDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Template Parameter Declarations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Template Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_TemplateParameterDeclarations()
+	 * @return the value of the '<em>Static Parameter Declarations</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_StaticParameterDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TemplateParameterDeclaration> getTemplateParameterDeclarations();
+	EList<StaticParameterDeclaration> getStaticParameterDeclarations();
 
 	/**
 	 * Returns the value of the '<em><b>Input Parameter Declarations</b></em>' containment reference list.

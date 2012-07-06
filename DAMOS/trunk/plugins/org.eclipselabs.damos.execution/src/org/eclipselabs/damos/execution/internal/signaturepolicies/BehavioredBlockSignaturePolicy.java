@@ -68,7 +68,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDeclaration, status);
+		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
 		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(
 				functionDeclaration, signature, status);
 		
@@ -81,7 +81,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, templateArguments, inputParameterDataTypes);
+		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
 		if (!staticEvaluationResult.getStatus().isOK()) {
 			status.merge(staticEvaluationResult.getStatus());
 		}
@@ -139,20 +139,20 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		@Override
-		protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
-			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
+		protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
+			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
-			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
+			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
 				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
-			return super.getGlobalTemplateArgumentValue(name);
+			return super.getGlobalStaticArgumentValue(name);
 		}
 		
 	}

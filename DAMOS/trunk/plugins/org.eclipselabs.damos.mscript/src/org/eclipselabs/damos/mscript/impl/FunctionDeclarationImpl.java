@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStaticParameterDeclarations <em>Static Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getChecks <em>Checks</em>}</li>
@@ -74,14 +74,14 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	protected FunctionKind kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTemplateParameterDeclarations() <em>Template Parameter Declarations</em>}' containment reference list.
+	 * The cached value of the '{@link #getStaticParameterDeclarations() <em>Static Parameter Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTemplateParameterDeclarations()
+	 * @see #getStaticParameterDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateParameterDeclaration> templateParameterDeclarations;
+	protected EList<StaticParameterDeclaration> staticParameterDeclarations;
 
 	/**
 	 * The cached value of the '{@link #getInputParameterDeclarations() <em>Input Parameter Declarations</em>}' containment reference list.
@@ -208,11 +208,11 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateParameterDeclaration> getTemplateParameterDeclarations() {
-		if (templateParameterDeclarations == null) {
-			templateParameterDeclarations = new EObjectContainmentEList<TemplateParameterDeclaration>(TemplateParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS);
+	public EList<StaticParameterDeclaration> getStaticParameterDeclarations() {
+		if (staticParameterDeclarations == null) {
+			staticParameterDeclarations = new EObjectContainmentEList<StaticParameterDeclaration>(StaticParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS);
 		}
-		return templateParameterDeclarations;
+		return staticParameterDeclarations;
 	}
 
 	/**
@@ -343,8 +343,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
-				return ((InternalEList<?>)getTemplateParameterDeclarations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
+				return ((InternalEList<?>)getStaticParameterDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return ((InternalEList<?>)getInputParameterDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
@@ -375,8 +375,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 		switch (featureID) {
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return getKind();
-			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
-				return getTemplateParameterDeclarations();
+			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
+				return getStaticParameterDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return getInputParameterDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
@@ -409,9 +409,9 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind((FunctionKind)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
-				getTemplateParameterDeclarations().clear();
-				getTemplateParameterDeclarations().addAll((Collection<? extends TemplateParameterDeclaration>)newValue);
+			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
+				getStaticParameterDeclarations().clear();
+				getStaticParameterDeclarations().addAll((Collection<? extends StaticParameterDeclaration>)newValue);
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
@@ -460,8 +460,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
-				getTemplateParameterDeclarations().clear();
+			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
+				getStaticParameterDeclarations().clear();
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
@@ -501,8 +501,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 		switch (featureID) {
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return kind != KIND_EDEFAULT;
-			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
-				return templateParameterDeclarations != null && !templateParameterDeclarations.isEmpty();
+			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
+				return staticParameterDeclarations != null && !staticParameterDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return inputParameterDeclarations != null && !inputParameterDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:

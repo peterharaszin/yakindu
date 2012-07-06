@@ -14,6 +14,9 @@ public class MscriptAutoEditStrategyProvider extends DefaultAutoEditStrategyProv
 		acceptor.accept(partitionInsert.newInstance("\"", "\""), IDocument.DEFAULT_CONTENT_TYPE);
 		acceptor.accept(partitionDeletion.newInstance("\"", "\""), IDocument.DEFAULT_CONTENT_TYPE);
 		acceptor.accept(partitionEndSkippingEditStrategy.get(), TerminalsTokenTypeToPartitionMapper.STRING_LITERAL_PARTITION);
+
+		acceptor.accept(partitionInsert.newInstance("\u00ab","\u00bb"), IDocument.DEFAULT_CONTENT_TYPE);
+		acceptor.accept(partitionDeletion.newInstance("\u00ab","\u00bb"), IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
 }

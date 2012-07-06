@@ -32,7 +32,7 @@ import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 
 import com.google.inject.Inject;
 
@@ -47,11 +47,11 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
 
-	private static final Set<String> GLOBAL_TEMPLATE_PARAMETERS = new HashSet<String>();
+	private static final Set<String> GLOBAL_STATIC_PARAMETERS = new HashSet<String>();
 	
 	static {
-		GLOBAL_TEMPLATE_PARAMETERS.add("Ts");
-		GLOBAL_TEMPLATE_PARAMETERS.add("fs");
+		GLOBAL_STATIC_PARAMETERS.add("Ts");
+		GLOBAL_STATIC_PARAMETERS.add("fs");
 	}
 	
 	/**
@@ -122,17 +122,17 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		}
 		
 		Map<String, Parameter> blockTypeParameters = getBlockTypeParameters(blockType);
-		Set<String> templateParameterNames = new HashSet<String>();
-		for (TemplateParameterDeclaration templateParameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
-			String name = templateParameterDeclaration.getName();
-			if (!blockTypeParameters.containsKey(name) && !GLOBAL_TEMPLATE_PARAMETERS.contains(name)) {
-				error("No block type parameter found for template parameter " + name, templateParameterDeclaration, null, -1);
+		Set<String> staticParameterNames = new HashSet<String>();
+		for (StaticParameterDeclaration staticParameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
+			String name = staticParameterDeclaration.getName();
+			if (!blockTypeParameters.containsKey(name) && !GLOBAL_STATIC_PARAMETERS.contains(name)) {
+				error("No block type parameter found for template parameter " + name, staticParameterDeclaration, null, -1);
 			}
-			templateParameterNames.add(name);
+			staticParameterNames.add(name);
 		}
 		
 		for (Entry<String, Parameter> entry : blockTypeParameters.entrySet()) {
-			if (!templateParameterNames.contains(entry.getKey())) {
+			if (!staticParameterNames.contains(entry.getKey())) {
 				warning("Unused parameter " + entry.getKey(), entry.getValue(), DMLPackage.eINSTANCE.getParameter_Name(), -1);
 			}
 		}

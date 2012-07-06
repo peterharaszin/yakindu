@@ -29,8 +29,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="StructDeclaration" eSuperTypes="#//DataTypeDeclaration #//StructType"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//Declaration #//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//FunctionKind"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParameterDeclarations"
-        upperBound="-1" eType="#//TemplateParameterDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticParameterDeclarations"
+        upperBound="-1" eType="#//StaticParameterDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameterDeclarations"
         upperBound="-1" eType="#//InputParameterDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameterDeclarations"
@@ -56,7 +56,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Check">
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
         eType="#//FunctionDeclaration" eOpposite="#//FunctionDeclaration/checks"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateArguments" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticArguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameterTypes" upperBound="-1"
         eType="#//DataTypeSpecifier" containment="true"/>
@@ -74,7 +74,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterDeclaration" abstract="true"
       eSuperTypes="#//VariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssertionStatusKind">
@@ -99,7 +99,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunctionAliasDeclaration" eSuperTypes="#//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionDeclaration" eType="#//FunctionDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateArguments" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticArguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Equation">
@@ -558,22 +558,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="true" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" abstract="true" eSuperTypes="#//Literal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleStringLiteral" eSuperTypes="#//StringLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiLineStringLiteral" eSuperTypes="#//StringLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateExpression" eSuperTypes="#//Expression">
     <eOperations name="normalizeSegments"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
-        eType="#//StringSegment" containment="true"/>
+        eType="#//TemplateSegment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringSegment" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstantStringSegment" eSuperTypes="#//StringSegment">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateSegment" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantTemplateSegment" eSuperTypes="#//TemplateSegment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="normalizedText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DynamicStringSegment" eSuperTypes="#//StringSegment">
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionTemplateSegment" eSuperTypes="#//TemplateSegment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indentation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

@@ -59,7 +59,7 @@ EnumerationLiteralDeclaration:
  
 FunctionDeclaration:
 	(kind=FunctionKind)? 'function' name=ValidID
-			('<' templateParameterDeclarations+=TemplateParameterDeclaration (',' templateParameterDeclarations+=TemplateParameterDeclaration)* '>')?
+			('<' staticParameterDeclarations+=StaticParameterDeclaration (',' staticParameterDeclarations+=StaticParameterDeclaration)* '>')?
 			'(' (inputParameterDeclarations+=InputParameterDeclaration (',' inputParameterDeclarations+=InputParameterDeclaration)*)? ')'
 			'->' outputParameterDeclarations+=OutputParameterDeclaration (',' outputParameterDeclarations+=OutputParameterDeclaration)* '{'
 		(checks+=Check |
@@ -73,7 +73,7 @@ FunctionDeclaration:
 enum FunctionKind:
 	Stateful='stateful' | Continuous='continuous';
 	
-TemplateParameterDeclaration:
+StaticParameterDeclaration:
 	name=ValidID;
 
 InputParameterDeclaration:
@@ -84,7 +84,7 @@ OutputParameterDeclaration:
 
 Check:
 	'check'
-			('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')?
+			('<' staticArguments+=Expression (',' staticArguments+=Expression)* '>')?
 			'(' (inputParameterTypes+=DataTypeSpecifier (',' inputParameterTypes+=DataTypeSpecifier)*)? ')'
 			'->' outputParameterTypes+=DataTypeSpecifier (',' outputParameterTypes+=DataTypeSpecifier)*;
 
@@ -104,7 +104,7 @@ ConstantDeclaration:
 	'const' name=ValidID '=' initializer=Expression;
 
 FunctionAliasDeclaration:
-	'function' name=ValidID '=' functionDeclaration=[FunctionDeclaration|QualifiedName] ('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')?;
+	'function' name=ValidID '=' functionDeclaration=[FunctionDeclaration|QualifiedName] ('<' staticArguments+=Expression (',' staticArguments+=Expression)* '>')?;
 
 Equation:
 	(initial?='initial')? 'eq' leftHandSide=Expression '=' rightHandSide=Expression;
@@ -281,6 +281,7 @@ ArraySubscript:
 
 PrimaryExpression returns Expression:
 	Literal |
+	TemplateExpression |
 	FeatureCall |
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
@@ -316,22 +317,19 @@ BooleanLiteral:
 	{BooleanLiteral} (true?='true' | 'false');
 
 StringLiteral:
-	SimpleStringLiteral | MultiLineStringLiteral;
-	
-SimpleStringLiteral:
 	text=STRING;
 	
-MultiLineStringLiteral hidden():
-	{MultiLineStringLiteral} '"""' segments+=ConstantStringSegment? (segments+=DynamicStringSegment (segments+=ConstantStringSegment)?)* '"""';
+TemplateExpression hidden():
+	{TemplateExpression} '"""' segments+=ConstantTemplateSegment? (segments+=ExpressionTemplateSegment (segments+=ConstantTemplateSegment)?)* '"""';
 
-ConstantStringSegment:
+ConstantTemplateSegment:
 	text=ConstantString;
 
 ConstantString:
 	(CONSTANT_STRING | ID | ANY_OTHER)+;
 	
-DynamicStringSegment hidden(WS, ML_COMMENT):
-	'${' expression=Expression '}';
+ExpressionTemplateSegment hidden(WS, ML_COMMENT):
+	'\u00ab' expression=Expression '\u00bb';
 	
 FeatureCall returns Expression:
 	VariableReference | FunctionCall;

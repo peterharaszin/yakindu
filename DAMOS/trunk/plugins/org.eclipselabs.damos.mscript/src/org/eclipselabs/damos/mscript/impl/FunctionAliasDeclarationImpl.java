@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl#getFunctionDeclaration <em>Function Declaration</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl#getTemplateArguments <em>Template Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionAliasDeclarationImpl#getStaticArguments <em>Static Arguments</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,14 +68,14 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 	protected FunctionDeclaration functionDeclaration;
 
 	/**
-	 * The cached value of the '{@link #getTemplateArguments() <em>Template Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getStaticArguments() <em>Static Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTemplateArguments()
+	 * @see #getStaticArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> templateArguments;
+	protected EList<Expression> staticArguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,11 +160,11 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Expression> getTemplateArguments() {
-		if (templateArguments == null) {
-			templateArguments = new EObjectContainmentEList<Expression>(Expression.class, this, MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS);
+	public EList<Expression> getStaticArguments() {
+		if (staticArguments == null) {
+			staticArguments = new EObjectContainmentEList<Expression>(Expression.class, this, MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS);
 		}
-		return templateArguments;
+		return staticArguments;
 	}
 
 	/**
@@ -175,8 +175,8 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS:
-				return ((InternalEList<?>)getTemplateArguments()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS:
+				return ((InternalEList<?>)getStaticArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -194,8 +194,8 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION:
 				if (resolve) return getFunctionDeclaration();
 				return basicGetFunctionDeclaration();
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS:
-				return getTemplateArguments();
+			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS:
+				return getStaticArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,9 +215,9 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION:
 				setFunctionDeclaration((FunctionDeclaration)newValue);
 				return;
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS:
-				getTemplateArguments().clear();
-				getTemplateArguments().addAll((Collection<? extends Expression>)newValue);
+			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS:
+				getStaticArguments().clear();
+				getStaticArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,8 +237,8 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION:
 				setFunctionDeclaration((FunctionDeclaration)null);
 				return;
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS:
-				getTemplateArguments().clear();
+			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS:
+				getStaticArguments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,8 +256,8 @@ public class FunctionAliasDeclarationImpl extends CallableElementImpl implements
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION:
 				return functionDeclaration != null;
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS:
-				return templateArguments != null && !templateArguments.isEmpty();
+			case MscriptPackage.FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS:
+				return staticArguments != null && !staticArguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

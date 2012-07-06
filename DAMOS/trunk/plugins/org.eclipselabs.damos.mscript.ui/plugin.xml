@@ -235,5 +235,65 @@
             </attribute>
         </markerResolutionGenerator>
     </extension>
+    
+    <extension
+          point="org.eclipse.ui.contexts">
+       <context
+             id="org.eclipselabs.damos.mscript.ui.mscriptEditorScope"
+             name="Editing Mscript Source"
+             parentId="org.eclipse.xtext.ui.XtextEditorScope">
+       </context>
+    </extension>
+
+   <extension point="org.eclipse.ui.commands">
+   	  <command
+            description="Inserts an opening french quote"
+            id="org.eclipselabs.damos.mscript.ui.insertLeftGuillemet"
+            name="Insert left guillemet"/>
+   	  <command
+            description="Inserts an closing french quote"
+            id="org.eclipselabs.damos.mscript.ui.insertRightGuillemet"
+            name="Insert right guillemet"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            contextId="org.eclipselabs.damos.mscript.ui.mscriptEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+&lt;"
+            commandId="org.eclipselabs.damos.mscript.ui.insertLeftGuillemet">
+      </key>
+      <key
+            contextId="org.eclipselabs.damos.mscript.ui.mscriptEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+&gt;"
+            commandId="org.eclipselabs.damos.mscript.ui.insertRightGuillemet">
+      </key>
+      <key
+            contextId="org.eclipselabs.damos.mscript.ui.mscriptEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M4+&lt;"
+            commandId="org.eclipselabs.damos.mscript.ui.insertLeftGuillemet">
+      </key>
+      <key
+            contextId="org.eclipselabs.damos.mscript.ui.mscriptEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M4+&gt;"
+            commandId="org.eclipselabs.damos.mscript.ui.insertRightGuillemet">
+      </key>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipselabs.damos.mscript.ui.handlers.InsertStringHandler$LeftGuillemet"
+            commandId="org.eclipselabs.damos.mscript.ui.insertLeftGuillemet">
+      </handler>
+      <handler
+            class="org.eclipselabs.damos.mscript.ui.handlers.InsertStringHandler$RightGuillemet"
+            commandId="org.eclipselabs.damos.mscript.ui.insertRightGuillemet">
+      </handler>
+   </extension>
 
 </plugin>

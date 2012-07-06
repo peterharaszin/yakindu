@@ -74,7 +74,7 @@
     <genClasses ecoreClass="Mscript.ecore#//StructDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//FunctionDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/kind"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/templateParameterDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/staticParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/inputParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/outputParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/checks"/>
@@ -86,7 +86,7 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Check">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//Check/function"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/templateArguments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/staticArguments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/inputParameterTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/outputParameterTypes"/>
     </genClasses>
@@ -99,7 +99,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//VariableDeclaration/name"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ParameterDeclaration"/>
-    <genClasses ecoreClass="Mscript.ecore#//TemplateParameterDeclaration"/>
+    <genClasses ecoreClass="Mscript.ecore#//StaticParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//InputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//OutputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//Assertion">
@@ -115,7 +115,7 @@
     <genClasses ecoreClass="Mscript.ecore#//FunctionAliasDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionAliasDeclaration/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionAliasDeclaration/functionDeclaration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionAliasDeclaration/templateArguments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionAliasDeclaration/staticArguments"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Equation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Equation/initial"/>
@@ -435,22 +435,21 @@
     <genClasses ecoreClass="Mscript.ecore#//BooleanLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//BooleanLiteral/true"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StringLiteral"/>
-    <genClasses ecoreClass="Mscript.ecore#//SimpleStringLiteral">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//SimpleStringLiteral/text"/>
+    <genClasses ecoreClass="Mscript.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StringLiteral/text"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//MultiLineStringLiteral">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//MultiLineStringLiteral/segments"/>
-      <genOperations ecoreOperation="Mscript.ecore#//MultiLineStringLiteral/normalizeSegments"/>
+    <genClasses ecoreClass="Mscript.ecore#//TemplateExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TemplateExpression/segments"/>
+      <genOperations ecoreOperation="Mscript.ecore#//TemplateExpression/normalizeSegments"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//StringSegment"/>
-    <genClasses ecoreClass="Mscript.ecore#//ConstantStringSegment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantStringSegment/text"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantStringSegment/normalizedText"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//TemplateSegment"/>
+    <genClasses ecoreClass="Mscript.ecore#//ConstantTemplateSegment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantTemplateSegment/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantTemplateSegment/normalizedText"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//DynamicStringSegment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DynamicStringSegment/expression"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//DynamicStringSegment/indentation"/>
+    <genClasses ecoreClass="Mscript.ecore#//ExpressionTemplateSegment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ExpressionTemplateSegment/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ExpressionTemplateSegment/indentation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

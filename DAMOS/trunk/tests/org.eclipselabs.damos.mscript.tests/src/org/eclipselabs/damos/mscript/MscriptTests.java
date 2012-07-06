@@ -11,7 +11,8 @@
 
 package org.eclipselabs.damos.mscript;
 
-import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluatorTest;
+import org.eclipselabs.damos.mscript.interpreter.NumericExpressionEvaluatorTest;
+import org.eclipselabs.damos.mscript.interpreter.TemplateExpressionEvaluatorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -23,7 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	NumericTypeTest.class,
-	ExpressionEvaluatorTest.class
+	NumericExpressionEvaluatorTest.class,
+	TemplateExpressionEvaluatorTest.class
 })
 public class MscriptTests {
 

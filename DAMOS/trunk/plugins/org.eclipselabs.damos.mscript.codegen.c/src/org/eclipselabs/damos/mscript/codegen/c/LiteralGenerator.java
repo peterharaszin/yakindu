@@ -107,16 +107,16 @@ public class LiteralGenerator {
 
 	public CharSequence generateInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof ISimpleNumericValue) {
-			ISimpleNumericValue numericTemplateArgument = (ISimpleNumericValue) value;
+			ISimpleNumericValue numericStaticArgument = (ISimpleNumericValue) value;
 			if (value.getDataType() instanceof RealType) {
-				return generateLiteral(computationModel, numericTemplateArgument.getDataType(), numericTemplateArgument.doubleValue());
+				return generateLiteral(computationModel, numericStaticArgument.getDataType(), numericStaticArgument.doubleValue());
 			}
 			if (value.getDataType() instanceof IntegerType) {
-				return generateLiteral(computationModel, numericTemplateArgument.getDataType(), numericTemplateArgument.longValue());
+				return generateLiteral(computationModel, numericStaticArgument.getDataType(), numericStaticArgument.longValue());
 			}
 		} else if (value instanceof IBooleanValue) {
-			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
-			return booleanTemplateArgument.booleanValue() ? "1" : "0";
+			IBooleanValue booleanStaticArgument = (IBooleanValue) value;
+			return booleanStaticArgument.booleanValue() ? "1" : "0";
 		} else if (value instanceof VectorValue) {
 			return generateVectorInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
 		} else if (value instanceof MatrixValue) {

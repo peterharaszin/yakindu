@@ -161,13 +161,13 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.TEMPLATE_PARAMETER_DECLARATION: {
-				TemplateParameterDeclaration templateParameterDeclaration = (TemplateParameterDeclaration)theEObject;
-				T result = caseTemplateParameterDeclaration(templateParameterDeclaration);
-				if (result == null) result = caseParameterDeclaration(templateParameterDeclaration);
-				if (result == null) result = caseVariableDeclaration(templateParameterDeclaration);
-				if (result == null) result = caseCallableElement(templateParameterDeclaration);
-				if (result == null) result = caseEvaluable(templateParameterDeclaration);
+			case MscriptPackage.STATIC_PARAMETER_DECLARATION: {
+				StaticParameterDeclaration staticParameterDeclaration = (StaticParameterDeclaration)theEObject;
+				T result = caseStaticParameterDeclaration(staticParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(staticParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(staticParameterDeclaration);
+				if (result == null) result = caseCallableElement(staticParameterDeclaration);
+				if (result == null) result = caseEvaluable(staticParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -918,43 +918,31 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.SIMPLE_STRING_LITERAL: {
-				SimpleStringLiteral simpleStringLiteral = (SimpleStringLiteral)theEObject;
-				T result = caseSimpleStringLiteral(simpleStringLiteral);
-				if (result == null) result = caseStringLiteral(simpleStringLiteral);
-				if (result == null) result = caseLiteral(simpleStringLiteral);
-				if (result == null) result = caseExpression(simpleStringLiteral);
-				if (result == null) result = caseEvaluable(simpleStringLiteral);
+			case MscriptPackage.TEMPLATE_EXPRESSION: {
+				TemplateExpression templateExpression = (TemplateExpression)theEObject;
+				T result = caseTemplateExpression(templateExpression);
+				if (result == null) result = caseExpression(templateExpression);
+				if (result == null) result = caseEvaluable(templateExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.MULTI_LINE_STRING_LITERAL: {
-				MultiLineStringLiteral multiLineStringLiteral = (MultiLineStringLiteral)theEObject;
-				T result = caseMultiLineStringLiteral(multiLineStringLiteral);
-				if (result == null) result = caseStringLiteral(multiLineStringLiteral);
-				if (result == null) result = caseLiteral(multiLineStringLiteral);
-				if (result == null) result = caseExpression(multiLineStringLiteral);
-				if (result == null) result = caseEvaluable(multiLineStringLiteral);
+			case MscriptPackage.TEMPLATE_SEGMENT: {
+				TemplateSegment templateSegment = (TemplateSegment)theEObject;
+				T result = caseTemplateSegment(templateSegment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRING_SEGMENT: {
-				StringSegment stringSegment = (StringSegment)theEObject;
-				T result = caseStringSegment(stringSegment);
+			case MscriptPackage.CONSTANT_TEMPLATE_SEGMENT: {
+				ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment)theEObject;
+				T result = caseConstantTemplateSegment(constantTemplateSegment);
+				if (result == null) result = caseTemplateSegment(constantTemplateSegment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.CONSTANT_STRING_SEGMENT: {
-				ConstantStringSegment constantStringSegment = (ConstantStringSegment)theEObject;
-				T result = caseConstantStringSegment(constantStringSegment);
-				if (result == null) result = caseStringSegment(constantStringSegment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.DYNAMIC_STRING_SEGMENT: {
-				DynamicStringSegment dynamicStringSegment = (DynamicStringSegment)theEObject;
-				T result = caseDynamicStringSegment(dynamicStringSegment);
-				if (result == null) result = caseStringSegment(dynamicStringSegment);
+			case MscriptPackage.EXPRESSION_TEMPLATE_SEGMENT: {
+				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment)theEObject;
+				T result = caseExpressionTemplateSegment(expressionTemplateSegment);
+				if (result == null) result = caseTemplateSegment(expressionTemplateSegment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1158,17 +1146,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Declaration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Static Parameter Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Declaration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Static Parameter Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTemplateParameterDeclaration(TemplateParameterDeclaration object) {
+	public T caseStaticParameterDeclaration(StaticParameterDeclaration object) {
 		return null;
 	}
 
@@ -2628,77 +2616,62 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple String Literal</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Template Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple String Literal</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Template Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleStringLiteral(SimpleStringLiteral object) {
+	public T caseTemplateExpression(TemplateExpression object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Line String Literal</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Template Segment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Line String Literal</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Template Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiLineStringLiteral(MultiLineStringLiteral object) {
+	public T caseTemplateSegment(TemplateSegment object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Segment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constant Template Segment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Segment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constant Template Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringSegment(StringSegment object) {
+	public T caseConstantTemplateSegment(ConstantTemplateSegment object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constant String Segment</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Template Segment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constant String Segment</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Template Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConstantStringSegment(ConstantStringSegment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dynamic String Segment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dynamic String Segment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDynamicStringSegment(DynamicStringSegment object) {
+	public T caseExpressionTemplateSegment(ExpressionTemplateSegment object) {
 		return null;
 	}
 

@@ -51,7 +51,7 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 	private Text filePathText;
 	private Text functionNameText;
 	private Text targetFunctionNameText;
-	private Text templateArgumentsText;
+	private Text staticArgumentsText;
 	private Text inputParameterDataTypesText;
 	private Text targetFolderPathText;
 	private Text computationModelText;
@@ -116,12 +116,12 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		targetFunctionNameText.setLayoutData(gridData);
 
 		new Label(composite, SWT.NONE).setText("Template arguments:");
-		templateArgumentsText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		templateArgumentsText.addModifyListener(modifyListener);
-		templateArgumentsText.setToolTipText("Comma-separated list of template arguments");
+		staticArgumentsText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		staticArgumentsText.addModifyListener(modifyListener);
+		staticArgumentsText.setToolTipText("Comma-separated list of template arguments");
 		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
-		templateArgumentsText.setLayoutData(gridData);
+		staticArgumentsText.setLayoutData(gridData);
 
 		new Label(composite, SWT.NONE).setText("Input parameter data types:");
 		inputParameterDataTypesText = new Text(composite, SWT.SINGLE | SWT.BORDER);
@@ -185,7 +185,7 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 			functionNameText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, "Main"));
 			targetFunctionNameText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FUNCTION_NAME, ""));
 			inputParameterDataTypesText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, ""));
-			templateArgumentsText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, ""));
+			staticArgumentsText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS, ""));
 			targetFolderPathText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH, ""));
 			computationModelText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__COMPUTATION_MODEL, ""));
 		} catch (CoreException e) {
@@ -199,7 +199,7 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, functionNameText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FUNCTION_NAME, targetFunctionNameText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, inputParameterDataTypesText.getText());
-		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, templateArgumentsText.getText());
+		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS, staticArgumentsText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH, targetFolderPathText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__COMPUTATION_MODEL, computationModelText.getText());
 		setErrorMessage(errorMessage);
@@ -231,7 +231,7 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 				CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES,
 				"");
 		configuration.setAttribute(
-				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS,
+				CodegenLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS,
 				"");
 		configuration.setAttribute(
 				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH,

@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getFunctionDeclaration <em>Function Declaration</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments <em>Template Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getStaticArguments <em>Static Arguments</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,19 +80,19 @@ public interface FunctionAliasDeclaration extends CallableElement {
 	void setFunctionDeclaration(FunctionDeclaration value);
 
 	/**
-	 * Returns the value of the '<em><b>Template Arguments</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Static Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Template Arguments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Static Arguments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Template Arguments</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration_TemplateArguments()
+	 * @return the value of the '<em>Static Arguments</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionAliasDeclaration_StaticArguments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Expression> getTemplateArguments();
+	EList<Expression> getStaticArguments();
 
 } // FunctionAliasDeclaration

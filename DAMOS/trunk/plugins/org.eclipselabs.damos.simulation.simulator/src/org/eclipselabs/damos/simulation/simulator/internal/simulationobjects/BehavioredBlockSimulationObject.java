@@ -114,7 +114,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
 		
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDeclaration, status);
+		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
 		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
@@ -126,7 +126,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 		
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, templateArguments, inputParameterDataTypes);
+		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
 		if (!staticEvaluationResult.getStatus().isOK()) {
 			status.add(staticEvaluationResult.getStatus());
 		}
@@ -136,7 +136,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		FunctionDescriptor functionDescriptor = staticEvaluationResult.getFunctionDescriptor(functionDeclaration);
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(staticEvaluationResult, functionDescriptor, templateArguments, inputParameterDataTypes);
+				.transform(staticEvaluationResult, functionDescriptor, staticArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());
 			throw new CoreException(status);
@@ -299,14 +299,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 
 		@Override
-		protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
-			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
+		protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
+			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
-			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
+			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
@@ -314,7 +314,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}
-			return super.getGlobalTemplateArgumentValue(name);
+			return super.getGlobalStaticArgumentValue(name);
 		}
 		
 	}

@@ -9,6 +9,7 @@ import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
+import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -19,6 +20,7 @@ import org.eclipselabs.damos.dconfig.scoping.DconfigGlobalScopeProvider;
 import org.eclipselabs.damos.dconfig.scoping.DconfigImportedNamespaceScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
+import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -59,6 +61,11 @@ public class DconfigRuntimeModule extends org.eclipselabs.damos.dconfig.Abstract
 	@Override
 	public void configureRuntimeLexer(Binder binder) {
 		binder.bind(Lexer.class).annotatedWith(Names.named(LexerBindings.RUNTIME)).to(DconfigLexer.class);
+	}
+
+	@Override
+	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
+		return MscriptLocationInFileProvider.class;
 	}
 
 }

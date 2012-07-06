@@ -6,6 +6,7 @@ package org.eclipselabs.damos.mscript.ui;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.ui.LexerUIBindings;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
@@ -62,6 +63,10 @@ public class MscriptUiModule extends org.eclipselabs.damos.mscript.ui.AbstractMs
 	@Override
 	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(Names.named(LexerUIBindings.HIGHLIGHTING)).to(MscriptLexer.class);
+	}
+
+	public void configureBindingScope(Binder binder) {
+		binder.bind(String.class).annotatedWith(Names.named(XtextEditor.KEY_BINDING_SCOPE)).toInstance("org.eclipselabs.damos.mscript.ui.mscriptEditorScope");
 	}
 
 }

@@ -43,7 +43,7 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.SwitchCase;
 import org.eclipselabs.damos.mscript.SwitchExpression;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -222,10 +222,10 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				
 			IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
-			Iterator<TemplateParameterDeclaration> templateParameterIt = functionDeclaration.getTemplateParameterDeclarations().iterator();
-			for (Expression argument : check.getTemplateArguments()) {
+			Iterator<StaticParameterDeclaration> staticParameterIt = functionDeclaration.getStaticParameterDeclarations().iterator();
+			for (Expression argument : check.getStaticArguments()) {
 				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), argument);
-				staticEvaluationResult.setValue(templateParameterIt.next(), staticEvaluationResult.getValue(argument));
+				staticEvaluationResult.setValue(staticParameterIt.next(), staticEvaluationResult.getValue(argument));
 			}
 			
 			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getInputParameterDeclarations().iterator();
@@ -252,7 +252,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 	private boolean checkFunctionCheckSignatures(org.eclipselabs.damos.mscript.Check check) {
 		boolean result = true;
-		if (check.getTemplateArguments().size() != check.getFunction().getTemplateParameterDeclarations().size()) {
+		if (check.getStaticArguments().size() != check.getFunction().getStaticParameterDeclarations().size()) {
 			error("Number of template arguments do not correspond to number of template parameters of function " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}

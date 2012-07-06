@@ -66,7 +66,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
 			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
-			case MscriptPackage.TEMPLATE_PARAMETER_DECLARATION: return createTemplateParameterDeclaration();
+			case MscriptPackage.STATIC_PARAMETER_DECLARATION: return createStaticParameterDeclaration();
 			case MscriptPackage.INPUT_PARAMETER_DECLARATION: return createInputParameterDeclaration();
 			case MscriptPackage.OUTPUT_PARAMETER_DECLARATION: return createOutputParameterDeclaration();
 			case MscriptPackage.ASSERTION: return createAssertion();
@@ -156,10 +156,10 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.REAL_LITERAL: return createRealLiteral();
 			case MscriptPackage.INTEGER_LITERAL: return createIntegerLiteral();
 			case MscriptPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
-			case MscriptPackage.SIMPLE_STRING_LITERAL: return createSimpleStringLiteral();
-			case MscriptPackage.MULTI_LINE_STRING_LITERAL: return createMultiLineStringLiteral();
-			case MscriptPackage.CONSTANT_STRING_SEGMENT: return createConstantStringSegment();
-			case MscriptPackage.DYNAMIC_STRING_SEGMENT: return createDynamicStringSegment();
+			case MscriptPackage.STRING_LITERAL: return createStringLiteral();
+			case MscriptPackage.TEMPLATE_EXPRESSION: return createTemplateExpression();
+			case MscriptPackage.CONSTANT_TEMPLATE_SEGMENT: return createConstantTemplateSegment();
+			case MscriptPackage.EXPRESSION_TEMPLATE_SEGMENT: return createExpressionTemplateSegment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -296,9 +296,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameterDeclaration createTemplateParameterDeclaration() {
-		TemplateParameterDeclarationImpl templateParameterDeclaration = new TemplateParameterDeclarationImpl();
-		return templateParameterDeclaration;
+	public StaticParameterDeclaration createStaticParameterDeclaration() {
+		StaticParameterDeclarationImpl staticParameterDeclaration = new StaticParameterDeclarationImpl();
+		return staticParameterDeclaration;
 	}
 
 	/**
@@ -1196,9 +1196,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleStringLiteral createSimpleStringLiteral() {
-		SimpleStringLiteralImpl simpleStringLiteral = new SimpleStringLiteralImpl();
-		return simpleStringLiteral;
+	public StringLiteral createStringLiteral() {
+		StringLiteralImpl stringLiteral = new StringLiteralImpl();
+		return stringLiteral;
 	}
 
 	/**
@@ -1206,9 +1206,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiLineStringLiteral createMultiLineStringLiteral() {
-		MultiLineStringLiteralImpl multiLineStringLiteral = new MultiLineStringLiteralImpl();
-		return multiLineStringLiteral;
+	public TemplateExpression createTemplateExpression() {
+		TemplateExpressionImpl templateExpression = new TemplateExpressionImpl();
+		return templateExpression;
 	}
 
 	/**
@@ -1216,9 +1216,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstantStringSegment createConstantStringSegment() {
-		ConstantStringSegmentImpl constantStringSegment = new ConstantStringSegmentImpl();
-		return constantStringSegment;
+	public ConstantTemplateSegment createConstantTemplateSegment() {
+		ConstantTemplateSegmentImpl constantTemplateSegment = new ConstantTemplateSegmentImpl();
+		return constantTemplateSegment;
 	}
 
 	/**
@@ -1226,9 +1226,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DynamicStringSegment createDynamicStringSegment() {
-		DynamicStringSegmentImpl dynamicStringSegment = new DynamicStringSegmentImpl();
-		return dynamicStringSegment;
+	public ExpressionTemplateSegment createExpressionTemplateSegment() {
+		ExpressionTemplateSegmentImpl expressionTemplateSegment = new ExpressionTemplateSegmentImpl();
+		return expressionTemplateSegment;
 	}
 
 	/**

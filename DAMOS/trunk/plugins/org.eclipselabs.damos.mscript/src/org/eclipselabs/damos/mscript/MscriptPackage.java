@@ -340,13 +340,13 @@ public interface MscriptPackage extends EPackage {
 	int FUNCTION_DECLARATION__KIND = DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Template Parameter Declarations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Static Parameter Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS = DECLARATION_FEATURE_COUNT + 1;
+	int FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS = DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Input Parameter Declarations</b></em>' containment reference list.
@@ -449,13 +449,13 @@ public interface MscriptPackage extends EPackage {
 	int CHECK__FUNCTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Template Arguments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Static Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHECK__TEMPLATE_ARGUMENTS = 1;
+	int CHECK__STATIC_ARGUMENTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Input Parameter Types</b></em>' containment reference list.
@@ -579,14 +579,14 @@ public interface MscriptPackage extends EPackage {
 	int PARAMETER_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl <em>Template Parameter Declaration</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StaticParameterDeclarationImpl <em>Static Parameter Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateParameterDeclaration()
+	 * @see org.eclipselabs.damos.mscript.impl.StaticParameterDeclarationImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStaticParameterDeclaration()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_DECLARATION = 13;
+	int STATIC_PARAMETER_DECLARATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -595,16 +595,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_DECLARATION__NAME = PARAMETER_DECLARATION__NAME;
+	int STATIC_PARAMETER_DECLARATION__NAME = PARAMETER_DECLARATION__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Template Parameter Declaration</em>' class.
+	 * The number of structural features of the '<em>Static Parameter Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_DECLARATION_FEATURE_COUNT = PARAMETER_DECLARATION_FEATURE_COUNT + 0;
+	int STATIC_PARAMETER_DECLARATION_FEATURE_COUNT = PARAMETER_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.InputParameterDeclarationImpl <em>Input Parameter Declaration</em>}' class.
@@ -811,13 +811,13 @@ public interface MscriptPackage extends EPackage {
 	int FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Template Arguments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Static Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
+	int FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Function Alias Declaration</em>' class.
@@ -3818,51 +3818,32 @@ public interface MscriptPackage extends EPackage {
 	int STRING_LITERAL = 110;
 
 	/**
-	 * The number of structural features of the '<em>String Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl <em>Simple String Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSimpleStringLiteral()
-	 * @generated
-	 */
-	int SIMPLE_STRING_LITERAL = 111;
-
-	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_STRING_LITERAL__TEXT = STRING_LITERAL_FEATURE_COUNT + 0;
+	int STRING_LITERAL__TEXT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Simple String Literal</em>' class.
+	 * The number of structural features of the '<em>String Literal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_STRING_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 1;
+	int STRING_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl <em>Multi Line String Literal</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.TemplateExpressionImpl <em>Template Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiLineStringLiteral()
+	 * @see org.eclipselabs.damos.mscript.impl.TemplateExpressionImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateExpression()
 	 * @generated
 	 */
-	int MULTI_LINE_STRING_LITERAL = 112;
+	int TEMPLATE_EXPRESSION = 111;
 
 	/**
 	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
@@ -3871,45 +3852,45 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_STRING_LITERAL__SEGMENTS = STRING_LITERAL_FEATURE_COUNT + 0;
+	int TEMPLATE_EXPRESSION__SEGMENTS = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Multi Line String Literal</em>' class.
+	 * The number of structural features of the '<em>Template Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_STRING_LITERAL_FEATURE_COUNT = STRING_LITERAL_FEATURE_COUNT + 1;
+	int TEMPLATE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StringSegmentImpl <em>String Segment</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.TemplateSegmentImpl <em>Template Segment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.StringSegmentImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringSegment()
+	 * @see org.eclipselabs.damos.mscript.impl.TemplateSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateSegment()
 	 * @generated
 	 */
-	int STRING_SEGMENT = 113;
+	int TEMPLATE_SEGMENT = 112;
 
 	/**
-	 * The number of structural features of the '<em>String Segment</em>' class.
+	 * The number of structural features of the '<em>Template Segment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_SEGMENT_FEATURE_COUNT = 0;
+	int TEMPLATE_SEGMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl <em>Constant String Segment</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ConstantTemplateSegmentImpl <em>Constant Template Segment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantStringSegment()
+	 * @see org.eclipselabs.damos.mscript.impl.ConstantTemplateSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantTemplateSegment()
 	 * @generated
 	 */
-	int CONSTANT_STRING_SEGMENT = 114;
+	int CONSTANT_TEMPLATE_SEGMENT = 113;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -3918,7 +3899,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_STRING_SEGMENT__TEXT = STRING_SEGMENT_FEATURE_COUNT + 0;
+	int CONSTANT_TEMPLATE_SEGMENT__TEXT = TEMPLATE_SEGMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Normalized Text</b></em>' attribute.
@@ -3927,26 +3908,26 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT = STRING_SEGMENT_FEATURE_COUNT + 1;
+	int CONSTANT_TEMPLATE_SEGMENT__NORMALIZED_TEXT = TEMPLATE_SEGMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Constant String Segment</em>' class.
+	 * The number of structural features of the '<em>Constant Template Segment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 2;
+	int CONSTANT_TEMPLATE_SEGMENT_FEATURE_COUNT = TEMPLATE_SEGMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ExpressionTemplateSegmentImpl <em>Expression Template Segment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDynamicStringSegment()
+	 * @see org.eclipselabs.damos.mscript.impl.ExpressionTemplateSegmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpressionTemplateSegment()
 	 * @generated
 	 */
-	int DYNAMIC_STRING_SEGMENT = 115;
+	int EXPRESSION_TEMPLATE_SEGMENT = 114;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3955,7 +3936,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_STRING_SEGMENT__EXPRESSION = STRING_SEGMENT_FEATURE_COUNT + 0;
+	int EXPRESSION_TEMPLATE_SEGMENT__EXPRESSION = TEMPLATE_SEGMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Indentation</b></em>' attribute.
@@ -3964,16 +3945,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_STRING_SEGMENT__INDENTATION = STRING_SEGMENT_FEATURE_COUNT + 1;
+	int EXPRESSION_TEMPLATE_SEGMENT__INDENTATION = TEMPLATE_SEGMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Dynamic String Segment</em>' class.
+	 * The number of structural features of the '<em>Expression Template Segment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_STRING_SEGMENT_FEATURE_COUNT = STRING_SEGMENT_FEATURE_COUNT + 2;
+	int EXPRESSION_TEMPLATE_SEGMENT_FEATURE_COUNT = TEMPLATE_SEGMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.
@@ -3983,7 +3964,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionKind()
 	 * @generated
 	 */
-	int FUNCTION_KIND = 116;
+	int FUNCTION_KIND = 115;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AssertionStatusKind <em>Assertion Status Kind</em>}' enum.
@@ -3993,7 +3974,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssertionStatusKind()
 	 * @generated
 	 */
-	int ASSERTION_STATUS_KIND = 117;
+	int ASSERTION_STATUS_KIND = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
@@ -4003,7 +3984,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 118;
+	int OPERATOR_KIND = 117;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -4013,7 +3994,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 119;
+	int REAL_DATA = 118;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -4023,7 +4004,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 120;
+	int INTEGER_DATA = 119;
 
 
 	/**
@@ -4206,15 +4187,15 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getFunctionDeclaration_Kind();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStaticParameterDeclarations <em>Static Parameter Declarations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Template Parameter Declarations</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration#getTemplateParameterDeclarations()
+	 * @return the meta object for the containment reference list '<em>Static Parameter Declarations</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration#getStaticParameterDeclarations()
 	 * @see #getFunctionDeclaration()
 	 * @generated
 	 */
-	EReference getFunctionDeclaration_TemplateParameterDeclarations();
+	EReference getFunctionDeclaration_StaticParameterDeclarations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getInputParameterDeclarations <em>Input Parameter Declarations</em>}'.
@@ -4326,15 +4307,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getCheck_Function();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.Check#getTemplateArguments <em>Template Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.Check#getStaticArguments <em>Static Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Template Arguments</em>'.
-	 * @see org.eclipselabs.damos.mscript.Check#getTemplateArguments()
+	 * @return the meta object for the containment reference list '<em>Static Arguments</em>'.
+	 * @see org.eclipselabs.damos.mscript.Check#getStaticArguments()
 	 * @see #getCheck()
 	 * @generated
 	 */
-	EReference getCheck_TemplateArguments();
+	EReference getCheck_StaticArguments();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.Check#getInputParameterTypes <em>Input Parameter Types</em>}'.
@@ -4410,14 +4391,14 @@ public interface MscriptPackage extends EPackage {
 	EClass getParameterDeclaration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.TemplateParameterDeclaration <em>Template Parameter Declaration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StaticParameterDeclaration <em>Static Parameter Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Template Parameter Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.TemplateParameterDeclaration
+	 * @return the meta object for class '<em>Static Parameter Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.StaticParameterDeclaration
 	 * @generated
 	 */
-	EClass getTemplateParameterDeclaration();
+	EClass getStaticParameterDeclaration();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.InputParameterDeclaration <em>Input Parameter Declaration</em>}'.
@@ -4557,15 +4538,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getFunctionAliasDeclaration_FunctionDeclaration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments <em>Template Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getStaticArguments <em>Static Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Template Arguments</em>'.
-	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getTemplateArguments()
+	 * @return the meta object for the containment reference list '<em>Static Arguments</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionAliasDeclaration#getStaticArguments()
 	 * @see #getFunctionAliasDeclaration()
 	 * @generated
 	 */
-	EReference getFunctionAliasDeclaration_TemplateArguments();
+	EReference getFunctionAliasDeclaration_StaticArguments();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.Equation <em>Equation</em>}'.
@@ -6842,120 +6823,110 @@ public interface MscriptPackage extends EPackage {
 	EClass getStringLiteral();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.SimpleStringLiteral <em>Simple String Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple String Literal</em>'.
-	 * @see org.eclipselabs.damos.mscript.SimpleStringLiteral
-	 * @generated
-	 */
-	EClass getSimpleStringLiteral();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.SimpleStringLiteral#getText <em>Text</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.StringLiteral#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Text</em>'.
-	 * @see org.eclipselabs.damos.mscript.SimpleStringLiteral#getText()
-	 * @see #getSimpleStringLiteral()
+	 * @see org.eclipselabs.damos.mscript.StringLiteral#getText()
+	 * @see #getStringLiteral()
 	 * @generated
 	 */
-	EAttribute getSimpleStringLiteral_Text();
+	EAttribute getStringLiteral_Text();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.MultiLineStringLiteral <em>Multi Line String Literal</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.TemplateExpression <em>Template Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Multi Line String Literal</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiLineStringLiteral
+	 * @return the meta object for class '<em>Template Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.TemplateExpression
 	 * @generated
 	 */
-	EClass getMultiLineStringLiteral();
+	EClass getTemplateExpression();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.MultiLineStringLiteral#getSegments <em>Segments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.TemplateExpression#getSegments <em>Segments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Segments</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiLineStringLiteral#getSegments()
-	 * @see #getMultiLineStringLiteral()
+	 * @see org.eclipselabs.damos.mscript.TemplateExpression#getSegments()
+	 * @see #getTemplateExpression()
 	 * @generated
 	 */
-	EReference getMultiLineStringLiteral_Segments();
+	EReference getTemplateExpression_Segments();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StringSegment <em>String Segment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.TemplateSegment <em>Template Segment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Segment</em>'.
-	 * @see org.eclipselabs.damos.mscript.StringSegment
+	 * @return the meta object for class '<em>Template Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.TemplateSegment
 	 * @generated
 	 */
-	EClass getStringSegment();
+	EClass getTemplateSegment();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ConstantStringSegment <em>Constant String Segment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ConstantTemplateSegment <em>Constant Template Segment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constant String Segment</em>'.
-	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment
+	 * @return the meta object for class '<em>Constant Template Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantTemplateSegment
 	 * @generated
 	 */
-	EClass getConstantStringSegment();
+	EClass getConstantTemplateSegment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getText <em>Text</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantTemplateSegment#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Text</em>'.
-	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment#getText()
-	 * @see #getConstantStringSegment()
+	 * @see org.eclipselabs.damos.mscript.ConstantTemplateSegment#getText()
+	 * @see #getConstantTemplateSegment()
 	 * @generated
 	 */
-	EAttribute getConstantStringSegment_Text();
+	EAttribute getConstantTemplateSegment_Text();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText <em>Normalized Text</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantTemplateSegment#getNormalizedText <em>Normalized Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Normalized Text</em>'.
-	 * @see org.eclipselabs.damos.mscript.ConstantStringSegment#getNormalizedText()
-	 * @see #getConstantStringSegment()
+	 * @see org.eclipselabs.damos.mscript.ConstantTemplateSegment#getNormalizedText()
+	 * @see #getConstantTemplateSegment()
 	 * @generated
 	 */
-	EAttribute getConstantStringSegment_NormalizedText();
+	EAttribute getConstantTemplateSegment_NormalizedText();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.DynamicStringSegment <em>Dynamic String Segment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ExpressionTemplateSegment <em>Expression Template Segment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dynamic String Segment</em>'.
-	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment
+	 * @return the meta object for class '<em>Expression Template Segment</em>'.
+	 * @see org.eclipselabs.damos.mscript.ExpressionTemplateSegment
 	 * @generated
 	 */
-	EClass getDynamicStringSegment();
+	EClass getExpressionTemplateSegment();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ExpressionTemplateSegment#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment#getExpression()
-	 * @see #getDynamicStringSegment()
+	 * @see org.eclipselabs.damos.mscript.ExpressionTemplateSegment#getExpression()
+	 * @see #getExpressionTemplateSegment()
 	 * @generated
 	 */
-	EReference getDynamicStringSegment_Expression();
+	EReference getExpressionTemplateSegment_Expression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation <em>Indentation</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ExpressionTemplateSegment#getIndentation <em>Indentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Indentation</em>'.
-	 * @see org.eclipselabs.damos.mscript.DynamicStringSegment#getIndentation()
-	 * @see #getDynamicStringSegment()
+	 * @see org.eclipselabs.damos.mscript.ExpressionTemplateSegment#getIndentation()
+	 * @see #getExpressionTemplateSegment()
 	 * @generated
 	 */
-	EAttribute getDynamicStringSegment_Indentation();
+	EAttribute getExpressionTemplateSegment_Indentation();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}'.
@@ -7184,12 +7155,12 @@ public interface MscriptPackage extends EPackage {
 		EAttribute FUNCTION_DECLARATION__KIND = eINSTANCE.getFunctionDeclaration_Kind();
 
 		/**
-		 * The meta object literal for the '<em><b>Template Parameter Declarations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Static Parameter Declarations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS = eINSTANCE.getFunctionDeclaration_TemplateParameterDeclarations();
+		EReference FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS = eINSTANCE.getFunctionDeclaration_StaticParameterDeclarations();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Parameter Declarations</b></em>' containment reference list feature.
@@ -7274,12 +7245,12 @@ public interface MscriptPackage extends EPackage {
 		EReference CHECK__FUNCTION = eINSTANCE.getCheck_Function();
 
 		/**
-		 * The meta object literal for the '<em><b>Template Arguments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Static Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHECK__TEMPLATE_ARGUMENTS = eINSTANCE.getCheck_TemplateArguments();
+		EReference CHECK__STATIC_ARGUMENTS = eINSTANCE.getCheck_StaticArguments();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Parameter Types</b></em>' containment reference list feature.
@@ -7346,14 +7317,14 @@ public interface MscriptPackage extends EPackage {
 		EClass PARAMETER_DECLARATION = eINSTANCE.getParameterDeclaration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl <em>Template Parameter Declaration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StaticParameterDeclarationImpl <em>Static Parameter Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateParameterDeclaration()
+		 * @see org.eclipselabs.damos.mscript.impl.StaticParameterDeclarationImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStaticParameterDeclaration()
 		 * @generated
 		 */
-		EClass TEMPLATE_PARAMETER_DECLARATION = eINSTANCE.getTemplateParameterDeclaration();
+		EClass STATIC_PARAMETER_DECLARATION = eINSTANCE.getStaticParameterDeclaration();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.InputParameterDeclarationImpl <em>Input Parameter Declaration</em>}' class.
@@ -7472,12 +7443,12 @@ public interface MscriptPackage extends EPackage {
 		EReference FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION = eINSTANCE.getFunctionAliasDeclaration_FunctionDeclaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Template Arguments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Static Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS = eINSTANCE.getFunctionAliasDeclaration_TemplateArguments();
+		EReference FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS = eINSTANCE.getFunctionAliasDeclaration_StaticArguments();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.EquationImpl <em>Equation</em>}' class.
@@ -9382,32 +9353,22 @@ public interface MscriptPackage extends EPackage {
 		EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl <em>Simple String Literal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.SimpleStringLiteralImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSimpleStringLiteral()
-		 * @generated
-		 */
-		EClass SIMPLE_STRING_LITERAL = eINSTANCE.getSimpleStringLiteral();
-
-		/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SIMPLE_STRING_LITERAL__TEXT = eINSTANCE.getSimpleStringLiteral_Text();
+		EAttribute STRING_LITERAL__TEXT = eINSTANCE.getStringLiteral_Text();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl <em>Multi Line String Literal</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.TemplateExpressionImpl <em>Template Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.MultiLineStringLiteralImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiLineStringLiteral()
+		 * @see org.eclipselabs.damos.mscript.impl.TemplateExpressionImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateExpression()
 		 * @generated
 		 */
-		EClass MULTI_LINE_STRING_LITERAL = eINSTANCE.getMultiLineStringLiteral();
+		EClass TEMPLATE_EXPRESSION = eINSTANCE.getTemplateExpression();
 
 		/**
 		 * The meta object literal for the '<em><b>Segments</b></em>' containment reference list feature.
@@ -9415,27 +9376,27 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_LINE_STRING_LITERAL__SEGMENTS = eINSTANCE.getMultiLineStringLiteral_Segments();
+		EReference TEMPLATE_EXPRESSION__SEGMENTS = eINSTANCE.getTemplateExpression_Segments();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StringSegmentImpl <em>String Segment</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.TemplateSegmentImpl <em>Template Segment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.StringSegmentImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringSegment()
+		 * @see org.eclipselabs.damos.mscript.impl.TemplateSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateSegment()
 		 * @generated
 		 */
-		EClass STRING_SEGMENT = eINSTANCE.getStringSegment();
+		EClass TEMPLATE_SEGMENT = eINSTANCE.getTemplateSegment();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl <em>Constant String Segment</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ConstantTemplateSegmentImpl <em>Constant Template Segment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.ConstantStringSegmentImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantStringSegment()
+		 * @see org.eclipselabs.damos.mscript.impl.ConstantTemplateSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantTemplateSegment()
 		 * @generated
 		 */
-		EClass CONSTANT_STRING_SEGMENT = eINSTANCE.getConstantStringSegment();
+		EClass CONSTANT_TEMPLATE_SEGMENT = eINSTANCE.getConstantTemplateSegment();
 
 		/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
@@ -9443,7 +9404,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONSTANT_STRING_SEGMENT__TEXT = eINSTANCE.getConstantStringSegment_Text();
+		EAttribute CONSTANT_TEMPLATE_SEGMENT__TEXT = eINSTANCE.getConstantTemplateSegment_Text();
 
 		/**
 		 * The meta object literal for the '<em><b>Normalized Text</b></em>' attribute feature.
@@ -9451,17 +9412,17 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT = eINSTANCE.getConstantStringSegment_NormalizedText();
+		EAttribute CONSTANT_TEMPLATE_SEGMENT__NORMALIZED_TEXT = eINSTANCE.getConstantTemplateSegment_NormalizedText();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl <em>Dynamic String Segment</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ExpressionTemplateSegmentImpl <em>Expression Template Segment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.DynamicStringSegmentImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDynamicStringSegment()
+		 * @see org.eclipselabs.damos.mscript.impl.ExpressionTemplateSegmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpressionTemplateSegment()
 		 * @generated
 		 */
-		EClass DYNAMIC_STRING_SEGMENT = eINSTANCE.getDynamicStringSegment();
+		EClass EXPRESSION_TEMPLATE_SEGMENT = eINSTANCE.getExpressionTemplateSegment();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
@@ -9469,7 +9430,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DYNAMIC_STRING_SEGMENT__EXPRESSION = eINSTANCE.getDynamicStringSegment_Expression();
+		EReference EXPRESSION_TEMPLATE_SEGMENT__EXPRESSION = eINSTANCE.getExpressionTemplateSegment_Expression();
 
 		/**
 		 * The meta object literal for the '<em><b>Indentation</b></em>' attribute feature.
@@ -9477,7 +9438,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DYNAMIC_STRING_SEGMENT__INDENTATION = eINSTANCE.getDynamicStringSegment_Indentation();
+		EAttribute EXPRESSION_TEMPLATE_SEGMENT__INDENTATION = eINSTANCE.getExpressionTemplateSegment_Indentation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.FunctionKind <em>Function Kind</em>}' enum.

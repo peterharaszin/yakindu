@@ -234,7 +234,7 @@ public class EquationDescriptorImpl extends EObjectImpl implements EquationDescr
 		if (getLeftHandSide().getParts().size() == 1 && lhsExpression instanceof VariableReference) {
 			EquationPart part = getLeftHandSide().getParts().get(0);
 			switch (part.getVariableStep().getDescriptor().getKind()) {
-			case TEMPLATE_PARAMETER:
+			case STATIC_PARAMETER:
 				message = "Left-hand side must not be template parameter reference";
 				break;
 			case INPUT_PARAMETER:

@@ -59,8 +59,8 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class BehavioredBlockHelper {
 
-	protected static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "Ts";
-	protected static final String SAMPLE_RATE_TEMPLATE_PARAMETER_NAME = "fs";
+	protected static final String SAMPLE_TIME_STATIC_PARAMETER_NAME = "Ts";
+	protected static final String SAMPLE_RATE_STATIC_PARAMETER_NAME = "fs";
 	
 	private final Block block;
 	
@@ -84,10 +84,10 @@ public class BehavioredBlockHelper {
 		return functionDeclaration;
 	}
 
-	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
-		Iterator<IValue> templateArgumentIt = templateArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
-			staticEvaluationResult.setValue(parameterDeclaration, templateArgumentIt.next());
+	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<DataType> inputParameterDataTypes) {
+		Iterator<IValue> staticArgumentIt = staticArguments.iterator();
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
+			staticEvaluationResult.setValue(parameterDeclaration, staticArgumentIt.next());
 		}
 
 		Iterator<DataType> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
@@ -98,20 +98,20 @@ public class BehavioredBlockHelper {
 		staticFunctionEvaluator.evaluate(staticEvaluationResult, functionDeclaration);
 	}
 
-	public List<IValue> getTemplateArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
-		List<IValue> templateArguments = new ArrayList<IValue>();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
+	public List<IValue> getStaticArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
+		List<IValue> staticArguments = new ArrayList<IValue>();
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
 			String parameterName = parameterDeclaration.getName();
 			try {
-				IValue value = getParameterTemplateArgumentValue(parameterName);
+				IValue value = getParameterStaticArgumentValue(parameterName);
 				if (value == null) {
-					value = getInputTemplateArgumentValue(parameterName);
+					value = getInputStaticArgumentValue(parameterName);
 				}
 				if (value == null) {
-					value = getGlobalTemplateArgumentValue(parameterName);
+					value = getGlobalStaticArgumentValue(parameterName);
 				}
 				if (value != null) {
-					templateArguments.add(value);
+					staticArguments.add(value);
 				} else {
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Block parameter '"
 							+ parameterName + "' not found"));
@@ -120,7 +120,7 @@ public class BehavioredBlockHelper {
 				status.add(e.getStatus());
 			}
 		}
-		return templateArguments;
+		return staticArguments;
 	}
 
 	public List<DataType> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
@@ -179,7 +179,7 @@ public class BehavioredBlockHelper {
 		return dataTypes;
 	}
 	
-	private IValue getParameterTemplateArgumentValue(String parameterName) throws CoreException {
+	private IValue getParameterStaticArgumentValue(String parameterName) throws CoreException {
 		Argument argument = block.getArgument(parameterName);
 		if (argument != null) {
 			return evaluateParameterValue(argument.getParameter(), argument.getValue());
@@ -193,7 +193,7 @@ public class BehavioredBlockHelper {
 		return null;
 	}
 
-	private IValue getInputTemplateArgumentValue(String name) throws CoreException {
+	private IValue getInputStaticArgumentValue(String name) throws CoreException {
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
 			if (blockInput.getDefinition().isManyPorts() && blockInput.getDefinition().getParameter(name) != null) {
@@ -223,7 +223,7 @@ public class BehavioredBlockHelper {
 		return null;
 	}
 	
-	protected IValue getGlobalTemplateArgumentValue(String name) throws CoreException {
+	protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
 		return null;
 	}
 	

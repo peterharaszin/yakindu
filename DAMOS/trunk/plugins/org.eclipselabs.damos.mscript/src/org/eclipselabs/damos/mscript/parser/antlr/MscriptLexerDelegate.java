@@ -24,8 +24,8 @@ public class MscriptLexerDelegate {
 	
 	private final int constantStringRule;
 	
-	private boolean inMultiLineString;
-	private int inDynamicStringCounter;
+	private boolean inTemplateExpression;
+	private boolean inExpressionTemplateSegment;
 	
 	/**
 	 * 
@@ -37,18 +37,16 @@ public class MscriptLexerDelegate {
 	public Token nextToken(Token nextToken) {
 		if (nextToken != null) {
 			if ("\"\"\"".equals(nextToken.getText())) {
-				inMultiLineString = !inMultiLineString;
-				inDynamicStringCounter = 0;
-			} else if (inMultiLineString) {
-				if (inDynamicStringCounter == 0) {
-					if ("${".equals(nextToken.getText())) {
-						++inDynamicStringCounter;
+				inTemplateExpression = !inTemplateExpression;
+				inExpressionTemplateSegment = false;
+			} else if (inTemplateExpression) {
+				if (!inExpressionTemplateSegment) {
+					if ("\u00ab".equals(nextToken.getText())) {
+						inExpressionTemplateSegment = true;
 					}
-				} else if (inDynamicStringCounter > 0) {
-					if ("{".equals(nextToken.getText())) {
-						++inDynamicStringCounter;
-					} else if ("}".equals(nextToken.getText())) {
-						--inDynamicStringCounter;
+				} else {
+					if ("\u00bb".equals(nextToken.getText())) {
+						inExpressionTemplateSegment = false;
 					}
 				}
 			}
@@ -57,8 +55,8 @@ public class MscriptLexerDelegate {
 	}
 	
 	public boolean mTokens(CharStream input, RecognizerSharedState state) {
-		if (inMultiLineString && inDynamicStringCounter == 0) {
-			if (!(input.LA(1) == '"' && input.LA(2) == '"' && input.LA(3) == '"') && !(input.LA(1) == '$' && input.LA(2) == '{')) {
+		if (inTemplateExpression && !inExpressionTemplateSegment) {
+			if (!(input.LA(1) == '"' && input.LA(2) == '"' && input.LA(3) == '"') && input.LA(1) != '\u00ab') {
 				input.consume();
 				state.channel = BaseRecognizer.DEFAULT_TOKEN_CHANNEL;
 				state.type = constantStringRule;

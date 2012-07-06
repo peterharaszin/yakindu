@@ -49,7 +49,7 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 
 	private Text filePathText;
 	private Text functionNameText;
-	private Text templateArgumentsText;
+	private Text staticArgumentsText;
 	private Text inputFilePathText;
 	private Text outputFilePathText;
 	private Text computationModelText;
@@ -106,12 +106,12 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 		functionNameText.setLayoutData(gridData);
 
 		new Label(composite, SWT.NONE).setText("Template arguments:");
-		templateArgumentsText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		templateArgumentsText.addModifyListener(modifyListener);
-		templateArgumentsText.setToolTipText("Comma-separated list of template arguments");
+		staticArgumentsText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		staticArgumentsText.addModifyListener(modifyListener);
+		staticArgumentsText.setToolTipText("Comma-separated list of template arguments");
 		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
-		templateArgumentsText.setLayoutData(gridData);
+		staticArgumentsText.setLayoutData(gridData);
 
 		new Label(composite, SWT.NONE).setText("Input file:");
 		inputFilePathText = new Text(composite, SWT.SINGLE | SWT.BORDER);
@@ -189,7 +189,7 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 		try {
 			filePathText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__FILE_PATH, ""));
 			functionNameText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, "Main"));
-			templateArgumentsText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, ""));
+			staticArgumentsText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS, ""));
 			inputFilePathText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__INPUT_FILE_PATH, ""));
 			outputFilePathText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__OUTPUT_FILE_PATH, ""));
 			computationModelText.setText(configuration.getAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__COMPUTATION_MODEL, ""));
@@ -202,7 +202,7 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 		String errorMessage = null;
 		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__FILE_PATH, filePathText.getText());
 		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, functionNameText.getText());
-		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, templateArgumentsText.getText());
+		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS, staticArgumentsText.getText());
 		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__INPUT_FILE_PATH, inputFilePathText.getText());
 		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__OUTPUT_FILE_PATH, outputFilePathText.getText());
 		configuration.setAttribute(MscriptLaunchConfigurationDelegate.ATTRIBUTE__COMPUTATION_MODEL, computationModelText.getText());
@@ -229,7 +229,7 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 				MscriptLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME,
 				"Main");
 		configuration.setAttribute(
-				MscriptLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS,
+				MscriptLaunchConfigurationDelegate.ATTRIBUTE__STATIC_ARGUMENTS,
 				"");
 		configuration.setAttribute(
 				MscriptLaunchConfigurationDelegate.ATTRIBUTE__INPUT_FILE_PATH,

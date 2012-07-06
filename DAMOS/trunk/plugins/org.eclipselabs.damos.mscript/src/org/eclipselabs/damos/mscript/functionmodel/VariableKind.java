@@ -33,16 +33,14 @@ public enum VariableKind implements Enumerator {
 	UNKNOWN(-1, "Unknown", "Unknown"),
 
 	/**
-	 * The '<em><b>Template Parameter</b></em>' literal object.
+	 * The '<em><b>Static Parameter</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TEMPLATE_PARAMETER_VALUE
+	 * @see #STATIC_PARAMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TEMPLATE_PARAMETER(0, "TemplateParameter", "TemplateParameter"),
-
-	/**
+	STATIC_PARAMETER(0, "StaticParameter", "StaticParameter"), /**
 	 * The '<em><b>Input Parameter</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,19 +106,19 @@ public enum VariableKind implements Enumerator {
 	public static final int UNKNOWN_VALUE = -1;
 
 	/**
-	 * The '<em><b>Template Parameter</b></em>' literal value.
+	 * The '<em><b>Static Parameter</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Template Parameter</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Static Parameter</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TEMPLATE_PARAMETER
-	 * @model name="TemplateParameter"
+	 * @see #STATIC_PARAMETER
+	 * @model name="StaticParameter"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEMPLATE_PARAMETER_VALUE = 0;
+	public static final int STATIC_PARAMETER_VALUE = 0;
 
 	/**
 	 * The '<em><b>Input Parameter</b></em>' literal value.
@@ -206,7 +204,7 @@ public enum VariableKind implements Enumerator {
 	private static final VariableKind[] VALUES_ARRAY =
 		new VariableKind[] {
 			UNKNOWN,
-			TEMPLATE_PARAMETER,
+			STATIC_PARAMETER,
 			INPUT_PARAMETER,
 			OUTPUT_PARAMETER,
 			STATE_VARIABLE,
@@ -263,7 +261,7 @@ public enum VariableKind implements Enumerator {
 	public static VariableKind get(int value) {
 		switch (value) {
 			case UNKNOWN_VALUE: return UNKNOWN;
-			case TEMPLATE_PARAMETER_VALUE: return TEMPLATE_PARAMETER;
+			case STATIC_PARAMETER_VALUE: return STATIC_PARAMETER;
 			case INPUT_PARAMETER_VALUE: return INPUT_PARAMETER;
 			case OUTPUT_PARAMETER_VALUE: return OUTPUT_PARAMETER;
 			case STATE_VARIABLE_VALUE: return STATE_VARIABLE;

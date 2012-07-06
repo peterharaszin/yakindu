@@ -3,7 +3,7 @@ package org.eclipselabs.damos.mscript.codegen.c.internal;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
@@ -40,9 +40,9 @@ public class VariableReferenceGenerator {
 		}
 		
 		@Override
-		public CharSequence caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
-			IValue templateArgument = context.getStaticEvaluationResult().getValue(templateParameterDeclaration);
-			return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), templateArgument);
+		public CharSequence caseStaticParameterDeclaration(StaticParameterDeclaration staticParameterDeclaration) {
+			IValue staticArgument = context.getStaticEvaluationResult().getValue(staticParameterDeclaration);
+			return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), staticArgument);
 		}
 			
 		@Override

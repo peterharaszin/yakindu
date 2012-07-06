@@ -78,7 +78,7 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					elements.add(functionAliasDeclaration);
 				}
 
-				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
+				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
 					elements.add(parameterDeclaration);
 				}
 				

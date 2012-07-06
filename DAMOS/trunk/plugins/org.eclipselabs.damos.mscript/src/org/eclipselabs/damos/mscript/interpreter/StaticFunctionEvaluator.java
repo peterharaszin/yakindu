@@ -37,7 +37,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.PostfixExpression;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
@@ -243,7 +243,7 @@ public class StaticFunctionEvaluator {
 				boolean defined = true;
 				for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
 					VariableReference variableReference = (VariableReference) part.getVariableAccess();
-					if (variableReference.getFeature() instanceof TemplateParameterDeclaration || variableReference.getFeature() instanceof InputParameterDeclaration) {
+					if (variableReference.getFeature() instanceof StaticParameterDeclaration || variableReference.getFeature() instanceof InputParameterDeclaration) {
 						continue;
 					}
 					if (!definedFeatures.contains(variableReference.getFeature())) {

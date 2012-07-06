@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.PostfixExpression;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
+import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
@@ -208,8 +208,8 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		}
 
 		private VariableKind getVariableKind(CallableElement feature) {
-			if (feature instanceof TemplateParameterDeclaration) {
-				return VariableKind.TEMPLATE_PARAMETER;
+			if (feature instanceof StaticParameterDeclaration) {
+				return VariableKind.STATIC_PARAMETER;
 			}
 			if (feature instanceof InputParameterDeclaration) {
 				return VariableKind.INPUT_PARAMETER;

@@ -1957,8 +1957,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Function
 	// * / FunctionDeclaration:
-	//	kind=FunctionKind? "function" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
-	//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
+	//	kind=FunctionKind? "function" name=ValidID ("<" staticParameterDeclarations+=StaticParameterDeclaration (","
+	//	staticParameterDeclarations+=StaticParameterDeclaration)* ">")? "("
 	//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
 	//	")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
 	//	outputParameterDeclarations+=OutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
@@ -1982,14 +1982,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionKindAccess().getRule();
 	}
 
-	//TemplateParameterDeclaration:
+	//StaticParameterDeclaration:
 	//	name=ValidID;
-	public MscriptGrammarAccess.TemplateParameterDeclarationElements getTemplateParameterDeclarationAccess() {
-		return gaMscript.getTemplateParameterDeclarationAccess();
+	public MscriptGrammarAccess.StaticParameterDeclarationElements getStaticParameterDeclarationAccess() {
+		return gaMscript.getStaticParameterDeclarationAccess();
 	}
 	
-	public ParserRule getTemplateParameterDeclarationRule() {
-		return getTemplateParameterDeclarationAccess().getRule();
+	public ParserRule getStaticParameterDeclarationRule() {
+		return getStaticParameterDeclarationAccess().getRule();
 	}
 
 	//InputParameterDeclaration:
@@ -2013,7 +2013,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Check:
-	//	"check" ("<" templateArguments+=Expression ("," templateArguments+=Expression)* ">")? "("
+	//	"check" ("<" staticArguments+=Expression ("," staticArguments+=Expression)* ">")? "("
 	//	(inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
 	//	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*;
 	public MscriptGrammarAccess.CheckElements getCheckAccess() {
@@ -2065,8 +2065,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionAliasDeclaration:
-	//	"function" name=ValidID "=" functionDeclaration=[FunctionDeclaration|QualifiedName] ("<" templateArguments+=Expression
-	//	("," templateArguments+=Expression)* ">")?;
+	//	"function" name=ValidID "=" functionDeclaration=[FunctionDeclaration|QualifiedName] ("<" staticArguments+=Expression
+	//	("," staticArguments+=Expression)* ">")?;
 	public MscriptGrammarAccess.FunctionAliasDeclarationElements getFunctionAliasDeclarationAccess() {
 		return gaMscript.getFunctionAliasDeclarationAccess();
 	}
@@ -2572,8 +2572,9 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimaryExpression returns Expression:
-	//	Literal | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator | ArrayConcatenationOperator |
-	//	StructConstructionOperator | ParenthesizedExpression | EndExpression | AlgorithmExpression;
+	//	Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
+	//	ArrayConcatenationOperator | StructConstructionOperator | ParenthesizedExpression | EndExpression |
+	//	AlgorithmExpression;
 	public MscriptGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return gaMscript.getPrimaryExpressionAccess();
 	}
@@ -2663,7 +2664,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral:
-	//	SimpleStringLiteral | MultiLineStringLiteral;
+	//	text=STRING;
 	public MscriptGrammarAccess.StringLiteralElements getStringLiteralAccess() {
 		return gaMscript.getStringLiteralAccess();
 	}
@@ -2672,35 +2673,25 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getStringLiteralAccess().getRule();
 	}
 
-	//SimpleStringLiteral:
-	//	text=STRING;
-	public MscriptGrammarAccess.SimpleStringLiteralElements getSimpleStringLiteralAccess() {
-		return gaMscript.getSimpleStringLiteralAccess();
+	//TemplateExpression hidden():
+	//	{TemplateExpression} "\"\"\"" segments+=ConstantTemplateSegment? (segments+=ExpressionTemplateSegment
+	//	segments+=ConstantTemplateSegment?)* "\"\"\"";
+	public MscriptGrammarAccess.TemplateExpressionElements getTemplateExpressionAccess() {
+		return gaMscript.getTemplateExpressionAccess();
 	}
 	
-	public ParserRule getSimpleStringLiteralRule() {
-		return getSimpleStringLiteralAccess().getRule();
+	public ParserRule getTemplateExpressionRule() {
+		return getTemplateExpressionAccess().getRule();
 	}
 
-	//MultiLineStringLiteral hidden():
-	//	{MultiLineStringLiteral} "\"\"\"" segments+=ConstantStringSegment? (segments+=DynamicStringSegment
-	//	segments+=ConstantStringSegment?)* "\"\"\"";
-	public MscriptGrammarAccess.MultiLineStringLiteralElements getMultiLineStringLiteralAccess() {
-		return gaMscript.getMultiLineStringLiteralAccess();
-	}
-	
-	public ParserRule getMultiLineStringLiteralRule() {
-		return getMultiLineStringLiteralAccess().getRule();
-	}
-
-	//ConstantStringSegment:
+	//ConstantTemplateSegment:
 	//	text=ConstantString;
-	public MscriptGrammarAccess.ConstantStringSegmentElements getConstantStringSegmentAccess() {
-		return gaMscript.getConstantStringSegmentAccess();
+	public MscriptGrammarAccess.ConstantTemplateSegmentElements getConstantTemplateSegmentAccess() {
+		return gaMscript.getConstantTemplateSegmentAccess();
 	}
 	
-	public ParserRule getConstantStringSegmentRule() {
-		return getConstantStringSegmentAccess().getRule();
+	public ParserRule getConstantTemplateSegmentRule() {
+		return getConstantTemplateSegmentAccess().getRule();
 	}
 
 	//ConstantString:
@@ -2713,14 +2704,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getConstantStringAccess().getRule();
 	}
 
-	//DynamicStringSegment hidden(WS, ML_COMMENT):
-	//	"${" expression=Expression "}";
-	public MscriptGrammarAccess.DynamicStringSegmentElements getDynamicStringSegmentAccess() {
-		return gaMscript.getDynamicStringSegmentAccess();
+	//ExpressionTemplateSegment hidden(WS, ML_COMMENT):
+	//	"«" expression=Expression "»";
+	public MscriptGrammarAccess.ExpressionTemplateSegmentElements getExpressionTemplateSegmentAccess() {
+		return gaMscript.getExpressionTemplateSegmentAccess();
 	}
 	
-	public ParserRule getDynamicStringSegmentRule() {
-		return getDynamicStringSegmentAccess().getRule();
+	public ParserRule getExpressionTemplateSegmentRule() {
+		return getExpressionTemplateSegmentAccess().getRule();
 	}
 
 	//FeatureCall returns Expression:

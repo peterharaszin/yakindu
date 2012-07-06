@@ -58,7 +58,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor, java.lang.String, java.util.List, java.util.List)
 	 */
-	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
+	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<DataType> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
@@ -66,7 +66,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		
 		Map<VariableDescriptor, VariableDeclaration> variableDeclarations = new HashMap<VariableDescriptor, VariableDeclaration>();
 		
-		initializeVariableDeclarations(staticEvaluationResult, functionInstance, functionDescriptor, templateArguments, inputParameterDataTypes, variableDeclarations);
+		initializeVariableDeclarations(staticEvaluationResult, functionInstance, functionDescriptor, staticArguments, inputParameterDataTypes, variableDeclarations);
 
 		Collection<List<EquationDescriptor>> equationCompounds = new EquationCompoundHelper().getEquationCompounds(functionDescriptor);
 		
@@ -85,11 +85,11 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		return new FunctionDefinitionTransformerResult(functionInstance);
 	}
 	
-	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
-		Iterator<IValue> templateArgumentIterator = templateArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getTemplateParameterDeclarations()) {
-			if (templateArgumentIterator.hasNext()) {
-				IValue value = templateArgumentIterator.next();
+	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+		Iterator<IValue> staticArgumentIterator = staticArguments.iterator();
+		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getStaticParameterDeclarations()) {
+			if (staticArgumentIterator.hasNext()) {
+				IValue value = staticArgumentIterator.next();
 				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.Check#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Check#getTemplateArguments <em>Template Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Check#getStaticArguments <em>Static Arguments</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.Check#getInputParameterTypes <em>Input Parameter Types</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.Check#getOutputParameterTypes <em>Output Parameter Types</em>}</li>
  * </ul>
@@ -58,20 +58,20 @@ public interface Check extends EObject {
 	void setFunction(FunctionDeclaration value);
 
 	/**
-	 * Returns the value of the '<em><b>Template Arguments</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Static Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Template Arguments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Static Arguments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Template Arguments</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_TemplateArguments()
+	 * @return the value of the '<em>Static Arguments</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_StaticArguments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Expression> getTemplateArguments();
+	EList<Expression> getStaticArguments();
 
 	/**
 	 * Returns the value of the '<em><b>Input Parameter Types</b></em>' containment reference list.

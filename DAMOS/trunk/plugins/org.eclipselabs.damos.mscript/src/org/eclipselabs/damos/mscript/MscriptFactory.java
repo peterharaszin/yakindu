@@ -98,13 +98,13 @@ public interface MscriptFactory extends EFactory {
 	Check createCheck();
 
 	/**
-	 * Returns a new object of class '<em>Template Parameter Declaration</em>'.
+	 * Returns a new object of class '<em>Static Parameter Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Template Parameter Declaration</em>'.
+	 * @return a new object of class '<em>Static Parameter Declaration</em>'.
 	 * @generated
 	 */
-	TemplateParameterDeclaration createTemplateParameterDeclaration();
+	StaticParameterDeclaration createStaticParameterDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Input Parameter Declaration</em>'.
@@ -908,40 +908,40 @@ public interface MscriptFactory extends EFactory {
 	BooleanLiteral createBooleanLiteral();
 
 	/**
-	 * Returns a new object of class '<em>Simple String Literal</em>'.
+	 * Returns a new object of class '<em>String Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple String Literal</em>'.
+	 * @return a new object of class '<em>String Literal</em>'.
 	 * @generated
 	 */
-	SimpleStringLiteral createSimpleStringLiteral();
+	StringLiteral createStringLiteral();
 
 	/**
-	 * Returns a new object of class '<em>Multi Line String Literal</em>'.
+	 * Returns a new object of class '<em>Template Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multi Line String Literal</em>'.
+	 * @return a new object of class '<em>Template Expression</em>'.
 	 * @generated
 	 */
-	MultiLineStringLiteral createMultiLineStringLiteral();
+	TemplateExpression createTemplateExpression();
 
 	/**
-	 * Returns a new object of class '<em>Constant String Segment</em>'.
+	 * Returns a new object of class '<em>Constant Template Segment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constant String Segment</em>'.
+	 * @return a new object of class '<em>Constant Template Segment</em>'.
 	 * @generated
 	 */
-	ConstantStringSegment createConstantStringSegment();
+	ConstantTemplateSegment createConstantTemplateSegment();
 
 	/**
-	 * Returns a new object of class '<em>Dynamic String Segment</em>'.
+	 * Returns a new object of class '<em>Expression Template Segment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dynamic String Segment</em>'.
+	 * @return a new object of class '<em>Expression Template Segment</em>'.
 	 * @generated
 	 */
-	DynamicStringSegment createDynamicStringSegment();
+	ExpressionTemplateSegment createExpressionTemplateSegment();
 
 	/**
 	 * Returns the package supported by this factory.

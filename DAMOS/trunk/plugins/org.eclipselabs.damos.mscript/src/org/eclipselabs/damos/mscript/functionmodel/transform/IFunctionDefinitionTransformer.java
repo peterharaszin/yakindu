@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public interface IFunctionDefinitionTransformer {
 
 	IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult,
-			FunctionDescriptor functionDescriptor, List<IValue> templateArguments,
+			FunctionDescriptor functionDescriptor, List<IValue> staticArguments,
 			List<DataType> inputParameterDataTypes);
 
 }

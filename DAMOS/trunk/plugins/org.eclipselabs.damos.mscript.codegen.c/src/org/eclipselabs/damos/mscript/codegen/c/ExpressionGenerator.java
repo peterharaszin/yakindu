@@ -40,7 +40,7 @@ import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.SimpleStringLiteral;
+import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructType;
@@ -421,7 +421,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		@Override
-		public Boolean caseSimpleStringLiteral(SimpleStringLiteral stringLiteral) {
+		public Boolean caseStringLiteral(StringLiteral stringLiteral) {
 			out.print("\"" + stringLiteral.getText() + "\"");
 			return true;
 		}

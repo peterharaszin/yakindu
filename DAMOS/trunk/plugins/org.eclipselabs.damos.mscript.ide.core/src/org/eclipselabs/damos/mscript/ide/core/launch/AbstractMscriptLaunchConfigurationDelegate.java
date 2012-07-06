@@ -48,7 +48,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	
 	public static final String ATTRIBUTE__FILE_PATH = "filePath";
 	public static final String ATTRIBUTE__FUNCTION_NAME = "functionName";
-	public static final String ATTRIBUTE__TEMPLATE_ARGUMENTS = "templateArguments";
+	public static final String ATTRIBUTE__STATIC_ARGUMENTS = "staticArguments";
 	public static final String ATTRIBUTE__COMPUTATION_MODEL = "computationModel";
 	
 	private IStaticEvaluationResult staticEvaluationResult;
@@ -59,7 +59,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	
 	private FunctionInstance functionInstance;
 	
-	private List<IValue> templateArguments;
+	private List<IValue> staticArguments;
 	
 	private List<DataType> inputParameterDataTypes;
 	
@@ -92,10 +92,10 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	}
 	
 	/**
-	 * @return the templateArguments
+	 * @return the staticArguments
 	 */
-	public List<IValue> getTemplateArguments() {
-		return templateArguments;
+	public List<IValue> getStaticArguments() {
+		return staticArguments;
 	}
 	
 	/**
@@ -136,20 +136,20 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 			computationModel = createComputationModel(computationModelString);
 		}
 		
-		String templateArgumentsString = configuration.getAttribute(ATTRIBUTE__TEMPLATE_ARGUMENTS, "");
+		String staticArgumentsString = configuration.getAttribute(ATTRIBUTE__STATIC_ARGUMENTS, "");
 
-		templateArguments = computeTemplateArguments(createTemplateArgumentsInterpreterContext(), functionDeclaration, templateArgumentsString);
+		staticArguments = computeStaticArguments(createStaticArgumentsInterpreterContext(), functionDeclaration, staticArgumentsString);
 
 		inputParameterDataTypes = computeInputParameterDataTypes(configuration, mode, monitor);
 
-		functionInstance = createFunctionInstance(functionDeclaration, templateArguments, inputParameterDataTypes, monitor);
+		functionInstance = createFunctionInstance(functionDeclaration, staticArguments, inputParameterDataTypes, monitor);
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
 	
 	protected abstract List<DataType> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException;
 	
-	protected IInterpreterContext createTemplateArgumentsInterpreterContext() {
+	protected IInterpreterContext createStaticArgumentsInterpreterContext() {
 		return new InterpreterContext(getStaticEvaluationResult(), new ComputationContext());
 	}
 
@@ -213,14 +213,14 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDeclaration;
 	}
 
-	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationResult = new StaticEvaluationResult();
 		new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(staticEvaluationResult.getStatus());
 		}
 		
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionDescriptor(functionDeclaration), templateArguments, inputParameterDataTypes);
+		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionDescriptor(functionDeclaration), staticArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			throw new CoreException(functionDefinitionTransformerResult.getStatus());
 		}
@@ -228,17 +228,17 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDefinitionTransformerResult.getFunctionInstance();
 	}
 	
-	private List<IValue> computeTemplateArguments(IInterpreterContext interpreterContext, FunctionDeclaration functionDeclaration, String templateArgumentsString) throws CoreException {
-		List<IValue> templateArguments = ParseUtil.parseValues(interpreterContext, templateArgumentsString);
-		if (templateArguments == null) {
+	private List<IValue> computeStaticArguments(IInterpreterContext interpreterContext, FunctionDeclaration functionDeclaration, String staticArgumentsString) throws CoreException {
+		List<IValue> staticArguments = ParseUtil.parseValues(interpreterContext, staticArgumentsString);
+		if (staticArguments == null) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Invalid template arguments specified"));
 		}
 		
-		if (templateArguments.size() != functionDeclaration.getTemplateParameterDeclarations().size()) {
+		if (staticArguments.size() != functionDeclaration.getStaticParameterDeclarations().size()) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Number of template parameter data types does not correspond to the number of template parameter in function definition"));
 		}
 		
-		return templateArguments;
+		return staticArguments;
 	}
 
 }

@@ -119,7 +119,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass templateParameterDeclarationEClass = null;
+	private EClass staticParameterDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -805,35 +805,28 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simpleStringLiteralEClass = null;
+	private EClass templateExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass multiLineStringLiteralEClass = null;
+	private EClass templateSegmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stringSegmentEClass = null;
+	private EClass constantTemplateSegmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass constantStringSegmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dynamicStringSegmentEClass = null;
+	private EClass expressionTemplateSegmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1089,7 +1082,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_TemplateParameterDeclarations() {
+	public EReference getFunctionDeclaration_StaticParameterDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1188,7 +1181,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheck_TemplateArguments() {
+	public EReference getCheck_StaticArguments() {
 		return (EReference)checkEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1260,8 +1253,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTemplateParameterDeclaration() {
-		return templateParameterDeclarationEClass;
+	public EClass getStaticParameterDeclaration() {
+		return staticParameterDeclarationEClass;
 	}
 
 	/**
@@ -1386,7 +1379,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionAliasDeclaration_TemplateArguments() {
+	public EReference getFunctionAliasDeclaration_StaticArguments() {
 		return (EReference)functionAliasDeclarationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3330,8 +3323,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimpleStringLiteral() {
-		return simpleStringLiteralEClass;
+	public EAttribute getStringLiteral_Text() {
+		return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3339,8 +3332,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleStringLiteral_Text() {
-		return (EAttribute)simpleStringLiteralEClass.getEStructuralFeatures().get(0);
+	public EClass getTemplateExpression() {
+		return templateExpressionEClass;
 	}
 
 	/**
@@ -3348,8 +3341,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMultiLineStringLiteral() {
-		return multiLineStringLiteralEClass;
+	public EReference getTemplateExpression_Segments() {
+		return (EReference)templateExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3357,8 +3350,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiLineStringLiteral_Segments() {
-		return (EReference)multiLineStringLiteralEClass.getEStructuralFeatures().get(0);
+	public EClass getTemplateSegment() {
+		return templateSegmentEClass;
 	}
 
 	/**
@@ -3366,8 +3359,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStringSegment() {
-		return stringSegmentEClass;
+	public EClass getConstantTemplateSegment() {
+		return constantTemplateSegmentEClass;
 	}
 
 	/**
@@ -3375,8 +3368,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstantStringSegment() {
-		return constantStringSegmentEClass;
+	public EAttribute getConstantTemplateSegment_Text() {
+		return (EAttribute)constantTemplateSegmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3384,8 +3377,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstantStringSegment_Text() {
-		return (EAttribute)constantStringSegmentEClass.getEStructuralFeatures().get(0);
+	public EAttribute getConstantTemplateSegment_NormalizedText() {
+		return (EAttribute)constantTemplateSegmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3393,8 +3386,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstantStringSegment_NormalizedText() {
-		return (EAttribute)constantStringSegmentEClass.getEStructuralFeatures().get(1);
+	public EClass getExpressionTemplateSegment() {
+		return expressionTemplateSegmentEClass;
 	}
 
 	/**
@@ -3402,8 +3395,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDynamicStringSegment() {
-		return dynamicStringSegmentEClass;
+	public EReference getExpressionTemplateSegment_Expression() {
+		return (EReference)expressionTemplateSegmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3411,17 +3404,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDynamicStringSegment_Expression() {
-		return (EReference)dynamicStringSegmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDynamicStringSegment_Indentation() {
-		return (EAttribute)dynamicStringSegmentEClass.getEStructuralFeatures().get(1);
+	public EAttribute getExpressionTemplateSegment_Indentation() {
+		return (EAttribute)expressionTemplateSegmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3521,7 +3505,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		functionDeclarationEClass = createEClass(FUNCTION_DECLARATION);
 		createEAttribute(functionDeclarationEClass, FUNCTION_DECLARATION__KIND);
-		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__CHECKS);
@@ -3533,7 +3517,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		checkEClass = createEClass(CHECK);
 		createEReference(checkEClass, CHECK__FUNCTION);
-		createEReference(checkEClass, CHECK__TEMPLATE_ARGUMENTS);
+		createEReference(checkEClass, CHECK__STATIC_ARGUMENTS);
 		createEReference(checkEClass, CHECK__INPUT_PARAMETER_TYPES);
 		createEReference(checkEClass, CHECK__OUTPUT_PARAMETER_TYPES);
 
@@ -3546,7 +3530,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		parameterDeclarationEClass = createEClass(PARAMETER_DECLARATION);
 
-		templateParameterDeclarationEClass = createEClass(TEMPLATE_PARAMETER_DECLARATION);
+		staticParameterDeclarationEClass = createEClass(STATIC_PARAMETER_DECLARATION);
 
 		inputParameterDeclarationEClass = createEClass(INPUT_PARAMETER_DECLARATION);
 
@@ -3566,7 +3550,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		functionAliasDeclarationEClass = createEClass(FUNCTION_ALIAS_DECLARATION);
 		createEAttribute(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__NAME);
 		createEReference(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__FUNCTION_DECLARATION);
-		createEReference(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__TEMPLATE_ARGUMENTS);
+		createEReference(functionAliasDeclarationEClass, FUNCTION_ALIAS_DECLARATION__STATIC_ARGUMENTS);
 
 		equationEClass = createEClass(EQUATION);
 		createEAttribute(equationEClass, EQUATION__INITIAL);
@@ -3873,22 +3857,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__TRUE);
 
 		stringLiteralEClass = createEClass(STRING_LITERAL);
+		createEAttribute(stringLiteralEClass, STRING_LITERAL__TEXT);
 
-		simpleStringLiteralEClass = createEClass(SIMPLE_STRING_LITERAL);
-		createEAttribute(simpleStringLiteralEClass, SIMPLE_STRING_LITERAL__TEXT);
+		templateExpressionEClass = createEClass(TEMPLATE_EXPRESSION);
+		createEReference(templateExpressionEClass, TEMPLATE_EXPRESSION__SEGMENTS);
 
-		multiLineStringLiteralEClass = createEClass(MULTI_LINE_STRING_LITERAL);
-		createEReference(multiLineStringLiteralEClass, MULTI_LINE_STRING_LITERAL__SEGMENTS);
+		templateSegmentEClass = createEClass(TEMPLATE_SEGMENT);
 
-		stringSegmentEClass = createEClass(STRING_SEGMENT);
+		constantTemplateSegmentEClass = createEClass(CONSTANT_TEMPLATE_SEGMENT);
+		createEAttribute(constantTemplateSegmentEClass, CONSTANT_TEMPLATE_SEGMENT__TEXT);
+		createEAttribute(constantTemplateSegmentEClass, CONSTANT_TEMPLATE_SEGMENT__NORMALIZED_TEXT);
 
-		constantStringSegmentEClass = createEClass(CONSTANT_STRING_SEGMENT);
-		createEAttribute(constantStringSegmentEClass, CONSTANT_STRING_SEGMENT__TEXT);
-		createEAttribute(constantStringSegmentEClass, CONSTANT_STRING_SEGMENT__NORMALIZED_TEXT);
-
-		dynamicStringSegmentEClass = createEClass(DYNAMIC_STRING_SEGMENT);
-		createEReference(dynamicStringSegmentEClass, DYNAMIC_STRING_SEGMENT__EXPRESSION);
-		createEAttribute(dynamicStringSegmentEClass, DYNAMIC_STRING_SEGMENT__INDENTATION);
+		expressionTemplateSegmentEClass = createEClass(EXPRESSION_TEMPLATE_SEGMENT);
+		createEReference(expressionTemplateSegmentEClass, EXPRESSION_TEMPLATE_SEGMENT__EXPRESSION);
+		createEAttribute(expressionTemplateSegmentEClass, EXPRESSION_TEMPLATE_SEGMENT__INDENTATION);
 
 		// Create enums
 		functionKindEEnum = createEEnum(FUNCTION_KIND);
@@ -3937,7 +3919,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		callableElementEClass.getESuperTypes().add(this.getEvaluable());
 		variableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		parameterDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
-		templateParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
+		staticParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		inputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
@@ -4020,10 +4002,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		integerLiteralEClass.getESuperTypes().add(this.getNumericLiteral());
 		booleanLiteralEClass.getESuperTypes().add(this.getLiteral());
 		stringLiteralEClass.getESuperTypes().add(this.getLiteral());
-		simpleStringLiteralEClass.getESuperTypes().add(this.getStringLiteral());
-		multiLineStringLiteralEClass.getESuperTypes().add(this.getStringLiteral());
-		constantStringSegmentEClass.getESuperTypes().add(this.getStringSegment());
-		dynamicStringSegmentEClass.getESuperTypes().add(this.getStringSegment());
+		templateExpressionEClass.getESuperTypes().add(this.getExpression());
+		constantTemplateSegmentEClass.getESuperTypes().add(this.getTemplateSegment());
+		expressionTemplateSegmentEClass.getESuperTypes().add(this.getTemplateSegment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4050,7 +4031,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(functionDeclarationEClass, FunctionDeclaration.class, "FunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionDeclaration_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDeclaration_TemplateParameterDeclarations(), this.getTemplateParameterDeclaration(), null, "templateParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_StaticParameterDeclarations(), this.getStaticParameterDeclaration(), null, "staticParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_InputParameterDeclarations(), this.getInputParameterDeclaration(), null, "inputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_OutputParameterDeclarations(), this.getOutputParameterDeclaration(), null, "outputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_Checks(), this.getCheck(), this.getCheck_Function(), "checks", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4062,7 +4043,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(checkEClass, Check.class, "Check", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCheck_Function(), this.getFunctionDeclaration(), this.getFunctionDeclaration_Checks(), "function", null, 1, 1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCheck_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheck_StaticArguments(), this.getExpression(), null, "staticArguments", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_InputParameterTypes(), this.getDataTypeSpecifier(), null, "inputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_OutputParameterTypes(), this.getDataTypeSpecifier(), null, "outputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4079,7 +4060,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(parameterDeclarationEClass, ParameterDeclaration.class, "ParameterDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(templateParameterDeclarationEClass, TemplateParameterDeclaration.class, "TemplateParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(staticParameterDeclarationEClass, StaticParameterDeclaration.class, "StaticParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(inputParameterDeclarationEClass, InputParameterDeclaration.class, "InputParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4099,7 +4080,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(functionAliasDeclarationEClass, FunctionAliasDeclaration.class, "FunctionAliasDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionAliasDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionAliasDeclaration_FunctionDeclaration(), this.getFunctionDeclaration(), null, "functionDeclaration", null, 0, 1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionAliasDeclaration_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionAliasDeclaration_StaticArguments(), this.getExpression(), null, "staticArguments", null, 0, -1, FunctionAliasDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(equationEClass, Equation.class, "Equation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEquation_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4452,25 +4433,23 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(booleanLiteralEClass, BooleanLiteral.class, "BooleanLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBooleanLiteral_True(), ecorePackage.getEBoolean(), "true", null, 0, 1, BooleanLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringLiteral_Text(), ecorePackage.getEString(), "text", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(simpleStringLiteralEClass, SimpleStringLiteral.class, "SimpleStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleStringLiteral_Text(), ecorePackage.getEString(), "text", null, 0, 1, SimpleStringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(templateExpressionEClass, TemplateExpression.class, "TemplateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTemplateExpression_Segments(), this.getTemplateSegment(), null, "segments", null, 0, -1, TemplateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(multiLineStringLiteralEClass, MultiLineStringLiteral.class, "MultiLineStringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiLineStringLiteral_Segments(), this.getStringSegment(), null, "segments", null, 0, -1, MultiLineStringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		addEOperation(templateExpressionEClass, null, "normalizeSegments", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(multiLineStringLiteralEClass, null, "normalizeSegments", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(templateSegmentEClass, TemplateSegment.class, "TemplateSegment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stringSegmentEClass, StringSegment.class, "StringSegment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(constantTemplateSegmentEClass, ConstantTemplateSegment.class, "ConstantTemplateSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstantTemplateSegment_Text(), ecorePackage.getEString(), "text", null, 0, 1, ConstantTemplateSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantTemplateSegment_NormalizedText(), ecorePackage.getEString(), "normalizedText", null, 0, 1, ConstantTemplateSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(constantStringSegmentEClass, ConstantStringSegment.class, "ConstantStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstantStringSegment_Text(), ecorePackage.getEString(), "text", null, 0, 1, ConstantStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstantStringSegment_NormalizedText(), ecorePackage.getEString(), "normalizedText", null, 0, 1, ConstantStringSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(dynamicStringSegmentEClass, DynamicStringSegment.class, "DynamicStringSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDynamicStringSegment_Expression(), this.getExpression(), null, "expression", null, 0, 1, DynamicStringSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDynamicStringSegment_Indentation(), ecorePackage.getEString(), "indentation", null, 0, 1, DynamicStringSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(expressionTemplateSegmentEClass, ExpressionTemplateSegment.class, "ExpressionTemplateSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExpressionTemplateSegment_Expression(), this.getExpression(), null, "expression", null, 0, 1, ExpressionTemplateSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExpressionTemplateSegment_Indentation(), ecorePackage.getEString(), "indentation", null, 0, 1, ExpressionTemplateSegment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(functionKindEEnum, FunctionKind.class, "FunctionKind");

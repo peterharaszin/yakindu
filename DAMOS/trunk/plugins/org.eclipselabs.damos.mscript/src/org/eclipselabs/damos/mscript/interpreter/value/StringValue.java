@@ -39,14 +39,6 @@ public class StringValue extends AbstractValue {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
-	 */
-	@Override
-	protected IValue doConvert(DataType dataType) {
-		return this;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override

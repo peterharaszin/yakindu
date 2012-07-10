@@ -16,7 +16,7 @@ blockType StringTest {
 		static assert b is int :
 			error "B must be integer"
 
-		eq y1 = "Hello, world!"
+		eq y1 = "Hello, " + a + " world!"
 		eq y2 = """
 			Hello, «a»
 				"«a + b»"

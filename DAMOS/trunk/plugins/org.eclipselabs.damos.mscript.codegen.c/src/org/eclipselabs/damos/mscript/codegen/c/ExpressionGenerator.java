@@ -46,6 +46,7 @@ import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructType;
@@ -208,6 +209,59 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			
 			DataType leftDataType = getDataType(additiveExpression.getLeftOperand());
 			DataType rightDataType = getDataType(additiveExpression.getRightOperand());
+			
+			if (leftDataType instanceof StringType || rightDataType instanceof StringType) {
+				IValue leftValue = context.getStaticEvaluationResult().getValue(additiveExpression.getLeftOperand());
+				if (leftValue == null || leftValue instanceof InvalidValue) {
+					return true;
+				}
+				IValue leftConvertedValue = leftValue.convert(MscriptFactory.eINSTANCE.createStringType());
+				if (leftConvertedValue instanceof InvalidValue) {
+					return true;
+				}
+				IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), leftValue.getDataType()));
+
+				IValue rightValue = context.getStaticEvaluationResult().getValue(additiveExpression.getRightOperand());
+				if (rightValue == null || rightValue instanceof InvalidValue) {
+					return true;
+				}
+				IValue rightConvertedValue = rightValue.convert(MscriptFactory.eINSTANCE.createStringType());
+				if (rightConvertedValue instanceof InvalidValue) {
+					return true;
+				}
+				IStringSegment rightStringSegment = new ExpressionStringSegment(rightConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), rightValue.getDataType()));
+
+				if (leftStringSegment == null || rightStringSegment == null) {
+					return true;
+				}
+				
+				List<IStringSegment> stringSegments = new ArrayList<IStringSegment>();
+				stringSegments.add(leftStringSegment);
+				stringSegments.add(rightStringSegment);
+				StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, true), new NullProgressMonitor());
+				StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
+
+				out.print(codeFragment.getName());
+				out.print("(");
+
+				if (leftConvertedValue instanceof StringValue) {
+					out.print(Integer.toString(stringTable.addString(leftConvertedValue.toString())));
+				} else {
+					doSwitch(additiveExpression.getLeftOperand());
+				}
+				
+				out.print(", ");
+
+				if (rightConvertedValue instanceof StringValue) {
+					out.print(Integer.toString(stringTable.addString(rightConvertedValue.toString())));
+				} else {
+					doSwitch(additiveExpression.getRightOperand());
+				}
+				
+				out.print(")");
+				
+				return true;
+			}
 
 			if (TypeUtil.isNumericArray(leftDataType) && TypeUtil.isNumericArray(rightDataType)) {
 				return generateArrayElementWiseExpression(additiveExpression);
@@ -256,7 +310,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			out.print(").data[0])");
 			return true;
 		}
-
+		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipselabs.mscript.language.ast.MultiplicativeExpression)
 		 */

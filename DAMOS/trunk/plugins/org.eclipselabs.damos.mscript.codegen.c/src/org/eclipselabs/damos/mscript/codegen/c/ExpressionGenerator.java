@@ -247,7 +247,13 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				if (leftConvertedValue instanceof StringValue) {
 					out.print(Integer.toString(stringTable.addString(leftConvertedValue.toString())));
 				} else {
+					if (rightDataType instanceof StringType) {
+						out.print("&(");
+					}
 					doSwitch(additiveExpression.getLeftOperand());
+					if (rightDataType instanceof StringType) {
+						out.print(").data[0]");
+					}
 				}
 				
 				out.print(", ");
@@ -255,7 +261,13 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				if (rightConvertedValue instanceof StringValue) {
 					out.print(Integer.toString(stringTable.addString(rightConvertedValue.toString())));
 				} else {
+					if (rightDataType instanceof StringType) {
+						out.print("&(");
+					}
 					doSwitch(additiveExpression.getRightOperand());
+					if (rightDataType instanceof StringType) {
+						out.print(").data[0]");
+					}
 				}
 				
 				out.print(")");
@@ -569,7 +581,13 @@ public class ExpressionGenerator implements IExpressionGenerator {
 					if (convertedValue instanceof StringValue) {
 						out.print(Integer.toString(stringTable.addString(convertedValue.toString())));
 					} else {
+						if (value.getDataType() instanceof StringType) {
+							out.print("&(");
+						}
 						doSwitch(expression);
+						if (value.getDataType() instanceof StringType) {
+							out.print(").data[0]");
+						}
 					}
 				} else {
 					throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());

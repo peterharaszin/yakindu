@@ -25,7 +25,7 @@ public class ConstantStringSegment implements IStringSegment {
 	 */
 	public CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
-		return "int";
+		return "int ";
 	}
 	
 	/* (non-Javadoc)

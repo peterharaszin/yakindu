@@ -271,12 +271,12 @@ public class StringConstructionFunction extends AbstractCodeFragment {
     _builder.append(_minus, "	");
     _builder.append(" && s");
     _builder.append(index, "	");
-    _builder.append(".data[j] != \'\\0\'; ++j) {");
+    _builder.append("[j] != \'\\0\'; ++j) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("result.data[i++] = s");
     _builder.append(index, "		");
-    _builder.append(".data[j];");
+    _builder.append("[j];");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
@@ -358,7 +358,7 @@ public class StringConstructionFunction extends AbstractCodeFragment {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generateDataType = s.generateDataType(codeFragmentCollector, this);
     _builder.append(_generateDataType, "");
-    _builder.append(" s");
+    _builder.append("s");
     _builder.append(index, "");
     return _builder;
   }
@@ -375,7 +375,7 @@ public class StringConstructionFunction extends AbstractCodeFragment {
     }
     CharSequence _generateDataType = s.generateDataType(codeFragmentCollector, this);
     _builder.append(_generateDataType, "");
-    _builder.append(" s");
+    _builder.append("s");
     _builder.append(index, "");
     return _builder;
   }

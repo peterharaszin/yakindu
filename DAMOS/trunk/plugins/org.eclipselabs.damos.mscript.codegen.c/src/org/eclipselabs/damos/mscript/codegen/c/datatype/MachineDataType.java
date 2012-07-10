@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c.datatype;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger
@@ -21,7 +20,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public abstract class MachineDataType {
 	
-	public abstract CharSequence generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
+	public abstract CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

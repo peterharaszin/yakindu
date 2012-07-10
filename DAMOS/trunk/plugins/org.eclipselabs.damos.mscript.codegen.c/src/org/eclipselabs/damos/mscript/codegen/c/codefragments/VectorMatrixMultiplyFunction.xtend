@@ -65,9 +65,9 @@ class VectorMatrixMultiplyFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		vectorElementTypeText = vectorType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		matrixElementTypeText = matrixType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
+		vectorElementTypeText = vectorType.elementType.generateDataType(codeFragmentCollector, this)
+		matrixElementTypeText = matrixType.elementType.generateDataType(codeFragmentCollector, this)
+		resultTypeText = resultType.generateDataType(codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
@@ -115,7 +115,7 @@ class VectorMatrixMultiplyFunction extends AbstractCodeFragment {
 					&& other.vectorType == vectorType
 					&& other.resultType == resultType
 		}
-		return false;
+		return false
 	}
 	
 }

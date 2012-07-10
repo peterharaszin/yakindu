@@ -1539,19 +1539,30 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		public IValue caseTemplateExpression(TemplateExpression templateExpression) {
 			templateExpression.normalizeSegments();
 			
-			boolean endsWithNewLine = false;
+			boolean pendingNewLine = false;
+			boolean anyValue = false;
 			
 			StringBuilder sb = new StringBuilder();
 			for (TemplateSegment segment : templateExpression.getSegments()) {
 				if (segment instanceof ConstantTemplateSegment) {
+					if (anyValue) {
+						continue;
+					}
+					
 					String text = ((ConstantTemplateSegment) segment).getNormalizedText();
-					if (endsWithNewLine && (text.length() > 0 && text.charAt(0) == '\n' || text.length() > 1 && text.charAt(0) == '\r' && text.charAt(1) == '\n')) {
-						sb.append(text, text.charAt(0) == '\r' ? 2 : 1, text.length());
-					} else {
+					if (pendingNewLine && (text.length() == 0 || text.charAt(0) != '\n')) {
+						sb.append('\n');
+					}
+					if (text.length() > 0) {
 						sb.append(text);
 					}
-					endsWithNewLine = false;
+					pendingNewLine = false;
 				} else if (segment instanceof ExpressionTemplateSegment) {
+					if (pendingNewLine) {
+						sb.append('\n');
+						pendingNewLine = false;
+					}
+
 					ExpressionTemplateSegment expressionSegment = (ExpressionTemplateSegment) segment;
 					IValue value = evaluate(expressionSegment.getExpression());
 					if (value instanceof InvalidValue) {
@@ -1564,25 +1575,43 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 						}
 						return InvalidValue.SINGLETON;
 					}
-					if (value instanceof AnyValue) {
-						return new AnyValue(context.getComputationContext(), MscriptFactory.eINSTANCE.createStringType());
+					
+					if (anyValue) {
+						continue;
 					}
+					
+					if (value instanceof AnyValue) {
+						anyValue = true;
+						continue;
+					}
+					
 					String text = value.toString();
-					boolean indent = false;
+					boolean newLine = false;
 					for (int i = 0; i < text.length(); ++i) {
-						if (indent) {
+						if (newLine) {
 							sb.append(expressionSegment.getIndentation());
 						}
 						char c = text.charAt(i);
-						sb.append(c);
-						indent = c == '\n';
+						newLine = c == '\n';
+						if (newLine && i == text.length() - 1) {
+							pendingNewLine = true;
+						} else {
+							sb.append(c);
+						}
 					}
-					endsWithNewLine = indent;
 				} else {
 					throw new IllegalStateException("Unknown string segment type " + segment.getClass().getCanonicalName());
 				}
 			}
 			
+			if (pendingNewLine) {
+				sb.append('\n');
+			}
+
+			if (anyValue) {
+				return new AnyValue(context.getComputationContext(), MscriptFactory.eINSTANCE.createStringType());
+			}
+
 			return new StringValue(context.getComputationContext(), sb.toString());
 		}
 

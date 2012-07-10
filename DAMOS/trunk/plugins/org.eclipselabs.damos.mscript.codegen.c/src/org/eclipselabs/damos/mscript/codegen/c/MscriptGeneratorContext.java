@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.codegen.c.internal.DefaultVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
 /**
@@ -21,7 +20,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
  */
 public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
-	private ComputationModel computationModel;
+	private IMscriptGeneratorConfiguration configuration;
 	private IStaticEvaluationResult staticEvaluationResult;
 	private IVariableAccessStrategy variableAccessStrategy;
 	private ICodeFragmentCollector codeFragmentCollector;
@@ -29,25 +28,22 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult, ICodeFragmentCollector codeFragmentCollector) {
-		this(computationModel, staticEvaluationResult, new DefaultVariableAccessStrategy(staticEvaluationResult), codeFragmentCollector);
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, IStaticEvaluationResult staticEvaluationResult, ICodeFragmentCollector codeFragmentCollector) {
+		this(configuration, staticEvaluationResult, new DefaultVariableAccessStrategy(staticEvaluationResult), codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
-		this.computationModel = computationModel;
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, IStaticEvaluationResult staticEvaluationResult, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
+		this.configuration = configuration;
 		this.staticEvaluationResult = staticEvaluationResult;
 		this.variableAccessStrategy = variableAccessStrategy;
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IGeneratorContext#getComputationModel()
-	 */
-	public ComputationModel getComputationModel() {
-		return computationModel;
+	public IMscriptGeneratorConfiguration getConfiguration() {
+		return configuration;
 	}
 
 	/**

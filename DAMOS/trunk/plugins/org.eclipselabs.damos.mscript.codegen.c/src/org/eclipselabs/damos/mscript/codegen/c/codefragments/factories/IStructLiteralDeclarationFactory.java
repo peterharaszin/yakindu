@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 
 /**
@@ -21,6 +21,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
  */
 public interface IStructLiteralDeclarationFactory {
 
-	ICodeFragment create(ComputationModel computationModel, StructValue value);
+	ICodeFragment create(IMscriptGeneratorConfiguration configuration, StructValue value);
 	
 }

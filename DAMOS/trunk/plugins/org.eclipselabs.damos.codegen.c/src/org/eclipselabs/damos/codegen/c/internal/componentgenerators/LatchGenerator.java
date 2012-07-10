@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
@@ -37,7 +38,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		CharSequence cDataType = dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), dataType, null);
+		CharSequence cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), getContext().getCodeFragmentCollector(), dataType, null);
 		sb.append("typedef struct {\n").append(cDataType).append(" ").append("data;\n");
 		sb.append(getFastLockGenerator().generateContextCode("lock"));
 		sb.append("} ").append(typeName).append(";\n");

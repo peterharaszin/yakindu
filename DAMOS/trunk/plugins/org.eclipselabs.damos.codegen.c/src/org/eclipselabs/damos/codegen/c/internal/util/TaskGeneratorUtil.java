@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions;
@@ -51,7 +52,7 @@ public class TaskGeneratorUtil {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = GeneratorNodeExtensions.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return new DataTypeGenerator().generateDataType(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context, dataType, null);
+		return new DataTypeGenerator().generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context.getConfiguration()), context, dataType, null);
 	}
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {

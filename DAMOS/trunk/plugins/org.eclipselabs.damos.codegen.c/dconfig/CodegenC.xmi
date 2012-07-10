@@ -1,41 +1,89 @@
 <?xml version="1.0" encoding="ASCII"?>
-<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript" packageName="damos.codegen.c">
-  <members xsi:type="dconfig:SelectionPropertyOption" name="DefaultGenerator">
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="projectName">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:StringType"/>
+<dconfig:ConfigurationDefinition
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig"
+    xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+    packageName="damos.codegen.c">
+  <members xsi:type="dconfig:SelectionPropertyOption"
+      name="DefaultGenerator">
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="projectName">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="sourceFolder">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:StringType"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="sourceFolder">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="headerFolder">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:StringType"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="headerFolder">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemSourceFile">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:StringType"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="systemSourceFile">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="systemHeaderFile">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:StringType"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="systemHeaderFile">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:StringType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="singleton">
-      <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-        <type xsi:type="mscript:BooleanType"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="singleton">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:BooleanType"/>
       </typeSpecifier>
     </propertyDeclarations>
-    <target href="../../org.eclipselabs.damos.codegen/dconfig/Codegen.xmi#//@members.0"/>
+    <propertyDeclarations
+        xsi:type="dconfig:SimplePropertyDeclaration"
+        name="stringBufferSize">
+      <typeSpecifier
+          xsi:type="mscript:AnonymousTypeSpecifier">
+        <type
+            xsi:type="mscript:IntegerType">
+          <unit>
+            <numerator/>
+          </unit>
+        </type>
+      </typeSpecifier>
+    </propertyDeclarations>
+    <target
+        href="../../org.eclipselabs.damos.codegen/dconfig/Codegen.xmi#//@members.0"/>
   </members>
-  <members xsi:type="dconfig:SimplePropertyDeclaration" name="prefix">
-    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
-      <type xsi:type="mscript:StringType"/>
+  <members xsi:type="dconfig:SimplePropertyDeclaration"
+      name="prefix">
+    <typeSpecifier
+        xsi:type="mscript:AnonymousTypeSpecifier">
+      <type
+          xsi:type="mscript:StringType"/>
     </typeSpecifier>
   </members>
 </dconfig:ConfigurationDefinition>

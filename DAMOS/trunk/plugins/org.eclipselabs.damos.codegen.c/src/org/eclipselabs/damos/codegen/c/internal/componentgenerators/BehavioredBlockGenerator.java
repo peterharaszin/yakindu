@@ -23,6 +23,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.IComponentGeneratorContext;
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -43,12 +44,12 @@ import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
@@ -166,7 +167,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		sb.append(compoundStatementGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound()));
 		return sb;
 	}
@@ -199,7 +200,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
@@ -237,7 +238,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
@@ -273,7 +274,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		boolean skip = !getComponent().getInputSockets().isEmpty();
 		
@@ -286,7 +287,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
-				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), arrayType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), getContext().getCodeFragmentCollector(), arrayType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -294,7 +295,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						out.print(", ");
 					}
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
+					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
 				}
 				out.println(" } };");
 			} else {
@@ -302,8 +303,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
-					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(getComputationModel(), getContext().getCodeFragmentCollector(), targetDataType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName());
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
+					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), getContext().getCodeFragmentCollector(), targetDataType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName());
+					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
 					out.println(";");
 				}
 			}
@@ -367,10 +368,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			return staticEvaluationResult;
 		}
 
-		public ComputationModel getComputationModel() {
-			return BehavioredBlockGenerator.this.getComputationModel();
+		public IMscriptGeneratorConfiguration getMscriptGeneratorConfiguration() {
+			return new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration());
 		}
-
+		
 		public FunctionInstance getFunctionInstance() {
 			return functionInstance;
 		}

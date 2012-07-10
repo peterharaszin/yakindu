@@ -20,6 +20,7 @@ import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
@@ -163,13 +164,7 @@ public class ExpressionGeneratorTest {
 		Expression expression = parseExpression(expressionString);
 		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(ComputationModelUtil.constructDefaultComputationModel(), staticEvaluationResult, new ICodeFragmentCollector() {
-			
-			public <T extends ICodeFragment> T addCodeFragment(T codeFragment, IProgressMonitor monitor) {
-				return codeFragment;
-			}
-			
-		});
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult, new CodeFragmentCollector());
 		return expressionGenerator.generate(context, expression).toString();
 	}
 	
@@ -179,6 +174,26 @@ public class ExpressionGeneratorTest {
 			throw new RuntimeException("Syntax errors in '" + expressionString + "'");
 		}
 		return (Expression) result.getRootASTElement();
+	}
+	
+	private static class MscriptGeneratorConfiguration implements IMscriptGeneratorConfiguration {
+		
+		public ComputationModel getComputationModel() {
+			return ComputationModelUtil.constructDefaultComputationModel();
+		}
+		
+		public int getStringBufferSize() {
+			return 32;
+		}
+		
+	}
+	
+	private static class CodeFragmentCollector implements ICodeFragmentCollector {
+		
+		public <T extends ICodeFragment> T addCodeFragment(T codeFragment, IProgressMonitor monitor) {
+			return codeFragment;
+		}
+
 	}
 	
 }

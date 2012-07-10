@@ -26,9 +26,11 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.IfStatement;
@@ -56,6 +58,8 @@ import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
+import org.eclipselabs.damos.mscript.TemplateExpression;
+import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
@@ -542,6 +546,27 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseStringLiteral(StringLiteral stringLiteral) {
 		StringLiteral transformedStringLiteral = EcoreUtil.copy(stringLiteral);
 		return transformedStringLiteral;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseTemplateExpression(org.eclipselabs.damos.mscript.TemplateExpression)
+	 */
+	@Override
+	public Expression caseTemplateExpression(TemplateExpression templateExpression) {
+		TemplateExpression transformedTemplateExpression = MscriptFactory.eINSTANCE.createTemplateExpression();
+		for (TemplateSegment segment : templateExpression.getSegments()) {
+			if (segment instanceof ConstantTemplateSegment) {
+				transformedTemplateExpression.getSegments().add(EcoreUtil.copy(segment));
+			} else if (segment instanceof ExpressionTemplateSegment) {
+				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) segment;
+				ExpressionTemplateSegment transformedTemplateSegment = MscriptFactory.eINSTANCE.createExpressionTemplateSegment();
+				transformedTemplateSegment.setExpression(doTransform(expressionTemplateSegment.getExpression()));
+				transformedTemplateExpression.getSegments().add(transformedTemplateSegment);
+			} else {
+				throw new IllegalArgumentException("Unknown template segment " + segment.getClass().getCanonicalName());
+			}
+		}
+		return transformedTemplateExpression;
 	}
 	
 	/* (non-Javadoc)

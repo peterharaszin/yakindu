@@ -26,6 +26,7 @@ import org.eclipselabs.damos.codegen.c.gtests.MatrixScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixVectorMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
+import org.eclipselabs.damos.codegen.c.gtests.StringTest;
 import org.eclipselabs.damos.codegen.c.gtests.StructConstructionTest;
 import org.eclipselabs.damos.codegen.c.gtests.StructTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorMatrixMultiplyTest;
@@ -52,6 +53,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	ActionTest.class,
 	DoWhileLoopTest.class,
 	WhileLoopTest.class,
+	StringTest.class,
 	ArrayTest.class,
 	ArrayElementWiseOperationTest.class,
 	VectorTest.class,

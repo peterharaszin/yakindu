@@ -66,6 +66,8 @@ import org.eclipselabs.damos.mscript.codegen.c.CModuleSet;
 import org.eclipselabs.damos.mscript.codegen.c.CSource;
 import org.eclipselabs.damos.mscript.codegen.c.ICModuleGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorInitializeFunction;
 
 import com.google.inject.Inject;
 
@@ -157,6 +159,8 @@ public class Generator extends AbstractGenerator {
 					|| codeFragment instanceof ExecuteFunction
 					|| codeFragment instanceof TaskInfoArray
 					|| codeFragment instanceof ITaskInfoStruct
+					|| codeFragment instanceof StringIteratorDeclaration
+					|| codeFragment instanceof StringIteratorInitializeFunction
 					|| (codeFragment instanceof ContextStruct && !GeneratorConfigurationExtensions
 							.isSingleton(configuration))) {
 				module.addEntry(codeFragment, Visibility.PUBLIC);

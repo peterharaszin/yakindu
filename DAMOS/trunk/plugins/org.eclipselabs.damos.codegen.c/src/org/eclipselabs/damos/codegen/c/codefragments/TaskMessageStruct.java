@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions;
@@ -57,7 +58,7 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 						IComponentGenerator generator = GeneratorNodeExtensions.getComponentGenerator(componentNode);
 						IComponentSignature signature = generator.getContext().getComponentSignature();
-						out.print(dataTypeGenerator.generateDataType(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context, signature.getInputDataType(input.getPorts().get(0)), null));
+						out.print(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), context, signature.getInputDataType(input.getPorts().get(0)), null));
 						out.print(" ");
 						out.print(input.getName());
 						out.print(";\n");

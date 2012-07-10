@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerato
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -33,8 +32,6 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 	
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
-	val ComputationModel computationModel
-	
 	val MachineArrayType leftMatrixType
 	val MachineArrayType rightMatrixType
 	val MachineArrayType resultType
@@ -48,9 +45,7 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 	String functionBody
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType leftMatrixType, @Assisted MachineArrayType rightMatrixType, @Assisted MachineArrayType resultType) {
-		this.computationModel = computationModel
-		
+	new(@Assisted MachineArrayType leftMatrixType, @Assisted MachineArrayType rightMatrixType, @Assisted MachineArrayType resultType) {
 		this.leftMatrixType = leftMatrixType
 		this.rightMatrixType = rightMatrixType
 		this.resultType = resultType
@@ -65,9 +60,9 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		leftMatrixElementTypeText = leftMatrixType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		rightMatrixElementTypeText = rightMatrixType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
+		leftMatrixElementTypeText = leftMatrixType.elementType.generateDataType(codeFragmentCollector, this)
+		rightMatrixElementTypeText = rightMatrixType.elementType.generateDataType(codeFragmentCollector, this)
+		resultTypeText = resultType.generateDataType(codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
@@ -117,7 +112,7 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 					&& other.rightMatrixType == rightMatrixType
 					&& other.resultType == resultType
 		}
-		return false;
+		return false
 	}
 	
 }

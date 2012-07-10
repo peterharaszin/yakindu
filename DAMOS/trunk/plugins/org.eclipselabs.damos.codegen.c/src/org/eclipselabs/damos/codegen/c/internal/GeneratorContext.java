@@ -85,6 +85,7 @@ public class GeneratorContext implements IGeneratorContext, ICodeFragmentContext
 		}
 		codeFragment.initialize(this, monitor);
 		codeFragments.put(codeFragment, codeFragment);
+		codeFragment.postProcess(this, monitor);
 		return codeFragment;
 	}
 	

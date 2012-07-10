@@ -13,15 +13,15 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
 import com.google.inject.Inject
 import com.google.inject.assistedinject.Assisted
+import java.util.HashSet
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
-import java.util.HashSet
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
+import static org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction.*
 
 /**
  * @author Andreas Unger
@@ -31,7 +31,6 @@ class StructConstructionFunction extends AbstractCodeFragment {
 
 	static val String PREFERRED_VARIABLE_NAME = "s"
 	
-	val ComputationModel computationModel
 	val MachineStructType structType
 	
 	String typeName
@@ -40,8 +39,7 @@ class StructConstructionFunction extends AbstractCodeFragment {
 	CharSequence functionSignature
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineStructType structType) {
-		this.computationModel = computationModel
+	new(@Assisted MachineStructType structType) {
 		this.structType = structType
 	}
 	
@@ -56,7 +54,7 @@ class StructConstructionFunction extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof StructTypeDeclaration])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		val structTypeDeclaration = codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(computationModel, structType), monitor);
+		val structTypeDeclaration = codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(structType), monitor);
 
 		typeName = structTypeDeclaration.name
 		name = context.globalNameProvider.newGlobalName("newStruct")
@@ -90,7 +88,7 @@ class StructConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) '''
-		«typeName» «name»(«FOR member : structType.members SEPARATOR ", "»«member.type.generateDataType(computationModel, codeFragmentCollector, this)» «member.name»«ENDFOR»)'''
+		«typeName» «name»(«FOR member : structType.members SEPARATOR ", "»«member.type.generateDataType(codeFragmentCollector, this)» «member.name»«ENDFOR»)'''
 	
 	def private String getVariableName() {
 		val names = new HashSet<String>(structType.members.map([it.name]))

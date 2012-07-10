@@ -28,6 +28,9 @@ public abstract class AbstractCodeFragment implements ICodeFragment {
 	public void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 	}
 	
+	public void postProcess(ICodeFragmentContext context, IProgressMonitor monitor) {
+	}
+	
 	public final void addDependency(int kind, IDependencyRule rule) {
 		dependencies.add(new Dependency(kind, rule));
 	}

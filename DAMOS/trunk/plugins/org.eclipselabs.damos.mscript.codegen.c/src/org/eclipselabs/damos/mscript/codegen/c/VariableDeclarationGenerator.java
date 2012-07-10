@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 import com.google.inject.Inject;
 
@@ -29,10 +28,10 @@ public class VariableDeclarationGenerator {
 		this.dataTypeGenerator = dataTypeGenerator;
 	}
 
-	public CharSequence generateVariableDeclaration(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, CharSequence name, boolean pointer, ICodeFragment dependentCodeFragment) {
+	public CharSequence generateVariableDeclaration(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, DataType dataType, CharSequence name, boolean pointer, ICodeFragment dependentCodeFragment) {
 		StringBuilder cDataType = new StringBuilder();
 
-		cDataType.append(dataTypeGenerator.generateDataType(computationModel, codeFragmentCollector, dataType, dependentCodeFragment));
+		cDataType.append(dataTypeGenerator.generateDataType(configuration, codeFragmentCollector, dataType, dependentCodeFragment));
 		cDataType.append(" ");
 		if (pointer) {
 			cDataType.append("*");

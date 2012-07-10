@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger
@@ -21,6 +20,6 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public interface IArrayTypeDeclarationFactory {
 
-	ICodeFragment create(ComputationModel computationModel, MachineArrayType arrayType);
+	ICodeFragment create(MachineArrayType arrayType);
 	
 }

@@ -60,6 +60,10 @@ public class TemplateExpressionOperations {
 					line = new StringBuilder();
 					while (index[0] < text.length()) {
 						char c = text.charAt(index[0]++);
+						if (c == '\r') {
+							// Remove '\r'
+							continue;
+						}
 						line.append(c);
 						if (c == '\n') {
 							hasNewLine = true;

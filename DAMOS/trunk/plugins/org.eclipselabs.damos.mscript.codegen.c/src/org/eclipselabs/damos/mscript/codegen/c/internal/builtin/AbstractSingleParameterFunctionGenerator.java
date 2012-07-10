@@ -40,7 +40,7 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IBuilt
 			throw new IllegalArgumentException();
 		}
 		
-		NumberFormat numberFormat = context.getComputationModel().getNumberFormat(argumentDataType);
+		NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(argumentDataType);
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			out.printf("%s(", getFixedPointFunctionName(fixedPointFormat));

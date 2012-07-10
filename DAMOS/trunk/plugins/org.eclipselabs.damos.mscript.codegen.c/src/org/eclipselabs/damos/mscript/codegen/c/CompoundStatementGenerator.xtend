@@ -90,12 +90,12 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		}
 		
 		val itVarName = iterationVariableDeclaration.name
-		val itVarDecl = variableDeclarationGenerator.generateVariableDeclaration(context.computationModel, context.codeFragmentCollector, getDataType(context, iterationVariableDeclaration), itVarName, false, null)
+		val itVarDecl = variableDeclarationGenerator.generateVariableDeclaration(context.configuration, context.codeFragmentCollector, getDataType(context, iterationVariableDeclaration), itVarName, false, null)
 		val size = TypeUtil::getArraySize(collectionArrayType)
 		
 		'''
 			{
-				«dataTypeGenerator.generateIndexDataType(context.computationModel, size)» «itVarName»_i;
+				«dataTypeGenerator.generateIndexDataType(context.configuration.computationModel, size)» «itVarName»_i;
 				for («itVarName»_i = 0; «itVarName»_i < «size»; ++«itVarName»_i) {
 					«itVarDecl» = («expressionGenerator.generate(context, forStatement.collectionExpression)»).data[«itVarName»_i];
 					«doGenerate(context, forStatement.body)»
@@ -119,7 +119,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	def private generateCompound(IMscriptGeneratorContext context, Compound compound) '''
 		{
 			«FOR localVariableDeclaration : compound.localVariableDeclarations»
-				«variableDeclarationGenerator.generateVariableDeclaration(context.computationModel, context.codeFragmentCollector, getDataType(context, localVariableDeclaration), localVariableDeclaration.name, false, null)»;
+				«variableDeclarationGenerator.generateVariableDeclaration(context.configuration, context.codeFragmentCollector, getDataType(context, localVariableDeclaration), localVariableDeclaration.name, false, null)»;
 			«ENDFOR»
 			«FOR statement : compound.statements»
 				«doGenerate(context, statement)»
@@ -132,7 +132,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
 	def generateAssignedExpression(IMscriptGeneratorContext context, DataType targetDataType, Expression expression) {
 		if (targetDataType instanceof NumericType) {
-			val numberFormat = context.computationModel.getNumberFormat(targetDataType);
+			val numberFormat = context.configuration.computationModel.getNumberFormat(targetDataType);
 			return MscriptGeneratorUtil::castNumericType(context, expression, numberFormat);
 		}
 		return expressionGenerator.generate(context, expression);

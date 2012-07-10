@@ -1,0 +1,27 @@
+package damos.tests
+
+blockType StringTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	function main(a, b) -> y1, y2 {
+		check(int, int) -> string, string
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y1 = "Hello, world!"
+		eq y2 = """
+			Hello, «a»
+				"«a + b»"
+			world! '«b»'
+		"""
+	}
+
+}

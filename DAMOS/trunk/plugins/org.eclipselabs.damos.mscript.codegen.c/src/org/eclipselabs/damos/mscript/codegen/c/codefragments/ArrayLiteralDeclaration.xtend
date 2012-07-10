@@ -17,9 +17,9 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
@@ -32,7 +32,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
 	val LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator())
 	
-	val ComputationModel computationModel
+	val IMscriptGeneratorConfiguration configuration
 	val IArrayValue arrayValue
 	
 	String name
@@ -40,8 +40,8 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	CharSequence body
 
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted IArrayValue value) {
-		this.computationModel = computationModel
+	new(@Assisted IMscriptGeneratorConfiguration configuration, @Assisted IArrayValue value) {
+		this.configuration = configuration
 		this.arrayValue = value
 	}
 	
@@ -56,8 +56,8 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ArrayTypeDeclaration])
 		
 		val codeFragmentCollector = context.codeFragmentCollector
-		val arrayType = MachineDataTypes::create(computationModel, arrayValue.dataType)
-		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(computationModel, arrayType), monitor)
+		val arrayType = MachineDataTypes::create(configuration, arrayValue.dataType)
+		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(arrayType), monitor)
 		
 		val preferredName = switch (arrayType.dimensionality) {
 		case 1:
@@ -70,7 +70,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
 		typeName = arrayTypeDeclaration.name
 		name = context.globalNameProvider.newGlobalName(preferredName)
-		body = literalGenerator.generateInitializer(computationModel, codeFragmentCollector, arrayValue)
+		body = literalGenerator.generateInitializer(configuration.computationModel, codeFragmentCollector, arrayValue)
 	}
 	
 	override boolean contributesInternalForwardDeclaration() {
@@ -95,7 +95,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	
 	override boolean equals(Object obj) {
 		// TODO: check equals using value
-		return false;
+		return false
 	}
 
 }

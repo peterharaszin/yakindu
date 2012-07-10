@@ -19,9 +19,10 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -30,42 +31,49 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class MachineDataTypes {
 
-	public static MachineDataType create(ComputationModel computationModel, DataType type) {
+	public static MachineDataType create(IMscriptGeneratorConfiguration configuration, DataType type) {
 		if (type instanceof BooleanType) {
-			return create(computationModel, (BooleanType) type);
+			return create(configuration, (BooleanType) type);
 		}
 		if (type instanceof NumericType) {
-			return create(computationModel, (NumericType) type);
+			return create(configuration, (NumericType) type);
+		}
+		if (type instanceof StringType) {
+			return create(configuration, (StringType) type);
 		}
 		if (type instanceof StructType) {
-			return create(computationModel, (StructType) type);
+			return create(configuration, (StructType) type);
 		}
 		if (type instanceof ArrayType) {
-			return create(computationModel, (ArrayType) type);
+			return create(configuration, (ArrayType) type);
 		}
 		throw new IllegalArgumentException("Unknown data type class " + type.getClass().getCanonicalName());
 	}
 	
-	public static MachineBooleanType create(ComputationModel computationModel, BooleanType booleanType) {
+	public static MachineBooleanType create(IMscriptGeneratorConfiguration configuration, BooleanType booleanType) {
 		return new MachineBooleanType();
 	}
 
-	public static MachineNumericType create(ComputationModel computationModel, NumericType numericType) {
-		return new MachineNumericType(computationModel.getNumberFormat(numericType));
+	public static MachineNumericType create(IMscriptGeneratorConfiguration configuration, NumericType numericType) {
+		return new MachineNumericType(configuration.getComputationModel().getNumberFormat(numericType));
 	}
 
-	public static MachineArrayType create(ComputationModel computationModel, ArrayType arrayType) {
+	public static MachineStringType create(IMscriptGeneratorConfiguration configuration, StringType booleanType) {
+		return new MachineStringType(configuration.getStringBufferSize());
+	}
+
+	public static MachineArrayType create(IMscriptGeneratorConfiguration configuration, ArrayType arrayType) {
 		int[] dimensionSizes = new int[arrayType.getDimensionality()];
 		for (int i = 0; i < dimensionSizes.length; ++i) {
 			dimensionSizes[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
 		}
-		return new MachineArrayType(create(computationModel, arrayType.getElementType()), dimensionSizes);
+		return new MachineArrayType(create(configuration, arrayType.getElementType()), dimensionSizes);
 	}
 
-	public static MachineStructType create(ComputationModel computationModel, StructType structType) {
+	public static MachineStructType create(IMscriptGeneratorConfiguration configuration, StructType structType) {
 		List<MachineStructMember> machineStructMembers = new ArrayList<MachineStructMember>();
 		for (StructMember structMember : structType.getMembers()) {
-			machineStructMembers.add(new MachineStructMember(structMember.getName(), create(computationModel,
+			machineStructMembers.add(new MachineStructMember(structMember.getName(), create(configuration,
 					structMember.getTypeSpecifier().getType())));
 		}
 		return new MachineStructType(Collections.unmodifiableList(machineStructMembers));

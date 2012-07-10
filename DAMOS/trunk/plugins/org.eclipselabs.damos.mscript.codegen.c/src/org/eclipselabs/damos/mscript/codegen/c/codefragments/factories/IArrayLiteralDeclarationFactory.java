@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 
 /**
@@ -21,6 +21,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
  */
 public interface IArrayLiteralDeclarationFactory {
 
-	ICodeFragment create(ComputationModel computationModel, IArrayValue value);
+	ICodeFragment create(IMscriptGeneratorConfiguration configuration, IArrayValue value);
 	
 }

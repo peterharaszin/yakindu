@@ -23,7 +23,6 @@ import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGen
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -35,8 +34,6 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 	
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
-	val ComputationModel computationModel
-	
 	val MachineNumericType scalarType
 	val MachineArrayType arrayType
 	val MachineArrayType resultType
@@ -50,9 +47,7 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 	String functionBody
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineNumericType scalarType, @Assisted MachineArrayType arrayType, @Assisted MachineArrayType resultType) {
-		this.computationModel = computationModel
-		
+	new(@Assisted MachineNumericType scalarType, @Assisted MachineArrayType arrayType, @Assisted MachineArrayType resultType) {
 		this.scalarType = scalarType
 		this.arrayType = arrayType
 		this.resultType = resultType
@@ -67,9 +62,9 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		scalarTypeText = scalarType.generateDataType(computationModel, codeFragmentCollector, this)
-		elementTypeText = arrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
+		scalarTypeText = scalarType.generateDataType(codeFragmentCollector, this)
+		elementTypeText = arrayType.elementType.generateDataType(codeFragmentCollector, this)
+		resultTypeText = resultType.generateDataType(codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
@@ -142,7 +137,7 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 					&& other.arrayType == arrayType
 					&& other.resultType == resultType
 		}
-		return false;
+		return false
 	}
 	
 }

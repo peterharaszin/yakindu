@@ -24,7 +24,6 @@ import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGen
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -36,8 +35,6 @@ class ArrayElementWiseOperationFunction extends AbstractCodeFragment {
 	
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
-	val ComputationModel computationModel
-	
 	val OperatorKind operator
 	val MachineArrayType leftArrayType
 	val MachineArrayType rightArrayType
@@ -52,9 +49,7 @@ class ArrayElementWiseOperationFunction extends AbstractCodeFragment {
 	String functionBody
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, OperatorKind operator, @Assisted MachineArrayType leftArrayType, @Assisted MachineArrayType rightArrayType, @Assisted MachineArrayType resultType) {
-		this.computationModel = computationModel
-		
+	new(OperatorKind operator, @Assisted MachineArrayType leftArrayType, @Assisted MachineArrayType rightArrayType, @Assisted MachineArrayType resultType) {
 		this.operator = operator
 		this.leftArrayType = leftArrayType
 		this.rightArrayType = rightArrayType
@@ -70,9 +65,9 @@ class ArrayElementWiseOperationFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		leftArrayElementTypeText = leftArrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		rightArrayElementTypeText = rightArrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
+		leftArrayElementTypeText = leftArrayType.elementType.generateDataType(codeFragmentCollector, this)
+		rightArrayElementTypeText = rightArrayType.elementType.generateDataType(codeFragmentCollector, this)
+		resultTypeText = resultType.generateDataType(codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName(preferredName);
 		
@@ -182,7 +177,7 @@ class ArrayElementWiseOperationFunction extends AbstractCodeFragment {
 					&& other.rightArrayType == rightArrayType
 					&& other.resultType == resultType
 		}
-		return false;
+		return false
 	}
 	
 }

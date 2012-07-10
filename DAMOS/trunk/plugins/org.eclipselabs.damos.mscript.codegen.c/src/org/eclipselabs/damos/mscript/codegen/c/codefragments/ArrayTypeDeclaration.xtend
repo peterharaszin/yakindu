@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 /**
  * @author Andreas Unger
@@ -25,15 +24,13 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
  */
 class ArrayTypeDeclaration extends AbstractCodeFragment {
 
-	val ComputationModel computationModel
 	val MachineArrayType arrayType
 
 	CharSequence elementType
 	String name
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType arrayType) {
-		this.computationModel = computationModel
+	new(@Assisted MachineArrayType arrayType) {
 		this.arrayType = arrayType
 	}
 	
@@ -45,7 +42,7 @@ class ArrayTypeDeclaration extends AbstractCodeFragment {
 	}
 	
 	override initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
-		elementType = arrayType.elementType.generateDataType(computationModel, context.codeFragmentCollector, this)
+		elementType = arrayType.elementType.generateDataType(context.codeFragmentCollector, this)
 		val preferredName = switch (arrayType.dimensionality) {
 		case 1:
 			"Vector"
@@ -82,7 +79,7 @@ class ArrayTypeDeclaration extends AbstractCodeFragment {
 			val other = obj as ArrayTypeDeclaration
 			return other.arrayType == arrayType
 		}
-		return false;
+		return false
 	}
 
 }

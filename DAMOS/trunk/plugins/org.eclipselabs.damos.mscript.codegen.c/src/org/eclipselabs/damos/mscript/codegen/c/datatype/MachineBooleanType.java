@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.codegen.c.datatype;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger
@@ -28,7 +27,7 @@ public class MachineBooleanType extends MachineDataType {
 	}
 	
 	@Override
-	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+	public String generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		return "uint_fast8_t";
 	}
 	

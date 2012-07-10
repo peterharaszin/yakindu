@@ -95,7 +95,7 @@ class CompoundGenerator implements ICompoundGenerator {
 		val generator = node.componentGenerator
 		val computationModel = context.configuration.getComputationModel(node)
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
-		val cDataType = dataTypeGenerator.generateDataType(computationModel, generator.context.codeFragmentCollector, outputDataType, null)
+		val cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), generator.context.codeFragmentCollector, outputDataType, null)
 		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
 		val variableName = CompoundGeneratorUtil::getMemoryPreviousValueVariableName(context.configuration, node)
 		

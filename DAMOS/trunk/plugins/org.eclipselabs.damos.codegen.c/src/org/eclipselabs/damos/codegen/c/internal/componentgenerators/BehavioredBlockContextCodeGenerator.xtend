@@ -46,10 +46,10 @@ class BehavioredBlockContextCodeGenerator {
 	def private generateContextStructureMember(IBehavioredBlockGeneratorContext context, IProgressMonitor monitor, VariableDeclaration variableDeclaration) {
 		val name = variableDeclaration.name
 		val dataType = context.staticEvaluationResult.getValue(variableDeclaration).dataType
-		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(context.computationModel, context.getContext.codeFragmentCollector, dataType, name, false, null)
+		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(context.mscriptGeneratorConfiguration, context.getContext.codeFragmentCollector, dataType, name, false, null)
 		if (hasContext(context, variableDeclaration)) {
 			val bufferSize = context.staticEvaluationResult.getCircularBufferSize(variableDeclaration)
-			val indexCDataType = dataTypeGenerator.generateIndexDataType(context.computationModel, 2 * bufferSize)
+			val indexCDataType = dataTypeGenerator.generateIndexDataType(context.mscriptGeneratorConfiguration.computationModel, 2 * bufferSize)
 			return '''
 				«cVariableDeclaration»[«bufferSize»];
 				«indexCDataType» «name»_index;

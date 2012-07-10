@@ -30,6 +30,8 @@ public interface ICodeFragment {
 	int REQUIRED_BY = FORWARD_DECLARATION_REQUIRED_BY | IMPLEMENTATION_REQUIRED_BY;
 	
 	void initialize(ICodeFragmentContext context, IProgressMonitor monitor);
+	
+	void postProcess(ICodeFragmentContext context, IProgressMonitor monitor);
 
 	void addDependency(int kind, IDependencyRule rule);
 	

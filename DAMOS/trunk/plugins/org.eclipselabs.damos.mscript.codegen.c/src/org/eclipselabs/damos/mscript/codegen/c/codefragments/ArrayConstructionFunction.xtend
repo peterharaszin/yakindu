@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 import static org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction.*
@@ -33,7 +32,6 @@ import static org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstru
 class ArrayConstructionFunction extends AbstractCodeFragment {
 
 	val MachineArrayType arrayType
-	val ComputationModel computationModel
 	
 	String typeName
 	String name
@@ -41,8 +39,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	CharSequence functionSignature
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType arrayType) {
-		this.computationModel = computationModel
+	new(@Assisted MachineArrayType arrayType) {
 		this.arrayType = arrayType
 	}
 	
@@ -57,7 +54,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ArrayTypeDeclaration])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(computationModel, arrayType), monitor)
+		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(arrayType), monitor)
 		val preferredName = switch (arrayType.dimensionality) {
 		case 1:
 			"newVector"
@@ -93,7 +90,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	'''
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
-		val dataType = arrayType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
+		val dataType = arrayType.elementType.generateDataType(codeFragmentCollector, this)
 		
 		'''«typeName» «name»(«generateFunctionParameters(dataType, 0, Collections::emptyList)»)'''
 	}

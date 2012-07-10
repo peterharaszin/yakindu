@@ -42,13 +42,13 @@ public class VariableReferenceGenerator {
 		@Override
 		public CharSequence caseStaticParameterDeclaration(StaticParameterDeclaration staticParameterDeclaration) {
 			IValue staticArgument = context.getStaticEvaluationResult().getValue(staticParameterDeclaration);
-			return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), staticArgument);
+			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), staticArgument);
 		}
 			
 		@Override
 		public CharSequence caseConstantDeclaration(ConstantDeclaration constantDeclaration) {
 			IValue constantValue = context.getStaticEvaluationResult().getValue(constantDeclaration);
-			return literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), constantValue);
+			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), constantValue);
 		}
 
 		@Override

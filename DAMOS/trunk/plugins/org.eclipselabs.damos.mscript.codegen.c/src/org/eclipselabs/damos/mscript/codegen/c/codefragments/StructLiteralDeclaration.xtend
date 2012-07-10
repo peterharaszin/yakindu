@@ -17,9 +17,9 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
@@ -32,8 +32,8 @@ class StructLiteralDeclaration extends AbstractCodeFragment {
 
 	val LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator())
 	
-	StructValue structValue
-	ComputationModel computationModel
+	val IMscriptGeneratorConfiguration configuration
+	val StructValue structValue
 	
 	String typeName
 	String name
@@ -41,8 +41,8 @@ class StructLiteralDeclaration extends AbstractCodeFragment {
 	CharSequence body
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted StructValue value) {
-		this.computationModel = computationModel
+	new(@Assisted IMscriptGeneratorConfiguration configuration, @Assisted StructValue value) {
+		this.configuration = configuration
 		this.structValue = value
 	}
 	
@@ -57,12 +57,12 @@ class StructLiteralDeclaration extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof StructTypeDeclaration])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		var structTypeDeclaration = new StructTypeDeclaration(computationModel, MachineDataTypes::create(computationModel, structValue.dataType))
+		var structTypeDeclaration = new StructTypeDeclaration(MachineDataTypes::create(configuration, structValue.dataType))
 		structTypeDeclaration = codeFragmentCollector.addCodeFragment(structTypeDeclaration, monitor)
 
 		typeName = structTypeDeclaration.name
 		name = context.globalNameProvider.newGlobalName("structure")
-		body = literalGenerator.generateInitializer(computationModel, codeFragmentCollector, structValue)
+		body = literalGenerator.generateInitializer(configuration.computationModel, codeFragmentCollector, structValue)
 	}
 
 	override boolean contributesInternalForwardDeclaration() {

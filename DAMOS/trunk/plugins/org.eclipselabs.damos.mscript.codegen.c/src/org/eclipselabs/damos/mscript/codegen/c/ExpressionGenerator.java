@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -24,15 +26,18 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MemberVariableAccess;
+import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -44,13 +49,20 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.TemplateExpression;
+import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayElementWiseOperationFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayScalarMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ExpressionStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixVectorMultiplyFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.VectorMatrixMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType;
@@ -68,6 +80,7 @@ import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -166,8 +179,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				DataType dataType1 = TypeUtil.getLeftHandDataType(leftDataType, rightDataType);
 				DataType dataType2 = TypeUtil.getLeftHandDataType(rightDataType, leftDataType);
 				
-				NumberFormat numberFormat1 = context.getComputationModel().getNumberFormat(dataType1);
-				NumberFormat numberFormat2 = context.getComputationModel().getNumberFormat(dataType2);
+				NumberFormat numberFormat1 = context.getConfiguration().getComputationModel().getNumberFormat(dataType1);
+				NumberFormat numberFormat2 = context.getConfiguration().getComputationModel().getNumberFormat(dataType2);
 				
 				NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
 	
@@ -191,7 +204,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
 			DataType dataType = getDataType(additiveExpression);
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(dataType);
 			
 			DataType leftDataType = getDataType(additiveExpression.getLeftOperand());
 			DataType rightDataType = getDataType(additiveExpression.getRightOperand());
@@ -209,9 +222,9 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		private Boolean generateArrayElementWiseExpression(AdditiveExpression additiveExpression) {
-			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression.getLeftOperand()));
-			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression.getRightOperand()));
-			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(additiveExpression));
+			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(additiveExpression.getLeftOperand()));
+			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(additiveExpression.getRightOperand()));
+			MachineArrayType resultType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(additiveExpression));
 			OperatorKind operator = additiveExpression.getOperator();
 			
 			switch (additiveExpression.getOperator()) {
@@ -234,7 +247,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				break;
 			}
 			
-			ArrayElementWiseOperationFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayElementWiseOperationFunction(context.getComputationModel(), operator, leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
+			ArrayElementWiseOperationFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayElementWiseOperationFunction(operator, leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
 
 			out.printf("%s(&(", codeFragment.getName());
 			doSwitch(additiveExpression.getLeftOperand());
@@ -249,7 +262,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseMultiplicativeExpression(final MultiplicativeExpression multiplicativeExpression) {
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
+			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
 
 			DataType leftDataType = getDataType(multiplicativeExpression.getLeftOperand());
 			DataType rightDataType = getDataType(multiplicativeExpression.getRightOperand());
@@ -282,10 +295,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 		private Boolean generateScalarMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression scalarExpression,
 				Expression arrayExpression) {
-			MachineNumericType scalarType = MachineDataTypes.create(context.getComputationModel(), (NumericType) getDataType(scalarExpression));
-			MachineArrayType arrayType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(arrayExpression));
-			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
-			ArrayScalarMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayScalarMultiplyFunction(context.getComputationModel(), scalarType, arrayType, resultType), new NullProgressMonitor());
+			MachineNumericType scalarType = MachineDataTypes.create(context.getConfiguration(), (NumericType) getDataType(scalarExpression));
+			MachineArrayType arrayType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(arrayExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(multiplicativeExpression));
+			ArrayScalarMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayScalarMultiplyFunction(scalarType, arrayType, resultType), new NullProgressMonitor());
 			out.printf("%s(", codeFragment.getName());
 			doSwitch(scalarExpression);
 			out.print(", &(");
@@ -296,10 +309,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 		private Boolean generateMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression leftMatrixExpression,
 				Expression rightMatrixExpression) {
-			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(leftMatrixExpression));
-			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(rightMatrixExpression));
-			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
-			MatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixMultiplyFunction(context.getComputationModel(), leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
+			MachineArrayType leftMatrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(leftMatrixExpression));
+			MachineArrayType rightMatrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(rightMatrixExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(multiplicativeExpression));
+			MatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixMultiplyFunction(leftMatrixType, rightMatrixType, resultType), new NullProgressMonitor());
 			out.printf("%s(&(", codeFragment.getName());
 			doSwitch(leftMatrixExpression);
 			out.print(").data[0], &(");
@@ -310,10 +323,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 		private Boolean generateMatrixVectorMultiplyExpression(MultiplicativeExpression multiplicativeExpression, Expression matrixExpression,
 				Expression vectorExpression) {
-			MachineArrayType matrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(matrixExpression));
-			MachineArrayType vectorType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(vectorExpression));
-			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
-			MatrixVectorMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixVectorMultiplyFunction(context.getComputationModel(), matrixType, vectorType, resultType), new NullProgressMonitor());
+			MachineArrayType matrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(matrixExpression));
+			MachineArrayType vectorType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(vectorExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(multiplicativeExpression));
+			MatrixVectorMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new MatrixVectorMultiplyFunction(matrixType, vectorType, resultType), new NullProgressMonitor());
 			out.printf("%s(&(", codeFragment.getName());
 			doSwitch(matrixExpression);
 			out.print(").data[0], &(");
@@ -324,10 +337,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 		private Boolean generateVectorMatrixMultiplyExpression(MultiplicativeExpression multiplicativeExpression,
 				Expression vectorExpression, Expression matrixExpression) {
-			MachineArrayType vectorType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(vectorExpression));
-			MachineArrayType matrixType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(matrixExpression));
-			MachineArrayType resultType = MachineDataTypes.create(context.getComputationModel(), (ArrayType) getDataType(multiplicativeExpression));
-			VectorMatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new VectorMatrixMultiplyFunction(context.getComputationModel(), vectorType, matrixType, resultType), new NullProgressMonitor());
+			MachineArrayType vectorType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(vectorExpression));
+			MachineArrayType matrixType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(matrixExpression));
+			MachineArrayType resultType = MachineDataTypes.create(context.getConfiguration(), (ArrayType) getDataType(multiplicativeExpression));
+			VectorMatrixMultiplyFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new VectorMatrixMultiplyFunction(context.getConfiguration().getComputationModel(), vectorType, matrixType, resultType), new NullProgressMonitor());
 			out.printf("%s(&(", codeFragment.getName());
 			doSwitch(vectorExpression);
 			out.print(").data[0], &(");
@@ -367,7 +380,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean casePowerExpression(PowerExpression powerExpression) {
 			DataType dataType = getDataType(powerExpression);
-			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(dataType);
 	
 			if (numberFormat instanceof FixedPointFormat) {
 				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
@@ -397,7 +410,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseRealLiteral(RealLiteral realLiteral) {
 			DataType dataType = getDataType(realLiteral);
-			out.print(literalGenerator.generateLiteral(context.getComputationModel(), dataType, realLiteral.getValue()));
+			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, realLiteral.getValue()));
 			return true;
 		}
 	
@@ -407,7 +420,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		@Override
 		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
 			DataType dataType = getDataType(integerLiteral);
-			out.print(literalGenerator.generateLiteral(context.getComputationModel(), dataType, integerLiteral.getValue()));
+			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, integerLiteral.getValue()));
 			return true;
 		}
 		
@@ -422,7 +435,96 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		
 		@Override
 		public Boolean caseStringLiteral(StringLiteral stringLiteral) {
-			out.print("\"" + stringLiteral.getText() + "\"");
+			StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), Collections.singletonList(new ConstantStringSegment()), true), new NullProgressMonitor());
+			StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
+			
+			out.print(codeFragment.getName());
+			out.print("(");
+			out.print(Integer.toString(stringTable.addString(stringLiteral.getText())));
+			out.print(")");
+			
+			return true;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseTemplateExpression(org.eclipselabs.damos.mscript.TemplateExpression)
+		 */
+		@Override
+		public Boolean caseTemplateExpression(TemplateExpression templateExpression) {
+			templateExpression.normalizeSegments();
+			
+			List<IStringSegment> stringSegments = new ArrayList<IStringSegment>();
+			for (TemplateSegment templateSegment : templateExpression.getSegments()) {
+				if (templateSegment instanceof ConstantTemplateSegment) {
+					ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
+					if (constantTemplateSegment.getNormalizedText().isEmpty()) {
+						continue;
+					}
+					stringSegments.add(new ConstantStringSegment());
+				} else if (templateSegment instanceof ExpressionTemplateSegment) {
+					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
+					Expression expression = expressionTemplateSegment.getExpression();
+					IValue value = context.getStaticEvaluationResult().getValue(expression);
+					if (value == null || value instanceof InvalidValue) {
+						continue;
+					}
+					IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
+					if (convertedValue instanceof InvalidValue) {
+						continue;
+					}
+					stringSegments.add(new ExpressionStringSegment(convertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), value.getDataType())));
+				} else {
+					throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
+				}
+			}
+			
+			StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, false), new NullProgressMonitor());
+			StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
+
+			out.print(codeFragment.getName());
+			out.print("(");
+
+			boolean first = true;
+			for (TemplateSegment templateSegment : templateExpression.getSegments()) {
+				if (!first) {
+					out.print(", ");
+				}
+				if (templateSegment instanceof ConstantTemplateSegment) {
+					ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
+					String text = constantTemplateSegment.getNormalizedText();
+					if (text.isEmpty()) {
+						continue;
+					}
+					if (text.charAt(0) == '\n') {
+						text = "\f" + text.substring(1);
+					}
+					out.print(Integer.toString(stringTable.addString(text)));
+				} else if (templateSegment instanceof ExpressionTemplateSegment) {
+					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
+					Expression expression = expressionTemplateSegment.getExpression();
+					IValue value = context.getStaticEvaluationResult().getValue(expression);
+					if (value == null || value instanceof InvalidValue) {
+						continue;
+					}
+					IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
+					if (convertedValue instanceof InvalidValue) {
+						continue;
+					}
+					out.print(Integer.toString(stringTable.addString(Character.toString((char) 0x02) + expressionTemplateSegment.getIndentation())));
+					out.print(", ");
+					if (convertedValue instanceof StringValue) {
+						out.print(Integer.toString(stringTable.addString(convertedValue.toString())));
+					} else {
+						doSwitch(expression);
+					}
+				} else {
+					throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
+				}
+				first = false;
+			}
+
+			out.print(")");
+
 			return true;
 		}
 				
@@ -475,10 +577,10 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
 			IValue value = context.getStaticEvaluationResult().getValue(arrayConstructionOperator);
 			if (value instanceof IArrayValue) {
-				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
+				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 			} else {
 				ArrayType arrayType = (ArrayType) value.getDataType();
-				ArrayConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), arrayType)), new NullProgressMonitor());
+				ArrayConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new ArrayConstructionFunction(MachineDataTypes.create(context.getConfiguration(), arrayType)), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
 				generateConstructArrayDimension(arrayType, 0, arrayConstructionOperator.getExpressions());
@@ -510,9 +612,9 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		public Boolean caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
 			IValue value = context.getStaticEvaluationResult().getValue(structConstructionOperator);
 			if (value instanceof StructValue) {
-				out.print(literalGenerator.generateLiteral(context.getComputationModel(), context.getCodeFragmentCollector(), value));
+				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 			} else {
-				StructConstructionFunction codeFragment = (StructConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionFunction(context.getComputationModel(), MachineDataTypes.create(context.getComputationModel(), (StructType) value.getDataType())), new NullProgressMonitor());
+				StructConstructionFunction codeFragment = (StructConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (StructType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
 				boolean first = true;

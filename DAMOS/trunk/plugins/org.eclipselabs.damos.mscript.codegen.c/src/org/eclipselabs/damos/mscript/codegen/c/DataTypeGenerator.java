@@ -21,8 +21,8 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public class DataTypeGenerator {
 
-	public CharSequence generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, DataType dataType, ICodeFragment dependentCodeFragment) {
-		return MachineDataTypes.create(computationModel, dataType).generateDataType(computationModel, codeFragmentCollector, dependentCodeFragment);
+	public CharSequence generateDataType(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, DataType dataType, ICodeFragment dependentCodeFragment) {
+		return MachineDataTypes.create(configuration, dataType).generateDataType(codeFragmentCollector, dependentCodeFragment);
 	}
 	
 	public CharSequence generateIndexDataType(ComputationModel computationModel, long maximumIndex) {

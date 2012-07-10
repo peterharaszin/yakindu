@@ -20,7 +20,6 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger
@@ -79,9 +78,9 @@ public class MachineArrayType extends MachineDataType {
 	}
 
 	@Override
-	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+	public String generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		final ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector
-				.addCodeFragment(new ArrayTypeDeclaration(computationModel, this),
+				.addCodeFragment(new ArrayTypeDeclaration(this),
 						new NullProgressMonitor());
 		if (dependentCodeFragment != null) {
 			dependentCodeFragment.addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {

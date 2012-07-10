@@ -49,8 +49,8 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 		IntegerType resultDataType = MscriptFactory.eINSTANCE.createIntegerType();
 		resultDataType.setUnit(EcoreUtil.copy(argumentNumericType.getUnit()));
 		
-		NumberFormat argumentNumberFormat = context.getComputationModel().getNumberFormat(argumentDataType);
-		NumberFormat resultNumberFormat = context.getComputationModel().getNumberFormat(resultDataType);
+		NumberFormat argumentNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(argumentDataType);
+		NumberFormat resultNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(resultDataType);
 		
 		StringBuilder text = new StringBuilder();
 		
@@ -62,7 +62,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 				out.print("((");
 				out.print(expressionGenerator.generate(context, argument));
 				out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
-						dataTypeGenerator.generateDataType(context.getComputationModel(), context.getCodeFragmentCollector(), argumentDataType, null),
+						dataTypeGenerator.generateDataType(context.getConfiguration(), context.getCodeFragmentCollector(), argumentDataType, null),
 						(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
 			} else {
 				text.append(expressionGenerator.generate(context, argument));

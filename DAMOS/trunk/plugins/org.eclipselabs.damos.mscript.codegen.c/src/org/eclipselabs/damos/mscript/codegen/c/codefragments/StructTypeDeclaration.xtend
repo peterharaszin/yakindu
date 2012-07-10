@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 /**
  * @author Andreas Unger
@@ -25,15 +24,13 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
  */
 class StructTypeDeclaration extends AbstractCodeFragment {
 
-	val ComputationModel computationModel
 	val MachineStructType structType
 
 	String name
 	CharSequence declaration
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineStructType structType) {
-		this.computationModel = computationModel
+	new(@Assisted MachineStructType structType) {
 		this.structType = structType
 	}
 	
@@ -54,7 +51,7 @@ class StructTypeDeclaration extends AbstractCodeFragment {
 		declaration = '''
 			typedef struct {
 				«FOR member : structType.members»
-					«member.type.generateDataType(computationModel, codeFragmentCollector, this)» «member.name»;
+					«member.type.generateDataType(codeFragmentCollector, this)» «member.name»;
 				«ENDFOR»
 			} «name»;
 		'''

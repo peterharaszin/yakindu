@@ -18,9 +18,8 @@ import java.util.List;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructTypeDeclaration;
 
 /**
  * @author Andreas Unger
@@ -38,9 +37,9 @@ public class MachineStructType extends MachineDataType {
 	}
 	
 	@Override
-	public String generateDataType(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector,
+	public String generateDataType(ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
-		final StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(computationModel, this), new NullProgressMonitor());
+		final StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(this), new NullProgressMonitor());
 		if (dependentCodeFragment != null) {
 			dependentCodeFragment.addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 				

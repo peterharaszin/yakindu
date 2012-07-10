@@ -151,7 +151,7 @@ class GraphGenerator implements IGraphGenerator {
 				«FOR outputPort : node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten()»
 					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
-					«val cDataType = dataTypeGenerator.generateDataType(computationModel, context, outputDataType, null)»
+					«val cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), context, outputDataType, null)»
 					«cDataType» «GeneratorUtil::getOutputVariableName(context.configuration, node, outputPort)»;
 				«ENDFOR»
 			«ENDFOR»

@@ -11,7 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.util;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.ITargetGenerator;
 import org.eclipselabs.damos.codegen.c.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.internal.registry.TargetGeneratorDescriptor;
@@ -23,11 +25,14 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.Node;
+import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -44,6 +49,8 @@ public class GeneratorConfigurationExtensions {
 	private static final PropertyPath SYSTEM_HEADER_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
 
 	private static final PropertyPath SINGLETON_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/singleton");
+
+	private static final PropertyPath STRING_BUFFER_SIZE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/stringBufferSize");
 
 	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
 	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
@@ -80,6 +87,21 @@ public class GeneratorConfigurationExtensions {
 	
 	public static boolean isSingleton(Configuration configuration) {
 		return getPropertyBooleanValue(configuration, SINGLETON_PROPERTY_PATH, false);
+	}
+
+	public static int getStringBufferSize(Configuration configuration) {
+		Expression expression = configuration.getPropertyValue(STRING_BUFFER_SIZE_PROPERTY_PATH);
+		if (expression != null) {
+			try {
+				IValue value = ExpressionUtil.evaluateExpression(expression);
+				if (value instanceof ISimpleNumericValue) {
+					return (int) ((ISimpleNumericValue) value).longValue();
+				}
+			} catch (CoreException e) {
+				CodegenCPlugin.getDefault().getLog().log(e.getStatus());
+			}
+		}
+		return 32;
 	}
 
 	public static String getPrefix(Configuration configuration, Node node) {

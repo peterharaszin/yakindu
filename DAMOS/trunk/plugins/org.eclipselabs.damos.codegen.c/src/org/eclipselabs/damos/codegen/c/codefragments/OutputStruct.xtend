@@ -14,6 +14,7 @@ package org.eclipselabs.damos.codegen.c.codefragments
 import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
@@ -38,7 +39,7 @@ class OutputStruct extends PrimaryCodeFragment {
 	}
 
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		val prefix = org::eclipselabs::damos::codegen::c::util::GeneratorConfigurationExtensions::getPrefix(context.getConfiguration());
+		val prefix = context.configuration.prefix;
 		content = '''
 			typedef struct {
 				«FOR node : InternalGeneratorUtil::getOutportNodes(context)»
@@ -58,7 +59,7 @@ class OutputStruct extends PrimaryCodeFragment {
 		val signature = generator.context.componentSignature
 		val inputPort = node.component.firstInputPort
 		val dataType = signature.getInputDataType(inputPort)
-		return variableDeclarationGenerator.generateVariableDeclaration(context.configuration.getComputationModel(node), context, dataType, node.component.name.toFirstLower(), false, this)
+		return variableDeclarationGenerator.generateVariableDeclaration(new MscriptGeneratorConfiguration(context.configuration.getComputationModel(node), context.configuration), context, dataType, node.component.name.toFirstLower(), false, this)
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) {

@@ -85,6 +85,20 @@ public class TemplateExpressionEvaluatorTest extends AbstractExpressionEvaluator
 	}
 
 	@Test
+	public void expressionConstantExpressionTemplateSegmentWithNewLine() {
+		IValue value = evaluateQuoted(GL + "\"prefix\"" + GR + "hello" + GL + "\"suffix\\n\"" + GR);
+		
+		assertStringEquals("prefixhellosuffix\n", value);
+	}
+
+	@Test
+	public void expressionExpressionTemplateSegmentWithNewLine() {
+		IValue value = evaluateQuoted(GL + "\"prefix\\n\"" + GR + GL + "\"suffix\\n\"" + GR);
+		
+		assertStringEquals("prefix\nsuffix\n", value);
+	}
+
+	@Test
 	public void constantTemplateSegmentIgnoreFirstNewLine() {
 		IValue value = evaluateQuoted("\nhello");
 		
@@ -170,21 +184,21 @@ public class TemplateExpressionEvaluatorTest extends AbstractExpressionEvaluator
 
 	@Test
 	public void constantExpressionConstantTemplateSegmentMultiLineWithNewLine() {
-		IValue value = evaluateQuoted("\n\t\tprefix\n\t" + GL + "\"hel\" + \"lo\n\"" + GR + "\n\t\tsuffix\n\t");
+		IValue value = evaluateQuoted("\n\t\tprefix\n\t" + GL + "\"hel\" + \"lo\\n\"" + GR + "\n\t\tsuffix\n\t");
 		
 		assertStringEquals("\tprefix\nhello\n\tsuffix\n", value);
 	}
 
 	@Test
 	public void constantExpressionConstantTemplateSegmentMultiLineWithDoubleNewLine() {
-		IValue value = evaluateQuoted("\n\tprefix\n\t\t" + GL + "\"hel\" + \"lo\n\n\"" + GR + "\n\tsuffix\n\t");
+		IValue value = evaluateQuoted("\n\tprefix\n\t\t" + GL + "\"hel\" + \"lo\\n\\n\"" + GR + "\n\tsuffix\n\t");
 		
 		assertStringEquals("prefix\n\thello\n\t\nsuffix\n", value);
 	}
 
 	@Test
 	public void constantExpressionConstantTemplateSegmentMultiLineWithMultiIndentation() {
-		IValue value = evaluateQuoted("\n\tprefix\n\t\t" + GL + "\"hel\" + \"lo\n\t, world\n\"" + GR + "\n\tsuffix\n\t");
+		IValue value = evaluateQuoted("\n\tprefix\n\t\t" + GL + "\"hel\" + \"lo\\n\t, world\\n\"" + GR + "\n\tsuffix\n\t");
 		
 		assertStringEquals("prefix\n\thello\n\t\t, world\nsuffix\n", value);
 	}

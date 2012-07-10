@@ -43,7 +43,7 @@ public class MscriptGeneratorUtil {
 
 	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
 		if (targetDataType instanceof NumericType) {
-			NumberFormat targetNumberFormat = context.getComputationModel().getNumberFormat(targetDataType);
+			NumberFormat targetNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(targetDataType);
 			return castNumericType(context, expression, targetNumberFormat);
 		}
 		return new ExpressionGenerator().generate(context, expression);
@@ -54,15 +54,15 @@ public class MscriptGeneratorUtil {
 		if (value instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericValue = (ISimpleNumericValue) value;
 			if (value.getDataType() instanceof RealType) {
-				return new LiteralGenerator(new DataTypeGenerator()).generateLiteral(context.getComputationModel(), targetNumberFormat, numericValue.doubleValue());
+				return new LiteralGenerator(new DataTypeGenerator()).generateLiteral(context.getConfiguration().getComputationModel(), targetNumberFormat, numericValue.doubleValue());
 			}
 			if (value.getDataType() instanceof IntegerType) {
-				return new LiteralGenerator(new DataTypeGenerator()).generateLiteral(context.getComputationModel(), targetNumberFormat, numericValue.longValue());
+				return new LiteralGenerator(new DataTypeGenerator()).generateLiteral(context.getConfiguration().getComputationModel(), targetNumberFormat, numericValue.longValue());
 			}
 		}
 		
 		DataType expressionDataType = context.getStaticEvaluationResult().getValue(expression).getDataType();
-		NumberFormat expressionNumberFormat = context.getComputationModel().getNumberFormat(expressionDataType);
+		NumberFormat expressionNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(expressionDataType);
 		
 		return NumericExpressionCaster.INSTANCE.cast(new ExpressionGenerator().generate(context, expression), expressionNumberFormat, targetNumberFormat);
 	}

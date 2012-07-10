@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerato
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -33,8 +32,6 @@ class MatrixVectorMultiplyFunction extends AbstractCodeFragment {
 	
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
-	val ComputationModel computationModel
-	
 	val MachineArrayType matrixType
 	val MachineArrayType vectorType
 	val MachineArrayType resultType
@@ -48,9 +45,7 @@ class MatrixVectorMultiplyFunction extends AbstractCodeFragment {
 	String functionBody
 	
 	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType matrixType, @Assisted MachineArrayType vectorType, @Assisted MachineArrayType resultType) {
-		this.computationModel = computationModel
-		
+	new(@Assisted MachineArrayType matrixType, @Assisted MachineArrayType vectorType, @Assisted MachineArrayType resultType) {
 		this.matrixType = matrixType
 		this.vectorType = vectorType
 		this.resultType = resultType
@@ -65,9 +60,9 @@ class MatrixVectorMultiplyFunction extends AbstractCodeFragment {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		matrixElementTypeText = matrixType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		vectorElementTypeText = vectorType.elementType.generateDataType(computationModel, codeFragmentCollector, this)
-		resultTypeText = resultType.generateDataType(computationModel, codeFragmentCollector, this)
+		matrixElementTypeText = matrixType.elementType.generateDataType(codeFragmentCollector, this)
+		vectorElementTypeText = vectorType.elementType.generateDataType(codeFragmentCollector, this)
+		resultTypeText = resultType.generateDataType(codeFragmentCollector, this)
 		
 		name = context.globalNameProvider.newGlobalName("multiply");
 		
@@ -115,7 +110,7 @@ class MatrixVectorMultiplyFunction extends AbstractCodeFragment {
 					&& other.vectorType == vectorType
 					&& other.resultType == resultType
 		}
-		return false;
+		return false
 	}
 	
 }

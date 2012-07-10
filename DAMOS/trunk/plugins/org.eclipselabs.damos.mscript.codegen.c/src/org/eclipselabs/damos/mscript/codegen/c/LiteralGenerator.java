@@ -16,7 +16,9 @@ import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.util.StringTableUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -26,6 +28,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -91,18 +94,18 @@ public class LiteralGenerator {
 		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
 
-	public CharSequence generateLiteral(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
+	public CharSequence generateLiteral(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof IArrayValue) {
-			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(computationModel, (IArrayValue) value);
+			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(configuration, (IArrayValue) value);
 			codeFragment = (ArrayLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
 		if (value instanceof StructValue) {
-			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(computationModel, (StructValue) value);
+			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(configuration, (StructValue) value);
 			codeFragment = (StructLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
-		return generateInitializer(computationModel, codeFragmentCollector, value);
+		return generateInitializer(configuration.getComputationModel(), codeFragmentCollector, value);
 	}
 
 	public CharSequence generateInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IValue value) {
@@ -117,6 +120,8 @@ public class LiteralGenerator {
 		} else if (value instanceof IBooleanValue) {
 			IBooleanValue booleanStaticArgument = (IBooleanValue) value;
 			return booleanStaticArgument.booleanValue() ? "1" : "0";
+		} else if (value instanceof StringValue) {
+			return generateStringInitializer(computationModel, codeFragmentCollector, (StringValue) value);
 		} else if (value instanceof VectorValue) {
 			return generateVectorInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
 		} else if (value instanceof MatrixValue) {
@@ -125,6 +130,23 @@ public class LiteralGenerator {
 			return generateStructInitializer(computationModel, codeFragmentCollector, (StructValue) value);
 		}
 		throw new IllegalArgumentException();
+	}
+
+	private CharSequence generateStringInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, StringValue value) {
+		StringTable stringTable = new StringTable();
+		stringTable = (StringTable) codeFragmentCollector.addCodeFragment(stringTable, new NullProgressMonitor());
+		
+		int index = stringTable.addString(value.toString());
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("{ { ");
+		for (int maskedIndex : StringTableUtil.maskIndex(index)) {
+			sb.append(maskedIndex);
+			sb.append(", ");
+		}
+		sb.append("} }");
+		
+		return sb;
 	}
 
 	private CharSequence generateVectorInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, IArrayValue value) {

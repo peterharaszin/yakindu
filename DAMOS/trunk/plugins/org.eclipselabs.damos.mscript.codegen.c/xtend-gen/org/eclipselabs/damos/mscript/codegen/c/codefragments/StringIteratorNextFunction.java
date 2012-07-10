@@ -171,7 +171,7 @@ public class StringIteratorNextFunction extends AbstractCodeFragment {
     _builder.append("if (c & 0x80) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t");
-    _builder.append("int index = c & 0x7f;");
+    _builder.append("int index = c & 0x3f;");
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t");
     _builder.append("const char *pos = ");
@@ -211,7 +211,7 @@ public class StringIteratorNextFunction extends AbstractCodeFragment {
     _builder.append("if (c & 0x80) {");
     _builder.newLine();
     _builder.append("\t\t\t\t");
-    _builder.append("int index = c & 0x7f;");
+    _builder.append("int index = c & 0x3f;");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("const char *pos = ");

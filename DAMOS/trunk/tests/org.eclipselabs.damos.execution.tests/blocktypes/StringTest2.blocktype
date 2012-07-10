@@ -16,7 +16,7 @@ blockType StringTest2 {
 		static assert b is string :
 			error "B must be string"
 
-		eq y1 = """
+		eq y1 = "BOF" + """
 			<code>
 				«a»
 				<code/>
@@ -26,7 +26,7 @@ blockType StringTest2 {
 		eq y2 = """
 			<code>
 				«a»«b»</code>
-		""" 
+		""" + "EOF"
 	}
 
 }

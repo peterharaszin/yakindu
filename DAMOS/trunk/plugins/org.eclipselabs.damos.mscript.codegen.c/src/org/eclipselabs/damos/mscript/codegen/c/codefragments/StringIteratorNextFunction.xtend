@@ -96,7 +96,7 @@ class StringIteratorNextFunction extends AbstractCodeFragment {
 						if (self->previous == '\n') {
 							c = *self->pos;
 							if (c & 0x80) {
-								int index = c & 0x7f;
+								int index = c & 0x3f;
 								const char *pos = «stringTableName»[index];
 								if (*pos == '\f') {
 									++self->pos;
@@ -108,7 +108,7 @@ class StringIteratorNextFunction extends AbstractCodeFragment {
 						continue;
 					}
 					if (c & 0x80) {
-						int index = c & 0x7f;
+						int index = c & 0x3f;
 						const char *pos = «stringTableName»[index];
 						if (*pos == 0x02) {
 							if (self->indentationEnd != self->indentationBufferEnd) {

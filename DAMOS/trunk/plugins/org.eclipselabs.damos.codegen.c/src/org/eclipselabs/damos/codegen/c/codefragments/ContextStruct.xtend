@@ -38,7 +38,9 @@ class ContextStruct extends PrimaryCodeFragment {
 	
 	val Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>()
 	
-	var CharSequence content
+	boolean unused
+	
+	CharSequence content
 	
 	@Inject
 	new(ITaskGenerator taskGenerator, ITaskMessageStructFactory taskMessageStructFactory) {
@@ -65,17 +67,27 @@ class ContextStruct extends PrimaryCodeFragment {
 			}
 		}
 		
+		unused = context.configuration.singleton && nodes.empty
+		
 		content = '''
 			«FOR node : nodes.filter(n | n.componentGenerator.contextTypeName == null) SEPARATOR "\n" AFTER "\n"»
 				«node.componentGenerator.generateContextCode(getContextTypeName(context, node), monitor)»
 			«ENDFOR»
 			typedef struct {
-				«taskGenerator.generateTaskContexts(context, monitor)»
-				«FOR node : nodes»
-					«getContextTypeName(context, node)» «context.configuration.getPrefix(node)»«node.component.name»;
-				«ENDFOR»
+				«IF nodes.empty»
+					char dummy;
+				«ELSE»
+					«taskGenerator.generateTaskContexts(context, monitor)»
+					«FOR node : nodes»
+						«getContextTypeName(context, node)» «context.configuration.getPrefix(node)»«node.component.name»;
+					«ENDFOR»
+				«ENDIF»
 			} «prefix»Context;
 		'''
+	}
+	
+	override contributesInternalForwardDeclaration() {
+		return !unused
 	}
 	
 	override Collection<Include> getForwardDeclarationIncludes() {
@@ -92,6 +104,18 @@ class ContextStruct extends PrimaryCodeFragment {
 			typeName = context.configuration.getPrefix(node) + node.component.name + "_Context"
 		}
 		return typeName
+	}
+	
+	def isUnused() {
+		return unused
+	}
+
+	override hashCode() {
+		return ^class.hashCode
+	}
+
+	override equals(Object obj) {
+		return obj instanceof ContextStruct
 	}
 	
 }

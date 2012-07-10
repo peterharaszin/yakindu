@@ -14,6 +14,7 @@ package org.eclipselabs.damos.codegen.c.codefragments
 import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextStructFactory
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -25,15 +26,23 @@ import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurat
  */
 class ContextVariable extends PrimaryCodeFragment {
 	
+	val IContextStructFactory contextStructFactory
+	
+	boolean unused
+	
 	String prefix
 	
 	@Inject
-	new() {
+	new(IContextStructFactory contextStructFactory) {
+		this.contextStructFactory = contextStructFactory
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ContextStruct])
 		
+		val contextStruct = context.addCodeFragment(contextStructFactory.create(), monitor) as ContextStruct
+		
+		unused = contextStruct.unused
 		prefix = context.configuration.prefix
 	}
 	
@@ -46,7 +55,7 @@ class ContextVariable extends PrimaryCodeFragment {
 	'''
 
 	override boolean contributesImplementation() {
-		return true
+		return !unused
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''

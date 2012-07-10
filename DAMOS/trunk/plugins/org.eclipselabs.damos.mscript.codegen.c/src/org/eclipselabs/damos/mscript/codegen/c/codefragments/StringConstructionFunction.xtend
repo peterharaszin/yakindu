@@ -139,8 +139,8 @@ class StringConstructionFunction extends AbstractCodeFragment {
 	def private dispatch CharSequence generateExpressionStringSegment(MachineStringType type, int index) '''
 		{
 			int j;
-			for (j = 0; i < «configuration.stringBufferSize - 1» && s«index».data[j] != '\0'; ++j) {
-				result.data[i++] = s«index».data[j];
+			for (j = 0; i < «configuration.stringBufferSize - 1» && s«index»[j] != '\0'; ++j) {
+				result.data[i++] = s«index»[j];
 			}
 		}
 	'''
@@ -165,10 +165,10 @@ class StringConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	def private dispatch CharSequence generateFunctionParameter(ICodeFragmentCollector codeFragmentCollector, ConstantStringSegment s, int index) '''
-		«s.generateDataType(codeFragmentCollector, this)» s«index»'''
+		«s.generateDataType(codeFragmentCollector, this)»s«index»'''
 	
 	def private dispatch CharSequence generateFunctionParameter(ICodeFragmentCollector codeFragmentCollector, ExpressionStringSegment s, int index) '''
-		«IF !plain»int indent«index», «ENDIF»«s.generateDataType(codeFragmentCollector, this)» s«index»'''
+		«IF !plain»int indent«index», «ENDIF»«s.generateDataType(codeFragmentCollector, this)»s«index»'''
 
 	override int hashCode() {
 		return ^class.hashCode.bitwiseXor(stringSegments.hashCode).bitwiseXor(if (plain) 1 else 0)

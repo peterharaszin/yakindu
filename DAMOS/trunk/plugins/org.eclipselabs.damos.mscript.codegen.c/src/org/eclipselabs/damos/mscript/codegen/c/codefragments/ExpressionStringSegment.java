@@ -14,6 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataType;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStringType;
 
 /**
  * @author Andreas Unger
@@ -51,7 +52,13 @@ public class ExpressionStringSegment implements IStringSegment {
 	 */
 	public CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
-		return static_ ? "int" : dataType.generateDataType(codeFragmentCollector, dependentCodeFragment);
+		if (static_) {
+			return "int ";
+		}
+		if (dataType instanceof MachineStringType) {
+			return "const char *";
+		}
+		return dataType.generateDataType(codeFragmentCollector, dependentCodeFragment) + " ";
 	}
 	
 	/* (non-Javadoc)

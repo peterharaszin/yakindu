@@ -12,14 +12,11 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
 import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
-import java.util.Collection
-import java.util.Collections
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
-import org.eclipselabs.damos.mscript.codegen.c.Include
+import com.google.inject.assistedinject.Assisted
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -27,14 +24,14 @@ import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
  * @author Andreas Unger
  *
  */
-class StringIteratorInitializeFunction extends AbstractCodeFragment {
+class StringEqualToFunction extends AbstractCodeFragment {
 
 	val int stringBufferSize
 	
-	String typeName
 	String name
 	
 	String stringIteratorInitializeRawFunctionName
+	String stringIteratorNextFunctionName
 	
 	CharSequence functionSignature
 	
@@ -51,26 +48,21 @@ class StringIteratorInitializeFunction extends AbstractCodeFragment {
 	}
 	
 	override void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof StringTypeDeclaration || it instanceof StringIteratorDeclaration])
-		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof StringIteratorInitializeRawFunction])
+		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof StringIteratorInitializeRawFunction || it instanceof StringIteratorNextFunction])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		val stringTypeDeclaration = codeFragmentCollector.addCodeFragment(new StringTypeDeclaration(stringBufferSize), monitor)
 		val stringIteratorInitializeRawFunction = codeFragmentCollector.addCodeFragment(new StringIteratorInitializeRawFunction(stringBufferSize), monitor)
+		val stringIteratorNextFunction = codeFragmentCollector.addCodeFragment(new StringIteratorNextFunction(), monitor)
 
-		typeName = stringTypeDeclaration.name
-		name = context.globalNameProvider.newGlobalName("StringIterator_initialize")
+		name = context.globalNameProvider.newGlobalName("StringEqualTo")
 		stringIteratorInitializeRawFunctionName = stringIteratorInitializeRawFunction.name
+		stringIteratorNextFunctionName = stringIteratorNextFunction.name
 		
 		functionSignature = generateFunctionSignature(codeFragmentCollector)
 	}
 	
 	override boolean contributesInternalForwardDeclaration() {
 		return false
-	}
-	
-	override getForwardDeclarationIncludes() {
-		return Collections::singletonList(new Include("stddef.h"));
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
@@ -81,25 +73,40 @@ class StringIteratorInitializeFunction extends AbstractCodeFragment {
 		return true
 	}
 	
-	override Collection<Include> getImplementationIncludes() {
-		return Collections::singletonList(new Include("stdlib.h"));
-	}
-
 	override CharSequence generateImplementation(boolean internal) '''
 		«IF internal»static «ENDIF»«functionSignature» {
-			«stringIteratorInitializeRawFunctionName»(it, string->data, indentationBuffer, indentationBufferSize);
+			Damos_StringIterator it1;
+			Damos_StringIterator it2;
+			
+			int indentationBuffer1[«stringBufferSize»];
+			int indentationBuffer2[«stringBufferSize»];
+			
+			«stringIteratorInitializeRawFunctionName»(&it1, string1, indentationBuffer1, «stringBufferSize»);
+			«stringIteratorInitializeRawFunctionName»(&it2, string2, indentationBuffer2, «stringBufferSize»);
+			
+			char c1;
+			char c2;
+			do {
+				c1 = «stringIteratorNextFunctionName»(&it1);
+				c2 = «stringIteratorNextFunctionName»(&it2);
+				if (c1 != c2) {
+					return 0;
+				}
+			} while (c1 != '\0');
+			
+			return 1;
 		}
 	'''
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) '''
-		void «name»(Damos_StringIterator *it, const «typeName» *string, int *indentationBuffer, size_t indentationBufferSize)'''
+		uint_fast8_t «name»(const char *string1, const char *string2)'''
 	
 	override int hashCode() {
 		return ^class.hashCode
 	}
 	
 	override boolean equals(Object obj) {
-		if (obj instanceof StringIteratorInitializeFunction) {
+		if (obj instanceof StringEqualToFunction) {
 			return true
 		}
 		return false

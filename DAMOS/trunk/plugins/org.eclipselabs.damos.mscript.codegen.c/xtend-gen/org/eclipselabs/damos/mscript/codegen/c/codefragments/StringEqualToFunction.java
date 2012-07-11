@@ -2,8 +2,6 @@ package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import java.util.Collection;
-import java.util.Collections;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -13,28 +11,26 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
-import org.eclipselabs.damos.mscript.codegen.c.Include;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorInitializeRawFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorNextFunction;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTypeDeclaration;
 
 /**
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class StringIteratorInitializeFunction extends AbstractCodeFragment {
+public class StringEqualToFunction extends AbstractCodeFragment {
   private final int stringBufferSize;
   
-  private String typeName;
-  
   private String name;
+  
+  private String stringIteratorInitializeRawFunctionName;
   
   private String stringIteratorNextFunctionName;
   
   private CharSequence functionSignature;
   
   @Inject
-  public StringIteratorInitializeFunction(@Assisted final int stringBufferSize) {
+  public StringEqualToFunction(@Assisted final int stringBufferSize) {
     this.stringBufferSize = stringBufferSize;
   }
   
@@ -49,39 +45,29 @@ public class StringIteratorInitializeFunction extends AbstractCodeFragment {
     final Function1<ICodeFragment,Boolean> _function = new Function1<ICodeFragment,Boolean>() {
         public Boolean apply(final ICodeFragment it) {
           boolean _or = false;
-          if ((it instanceof StringTypeDeclaration)) {
+          if ((it instanceof StringIteratorInitializeRawFunction)) {
             _or = true;
           } else {
-            _or = ((it instanceof StringTypeDeclaration) || (it instanceof StringIteratorDeclaration));
+            _or = ((it instanceof StringIteratorInitializeRawFunction) || (it instanceof StringIteratorNextFunction));
           }
           return _or;
         }
       };
-    this.addDependency(ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
+    this.addDependency(ICodeFragment.IMPLEMENTATION_DEPENDS_ON, new IDependencyRule() {
         public boolean applies(ICodeFragment other) {
           return _function.apply(other);
         }
     });
-    final Function1<ICodeFragment,Boolean> _function_1 = new Function1<ICodeFragment,Boolean>() {
-        public Boolean apply(final ICodeFragment it) {
-          return (it instanceof StringIteratorNextFunction);
-        }
-      };
-    this.addDependency(ICodeFragment.IMPLEMENTATION_DEPENDS_ON, new IDependencyRule() {
-        public boolean applies(ICodeFragment other) {
-          return _function_1.apply(other);
-        }
-    });
     final ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-    StringTypeDeclaration _stringTypeDeclaration = new StringTypeDeclaration(this.stringBufferSize);
-    final StringTypeDeclaration stringTypeDeclaration = codeFragmentCollector.<StringTypeDeclaration>addCodeFragment(_stringTypeDeclaration, monitor);
+    StringIteratorInitializeRawFunction _stringIteratorInitializeRawFunction = new StringIteratorInitializeRawFunction(this.stringBufferSize);
+    final StringIteratorInitializeRawFunction stringIteratorInitializeRawFunction = codeFragmentCollector.<StringIteratorInitializeRawFunction>addCodeFragment(_stringIteratorInitializeRawFunction, monitor);
     StringIteratorNextFunction _stringIteratorNextFunction = new StringIteratorNextFunction();
     final StringIteratorNextFunction stringIteratorNextFunction = codeFragmentCollector.<StringIteratorNextFunction>addCodeFragment(_stringIteratorNextFunction, monitor);
-    String _name = stringTypeDeclaration.getName();
-    this.typeName = _name;
     IGlobalNameProvider _globalNameProvider = context.getGlobalNameProvider();
-    String _newGlobalName = _globalNameProvider.newGlobalName("StringIterator_initialize");
+    String _newGlobalName = _globalNameProvider.newGlobalName("StringEqualTo");
     this.name = _newGlobalName;
+    String _name = stringIteratorInitializeRawFunction.getName();
+    this.stringIteratorInitializeRawFunctionName = _name;
     String _name_1 = stringIteratorNextFunction.getName();
     this.stringIteratorNextFunctionName = _name_1;
     CharSequence _generateFunctionSignature = this.generateFunctionSignature(codeFragmentCollector);
@@ -109,11 +95,6 @@ public class StringIteratorInitializeFunction extends AbstractCodeFragment {
     return true;
   }
   
-  public Collection<Include> getImplementationIncludes() {
-    Include _include = new Include("stdlib.h");
-    return Collections.<Include>singletonList(_include);
-  }
-  
   public CharSequence generateImplementation(final boolean internal) {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -125,37 +106,75 @@ public class StringIteratorInitializeFunction extends AbstractCodeFragment {
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("it->state = 0;");
+    _builder.append("Damos_StringIterator it1;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("it->pos = string->data;");
+    _builder.append("Damos_StringIterator it2;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("it->stringTablePos = NULL;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("it->indentationStringTablePos = NULL;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->indentationPos = indentationBuffer;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->indentationEnd = indentationBuffer;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->indentationBuffer = indentationBuffer;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->indentationBufferEnd = indentationBuffer != NULL ? indentationBuffer + indentationBufferSize : NULL;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->previous = \'\\0\';");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("it->next = ");
-    _builder.append(this.stringIteratorNextFunctionName, "	");
-    _builder.append(";");
+    _builder.append("int indentationBuffer1[");
+    _builder.append(this.stringBufferSize, "	");
+    _builder.append("];");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("int indentationBuffer2[");
+    _builder.append(this.stringBufferSize, "	");
+    _builder.append("];");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append(this.stringIteratorInitializeRawFunctionName, "	");
+    _builder.append("(&it1, string1, indentationBuffer1, ");
+    _builder.append(this.stringBufferSize, "	");
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append(this.stringIteratorInitializeRawFunctionName, "	");
+    _builder.append("(&it2, string2, indentationBuffer2, ");
+    _builder.append(this.stringBufferSize, "	");
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("char c1;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("char c2;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("do {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("c1 = ");
+    _builder.append(this.stringIteratorNextFunctionName, "		");
+    _builder.append("(&it1);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("c2 = ");
+    _builder.append(this.stringIteratorNextFunctionName, "		");
+    _builder.append("(&it2);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (c1 != c2) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return 0;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("} while (c1 != \'\\0\');");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return 1;");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;
@@ -163,11 +182,9 @@ public class StringIteratorInitializeFunction extends AbstractCodeFragment {
   
   private CharSequence generateFunctionSignature(final ICodeFragmentCollector codeFragmentCollector) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("void ");
+    _builder.append("uint_fast8_t ");
     _builder.append(this.name, "");
-    _builder.append("(Damos_StringIterator *it, const ");
-    _builder.append(this.typeName, "");
-    _builder.append(" *string, int *indentationBuffer, size_t indentationBufferSize)");
+    _builder.append("(const char *string1, const char *string2)");
     return _builder;
   }
   
@@ -177,7 +194,7 @@ public class StringIteratorInitializeFunction extends AbstractCodeFragment {
   }
   
   public boolean equals(final Object obj) {
-    if ((obj instanceof StringIteratorInitializeFunction)) {
+    if ((obj instanceof StringEqualToFunction)) {
       return true;
     }
     return false;

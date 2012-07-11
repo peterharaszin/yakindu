@@ -27,14 +27,13 @@ import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
  * @author Andreas Unger
  *
  */
-class StringIteratorInitializeFunction extends AbstractCodeFragment {
+class StringIteratorInitializeRawFunction extends AbstractCodeFragment {
 
 	val int stringBufferSize
 	
-	String typeName
 	String name
 	
-	String stringIteratorInitializeRawFunctionName
+	String stringIteratorNextFunctionName
 	
 	CharSequence functionSignature
 	
@@ -51,26 +50,20 @@ class StringIteratorInitializeFunction extends AbstractCodeFragment {
 	}
 	
 	override void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof StringTypeDeclaration || it instanceof StringIteratorDeclaration])
-		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof StringIteratorInitializeRawFunction])
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof StringIteratorDeclaration])
+		addDependency(IMPLEMENTATION_DEPENDS_ON, [it instanceof StringIteratorNextFunction])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		val stringTypeDeclaration = codeFragmentCollector.addCodeFragment(new StringTypeDeclaration(stringBufferSize), monitor)
-		val stringIteratorInitializeRawFunction = codeFragmentCollector.addCodeFragment(new StringIteratorInitializeRawFunction(stringBufferSize), monitor)
+		val stringIteratorNextFunction = codeFragmentCollector.addCodeFragment(new StringIteratorNextFunction(), monitor)
 
-		typeName = stringTypeDeclaration.name
-		name = context.globalNameProvider.newGlobalName("StringIterator_initialize")
-		stringIteratorInitializeRawFunctionName = stringIteratorInitializeRawFunction.name
+		name = context.globalNameProvider.newGlobalName("StringIterator_initializeRaw")
+		stringIteratorNextFunctionName = stringIteratorNextFunction.name
 		
 		functionSignature = generateFunctionSignature(codeFragmentCollector)
 	}
 	
 	override boolean contributesInternalForwardDeclaration() {
 		return false
-	}
-	
-	override getForwardDeclarationIncludes() {
-		return Collections::singletonList(new Include("stddef.h"));
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
@@ -87,19 +80,28 @@ class StringIteratorInitializeFunction extends AbstractCodeFragment {
 
 	override CharSequence generateImplementation(boolean internal) '''
 		«IF internal»static «ENDIF»«functionSignature» {
-			«stringIteratorInitializeRawFunctionName»(it, string->data, indentationBuffer, indentationBufferSize);
+			it->state = 0;
+			it->pos = string;
+			it->stringTablePos = NULL;
+			it->indentationStringTablePos = NULL;
+			it->indentationPos = indentationBuffer;
+			it->indentationEnd = indentationBuffer;
+			it->indentationBuffer = indentationBuffer;
+			it->indentationBufferEnd = indentationBuffer != NULL ? indentationBuffer + indentationBufferSize : NULL;
+			it->previous = '\0';
+			it->next = «stringIteratorNextFunctionName»;
 		}
 	'''
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) '''
-		void «name»(Damos_StringIterator *it, const «typeName» *string, int *indentationBuffer, size_t indentationBufferSize)'''
+		void «name»(Damos_StringIterator *it, const char *string, int *indentationBuffer, size_t indentationBufferSize)'''
 	
 	override int hashCode() {
 		return ^class.hashCode
 	}
 	
 	override boolean equals(Object obj) {
-		if (obj instanceof StringIteratorInitializeFunction) {
+		if (obj instanceof StringIteratorInitializeRawFunction) {
 			return true
 		}
 		return false

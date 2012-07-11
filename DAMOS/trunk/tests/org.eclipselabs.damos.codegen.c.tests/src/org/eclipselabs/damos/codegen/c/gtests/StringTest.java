@@ -16,6 +16,8 @@ import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.library.base.util.logic.CompareConstants;
+import org.eclipselabs.damos.library.base.util.sources.ConstantConstants;
 import org.junit.Before;
 
 /**
@@ -32,12 +34,27 @@ public class StringTest extends AbstractGeneratorGTest {
 		
 		Inport inA = createInport("InA", createIntegerTypeSpecification(), 1);
 		Inport inB = createInport("InB", createIntegerTypeSpecification(), 1);
+		
+		Block constantEqual = createBlock(CONSTANT, "ConstantEqual");
+		setArgument(constantEqual, ConstantConstants.PARAMETER__VALUE, "\"Hello, 3 world!\"");
+		Block constantNotEqual = createBlock(CONSTANT, "ConstantNotEqual");
+		setArgument(constantNotEqual, ConstantConstants.PARAMETER__VALUE, "\"Hello, 3 Xorld!\"");
+		
+		Block compareEqual = createBlock(COMPARE, "CompareEqual");
+		setArgument(compareEqual, CompareConstants.PARAMETER__OPERATOR, 0);
+		
+		Block compareNotEqual = createBlock(COMPARE, "CompareNotEqual");
+		setArgument(compareNotEqual, CompareConstants.PARAMETER__OPERATOR, 1);
+		
 		Block stringTest = createTestBlock("StringTest", "StringTest");
 		Block stringTest2 = createTestBlock("StringTest2", "StringTest2");
+		
 		Outport outport1 = createOutport("Out1", createDataTypeSpecification("string"));
 		Outport outport2 = createOutport("Out2", createDataTypeSpecification("string"));
 		Outport outport3 = createOutport("Out3", createDataTypeSpecification("string"));
 		Outport outport4 = createOutport("Out4", createDataTypeSpecification("string"));
+		Outport outportEqual = createOutport("OutEqual", createBooleanTypeSpecification());
+		Outport outportNotEqual = createOutport("OutNotEqual", createBooleanTypeSpecification());
 		
 		connect(inA, stringTest, 0);
 		connect(inB, stringTest, 1);
@@ -47,6 +64,14 @@ public class StringTest extends AbstractGeneratorGTest {
 		connect(stringTest, 1, stringTest2, 1);
 		connect(stringTest2, 0, outport3);
 		connect(stringTest2, 1, outport4);
+		
+		connect(stringTest, 0, compareEqual, 0);
+		connect(constantEqual, compareEqual, 1);
+		connect(compareEqual, outportEqual);
+
+		connect(stringTest, 0, compareNotEqual, 0);
+		connect(constantNotEqual, compareNotEqual, 1);
+		connect(compareNotEqual, outportNotEqual);
 
 		generateAndCompile();
 	}

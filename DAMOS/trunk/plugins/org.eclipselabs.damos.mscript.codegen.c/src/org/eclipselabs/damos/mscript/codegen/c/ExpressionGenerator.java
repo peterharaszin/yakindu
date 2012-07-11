@@ -11,13 +11,11 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
@@ -63,6 +61,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.MatrixVectorMultiplyFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.VectorMatrixMultiplyFunction;
@@ -151,11 +150,25 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
-			try {
-				generateCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
-			} catch (IOException e) {
-				throw new WrappedException(e);
+			DataType leftDataType = getDataType(equalityExpression.getLeftOperand());
+			DataType rightDataType = getDataType(equalityExpression.getRightOperand());
+
+			if (leftDataType instanceof StringType && rightDataType instanceof StringType) {
+				StringEqualToFunction stringEqualToFunction = context.getCodeFragmentCollector().addCodeFragment(new StringEqualToFunction(context.getConfiguration().getStringBufferSize()), new NullProgressMonitor());
+				if (equalityExpression.getOperator() == OperatorKind.NOT_EQUAL_TO) {
+					out.print("!");
+				}
+				out.print(stringEqualToFunction.getName());
+				out.print("(");
+				out.print("&(");
+				doSwitch(equalityExpression.getLeftOperand());
+				out.print(").data[0], &(");
+				doSwitch(equalityExpression.getRightOperand());
+				out.print(").data[0])");
+				return true;
 			}
+			
+			generateCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
 			return true;
 		}
 		
@@ -164,15 +177,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseRelationalExpression(RelationalExpression relationalExpression) {
-			try {
-				generateCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
-			} catch (IOException e) {
-				throw new WrappedException(e);
-			}
+			generateCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
 			return true;
 		}
 		
-		private void generateCompareExpression(Expression leftOperand, Expression rightOperand, String operator) throws IOException {
+		private void generateCompareExpression(Expression leftOperand, Expression rightOperand, String operator) {
 			DataType leftDataType = getDataType(leftOperand);
 			DataType rightDataType = getDataType(rightOperand);
 			

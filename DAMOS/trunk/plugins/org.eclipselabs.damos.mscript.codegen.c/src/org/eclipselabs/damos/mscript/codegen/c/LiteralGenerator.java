@@ -11,11 +11,15 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import java.util.Collections;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.util.StringTableUtil;
@@ -97,13 +101,25 @@ public class LiteralGenerator {
 	public CharSequence generateLiteral(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof IArrayValue) {
 			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(configuration, (IArrayValue) value);
-			codeFragment = (ArrayLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
 		if (value instanceof StructValue) {
 			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(configuration, (StructValue) value);
-			codeFragment = (StructLiteralDeclaration) codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
+			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
+		}
+		if (value instanceof StringValue) {
+			NullProgressMonitor monitor = new NullProgressMonitor();
+			StringConstructionFunction codeFragment = new StringConstructionFunction(configuration, Collections.singletonList(new ConstantStringSegment()), true);
+			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, monitor);
+			StringTable stringTable = codeFragmentCollector.addCodeFragment(new StringTable(), monitor);
+			StringBuilder sb = new StringBuilder();
+			sb.append(codeFragment.getName());
+			sb.append("(");
+			sb.append(stringTable.addString(((StringValue) value).toString()));
+			sb.append(")");
+			return sb;
 		}
 		return generateInitializer(configuration.getComputationModel(), codeFragmentCollector, value);
 	}

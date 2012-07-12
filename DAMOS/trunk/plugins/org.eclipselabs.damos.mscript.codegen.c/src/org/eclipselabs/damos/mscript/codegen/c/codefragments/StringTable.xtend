@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.core.runtime.IProgressMonitor
@@ -28,10 +27,6 @@ class StringTable extends AbstractCodeFragment {
 	val List<String> strings = new ArrayList<String>()
 	
 	String name
-	
-	@Inject
-	new() {
-	}
 	
 	/**
 	 * @return the name

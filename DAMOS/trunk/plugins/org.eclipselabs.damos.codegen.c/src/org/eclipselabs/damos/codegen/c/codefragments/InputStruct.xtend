@@ -11,9 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
-import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
+import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration
 import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions.*
-import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration
 
 /**
  * @author Andreas Unger
@@ -32,11 +31,6 @@ class InputStruct extends PrimaryCodeFragment {
 	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
 
 	CharSequence content;
-	
-	@Inject
-	new() {
-		
-	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		val prefix = context.configuration.prefix;

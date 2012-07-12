@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.ArrayList
 import java.util.Collection
 import java.util.List
@@ -24,9 +22,9 @@ import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipselabs.damos.mscript.codegen.c.Include
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStringType
+import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat
 
 /**
  * @author Andreas Unger
@@ -45,8 +43,7 @@ class StringConstructionFunction extends AbstractCodeFragment {
 	
 	CharSequence functionSignature
 	
-	@Inject
-	new(@Assisted IMscriptGeneratorConfiguration configuration, @Assisted List<? extends IStringSegment> stringSegments, boolean plain) {
+	new(IMscriptGeneratorConfiguration configuration, List<? extends IStringSegment> stringSegments, boolean plain) {
 		this.configuration = configuration
 		this.stringSegments = new ArrayList<IStringSegment>(stringSegments)
 		this.plain = plain

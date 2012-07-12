@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.OperatorKind
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
@@ -47,8 +45,7 @@ class VectorMatrixMultiplyFunction extends AbstractCodeFragment {
 	
 	String functionBody
 	
-	@Inject
-	new(@Assisted ComputationModel computationModel, @Assisted MachineArrayType vectorType, @Assisted MachineArrayType matrixType, @Assisted MachineArrayType resultType) {
+	new(ComputationModel computationModel, MachineArrayType vectorType, MachineArrayType matrixType, MachineArrayType resultType) {
 		this.computationModel = computationModel
 		
 		this.vectorType = vectorType

@@ -11,14 +11,35 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments.factories;
 
+import org.eclipselabs.damos.codegen.c.codefragments.TaskInfoArray;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskInfoArrayFactory.Default;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface ITaskInfoArrayFactory {
 
 	ICodeFragment create();
+	
+	class Default implements ITaskInfoArrayFactory {
+
+		private final ITaskFunctionFactory taskFunctionFactory;
+
+		@Inject
+		Default(ITaskFunctionFactory taskFunctionFactory) {
+			this.taskFunctionFactory = taskFunctionFactory;
+		}
+
+		public ICodeFragment create() {
+			return new TaskInfoArray(taskFunctionFactory);
+		}
+		
+	}
 	
 }

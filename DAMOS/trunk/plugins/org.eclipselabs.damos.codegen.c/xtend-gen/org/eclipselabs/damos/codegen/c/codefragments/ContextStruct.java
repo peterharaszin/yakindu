@@ -2,7 +2,6 @@ package org.eclipselabs.damos.codegen.c.codefragments;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -49,7 +48,6 @@ public class ContextStruct extends PrimaryCodeFragment {
   
   private CharSequence content;
   
-  @Inject
   public ContextStruct(final ITaskGenerator taskGenerator, final ITaskMessageStructFactory taskMessageStructFactory) {
     this.taskGenerator = taskGenerator;
     this.taskMessageStructFactory = taskMessageStructFactory;

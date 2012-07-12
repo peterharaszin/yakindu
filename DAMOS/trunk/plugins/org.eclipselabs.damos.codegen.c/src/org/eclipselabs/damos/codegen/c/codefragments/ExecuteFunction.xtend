@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
-import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
@@ -22,6 +21,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 
 import static org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil.*
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
+
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 
 /**
@@ -37,7 +37,6 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	CharSequence functionSignature
 	CharSequence functionBody
 
-	@Inject
 	new(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator
 		implementationIncludes.add(new Include("math.h"))

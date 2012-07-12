@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.Iterator
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.OperatorKind
@@ -48,8 +46,7 @@ class ArrayElementWiseOperationFunction extends AbstractCodeFragment {
 	
 	String functionBody
 	
-	@Inject
-	new(OperatorKind operator, @Assisted MachineArrayType leftArrayType, @Assisted MachineArrayType rightArrayType, @Assisted MachineArrayType resultType) {
+	new(OperatorKind operator, MachineArrayType leftArrayType, MachineArrayType rightArrayType, MachineArrayType resultType) {
 		this.operator = operator
 		this.leftArrayType = leftArrayType
 		this.rightArrayType = rightArrayType

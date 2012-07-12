@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.Iterator
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.OperatorKind
@@ -46,8 +44,7 @@ class ArrayScalarMultiplyFunction extends AbstractCodeFragment {
 	
 	String functionBody
 	
-	@Inject
-	new(@Assisted MachineNumericType scalarType, @Assisted MachineArrayType arrayType, @Assisted MachineArrayType resultType) {
+	new(MachineNumericType scalarType, MachineArrayType arrayType, MachineArrayType resultType) {
 		this.scalarType = scalarType
 		this.arrayType = arrayType
 		this.resultType = resultType

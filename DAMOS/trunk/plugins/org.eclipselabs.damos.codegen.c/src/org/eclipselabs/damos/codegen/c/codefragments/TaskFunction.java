@@ -27,8 +27,6 @@ import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
 
-import com.google.inject.Inject;
-
 /**
  * @author Andreas Unger
  *
@@ -42,8 +40,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 	private List<String> forwardDeclarations = new ArrayList<String>();
 	private List<String> implementations = new ArrayList<String>();
 	
-	@Inject
-	TaskFunction(IGraphGenerator graphGenerator) {
+	public TaskFunction(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator;
 	}
 	

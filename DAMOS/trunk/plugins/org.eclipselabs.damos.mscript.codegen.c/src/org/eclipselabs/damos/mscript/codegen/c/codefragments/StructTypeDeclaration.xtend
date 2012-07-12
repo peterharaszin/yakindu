@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
@@ -29,8 +27,7 @@ class StructTypeDeclaration extends AbstractCodeFragment {
 	String name
 	CharSequence declaration
 	
-	@Inject
-	new(@Assisted MachineStructType structType) {
+	new(MachineStructType structType) {
 		this.structType = structType
 	}
 	

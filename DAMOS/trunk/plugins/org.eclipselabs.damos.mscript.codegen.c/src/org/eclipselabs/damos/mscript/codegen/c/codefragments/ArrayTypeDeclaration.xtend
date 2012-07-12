@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
@@ -29,8 +27,7 @@ class ArrayTypeDeclaration extends AbstractCodeFragment {
 	CharSequence elementType
 	String name
 	
-	@Inject
-	new(@Assisted MachineArrayType arrayType) {
+	new(MachineArrayType arrayType) {
 		this.arrayType = arrayType
 	}
 	

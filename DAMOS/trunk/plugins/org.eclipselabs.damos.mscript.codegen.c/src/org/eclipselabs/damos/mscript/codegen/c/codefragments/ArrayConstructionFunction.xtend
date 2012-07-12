@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.ArrayList
 import java.util.Collections
 import java.util.List
@@ -38,8 +36,7 @@ class ArrayConstructionFunction extends AbstractCodeFragment {
 	
 	CharSequence functionSignature
 	
-	@Inject
-	new(@Assisted MachineArrayType arrayType) {
+	new(MachineArrayType arrayType) {
 		this.arrayType = arrayType
 	}
 	

@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.HashSet
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
@@ -38,8 +36,7 @@ class StructConstructionFunction extends AbstractCodeFragment {
 	
 	CharSequence functionSignature
 	
-	@Inject
-	new(@Assisted MachineStructType structType) {
+	new(MachineStructType structType) {
 		this.structType = structType
 	}
 	

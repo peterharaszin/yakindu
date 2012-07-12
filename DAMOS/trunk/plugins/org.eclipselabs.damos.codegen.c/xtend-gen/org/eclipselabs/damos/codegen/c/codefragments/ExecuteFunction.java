@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.codegen.c.codefragments;
 
-import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -43,7 +42,6 @@ public class ExecuteFunction extends PrimaryCodeFragment {
   
   private CharSequence functionBody;
   
-  @Inject
   public ExecuteFunction(final IGraphGenerator graphGenerator) {
     this.graphGenerator = graphGenerator;
     Include _include = new Include("math.h");

@@ -11,14 +11,36 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments.factories;
 
+import org.eclipselabs.damos.codegen.c.IGraphGenerator;
+import org.eclipselabs.damos.codegen.c.codefragments.ExecuteFunction;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IExecuteFunctionFactory.Default;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface IExecuteFunctionFactory {
 
 	ICodeFragment create();
+	
+	class Default implements IExecuteFunctionFactory {
+
+		private final IGraphGenerator graphGenerator;
+		
+		@Inject
+		Default(IGraphGenerator graphGenerator) {
+			this.graphGenerator = graphGenerator;
+		}
+
+		public ICodeFragment create() {
+			return new ExecuteFunction(graphGenerator);
+		}
+		
+	}
 	
 }

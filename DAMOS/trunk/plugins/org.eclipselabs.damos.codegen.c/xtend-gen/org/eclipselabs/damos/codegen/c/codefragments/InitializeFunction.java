@@ -2,7 +2,6 @@ package org.eclipselabs.damos.codegen.c.codefragments;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -44,7 +43,6 @@ public class InitializeFunction extends PrimaryCodeFragment {
   
   private CharSequence functionBody;
   
-  @Inject
   public InitializeFunction(final ITaskGenerator taskGenerator) {
     this.taskGenerator = taskGenerator;
     Include _include = new Include("math.h");

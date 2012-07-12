@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
@@ -39,8 +37,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	String typeName
 	CharSequence body
 
-	@Inject
-	new(@Assisted IMscriptGeneratorConfiguration configuration, @Assisted IArrayValue value) {
+	new(IMscriptGeneratorConfiguration configuration, IArrayValue value) {
 		this.configuration = configuration
 		this.arrayValue = value
 	}

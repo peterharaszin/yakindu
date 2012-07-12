@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
@@ -40,8 +38,7 @@ class StructLiteralDeclaration extends AbstractCodeFragment {
 	
 	CharSequence body
 	
-	@Inject
-	new(@Assisted IMscriptGeneratorConfiguration configuration, @Assisted StructValue value) {
+	new(IMscriptGeneratorConfiguration configuration, StructValue value) {
 		this.configuration = configuration
 		this.structValue = value
 	}

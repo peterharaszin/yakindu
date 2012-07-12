@@ -11,14 +11,36 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments.factories;
 
+import org.eclipselabs.damos.codegen.c.ITaskGenerator;
+import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IInitializeFunctionFactory.Default;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface IInitializeFunctionFactory {
 
 	ICodeFragment create();
+	
+	class Default implements IInitializeFunctionFactory {
+
+		private final ITaskGenerator taskGenerator;
+		
+		@Inject
+		Default(ITaskGenerator taskGenerator) {
+			this.taskGenerator = taskGenerator;
+		}
+
+		public ICodeFragment create() {
+			return new InitializeFunction(taskGenerator);
+		}
+		
+	}
 	
 }

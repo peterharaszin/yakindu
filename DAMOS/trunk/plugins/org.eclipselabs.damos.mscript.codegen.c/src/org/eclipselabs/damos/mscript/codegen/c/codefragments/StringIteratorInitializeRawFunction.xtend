@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import java.util.Collection
 import java.util.Collections
 import org.eclipse.core.runtime.IProgressMonitor
@@ -37,8 +35,7 @@ class StringIteratorInitializeRawFunction extends AbstractCodeFragment {
 	
 	CharSequence functionSignature
 	
-	@Inject
-	new(@Assisted int stringBufferSize) {
+	new(int stringBufferSize) {
 		this.stringBufferSize = stringBufferSize
 	}
 	

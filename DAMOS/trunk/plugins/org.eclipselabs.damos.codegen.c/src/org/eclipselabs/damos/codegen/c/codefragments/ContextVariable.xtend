@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments
 
-import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextStructFactory
@@ -32,7 +31,6 @@ class ContextVariable extends PrimaryCodeFragment {
 	
 	String prefix
 	
-	@Inject
 	new(IContextStructFactory contextStructFactory) {
 		this.contextStructFactory = contextStructFactory
 	}

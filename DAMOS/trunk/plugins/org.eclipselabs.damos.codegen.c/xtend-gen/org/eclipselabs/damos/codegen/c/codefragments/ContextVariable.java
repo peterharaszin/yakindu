@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.codegen.c.codefragments;
 
-import com.google.inject.Inject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -24,7 +23,6 @@ public class ContextVariable extends PrimaryCodeFragment {
   
   private String prefix;
   
-  @Inject
   public ContextVariable(final IContextStructFactory contextStructFactory) {
     this.contextStructFactory = contextStructFactory;
   }

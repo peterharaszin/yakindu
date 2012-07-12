@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.OperatorKind
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
@@ -44,8 +42,7 @@ class MatrixMultiplyFunction extends AbstractCodeFragment {
 	
 	String functionBody
 	
-	@Inject
-	new(@Assisted MachineArrayType leftMatrixType, @Assisted MachineArrayType rightMatrixType, @Assisted MachineArrayType resultType) {
+	new(MachineArrayType leftMatrixType, MachineArrayType rightMatrixType, MachineArrayType resultType) {
 		this.leftMatrixType = leftMatrixType
 		this.rightMatrixType = rightMatrixType
 		this.resultType = resultType

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
 import java.util.Collection
 import java.util.Collections
 import org.eclipse.core.runtime.IProgressMonitor
@@ -34,10 +33,6 @@ class StringIteratorNextFunction extends AbstractCodeFragment {
 	String stringTableName
 	
 	CharSequence functionSignature
-	
-	@Inject
-	new() {
-	}
 	
 	/**
 	 * @return the name

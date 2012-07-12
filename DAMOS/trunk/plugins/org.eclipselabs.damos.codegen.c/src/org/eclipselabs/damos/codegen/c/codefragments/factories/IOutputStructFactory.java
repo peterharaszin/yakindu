@@ -11,14 +11,32 @@
 
 package org.eclipselabs.damos.codegen.c.codefragments.factories;
 
+import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
+import org.eclipselabs.damos.codegen.c.codefragments.factories.IOutputStructFactory.Default;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface IOutputStructFactory {
 
 	ICodeFragment create();
+	
+	class Default implements IOutputStructFactory {
+	
+		@Inject
+		Default() {
+		}
+		
+		public ICodeFragment create() {
+			return new OutputStruct();
+		}
+		
+	}
 	
 }

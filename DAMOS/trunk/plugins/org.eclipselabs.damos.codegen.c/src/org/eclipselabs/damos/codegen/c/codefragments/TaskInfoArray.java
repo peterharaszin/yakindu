@@ -24,8 +24,6 @@ import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
 
-import com.google.inject.Inject;
-
 /**
  * @author Andreas Unger
  *
@@ -40,8 +38,7 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 	private String forwardDeclaration;
 	private String implementation;
 	
-	@Inject
-	TaskInfoArray(ITaskFunctionFactory taskFunctionFactory) {
+	public TaskInfoArray(ITaskFunctionFactory taskFunctionFactory) {
 		this.taskFunctionFactory = taskFunctionFactory;
 	}
 	

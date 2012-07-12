@@ -11,12 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
-import com.google.inject.assistedinject.Assisted
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -35,8 +33,7 @@ class StringEqualToFunction extends AbstractCodeFragment {
 	
 	CharSequence functionSignature
 	
-	@Inject
-	new(@Assisted int stringBufferSize) {
+	new(int stringBufferSize) {
 		this.stringBufferSize = stringBufferSize
 	}
 	

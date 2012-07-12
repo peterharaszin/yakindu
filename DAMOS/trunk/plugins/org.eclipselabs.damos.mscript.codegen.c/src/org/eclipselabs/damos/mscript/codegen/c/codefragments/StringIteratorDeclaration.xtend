@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
@@ -22,10 +21,6 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
  */
 class StringIteratorDeclaration extends AbstractCodeFragment {
 
-	@Inject
-	new() {
-	}
-	
 	/**
 	 * @return the name
 	 */

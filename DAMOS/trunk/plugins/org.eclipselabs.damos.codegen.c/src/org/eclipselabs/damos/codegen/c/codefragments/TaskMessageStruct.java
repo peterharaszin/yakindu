@@ -26,8 +26,6 @@ import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 
-import com.google.inject.Inject;
-
 /**
  * @author Andreas Unger
  *
@@ -38,8 +36,7 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 	
 	private String content;
 	
-	@Inject
-	TaskMessageStruct() {
+	public TaskMessageStruct() {
 	}
 
 	@Override

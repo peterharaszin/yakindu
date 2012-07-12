@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.codefragments
 
-import com.google.inject.Inject
-import com.google.inject.assistedinject.Assisted
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
@@ -27,8 +25,7 @@ class StringTypeDeclaration extends AbstractCodeFragment {
 	
 	String name
 	
-	@Inject
-	new(@Assisted int stringBufferSize) {
+	new(int stringBufferSize) {
 		this.stringBufferSize = stringBufferSize
 	}
 	

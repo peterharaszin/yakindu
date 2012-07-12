@@ -2,7 +2,7 @@
 <feature
       id="org.eclipselabs.damos.library"
       label="%featureName"
-      version="0.3.0.qualifier"
+      version="0.4.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.eclipselabs.damos" version="0.3.0" match="greaterOrEqual"/>
+      <import feature="org.eclipselabs.damos" version="0.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

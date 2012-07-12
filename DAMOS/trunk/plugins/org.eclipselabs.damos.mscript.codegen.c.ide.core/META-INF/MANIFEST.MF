@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Mscript Codegen C IDE Core
 Bundle-SymbolicName: org.eclipselabs.damos.mscript.codegen.c.ide.core;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Activator: org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,

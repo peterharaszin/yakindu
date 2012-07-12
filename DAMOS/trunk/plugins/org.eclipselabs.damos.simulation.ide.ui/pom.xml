@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.eclipselabs.damos</groupId>
 		<artifactId>org.eclipselabs.damos.releng</artifactId>
-		<version>0.3.0-SNAPSHOT</version>
+		<version>0.4.0-SNAPSHOT</version>
 		<relativePath>../org.eclipselabs.damos.releng/pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipselabs.damos.simulation.ide.ui</artifactId>

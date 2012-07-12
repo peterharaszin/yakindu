@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipselabs.damos</groupId>
 	<artifactId>org.eclipselabs.damos.target</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>eclipse-repository</packaging>
 
 	<properties>

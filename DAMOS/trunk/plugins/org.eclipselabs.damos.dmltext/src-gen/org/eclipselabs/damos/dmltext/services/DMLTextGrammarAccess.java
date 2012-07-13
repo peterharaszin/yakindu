@@ -2034,17 +2034,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getMemberFeatureCallAccess().getRule();
 	}
 
-	//AssignableMemberFeatureCall returns Expression:
-	//	AssignablePrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
-	//	subscripts+=ArraySubscript)* "]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID)*;
-	public MscriptGrammarAccess.AssignableMemberFeatureCallElements getAssignableMemberFeatureCallAccess() {
-		return gaMscript.getAssignableMemberFeatureCallAccess();
-	}
-	
-	public ParserRule getAssignableMemberFeatureCallRule() {
-		return getAssignableMemberFeatureCallAccess().getRule();
-	}
-
 	//IterationAccumulator:
 	//	name=ValidID "=" initializer=Expression;
 	public MscriptGrammarAccess.IterationAccumulatorElements getIterationAccumulatorAccess() {
@@ -2085,16 +2074,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimaryExpressionRule() {
 		return getPrimaryExpressionAccess().getRule();
-	}
-
-	//AssignablePrimaryExpression returns Expression:
-	//	VariableReference | ParenthesizedExpression;
-	public MscriptGrammarAccess.AssignablePrimaryExpressionElements getAssignablePrimaryExpressionAccess() {
-		return gaMscript.getAssignablePrimaryExpressionAccess();
-	}
-	
-	public ParserRule getAssignablePrimaryExpressionRule() {
-		return getAssignablePrimaryExpressionAccess().getRule();
 	}
 
 	//Literal:
@@ -2482,6 +2461,27 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentAccess().getRule();
 	}
 
+	//AssignableMemberFeatureCall returns Expression:
+	//	AssignablePrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID)*;
+	public MscriptGrammarAccess.AssignableMemberFeatureCallElements getAssignableMemberFeatureCallAccess() {
+		return gaMscript.getAssignableMemberFeatureCallAccess();
+	}
+	
+	public ParserRule getAssignableMemberFeatureCallRule() {
+		return getAssignableMemberFeatureCallAccess().getRule();
+	}
+
+	//AssignablePrimaryExpression returns Expression:
+	//	VariableReference | ParenthesizedExpression;
+	public MscriptGrammarAccess.AssignablePrimaryExpressionElements getAssignablePrimaryExpressionAccess() {
+		return gaMscript.getAssignablePrimaryExpressionAccess();
+	}
+	
+	public ParserRule getAssignablePrimaryExpressionRule() {
+		return getAssignablePrimaryExpressionAccess().getRule();
+	}
+
 	//LocalVariableDeclaration:
 	//	"var" name=ValidID "=" initializer=Expression ";";
 	public MscriptGrammarAccess.LocalVariableDeclarationElements getLocalVariableDeclarationAccess() {
@@ -2656,7 +2656,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValidID:
-	//	N | IJ | E | EXPIJ | ID;
+	//	N | IJ | E | EXP | EXPIJ | ID;
 	public MscriptGrammarAccess.ValidIDElements getValidIDAccess() {
 		return gaMscript.getValidIDAccess();
 	}

@@ -51,10 +51,8 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
 					put(grammarAccess.getPostfixExpressionAccess().getAlternatives_0(), "rule__PostfixExpression__Alternatives_0");
 					put(grammarAccess.getMemberFeatureCallAccess().getAlternatives_1(), "rule__MemberFeatureCall__Alternatives_1");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getAlternatives_1(), "rule__AssignableMemberFeatureCall__Alternatives_1");
 					put(grammarAccess.getArraySubscriptAccess().getAlternatives(), "rule__ArraySubscript__Alternatives");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
-					put(grammarAccess.getAssignablePrimaryExpressionAccess().getAlternatives(), "rule__AssignablePrimaryExpression__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getNumericLiteralAccess().getAlternatives(), "rule__NumericLiteral__Alternatives");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1(), "rule__RealData__Alternatives_1");
@@ -70,6 +68,8 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimitiveStepExpressionAccess().getAlternatives(), "rule__PrimitiveStepExpression__Alternatives");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getAlternatives_2(), "rule__ArrayConstructionOperator__Alternatives_2");
 					put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getAlternatives_1(), "rule__AssignableMemberFeatureCall__Alternatives_1");
+					put(grammarAccess.getAssignablePrimaryExpressionAccess().getAlternatives(), "rule__AssignablePrimaryExpression__Alternatives");
 					put(grammarAccess.getUnitAccess().getAlternatives_1(), "rule__Unit__Alternatives_1");
 					put(grammarAccess.getUnitNumeratorAccess().getAlternatives(), "rule__UnitNumerator__Alternatives");
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
@@ -167,10 +167,6 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_5(), "rule__MemberFeatureCall__Group_1_3_5__0");
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_6(), "rule__MemberFeatureCall__Group_1_3_6__0");
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_7(), "rule__MemberFeatureCall__Group_1_3_7__0");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup(), "rule__AssignableMemberFeatureCall__Group__0");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_0(), "rule__AssignableMemberFeatureCall__Group_1_0__0");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_0_3(), "rule__AssignableMemberFeatureCall__Group_1_0_3__0");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_1(), "rule__AssignableMemberFeatureCall__Group_1_1__0");
 					put(grammarAccess.getIterationAccumulatorAccess().getGroup(), "rule__IterationAccumulator__Group__0");
 					put(grammarAccess.getRealLiteralAccess().getGroup(), "rule__RealLiteral__Group__0");
 					put(grammarAccess.getRealDataAccess().getGroup(), "rule__RealData__Group__0");
@@ -217,6 +213,10 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAlgorithmExpressionAccess().getGroup(), "rule__AlgorithmExpression__Group__0");
 					put(grammarAccess.getCompoundAccess().getGroup(), "rule__Compound__Group__0");
 					put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup(), "rule__AssignableMemberFeatureCall__Group__0");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_0(), "rule__AssignableMemberFeatureCall__Group_1_0__0");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_0_3(), "rule__AssignableMemberFeatureCall__Group_1_0_3__0");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_1(), "rule__AssignableMemberFeatureCall__Group_1_1__0");
 					put(grammarAccess.getLocalVariableDeclarationAccess().getGroup(), "rule__LocalVariableDeclaration__Group__0");
 					put(grammarAccess.getIfStatementAccess().getGroup(), "rule__IfStatement__Group__0");
 					put(grammarAccess.getIfStatementAccess().getGroup_5(), "rule__IfStatement__Group_5__0");
@@ -360,9 +360,6 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberFeatureCallAccess().getAccumulatorAssignment_1_3_6_1(), "rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_1");
 					put(grammarAccess.getMemberFeatureCallAccess().getBreakConditionAssignment_1_3_7_1(), "rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_1");
 					put(grammarAccess.getMemberFeatureCallAccess().getExpressionAssignment_1_3_9(), "rule__MemberFeatureCall__ExpressionAssignment_1_3_9");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsAssignment_1_0_2(), "rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_2");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsAssignment_1_0_3_1(), "rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_1");
-					put(grammarAccess.getAssignableMemberFeatureCallAccess().getMemberVariableAssignment_1_1_2(), "rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_2");
 					put(grammarAccess.getIterationAccumulatorAccess().getNameAssignment_0(), "rule__IterationAccumulator__NameAssignment_0");
 					put(grammarAccess.getIterationAccumulatorAccess().getInitializerAssignment_2(), "rule__IterationAccumulator__InitializerAssignment_2");
 					put(grammarAccess.getIterationVariableDeclarationAccess().getNameAssignment(), "rule__IterationVariableDeclaration__NameAssignment");
@@ -414,6 +411,9 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCompoundAccess().getStatementsAssignment_2(), "rule__Compound__StatementsAssignment_2");
 					put(grammarAccess.getAssignmentAccess().getTargetAssignment_0(), "rule__Assignment__TargetAssignment_0");
 					put(grammarAccess.getAssignmentAccess().getAssignedExpressionAssignment_2(), "rule__Assignment__AssignedExpressionAssignment_2");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsAssignment_1_0_2(), "rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_2");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsAssignment_1_0_3_1(), "rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_3_1");
+					put(grammarAccess.getAssignableMemberFeatureCallAccess().getMemberVariableAssignment_1_1_2(), "rule__AssignableMemberFeatureCall__MemberVariableAssignment_1_1_2");
 					put(grammarAccess.getLocalVariableDeclarationAccess().getNameAssignment_1(), "rule__LocalVariableDeclaration__NameAssignment_1");
 					put(grammarAccess.getLocalVariableDeclarationAccess().getInitializerAssignment_3(), "rule__LocalVariableDeclaration__InitializerAssignment_3");
 					put(grammarAccess.getIfStatementAccess().getConditionAssignment_2(), "rule__IfStatement__ConditionAssignment_2");

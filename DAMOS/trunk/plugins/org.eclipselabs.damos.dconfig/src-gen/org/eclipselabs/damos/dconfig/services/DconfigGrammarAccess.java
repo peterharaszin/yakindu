@@ -1195,13 +1195,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cEXPTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cIDTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//ValidIDWithoutIJ:
-		//	N | E | ID;
+		//	N | E | EXP | ID;
 		public ParserRule getRule() { return rule; }
 
-		//N | E | ID
+		//N | E | EXP | ID
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//N
@@ -1210,8 +1211,11 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//E
 		public RuleCall getETerminalRuleCall_1() { return cETerminalRuleCall_1; }
 
+		//EXP
+		public RuleCall getEXPTerminalRuleCall_2() { return cEXPTerminalRuleCall_2; }
+
 		//ID
-		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
+		public RuleCall getIDTerminalRuleCall_3() { return cIDTerminalRuleCall_3; }
 	}
 
 	public class ValidDoubleElements extends AbstractParserRuleElementFinder {
@@ -1849,7 +1853,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValidIDWithoutIJ:
-	//	N | E | ID;
+	//	N | E | EXP | ID;
 	public ValidIDWithoutIJElements getValidIDWithoutIJAccess() {
 		return (pValidIDWithoutIJ != null) ? pValidIDWithoutIJ : (pValidIDWithoutIJ = new ValidIDWithoutIJElements());
 	}
@@ -2530,17 +2534,6 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getMemberFeatureCallAccess().getRule();
 	}
 
-	//AssignableMemberFeatureCall returns Expression:
-	//	AssignablePrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
-	//	subscripts+=ArraySubscript)* "]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID)*;
-	public MscriptGrammarAccess.AssignableMemberFeatureCallElements getAssignableMemberFeatureCallAccess() {
-		return gaMscript.getAssignableMemberFeatureCallAccess();
-	}
-	
-	public ParserRule getAssignableMemberFeatureCallRule() {
-		return getAssignableMemberFeatureCallAccess().getRule();
-	}
-
 	//IterationAccumulator:
 	//	name=ValidID "=" initializer=Expression;
 	public MscriptGrammarAccess.IterationAccumulatorElements getIterationAccumulatorAccess() {
@@ -2581,16 +2574,6 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimaryExpressionRule() {
 		return getPrimaryExpressionAccess().getRule();
-	}
-
-	//AssignablePrimaryExpression returns Expression:
-	//	VariableReference | ParenthesizedExpression;
-	public MscriptGrammarAccess.AssignablePrimaryExpressionElements getAssignablePrimaryExpressionAccess() {
-		return gaMscript.getAssignablePrimaryExpressionAccess();
-	}
-	
-	public ParserRule getAssignablePrimaryExpressionRule() {
-		return getAssignablePrimaryExpressionAccess().getRule();
 	}
 
 	//Literal:
@@ -2978,6 +2961,27 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentAccess().getRule();
 	}
 
+	//AssignableMemberFeatureCall returns Expression:
+	//	AssignablePrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID)*;
+	public MscriptGrammarAccess.AssignableMemberFeatureCallElements getAssignableMemberFeatureCallAccess() {
+		return gaMscript.getAssignableMemberFeatureCallAccess();
+	}
+	
+	public ParserRule getAssignableMemberFeatureCallRule() {
+		return getAssignableMemberFeatureCallAccess().getRule();
+	}
+
+	//AssignablePrimaryExpression returns Expression:
+	//	VariableReference | ParenthesizedExpression;
+	public MscriptGrammarAccess.AssignablePrimaryExpressionElements getAssignablePrimaryExpressionAccess() {
+		return gaMscript.getAssignablePrimaryExpressionAccess();
+	}
+	
+	public ParserRule getAssignablePrimaryExpressionRule() {
+		return getAssignablePrimaryExpressionAccess().getRule();
+	}
+
 	//LocalVariableDeclaration:
 	//	"var" name=ValidID "=" initializer=Expression ";";
 	public MscriptGrammarAccess.LocalVariableDeclarationElements getLocalVariableDeclarationAccess() {
@@ -3152,7 +3156,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValidID:
-	//	N | IJ | E | EXPIJ | ID;
+	//	N | IJ | E | EXP | EXPIJ | ID;
 	public MscriptGrammarAccess.ValidIDElements getValidIDAccess() {
 		return gaMscript.getValidIDAccess();
 	}

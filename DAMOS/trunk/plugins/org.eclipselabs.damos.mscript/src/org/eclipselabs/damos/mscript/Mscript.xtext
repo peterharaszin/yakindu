@@ -267,9 +267,6 @@ MemberFeatureCall returns Expression:
 		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')
 		| ({IterationCall.target=current} '.' identifier=ValidID '(' iterationVariables+=IterationVariableDeclaration (',' iterationVariables+=IterationVariableDeclaration)* (';' accumulator=IterationAccumulator)? (';' breakCondition=Expression)? '|' expression=Expression ')'))*;
 
-AssignableMemberFeatureCall returns Expression:
-	AssignablePrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']') | ({MemberVariableAccess.target=current} '.' memberVariable=ValidID))*;
-
 IterationAccumulator:
 	name=ValidID '=' initializer=Expression;
 
@@ -290,10 +287,6 @@ PrimaryExpression returns Expression:
 	ParenthesizedExpression |
 	EndExpression |
 	AlgorithmExpression;
-
-AssignablePrimaryExpression returns Expression:
-	VariableReference |
-	ParenthesizedExpression;
 
 Literal:
 	NumericLiteral | BooleanLiteral | StringLiteral;
@@ -418,6 +411,14 @@ Statement:
 Assignment:
 	target=AssignableMemberFeatureCall '=' assignedExpression=Expression ';';
 	
+AssignableMemberFeatureCall returns Expression:
+	AssignablePrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID))*;
+
+AssignablePrimaryExpression returns Expression:
+	VariableReference |
+	ParenthesizedExpression;
+
 LocalVariableDeclaration:
 	'var' name=ValidID '=' initializer=Expression ';';
 
@@ -477,7 +478,7 @@ ValidInt returns ecore::EInt:
 	ONE | INT;
 
 ValidID:
-	N | IJ | E | EXPIJ | ID;
+	N | IJ | E | EXP | EXPIJ | ID;
 	
 /*
  * Terminals

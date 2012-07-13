@@ -307,12 +307,6 @@ public class AbstractMscriptProposalProvider extends AbstractJavaBasedContentPro
 	public void completeMemberFeatureCall_Expression(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeAssignableMemberFeatureCall_Subscripts(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
-	public void completeAssignableMemberFeatureCall_MemberVariable(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
 	public void completeIterationAccumulator_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -434,6 +428,12 @@ public class AbstractMscriptProposalProvider extends AbstractJavaBasedContentPro
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeAssignment_AssignedExpression(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAssignableMemberFeatureCall_Subscripts(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAssignableMemberFeatureCall_MemberVariable(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeLocalVariableDeclaration_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -689,9 +689,6 @@ public class AbstractMscriptProposalProvider extends AbstractJavaBasedContentPro
 	public void complete_MemberFeatureCall(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
-	public void complete_AssignableMemberFeatureCall(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
 	public void complete_IterationAccumulator(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -702,9 +699,6 @@ public class AbstractMscriptProposalProvider extends AbstractJavaBasedContentPro
 		// subclasses may override
 	}
 	public void complete_PrimaryExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
-	public void complete_AssignablePrimaryExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_Literal(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -819,6 +813,12 @@ public class AbstractMscriptProposalProvider extends AbstractJavaBasedContentPro
 		// subclasses may override
 	}
 	public void complete_Assignment(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_AssignableMemberFeatureCall(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_AssignablePrimaryExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_LocalVariableDeclaration(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

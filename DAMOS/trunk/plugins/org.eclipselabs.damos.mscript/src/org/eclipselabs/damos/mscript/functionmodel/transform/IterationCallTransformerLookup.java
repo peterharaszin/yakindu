@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Andreas Unger
  *
  */
-public class IterationCallTransformerLookupTable {
+public class IterationCallTransformerLookup {
 
 	private Map<String, IIterationCallTransformer> transformers = new HashMap<String, IIterationCallTransformer>();
 	

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,19 +11,16 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import java.util.List;
-
-import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IExpressionTransformer {
+public interface IExpressionTransformStrategy {
 
-	IStatus transform(Expression expression, List<? extends IExpressionTarget> targets);
+	boolean canHandle(Expression expression);
 	
-	Expression transformNext(Expression expression);
+	Expression transform(ITransformerContext context, IExpressionTransformer transformer, Expression expression);
 	
 }

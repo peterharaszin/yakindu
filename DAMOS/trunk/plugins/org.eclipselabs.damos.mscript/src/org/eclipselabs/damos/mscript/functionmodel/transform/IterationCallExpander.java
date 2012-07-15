@@ -24,17 +24,11 @@ public class IterationCallExpander implements IExpressionTransformStrategy {
 
 	private IterationCallTransformerLookup iterationCallTransformerLookup = new IterationCallTransformerLookup();
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformStrategy#canHandle(org.eclipselabs.damos.mscript.Expression)
-	 */
-	public boolean canHandle(Expression expression) {
+	public boolean canHandle(ITransformerContext context, Expression expression) {
 		return expression instanceof IterationCall;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformStrategy#transform(org.eclipselabs.damos.mscript.functionmodel.transform.ITransformerContext, org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformer, org.eclipselabs.damos.mscript.Expression)
-	 */
-	public Expression transform(ITransformerContext context, IExpressionTransformer transformer, Expression expression) {
+	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
 		IterationCall iterationCall = (IterationCall) expression;
 		IIterationCallTransformer iterationCallTransformer = iterationCallTransformerLookup.getTransformer(iterationCall.getIdentifier());
 		if (iterationCallTransformer == null) {

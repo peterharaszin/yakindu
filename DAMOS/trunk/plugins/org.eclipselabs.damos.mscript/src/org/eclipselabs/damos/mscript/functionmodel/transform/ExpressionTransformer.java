@@ -67,8 +67,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression transformNext(Expression expression) {
 		Expression newExpression = null;
 		for (IExpressionTransformStrategy transformStrategy : expressionTransformStrategyProvider.getExpressionTransformStrategies()) {
-			if (transformStrategy.canHandle(expression)) {
-				newExpression = transformStrategy.transform(context, this, expression);
+			if (transformStrategy.canHandle(context, expression)) {
+				newExpression = transformStrategy.transform(context, expression, this);
 				if (newExpression != null) {
 					break;
 				}

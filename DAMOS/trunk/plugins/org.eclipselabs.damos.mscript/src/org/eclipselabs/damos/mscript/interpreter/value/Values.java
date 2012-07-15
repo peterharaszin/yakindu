@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
@@ -31,6 +32,17 @@ public class Values {
 	 */
 	private Values() {
 		// Hide constructor
+	}
+	
+	public static IArrayValue newArrayValue(IComputationContext context, ArrayType arrayType) {
+		switch (arrayType.getDimensionality()) {
+		case 1:
+			return new VectorValue(context, arrayType);
+		case 2:
+			return new MatrixValue(context, arrayType);
+		default:
+			throw new IllegalArgumentException("Array dimensionality > 2 not supported");
+		}
 	}
 
 	public static ISimpleNumericValue valueOf(IComputationContext context, NumericType numericType, double value) {

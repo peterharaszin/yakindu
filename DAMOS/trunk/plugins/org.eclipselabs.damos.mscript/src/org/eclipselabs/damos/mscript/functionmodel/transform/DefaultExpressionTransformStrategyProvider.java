@@ -26,6 +26,7 @@ public class DefaultExpressionTransformStrategyProvider implements IExpressionTr
 		expressionTransformStrategies.add(new IfExpressionExpander());
 		expressionTransformStrategies.add(new LetExpressionExpander());
 		expressionTransformStrategies.add(new IterationCallExpander());
+		expressionTransformStrategies.add(new ArrayConstructionOperatorExpander());
 		expressionTransformStrategies.add(new DefaultExpressionTransformStrategy());
 	}
 	

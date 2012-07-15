@@ -7,7 +7,7 @@ blockType MatrixVectorMultiplyTest {
 	output y
 	
 	function main(a, b) -> y {
-		check(int, int) -> int[3]
+		check(int, int) -> real[3]
 
 		static assert a is int :
 			error "A must be integer"

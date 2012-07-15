@@ -7,7 +7,7 @@ blockType MatrixMultiplyTest {
 	output y
 	
 	function main(a, b) -> y {
-		check(int, int) -> int[4, 2]
+		check(int, int) -> real[4, 2]
 
 		static assert a is int :
 			error "A must be integer"

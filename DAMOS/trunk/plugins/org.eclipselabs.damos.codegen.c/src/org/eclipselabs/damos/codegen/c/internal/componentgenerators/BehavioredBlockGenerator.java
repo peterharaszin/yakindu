@@ -31,7 +31,6 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
@@ -53,9 +52,7 @@ import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
-import org.eclipselabs.damos.mscript.functionmodel.transform.ArrayOperationDecomposer;
 import org.eclipselabs.damos.mscript.functionmodel.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.damos.mscript.functionmodel.transform.IArrayOperationDecomposer;
 import org.eclipselabs.damos.mscript.functionmodel.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -130,12 +127,6 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		functionInstance = functionDefinitionTransformerResult.getFunctionInstance();
 		
 		new NameNormalizer().normalize(functionInstance);
-
-		IArrayOperationDecomposer arrayOperationDecomposer = new ArrayOperationDecomposer();
-		arrayOperationDecomposer.decompose(staticEvaluationResult, functionInstance.getInitializationCompound());
-		for (Compound compound : functionInstance.getComputationCompounds()) {
-			arrayOperationDecomposer.decompose(staticEvaluationResult, compound);
-		}
 	}
 	
 	/* (non-Javadoc)

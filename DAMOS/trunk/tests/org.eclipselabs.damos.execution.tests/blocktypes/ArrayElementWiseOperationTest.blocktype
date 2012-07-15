@@ -8,7 +8,7 @@ blockType ArrayElementWiseOperationTest {
 	output y2
 	
 	function main(a, b) -> y1, y2 {
-		check(int, int) -> int[3], int[3, 2]
+		check(int, int) -> real[3], real[3, 2]
 
 		static assert a is int :
 			error "A must be integer"

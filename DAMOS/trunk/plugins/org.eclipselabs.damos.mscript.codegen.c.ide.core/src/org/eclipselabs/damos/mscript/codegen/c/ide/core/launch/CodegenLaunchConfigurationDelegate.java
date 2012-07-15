@@ -11,11 +11,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
-import org.eclipselabs.damos.mscript.functionmodel.transform.ArrayOperationDecomposer;
-import org.eclipselabs.damos.mscript.functionmodel.transform.IArrayOperationDecomposer;
 import org.eclipselabs.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
@@ -52,12 +49,6 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "No output file specified"));
 		}
 
-		IArrayOperationDecomposer arrayOperationDecomposer = new ArrayOperationDecomposer();
-		arrayOperationDecomposer.decompose(getStaticEvaluationResult(), getFunctionInstance().getInitializationCompound());
-		for (Compound compound : getFunctionInstance().getComputationCompounds()) {
-			arrayOperationDecomposer.decompose(getStaticEvaluationResult(), compound);
-		}
-		
 		IFolder targetFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(targetFolderPathString));
 		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getTargetFunctionName(), getFunctionInstance(), getStaticEvaluationResult(), getComputationModel());
 		process.run();

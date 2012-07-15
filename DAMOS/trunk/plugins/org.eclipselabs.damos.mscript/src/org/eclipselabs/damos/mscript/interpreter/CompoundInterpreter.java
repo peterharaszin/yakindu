@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.ArrayElementAccess;
+import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.Compound;
@@ -24,8 +26,10 @@ import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UninitializedValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -69,23 +73,60 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			
 			@Override
 			public Boolean caseAssignment(Assignment assignment) {
-				if (!(assignment.getTarget() instanceof VariableReference)) {
+				ExpressionEvaluationContext expressionEvaluationContext = new ExpressionEvaluationContext(context);
+				if (assignment.getTarget() instanceof VariableReference) {
+					VariableReference variableReference = (VariableReference) assignment.getTarget();
+	
+					if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
+						throw new IllegalArgumentException();
+					}
+					VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
+					
+					IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assignment.getAssignedExpression());
+					IVariable variable = context.getVariable(variableDeclaration);
+					variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), value);
+				} else if (assignment.getTarget() instanceof ArrayElementAccess) {
+					ArrayElementAccess arrayElementAccess = (ArrayElementAccess) assignment.getTarget();
+					if (arrayElementAccess.getArray() instanceof VariableReference) {
+						VariableReference variableReference = (VariableReference) arrayElementAccess.getArray();
+						if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
+							throw new IllegalArgumentException();
+						}
+						VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
+						
+						IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assignment.getAssignedExpression());
+						IVariable variable = context.getVariable(variableDeclaration);
+						IValue variableValue = variable.getValue(context.getStaticEvaluationResult().getStepIndex(variableReference));
+						IArrayValue arrayValue;
+						if (variableValue instanceof IArrayValue) {
+							arrayValue = (IArrayValue) variableValue;
+						} else if (variableValue instanceof UninitializedValue) {
+							arrayValue = Values.newArrayValue(context.getComputationContext(), (ArrayType) context.getStaticEvaluationResult().getValue(variableDeclaration).getDataType());
+							variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), arrayValue);
+						} else {
+							throw new IllegalArgumentException();
+						}
+						int[] indices = new int[arrayValue.getDataType().getDimensionality()];
+						int i = 0;
+						for (ArraySubscript subscript : arrayElementAccess.getSubscripts()) {
+							IValue index = expressionEvaluator.evaluate(expressionEvaluationContext, subscript.getExpression());
+							if (index instanceof ISimpleNumericValue) {
+								indices[i] = (int) ((ISimpleNumericValue) index).longValue();
+							}
+							++i;
+						}
+						((IArrayValue) arrayValue).set(indices, value);
+					} else {
+						// TODO: Support member variable access
+						throw new IllegalArgumentException();
+					}
+				} else {
+					// TODO: Support member variable access
 					throw new IllegalArgumentException();
 				}
-				VariableReference variableReference = (VariableReference) assignment.getTarget();
-
-				if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
-					throw new IllegalArgumentException();
-				}
-				VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
-				
-				IValue value = expressionEvaluator.evaluate(new ExpressionEvaluationContext(context), assignment.getAssignedExpression());
-				IVariable variable = context.getVariable(variableDeclaration);
-				variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), value);
 				return true;
 			}
 		
-
 			/* (non-Javadoc)
 			 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
 			 */

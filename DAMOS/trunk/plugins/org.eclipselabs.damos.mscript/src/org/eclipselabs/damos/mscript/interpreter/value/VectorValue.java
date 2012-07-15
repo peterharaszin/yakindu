@@ -24,10 +24,6 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 
 	IValue[] elements;
 	
-	/**
-	 * @param context
-	 * @param dataType
-	 */
 	public VectorValue(IComputationContext context, ArrayType dataType, IValue[] elements) {
 		super(context, dataType);
 		if (dataType.getDimensionality() != 1) {
@@ -39,6 +35,17 @@ public class VectorValue extends AbstractExplicitDataTypeValue implements IArray
 		this.elements = elements;
 	}
 	
+	public VectorValue(IComputationContext context, ArrayType dataType) {
+		super(context, dataType);
+		if (dataType.getDimensionality() != 1) {
+			throw new IllegalArgumentException("Array type must be vector");
+		}
+		elements = new IValue[TypeUtil.getArraySize(dataType)];
+		for (int i = 0; i < elements.length; ++i) {
+			elements[i] = new UninitializedValue(getContext());
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractExplicitDataTypeValue#getDataType()
 	 */

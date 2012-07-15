@@ -30,11 +30,11 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  */
 public class LetExpressionExpander implements IExpressionTransformStrategy {
 
-	public boolean canHandle(Expression expression) {
+	public boolean canHandle(ITransformerContext context, Expression expression) {
 		return expression instanceof LetExpression;
 	}
 	
-	public Expression transform(ITransformerContext context, IExpressionTransformer transformer, Expression expression) {
+	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
 		LetExpression letExpression = (LetExpression) expression;
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "temp"));

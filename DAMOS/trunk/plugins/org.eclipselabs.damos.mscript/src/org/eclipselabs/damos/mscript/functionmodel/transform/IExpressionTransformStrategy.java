@@ -19,8 +19,8 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IExpressionTransformStrategy {
 
-	boolean canHandle(Expression expression);
+	boolean canHandle(ITransformerContext context, Expression expression);
 	
-	Expression transform(ITransformerContext context, IExpressionTransformer transformer, Expression expression);
+	Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer);
 	
 }

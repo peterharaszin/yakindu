@@ -30,17 +30,11 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  */
 public class IfExpressionExpander implements IExpressionTransformStrategy {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformStrategy#canHandle(org.eclipselabs.damos.mscript.Expression)
-	 */
-	public boolean canHandle(Expression expression) {
+	public boolean canHandle(ITransformerContext context, Expression expression) {
 		return expression instanceof IfExpression;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformStrategy#transform(org.eclipselabs.damos.mscript.functionmodel.transform.ITransformerContext, org.eclipselabs.damos.mscript.functionmodel.transform.IExpressionTransformer, org.eclipselabs.damos.mscript.Expression)
-	 */
-	public Expression transform(ITransformerContext context, IExpressionTransformer transformer, Expression expression) {
+	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
 		IfExpression ifExpression = (IfExpression) expression;
 		IValue ifConditionValue = context.getStaticEvaluationResult().getValue(ifExpression.getCondition());
 		if (ifConditionValue instanceof IBooleanValue) {

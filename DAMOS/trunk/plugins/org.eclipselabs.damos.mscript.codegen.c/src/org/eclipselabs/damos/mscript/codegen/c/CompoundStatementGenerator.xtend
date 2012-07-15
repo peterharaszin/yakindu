@@ -23,8 +23,6 @@ import org.eclipselabs.damos.mscript.IfStatement
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration
 import org.eclipselabs.damos.mscript.NumericType
 import org.eclipselabs.damos.mscript.Statement
-import org.eclipselabs.damos.mscript.VariableDeclaration
-import org.eclipselabs.damos.mscript.VariableReference
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
@@ -58,17 +56,8 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	'''
 	
 	def private dispatch doGenerate(IMscriptGeneratorContext context, Assignment assignment) {
-		if (!(assignment.target instanceof VariableReference)) {
-			throw new IllegalArgumentException()
-		}
-		val variableReference = assignment.target as VariableReference
-		
-		if (!(variableReference.feature instanceof VariableDeclaration)) {
-			throw new IllegalArgumentException()
-		}
-		val target = variableReference.feature as VariableDeclaration
-		
-		generateAssignment(context, getDataType(context, target), variableReferenceGenerator.generate(context, variableReference), assignment.assignedExpression);
+		val target = expressionGenerator.generate(context, assignment.target)
+		generateAssignment(context, getDataType(context, assignment.target), target, assignment.assignedExpression);
 	}
 	
 	def private dispatch doGenerate(IMscriptGeneratorContext context, LocalVariableDeclaration localVariableDeclaration) {

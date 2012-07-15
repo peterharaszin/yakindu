@@ -26,20 +26,31 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	int rowSize;
 	int columnSize;
 	
-	/**
-	 * @param context
-	 * @param dataType
-	 */
 	public MatrixValue(IComputationContext context, ArrayType dataType, IValue[][] elements) {
 		super(context, dataType);
 		if (dataType.getDimensionality() != 2) {
 			throw new IllegalArgumentException("Array type must be matrix");
 		}
-		this.elements = elements;
 		this.rowSize = TypeUtil.getArrayRowSize(dataType);
 		this.columnSize = TypeUtil.getArrayColumnSize(dataType);
+		this.elements = elements;
 	}
 	
+	public MatrixValue(IComputationContext context, ArrayType dataType) {
+		super(context, dataType);
+		if (dataType.getDimensionality() != 2) {
+			throw new IllegalArgumentException("Array type must be matrix");
+		}
+		rowSize = TypeUtil.getArrayRowSize(dataType);
+		columnSize = TypeUtil.getArrayColumnSize(dataType);
+		elements = new IValue[rowSize][columnSize];
+		for (int i = 0; i < rowSize; ++i) {
+			for (int j = 0; j < columnSize; ++j) {
+				elements[i][j] = new UninitializedValue(getContext());
+			}
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractExplicitDataTypeValue#getDataType()
 	 */

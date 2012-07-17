@@ -26,6 +26,7 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -58,7 +59,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 		assignment.setAssignedExpression(result);
-		assignment.setTarget(MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), target.getVariableDeclaration(), target.getStepIndex(), false));
+		VariableReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), target.getVariableDeclaration(), target.getStepIndex(), false);
+		context.getStaticEvaluationResult().setValue(variableReference, context.getStaticEvaluationResult().getValue(target.getVariableDeclaration()));
+		assignment.setTarget(variableReference);
 		context.getCompound().getStatements().add(assignment);
 		
 		return status.isOK() ? Status.OK_STATUS : status;

@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.Expression
 import org.eclipselabs.damos.mscript.ForStatement
 import org.eclipselabs.damos.mscript.IfStatement
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration
-import org.eclipselabs.damos.mscript.NumericType
 import org.eclipselabs.damos.mscript.Statement
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
@@ -57,12 +56,19 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
 	def private dispatch doGenerate(IMscriptGeneratorContext context, Assignment assignment) {
 		val target = expressionGenerator.generate(context, assignment.target)
-		generateAssignment(context, getDataType(context, assignment.target), target, assignment.assignedExpression);
+		val dataType = getDataType(context, assignment.target)
+		if (dataType != null) {
+			return generateAssignment(context, dataType, target, assignment.assignedExpression);
+		}
+		return ""
 	}
 	
 	def private dispatch doGenerate(IMscriptGeneratorContext context, LocalVariableDeclaration localVariableDeclaration) {
 		if (localVariableDeclaration.initializer != null) {
-			return generateAssignment(context, getDataType(context, localVariableDeclaration), localVariableDeclaration.name, localVariableDeclaration.initializer);
+			val dataType = getDataType(context, localVariableDeclaration)
+			if (dataType != null) {
+				return generateAssignment(context, dataType, localVariableDeclaration.name, localVariableDeclaration.initializer);
+			}
 		}
 		return ""
 	}
@@ -115,16 +121,16 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 			«ENDFOR»
 		}'''
 
-	def private generateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) '''
+	def private dispatch generateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) '''
 		«target» = «generateAssignedExpression(context, targetDataType, assignedExpression)»;
 	'''
 	
+	def private dispatch generateAssignment(IMscriptGeneratorContext context, ArrayType targetDataType, CharSequence target, Expression assignedExpression) '''
+		memcpy(&(«target»).data[0], &(«generateAssignedExpression(context, targetDataType, assignedExpression)»).data[0], sizeof («dataTypeGenerator.generateDataType(context.configuration, context.codeFragmentCollector, targetDataType, null)»));
+	'''
+
 	def generateAssignedExpression(IMscriptGeneratorContext context, DataType targetDataType, Expression expression) {
-		if (targetDataType instanceof NumericType) {
-			val numberFormat = context.configuration.computationModel.getNumberFormat(targetDataType);
-			return MscriptGeneratorUtil::castNumericType(context, expression, numberFormat);
-		}
-		return expressionGenerator.generate(context, expression);
+		return MscriptGeneratorUtil::cast(context, expression, targetDataType);
 	}
 	
 	def getDataType(IMscriptGeneratorContext context, Evaluable evaluable) {

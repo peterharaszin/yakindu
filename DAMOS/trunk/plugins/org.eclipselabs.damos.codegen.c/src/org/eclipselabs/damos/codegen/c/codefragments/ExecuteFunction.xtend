@@ -40,6 +40,7 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	new(IGraphGenerator graphGenerator) {
 		this.graphGenerator = graphGenerator
 		implementationIncludes.add(new Include("math.h"))
+		implementationIncludes.add(new Include("string.h"))
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {

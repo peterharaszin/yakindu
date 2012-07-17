@@ -46,6 +46,8 @@ public class ExecuteFunction extends PrimaryCodeFragment {
     this.graphGenerator = graphGenerator;
     Include _include = new Include("math.h");
     this.implementationIncludes.add(_include);
+    Include _include_1 = new Include("string.h");
+    this.implementationIncludes.add(_include_1);
   }
   
   public void doInitialize(final IGeneratorContext context, final IProgressMonitor monitor) {

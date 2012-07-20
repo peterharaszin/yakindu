@@ -27,6 +27,8 @@ public interface IGraphGenerator {
 
 	CharSequence generateGraph(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
 
+	boolean contributesOutputVariableDeclarations(IGeneratorContext context, Graph graph);
+			
 	CharSequence generateOutputVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
 
 }

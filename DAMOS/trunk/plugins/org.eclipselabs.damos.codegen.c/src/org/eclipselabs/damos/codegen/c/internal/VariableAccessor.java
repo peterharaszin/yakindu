@@ -17,6 +17,7 @@ import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
@@ -93,6 +94,20 @@ public class VariableAccessor implements IVariableAccessor {
 	 * @see org.eclipselabs.damos.codegen.c.IVariableAccessor#getOutputVariable(boolean)
 	 */
 	public String generateOutputVariableReference(OutputPort outputPort, boolean pointer) {
+		if (InternalGeneratorUtil.isConnectedToOutportOnly(outputPort, node)) {
+			StringBuilder sb = new StringBuilder();
+			if (pointer) {
+				sb.append("&");
+			}
+			sb.append("output->");
+			
+			Node otherNode = node.getOutgoingDataFlow(outputPort).getTargetEnds().get(0).getNode();
+			ComponentNode componentNode = (ComponentNode) otherNode;
+			Component outport = componentNode.getComponent();
+
+			sb.append(StringExtensions.toFirstLower(outport.getName()));
+			return sb.toString();
+		}
 		return getOutputVariable(outputPort, pointer, node);
 	}
 	

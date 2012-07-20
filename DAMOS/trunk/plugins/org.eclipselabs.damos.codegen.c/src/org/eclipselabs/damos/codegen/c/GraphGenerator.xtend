@@ -26,6 +26,7 @@ import org.eclipselabs.damos.mscript.codegen.c.Include
 
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorNodeExtensions.*
+import org.eclipselabs.damos.codegen.c.internal.util.InternalGeneratorUtil
 
 /**
  * @author Andreas Unger
@@ -140,6 +141,13 @@ class GraphGenerator implements IGraphGenerator {
 			«taskGenerator.generateMessageQueueSend(context, node, monitor)»
 		'''
 	}
+	
+	override boolean contributesOutputVariableDeclarations(IGeneratorContext context, Graph graph) {
+		return graph.getAllNodes()
+				.filter(typeof(ComponentNode))
+				.filter(n | !(n.component instanceof Inoutport))
+				.exists(n | !getOutputVariableDeclarationPorts(n).empty)
+	}
 
 	override CharSequence generateOutputVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
 		val nodes = graph.getAllNodes()
@@ -148,7 +156,7 @@ class GraphGenerator implements IGraphGenerator {
 		'''		
 			«FOR node : nodes»
 				«val generator = node.componentGenerator»
-				«FOR outputPort : node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten()»
+				«FOR outputPort : getOutputVariableDeclarationPorts(node)»
 					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
 					«val cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), context, outputDataType, null)»
@@ -156,6 +164,10 @@ class GraphGenerator implements IGraphGenerator {
 				«ENDFOR»
 			«ENDFOR»
 		'''
+	}
+	
+	def private getOutputVariableDeclarationPorts(ComponentNode node) {
+		node.component.outputs.filter(o | !o.testPoint).map(o | o.ports).flatten().filter(p | !InternalGeneratorUtil::isConnectedToOutportOnly(p, node))
 	}
 
 }

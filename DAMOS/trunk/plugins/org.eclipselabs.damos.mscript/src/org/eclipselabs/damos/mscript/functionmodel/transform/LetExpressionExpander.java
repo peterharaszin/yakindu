@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import java.util.Collections;
+import java.util.List;
 
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
@@ -20,7 +20,6 @@ import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
@@ -34,13 +33,8 @@ public class LetExpressionExpander implements IExpressionTransformStrategy {
 		return expression instanceof LetExpression;
 	}
 	
-	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
+	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		LetExpression letExpression = (LetExpression) expression;
-		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "temp"));
-		IValue expressionValue = context.getStaticEvaluationResult().getValue(letExpression);
-		context.getStaticEvaluationResult().setValue(localVariableDeclaration, expressionValue);
-		context.getCompound().getStatements().add(localVariableDeclaration);
 
 		Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
 		context.getCompound().getStatements().add(compoundStatement);
@@ -57,20 +51,18 @@ public class LetExpressionExpander implements IExpressionTransformStrategy {
 			IValue partValue = context.getStaticEvaluationResult().getValue(variable);
 			context.getStaticEvaluationResult().setValue(localVariable, partValue);
 			localVariable.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), variable.getName()));
-			Expression assignedExpression = transformer.transformNext(assignment.getAssignedExpression());
+			
+			InlineExpressionTarget target = new InlineExpressionTarget(context);
+			transformer.transform(assignment.getAssignedExpression(), target.asList());
+			Expression assignedExpression = target.getAssignedExpression();
+			
 			localVariable.setInitializer(assignedExpression);
 			compoundStatement.getStatements().add(localVariable);
 		}
 
-		transformer.transform(
-				letExpression.getTarget(),
-				Collections.singletonList(new ExpressionTarget(localVariableDeclaration, 0)));
+		transformer.transform(letExpression.getTarget(), targets);
 		
 		context.leaveScope();
-		
-		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
-		variableReference.setFeature(localVariableDeclaration);
-		return variableReference;
 	}
 
 }

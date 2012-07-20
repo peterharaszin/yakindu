@@ -11,18 +11,17 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
+import java.util.Collections;
 import java.util.List;
-
-import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IExpressionTransformStrategy {
+public abstract class AbstractExpressionTarget implements IExpressionTarget {
 
-	boolean canHandle(ITransformerContext context, Expression expression);
-	
-	void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer);
-	
+	public List<IExpressionTarget> asList() {
+		return Collections.<IExpressionTarget>singletonList(this);
+	}
+
 }

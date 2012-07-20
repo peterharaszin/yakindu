@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
@@ -59,7 +60,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		return false;
 	}
 
-	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
+	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		Expression leftOperand = ((MultiplicativeExpression) expression).getLeftOperand();
 		Expression rightOperand = ((MultiplicativeExpression) expression).getRightOperand();
 
@@ -113,7 +114,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		setDataType(context, rootExpression, EcoreUtil.copy(resultDataType));
 		setDataType(context, parenthesizedExpression, EcoreUtil.copy(resultDataType));
 		
-		return parenthesizedExpression;
+		targets.get(0).assignExpression(parenthesizedExpression);
 	}
 
 	/**
@@ -177,7 +178,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		context.getStaticEvaluationResult().setValue(variableDeclaration, value);
 		transformer.transform(
 				operand,
-				Collections.singletonList(new ExpressionTarget(variableDeclaration, 0)));
+				Collections.singletonList(new VariableExpressionTarget(context, variableDeclaration, 0)));
 		
 		context.leaveScope();
 

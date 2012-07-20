@@ -24,6 +24,4 @@ public interface IExpressionTransformer {
 
 	IStatus transform(Expression expression, List<? extends IExpressionTarget> targets);
 	
-	Expression transformNext(Expression expression);
-	
 }

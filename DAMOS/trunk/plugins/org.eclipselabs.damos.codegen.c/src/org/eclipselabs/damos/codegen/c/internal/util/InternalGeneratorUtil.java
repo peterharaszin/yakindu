@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.execution.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.Node;
 
 /**
@@ -47,6 +48,15 @@ public class InternalGeneratorUtil {
 			sb.append(outputPort.getIndex());
 		}
 		return sb.toString();
+	}
+
+	public static boolean isConnectedToOutportOnly(OutputPort outputPort, Node node) {
+		DataFlowSourceEnd sourceEnd = node.getOutgoingDataFlow(outputPort);
+		if (sourceEnd != null && sourceEnd.getTargetEnds().size() == 1) {
+			Node otherNode = sourceEnd.getTargetEnds().get(0).getNode();
+			return otherNode instanceof ComponentNode && ((ComponentNode) otherNode).getComponent() instanceof Outport;
+		}
+		return false;
 	}
 
 	public static List<ComponentNode> getInportNodes(IGeneratorContext context) {

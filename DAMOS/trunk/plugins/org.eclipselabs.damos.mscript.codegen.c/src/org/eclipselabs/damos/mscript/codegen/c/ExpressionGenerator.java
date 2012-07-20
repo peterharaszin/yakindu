@@ -464,15 +464,15 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				} else {
 					out.print("DamosMath_powfix64(");
 				}
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getOperand(), numberFormat));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
 				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getExponent(), numberFormat));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
 				out.printf(", %d)", fixedPointFormat.getFractionLength());
 			} else if (numberFormat instanceof FloatingPointFormat) {
 				out.print("pow(");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getOperand(), numberFormat));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
 				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getExponent(), numberFormat));
+				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
 				out.print(")");
 			}
 

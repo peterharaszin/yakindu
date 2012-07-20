@@ -249,6 +249,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createRangeExpressionAdapter();
 			}
 			@Override
+			public Adapter caseBinaryExpression(BinaryExpression object) {
+				return createBinaryExpressionAdapter();
+			}
+			@Override
 			public Adapter caseImpliesExpression(ImpliesExpression object) {
 				return createImpliesExpressionAdapter();
 			}
@@ -287,10 +291,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUnaryExpression(UnaryExpression object) {
 				return createUnaryExpressionAdapter();
-			}
-			@Override
-			public Adapter casePostfixExpression(PostfixExpression object) {
-				return createPostfixExpressionAdapter();
 			}
 			@Override
 			public Adapter caseFeatureCall(FeatureCall object) {
@@ -1179,6 +1179,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BinaryExpression <em>Binary Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.BinaryExpression
+	 * @generated
+	 */
+	public Adapter createBinaryExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.ImpliesExpression <em>Implies Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1315,20 +1329,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnaryExpressionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.PostfixExpression <em>Postfix Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.PostfixExpression
-	 * @generated
-	 */
-	public Adapter createPostfixExpressionAdapter() {
 		return null;
 	}
 

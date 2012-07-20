@@ -1846,7 +1846,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImpliesExpression returns Expression:
-	//	LogicalOrExpression ({ImpliesExpression.leftOperand=current} "=>" rightOperand=LogicalOrExpression)?;
+	//	LogicalOrExpression ({ImpliesExpression.leftOperand=current} operator=ImpliesOperator
+	//	rightOperand=LogicalOrExpression)?;
 	public MscriptGrammarAccess.ImpliesExpressionElements getImpliesExpressionAccess() {
 		return gaMscript.getImpliesExpressionAccess();
 	}
@@ -1855,8 +1856,19 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getImpliesExpressionAccess().getRule();
 	}
 
+	//enum ImpliesOperator returns OperatorKind:
+	//	Implies="=>";
+	public MscriptGrammarAccess.ImpliesOperatorElements getImpliesOperatorAccess() {
+		return gaMscript.getImpliesOperatorAccess();
+	}
+	
+	public EnumRule getImpliesOperatorRule() {
+		return getImpliesOperatorAccess().getRule();
+	}
+
 	//LogicalOrExpression returns Expression:
-	//	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} "||" rightOperand=LogicalAndExpression)*;
+	//	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} operator=LogicalOrOperator
+	//	rightOperand=LogicalAndExpression)*;
 	public MscriptGrammarAccess.LogicalOrExpressionElements getLogicalOrExpressionAccess() {
 		return gaMscript.getLogicalOrExpressionAccess();
 	}
@@ -1865,14 +1877,35 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getLogicalOrExpressionAccess().getRule();
 	}
 
+	//enum LogicalOrOperator returns OperatorKind:
+	//	LogicalOr="||";
+	public MscriptGrammarAccess.LogicalOrOperatorElements getLogicalOrOperatorAccess() {
+		return gaMscript.getLogicalOrOperatorAccess();
+	}
+	
+	public EnumRule getLogicalOrOperatorRule() {
+		return getLogicalOrOperatorAccess().getRule();
+	}
+
 	//LogicalAndExpression returns Expression:
-	//	EqualityExpression ({LogicalAndExpression.leftOperand=current} "&&" rightOperand=EqualityExpression)*;
+	//	EqualityExpression ({LogicalAndExpression.leftOperand=current} operator=LogicalAndOperator
+	//	rightOperand=EqualityExpression)*;
 	public MscriptGrammarAccess.LogicalAndExpressionElements getLogicalAndExpressionAccess() {
 		return gaMscript.getLogicalAndExpressionAccess();
 	}
 	
 	public ParserRule getLogicalAndExpressionRule() {
 		return getLogicalAndExpressionAccess().getRule();
+	}
+
+	//enum LogicalAndOperator returns OperatorKind:
+	//	LogicalAnd="&&";
+	public MscriptGrammarAccess.LogicalAndOperatorElements getLogicalAndOperatorAccess() {
+		return gaMscript.getLogicalAndOperatorAccess();
+	}
+	
+	public EnumRule getLogicalAndOperatorRule() {
+		return getLogicalAndOperatorAccess().getRule();
 	}
 
 	//EqualityExpression returns Expression:
@@ -1960,7 +1993,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PowerExpression returns Expression:
-	//	UnaryExpression ({PowerExpression.operand=current} operator=PowerOperator exponent=UnaryExpression)?;
+	//	PrefixUnaryExpression ({PowerExpression.leftOperand=current} operator=PowerOperator
+	//	rightOperand=PrefixUnaryExpression)?;
 	public MscriptGrammarAccess.PowerExpressionElements getPowerExpressionAccess() {
 		return gaMscript.getPowerExpressionAccess();
 	}
@@ -1979,44 +2013,44 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getPowerOperatorAccess().getRule();
 	}
 
-	//UnaryExpression returns Expression:
-	//	PostfixExpression | {UnaryExpression} operator=UnaryOperator operand=PostfixExpression;
-	public MscriptGrammarAccess.UnaryExpressionElements getUnaryExpressionAccess() {
-		return gaMscript.getUnaryExpressionAccess();
+	//PrefixUnaryExpression returns Expression:
+	//	PostfixUnaryExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=PostfixUnaryExpression;
+	public MscriptGrammarAccess.PrefixUnaryExpressionElements getPrefixUnaryExpressionAccess() {
+		return gaMscript.getPrefixUnaryExpressionAccess();
 	}
 	
-	public ParserRule getUnaryExpressionRule() {
-		return getUnaryExpressionAccess().getRule();
+	public ParserRule getPrefixUnaryExpressionRule() {
+		return getPrefixUnaryExpressionAccess().getRule();
 	}
 
-	//enum UnaryOperator returns OperatorKind:
+	//enum PrefixUnaryOperator returns OperatorKind:
 	//	Negate="-" | LogicalNot="!";
-	public MscriptGrammarAccess.UnaryOperatorElements getUnaryOperatorAccess() {
-		return gaMscript.getUnaryOperatorAccess();
+	public MscriptGrammarAccess.PrefixUnaryOperatorElements getPrefixUnaryOperatorAccess() {
+		return gaMscript.getPrefixUnaryOperatorAccess();
 	}
 	
-	public EnumRule getUnaryOperatorRule() {
-		return getUnaryOperatorAccess().getRule();
+	public EnumRule getPrefixUnaryOperatorRule() {
+		return getPrefixUnaryOperatorAccess().getRule();
 	}
 
-	//PostfixExpression returns Expression:
-	//	(QualifiedFeatureCall | MemberFeatureCall) ({PostfixExpression.operand=current} operator=PostfixOperator)?;
-	public MscriptGrammarAccess.PostfixExpressionElements getPostfixExpressionAccess() {
-		return gaMscript.getPostfixExpressionAccess();
+	//PostfixUnaryExpression returns Expression:
+	//	(QualifiedFeatureCall | MemberFeatureCall) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	public MscriptGrammarAccess.PostfixUnaryExpressionElements getPostfixUnaryExpressionAccess() {
+		return gaMscript.getPostfixUnaryExpressionAccess();
 	}
 	
-	public ParserRule getPostfixExpressionRule() {
-		return getPostfixExpressionAccess().getRule();
+	public ParserRule getPostfixUnaryExpressionRule() {
+		return getPostfixUnaryExpressionAccess().getRule();
 	}
 
-	//enum PostfixOperator returns OperatorKind:
+	//enum PostfixUnaryOperator returns OperatorKind:
 	//	Derivative="\'";
-	public MscriptGrammarAccess.PostfixOperatorElements getPostfixOperatorAccess() {
-		return gaMscript.getPostfixOperatorAccess();
+	public MscriptGrammarAccess.PostfixUnaryOperatorElements getPostfixUnaryOperatorAccess() {
+		return gaMscript.getPostfixUnaryOperatorAccess();
 	}
 	
-	public EnumRule getPostfixOperatorRule() {
-		return getPostfixOperatorAccess().getRule();
+	public EnumRule getPostfixUnaryOperatorRule() {
+		return getPostfixUnaryOperatorAccess().getRule();
 	}
 
 	//MemberFeatureCall returns Expression:

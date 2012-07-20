@@ -467,15 +467,6 @@ public interface MscriptFactory extends EFactory {
 	UnaryExpression createUnaryExpression();
 
 	/**
-	 * Returns a new object of class '<em>Postfix Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Postfix Expression</em>'.
-	 * @generated
-	 */
-	PostfixExpression createPostfixExpression();
-
-	/**
 	 * Returns a new object of class '<em>Variable Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

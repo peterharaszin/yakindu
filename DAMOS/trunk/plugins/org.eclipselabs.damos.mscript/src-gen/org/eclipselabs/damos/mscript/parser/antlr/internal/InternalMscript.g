@@ -3123,11 +3123,25 @@ ruleImpliesExpression returns [EObject current=null]
             grammarAccess.getImpliesExpressionAccess().getImpliesExpressionLeftOperandAction_1_0(),
             $current);
     }
-)	otherlv_2='=>' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getImpliesExpressionAccess().getEqualsSignGreaterThanSignKeyword_1_1());
-    }
+)(
 (
+		{ 
+	        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getOperatorImpliesOperatorEnumRuleCall_1_1_0()); 
+	    }
+		lv_operator_2_0=ruleImpliesOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getImpliesExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"operator",
+        		lv_operator_2_0, 
+        		"ImpliesOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getImpliesExpressionAccess().getRightOperandLogicalOrExpressionParserRuleCall_1_2_0()); 
@@ -3181,11 +3195,25 @@ ruleLogicalOrExpression returns [EObject current=null]
             grammarAccess.getLogicalOrExpressionAccess().getLogicalOrExpressionLeftOperandAction_1_0(),
             $current);
     }
-)	otherlv_2='||' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getLogicalOrExpressionAccess().getVerticalLineVerticalLineKeyword_1_1());
-    }
+)(
 (
+		{ 
+	        newCompositeNode(grammarAccess.getLogicalOrExpressionAccess().getOperatorLogicalOrOperatorEnumRuleCall_1_1_0()); 
+	    }
+		lv_operator_2_0=ruleLogicalOrOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLogicalOrExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"operator",
+        		lv_operator_2_0, 
+        		"LogicalOrOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getLogicalOrExpressionAccess().getRightOperandLogicalAndExpressionParserRuleCall_1_2_0()); 
@@ -3239,11 +3267,25 @@ ruleLogicalAndExpression returns [EObject current=null]
             grammarAccess.getLogicalAndExpressionAccess().getLogicalAndExpressionLeftOperandAction_1_0(),
             $current);
     }
-)	otherlv_2='&&' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getLogicalAndExpressionAccess().getAmpersandAmpersandKeyword_1_1());
-    }
+)(
 (
+		{ 
+	        newCompositeNode(grammarAccess.getLogicalAndExpressionAccess().getOperatorLogicalAndOperatorEnumRuleCall_1_1_0()); 
+	    }
+		lv_operator_2_0=ruleLogicalAndOperator		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLogicalAndExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"operator",
+        		lv_operator_2_0, 
+        		"LogicalAndOperator");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getLogicalAndExpressionAccess().getRightOperandEqualityExpressionParserRuleCall_1_2_0()); 
@@ -3617,17 +3659,17 @@ rulePowerExpression returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getPowerExpressionAccess().getUnaryExpressionParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getPowerExpressionAccess().getPrefixUnaryExpressionParserRuleCall_0()); 
     }
-    this_UnaryExpression_0=ruleUnaryExpression
+    this_PrefixUnaryExpression_0=rulePrefixUnaryExpression
     { 
-        $current = $this_UnaryExpression_0.current; 
+        $current = $this_PrefixUnaryExpression_0.current; 
         afterParserOrEnumRuleCall();
     }
 ((
     {
         $current = forceCreateModelElementAndSet(
-            grammarAccess.getPowerExpressionAccess().getPowerExpressionOperandAction_1_0(),
+            grammarAccess.getPowerExpressionAccess().getPowerExpressionLeftOperandAction_1_0(),
             $current);
     }
 )(
@@ -3651,17 +3693,17 @@ rulePowerExpression returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPowerExpressionAccess().getExponentUnaryExpressionParserRuleCall_1_2_0()); 
+	        newCompositeNode(grammarAccess.getPowerExpressionAccess().getRightOperandPrefixUnaryExpressionParserRuleCall_1_2_0()); 
 	    }
-		lv_exponent_3_0=ruleUnaryExpression		{
+		lv_rightOperand_3_0=rulePrefixUnaryExpression		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPowerExpressionRule());
 	        }
        		set(
        			$current, 
-       			"exponent",
-        		lv_exponent_3_0, 
-        		"UnaryExpression");
+       			"rightOperand",
+        		lv_rightOperand_3_0, 
+        		"PrefixUnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3673,50 +3715,50 @@ rulePowerExpression returns [EObject current=null]
 
 
 
-// Entry rule entryRuleUnaryExpression
-entryRuleUnaryExpression returns [EObject current=null] 
+// Entry rule entryRulePrefixUnaryExpression
+entryRulePrefixUnaryExpression returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getUnaryExpressionRule()); }
-	 iv_ruleUnaryExpression=ruleUnaryExpression 
-	 { $current=$iv_ruleUnaryExpression.current; } 
+	{ newCompositeNode(grammarAccess.getPrefixUnaryExpressionRule()); }
+	 iv_rulePrefixUnaryExpression=rulePrefixUnaryExpression 
+	 { $current=$iv_rulePrefixUnaryExpression.current; } 
 	 EOF 
 ;
 
-// Rule UnaryExpression
-ruleUnaryExpression returns [EObject current=null] 
+// Rule PrefixUnaryExpression
+rulePrefixUnaryExpression returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getPostfixExpressionParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getPrefixUnaryExpressionAccess().getPostfixUnaryExpressionParserRuleCall_0()); 
     }
-    this_PostfixExpression_0=rulePostfixExpression
+    this_PostfixUnaryExpression_0=rulePostfixUnaryExpression
     { 
-        $current = $this_PostfixExpression_0.current; 
+        $current = $this_PostfixUnaryExpression_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getUnaryExpressionAccess().getUnaryExpressionAction_1_0(),
+            grammarAccess.getPrefixUnaryExpressionAccess().getUnaryExpressionAction_1_0(),
             $current);
     }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getOperatorUnaryOperatorEnumRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getPrefixUnaryExpressionAccess().getOperatorPrefixUnaryOperatorEnumRuleCall_1_1_0()); 
 	    }
-		lv_operator_2_0=ruleUnaryOperator		{
+		lv_operator_2_0=rulePrefixUnaryOperator		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getPrefixUnaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"UnaryOperator");
+        		"PrefixUnaryOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3724,17 +3766,17 @@ ruleUnaryExpression returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getUnaryExpressionAccess().getOperandPostfixExpressionParserRuleCall_1_2_0()); 
+	        newCompositeNode(grammarAccess.getPrefixUnaryExpressionAccess().getOperandPostfixUnaryExpressionParserRuleCall_1_2_0()); 
 	    }
-		lv_operand_3_0=rulePostfixExpression		{
+		lv_operand_3_0=rulePostfixUnaryExpression		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getUnaryExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getPrefixUnaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"operand",
         		lv_operand_3_0, 
-        		"PostfixExpression");
+        		"PostfixUnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3746,23 +3788,23 @@ ruleUnaryExpression returns [EObject current=null]
 
 
 
-// Entry rule entryRulePostfixExpression
-entryRulePostfixExpression returns [EObject current=null] 
+// Entry rule entryRulePostfixUnaryExpression
+entryRulePostfixUnaryExpression returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getPostfixExpressionRule()); }
-	 iv_rulePostfixExpression=rulePostfixExpression 
-	 { $current=$iv_rulePostfixExpression.current; } 
+	{ newCompositeNode(grammarAccess.getPostfixUnaryExpressionRule()); }
+	 iv_rulePostfixUnaryExpression=rulePostfixUnaryExpression 
+	 { $current=$iv_rulePostfixUnaryExpression.current; } 
 	 EOF 
 ;
 
-// Rule PostfixExpression
-rulePostfixExpression returns [EObject current=null] 
+// Rule PostfixUnaryExpression
+rulePostfixUnaryExpression returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
     { 
-        newCompositeNode(grammarAccess.getPostfixExpressionAccess().getQualifiedFeatureCallParserRuleCall_0_0()); 
+        newCompositeNode(grammarAccess.getPostfixUnaryExpressionAccess().getQualifiedFeatureCallParserRuleCall_0_0()); 
     }
     this_QualifiedFeatureCall_0=ruleQualifiedFeatureCall
     { 
@@ -3772,7 +3814,7 @@ rulePostfixExpression returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getPostfixExpressionAccess().getMemberFeatureCallParserRuleCall_0_1()); 
+        newCompositeNode(grammarAccess.getPostfixUnaryExpressionAccess().getMemberFeatureCallParserRuleCall_0_1()); 
     }
     this_MemberFeatureCall_1=ruleMemberFeatureCall
     { 
@@ -3782,23 +3824,23 @@ rulePostfixExpression returns [EObject current=null]
 )((
     {
         $current = forceCreateModelElementAndSet(
-            grammarAccess.getPostfixExpressionAccess().getPostfixExpressionOperandAction_1_0(),
+            grammarAccess.getPostfixUnaryExpressionAccess().getUnaryExpressionOperandAction_1_0(),
             $current);
     }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPostfixExpressionAccess().getOperatorPostfixOperatorEnumRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getPostfixUnaryExpressionAccess().getOperatorPostfixUnaryOperatorEnumRuleCall_1_1_0()); 
 	    }
-		lv_operator_3_0=rulePostfixOperator		{
+		lv_operator_3_0=rulePostfixUnaryOperator		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPostfixExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getPostfixUnaryExpressionRule());
 	        }
        		set(
        			$current, 
        			"operator",
         		lv_operator_3_0, 
-        		"PostfixOperator");
+        		"PostfixUnaryOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8105,6 +8147,45 @@ ruleAssertionStatusKind returns [Enumerator current=null]
 
 
 
+// Rule ImpliesOperator
+ruleImpliesOperator returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+(	enumLiteral_0='=>' 
+	{
+        $current = grammarAccess.getImpliesOperatorAccess().getImpliesEnumLiteralDeclaration().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getImpliesOperatorAccess().getImpliesEnumLiteralDeclaration()); 
+    }
+);
+
+
+
+// Rule LogicalOrOperator
+ruleLogicalOrOperator returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+(	enumLiteral_0='||' 
+	{
+        $current = grammarAccess.getLogicalOrOperatorAccess().getLogicalOrEnumLiteralDeclaration().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getLogicalOrOperatorAccess().getLogicalOrEnumLiteralDeclaration()); 
+    }
+);
+
+
+
+// Rule LogicalAndOperator
+ruleLogicalAndOperator returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+(	enumLiteral_0='&&' 
+	{
+        $current = grammarAccess.getLogicalAndOperatorAccess().getLogicalAndEnumLiteralDeclaration().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getLogicalAndOperatorAccess().getLogicalAndEnumLiteralDeclaration()); 
+    }
+);
+
+
+
 // Rule EqualityOperator
 ruleEqualityOperator returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -8248,33 +8329,33 @@ rulePowerOperator returns [Enumerator current=null]
 
 
 
-// Rule UnaryOperator
-ruleUnaryOperator returns [Enumerator current=null] 
+// Rule PrefixUnaryOperator
+rulePrefixUnaryOperator returns [Enumerator current=null] 
     @init { enterRule(); }
     @after { leaveRule(); }:
 ((	enumLiteral_0='-' 
 	{
-        $current = grammarAccess.getUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0()); 
+        $current = grammarAccess.getPrefixUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getPrefixUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0()); 
     }
 )
     |(	enumLiteral_1='!' 
 	{
-        $current = grammarAccess.getUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1()); 
+        $current = grammarAccess.getPrefixUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getPrefixUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1()); 
     }
 ));
 
 
 
-// Rule PostfixOperator
-rulePostfixOperator returns [Enumerator current=null] 
+// Rule PostfixUnaryOperator
+rulePostfixUnaryOperator returns [Enumerator current=null] 
     @init { enterRule(); }
     @after { leaveRule(); }:
 (	enumLiteral_0='\'' 
 	{
-        $current = grammarAccess.getPostfixOperatorAccess().getDerivativeEnumLiteralDeclaration().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getPostfixOperatorAccess().getDerivativeEnumLiteralDeclaration()); 
+        $current = grammarAccess.getPostfixUnaryOperatorAccess().getDerivativeEnumLiteralDeclaration().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getPostfixUnaryOperatorAccess().getDerivativeEnumLiteralDeclaration()); 
     }
 );
 

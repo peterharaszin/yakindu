@@ -197,13 +197,22 @@ RangeExpression returns Expression:
 	ImpliesExpression ({RangeExpression.operands+=current} ':' operands+=ImpliesExpression (':' operands+=ImpliesExpression)?)?;
 
 ImpliesExpression returns Expression:
-	LogicalOrExpression ({ImpliesExpression.leftOperand=current} '=>' rightOperand=LogicalOrExpression)?;
+	LogicalOrExpression ({ImpliesExpression.leftOperand=current} operator=ImpliesOperator rightOperand=LogicalOrExpression)?;
+
+enum ImpliesOperator returns OperatorKind:
+	Implies='=>';
 
 LogicalOrExpression returns Expression:
-	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} '||' rightOperand=LogicalAndExpression)*;
+	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} operator=LogicalOrOperator rightOperand=LogicalAndExpression)*;
 	
+enum LogicalOrOperator returns OperatorKind:
+	LogicalOr='||';
+
 LogicalAndExpression returns Expression:
-	EqualityExpression ({LogicalAndExpression.leftOperand=current} '&&' rightOperand=EqualityExpression)*;
+	EqualityExpression ({LogicalAndExpression.leftOperand=current} operator=LogicalAndOperator rightOperand=EqualityExpression)*;
+
+enum LogicalAndOperator returns OperatorKind:
+	LogicalAnd='&&';
 
 EqualityExpression returns Expression:
 	RelationalExpression ({EqualityExpression.leftOperand=current} operator=EqualityOperator rightOperand=RelationalExpression)*;
@@ -242,23 +251,23 @@ enum MultiplicativeOperator returns OperatorKind:
 	ElementWiseModulo='.%';
 	
 PowerExpression returns Expression:
-	UnaryExpression ({PowerExpression.operand=current} operator=PowerOperator exponent=UnaryExpression)?;
+	PrefixUnaryExpression ({PowerExpression.leftOperand=current} operator=PowerOperator rightOperand=PrefixUnaryExpression)?;
 
 enum PowerOperator returns OperatorKind:
 	Power='^' |
 	ElementWisePower='.^';
 	
-UnaryExpression returns Expression:
-	PostfixExpression | {UnaryExpression} operator=UnaryOperator operand=PostfixExpression;
+PrefixUnaryExpression returns Expression:
+	PostfixUnaryExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=PostfixUnaryExpression;
 	
-enum UnaryOperator returns OperatorKind:
+enum PrefixUnaryOperator returns OperatorKind:
 	Negate='-' |
 	LogicalNot='!';
 	
-PostfixExpression returns Expression:
-	(QualifiedFeatureCall | MemberFeatureCall) ({PostfixExpression.operand=current} operator=PostfixOperator)?;
+PostfixUnaryExpression returns Expression:
+	(QualifiedFeatureCall | MemberFeatureCall) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 
-enum PostfixOperator returns OperatorKind:
+enum PostfixUnaryOperator returns OperatorKind:
 	Derivative="'";
 
 MemberFeatureCall returns Expression:

@@ -1495,10 +1495,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:75:7: ( '=>' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:75:9: '=>'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:75:7: ( 'is' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:75:9: 'is'
             {
-            match("=>"); 
+            match("is"); 
 
 
             }
@@ -1516,11 +1516,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:76:7: ( '||' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:76:9: '||'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:76:7: ( '|' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:76:9: '|'
             {
-            match("||"); 
-
+            match('|'); 
 
             }
 
@@ -1537,10 +1536,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:77:7: ( '&&' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:77:9: '&&'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:77:7: ( 'true' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:77:9: 'true'
             {
-            match("&&"); 
+            match("true"); 
 
 
             }
@@ -1558,10 +1557,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:78:7: ( 'is' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:78:9: 'is'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:78:7: ( 'false' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:78:9: 'false'
             {
-            match("is"); 
+            match("false"); 
 
 
             }
@@ -1579,10 +1578,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:79:7: ( '|' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:79:9: '|'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:79:7: ( '\"\"\"' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:79:9: '\"\"\"'
             {
-            match('|'); 
+            match("\"\"\""); 
+
 
             }
 
@@ -1599,11 +1599,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:80:7: ( 'true' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:80:9: 'true'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:80:7: ( '\\u00AB' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:80:9: '\\u00AB'
             {
-            match("true"); 
-
+            match('\u00AB'); 
 
             }
 
@@ -1620,11 +1619,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:81:7: ( 'false' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:81:9: 'false'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:81:7: ( '\\u00BB' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:81:9: '\\u00BB'
             {
-            match("false"); 
-
+            match('\u00BB'); 
 
             }
 
@@ -1641,10 +1639,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:82:7: ( '\"\"\"' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:82:9: '\"\"\"'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:82:7: ( '::' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:82:9: '::'
             {
-            match("\"\"\""); 
+            match("::"); 
 
 
             }
@@ -1662,10 +1660,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:83:7: ( '\\u00AB' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:83:9: '\\u00AB'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:83:7: ( 'for' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:83:9: 'for'
             {
-            match('\u00AB'); 
+            match("for"); 
+
 
             }
 
@@ -1682,10 +1681,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:84:7: ( '\\u00BB' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:84:9: '\\u00BB'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:84:7: ( 'unitlit' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:84:9: 'unitlit'
             {
-            match('\u00BB'); 
+            match("unitlit"); 
+
 
             }
 
@@ -1702,10 +1702,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:85:7: ( '::' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:85:9: '::'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:85:7: ( 'end' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:85:9: 'end'
             {
-            match("::"); 
+            match("end"); 
 
 
             }
@@ -1723,10 +1723,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:86:7: ( 'for' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:86:9: 'for'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:86:7: ( 'algorithm' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:86:9: 'algorithm'
             {
-            match("for"); 
+            match("algorithm"); 
 
 
             }
@@ -1744,10 +1744,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:87:7: ( 'unitlit' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:87:9: 'unitlit'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:87:7: ( 'while' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:87:9: 'while'
             {
-            match("unitlit"); 
+            match("while"); 
 
 
             }
@@ -1765,10 +1765,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:88:7: ( 'end' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:88:9: 'end'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:88:7: ( 'do' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:88:9: 'do'
             {
-            match("end"); 
+            match("do"); 
 
 
             }
@@ -1786,10 +1786,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:89:7: ( 'algorithm' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:89:9: 'algorithm'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:89:7: ( 'continue' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:89:9: 'continue'
             {
-            match("algorithm"); 
+            match("continue"); 
 
 
             }
@@ -1807,10 +1807,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:90:7: ( 'while' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:90:9: 'while'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:90:7: ( 'break' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:90:9: 'break'
             {
-            match("while"); 
+            match("break"); 
 
 
             }
@@ -1828,10 +1828,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:91:7: ( 'do' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:91:9: 'do'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:91:7: ( 'return' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:91:9: 'return'
             {
-            match("do"); 
+            match("return"); 
 
 
             }
@@ -1849,11 +1849,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:92:7: ( 'continue' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:92:9: 'continue'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:92:7: ( '/' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:92:9: '/'
             {
-            match("continue"); 
-
+            match('/'); 
 
             }
 
@@ -1870,11 +1869,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:93:8: ( 'break' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:93:10: 'break'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:93:8: ( '^' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:93:10: '^'
             {
-            match("break"); 
-
+            match('^'); 
 
             }
 
@@ -1891,10 +1889,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:94:8: ( 'return' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:94:10: 'return'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:94:8: ( 'float32' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:94:10: 'float32'
             {
-            match("return"); 
+            match("float32"); 
 
 
             }
@@ -1912,10 +1910,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:95:8: ( '/' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:95:10: '/'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:95:8: ( 'float64' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:95:10: 'float64'
             {
-            match('/'); 
+            match("float64"); 
+
 
             }
 
@@ -1932,10 +1931,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:96:8: ( '^' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:96:10: '^'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:96:8: ( 'int8' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:96:10: 'int8'
             {
-            match('^'); 
+            match("int8"); 
+
 
             }
 
@@ -1952,10 +1952,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:97:8: ( 'float32' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:97:10: 'float32'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:97:8: ( 'int16' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:97:10: 'int16'
             {
-            match("float32"); 
+            match("int16"); 
 
 
             }
@@ -1973,10 +1973,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:98:8: ( 'float64' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:98:10: 'float64'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:98:8: ( 'int32' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:98:10: 'int32'
             {
-            match("float64"); 
+            match("int32"); 
 
 
             }
@@ -1994,10 +1994,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:99:8: ( 'int8' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:99:10: 'int8'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:99:8: ( 'int64' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:99:10: 'int64'
             {
-            match("int8"); 
+            match("int64"); 
 
 
             }
@@ -2015,10 +2015,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:100:8: ( 'int16' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:100:10: 'int16'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:100:8: ( 'int128' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:100:10: 'int128'
             {
-            match("int16"); 
+            match("int128"); 
 
 
             }
@@ -2036,10 +2036,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:101:8: ( 'int32' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:101:10: 'int32'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:101:8: ( 'uint8' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:101:10: 'uint8'
             {
-            match("int32"); 
+            match("uint8"); 
 
 
             }
@@ -2057,10 +2057,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:102:8: ( 'int64' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:102:10: 'int64'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:102:8: ( 'uint16' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:102:10: 'uint16'
             {
-            match("int64"); 
+            match("uint16"); 
 
 
             }
@@ -2078,10 +2078,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:103:8: ( 'int128' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:103:10: 'int128'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:103:8: ( 'uint32' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:103:10: 'uint32'
             {
-            match("int128"); 
+            match("uint32"); 
 
 
             }
@@ -2099,10 +2099,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:104:8: ( 'uint8' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:104:10: 'uint8'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:104:8: ( 'uint64' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:104:10: 'uint64'
             {
-            match("uint8"); 
+            match("uint64"); 
 
 
             }
@@ -2120,10 +2120,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:105:8: ( 'uint16' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:105:10: 'uint16'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:105:8: ( 'uint128' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:105:10: 'uint128'
             {
-            match("uint16"); 
+            match("uint128"); 
 
 
             }
@@ -2141,10 +2141,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:106:8: ( 'uint32' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:106:10: 'uint32'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:106:8: ( 'fract8' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:106:10: 'fract8'
             {
-            match("uint32"); 
+            match("fract8"); 
 
 
             }
@@ -2162,10 +2162,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:107:8: ( 'uint64' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:107:10: 'uint64'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:107:8: ( 'fract16' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:107:10: 'fract16'
             {
-            match("uint64"); 
+            match("fract16"); 
 
 
             }
@@ -2183,10 +2183,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:108:8: ( 'uint128' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:108:10: 'uint128'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:108:8: ( 'fract32' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:108:10: 'fract32'
             {
-            match("uint128"); 
+            match("fract32"); 
 
 
             }
@@ -2204,10 +2204,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:109:8: ( 'fract8' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:109:10: 'fract8'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:109:8: ( 'fract64' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:109:10: 'fract64'
             {
-            match("fract8"); 
+            match("fract64"); 
 
 
             }
@@ -2225,10 +2225,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:110:8: ( 'fract16' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:110:10: 'fract16'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:110:8: ( 'fract128' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:110:10: 'fract128'
             {
-            match("fract16"); 
+            match("fract128"); 
 
 
             }
@@ -2246,10 +2246,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:111:8: ( 'fract32' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:111:10: 'fract32'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:111:8: ( 'stateful' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:111:10: 'stateful'
             {
-            match("fract32"); 
+            match("stateful"); 
 
 
             }
@@ -2267,10 +2267,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:112:8: ( 'fract64' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:112:10: 'fract64'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:112:8: ( 'continuous' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:112:10: 'continuous'
             {
-            match("fract64"); 
+            match("continuous"); 
 
 
             }
@@ -2288,10 +2288,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__120;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:113:8: ( 'fract128' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:113:10: 'fract128'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:113:8: ( 'info' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:113:10: 'info'
             {
-            match("fract128"); 
+            match("info"); 
 
 
             }
@@ -2309,10 +2309,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__121;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:114:8: ( 'stateful' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:114:10: 'stateful'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:114:8: ( 'warning' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:114:10: 'warning'
             {
-            match("stateful"); 
+            match("warning"); 
 
 
             }
@@ -2330,10 +2330,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__122;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:115:8: ( 'continuous' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:115:10: 'continuous'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:115:8: ( 'error' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:115:10: 'error'
             {
-            match("continuous"); 
+            match("error"); 
 
 
             }
@@ -2351,10 +2351,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__123;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:116:8: ( 'info' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:116:10: 'info'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:116:8: ( 'fatal' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:116:10: 'fatal'
             {
-            match("info"); 
+            match("fatal"); 
 
 
             }
@@ -2372,10 +2372,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__124;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:117:8: ( 'warning' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:117:10: 'warning'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:117:8: ( '=>' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:117:10: '=>'
             {
-            match("warning"); 
+            match("=>"); 
 
 
             }
@@ -2393,10 +2393,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__125;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:118:8: ( 'error' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:118:10: 'error'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:118:8: ( '||' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:118:10: '||'
             {
-            match("error"); 
+            match("||"); 
 
 
             }
@@ -2414,10 +2414,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = T__126;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:119:8: ( 'fatal' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:119:10: 'fatal'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:119:8: ( '&&' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:119:10: '&&'
             {
-            match("fatal"); 
+            match("&&"); 
 
 
             }
@@ -2684,8 +2684,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10330:8: ( 'n' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10330:10: 'n'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10411:8: ( 'n' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10411:10: 'n'
             {
             match('n'); 
 
@@ -2704,8 +2704,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10332:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10332:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10413:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10413:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -2732,8 +2732,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10334:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10334:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10415:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10415:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2760,11 +2760,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_EXP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10336:10: ( RULE_E ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10336:12: RULE_E ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10417:10: ( RULE_E ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10417:12: RULE_E ( '0' .. '9' )+
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10336:19: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10417:19: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2778,7 +2778,7 @@ public class InternalDconfigLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10336:20: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10417:20: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2810,8 +2810,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10338:12: ( RULE_EXP RULE_IJ )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10338:14: RULE_EXP RULE_IJ
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10419:12: ( RULE_EXP RULE_IJ )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10419:14: RULE_EXP RULE_IJ
             {
             mRULE_EXP(); 
             mRULE_IJ(); 
@@ -2831,8 +2831,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10340:10: ( '1' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10340:12: '1'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10421:10: ( '1' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10421:12: '1'
             {
             match('1'); 
 
@@ -2851,10 +2851,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10342:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10342:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10423:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10423:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10342:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10423:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -2868,7 +2868,7 @@ public class InternalDconfigLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10342:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10423:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2900,10 +2900,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10344:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10344:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10425:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10425:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10344:11: ( '_' )?
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10425:11: ( '_' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -2912,7 +2912,7 @@ public class InternalDconfigLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10344:11: '_'
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10425:11: '_'
                     {
                     match('_'); 
 
@@ -2930,7 +2930,7 @@ public class InternalDconfigLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10344:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10425:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop4:
             do {
                 int alt4=2;
@@ -2979,11 +2979,11 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10346:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10346:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10427:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10427:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10346:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10427:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop5:
             do {
                 int alt5=3;
@@ -2999,7 +2999,7 @@ public class InternalDconfigLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10346:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10427:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3014,7 +3014,7 @@ public class InternalDconfigLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10346:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10427:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -3052,8 +3052,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_CONSTANT_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10348:22: ( '\\u00AD' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10348:24: '\\u00AD'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10429:22: ( '\\u00AD' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10429:24: '\\u00AD'
             {
             match('\u00AD'); 
 
@@ -3072,12 +3072,12 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10350:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10350:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10431:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10431:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10350:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10431:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -3102,7 +3102,7 @@ public class InternalDconfigLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10350:52: .
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10431:52: .
             	    {
             	    matchAny(); 
 
@@ -3132,12 +3132,12 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -3150,7 +3150,7 @@ public class InternalDconfigLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3170,7 +3170,7 @@ public class InternalDconfigLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -3179,9 +3179,9 @@ public class InternalDconfigLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -3190,7 +3190,7 @@ public class InternalDconfigLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10352:41: '\\r'
+                            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10433:41: '\\r'
                             {
                             match('\r'); 
 
@@ -3222,10 +3222,10 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10354:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10354:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10435:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10435:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10354:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10435:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -3279,8 +3279,8 @@ public class InternalDconfigLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10356:16: ( . )
-            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10356:18: .
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10437:16: ( . )
+            // ../org.eclipselabs.damos.dconfig/src-gen/org/eclipselabs/damos/dconfig/parser/antlr/internal/InternalDconfig.g:10437:18: .
             {
             matchAny(); 
 
@@ -4254,11 +4254,11 @@ public class InternalDconfigLexer extends Lexer {
     static final String DFA11_eotS =
         "\1\uffff\2\70\1\102\2\uffff\1\107\2\70\2\uffff\1\70\1\141\3\70\1"+
         "\uffff\1\154\1\uffff\1\162\2\uffff\1\166\1\170\2\uffff\1\70\1\176"+
-        "\5\70\1\u0086\2\65\2\uffff\1\70\1\u0090\1\uffff\1\u0093\2\uffff"+
+        "\5\70\1\u0086\1\65\2\uffff\1\70\1\u008f\1\uffff\1\65\1\u0093\2\uffff"+
         "\1\u0096\1\162\1\102\1\u0097\1\uffff\1\65\4\uffff\2\70\1\uffff\5"+
         "\70\1\u00a4\2\70\1\u00a7\6\uffff\12\70\2\uffff\6\70\10\uffff\3\70"+
         "\1\u00c0\4\70\4\uffff\1\70\1\u00c9\1\u00ca\1\u00cb\11\uffff\2\70"+
-        "\2\uffff\5\70\1\u00d4\3\uffff\1\u0089\3\uffff\2\70\15\uffff\10\70"+
+        "\2\uffff\5\70\1\u00d4\2\uffff\1\u0088\3\uffff\2\70\16\uffff\10\70"+
         "\1\u00e2\1\uffff\2\70\1\uffff\1\u00e5\15\70\1\u00f5\3\70\1\u00f9"+
         "\5\70\1\uffff\3\70\1\u0102\2\70\1\u0109\1\70\3\uffff\2\70\1\u010d"+
         "\3\70\1\u0111\1\70\2\uffff\11\70\1\u011e\1\70\1\u0120\1\uffff\1"+
@@ -4286,14 +4286,14 @@ public class InternalDconfigLexer extends Lexer {
     static final String DFA11_minS =
         "\1\0\2\141\1\60\2\uffff\1\75\1\146\1\141\2\uffff\1\141\1\45\1\151"+
         "\1\150\1\141\1\uffff\1\76\1\uffff\1\60\2\uffff\2\75\2\uffff\1\154"+
-        "\1\72\1\141\1\145\1\141\2\145\1\174\1\46\1\0\2\uffff\1\141\1\52"+
-        "\1\uffff\1\75\2\uffff\4\60\1\uffff\1\101\4\uffff\1\143\1\157\1\uffff"+
+        "\1\72\1\141\1\145\1\141\2\145\1\174\1\0\2\uffff\1\141\1\52\1\uffff"+
+        "\1\46\1\75\2\uffff\4\60\1\uffff\1\101\4\uffff\1\143\1\157\1\uffff"+
         "\1\155\1\145\1\163\1\164\1\144\1\60\1\163\1\162\1\60\6\uffff\2\151"+
         "\1\156\1\154\1\163\1\142\1\157\1\164\1\141\1\151\2\uffff\1\141\1"+
         "\170\1\156\1\154\1\162\1\157\10\uffff\1\141\1\157\1\145\1\60\1\160"+
         "\1\145\1\165\1\160\4\uffff\1\160\3\60\11\uffff\1\163\1\147\2\uffff"+
-        "\1\162\1\141\1\165\1\164\1\146\1\60\3\uffff\1\42\3\uffff\1\151\1"+
-        "\162\15\uffff\1\153\1\160\1\146\1\160\1\143\2\145\1\155\1\60\1\uffff"+
+        "\1\162\1\141\1\165\1\164\1\146\1\60\2\uffff\1\42\3\uffff\1\151\1"+
+        "\162\16\uffff\1\153\1\160\1\146\1\160\1\143\2\145\1\155\1\60\1\uffff"+
         "\1\145\1\157\1\uffff\1\60\1\145\1\164\1\170\1\164\1\145\1\164\1"+
         "\163\1\160\1\165\1\151\2\164\1\143\1\60\1\143\1\163\1\141\1\60\1"+
         "\141\1\144\1\163\1\154\1\141\1\uffff\1\145\1\156\1\145\1\60\1\157"+
@@ -4322,74 +4322,74 @@ public class InternalDconfigLexer extends Lexer {
     static final String DFA11_maxS =
         "\1\uffff\1\162\1\157\1\172\2\uffff\1\76\1\156\1\171\2\uffff\1\165"+
         "\1\136\1\162\1\171\1\141\1\uffff\1\76\1\uffff\1\172\2\uffff\2\75"+
-        "\2\uffff\1\163\1\72\1\141\1\145\1\141\1\145\1\157\1\174\1\46\1\uffff"+
-        "\2\uffff\1\150\1\57\1\uffff\1\75\2\uffff\3\172\1\71\1\uffff\1\172"+
-        "\4\uffff\1\143\1\157\1\uffff\1\156\1\145\1\163\1\164\1\165\1\172"+
-        "\1\163\1\162\1\172\6\uffff\1\163\1\151\1\156\1\154\1\163\1\142\1"+
-        "\157\1\164\1\162\1\151\2\uffff\1\141\1\170\1\156\1\164\1\162\1\157"+
-        "\10\uffff\1\156\1\157\1\145\1\172\1\160\1\145\1\165\1\160\4\uffff"+
-        "\1\160\3\172\11\uffff\1\163\1\147\2\uffff\1\162\1\164\1\165\1\164"+
-        "\1\146\1\172\3\uffff\1\42\3\uffff\1\151\1\162\15\uffff\1\153\1\160"+
-        "\1\164\1\160\1\143\2\145\1\155\1\172\1\uffff\1\145\1\157\1\uffff"+
-        "\1\172\1\145\1\164\1\170\1\164\1\145\1\164\1\163\1\160\2\165\2\164"+
-        "\1\147\1\172\1\143\1\163\1\141\1\172\1\141\1\144\1\163\1\154\1\141"+
-        "\1\uffff\1\145\1\156\1\145\1\172\1\157\1\164\1\172\1\157\3\uffff"+
-        "\1\145\1\157\1\172\1\154\1\165\1\163\1\172\1\141\2\uffff\1\154\1"+
-        "\156\2\141\1\151\1\164\1\151\1\165\1\153\1\172\1\156\1\172\1\uffff"+
-        "\1\172\1\162\1\uffff\1\164\1\154\1\172\1\70\1\143\1\145\1\171\1"+
-        "\145\1\162\1\143\1\156\1\151\1\143\1\155\1\164\1\uffff\1\164\1\145"+
-        "\1\154\1\uffff\1\164\2\172\1\145\1\153\3\172\1\uffff\1\162\1\151"+
-        "\1\172\1\66\1\62\1\64\1\uffff\1\172\2\162\1\uffff\1\172\1\162\1"+
-        "\163\1\uffff\1\165\1\145\1\151\3\147\1\172\2\156\1\164\1\145\1\172"+
-        "\1\uffff\1\144\2\uffff\2\172\1\151\1\uffff\1\172\1\66\1\62\1\64"+
-        "\1\164\1\155\1\163\1\172\1\141\1\164\1\147\1\143\1\146\1\150\1\145"+
-        "\1\70\1\151\2\172\1\66\2\uffff\1\141\1\172\3\uffff\1\164\1\141\1"+
-        "\uffff\1\172\1\70\2\172\1\uffff\1\164\1\151\1\uffff\1\156\1\151"+
-        "\1\154\1\172\1\156\1\145\1\141\1\165\1\uffff\1\165\1\145\1\141\1"+
-        "\170\1\uffff\1\163\2\uffff\1\164\1\uffff\1\172\1\70\4\172\1\164"+
-        "\1\uffff\1\164\3\172\1\165\1\172\1\156\1\172\1\66\1\62\1\64\1\157"+
-        "\2\uffff\1\62\1\64\1\156\1\uffff\1\172\1\154\1\uffff\1\172\2\uffff"+
-        "\1\172\1\164\1\172\1\141\1\164\1\uffff\1\147\1\172\1\164\1\162\1"+
-        "\157\1\156\1\164\3\172\1\uffff\1\172\4\uffff\2\145\3\uffff\1\154"+
-        "\1\uffff\1\164\1\uffff\1\172\1\70\2\172\1\156\3\172\1\uffff\1\172"+
-        "\2\uffff\1\150\1\uffff\1\156\2\172\1\uffff\1\145\1\141\1\172\1\165"+
-        "\1\164\1\151\4\uffff\1\155\3\172\1\uffff\1\172\2\uffff\1\172\4\uffff"+
-        "\1\155\1\172\2\uffff\1\172\1\164\1\uffff\1\163\1\172\1\157\1\172"+
-        "\5\uffff\1\172\2\uffff\1\151\1\172\1\uffff\1\156\2\uffff\1\157\1"+
-        "\uffff\1\172\1\156\1\uffff\1\172\1\uffff";
+        "\2\uffff\1\163\1\72\1\141\1\145\1\141\1\145\1\157\1\174\1\uffff"+
+        "\2\uffff\1\150\1\57\1\uffff\1\46\1\75\2\uffff\3\172\1\71\1\uffff"+
+        "\1\172\4\uffff\1\143\1\157\1\uffff\1\156\1\145\1\163\1\164\1\165"+
+        "\1\172\1\163\1\162\1\172\6\uffff\1\163\1\151\1\156\1\154\1\163\1"+
+        "\142\1\157\1\164\1\162\1\151\2\uffff\1\141\1\170\1\156\1\164\1\162"+
+        "\1\157\10\uffff\1\156\1\157\1\145\1\172\1\160\1\145\1\165\1\160"+
+        "\4\uffff\1\160\3\172\11\uffff\1\163\1\147\2\uffff\1\162\1\164\1"+
+        "\165\1\164\1\146\1\172\2\uffff\1\42\3\uffff\1\151\1\162\16\uffff"+
+        "\1\153\1\160\1\164\1\160\1\143\2\145\1\155\1\172\1\uffff\1\145\1"+
+        "\157\1\uffff\1\172\1\145\1\164\1\170\1\164\1\145\1\164\1\163\1\160"+
+        "\2\165\2\164\1\147\1\172\1\143\1\163\1\141\1\172\1\141\1\144\1\163"+
+        "\1\154\1\141\1\uffff\1\145\1\156\1\145\1\172\1\157\1\164\1\172\1"+
+        "\157\3\uffff\1\145\1\157\1\172\1\154\1\165\1\163\1\172\1\141\2\uffff"+
+        "\1\154\1\156\2\141\1\151\1\164\1\151\1\165\1\153\1\172\1\156\1\172"+
+        "\1\uffff\1\172\1\162\1\uffff\1\164\1\154\1\172\1\70\1\143\1\145"+
+        "\1\171\1\145\1\162\1\143\1\156\1\151\1\143\1\155\1\164\1\uffff\1"+
+        "\164\1\145\1\154\1\uffff\1\164\2\172\1\145\1\153\3\172\1\uffff\1"+
+        "\162\1\151\1\172\1\66\1\62\1\64\1\uffff\1\172\2\162\1\uffff\1\172"+
+        "\1\162\1\163\1\uffff\1\165\1\145\1\151\3\147\1\172\2\156\1\164\1"+
+        "\145\1\172\1\uffff\1\144\2\uffff\2\172\1\151\1\uffff\1\172\1\66"+
+        "\1\62\1\64\1\164\1\155\1\163\1\172\1\141\1\164\1\147\1\143\1\146"+
+        "\1\150\1\145\1\70\1\151\2\172\1\66\2\uffff\1\141\1\172\3\uffff\1"+
+        "\164\1\141\1\uffff\1\172\1\70\2\172\1\uffff\1\164\1\151\1\uffff"+
+        "\1\156\1\151\1\154\1\172\1\156\1\145\1\141\1\165\1\uffff\1\165\1"+
+        "\145\1\141\1\170\1\uffff\1\163\2\uffff\1\164\1\uffff\1\172\1\70"+
+        "\4\172\1\164\1\uffff\1\164\3\172\1\165\1\172\1\156\1\172\1\66\1"+
+        "\62\1\64\1\157\2\uffff\1\62\1\64\1\156\1\uffff\1\172\1\154\1\uffff"+
+        "\1\172\2\uffff\1\172\1\164\1\172\1\141\1\164\1\uffff\1\147\1\172"+
+        "\1\164\1\162\1\157\1\156\1\164\3\172\1\uffff\1\172\4\uffff\2\145"+
+        "\3\uffff\1\154\1\uffff\1\164\1\uffff\1\172\1\70\2\172\1\156\3\172"+
+        "\1\uffff\1\172\2\uffff\1\150\1\uffff\1\156\2\172\1\uffff\1\145\1"+
+        "\141\1\172\1\165\1\164\1\151\4\uffff\1\155\3\172\1\uffff\1\172\2"+
+        "\uffff\1\172\4\uffff\1\155\1\172\2\uffff\1\172\1\164\1\uffff\1\163"+
+        "\1\172\1\157\1\172\5\uffff\1\172\2\uffff\1\151\1\172\1\uffff\1\156"+
+        "\2\uffff\1\157\1\uffff\1\172\1\156\1\uffff\1\172\1\uffff";
     static final String DFA11_acceptS =
         "\4\uffff\1\4\1\5\3\uffff\1\12\1\13\5\uffff\1\34\1\uffff\1\36\1\uffff"+
-        "\1\42\1\44\2\uffff\1\50\1\51\12\uffff\1\111\1\112\2\uffff\1\126"+
-        "\1\uffff\1\164\1\171\4\uffff\1\u0080\1\uffff\1\u0081\1\u0083\1\u0086"+
-        "\1\u0087\2\uffff\1\u0081\11\uffff\1\174\1\4\1\5\1\101\1\156\1\7"+
+        "\1\42\1\44\2\uffff\1\50\1\51\11\uffff\1\106\1\107\2\uffff\1\123"+
+        "\2\uffff\1\164\1\171\4\uffff\1\u0080\1\uffff\1\u0081\1\u0083\1\u0086"+
+        "\1\u0087\2\uffff\1\u0081\11\uffff\1\174\1\4\1\5\1\153\1\156\1\7"+
         "\12\uffff\1\12\1\13\6\uffff\1\17\1\33\1\162\1\163\1\165\1\166\1"+
         "\167\1\22\10\uffff\1\34\1\52\1\35\1\36\4\uffff\1\173\1\42\1\44\1"+
-        "\160\1\46\1\161\1\47\1\50\1\51\2\uffff\1\113\1\56\6\uffff\1\102"+
-        "\1\105\1\103\1\uffff\1\u0082\1\111\1\112\2\uffff\1\u0084\1\u0085"+
-        "\1\125\1\126\1\157\1\170\1\164\1\171\1\172\1\177\1\u0080\1\u0083"+
+        "\160\1\46\1\161\1\47\1\50\1\51\2\uffff\1\110\1\56\6\uffff\1\154"+
+        "\1\102\1\uffff\1\u0082\1\106\1\107\2\uffff\1\u0084\1\u0085\1\122"+
+        "\1\123\1\155\1\157\1\170\1\164\1\171\1\172\1\177\1\u0080\1\u0083"+
         "\1\u0086\11\uffff\1\62\2\uffff\1\175\30\uffff\1\24\10\uffff\1\72"+
-        "\1\73\1\104\10\uffff\1\121\1\110\14\uffff\1\116\2\uffff\1\176\17"+
-        "\uffff\1\25\3\uffff\1\114\10\uffff\1\32\6\uffff\1\64\3\uffff\1\57"+
+        "\1\73\1\101\10\uffff\1\116\1\105\14\uffff\1\113\2\uffff\1\176\17"+
+        "\uffff\1\25\3\uffff\1\111\10\uffff\1\32\6\uffff\1\64\3\uffff\1\57"+
         "\3\uffff\1\71\14\uffff\1\100\1\uffff\1\43\1\75\3\uffff\1\26\24\uffff"+
-        "\1\23\1\30\2\uffff\1\40\1\74\1\106\2\uffff\1\131\4\uffff\1\152\2"+
-        "\uffff\1\63\10\uffff\1\60\4\uffff\1\53\1\uffff\1\154\1\10\1\uffff"+
-        "\1\136\7\uffff\1\27\14\uffff\1\107\1\155\3\uffff\1\123\2\uffff\1"+
-        "\132\1\uffff\1\133\1\134\5\uffff\1\120\12\uffff\1\137\1\uffff\1"+
-        "\140\1\141\1\11\1\14\2\uffff\1\41\1\70\1\54\1\uffff\1\76\1\uffff"+
-        "\1\143\10\uffff\1\37\1\uffff\1\135\1\55\1\uffff\1\124\3\uffff\1"+
-        "\1\6\uffff\1\65\1\3\1\115\1\142\4\uffff\1\144\1\uffff\1\145\1\146"+
-        "\1\uffff\1\127\1\130\1\67\1\61\2\uffff\1\77\1\153\2\uffff\1\122"+
-        "\4\uffff\1\31\1\150\1\16\1\147\1\45\1\uffff\1\66\1\6\2\uffff\1\20"+
-        "\1\uffff\1\15\1\117\1\uffff\1\151\2\uffff\1\21\1\uffff\1\2";
+        "\1\23\1\30\2\uffff\1\40\1\74\1\103\2\uffff\1\126\4\uffff\1\147\2"+
+        "\uffff\1\63\10\uffff\1\60\4\uffff\1\53\1\uffff\1\151\1\10\1\uffff"+
+        "\1\133\7\uffff\1\27\14\uffff\1\104\1\152\3\uffff\1\120\2\uffff\1"+
+        "\127\1\uffff\1\130\1\131\5\uffff\1\115\12\uffff\1\134\1\uffff\1"+
+        "\135\1\136\1\11\1\14\2\uffff\1\41\1\70\1\54\1\uffff\1\76\1\uffff"+
+        "\1\140\10\uffff\1\37\1\uffff\1\132\1\55\1\uffff\1\121\3\uffff\1"+
+        "\1\6\uffff\1\65\1\3\1\112\1\137\4\uffff\1\141\1\uffff\1\142\1\143"+
+        "\1\uffff\1\124\1\125\1\67\1\61\2\uffff\1\77\1\150\2\uffff\1\117"+
+        "\4\uffff\1\31\1\145\1\16\1\144\1\45\1\uffff\1\66\1\6\2\uffff\1\20"+
+        "\1\uffff\1\15\1\114\1\uffff\1\146\2\uffff\1\21\1\uffff\1\2";
     static final String DFA11_specialS =
-        "\1\0\42\uffff\1\1\u01c3\uffff}>";
+        "\1\0\41\uffff\1\1\u01c4\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\11\65\2\64\2\65\1\64\22\65\1\64\1\51\1\43\2\65\1\52\1\42\1"+
-            "\53\1\30\1\31\1\20\1\22\1\25\1\21\1\14\1\47\1\60\1\57\10\60"+
+            "\11\65\2\64\2\65\1\64\22\65\1\64\1\51\1\42\2\65\1\52\1\50\1"+
+            "\53\1\30\1\31\1\20\1\22\1\25\1\21\1\14\1\46\1\60\1\57\10\60"+
             "\1\33\1\24\1\26\1\6\1\27\2\65\4\62\1\56\25\62\1\11\1\65\1\12"+
-            "\1\50\1\61\1\65\1\32\1\15\1\2\1\40\1\3\1\13\1\36\1\62\1\23\1"+
+            "\1\47\1\61\1\65\1\32\1\15\1\2\1\40\1\3\1\13\1\36\1\62\1\23\1"+
             "\55\1\62\1\37\1\17\1\54\1\62\1\1\1\62\1\35\1\10\1\16\1\7\1\34"+
-            "\1\46\3\62\1\4\1\41\1\5\55\65\1\44\1\65\1\63\15\65\1\45\uff44"+
+            "\1\45\3\62\1\4\1\41\1\5\55\65\1\43\1\65\1\63\15\65\1\44\uff44"+
             "\65",
             "\1\66\20\uffff\1\67",
             "\1\73\6\uffff\1\72\6\uffff\1\71",
@@ -4429,13 +4429,13 @@ public class InternalDconfigLexer extends Lexer {
             "\1\u0082",
             "\1\u0083\11\uffff\1\u0084",
             "\1\u0085",
-            "\1\u0087",
-            "\42\u0089\1\u0088\uffdd\u0089",
+            "\42\u0088\1\u0087\uffdd\u0088",
             "",
             "",
-            "\1\u008d\6\uffff\1\u008c",
-            "\1\u008e\4\uffff\1\u008f",
+            "\1\u008c\6\uffff\1\u008b",
+            "\1\u008d\4\uffff\1\u008e",
             "",
+            "\1\u0091",
             "\1\u0092",
             "",
             "",
@@ -4532,13 +4532,13 @@ public class InternalDconfigLexer extends Lexer {
             "\12\70\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
             "",
             "",
-            "",
             "\1\u00d5",
             "",
             "",
             "",
             "\1\u00d6",
             "\1\u00d7",
+            "",
             "",
             "",
             "",
@@ -4993,19 +4993,19 @@ public class InternalDconfigLexer extends Lexer {
 
                         else if ( (LA11_0=='|') ) {s = 33;}
 
-                        else if ( (LA11_0=='&') ) {s = 34;}
+                        else if ( (LA11_0=='\"') ) {s = 34;}
 
-                        else if ( (LA11_0=='\"') ) {s = 35;}
+                        else if ( (LA11_0=='\u00AB') ) {s = 35;}
 
-                        else if ( (LA11_0=='\u00AB') ) {s = 36;}
+                        else if ( (LA11_0=='\u00BB') ) {s = 36;}
 
-                        else if ( (LA11_0=='\u00BB') ) {s = 37;}
+                        else if ( (LA11_0=='w') ) {s = 37;}
 
-                        else if ( (LA11_0=='w') ) {s = 38;}
+                        else if ( (LA11_0=='/') ) {s = 38;}
 
-                        else if ( (LA11_0=='/') ) {s = 39;}
+                        else if ( (LA11_0=='^') ) {s = 39;}
 
-                        else if ( (LA11_0=='^') ) {s = 40;}
+                        else if ( (LA11_0=='&') ) {s = 40;}
 
                         else if ( (LA11_0=='!') ) {s = 41;}
 
@@ -5036,12 +5036,12 @@ public class InternalDconfigLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA11_35 = input.LA(1);
+                        int LA11_34 = input.LA(1);
 
                         s = -1;
-                        if ( (LA11_35=='\"') ) {s = 136;}
+                        if ( (LA11_34=='\"') ) {s = 135;}
 
-                        else if ( ((LA11_35>='\u0000' && LA11_35<='!')||(LA11_35>='#' && LA11_35<='\uFFFF')) ) {s = 137;}
+                        else if ( ((LA11_34>='\u0000' && LA11_34<='!')||(LA11_34>='#' && LA11_34<='\uFFFF')) ) {s = 136;}
 
                         else s = 53;
 

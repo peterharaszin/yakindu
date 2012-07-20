@@ -1005,12 +1005,12 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue casePowerExpression(PowerExpression powerExpression) {
-			if (powerExpression.getOperand() == null || powerExpression.getExponent() == null) {
+			if (powerExpression.getLeftOperand() == null || powerExpression.getRightOperand() == null) {
 				return InvalidValue.SINGLETON;
 			}
 			
-			IValue operandValue = evaluate(powerExpression.getOperand());
-			IValue exponentValue = evaluate(powerExpression.getExponent());
+			IValue operandValue = evaluate(powerExpression.getLeftOperand());
+			IValue exponentValue = evaluate(powerExpression.getRightOperand());
 
 			if (operandValue instanceof InvalidValue || exponentValue instanceof InvalidValue) {
 				return InvalidValue.SINGLETON;
@@ -1020,14 +1020,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			if (!(operandValue.getDataType() instanceof NumericType)) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power operand must be numeric", powerExpression.getOperand()));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power operand must be numeric", powerExpression.getLeftOperand()));
 				}
 				failed = true;
 			}
 
 			if (!(exponentValue.getDataType() instanceof NumericType)) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be numeric", powerExpression.getExponent()));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be numeric", powerExpression.getRightOperand()));
 				}
 				failed = true;
 			}
@@ -1045,14 +1045,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			if (!dimensionlessUnit.isEquivalentTo(operandType.getUnit(), true) && !constantIntegerExponent) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be integer constant if operand is dimensional", powerExpression.getExponent()));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be integer constant if operand is dimensional", powerExpression.getRightOperand()));
 				}
 				failed = true;
 			}
 
 			if (!dimensionlessUnit.isEquivalentTo(exponentType.getUnit(), true)) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be dimensionless", powerExpression.getExponent()));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be dimensionless", powerExpression.getRightOperand()));
 				}
 				failed = true;
 			}

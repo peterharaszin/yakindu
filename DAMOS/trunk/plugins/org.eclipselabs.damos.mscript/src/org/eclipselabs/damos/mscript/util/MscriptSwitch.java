@@ -408,9 +408,18 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.BINARY_EXPRESSION: {
+				BinaryExpression binaryExpression = (BinaryExpression)theEObject;
+				T result = caseBinaryExpression(binaryExpression);
+				if (result == null) result = caseExpression(binaryExpression);
+				if (result == null) result = caseEvaluable(binaryExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.IMPLIES_EXPRESSION: {
 				ImpliesExpression impliesExpression = (ImpliesExpression)theEObject;
 				T result = caseImpliesExpression(impliesExpression);
+				if (result == null) result = caseBinaryExpression(impliesExpression);
 				if (result == null) result = caseExpression(impliesExpression);
 				if (result == null) result = caseEvaluable(impliesExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -419,6 +428,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.LOGICAL_OR_EXPRESSION: {
 				LogicalOrExpression logicalOrExpression = (LogicalOrExpression)theEObject;
 				T result = caseLogicalOrExpression(logicalOrExpression);
+				if (result == null) result = caseBinaryExpression(logicalOrExpression);
 				if (result == null) result = caseExpression(logicalOrExpression);
 				if (result == null) result = caseEvaluable(logicalOrExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -427,6 +437,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.LOGICAL_AND_EXPRESSION: {
 				LogicalAndExpression logicalAndExpression = (LogicalAndExpression)theEObject;
 				T result = caseLogicalAndExpression(logicalAndExpression);
+				if (result == null) result = caseBinaryExpression(logicalAndExpression);
 				if (result == null) result = caseExpression(logicalAndExpression);
 				if (result == null) result = caseEvaluable(logicalAndExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -435,6 +446,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.EQUALITY_EXPRESSION: {
 				EqualityExpression equalityExpression = (EqualityExpression)theEObject;
 				T result = caseEqualityExpression(equalityExpression);
+				if (result == null) result = caseBinaryExpression(equalityExpression);
 				if (result == null) result = caseExpression(equalityExpression);
 				if (result == null) result = caseEvaluable(equalityExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -443,6 +455,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.RELATIONAL_EXPRESSION: {
 				RelationalExpression relationalExpression = (RelationalExpression)theEObject;
 				T result = caseRelationalExpression(relationalExpression);
+				if (result == null) result = caseBinaryExpression(relationalExpression);
 				if (result == null) result = caseExpression(relationalExpression);
 				if (result == null) result = caseEvaluable(relationalExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -459,6 +472,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.ADDITIVE_EXPRESSION: {
 				AdditiveExpression additiveExpression = (AdditiveExpression)theEObject;
 				T result = caseAdditiveExpression(additiveExpression);
+				if (result == null) result = caseBinaryExpression(additiveExpression);
 				if (result == null) result = caseExpression(additiveExpression);
 				if (result == null) result = caseEvaluable(additiveExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -467,6 +481,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.MULTIPLICATIVE_EXPRESSION: {
 				MultiplicativeExpression multiplicativeExpression = (MultiplicativeExpression)theEObject;
 				T result = caseMultiplicativeExpression(multiplicativeExpression);
+				if (result == null) result = caseBinaryExpression(multiplicativeExpression);
 				if (result == null) result = caseExpression(multiplicativeExpression);
 				if (result == null) result = caseEvaluable(multiplicativeExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -475,6 +490,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.POWER_EXPRESSION: {
 				PowerExpression powerExpression = (PowerExpression)theEObject;
 				T result = casePowerExpression(powerExpression);
+				if (result == null) result = caseBinaryExpression(powerExpression);
 				if (result == null) result = caseExpression(powerExpression);
 				if (result == null) result = caseEvaluable(powerExpression);
 				if (result == null) result = defaultCase(theEObject);
@@ -485,14 +501,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseUnaryExpression(unaryExpression);
 				if (result == null) result = caseExpression(unaryExpression);
 				if (result == null) result = caseEvaluable(unaryExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.POSTFIX_EXPRESSION: {
-				PostfixExpression postfixExpression = (PostfixExpression)theEObject;
-				T result = casePostfixExpression(postfixExpression);
-				if (result == null) result = caseExpression(postfixExpression);
-				if (result == null) result = caseEvaluable(postfixExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1626,6 +1634,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryExpression(BinaryExpression object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Implies Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1772,21 +1795,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUnaryExpression(UnaryExpression object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Postfix Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Postfix Expression</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePostfixExpression(PostfixExpression object) {
 		return null;
 	}
 

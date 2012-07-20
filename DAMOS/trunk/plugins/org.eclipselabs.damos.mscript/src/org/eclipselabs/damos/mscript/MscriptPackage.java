@@ -1737,14 +1737,14 @@ public interface MscriptPackage extends EPackage {
 	int RANGE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ImpliesExpressionImpl <em>Implies Expression</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.ImpliesExpressionImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getImpliesExpression()
+	 * @see org.eclipselabs.damos.mscript.impl.BinaryExpressionImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBinaryExpression()
 	 * @generated
 	 */
-	int IMPLIES_EXPRESSION = 45;
+	int BINARY_EXPRESSION = 45;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1753,7 +1753,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLIES_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int BINARY_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -1762,7 +1771,53 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLIES_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
+	int BINARY_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Binary Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ImpliesExpressionImpl <em>Implies Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.ImpliesExpressionImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getImpliesExpression()
+	 * @generated
+	 */
+	int IMPLIES_EXPRESSION = 46;
+
+	/**
+	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLIES_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLIES_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLIES_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Implies Expression</em>' class.
@@ -1771,7 +1826,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLIES_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int IMPLIES_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LogicalOrExpressionImpl <em>Logical Or Expression</em>}' class.
@@ -1781,7 +1836,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLogicalOrExpression()
 	 * @generated
 	 */
-	int LOGICAL_OR_EXPRESSION = 46;
+	int LOGICAL_OR_EXPRESSION = 47;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1790,7 +1845,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_OR_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int LOGICAL_OR_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGICAL_OR_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -1799,7 +1863,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_OR_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
+	int LOGICAL_OR_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Logical Or Expression</em>' class.
@@ -1808,7 +1872,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_OR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int LOGICAL_OR_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LogicalAndExpressionImpl <em>Logical And Expression</em>}' class.
@@ -1818,7 +1882,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLogicalAndExpression()
 	 * @generated
 	 */
-	int LOGICAL_AND_EXPRESSION = 47;
+	int LOGICAL_AND_EXPRESSION = 48;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1827,7 +1891,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_AND_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int LOGICAL_AND_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGICAL_AND_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -1836,7 +1909,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_AND_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
+	int LOGICAL_AND_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Logical And Expression</em>' class.
@@ -1845,7 +1918,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_AND_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int LOGICAL_AND_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.EqualityExpressionImpl <em>Equality Expression</em>}' class.
@@ -1855,7 +1928,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getEqualityExpression()
 	 * @generated
 	 */
-	int EQUALITY_EXPRESSION = 48;
+	int EQUALITY_EXPRESSION = 49;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1864,7 +1937,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int EQUALITY_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1873,7 +1946,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
+	int EQUALITY_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -1882,7 +1955,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
+	int EQUALITY_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Equality Expression</em>' class.
@@ -1891,7 +1964,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int EQUALITY_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.RelationalExpressionImpl <em>Relational Expression</em>}' class.
@@ -1901,7 +1974,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRelationalExpression()
 	 * @generated
 	 */
-	int RELATIONAL_EXPRESSION = 49;
+	int RELATIONAL_EXPRESSION = 50;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1910,7 +1983,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int RELATIONAL_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1919,7 +1992,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
+	int RELATIONAL_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -1928,7 +2001,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
+	int RELATIONAL_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Relational Expression</em>' class.
@@ -1937,7 +2010,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int RELATIONAL_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.TypeTestExpressionImpl <em>Type Test Expression</em>}' class.
@@ -1947,7 +2020,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTypeTestExpression()
 	 * @generated
 	 */
-	int TYPE_TEST_EXPRESSION = 50;
+	int TYPE_TEST_EXPRESSION = 51;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1984,16 +2057,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAdditiveExpression()
 	 * @generated
 	 */
-	int ADDITIVE_EXPRESSION = 51;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADDITIVE_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 0;
+	int ADDITIVE_EXPRESSION = 52;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -2002,7 +2066,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADDITIVE_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
+	int ADDITIVE_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIVE_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -2011,7 +2084,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADDITIVE_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
+	int ADDITIVE_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Additive Expression</em>' class.
@@ -2020,7 +2093,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADDITIVE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int ADDITIVE_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.MultiplicativeExpressionImpl <em>Multiplicative Expression</em>}' class.
@@ -2030,16 +2103,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getMultiplicativeExpression()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPRESSION = 52;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICATIVE_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 0;
+	int MULTIPLICATIVE_EXPRESSION = 53;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -2048,7 +2112,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICATIVE_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
+	int MULTIPLICATIVE_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICATIVE_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -2057,7 +2130,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICATIVE_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
+	int MULTIPLICATIVE_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicative Expression</em>' class.
@@ -2066,7 +2139,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICATIVE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int MULTIPLICATIVE_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.PowerExpressionImpl <em>Power Expression</em>}' class.
@@ -2076,16 +2149,16 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPowerExpression()
 	 * @generated
 	 */
-	int POWER_EXPRESSION = 53;
+	int POWER_EXPRESSION = 54;
 
 	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference.
+	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POWER_EXPRESSION__OPERAND = EXPRESSION_FEATURE_COUNT + 0;
+	int POWER_EXPRESSION__LEFT_OPERAND = BINARY_EXPRESSION__LEFT_OPERAND;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2094,16 +2167,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POWER_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
+	int POWER_EXPRESSION__OPERATOR = BINARY_EXPRESSION__OPERATOR;
 
 	/**
-	 * The feature id for the '<em><b>Exponent</b></em>' containment reference.
+	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POWER_EXPRESSION__EXPONENT = EXPRESSION_FEATURE_COUNT + 2;
+	int POWER_EXPRESSION__RIGHT_OPERAND = BINARY_EXPRESSION__RIGHT_OPERAND;
 
 	/**
 	 * The number of structural features of the '<em>Power Expression</em>' class.
@@ -2112,7 +2185,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POWER_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int POWER_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnaryExpressionImpl <em>Unary Expression</em>}' class.
@@ -2122,7 +2195,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnaryExpression()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION = 54;
+	int UNARY_EXPRESSION = 55;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2150,43 +2223,6 @@ public interface MscriptPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.PostfixExpressionImpl <em>Postfix Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.PostfixExpressionImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPostfixExpression()
-	 * @generated
-	 */
-	int POSTFIX_EXPRESSION = 55;
-
-	/**
-	 * The feature id for the '<em><b>Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POSTFIX_EXPRESSION__OPERAND = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POSTFIX_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Postfix Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POSTFIX_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.FeatureCallImpl <em>Feature Call</em>}' class.
@@ -5272,6 +5308,49 @@ public interface MscriptPackage extends EPackage {
 	EReference getRangeExpression_Operands();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.BinaryExpression <em>Binary Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Binary Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.BinaryExpression
+	 * @generated
+	 */
+	EClass getBinaryExpression();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.BinaryExpression#getLeftOperand <em>Left Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
+	 * @see org.eclipselabs.damos.mscript.BinaryExpression#getLeftOperand()
+	 * @see #getBinaryExpression()
+	 * @generated
+	 */
+	EReference getBinaryExpression_LeftOperand();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.BinaryExpression#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.eclipselabs.damos.mscript.BinaryExpression#getOperator()
+	 * @see #getBinaryExpression()
+	 * @generated
+	 */
+	EAttribute getBinaryExpression_Operator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.BinaryExpression#getRightOperand <em>Right Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
+	 * @see org.eclipselabs.damos.mscript.BinaryExpression#getRightOperand()
+	 * @see #getBinaryExpression()
+	 * @generated
+	 */
+	EReference getBinaryExpression_RightOperand();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ImpliesExpression <em>Implies Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5280,28 +5359,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getImpliesExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ImpliesExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.ImpliesExpression#getLeftOperand()
-	 * @see #getImpliesExpression()
-	 * @generated
-	 */
-	EReference getImpliesExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ImpliesExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.ImpliesExpression#getRightOperand()
-	 * @see #getImpliesExpression()
-	 * @generated
-	 */
-	EReference getImpliesExpression_RightOperand();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LogicalOrExpression <em>Logical Or Expression</em>}'.
@@ -5314,28 +5371,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getLogicalOrExpression();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LogicalOrExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.LogicalOrExpression#getLeftOperand()
-	 * @see #getLogicalOrExpression()
-	 * @generated
-	 */
-	EReference getLogicalOrExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LogicalOrExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.LogicalOrExpression#getRightOperand()
-	 * @see #getLogicalOrExpression()
-	 * @generated
-	 */
-	EReference getLogicalOrExpression_RightOperand();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LogicalAndExpression <em>Logical And Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5344,28 +5379,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLogicalAndExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LogicalAndExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.LogicalAndExpression#getLeftOperand()
-	 * @see #getLogicalAndExpression()
-	 * @generated
-	 */
-	EReference getLogicalAndExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LogicalAndExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.LogicalAndExpression#getRightOperand()
-	 * @see #getLogicalAndExpression()
-	 * @generated
-	 */
-	EReference getLogicalAndExpression_RightOperand();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.EqualityExpression <em>Equality Expression</em>}'.
@@ -5378,39 +5391,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getEqualityExpression();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.EqualityExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.EqualityExpression#getLeftOperand()
-	 * @see #getEqualityExpression()
-	 * @generated
-	 */
-	EReference getEqualityExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.EqualityExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.EqualityExpression#getOperator()
-	 * @see #getEqualityExpression()
-	 * @generated
-	 */
-	EAttribute getEqualityExpression_Operator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.EqualityExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.EqualityExpression#getRightOperand()
-	 * @see #getEqualityExpression()
-	 * @generated
-	 */
-	EReference getEqualityExpression_RightOperand();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.RelationalExpression <em>Relational Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5419,39 +5399,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRelationalExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.RelationalExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.RelationalExpression#getLeftOperand()
-	 * @see #getRelationalExpression()
-	 * @generated
-	 */
-	EReference getRelationalExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.RelationalExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.RelationalExpression#getOperator()
-	 * @see #getRelationalExpression()
-	 * @generated
-	 */
-	EAttribute getRelationalExpression_Operator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.RelationalExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.RelationalExpression#getRightOperand()
-	 * @see #getRelationalExpression()
-	 * @generated
-	 */
-	EReference getRelationalExpression_RightOperand();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.TypeTestExpression <em>Type Test Expression</em>}'.
@@ -5496,39 +5443,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getAdditiveExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.AdditiveExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.AdditiveExpression#getOperator()
-	 * @see #getAdditiveExpression()
-	 * @generated
-	 */
-	EAttribute getAdditiveExpression_Operator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.AdditiveExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.AdditiveExpression#getLeftOperand()
-	 * @see #getAdditiveExpression()
-	 * @generated
-	 */
-	EReference getAdditiveExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.AdditiveExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.AdditiveExpression#getRightOperand()
-	 * @see #getAdditiveExpression()
-	 * @generated
-	 */
-	EReference getAdditiveExpression_RightOperand();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.MultiplicativeExpression <em>Multiplicative Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5539,39 +5453,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getMultiplicativeExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.MultiplicativeExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiplicativeExpression#getOperator()
-	 * @see #getMultiplicativeExpression()
-	 * @generated
-	 */
-	EAttribute getMultiplicativeExpression_Operator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.MultiplicativeExpression#getLeftOperand <em>Left Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiplicativeExpression#getLeftOperand()
-	 * @see #getMultiplicativeExpression()
-	 * @generated
-	 */
-	EReference getMultiplicativeExpression_LeftOperand();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.MultiplicativeExpression#getRightOperand <em>Right Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.MultiplicativeExpression#getRightOperand()
-	 * @see #getMultiplicativeExpression()
-	 * @generated
-	 */
-	EReference getMultiplicativeExpression_RightOperand();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.PowerExpression <em>Power Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5580,39 +5461,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPowerExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.PowerExpression#getOperand <em>Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.PowerExpression#getOperand()
-	 * @see #getPowerExpression()
-	 * @generated
-	 */
-	EReference getPowerExpression_Operand();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.PowerExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.PowerExpression#getOperator()
-	 * @see #getPowerExpression()
-	 * @generated
-	 */
-	EAttribute getPowerExpression_Operator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.PowerExpression#getExponent <em>Exponent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Exponent</em>'.
-	 * @see org.eclipselabs.damos.mscript.PowerExpression#getExponent()
-	 * @see #getPowerExpression()
-	 * @generated
-	 */
-	EReference getPowerExpression_Exponent();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnaryExpression <em>Unary Expression</em>}'.
@@ -5645,38 +5493,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUnaryExpression_Operand();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.PostfixExpression <em>Postfix Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Postfix Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.PostfixExpression
-	 * @generated
-	 */
-	EClass getPostfixExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.PostfixExpression#getOperand <em>Operand</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operand</em>'.
-	 * @see org.eclipselabs.damos.mscript.PostfixExpression#getOperand()
-	 * @see #getPostfixExpression()
-	 * @generated
-	 */
-	EReference getPostfixExpression_Operand();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.PostfixExpression#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.PostfixExpression#getOperator()
-	 * @see #getPostfixExpression()
-	 * @generated
-	 */
-	EAttribute getPostfixExpression_Operator();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.FeatureCall <em>Feature Call</em>}'.
@@ -8045,6 +7861,40 @@ public interface MscriptPackage extends EPackage {
 		EReference RANGE_EXPRESSION__OPERANDS = eINSTANCE.getRangeExpression_Operands();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.BinaryExpressionImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBinaryExpression()
+		 * @generated
+		 */
+		EClass BINARY_EXPRESSION = eINSTANCE.getBinaryExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_EXPRESSION__LEFT_OPERAND = eINSTANCE.getBinaryExpression_LeftOperand();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BINARY_EXPRESSION__OPERATOR = eINSTANCE.getBinaryExpression_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getBinaryExpression_RightOperand();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ImpliesExpressionImpl <em>Implies Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8053,22 +7903,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IMPLIES_EXPRESSION = eINSTANCE.getImpliesExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IMPLIES_EXPRESSION__LEFT_OPERAND = eINSTANCE.getImpliesExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IMPLIES_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getImpliesExpression_RightOperand();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LogicalOrExpressionImpl <em>Logical Or Expression</em>}' class.
@@ -8081,22 +7915,6 @@ public interface MscriptPackage extends EPackage {
 		EClass LOGICAL_OR_EXPRESSION = eINSTANCE.getLogicalOrExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_OR_EXPRESSION__LEFT_OPERAND = eINSTANCE.getLogicalOrExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_OR_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getLogicalOrExpression_RightOperand();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LogicalAndExpressionImpl <em>Logical And Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8105,22 +7923,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOGICAL_AND_EXPRESSION = eINSTANCE.getLogicalAndExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_AND_EXPRESSION__LEFT_OPERAND = eINSTANCE.getLogicalAndExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_AND_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getLogicalAndExpression_RightOperand();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.EqualityExpressionImpl <em>Equality Expression</em>}' class.
@@ -8133,30 +7935,6 @@ public interface MscriptPackage extends EPackage {
 		EClass EQUALITY_EXPRESSION = eINSTANCE.getEqualityExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EQUALITY_EXPRESSION__LEFT_OPERAND = eINSTANCE.getEqualityExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EQUALITY_EXPRESSION__OPERATOR = eINSTANCE.getEqualityExpression_Operator();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EQUALITY_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getEqualityExpression_RightOperand();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.RelationalExpressionImpl <em>Relational Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8165,30 +7943,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RELATIONAL_EXPRESSION = eINSTANCE.getRelationalExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RELATIONAL_EXPRESSION__LEFT_OPERAND = eINSTANCE.getRelationalExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RELATIONAL_EXPRESSION__OPERATOR = eINSTANCE.getRelationalExpression_Operator();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RELATIONAL_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getRelationalExpression_RightOperand();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.TypeTestExpressionImpl <em>Type Test Expression</em>}' class.
@@ -8227,30 +7981,6 @@ public interface MscriptPackage extends EPackage {
 		EClass ADDITIVE_EXPRESSION = eINSTANCE.getAdditiveExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ADDITIVE_EXPRESSION__OPERATOR = eINSTANCE.getAdditiveExpression_Operator();
-
-		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ADDITIVE_EXPRESSION__LEFT_OPERAND = eINSTANCE.getAdditiveExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ADDITIVE_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getAdditiveExpression_RightOperand();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.MultiplicativeExpressionImpl <em>Multiplicative Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8261,30 +7991,6 @@ public interface MscriptPackage extends EPackage {
 		EClass MULTIPLICATIVE_EXPRESSION = eINSTANCE.getMultiplicativeExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MULTIPLICATIVE_EXPRESSION__OPERATOR = eINSTANCE.getMultiplicativeExpression_Operator();
-
-		/**
-		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MULTIPLICATIVE_EXPRESSION__LEFT_OPERAND = eINSTANCE.getMultiplicativeExpression_LeftOperand();
-
-		/**
-		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MULTIPLICATIVE_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getMultiplicativeExpression_RightOperand();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.PowerExpressionImpl <em>Power Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8293,30 +7999,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass POWER_EXPRESSION = eINSTANCE.getPowerExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference POWER_EXPRESSION__OPERAND = eINSTANCE.getPowerExpression_Operand();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute POWER_EXPRESSION__OPERATOR = eINSTANCE.getPowerExpression_Operator();
-
-		/**
-		 * The meta object literal for the '<em><b>Exponent</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference POWER_EXPRESSION__EXPONENT = eINSTANCE.getPowerExpression_Exponent();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnaryExpressionImpl <em>Unary Expression</em>}' class.
@@ -8343,32 +8025,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UNARY_EXPRESSION__OPERAND = eINSTANCE.getUnaryExpression_Operand();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.PostfixExpressionImpl <em>Postfix Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.PostfixExpressionImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPostfixExpression()
-		 * @generated
-		 */
-		EClass POSTFIX_EXPRESSION = eINSTANCE.getPostfixExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference POSTFIX_EXPRESSION__OPERAND = eINSTANCE.getPostfixExpression_Operand();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute POSTFIX_EXPRESSION__OPERATOR = eINSTANCE.getPostfixExpression_Operator();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.FeatureCallImpl <em>Feature Call</em>}' class.

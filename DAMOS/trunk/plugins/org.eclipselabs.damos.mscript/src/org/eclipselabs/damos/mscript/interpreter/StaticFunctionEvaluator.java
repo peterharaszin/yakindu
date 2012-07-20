@@ -36,8 +36,8 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
-import org.eclipselabs.damos.mscript.PostfixExpression;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
+import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
@@ -186,8 +186,8 @@ public class StaticFunctionEvaluator {
 				
 				boolean derivative = false;
 				Expression leftHandSideExpression = equationDescriptor.getLeftHandSide().getExpression();
-				if (leftHandSideExpression instanceof PostfixExpression) {
-					leftHandSideExpression = ((PostfixExpression) leftHandSideExpression).getOperand();
+				if (leftHandSideExpression instanceof UnaryExpression && ((UnaryExpression) leftHandSideExpression).getOperator() == OperatorKind.DERIVATIVE) {
+					leftHandSideExpression = ((UnaryExpression) leftHandSideExpression).getOperand();
 					derivative = true;
 				}
 				VariableReference variableReference = (VariableReference) leftHandSideExpression;
@@ -253,8 +253,8 @@ public class StaticFunctionEvaluator {
 				}
 				if (defined) {
 					Expression expression = equationDescriptor.getLeftHandSide().getExpression();
-					if (expression instanceof PostfixExpression) {
-						PostfixExpression postfixExpression = (PostfixExpression) expression;
+					if (expression instanceof UnaryExpression) {
+						UnaryExpression postfixExpression = (UnaryExpression) expression;
 						if (postfixExpression.getOperator() == OperatorKind.DERIVATIVE) {
 							expression = postfixExpression.getOperand();
 						}

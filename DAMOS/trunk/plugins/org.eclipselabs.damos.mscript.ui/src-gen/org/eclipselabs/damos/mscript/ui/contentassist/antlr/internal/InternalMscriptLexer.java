@@ -132,10 +132,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:11:7: ( '\\'' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:11:9: '\\''
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:11:7: ( '=>' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:11:9: '=>'
             {
-            match('\''); 
+            match("=>"); 
+
 
             }
 
@@ -152,10 +153,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:12:7: ( '+' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:12:9: '+'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:12:7: ( '||' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:12:9: '||'
             {
-            match('+'); 
+            match("||"); 
+
 
             }
 
@@ -172,10 +174,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:13:7: ( '-' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:13:9: '-'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:13:7: ( '&&' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:13:9: '&&'
             {
-            match('-'); 
+            match("&&"); 
+
 
             }
 
@@ -192,11 +195,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14:7: ( 'false' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14:9: 'false'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14:7: ( '\\'' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:14:9: '\\''
             {
-            match("false"); 
-
+            match('\''); 
 
             }
 
@@ -213,11 +215,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15:7: ( '.*' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15:9: '.*'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15:7: ( '+' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:15:9: '+'
             {
-            match(".*"); 
-
+            match('+'); 
 
             }
 
@@ -234,11 +235,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16:7: ( 'stateful' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16:9: 'stateful'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16:7: ( '-' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:16:9: '-'
             {
-            match("stateful"); 
-
+            match('-'); 
 
             }
 
@@ -255,10 +255,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17:7: ( 'continuous' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17:9: 'continuous'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17:7: ( 'false' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:17:9: 'false'
             {
-            match("continuous"); 
+            match("false"); 
 
 
             }
@@ -276,10 +276,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18:7: ( 'info' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18:9: 'info'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18:7: ( '.*' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18:9: '.*'
             {
-            match("info"); 
+            match(".*"); 
 
 
             }
@@ -297,10 +297,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19:7: ( 'warning' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19:9: 'warning'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19:7: ( 'stateful' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19:9: 'stateful'
             {
-            match("warning"); 
+            match("stateful"); 
 
 
             }
@@ -318,10 +318,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20:7: ( 'error' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20:9: 'error'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20:7: ( 'continuous' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:20:9: 'continuous'
             {
-            match("error"); 
+            match("continuous"); 
 
 
             }
@@ -339,10 +339,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21:7: ( 'fatal' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21:9: 'fatal'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21:7: ( 'info' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:21:9: 'info'
             {
-            match("fatal"); 
+            match("info"); 
 
 
             }
@@ -360,10 +360,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22:7: ( '==' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22:9: '=='
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22:7: ( 'warning' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:22:9: 'warning'
             {
-            match("=="); 
+            match("warning"); 
 
 
             }
@@ -381,10 +381,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23:7: ( '!=' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23:9: '!='
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23:7: ( 'error' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23:9: 'error'
             {
-            match("!="); 
+            match("error"); 
 
 
             }
@@ -402,10 +402,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:24:7: ( '<' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:24:9: '<'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:24:7: ( 'fatal' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:24:9: 'fatal'
             {
-            match('<'); 
+            match("fatal"); 
+
 
             }
 
@@ -422,10 +423,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:25:7: ( '<=' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:25:9: '<='
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:25:7: ( '==' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:25:9: '=='
             {
-            match("<="); 
+            match("=="); 
 
 
             }
@@ -443,10 +444,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:26:7: ( '>' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:26:9: '>'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:26:7: ( '!=' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:26:9: '!='
             {
-            match('>'); 
+            match("!="); 
+
 
             }
 
@@ -463,11 +465,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:27:7: ( '>=' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:27:9: '>='
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:27:7: ( '<' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:27:9: '<'
             {
-            match(">="); 
-
+            match('<'); 
 
             }
 
@@ -484,10 +485,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:28:7: ( '.+' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:28:9: '.+'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:28:7: ( '<=' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:28:9: '<='
             {
-            match(".+"); 
+            match("<="); 
 
 
             }
@@ -505,11 +506,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:29:7: ( '.-' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:29:9: '.-'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:29:7: ( '>' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:29:9: '>'
             {
-            match(".-"); 
-
+            match('>'); 
 
             }
 
@@ -526,10 +526,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:30:7: ( '*' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:30:9: '*'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:30:7: ( '>=' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:30:9: '>='
             {
-            match('*'); 
+            match(">="); 
+
 
             }
 
@@ -546,10 +547,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:31:7: ( '/' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:31:9: '/'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:31:7: ( '.+' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:31:9: '.+'
             {
-            match('/'); 
+            match(".+"); 
+
 
             }
 
@@ -566,10 +568,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:32:7: ( '%' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:32:9: '%'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:32:7: ( '.-' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:32:9: '.-'
             {
-            match('%'); 
+            match(".-"); 
+
 
             }
 
@@ -586,11 +589,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:33:7: ( './' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:33:9: './'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:33:7: ( '*' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:33:9: '*'
             {
-            match("./"); 
-
+            match('*'); 
 
             }
 
@@ -607,11 +609,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:34:7: ( '.%' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:34:9: '.%'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:34:7: ( '/' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:34:9: '/'
             {
-            match(".%"); 
-
+            match('/'); 
 
             }
 
@@ -628,10 +629,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:35:7: ( '^' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:35:9: '^'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:35:7: ( '%' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:35:9: '%'
             {
-            match('^'); 
+            match('%'); 
 
             }
 
@@ -648,10 +649,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:36:7: ( '.^' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:36:9: '.^'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:36:7: ( './' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:36:9: './'
             {
-            match(".^"); 
+            match("./"); 
 
 
             }
@@ -669,10 +670,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:37:7: ( '!' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:37:9: '!'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:37:7: ( '.%' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:37:9: '.%'
             {
-            match('!'); 
+            match(".%"); 
+
 
             }
 
@@ -689,11 +691,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:38:7: ( 'package' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:38:9: 'package'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:38:7: ( '^' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:38:9: '^'
             {
-            match("package"); 
-
+            match('^'); 
 
             }
 
@@ -710,10 +711,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:39:7: ( 'import' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:39:9: 'import'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:39:7: ( '.^' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:39:9: '.^'
             {
-            match("import"); 
+            match(".^"); 
 
 
             }
@@ -731,11 +732,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:40:7: ( 'type' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:40:9: 'type'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:40:7: ( '!' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:40:9: '!'
             {
-            match("type"); 
-
+            match('!'); 
 
             }
 
@@ -752,10 +752,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:41:7: ( '=' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:41:9: '='
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:41:7: ( 'package' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:41:9: 'package'
             {
-            match('='); 
+            match("package"); 
+
 
             }
 
@@ -772,10 +773,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:42:7: ( 'struct' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:42:9: 'struct'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:42:7: ( 'import' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:42:9: 'import'
             {
-            match("struct"); 
+            match("import"); 
 
 
             }
@@ -793,10 +794,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:43:7: ( '{' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:43:9: '{'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:43:7: ( 'type' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:43:9: 'type'
             {
-            match('{'); 
+            match("type"); 
+
 
             }
 
@@ -813,10 +815,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:44:7: ( ';' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:44:9: ';'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:44:7: ( '=' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:44:9: '='
             {
-            match(';'); 
+            match('='); 
 
             }
 
@@ -833,10 +835,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:45:7: ( '}' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:45:9: '}'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:45:7: ( 'struct' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:45:9: 'struct'
             {
-            match('}'); 
+            match("struct"); 
+
 
             }
 
@@ -853,11 +856,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:46:7: ( 'enum' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:46:9: 'enum'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:46:7: ( '{' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:46:9: '{'
             {
-            match("enum"); 
-
+            match('{'); 
 
             }
 
@@ -874,10 +876,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:47:7: ( ',' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:47:9: ','
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:47:7: ( ';' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:47:9: ';'
             {
-            match(','); 
+            match(';'); 
 
             }
 
@@ -894,11 +896,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:48:7: ( 'function' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:48:9: 'function'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:48:7: ( '}' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:48:9: '}'
             {
-            match("function"); 
-
+            match('}'); 
 
             }
 
@@ -915,10 +916,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:49:7: ( '(' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:49:9: '('
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:49:7: ( 'enum' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:49:9: 'enum'
             {
-            match('('); 
+            match("enum"); 
+
 
             }
 
@@ -935,10 +937,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:50:7: ( ')' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:50:9: ')'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:50:7: ( ',' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:50:9: ','
             {
-            match(')'); 
+            match(','); 
 
             }
 
@@ -955,10 +957,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:51:7: ( '->' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:51:9: '->'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:51:7: ( 'function' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:51:9: 'function'
             {
-            match("->"); 
+            match("function"); 
 
 
             }
@@ -976,11 +978,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:52:7: ( 'check' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:52:9: 'check'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:52:7: ( '(' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:52:9: '('
             {
-            match("check"); 
-
+            match('('); 
 
             }
 
@@ -997,11 +998,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:53:7: ( 'assert' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:53:9: 'assert'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:53:7: ( ')' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:53:9: ')'
             {
-            match("assert"); 
-
+            match(')'); 
 
             }
 
@@ -1018,10 +1018,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:54:7: ( ':' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:54:9: ':'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:54:7: ( '->' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:54:9: '->'
             {
-            match(':'); 
+            match("->"); 
+
 
             }
 
@@ -1038,10 +1039,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:55:7: ( 'var' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:55:9: 'var'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:55:7: ( 'check' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:55:9: 'check'
             {
-            match("var"); 
+            match("check"); 
 
 
             }
@@ -1059,10 +1060,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:56:7: ( 'const' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:56:9: 'const'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:56:7: ( 'assert' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:56:9: 'assert'
             {
-            match("const"); 
+            match("assert"); 
 
 
             }
@@ -1080,11 +1081,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:57:7: ( 'eq' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:57:9: 'eq'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:57:7: ( ':' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:57:9: ':'
             {
-            match("eq"); 
-
+            match(':'); 
 
             }
 
@@ -1101,10 +1101,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:58:7: ( 'real' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:58:9: 'real'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:58:7: ( 'var' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:58:9: 'var'
             {
-            match("real"); 
+            match("var"); 
 
 
             }
@@ -1122,10 +1122,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:59:7: ( 'int' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:59:9: 'int'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:59:7: ( 'const' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:59:9: 'const'
             {
-            match("int"); 
+            match("const"); 
 
 
             }
@@ -1143,10 +1143,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:60:7: ( 'complex' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:60:9: 'complex'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:60:7: ( 'eq' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:60:9: 'eq'
             {
-            match("complex"); 
+            match("eq"); 
 
 
             }
@@ -1164,10 +1164,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:61:7: ( 'gaussian' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:61:9: 'gaussian'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:61:7: ( 'real' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:61:9: 'real'
             {
-            match("gaussian"); 
+            match("real"); 
 
 
             }
@@ -1185,10 +1185,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:62:7: ( 'boolean' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:62:9: 'boolean'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:62:7: ( 'int' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:62:9: 'int'
             {
-            match("boolean"); 
+            match("int"); 
 
 
             }
@@ -1206,10 +1206,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:63:7: ( 'string' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:63:9: 'string'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:63:7: ( 'complex' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:63:9: 'complex'
             {
-            match("string"); 
+            match("complex"); 
 
 
             }
@@ -1227,10 +1227,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:64:7: ( '[' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:64:9: '['
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:64:7: ( 'gaussian' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:64:9: 'gaussian'
             {
-            match('['); 
+            match("gaussian"); 
+
 
             }
 
@@ -1247,10 +1248,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:65:7: ( ']' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:65:9: ']'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:65:7: ( 'boolean' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:65:9: 'boolean'
             {
-            match(']'); 
+            match("boolean"); 
+
 
             }
 
@@ -1267,10 +1269,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:66:7: ( 'let' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:66:9: 'let'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:66:7: ( 'string' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:66:9: 'string'
             {
-            match("let"); 
+            match("string"); 
 
 
             }
@@ -1288,11 +1290,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:67:7: ( 'in' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:67:9: 'in'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:67:7: ( '[' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:67:9: '['
             {
-            match("in"); 
-
+            match('['); 
 
             }
 
@@ -1309,11 +1310,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:68:7: ( 'if' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:68:9: 'if'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:68:7: ( ']' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:68:9: ']'
             {
-            match("if"); 
-
+            match(']'); 
 
             }
 
@@ -1330,10 +1330,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:69:7: ( 'then' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:69:9: 'then'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:69:7: ( 'let' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:69:9: 'let'
             {
-            match("then"); 
+            match("let"); 
 
 
             }
@@ -1351,10 +1351,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:70:7: ( 'else' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:70:9: 'else'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:70:7: ( 'in' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:70:9: 'in'
             {
-            match("else"); 
+            match("in"); 
 
 
             }
@@ -1372,10 +1372,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:71:7: ( 'switch' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:71:9: 'switch'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:71:7: ( 'if' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:71:9: 'if'
             {
-            match("switch"); 
+            match("if"); 
 
 
             }
@@ -1393,10 +1393,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:72:7: ( 'default' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:72:9: 'default'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:72:7: ( 'then' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:72:9: 'then'
             {
-            match("default"); 
+            match("then"); 
 
 
             }
@@ -1414,10 +1414,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:73:7: ( 'case' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:73:9: 'case'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:73:7: ( 'else' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:73:9: 'else'
             {
-            match("case"); 
+            match("else"); 
 
 
             }
@@ -1435,10 +1435,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:74:7: ( '=>' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:74:9: '=>'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:74:7: ( 'switch' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:74:9: 'switch'
             {
-            match("=>"); 
+            match("switch"); 
 
 
             }
@@ -1456,10 +1456,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:75:7: ( '||' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:75:9: '||'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:75:7: ( 'default' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:75:9: 'default'
             {
-            match("||"); 
+            match("default"); 
 
 
             }
@@ -1477,10 +1477,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:76:7: ( '&&' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:76:9: '&&'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:76:7: ( 'case' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:76:9: 'case'
             {
-            match("&&"); 
+            match("case"); 
 
 
             }
@@ -1914,8 +1914,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23585:8: ( 'n' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23585:10: 'n'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23684:8: ( 'n' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23684:10: 'n'
             {
             match('n'); 
 
@@ -1934,8 +1934,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23587:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23587:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23686:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23686:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -1962,8 +1962,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23589:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23589:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23688:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23688:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1990,11 +1990,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_EXP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23591:10: ( RULE_E ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23591:12: RULE_E ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23690:10: ( RULE_E ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23690:12: RULE_E ( '0' .. '9' )+
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23591:19: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23690:19: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2008,7 +2008,7 @@ public class InternalMscriptLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23591:20: '0' .. '9'
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23690:20: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2040,8 +2040,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23593:12: ( RULE_EXP RULE_IJ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23593:14: RULE_EXP RULE_IJ
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23692:12: ( RULE_EXP RULE_IJ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23692:14: RULE_EXP RULE_IJ
             {
             mRULE_EXP(); 
             mRULE_IJ(); 
@@ -2061,8 +2061,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23595:10: ( '1' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23595:12: '1'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23694:10: ( '1' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23694:12: '1'
             {
             match('1'); 
 
@@ -2081,10 +2081,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23597:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23597:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23696:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23696:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23597:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23696:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -2098,7 +2098,7 @@ public class InternalMscriptLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23597:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23696:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2130,10 +2130,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23599:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23599:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23698:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23698:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23599:11: ( '_' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23698:11: ( '_' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -2142,7 +2142,7 @@ public class InternalMscriptLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23599:11: '_'
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23698:11: '_'
                     {
                     match('_'); 
 
@@ -2160,7 +2160,7 @@ public class InternalMscriptLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23599:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23698:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop4:
             do {
                 int alt4=2;
@@ -2209,11 +2209,11 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23601:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23601:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23700:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23700:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23601:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23700:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop5:
             do {
                 int alt5=3;
@@ -2229,7 +2229,7 @@ public class InternalMscriptLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23601:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23700:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2244,7 +2244,7 @@ public class InternalMscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23601:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23700:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2282,8 +2282,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_CONSTANT_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23603:22: ( '\\u00AD' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23603:24: '\\u00AD'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23702:22: ( '\\u00AD' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23702:24: '\\u00AD'
             {
             match('\u00AD'); 
 
@@ -2302,12 +2302,12 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23605:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23605:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23704:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23704:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23605:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23704:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -2332,7 +2332,7 @@ public class InternalMscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23605:52: .
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23704:52: .
             	    {
             	    matchAny(); 
 
@@ -2362,12 +2362,12 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -2380,7 +2380,7 @@ public class InternalMscriptLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2400,7 +2400,7 @@ public class InternalMscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2409,9 +2409,9 @@ public class InternalMscriptLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2420,7 +2420,7 @@ public class InternalMscriptLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23607:41: '\\r'
+                            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23706:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2452,10 +2452,10 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23609:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23609:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23708:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23708:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23609:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23708:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -2509,8 +2509,8 @@ public class InternalMscriptLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23611:16: ( . )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23611:18: .
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23710:16: ( . )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:23710:18: .
             {
             matchAny(); 
 
@@ -3237,37 +3237,38 @@ public class InternalMscriptLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\3\uffff\1\70\1\74\1\104\2\74\1\116\1\74\1\125\1\131\1\133\1\135"+
-        "\1\137\1\uffff\1\143\2\uffff\2\74\6\uffff\1\74\1\163\4\74\2\uffff"+
-        "\2\74\1\177\2\64\2\uffff\1\74\1\u0086\1\116\1\125\1\u0087\1\uffff"+
-        "\1\64\10\uffff\3\74\11\uffff\5\74\1\u0099\1\74\1\u009b\1\u009c\1"+
-        "\uffff\4\74\1\u00a2\1\74\1\uffff\1\u00a4\17\uffff\4\74\6\uffff\2"+
-        "\74\2\uffff\5\74\2\uffff\2\74\1\u00b4\3\uffff\1\u0082\3\uffff\1"+
-        "\74\5\uffff\3\74\1\u00ba\10\74\1\u00c5\1\74\1\uffff\1\74\2\uffff"+
-        "\4\74\1\u00cc\1\uffff\1\74\1\uffff\1\u00ce\6\74\1\u00d5\5\74\1\u00db"+
-        "\1\74\2\uffff\4\74\1\uffff\10\74\1\u00ea\1\u00eb\1\uffff\5\74\1"+
-        "\u00f1\1\uffff\1\u00f2\1\uffff\1\74\1\u00f4\1\u00f5\1\u00f6\2\74"+
-        "\1\uffff\1\u00f9\4\74\1\uffff\2\74\1\u0100\1\u0101\7\74\1\u0109"+
-        "\1\74\1\u010b\2\uffff\3\74\1\u010f\1\u0110\2\uffff\1\74\3\uffff"+
-        "\2\74\1\uffff\3\74\1\u0117\2\74\2\uffff\2\74\1\u011c\1\u011d\1\u011e"+
-        "\1\u011f\1\74\1\uffff\1\74\1\uffff\1\74\1\u0123\1\74\2\uffff\1\74"+
-        "\1\u0126\1\74\1\u0128\2\74\1\uffff\4\74\4\uffff\1\74\1\u0131\1\u0132"+
-        "\1\uffff\1\u0133\1\u0134\1\uffff\1\74\1\uffff\1\74\1\u0137\1\u0138"+
-        "\1\u0139\1\u013a\1\u013b\1\74\1\u013d\4\uffff\1\74\1\u013f\5\uffff"+
-        "\1\74\1\uffff\1\u0141\1\uffff\1\u0142\2\uffff";
+        "\1\uffff\1\67\1\71\1\64\2\uffff\1\76\1\102\1\112\2\102\1\124\1\102"+
+        "\1\133\1\136\1\140\1\142\1\uffff\1\146\2\uffff\2\102\6\uffff\1\102"+
+        "\1\166\4\102\2\uffff\2\102\1\64\2\uffff\1\102\1\u0086\1\124\1\133"+
+        "\1\u0087\1\uffff\1\64\16\uffff\3\102\11\uffff\5\102\1\u0099\1\102"+
+        "\1\u009b\1\u009c\1\uffff\4\102\1\u00a2\1\102\1\uffff\1\u00a4\14"+
+        "\uffff\4\102\6\uffff\2\102\2\uffff\5\102\2\uffff\2\102\1\u00b4\1"+
+        "\u0082\3\uffff\1\102\5\uffff\3\102\1\u00ba\10\102\1\u00c5\1\102"+
+        "\1\uffff\1\102\2\uffff\4\102\1\u00cc\1\uffff\1\102\1\uffff\1\u00ce"+
+        "\6\102\1\u00d5\5\102\1\u00db\1\102\2\uffff\4\102\1\uffff\10\102"+
+        "\1\u00ea\1\u00eb\1\uffff\5\102\1\u00f1\1\uffff\1\u00f2\1\uffff\1"+
+        "\102\1\u00f4\1\u00f5\1\u00f6\2\102\1\uffff\1\u00f9\4\102\1\uffff"+
+        "\2\102\1\u0100\1\u0101\7\102\1\u0109\1\102\1\u010b\2\uffff\3\102"+
+        "\1\u010f\1\u0110\2\uffff\1\102\3\uffff\2\102\1\uffff\3\102\1\u0117"+
+        "\2\102\2\uffff\2\102\1\u011c\1\u011d\1\u011e\1\u011f\1\102\1\uffff"+
+        "\1\102\1\uffff\1\102\1\u0123\1\102\2\uffff\1\102\1\u0126\1\102\1"+
+        "\u0128\2\102\1\uffff\4\102\4\uffff\1\102\1\u0131\1\u0132\1\uffff"+
+        "\1\u0133\1\u0134\1\uffff\1\102\1\uffff\1\102\1\u0137\1\u0138\1\u0139"+
+        "\1\u013a\1\u013b\1\102\1\u013d\4\uffff\1\102\1\u013f\5\uffff\1\102"+
+        "\1\uffff\1\u0141\1\uffff\1\u0142\2\uffff";
     static final String DFA11_eofS =
         "\u0143\uffff";
     static final String DFA11_minS =
-        "\1\0\2\uffff\1\76\1\141\1\45\1\164\1\141\1\60\1\141\1\60\4\75\1"+
-        "\uffff\1\52\2\uffff\1\141\1\150\6\uffff\1\154\1\72\1\141\1\145\1"+
-        "\141\1\157\2\uffff\2\145\1\174\1\46\1\0\2\uffff\1\156\4\60\1\uffff"+
-        "\1\101\10\uffff\1\154\1\156\1\162\11\uffff\1\141\1\151\1\155\1\145"+
-        "\1\163\1\60\1\160\2\60\1\uffff\1\162\1\151\1\162\1\144\1\60\1\163"+
-        "\1\uffff\1\60\17\uffff\1\143\1\160\1\145\1\165\6\uffff\1\163\1\147"+
-        "\2\uffff\1\162\1\141\1\165\1\157\1\145\2\uffff\1\164\1\146\1\60"+
-        "\3\uffff\1\42\3\uffff\1\151\5\uffff\1\163\1\141\1\143\1\60\1\164"+
-        "\1\151\1\164\1\163\1\160\1\143\1\145\1\157\1\60\1\164\1\uffff\1"+
-        "\157\2\uffff\1\156\1\154\1\157\1\155\1\60\1\uffff\1\145\1\uffff"+
+        "\1\0\1\75\1\174\1\46\2\uffff\1\76\1\141\1\45\1\164\1\141\1\60\1"+
+        "\141\1\60\3\75\1\uffff\1\52\2\uffff\1\141\1\150\6\uffff\1\154\1"+
+        "\72\1\141\1\145\1\141\1\157\2\uffff\2\145\1\0\2\uffff\1\156\4\60"+
+        "\1\uffff\1\101\16\uffff\1\154\1\156\1\162\11\uffff\1\141\1\151\1"+
+        "\155\1\145\1\163\1\60\1\160\2\60\1\uffff\1\162\1\151\1\162\1\144"+
+        "\1\60\1\163\1\uffff\1\60\14\uffff\1\143\1\160\1\145\1\165\6\uffff"+
+        "\1\163\1\147\2\uffff\1\162\1\141\1\165\1\157\1\145\2\uffff\1\164"+
+        "\1\146\1\60\1\42\3\uffff\1\151\5\uffff\1\163\1\141\1\143\1\60\1"+
+        "\164\1\151\1\164\1\163\1\160\1\143\1\145\1\157\1\60\1\164\1\uffff"+
+        "\1\157\2\uffff\1\156\1\154\1\157\1\155\1\60\1\uffff\1\145\1\uffff"+
         "\1\60\1\153\1\145\1\156\2\145\1\157\1\60\1\154\1\165\1\163\1\154"+
         "\1\141\1\60\1\141\2\uffff\1\164\1\145\1\154\1\164\1\uffff\1\145"+
         "\1\143\1\156\1\143\1\151\1\164\1\154\1\153\2\60\1\uffff\1\151\1"+
@@ -3281,107 +3282,113 @@ public class InternalMscriptLexer extends Lexer {
         "\uffff\2\60\1\uffff\1\150\1\uffff\1\156\5\60\1\165\1\60\4\uffff"+
         "\1\155\1\60\5\uffff\1\163\1\uffff\1\60\1\uffff\1\60\2\uffff";
     static final String DFA11_maxS =
-        "\1\uffff\2\uffff\1\76\1\165\1\136\1\167\1\157\1\172\1\150\1\172"+
-        "\1\76\3\75\1\uffff\1\57\2\uffff\1\141\1\171\6\uffff\1\163\1\72\1"+
-        "\141\1\145\1\141\1\162\2\uffff\1\145\1\157\1\174\1\46\1\uffff\2"+
-        "\uffff\1\156\3\172\1\71\1\uffff\1\172\10\uffff\1\164\1\156\1\162"+
+        "\1\uffff\1\76\1\174\1\46\2\uffff\1\76\1\165\1\136\1\167\1\157\1"+
+        "\172\1\150\1\172\3\75\1\uffff\1\57\2\uffff\1\141\1\171\6\uffff\1"+
+        "\163\1\72\1\141\1\145\1\141\1\162\2\uffff\1\145\1\157\1\uffff\2"+
+        "\uffff\1\156\3\172\1\71\1\uffff\1\172\16\uffff\1\164\1\156\1\162"+
         "\11\uffff\1\162\1\151\1\156\1\145\1\163\1\172\1\160\2\172\1\uffff"+
-        "\1\162\1\151\1\162\1\165\1\172\1\163\1\uffff\1\172\17\uffff\1\143"+
+        "\1\162\1\151\1\162\1\165\1\172\1\163\1\uffff\1\172\14\uffff\1\143"+
         "\1\160\1\145\1\165\6\uffff\1\163\1\147\2\uffff\1\162\1\164\1\165"+
-        "\1\157\1\145\2\uffff\1\164\1\146\1\172\3\uffff\1\42\3\uffff\1\151"+
-        "\5\uffff\1\163\1\141\1\143\1\172\1\164\1\165\2\164\1\160\1\143\1"+
-        "\145\1\157\1\172\1\164\1\uffff\1\157\2\uffff\1\156\1\154\1\157\1"+
-        "\155\1\172\1\uffff\1\145\1\uffff\1\172\1\153\1\145\1\156\2\145\1"+
-        "\157\1\172\1\154\1\165\1\163\1\154\1\141\1\172\1\141\2\uffff\1\164"+
-        "\1\145\1\154\1\164\1\uffff\1\151\1\143\1\156\1\143\1\151\1\164\1"+
-        "\154\1\153\2\172\1\uffff\1\151\1\162\1\151\1\145\1\162\1\172\1\uffff"+
-        "\1\172\1\uffff\1\141\3\172\2\162\1\uffff\1\172\1\162\1\163\1\145"+
-        "\1\153\1\uffff\1\165\1\154\2\172\1\151\1\146\1\143\1\164\1\147\1"+
-        "\150\1\156\1\172\1\145\1\172\2\uffff\1\141\1\164\1\156\2\172\2\uffff"+
-        "\1\147\3\uffff\1\164\1\151\1\uffff\1\156\1\151\1\141\1\172\1\154"+
-        "\1\151\2\uffff\1\157\1\165\4\172\1\165\1\uffff\1\170\1\uffff\1\154"+
+        "\1\157\1\145\2\uffff\1\164\1\146\1\172\1\42\3\uffff\1\151\5\uffff"+
+        "\1\163\1\141\1\143\1\172\1\164\1\165\2\164\1\160\1\143\1\145\1\157"+
+        "\1\172\1\164\1\uffff\1\157\2\uffff\1\156\1\154\1\157\1\155\1\172"+
+        "\1\uffff\1\145\1\uffff\1\172\1\153\1\145\1\156\2\145\1\157\1\172"+
+        "\1\154\1\165\1\163\1\154\1\141\1\172\1\141\2\uffff\1\164\1\145\1"+
+        "\154\1\164\1\uffff\1\151\1\143\1\156\1\143\1\151\1\164\1\154\1\153"+
+        "\2\172\1\uffff\1\151\1\162\1\151\1\145\1\162\1\172\1\uffff\1\172"+
+        "\1\uffff\1\141\3\172\2\162\1\uffff\1\172\1\162\1\163\1\145\1\153"+
+        "\1\uffff\1\165\1\154\2\172\1\151\1\146\1\143\1\164\1\147\1\150\1"+
+        "\156\1\172\1\145\1\172\2\uffff\1\141\1\164\1\156\2\172\2\uffff\1"+
+        "\147\3\uffff\1\164\1\151\1\uffff\1\156\1\151\1\141\1\172\1\154\1"+
+        "\151\2\uffff\1\157\1\165\4\172\1\165\1\uffff\1\170\1\uffff\1\154"+
         "\1\172\1\147\2\uffff\1\145\1\172\1\164\1\172\1\141\1\156\1\uffff"+
         "\2\164\1\156\1\154\4\uffff\1\157\2\172\1\uffff\2\172\1\uffff\1\150"+
         "\1\uffff\1\156\5\172\1\165\1\172\4\uffff\1\155\1\172\5\uffff\1\163"+
         "\1\uffff\1\172\1\uffff\1\172\2\uffff";
     static final String DFA11_acceptS =
-        "\1\uffff\1\1\1\2\14\uffff\1\24\1\uffff\1\26\1\31\2\uffff\1\41\1"+
-        "\42\1\43\1\45\1\47\1\50\6\uffff\1\66\1\67\5\uffff\1\107\1\110\5"+
-        "\uffff\1\135\1\uffff\1\136\1\140\1\143\1\144\1\1\1\2\1\51\1\3\3"+
-        "\uffff\1\136\1\5\1\22\1\23\1\27\1\30\1\32\1\112\1\104\11\uffff\1"+
-        "\130\6\uffff\1\131\1\uffff\1\14\1\100\1\37\1\15\1\33\1\17\1\16\1"+
-        "\21\1\20\1\24\1\141\1\142\1\25\1\26\1\31\4\uffff\1\41\1\42\1\43"+
-        "\1\45\1\47\1\50\2\uffff\1\111\1\54\5\uffff\1\66\1\67\3\uffff\1\101"+
-        "\1\105\1\102\1\uffff\1\137\1\107\1\110\1\uffff\1\127\1\134\1\135"+
-        "\1\140\1\143\16\uffff\1\71\1\uffff\1\72\1\103\5\uffff\1\57\1\uffff"+
-        "\1\132\17\uffff\1\120\1\106\4\uffff\1\113\12\uffff\1\61\6\uffff"+
-        "\1\115\1\uffff\1\133\6\uffff\1\55\5\uffff\1\70\16\uffff\1\77\1\10"+
-        "\5\uffff\1\44\1\74\1\uffff\1\36\1\73\1\126\2\uffff\1\60\6\uffff"+
-        "\1\4\1\13\7\uffff\1\56\1\uffff\1\52\3\uffff\1\117\1\12\6\uffff\1"+
-        "\122\4\uffff\1\124\1\40\1\65\1\75\3\uffff\1\35\2\uffff\1\53\1\uffff"+
-        "\1\123\10\uffff\1\62\1\125\1\11\1\34\2\uffff\1\64\1\76\1\114\1\46"+
-        "\1\6\1\uffff\1\121\1\uffff\1\63\1\uffff\1\116\1\7";
+        "\4\uffff\1\4\1\5\13\uffff\1\27\1\uffff\1\31\1\34\2\uffff\1\44\1"+
+        "\45\1\46\1\50\1\52\1\53\6\uffff\1\71\1\72\3\uffff\1\107\1\110\5"+
+        "\uffff\1\135\1\uffff\1\136\1\140\1\143\1\144\1\1\1\17\1\42\1\2\1"+
+        "\105\1\3\1\4\1\5\1\54\1\6\3\uffff\1\136\1\10\1\25\1\26\1\32\1\33"+
+        "\1\35\1\112\1\104\11\uffff\1\130\6\uffff\1\131\1\uffff\1\20\1\36"+
+        "\1\22\1\21\1\24\1\23\1\27\1\141\1\142\1\30\1\31\1\34\4\uffff\1\44"+
+        "\1\45\1\46\1\50\1\52\1\53\2\uffff\1\111\1\57\5\uffff\1\71\1\72\4"+
+        "\uffff\1\137\1\107\1\110\1\uffff\1\127\1\134\1\135\1\140\1\143\16"+
+        "\uffff\1\74\1\uffff\1\75\1\103\5\uffff\1\62\1\uffff\1\132\17\uffff"+
+        "\1\120\1\106\4\uffff\1\113\12\uffff\1\64\6\uffff\1\115\1\uffff\1"+
+        "\133\6\uffff\1\60\5\uffff\1\73\16\uffff\1\102\1\13\5\uffff\1\47"+
+        "\1\77\1\uffff\1\41\1\76\1\126\2\uffff\1\63\6\uffff\1\7\1\16\7\uffff"+
+        "\1\61\1\uffff\1\55\3\uffff\1\117\1\15\6\uffff\1\122\4\uffff\1\124"+
+        "\1\43\1\70\1\100\3\uffff\1\40\2\uffff\1\56\1\uffff\1\123\10\uffff"+
+        "\1\65\1\125\1\14\1\37\2\uffff\1\67\1\101\1\114\1\51\1\11\1\uffff"+
+        "\1\121\1\uffff\1\66\1\uffff\1\116\1\12";
     static final String DFA11_specialS =
         "\1\1\46\uffff\1\0\u011b\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\11\64\2\63\2\64\1\63\22\64\1\63\1\14\1\47\2\64\1\21\1\46\1"+
-            "\1\1\31\1\32\1\17\1\2\1\30\1\3\1\5\1\20\1\57\1\56\10\57\1\34"+
-            "\1\26\1\15\1\13\1\16\2\64\4\61\1\55\25\61\1\41\1\64\1\42\1\22"+
-            "\1\60\1\64\1\33\1\40\1\7\1\44\1\12\1\4\1\37\1\61\1\10\1\54\1"+
-            "\61\1\43\1\61\1\53\1\61\1\23\1\61\1\36\1\6\1\24\1\52\1\35\1"+
-            "\11\3\61\1\25\1\45\1\27\55\64\1\50\1\64\1\62\15\64\1\51\uff44"+
+            "\11\64\2\63\2\64\1\63\22\64\1\63\1\16\1\47\2\64\1\23\1\3\1\4"+
+            "\1\33\1\34\1\21\1\5\1\32\1\6\1\10\1\22\1\57\1\56\10\57\1\36"+
+            "\1\30\1\17\1\1\1\20\2\64\4\61\1\55\25\61\1\43\1\64\1\44\1\24"+
+            "\1\60\1\64\1\35\1\42\1\12\1\46\1\15\1\7\1\41\1\61\1\13\1\54"+
+            "\1\61\1\45\1\61\1\53\1\61\1\25\1\61\1\40\1\11\1\26\1\52\1\37"+
+            "\1\14\3\61\1\27\1\2\1\31\55\64\1\50\1\64\1\62\15\64\1\51\uff44"+
             "\64",
+            "\1\66\1\65",
+            "\1\70",
+            "\1\72",
             "",
             "",
-            "\1\67",
-            "\1\71\15\uffff\1\73\5\uffff\1\72",
-            "\1\101\4\uffff\1\75\1\76\1\uffff\1\77\1\103\1\100\56\uffff"+
-            "\1\102",
-            "\1\105\2\uffff\1\106",
-            "\1\111\6\uffff\1\110\6\uffff\1\107",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\5\74\1\114\6\74\1"+
-            "\113\1\112\4\74\1\115\7\74",
-            "\1\117\6\uffff\1\120",
-            "\12\126\7\uffff\32\74\4\uffff\1\74\1\uffff\13\74\1\124\1\74"+
-            "\1\122\2\74\1\123\1\121\10\74",
-            "\1\127\1\130",
-            "\1\132",
-            "\1\134",
-            "\1\136",
+            "\1\75",
+            "\1\77\15\uffff\1\101\5\uffff\1\100",
+            "\1\107\4\uffff\1\103\1\104\1\uffff\1\105\1\111\1\106\56\uffff"+
+            "\1\110",
+            "\1\113\2\uffff\1\114",
+            "\1\117\6\uffff\1\116\6\uffff\1\115",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\5\102\1\122\6"+
+            "\102\1\121\1\120\4\102\1\123\7\102",
+            "\1\125\6\uffff\1\126",
+            "\12\134\7\uffff\32\102\4\uffff\1\102\1\uffff\13\102\1\132\1"+
+            "\102\1\130\2\102\1\131\1\127\10\102",
+            "\1\135",
+            "\1\137",
+            "\1\141",
             "",
-            "\1\141\4\uffff\1\142",
+            "\1\144\4\uffff\1\145",
             "",
             "",
-            "\1\146",
-            "\1\150\11\uffff\1\151\6\uffff\1\147",
-            "",
+            "\1\151",
+            "\1\153\11\uffff\1\154\6\uffff\1\152",
             "",
             "",
             "",
             "",
             "",
-            "\1\161\6\uffff\1\160",
-            "\1\162",
-            "\1\164",
+            "",
+            "\1\164\6\uffff\1\163",
             "\1\165",
-            "\1\166",
-            "\1\167\2\uffff\1\170",
+            "\1\167",
+            "\1\170",
+            "\1\171",
+            "\1\172\2\uffff\1\173",
             "",
             "",
-            "\1\173",
-            "\1\174\11\uffff\1\175",
             "\1\176",
-            "\1\u0080",
+            "\1\177\11\uffff\1\u0080",
             "\42\u0082\1\u0081\uffdd\u0082",
             "",
             "",
             "\1\u0085",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\126\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\134\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\12\u0088",
             "",
-            "\32\74\6\uffff\32\74",
+            "\32\102\6\uffff\32\102",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -3407,24 +3414,21 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u0093\1\u0092",
             "\1\u0094",
             "\1\u0095",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\5\74\1\u0096\2\74"+
-            "\1\u0098\12\74\1\u0097\6\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\5\102\1\u0096"+
+            "\2\102\1\u0098\12\102\1\u0097\6\102",
             "\1\u009a",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "\1\u009d",
             "\1\u009e",
             "\1\u009f",
             "\1\u00a1\20\uffff\1\u00a0",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00a3",
             "",
-            "\12\126\7\uffff\32\74\4\uffff\1\74\1\uffff\10\74\2\u00a5\20"+
-            "\74",
-            "",
-            "",
-            "",
+            "\12\134\7\uffff\32\102\4\uffff\1\102\1\uffff\10\102\2\u00a5"+
+            "\20\102",
             "",
             "",
             "",
@@ -3460,10 +3464,7 @@ public class InternalMscriptLexer extends Lexer {
             "",
             "\1\u00b2",
             "\1\u00b3",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "",
-            "",
-            "",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00b5",
             "",
             "",
@@ -3477,7 +3478,7 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u00b7",
             "\1\u00b8",
             "\1\u00b9",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00bb",
             "\1\u00bd\13\uffff\1\u00bc",
             "\1\u00be",
@@ -3486,7 +3487,7 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u00c2",
             "\1\u00c3",
             "\1\u00c4",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00c6",
             "",
             "\1\u00c7",
@@ -3496,24 +3497,24 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u00c9",
             "\1\u00ca",
             "\1\u00cb",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "\1\u00cd",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00cf",
             "\1\u00d0",
             "\1\u00d1",
             "\1\u00d2",
             "\1\u00d3",
             "\1\u00d4",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00d6",
             "\1\u00d7",
             "\1\u00d8",
             "\1\u00d9",
             "\1\u00da",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00dc",
             "",
             "",
@@ -3530,26 +3531,26 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u00e7",
             "\1\u00e8",
             "\1\u00e9",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "\1\u00ec",
             "\1\u00ed",
             "\1\u00ee",
             "\1\u00ef",
             "\1\u00f0",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "\1\u00f3",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00f7",
             "\1\u00f8",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u00fa",
             "\1\u00fb",
             "\1\u00fc",
@@ -3557,8 +3558,8 @@ public class InternalMscriptLexer extends Lexer {
             "",
             "\1\u00fe",
             "\1\u00ff",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0102",
             "\1\u0103",
             "\1\u0104",
@@ -3566,16 +3567,16 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u0106",
             "\1\u0107",
             "\1\u0108",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u010a",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "",
             "\1\u010c",
             "\1\u010d",
             "\1\u010e",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "",
             "\1\u0111",
@@ -3588,30 +3589,30 @@ public class InternalMscriptLexer extends Lexer {
             "\1\u0114",
             "\1\u0115",
             "\1\u0116",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0118",
             "\1\u0119",
             "",
             "",
             "\1\u011a",
             "\1\u011b",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0120",
             "",
             "\1\u0121",
             "",
             "\1\u0122",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0124",
             "",
             "",
             "\1\u0125",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0127",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u0129",
             "\1\u012a",
             "",
@@ -3624,28 +3625,28 @@ public class InternalMscriptLexer extends Lexer {
             "",
             "",
             "\1\u0130\11\uffff\1\u012f",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "\1\u0135",
             "",
             "\1\u0136",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "\1\u013c",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "",
             "",
             "",
             "\1\u013e",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             "",
             "",
@@ -3653,9 +3654,9 @@ public class InternalMscriptLexer extends Lexer {
             "",
             "\1\u0140",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
-            "\12\74\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\12\102\7\uffff\32\102\4\uffff\1\102\1\uffff\32\102",
             "",
             ""
     };
@@ -3712,81 +3713,81 @@ public class InternalMscriptLexer extends Lexer {
                         int LA11_0 = input.LA(1);
 
                         s = -1;
-                        if ( (LA11_0=='\'') ) {s = 1;}
+                        if ( (LA11_0=='=') ) {s = 1;}
 
-                        else if ( (LA11_0=='+') ) {s = 2;}
+                        else if ( (LA11_0=='|') ) {s = 2;}
 
-                        else if ( (LA11_0=='-') ) {s = 3;}
+                        else if ( (LA11_0=='&') ) {s = 3;}
 
-                        else if ( (LA11_0=='f') ) {s = 4;}
+                        else if ( (LA11_0=='\'') ) {s = 4;}
 
-                        else if ( (LA11_0=='.') ) {s = 5;}
+                        else if ( (LA11_0=='+') ) {s = 5;}
 
-                        else if ( (LA11_0=='s') ) {s = 6;}
+                        else if ( (LA11_0=='-') ) {s = 6;}
 
-                        else if ( (LA11_0=='c') ) {s = 7;}
+                        else if ( (LA11_0=='f') ) {s = 7;}
 
-                        else if ( (LA11_0=='i') ) {s = 8;}
+                        else if ( (LA11_0=='.') ) {s = 8;}
 
-                        else if ( (LA11_0=='w') ) {s = 9;}
+                        else if ( (LA11_0=='s') ) {s = 9;}
 
-                        else if ( (LA11_0=='e') ) {s = 10;}
+                        else if ( (LA11_0=='c') ) {s = 10;}
 
-                        else if ( (LA11_0=='=') ) {s = 11;}
+                        else if ( (LA11_0=='i') ) {s = 11;}
 
-                        else if ( (LA11_0=='!') ) {s = 12;}
+                        else if ( (LA11_0=='w') ) {s = 12;}
 
-                        else if ( (LA11_0=='<') ) {s = 13;}
+                        else if ( (LA11_0=='e') ) {s = 13;}
 
-                        else if ( (LA11_0=='>') ) {s = 14;}
+                        else if ( (LA11_0=='!') ) {s = 14;}
 
-                        else if ( (LA11_0=='*') ) {s = 15;}
+                        else if ( (LA11_0=='<') ) {s = 15;}
 
-                        else if ( (LA11_0=='/') ) {s = 16;}
+                        else if ( (LA11_0=='>') ) {s = 16;}
 
-                        else if ( (LA11_0=='%') ) {s = 17;}
+                        else if ( (LA11_0=='*') ) {s = 17;}
 
-                        else if ( (LA11_0=='^') ) {s = 18;}
+                        else if ( (LA11_0=='/') ) {s = 18;}
 
-                        else if ( (LA11_0=='p') ) {s = 19;}
+                        else if ( (LA11_0=='%') ) {s = 19;}
 
-                        else if ( (LA11_0=='t') ) {s = 20;}
+                        else if ( (LA11_0=='^') ) {s = 20;}
 
-                        else if ( (LA11_0=='{') ) {s = 21;}
+                        else if ( (LA11_0=='p') ) {s = 21;}
 
-                        else if ( (LA11_0==';') ) {s = 22;}
+                        else if ( (LA11_0=='t') ) {s = 22;}
 
-                        else if ( (LA11_0=='}') ) {s = 23;}
+                        else if ( (LA11_0=='{') ) {s = 23;}
 
-                        else if ( (LA11_0==',') ) {s = 24;}
+                        else if ( (LA11_0==';') ) {s = 24;}
 
-                        else if ( (LA11_0=='(') ) {s = 25;}
+                        else if ( (LA11_0=='}') ) {s = 25;}
 
-                        else if ( (LA11_0==')') ) {s = 26;}
+                        else if ( (LA11_0==',') ) {s = 26;}
 
-                        else if ( (LA11_0=='a') ) {s = 27;}
+                        else if ( (LA11_0=='(') ) {s = 27;}
 
-                        else if ( (LA11_0==':') ) {s = 28;}
+                        else if ( (LA11_0==')') ) {s = 28;}
 
-                        else if ( (LA11_0=='v') ) {s = 29;}
+                        else if ( (LA11_0=='a') ) {s = 29;}
 
-                        else if ( (LA11_0=='r') ) {s = 30;}
+                        else if ( (LA11_0==':') ) {s = 30;}
 
-                        else if ( (LA11_0=='g') ) {s = 31;}
+                        else if ( (LA11_0=='v') ) {s = 31;}
 
-                        else if ( (LA11_0=='b') ) {s = 32;}
+                        else if ( (LA11_0=='r') ) {s = 32;}
 
-                        else if ( (LA11_0=='[') ) {s = 33;}
+                        else if ( (LA11_0=='g') ) {s = 33;}
 
-                        else if ( (LA11_0==']') ) {s = 34;}
+                        else if ( (LA11_0=='b') ) {s = 34;}
 
-                        else if ( (LA11_0=='l') ) {s = 35;}
+                        else if ( (LA11_0=='[') ) {s = 35;}
 
-                        else if ( (LA11_0=='d') ) {s = 36;}
+                        else if ( (LA11_0==']') ) {s = 36;}
 
-                        else if ( (LA11_0=='|') ) {s = 37;}
+                        else if ( (LA11_0=='l') ) {s = 37;}
 
-                        else if ( (LA11_0=='&') ) {s = 38;}
+                        else if ( (LA11_0=='d') ) {s = 38;}
 
                         else if ( (LA11_0=='\"') ) {s = 39;}
 

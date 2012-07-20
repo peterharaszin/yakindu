@@ -107,7 +107,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.MULTIPLICATIVE_EXPRESSION: return createMultiplicativeExpression();
 			case MscriptPackage.POWER_EXPRESSION: return createPowerExpression();
 			case MscriptPackage.UNARY_EXPRESSION: return createUnaryExpression();
-			case MscriptPackage.POSTFIX_EXPRESSION: return createPostfixExpression();
 			case MscriptPackage.VARIABLE_REFERENCE: return createVariableReference();
 			case MscriptPackage.RANGE_STEP_EXPRESSION: return createRangeStepExpression();
 			case MscriptPackage.ADDITIVE_STEP_EXPRESSION: return createAdditiveStepExpression();
@@ -699,16 +698,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public UnaryExpression createUnaryExpression() {
 		UnaryExpressionImpl unaryExpression = new UnaryExpressionImpl();
 		return unaryExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PostfixExpression createPostfixExpression() {
-		PostfixExpressionImpl postfixExpression = new PostfixExpressionImpl();
-		return postfixExpression;
 	}
 
 	/**

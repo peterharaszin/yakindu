@@ -21,9 +21,9 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.PostfixExpression;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
+import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
@@ -96,18 +96,15 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			return status;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePostfixExpression(org.eclipselabs.damos.mscript.PostfixExpression)
-		 */
 		@Override
-		public Boolean casePostfixExpression(PostfixExpression postfixExpression) {
-			if (postfixExpression.getOperator() == OperatorKind.DERIVATIVE) {
+		public Boolean caseUnaryExpression(UnaryExpression unaryExpression) {
+			if (unaryExpression.getOperator() == OperatorKind.DERIVATIVE) {
 				derivative = true;
-				evaluateContents(postfixExpression);
+				evaluateContents(unaryExpression);
 				derivative = false;
 				return true;
 			}
-			return super.casePostfixExpression(postfixExpression);
+			return super.caseUnaryExpression(unaryExpression);
 		}
 		
 		@Override

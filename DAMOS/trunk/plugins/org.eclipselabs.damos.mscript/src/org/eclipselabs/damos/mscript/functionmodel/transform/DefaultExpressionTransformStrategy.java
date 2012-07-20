@@ -288,8 +288,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 	
 	protected void transformPowerExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, PowerExpression powerExpression) {
 		PowerExpression transformedExpression = MscriptFactory.eINSTANCE.createPowerExpression();
-		transformedExpression.setOperand(transformNext(context, powerExpression.getOperand(), transformer));
-		transformedExpression.setExponent(transformNext(context, powerExpression.getExponent(), transformer));
+		transformedExpression.setLeftOperand(transformNext(context, powerExpression.getLeftOperand(), transformer));
+		transformedExpression.setRightOperand(transformNext(context, powerExpression.getRightOperand(), transformer));
 		transformedExpression.setOperator(powerExpression.getOperator());
 		assignExpression(context, powerExpression, transformedExpression, targets);
 	}

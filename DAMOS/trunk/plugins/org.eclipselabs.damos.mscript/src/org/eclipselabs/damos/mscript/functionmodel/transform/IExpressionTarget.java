@@ -11,7 +11,9 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.VariableReference;
 
 
 /**
@@ -20,14 +22,8 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  */
 public interface IExpressionTarget {
 
-	/**
-	 * @return the variableDeclaration
-	 */
-	VariableDeclaration getVariableDeclaration();
-
-	/**
-	 * @return the stepIndex
-	 */
-	int getStepIndex();
-
+	void assignExpression(Expression expression);
+	
+	VariableReference createVariableReference(DataType targetDataType);
+	
 }

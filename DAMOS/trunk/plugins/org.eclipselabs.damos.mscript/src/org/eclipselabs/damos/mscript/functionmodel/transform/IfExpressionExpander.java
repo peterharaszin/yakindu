@@ -11,18 +11,15 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import java.util.Collections;
+import java.util.List;
 
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.IfStatement;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
 /**
  * @author Andreas Unger
@@ -34,24 +31,21 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		return expression instanceof IfExpression;
 	}
 
-	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
+	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+		// First check if we can statically evaluate the condition
 		IfExpression ifExpression = (IfExpression) expression;
 		IValue ifConditionValue = context.getStaticEvaluationResult().getValue(ifExpression.getCondition());
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression resultExpression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
-			return transformer.transformNext(resultExpression);
+			transformer.transform(resultExpression, targets);
+			return;
 		}
 		
-		Expression conditionExpression = transformer.transformNext(ifExpression.getCondition());
+		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(context);
+		transformer.transform(ifExpression.getCondition(), conditionTarget.asList());
+		Expression conditionExpression = conditionTarget.getAssignedExpression();
 
-		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), "ifresult"));
-		
-		IValue ifExpressionValue = context.getStaticEvaluationResult().getValue(ifExpression);
-		context.getStaticEvaluationResult().setValue(localVariableDeclaration, ifExpressionValue);
-		
-		context.getCompound().getStatements().add(localVariableDeclaration);
 		IfStatement ifStatement = MscriptFactory.eINSTANCE.createIfStatement();
 		ifStatement.setCondition(conditionExpression);
 		context.getCompound().getStatements().add(ifStatement);
@@ -60,23 +54,15 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		ifStatement.setThenStatement(thenStatement);
 		context.enterScope();
 		context.setCompound(thenStatement);
-		transformer.transform(
-				ifExpression.getThenExpression(),
-				Collections.singletonList(new ExpressionTarget(localVariableDeclaration, 0)));
+		transformer.transform(ifExpression.getThenExpression(), targets);
 		context.leaveScope();
 		
 		Compound elseStatement = MscriptFactory.eINSTANCE.createCompound();
 		ifStatement.setElseStatement(elseStatement);
 		context.enterScope();
 		context.setCompound(elseStatement);
-		transformer.transform(
-				ifExpression.getElseExpression(),
-				Collections.singletonList(new ExpressionTarget(localVariableDeclaration, 0)));
+		transformer.transform(ifExpression.getElseExpression(), targets);
 		context.leaveScope();
-		
-		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
-		variableReference.setFeature(localVariableDeclaration);
-		return variableReference;
 	}
 
 }

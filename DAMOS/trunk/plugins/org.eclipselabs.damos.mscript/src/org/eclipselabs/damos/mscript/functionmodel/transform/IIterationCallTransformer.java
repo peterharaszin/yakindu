@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
+import java.util.List;
+
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IterationCall;
 
@@ -22,6 +24,6 @@ import org.eclipselabs.damos.mscript.IterationCall;
  */
 public interface IIterationCallTransformer {
 
-	IIterationCallTransformerResult transform(ITransformerContext context, IterationCall iterationCall, Expression collectionExpression);
+	IIterationCallTransformerResult transform(ITransformerContext context, IterationCall iterationCall, Expression collectionExpression, List<? extends IExpressionTarget> targets);
 	
 }

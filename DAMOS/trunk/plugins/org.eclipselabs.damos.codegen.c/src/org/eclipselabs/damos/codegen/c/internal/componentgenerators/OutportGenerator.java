@@ -30,6 +30,12 @@ public class OutportGenerator extends AbstractComponentGenerator {
 	 */
 	@Override
 	public boolean contributesComputeOutputsCode() {
+		if (getNode().getIncomingDataFlows().isEmpty()) {
+			return false;
+		}
+		if (getNode().getIncomingDataFlows().get(0).getSourceEnd().getTargetEnds().size() == 1) {
+			return false;
+		}
 		return true;
 	}
 	

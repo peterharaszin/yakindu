@@ -11,9 +11,8 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import java.util.Collections;
+import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
@@ -22,6 +21,7 @@ import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -32,10 +32,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class IterateTransformer implements IIterationCallTransformer {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.imperativemodel.transform.IIterationCallTransformer#transform(org.eclipselabs.mscript.language.ast.IterationCall, org.eclipselabs.mscript.language.imperativemodel.util.ImperativeExpressionTransformer.Scope)
-	 */
-	public IIterationCallTransformerResult transform(ITransformerContext context, IterationCall iterationCall, Expression collectionExpression) {
+	public IIterationCallTransformerResult transform(ITransformerContext context, IterationCall iterationCall, Expression collectionExpression, List<? extends IExpressionTarget> targets) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Iterate transformation", null);
 		
 		LocalVariableDeclaration accumulatorDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
@@ -54,9 +51,11 @@ public class IterateTransformer implements IIterationCallTransformer {
 		context.addVariableDeclarationMapping(iterationCall.getAccumulator(), accumulatorDeclaration);
 		context.addVariableDeclarationMapping(iterationVariable, transformedIterationVariable);
 		
+		VariableExpressionTarget target = new VariableExpressionTarget(context, accumulatorDeclaration);
+		
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getAccumulator().getInitializer(),
-				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
+				target.asList()));
 
 		forStatement.setIterationVariable(transformedIterationVariable);
 		forStatement.setCollectionExpression(collectionExpression);
@@ -66,17 +65,18 @@ public class IterateTransformer implements IIterationCallTransformer {
 		context.setCompound(body);
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getExpression(),
-				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
+				target.asList()));
 		context.leaveScope();
 		forStatement.setBody(body);
 
 		context.getCompound().getStatements().add(forStatement);
 		
-		if (status.getSeverity() > IStatus.WARNING) {
-			return new IterationCallTransformerResult(accumulatorDeclaration, status);
-		}
+		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
+		variableReference.setFeature(accumulatorDeclaration);
+		context.getStaticEvaluationResult().setValue(variableReference, accumulatorValue);
+		targets.get(0).assignExpression(variableReference);
 		
-		return new IterationCallTransformerResult(accumulatorDeclaration);
+		return null;
 	}
 
 }

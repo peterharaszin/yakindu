@@ -54,8 +54,10 @@ class ExecuteFunction extends PrimaryCodeFragment {
 		
 		functionBody = '''
 			{
-				«graphGenerator.generateOutputVariableDeclarations(context, graph, monitor)»
+				«IF graphGenerator.contributesOutputVariableDeclarations(context, graph)»
+					«graphGenerator.generateOutputVariableDeclarations(context, graph, monitor)»
 
+				«ENDIF»
 				«graphGenerator.generateGraph(context, graph, monitor)»
 			}
 		'''

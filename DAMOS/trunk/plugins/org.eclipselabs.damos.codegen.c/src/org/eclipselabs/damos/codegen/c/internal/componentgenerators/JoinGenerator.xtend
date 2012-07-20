@@ -24,6 +24,7 @@ import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.execution.CompoundNode
 import org.eclipselabs.damos.execution.Graph
 import org.eclipselabs.damos.execution.Node
+import org.eclipselabs.damos.codegen.c.internal.VariableAccessor
 
 /**
  * @author Andreas Unger
@@ -54,7 +55,7 @@ class JoinGenerator extends AbstractComponentGenerator {
 		}
 		
 		val choiceVariableName = CompoundGeneratorUtil::getChoiceVariableName(configuration, choiceNode)
-		val outputVariableName = GeneratorUtil::getOutputVariableName(configuration, node, component.firstOutputPort)
+		val outputVariableName = new VariableAccessor(configuration, node).generateOutputVariableReference(component.firstOutputPort, false)
 
 		'''
 			switch («choiceVariableName») {

@@ -11,10 +11,11 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
+import java.util.List;
+
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.VariableReference;
 
 /**
  * @author Andreas Unger
@@ -28,19 +29,19 @@ public class IterationCallExpander implements IExpressionTransformStrategy {
 		return expression instanceof IterationCall;
 	}
 
-	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
+	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		IterationCall iterationCall = (IterationCall) expression;
 		IIterationCallTransformer iterationCallTransformer = iterationCallTransformerLookup.getTransformer(iterationCall.getIdentifier());
 		if (iterationCallTransformer == null) {
+			// TODO: Handle error
 //			status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid iteration call", iterationCall));
-			return MscriptFactory.eINSTANCE.createInvalidExpression();
+			targets.get(0).assignExpression(MscriptFactory.eINSTANCE.createInvalidExpression());
+			return;
 		}
 		
-		IIterationCallTransformerResult result = iterationCallTransformer.transform(context, iterationCall, transformer.transformNext(iterationCall.getTarget()));
-		
-		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
-		variableReference.setFeature(result.getLocalVariableDeclaration());
-		return variableReference;
+		InlineExpressionTarget target = new InlineExpressionTarget(context);
+		transformer.transform(iterationCall.getTarget(), target.asList());
+		iterationCallTransformer.transform(context, iterationCall, target.getAssignedExpression(), targets);
 	}
 
 }

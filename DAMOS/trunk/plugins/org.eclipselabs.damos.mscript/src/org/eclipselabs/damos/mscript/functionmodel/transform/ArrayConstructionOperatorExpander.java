@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
@@ -51,25 +50,17 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 		return false;
 	}
 	
-	public Expression transform(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
+	public void transform(ITransformerContext context, Expression expression,
+			List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		ArrayConstructionOperator arrayExpression = (ArrayConstructionOperator) expression;
 		IValue expressionValue = context.getStaticEvaluationResult().getValue(arrayExpression);
 		ArrayType arrayType = (ArrayType) expressionValue.getDataType();
 
-		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		localVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(arrayType)));
-		context.getStaticEvaluationResult().setValue(localVariableDeclaration, expressionValue);
-		context.getCompound().getStatements().add(localVariableDeclaration);
-
 		List<Integer> indices = new ArrayList<Integer>();
-		transformArrayExpression(context, transformer, arrayExpression, arrayType, localVariableDeclaration, indices);
-
-		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
-		variableReference.setFeature(localVariableDeclaration);
-		return variableReference;
+		transformArrayExpression(context, transformer, arrayExpression, arrayType, targets, indices);
 	}
 	
-	private void transformArrayExpression(ITransformerContext context, IExpressionTransformer transformer, ArrayConstructionOperator arrayExpression, ArrayType arrayType, LocalVariableDeclaration localVariableDeclaration, List<Integer> indices) {
+	private void transformArrayExpression(ITransformerContext context, IExpressionTransformer transformer, ArrayConstructionOperator arrayExpression, ArrayType arrayType, List<? extends IExpressionTarget> targets, List<Integer> indices) {
 		IStaticEvaluationResult staticEvaluationResult = context.getStaticEvaluationResult();
 		IComputationContext computationContext = staticEvaluationResult.getComputationContext();
 
@@ -78,11 +69,9 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 			List<Integer> currentIndices = new ArrayList<Integer>(indices);
 			currentIndices.add(index);
 			if (elementExpression instanceof ArrayConstructionOperator) {
-				transformArrayExpression(context, transformer, (ArrayConstructionOperator) elementExpression, arrayType, localVariableDeclaration, currentIndices);
+				transformArrayExpression(context, transformer, (ArrayConstructionOperator) elementExpression, arrayType, targets, currentIndices);
 			} else if (currentIndices.size() == arrayType.getDimensionality()) {
-				Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
-				VariableReference variableReference = MscriptUtil.createVariableReference(staticEvaluationResult, localVariableDeclaration, 0, false);
-				staticEvaluationResult.setValue(variableReference, new AnyValue(computationContext, arrayType));
+				VariableReference variableReference = targets.get(0).createVariableReference(arrayType);
 				
 				ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 				arrayElementAccess.setArray(variableReference);
@@ -92,8 +81,12 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					arrayElementAccess.getSubscripts().add(createArraySubscript(context, i));
 				}
 				
+				Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 				assignment.setTarget(arrayElementAccess);
-				assignment.setAssignedExpression(transformer.transformNext(elementExpression));
+				
+				InlineExpressionTarget elementExpressionTarget = new InlineExpressionTarget(context);
+				transformer.transform(elementExpression, elementExpressionTarget.asList());
+				assignment.setAssignedExpression(elementExpressionTarget.getAssignedExpression());
 				
 				context.getCompound().getStatements().add(assignment);
 			} else {
@@ -111,11 +104,11 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					rightIndices = new int[elementExpressionArrayType.getDimensionality()];
 					rightSizes = new int[rightIndices.length];
 					for (int i = 0; i < rightSizes.length; ++i) {
-						rightSizes[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
+						rightSizes[i] = TypeUtil.getArrayDimensionSize(elementExpressionArrayType.getDimensions().get(i));
 					}
 
 					elementVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-					elementVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName((ArrayType) elementExpressionType)));
+					elementVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(elementExpressionArrayType)));
 					context.getCompound().getStatements().add(elementVariableDeclaration);
 					
 					Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
@@ -126,16 +119,15 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 	
 					elementValue = staticEvaluationResult.getValue(elementExpression);
 					staticEvaluationResult.setValue(elementVariableDeclaration, elementValue);
-					transformer.transform(
-							elementExpression,
-							Collections.singletonList(new ExpressionTarget(elementVariableDeclaration, 0)));
+					
+					VariableExpressionTarget elementExpressionTarget = new VariableExpressionTarget(context, elementVariableDeclaration);
+					transformer.transform(elementExpression, elementExpressionTarget.asList());
 					
 					context.leaveScope();
 				}
 				do {
 					Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
-					VariableReference variableReference = MscriptUtil.createVariableReference(staticEvaluationResult, localVariableDeclaration, 0, false);
-					staticEvaluationResult.setValue(variableReference, new AnyValue(computationContext, arrayType));
+					VariableReference variableReference = targets.get(0).createVariableReference(arrayType);
 					
 					ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 					arrayElementAccess.setArray(variableReference);
@@ -164,7 +156,9 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 						}
 						assignment.setAssignedExpression(rightArrayElementAccess);
 					} else {
-						assignment.setAssignedExpression(transformer.transformNext(elementExpression));
+						InlineExpressionTarget elementExpressionTarget = new InlineExpressionTarget(context);
+						transformer.transform(elementExpression, elementExpressionTarget.asList());
+						assignment.setAssignedExpression(elementExpressionTarget.getAssignedExpression());
 					}
 					
 					context.getCompound().getStatements().add(assignment);

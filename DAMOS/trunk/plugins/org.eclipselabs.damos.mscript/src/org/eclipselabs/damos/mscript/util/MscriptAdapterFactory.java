@@ -337,6 +337,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createMemberVariableAccessAdapter();
 			}
 			@Override
+			public Adapter caseLambdaExpression(LambdaExpression object) {
+				return createLambdaExpressionAdapter();
+			}
+			@Override
 			public Adapter caseAlgorithmExpression(AlgorithmExpression object) {
 				return createAlgorithmExpressionAdapter();
 			}
@@ -1483,6 +1487,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMemberVariableAccessAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LambdaExpression <em>Lambda Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.LambdaExpression
+	 * @generated
+	 */
+	public Adapter createLambdaExpressionAdapter() {
 		return null;
 	}
 

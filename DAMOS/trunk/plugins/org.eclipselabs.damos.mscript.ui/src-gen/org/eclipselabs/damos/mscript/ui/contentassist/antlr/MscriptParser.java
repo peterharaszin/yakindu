@@ -46,6 +46,7 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericTypeAccess().getAlternatives(), "rule__NumericType__Alternatives");
 					put(grammarAccess.getArrayTypeSpecifierAccess().getAlternatives(), "rule__ArrayTypeSpecifier__Alternatives");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
+					put(grammarAccess.getLambdaExpressionAccess().getAlternatives_0(), "rule__LambdaExpression__Alternatives_0");
 					put(grammarAccess.getLetExpressionAssignmentAccess().getAlternatives_0(), "rule__LetExpressionAssignment__Alternatives_0");
 					put(grammarAccess.getRelationalExpressionAccess().getAlternatives_1_0(), "rule__RelationalExpression__Alternatives_1_0");
 					put(grammarAccess.getPrefixUnaryExpressionAccess().getAlternatives(), "rule__PrefixUnaryExpression__Alternatives");
@@ -124,6 +125,10 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructTypeAccess().getGroup(), "rule__StructType__Group__0");
 					put(grammarAccess.getStructTypeAccess().getGroup_3(), "rule__StructType__Group_3__0");
 					put(grammarAccess.getStructMemberAccess().getGroup(), "rule__StructMember__Group__0");
+					put(grammarAccess.getLambdaExpressionAccess().getGroup(), "rule__LambdaExpression__Group__0");
+					put(grammarAccess.getLambdaExpressionAccess().getGroup_0_1(), "rule__LambdaExpression__Group_0_1__0");
+					put(grammarAccess.getLambdaExpressionAccess().getGroup_0_1_1(), "rule__LambdaExpression__Group_0_1_1__0");
+					put(grammarAccess.getLambdaExpressionAccess().getGroup_0_1_1_1(), "rule__LambdaExpression__Group_0_1_1_1__0");
 					put(grammarAccess.getLetExpressionAccess().getGroup(), "rule__LetExpression__Group__0");
 					put(grammarAccess.getLetExpressionAccess().getGroup_2(), "rule__LetExpression__Group_2__0");
 					put(grammarAccess.getLetExpressionAssignmentAccess().getGroup(), "rule__LetExpressionAssignment__Group__0");
@@ -311,6 +316,10 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructTypeAccess().getMembersAssignment_3_1(), "rule__StructType__MembersAssignment_3_1");
 					put(grammarAccess.getStructMemberAccess().getTypeSpecifierAssignment_0(), "rule__StructMember__TypeSpecifierAssignment_0");
 					put(grammarAccess.getStructMemberAccess().getNameAssignment_1(), "rule__StructMember__NameAssignment_1");
+					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_0(), "rule__LambdaExpression__ParametersAssignment_0_0");
+					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_0(), "rule__LambdaExpression__ParametersAssignment_0_1_1_0");
+					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_1_1(), "rule__LambdaExpression__ParametersAssignment_0_1_1_1_1");
+					put(grammarAccess.getLambdaExpressionAccess().getExpressionAssignment_2(), "rule__LambdaExpression__ExpressionAssignment_2");
 					put(grammarAccess.getLetExpressionAccess().getAssignmentsAssignment_1(), "rule__LetExpression__AssignmentsAssignment_1");
 					put(grammarAccess.getLetExpressionAccess().getAssignmentsAssignment_2_1(), "rule__LetExpression__AssignmentsAssignment_2_1");
 					put(grammarAccess.getLetExpressionAccess().getTargetAssignment_4(), "rule__LetExpression__TargetAssignment_4");

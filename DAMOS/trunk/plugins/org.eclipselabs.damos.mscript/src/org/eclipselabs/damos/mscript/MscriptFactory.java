@@ -539,6 +539,15 @@ public interface MscriptFactory extends EFactory {
 	MemberVariableAccess createMemberVariableAccess();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Expression</em>'.
+	 * @generated
+	 */
+	LambdaExpression createLambdaExpression();
+
+	/**
 	 * Returns a new object of class '<em>Algorithm Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

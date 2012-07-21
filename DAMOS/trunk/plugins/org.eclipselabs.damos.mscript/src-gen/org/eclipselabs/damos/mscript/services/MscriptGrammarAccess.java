@@ -1401,31 +1401,114 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cLetExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIfExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSwitchExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cRangeExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cLambdaExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cLetExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIfExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSwitchExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRangeExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		/// *
 		// * Expressions
 		// * / Expression:
-		//	LetExpression | IfExpression | SwitchExpression | RangeExpression;
+		//	LambdaExpression | LetExpression | IfExpression | SwitchExpression | RangeExpression;
 		public ParserRule getRule() { return rule; }
 
-		//LetExpression | IfExpression | SwitchExpression | RangeExpression
+		//LambdaExpression | LetExpression | IfExpression | SwitchExpression | RangeExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//LambdaExpression
+		public RuleCall getLambdaExpressionParserRuleCall_0() { return cLambdaExpressionParserRuleCall_0; }
+
 		//LetExpression
-		public RuleCall getLetExpressionParserRuleCall_0() { return cLetExpressionParserRuleCall_0; }
+		public RuleCall getLetExpressionParserRuleCall_1() { return cLetExpressionParserRuleCall_1; }
 
 		//IfExpression
-		public RuleCall getIfExpressionParserRuleCall_1() { return cIfExpressionParserRuleCall_1; }
+		public RuleCall getIfExpressionParserRuleCall_2() { return cIfExpressionParserRuleCall_2; }
 
 		//SwitchExpression
-		public RuleCall getSwitchExpressionParserRuleCall_2() { return cSwitchExpressionParserRuleCall_2; }
+		public RuleCall getSwitchExpressionParserRuleCall_3() { return cSwitchExpressionParserRuleCall_3; }
 
 		//RangeExpression
-		public RuleCall getRangeExpressionParserRuleCall_3() { return cRangeExpressionParserRuleCall_3; }
+		public RuleCall getRangeExpressionParserRuleCall_4() { return cRangeExpressionParserRuleCall_4; }
+	}
+
+	public class LambdaExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LambdaExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cParametersAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_0_0 = (RuleCall)cParametersAssignment_0_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Group cGroup_0_1_1 = (Group)cGroup_0_1.eContents().get(1);
+		private final Assignment cParametersAssignment_0_1_1_0 = (Assignment)cGroup_0_1_1.eContents().get(0);
+		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0 = (RuleCall)cParametersAssignment_0_1_1_0.eContents().get(0);
+		private final Group cGroup_0_1_1_1 = (Group)cGroup_0_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_0_1_1_1_0 = (Keyword)cGroup_0_1_1_1.eContents().get(0);
+		private final Assignment cParametersAssignment_0_1_1_1_1 = (Assignment)cGroup_0_1_1_1.eContents().get(1);
+		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0 = (RuleCall)cParametersAssignment_0_1_1_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
+		
+		//LambdaExpression:
+		//	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
+		//	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+		public ParserRule getRule() { return rule; }
+
+		//(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
+		//parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression
+		public Group getGroup() { return cGroup; }
+
+		//parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
+		//parameters+=InputParameterDeclaration)*)? ")"
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//parameters+=InputParameterDeclaration
+		public Assignment getParametersAssignment_0_0() { return cParametersAssignment_0_0; }
+
+		//InputParameterDeclaration
+		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_0_0() { return cParametersInputParameterDeclarationParserRuleCall_0_0_0; }
+
+		//"(" (parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)? ")"
+		public Group getGroup_0_1() { return cGroup_0_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0_1_0() { return cLeftParenthesisKeyword_0_1_0; }
+
+		//(parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)?
+		public Group getGroup_0_1_1() { return cGroup_0_1_1; }
+
+		//parameters+=InputParameterDeclaration
+		public Assignment getParametersAssignment_0_1_1_0() { return cParametersAssignment_0_1_1_0; }
+
+		//InputParameterDeclaration
+		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0() { return cParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0; }
+
+		//("," parameters+=InputParameterDeclaration)*
+		public Group getGroup_0_1_1_1() { return cGroup_0_1_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_0_1_1_1_0() { return cCommaKeyword_0_1_1_1_0; }
+
+		//parameters+=InputParameterDeclaration
+		public Assignment getParametersAssignment_0_1_1_1_1() { return cParametersAssignment_0_1_1_1_1; }
+
+		//InputParameterDeclaration
+		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0() { return cParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_0_1_2() { return cRightParenthesisKeyword_0_1_2; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+
+		//expression=Expression
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
+
+		//Expression
+		public RuleCall getExpressionExpressionParserRuleCall_2_0() { return cExpressionExpressionParserRuleCall_2_0; }
 	}
 
 	public class LetExpressionElements extends AbstractParserRuleElementFinder {
@@ -5186,6 +5269,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private StructTypeElements pStructType;
 	private StructMemberElements pStructMember;
 	private ExpressionElements pExpression;
+	private LambdaExpressionElements pLambdaExpression;
 	private LetExpressionElements pLetExpression;
 	private LetExpressionAssignmentElements pLetExpressionAssignment;
 	private LetExpressionVariableDeclarationElements pLetExpressionVariableDeclaration;
@@ -5714,13 +5798,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Expressions
 	// * / Expression:
-	//	LetExpression | IfExpression | SwitchExpression | RangeExpression;
+	//	LambdaExpression | LetExpression | IfExpression | SwitchExpression | RangeExpression;
 	public ExpressionElements getExpressionAccess() {
 		return (pExpression != null) ? pExpression : (pExpression = new ExpressionElements());
 	}
 	
 	public ParserRule getExpressionRule() {
 		return getExpressionAccess().getRule();
+	}
+
+	//LambdaExpression:
+	//	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
+	//	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+	public LambdaExpressionElements getLambdaExpressionAccess() {
+		return (pLambdaExpression != null) ? pLambdaExpression : (pLambdaExpression = new LambdaExpressionElements());
+	}
+	
+	public ParserRule getLambdaExpressionRule() {
+		return getLambdaExpressionAccess().getRule();
 	}
 
 	//LetExpression:

@@ -48,11 +48,11 @@ public class TaskGeneratorUtil {
 		return ECollections.emptyEList();
 	}
 
-	public static CharSequence getCDataTypeFor(IGeneratorContext context, TaskInputNode inputNode) {
+	public static CharSequence getCDataTypeFor(IGeneratorContext context, CharSequence variableName, TaskInputNode inputNode) {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = GeneratorNodeExtensions.getComponentGenerator((ComponentNode) end.getNode());
 		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return new DataTypeGenerator().generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context.getConfiguration()), context, dataType, null);
+		return new DataTypeGenerator().generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context.getConfiguration()), variableName, context, dataType, null);
 	}
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {
@@ -78,7 +78,7 @@ public class TaskGeneratorUtil {
 	}
 
 	public static MessageQueueInfo createMessageQueueInfoFor(IGeneratorContext context, TaskInputNode inputNode) {
-		return new MessageQueueInfo("10", "sizeof(" + getCDataTypeFor(context, inputNode) + ")");
+		return new MessageQueueInfo("10", "sizeof(" + getCDataTypeFor(context, null, inputNode) + ")");
 	}
 	
 	public static MessageQueueInfo createMessageQueueInfoFor(IGeneratorContext context, TaskGraph taskGraph) {

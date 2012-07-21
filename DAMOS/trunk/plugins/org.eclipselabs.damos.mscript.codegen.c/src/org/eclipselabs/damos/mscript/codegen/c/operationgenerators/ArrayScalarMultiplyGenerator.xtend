@@ -75,7 +75,7 @@ class ArrayScalarMultiplyGenerator implements IOperationGenerator {
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
 
 		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, scalarOperand), scalarType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, arrayOperand) + ".data" + getIndexVariables(resultType).map(["[" + it + "]"]).join(), arrayType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, arrayOperand) + getIndexVariables(resultType).map(["[" + it + "]"]).join(), arrayType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		'''
@@ -93,7 +93,7 @@ class ArrayScalarMultiplyGenerator implements IOperationGenerator {
 				«generateLoop(dimension + 1, indexVariableIt, multiplyExpression, target, resultType)»
 			}
 		«ELSE»
-			«target».data«FOR indexVariable : getIndexVariables(resultType)»[«indexVariable»]«ENDFOR» = «multiplyExpression»;
+			«target»«FOR indexVariable : getIndexVariables(resultType)»[«indexVariable»]«ENDFOR» = «multiplyExpression»;
 		«ENDIF»
 	'''
 	

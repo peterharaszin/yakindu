@@ -20,21 +20,20 @@ import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue
 
-import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
-
 /**
  * @author Andreas Unger
  *
  */
 class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
-	val LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator())
+	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
+	val LiteralGenerator literalGenerator = new LiteralGenerator(dataTypeGenerator)
 	
 	val IMscriptGeneratorConfiguration configuration
 	val IArrayValue arrayValue
 	
 	String name
-	String typeName
+	CharSequence type
 	CharSequence body
 
 	new(IMscriptGeneratorConfiguration configuration, IArrayValue value) {
@@ -50,11 +49,8 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	}
 	
 	override void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ArrayTypeDeclaration])
-		
 		val codeFragmentCollector = context.codeFragmentCollector
 		val arrayType = MachineDataTypes::create(configuration, arrayValue.dataType)
-		val arrayTypeDeclaration = codeFragmentCollector.addCodeFragment(new ArrayTypeDeclaration(arrayType), monitor)
 		
 		val preferredName = switch (arrayType.dimensionality) {
 		case 1:
@@ -65,8 +61,8 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 			"array"
 		}
 
-		typeName = arrayTypeDeclaration.name
 		name = context.globalNameProvider.newGlobalName(preferredName)
+		type = arrayType.generateDataType(name, codeFragmentCollector, this)
 		body = literalGenerator.generateInitializer(configuration.computationModel, codeFragmentCollector, arrayValue)
 	}
 	
@@ -75,7 +71,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		extern const «typeName» «name»;
+		extern const «type»;
 	'''
 	
 	override boolean contributesImplementation() {
@@ -83,7 +79,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''
-		«IF internal»static «ENDIF»const «typeName» «name» = «body»;
+		«IF internal»static «ENDIF»const «type» = «body»;
 	'''
 
 	override int hashCode() {

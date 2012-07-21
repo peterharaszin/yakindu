@@ -48,7 +48,7 @@ class StructTypeDeclaration extends AbstractCodeFragment {
 		declaration = '''
 			typedef struct {
 				«FOR member : structType.members»
-					«member.type.generateDataType(codeFragmentCollector, this)» «member.name»;
+					«member.type.generateDataType(member.name, codeFragmentCollector, this)»;
 				«ENDFOR»
 			} «name»;
 		'''

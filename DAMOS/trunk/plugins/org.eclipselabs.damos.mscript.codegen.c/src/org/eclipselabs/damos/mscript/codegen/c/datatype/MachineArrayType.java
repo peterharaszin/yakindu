@@ -11,15 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.datatype;
 
-import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON;
-
 import java.util.Arrays;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayTypeDeclaration;
 
 /**
  * @author Andreas Unger
@@ -78,20 +73,19 @@ public class MachineArrayType extends MachineDataType {
 	}
 
 	@Override
-	public String generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
-		final ArrayTypeDeclaration codeFragment = (ArrayTypeDeclaration) codeFragmentCollector
-				.addCodeFragment(new ArrayTypeDeclaration(this),
-						new NullProgressMonitor());
-		if (dependentCodeFragment != null) {
-			dependentCodeFragment.addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
-				
-				public boolean applies(ICodeFragment other) {
-					return other == codeFragment;
-				}
-				
-			});
+	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(elementType.generateDataType(null, codeFragmentCollector, dependentCodeFragment));
+		if (variableName != null) {
+			sb.append(" ");
+			sb.append(variableName);
 		}
-		return codeFragment.getName();
+		for (int i = 0; i < dimensionSizes.length; ++i) {
+			sb.append("[");
+			sb.append(dimensionSizes[i]);
+			sb.append("]");
+		}
+		return sb;
 	}
 	
 	/* (non-Javadoc)

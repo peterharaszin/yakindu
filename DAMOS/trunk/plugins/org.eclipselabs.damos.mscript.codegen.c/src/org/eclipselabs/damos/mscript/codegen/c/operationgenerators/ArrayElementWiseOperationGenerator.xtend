@@ -71,8 +71,8 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 	}
 	
 	def private getMultiplicativeExpression(IMscriptGeneratorContext context, ICodeFragmentCollector codeFragmentCollector, BinaryExpression binaryExpression, MachineArrayType leftArrayType, MachineArrayType rightArrayType, MachineArrayType resultType) {
-		val leftOperandText = expressionGenerator.generate(context, binaryExpression.leftOperand) + ".data" + getIndexVariables(resultType).map(["[" + it + "]"]).join()
-		val rightOperandText = expressionGenerator.generate(context, binaryExpression.rightOperand) + ".data" + getIndexVariables(resultType).map(["[" + it + "]"]).join()
+		val leftOperandText = expressionGenerator.generate(context, binaryExpression.leftOperand) + getIndexVariables(resultType).map(["[" + it + "]"]).join()
+		val rightOperandText = expressionGenerator.generate(context, binaryExpression.rightOperand) + getIndexVariables(resultType).map(["[" + it + "]"]).join()
 
 		if (binaryExpression.operator == OperatorKind::ADD || binaryExpression.operator == OperatorKind::SUBTRACT) {
 			val operatorSymbol = switch (binaryExpression.operator) {
@@ -100,7 +100,7 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 				«generateLoop(dimension + 1, indexVariableIt, multiplyExpression, target, resultType)»
 			}
 		«ELSE»
-			«target».data«FOR indexVariable : getIndexVariables(resultType)»[«indexVariable»]«ENDFOR» = «multiplyExpression»;
+			«target»«FOR indexVariable : getIndexVariables(resultType)»[«indexVariable»]«ENDFOR» = «multiplyExpression»;
 		«ENDIF»
 	'''
 	

@@ -38,8 +38,9 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		CharSequence cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), getContext().getCodeFragmentCollector(), dataType, null);
-		sb.append("typedef struct {\n").append(cDataType).append(" ").append("data;\n");
+		sb.append("typedef struct {\n");
+		sb.append(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), "data", getContext().getCodeFragmentCollector(), dataType, null));
+		sb.append(";\n");
 		sb.append(getFastLockGenerator().generateContextCode("lock"));
 		sb.append("} ").append(typeName).append(";\n");
 		return sb;

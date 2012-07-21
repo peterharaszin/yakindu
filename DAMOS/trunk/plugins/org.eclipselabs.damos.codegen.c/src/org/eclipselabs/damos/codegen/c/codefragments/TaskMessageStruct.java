@@ -55,9 +55,7 @@ public class TaskMessageStruct extends PrimaryCodeFragment {
 						ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
 						IComponentGenerator generator = GeneratorNodeExtensions.getComponentGenerator(componentNode);
 						IComponentSignature signature = generator.getContext().getComponentSignature();
-						out.print(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), context, signature.getInputDataType(input.getPorts().get(0)), null));
-						out.print(" ");
-						out.print(input.getName());
+						out.print(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), input.getName(), context, signature.getInputDataType(input.getPorts().get(0)), null));
 						out.print(";\n");
 					}
 				}

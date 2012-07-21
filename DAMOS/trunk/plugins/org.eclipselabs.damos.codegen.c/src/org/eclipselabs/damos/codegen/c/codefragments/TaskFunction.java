@@ -96,7 +96,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 				if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
 					TaskInputNode inputNode = taskGraph.getInputNodes().get(0);
 					String taskInputVariableName = TaskGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
-					sb.append(TaskGeneratorUtil.getCDataTypeFor(context, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
+					sb.append(TaskGeneratorUtil.getCDataTypeFor(context, taskInputVariableName, inputNode)).append(";\n");
 				} else {
 					sb.append(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 					sb.append("_Message ");

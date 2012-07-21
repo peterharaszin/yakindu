@@ -50,15 +50,14 @@ public class ExpressionStringSegment implements IStringSegment {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment#generateDataType(org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector, org.eclipselabs.damos.mscript.codegen.c.ICodeFragment)
 	 */
-	public CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector,
-			ICodeFragment dependentCodeFragment) {
+	public CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		if (static_) {
 			return "int ";
 		}
 		if (dataType instanceof MachineStringType) {
 			return "const char *";
 		}
-		return dataType.generateDataType(codeFragmentCollector, dependentCodeFragment) + " ";
+		return dataType.generateDataType(null, codeFragmentCollector, dependentCodeFragment) + " ";
 	}
 	
 	/* (non-Javadoc)

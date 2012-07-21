@@ -12,7 +12,7 @@ TEST(MatrixVectorMultiplyTest, MatrixVectorMultiply) {
 
 	execute(&input, &output);
 
-	EXPECT_DOUBLE_EQ(23.3, output.out.data[0]);
-	EXPECT_DOUBLE_EQ(38.0, output.out.data[1]);
-	EXPECT_DOUBLE_EQ(48.0, output.out.data[2]);
+	EXPECT_DOUBLE_EQ(23.3, output.out[0]);
+	EXPECT_DOUBLE_EQ(38.0, output.out[1]);
+	EXPECT_DOUBLE_EQ(48.0, output.out[2]);
 }

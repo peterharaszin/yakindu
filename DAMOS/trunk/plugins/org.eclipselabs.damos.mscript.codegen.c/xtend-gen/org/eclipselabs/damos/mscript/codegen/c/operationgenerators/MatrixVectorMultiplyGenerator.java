@@ -102,14 +102,14 @@ public class MatrixVectorMultiplyGenerator implements IOperationGenerator {
       final MachineArrayType resultType = MachineDataTypes.create(_configuration_2, ((ArrayType) resultDataType));
       Expression _leftOperand_1 = binaryExpression.getLeftOperand();
       CharSequence _generate = this.expressionGenerator.generate(context, _leftOperand_1);
-      String _plus = (_generate + ".data[i][j]");
+      String _plus = (_generate + "[i][j]");
       MachineNumericType _numericElementType = matrixType.getNumericElementType();
       NumberFormat _numberFormat = _numericElementType.getNumberFormat();
       TextualNumericExpressionOperand _textualNumericExpressionOperand = new TextualNumericExpressionOperand(_plus, _numberFormat);
       final TextualNumericExpressionOperand leftOperand = _textualNumericExpressionOperand;
       Expression _rightOperand_1 = binaryExpression.getRightOperand();
       CharSequence _generate_1 = this.expressionGenerator.generate(context, _rightOperand_1);
-      String _plus_1 = (_generate_1 + ".data[j]");
+      String _plus_1 = (_generate_1 + "[j]");
       MachineNumericType _numericElementType_1 = vectorType.getNumericElementType();
       NumberFormat _numberFormat_1 = _numericElementType_1.getNumberFormat();
       TextualNumericExpressionOperand _textualNumericExpressionOperand_1 = new TextualNumericExpressionOperand(_plus_1, _numberFormat_1);
@@ -137,7 +137,7 @@ public class MatrixVectorMultiplyGenerator implements IOperationGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t\t");
       _builder.append(target, "			");
-      _builder.append(".data[i] += ");
+      _builder.append("[i] += ");
       _builder.append(multiplyExpression, "			");
       _builder.append(";");
       _builder.newLineIfNotEmpty();

@@ -27,8 +27,14 @@ public class MachineBooleanType extends MachineDataType {
 	}
 	
 	@Override
-	public String generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
-		return "uint_fast8_t";
+	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("uint_fast8_t");
+		if (variableName != null) {
+			sb.append(" ");
+			sb.append(variableName);
+		}
+		return sb;
 	}
 	
 	/* (non-Javadoc)

@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitFactor;
 
@@ -35,10 +35,10 @@ import org.eclipselabs.damos.mscript.UnitFactor;
  */
 public class TypeUtil {
 	
-	public static final DataType INVALID_DATA_TYPE = MscriptFactory.eINSTANCE.createInvalidDataType();
-	public static final DataType BOOLEAN_TYPE = MscriptFactory.eINSTANCE.createBooleanType();
-	public static final DataType STRING_TYPE = MscriptFactory.eINSTANCE.createStringType();
-	public static final DataType UNIT_TYPE = MscriptFactory.eINSTANCE.createUnitType();
+	public static final Type INVALID_DATA_TYPE = MscriptFactory.eINSTANCE.createInvalidType();
+	public static final Type BOOLEAN_TYPE = MscriptFactory.eINSTANCE.createBooleanType();
+	public static final Type STRING_TYPE = MscriptFactory.eINSTANCE.createStringType();
+	public static final Type UNIT_TYPE = MscriptFactory.eINSTANCE.createUnitType();
 	
 	public static RealType createRealType() {
 		return createRealType(createUnit());
@@ -97,13 +97,13 @@ public class TypeUtil {
 		throw new IllegalArgumentException();
 	}
 	
-	public static ArrayType createArrayType(DataType elementType, int... sizes) {
+	public static ArrayType createArrayType(Type elementType, int... sizes) {
 		ArrayType arrayType = doCreateArrayType(elementType);
 		initializeArrayDimensions(arrayType, sizes);
 		return arrayType;
 	}
 	
-	private static ArrayType doCreateArrayType(DataType elementType) {
+	private static ArrayType doCreateArrayType(Type elementType) {
 		ArrayType arrayType = MscriptFactory.eINSTANCE.createArrayType();
 		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		elementTypeSpecifier.setType(elementType);
@@ -122,7 +122,7 @@ public class TypeUtil {
 		}
 	}
 	
-	public static void setArrayElementType(ArrayType arrayType, DataType elementType) {
+	public static void setArrayElementType(ArrayType arrayType, Type elementType) {
 		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		elementTypeSpecifier.setType(elementType);
 		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
@@ -140,14 +140,14 @@ public class TypeUtil {
 			return EcoreUtil.copy(other);
 		}
 		if (unit.getNumerator() == null) {
-			MscriptFactory.eINSTANCE.createInvalidDataType();
+			MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		return unit.evaluate(operator, other);
 	}
 
 	public static Unit evaluateUnit(Unit unit, OperatorKind operator, int n) {
 		if (unit.getNumerator() == null) {
-			MscriptFactory.eINSTANCE.createInvalidDataType();
+			MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		return unit.evaluate(operator, n);
 	}
@@ -182,7 +182,7 @@ public class TypeUtil {
 		return unit;
 	}
 		
-	public static DataType getLeftHandDataType(DataType dataType1, DataType dataType2) {
+	public static Type getLeftHandDataType(Type dataType1, Type dataType2) {
 		if (dataType1.isAssignableFrom(dataType2)) {
 			return dataType1;
 		} else if (dataType2.isAssignableFrom(dataType1)) {
@@ -191,24 +191,24 @@ public class TypeUtil {
 		return null;
 	}
 	
-	public static boolean isNumericArray(DataType dataType) {
-		if (!(dataType instanceof ArrayType)) {
+	public static boolean isNumericArray(Type type) {
+		if (!(type instanceof ArrayType)) {
 			return false;
 		}
-		return ((ArrayType) dataType).isNumeric();
+		return ((ArrayType) type).isNumeric();
 	}
 	
-	public static boolean isNumericVector(DataType dataType) {
-		if (dataType instanceof ArrayType) {
-			ArrayType arrayType = (ArrayType) dataType;
+	public static boolean isNumericVector(Type type) {
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 			return arrayType.isNumericVector();
 		}
 		return false;
 	}
 	
-	public static boolean isNumericMatrix(DataType dataType) {
-		if (dataType instanceof ArrayType) {
-			ArrayType arrayType = (ArrayType) dataType;
+	public static boolean isNumericMatrix(Type type) {
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 			return arrayType.isNumericMatrix();
 		}
 		return false;

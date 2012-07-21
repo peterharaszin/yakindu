@@ -66,11 +66,11 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.execution.ExecutionTestsPlugin;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -186,7 +186,7 @@ public abstract class AbstractExecutionTest {
 	
 	protected MscriptDataTypeSpecification createDataTypeSpecification(String dataType) {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
-		dataTypeSpecification.setSpecifier(parseDataTypeSpecifier(dataType));
+		dataTypeSpecification.setTypeSpecifier(parseDataTypeSpecifier(dataType));
 		return dataTypeSpecification;
 	}
 
@@ -194,7 +194,7 @@ public abstract class AbstractExecutionTest {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createRealType());
-		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "real");
 		return dataTypeSpecification;
 	}
@@ -203,7 +203,7 @@ public abstract class AbstractExecutionTest {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createIntegerType());
-		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "int");
 		return dataTypeSpecification;
 	}
@@ -212,16 +212,16 @@ public abstract class AbstractExecutionTest {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(MscriptFactory.eINSTANCE.createBooleanType());
-		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
 		DMLTextUtil.setText(dataTypeSpecification, "boolean");
 		return dataTypeSpecification;
 	}
 
-	protected MscriptDataTypeSpecification createArrayTypeSpecification(DataType elementType, int... sizes) {
+	protected MscriptDataTypeSpecification createArrayTypeSpecification(Type elementType, int... sizes) {
 		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createArrayType(elementType, sizes));
-		dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
 		return dataTypeSpecification;
 	}
 
@@ -465,12 +465,12 @@ public abstract class AbstractExecutionTest {
 		return (Expression) result.getRootASTElement();
 	}
 
-	protected DataTypeSpecifier parseDataTypeSpecifier(String dataTypeString) {
-		IParseResult result = parser.parse(grammarAccess.getDataTypeSpecifierRule(), new StringReader(dataTypeString));
+	protected TypeSpecifier parseDataTypeSpecifier(String dataTypeString) {
+		IParseResult result = parser.parse(grammarAccess.getTypeSpecifierRule(), new StringReader(dataTypeString));
 		if (result.hasSyntaxErrors()) {
 			throw new RuntimeException("Syntax errors in '" + dataTypeString + "'");
 		}
-		return (DataTypeSpecifier) result.getRootASTElement();
+		return (TypeSpecifier) result.getRootASTElement();
 	}
 
 }

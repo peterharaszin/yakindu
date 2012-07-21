@@ -86,10 +86,10 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DATA_TYPE_DECLARATION: {
-				DataTypeDeclaration dataTypeDeclaration = (DataTypeDeclaration)theEObject;
-				T result = caseDataTypeDeclaration(dataTypeDeclaration);
-				if (result == null) result = caseDeclaration(dataTypeDeclaration);
+			case MscriptPackage.TYPE_DECLARATION: {
+				TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
+				T result = caseTypeDeclaration(typeDeclaration);
+				if (result == null) result = caseDeclaration(typeDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,10 +109,11 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.STRUCT_DECLARATION: {
 				StructDeclaration structDeclaration = (StructDeclaration)theEObject;
 				T result = caseStructDeclaration(structDeclaration);
-				if (result == null) result = caseDataTypeDeclaration(structDeclaration);
+				if (result == null) result = caseTypeDeclaration(structDeclaration);
 				if (result == null) result = caseStructType(structDeclaration);
 				if (result == null) result = caseDeclaration(structDeclaration);
 				if (result == null) result = caseDataType(structDeclaration);
+				if (result == null) result = caseType(structDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -229,23 +230,23 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DATA_TYPE_SPECIFIER: {
-				DataTypeSpecifier dataTypeSpecifier = (DataTypeSpecifier)theEObject;
-				T result = caseDataTypeSpecifier(dataTypeSpecifier);
+			case MscriptPackage.TYPE_SPECIFIER: {
+				TypeSpecifier typeSpecifier = (TypeSpecifier)theEObject;
+				T result = caseTypeSpecifier(typeSpecifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER: {
 				AnonymousTypeSpecifier anonymousTypeSpecifier = (AnonymousTypeSpecifier)theEObject;
 				T result = caseAnonymousTypeSpecifier(anonymousTypeSpecifier);
-				if (result == null) result = caseDataTypeSpecifier(anonymousTypeSpecifier);
+				if (result == null) result = caseTypeSpecifier(anonymousTypeSpecifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.DECLARED_TYPE_SPECIFIER: {
 				DeclaredTypeSpecifier declaredTypeSpecifier = (DeclaredTypeSpecifier)theEObject;
 				T result = caseDeclaredTypeSpecifier(declaredTypeSpecifier);
-				if (result == null) result = caseDataTypeSpecifier(declaredTypeSpecifier);
+				if (result == null) result = caseTypeSpecifier(declaredTypeSpecifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -720,30 +721,37 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.TYPE: {
+				Type type = (Type)theEObject;
+				T result = caseType(type);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.INVALID_TYPE: {
+				InvalidType invalidType = (InvalidType)theEObject;
+				T result = caseInvalidType(invalidType);
+				if (result == null) result = caseType(invalidType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.ANY_TYPE: {
+				AnyType anyType = (AnyType)theEObject;
+				T result = caseAnyType(anyType);
+				if (result == null) result = caseType(anyType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.DATA_TYPE: {
 				DataType dataType = (DataType)theEObject;
 				T result = caseDataType(dataType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.INVALID_DATA_TYPE: {
-				InvalidDataType invalidDataType = (InvalidDataType)theEObject;
-				T result = caseInvalidDataType(invalidDataType);
-				if (result == null) result = caseDataType(invalidDataType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.ANY_DATA_TYPE: {
-				AnyDataType anyDataType = (AnyDataType)theEObject;
-				T result = caseAnyDataType(anyDataType);
-				if (result == null) result = caseDataType(anyDataType);
+				if (result == null) result = caseType(dataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.UNIT_TYPE: {
 				UnitType unitType = (UnitType)theEObject;
 				T result = caseUnitType(unitType);
-				if (result == null) result = caseDataType(unitType);
+				if (result == null) result = caseType(unitType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -751,6 +759,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				PrimitiveType primitiveType = (PrimitiveType)theEObject;
 				T result = casePrimitiveType(primitiveType);
 				if (result == null) result = caseDataType(primitiveType);
+				if (result == null) result = caseType(primitiveType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -759,6 +768,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseNumericType(numericType);
 				if (result == null) result = casePrimitiveType(numericType);
 				if (result == null) result = caseDataType(numericType);
+				if (result == null) result = caseType(numericType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -768,6 +778,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericType(realType);
 				if (result == null) result = casePrimitiveType(realType);
 				if (result == null) result = caseDataType(realType);
+				if (result == null) result = caseType(realType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -777,6 +788,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericType(integerType);
 				if (result == null) result = casePrimitiveType(integerType);
 				if (result == null) result = caseDataType(integerType);
+				if (result == null) result = caseType(integerType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -786,6 +798,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericType(complexType);
 				if (result == null) result = casePrimitiveType(complexType);
 				if (result == null) result = caseDataType(complexType);
+				if (result == null) result = caseType(complexType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -795,6 +808,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericType(gaussianType);
 				if (result == null) result = casePrimitiveType(gaussianType);
 				if (result == null) result = caseDataType(gaussianType);
+				if (result == null) result = caseType(gaussianType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -803,6 +817,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseBooleanType(booleanType);
 				if (result == null) result = casePrimitiveType(booleanType);
 				if (result == null) result = caseDataType(booleanType);
+				if (result == null) result = caseType(booleanType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -811,6 +826,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseStringType(stringType);
 				if (result == null) result = casePrimitiveType(stringType);
 				if (result == null) result = caseDataType(stringType);
+				if (result == null) result = caseType(stringType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -818,6 +834,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ArrayType arrayType = (ArrayType)theEObject;
 				T result = caseArrayType(arrayType);
 				if (result == null) result = caseDataType(arrayType);
+				if (result == null) result = caseType(arrayType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -831,6 +848,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				StructType structType = (StructType)theEObject;
 				T result = caseStructType(structType);
 				if (result == null) result = caseDataType(structType);
+				if (result == null) result = caseType(structType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1012,17 +1030,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type Declaration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type Declaration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDataTypeDeclaration(DataTypeDeclaration object) {
+	public T caseTypeDeclaration(TypeDeclaration object) {
 		return null;
 	}
 
@@ -1282,17 +1300,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type Specifier</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Type Specifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type Specifier</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Type Specifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDataTypeSpecifier(DataTypeSpecifier object) {
+	public T caseTypeSpecifier(TypeSpecifier object) {
 		return null;
 	}
 
@@ -2227,6 +2245,51 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseType(Type object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Invalid Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Invalid Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInvalidType(InvalidType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Any Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Any Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnyType(AnyType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2238,36 +2301,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataType(DataType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Invalid Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Invalid Data Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInvalidDataType(InvalidDataType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Any Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Any Data Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnyDataType(AnyDataType object) {
 		return null;
 	}
 

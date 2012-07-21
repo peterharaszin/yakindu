@@ -12,9 +12,9 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.Assignment;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
@@ -48,13 +48,13 @@ public class VariableExpressionTarget extends AbstractExpressionTarget {
 		context.getCompound().getStatements().add(assignment);
 	}
 
-	public VariableReference createVariableReference(DataType targetDataType) {
+	public VariableReference createVariableReference(Type targetDataType) {
 		VariableReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, stepIndex, false);
 		context.getStaticEvaluationResult().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), getDataType()));
 		return variableReference;
 	}
 	
-	private DataType getDataType() {
+	private Type getDataType() {
 		IValue value = context.getStaticEvaluationResult().getValue(variableDeclaration);
 		return value.getDataType();
 	}

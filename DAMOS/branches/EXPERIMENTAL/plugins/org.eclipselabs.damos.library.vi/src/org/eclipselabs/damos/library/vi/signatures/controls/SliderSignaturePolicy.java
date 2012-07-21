@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
 import org.eclipselabs.damos.library.vi.util.controls.SliderConstants;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.Unit;
@@ -40,7 +40,7 @@ import org.eclipselabs.damos.mscript.Unit;
 public class SliderSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Block block = (Block) component;
 		
 		MultiStatus status = new MultiStatus(LibraryVIPlugin.PLUGIN_ID, 0, "", null);

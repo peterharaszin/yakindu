@@ -31,7 +31,6 @@ import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
@@ -42,7 +41,7 @@ import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -68,6 +67,7 @@ import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -196,8 +196,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			DataType dataType = TypeUtil.getLeftHandDataType(thenValue.getDataType(), elseValue.getDataType());
-			if (dataType == null) {
+			Type type = TypeUtil.getLeftHandDataType(thenValue.getDataType(), elseValue.getDataType());
+			if (type == null) {
 				if (context.getStatusCollector() != null) {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Resulting data type is incompatible with else expression data type", ifExpression.getThenExpression()));
 				}
@@ -207,7 +207,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			return new AnyValue(context.getComputationContext(), dataType);
+			return new AnyValue(context.getComputationContext(), type);
 		}
 
 		/* (non-Javadoc)
@@ -293,14 +293,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			DataType dataType = startValue.getDataType();
-			if (incrementValue != null && dataType != null) {
-				dataType = TypeUtil.getLeftHandDataType(dataType, incrementValue.getDataType());
+			Type type = startValue.getDataType();
+			if (incrementValue != null && type != null) {
+				type = TypeUtil.getLeftHandDataType(type, incrementValue.getDataType());
 			}
-			if (dataType != null) {
-				dataType = TypeUtil.getLeftHandDataType(dataType, endValue.getDataType());
+			if (type != null) {
+				type = TypeUtil.getLeftHandDataType(type, endValue.getDataType());
 			}
-			if (!(dataType instanceof NumericType)) {
+			if (!(type instanceof NumericType)) {
 				if (context.getStatusCollector() != null) {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Incompatible data types in range expression", rangeExpression));
 				}
@@ -313,17 +313,17 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			ISimpleNumericValue numericIncrementValue = (ISimpleNumericValue) incrementValue;
 			ISimpleNumericValue numericEndValue = (ISimpleNumericValue) endValue;
 
-			if (dataType instanceof IntegerType) {
+			if (type instanceof IntegerType) {
 				long x = numericStartValue.longValue();
 				long increment = incrementValue != null ? numericIncrementValue.longValue() : 1;
 				long end = numericEndValue.longValue();
 				if (increment > 0 && x <= end) {
 					for (; x <= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) type), x));
 					}
 				} else if (increment < 0 && x >= end) {
 					for (; x >= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) type), x));
 					}
 				}
 			} else {
@@ -332,16 +332,16 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				double end = numericEndValue.doubleValue();
 				if (increment > 0.0 && x <= end) {
 					for (; x <= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) type), x));
 					}
 				} else if (increment < 0.0 && x >= end) {
 					for (; x >= end; x += increment) {
-						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) dataType), x));
+						values.add(Values.valueOf(context.getComputationContext(), EcoreUtil.copy((NumericType) type), x));
 					}
 				}
 			}
 
-			return new VectorValue(context.getComputationContext(), TypeUtil.createArrayType(EcoreUtil.copy(dataType), values.size()), values.toArray(new IValue[values.size()]));
+			return new VectorValue(context.getComputationContext(), TypeUtil.createArrayType(EcoreUtil.copy(type), values.size()), values.toArray(new IValue[values.size()]));
 		}
 
 		/* (non-Javadoc)
@@ -604,8 +604,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			if (value instanceof InvalidValue) {
 				return value;
 			}
-			DataType dataType = typeTestExpression.getTypeSpecifier().getType();
-			return Values.valueOf(context.getComputationContext(), dataType.isAssignableFrom(value.getDataType()));
+			Type type = typeTestExpression.getTypeSpecifier().getType();
+			return Values.valueOf(context.getComputationContext(), type.isAssignableFrom(value.getDataType()));
 		}
 
 		/* (non-Javadoc)
@@ -865,24 +865,24 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		}
 
 		private ArrayType createArrayType(IValue[] elements) {
-			DataType elementType = null;
+			Type elementType = null;
 
 			for (IValue elementValue : elements) {
-				DataType dataType = elementValue.getDataType();
+				Type type = elementValue.getDataType();
 
-				if (dataType == null || dataType instanceof InvalidDataType) {
+				if (type == null || type instanceof InvalidType) {
 					return null;
 				}
 
-				if (elementType != null && !elementType.isEquivalentTo(dataType)) {
-					DataType leftHandDataType = TypeUtil.getLeftHandDataType(elementType, dataType);
+				if (elementType != null && !elementType.isEquivalentTo(type)) {
+					Type leftHandDataType = TypeUtil.getLeftHandDataType(elementType, type);
 					if (leftHandDataType == null) {
 						return null;
 					}
-					dataType = leftHandDataType;
+					type = leftHandDataType;
 				}
 
-				elementType = dataType;
+				elementType = type;
 			}
 			
 			if (elementType instanceof ArrayType) {
@@ -1065,15 +1065,15 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			if (operandValue instanceof ISimpleNumericValue && exponentValue instanceof ISimpleNumericValue) {
 				result = operandValue.power(exponentValue);
 			} else {
-				DataType dataType;
+				Type type;
 				if (constantIntegerExponent) {
-					dataType = operandType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) exponentValue).longValue());
+					type = operandType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) exponentValue).longValue());
 				} else {
 					RealType realType = MscriptFactory.eINSTANCE.createRealType();
 					realType.setUnit(EcoreUtil.copy(operandType.getUnit()));
-					dataType = realType;
+					type = realType;
 				}
-				result = new AnyValue(context.getComputationContext(), dataType);
+				result = new AnyValue(context.getComputationContext(), type);
 			}
 
 			return result;
@@ -1424,7 +1424,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			DataType resultingDataType = TypeUtil.getLeftHandDataType(accumulatorValue.getDataType(), expressionValue.getDataType());
+			Type resultingDataType = TypeUtil.getLeftHandDataType(accumulatorValue.getDataType(), expressionValue.getDataType());
 			if (resultingDataType == null) {
 				if (context.getStatusCollector() != null) {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call accumulator type is incompatabile with expression type", iterationCall));

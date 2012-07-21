@@ -188,6 +188,15 @@ public interface DMLTextPackage extends EPackage {
 	int MSCRIPT_BLOCK_TYPE__TIMING = DMLPackage.BLOCK_TYPE__TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Boundary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__BOUNDARY = DMLPackage.BLOCK_TYPE__BOUNDARY;
+
+	/**
 	 * The feature id for the '<em><b>Import Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,13 +307,13 @@ public interface DMLTextPackage extends EPackage {
 	int MSCRIPT_DATA_TYPE_SPECIFICATION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Specifier</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER = DMLPackage.DATA_TYPE_SPECIFICATION_FEATURE_COUNT + 0;
+	int MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER = DMLPackage.DATA_TYPE_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -450,15 +459,15 @@ public interface DMLTextPackage extends EPackage {
 	EClass getMscriptDataTypeSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification#getSpecifier <em>Specifier</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification#getTypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Specifier</em>'.
-	 * @see org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification#getSpecifier()
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification#getTypeSpecifier()
 	 * @see #getMscriptDataTypeSpecification()
 	 * @generated
 	 */
-	EReference getMscriptDataTypeSpecification_Specifier();
+	EReference getMscriptDataTypeSpecification_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification#getType <em>Type</em>}'.
@@ -595,12 +604,12 @@ public interface DMLTextPackage extends EPackage {
 		EClass MSCRIPT_DATA_TYPE_SPECIFICATION = eINSTANCE.getMscriptDataTypeSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Specifier</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER = eINSTANCE.getMscriptDataTypeSpecification_Specifier();
+		EReference MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER = eINSTANCE.getMscriptDataTypeSpecification_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.

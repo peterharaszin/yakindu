@@ -19,7 +19,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -76,8 +76,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
-			DataType inputDataType = signature.getInputDataType(inputPort);
-			DataType targetDataType = staticEvaluationResult.getValue(inputParameterDeclaration).getDataType();
+			Type inputDataType = signature.getInputDataType(inputPort);
+			Type targetDataType = staticEvaluationResult.getValue(inputParameterDeclaration).getDataType();
 			if (!inputDataType.isEquivalentTo(targetDataType)) {
 				return String.format("%s_%s", StringExtensions.toFirstLower(block.getName()), blockInput.getDefinition().getName());
 			}

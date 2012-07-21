@@ -14,11 +14,11 @@ package org.eclipselabs.damos.mscript.interpreter.value;
 import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.StringType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -60,25 +60,25 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	}
 
 	@Override
-	protected IValue doConvert(DataType dataType) {
-		if (dataType instanceof StringType) {
+	protected IValue doConvert(Type type) {
+		if (type instanceof StringType) {
 			if (getDataType() instanceof IntegerType) {
 				return new StringValue(getContext(), Long.toString(longValue()));
 			}
 			return InvalidValue.SINGLETON;
 		}
-		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(dataType);
+		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(type);
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {
-			return new FixedPointValue(getContext(), (NumericType) dataType, getNumberFormat(), rawValue);
+			return new FixedPointValue(getContext(), (NumericType) type, getNumberFormat(), rawValue);
 		}
-		return doCast((NumericType) dataType, numberFormat);
+		return doCast((NumericType) type, numberFormat);
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		if (resultDataType instanceof StringType) {
 			return new StringValue(getContext(), Long.toString(longValue()) + other);
 		}
@@ -191,37 +191,37 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	}
 	
 	@Override
-	protected IValue basicLessThan(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicLessThan(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue < otherFixedPointValue.rawValue);
 	}
 	
 	@Override
-	protected IValue basicLessThanOrEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicLessThanOrEqualTo(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue <= otherFixedPointValue.rawValue);
 	}
 	
 	@Override
-	protected IValue basicGreaterThan(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicGreaterThan(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue > otherFixedPointValue.rawValue);
 	}
 	
 	@Override
-	protected IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue >= otherFixedPointValue.rawValue);
 	}
 	
 	@Override
-	protected IValue basicEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicEqualTo(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue == otherFixedPointValue.rawValue);
 	}
 	
 	@Override
-	protected IValue basicNotEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicNotEqualTo(AbstractNumericValue other, Type resultDataType) {
 		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
 		return new BooleanValue(getContext(), rawValue != otherFixedPointValue.rawValue);
 	}

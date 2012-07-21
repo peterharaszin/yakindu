@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier typeSpecifier;
+	protected TypeSpecifier typeSpecifier;
 	/**
 	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getTypeSpecifier() {
+	public TypeSpecifier getTypeSpecifier() {
 		return typeSpecifier;
 	}
 
@@ -83,8 +83,8 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldTypeSpecifier = typeSpecifier;
 		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.SIMPLE_PROPERTY_DECLARATION__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
@@ -98,7 +98,7 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
 		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
 			if (typeSpecifier != null)
@@ -196,7 +196,7 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)newValue);
+				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION__DEFAULT_VALUE:
 				setDefaultValue((Expression)newValue);
@@ -214,7 +214,7 @@ public class SimplePropertyDeclarationImpl extends PropertyDeclarationImpl imple
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)null);
+				setTypeSpecifier((TypeSpecifier)null);
 				return;
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION__DEFAULT_VALUE:
 				setDefaultValue((Expression)null);

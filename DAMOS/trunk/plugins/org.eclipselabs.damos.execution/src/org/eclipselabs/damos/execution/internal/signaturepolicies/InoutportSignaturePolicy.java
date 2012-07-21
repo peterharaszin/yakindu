@@ -26,7 +26,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -35,22 +35,22 @@ import org.eclipselabs.damos.mscript.DataType;
 public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Inoutport inport = (Inoutport) component;
 		
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = null;
 		
-		DataType dataType = getDataType(status, inport);
-		if (dataType != null) {
-			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
+		Type type = getDataType(status, inport);
+		if (type != null) {
+			Type incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
-				if (!dataType.isAssignableFrom(incomingDataType)) {
+				if (!type.isAssignableFrom(incomingDataType)) {
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Specified data type incompatible with input value data type"));
 				}
 			}
 			signature = new ComponentSignature(incomingDataTypes);
-			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(dataType));
+			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(type));
 		}
 
 		return new ComponentSignatureEvaluationResult(signature, status);
@@ -61,7 +61,7 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 	 * @param status
 	 * @param inoutport
 	 */
-	protected DataType getDataType(MultiStatus status, Inoutport inoutport) {
+	protected Type getDataType(MultiStatus status, Inoutport inoutport) {
 		if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
 			return ((MscriptDataTypeSpecification) inoutport.getDataType()).getType();
 		} else {

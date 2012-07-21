@@ -11,11 +11,11 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 
 public class RealTypeOperations extends PrimitiveTypeOperations {
 	
@@ -27,17 +27,17 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 		
 	};
 
-	public static DataType evaluate(RealType realType, OperatorKind operator, DataType other) {
+	public static Type evaluate(RealType realType, OperatorKind operator, Type other) {
 		return NUMERIC_TYPE_EVALUATOR.evaluate(realType, operator, other);
 	}
 
-	public static DataType evaluate(RealType realType, OperatorKind operator, int n) {
+	public static Type evaluate(RealType realType, OperatorKind operator, int n) {
 		RealType result = MscriptFactory.eINSTANCE.createRealType();
 		result.setUnit(realType.getUnit().evaluate(operator, n));
 		return result;
 	}
 
-	public static boolean isAssignableFrom(RealType realType, DataType other) {
+	public static boolean isAssignableFrom(RealType realType, Type other) {
 		if (other instanceof NumericType) {
 			NumericType otherNumericType = (NumericType) other;
 			return realType.getUnit().isWildcard() || realType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false);

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -34,7 +34,7 @@ public class StringValue extends AbstractValue {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.execution.value.IValue#getDataType()
 	 */
-	public DataType getDataType() {
+	public Type getDataType() {
 		return TypeUtil.STRING_TYPE;
 	}
 
@@ -42,7 +42,7 @@ public class StringValue extends AbstractValue {
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		IValue otherValue = other.convert(getDataType());
 		if (otherValue instanceof InvalidValue) {
 			return otherValue;
@@ -54,7 +54,7 @@ public class StringValue extends AbstractValue {
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doEqualTo(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		return new BooleanValue(getContext(), value.equals(other.toString()));
 	}
 	
@@ -62,7 +62,7 @@ public class StringValue extends AbstractValue {
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doNotEqualTo(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		return new BooleanValue(getContext(), !value.equals(other.toString()));
 	}
 	

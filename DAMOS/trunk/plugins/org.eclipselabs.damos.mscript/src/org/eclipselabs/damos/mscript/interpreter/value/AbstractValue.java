@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript.interpreter.value;
 
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
@@ -40,129 +40,129 @@ public abstract class AbstractValue implements IValue {
 		return context;
 	}
 	
-	public IValue convert(DataType dataType) {
-		if (dataType.isEquivalentTo(getDataType())) {
+	public IValue convert(Type type) {
+		if (type.isEquivalentTo(getDataType())) {
 			return this;
 		}
-		if (dataType.isAssignableFrom(getDataType())) {
-			return doConvert(dataType);
+		if (type.isAssignableFrom(getDataType())) {
+			return doConvert(type);
 		}
 		return InvalidValue.SINGLETON;
 	}
 	
-	protected IValue doConvert(DataType dataType) {
+	protected IValue doConvert(Type type) {
 		return InvalidValue.SINGLETON;		
 	}
 
 	public IValue add(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.ADD, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.ADD, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doAdd(other, dataType);
+		return doAdd(other, type);
 	}
 
 	/**
 	 * @param other
 	 * @return
 	 */
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 
 	public IValue subtract(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.SUBTRACT, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.SUBTRACT, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doSubtract(other, dataType);
+		return doSubtract(other, type);
 	}
 	
-	protected IValue doSubtract(IValue other, DataType resultDataType) {
+	protected IValue doSubtract(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 
 	public IValue multiply(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.MULTIPLY, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.MULTIPLY, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doMultiply(other, dataType);
+		return doMultiply(other, type);
 	}
 
-	protected IValue doMultiply(IValue other, DataType resultDataType) {
+	protected IValue doMultiply(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue divide(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doDivide(other, dataType);
+		return doDivide(other, type);
 	}
 
-	protected IValue doDivide(IValue other, DataType resultDataType) {
+	protected IValue doDivide(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 
 	public IValue elementWiseMultiply(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.ELEMENT_WISE_MULTIPLY, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.ELEMENT_WISE_MULTIPLY, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doElementWiseMultiply(other, dataType);
+		return doElementWiseMultiply(other, type);
 	}
 
-	protected IValue doElementWiseMultiply(IValue other, DataType resultDataType) {
+	protected IValue doElementWiseMultiply(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 
 	public IValue elementWiseDivide(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.ELEMENT_WISE_DIVIDE, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.ELEMENT_WISE_DIVIDE, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doElementWiseDivide(other, dataType);
+		return doElementWiseDivide(other, type);
 	}
 
-	protected IValue doElementWiseDivide(IValue other, DataType resultDataType) {
+	protected IValue doElementWiseDivide(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
@@ -170,32 +170,32 @@ public abstract class AbstractValue implements IValue {
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.IValue#modulo(org.eclipselabs.damos.mscript.interpreter.value.IValue)
 	 */
 	public IValue modulo(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.MODULO, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.MODULO, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doModulo(other, dataType);
+		return doModulo(other, type);
 	}
 
-	protected IValue doModulo(IValue other, DataType resultDataType) {
+	protected IValue doModulo(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 
 	public IValue negate() {
-		DataType dataType = getDataType().evaluate(OperatorKind.NEGATE, null);
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.NEGATE, null);
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
-		return doNegate(dataType);
+		return doNegate(type);
 	}
 
-	protected IValue doNegate(DataType resultDataType) {
+	protected IValue doNegate(Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
@@ -204,110 +204,110 @@ public abstract class AbstractValue implements IValue {
 	}
 
 	public IValue lessThan(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.LESS_THAN, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.LESS_THAN, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doLessThan(other, dataType);
+		return doLessThan(other, type);
 	}
 
-	protected IValue doLessThan(IValue other, DataType resultDataType) {
+	protected IValue doLessThan(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue lessThanOrEqualTo(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.LESS_THAN_OR_EQUAL_TO, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.LESS_THAN_OR_EQUAL_TO, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doLessThanOrEqualTo(other, dataType);
+		return doLessThanOrEqualTo(other, type);
 	}
 
-	protected IValue doLessThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doLessThanOrEqualTo(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue greaterThan(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.GREATER_THAN, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.GREATER_THAN, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doGreaterThan(other, dataType);
+		return doGreaterThan(other, type);
 	}
 
-	protected IValue doGreaterThan(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThan(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue greaterThanOrEqualTo(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.GREATER_THAN_OR_EQUAL_TO, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.GREATER_THAN_OR_EQUAL_TO, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doGreaterThanOrEqualTo(other, dataType);
+		return doGreaterThanOrEqualTo(other, type);
 	}
 
-	protected IValue doGreaterThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThanOrEqualTo(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue equalTo(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.EQUAL_TO, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.EQUAL_TO, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doEqualTo(other, dataType);
+		return doEqualTo(other, type);
 	}
 
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	
 	public IValue notEqualTo(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.NOT_EQUAL_TO, other.getDataType());
-		if (dataType instanceof InvalidDataType) { 
+		Type type = getDataType().evaluate(OperatorKind.NOT_EQUAL_TO, other.getDataType());
+		if (type instanceof InvalidType) { 
 			return InvalidValue.SINGLETON;
 		}
 		if (other instanceof AnyValue) {
-			return new AnyValue(getContext(), dataType);
+			return new AnyValue(getContext(), type);
 		}
 		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
 			return InvalidValue.SINGLETON;
 		}
-		return doNotEqualTo(other, dataType);
+		return doNotEqualTo(other, type);
 	}
 
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
 	

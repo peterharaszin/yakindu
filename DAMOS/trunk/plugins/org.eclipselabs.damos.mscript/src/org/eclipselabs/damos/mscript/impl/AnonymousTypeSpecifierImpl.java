@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements AnonymousTypeSpecifier {
+public class AnonymousTypeSpecifierImpl extends TypeSpecifierImpl implements AnonymousTypeSpecifier {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected DataType type;
+	protected Type type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType getType() {
+	public Type getType() {
 		return type;
 	}
 
@@ -72,8 +72,8 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(DataType newType, NotificationChain msgs) {
-		DataType oldType = type;
+	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ANONYMOUS_TYPE_SPECIFIER__TYPE, oldType, newType);
@@ -87,7 +87,7 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(DataType newType) {
+	public void setType(Type newType) {
 		if (newType != type) {
 			NotificationChain msgs = null;
 			if (type != null)
@@ -138,7 +138,7 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER__TYPE:
-				setType((DataType)newValue);
+				setType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,7 +153,7 @@ public class AnonymousTypeSpecifierImpl extends DataTypeSpecifierImpl implements
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER__TYPE:
-				setType((DataType)null);
+				setType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -13,12 +13,12 @@ package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
@@ -59,7 +59,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return numberFormat;
 	}
 	
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		
@@ -71,7 +71,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicAdd(AbstractNumericValue other, NumericType resultDataType);
 	
-	protected IValue doSubtract(IValue other, DataType resultDataType) {
+	protected IValue doSubtract(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		
@@ -83,7 +83,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicSubtract(AbstractNumericValue other, NumericType resultDataType);
 
-	protected IValue doMultiply(IValue other, DataType resultDataType) {
+	protected IValue doMultiply(IValue other, Type resultDataType) {
 		if (other.getDataType() instanceof ArrayType) {
 			return other.multiply(this);
 		}
@@ -99,7 +99,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicMultiply(AbstractNumericValue other, NumericType resultDataType);
 
-	protected IValue doDivide(IValue other, DataType resultDataType) {
+	protected IValue doDivide(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		
@@ -111,7 +111,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicDivide(AbstractNumericValue other, NumericType resultDataType);
 
-	protected IValue doModulo(IValue other, DataType resultDataType) {
+	protected IValue doModulo(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		
@@ -123,7 +123,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicModulo(AbstractNumericValue other, NumericType resultDataType);
 
-	protected IValue doNegate(DataType resultDataType) {
+	protected IValue doNegate(Type resultDataType) {
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		
 		AbstractNumericValue operand = cast(resultNumberFormat);
@@ -154,7 +154,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 			return InvalidValue.SINGLETON;
 		}
 
-		DataType resultDataType;
+		Type resultDataType;
 		if (constantIntegerExponent) {
 			resultDataType = operandType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) other).longValue());
 		} else {
@@ -174,7 +174,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicPower(AbstractNumericValue other, NumericType resultDataType);
 
-	protected IValue doLessThan(IValue other, DataType resultDataType) {
+	protected IValue doLessThan(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -184,9 +184,9 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicLessThan(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicLessThan(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicLessThan(AbstractNumericValue other, Type resultDataType);
 
-	protected IValue doLessThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doLessThanOrEqualTo(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -196,9 +196,9 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicLessThanOrEqualTo(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicLessThanOrEqualTo(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicLessThanOrEqualTo(AbstractNumericValue other, Type resultDataType);
 
-	protected IValue doGreaterThan(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThan(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -208,9 +208,9 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicGreaterThan(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicGreaterThan(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicGreaterThan(AbstractNumericValue other, Type resultDataType);
 
-	protected IValue doGreaterThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThanOrEqualTo(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -220,9 +220,9 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicGreaterThanOrEqualTo(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, Type resultDataType);
 
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -232,9 +232,9 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicEqualTo(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicEqualTo(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicEqualTo(AbstractNumericValue other, Type resultDataType);
 
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
 		NumberFormat widestNumberFormat = getWidestNumberFormat(other);
 		
@@ -244,7 +244,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 		return leftOperand.basicNotEqualTo(rightOperand, resultDataType);
 	}
 
-	protected abstract IValue basicNotEqualTo(AbstractNumericValue other, DataType resultDataType);
+	protected abstract IValue basicNotEqualTo(AbstractNumericValue other, Type resultDataType);
 
 	protected abstract AbstractNumericValue cast(NumberFormat numberFormat);
 
@@ -253,8 +253,8 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 	 * @return
 	 */
 	private NumberFormat getWidestNumberFormat(IValue other) {
-		DataType dataType1 = TypeUtil.getLeftHandDataType(getDataType(), other.getDataType());
-		DataType dataType2 = TypeUtil.getLeftHandDataType(other.getDataType(), getDataType());
+		Type dataType1 = TypeUtil.getLeftHandDataType(getDataType(), other.getDataType());
+		Type dataType2 = TypeUtil.getLeftHandDataType(other.getDataType(), getDataType());
 		
 		NumberFormat numberFormat1 = getContext().getComputationModel().getNumberFormat(dataType1);
 		NumberFormat numberFormat2 = getContext().getComputationModel().getNumberFormat(dataType2);

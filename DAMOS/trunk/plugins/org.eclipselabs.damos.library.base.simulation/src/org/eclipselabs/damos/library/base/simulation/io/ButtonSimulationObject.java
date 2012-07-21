@@ -13,7 +13,7 @@ package org.eclipselabs.damos.library.base.simulation.io;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
@@ -30,11 +30,11 @@ public class ButtonSimulationObject extends AbstractBlockSimulationObject {
 
 	private IValue outputValue;
 
-	private DataType outputDataType;
+	private Type outputDataType;
 
 	private ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new ISimulationVariationPoint() {
 
-		public DataType getDataType() {
+		public Type getDataType() {
 			return outputDataType;
 		}
 		

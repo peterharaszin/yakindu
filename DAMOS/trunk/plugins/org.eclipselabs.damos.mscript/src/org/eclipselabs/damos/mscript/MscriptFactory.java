@@ -44,13 +44,13 @@ public interface MscriptFactory extends EFactory {
 	ImportDeclaration createImportDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Data Type Declaration</em>'.
+	 * Returns a new object of class '<em>Type Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type Declaration</em>'.
+	 * @return a new object of class '<em>Type Declaration</em>'.
 	 * @generated
 	 */
-	DataTypeDeclaration createDataTypeDeclaration();
+	TypeDeclaration createTypeDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Enumeration Declaration</em>'.
@@ -683,22 +683,22 @@ public interface MscriptFactory extends EFactory {
 	BuiltinVariableDeclaration createBuiltinVariableDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Invalid Data Type</em>'.
+	 * Returns a new object of class '<em>Invalid Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Invalid Data Type</em>'.
+	 * @return a new object of class '<em>Invalid Type</em>'.
 	 * @generated
 	 */
-	InvalidDataType createInvalidDataType();
+	InvalidType createInvalidType();
 
 	/**
-	 * Returns a new object of class '<em>Any Data Type</em>'.
+	 * Returns a new object of class '<em>Any Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Any Data Type</em>'.
+	 * @return a new object of class '<em>Any Type</em>'.
 	 * @generated
 	 */
-	AnyDataType createAnyDataType();
+	AnyType createAnyType();
 
 	/**
 	 * Returns a new object of class '<em>Unit Type</em>'.

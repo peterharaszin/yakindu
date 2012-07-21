@@ -40,7 +40,7 @@ import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -200,7 +200,7 @@ public class LaunchConfigurationUtil {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
 		}
 		
-		DataTypeSpecifier typeSpecifier = property.getDeclaration().getTypeSpecifier();
+		TypeSpecifier typeSpecifier = property.getDeclaration().getTypeSpecifier();
 		if (typeSpecifier != null && typeSpecifier.getType() != null && !typeSpecifier.getType().isAssignableFrom(value.getDataType())) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " data type"));
 		}

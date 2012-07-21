@@ -81,8 +81,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseDataTypeDeclaration(DataTypeDeclaration object) {
-				return createDataTypeDeclarationAdapter();
+			public Adapter caseTypeDeclaration(TypeDeclaration object) {
+				return createTypeDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseEnumerationDeclaration(EnumerationDeclaration object) {
@@ -153,8 +153,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createEquationAdapter();
 			}
 			@Override
-			public Adapter caseDataTypeSpecifier(DataTypeSpecifier object) {
-				return createDataTypeSpecifierAdapter();
+			public Adapter caseTypeSpecifier(TypeSpecifier object) {
+				return createTypeSpecifierAdapter();
 			}
 			@Override
 			public Adapter caseAnonymousTypeSpecifier(AnonymousTypeSpecifier object) {
@@ -405,16 +405,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createBuiltinVariableDeclarationAdapter();
 			}
 			@Override
+			public Adapter caseType(Type object) {
+				return createTypeAdapter();
+			}
+			@Override
+			public Adapter caseInvalidType(InvalidType object) {
+				return createInvalidTypeAdapter();
+			}
+			@Override
+			public Adapter caseAnyType(AnyType object) {
+				return createAnyTypeAdapter();
+			}
+			@Override
 			public Adapter caseDataType(DataType object) {
 				return createDataTypeAdapter();
-			}
-			@Override
-			public Adapter caseInvalidDataType(InvalidDataType object) {
-				return createInvalidDataTypeAdapter();
-			}
-			@Override
-			public Adapter caseAnyDataType(AnyDataType object) {
-				return createAnyDataTypeAdapter();
 			}
 			@Override
 			public Adapter caseUnitType(UnitType object) {
@@ -595,16 +599,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DataTypeDeclaration <em>Data Type Declaration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TypeDeclaration <em>Type Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.DataTypeDeclaration
+	 * @see org.eclipselabs.damos.mscript.TypeDeclaration
 	 * @generated
 	 */
-	public Adapter createDataTypeDeclarationAdapter() {
+	public Adapter createTypeDeclarationAdapter() {
 		return null;
 	}
 
@@ -847,16 +851,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DataTypeSpecifier <em>Data Type Specifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.DataTypeSpecifier
+	 * @see org.eclipselabs.damos.mscript.TypeSpecifier
 	 * @generated
 	 */
-	public Adapter createDataTypeSpecifierAdapter() {
+	public Adapter createTypeSpecifierAdapter() {
 		return null;
 	}
 
@@ -1729,6 +1733,48 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.Type
+	 * @generated
+	 */
+	public Adapter createTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.InvalidType <em>Invalid Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.InvalidType
+	 * @generated
+	 */
+	public Adapter createInvalidTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.AnyType <em>Any Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.AnyType
+	 * @generated
+	 */
+	public Adapter createAnyTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1739,34 +1785,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.InvalidDataType <em>Invalid Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.InvalidDataType
-	 * @generated
-	 */
-	public Adapter createInvalidDataTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.AnyDataType <em>Any Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.AnyDataType
-	 * @generated
-	 */
-	public Adapter createAnyDataTypeAdapter() {
 		return null;
 	}
 

@@ -62,8 +62,8 @@
     <genClasses image="false" ecoreClass="Mscript.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Declaration/name"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//DataTypeDeclaration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DataTypeDeclaration/typeSpecifier"/>
+    <genClasses ecoreClass="Mscript.ecore#//TypeDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeDeclaration/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//EnumerationDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//EnumerationDeclaration/literalDeclarations"/>
@@ -122,8 +122,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Equation/leftHandSide"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Equation/rightHandSide"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//DataTypeSpecifier">
-      <genOperations ecoreOperation="Mscript.ecore#//DataTypeSpecifier/getType"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//TypeSpecifier">
+      <genOperations ecoreOperation="Mscript.ecore#//TypeSpecifier/getType"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//AnonymousTypeSpecifier">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AnonymousTypeSpecifier/type"/>
@@ -307,24 +307,25 @@
     <genClasses ecoreClass="Mscript.ecore#//BuiltinDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//BuiltinFunctionDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//BuiltinVariableDeclaration"/>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//DataType">
-      <genOperations ecoreOperation="Mscript.ecore#//DataType/evaluate">
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/evaluate/operator"/>
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/evaluate/other"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//Type">
+      <genOperations ecoreOperation="Mscript.ecore#//Type/evaluate">
+        <genParameters ecoreParameter="Mscript.ecore#//Type/evaluate/operator"/>
+        <genParameters ecoreParameter="Mscript.ecore#//Type/evaluate/other"/>
       </genOperations>
-      <genOperations ecoreOperation="Mscript.ecore#//DataType/evaluate.1">
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/evaluate.1/operator"/>
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/evaluate.1/n"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Type/evaluate.1">
+        <genParameters ecoreParameter="Mscript.ecore#//Type/evaluate.1/operator"/>
+        <genParameters ecoreParameter="Mscript.ecore#//Type/evaluate.1/n"/>
       </genOperations>
-      <genOperations ecoreOperation="Mscript.ecore#//DataType/isAssignableFrom">
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/isAssignableFrom/other"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Type/isAssignableFrom">
+        <genParameters ecoreParameter="Mscript.ecore#//Type/isAssignableFrom/other"/>
       </genOperations>
-      <genOperations ecoreOperation="Mscript.ecore#//DataType/isEquivalentTo">
-        <genParameters ecoreParameter="Mscript.ecore#//DataType/isEquivalentTo/other"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Type/isEquivalentTo">
+        <genParameters ecoreParameter="Mscript.ecore#//Type/isEquivalentTo/other"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//InvalidDataType"/>
-    <genClasses ecoreClass="Mscript.ecore#//AnyDataType"/>
+    <genClasses ecoreClass="Mscript.ecore#//InvalidType"/>
+    <genClasses ecoreClass="Mscript.ecore#//AnyType"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//DataType"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitType"/>
     <genClasses ecoreClass="Mscript.ecore#//PrimitiveType"/>
     <genClasses ecoreClass="Mscript.ecore#//NumericType">

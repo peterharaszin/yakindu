@@ -21,7 +21,7 @@ import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -60,7 +60,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 				MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
 				AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 				dataTypeSpecifier.setType(createDataType());
-				dataTypeSpecification.setSpecifier(dataTypeSpecifier);
+				dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
 				DMLTextUtil.setText(dataTypeSpecification, getDataTypeName());
 
 				Inoutport inoutport = (Inoutport) editingDomain.getResourceSet().getEObject(problem.getElementURI(), true);
@@ -72,7 +72,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 	
 	protected abstract String getDataTypeName();
 
-	protected abstract DataType createDataType();
+	protected abstract Type createDataType();
 	
 	public static class Real extends SetDataTypeQuickFix {
 
@@ -82,7 +82,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 		}
 		
 		@Override
-		protected DataType createDataType() {
+		protected Type createDataType() {
 			return TypeUtil.createRealType();
 		}
 		
@@ -96,7 +96,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 		}
 
 		@Override
-		protected DataType createDataType() {
+		protected Type createDataType() {
 			return TypeUtil.createIntegerType();
 		}
 		
@@ -110,7 +110,7 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 		}
 
 		@Override
-		protected DataType createDataType() {
+		protected Type createDataType() {
 			return MscriptFactory.eINSTANCE.createBooleanType();
 		}
 		

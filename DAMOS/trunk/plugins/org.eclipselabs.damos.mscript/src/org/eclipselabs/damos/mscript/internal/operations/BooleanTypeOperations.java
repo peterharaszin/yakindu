@@ -12,14 +12,14 @@
 package org.eclipselabs.damos.mscript.internal.operations;
 
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 
 
 public class BooleanTypeOperations extends PrimitiveTypeOperations {
 
-	public static DataType evaluate(BooleanType booleanType, OperatorKind operator, DataType other) {
+	public static Type evaluate(BooleanType booleanType, OperatorKind operator, Type other) {
 		if (operator == OperatorKind.LOGICAL_NOT) {
 			return MscriptFactory.eINSTANCE.createBooleanType();
 		}
@@ -35,10 +35,10 @@ public class BooleanTypeOperations extends PrimitiveTypeOperations {
 				break;
 			}
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
-	public static boolean isAssignableFrom(BooleanType booleanType, DataType other) {
+	public static boolean isAssignableFrom(BooleanType booleanType, Type other) {
 		return other instanceof BooleanType;
 	}
 

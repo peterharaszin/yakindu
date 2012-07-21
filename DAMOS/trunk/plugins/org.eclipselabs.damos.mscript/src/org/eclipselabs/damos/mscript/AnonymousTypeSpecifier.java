@@ -23,7 +23,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface AnonymousTypeSpecifier extends DataTypeSpecifier {
+public interface AnonymousTypeSpecifier extends TypeSpecifier {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -33,12 +33,12 @@ public interface AnonymousTypeSpecifier extends DataTypeSpecifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(DataType)
+	 * @see #setType(Type)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getAnonymousTypeSpecifier_Type()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataType getType();
+	Type getType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.AnonymousTypeSpecifier#getType <em>Type</em>}' containment reference.
@@ -48,6 +48,6 @@ public interface AnonymousTypeSpecifier extends DataTypeSpecifier {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(DataType value);
+	void setType(Type value);
 
 } // AnonymousTypeSpecifier

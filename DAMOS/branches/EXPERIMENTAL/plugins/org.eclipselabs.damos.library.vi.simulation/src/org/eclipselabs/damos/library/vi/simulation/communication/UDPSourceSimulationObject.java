@@ -29,7 +29,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.library.vi.simulation.LibraryVISimulationPlugin;
 import org.eclipselabs.damos.library.vi.util.communication.UDPSourceConstants;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
@@ -58,7 +58,7 @@ public class UDPSourceSimulationObject extends UDPSimulationObject {
 
 	private IValue[] outputValues;
 
-	private DataType[] outputDataTypes;
+	private Type[] outputDataTypes;
 	
 	private DatagramSocket socket;
 	
@@ -76,7 +76,7 @@ public class UDPSourceSimulationObject extends UDPSimulationObject {
 		
 		{
 			int i = 0;
-			outputDataTypes = new DataType[portCount];
+			outputDataTypes = new Type[portCount];
 			for (OutputPort outputPort: getComponent().getPrimaryOutputPorts()) {
 				outputDataTypes[i++] = getComponentSignature().getOutputDataType(outputPort);
 			}

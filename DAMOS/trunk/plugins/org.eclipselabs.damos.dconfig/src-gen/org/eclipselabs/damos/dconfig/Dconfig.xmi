@@ -740,9 +740,9 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.8"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="DataTypeDeclaration">
+    <rules xsi:type="xtext:ParserRule" name="TypeDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDeclaration"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TypeDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:Group">
@@ -1102,9 +1102,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="DataTypeSpecifier">
+    <rules xsi:type="xtext:ParserRule" name="TypeSpecifier">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeSpecifier"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TypeSpecifier"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.21"/>
@@ -1130,7 +1130,7 @@
       <alternatives xsi:type="xtext:Assignment" feature="typeDeclaration" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="/1/@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDeclaration"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TypeDeclaration"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.126"/>
         </terminal>
@@ -1270,7 +1270,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ArrayTypeSpecifier">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeSpecifier"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//TypeSpecifier"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>

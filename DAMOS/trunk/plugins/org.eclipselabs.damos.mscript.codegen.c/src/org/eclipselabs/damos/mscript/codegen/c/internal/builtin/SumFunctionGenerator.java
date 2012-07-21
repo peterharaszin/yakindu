@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
@@ -35,12 +35,12 @@ public class SumFunctionGenerator implements IBuiltinFunctionGenerator {
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
-		DataType dataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
-		if (!TypeUtil.isNumericArray(dataType)) {
+		Type type = context.getStaticEvaluationResult().getValue(argument).getDataType();
+		if (!TypeUtil.isNumericArray(type)) {
 			throw new RuntimeException("Target type of sum() method must be tensor type");
 		}
 		
-		ArrayType arrayType = (ArrayType) dataType;
+		ArrayType arrayType = (ArrayType) type;
 		
 		int arraySize = TypeUtil.getArraySize(arrayType);
 		for (int i = 0; i < arraySize; ++i) {

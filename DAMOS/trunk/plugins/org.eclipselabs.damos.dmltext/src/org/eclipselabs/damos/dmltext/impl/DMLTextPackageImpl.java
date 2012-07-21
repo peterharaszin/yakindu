@@ -208,7 +208,7 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMscriptDataTypeSpecification_Specifier() {
+	public EReference getMscriptDataTypeSpecification_TypeSpecifier() {
 		return (EReference)mscriptDataTypeSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -279,7 +279,7 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		createEReference(mscriptSystemInterfaceEClass, MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS);
 
 		mscriptDataTypeSpecificationEClass = createEClass(MSCRIPT_DATA_TYPE_SPECIFICATION);
-		createEReference(mscriptDataTypeSpecificationEClass, MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER);
+		createEReference(mscriptDataTypeSpecificationEClass, MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER);
 		createEReference(mscriptDataTypeSpecificationEClass, MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE);
 
 		mscriptValueSpecificationEClass = createEClass(MSCRIPT_VALUE_SPECIFICATION);
@@ -336,8 +336,8 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		initEReference(getMscriptSystemInterface_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptSystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mscriptDataTypeSpecificationEClass, MscriptDataTypeSpecification.class, "MscriptDataTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMscriptDataTypeSpecification_Specifier(), theMscriptPackage.getDataTypeSpecifier(), null, "specifier", null, 0, 1, MscriptDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMscriptDataTypeSpecification_Type(), theMscriptPackage.getDataType(), null, "type", null, 0, 1, MscriptDataTypeSpecification.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMscriptDataTypeSpecification_TypeSpecifier(), theMscriptPackage.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, MscriptDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMscriptDataTypeSpecification_Type(), theMscriptPackage.getType(), null, "type", null, 0, 1, MscriptDataTypeSpecification.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(mscriptValueSpecificationEClass, MscriptValueSpecification.class, "MscriptValueSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptValueSpecification_Expression(), theMscriptPackage.getExpression(), null, "expression", null, 0, 1, MscriptValueSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -13,7 +13,7 @@ package org.eclipselabs.damos.library.vi.simulation.controls;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -31,11 +31,11 @@ public class SliderSimulationObject extends AbstractBlockSimulationObject {
 
 	private IValue outputValue;
 
-	private DataType outputDataType;
+	private Type outputDataType;
 
 	private ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new ISimulationVariationPoint() {
 
-		public DataType getDataType() {
+		public Type getDataType() {
 			return outputDataType;
 		}
 		

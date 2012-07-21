@@ -14,7 +14,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.audio.AudioFileUtil;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 
 /**
@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.NumericType;
 public class AudioFileSinkSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Block block = (Block) component;
 		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
@@ -37,7 +37,7 @@ public class AudioFileSinkSignaturePolicy extends AbstractComponentSignaturePoli
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		for (InputPort inputPort : component.getPrimaryInputPorts()) {
-			DataType incomingDataType = incomingDataTypes.get(inputPort);
+			Type incomingDataType = incomingDataTypes.get(inputPort);
 			if (incomingDataType != null && !(incomingDataType instanceof NumericType)) {
 				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be numeric"));
 			}

@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
 import org.eclipselabs.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -58,10 +58,10 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	 * @see org.eclipselabs.mscript.ide.core.launch.MscriptLaunchConfigurationDelegate#getInputParameterDataTypes(org.eclipselabs.mscript.language.interpreter.IInterpreterContext, org.eclipselabs.mscript.language.ast.FunctionDefinition)
 	 */
 	@Override
-	protected List<DataType> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {
+	protected List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {
 		String inputParameterDataTypesString = configuration.getAttribute(ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, "");
 		
-		List<DataType> inputParameterDataTypes = getDataTypes(new InterpreterContext(getStaticEvaluationResult(), new ComputationContext()), inputParameterDataTypesString);
+		List<Type> inputParameterDataTypes = getDataTypes(new InterpreterContext(getStaticEvaluationResult(), new ComputationContext()), inputParameterDataTypesString);
 		if (inputParameterDataTypes == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Invalid input parameter data type specifiers"));
 		}

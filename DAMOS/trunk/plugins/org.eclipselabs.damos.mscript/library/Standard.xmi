@@ -11,4 +11,6 @@
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="sin"/>
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="cos"/>
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="tan"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="fold"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="map"/>
 </mscript:Module>

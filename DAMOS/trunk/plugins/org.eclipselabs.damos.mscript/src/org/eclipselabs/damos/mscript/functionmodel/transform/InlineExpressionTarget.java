@@ -15,13 +15,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.StringType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
@@ -35,7 +35,7 @@ public class InlineExpressionTarget implements IExpressionTarget {
 	private final ITransformerContext context;
 	
 	private Expression assignedExpression;
-	private DataType targetDataType;
+	private Type targetDataType;
 	private LocalVariableDeclaration variableDeclaration;
 	
 	/**
@@ -49,7 +49,7 @@ public class InlineExpressionTarget implements IExpressionTarget {
 		assignedExpression = expression;
 	}
 
-	public VariableReference createVariableReference(DataType targetDataType) {
+	public VariableReference createVariableReference(Type targetDataType) {
 		if (variableDeclaration == null) {
 			variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 			variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(targetDataType)));
@@ -79,9 +79,9 @@ public class InlineExpressionTarget implements IExpressionTarget {
 		return variableReference;
 	}
 	
-	protected String getVariableName(DataType dataType) {
-		if (dataType instanceof ArrayType) {
-			switch (((ArrayType) dataType).getDimensionality()) {
+	protected String getVariableName(Type type) {
+		if (type instanceof ArrayType) {
+			switch (((ArrayType) type).getDimensionality()) {
 			case 1:
 				return "vector";
 			case 2:
@@ -90,13 +90,13 @@ public class InlineExpressionTarget implements IExpressionTarget {
 				return "array";
 			}
 		}
-		if (dataType instanceof RealType) {
+		if (type instanceof RealType) {
 			return "realval";
 		}
-		if (dataType instanceof IntegerType) {
+		if (type instanceof IntegerType) {
 			return "intval";
 		}
-		if (dataType instanceof StringType) {
+		if (type instanceof StringType) {
 			return "string";
 		}
 		return "temp";

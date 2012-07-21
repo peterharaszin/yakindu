@@ -11,16 +11,16 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StringType;
+import org.eclipselabs.damos.mscript.Type;
 
 
 public class StringTypeOperations extends PrimitiveTypeOperations {
 
-	public static DataType evaluate(StringType stringType, OperatorKind operator, DataType other) {
+	public static Type evaluate(StringType stringType, OperatorKind operator, Type other) {
 		switch (operator) {
 		case ADD:
 			if (stringType.isAssignableFrom(other)) {
@@ -35,10 +35,10 @@ public class StringTypeOperations extends PrimitiveTypeOperations {
 		default:
 			break;
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
-	public static boolean isAssignableFrom(StringType stringType, DataType other) {
+	public static boolean isAssignableFrom(StringType stringType, Type other) {
 		return other instanceof StringType || other instanceof IntegerType;
 	}
 

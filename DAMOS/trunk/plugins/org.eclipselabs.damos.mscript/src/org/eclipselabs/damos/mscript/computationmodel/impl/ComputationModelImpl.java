@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -105,8 +105,8 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public NumberFormatMapping getNumberFormatMapping(DataType dataType) {
-		return ComputationModelOperations.getNumberFormatMapping(this, dataType);
+	public NumberFormatMapping getNumberFormatMapping(Type type) {
+		return ComputationModelOperations.getNumberFormatMapping(this, type);
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public NumberFormat getNumberFormat(DataType dataType) {
-		return ComputationModelOperations.getNumberFormat(this, dataType);
+	public NumberFormat getNumberFormat(Type type) {
+		return ComputationModelOperations.getNumberFormat(this, type);
 	}
 
 	/**

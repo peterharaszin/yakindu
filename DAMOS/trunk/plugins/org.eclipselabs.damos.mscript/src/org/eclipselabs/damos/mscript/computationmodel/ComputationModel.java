@@ -8,7 +8,7 @@ package org.eclipselabs.damos.mscript.computationmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,10 +47,10 @@ public interface ComputationModel extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" dataTypeRequired="true" dataTypeOrdered="false"
+	 * @model ordered="false" typeRequired="true" typeOrdered="false"
 	 * @generated
 	 */
-	NumberFormatMapping getNumberFormatMapping(DataType dataType);
+	NumberFormatMapping getNumberFormatMapping(Type type);
 
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
@@ -81,9 +81,9 @@ public interface ComputationModel extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" dataTypeRequired="true" dataTypeOrdered="false"
+	 * @model ordered="false" typeRequired="true" typeOrdered="false"
 	 * @generated
 	 */
-	NumberFormat getNumberFormat(DataType dataType);
+	NumberFormat getNumberFormat(Type type);
 
 } // ComputationModel

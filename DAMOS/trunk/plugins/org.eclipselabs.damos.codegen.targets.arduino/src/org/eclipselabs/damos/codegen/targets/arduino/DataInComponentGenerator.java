@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
@@ -50,7 +50,7 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		DataType outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
+		Type outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		return outputDataType instanceof BooleanType;		
 	}
 	
@@ -63,7 +63,7 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		String outputVariable = getContext().getVariableAccessor().generateOutputVariableReference(getContext().getNode().getComponent().getFirstOutputPort(), false);
-		DataType outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
+		Type outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		if (outputDataType instanceof BooleanType) {
 			sb.append(outputVariable).append(" = digitalRead(").append(Integer.toString(getPinIndex())).append(");\n");
 		} else {

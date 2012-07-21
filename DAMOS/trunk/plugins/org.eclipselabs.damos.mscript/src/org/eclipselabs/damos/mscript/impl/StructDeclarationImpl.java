@@ -20,6 +20,7 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StructDeclaration;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.internal.operations.StructTypeOperations;
 
 /**
@@ -35,7 +36,7 @@ import org.eclipselabs.damos.mscript.internal.operations.StructTypeOperations;
  *
  * @generated
  */
-public class StructDeclarationImpl extends DataTypeDeclarationImpl implements StructDeclaration {
+public class StructDeclarationImpl extends TypeDeclarationImpl implements StructDeclaration {
 	/**
 	 * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -99,7 +100,7 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DataType evaluate(OperatorKind operator, DataType other) {
+	public Type evaluate(OperatorKind operator, Type other) {
 		return StructTypeOperations.evaluate(this, operator, other);
 	}
 
@@ -108,7 +109,7 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DataType evaluate(OperatorKind operator, int n) {
+	public Type evaluate(OperatorKind operator, int n) {
 		return StructTypeOperations.evaluate(this, operator, n);
 	}
 
@@ -117,7 +118,7 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isAssignableFrom(DataType other) {
+	public boolean isAssignableFrom(Type other) {
 		return StructTypeOperations.isAssignableFrom(this, other);
 	}
 
@@ -126,7 +127,7 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isEquivalentTo(DataType other) {
+	public boolean isEquivalentTo(Type other) {
 		return StructTypeOperations.isEquivalentTo(this, other);
 	}
 
@@ -211,6 +212,11 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Type.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == DataType.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -232,6 +238,11 @@ public class StructDeclarationImpl extends DataTypeDeclarationImpl implements St
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Type.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == DataType.class) {
 			switch (baseFeatureID) {
 				default: return -1;

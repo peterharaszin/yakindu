@@ -1095,26 +1095,26 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMapKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeSpecifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeSpecifierAssignment_1.eContents().get(0);
+		private final RuleCall cTypeSpecifierTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeSpecifierAssignment_1.eContents().get(0);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cNumberFormatAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNumberFormatNumberFormatParserRuleCall_3_0 = (RuleCall)cNumberFormatAssignment_3.eContents().get(0);
 		
 		//NumberFormatMapping:
-		//	"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat;
+		//	"map" typeSpecifier=TypeSpecifier "to" numberFormat=NumberFormat;
 		public ParserRule getRule() { return rule; }
 
-		//"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat
+		//"map" typeSpecifier=TypeSpecifier "to" numberFormat=NumberFormat
 		public Group getGroup() { return cGroup; }
 
 		//"map"
 		public Keyword getMapKeyword_0() { return cMapKeyword_0; }
 
-		//typeSpecifier=DataTypeSpecifier
+		//typeSpecifier=TypeSpecifier
 		public Assignment getTypeSpecifierAssignment_1() { return cTypeSpecifierAssignment_1; }
 
-		//DataTypeSpecifier
-		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0; }
+		//TypeSpecifier
+		public RuleCall getTypeSpecifierTypeSpecifierParserRuleCall_1_0() { return cTypeSpecifierTypeSpecifierParserRuleCall_1_0; }
 
 		//"to"
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
@@ -1823,7 +1823,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberFormatMapping:
-	//	"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat;
+	//	"map" typeSpecifier=TypeSpecifier "to" numberFormat=NumberFormat;
 	public NumberFormatMappingElements getNumberFormatMappingAccess() {
 		return (pNumberFormatMapping != null) ? pNumberFormatMapping : (pNumberFormatMapping = new NumberFormatMappingElements());
 	}
@@ -1893,7 +1893,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
-	//	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
 	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
 		return gaMscript.getDeclarationAccess();
 	}
@@ -1903,16 +1903,16 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// *
-	// * DataTypeDeclaration
-	// * / DataTypeDeclaration:
-	//	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+	// * TypeDeclaration
+	// * / TypeDeclaration:
+	//	"type" name=ValidID "=" typeSpecifier=TypeSpecifier | "struct" name=ValidID
 	//	typeSpecifier=StructDeclarationTypeSpecifier;
-	public MscriptGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
-		return gaMscript.getDataTypeDeclarationAccess();
+	public MscriptGrammarAccess.TypeDeclarationElements getTypeDeclarationAccess() {
+		return gaMscript.getTypeDeclarationAccess();
 	}
 	
-	public ParserRule getDataTypeDeclarationRule() {
-		return getDataTypeDeclarationAccess().getRule();
+	public ParserRule getTypeDeclarationRule() {
+		return getTypeDeclarationAccess().getRule();
 	}
 
 	//StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
@@ -2018,8 +2018,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Check:
 	//	"check" ("<" staticArguments+=Expression ("," staticArguments+=Expression)* ">")? "("
-	//	(inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
-	//	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*;
+	//	(inputParameterTypes+=TypeSpecifier ("," inputParameterTypes+=TypeSpecifier)*)? ")" "->"
+	//	outputParameterTypes+=TypeSpecifier ("," outputParameterTypes+=TypeSpecifier)*;
 	public MscriptGrammarAccess.CheckElements getCheckAccess() {
 		return gaMscript.getCheckAccess();
 	}
@@ -2091,14 +2091,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Data type specifier
-	// * / DataTypeSpecifier:
+	// * / TypeSpecifier:
 	//	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
-	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
-		return gaMscript.getDataTypeSpecifierAccess();
+	public MscriptGrammarAccess.TypeSpecifierElements getTypeSpecifierAccess() {
+		return gaMscript.getTypeSpecifierAccess();
 	}
 	
-	public ParserRule getDataTypeSpecifierRule() {
-		return getDataTypeSpecifierAccess().getRule();
+	public ParserRule getTypeSpecifierRule() {
+		return getTypeSpecifierAccess().getRule();
 	}
 
 	//AnonymousTypeSpecifier:
@@ -2112,7 +2112,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeclaredTypeSpecifier:
-	//	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	//	typeDeclaration=[TypeDeclaration|QualifiedName];
 	public MscriptGrammarAccess.DeclaredTypeSpecifierElements getDeclaredTypeSpecifierAccess() {
 		return gaMscript.getDeclaredTypeSpecifierAccess();
 	}
@@ -2211,7 +2211,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//ArrayTypeSpecifier returns DataTypeSpecifier:
+	//ArrayTypeSpecifier returns TypeSpecifier:
 	//	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
 	public MscriptGrammarAccess.ArrayTypeSpecifierElements getArrayTypeSpecifierAccess() {
 		return gaMscript.getArrayTypeSpecifierAccess();
@@ -2252,7 +2252,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMember:
-	//	typeSpecifier=DataTypeSpecifier name=ValidID;
+	//	typeSpecifier=TypeSpecifier name=ValidID;
 	public MscriptGrammarAccess.StructMemberElements getStructMemberAccess() {
 		return gaMscript.getStructMemberAccess();
 	}
@@ -2442,7 +2442,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RelationalExpression returns Expression:
 	//	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
+	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier)?;
 	public MscriptGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
 		return gaMscript.getRelationalExpressionAccess();
 	}

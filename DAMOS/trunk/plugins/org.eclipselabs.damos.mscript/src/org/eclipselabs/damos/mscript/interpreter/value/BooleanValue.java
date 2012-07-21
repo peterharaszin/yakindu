@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -39,14 +39,14 @@ public class BooleanValue extends AbstractValue implements IBooleanValue {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.execution.value.IValue#getDataType()
 	 */
-	public DataType getDataType() {
+	public Type getDataType() {
 		return TypeUtil.BOOLEAN_TYPE;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.interpreter.value.IValue#convert(org.eclipselabs.mscript.typesystem.DataType)
 	 */
-	public IValue doConvert(DataType dataType) {
+	public IValue doConvert(Type type) {
 		return this;
 	}
 		
@@ -54,7 +54,7 @@ public class BooleanValue extends AbstractValue implements IBooleanValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		return new BooleanValue(getContext(), value == ((BooleanValue) other).value);
 	}
 
@@ -62,7 +62,7 @@ public class BooleanValue extends AbstractValue implements IBooleanValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doNotEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		return new BooleanValue(getContext(), value != ((BooleanValue) other).value);
 	}
 

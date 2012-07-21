@@ -1,12 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,37 +13,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface DataType extends EObject {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" operatorRequired="true"
-	 * @generated
-	 */
-	DataType evaluate(OperatorKind operator, DataType other);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" operatorRequired="true" nRequired="true"
-	 * @generated
-	 */
-	DataType evaluate(OperatorKind operator, int n);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" otherRequired="true"
-	 * @generated
-	 */
-	boolean isAssignableFrom(DataType other);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" otherRequired="true"
-	 * @generated
-	 */
-	boolean isEquivalentTo(DataType other);
-
+public interface DataType extends Type {
 } // DataType

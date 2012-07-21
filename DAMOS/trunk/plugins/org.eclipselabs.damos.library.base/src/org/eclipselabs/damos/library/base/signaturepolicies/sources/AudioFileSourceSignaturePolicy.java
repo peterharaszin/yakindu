@@ -25,7 +25,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.audio.AudioFileUtil;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 public class AudioFileSourceSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Block block = (Block) component;
 		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);

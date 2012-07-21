@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
@@ -49,8 +49,8 @@ public class LiteralGenerator {
 	public LiteralGenerator(DataTypeGenerator dataTypeGenerator) {
 	}
 
-	public CharSequence generateLiteral(ComputationModel computationModel, DataType dataType, double value) {
-		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
+	public CharSequence generateLiteral(ComputationModel computationModel, Type type, double value) {
+		NumberFormat numberFormat = computationModel.getNumberFormat(type);
 		return generateLiteral(computationModel, numberFormat, value);
 	}
 	
@@ -73,8 +73,8 @@ public class LiteralGenerator {
 		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
 
-	public CharSequence generateLiteral(ComputationModel computationModel, DataType dataType, long value) {
-		NumberFormat numberFormat = computationModel.getNumberFormat(dataType);
+	public CharSequence generateLiteral(ComputationModel computationModel, Type type, long value) {
+		NumberFormat numberFormat = computationModel.getNumberFormat(type);
 		return generateLiteral(computationModel, numberFormat, value);
 	}
 

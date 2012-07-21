@@ -117,7 +117,7 @@ FixedPointFormat:
 	((('fix' | unsigned?='ufix') integerLength=ValidInt (('.' fractionLength=ValidInt) | (('slope' slope=ValidDouble)? ('bias' bias=ValidDouble)?))) | (predefinedKind=PredefinedFixedPointFormatKind)) (saturate?='saturate')?;
 
 NumberFormatMapping:
-	'map' typeSpecifier=DataTypeSpecifier 'to' numberFormat=NumberFormat;
+	'map' typeSpecifier=TypeSpecifier 'to' numberFormat=NumberFormat;
 
 QualifiedNameWithWildcard:
 	QualifiedName ('.*' | '.' '*')?;

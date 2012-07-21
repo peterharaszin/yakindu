@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.dmltext.impl;
 
@@ -11,13 +7,11 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.dmltext.internal.operations.MscriptDataTypeSpecificationOperations;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +20,7 @@ import org.eclipselabs.damos.mscript.DataTypeSpecifier;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl#getSpecifier <em>Specifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl#getTypeSpecifier <em>Type Specifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -35,15 +29,14 @@ import org.eclipselabs.damos.mscript.DataTypeSpecifier;
  */
 public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl implements MscriptDataTypeSpecification {
 	/**
-	 * The cached value of the '{@link #getSpecifier() <em>Specifier</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSpecifier()
+	 * @see #getTypeSpecifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier specifier;
-
+	protected TypeSpecifier typeSpecifier;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,8 +61,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getSpecifier() {
-		return specifier;
+	public TypeSpecifier getTypeSpecifier() {
+		return typeSpecifier;
 	}
 
 	/**
@@ -77,11 +70,11 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecifier(DataTypeSpecifier newSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldSpecifier = specifier;
-		specifier = newSpecifier;
+	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldTypeSpecifier = typeSpecifier;
+		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER, oldSpecifier, newSpecifier);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -92,18 +85,18 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSpecifier(DataTypeSpecifier newSpecifier) {
-		if (newSpecifier != specifier) {
+	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
+		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
-			if (specifier != null)
-				msgs = ((InternalEObject)specifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER, null, msgs);
-			if (newSpecifier != null)
-				msgs = ((InternalEObject)newSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER, null, msgs);
-			msgs = basicSetSpecifier(newSpecifier, msgs);
+			if (typeSpecifier != null)
+				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER, null, msgs);
+			if (newTypeSpecifier != null)
+				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER, null, msgs);
+			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER, newSpecifier, newSpecifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
 	}
 
 	/**
@@ -111,9 +104,9 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType getType() {
-		DataType type = basicGetType();
-		return type != null && type.eIsProxy() ? (DataType)eResolveProxy((InternalEObject)type) : type;
+	public Type getType() {
+		Type type = basicGetType();
+		return type != null && type.eIsProxy() ? (Type)eResolveProxy((InternalEObject)type) : type;
 	}
 
 	/**
@@ -121,17 +114,9 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DataType basicGetType() {
-		DataTypeSpecifier specifier = getSpecifier();
-		return specifier != null ? specifier.getType() : null;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl#copy()
-	 */
-	@Override
-	public DataTypeSpecification copy() {
-		return MscriptDataTypeSpecificationOperations.copy(this);
+	public Type basicGetType() {
+		TypeSpecifier typeSpecifier = getTypeSpecifier();
+		return typeSpecifier != null ? typeSpecifier.getType() : null;
 	}
 
 	/**
@@ -142,8 +127,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER:
-				return basicSetSpecifier(null, msgs);
+			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER:
+				return basicSetTypeSpecifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -156,8 +141,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER:
-				return getSpecifier();
+			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER:
+				return getTypeSpecifier();
 			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -173,8 +158,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER:
-				setSpecifier((DataTypeSpecifier)newValue);
+			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER:
+				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,8 +173,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER:
-				setSpecifier((DataTypeSpecifier)null);
+			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER:
+				setTypeSpecifier((TypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -203,8 +188,8 @@ public class MscriptDataTypeSpecificationImpl extends DataTypeSpecificationImpl 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER:
-				return specifier != null;
+			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE_SPECIFIER:
+				return typeSpecifier != null;
 			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE:
 				return basicGetType() != null;
 		}

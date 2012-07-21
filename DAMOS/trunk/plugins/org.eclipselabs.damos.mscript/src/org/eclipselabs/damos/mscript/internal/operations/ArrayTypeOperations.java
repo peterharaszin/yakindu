@@ -16,20 +16,20 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
-public class ArrayTypeOperations extends DataTypeOperations {
+public class ArrayTypeOperations extends TypeOperations {
 
-	public static DataType getElementType(ArrayType arrayType) {
+	public static Type getElementType(ArrayType arrayType) {
 		return arrayType.getElementTypeSpecifier().getType();
 	}
 
-	public static boolean isAssignableFrom(ArrayType arrayType, DataType other) {
+	public static boolean isAssignableFrom(ArrayType arrayType, Type other) {
 		if (other instanceof ArrayType) {
 			ArrayType otherArrayType = (ArrayType) other;
 			if (arrayType.getDimensionality() == otherArrayType.getDimensionality()) {
@@ -42,8 +42,8 @@ public class ArrayTypeOperations extends DataTypeOperations {
 						return false;
 					}
 				}
-				DataType elementType = arrayType.getElementType();
-				DataType otherElementType = otherArrayType.getElementType();
+				Type elementType = arrayType.getElementType();
+				Type otherElementType = otherArrayType.getElementType();
 				if (elementType != null && !elementType.eIsProxy() && otherElementType != null && !otherElementType.eIsProxy()) {
 					return elementType.isAssignableFrom(otherElementType);
 				}
@@ -52,7 +52,7 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return false;
 	}
 
-	public static DataType evaluate(ArrayType arrayType, OperatorKind operator, DataType other) {
+	public static Type evaluate(ArrayType arrayType, OperatorKind operator, Type other) {
 		if (arrayType.isNumeric()) {
 			switch (operator) {
 			case ADD:
@@ -75,10 +75,10 @@ public class ArrayTypeOperations extends DataTypeOperations {
 				break;
 			}
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 	
-	private static DataType evaluateElementWise(ArrayType arrayType, OperatorKind operator, DataType other) {
+	private static Type evaluateElementWise(ArrayType arrayType, OperatorKind operator, Type other) {
 		if (other instanceof NumericType) {
 			if (operator == OperatorKind.ELEMENT_WISE_MULTIPLY || operator == OperatorKind.ELEMENT_WISE_DIVIDE || operator == OperatorKind.ELEMENT_WISE_MODULO
 					|| operator == OperatorKind.ELEMENT_WISE_ADD || operator == OperatorKind.ELEMENT_WISE_SUBTRACT) {
@@ -87,12 +87,12 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		} else if (TypeUtil.isNumericArray(other)) {
 			return evaluateElementWiseArray(arrayType, operator, (ArrayType) other);
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 	
-	static DataType evaluateElementWiseScalar(ArrayType arrayType, OperatorKind operator, NumericType numericType) {
-		DataType elementType = arrayType.getElementType().evaluate(operator, numericType);
-		if (elementType instanceof InvalidDataType) {
+	static Type evaluateElementWiseScalar(ArrayType arrayType, OperatorKind operator, NumericType numericType) {
+		Type elementType = arrayType.getElementType().evaluate(operator, numericType);
+		if (elementType instanceof InvalidType) {
 			return elementType;
 		}
 		ArrayType result = EcoreUtil.copy(arrayType);
@@ -100,9 +100,9 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return result;
 	}
 
-	static DataType evaluateElementWiseScalar(NumericType numericType, OperatorKind operator, ArrayType arrayType) {
-		DataType elementType = numericType.evaluate(operator, arrayType.getElementType());
-		if (elementType instanceof InvalidDataType) {
+	static Type evaluateElementWiseScalar(NumericType numericType, OperatorKind operator, ArrayType arrayType) {
+		Type elementType = numericType.evaluate(operator, arrayType.getElementType());
+		if (elementType instanceof InvalidType) {
 			return elementType;
 		}
 		ArrayType result = EcoreUtil.copy(arrayType);
@@ -110,25 +110,25 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return result;
 	}
 
-	private static DataType evaluateElementWiseArray(ArrayType arrayType, OperatorKind operator, ArrayType otherArrayType) {
+	private static Type evaluateElementWiseArray(ArrayType arrayType, OperatorKind operator, ArrayType otherArrayType) {
 		if (TypeUtil.equalArrayDimensions(arrayType, otherArrayType)) {
-			DataType elementType = arrayType.getElementType().evaluate(operator, otherArrayType.getElementType());
-			if (elementType instanceof InvalidDataType) {
+			Type elementType = arrayType.getElementType().evaluate(operator, otherArrayType.getElementType());
+			if (elementType instanceof InvalidType) {
 				return elementType;
 			}
 			ArrayType result = EcoreUtil.copy(arrayType);
 			TypeUtil.setArrayElementType(result, elementType);
 			return result;
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 	
-	private static DataType evaluateMultiply(ArrayType arrayType, DataType other) {
+	private static Type evaluateMultiply(ArrayType arrayType, Type other) {
 		if (other instanceof NumericType) {
 			return evaluateElementWiseScalar(arrayType, OperatorKind.MULTIPLY, (NumericType) other);
 		}
 		if (!TypeUtil.isNumericArray(other)) {
-			return MscriptFactory.eINSTANCE.createInvalidDataType();
+			return MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		
 		ArrayType otherArrayType = (ArrayType) other;
@@ -139,41 +139,41 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		if (arrayType.isNumericVector()) {
 			if (otherArrayType.isNumericVector()) {
 				if (TypeUtil.getArraySize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
-					return MscriptFactory.eINSTANCE.createInvalidDataType();
+					return MscriptFactory.eINSTANCE.createInvalidType();
 				}
 				rowSize = -1;
 				columnSize = -1;
 			} else if (otherArrayType.isNumericMatrix()) {
 				if (TypeUtil.getArraySize(arrayType) != TypeUtil.getArrayRowSize(otherArrayType)) {
-					return MscriptFactory.eINSTANCE.createInvalidDataType();
+					return MscriptFactory.eINSTANCE.createInvalidType();
 				}
 				rowSize = TypeUtil.getArrayColumnSize(otherArrayType);
 				columnSize = -1;
 			} else {
-				return MscriptFactory.eINSTANCE.createInvalidDataType();
+				return MscriptFactory.eINSTANCE.createInvalidType();
 			}
 		} else if (arrayType.isNumericMatrix()) {
 			if (otherArrayType.isNumericVector()) {
 				if (TypeUtil.getArrayColumnSize(arrayType) != TypeUtil.getArraySize(otherArrayType)) {
-					return MscriptFactory.eINSTANCE.createInvalidDataType();
+					return MscriptFactory.eINSTANCE.createInvalidType();
 				}
 				rowSize = TypeUtil.getArrayRowSize(arrayType);
 				columnSize = -1;
 			} else if (otherArrayType.isNumericMatrix()) {
 				if (TypeUtil.getArrayColumnSize(arrayType) !=  TypeUtil.getArrayRowSize(otherArrayType)) {
-					return MscriptFactory.eINSTANCE.createInvalidDataType();
+					return MscriptFactory.eINSTANCE.createInvalidType();
 				}
 				rowSize =  TypeUtil.getArrayRowSize(arrayType);
 				columnSize = TypeUtil.getArrayColumnSize(otherArrayType);
 			} else {
-				return MscriptFactory.eINSTANCE.createInvalidDataType();
+				return MscriptFactory.eINSTANCE.createInvalidType();
 			}
 		} else {
-			return MscriptFactory.eINSTANCE.createInvalidDataType();
+			return MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		
-		DataType elementType = arrayType.getElementType().evaluate(OperatorKind.MULTIPLY, otherArrayType.getElementType());
-		if (elementType instanceof InvalidDataType) {
+		Type elementType = arrayType.getElementType().evaluate(OperatorKind.MULTIPLY, otherArrayType.getElementType());
+		if (elementType instanceof InvalidType) {
 			return elementType;
 		}
 		
@@ -188,11 +188,11 @@ public class ArrayTypeOperations extends DataTypeOperations {
 		return TypeUtil.createArrayType(elementType, rowSize, columnSize);
 	}
 	
-	private static DataType evaluateDivideModulo(ArrayType arrayType, OperatorKind operator, DataType other) {
+	private static Type evaluateDivideModulo(ArrayType arrayType, OperatorKind operator, Type other) {
 		if (other instanceof NumericType) {
 			return evaluateElementWiseScalar(arrayType, operator, (NumericType) other);
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
 }

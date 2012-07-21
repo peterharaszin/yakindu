@@ -33,7 +33,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -42,7 +42,7 @@ import org.eclipselabs.damos.mscript.DataType;
 public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Subsystem subsystem = (Subsystem) component;
 		
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
@@ -51,11 +51,11 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 		for (Input input : subsystem.getInputs()) {
 			if (input instanceof SubsystemInput) {
 				Inlet inlet = ((SubsystemInput) input).getInlet();
-				DataType dataType = getDataType(status, inlet);
-				if (dataType != null) {
+				Type type = getDataType(status, inlet);
+				if (type != null) {
 					if (!input.getPorts().isEmpty()) {
-						DataType incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
-						if (incomingDataType != null && !dataType.isAssignableFrom(incomingDataType)) {
+						Type incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
+						if (incomingDataType != null && !type.isAssignableFrom(incomingDataType)) {
 							status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
 						}
 					} else {
@@ -70,10 +70,10 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 		for (Output output : subsystem.getOutputs()) {
 			if (output instanceof SubsystemOutput) {
 				Outlet outlet = ((SubsystemOutput) output).getOutlet();
-				DataType dataType = getDataType(status, outlet);
-				if (dataType != null) {
+				Type type = getDataType(status, outlet);
+				if (type != null) {
 					if (!output.getPorts().isEmpty()) {
-						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(dataType));
+						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(type));
 					} else {
 						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
 					}
@@ -89,7 +89,7 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 	
-	private DataType getDataType(MultiStatus status, Inoutlet inoutlet) {
+	private Type getDataType(MultiStatus status, Inoutlet inoutlet) {
 		if (inoutlet != null && inoutlet.getDataType() instanceof MscriptDataTypeSpecification) {
 			return ((MscriptDataTypeSpecification) inoutlet.getDataType()).getType();
 		} else {

@@ -17,5 +17,5 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface UnitType extends DataType {
+public interface UnitType extends Type {
 } // UnitType

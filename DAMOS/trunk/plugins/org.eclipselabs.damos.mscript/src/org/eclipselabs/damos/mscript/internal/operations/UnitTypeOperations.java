@@ -11,17 +11,17 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnitType;
 
 
-public class UnitTypeOperations extends DataTypeOperations {
+public class UnitTypeOperations extends TypeOperations {
 
-	public static DataType evaluate(UnitType unitType, OperatorKind operator, DataType other) {
+	public static Type evaluate(UnitType unitType, OperatorKind operator, Type other) {
 		if (!(other instanceof UnitType)) {
-			return MscriptFactory.eINSTANCE.createInvalidDataType();
+			return MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		switch (operator) {
 		case MULTIPLY:
@@ -33,14 +33,14 @@ public class UnitTypeOperations extends DataTypeOperations {
 		default:
 			break;
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
-	public static DataType evaluate(UnitType unitType, OperatorKind operator, int n) {
+	public static Type evaluate(UnitType unitType, OperatorKind operator, int n) {
 		return MscriptFactory.eINSTANCE.createUnitType();
 	}
 	
-	public static boolean isAssignableFrom(UnitType unitType, DataType other) {
+	public static boolean isAssignableFrom(UnitType unitType, Type other) {
 		return other instanceof UnitType;
 	}
 

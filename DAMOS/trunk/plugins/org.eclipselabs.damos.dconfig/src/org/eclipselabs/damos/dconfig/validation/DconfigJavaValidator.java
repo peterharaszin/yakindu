@@ -27,8 +27,8 @@ import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -141,7 +141,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 			return;
 		}
 		
-		DataType type = property.getDeclaration().getTypeSpecifier().getType();
+		Type type = property.getDeclaration().getTypeSpecifier().getType();
 		if (type == null) {
 			return;
 		}

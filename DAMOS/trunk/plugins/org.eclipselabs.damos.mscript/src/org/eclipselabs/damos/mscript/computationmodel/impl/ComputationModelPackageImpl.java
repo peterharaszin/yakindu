@@ -420,13 +420,13 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		initEReference(getComputationModel_NumberFormatMappings(), this.getNumberFormatMapping(), null, "numberFormatMappings", null, 0, -1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		EOperation op = addEOperation(computationModelEClass, this.getNumberFormatMapping(), "getNumberFormatMapping", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theMscriptPackage.getDataType(), "dataType", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theMscriptPackage.getType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(computationModelEClass, this.getNumberFormat(), "getNumberFormat", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theMscriptPackage.getDataType(), "dataType", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theMscriptPackage.getType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(numberFormatMappingEClass, NumberFormatMapping.class, "NumberFormatMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNumberFormatMapping_TypeSpecifier(), theMscriptPackage.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNumberFormatMapping_TypeSpecifier(), theMscriptPackage.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getNumberFormatMapping_NumberFormat(), this.getNumberFormat(), null, "numberFormat", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(numberFormatEClass, NumberFormat.class, "NumberFormat", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

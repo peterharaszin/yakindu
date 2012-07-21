@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -749,6 +750,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		DMLPackageImpl theDMLPackage = (DMLPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DMLPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DMLPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDMLPackage.createPackageContents();
@@ -2510,12 +2514,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		fragmentEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		fragmentEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		fragmentEClass.getESuperTypes().add(this.getQualifiedElement());
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
 		componentEClass.getESuperTypes().add(this.getCompoundMember());
@@ -2523,7 +2530,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		continuousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		synchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		asynchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
-		fragmentElementEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		fragmentElementEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
 		outputConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2548,7 +2555,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		literalValueSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
 		stringValueSpecificationEClass.getESuperTypes().add(this.getLiteralValueSpecification());
 		primitiveTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
-		blockTypeEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		blockTypeEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
 		blockTypeEClass.getESuperTypes().add(this.getParameterableElement());
@@ -2660,7 +2667,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSink", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(componentEClass, ecorePackage.getEBoolean(), "isTimingConstraintApplicable", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isBoundary", 1, 1, IS_UNIQUE, IS_ORDERED);
 

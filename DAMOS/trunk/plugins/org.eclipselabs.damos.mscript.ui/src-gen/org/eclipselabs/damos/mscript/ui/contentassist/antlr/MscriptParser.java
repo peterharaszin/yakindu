@@ -38,9 +38,9 @@ public class MscriptParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
-					put(grammarAccess.getDataTypeDeclarationAccess().getAlternatives(), "rule__DataTypeDeclaration__Alternatives");
+					put(grammarAccess.getTypeDeclarationAccess().getAlternatives(), "rule__TypeDeclaration__Alternatives");
 					put(grammarAccess.getFunctionDeclarationAccess().getAlternatives_11(), "rule__FunctionDeclaration__Alternatives_11");
-					put(grammarAccess.getDataTypeSpecifierAccess().getAlternatives(), "rule__DataTypeSpecifier__Alternatives");
+					put(grammarAccess.getTypeSpecifierAccess().getAlternatives(), "rule__TypeSpecifier__Alternatives");
 					put(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeAlternatives_0(), "rule__AnonymousTypeSpecifier__TypeAlternatives_0");
 					put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
 					put(grammarAccess.getNumericTypeAccess().getAlternatives(), "rule__NumericType__Alternatives");
@@ -87,8 +87,8 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrefixUnaryOperatorAccess().getAlternatives(), "rule__PrefixUnaryOperator__Alternatives");
 					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
 					put(grammarAccess.getImportDeclarationAccess().getGroup(), "rule__ImportDeclaration__Group__0");
-					put(grammarAccess.getDataTypeDeclarationAccess().getGroup_0(), "rule__DataTypeDeclaration__Group_0__0");
-					put(grammarAccess.getDataTypeDeclarationAccess().getGroup_1(), "rule__DataTypeDeclaration__Group_1__0");
+					put(grammarAccess.getTypeDeclarationAccess().getGroup_0(), "rule__TypeDeclaration__Group_0__0");
+					put(grammarAccess.getTypeDeclarationAccess().getGroup_1(), "rule__TypeDeclaration__Group_1__0");
 					put(grammarAccess.getStructDeclarationTypeAccess().getGroup(), "rule__StructDeclarationType__Group__0");
 					put(grammarAccess.getStructDeclarationTypeAccess().getGroup_2(), "rule__StructDeclarationType__Group_2__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup(), "rule__EnumerationDeclaration__Group__0");
@@ -253,10 +253,10 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModuleAccess().getImportDeclarationsAssignment_2(), "rule__Module__ImportDeclarationsAssignment_2");
 					put(grammarAccess.getModuleAccess().getDeclarationsAssignment_3(), "rule__Module__DeclarationsAssignment_3");
 					put(grammarAccess.getImportDeclarationAccess().getImportedNamespaceAssignment_1(), "rule__ImportDeclaration__ImportedNamespaceAssignment_1");
-					put(grammarAccess.getDataTypeDeclarationAccess().getNameAssignment_0_1(), "rule__DataTypeDeclaration__NameAssignment_0_1");
-					put(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_0_3(), "rule__DataTypeDeclaration__TypeSpecifierAssignment_0_3");
-					put(grammarAccess.getDataTypeDeclarationAccess().getNameAssignment_1_1(), "rule__DataTypeDeclaration__NameAssignment_1_1");
-					put(grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_1_2(), "rule__DataTypeDeclaration__TypeSpecifierAssignment_1_2");
+					put(grammarAccess.getTypeDeclarationAccess().getNameAssignment_0_1(), "rule__TypeDeclaration__NameAssignment_0_1");
+					put(grammarAccess.getTypeDeclarationAccess().getTypeSpecifierAssignment_0_3(), "rule__TypeDeclaration__TypeSpecifierAssignment_0_3");
+					put(grammarAccess.getTypeDeclarationAccess().getNameAssignment_1_1(), "rule__TypeDeclaration__NameAssignment_1_1");
+					put(grammarAccess.getTypeDeclarationAccess().getTypeSpecifierAssignment_1_2(), "rule__TypeDeclaration__TypeSpecifierAssignment_1_2");
 					put(grammarAccess.getStructDeclarationTypeSpecifierAccess().getTypeAssignment(), "rule__StructDeclarationTypeSpecifier__TypeAssignment");
 					put(grammarAccess.getStructDeclarationTypeAccess().getMembersAssignment_1(), "rule__StructDeclarationType__MembersAssignment_1");
 					put(grammarAccess.getStructDeclarationTypeAccess().getMembersAssignment_2_1(), "rule__StructDeclarationType__MembersAssignment_2_1");

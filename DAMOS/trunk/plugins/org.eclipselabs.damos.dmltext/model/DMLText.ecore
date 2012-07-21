@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dmltext"
-    nsURI="http://www.eclipselabs.org/damos/2011/DMLText" nsPrefix="dmltext">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dmltext" nsURI="http://www.eclipselabs.org/damos/2011/DMLText"
+    nsPrefix="dmltext">
   <eClassifiers xsi:type="ecore:EClass" name="Root" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="blockTypes" upperBound="-1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//BlockType"
@@ -25,9 +24,9 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptDataTypeSpecification" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//DataTypeSpecification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specifier" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//DataTypeSpecifier"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//TypeSpecifier"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//DataType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Type"
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptValueSpecification" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//ValueSpecification">

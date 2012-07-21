@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 
@@ -30,12 +30,12 @@ public class InvalidValue extends AbstractValue {
 		super(null);
 	}
 
-	public DataType getDataType() {
+	public Type getDataType() {
 		return TypeUtil.INVALID_DATA_TYPE;
 	}
 	
 	@Override
-	protected IValue doConvert(DataType dataType) {
+	protected IValue doConvert(Type type) {
 		return this;
 	}
 

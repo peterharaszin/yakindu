@@ -12,10 +12,10 @@
 package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -54,12 +54,12 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 	}
 
 	@Override
-	protected IValue doConvert(DataType dataType) {
-		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(dataType);
+	protected IValue doConvert(Type type) {
+		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(type);
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {
-			return new Binary32Value(getContext(), (NumericType) dataType, getNumberFormat(), value);
+			return new Binary32Value(getContext(), (NumericType) type, getNumberFormat(), value);
 		}
-		return doCast((NumericType) dataType, numberFormat);
+		return doCast((NumericType) type, numberFormat);
 	}
 	
 	@Override
@@ -112,37 +112,37 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 	}
 
 	@Override
-	protected IValue basicLessThan(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicLessThan(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value < otherBinary32Value.value);
 	}
 	
 	@Override
-	protected IValue basicLessThanOrEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicLessThanOrEqualTo(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value <= otherBinary32Value.value);
 	}
 	
 	@Override
-	protected IValue basicGreaterThan(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicGreaterThan(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value > otherBinary32Value.value);
 	}
 	
 	@Override
-	protected IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicGreaterThanOrEqualTo(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value >= otherBinary32Value.value);
 	}
 	
 	@Override
-	protected IValue basicEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicEqualTo(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value == otherBinary32Value.value);
 	}
 	
 	@Override
-	protected IValue basicNotEqualTo(AbstractNumericValue other, DataType resultDataType) {
+	protected IValue basicNotEqualTo(AbstractNumericValue other, Type resultDataType) {
 		Binary32Value otherBinary32Value = (Binary32Value) other;
 		return new BooleanValue(getContext(), value != otherBinary32Value.value);
 	}

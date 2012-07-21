@@ -49,7 +49,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dataTypeDeclarationEClass = null;
+	private EClass typeDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,7 +175,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dataTypeSpecifierEClass = null;
+	private EClass typeSpecifierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -616,21 +616,28 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass typeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass invalidTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass anyTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass dataTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass invalidDataTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass anyDataTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1008,8 +1015,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataTypeDeclaration() {
-		return dataTypeDeclarationEClass;
+	public EClass getTypeDeclaration() {
+		return typeDeclarationEClass;
 	}
 
 	/**
@@ -1017,8 +1024,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataTypeDeclaration_TypeSpecifier() {
-		return (EReference)dataTypeDeclarationEClass.getEStructuralFeatures().get(0);
+	public EReference getTypeDeclaration_TypeSpecifier() {
+		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1431,8 +1438,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataTypeSpecifier() {
-		return dataTypeSpecifierEClass;
+	public EClass getTypeSpecifier() {
+		return typeSpecifierEClass;
 	}
 
 	/**
@@ -2691,26 +2698,35 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getType() {
+		return typeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInvalidType() {
+		return invalidTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAnyType() {
+		return anyTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDataType() {
 		return dataTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInvalidDataType() {
-		return invalidDataTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAnyDataType() {
-		return anyDataTypeEClass;
 	}
 
 	/**
@@ -3346,8 +3362,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		declarationEClass = createEClass(DECLARATION);
 		createEAttribute(declarationEClass, DECLARATION__NAME);
 
-		dataTypeDeclarationEClass = createEClass(DATA_TYPE_DECLARATION);
-		createEReference(dataTypeDeclarationEClass, DATA_TYPE_DECLARATION__TYPE_SPECIFIER);
+		typeDeclarationEClass = createEClass(TYPE_DECLARATION);
+		createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_SPECIFIER);
 
 		enumerationDeclarationEClass = createEClass(ENUMERATION_DECLARATION);
 		createEReference(enumerationDeclarationEClass, ENUMERATION_DECLARATION__LITERAL_DECLARATIONS);
@@ -3411,7 +3427,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(equationEClass, EQUATION__LEFT_HAND_SIDE);
 		createEReference(equationEClass, EQUATION__RIGHT_HAND_SIDE);
 
-		dataTypeSpecifierEClass = createEClass(DATA_TYPE_SPECIFIER);
+		typeSpecifierEClass = createEClass(TYPE_SPECIFIER);
 
 		anonymousTypeSpecifierEClass = createEClass(ANONYMOUS_TYPE_SPECIFIER);
 		createEReference(anonymousTypeSpecifierEClass, ANONYMOUS_TYPE_SPECIFIER__TYPE);
@@ -3614,11 +3630,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		builtinVariableDeclarationEClass = createEClass(BUILTIN_VARIABLE_DECLARATION);
 
+		typeEClass = createEClass(TYPE);
+
+		invalidTypeEClass = createEClass(INVALID_TYPE);
+
+		anyTypeEClass = createEClass(ANY_TYPE);
+
 		dataTypeEClass = createEClass(DATA_TYPE);
-
-		invalidDataTypeEClass = createEClass(INVALID_DATA_TYPE);
-
-		anyDataTypeEClass = createEClass(ANY_DATA_TYPE);
 
 		unitTypeEClass = createEClass(UNIT_TYPE);
 
@@ -3748,9 +3766,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		dataTypeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		typeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		enumerationDeclarationEClass.getESuperTypes().add(this.getDeclaration());
-		structDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		structDeclarationEClass.getESuperTypes().add(this.getTypeDeclaration());
 		structDeclarationEClass.getESuperTypes().add(this.getStructType());
 		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		functionDeclarationEClass.getESuperTypes().add(this.getCallableElement());
@@ -3763,8 +3781,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		constantDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		functionAliasDeclarationEClass.getESuperTypes().add(this.getCallableElement());
-		anonymousTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
-		declaredTypeSpecifierEClass.getESuperTypes().add(this.getDataTypeSpecifier());
+		anonymousTypeSpecifierEClass.getESuperTypes().add(this.getTypeSpecifier());
+		declaredTypeSpecifierEClass.getESuperTypes().add(this.getTypeSpecifier());
 		letExpressionEClass.getESuperTypes().add(this.getExpression());
 		letExpressionVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		ifExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -3819,9 +3837,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		builtinDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		builtinFunctionDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
 		builtinVariableDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
-		invalidDataTypeEClass.getESuperTypes().add(this.getDataType());
-		anyDataTypeEClass.getESuperTypes().add(this.getDataType());
-		unitTypeEClass.getESuperTypes().add(this.getDataType());
+		invalidTypeEClass.getESuperTypes().add(this.getType());
+		anyTypeEClass.getESuperTypes().add(this.getType());
+		dataTypeEClass.getESuperTypes().add(this.getType());
+		unitTypeEClass.getESuperTypes().add(this.getType());
 		primitiveTypeEClass.getESuperTypes().add(this.getDataType());
 		numericTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		realTypeEClass.getESuperTypes().add(this.getNumericType());
@@ -3857,8 +3876,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(declarationEClass, Declaration.class, "Declaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataTypeDeclarationEClass, DataTypeDeclaration.class, "DataTypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataTypeDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, DataTypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeDeclaration_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationDeclarationEClass, EnumerationDeclaration.class, "EnumerationDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnumerationDeclaration_LiteralDeclarations(), this.getEnumerationLiteralDeclaration(), null, "literalDeclarations", null, 0, -1, EnumerationDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3883,8 +3902,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(checkEClass, Check.class, "Check", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCheck_Function(), this.getFunctionDeclaration(), this.getFunctionDeclaration_Checks(), "function", null, 1, 1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_StaticArguments(), this.getExpression(), null, "staticArguments", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCheck_InputParameterTypes(), this.getDataTypeSpecifier(), null, "inputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCheck_OutputParameterTypes(), this.getDataTypeSpecifier(), null, "outputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheck_InputParameterTypes(), this.getTypeSpecifier(), null, "inputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheck_OutputParameterTypes(), this.getTypeSpecifier(), null, "outputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(evaluableEClass, Evaluable.class, "Evaluable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3926,15 +3945,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getEquation_LeftHandSide(), this.getExpression(), null, "leftHandSide", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEquation_RightHandSide(), this.getExpression(), null, "rightHandSide", null, 0, 1, Equation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataTypeSpecifierEClass, DataTypeSpecifier.class, "DataTypeSpecifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(typeSpecifierEClass, TypeSpecifier.class, "TypeSpecifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(dataTypeSpecifierEClass, this.getDataType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeSpecifierEClass, this.getType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(anonymousTypeSpecifierEClass, AnonymousTypeSpecifier.class, "AnonymousTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnonymousTypeSpecifier_Type(), this.getDataType(), null, "type", null, 0, 1, AnonymousTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnonymousTypeSpecifier_Type(), this.getType(), null, "type", null, 0, 1, AnonymousTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredTypeSpecifierEClass, DeclaredTypeSpecifier.class, "DeclaredTypeSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredTypeSpecifier_TypeDeclaration(), this.getDataTypeDeclaration(), null, "typeDeclaration", null, 0, 1, DeclaredTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredTypeSpecifier_TypeDeclaration(), this.getTypeDeclaration(), null, "typeDeclaration", null, 0, 1, DeclaredTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLetExpression_Assignments(), this.getLetExpressionAssignment(), null, "assignments", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4033,7 +4052,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(typeTestExpressionEClass, TypeTestExpression.class, "TypeTestExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeTestExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeTestExpression_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeTestExpression_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveExpressionEClass, AdditiveExpression.class, "AdditiveExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4135,25 +4154,27 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(builtinVariableDeclarationEClass, BuiltinVariableDeclaration.class, "BuiltinVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(dataTypeEClass, this.getDataType(), "evaluate", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(typeEClass, this.getType(), "evaluate", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorKind(), "operator", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getDataType(), "other", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getType(), "other", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(dataTypeEClass, this.getDataType(), "evaluate", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeEClass, this.getType(), "evaluate", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorKind(), "operator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "n", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(dataTypeEClass, ecorePackage.getEBoolean(), "isAssignableFrom", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getDataType(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeEClass, ecorePackage.getEBoolean(), "isAssignableFrom", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getType(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(dataTypeEClass, ecorePackage.getEBoolean(), "isEquivalentTo", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getDataType(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeEClass, ecorePackage.getEBoolean(), "isEquivalentTo", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getType(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(invalidDataTypeEClass, InvalidDataType.class, "InvalidDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(anyDataTypeEClass, AnyDataType.class, "AnyDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4175,7 +4196,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(stringTypeEClass, StringType.class, "StringType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getArrayType_ElementTypeSpecifier(), this.getDataTypeSpecifier(), null, "elementTypeSpecifier", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrayType_ElementTypeSpecifier(), this.getTypeSpecifier(), null, "elementTypeSpecifier", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrayType_Dimensions(), this.getArrayDimension(), null, "dimensions", null, 0, -1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensionality(), ecorePackage.getEInt(), "dimensionality", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_Dimensional(), ecorePackage.getEBoolean(), "dimensional", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -4184,7 +4205,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getArrayType_NumericVector(), ecorePackage.getEBoolean(), "numericVector", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArrayType_NumericMatrix(), ecorePackage.getEBoolean(), "numericMatrix", null, 1, 1, ArrayType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		addEOperation(arrayTypeEClass, this.getDataType(), "getElementType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(arrayTypeEClass, this.getType(), "getElementType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(arrayDimensionEClass, ArrayDimension.class, "ArrayDimension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayDimension_Size(), this.getExpression(), null, "size", null, 0, 1, ArrayDimension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4200,7 +4221,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(structMemberEClass, StructMember.class, "StructMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStructMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStructMember_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStructMember_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

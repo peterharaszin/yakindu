@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructMember;
@@ -31,7 +31,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class MachineDataTypes {
 
-	public static MachineDataType create(IMscriptGeneratorConfiguration configuration, DataType type) {
+	public static MachineDataType create(IMscriptGeneratorConfiguration configuration, Type type) {
 		if (type instanceof BooleanType) {
 			return create(configuration, (BooleanType) type);
 		}

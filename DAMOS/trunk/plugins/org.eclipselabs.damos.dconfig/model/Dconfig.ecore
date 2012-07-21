@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dconfig"
-    nsURI="http://www.eclipselabs.org/damos/2011/Dconfig" nsPrefix="dconfig">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dconfig" nsURI="http://www.eclipselabs.org/damos/2011/Dconfig"
+    nsPrefix="dconfig">
   <eClassifiers xsi:type="ecore:EClass" name="Configuration" eSuperTypes="#//PropertyContainer">
     <eOperations name="getContextFragment" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eOperations name="getPropertyValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression">
@@ -77,7 +76,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//SimplePropertyDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimplePropertyDeclaration" eSuperTypes="#//PropertyDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//DataTypeSpecifier"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//TypeSpecifier"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression"
         containment="true"/>

@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -37,17 +37,17 @@ import org.eclipselabs.damos.mscript.DataType;
 public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Latch latch = (Latch) component;
 		
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = null;
 		
-		DataType dataType = getDataType(status, latch);
-		if (dataType != null) {
-			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
+		Type type = getDataType(status, latch);
+		if (type != null) {
+			Type incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
-				if (!incomingDataType.isAssignableFrom(dataType)) {
+				if (!incomingDataType.isAssignableFrom(type)) {
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Initial value data type incompatible with input value data type"));
 				}
 				signature = new ComponentSignature(incomingDataTypes);
@@ -61,7 +61,7 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
-	protected DataType getDataType(MultiStatus status, Latch latch) {
+	protected Type getDataType(MultiStatus status, Latch latch) {
 		try {
 			if (latch.getInitialValue() instanceof MscriptValueSpecification) {
 				return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();

@@ -7,10 +7,10 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StringType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.internal.operations.StringTypeOperations;
 
 /**
@@ -46,7 +46,7 @@ public class StringTypeImpl extends PrimitiveTypeImpl implements StringType {
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	public DataType evaluate(OperatorKind operator, DataType other) {
+	public Type evaluate(OperatorKind operator, Type other) {
 		return StringTypeOperations.evaluate(this, operator, other);
 	}
 
@@ -54,7 +54,7 @@ public class StringTypeImpl extends PrimitiveTypeImpl implements StringType {
 	 * @see org.eclipselabs.mscript.typesystem.impl.DataTypeImpl#isAssignableFrom(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	public boolean isAssignableFrom(DataType other) {
+	public boolean isAssignableFrom(Type other) {
 		return StringTypeOperations.isAssignableFrom(this, other);
 	}
 	

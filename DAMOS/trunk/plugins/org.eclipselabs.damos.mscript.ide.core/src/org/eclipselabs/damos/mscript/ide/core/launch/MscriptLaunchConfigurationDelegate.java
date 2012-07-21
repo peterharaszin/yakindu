@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.xtext.util.StringInputStream;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.mscript.ide.core.internal.launch.util.ParseUtil;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -83,10 +83,10 @@ public class MscriptLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	}
 
 	@Override
-	protected List<DataType> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode,
+	protected List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode,
 			IProgressMonitor monitor) throws CoreException {
 		int n = getFunctionDefinition().getInputParameterDeclarations().size();
-		DataType[] dataTypes = new DataType[n];
+		Type[] dataTypes = new Type[n];
 		
 		IInterpreterContext interpreterContext = new InterpreterContext(getStaticEvaluationResult(), new ComputationContext(getComputationModel()));
 		try {

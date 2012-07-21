@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -40,7 +40,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final Expression argument = functionCall.getArguments().get(0);
 		
-		final DataType argumentDataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
+		final Type argumentDataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

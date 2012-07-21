@@ -23,7 +23,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -33,32 +33,32 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 public class JoinSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		DataType dataType = null;
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
+		Type type = null;
 		
 		for (InputPort inputPort : component.getInputPorts()) {
-			DataType incomingDataType = incomingDataTypes.get(inputPort);
+			Type incomingDataType = incomingDataTypes.get(inputPort);
 			if (incomingDataType == null) {
 				continue;
 			}
-			if (dataType != null) {
-				dataType = TypeUtil.getLeftHandDataType(dataType, incomingDataType);
-				if (dataType == null) {
+			if (type != null) {
+				type = TypeUtil.getLeftHandDataType(type, incomingDataType);
+				if (type == null) {
 					MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Incompatible input values"));
 					return new ComponentSignatureEvaluationResult(status);
 				}
 			} else {
-				dataType = incomingDataType;
+				type = incomingDataType;
 			}
 		}
 		
-		if (dataType == null) {
+		if (type == null) {
 			return new ComponentSignatureEvaluationResult();
 		}
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
-		signature.getOutputDataTypes().put(component.getFirstOutputPort(), dataType);
+		signature.getOutputDataTypes().put(component.getFirstOutputPort(), type);
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

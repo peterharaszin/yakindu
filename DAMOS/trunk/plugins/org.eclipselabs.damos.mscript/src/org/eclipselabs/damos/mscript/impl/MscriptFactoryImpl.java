@@ -60,7 +60,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 		switch (eClass.getClassifierID()) {
 			case MscriptPackage.MODULE: return createModule();
 			case MscriptPackage.IMPORT_DECLARATION: return createImportDeclaration();
-			case MscriptPackage.DATA_TYPE_DECLARATION: return createDataTypeDeclaration();
+			case MscriptPackage.TYPE_DECLARATION: return createTypeDeclaration();
 			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
 			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
@@ -131,8 +131,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.BUILTIN_DECLARATION: return createBuiltinDeclaration();
 			case MscriptPackage.BUILTIN_FUNCTION_DECLARATION: return createBuiltinFunctionDeclaration();
 			case MscriptPackage.BUILTIN_VARIABLE_DECLARATION: return createBuiltinVariableDeclaration();
-			case MscriptPackage.INVALID_DATA_TYPE: return createInvalidDataType();
-			case MscriptPackage.ANY_DATA_TYPE: return createAnyDataType();
+			case MscriptPackage.INVALID_TYPE: return createInvalidType();
+			case MscriptPackage.ANY_TYPE: return createAnyType();
 			case MscriptPackage.UNIT_TYPE: return createUnitType();
 			case MscriptPackage.PRIMITIVE_TYPE: return createPrimitiveType();
 			case MscriptPackage.NUMERIC_TYPE: return createNumericType();
@@ -236,9 +236,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeDeclaration createDataTypeDeclaration() {
-		DataTypeDeclarationImpl dataTypeDeclaration = new DataTypeDeclarationImpl();
-		return dataTypeDeclaration;
+	public TypeDeclaration createTypeDeclaration() {
+		TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
+		return typeDeclaration;
 	}
 
 	/**
@@ -946,9 +946,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvalidDataType createInvalidDataType() {
-		InvalidDataTypeImpl invalidDataType = new InvalidDataTypeImpl();
-		return invalidDataType;
+	public InvalidType createInvalidType() {
+		InvalidTypeImpl invalidType = new InvalidTypeImpl();
+		return invalidType;
 	}
 
 	/**
@@ -956,9 +956,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnyDataType createAnyDataType() {
-		AnyDataTypeImpl anyDataType = new AnyDataTypeImpl();
-		return anyDataType;
+	public AnyType createAnyType() {
+		AnyTypeImpl anyType = new AnyTypeImpl();
+		return anyType;
 	}
 
 	/**

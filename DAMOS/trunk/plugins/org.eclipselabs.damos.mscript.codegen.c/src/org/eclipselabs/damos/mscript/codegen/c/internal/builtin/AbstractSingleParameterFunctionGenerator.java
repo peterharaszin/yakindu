@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.NumericType;
@@ -35,7 +35,7 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IBuilt
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
-		DataType argumentDataType = context.getStaticEvaluationResult().getValue(functionCall).getDataType();
+		Type argumentDataType = context.getStaticEvaluationResult().getValue(functionCall).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

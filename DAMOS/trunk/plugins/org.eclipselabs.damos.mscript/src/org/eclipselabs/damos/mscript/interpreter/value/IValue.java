@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -21,9 +21,9 @@ import org.eclipselabs.damos.mscript.DataType;
  */
 public interface IValue {
 	
-	DataType getDataType();
+	Type getDataType();
 	
-	IValue convert(DataType dataType);
+	IValue convert(Type type);
 
 	IValue add(IValue other);
 	IValue subtract(IValue other);

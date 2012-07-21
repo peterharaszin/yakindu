@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
@@ -40,7 +40,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier typeSpecifier;
+	protected TypeSpecifier typeSpecifier;
 
 	/**
 	 * The cached value of the '{@link #getNumberFormat() <em>Number Format</em>}' containment reference.
@@ -76,7 +76,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getTypeSpecifier() {
+	public TypeSpecifier getTypeSpecifier() {
 		return typeSpecifier;
 	}
 
@@ -85,8 +85,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldTypeSpecifier = typeSpecifier;
 		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
@@ -100,7 +100,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
 		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
 			if (typeSpecifier != null)
@@ -198,7 +198,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)newValue);
+				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)newValue);
@@ -216,7 +216,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)null);
+				setTypeSpecifier((TypeSpecifier)null);
 				return;
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)null);

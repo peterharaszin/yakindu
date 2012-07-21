@@ -12,13 +12,13 @@
 package org.eclipselabs.damos.mscript.internal.operations;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.Type;
 
-public class StructTypeOperations extends DataTypeOperations {
+public class StructTypeOperations extends TypeOperations {
 	
 	public static StructMember getMember(StructType structType, String name) {
 		for (StructMember member : structType.getMembers()) {
@@ -40,7 +40,7 @@ public class StructTypeOperations extends DataTypeOperations {
 		return -1;
 	}
 
-	public static DataType evaluate(StructType structType, OperatorKind operator, DataType other) {
+	public static Type evaluate(StructType structType, OperatorKind operator, Type other) {
 		switch (operator) {
 		case EQUAL_TO:
 		case NOT_EQUAL_TO:
@@ -50,10 +50,10 @@ public class StructTypeOperations extends DataTypeOperations {
 		default:
 			break;
 		}
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
-	public static boolean isAssignableFrom(StructType structType, DataType other) {
+	public static boolean isAssignableFrom(StructType structType, Type other) {
 		if (other instanceof StructType) {
 			StructType otherStructType = (StructType) other;
 			EList<StructMember> members = structType.getMembers();
@@ -69,8 +69,8 @@ public class StructTypeOperations extends DataTypeOperations {
 					return false;
 				}
 
-				DataType type = member.getTypeSpecifier().getType();
-				DataType otherType = otherMember.getTypeSpecifier().getType();
+				Type type = member.getTypeSpecifier().getType();
+				Type otherType = otherMember.getTypeSpecifier().getType();
 				if (type == null || otherType == null || type.eIsProxy() || otherType.eIsProxy() || !type.isAssignableFrom(otherType)) {
 					return false;
 				}

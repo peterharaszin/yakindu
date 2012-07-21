@@ -36,7 +36,7 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.internal.registry.ComponentSignaturePolicyProviderRegistry;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -127,7 +127,7 @@ public class DataTypeResolverHelper {
 	private void resolveCompoundInputConnectors(Compound compound) {
 		if (compound instanceof WhileLoop) {
 			WhileLoop whileLoop = (WhileLoop) compound;
-			DataType incomingDataType = getIncomingDataType(whileLoop.getCondition());
+			Type incomingDataType = getIncomingDataType(whileLoop.getCondition());
 			if (incomingDataType != null && !(incomingDataType instanceof BooleanType)) {
 				errorStatusMap.put(whileLoop, new EObjectStatus(IStatus.ERROR, whileLoop, "While loop condition input value must be boolean"));
 			} else {
@@ -185,10 +185,10 @@ public class DataTypeResolverHelper {
 		return changed;
 	}
 
-	private Map<InputPort, DataType> getIncomingDataTypes(Component component) {
-		Map<InputPort, DataType> incomingDataTypes = new HashMap<InputPort, DataType>();
+	private Map<InputPort, Type> getIncomingDataTypes(Component component) {
+		Map<InputPort, Type> incomingDataTypes = new HashMap<InputPort, Type>();
 		for (InputPort inputPort : component.getInputPorts()) {
-			DataType incomingDataType = getIncomingDataType(inputPort);
+			Type incomingDataType = getIncomingDataType(inputPort);
 			if (incomingDataType != null) {
 				incomingDataTypes.put(inputPort, incomingDataType);
 			}
@@ -200,8 +200,8 @@ public class DataTypeResolverHelper {
 	 * @param inputPort
 	 * @param incomingDataTypes
 	 */
-	private DataType getIncomingDataType(InputConnector inputPort) {
-		DataType incomingDataType = null;
+	private Type getIncomingDataType(InputConnector inputPort) {
+		Type incomingDataType = null;
 		Connection connection = inputPort.getFirstConnection(fragment);
 		if (connection != null) {
 			if (connection.getSource() instanceof OutputPort) {
@@ -217,7 +217,7 @@ public class DataTypeResolverHelper {
 		return incomingDataType;
 	}
 	
-	private DataType getFixedConnectorDataType(OutputConnector connector) {
+	private Type getFixedConnectorDataType(OutputConnector connector) {
 		return null;
 	}
 

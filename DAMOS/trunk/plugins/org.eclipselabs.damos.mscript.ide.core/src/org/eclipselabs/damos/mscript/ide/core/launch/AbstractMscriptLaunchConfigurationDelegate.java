@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.Module;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
@@ -61,7 +61,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	
 	private List<IValue> staticArguments;
 	
-	private List<DataType> inputParameterDataTypes;
+	private List<Type> inputParameterDataTypes;
 	
 	/**
 	 * @return the staticEvaluationResult
@@ -101,7 +101,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	/**
 	 * @return the inputParameterDataTypes
 	 */
-	public List<DataType> getInputParameterDataTypes() {
+	public List<Type> getInputParameterDataTypes() {
 		return inputParameterDataTypes;
 	}
 	
@@ -147,7 +147,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
 	
-	protected abstract List<DataType> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException;
+	protected abstract List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException;
 	
 	protected IInterpreterContext createStaticArgumentsInterpreterContext() {
 		return new InterpreterContext(getStaticEvaluationResult(), new ComputationContext());
@@ -157,8 +157,8 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return null;
 	}
 
-	protected List<DataType> getDataTypes(IInterpreterContext interpreterContext, String dataTypesString) throws CoreException {
-		List<DataType> dataTypes = new ArrayList<DataType>();
+	protected List<Type> getDataTypes(IInterpreterContext interpreterContext, String dataTypesString) throws CoreException {
+		List<Type> types = new ArrayList<Type>();
 		
 		String[] dataTypeStrings = dataTypesString.split(",");
 		if (dataTypeStrings[0].length() == 0) {
@@ -168,20 +168,20 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		MscriptParser parser = IDECorePlugin.getDefault().getMscriptParser();
 		
 		for (String dataTypeString : dataTypeStrings) {
-			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getDataTypeSpecifierRule(), new StringReader(dataTypeString));
+			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getTypeSpecifierRule(), new StringReader(dataTypeString));
 			if (parseResult.hasSyntaxErrors()) {
 				return null;
 			}
-			DataTypeSpecifier dataTypeSpecifier = (DataTypeSpecifier) parseResult.getRootASTElement();
-			DataType dataType = EcoreUtil.copy(dataTypeSpecifier.getType());
-			if (dataType instanceof InvalidDataType) {
+			TypeSpecifier typeSpecifier = (TypeSpecifier) parseResult.getRootASTElement();
+			Type type = EcoreUtil.copy(typeSpecifier.getType());
+			if (type instanceof InvalidType) {
 				return null;
 			}
 			
-			dataTypes.add(dataType);
+			types.add(type);
 		}
 		
-		return dataTypes;
+		return types;
 	}
 
 	private ComputationModel createComputationModel(String computationModelString) throws CoreException {
@@ -213,7 +213,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDeclaration;
 	}
 
-	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationResult = new StaticEvaluationResult();
 		new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {

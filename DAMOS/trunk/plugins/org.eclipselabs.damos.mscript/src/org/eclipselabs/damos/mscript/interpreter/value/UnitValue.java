@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -44,7 +44,7 @@ public class UnitValue extends AbstractValue {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.execution.value.IValue#getDataType()
 	 */
-	public DataType getDataType() {
+	public Type getDataType() {
 		return TypeUtil.UNIT_TYPE;
 	}
 
@@ -52,7 +52,7 @@ public class UnitValue extends AbstractValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doConvert(DataType dataType) {
+	protected IValue doConvert(Type type) {
 		return this;
 	}
 	
@@ -60,7 +60,7 @@ public class UnitValue extends AbstractValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doMultiply(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doMultiply(IValue other, DataType resultDataType) {
+	protected IValue doMultiply(IValue other, Type resultDataType) {
 		if (other instanceof UnitValue) {
 			return new UnitValue(getContext(), value.evaluate(OperatorKind.MULTIPLY, ((UnitValue) other).value));
 		}
@@ -71,7 +71,7 @@ public class UnitValue extends AbstractValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doDivide(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doDivide(IValue other, DataType resultDataType) {
+	protected IValue doDivide(IValue other, Type resultDataType) {
 		if (other instanceof UnitValue) {
 			return new UnitValue(getContext(), value.evaluate(OperatorKind.DIVIDE, ((UnitValue) other).value));
 		}
@@ -82,7 +82,7 @@ public class UnitValue extends AbstractValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		UnitValue otherUnitValue = (UnitValue) other;
 		if (value == null && otherUnitValue.value == null) {
 			return new BooleanValue(getContext(), true);
@@ -97,7 +97,7 @@ public class UnitValue extends AbstractValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doNotEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		UnitValue otherUnitValue = (UnitValue) other;
 		if (value == null && otherUnitValue.value == null) {
 			return new BooleanValue(getContext(), false);

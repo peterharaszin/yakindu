@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -113,17 +113,17 @@ public class MscriptGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		String name = variableDeclaration.getName();
-		DataType dataType = getDataType(variableDeclaration);
+		Type type = getDataType(variableDeclaration);
 		int circularBufferSize = context.getStaticEvaluationResult().getCircularBufferSize(variableDeclaration);
 		if (circularBufferSize > 1) {
 			int bufferSize = circularBufferSize;
 			out.printf("%s[%d];\n",
-					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), dataType, name, false, null),
+					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), type, name, false, null),
 					bufferSize);
 			out.printf("%s %s_index;\n", dataTypeGenerator.generateIndexDataType(context.getConfiguration().getComputationModel(), 2 * bufferSize), name);
 		} else {
 			out.printf("%s;\n",
-					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), dataType, name, false, null));
+					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), type, name, false, null));
 		}
 		return sb;
 	}
@@ -374,7 +374,7 @@ public class MscriptGenerator {
 	 * @param evaluable
 	 * @return
 	 */
-	private DataType getDataType(Evaluable evaluable) {
+	private Type getDataType(Evaluable evaluable) {
 		IValue value = context.getStaticEvaluationResult().getValue(evaluable);
 		return value != null ? value.getDataType() : null;
 	}

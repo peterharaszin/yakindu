@@ -15,7 +15,6 @@ import com.google.inject.Inject
 import org.eclipselabs.damos.mscript.ArrayType
 import org.eclipselabs.damos.mscript.Assignment
 import org.eclipselabs.damos.mscript.Compound
-import org.eclipselabs.damos.mscript.DataType
 import org.eclipselabs.damos.mscript.Evaluable
 import org.eclipselabs.damos.mscript.Expression
 import org.eclipselabs.damos.mscript.ForStatement
@@ -26,6 +25,7 @@ import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerat
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
 import org.eclipselabs.damos.mscript.codegen.c.IOperationGeneratorProvider
+import org.eclipselabs.damos.mscript.Type
 
 /**
  * @author Andreas Unger
@@ -124,7 +124,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 			«ENDFOR»
 		}'''
 
-	def private generateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) {
+	def private generateAssignment(IMscriptGeneratorContext context, Type targetDataType, CharSequence target, Expression assignedExpression) {
 		val operationGenerator = operationGeneratorProvider.getGenerator(context, targetDataType, assignedExpression)
 		if (operationGenerator != null) {
 			return operationGenerator.generate(context, targetDataType, target, assignedExpression)
@@ -132,7 +132,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		return doGenerateAssignment(context, targetDataType, target, assignedExpression)
 	}
 		
-	def private dispatch doGenerateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) '''
+	def private dispatch doGenerateAssignment(IMscriptGeneratorContext context, Type targetDataType, CharSequence target, Expression assignedExpression) '''
 		«target» = «generateAssignedExpression(context, targetDataType, assignedExpression)»;
 	'''
 	
@@ -140,7 +140,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		memcpy(«target», «generateAssignedExpression(context, targetDataType, assignedExpression)», sizeof («dataTypeGenerator.generateDataType(context.configuration, null, context.codeFragmentCollector, targetDataType, null)»));
 	'''
 
-	def generateAssignedExpression(IMscriptGeneratorContext context, DataType targetDataType, Expression expression) {
+	def generateAssignedExpression(IMscriptGeneratorContext context, Type targetDataType, Expression expression) {
 		return MscriptGeneratorUtil::cast(context, expression, targetDataType);
 	}
 	

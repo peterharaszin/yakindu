@@ -20,11 +20,11 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -93,7 +93,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 				LocalVariableDeclaration elementVariableDeclaration = null;
 				IValue elementValue = null;
 				
-				DataType elementExpressionType = staticEvaluationResult.getValue(elementExpression).getDataType();
+				Type elementExpressionType = staticEvaluationResult.getValue(elementExpression).getDataType();
 				
 				int[] rightIndices = EMPTY_INT_ARRAY;
 				int[] rightSizes = EMPTY_INT_ARRAY;

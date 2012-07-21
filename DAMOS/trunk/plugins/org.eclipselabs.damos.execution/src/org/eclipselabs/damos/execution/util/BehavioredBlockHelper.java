@@ -32,7 +32,7 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -84,13 +84,13 @@ public class BehavioredBlockHelper {
 		return functionDeclaration;
 	}
 
-	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<DataType> inputParameterDataTypes) {
+	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		Iterator<IValue> staticArgumentIt = staticArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
 			staticEvaluationResult.setValue(parameterDeclaration, staticArgumentIt.next());
 		}
 
-		Iterator<DataType> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
+		Iterator<Type> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
 			staticEvaluationResult.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
 		}
@@ -123,13 +123,13 @@ public class BehavioredBlockHelper {
 		return staticArguments;
 	}
 
-	public List<DataType> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
-		List<DataType> dataTypes = new ArrayList<DataType>();
+	public List<Type> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
+		List<Type> types = new ArrayList<Type>();
 
 		if (!block.getInputSockets().isEmpty()) {
 			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
 			messageKindDataType.setUnit(TypeUtil.createUnit());
-			dataTypes.add(messageKindDataType);
+			types.add(messageKindDataType);
 		}
 		
 		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
@@ -144,14 +144,14 @@ public class BehavioredBlockHelper {
 			ParameterDeclaration parameterDeclaration = parameterDeclarationIterator.next();
 			
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-				DataType elementDataType = null;
+				Type elementDataType = null;
 				for (InputPort inputPort : input.getPorts()) {
-					DataType dataType = signature.getInputDataType(inputPort);
-					if (dataType != null) {
+					Type type = signature.getInputDataType(inputPort);
+					if (type != null) {
 						if (elementDataType == null) {
-							elementDataType = dataType;
+							elementDataType = type;
 						} else {
-							elementDataType = TypeUtil.getLeftHandDataType(elementDataType, dataType);
+							elementDataType = TypeUtil.getLeftHandDataType(elementDataType, type);
 							if (elementDataType == null) {
 								status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
 								continue;
@@ -162,21 +162,21 @@ public class BehavioredBlockHelper {
 				if (elementDataType == null) {
 					return null;
 				}
-				dataTypes.add(TypeUtil.createArrayType(elementDataType, input.getPorts().size()));
+				types.add(TypeUtil.createArrayType(elementDataType, input.getPorts().size()));
 			} else {
-				DataType dataType = null;
+				Type type = null;
 				if (input.getPorts().isEmpty()) {
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
 					continue;
 				}
-				dataType = signature.getInputDataType(input.getPorts().get(0));
-				if (dataType == null) {
+				type = signature.getInputDataType(input.getPorts().get(0));
+				if (type == null) {
 					return null;
 				}
-				dataTypes.add(dataType);
+				types.add(type);
 			}
 		}
-		return dataTypes;
+		return types;
 	}
 	
 	private IValue getParameterStaticArgumentValue(String parameterName) throws CoreException {
@@ -197,7 +197,7 @@ public class BehavioredBlockHelper {
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
 			if (blockInput.getDefinition().isManyPorts() && blockInput.getDefinition().getParameter(name) != null) {
-				DataType elementType = null;
+				Type elementType = null;
 				List<IValue> values = new ArrayList<IValue>(blockInput.getPorts().size());
 				for (InputPort inputPort : blockInput.getPorts()) {
 					BlockInputPort blockInputPort = (BlockInputPort) inputPort;

@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
@@ -141,8 +141,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
-			DataType leftDataType = getDataType(equalityExpression.getLeftOperand());
-			DataType rightDataType = getDataType(equalityExpression.getRightOperand());
+			Type leftDataType = getDataType(equalityExpression.getLeftOperand());
+			Type rightDataType = getDataType(equalityExpression.getRightOperand());
 
 			if (leftDataType instanceof StringType && rightDataType instanceof StringType) {
 				StringEqualToFunction stringEqualToFunction = context.getCodeFragmentCollector().addCodeFragment(new StringEqualToFunction(context.getConfiguration().getStringBufferSize()), new NullProgressMonitor());
@@ -173,12 +173,12 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		private void generateCompareExpression(Expression leftOperand, Expression rightOperand, String operator) {
-			DataType leftDataType = getDataType(leftOperand);
-			DataType rightDataType = getDataType(rightOperand);
+			Type leftDataType = getDataType(leftOperand);
+			Type rightDataType = getDataType(rightOperand);
 			
 			if (leftDataType instanceof NumericType && rightDataType instanceof NumericType) {
-				DataType dataType1 = TypeUtil.getLeftHandDataType(leftDataType, rightDataType);
-				DataType dataType2 = TypeUtil.getLeftHandDataType(rightDataType, leftDataType);
+				Type dataType1 = TypeUtil.getLeftHandDataType(leftDataType, rightDataType);
+				Type dataType2 = TypeUtil.getLeftHandDataType(rightDataType, leftDataType);
 				
 				NumberFormat numberFormat1 = context.getConfiguration().getComputationModel().getNumberFormat(dataType1);
 				NumberFormat numberFormat2 = context.getConfiguration().getComputationModel().getNumberFormat(dataType2);
@@ -204,11 +204,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
-			DataType dataType = getDataType(additiveExpression);
-			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(dataType);
+			Type type = getDataType(additiveExpression);
+			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
 			
-			DataType leftDataType = getDataType(additiveExpression.getLeftOperand());
-			DataType rightDataType = getDataType(additiveExpression.getRightOperand());
+			Type leftDataType = getDataType(additiveExpression.getLeftOperand());
+			Type rightDataType = getDataType(additiveExpression.getRightOperand());
 			
 			if (leftDataType instanceof StringType || rightDataType instanceof StringType) {
 				IValue leftValue = context.getStaticEvaluationResult().getValue(additiveExpression.getLeftOperand());
@@ -327,8 +327,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean casePowerExpression(PowerExpression powerExpression) {
-			DataType dataType = getDataType(powerExpression);
-			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(dataType);
+			Type type = getDataType(powerExpression);
+			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
 	
 			if (numberFormat instanceof FixedPointFormat) {
 				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
@@ -357,8 +357,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseRealLiteral(RealLiteral realLiteral) {
-			DataType dataType = getDataType(realLiteral);
-			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, realLiteral.getValue()));
+			Type type = getDataType(realLiteral);
+			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, realLiteral.getValue()));
 			return true;
 		}
 	
@@ -367,8 +367,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
-			DataType dataType = getDataType(integerLiteral);
-			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, integerLiteral.getValue()));
+			Type type = getDataType(integerLiteral);
+			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, integerLiteral.getValue()));
 			return true;
 		}
 		
@@ -577,7 +577,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 
-		private DataType getDataType(Expression expression) {
+		private Type getDataType(Expression expression) {
 			return context.getStaticEvaluationResult().getValue(expression).getDataType();
 		}
 	

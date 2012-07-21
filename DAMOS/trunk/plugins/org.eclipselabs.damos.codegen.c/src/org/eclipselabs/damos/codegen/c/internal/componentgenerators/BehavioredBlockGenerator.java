@@ -278,7 +278,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
-				out.printf("%s %s_%s = { { ", dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), getContext().getCodeFragmentCollector(), arrayType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
+				out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), arrayType, null));
+				out.print(" = { ");
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -288,13 +290,15 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					}
 					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
 				}
-				out.println(" } };");
+				out.println(" };");
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
-					out.printf("%s %s_%s = ", dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), getContext().getCodeFragmentCollector(), targetDataType, null), StringExtensions.toFirstLower(getComponent().getName()), blockInput.getDefinition().getName());
+					String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
+					out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), targetDataType, null));
+					out.print(" = ");
 					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
 					out.println(";");
 				}

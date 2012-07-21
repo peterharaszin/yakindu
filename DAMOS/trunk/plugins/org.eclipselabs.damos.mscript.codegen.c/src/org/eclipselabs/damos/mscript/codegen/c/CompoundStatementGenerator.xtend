@@ -95,7 +95,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 			{
 				«dataTypeGenerator.generateIndexDataType(context.configuration.computationModel, size)» «itVarName»_i;
 				for («itVarName»_i = 0; «itVarName»_i < «size»; ++«itVarName»_i) {
-					«itVarDecl» = («expressionGenerator.generate(context, forStatement.collectionExpression)»).data[«itVarName»_i];
+					«itVarDecl» = («expressionGenerator.generate(context, forStatement.collectionExpression)»)[«itVarName»_i];
 					«doGenerate(context, forStatement.body)»
 				}
 			}
@@ -137,7 +137,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	'''
 	
 	def private dispatch doGenerateAssignment(IMscriptGeneratorContext context, ArrayType targetDataType, CharSequence target, Expression assignedExpression) '''
-		memcpy(&(«target»).data[0], &(«generateAssignedExpression(context, targetDataType, assignedExpression)»).data[0], sizeof («dataTypeGenerator.generateDataType(context.configuration, context.codeFragmentCollector, targetDataType, null)»));
+		memcpy(«target», «generateAssignedExpression(context, targetDataType, assignedExpression)», sizeof («dataTypeGenerator.generateDataType(context.configuration, null, context.codeFragmentCollector, targetDataType, null)»));
 	'''
 
 	def generateAssignedExpression(IMscriptGeneratorContext context, DataType targetDataType, Expression expression) {

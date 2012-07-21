@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.datatype;
 
+import java.util.Formatter;
+
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -42,24 +44,34 @@ public class MachineNumericType extends MachineDataType {
 		return numberFormat;
 	}
 	
+	@SuppressWarnings("resource")
 	@Override
-	public String generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
+		StringBuilder sb = new StringBuilder();
 		if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			switch (floatingPointFormat.getKind()) {
 			case BINARY32:
-				return "float";
+				sb.append("float");
+				break;
 			case BINARY64:
-				return "double";
+				sb.append("double");
+				break;
 			default:
 				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
 			}
 		} else if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			return String.format("int%d_t", fixedPointFormat.getWordSize());
+			new Formatter(sb).format("int%d_t", fixedPointFormat.getWordSize());
+		} else {
+			// Should not happen since we check it in the constructor
+			throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 		}
-		// Should not happen since we check it in the constructor
-		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
+		if (variableName != null) {
+			sb.append(" ");
+			sb.append(variableName);
+		}
+		return sb;
 	}
 	
 	/* (non-Javadoc)

@@ -29,16 +29,7 @@ public class VariableDeclarationGenerator {
 	}
 
 	public CharSequence generateVariableDeclaration(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, DataType dataType, CharSequence name, boolean pointer, ICodeFragment dependentCodeFragment) {
-		StringBuilder cDataType = new StringBuilder();
-
-		cDataType.append(dataTypeGenerator.generateDataType(configuration, codeFragmentCollector, dataType, dependentCodeFragment));
-		cDataType.append(" ");
-		if (pointer) {
-			cDataType.append("*");
-		}
-		cDataType.append(name);
-
-		return cDataType;
+		return dataTypeGenerator.generateDataType(configuration, pointer ? ("*" + name) : name, codeFragmentCollector, dataType, dependentCodeFragment);
 	}
 
 }

@@ -37,7 +37,7 @@ public class MachineStructType extends MachineDataType {
 	}
 	
 	@Override
-	public String generateDataType(ICodeFragmentCollector codeFragmentCollector,
+	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
 		final StructTypeDeclaration codeFragment = (StructTypeDeclaration) codeFragmentCollector.addCodeFragment(new StructTypeDeclaration(this), new NullProgressMonitor());
 		if (dependentCodeFragment != null) {
@@ -49,7 +49,14 @@ public class MachineStructType extends MachineDataType {
 				
 			});
 		}
-		return codeFragment.getName();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(codeFragment.getName());
+		if (variableName != null) {
+			sb.append(" ");
+			sb.append(variableName);
+		}
+		return sb;
 	}
 	
 	/**

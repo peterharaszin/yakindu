@@ -12,14 +12,14 @@ TEST(ArrayElementWiseOperationTest, ArrayElementWiseOperation) {
 
 	execute(&input, &output);
 
-	EXPECT_DOUBLE_EQ(7.0, output.out1.data[0]);
-	EXPECT_DOUBLE_EQ(-0.9, output.out1.data[1]);
-	EXPECT_DOUBLE_EQ(24.0, output.out1.data[2]);
+	EXPECT_DOUBLE_EQ(7.0, output.out1[0]);
+	EXPECT_DOUBLE_EQ(-0.9, output.out1[1]);
+	EXPECT_DOUBLE_EQ(24.0, output.out1[2]);
 
-	EXPECT_DOUBLE_EQ(7, output.out2.data[0][0]);
-	EXPECT_DOUBLE_EQ(-0.9, output.out2.data[0][1]);
-	EXPECT_DOUBLE_EQ(30, output.out2.data[1][0]);
-	EXPECT_DOUBLE_EQ(40, output.out2.data[1][1]);
-	EXPECT_DOUBLE_EQ(51, output.out2.data[2][0]);
-	EXPECT_DOUBLE_EQ(62, output.out2.data[2][1]);
+	EXPECT_DOUBLE_EQ(7, output.out2[0][0]);
+	EXPECT_DOUBLE_EQ(-0.9, output.out2[0][1]);
+	EXPECT_DOUBLE_EQ(30, output.out2[1][0]);
+	EXPECT_DOUBLE_EQ(40, output.out2[1][1]);
+	EXPECT_DOUBLE_EQ(51, output.out2[2][0]);
+	EXPECT_DOUBLE_EQ(62, output.out2[2][1]);
 }

@@ -56,8 +56,8 @@ class VectorMatrixMultiplyGenerator implements IOperationGenerator {
 		val matrixType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType as ArrayType);
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
 
-		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + ".data[j]", vectorType.numericElementType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.rightOperand) + ".data[j][i]", matrixType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + "[j]", vectorType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.rightOperand) + "[j][i]", matrixType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		'''
@@ -65,7 +65,7 @@ class VectorMatrixMultiplyGenerator implements IOperationGenerator {
 				int i, j;
 				for (i = 0; i < «matrixType.columnSize»; ++i) {
 					for (j = 0; j < «matrixType.rowSize»; ++j) {
-						«target».data[i] += «multiplyExpression»;
+						«target»[i] += «multiplyExpression»;
 					}
 				}
 			}

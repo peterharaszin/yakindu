@@ -156,7 +156,6 @@ public class ArrayScalarMultiplyGenerator implements IOperationGenerator {
       TextualNumericExpressionOperand _textualNumericExpressionOperand = new TextualNumericExpressionOperand(_generate, _numberFormat);
       final TextualNumericExpressionOperand leftOperand = _textualNumericExpressionOperand;
       CharSequence _generate_1 = this.expressionGenerator.generate(context, arrayOperand);
-      String _plus = (_generate_1 + ".data");
       Iterable<String> _indexVariables = this.getIndexVariables(resultType);
       final Function1<String,String> _function = new Function1<String,String>() {
           public String apply(final String it) {
@@ -167,10 +166,10 @@ public class ArrayScalarMultiplyGenerator implements IOperationGenerator {
         };
       Iterable<String> _map = IterableExtensions.<String, String>map(_indexVariables, _function);
       String _join = IterableExtensions.join(_map);
-      String _plus_1 = (_plus + _join);
+      String _plus = (_generate_1 + _join);
       MachineNumericType _numericElementType = arrayType.getNumericElementType();
       NumberFormat _numberFormat_1 = _numericElementType.getNumberFormat();
-      TextualNumericExpressionOperand _textualNumericExpressionOperand_1 = new TextualNumericExpressionOperand(_plus_1, _numberFormat_1);
+      TextualNumericExpressionOperand _textualNumericExpressionOperand_1 = new TextualNumericExpressionOperand(_plus, _numberFormat_1);
       final TextualNumericExpressionOperand rightOperand = _textualNumericExpressionOperand_1;
       MachineNumericType _numericElementType_1 = resultType.getNumericElementType();
       NumberFormat _numberFormat_2 = _numericElementType_1.getNumberFormat();
@@ -235,7 +234,6 @@ public class ArrayScalarMultiplyGenerator implements IOperationGenerator {
         _builder.newLine();
       } else {
         _builder.append(target, "");
-        _builder.append(".data");
         {
           Iterable<String> _indexVariables = this.getIndexVariables(resultType);
           for(final String indexVariable_1 : _indexVariables) {

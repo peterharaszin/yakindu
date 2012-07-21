@@ -62,7 +62,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 				out.print("((");
 				out.print(expressionGenerator.generate(context, argument));
 				out.printf(") + %d) & (%s) 0x%x", 1L << fractionLength - 1,
-						dataTypeGenerator.generateDataType(context.getConfiguration(), context.getCodeFragmentCollector(), argumentDataType, null),
+						dataTypeGenerator.generateDataType(context.getConfiguration(), null, context.getCodeFragmentCollector(), argumentDataType, null),
 						(1L << fixedPointFormat.getWordSize()) - 1 >>> fractionLength << fractionLength);
 			} else {
 				text.append(expressionGenerator.generate(context, argument));

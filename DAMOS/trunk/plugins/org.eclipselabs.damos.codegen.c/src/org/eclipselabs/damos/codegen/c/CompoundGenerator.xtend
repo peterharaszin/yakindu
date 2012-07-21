@@ -95,11 +95,11 @@ class CompoundGenerator implements ICompoundGenerator {
 		val generator = node.componentGenerator
 		val computationModel = context.configuration.getComputationModel(node)
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
-		val cDataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), generator.context.codeFragmentCollector, outputDataType, null)
-		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
 		val variableName = CompoundGeneratorUtil::getMemoryPreviousValueVariableName(context.configuration, node)
+		val dataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), variableName, generator.context.codeFragmentCollector, outputDataType, null)
+		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
 		
-		'''«cDataType» «variableName» = «initializer»;'''
+		'''«dataType» = «initializer»;'''
 	}
 	
 	def private int getActionIndex(Choice choice, Action action) {

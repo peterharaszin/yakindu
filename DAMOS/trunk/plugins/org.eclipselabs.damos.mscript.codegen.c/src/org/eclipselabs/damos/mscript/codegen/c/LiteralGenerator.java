@@ -169,14 +169,14 @@ public class LiteralGenerator {
 		int size = TypeUtil.getArraySize(value.getDataType());
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("{ { ");
+		sb.append("{ ");
 		for (int i = 0; i < size; ++i) {
 			if (i > 0) {
 				sb.append(", ");
 			}
 			sb.append(generateInitializer(computationModel, codeFragmentCollector, value.get(i)));
 		}
-		sb.append(" } }");
+		sb.append(" }");
 		
 		return sb;
 	}
@@ -186,7 +186,7 @@ public class LiteralGenerator {
 		int columnSize = TypeUtil.getArrayColumnSize(value.getDataType());
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("{ { ");
+		sb.append("{ ");
 		for (int i = 0; i < rowSize; ++i) {
 			if (i > 0) {
 				sb.append(", ");
@@ -200,7 +200,7 @@ public class LiteralGenerator {
 			}
 			sb.append(" }");
 		}
-		sb.append(" } }");
+		sb.append(" }");
 		
 		return sb;
 	}

@@ -151,7 +151,6 @@ public class ArrayElementWiseOperationGenerator implements IOperationGenerator {
   private CharSequence getMultiplicativeExpression(final IMscriptGeneratorContext context, final ICodeFragmentCollector codeFragmentCollector, final BinaryExpression binaryExpression, final MachineArrayType leftArrayType, final MachineArrayType rightArrayType, final MachineArrayType resultType) {
     Expression _leftOperand = binaryExpression.getLeftOperand();
     CharSequence _generate = this.expressionGenerator.generate(context, _leftOperand);
-    String _plus = (_generate + ".data");
     Iterable<String> _indexVariables = this.getIndexVariables(resultType);
     final Function1<String,String> _function = new Function1<String,String>() {
         public String apply(final String it) {
@@ -162,10 +161,9 @@ public class ArrayElementWiseOperationGenerator implements IOperationGenerator {
       };
     Iterable<String> _map = IterableExtensions.<String, String>map(_indexVariables, _function);
     String _join = IterableExtensions.join(_map);
-    final String leftOperandText = (_plus + _join);
+    final String leftOperandText = (_generate + _join);
     Expression _rightOperand = binaryExpression.getRightOperand();
     CharSequence _generate_1 = this.expressionGenerator.generate(context, _rightOperand);
-    String _plus_1 = (_generate_1 + ".data");
     Iterable<String> _indexVariables_1 = this.getIndexVariables(resultType);
     final Function1<String,String> _function_1 = new Function1<String,String>() {
         public String apply(final String it) {
@@ -176,7 +174,7 @@ public class ArrayElementWiseOperationGenerator implements IOperationGenerator {
       };
     Iterable<String> _map_1 = IterableExtensions.<String, String>map(_indexVariables_1, _function_1);
     String _join_1 = IterableExtensions.join(_map_1);
-    final String rightOperandText = (_plus_1 + _join_1);
+    final String rightOperandText = (_generate_1 + _join_1);
     boolean _or = false;
     OperatorKind _operator = binaryExpression.getOperator();
     boolean _equals = Objects.equal(_operator, OperatorKind.ADD);
@@ -265,7 +263,6 @@ public class ArrayElementWiseOperationGenerator implements IOperationGenerator {
         _builder.newLine();
       } else {
         _builder.append(target, "");
-        _builder.append(".data");
         {
           Iterable<String> _indexVariables = this.getIndexVariables(resultType);
           for(final String indexVariable_1 : _indexVariables) {

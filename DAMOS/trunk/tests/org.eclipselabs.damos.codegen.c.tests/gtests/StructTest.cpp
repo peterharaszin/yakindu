@@ -17,6 +17,6 @@ TEST(StructTest, Struct) {
 	EXPECT_EQ(3, output.outX);
 	EXPECT_EQ(2, output.outStructLiteral.x);
 	EXPECT_EQ(5, output.outStructLiteral.y.a);
-	EXPECT_EQ(7, output.outStructLiteral.y.b.data[0]);
-	EXPECT_EQ(19, output.outStructLiteral.y.b.data[1]);
+	EXPECT_EQ(7, output.outStructLiteral.y.b[0]);
+	EXPECT_EQ(19, output.outStructLiteral.y.b[1]);
 }

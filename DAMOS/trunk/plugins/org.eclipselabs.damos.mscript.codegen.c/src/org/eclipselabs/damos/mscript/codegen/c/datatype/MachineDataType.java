@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
  */
 public abstract class MachineDataType {
 	
-	public abstract CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
+	public abstract CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment);
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

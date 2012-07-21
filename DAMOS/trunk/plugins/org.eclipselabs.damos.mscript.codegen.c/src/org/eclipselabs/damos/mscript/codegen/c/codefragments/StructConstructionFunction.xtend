@@ -85,7 +85,7 @@ class StructConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) '''
-		«typeName» «name»(«FOR member : structType.members SEPARATOR ", "»«member.type.generateDataType(codeFragmentCollector, this)» «member.name»«ENDFOR»)'''
+		«typeName» «name»(«FOR member : structType.members SEPARATOR ", "»«member.type.generateDataType(member.name, codeFragmentCollector, this)»«ENDFOR»)'''
 	
 	def private String getVariableName() {
 		val names = new HashSet<String>(structType.members.map([it.name]))

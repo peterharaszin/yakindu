@@ -24,6 +24,7 @@ public class MscriptCodegenCModule extends AbstractModule {
 		bindICModuleGenerator();
 		bindICompoundStatementGenerator();
 		bindIExpressionGenerator();
+		bindIOperationGeneratorProvider();
 	}
 
 	protected void bindICModuleGenerator() {
@@ -37,6 +38,10 @@ public class MscriptCodegenCModule extends AbstractModule {
 
 	protected void bindIExpressionGenerator() {
 		bind(IExpressionGenerator.class).to(ExpressionGenerator.class);
+	}
+
+	protected void bindIOperationGeneratorProvider() {
+		bind(IOperationGeneratorProvider.class).to(OperationGeneratorProvider.class);
 	}
 
 }

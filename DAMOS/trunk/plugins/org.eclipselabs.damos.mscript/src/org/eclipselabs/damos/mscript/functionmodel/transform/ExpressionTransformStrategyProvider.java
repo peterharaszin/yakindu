@@ -18,7 +18,7 @@ import java.util.Collection;
  * @author Andreas Unger
  *
  */
-public class DefaultExpressionTransformStrategyProvider implements IExpressionTransformStrategyProvider {
+public class ExpressionTransformStrategyProvider implements IExpressionTransformStrategyProvider {
 
 	private final Collection<IExpressionTransformStrategy> expressionTransformStrategies = new ArrayList<IExpressionTransformStrategy>();
 	

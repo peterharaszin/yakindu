@@ -25,6 +25,7 @@ import org.eclipselabs.damos.mscript.Statement
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
+import org.eclipselabs.damos.mscript.codegen.c.IOperationGeneratorProvider
 
 /**
  * @author Andreas Unger
@@ -37,13 +38,15 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	val DataTypeGenerator dataTypeGenerator
 	val VariableDeclarationGenerator variableDeclarationGenerator
 	val VariableReferenceGenerator variableReferenceGenerator
+	val IOperationGeneratorProvider operationGeneratorProvider
 	
 	@Inject
-	new(IExpressionGenerator expressionGenerator, DataTypeGenerator dataTypeGenerator, VariableDeclarationGenerator variableDeclarationGenerator, VariableReferenceGenerator variableAccessGenerator) {
+	new(IExpressionGenerator expressionGenerator, DataTypeGenerator dataTypeGenerator, VariableDeclarationGenerator variableDeclarationGenerator, VariableReferenceGenerator variableAccessGenerator, IOperationGeneratorProvider operationGeneratorProvider) {
 		this.expressionGenerator = expressionGenerator
 		this.dataTypeGenerator = dataTypeGenerator
 		this.variableDeclarationGenerator = variableDeclarationGenerator
 		this.variableReferenceGenerator = variableAccessGenerator
+		this.operationGeneratorProvider = operationGeneratorProvider
 	}
 	
 	override CharSequence generate(IMscriptGeneratorContext context, Compound compound) {
@@ -121,11 +124,19 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 			«ENDFOR»
 		}'''
 
-	def private dispatch generateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) '''
+	def private generateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) {
+		val operationGenerator = operationGeneratorProvider.getGenerator(context, targetDataType, assignedExpression)
+		if (operationGenerator != null) {
+			return operationGenerator.generate(context, targetDataType, target, assignedExpression)
+		}
+		return doGenerateAssignment(context, targetDataType, target, assignedExpression)
+	}
+		
+	def private dispatch doGenerateAssignment(IMscriptGeneratorContext context, DataType targetDataType, CharSequence target, Expression assignedExpression) '''
 		«target» = «generateAssignedExpression(context, targetDataType, assignedExpression)»;
 	'''
 	
-	def private dispatch generateAssignment(IMscriptGeneratorContext context, ArrayType targetDataType, CharSequence target, Expression assignedExpression) '''
+	def private dispatch doGenerateAssignment(IMscriptGeneratorContext context, ArrayType targetDataType, CharSequence target, Expression assignedExpression) '''
 		memcpy(&(«target»).data[0], &(«generateAssignedExpression(context, targetDataType, assignedExpression)»).data[0], sizeof («dataTypeGenerator.generateDataType(context.configuration, context.codeFragmentCollector, targetDataType, null)»));
 	'''
 

@@ -1,0 +1,75 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.mscript.codegen.c.operationgenerators
+
+import org.eclipselabs.damos.mscript.ArrayType
+import org.eclipselabs.damos.mscript.BinaryExpression
+import org.eclipselabs.damos.mscript.DataType
+import org.eclipselabs.damos.mscript.Expression
+import org.eclipselabs.damos.mscript.OperatorKind
+import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator
+import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext
+import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator
+import org.eclipselabs.damos.mscript.codegen.c.IOperationGenerator
+import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
+import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes
+import org.eclipselabs.damos.mscript.util.TypeUtil
+
+/**
+ * @author Andreas Unger
+ *
+ */
+class MatrixVectorMultiplyGenerator implements IOperationGenerator {
+	
+	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
+	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
+
+	override canHandle(IMscriptGeneratorContext context, DataType resultDataType, Expression expression) {
+		if (!(expression instanceof BinaryExpression)) {
+			return false
+		}
+		val binaryExpression = expression as BinaryExpression
+		if (binaryExpression.operator != OperatorKind::MULTIPLY) {
+			return false
+		}
+		return TypeUtil::isNumericArray(resultDataType)
+				&& TypeUtil::isNumericMatrix(context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType)
+				&& TypeUtil::isNumericVector(context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType)
+	}
+	
+	override generate(IMscriptGeneratorContext context, DataType resultDataType, CharSequence target, Expression expression) {
+		val binaryExpression = expression as BinaryExpression
+		val codeFragmentCollector = context.codeFragmentCollector
+
+		val matrixType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType as ArrayType);
+		val vectorType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType as ArrayType);
+		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
+
+		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + ".data[i][j]", matrixType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.rightOperand) + ".data[j]", vectorType.numericElementType.numberFormat);
+		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
+
+		'''
+			{
+				int i, j;
+				for (i = 0; i < «matrixType.rowSize»; ++i) {
+					for (j = 0; j < «matrixType.columnSize»; ++j) {
+						«target».data[i] += «multiplyExpression»;
+					}
+				}
+			}
+		'''
+	}
+	
+}

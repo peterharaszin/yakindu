@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
  */
 public class ExpressionTransformer implements IExpressionTransformer {
 
-	private final IExpressionTransformStrategyProvider expressionTransformStrategyProvider = new DefaultExpressionTransformStrategyProvider();
+	private final IExpressionTransformStrategyProvider expressionTransformStrategyProvider = new ExpressionTransformStrategyProvider();
 	
 	private ITransformerContext context;
 

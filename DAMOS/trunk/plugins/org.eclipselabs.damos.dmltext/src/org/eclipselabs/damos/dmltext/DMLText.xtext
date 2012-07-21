@@ -88,7 +88,7 @@ Outlet:
 	'outlet' dataType=MscriptDataTypeSpecification name=ValidID;
 
 MscriptDataTypeSpecification:
-	specifier=DataTypeSpecifier;
+	typeSpecifier=TypeSpecifier;
 	
 UpperBoundLiteral returns ecore::EInt:
 	ValidInt | '*';

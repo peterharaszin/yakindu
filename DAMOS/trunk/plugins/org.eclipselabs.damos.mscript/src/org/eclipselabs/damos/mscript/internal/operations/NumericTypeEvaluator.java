@@ -13,10 +13,10 @@ package org.eclipselabs.damos.mscript.internal.operations;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -26,7 +26,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public abstract class NumericTypeEvaluator {
 
-	public DataType evaluate(NumericType numericType, OperatorKind operator, DataType other) {
+	public Type evaluate(NumericType numericType, OperatorKind operator, Type other) {
 		if (operator == OperatorKind.NEGATE) {
 			return EcoreUtil.copy(numericType);
 		}
@@ -46,7 +46,7 @@ public abstract class NumericTypeEvaluator {
 					break;
 				}
 			}
-			return MscriptFactory.eINSTANCE.createInvalidDataType();
+			return MscriptFactory.eINSTANCE.createInvalidType();
 		}
 		NumericType otherNumericType = (NumericType) other;
 
@@ -58,7 +58,7 @@ public abstract class NumericTypeEvaluator {
 		case EQUAL_TO:
 		case NOT_EQUAL_TO:
 			if (!numericType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false)) {
-				return MscriptFactory.eINSTANCE.createInvalidDataType();
+				return MscriptFactory.eINSTANCE.createInvalidType();
 			}
 			return MscriptFactory.eINSTANCE.createBooleanType();
 		case ADD:
@@ -82,7 +82,7 @@ public abstract class NumericTypeEvaluator {
 			break;
 		}
 
-		return MscriptFactory.eINSTANCE.createInvalidDataType();
+		return MscriptFactory.eINSTANCE.createInvalidType();
 	}
 
 	/**

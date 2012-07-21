@@ -30,13 +30,13 @@ import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.AssertionStatusKind;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -195,28 +195,28 @@ public class StaticFunctionEvaluator {
 				IValue leftHandSideValue = result.getValue(variableReference.getFeature());
 				IValue rightHandSideValue = result.getValue(equationDescriptor.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
-					DataType dataType;
+					Type type;
 					
-					DataType rightHandSideDataType = rightHandSideValue.getDataType();
+					Type rightHandSideDataType = rightHandSideValue.getDataType();
 					if (derivative) {
 						rightHandSideDataType = rightHandSideDataType.evaluate(OperatorKind.MULTIPLY, TypeUtil.createRealType("s"));
 					}
 					if (leftHandSideValue != null) {
-						dataType = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideDataType);
+						type = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideDataType);
 					} else {
-						dataType = rightHandSideDataType;
+						type = rightHandSideDataType;
 					}
 					
-					if (dataType != null) {
-						DataType previousDataType = null;
+					if (type != null) {
+						Type previousDataType = null;
 						IValue previousValue = result.getValue(variableReference.getFeature());
 						if (previousValue != null) {
 							previousDataType = previousValue.getDataType();
 						}
-						if (previousDataType == null || !previousDataType.isEquivalentTo(dataType)) {
+						if (previousDataType == null || !previousDataType.isEquivalentTo(type)) {
 							changed = true;
 						}
-						AnyValue anyValue = new AnyValue(result.getComputationContext(), dataType);
+						AnyValue anyValue = new AnyValue(result.getComputationContext(), type);
 						result.setValue(variableReference, anyValue);
 						result.setValue(variableReference.getFeature(), anyValue);
 					} else {

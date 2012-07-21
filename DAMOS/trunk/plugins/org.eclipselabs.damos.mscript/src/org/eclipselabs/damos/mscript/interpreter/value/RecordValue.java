@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
@@ -33,7 +33,7 @@ public class RecordValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doConvert(DataType dataType) {
+	protected IValue doConvert(Type type) {
 		return this;
 	}
 //	

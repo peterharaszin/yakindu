@@ -12,7 +12,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 
 /**
@@ -22,12 +22,12 @@ import org.eclipselabs.damos.mscript.NumericType;
 public class GaugeSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {		
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryVIPlugin.PLUGIN_ID, 0, "", null);
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
-		DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
+		Type incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 		if (incomingDataType != null && !(incomingDataType instanceof NumericType)) {
 			status.add(new Status(IStatus.ERROR, LibraryVIPlugin.PLUGIN_ID, "Input value must be numeric"));
 		}

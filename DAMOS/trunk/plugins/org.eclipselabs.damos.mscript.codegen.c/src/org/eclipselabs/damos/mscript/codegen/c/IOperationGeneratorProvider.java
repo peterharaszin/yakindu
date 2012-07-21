@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 
 /**
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IOperationGeneratorProvider {
 
-	IOperationGenerator getGenerator(IMscriptGeneratorContext context, DataType targetDataType, Expression assignedExpression);
+	IOperationGenerator getGenerator(IMscriptGeneratorContext context, Type targetDataType, Expression assignedExpression);
 
 }

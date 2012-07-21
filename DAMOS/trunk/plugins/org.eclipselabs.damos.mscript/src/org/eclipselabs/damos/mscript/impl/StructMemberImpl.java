@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier typeSpecifier;
+	protected TypeSpecifier typeSpecifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,7 +106,7 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getTypeSpecifier() {
+	public TypeSpecifier getTypeSpecifier() {
 		return typeSpecifier;
 	}
 
@@ -115,8 +115,8 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldTypeSpecifier = typeSpecifier;
 		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.STRUCT_MEMBER__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
@@ -130,7 +130,7 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
 		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
 			if (typeSpecifier != null)
@@ -186,7 +186,7 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 				setName((String)newValue);
 				return;
 			case MscriptPackage.STRUCT_MEMBER__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)newValue);
+				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -204,7 +204,7 @@ public class StructMemberImpl extends MinimalEObjectImpl.Container implements St
 				setName(NAME_EDEFAULT);
 				return;
 			case MscriptPackage.STRUCT_MEMBER__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)null);
+				setTypeSpecifier((TypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);

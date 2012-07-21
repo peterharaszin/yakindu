@@ -23,7 +23,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface DeclaredTypeSpecifier extends DataTypeSpecifier {
+public interface DeclaredTypeSpecifier extends TypeSpecifier {
 	/**
 	 * Returns the value of the '<em><b>Type Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -33,12 +33,12 @@ public interface DeclaredTypeSpecifier extends DataTypeSpecifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Declaration</em>' reference.
-	 * @see #setTypeDeclaration(DataTypeDeclaration)
+	 * @see #setTypeDeclaration(TypeDeclaration)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDeclaredTypeSpecifier_TypeDeclaration()
 	 * @model
 	 * @generated
 	 */
-	DataTypeDeclaration getTypeDeclaration();
+	TypeDeclaration getTypeDeclaration();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.DeclaredTypeSpecifier#getTypeDeclaration <em>Type Declaration</em>}' reference.
@@ -48,6 +48,6 @@ public interface DeclaredTypeSpecifier extends DataTypeSpecifier {
 	 * @see #getTypeDeclaration()
 	 * @generated
 	 */
-	void setTypeDeclaration(DataTypeDeclaration value);
+	void setTypeDeclaration(TypeDeclaration value);
 
 } // DeclaredTypeSpecifier

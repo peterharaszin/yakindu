@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
 
 /**
@@ -54,7 +54,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier elementTypeSpecifier;
+	protected TypeSpecifier elementTypeSpecifier;
 
 	/**
 	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' containment reference list.
@@ -150,7 +150,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getElementTypeSpecifier() {
+	public TypeSpecifier getElementTypeSpecifier() {
 		return elementTypeSpecifier;
 	}
 
@@ -159,8 +159,8 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElementTypeSpecifier(DataTypeSpecifier newElementTypeSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldElementTypeSpecifier = elementTypeSpecifier;
+	public NotificationChain basicSetElementTypeSpecifier(TypeSpecifier newElementTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldElementTypeSpecifier = elementTypeSpecifier;
 		elementTypeSpecifier = newElementTypeSpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, oldElementTypeSpecifier, newElementTypeSpecifier);
@@ -174,7 +174,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElementTypeSpecifier(DataTypeSpecifier newElementTypeSpecifier) {
+	public void setElementTypeSpecifier(TypeSpecifier newElementTypeSpecifier) {
 		if (newElementTypeSpecifier != elementTypeSpecifier) {
 			NotificationChain msgs = null;
 			if (elementTypeSpecifier != null)
@@ -204,7 +204,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * @see org.eclipselabs.mscript.typesystem.impl.DataTypeImpl#evaluate(org.eclipselabs.mscript.typesystem.OperatorKind, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	public DataType evaluate(OperatorKind operator, DataType other) {
+	public Type evaluate(OperatorKind operator, Type other) {
 		return ArrayTypeOperations.evaluate(this, operator, other);
 	}
 	
@@ -212,7 +212,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * @see org.eclipselabs.mscript.typesystem.impl.DataTypeImpl#evaluate(org.eclipselabs.mscript.typesystem.OperatorKind, int)
 	 */
 	@Override
-	public DataType evaluate(OperatorKind operator, int n) {
+	public Type evaluate(OperatorKind operator, int n) {
 		return ArrayTypeOperations.evaluate(this, operator, n);
 	}
 	
@@ -220,7 +220,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * @see org.eclipselabs.mscript.typesystem.impl.DataTypeImpl#isAssignableFrom(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	public boolean isAssignableFrom(DataType other) {
+	public boolean isAssignableFrom(Type other) {
 		return ArrayTypeOperations.isAssignableFrom(this, other);
 	}
 
@@ -283,7 +283,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DataType getElementType() {
+	public Type getElementType() {
 		return ArrayTypeOperations.getElementType(this);
 	}
 
@@ -341,7 +341,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				setElementTypeSpecifier((DataTypeSpecifier)newValue);
+				setElementTypeSpecifier((TypeSpecifier)newValue);
 				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();
@@ -360,7 +360,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				setElementTypeSpecifier((DataTypeSpecifier)null);
+				setElementTypeSpecifier((TypeSpecifier)null);
 				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();

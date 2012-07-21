@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 
@@ -21,18 +21,18 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
  */
 public abstract class AbstractExplicitDataTypeValue extends AbstractValue {
 	
-	private DataType dataType;
+	private Type type;
 	
 	/**
 	 * 
 	 */
-	public AbstractExplicitDataTypeValue(IComputationContext context, DataType dataType) {
+	public AbstractExplicitDataTypeValue(IComputationContext context, Type type) {
 		super(context);
-		this.dataType = dataType;
+		this.type = type;
 	}
 	
-	public DataType getDataType() {
-		return dataType;
+	public Type getDataType() {
+		return type;
 	}
 	
 }

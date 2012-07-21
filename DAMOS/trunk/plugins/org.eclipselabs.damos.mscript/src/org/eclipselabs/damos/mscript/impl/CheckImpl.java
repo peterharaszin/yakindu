@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Check;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataTypeSpecifier> inputParameterTypes;
+	protected EList<TypeSpecifier> inputParameterTypes;
 
 	/**
 	 * The cached value of the '{@link #getOutputParameterTypes() <em>Output Parameter Types</em>}' containment reference list.
@@ -69,7 +69,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataTypeSpecifier> outputParameterTypes;
+	protected EList<TypeSpecifier> outputParameterTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,9 +148,9 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataTypeSpecifier> getInputParameterTypes() {
+	public EList<TypeSpecifier> getInputParameterTypes() {
 		if (inputParameterTypes == null) {
-			inputParameterTypes = new EObjectContainmentEList<DataTypeSpecifier>(DataTypeSpecifier.class, this, MscriptPackage.CHECK__INPUT_PARAMETER_TYPES);
+			inputParameterTypes = new EObjectContainmentEList<TypeSpecifier>(TypeSpecifier.class, this, MscriptPackage.CHECK__INPUT_PARAMETER_TYPES);
 		}
 		return inputParameterTypes;
 	}
@@ -160,9 +160,9 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataTypeSpecifier> getOutputParameterTypes() {
+	public EList<TypeSpecifier> getOutputParameterTypes() {
 		if (outputParameterTypes == null) {
-			outputParameterTypes = new EObjectContainmentEList<DataTypeSpecifier>(DataTypeSpecifier.class, this, MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES);
+			outputParameterTypes = new EObjectContainmentEList<TypeSpecifier>(TypeSpecifier.class, this, MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES);
 		}
 		return outputParameterTypes;
 	}
@@ -255,11 +255,11 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 				return;
 			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
 				getInputParameterTypes().clear();
-				getInputParameterTypes().addAll((Collection<? extends DataTypeSpecifier>)newValue);
+				getInputParameterTypes().addAll((Collection<? extends TypeSpecifier>)newValue);
 				return;
 			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
 				getOutputParameterTypes().clear();
-				getOutputParameterTypes().addAll((Collection<? extends DataTypeSpecifier>)newValue);
+				getOutputParameterTypes().addAll((Collection<? extends TypeSpecifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

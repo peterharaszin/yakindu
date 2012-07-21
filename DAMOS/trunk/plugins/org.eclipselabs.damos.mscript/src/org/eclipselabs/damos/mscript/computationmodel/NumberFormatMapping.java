@@ -7,7 +7,7 @@
 package org.eclipselabs.damos.mscript.computationmodel;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,12 +36,12 @@ public interface NumberFormatMapping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Specifier</em>' containment reference.
-	 * @see #setTypeSpecifier(DataTypeSpecifier)
+	 * @see #setTypeSpecifier(TypeSpecifier)
 	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getNumberFormatMapping_TypeSpecifier()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	DataTypeSpecifier getTypeSpecifier();
+	TypeSpecifier getTypeSpecifier();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getTypeSpecifier <em>Type Specifier</em>}' containment reference.
@@ -51,7 +51,7 @@ public interface NumberFormatMapping extends EObject {
 	 * @see #getTypeSpecifier()
 	 * @generated
 	 */
-	void setTypeSpecifier(DataTypeSpecifier value);
+	void setTypeSpecifier(TypeSpecifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Number Format</b></em>' containment reference.

@@ -25,12 +25,12 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -58,7 +58,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor, java.lang.String, java.util.List, java.util.List)
 	 */
-	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<DataType> inputParameterDataTypes) {
+	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
@@ -85,7 +85,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		return new FunctionDefinitionTransformerResult(functionInstance);
 	}
 	
-	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<Type> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> staticArgumentIterator = staticArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getStaticParameterDeclarations()) {
 			if (staticArgumentIterator.hasNext()) {
@@ -98,11 +98,11 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			}
 		}
 
-		Iterator<DataType> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
+		Iterator<Type> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getInputParameterDeclarations()) {
 			if (inputParameterDataTypesIterator.hasNext()) {
-				DataType dataType = EcoreUtil.copy(inputParameterDataTypesIterator.next());
-				IValue value = new AnyValue(staticEvaluationResult.getComputationContext(), dataType);
+				Type type = EcoreUtil.copy(inputParameterDataTypesIterator.next());
+				IValue value = new AnyValue(staticEvaluationResult.getComputationContext(), type);
 				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());

@@ -11,9 +11,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 
 /**
@@ -49,7 +49,7 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier typeSpecifier;
+	protected TypeSpecifier typeSpecifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,7 +118,7 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getTypeSpecifier() {
+	public TypeSpecifier getTypeSpecifier() {
 		return typeSpecifier;
 	}
 
@@ -127,8 +127,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
-		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		TypeSpecifier oldTypeSpecifier = typeSpecifier;
 		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
@@ -142,7 +142,7 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
 		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
 			if (typeSpecifier != null)
@@ -200,7 +200,7 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 				setExpression((Expression)newValue);
 				return;
 			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)newValue);
+				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,7 +218,7 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 				setExpression((Expression)null);
 				return;
 			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
-				setTypeSpecifier((DataTypeSpecifier)null);
+				setTypeSpecifier((TypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);

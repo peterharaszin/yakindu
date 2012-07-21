@@ -24,7 +24,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
 import org.eclipselabs.damos.library.vi.util.communication.UDPSourceConstants;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipselabs.damos.mscript.NumericType;
 public class UDPSinkSignaturePolicy extends UDPSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		Block block = (Block) component;
 		
 		MultiStatus multiStatus = new MultiStatus(LibraryVIPlugin.PLUGIN_ID, 0, "", null);
@@ -45,7 +45,7 @@ public class UDPSinkSignaturePolicy extends UDPSignaturePolicy {
 		}
 		checkNetworkPortParameter(block, multiStatus);
 		
-		for (DataType incomingDataType : incomingDataTypes.values()) {
+		for (Type incomingDataType : incomingDataTypes.values()) {
 			if (!(incomingDataType instanceof NumericType)) {
 				multiStatus.add(new Status(IStatus.ERROR, LibraryVIPlugin.PLUGIN_ID, "Input values must be numeric"));
 				break;

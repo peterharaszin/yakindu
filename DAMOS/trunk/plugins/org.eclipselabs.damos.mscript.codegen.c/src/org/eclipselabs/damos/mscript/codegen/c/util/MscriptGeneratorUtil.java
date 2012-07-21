@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
@@ -32,7 +32,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class MscriptGeneratorUtil {
 	
-	public static CharSequence cast(ComputationModel computationModel, CharSequence expression, DataType expressionDataType, DataType targetDataType) {
+	public static CharSequence cast(ComputationModel computationModel, CharSequence expression, Type expressionDataType, Type targetDataType) {
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
@@ -41,7 +41,7 @@ public class MscriptGeneratorUtil {
 		return expression;
 	}
 
-	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, DataType targetDataType) {
+	public static CharSequence cast(IMscriptGeneratorContext context, Expression expression, Type targetDataType) {
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(targetDataType);
 			return castNumericType(context, expression, targetNumberFormat);
@@ -61,7 +61,7 @@ public class MscriptGeneratorUtil {
 			}
 		}
 		
-		DataType expressionDataType = context.getStaticEvaluationResult().getValue(expression).getDataType();
+		Type expressionDataType = context.getStaticEvaluationResult().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(expressionDataType);
 		
 		return NumericExpressionCaster.INSTANCE.cast(new ExpressionGenerator().generate(context, expression), expressionNumberFormat, targetNumberFormat);

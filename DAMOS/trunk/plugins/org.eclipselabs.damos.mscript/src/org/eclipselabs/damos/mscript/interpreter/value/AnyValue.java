@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
@@ -22,25 +22,25 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 public class AnyValue extends AbstractExplicitDataTypeValue {
 
 	/**
-	 * @param dataType
+	 * @param type
 	 */
-	public AnyValue(IComputationContext context, DataType dataType) {
-		super(context, dataType);
+	public AnyValue(IComputationContext context, Type type) {
+		super(context, type);
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doConvert(DataType dataType) {
-		return new AnyValue(getContext(), EcoreUtil.copy(dataType));
+	protected IValue doConvert(Type type) {
+		return new AnyValue(getContext(), EcoreUtil.copy(type));
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doAdd(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -48,7 +48,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doSubtract(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doSubtract(IValue other, DataType resultDataType) {
+	protected IValue doSubtract(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -56,7 +56,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doMultiply(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doMultiply(IValue other, DataType resultDataType) {
+	protected IValue doMultiply(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -64,7 +64,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doDivide(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doDivide(IValue other, DataType resultDataType) {
+	protected IValue doDivide(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -72,7 +72,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doElementWiseMultiply(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doElementWiseMultiply(IValue other, DataType resultDataType) {
+	protected IValue doElementWiseMultiply(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -80,7 +80,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doElementWiseDivide(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doElementWiseDivide(IValue other, DataType resultDataType) {
+	protected IValue doElementWiseDivide(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 	
@@ -88,7 +88,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doModulo(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doModulo(IValue other, DataType resultDataType) {
+	protected IValue doModulo(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -96,7 +96,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doNegate(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doNegate(DataType resultDataType) {
+	protected IValue doNegate(Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 	
@@ -104,7 +104,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doLessThan(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doLessThan(IValue other, DataType resultDataType) {
+	protected IValue doLessThan(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -112,7 +112,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doLessThanOrEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doLessThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doLessThanOrEqualTo(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -120,7 +120,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doGreaterThan(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doGreaterThan(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThan(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 	
@@ -128,7 +128,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doGreaterThanOrEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doGreaterThanOrEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doGreaterThanOrEqualTo(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 
@@ -136,7 +136,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doEqualTo(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 	
@@ -144,7 +144,7 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doNotEqualTo(org.eclipselabs.mscript.interpreter.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doNotEqualTo(IValue other, DataType resultDataType) {
+	protected IValue doNotEqualTo(IValue other, Type resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
 

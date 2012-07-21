@@ -911,18 +911,18 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class MscriptDataTypeSpecificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptDataTypeSpecification");
-		private final Assignment cSpecifierAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSpecifierDataTypeSpecifierParserRuleCall_0 = (RuleCall)cSpecifierAssignment.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypeSpecifierTypeSpecifierParserRuleCall_0 = (RuleCall)cTypeSpecifierAssignment.eContents().get(0);
 		
 		//MscriptDataTypeSpecification:
-		//	specifier=DataTypeSpecifier;
+		//	typeSpecifier=TypeSpecifier;
 		public ParserRule getRule() { return rule; }
 
-		//specifier=DataTypeSpecifier
-		public Assignment getSpecifierAssignment() { return cSpecifierAssignment; }
+		//typeSpecifier=TypeSpecifier
+		public Assignment getTypeSpecifierAssignment() { return cTypeSpecifierAssignment; }
 
-		//DataTypeSpecifier
-		public RuleCall getSpecifierDataTypeSpecifierParserRuleCall_0() { return cSpecifierDataTypeSpecifierParserRuleCall_0; }
+		//TypeSpecifier
+		public RuleCall getTypeSpecifierTypeSpecifierParserRuleCall_0() { return cTypeSpecifierTypeSpecifierParserRuleCall_0; }
 	}
 
 	public class UpperBoundLiteralElements extends AbstractParserRuleElementFinder {
@@ -1343,7 +1343,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MscriptDataTypeSpecification:
-	//	specifier=DataTypeSpecifier;
+	//	typeSpecifier=TypeSpecifier;
 	public MscriptDataTypeSpecificationElements getMscriptDataTypeSpecificationAccess() {
 		return (pMscriptDataTypeSpecification != null) ? pMscriptDataTypeSpecification : (pMscriptDataTypeSpecification = new MscriptDataTypeSpecificationElements());
 	}
@@ -1393,7 +1393,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
-	//	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
 	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
 		return gaMscript.getDeclarationAccess();
 	}
@@ -1403,16 +1403,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// *
-	// * DataTypeDeclaration
-	// * / DataTypeDeclaration:
-	//	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+	// * TypeDeclaration
+	// * / TypeDeclaration:
+	//	"type" name=ValidID "=" typeSpecifier=TypeSpecifier | "struct" name=ValidID
 	//	typeSpecifier=StructDeclarationTypeSpecifier;
-	public MscriptGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
-		return gaMscript.getDataTypeDeclarationAccess();
+	public MscriptGrammarAccess.TypeDeclarationElements getTypeDeclarationAccess() {
+		return gaMscript.getTypeDeclarationAccess();
 	}
 	
-	public ParserRule getDataTypeDeclarationRule() {
-		return getDataTypeDeclarationAccess().getRule();
+	public ParserRule getTypeDeclarationRule() {
+		return getTypeDeclarationAccess().getRule();
 	}
 
 	//StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
@@ -1518,8 +1518,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Check:
 	//	"check" ("<" staticArguments+=Expression ("," staticArguments+=Expression)* ">")? "("
-	//	(inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
-	//	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*;
+	//	(inputParameterTypes+=TypeSpecifier ("," inputParameterTypes+=TypeSpecifier)*)? ")" "->"
+	//	outputParameterTypes+=TypeSpecifier ("," outputParameterTypes+=TypeSpecifier)*;
 	public MscriptGrammarAccess.CheckElements getCheckAccess() {
 		return gaMscript.getCheckAccess();
 	}
@@ -1591,14 +1591,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Data type specifier
-	// * / DataTypeSpecifier:
+	// * / TypeSpecifier:
 	//	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
-	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
-		return gaMscript.getDataTypeSpecifierAccess();
+	public MscriptGrammarAccess.TypeSpecifierElements getTypeSpecifierAccess() {
+		return gaMscript.getTypeSpecifierAccess();
 	}
 	
-	public ParserRule getDataTypeSpecifierRule() {
-		return getDataTypeSpecifierAccess().getRule();
+	public ParserRule getTypeSpecifierRule() {
+		return getTypeSpecifierAccess().getRule();
 	}
 
 	//AnonymousTypeSpecifier:
@@ -1612,7 +1612,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeclaredTypeSpecifier:
-	//	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	//	typeDeclaration=[TypeDeclaration|QualifiedName];
 	public MscriptGrammarAccess.DeclaredTypeSpecifierElements getDeclaredTypeSpecifierAccess() {
 		return gaMscript.getDeclaredTypeSpecifierAccess();
 	}
@@ -1711,7 +1711,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getArrayTypeAccess().getRule();
 	}
 
-	//ArrayTypeSpecifier returns DataTypeSpecifier:
+	//ArrayTypeSpecifier returns TypeSpecifier:
 	//	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
 	public MscriptGrammarAccess.ArrayTypeSpecifierElements getArrayTypeSpecifierAccess() {
 		return gaMscript.getArrayTypeSpecifierAccess();
@@ -1752,7 +1752,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMember:
-	//	typeSpecifier=DataTypeSpecifier name=ValidID;
+	//	typeSpecifier=TypeSpecifier name=ValidID;
 	public MscriptGrammarAccess.StructMemberElements getStructMemberAccess() {
 		return gaMscript.getStructMemberAccess();
 	}
@@ -1942,7 +1942,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RelationalExpression returns Expression:
 	//	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
+	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier)?;
 	public MscriptGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
 		return gaMscript.getRelationalExpressionAccess();
 	}

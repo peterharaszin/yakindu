@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.builtin;
 
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -21,6 +21,6 @@ import org.eclipselabs.damos.mscript.DataType;
  */
 public interface IBuiltinFunctionSignature {
 
-	boolean accepts(List<? extends DataType> inputParameterDataTypes);
+	boolean accepts(List<? extends Type> inputParameterDataTypes);
 	
 }

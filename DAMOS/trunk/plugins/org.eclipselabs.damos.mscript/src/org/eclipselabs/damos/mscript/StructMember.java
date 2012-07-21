@@ -61,12 +61,12 @@ public interface StructMember extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Specifier</em>' containment reference.
-	 * @see #setTypeSpecifier(DataTypeSpecifier)
+	 * @see #setTypeSpecifier(TypeSpecifier)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructMember_TypeSpecifier()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataTypeSpecifier getTypeSpecifier();
+	TypeSpecifier getTypeSpecifier();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StructMember#getTypeSpecifier <em>Type Specifier</em>}' containment reference.
@@ -76,6 +76,6 @@ public interface StructMember extends EObject {
 	 * @see #getTypeSpecifier()
 	 * @generated
 	 */
-	void setTypeSpecifier(DataTypeSpecifier value);
+	void setTypeSpecifier(TypeSpecifier value);
 
 } // StructMember

@@ -75,7 +75,7 @@ public interface Check extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Input Parameter Types</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.DataTypeSpecifier}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.TypeSpecifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input Parameter Types</em>' containment reference list isn't clear,
@@ -87,11 +87,11 @@ public interface Check extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DataTypeSpecifier> getInputParameterTypes();
+	EList<TypeSpecifier> getInputParameterTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Output Parameter Types</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.DataTypeSpecifier}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.TypeSpecifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Output Parameter Types</em>' containment reference list isn't clear,
@@ -103,6 +103,6 @@ public interface Check extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DataTypeSpecifier> getOutputParameterTypes();
+	EList<TypeSpecifier> getOutputParameterTypes();
 
 } // Check

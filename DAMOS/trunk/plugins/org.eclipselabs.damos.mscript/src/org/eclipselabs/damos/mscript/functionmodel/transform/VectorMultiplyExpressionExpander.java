@@ -20,7 +20,6 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -31,6 +30,7 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
@@ -52,8 +52,8 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 			if (multiplicativeExpression.getOperator() == OperatorKind.MULTIPLY) {
 				Expression leftOperand = multiplicativeExpression.getLeftOperand();
 				Expression rightOperand = multiplicativeExpression.getRightOperand();
-				DataType leftDataType = getDataType(context, leftOperand);
-				DataType rightDataType = getDataType(context, rightOperand);
+				Type leftDataType = getDataType(context, leftOperand);
+				Type rightDataType = getDataType(context, rightOperand);
 				return TypeUtil.isNumericVector(leftDataType) && TypeUtil.isNumericVector(rightDataType);
 			}
 		}
@@ -69,7 +69,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		ArrayType leftArrayType = (ArrayType) getDataType(context, leftOperand);
 		ArrayType rightArrayType = (ArrayType) getDataType(context, rightOperand);
 		
-		DataType resultDataType = leftArrayType.getElementType().evaluate(OperatorKind.MULTIPLY, rightArrayType.getElementType());
+		Type resultDataType = leftArrayType.getElementType().evaluate(OperatorKind.MULTIPLY, rightArrayType.getElementType());
 		
 		VariableReference leftVariableReference;
 		VariableReference rightVariableReference;
@@ -129,7 +129,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 			IValue elementValue = ((IArrayValue) value).get(index);
 			if (elementValue instanceof ISimpleNumericValue) {
 				ISimpleNumericValue numericValue = (ISimpleNumericValue) elementValue;
-				DataType elementType = arrayType.getElementType();
+				Type elementType = arrayType.getElementType();
 				if (elementType instanceof RealType) {
 					RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
 					realLiteral.setUnit(EcoreUtil.copy(((RealType) elementType).getUnit()));
@@ -187,12 +187,12 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		return variableReference;
 	}
 
-	private DataType getDataType(ITransformerContext context, Expression expression) {
+	private Type getDataType(ITransformerContext context, Expression expression) {
 		return context.getStaticEvaluationResult().getValue(expression).getDataType();
 	}
 	
-	private void setDataType(ITransformerContext context, Expression expression, DataType dataType) {
-		context.getStaticEvaluationResult().setValue(expression, new AnyValue(new ComputationContext(), dataType));
+	private void setDataType(ITransformerContext context, Expression expression, Type type) {
+		context.getStaticEvaluationResult().setValue(expression, new AnyValue(new ComputationContext(), type));
 	}
 
 }

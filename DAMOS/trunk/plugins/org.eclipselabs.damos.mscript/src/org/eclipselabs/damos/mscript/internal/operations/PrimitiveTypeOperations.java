@@ -11,6 +11,6 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-public class PrimitiveTypeOperations extends DataTypeOperations {
+public class PrimitiveTypeOperations extends TypeOperations {
 	
 }

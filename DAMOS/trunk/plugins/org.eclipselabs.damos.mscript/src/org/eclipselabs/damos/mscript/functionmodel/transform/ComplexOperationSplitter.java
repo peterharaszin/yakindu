@@ -16,10 +16,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BinaryExpression;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
@@ -49,8 +49,8 @@ public class ComplexOperationSplitter implements IExpressionTransformStrategy {
 			case NOT_EQUAL_TO:
 				Expression leftOperand = binaryExpression.getLeftOperand();
 				Expression rightOperand = binaryExpression.getRightOperand();
-				DataType leftDataType = getDataType(context, leftOperand);
-				DataType rightDataType = getDataType(context, rightOperand);
+				Type leftDataType = getDataType(context, leftOperand);
+				Type rightDataType = getDataType(context, rightOperand);
 				return TypeUtil.isNumericArray(leftDataType) || TypeUtil.isNumericArray(rightDataType);
 			default:
 				break;
@@ -110,7 +110,7 @@ public class ComplexOperationSplitter implements IExpressionTransformStrategy {
 		return target.createVariableReference(operandValue.getDataType());
 	}
 
-	private DataType getDataType(ITransformerContext context, Expression expression) {
+	private Type getDataType(ITransformerContext context, Expression expression) {
 		return context.getStaticEvaluationResult().getValue(expression).getDataType();
 	}
 

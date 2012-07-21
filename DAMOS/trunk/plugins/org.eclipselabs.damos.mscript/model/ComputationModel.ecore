@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="computationmodel"
-    nsURI="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel" nsPrefix="computationmodel">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="computationmodel" nsURI="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel"
+    nsPrefix="computationmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ComputationModel">
     <eOperations name="getNumberFormatMapping" ordered="false" eType="#//NumberFormatMapping">
-      <eParameters name="dataType" ordered="false" lowerBound="1" eType="ecore:EClass Mscript.ecore#//DataType"/>
+      <eParameters name="type" ordered="false" lowerBound="1" eType="ecore:EClass Mscript.ecore#//Type"/>
     </eOperations>
     <eOperations name="getNumberFormat" ordered="false" eType="#//NumberFormat">
-      <eParameters name="dataType" ordered="false" lowerBound="1" eType="ecore:EClass Mscript.ecore#//DataType"/>
+      <eParameters name="type" ordered="false" lowerBound="1" eType="ecore:EClass Mscript.ecore#//Type"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numberFormatMappings" ordered="false"
@@ -16,7 +15,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberFormatMapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" ordered="false"
-        eType="ecore:EClass Mscript.ecore#//DataTypeSpecifier" containment="true"/>
+        eType="ecore:EClass Mscript.ecore#//TypeSpecifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numberFormat" ordered="false"
         eType="#//NumberFormat" containment="true"/>
   </eClassifiers>

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public interface ISimulationVariationPoint {
 
-	DataType getDataType();
+	Type getDataType();
 	
 	IValue getValue();
 	void setValue(IValue value);

@@ -31,7 +31,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -96,7 +96,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
 		
 		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
+		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
@@ -293,8 +293,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				out.println(" };");
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
-				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
-				DataType targetDataType = staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
+				Type inputDataType = getComponentSignature().getInputDataType(inputPort);
+				Type targetDataType = staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
 					out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), targetDataType, null));

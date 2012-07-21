@@ -15,10 +15,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeDeclaration;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeDeclaration;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * @author Andreas Unger
@@ -26,24 +26,24 @@ import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
  */
 public class DeclaredTypeSpecifierOperations {
 
-	public static DataType getType(DeclaredTypeSpecifier dataTypeSpecifier) {
+	public static Type getType(DeclaredTypeSpecifier dataTypeSpecifier) {
 		return getType(dataTypeSpecifier, null);
 	}
 	
-	private static DataType getType(DataTypeSpecifier dataTypeSpecifier, Set<DataTypeDeclaration> visitedTypeDeclarations) {
-		if (dataTypeSpecifier instanceof AnonymousTypeSpecifier) {
-			return dataTypeSpecifier.getType();
+	private static Type getType(TypeSpecifier typeSpecifier, Set<TypeDeclaration> visitedTypeDeclarations) {
+		if (typeSpecifier instanceof AnonymousTypeSpecifier) {
+			return typeSpecifier.getType();
 		}
-		if (dataTypeSpecifier instanceof DeclaredTypeSpecifier) {
-			DataTypeDeclaration typeDeclaration = ((DeclaredTypeSpecifier) dataTypeSpecifier).getTypeDeclaration();
+		if (typeSpecifier instanceof DeclaredTypeSpecifier) {
+			TypeDeclaration typeDeclaration = ((DeclaredTypeSpecifier) typeSpecifier).getTypeDeclaration();
 			if (typeDeclaration != null) {
 				if (visitedTypeDeclarations == null) {
-					visitedTypeDeclarations = new HashSet<DataTypeDeclaration>();
+					visitedTypeDeclarations = new HashSet<TypeDeclaration>();
 				}
 				if (visitedTypeDeclarations.add(typeDeclaration)) { // Break cycle
-					DataTypeSpecifier typeSpecifier = typeDeclaration.getTypeSpecifier();
-					if (typeSpecifier != null) {
-						return getType(typeSpecifier, visitedTypeDeclarations);
+					TypeSpecifier nextTypeSpecifier = typeDeclaration.getTypeSpecifier();
+					if (nextTypeSpecifier != null) {
+						return getType(nextTypeSpecifier, visitedTypeDeclarations);
 					}
 				}
 			}

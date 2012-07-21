@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
@@ -66,7 +66,7 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 		StringBuilder sb = new StringBuilder();
 		final String inputVariable = getContext().getVariableAccessor().generateInputVariableReference(getContext().getNode().getComponent().getFirstInputPort(), false);
 		int pin = getPinIndex();
-		DataType inputDataType = getContext().getComponentSignature().getInputDataType(getComponent().getFirstInputPort());
+		Type inputDataType = getContext().getComponentSignature().getInputDataType(getComponent().getFirstInputPort());
 		if (inputDataType instanceof BooleanType) {
 			sb.append("digitalWrite(").append(Integer.toString(pin)).append(", ").append(inputVariable).append(");\n");
 		} else {

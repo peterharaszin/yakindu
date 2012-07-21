@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.interpreter.value;
 
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -63,11 +63,11 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doConvert(DataType dataType) {
+	protected IValue doConvert(Type type) {
 		if (!TypeUtil.isNumericMatrix(getDataType())) {
 			return InvalidValue.SINGLETON;
 		}
-		ArrayType arrayType = (ArrayType) dataType;
+		ArrayType arrayType = (ArrayType) type;
 		IValue[][] convertedElements = new IValue[rowSize][columnSize];
 		for (int i = 0; i < rowSize; ++i) {
 			for (int j = 0; j < columnSize; ++j) {
@@ -128,7 +128,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doAdd(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doAdd(IValue other, DataType resultDataType) {
+	protected IValue doAdd(IValue other, Type resultDataType) {
 		if (other instanceof MatrixValue) {
 			MatrixValue otherMatrixValue = (MatrixValue) other;
 			if (rowSize != otherMatrixValue.rowSize || columnSize != otherMatrixValue.columnSize) {
@@ -153,7 +153,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @see org.eclipselabs.mscript.computation.core.value.AbstractValue#doMultiply(org.eclipselabs.mscript.computation.core.value.IValue, org.eclipselabs.mscript.typesystem.DataType)
 	 */
 	@Override
-	protected IValue doMultiply(IValue other, DataType resultDataType) {
+	protected IValue doMultiply(IValue other, Type resultDataType) {
 		if (other instanceof INumericValue) {
 			INumericValue otherNumericValue = (INumericValue) other;
 			INumericValue[][] resultElements = new INumericValue[rowSize][columnSize];
@@ -227,7 +227,7 @@ public class MatrixValue extends AbstractExplicitDataTypeValue implements IArray
 	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doDivide(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	protected IValue doDivide(IValue other, DataType resultDataType) {
+	protected IValue doDivide(IValue other, Type resultDataType) {
 		if (other instanceof INumericValue) {
 			INumericValue otherNumericValue = (INumericValue) other;
 			INumericValue[][] resultElements = new INumericValue[rowSize][columnSize];

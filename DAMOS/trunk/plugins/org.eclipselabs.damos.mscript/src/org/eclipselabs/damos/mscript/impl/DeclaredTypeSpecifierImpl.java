@@ -10,10 +10,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeDeclaration;
 import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeDeclaration;
 import org.eclipselabs.damos.mscript.internal.operations.DeclaredTypeSpecifierOperations;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.internal.operations.DeclaredTypeSpecifierOp
  *
  * @generated
  */
-public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements DeclaredTypeSpecifier {
+public class DeclaredTypeSpecifierImpl extends TypeSpecifierImpl implements DeclaredTypeSpecifier {
 	/**
 	 * The cached value of the '{@link #getTypeDeclaration() <em>Type Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeDeclaration typeDeclaration;
+	protected TypeDeclaration typeDeclaration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,10 +64,10 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeDeclaration getTypeDeclaration() {
+	public TypeDeclaration getTypeDeclaration() {
 		if (typeDeclaration != null && typeDeclaration.eIsProxy()) {
 			InternalEObject oldTypeDeclaration = (InternalEObject)typeDeclaration;
-			typeDeclaration = (DataTypeDeclaration)eResolveProxy(oldTypeDeclaration);
+			typeDeclaration = (TypeDeclaration)eResolveProxy(oldTypeDeclaration);
 			if (typeDeclaration != oldTypeDeclaration) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.DECLARED_TYPE_SPECIFIER__TYPE_DECLARATION, oldTypeDeclaration, typeDeclaration));
@@ -81,7 +81,7 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeDeclaration basicGetTypeDeclaration() {
+	public TypeDeclaration basicGetTypeDeclaration() {
 		return typeDeclaration;
 	}
 
@@ -90,8 +90,8 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeDeclaration(DataTypeDeclaration newTypeDeclaration) {
-		DataTypeDeclaration oldTypeDeclaration = typeDeclaration;
+	public void setTypeDeclaration(TypeDeclaration newTypeDeclaration) {
+		TypeDeclaration oldTypeDeclaration = typeDeclaration;
 		typeDeclaration = newTypeDeclaration;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DECLARED_TYPE_SPECIFIER__TYPE_DECLARATION, oldTypeDeclaration, typeDeclaration));
@@ -101,7 +101,7 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeSpecifierImpl#getType()
 	 */
 	@Override
-	public DataType getType() {
+	public Type getType() {
 		return DeclaredTypeSpecifierOperations.getType(this);
 	}
 
@@ -129,7 +129,7 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.DECLARED_TYPE_SPECIFIER__TYPE_DECLARATION:
-				setTypeDeclaration((DataTypeDeclaration)newValue);
+				setTypeDeclaration((TypeDeclaration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,7 +144,7 @@ public class DeclaredTypeSpecifierImpl extends DataTypeSpecifierImpl implements 
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.DECLARED_TYPE_SPECIFIER__TYPE_DECLARATION:
-				setTypeDeclaration((DataTypeDeclaration)null);
+				setTypeDeclaration((TypeDeclaration)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -1,7 +1,7 @@
 package org.eclipselabs.damos.mscript.internal.computationmodel.operations;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -16,12 +16,12 @@ public class ComputationModelOperations {
 	private static FixedPointFormat defaultIntegerNumberFormat;
 	private static FloatingPointFormat defaultRealNumberFormat;
 
-	public static NumberFormatMapping getNumberFormatMapping(ComputationModel computationModel, DataType dataType) {
+	public static NumberFormatMapping getNumberFormatMapping(ComputationModel computationModel, Type type) {
 		NumberFormatMapping foundMapping = null;
-		DataType foundDataType = null;
+		Type foundDataType = null;
 		for (NumberFormatMapping mapping : computationModel.getNumberFormatMappings()) {
-			DataType mappingDataType = mapping.getTypeSpecifier().getType();
-			if (mappingDataType.isAssignableFrom(dataType)) {
+			Type mappingDataType = mapping.getTypeSpecifier().getType();
+			if (mappingDataType.isAssignableFrom(type)) {
 				if (foundDataType != null) {
 					if (foundDataType.isAssignableFrom(mappingDataType)) {
 						foundMapping = mapping;
@@ -36,10 +36,10 @@ public class ComputationModelOperations {
 		return foundMapping;
 	}
 
-	public static NumberFormat getNumberFormat(ComputationModel computationModel, DataType dataType) {
-		NumberFormatMapping mapping = getNumberFormatMapping(computationModel, dataType);
+	public static NumberFormat getNumberFormat(ComputationModel computationModel, Type type) {
+		NumberFormatMapping mapping = getNumberFormatMapping(computationModel, type);
 		if (mapping == null) {
-			if (dataType instanceof IntegerType) {
+			if (type instanceof IntegerType) {
 				return getDefaultIntegerNumberFormat();
 			}
 			return getDefaultRealNumberFormat();

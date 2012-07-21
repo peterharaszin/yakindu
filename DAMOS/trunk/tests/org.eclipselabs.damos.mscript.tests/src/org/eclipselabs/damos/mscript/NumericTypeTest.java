@@ -488,33 +488,33 @@ public class NumericTypeTest {
 		assertInvalid(ELEMENT_WISE_MODULO, integer(3, 2, KG), real(2, KG));
 	}
 
-	private void assertInvalid(OperatorKind operator, DataType type1, DataType type2) {
-		assertTrue(type1.evaluate(operator, type2) instanceof InvalidDataType);
-		assertTrue(type2.evaluate(operator, type1) instanceof InvalidDataType);
+	private void assertInvalid(OperatorKind operator, Type type1, Type type2) {
+		assertTrue(type1.evaluate(operator, type2) instanceof InvalidType);
+		assertTrue(type2.evaluate(operator, type1) instanceof InvalidType);
 	}
 
-	private void assertInvalid(OperatorKind operator1, OperatorKind operator2, DataType type1, DataType type2) {
-		assertTrue(type1.evaluate(operator1, type2) instanceof InvalidDataType);
-		assertTrue(type2.evaluate(operator1, type1) instanceof InvalidDataType);
-		assertTrue(type1.evaluate(operator2, type2) instanceof InvalidDataType);
-		assertTrue(type2.evaluate(operator2, type1) instanceof InvalidDataType);
+	private void assertInvalid(OperatorKind operator1, OperatorKind operator2, Type type1, Type type2) {
+		assertTrue(type1.evaluate(operator1, type2) instanceof InvalidType);
+		assertTrue(type2.evaluate(operator1, type1) instanceof InvalidType);
+		assertTrue(type1.evaluate(operator2, type2) instanceof InvalidType);
+		assertTrue(type2.evaluate(operator2, type1) instanceof InvalidType);
 	}
 
-	private void assertCommutative(OperatorKind operator, DataType type1, DataType type2, DataType resultType) {
+	private void assertCommutative(OperatorKind operator, Type type1, Type type2, Type resultType) {
 		assertTrue(type1.evaluate(operator, type2).isEquivalentTo(resultType));
 		assertTrue(type2.evaluate(operator, type1).isEquivalentTo(resultType));
 	}
 	
-	private void assertCommutative(OperatorKind operator1, OperatorKind operator2, DataType type1, DataType type2, DataType resultType) {
+	private void assertCommutative(OperatorKind operator1, OperatorKind operator2, Type type1, Type type2, Type resultType) {
 		assertTrue(type1.evaluate(operator1, type2).isEquivalentTo(resultType));
 		assertTrue(type2.evaluate(operator1, type1).isEquivalentTo(resultType));
 		assertTrue(type1.evaluate(operator2, type2).isEquivalentTo(resultType));
 		assertTrue(type2.evaluate(operator2, type1).isEquivalentTo(resultType));
 	}
 
-	private void assertNonCommutative(OperatorKind operator, DataType type1, DataType type2, DataType resultType) {
+	private void assertNonCommutative(OperatorKind operator, Type type1, Type type2, Type resultType) {
 		assertTrue(type1.evaluate(operator, type2).isEquivalentTo(resultType));
-		assertTrue(type2.evaluate(operator, type1) instanceof InvalidDataType);
+		assertTrue(type2.evaluate(operator, type1) instanceof InvalidType);
 	}
 
 //	private void assertNonCommutative(OperatorKind operator, DataType type1, DataType type2, DataType resultType1, DataType resultType2) {
@@ -524,32 +524,32 @@ public class NumericTypeTest {
 //
 //	private void assertNonCommutative(OperatorKind operator1, OperatorKind operator2, DataType type1, DataType type2, DataType resultType) {
 //		assertTrue(type1.evaluate(operator1, type2).isEquivalentTo(resultType));
-//		assertTrue(type2.evaluate(operator1, type1) instanceof InvalidDataType);
+//		assertTrue(type2.evaluate(operator1, type1) instanceof InvalidType);
 //		assertTrue(type1.evaluate(operator2, type2).isEquivalentTo(resultType));
-//		assertTrue(type2.evaluate(operator2, type1) instanceof InvalidDataType);
+//		assertTrue(type2.evaluate(operator2, type1) instanceof InvalidType);
 //	}
 
-	private DataType real(String... symbols) {
+	private Type real(String... symbols) {
 		return TypeUtil.createRealType(symbols);
 	}
 
-	private DataType real(int size, String... symbols) {
+	private Type real(int size, String... symbols) {
 		return TypeUtil.createArrayType(real(symbols), size);
 	}
 
-	private DataType real(int rowSize, int columnSize, String... symbols) {
+	private Type real(int rowSize, int columnSize, String... symbols) {
 		return TypeUtil.createArrayType(real(symbols), rowSize, columnSize);
 	}
 
-	private DataType integer(String... symbols) {
+	private Type integer(String... symbols) {
 		return TypeUtil.createIntegerType(symbols);
 	}
 
-	private DataType integer(int size, String... symbols) {
+	private Type integer(int size, String... symbols) {
 		return TypeUtil.createArrayType(integer(symbols), size);
 	}
 
-	private DataType integer(int rowSize, int columnSize, String... symbols) {
+	private Type integer(int rowSize, int columnSize, String... symbols) {
 		return TypeUtil.createArrayType(integer(symbols), rowSize, columnSize);
 	}
 

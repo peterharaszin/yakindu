@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * @author Andreas Unger
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.DataTypeSpecifier;
  */
 public interface IDataTypeSpecifierEvaluator {
 
-	DataType evaluate(IInterpreterContext interpreterContext, DataTypeSpecifier dataTypeSpecifier);
+	Type evaluate(IInterpreterContext interpreterContext, TypeSpecifier typeSpecifier);
 
 }

@@ -28,9 +28,9 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -40,12 +40,12 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 
 		Choice choice = (Choice) component;
 		
-		DataType incomingDataType = incomingDataTypes.get(choice.getFirstInputPort());
+		Type incomingDataType = incomingDataTypes.get(choice.getFirstInputPort());
 		if (incomingDataType == null) {
 			return new ComponentSignatureEvaluationResult();
 		}
@@ -58,7 +58,7 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 				if (actionLink.getCondition() instanceof MscriptValueSpecification) {
 					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
 					IValue value = ExpressionUtil.evaluateExpression(condition.getExpression());
-					if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
+					if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidType) {
 						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Action link condition '" + condition.stringValue() + "' is incompatible with choice input value"));
 					}
 				} else {

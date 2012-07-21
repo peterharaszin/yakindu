@@ -33,7 +33,7 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -51,7 +51,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component,
-			Map<InputPort, DataType> incomingDataTypes) {
+			Map<InputPort, Type> incomingDataTypes) {
 		Block block = (Block) component;
 
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
@@ -69,7 +69,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(
+		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(
 				functionDeclaration, signature, status);
 		
 		if (status.getSeverity() > IStatus.WARNING) {
@@ -99,15 +99,15 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			}
 			
 			OutputParameterDeclaration outputParameterDeclaration = outputParameterDeclarationIt.next();
-			DataType dataType = staticEvaluationResult.getValue(outputParameterDeclaration).getDataType();
+			Type type = staticEvaluationResult.getValue(outputParameterDeclaration).getDataType();
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
-				if (!(dataType instanceof ArrayType)) {
+				if (!(type instanceof ArrayType)) {
 					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Output '"
 							+ outputParameterDeclaration.getName() + "' must result to array type"));
 					continue;
 				}
-				ArrayType arrayType = (ArrayType) dataType;
+				ArrayType arrayType = (ArrayType) type;
 
 				for (OutputPort outputPort : output.getPorts()) {
 					signature.getOutputDataTypes().put(outputPort, EcoreUtil.copy(arrayType.getElementType()));
@@ -118,7 +118,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 							+ outputParameterDeclaration.getName() + "'"));
 					continue;
 				}
-				signature.getOutputDataTypes().put(output.getPorts().get(0), dataType);
+				signature.getOutputDataTypes().put(output.getPorts().get(0), type);
 			}
 		}
 

@@ -26,7 +26,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -35,37 +35,37 @@ import org.eclipselabs.damos.mscript.DataType;
 public class MemorySignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		DataType dataType = null;
-		DataType initialConditionDataType = null;
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
+		Type type = null;
+		Type initialConditionDataType = null;
 		
 		for (Input input : component.getInputs()) {
 			if (input.getPorts().isEmpty()) {
 				continue;
 			}
 			
-			DataType incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
+			Type incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
 			if (input instanceof MemoryInput) {
-				dataType = incomingDataType;
+				type = incomingDataType;
 			} else if (input instanceof MemoryInitialCondition) {
 				initialConditionDataType = incomingDataType;
 			}
 		}
 		
-		if (dataType == null) {
+		if (type == null) {
 			return new ComponentSignatureEvaluationResult();
 		}
 		
 		IStatus status = Status.OK_STATUS;
 
-		if (initialConditionDataType != null && !dataType.isAssignableFrom(initialConditionDataType)) {
+		if (initialConditionDataType != null && !type.isAssignableFrom(initialConditionDataType)) {
 			MultiStatus multiStatus = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 			multiStatus.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Data type of initial condition is incompatible with input data type"));
 			status = multiStatus;
 		}
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
-		signature.getOutputDataTypes().put(component.getFirstOutputPort(), dataType);
+		signature.getOutputDataTypes().put(component.getFirstOutputPort(), type);
 		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 

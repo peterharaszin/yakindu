@@ -6,8 +6,8 @@
  */
 package org.eclipselabs.damos.dconfig;
 
-import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,12 +36,12 @@ public interface SimplePropertyDeclaration extends PropertyDeclaration {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Specifier</em>' containment reference.
-	 * @see #setTypeSpecifier(DataTypeSpecifier)
+	 * @see #setTypeSpecifier(TypeSpecifier)
 	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getSimplePropertyDeclaration_TypeSpecifier()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataTypeSpecifier getTypeSpecifier();
+	TypeSpecifier getTypeSpecifier();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.SimplePropertyDeclaration#getTypeSpecifier <em>Type Specifier</em>}' containment reference.
@@ -51,7 +51,7 @@ public interface SimplePropertyDeclaration extends PropertyDeclaration {
 	 * @see #getTypeSpecifier()
 	 * @generated
 	 */
-	void setTypeSpecifier(DataTypeSpecifier value);
+	void setTypeSpecifier(TypeSpecifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Value</b></em>' containment reference.

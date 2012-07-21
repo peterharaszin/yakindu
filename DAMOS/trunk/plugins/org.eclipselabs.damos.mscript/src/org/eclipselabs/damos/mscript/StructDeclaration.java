@@ -17,6 +17,6 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface StructDeclaration extends DataTypeDeclaration, StructType {
+public interface StructDeclaration extends TypeDeclaration, StructType {
 
 } // StructDefinition

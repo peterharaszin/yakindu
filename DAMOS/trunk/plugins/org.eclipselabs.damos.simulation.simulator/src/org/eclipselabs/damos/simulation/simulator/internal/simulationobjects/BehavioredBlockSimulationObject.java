@@ -27,7 +27,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -115,7 +115,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
 		
 		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
+		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
@@ -208,9 +208,9 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
-		DataType dataType = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration).getDataType();
-		if (dataType instanceof ArrayType) {
-			ArrayType arrayType = (ArrayType) dataType;
+		Type type = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration).getDataType();
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 			variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID,

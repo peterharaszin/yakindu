@@ -14,7 +14,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResu
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 
 /**
@@ -24,10 +24,10 @@ import org.eclipselabs.damos.mscript.NumericType;
 public class DataOutSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
+		Type incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 		if (incomingDataType == null) {
 			return new ComponentSignatureEvaluationResult();
 		}

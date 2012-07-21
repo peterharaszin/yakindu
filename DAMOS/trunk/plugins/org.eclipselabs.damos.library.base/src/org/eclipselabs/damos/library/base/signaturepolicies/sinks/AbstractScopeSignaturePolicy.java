@@ -17,7 +17,7 @@ import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.sinks.ScopeConstants;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 
@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 abstract class AbstractScopeSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
 	@Override
-	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {		
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, Type> incomingDataTypes) {		
 		Block block = (Block) component;
 
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
@@ -48,7 +48,7 @@ abstract class AbstractScopeSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		for (InputPort inputPort : component.getInputPorts()) {
-			DataType incomingDataType = incomingDataTypes.get(inputPort);
+			Type incomingDataType = incomingDataTypes.get(inputPort);
 			if (incomingDataType != null && !(incomingDataType instanceof BooleanType || incomingDataType instanceof NumericType)) {
 				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be boolean or numeric"));
 			}

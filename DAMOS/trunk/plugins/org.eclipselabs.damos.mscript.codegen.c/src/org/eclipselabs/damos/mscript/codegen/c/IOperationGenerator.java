@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 
 /**
@@ -20,8 +20,8 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IOperationGenerator {
 
-	boolean canHandle(IMscriptGeneratorContext context, DataType resultDataType, Expression expression);
+	boolean canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression);
 
-	CharSequence generate(IMscriptGeneratorContext context, DataType resultDataType, CharSequence target, Expression expression);
+	CharSequence generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression);
 	
 }

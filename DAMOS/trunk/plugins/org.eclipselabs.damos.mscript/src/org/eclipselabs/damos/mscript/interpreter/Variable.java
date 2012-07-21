@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import java.util.ArrayList;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UninitializedValue;
@@ -26,7 +26,7 @@ public class Variable implements IVariable {
 
 	private VariableDeclaration declaration;
 	
-	private DataType dataType;
+	private Type type;
 	
 	private CircularBuffer<IValue> values = new CircularBuffer<IValue>();
 
@@ -41,7 +41,7 @@ public class Variable implements IVariable {
 		this.declaration = declaration;
 		IValue value = interpreterContext.getStaticEvaluationResult().getValue(declaration);
 		if (value != null) {
-			this.dataType = value.getDataType();
+			this.type = value.getDataType();
 		}
 		values.resize(circularBufferSize);
 	}
@@ -64,8 +64,8 @@ public class Variable implements IVariable {
 	 * @see org.eclipselabs.mscript.execution.IVariable#setValue(org.eclipselabs.mscript.execution.value.IValue)
 	 */
 	public void setValue(int stepIndex, IValue value) {
-		if (!(value instanceof UninitializedValue) && declaration != null && dataType != null) {
-			value = value.convert(dataType);
+		if (!(value instanceof UninitializedValue) && declaration != null && type != null) {
+			value = value.convert(type);
 		}
 		values.set(stepIndex, value);
 	}

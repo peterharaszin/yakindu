@@ -41,12 +41,12 @@ public interface ArrayType extends DataType {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Type Specifier</em>' containment reference.
-	 * @see #setElementTypeSpecifier(DataTypeSpecifier)
+	 * @see #setElementTypeSpecifier(TypeSpecifier)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_ElementTypeSpecifier()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DataTypeSpecifier getElementTypeSpecifier();
+	TypeSpecifier getElementTypeSpecifier();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}' containment reference.
@@ -56,7 +56,7 @@ public interface ArrayType extends DataType {
 	 * @see #getElementTypeSpecifier()
 	 * @generated
 	 */
-	void setElementTypeSpecifier(DataTypeSpecifier value);
+	void setElementTypeSpecifier(TypeSpecifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Numeric</b></em>' attribute.
@@ -190,7 +190,7 @@ public interface ArrayType extends DataType {
 	 * @param other
 	 * @return
 	 */
-	public DataType evaluate(OperatorKind operator, DataType other);
+	public Type evaluate(OperatorKind operator, Type other);
 
 	/**
 	 * Returns the value of the '<em><b>Dimensionality</b></em>' attribute.
@@ -273,6 +273,6 @@ public interface ArrayType extends DataType {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	DataType getElementType();
+	Type getElementType();
 
 } // ArrayType

@@ -24,16 +24,16 @@ ImportDeclaration:
 	'import' importedNamespace=QualifiedNameWithWildcard;
 
 Declaration:
-	DataTypeDeclaration |
+	TypeDeclaration |
 	EnumerationDeclaration |
 	FunctionDeclaration;
 
 /*
- * DataTypeDeclaration
+ * TypeDeclaration
  */
  
-DataTypeDeclaration:
-	('type' name=ValidID '=' typeSpecifier=DataTypeSpecifier) | ('struct' name=ValidID typeSpecifier=StructDeclarationTypeSpecifier);
+TypeDeclaration:
+	('type' name=ValidID '=' typeSpecifier=TypeSpecifier) | ('struct' name=ValidID typeSpecifier=StructDeclarationTypeSpecifier);
 
 StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
 	type=StructDeclarationType;
@@ -85,8 +85,8 @@ OutputParameterDeclaration:
 Check:
 	'check'
 			('<' staticArguments+=Expression (',' staticArguments+=Expression)* '>')?
-			'(' (inputParameterTypes+=DataTypeSpecifier (',' inputParameterTypes+=DataTypeSpecifier)*)? ')'
-			'->' outputParameterTypes+=DataTypeSpecifier (',' outputParameterTypes+=DataTypeSpecifier)*;
+			'(' (inputParameterTypes+=TypeSpecifier (',' inputParameterTypes+=TypeSpecifier)*)? ')'
+			'->' outputParameterTypes+=TypeSpecifier (',' outputParameterTypes+=TypeSpecifier)*;
 
 enum AssertionStatusKind:
 	Info='info' |
@@ -113,14 +113,14 @@ Equation:
  * Data type specifier
  */
 
-DataTypeSpecifier:
+TypeSpecifier:
 	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
 
 AnonymousTypeSpecifier:
 	type=(PrimitiveType | ArrayType | StructType);
 	
 DeclaredTypeSpecifier:
-	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+	typeDeclaration=[TypeDeclaration|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -149,7 +149,7 @@ StringType:
 ArrayType:
 	elementTypeSpecifier=ArrayTypeSpecifier '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
-ArrayTypeSpecifier returns DataTypeSpecifier:
+ArrayTypeSpecifier returns TypeSpecifier:
 	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
 	
 AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
@@ -164,7 +164,7 @@ StructType:
 	'}'; 
 
 StructMember:
-	typeSpecifier=DataTypeSpecifier name=ValidID;
+	typeSpecifier=TypeSpecifier name=ValidID;
 
 /*
  * Expressions
@@ -225,7 +225,7 @@ enum EqualityOperator returns OperatorKind:
 	NotEqualTo='!=';
 	
 RelationalExpression returns Expression:
-	AdditiveExpression =>({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} 'is' typeSpecifier=DataTypeSpecifier)?;
+	AdditiveExpression =>({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} 'is' typeSpecifier=TypeSpecifier)?;
 
 enum RelationalOperator returns OperatorKind:
 	LessThan='<' |

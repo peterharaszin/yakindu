@@ -35,7 +35,7 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_DataType(EObject context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
-				MscriptPackage.eINSTANCE.getDataType()));
+				MscriptPackage.eINSTANCE.getType()));
 	}
 
 	public IScope scope_CallableElement(EObject context, EReference reference) {

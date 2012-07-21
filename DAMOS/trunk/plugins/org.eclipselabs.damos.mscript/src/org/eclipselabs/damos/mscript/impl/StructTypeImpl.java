@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.internal.operations.StructTypeOperations;
 
 /**
@@ -98,7 +98,7 @@ public class StructTypeImpl extends DataTypeImpl implements StructType {
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	public DataType evaluate(OperatorKind operator, DataType other) {
+	public Type evaluate(OperatorKind operator, Type other) {
 		return StructTypeOperations.evaluate(this, operator, other);
 	}
 	
@@ -106,7 +106,7 @@ public class StructTypeImpl extends DataTypeImpl implements StructType {
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, int)
 	 */
 	@Override
-	public DataType evaluate(OperatorKind operator, int n) {
+	public Type evaluate(OperatorKind operator, int n) {
 		return StructTypeOperations.evaluate(this, operator, n);
 	}
 	
@@ -114,7 +114,7 @@ public class StructTypeImpl extends DataTypeImpl implements StructType {
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#isAssignableFrom(org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	public boolean isAssignableFrom(DataType other) {
+	public boolean isAssignableFrom(Type other) {
 		return StructTypeOperations.isAssignableFrom(this, other);
 	}
 	
@@ -122,7 +122,7 @@ public class StructTypeImpl extends DataTypeImpl implements StructType {
 	 * @see org.eclipselabs.damos.mscript.impl.DataTypeImpl#isEquivalentTo(org.eclipselabs.damos.mscript.DataType)
 	 */
 	@Override
-	public boolean isEquivalentTo(DataType other) {
+	public boolean isEquivalentTo(Type other) {
 		return StructTypeOperations.isEquivalentTo(this, other);
 	}
 

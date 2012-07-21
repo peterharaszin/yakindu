@@ -17,7 +17,7 @@ import java.util.Map.Entry;
 
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 
 /**
  * @author Andreas Unger
@@ -25,25 +25,25 @@ import org.eclipselabs.damos.mscript.DataType;
  */
 public class ComponentSignature implements IComponentSignature {
 
-	private Map<InputPort, DataType> inputDataTypes;
-	private Map<OutputPort, DataType> outputDataTypes = new HashMap<OutputPort,DataType>();
+	private Map<InputPort, Type> inputDataTypes;
+	private Map<OutputPort, Type> outputDataTypes = new HashMap<OutputPort,Type>();
 
 	/**
 	 * 
 	 */
-	public ComponentSignature(Map<InputPort, DataType> inputDataTypes) {
+	public ComponentSignature(Map<InputPort, Type> inputDataTypes) {
 		this.inputDataTypes = inputDataTypes;
 	}
 	
-	public DataType getInputDataType(InputPort inputPort) {
+	public Type getInputDataType(InputPort inputPort) {
 		return inputDataTypes.get(inputPort);
 	}
 	
-	public Map<OutputPort, DataType> getOutputDataTypes() {
+	public Map<OutputPort, Type> getOutputDataTypes() {
 		return outputDataTypes;
 	}
 	
-	public DataType getOutputDataType(OutputPort outputPort) {
+	public Type getOutputDataType(OutputPort outputPort) {
 		return outputDataTypes.get(outputPort);
 	}
 
@@ -68,13 +68,13 @@ public class ComponentSignature implements IComponentSignature {
 			return false;
 		}
 
-		for (Entry<InputPort, DataType> inputDataType : inputDataTypes.entrySet()) {
+		for (Entry<InputPort, Type> inputDataType : inputDataTypes.entrySet()) {
 			if (!inputDataType.getValue().isEquivalentTo(other.inputDataTypes.get(inputDataType.getKey()))) {
 				return false;
 			}
 		}
 
-		for (Entry<OutputPort, DataType> outputDataType : outputDataTypes.entrySet()) {
+		for (Entry<OutputPort, Type> outputDataType : outputDataTypes.entrySet()) {
 			if (!outputDataType.getValue().isEquivalentTo(other.outputDataTypes.get(outputDataType.getKey()))) {
 				return false;
 			}

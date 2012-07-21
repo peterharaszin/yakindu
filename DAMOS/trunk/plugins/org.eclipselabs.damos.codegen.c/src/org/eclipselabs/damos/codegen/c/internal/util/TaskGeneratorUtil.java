@@ -27,7 +27,7 @@ import org.eclipselabs.damos.execution.DataFlowEnd;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 
 /**
@@ -51,8 +51,8 @@ public class TaskGeneratorUtil {
 	public static CharSequence getCDataTypeFor(IGeneratorContext context, CharSequence variableName, TaskInputNode inputNode) {
 		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
 		IComponentGenerator componentGenerator = GeneratorNodeExtensions.getComponentGenerator((ComponentNode) end.getNode());
-		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
-		return new DataTypeGenerator().generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context.getConfiguration()), variableName, context, dataType, null);
+		Type type = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
+		return new DataTypeGenerator().generateDataType(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), (ComponentNode) end.getNode()), context.getConfiguration()), variableName, context, type, null);
 	}
 
 	public static String getTaskContextVariable(IGeneratorContext context, String taskName, boolean pointer) {

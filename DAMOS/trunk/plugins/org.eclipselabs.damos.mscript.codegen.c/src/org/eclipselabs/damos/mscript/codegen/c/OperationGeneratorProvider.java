@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.ArrayElementWiseOperationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.ArrayScalarMultiplyGenerator;
@@ -38,7 +38,7 @@ public class OperationGeneratorProvider implements IOperationGeneratorProvider {
 		GENERATORS.add(new VectorMatrixMultiplyGenerator());
 	}
 
-	public IOperationGenerator getGenerator(IMscriptGeneratorContext context, DataType resultDataType, Expression expression) {
+	public IOperationGenerator getGenerator(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		for (IOperationGenerator generator : GENERATORS) {
 			if (generator.canHandle(context, resultDataType, expression)) {
 				return generator;

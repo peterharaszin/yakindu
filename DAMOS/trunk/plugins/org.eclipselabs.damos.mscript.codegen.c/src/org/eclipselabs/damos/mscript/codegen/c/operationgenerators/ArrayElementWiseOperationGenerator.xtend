@@ -14,7 +14,6 @@ package org.eclipselabs.damos.mscript.codegen.c.operationgenerators
 import java.util.Iterator
 import org.eclipselabs.damos.mscript.ArrayType
 import org.eclipselabs.damos.mscript.BinaryExpression
-import org.eclipselabs.damos.mscript.DataType
 import org.eclipselabs.damos.mscript.Expression
 import org.eclipselabs.damos.mscript.OperatorKind
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator
@@ -29,6 +28,7 @@ import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineArrayType
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipselabs.damos.mscript.util.TypeUtil
+import org.eclipselabs.damos.mscript.Type
 
 /**
  * @author Andreas Unger
@@ -39,7 +39,7 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
 	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
 
-	override canHandle(IMscriptGeneratorContext context, DataType resultDataType, Expression expression) {
+	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
 			return false
 		}
@@ -52,7 +52,7 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 				&& TypeUtil::isNumericArray(context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType)
 	}
 	
-	override generate(IMscriptGeneratorContext context, DataType resultDataType, CharSequence target, Expression expression) {
+	override generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression) {
 		val binaryExpression = expression as BinaryExpression
 		val codeFragmentCollector = context.codeFragmentCollector
 

@@ -34,7 +34,7 @@ protected class ThisRootNode extends RootToken {
 			case 0: return new Module_Group(this, this, 0, inst);
 			case 1: return new ImportDeclaration_Group(this, this, 1, inst);
 			case 2: return new Declaration_Alternatives(this, this, 2, inst);
-			case 3: return new DataTypeDeclaration_Alternatives(this, this, 3, inst);
+			case 3: return new TypeDeclaration_Alternatives(this, this, 3, inst);
 			case 4: return new StructDeclarationTypeSpecifier_TypeAssignment(this, this, 4, inst);
 			case 5: return new StructDeclarationType_Group(this, this, 5, inst);
 			case 6: return new EnumerationDeclaration_Group(this, this, 6, inst);
@@ -49,7 +49,7 @@ protected class ThisRootNode extends RootToken {
 			case 15: return new ConstantDeclaration_Group(this, this, 15, inst);
 			case 16: return new FunctionAliasDeclaration_Group(this, this, 16, inst);
 			case 17: return new Equation_Group(this, this, 17, inst);
-			case 18: return new DataTypeSpecifier_Alternatives(this, this, 18, inst);
+			case 18: return new TypeSpecifier_Alternatives(this, this, 18, inst);
 			case 19: return new AnonymousTypeSpecifier_TypeAssignment(this, this, 19, inst);
 			case 20: return new DeclaredTypeSpecifier_TypeDeclarationAssignment(this, this, 20, inst);
 			case 21: return new PrimitiveType_Alternatives(this, this, 21, inst);
@@ -437,11 +437,11 @@ protected class ImportDeclaration_ImportedNamespaceAssignment_1 extends Assignme
 /************ begin Rule Declaration ****************
  *
  * Declaration:
- * 	DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
+ * 	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
  *
  **/
 
-// DataTypeDeclaration | EnumerationDeclaration | FunctionDeclaration
+// TypeDeclaration | EnumerationDeclaration | FunctionDeclaration
 protected class Declaration_Alternatives extends AlternativesToken {
 
 	public Declaration_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -456,7 +456,7 @@ protected class Declaration_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Declaration_DataTypeDeclarationParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Declaration_TypeDeclarationParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new Declaration_EnumerationDeclarationParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			case 2: return new Declaration_FunctionDeclarationParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
@@ -465,40 +465,40 @@ protected class Declaration_Alternatives extends AlternativesToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getDataTypeDeclarationRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getEnumerationDeclarationRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getFunctionDeclarationRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getEnumerationDeclarationRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getFunctionDeclarationRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getTypeDeclarationRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// DataTypeDeclaration
-protected class Declaration_DataTypeDeclarationParserRuleCall_0 extends RuleCallToken {
+// TypeDeclaration
+protected class Declaration_TypeDeclarationParserRuleCall_0 extends RuleCallToken {
 	
-	public Declaration_DataTypeDeclarationParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Declaration_TypeDeclarationParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getDataTypeDeclarationParserRuleCall_0();
+		return grammarAccess.getDeclarationAccess().getTypeDeclarationParserRuleCall_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_Alternatives(this, this, 0, inst);
+			case 0: return new TypeDeclaration_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getDataTypeDeclarationRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getTypeDeclarationRule().getType().getClassifier())
 			return null;
-		if(checkForRecursion(DataTypeDeclaration_Alternatives.class, eObjectConsumer)) return null;
+		if(checkForRecursion(TypeDeclaration_Alternatives.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -586,63 +586,62 @@ protected class Declaration_FunctionDeclarationParserRuleCall_2 extends RuleCall
 /************ end Rule Declaration ****************/
 
 
-/************ begin Rule DataTypeDeclaration ****************
+/************ begin Rule TypeDeclaration ****************
  *
  * / *
- *  * DataTypeDeclaration
- *  * / DataTypeDeclaration:
- * 	"type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
+ *  * TypeDeclaration
+ *  * / TypeDeclaration:
+ * 	"type" name=ValidID "=" typeSpecifier=TypeSpecifier | "struct" name=ValidID
  * 	typeSpecifier=StructDeclarationTypeSpecifier;
  *
  **/
 
-// "type" name=ValidID "=" typeSpecifier=DataTypeSpecifier | "struct" name=ValidID
-// typeSpecifier=StructDeclarationTypeSpecifier
-protected class DataTypeDeclaration_Alternatives extends AlternativesToken {
+// "type" name=ValidID "=" typeSpecifier=TypeSpecifier | "struct" name=ValidID typeSpecifier=StructDeclarationTypeSpecifier
+protected class TypeDeclaration_Alternatives extends AlternativesToken {
 
-	public DataTypeDeclaration_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getAlternatives();
+		return grammarAccess.getTypeDeclarationAccess().getAlternatives();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_Group_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new DataTypeDeclaration_Group_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new TypeDeclaration_Group_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TypeDeclaration_Group_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getDataTypeDeclarationRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getTypeDeclarationRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// "type" name=ValidID "=" typeSpecifier=DataTypeSpecifier
-protected class DataTypeDeclaration_Group_0 extends GroupToken {
+// "type" name=ValidID "=" typeSpecifier=TypeSpecifier
+protected class TypeDeclaration_Group_0 extends GroupToken {
 	
-	public DataTypeDeclaration_Group_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_Group_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getGroup_0();
+		return grammarAccess.getTypeDeclarationAccess().getGroup_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_TypeSpecifierAssignment_0_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TypeDeclaration_TypeSpecifierAssignment_0_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -650,15 +649,15 @@ protected class DataTypeDeclaration_Group_0 extends GroupToken {
 }
 
 // "type"
-protected class DataTypeDeclaration_TypeKeyword_0_0 extends KeywordToken  {
+protected class TypeDeclaration_TypeKeyword_0_0 extends KeywordToken  {
 	
-	public DataTypeDeclaration_TypeKeyword_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_TypeKeyword_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getTypeKeyword_0_0();
+		return grammarAccess.getTypeDeclarationAccess().getTypeKeyword_0_0();
 	}
 
     @Override
@@ -671,21 +670,21 @@ protected class DataTypeDeclaration_TypeKeyword_0_0 extends KeywordToken  {
 }
 
 // name=ValidID
-protected class DataTypeDeclaration_NameAssignment_0_1 extends AssignmentToken  {
+protected class TypeDeclaration_NameAssignment_0_1 extends AssignmentToken  {
 	
-	public DataTypeDeclaration_NameAssignment_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_NameAssignment_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getNameAssignment_0_1();
+		return grammarAccess.getTypeDeclarationAccess().getNameAssignment_0_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_TypeKeyword_0_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TypeDeclaration_TypeKeyword_0_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -694,9 +693,9 @@ protected class DataTypeDeclaration_NameAssignment_0_1 extends AssignmentToken  
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_0_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getTypeDeclarationAccess().getNameValidIDParserRuleCall_0_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_0_1_0();
+			element = grammarAccess.getTypeDeclarationAccess().getNameValidIDParserRuleCall_0_1_0();
 			return obj;
 		}
 		return null;
@@ -705,43 +704,43 @@ protected class DataTypeDeclaration_NameAssignment_0_1 extends AssignmentToken  
 }
 
 // "="
-protected class DataTypeDeclaration_EqualsSignKeyword_0_2 extends KeywordToken  {
+protected class TypeDeclaration_EqualsSignKeyword_0_2 extends KeywordToken  {
 	
-	public DataTypeDeclaration_EqualsSignKeyword_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_EqualsSignKeyword_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getEqualsSignKeyword_0_2();
+		return grammarAccess.getTypeDeclarationAccess().getEqualsSignKeyword_0_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_NameAssignment_0_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TypeDeclaration_NameAssignment_0_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// typeSpecifier=DataTypeSpecifier
-protected class DataTypeDeclaration_TypeSpecifierAssignment_0_3 extends AssignmentToken  {
+// typeSpecifier=TypeSpecifier
+protected class TypeDeclaration_TypeSpecifierAssignment_0_3 extends AssignmentToken  {
 	
-	public DataTypeDeclaration_TypeSpecifierAssignment_0_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_TypeSpecifierAssignment_0_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_0_3();
+		return grammarAccess.getTypeDeclarationAccess().getTypeSpecifierAssignment_0_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -752,9 +751,9 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_0_3 extends Assignme
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeSpecifier");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_3_0(); 
+				element = grammarAccess.getTypeDeclarationAccess().getTypeSpecifierTypeSpecifierParserRuleCall_0_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -766,7 +765,7 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_0_3 extends Assignme
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new DataTypeDeclaration_EqualsSignKeyword_0_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TypeDeclaration_EqualsSignKeyword_0_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -774,21 +773,21 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_0_3 extends Assignme
 
 
 // "struct" name=ValidID typeSpecifier=StructDeclarationTypeSpecifier
-protected class DataTypeDeclaration_Group_1 extends GroupToken {
+protected class TypeDeclaration_Group_1 extends GroupToken {
 	
-	public DataTypeDeclaration_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getGroup_1();
+		return grammarAccess.getTypeDeclarationAccess().getGroup_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_TypeSpecifierAssignment_1_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TypeDeclaration_TypeSpecifierAssignment_1_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -796,15 +795,15 @@ protected class DataTypeDeclaration_Group_1 extends GroupToken {
 }
 
 // "struct"
-protected class DataTypeDeclaration_StructKeyword_1_0 extends KeywordToken  {
+protected class TypeDeclaration_StructKeyword_1_0 extends KeywordToken  {
 	
-	public DataTypeDeclaration_StructKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_StructKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getStructKeyword_1_0();
+		return grammarAccess.getTypeDeclarationAccess().getStructKeyword_1_0();
 	}
 
     @Override
@@ -817,21 +816,21 @@ protected class DataTypeDeclaration_StructKeyword_1_0 extends KeywordToken  {
 }
 
 // name=ValidID
-protected class DataTypeDeclaration_NameAssignment_1_1 extends AssignmentToken  {
+protected class TypeDeclaration_NameAssignment_1_1 extends AssignmentToken  {
 	
-	public DataTypeDeclaration_NameAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_NameAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getNameAssignment_1_1();
+		return grammarAccess.getTypeDeclarationAccess().getNameAssignment_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeDeclaration_StructKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TypeDeclaration_StructKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -840,9 +839,9 @@ protected class DataTypeDeclaration_NameAssignment_1_1 extends AssignmentToken  
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_1_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getTypeDeclarationAccess().getNameValidIDParserRuleCall_1_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getDataTypeDeclarationAccess().getNameValidIDParserRuleCall_1_1_0();
+			element = grammarAccess.getTypeDeclarationAccess().getNameValidIDParserRuleCall_1_1_0();
 			return obj;
 		}
 		return null;
@@ -851,15 +850,15 @@ protected class DataTypeDeclaration_NameAssignment_1_1 extends AssignmentToken  
 }
 
 // typeSpecifier=StructDeclarationTypeSpecifier
-protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends AssignmentToken  {
+protected class TypeDeclaration_TypeSpecifierAssignment_1_2 extends AssignmentToken  {
 	
-	public DataTypeDeclaration_TypeSpecifierAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeDeclaration_TypeSpecifierAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierAssignment_1_2();
+		return grammarAccess.getTypeDeclarationAccess().getTypeSpecifierAssignment_1_2();
 	}
 
     @Override
@@ -878,7 +877,7 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends Assignme
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStructDeclarationTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDataTypeDeclarationAccess().getTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0(); 
+				element = grammarAccess.getTypeDeclarationAccess().getTypeSpecifierStructDeclarationTypeSpecifierParserRuleCall_1_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -890,7 +889,7 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends Assignme
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new DataTypeDeclaration_NameAssignment_1_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TypeDeclaration_NameAssignment_1_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -898,7 +897,7 @@ protected class DataTypeDeclaration_TypeSpecifierAssignment_1_2 extends Assignme
 
 
 
-/************ end Rule DataTypeDeclaration ****************/
+/************ end Rule TypeDeclaration ****************/
 
 
 /************ begin Rule StructDeclarationTypeSpecifier ****************
@@ -2745,14 +2744,14 @@ protected class OutputParameterDeclaration_NameAssignment extends AssignmentToke
  *
  * Check:
  * 	"check" ("<" staticArguments+=Expression ("," staticArguments+=Expression)* ">")? "("
- * 	(inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
- * 	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*;
+ * 	(inputParameterTypes+=TypeSpecifier ("," inputParameterTypes+=TypeSpecifier)*)? ")" "->"
+ * 	outputParameterTypes+=TypeSpecifier ("," outputParameterTypes+=TypeSpecifier)*;
  *
  **/
 
 // "check" ("<" staticArguments+=Expression ("," staticArguments+=Expression)* ">")? "("
-// (inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
-// outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*
+// (inputParameterTypes+=TypeSpecifier ("," inputParameterTypes+=TypeSpecifier)*)? ")" "->"
+// outputParameterTypes+=TypeSpecifier ("," outputParameterTypes+=TypeSpecifier)*
 protected class Check_Group extends GroupToken {
 	
 	public Check_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3032,7 +3031,7 @@ protected class Check_LeftParenthesisKeyword_2 extends KeywordToken  {
 
 }
 
-// (inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)?
+// (inputParameterTypes+=TypeSpecifier ("," inputParameterTypes+=TypeSpecifier)*)?
 protected class Check_Group_3 extends GroupToken {
 	
 	public Check_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3055,7 +3054,7 @@ protected class Check_Group_3 extends GroupToken {
 
 }
 
-// inputParameterTypes+=DataTypeSpecifier
+// inputParameterTypes+=TypeSpecifier
 protected class Check_InputParameterTypesAssignment_3_0 extends AssignmentToken  {
 	
 	public Check_InputParameterTypesAssignment_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3070,7 +3069,7 @@ protected class Check_InputParameterTypesAssignment_3_0 extends AssignmentToken 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3081,9 +3080,9 @@ protected class Check_InputParameterTypesAssignment_3_0 extends AssignmentToken 
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("inputParameterTypes");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCheckAccess().getInputParameterTypesDataTypeSpecifierParserRuleCall_3_0_0(); 
+				element = grammarAccess.getCheckAccess().getInputParameterTypesTypeSpecifierParserRuleCall_3_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3101,7 +3100,7 @@ protected class Check_InputParameterTypesAssignment_3_0 extends AssignmentToken 
 	}	
 }
 
-// ("," inputParameterTypes+=DataTypeSpecifier)*
+// ("," inputParameterTypes+=TypeSpecifier)*
 protected class Check_Group_3_1 extends GroupToken {
 	
 	public Check_Group_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3146,7 +3145,7 @@ protected class Check_CommaKeyword_3_1_0 extends KeywordToken  {
 
 }
 
-// inputParameterTypes+=DataTypeSpecifier
+// inputParameterTypes+=TypeSpecifier
 protected class Check_InputParameterTypesAssignment_3_1_1 extends AssignmentToken  {
 	
 	public Check_InputParameterTypesAssignment_3_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3161,7 +3160,7 @@ protected class Check_InputParameterTypesAssignment_3_1_1 extends AssignmentToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3172,9 +3171,9 @@ protected class Check_InputParameterTypesAssignment_3_1_1 extends AssignmentToke
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("inputParameterTypes");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCheckAccess().getInputParameterTypesDataTypeSpecifierParserRuleCall_3_1_1_0(); 
+				element = grammarAccess.getCheckAccess().getInputParameterTypesTypeSpecifierParserRuleCall_3_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3239,7 +3238,7 @@ protected class Check_HyphenMinusGreaterThanSignKeyword_5 extends KeywordToken  
 
 }
 
-// outputParameterTypes+=DataTypeSpecifier
+// outputParameterTypes+=TypeSpecifier
 protected class Check_OutputParameterTypesAssignment_6 extends AssignmentToken  {
 	
 	public Check_OutputParameterTypesAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3254,7 +3253,7 @@ protected class Check_OutputParameterTypesAssignment_6 extends AssignmentToken  
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3265,9 +3264,9 @@ protected class Check_OutputParameterTypesAssignment_6 extends AssignmentToken  
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("outputParameterTypes");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCheckAccess().getOutputParameterTypesDataTypeSpecifierParserRuleCall_6_0(); 
+				element = grammarAccess.getCheckAccess().getOutputParameterTypesTypeSpecifierParserRuleCall_6_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3285,7 +3284,7 @@ protected class Check_OutputParameterTypesAssignment_6 extends AssignmentToken  
 	}	
 }
 
-// ("," outputParameterTypes+=DataTypeSpecifier)*
+// ("," outputParameterTypes+=TypeSpecifier)*
 protected class Check_Group_7 extends GroupToken {
 	
 	public Check_Group_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3330,7 +3329,7 @@ protected class Check_CommaKeyword_7_0 extends KeywordToken  {
 
 }
 
-// outputParameterTypes+=DataTypeSpecifier
+// outputParameterTypes+=TypeSpecifier
 protected class Check_OutputParameterTypesAssignment_7_1 extends AssignmentToken  {
 	
 	public Check_OutputParameterTypesAssignment_7_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3345,7 +3344,7 @@ protected class Check_OutputParameterTypesAssignment_7_1 extends AssignmentToken
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3356,9 +3355,9 @@ protected class Check_OutputParameterTypesAssignment_7_1 extends AssignmentToken
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("outputParameterTypes");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCheckAccess().getOutputParameterTypesDataTypeSpecifierParserRuleCall_7_1_0(); 
+				element = grammarAccess.getCheckAccess().getOutputParameterTypesTypeSpecifierParserRuleCall_7_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -4454,32 +4453,32 @@ protected class Equation_RightHandSideAssignment_4 extends AssignmentToken  {
 /************ end Rule Equation ****************/
 
 
-/************ begin Rule DataTypeSpecifier ****************
+/************ begin Rule TypeSpecifier ****************
  *
  * / *
  *  * Data type specifier
- *  * / DataTypeSpecifier:
+ *  * / TypeSpecifier:
  * 	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
  *
  **/
 
 // AnonymousTypeSpecifier | DeclaredTypeSpecifier
-protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
+protected class TypeSpecifier_Alternatives extends AlternativesToken {
 
-	public DataTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getAlternatives();
+		return grammarAccess.getTypeSpecifierAccess().getAlternatives();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new TypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -4495,15 +4494,15 @@ protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
 }
 
 // AnonymousTypeSpecifier
-protected class DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0 extends RuleCallToken {
+protected class TypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0 extends RuleCallToken {
 	
-	public DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getAnonymousTypeSpecifierParserRuleCall_0();
+		return grammarAccess.getTypeSpecifierAccess().getAnonymousTypeSpecifierParserRuleCall_0();
 	}
 
     @Override
@@ -4531,15 +4530,15 @@ protected class DataTypeSpecifier_AnonymousTypeSpecifierParserRuleCall_0 extends
 }
 
 // DeclaredTypeSpecifier
-protected class DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1 extends RuleCallToken {
+protected class TypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1 extends RuleCallToken {
 	
-	public DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDataTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1();
+		return grammarAccess.getTypeSpecifierAccess().getDeclaredTypeSpecifierParserRuleCall_1();
 	}
 
     @Override
@@ -4567,7 +4566,7 @@ protected class DataTypeSpecifier_DeclaredTypeSpecifierParserRuleCall_1 extends 
 }
 
 
-/************ end Rule DataTypeSpecifier ****************/
+/************ end Rule TypeSpecifier ****************/
 
 
 /************ begin Rule AnonymousTypeSpecifier ****************
@@ -4650,11 +4649,11 @@ protected class AnonymousTypeSpecifier_TypeAssignment extends AssignmentToken  {
 /************ begin Rule DeclaredTypeSpecifier ****************
  *
  * DeclaredTypeSpecifier:
- * 	typeDeclaration=[DataTypeDeclaration|QualifiedName];
+ * 	typeDeclaration=[TypeDeclaration|QualifiedName];
  *
  **/
 
-// typeDeclaration=[DataTypeDeclaration|QualifiedName]
+// typeDeclaration=[TypeDeclaration|QualifiedName]
 protected class DeclaredTypeSpecifier_TypeDeclarationAssignment extends AssignmentToken  {
 	
 	public DeclaredTypeSpecifier_TypeDeclarationAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4681,9 +4680,9 @@ protected class DeclaredTypeSpecifier_TypeDeclarationAssignment extends Assignme
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeDeclaration");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationTypeDeclarationCrossReference_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationDataTypeDeclarationCrossReference_0(); 
+				element = grammarAccess.getDeclaredTypeSpecifierAccess().getTypeDeclarationTypeDeclarationCrossReference_0(); 
 				return obj;
 			}
 		}
@@ -6025,7 +6024,7 @@ protected class ArrayType_RightSquareBracketKeyword_4 extends KeywordToken  {
 
 /************ begin Rule ArrayTypeSpecifier ****************
  *
- * ArrayTypeSpecifier returns DataTypeSpecifier:
+ * ArrayTypeSpecifier returns TypeSpecifier:
  * 	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
  *
  **/
@@ -6554,11 +6553,11 @@ protected class StructType_RightCurlyBracketKeyword_5 extends KeywordToken  {
 /************ begin Rule StructMember ****************
  *
  * StructMember:
- * 	typeSpecifier=DataTypeSpecifier name=ValidID;
+ * 	typeSpecifier=TypeSpecifier name=ValidID;
  *
  **/
 
-// typeSpecifier=DataTypeSpecifier name=ValidID
+// typeSpecifier=TypeSpecifier name=ValidID
 protected class StructMember_Group extends GroupToken {
 	
 	public StructMember_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6587,7 +6586,7 @@ protected class StructMember_Group extends GroupToken {
 
 }
 
-// typeSpecifier=DataTypeSpecifier
+// typeSpecifier=TypeSpecifier
 protected class StructMember_TypeSpecifierAssignment_0 extends AssignmentToken  {
 	
 	public StructMember_TypeSpecifierAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6602,7 +6601,7 @@ protected class StructMember_TypeSpecifierAssignment_0 extends AssignmentToken  
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -6613,9 +6612,9 @@ protected class StructMember_TypeSpecifierAssignment_0 extends AssignmentToken  
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeSpecifier");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getStructMemberAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0(); 
+				element = grammarAccess.getStructMemberAccess().getTypeSpecifierTypeSpecifierParserRuleCall_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -10212,12 +10211,12 @@ protected class EqualityExpression_RightOperandAssignment_1_2 extends Assignment
  *
  * RelationalExpression returns Expression:
  * 	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
- * 	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
+ * 	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier)?;
  *
  **/
 
 // AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-// rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?
+// rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier)?
 protected class RelationalExpression_Group extends GroupToken {
 	
 	public RelationalExpression_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10326,7 +10325,7 @@ protected class RelationalExpression_AdditiveExpressionParserRuleCall_0 extends 
 }
 
 // => ({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression |
-// {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?
+// {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier)?
 protected class RelationalExpression_Group_1 extends GroupToken {
 	
 	public RelationalExpression_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10357,7 +10356,7 @@ protected class RelationalExpression_Group_1 extends GroupToken {
 }
 
 // {RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression |
-// {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier
+// {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier
 protected class RelationalExpression_Alternatives_1_0 extends AlternativesToken {
 
 	public RelationalExpression_Alternatives_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10519,7 +10518,7 @@ protected class RelationalExpression_RightOperandAssignment_1_0_0_2 extends Assi
 }
 
 
-// {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier
+// {TypeTestExpression.expression=current} "is" typeSpecifier=TypeSpecifier
 protected class RelationalExpression_Group_1_0_1 extends GroupToken {
 	
 	public RelationalExpression_Group_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10599,7 +10598,7 @@ protected class RelationalExpression_IsKeyword_1_0_1_1 extends KeywordToken  {
 
 }
 
-// typeSpecifier=DataTypeSpecifier
+// typeSpecifier=TypeSpecifier
 protected class RelationalExpression_TypeSpecifierAssignment_1_0_1_2 extends AssignmentToken  {
 	
 	public RelationalExpression_TypeSpecifierAssignment_1_0_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10614,7 +10613,7 @@ protected class RelationalExpression_TypeSpecifierAssignment_1_0_1_2 extends Ass
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DataTypeSpecifier_Alternatives(this, this, 0, inst);
+			case 0: return new TypeSpecifier_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -10625,9 +10624,9 @@ protected class RelationalExpression_TypeSpecifierAssignment_1_0_1_2 extends Ass
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("typeSpecifier");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDataTypeSpecifierRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0(); 
+				element = grammarAccess.getRelationalExpressionAccess().getTypeSpecifierTypeSpecifierParserRuleCall_1_0_1_2_0(); 
 				consumed = obj;
 				return param;
 			}

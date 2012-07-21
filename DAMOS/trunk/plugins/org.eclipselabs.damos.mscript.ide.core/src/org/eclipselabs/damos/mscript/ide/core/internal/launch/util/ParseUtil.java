@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
-import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
@@ -52,7 +52,7 @@ public class ParseUtil {
 		
 		for (Expression expression : expressionList.getExpressions()) {
 			IValue value = expressionEvaluator.evaluate(new ExpressionEvaluationContext(interpreterContext), expression);
-			if (value instanceof InvalidDataType) {
+			if (value instanceof InvalidType) {
 				return null;
 			}
 			values.add(value);

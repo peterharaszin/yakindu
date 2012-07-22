@@ -327,6 +327,7 @@
     <genClasses ecoreClass="Mscript.ecore#//AnyType"/>
     <genClasses image="false" ecoreClass="Mscript.ecore#//DataType"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitType"/>
+    <genClasses ecoreClass="Mscript.ecore#//FunctionType"/>
     <genClasses ecoreClass="Mscript.ecore#//PrimitiveType"/>
     <genClasses ecoreClass="Mscript.ecore#//NumericType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//NumericType/unit"/>

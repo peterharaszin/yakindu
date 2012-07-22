@@ -43,6 +43,7 @@ import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.IterationCall;
+import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
@@ -1613,6 +1614,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			}
 
 			return new StringValue(context.getComputationContext(), sb.toString());
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseLambdaExpression(org.eclipselabs.damos.mscript.LambdaExpression)
+		 */
+		@Override
+		public IValue caseLambdaExpression(LambdaExpression lambdaExpression) {
+			return new AnyValue(context.getComputationContext(), MscriptFactory.eINSTANCE.createFunctionType());
 		}
 
 		/* (non-Javadoc)

@@ -651,6 +651,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass functionTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass primitiveTypeEClass = null;
 
 	/**
@@ -2743,6 +2750,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFunctionType() {
+		return functionTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPrimitiveType() {
 		return primitiveTypeEClass;
 	}
@@ -3640,6 +3656,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		unitTypeEClass = createEClass(UNIT_TYPE);
 
+		functionTypeEClass = createEClass(FUNCTION_TYPE);
+
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
 		numericTypeEClass = createEClass(NUMERIC_TYPE);
@@ -3841,6 +3859,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		anyTypeEClass.getESuperTypes().add(this.getType());
 		dataTypeEClass.getESuperTypes().add(this.getType());
 		unitTypeEClass.getESuperTypes().add(this.getType());
+		functionTypeEClass.getESuperTypes().add(this.getType());
 		primitiveTypeEClass.getESuperTypes().add(this.getDataType());
 		numericTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		realTypeEClass.getESuperTypes().add(this.getNumericType());
@@ -4177,6 +4196,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(functionTypeEClass, FunctionType.class, "FunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

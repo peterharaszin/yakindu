@@ -134,6 +134,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.INVALID_TYPE: return createInvalidType();
 			case MscriptPackage.ANY_TYPE: return createAnyType();
 			case MscriptPackage.UNIT_TYPE: return createUnitType();
+			case MscriptPackage.FUNCTION_TYPE: return createFunctionType();
 			case MscriptPackage.PRIMITIVE_TYPE: return createPrimitiveType();
 			case MscriptPackage.NUMERIC_TYPE: return createNumericType();
 			case MscriptPackage.REAL_TYPE: return createRealType();
@@ -969,6 +970,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public UnitType createUnitType() {
 		UnitTypeImpl unitType = new UnitTypeImpl();
 		return unitType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionType createFunctionType() {
+		FunctionTypeImpl functionType = new FunctionTypeImpl();
+		return functionType;
 	}
 
 	/**

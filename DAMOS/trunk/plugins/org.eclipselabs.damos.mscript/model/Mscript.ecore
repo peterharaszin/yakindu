@@ -378,6 +378,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnyType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" abstract="true" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EEnum" name="OperatorKind">
     <eLiterals name="Add" literal="+"/>
     <eLiterals name="Subtract" value="1" literal="-"/>

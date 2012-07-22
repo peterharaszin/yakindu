@@ -73,7 +73,6 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookup;
@@ -1633,37 +1632,6 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
 			}
 			return InvalidValue.SINGLETON;
-		}
-		
-		private class IteratorVariable implements IVariable {
-
-			private final VariableDeclaration declaration;
-			private IValue value;
-			
-			/**
-			 * 
-			 */
-			public IteratorVariable(VariableDeclaration declaration, IValue value) {
-				this.declaration = declaration;
-				this.value = value;
-			}
-			
-			public VariableDeclaration getDeclaration() {
-				return declaration;
-			}
-
-			public IValue getValue(int stepIndex) {
-				return value;
-			}
-
-			public void setValue(int stepIndex, IValue value) {
-				throw new UnsupportedOperationException("Iteration variables cannot be set");
-			}
-
-			public void incrementStepIndex() {
-				throw new UnsupportedOperationException("Iteration variables cannot be incremented");
-			}
-			
 		}
 		
 	}

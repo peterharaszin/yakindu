@@ -504,6 +504,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass lambdaExpressionParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass algorithmExpressionEClass = null;
 
 	/**
@@ -2417,6 +2424,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLambdaExpressionParameter() {
+		return lambdaExpressionParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAlgorithmExpression() {
 		return algorithmExpressionEClass;
 	}
@@ -3598,6 +3614,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(lambdaExpressionEClass, LAMBDA_EXPRESSION__PARAMETERS);
 		createEReference(lambdaExpressionEClass, LAMBDA_EXPRESSION__EXPRESSION);
 
+		lambdaExpressionParameterEClass = createEClass(LAMBDA_EXPRESSION_PARAMETER);
+
 		algorithmExpressionEClass = createEClass(ALGORITHM_EXPRESSION);
 		createEReference(algorithmExpressionEClass, ALGORITHM_EXPRESSION__BODY);
 
@@ -3838,6 +3856,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		functionCallEClass.getESuperTypes().add(this.getFeatureCall());
 		memberVariableAccessEClass.getESuperTypes().add(this.getExpression());
 		lambdaExpressionEClass.getESuperTypes().add(this.getExpression());
+		lambdaExpressionParameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		algorithmExpressionEClass.getESuperTypes().add(this.getExpression());
 		invalidExpressionEClass.getESuperTypes().add(this.getExpression());
 		compoundEClass.getESuperTypes().add(this.getStatement());
@@ -4120,8 +4139,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getMemberVariableAccess_MemberVariable(), ecorePackage.getEString(), "memberVariable", null, 0, 1, MemberVariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(lambdaExpressionEClass, LambdaExpression.class, "LambdaExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLambdaExpression_Parameters(), this.getInputParameterDeclaration(), null, "parameters", null, 0, -1, LambdaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLambdaExpression_Parameters(), this.getLambdaExpressionParameter(), null, "parameters", null, 0, -1, LambdaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLambdaExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, LambdaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(lambdaExpressionParameterEClass, LambdaExpressionParameter.class, "LambdaExpressionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlgorithmExpression_Body(), this.getCompound(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

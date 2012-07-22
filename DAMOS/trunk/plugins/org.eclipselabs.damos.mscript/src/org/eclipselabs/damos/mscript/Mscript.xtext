@@ -174,8 +174,11 @@ Expression:
 	LambdaExpression | LetExpression | IfExpression | SwitchExpression | RangeExpression;
 
 LambdaExpression:
-	(parameters+=InputParameterDeclaration | '(' (parameters+=InputParameterDeclaration (',' parameters+=InputParameterDeclaration)*)? ')') '->' expression=Expression;
-	
+	(parameters+=LambdaExpressionParameter | '(' (parameters+=LambdaExpressionParameter (',' parameters+=LambdaExpressionParameter)*)? ')') '->' expression=Expression;
+
+LambdaExpressionParameter:
+	name=ValidID;
+
 LetExpression:
 	'let' assignments+=LetExpressionAssignment (',' assignments+=LetExpressionAssignment)* 'in' target=Expression;
 	

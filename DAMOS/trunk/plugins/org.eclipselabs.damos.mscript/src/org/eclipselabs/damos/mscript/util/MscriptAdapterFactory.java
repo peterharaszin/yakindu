@@ -341,6 +341,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createLambdaExpressionAdapter();
 			}
 			@Override
+			public Adapter caseLambdaExpressionParameter(LambdaExpressionParameter object) {
+				return createLambdaExpressionParameterAdapter();
+			}
+			@Override
 			public Adapter caseAlgorithmExpression(AlgorithmExpression object) {
 				return createAlgorithmExpressionAdapter();
 			}
@@ -1509,6 +1513,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLambdaExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LambdaExpressionParameter <em>Lambda Expression Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.LambdaExpressionParameter
+	 * @generated
+	 */
+	public Adapter createLambdaExpressionParameterAdapter() {
 		return null;
 	}
 

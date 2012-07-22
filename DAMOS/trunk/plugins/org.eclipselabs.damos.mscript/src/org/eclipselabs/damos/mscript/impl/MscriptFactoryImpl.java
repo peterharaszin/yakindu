@@ -116,6 +116,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.FUNCTION_CALL: return createFunctionCall();
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS: return createMemberVariableAccess();
 			case MscriptPackage.LAMBDA_EXPRESSION: return createLambdaExpression();
+			case MscriptPackage.LAMBDA_EXPRESSION_PARAMETER: return createLambdaExpressionParameter();
 			case MscriptPackage.ALGORITHM_EXPRESSION: return createAlgorithmExpression();
 			case MscriptPackage.INVALID_EXPRESSION: return createInvalidExpression();
 			case MscriptPackage.COMPOUND: return createCompound();
@@ -790,6 +791,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public LambdaExpression createLambdaExpression() {
 		LambdaExpressionImpl lambdaExpression = new LambdaExpressionImpl();
 		return lambdaExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LambdaExpressionParameter createLambdaExpressionParameter() {
+		LambdaExpressionParameterImpl lambdaExpressionParameter = new LambdaExpressionParameterImpl();
+		return lambdaExpressionParameter;
 	}
 
 	/**

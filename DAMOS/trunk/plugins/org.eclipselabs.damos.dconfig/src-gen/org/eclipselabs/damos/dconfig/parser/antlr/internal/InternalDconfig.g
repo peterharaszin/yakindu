@@ -4518,9 +4518,9 @@ ruleLambdaExpression returns [EObject current=null]
 (((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_0_0()); 
 	    }
-		lv_parameters_0_0=ruleInputParameterDeclaration		{
+		lv_parameters_0_0=ruleLambdaExpressionParameter		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaExpressionRule());
 	        }
@@ -4528,7 +4528,7 @@ ruleLambdaExpression returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_0_0, 
-        		"InputParameterDeclaration");
+        		"LambdaExpressionParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4541,9 +4541,9 @@ ruleLambdaExpression returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0()); 
+	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0()); 
 	    }
-		lv_parameters_2_0=ruleInputParameterDeclaration		{
+		lv_parameters_2_0=ruleLambdaExpressionParameter		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaExpressionRule());
 	        }
@@ -4551,7 +4551,7 @@ ruleLambdaExpression returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_2_0, 
-        		"InputParameterDeclaration");
+        		"LambdaExpressionParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4563,9 +4563,9 @@ ruleLambdaExpression returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0()); 
 	    }
-		lv_parameters_4_0=ruleInputParameterDeclaration		{
+		lv_parameters_4_0=ruleLambdaExpressionParameter		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaExpressionRule());
 	        }
@@ -4573,7 +4573,7 @@ ruleLambdaExpression returns [EObject current=null]
        			$current, 
        			"parameters",
         		lv_parameters_4_0, 
-        		"InputParameterDeclaration");
+        		"LambdaExpressionParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4605,6 +4605,45 @@ ruleLambdaExpression returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleLambdaExpressionParameter
+entryRuleLambdaExpressionParameter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLambdaExpressionParameterRule()); }
+	 iv_ruleLambdaExpressionParameter=ruleLambdaExpressionParameter 
+	 { $current=$iv_ruleLambdaExpressionParameter.current; } 
+	 EOF 
+;
+
+// Rule LambdaExpressionParameter
+ruleLambdaExpressionParameter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLambdaExpressionParameterAccess().getNameValidIDParserRuleCall_0()); 
+	    }
+		lv_name_0_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLambdaExpressionParameterRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"ValidID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
 ;
 
 

@@ -597,6 +597,15 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.LAMBDA_EXPRESSION_PARAMETER: {
+				LambdaExpressionParameter lambdaExpressionParameter = (LambdaExpressionParameter)theEObject;
+				T result = caseLambdaExpressionParameter(lambdaExpressionParameter);
+				if (result == null) result = caseVariableDeclaration(lambdaExpressionParameter);
+				if (result == null) result = caseCallableElement(lambdaExpressionParameter);
+				if (result == null) result = caseEvaluable(lambdaExpressionParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.ALGORITHM_EXPRESSION: {
 				AlgorithmExpression algorithmExpression = (AlgorithmExpression)theEObject;
 				T result = caseAlgorithmExpression(algorithmExpression);
@@ -2008,6 +2017,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLambdaExpression(LambdaExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Expression Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Expression Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaExpressionParameter(LambdaExpressionParameter object) {
 		return null;
 	}
 

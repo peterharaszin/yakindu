@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 public interface LambdaExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.InputParameterDeclaration}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.LambdaExpressionParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -36,7 +36,7 @@ public interface LambdaExpression extends Expression {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InputParameterDeclaration> getParameters();
+	EList<LambdaExpressionParameter> getParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.

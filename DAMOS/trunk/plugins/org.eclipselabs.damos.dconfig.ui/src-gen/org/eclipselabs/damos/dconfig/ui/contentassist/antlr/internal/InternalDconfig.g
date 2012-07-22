@@ -1887,6 +1887,34 @@ finally {
 
 
 
+// Entry rule entryRuleLambdaExpressionParameter
+entryRuleLambdaExpressionParameter 
+:
+{ before(grammarAccess.getLambdaExpressionParameterRule()); }
+	 ruleLambdaExpressionParameter
+{ after(grammarAccess.getLambdaExpressionParameterRule()); } 
+	 EOF 
+;
+
+// Rule LambdaExpressionParameter
+ruleLambdaExpressionParameter
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getLambdaExpressionParameterAccess().getNameAssignment()); }
+(rule__LambdaExpressionParameter__NameAssignment)
+{ after(grammarAccess.getLambdaExpressionParameterAccess().getNameAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleLetExpression
 entryRuleLetExpression 
 :
@@ -27953,8 +27981,8 @@ rule__LambdaExpression__ParametersAssignment_0_0
     }
 :
 (
-{ before(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_0_0()); }
-	ruleInputParameterDeclaration{ after(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_0_0()); }
+{ before(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_0_0()); }
+	ruleLambdaExpressionParameter{ after(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_0_0()); }
 )
 
 ;
@@ -27968,8 +27996,8 @@ rule__LambdaExpression__ParametersAssignment_0_1_1_0
     }
 :
 (
-{ before(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0()); }
-	ruleInputParameterDeclaration{ after(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0()); }
+{ before(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0()); }
+	ruleLambdaExpressionParameter{ after(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0()); }
 )
 
 ;
@@ -27983,8 +28011,8 @@ rule__LambdaExpression__ParametersAssignment_0_1_1_1_1
     }
 :
 (
-{ before(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0()); }
-	ruleInputParameterDeclaration{ after(grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0()); }
+{ before(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0()); }
+	ruleLambdaExpressionParameter{ after(grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0()); }
 )
 
 ;
@@ -28000,6 +28028,21 @@ rule__LambdaExpression__ExpressionAssignment_2
 (
 { before(grammarAccess.getLambdaExpressionAccess().getExpressionExpressionParserRuleCall_2_0()); }
 	ruleExpression{ after(grammarAccess.getLambdaExpressionAccess().getExpressionExpressionParserRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LambdaExpressionParameter__NameAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLambdaExpressionParameterAccess().getNameValidIDParserRuleCall_0()); }
+	ruleValidID{ after(grammarAccess.getLambdaExpressionParameterAccess().getNameValidIDParserRuleCall_0()); }
 )
 
 ;

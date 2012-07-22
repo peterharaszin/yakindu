@@ -957,7 +957,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 102;
+	int EXPRESSION = 103;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -2597,6 +2597,34 @@ public interface MscriptPackage extends EPackage {
 	int LAMBDA_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LambdaExpressionParameterImpl <em>Lambda Expression Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.LambdaExpressionParameterImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLambdaExpressionParameter()
+	 * @generated
+	 */
+	int LAMBDA_EXPRESSION_PARAMETER = 68;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_EXPRESSION_PARAMETER__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Lambda Expression Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_EXPRESSION_PARAMETER_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.AlgorithmExpressionImpl <em>Algorithm Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2604,7 +2632,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAlgorithmExpression()
 	 * @generated
 	 */
-	int ALGORITHM_EXPRESSION = 68;
+	int ALGORITHM_EXPRESSION = 69;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -2632,7 +2660,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getInvalidExpression()
 	 * @generated
 	 */
-	int INVALID_EXPRESSION = 69;
+	int INVALID_EXPRESSION = 70;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Expression</em>' class.
@@ -2651,7 +2679,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 71;
+	int STATEMENT = 72;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -2670,7 +2698,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 70;
+	int COMPOUND = 71;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -2698,7 +2726,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssignment()
 	 * @generated
 	 */
-	int ASSIGNMENT = 72;
+	int ASSIGNMENT = 73;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -2735,7 +2763,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLocalVariableDeclaration()
 	 * @generated
 	 */
-	int LOCAL_VARIABLE_DECLARATION = 73;
+	int LOCAL_VARIABLE_DECLARATION = 74;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2772,7 +2800,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIfStatement()
 	 * @generated
 	 */
-	int IF_STATEMENT = 74;
+	int IF_STATEMENT = 75;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2818,7 +2846,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getWhileStatement()
 	 * @generated
 	 */
-	int WHILE_STATEMENT = 75;
+	int WHILE_STATEMENT = 76;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2855,7 +2883,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDoWhileStatement()
 	 * @generated
 	 */
-	int DO_WHILE_STATEMENT = 76;
+	int DO_WHILE_STATEMENT = 77;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2892,7 +2920,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getForStatement()
 	 * @generated
 	 */
-	int FOR_STATEMENT = 77;
+	int FOR_STATEMENT = 78;
 
 	/**
 	 * The feature id for the '<em><b>Iteration Variable</b></em>' containment reference.
@@ -2938,7 +2966,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getContinueStatement()
 	 * @generated
 	 */
-	int CONTINUE_STATEMENT = 78;
+	int CONTINUE_STATEMENT = 79;
 
 	/**
 	 * The number of structural features of the '<em>Continue Statement</em>' class.
@@ -2957,7 +2985,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBreakStatement()
 	 * @generated
 	 */
-	int BREAK_STATEMENT = 79;
+	int BREAK_STATEMENT = 80;
 
 	/**
 	 * The number of structural features of the '<em>Break Statement</em>' class.
@@ -2976,7 +3004,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getReturnStatement()
 	 * @generated
 	 */
-	int RETURN_STATEMENT = 80;
+	int RETURN_STATEMENT = 81;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3004,7 +3032,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBuiltinDeclaration()
 	 * @generated
 	 */
-	int BUILTIN_DECLARATION = 81;
+	int BUILTIN_DECLARATION = 82;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3032,7 +3060,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBuiltinFunctionDeclaration()
 	 * @generated
 	 */
-	int BUILTIN_FUNCTION_DECLARATION = 82;
+	int BUILTIN_FUNCTION_DECLARATION = 83;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3060,7 +3088,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBuiltinVariableDeclaration()
 	 * @generated
 	 */
-	int BUILTIN_VARIABLE_DECLARATION = 83;
+	int BUILTIN_VARIABLE_DECLARATION = 84;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3088,7 +3116,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 84;
+	int TYPE = 85;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -3107,7 +3135,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getInvalidType()
 	 * @generated
 	 */
-	int INVALID_TYPE = 85;
+	int INVALID_TYPE = 86;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type</em>' class.
@@ -3126,7 +3154,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAnyType()
 	 * @generated
 	 */
-	int ANY_TYPE = 86;
+	int ANY_TYPE = 87;
 
 	/**
 	 * The number of structural features of the '<em>Any Type</em>' class.
@@ -3145,7 +3173,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 87;
+	int DATA_TYPE = 88;
 
 	/**
 	 * The number of structural features of the '<em>Data Type</em>' class.
@@ -3164,7 +3192,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitType()
 	 * @generated
 	 */
-	int UNIT_TYPE = 88;
+	int UNIT_TYPE = 89;
 
 	/**
 	 * The number of structural features of the '<em>Unit Type</em>' class.
@@ -3183,7 +3211,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionType()
 	 * @generated
 	 */
-	int FUNCTION_TYPE = 89;
+	int FUNCTION_TYPE = 90;
 
 	/**
 	 * The number of structural features of the '<em>Function Type</em>' class.
@@ -3202,7 +3230,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 90;
+	int PRIMITIVE_TYPE = 91;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -3221,7 +3249,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getNumericType()
 	 * @generated
 	 */
-	int NUMERIC_TYPE = 91;
+	int NUMERIC_TYPE = 92;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3249,7 +3277,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealType()
 	 * @generated
 	 */
-	int REAL_TYPE = 92;
+	int REAL_TYPE = 93;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3277,7 +3305,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerType()
 	 * @generated
 	 */
-	int INTEGER_TYPE = 93;
+	int INTEGER_TYPE = 94;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3305,7 +3333,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getComplexType()
 	 * @generated
 	 */
-	int COMPLEX_TYPE = 94;
+	int COMPLEX_TYPE = 95;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3333,7 +3361,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getGaussianType()
 	 * @generated
 	 */
-	int GAUSSIAN_TYPE = 95;
+	int GAUSSIAN_TYPE = 96;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3361,7 +3389,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBooleanType()
 	 * @generated
 	 */
-	int BOOLEAN_TYPE = 96;
+	int BOOLEAN_TYPE = 97;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Type</em>' class.
@@ -3380,7 +3408,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringType()
 	 * @generated
 	 */
-	int STRING_TYPE = 97;
+	int STRING_TYPE = 98;
 
 	/**
 	 * The number of structural features of the '<em>String Type</em>' class.
@@ -3399,7 +3427,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getArrayType()
 	 * @generated
 	 */
-	int ARRAY_TYPE = 98;
+	int ARRAY_TYPE = 99;
 
 	/**
 	 * The feature id for the '<em><b>Element Type Specifier</b></em>' containment reference.
@@ -3490,7 +3518,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getArrayDimension()
 	 * @generated
 	 */
-	int ARRAY_DIMENSION = 99;
+	int ARRAY_DIMENSION = 100;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' containment reference.
@@ -3518,7 +3546,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructType()
 	 * @generated
 	 */
-	int STRUCT_TYPE = 100;
+	int STRUCT_TYPE = 101;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -3546,7 +3574,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructMember()
 	 * @generated
 	 */
-	int STRUCT_MEMBER = 101;
+	int STRUCT_MEMBER = 102;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3583,7 +3611,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnit()
 	 * @generated
 	 */
-	int UNIT = 103;
+	int UNIT = 104;
 
 	/**
 	 * The feature id for the '<em><b>Numerator</b></em>' containment reference.
@@ -3638,7 +3666,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitProduct()
 	 * @generated
 	 */
-	int UNIT_PRODUCT = 104;
+	int UNIT_PRODUCT = 105;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3666,7 +3694,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitNumerator()
 	 * @generated
 	 */
-	int UNIT_NUMERATOR = 105;
+	int UNIT_NUMERATOR = 106;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3694,7 +3722,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominator()
 	 * @generated
 	 */
-	int UNIT_DENOMINATOR = 106;
+	int UNIT_DENOMINATOR = 107;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3722,7 +3750,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitFactor()
 	 * @generated
 	 */
-	int UNIT_FACTOR = 107;
+	int UNIT_FACTOR = 108;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -3759,7 +3787,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLiteral()
 	 * @generated
 	 */
-	int LITERAL = 108;
+	int LITERAL = 109;
 
 	/**
 	 * The number of structural features of the '<em>Literal</em>' class.
@@ -3778,7 +3806,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getNumericLiteral()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL = 109;
+	int NUMERIC_LITERAL = 110;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3806,7 +3834,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 110;
+	int REAL_LITERAL = 111;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3852,7 +3880,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerLiteral()
 	 * @generated
 	 */
-	int INTEGER_LITERAL = 111;
+	int INTEGER_LITERAL = 112;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -3898,7 +3926,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 112;
+	int BOOLEAN_LITERAL = 113;
 
 	/**
 	 * The feature id for the '<em><b>True</b></em>' attribute.
@@ -3926,7 +3954,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 113;
+	int STRING_LITERAL = 114;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -3954,7 +3982,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateExpression()
 	 * @generated
 	 */
-	int TEMPLATE_EXPRESSION = 114;
+	int TEMPLATE_EXPRESSION = 115;
 
 	/**
 	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
@@ -3982,7 +4010,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateSegment()
 	 * @generated
 	 */
-	int TEMPLATE_SEGMENT = 115;
+	int TEMPLATE_SEGMENT = 116;
 
 	/**
 	 * The number of structural features of the '<em>Template Segment</em>' class.
@@ -4001,7 +4029,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantTemplateSegment()
 	 * @generated
 	 */
-	int CONSTANT_TEMPLATE_SEGMENT = 116;
+	int CONSTANT_TEMPLATE_SEGMENT = 117;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -4038,7 +4066,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpressionTemplateSegment()
 	 * @generated
 	 */
-	int EXPRESSION_TEMPLATE_SEGMENT = 117;
+	int EXPRESSION_TEMPLATE_SEGMENT = 118;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -4075,7 +4103,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionKind()
 	 * @generated
 	 */
-	int FUNCTION_KIND = 118;
+	int FUNCTION_KIND = 119;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AssertionStatusKind <em>Assertion Status Kind</em>}' enum.
@@ -4085,7 +4113,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssertionStatusKind()
 	 * @generated
 	 */
-	int ASSERTION_STATUS_KIND = 119;
+	int ASSERTION_STATUS_KIND = 120;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
@@ -4095,7 +4123,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 120;
+	int OPERATOR_KIND = 121;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -4105,7 +4133,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 121;
+	int REAL_DATA = 122;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -4115,7 +4143,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 122;
+	int INTEGER_DATA = 123;
 
 
 	/**
@@ -5842,6 +5870,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLambdaExpression_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LambdaExpressionParameter <em>Lambda Expression Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lambda Expression Parameter</em>'.
+	 * @see org.eclipselabs.damos.mscript.LambdaExpressionParameter
+	 * @generated
+	 */
+	EClass getLambdaExpressionParameter();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.AlgorithmExpression <em>Algorithm Expression</em>}'.
@@ -8384,6 +8422,16 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LAMBDA_EXPRESSION__EXPRESSION = eINSTANCE.getLambdaExpression_Expression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LambdaExpressionParameterImpl <em>Lambda Expression Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.LambdaExpressionParameterImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLambdaExpressionParameter()
+		 * @generated
+		 */
+		EClass LAMBDA_EXPRESSION_PARAMETER = eINSTANCE.getLambdaExpressionParameter();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.AlgorithmExpressionImpl <em>Algorithm Expression</em>}' class.

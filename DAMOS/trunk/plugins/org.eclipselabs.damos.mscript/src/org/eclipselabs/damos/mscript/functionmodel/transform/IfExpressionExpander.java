@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.IfStatement;
@@ -50,14 +50,14 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		ifStatement.setCondition(conditionExpression);
 		context.getCompound().getStatements().add(ifStatement);
 		
-		Compound thenStatement = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement thenStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		ifStatement.setThenStatement(thenStatement);
 		context.enterScope();
 		context.setCompound(thenStatement);
 		transformer.transform(ifExpression.getThenExpression(), targets);
 		context.leaveScope();
 		
-		Compound elseStatement = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement elseStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		ifStatement.setElseStatement(elseStatement);
 		context.enterScope();
 		context.setCompound(elseStatement);

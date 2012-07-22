@@ -6666,9 +6666,9 @@ ruleAlgorithmExpression returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAlgorithmExpressionAccess().getBodyCompoundParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getAlgorithmExpressionAccess().getBodyCompoundStatementParserRuleCall_2_0()); 
 	    }
-		lv_body_2_0=ruleCompound		{
+		lv_body_2_0=ruleCompoundStatement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAlgorithmExpressionRule());
 	        }
@@ -6676,7 +6676,7 @@ ruleAlgorithmExpression returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_2_0, 
-        		"Compound");
+        		"CompoundStatement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6688,38 +6688,38 @@ ruleAlgorithmExpression returns [EObject current=null]
 
 
 
-// Entry rule entryRuleCompound
-entryRuleCompound returns [EObject current=null] 
+// Entry rule entryRuleCompoundStatement
+entryRuleCompoundStatement returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getCompoundRule()); }
-	 iv_ruleCompound=ruleCompound 
-	 { $current=$iv_ruleCompound.current; } 
+	{ newCompositeNode(grammarAccess.getCompoundStatementRule()); }
+	 iv_ruleCompoundStatement=ruleCompoundStatement 
+	 { $current=$iv_ruleCompoundStatement.current; } 
 	 EOF 
 ;
 
-// Rule Compound
-ruleCompound returns [EObject current=null] 
+// Rule CompoundStatement
+ruleCompoundStatement returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getCompoundAccess().getCompoundAction_0(),
+            grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0(),
             $current);
     }
 )	otherlv_1='{' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getCompoundAccess().getLeftCurlyBracketKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getCompoundStatementAccess().getLeftCurlyBracketKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCompoundAccess().getStatementsStatementParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getCompoundStatementAccess().getStatementsStatementParserRuleCall_2_0()); 
 	    }
 		lv_statements_2_0=ruleStatement		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCompoundRule());
+	            $current = createModelElementForParent(grammarAccess.getCompoundStatementRule());
 	        }
        		add(
        			$current, 
@@ -6732,7 +6732,7 @@ ruleCompound returns [EObject current=null]
 )
 )*	otherlv_3='}' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getCompoundAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getCompoundStatementAccess().getRightCurlyBracketKeyword_3());
     }
 )
 ;
@@ -6757,11 +6757,11 @@ ruleStatement returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getStatementAccess().getCompoundParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getStatementAccess().getCompoundStatementParserRuleCall_0()); 
     }
-    this_Compound_0=ruleCompound
+    this_CompoundStatement_0=ruleCompoundStatement
     { 
-        $current = $this_Compound_0.current; 
+        $current = $this_CompoundStatement_0.current; 
         afterParserOrEnumRuleCall();
     }
 

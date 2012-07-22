@@ -622,7 +622,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		computationCompoundEClass.getESuperTypes().add(theMscriptPackage.getCompound());
+		computationCompoundEClass.getESuperTypes().add(theMscriptPackage.getCompoundStatement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(functionDescriptorEClass, FunctionDescriptor.class, "FunctionDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -730,7 +730,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 
 		initEClass(functionInstanceEClass, FunctionInstance.class, "FunctionInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionInstance_FunctionDeclaration(), theMscriptPackage.getFunctionDeclaration(), null, "functionDeclaration", null, 1, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionInstance_InitializationCompound(), theMscriptPackage.getCompound(), null, "initializationCompound", null, 0, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionInstance_InitializationCompound(), theMscriptPackage.getCompoundStatement(), null, "initializationCompound", null, 0, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionInstance_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computationCompoundEClass, ComputationCompound.class, "ComputationCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

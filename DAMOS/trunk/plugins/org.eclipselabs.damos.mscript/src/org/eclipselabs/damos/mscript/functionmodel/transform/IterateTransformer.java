@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 import java.util.List;
 
 import org.eclipse.core.runtime.MultiStatus;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IterationCall;
@@ -60,7 +60,7 @@ public class IterateTransformer implements IIterationCallTransformer {
 		forStatement.setIterationVariable(transformedIterationVariable);
 		forStatement.setCollectionExpression(collectionExpression);
 
-		Compound body = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 		context.enterScope();
 		context.setCompound(body);
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(

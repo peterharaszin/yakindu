@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
@@ -37,13 +37,13 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class CompoundInterpreter implements ICompoundInterpreter {
+public class CompoundStatementInterpreter implements ICompoundStatementInterpreter {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.ICompoundInterpreter#execute(org.eclipselabs.mscript.language.interpreter.IInterpreterContext, org.eclipselabs.mscript.language.il.Compound)
 	 */
-	public void execute(IInterpreterContext context, Compound compound) {
-		new CompoundInterpreterSwitch(context).doSwitch(compound);
+	public void execute(IInterpreterContext context, CompoundStatement compoundStatement) {
+		new CompoundInterpreterSwitch(context).doSwitch(compoundStatement);
 	}
 	
 	private static class CompoundInterpreterSwitch extends FunctionModelSwitch<Boolean> {
@@ -127,13 +127,10 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 				return true;
 			}
 		
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
-			 */
 			@Override
-			public Boolean caseCompound(Compound compound) {
+			public Boolean caseCompoundStatement(CompoundStatement compoundStatement) {
 				context.enterVariableScope();
-				for (Statement statement : compound.getStatements()) {
+				for (Statement statement : compoundStatement.getStatements()) {
 					CompoundInterpreterSwitch.this.doSwitch(statement);
 				}
 				context.leaveVariableScope();

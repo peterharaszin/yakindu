@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import org.eclipselabs.damos.mscript.Compound;
  */
 public interface ICompoundStatementGenerator {
 
-	CharSequence generate(IMscriptGeneratorContext context, Compound compound);
+	CharSequence generate(IMscriptGeneratorContext context, CompoundStatement compoundStatement);
 
 }

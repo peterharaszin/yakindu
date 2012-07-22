@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.Statement;
@@ -27,13 +27,13 @@ import org.eclipselabs.damos.mscript.internal.operations.CompoundOperations;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CompoundImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CompoundStatementImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CompoundImpl extends StatementImpl implements Compound {
+public class CompoundStatementImpl extends StatementImpl implements CompoundStatement {
 	/**
 	 * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompoundImpl() {
+	protected CompoundStatementImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.COMPOUND;
+		return MscriptPackage.Literals.COMPOUND_STATEMENT;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	 */
 	public EList<Statement> getStatements() {
 		if (statements == null) {
-			statements = new EObjectContainmentEList<Statement>(Statement.class, this, MscriptPackage.COMPOUND__STATEMENTS);
+			statements = new EObjectContainmentEList<Statement>(Statement.class, this, MscriptPackage.COMPOUND_STATEMENT__STATEMENTS);
 		}
 		return statements;
 	}
@@ -92,7 +92,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.COMPOUND__STATEMENTS:
+			case MscriptPackage.COMPOUND_STATEMENT__STATEMENTS:
 				return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -106,7 +106,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.COMPOUND__STATEMENTS:
+			case MscriptPackage.COMPOUND_STATEMENT__STATEMENTS:
 				return getStatements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,7 +121,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.COMPOUND__STATEMENTS:
+			case MscriptPackage.COMPOUND_STATEMENT__STATEMENTS:
 				getStatements().clear();
 				getStatements().addAll((Collection<? extends Statement>)newValue);
 				return;
@@ -137,7 +137,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.COMPOUND__STATEMENTS:
+			case MscriptPackage.COMPOUND_STATEMENT__STATEMENTS:
 				getStatements().clear();
 				return;
 		}
@@ -152,7 +152,7 @@ public class CompoundImpl extends StatementImpl implements Compound {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.COMPOUND__STATEMENTS:
+			case MscriptPackage.COMPOUND_STATEMENT__STATEMENTS:
 				return statements != null && !statements.isEmpty();
 		}
 		return super.eIsSet(featureID);

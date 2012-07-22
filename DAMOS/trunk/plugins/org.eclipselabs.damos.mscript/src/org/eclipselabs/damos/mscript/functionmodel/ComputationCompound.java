@@ -7,7 +7,7 @@
 package org.eclipselabs.damos.mscript.functionmodel;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  * @model
  * @generated
  */
-public interface ComputationCompound extends Compound {
+public interface ComputationCompound extends CompoundStatement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.InputParameterDeclaration}.

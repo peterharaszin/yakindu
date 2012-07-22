@@ -148,7 +148,7 @@ protected class ThisRootNode extends RootToken {
 			case 114: return new ParenthesizedExpression_Group(this, this, 114, inst);
 			case 115: return new EndExpression_Group(this, this, 115, inst);
 			case 116: return new AlgorithmExpression_Group(this, this, 116, inst);
-			case 117: return new Compound_Group(this, this, 117, inst);
+			case 117: return new CompoundStatement_Group(this, this, 117, inst);
 			case 118: return new Statement_Alternatives(this, this, 118, inst);
 			case 119: return new Assignment_Group(this, this, 119, inst);
 			case 120: return new AssignableMemberFeatureCall_Group(this, this, 120, inst);
@@ -24201,11 +24201,11 @@ protected class EndExpression_EndKeyword_1 extends KeywordToken  {
 /************ begin Rule AlgorithmExpression ****************
  *
  * AlgorithmExpression returns Expression:
- * 	{AlgorithmExpression} "algorithm" body=Compound;
+ * 	{AlgorithmExpression} "algorithm" body=CompoundStatement;
  *
  **/
 
-// {AlgorithmExpression} "algorithm" body=Compound
+// {AlgorithmExpression} "algorithm" body=CompoundStatement
 protected class AlgorithmExpression_Group extends GroupToken {
 	
 	public AlgorithmExpression_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -24282,7 +24282,7 @@ protected class AlgorithmExpression_AlgorithmKeyword_1 extends KeywordToken  {
 
 }
 
-// body=Compound
+// body=CompoundStatement
 protected class AlgorithmExpression_BodyAssignment_2 extends AssignmentToken  {
 	
 	public AlgorithmExpression_BodyAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -24297,7 +24297,7 @@ protected class AlgorithmExpression_BodyAssignment_2 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Compound_Group(this, this, 0, inst);
+			case 0: return new CompoundStatement_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -24308,9 +24308,9 @@ protected class AlgorithmExpression_BodyAssignment_2 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("body");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompoundRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCompoundStatementRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getAlgorithmExpressionAccess().getBodyCompoundParserRuleCall_2_0(); 
+				element = grammarAccess.getAlgorithmExpressionAccess().getBodyCompoundStatementParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -24332,52 +24332,52 @@ protected class AlgorithmExpression_BodyAssignment_2 extends AssignmentToken  {
 /************ end Rule AlgorithmExpression ****************/
 
 
-/************ begin Rule Compound ****************
+/************ begin Rule CompoundStatement ****************
  *
- * Compound:
- * 	{Compound} "{" statements+=Statement* "}";
+ * CompoundStatement:
+ * 	{CompoundStatement} "{" statements+=Statement* "}";
  *
  **/
 
-// {Compound} "{" statements+=Statement* "}"
-protected class Compound_Group extends GroupToken {
+// {CompoundStatement} "{" statements+=Statement* "}"
+protected class CompoundStatement_Group extends GroupToken {
 	
-	public Compound_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompoundStatement_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getCompoundAccess().getGroup();
+		return grammarAccess.getCompoundStatementAccess().getGroup();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Compound_RightCurlyBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CompoundStatement_RightCurlyBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getCompoundAccess().getCompoundAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// {Compound}
-protected class Compound_CompoundAction_0 extends ActionToken  {
+// {CompoundStatement}
+protected class CompoundStatement_CompoundStatementAction_0 extends ActionToken  {
 
-	public Compound_CompoundAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompoundStatement_CompoundStatementAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Action getGrammarElement() {
-		return grammarAccess.getCompoundAccess().getCompoundAction_0();
+		return grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0();
 	}
 
     @Override
@@ -24395,21 +24395,21 @@ protected class Compound_CompoundAction_0 extends ActionToken  {
 }
 
 // "{"
-protected class Compound_LeftCurlyBracketKeyword_1 extends KeywordToken  {
+protected class CompoundStatement_LeftCurlyBracketKeyword_1 extends KeywordToken  {
 	
-	public Compound_LeftCurlyBracketKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompoundStatement_LeftCurlyBracketKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCompoundAccess().getLeftCurlyBracketKeyword_1();
+		return grammarAccess.getCompoundStatementAccess().getLeftCurlyBracketKeyword_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Compound_CompoundAction_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CompoundStatement_CompoundStatementAction_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -24417,15 +24417,15 @@ protected class Compound_LeftCurlyBracketKeyword_1 extends KeywordToken  {
 }
 
 // statements+=Statement*
-protected class Compound_StatementsAssignment_2 extends AssignmentToken  {
+protected class CompoundStatement_StatementsAssignment_2 extends AssignmentToken  {
 	
-	public Compound_StatementsAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompoundStatement_StatementsAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundAccess().getStatementsAssignment_2();
+		return grammarAccess.getCompoundStatementAccess().getStatementsAssignment_2();
 	}
 
     @Override
@@ -24444,7 +24444,7 @@ protected class Compound_StatementsAssignment_2 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStatementRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCompoundAccess().getStatementsStatementParserRuleCall_2_0(); 
+				element = grammarAccess.getCompoundStatementAccess().getStatementsStatementParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -24456,30 +24456,30 @@ protected class Compound_StatementsAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Compound_StatementsAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Compound_LeftCurlyBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new CompoundStatement_StatementsAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new CompoundStatement_LeftCurlyBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // "}"
-protected class Compound_RightCurlyBracketKeyword_3 extends KeywordToken  {
+protected class CompoundStatement_RightCurlyBracketKeyword_3 extends KeywordToken  {
 	
-	public Compound_RightCurlyBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompoundStatement_RightCurlyBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCompoundAccess().getRightCurlyBracketKeyword_3();
+		return grammarAccess.getCompoundStatementAccess().getRightCurlyBracketKeyword_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Compound_StatementsAssignment_2(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Compound_LeftCurlyBracketKeyword_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new CompoundStatement_StatementsAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new CompoundStatement_LeftCurlyBracketKeyword_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -24487,19 +24487,19 @@ protected class Compound_RightCurlyBracketKeyword_3 extends KeywordToken  {
 }
 
 
-/************ end Rule Compound ****************/
+/************ end Rule CompoundStatement ****************/
 
 
 /************ begin Rule Statement ****************
  *
  * Statement:
- * 	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
- * 	ContinueStatement | BreakStatement | ReturnStatement;
+ * 	CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+ * 	ForStatement | ContinueStatement | BreakStatement | ReturnStatement;
  *
  **/
 
-// Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
-// ContinueStatement | BreakStatement | ReturnStatement
+// CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+// ForStatement | ContinueStatement | BreakStatement | ReturnStatement
 protected class Statement_Alternatives extends AlternativesToken {
 
 	public Statement_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -24514,7 +24514,7 @@ protected class Statement_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Statement_CompoundParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Statement_CompoundStatementParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new Statement_AssignmentParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			case 2: return new Statement_LocalVariableDeclarationParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
 			case 3: return new Statement_IfStatementParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
@@ -24532,7 +24532,7 @@ protected class Statement_Alternatives extends AlternativesToken {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getAssignmentRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getBreakStatementAccess().getBreakStatementAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getCompoundAccess().getCompoundAction_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getContinueStatementAccess().getContinueStatementAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getDoWhileStatementRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getForStatementRule().getType().getClassifier() && 
@@ -24546,31 +24546,31 @@ protected class Statement_Alternatives extends AlternativesToken {
 
 }
 
-// Compound
-protected class Statement_CompoundParserRuleCall_0 extends RuleCallToken {
+// CompoundStatement
+protected class Statement_CompoundStatementParserRuleCall_0 extends RuleCallToken {
 	
-	public Statement_CompoundParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Statement_CompoundStatementParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getStatementAccess().getCompoundParserRuleCall_0();
+		return grammarAccess.getStatementAccess().getCompoundStatementParserRuleCall_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Compound_Group(this, this, 0, inst);
+			case 0: return new CompoundStatement_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getCompoundAccess().getCompoundAction_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getCompoundStatementAccess().getCompoundStatementAction_0().getType().getClassifier())
 			return null;
-		if(checkForRecursion(Compound_Group.class, eObjectConsumer)) return null;
+		if(checkForRecursion(CompoundStatement_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	

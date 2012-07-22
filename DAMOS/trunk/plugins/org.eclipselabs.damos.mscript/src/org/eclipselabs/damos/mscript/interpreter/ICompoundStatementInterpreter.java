@@ -11,15 +11,15 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ICompoundInterpreter {
+public interface ICompoundStatementInterpreter {
 
-	void execute(IInterpreterContext context, Compound compound);
+	void execute(IInterpreterContext context, CompoundStatement compoundStatement);
 
 }

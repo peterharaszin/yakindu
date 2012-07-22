@@ -8,7 +8,7 @@ package org.eclipselabs.damos.mscript.functionmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 
 /**
@@ -65,12 +65,12 @@ public interface FunctionInstance extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initialization Compound</em>' containment reference.
-	 * @see #setInitializationCompound(Compound)
+	 * @see #setInitializationCompound(CompoundStatement)
 	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionInstance_InitializationCompound()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Compound getInitializationCompound();
+	CompoundStatement getInitializationCompound();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}' containment reference.
@@ -80,7 +80,7 @@ public interface FunctionInstance extends EObject {
 	 * @see #getInitializationCompound()
 	 * @generated
 	 */
-	void setInitializationCompound(Compound value);
+	void setInitializationCompound(CompoundStatement value);
 
 	/**
 	 * Returns the value of the '<em><b>Computation Compounds</b></em>' containment reference list.

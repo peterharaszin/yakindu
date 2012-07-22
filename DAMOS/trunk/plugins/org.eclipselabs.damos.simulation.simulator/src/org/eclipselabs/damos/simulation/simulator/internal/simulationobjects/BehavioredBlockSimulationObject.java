@@ -26,7 +26,7 @@ import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -42,10 +42,10 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.functionmodel.transform.IFunctionDefinitionTransformerResult;
-import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.FunctionObject;
-import org.eclipselabs.damos.mscript.interpreter.ICompoundInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.ICompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -67,7 +67,7 @@ import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
  */
 public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
 
-	private final ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
+	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 
 	private boolean hasInputSockets;
 	private IValue[] messageKinds;
@@ -154,9 +154,9 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		initializeInputVariables();
 		initializeOutputVariables();
 
-		Compound initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
+		CompoundStatement initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
 		if (initializationCompound != null) {
-			compoundInterpreter.execute(interpreterContext, initializationCompound);
+			compoundStatementInterpreter.execute(interpreterContext, initializationCompound);
 		}
 		
 		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
@@ -254,7 +254,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		for (ComputationCompound compound : computeOutputsCompounds) {
-			compoundInterpreter.execute(interpreterContext, compound);
+			compoundStatementInterpreter.execute(interpreterContext, compound);
 		}
 	}
 	
@@ -277,7 +277,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	@Override
 	public void update(double t) {
 		for (ComputationCompound compound : updateCompounds) {
-			compoundInterpreter.execute(interpreterContext, compound);
+			compoundStatementInterpreter.execute(interpreterContext, compound);
 		}
 		functionObject.incrementStepIndex();
 	}

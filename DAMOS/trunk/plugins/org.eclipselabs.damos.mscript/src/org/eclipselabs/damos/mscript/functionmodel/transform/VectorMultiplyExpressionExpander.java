@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -168,7 +168,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), name));
 		context.getCompound().getStatements().add(variableDeclaration);
 		
-		Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement compoundStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		context.getCompound().getStatements().add(compoundStatement);
 
 		context.enterScope();

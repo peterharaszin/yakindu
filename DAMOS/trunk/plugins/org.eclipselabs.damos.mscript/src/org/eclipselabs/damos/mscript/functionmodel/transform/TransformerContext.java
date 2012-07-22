@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.util.Scope;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -50,12 +50,12 @@ public class TransformerContext implements ITransformerContext {
 		scope = scope.getOuterScope();
 	}
 	
-	public Compound getCompound() {
+	public CompoundStatement getCompound() {
 		return scope.getCompound();
 	}
 	
-	public void setCompound(Compound compound) {
-		scope.setCompound(compound);
+	public void setCompound(CompoundStatement compoundStatement) {
+		scope.setCompound(compoundStatement);
 	}
 	
 	public void addVariableDeclarationMapping(VariableDeclaration oldVariableDeclaration,
@@ -70,7 +70,7 @@ public class TransformerContext implements ITransformerContext {
 
 	private static class TransformerScope extends Scope<TransformerScope, String, VariableDeclaration> {
 	
-		private Compound compound;
+		private CompoundStatement compoundStatement;
 		
 		/**
 		 * 
@@ -82,15 +82,15 @@ public class TransformerContext implements ITransformerContext {
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerScope#getCompound()
 		 */
-		public Compound getCompound() {
-			return compound;
+		public CompoundStatement getCompound() {
+			return compoundStatement;
 		}
 		
 		/**
-		 * @param compound the compound to set
+		 * @param compoundStatement the compound to set
 		 */
-		public void setCompound(Compound compound) {
-			this.compound = compound;
+		public void setCompound(CompoundStatement compoundStatement) {
+			this.compoundStatement = compoundStatement;
 		}
 		
 	}

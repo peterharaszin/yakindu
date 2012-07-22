@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -37,7 +37,7 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	 * @generated
 	 * @ordered
 	 */
-	protected Compound body;
+	protected CompoundStatement body;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Compound getBody() {
+	public CompoundStatement getBody() {
 		return body;
 	}
 
@@ -72,8 +72,8 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBody(Compound newBody, NotificationChain msgs) {
-		Compound oldBody = body;
+	public NotificationChain basicSetBody(CompoundStatement newBody, NotificationChain msgs) {
+		CompoundStatement oldBody = body;
 		body = newBody;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ALGORITHM_EXPRESSION__BODY, oldBody, newBody);
@@ -87,7 +87,7 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBody(Compound newBody) {
+	public void setBody(CompoundStatement newBody) {
 		if (newBody != body) {
 			NotificationChain msgs = null;
 			if (body != null)
@@ -138,7 +138,7 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.ALGORITHM_EXPRESSION__BODY:
-				setBody((Compound)newValue);
+				setBody((CompoundStatement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,7 +153,7 @@ public class AlgorithmExpressionImpl extends ExpressionImpl implements Algorithm
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.ALGORITHM_EXPRESSION__BODY:
-				setBody((Compound)null);
+				setBody((CompoundStatement)null);
 				return;
 		}
 		super.eUnset(featureID);

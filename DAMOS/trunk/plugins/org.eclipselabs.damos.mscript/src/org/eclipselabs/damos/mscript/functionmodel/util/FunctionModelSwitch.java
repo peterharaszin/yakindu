@@ -9,7 +9,7 @@ package org.eclipselabs.damos.mscript.functionmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -123,7 +123,7 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 			case FunctionModelPackage.COMPUTATION_COMPOUND: {
 				ComputationCompound computationCompound = (ComputationCompound)theEObject;
 				T result = caseComputationCompound(computationCompound);
-				if (result == null) result = caseCompound(computationCompound);
+				if (result == null) result = caseCompoundStatement(computationCompound);
 				if (result == null) result = caseStatement(computationCompound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -268,17 +268,17 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompound(Compound object) {
+	public T caseCompoundStatement(CompoundStatement object) {
 		return null;
 	}
 

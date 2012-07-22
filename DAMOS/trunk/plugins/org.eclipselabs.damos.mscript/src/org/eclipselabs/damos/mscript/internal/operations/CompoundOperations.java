@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.internal.operations;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 
@@ -23,9 +23,9 @@ import org.eclipselabs.damos.mscript.Statement;
  */
 public class CompoundOperations {
 
-	public static EList<LocalVariableDeclaration> getLocalVariableDeclarations(Compound compound) {
+	public static EList<LocalVariableDeclaration> getLocalVariableDeclarations(CompoundStatement compoundStatement) {
 		EList<LocalVariableDeclaration> localVariableDeclarations = new BasicEList<LocalVariableDeclaration>();
-		for (Statement statement : compound.getStatements()) {
+		for (Statement statement : compoundStatement.getStatements()) {
 			if (statement instanceof LocalVariableDeclaration) {
 				localVariableDeclarations.add((LocalVariableDeclaration) statement);
 			}

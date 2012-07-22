@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.impl.CompoundImpl;
+import org.eclipselabs.damos.mscript.impl.CompoundStatementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.eclipselabs.damos.mscript.impl.CompoundImpl;
  *
  * @generated
  */
-public class ComputationCompoundImpl extends CompoundImpl implements ComputationCompound {
+public class ComputationCompoundImpl extends CompoundStatementImpl implements ComputationCompound {
 	/**
 	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' reference list.
 	 * <!-- begin-user-doc -->

@@ -135,11 +135,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionDeclaration" lowerBound="1"
         eType="ecore:EClass Mscript.ecore#//FunctionDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializationCompound"
-        eType="ecore:EClass Mscript.ecore#//Compound" containment="true"/>
+        eType="ecore:EClass Mscript.ecore#//CompoundStatement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="computationCompounds" upperBound="-1"
         eType="#//ComputationCompound" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="Mscript.ecore#//Compound">
+  <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="Mscript.ecore#//CompoundStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="ecore:EClass Mscript.ecore#//InputParameterDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"

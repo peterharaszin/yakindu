@@ -2691,14 +2691,14 @@ public interface MscriptPackage extends EPackage {
 	int STATEMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CompoundImpl <em>Compound</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.CompoundImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompound()
+	 * @see org.eclipselabs.damos.mscript.impl.CompoundStatementImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompoundStatement()
 	 * @generated
 	 */
-	int COMPOUND = 71;
+	int COMPOUND_STATEMENT = 71;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -2707,16 +2707,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND__STATEMENTS = STATEMENT_FEATURE_COUNT + 0;
+	int COMPOUND_STATEMENT__STATEMENTS = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Compound</em>' class.
+	 * The number of structural features of the '<em>Compound Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+	int COMPOUND_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.AssignmentImpl <em>Assignment</em>}' class.
@@ -5913,25 +5913,25 @@ public interface MscriptPackage extends EPackage {
 	EClass getInvalidExpression();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.Compound <em>Compound</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.CompoundStatement <em>Compound Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Compound</em>'.
-	 * @see org.eclipselabs.damos.mscript.Compound
+	 * @return the meta object for class '<em>Compound Statement</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompoundStatement
 	 * @generated
 	 */
-	EClass getCompound();
+	EClass getCompoundStatement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.Compound#getStatements <em>Statements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.CompoundStatement#getStatements <em>Statements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Statements</em>'.
-	 * @see org.eclipselabs.damos.mscript.Compound#getStatements()
-	 * @see #getCompound()
+	 * @see org.eclipselabs.damos.mscript.CompoundStatement#getStatements()
+	 * @see #getCompoundStatement()
 	 * @generated
 	 */
-	EReference getCompound_Statements();
+	EReference getCompoundStatement_Statements();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.Statement <em>Statement</em>}'.
@@ -8462,14 +8462,14 @@ public interface MscriptPackage extends EPackage {
 		EClass INVALID_EXPRESSION = eINSTANCE.getInvalidExpression();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.CompoundImpl <em>Compound</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.CompoundImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompound()
+		 * @see org.eclipselabs.damos.mscript.impl.CompoundStatementImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompoundStatement()
 		 * @generated
 		 */
-		EClass COMPOUND = eINSTANCE.getCompound();
+		EClass COMPOUND_STATEMENT = eINSTANCE.getCompoundStatement();
 
 		/**
 		 * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
@@ -8477,7 +8477,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOUND__STATEMENTS = eINSTANCE.getCompound_Statements();
+		EReference COMPOUND_STATEMENT__STATEMENTS = eINSTANCE.getCompoundStatement_Statements();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StatementImpl <em>Statement</em>}' class.

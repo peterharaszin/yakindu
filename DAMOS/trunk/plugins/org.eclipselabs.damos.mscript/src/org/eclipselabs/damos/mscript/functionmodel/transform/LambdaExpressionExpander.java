@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LambdaExpressionParameter;
@@ -45,7 +45,7 @@ public class LambdaExpressionExpander implements IExpressionTransformStrategy {
 		AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
 		context.getStaticEvaluationResult().setValue(algorithmExpression, context.getStaticEvaluationResult().getValue(lambdaExpression.getExpression()));
 		
-		Compound body = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 		algorithmExpression.setBody(body);
 		
 		InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);

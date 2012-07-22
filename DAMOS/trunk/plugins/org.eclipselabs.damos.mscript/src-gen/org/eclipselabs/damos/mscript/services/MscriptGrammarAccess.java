@@ -3899,13 +3899,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cAlgorithmExpressionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cAlgorithmKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyCompoundParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		private final RuleCall cBodyCompoundStatementParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
 		
 		//AlgorithmExpression returns Expression:
-		//	{AlgorithmExpression} "algorithm" body=Compound;
+		//	{AlgorithmExpression} "algorithm" body=CompoundStatement;
 		public ParserRule getRule() { return rule; }
 
-		//{AlgorithmExpression} "algorithm" body=Compound
+		//{AlgorithmExpression} "algorithm" body=CompoundStatement
 		public Group getGroup() { return cGroup; }
 
 		//{AlgorithmExpression}
@@ -3914,31 +3914,31 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"algorithm"
 		public Keyword getAlgorithmKeyword_1() { return cAlgorithmKeyword_1; }
 
-		//body=Compound
+		//body=CompoundStatement
 		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
 
-		//Compound
-		public RuleCall getBodyCompoundParserRuleCall_2_0() { return cBodyCompoundParserRuleCall_2_0; }
+		//CompoundStatement
+		public RuleCall getBodyCompoundStatementParserRuleCall_2_0() { return cBodyCompoundStatementParserRuleCall_2_0; }
 	}
 
-	public class CompoundElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Compound");
+	public class CompoundStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompoundStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cCompoundAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cCompoundStatementAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStatementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cStatementsStatementParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//Compound:
-		//	{Compound} "{" statements+=Statement* "}";
+		//CompoundStatement:
+		//	{CompoundStatement} "{" statements+=Statement* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Compound} "{" statements+=Statement* "}"
+		//{CompoundStatement} "{" statements+=Statement* "}"
 		public Group getGroup() { return cGroup; }
 
-		//{Compound}
-		public Action getCompoundAction_0() { return cCompoundAction_0; }
+		//{CompoundStatement}
+		public Action getCompoundStatementAction_0() { return cCompoundStatementAction_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
@@ -3956,7 +3956,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class StatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Statement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cCompoundParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCompoundStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAssignmentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cLocalVariableDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cIfStatementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
@@ -3968,16 +3968,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnStatementParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//Statement:
-		//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
-		//	ContinueStatement | BreakStatement | ReturnStatement;
+		//	CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+		//	ForStatement | ContinueStatement | BreakStatement | ReturnStatement;
 		public ParserRule getRule() { return rule; }
 
-		//Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
-		//ContinueStatement | BreakStatement | ReturnStatement
+		//CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+		//ForStatement | ContinueStatement | BreakStatement | ReturnStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//Compound
-		public RuleCall getCompoundParserRuleCall_0() { return cCompoundParserRuleCall_0; }
+		//CompoundStatement
+		public RuleCall getCompoundStatementParserRuleCall_0() { return cCompoundStatementParserRuleCall_0; }
 
 		//Assignment
 		public RuleCall getAssignmentParserRuleCall_1() { return cAssignmentParserRuleCall_1; }
@@ -5353,7 +5353,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private ParenthesizedExpressionElements pParenthesizedExpression;
 	private EndExpressionElements pEndExpression;
 	private AlgorithmExpressionElements pAlgorithmExpression;
-	private CompoundElements pCompound;
+	private CompoundStatementElements pCompoundStatement;
 	private StatementElements pStatement;
 	private AssignmentElements pAssignment;
 	private AssignableMemberFeatureCallElements pAssignableMemberFeatureCall;
@@ -6526,7 +6526,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AlgorithmExpression returns Expression:
-	//	{AlgorithmExpression} "algorithm" body=Compound;
+	//	{AlgorithmExpression} "algorithm" body=CompoundStatement;
 	public AlgorithmExpressionElements getAlgorithmExpressionAccess() {
 		return (pAlgorithmExpression != null) ? pAlgorithmExpression : (pAlgorithmExpression = new AlgorithmExpressionElements());
 	}
@@ -6535,19 +6535,19 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getAlgorithmExpressionAccess().getRule();
 	}
 
-	//Compound:
-	//	{Compound} "{" statements+=Statement* "}";
-	public CompoundElements getCompoundAccess() {
-		return (pCompound != null) ? pCompound : (pCompound = new CompoundElements());
+	//CompoundStatement:
+	//	{CompoundStatement} "{" statements+=Statement* "}";
+	public CompoundStatementElements getCompoundStatementAccess() {
+		return (pCompoundStatement != null) ? pCompoundStatement : (pCompoundStatement = new CompoundStatementElements());
 	}
 	
-	public ParserRule getCompoundRule() {
-		return getCompoundAccess().getRule();
+	public ParserRule getCompoundStatementRule() {
+		return getCompoundStatementAccess().getRule();
 	}
 
 	//Statement:
-	//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
-	//	ContinueStatement | BreakStatement | ReturnStatement;
+	//	CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+	//	ForStatement | ContinueStatement | BreakStatement | ReturnStatement;
 	public StatementElements getStatementAccess() {
 		return (pStatement != null) ? pStatement : (pStatement = new StatementElements());
 	}

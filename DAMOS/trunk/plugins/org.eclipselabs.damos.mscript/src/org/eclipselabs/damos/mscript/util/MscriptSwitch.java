@@ -622,10 +622,10 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.COMPOUND: {
-				Compound compound = (Compound)theEObject;
-				T result = caseCompound(compound);
-				if (result == null) result = caseStatement(compound);
+			case MscriptPackage.COMPOUND_STATEMENT: {
+				CompoundStatement compoundStatement = (CompoundStatement)theEObject;
+				T result = caseCompoundStatement(compoundStatement);
+				if (result == null) result = caseStatement(compoundStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2066,17 +2066,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompound(Compound object) {
+	public T caseCompoundStatement(CompoundStatement object) {
 		return null;
 	}
 

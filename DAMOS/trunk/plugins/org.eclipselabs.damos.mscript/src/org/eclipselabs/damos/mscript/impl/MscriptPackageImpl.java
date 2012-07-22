@@ -525,7 +525,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass compoundEClass = null;
+	private EClass compoundStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2460,8 +2460,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompound() {
-		return compoundEClass;
+	public EClass getCompoundStatement() {
+		return compoundStatementEClass;
 	}
 
 	/**
@@ -2469,8 +2469,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompound_Statements() {
-		return (EReference)compoundEClass.getEStructuralFeatures().get(0);
+	public EReference getCompoundStatement_Statements() {
+		return (EReference)compoundStatementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3621,8 +3621,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		invalidExpressionEClass = createEClass(INVALID_EXPRESSION);
 
-		compoundEClass = createEClass(COMPOUND);
-		createEReference(compoundEClass, COMPOUND__STATEMENTS);
+		compoundStatementEClass = createEClass(COMPOUND_STATEMENT);
+		createEReference(compoundStatementEClass, COMPOUND_STATEMENT__STATEMENTS);
 
 		statementEClass = createEClass(STATEMENT);
 
@@ -3859,7 +3859,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		lambdaExpressionParameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		algorithmExpressionEClass.getESuperTypes().add(this.getExpression());
 		invalidExpressionEClass.getESuperTypes().add(this.getExpression());
-		compoundEClass.getESuperTypes().add(this.getStatement());
+		compoundStatementEClass.getESuperTypes().add(this.getStatement());
 		assignmentEClass.getESuperTypes().add(this.getStatement());
 		localVariableDeclarationEClass.getESuperTypes().add(this.getStatement());
 		localVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
@@ -4145,14 +4145,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(lambdaExpressionParameterEClass, LambdaExpressionParameter.class, "LambdaExpressionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAlgorithmExpression_Body(), this.getCompound(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAlgorithmExpression_Body(), this.getCompoundStatement(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(invalidExpressionEClass, InvalidExpression.class, "InvalidExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompound_Statements(), this.getStatement(), null, "statements", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(compoundStatementEClass, CompoundStatement.class, "CompoundStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompoundStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, CompoundStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(compoundEClass, this.getLocalVariableDeclaration(), "getLocalVariableDeclarations", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(compoundStatementEClass, this.getLocalVariableDeclaration(), "getLocalVariableDeclarations", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

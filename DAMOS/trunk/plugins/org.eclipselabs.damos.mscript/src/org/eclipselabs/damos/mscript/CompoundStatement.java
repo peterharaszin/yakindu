@@ -16,15 +16,15 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.Compound#getStatements <em>Statements</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.CompoundStatement#getStatements <em>Statements</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompound()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompoundStatement()
  * @model
  * @generated
  */
-public interface Compound extends Statement {
+public interface CompoundStatement extends Statement {
 	/**
 	 * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Statement}.
@@ -35,7 +35,7 @@ public interface Compound extends Statement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Statements</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompound_Statements()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompoundStatement_Statements()
 	 * @model containment="true"
 	 * @generated
 	 */

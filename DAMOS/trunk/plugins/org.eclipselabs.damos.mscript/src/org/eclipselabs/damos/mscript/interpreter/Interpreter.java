@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
@@ -31,9 +31,9 @@ public class Interpreter implements IInterpreter {
 	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreter#initialize(org.eclipselabs.mscript.language.interpreter.IInterpreterContext, org.eclipselabs.mscript.language.interpreter.IFunctionObject)
 	 */
 	public void initialize(IInterpreterContext context, IFunctionObject functionObject) {
-		Compound initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
+		CompoundStatement initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
 		if (initializationCompound != null) {
-			new CompoundInterpreter().execute(context, initializationCompound);
+			new CompoundStatementInterpreter().execute(context, initializationCompound);
 		}
 	}
 	
@@ -47,10 +47,10 @@ public class Interpreter implements IInterpreter {
 			variable.setValue(0, inputValueIterator.next());
 		}
 		
-		ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
+		ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 		
 		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
-			compoundInterpreter.execute(context, compound);
+			compoundStatementInterpreter.execute(context, compound);
 		}
 		
 		List<IValue> outputValues = new ArrayList<IValue>();

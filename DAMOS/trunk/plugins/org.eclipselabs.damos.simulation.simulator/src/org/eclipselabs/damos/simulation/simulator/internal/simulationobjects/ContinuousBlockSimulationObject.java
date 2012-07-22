@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
-import org.eclipselabs.damos.mscript.interpreter.ICompoundInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.ICompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -38,7 +38,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
  */
 public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationObject {
 
-	private final ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
+	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 
 	private double[] stateVector;
 	private int[] stateVectorIndices;
@@ -139,7 +139,7 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 		} else {
 			IInterpreterContext context = new DerivativeInterpreterContext(getInterpreterContext(), y, yDot);
 			for (ComputationCompound compound : computeDerivativesCompounds) {
-				compoundInterpreter.execute(context, compound);
+				compoundStatementInterpreter.execute(context, compound);
 			}
 		}
 		

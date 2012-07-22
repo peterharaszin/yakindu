@@ -406,13 +406,13 @@ EndExpression:
 	{EndExpression} 'end';
 
 AlgorithmExpression returns Expression:
-	{AlgorithmExpression} 'algorithm' body=Compound;
+	{AlgorithmExpression} 'algorithm' body=CompoundStatement;
 
-Compound:
-	{Compound} '{' (statements+=Statement)* '}';
+CompoundStatement:
+	{CompoundStatement} '{' (statements+=Statement)* '}';
 
 Statement:
-	Compound |
+	CompoundStatement |
 	Assignment |
 	LocalVariableDeclaration |
 	IfStatement |

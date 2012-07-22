@@ -33,12 +33,12 @@ public interface AlgorithmExpression extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Body</em>' containment reference.
-	 * @see #setBody(Compound)
+	 * @see #setBody(CompoundStatement)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getAlgorithmExpression_Body()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Compound getBody();
+	CompoundStatement getBody();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.AlgorithmExpression#getBody <em>Body</em>}' containment reference.
@@ -48,6 +48,6 @@ public interface AlgorithmExpression extends Expression {
 	 * @see #getBody()
 	 * @generated
 	 */
-	void setBody(Compound value);
+	void setBody(CompoundStatement value);
 
 } // AlgorithmExpression

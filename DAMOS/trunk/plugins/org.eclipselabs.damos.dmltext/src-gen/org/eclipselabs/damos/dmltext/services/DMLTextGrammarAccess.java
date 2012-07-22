@@ -2476,7 +2476,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AlgorithmExpression returns Expression:
-	//	{AlgorithmExpression} "algorithm" body=Compound;
+	//	{AlgorithmExpression} "algorithm" body=CompoundStatement;
 	public MscriptGrammarAccess.AlgorithmExpressionElements getAlgorithmExpressionAccess() {
 		return gaMscript.getAlgorithmExpressionAccess();
 	}
@@ -2485,19 +2485,19 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getAlgorithmExpressionAccess().getRule();
 	}
 
-	//Compound:
-	//	{Compound} "{" statements+=Statement* "}";
-	public MscriptGrammarAccess.CompoundElements getCompoundAccess() {
-		return gaMscript.getCompoundAccess();
+	//CompoundStatement:
+	//	{CompoundStatement} "{" statements+=Statement* "}";
+	public MscriptGrammarAccess.CompoundStatementElements getCompoundStatementAccess() {
+		return gaMscript.getCompoundStatementAccess();
 	}
 	
-	public ParserRule getCompoundRule() {
-		return getCompoundAccess().getRule();
+	public ParserRule getCompoundStatementRule() {
+		return getCompoundStatementAccess().getRule();
 	}
 
 	//Statement:
-	//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
-	//	ContinueStatement | BreakStatement | ReturnStatement;
+	//	CompoundStatement | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement |
+	//	ForStatement | ContinueStatement | BreakStatement | ReturnStatement;
 	public MscriptGrammarAccess.StatementElements getStatementAccess() {
 		return gaMscript.getStatementAccess();
 	}

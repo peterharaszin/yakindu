@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
@@ -111,7 +111,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					elementVariableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(elementExpressionArrayType)));
 					context.getCompound().getStatements().add(elementVariableDeclaration);
 					
-					Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
+					CompoundStatement compoundStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 					context.getCompound().getStatements().add(compoundStatement);
 
 					context.enterScope();

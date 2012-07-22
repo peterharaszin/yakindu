@@ -275,7 +275,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParenthesizedExpressionAccess().getGroup_2(), "rule__ParenthesizedExpression__Group_2__0");
 					put(grammarAccess.getEndExpressionAccess().getGroup(), "rule__EndExpression__Group__0");
 					put(grammarAccess.getAlgorithmExpressionAccess().getGroup(), "rule__AlgorithmExpression__Group__0");
-					put(grammarAccess.getCompoundAccess().getGroup(), "rule__Compound__Group__0");
+					put(grammarAccess.getCompoundStatementAccess().getGroup(), "rule__CompoundStatement__Group__0");
 					put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
 					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup(), "rule__AssignableMemberFeatureCall__Group__0");
 					put(grammarAccess.getAssignableMemberFeatureCallAccess().getGroup_1_0(), "rule__AssignableMemberFeatureCall__Group_1_0__0");
@@ -536,7 +536,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParenthesizedExpressionAccess().getExpressionsAssignment_1(), "rule__ParenthesizedExpression__ExpressionsAssignment_1");
 					put(grammarAccess.getParenthesizedExpressionAccess().getExpressionsAssignment_2_1(), "rule__ParenthesizedExpression__ExpressionsAssignment_2_1");
 					put(grammarAccess.getAlgorithmExpressionAccess().getBodyAssignment_2(), "rule__AlgorithmExpression__BodyAssignment_2");
-					put(grammarAccess.getCompoundAccess().getStatementsAssignment_2(), "rule__Compound__StatementsAssignment_2");
+					put(grammarAccess.getCompoundStatementAccess().getStatementsAssignment_2(), "rule__CompoundStatement__StatementsAssignment_2");
 					put(grammarAccess.getAssignmentAccess().getTargetAssignment_0(), "rule__Assignment__TargetAssignment_0");
 					put(grammarAccess.getAssignmentAccess().getAssignedExpressionAssignment_2(), "rule__Assignment__AssignedExpressionAssignment_2");
 					put(grammarAccess.getAssignableMemberFeatureCallAccess().getSubscriptsAssignment_1_0_2(), "rule__AssignableMemberFeatureCall__SubscriptsAssignment_1_0_2");

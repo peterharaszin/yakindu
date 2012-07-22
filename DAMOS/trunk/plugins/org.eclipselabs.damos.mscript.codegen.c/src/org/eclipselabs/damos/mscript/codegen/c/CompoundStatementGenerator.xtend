@@ -14,7 +14,6 @@ package org.eclipselabs.damos.mscript.codegen.c
 import com.google.inject.Inject
 import org.eclipselabs.damos.mscript.ArrayType
 import org.eclipselabs.damos.mscript.Assignment
-import org.eclipselabs.damos.mscript.Compound
 import org.eclipselabs.damos.mscript.Evaluable
 import org.eclipselabs.damos.mscript.Expression
 import org.eclipselabs.damos.mscript.ForStatement
@@ -26,6 +25,7 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil
 import org.eclipselabs.damos.mscript.util.TypeUtil
 import org.eclipselabs.damos.mscript.codegen.c.IOperationGeneratorProvider
 import org.eclipselabs.damos.mscript.Type
+import org.eclipselabs.damos.mscript.CompoundStatement
 
 /**
  * @author Andreas Unger
@@ -49,11 +49,11 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		this.operationGeneratorProvider = operationGeneratorProvider
 	}
 	
-	override CharSequence generate(IMscriptGeneratorContext context, Compound compound) {
+	override CharSequence generate(IMscriptGeneratorContext context, CompoundStatement compound) {
 		doGenerate(context, compound)
 	}
 	
-	def private dispatch doGenerate(IMscriptGeneratorContext context, Compound compound) '''
+	def private dispatch doGenerate(IMscriptGeneratorContext context, CompoundStatement compound) '''
 		«generateCompound(context, compound)»
 	'''
 	
@@ -110,16 +110,16 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 		doGenerate(context, statement)
 	}
 
-	def private dispatch generateThenStatement(IMscriptGeneratorContext context, Compound compound) {
+	def private dispatch generateThenStatement(IMscriptGeneratorContext context, CompoundStatement compound) {
 		generateCompound(context, compound)
 	}
 
-	def private generateCompound(IMscriptGeneratorContext context, Compound compound) '''
+	def private generateCompound(IMscriptGeneratorContext context, CompoundStatement compound) '''
 		{
-			«FOR localVariableDeclaration : compound.localVariableDeclarations»
+			«FOR localVariableDeclaration : compound.getLocalVariableDeclarations»
 				«variableDeclarationGenerator.generateVariableDeclaration(context.configuration, context.codeFragmentCollector, getDataType(context, localVariableDeclaration), localVariableDeclaration.name, false, null)»;
 			«ENDFOR»
-			«FOR statement : compound.statements»
+			«FOR statement : compound.getStatements»
 				«doGenerate(context, statement)»
 			«ENDFOR»
 		}'''

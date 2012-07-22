@@ -302,11 +302,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LambdaExpressionParameter" eSuperTypes="#//VariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="AlgorithmExpression" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Compound"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//CompoundStatement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidExpression" eSuperTypes="#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundStatement" eSuperTypes="#//Statement">
     <eOperations name="getLocalVariableDeclarations" upperBound="-1" eType="#//LocalVariableDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>

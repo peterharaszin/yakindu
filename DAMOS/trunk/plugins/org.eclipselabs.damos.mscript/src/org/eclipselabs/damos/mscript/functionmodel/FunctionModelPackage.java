@@ -445,7 +445,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__STATEMENTS = MscriptPackage.COMPOUND__STATEMENTS;
+	int COMPUTATION_COMPOUND__STATEMENTS = MscriptPackage.COMPOUND_STATEMENT__STATEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' reference list.
@@ -454,7 +454,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__INPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 0;
+	int COMPUTATION_COMPOUND__INPUTS = MscriptPackage.COMPOUND_STATEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' reference list.
@@ -463,7 +463,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__OUTPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 1;
+	int COMPUTATION_COMPOUND__OUTPUTS = MscriptPackage.COMPOUND_STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Derivatives</b></em>' reference list.
@@ -472,7 +472,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__DERIVATIVES = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
+	int COMPUTATION_COMPOUND__DERIVATIVES = MscriptPackage.COMPOUND_STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Computation Compound</em>' class.
@@ -481,7 +481,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 3;
+	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}' enum.

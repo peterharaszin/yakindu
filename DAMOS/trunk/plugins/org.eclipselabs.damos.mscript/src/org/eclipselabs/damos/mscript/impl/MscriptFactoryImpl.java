@@ -119,7 +119,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.LAMBDA_EXPRESSION_PARAMETER: return createLambdaExpressionParameter();
 			case MscriptPackage.ALGORITHM_EXPRESSION: return createAlgorithmExpression();
 			case MscriptPackage.INVALID_EXPRESSION: return createInvalidExpression();
-			case MscriptPackage.COMPOUND: return createCompound();
+			case MscriptPackage.COMPOUND_STATEMENT: return createCompoundStatement();
 			case MscriptPackage.ASSIGNMENT: return createAssignment();
 			case MscriptPackage.LOCAL_VARIABLE_DECLARATION: return createLocalVariableDeclaration();
 			case MscriptPackage.IF_STATEMENT: return createIfStatement();
@@ -828,9 +828,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Compound createCompound() {
-		CompoundImpl compound = new CompoundImpl();
-		return compound;
+	public CompoundStatement createCompoundStatement() {
+		CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
+		return compoundStatement;
 	}
 
 	/**

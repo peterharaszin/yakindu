@@ -15,7 +15,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
@@ -101,9 +101,9 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 				if (iterationVariable != null) {
 					elements.add(iterationVariable);
 				}
-			} else if (container instanceof Compound) {
-				Compound compound = (Compound) container;
-				for (Statement statement : compound.getStatements()) {
+			} else if (container instanceof CompoundStatement) {
+				CompoundStatement compoundStatement = (CompoundStatement) container;
+				for (Statement statement : compoundStatement.getStatements()) {
 					if (statement == element) {
 						break;
 					}

@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
@@ -56,12 +56,12 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
     this.operationGeneratorProvider = operationGeneratorProvider;
   }
   
-  public CharSequence generate(final IMscriptGeneratorContext context, final Compound compound) {
+  public CharSequence generate(final IMscriptGeneratorContext context, final CompoundStatement compound) {
     CharSequence _doGenerate = this.doGenerate(context, compound);
     return _doGenerate;
   }
   
-  private CharSequence _doGenerate(final IMscriptGeneratorContext context, final Compound compound) {
+  private CharSequence _doGenerate(final IMscriptGeneratorContext context, final CompoundStatement compound) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generateCompound = this.generateCompound(context, compound);
     _builder.append(_generateCompound, "");
@@ -192,12 +192,12 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
     return _doGenerate;
   }
   
-  private CharSequence _generateThenStatement(final IMscriptGeneratorContext context, final Compound compound) {
+  private CharSequence _generateThenStatement(final IMscriptGeneratorContext context, final CompoundStatement compound) {
     CharSequence _generateCompound = this.generateCompound(context, compound);
     return _generateCompound;
   }
   
-  private CharSequence generateCompound(final IMscriptGeneratorContext context, final Compound compound) {
+  private CharSequence generateCompound(final IMscriptGeneratorContext context, final CompoundStatement compound) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("{");
     _builder.newLine();
@@ -280,8 +280,8 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
       return _doGenerate(context, (LocalVariableDeclaration)localVariableDeclaration);
     } else if (localVariableDeclaration instanceof Assignment) {
       return _doGenerate(context, (Assignment)localVariableDeclaration);
-    } else if (localVariableDeclaration instanceof Compound) {
-      return _doGenerate(context, (Compound)localVariableDeclaration);
+    } else if (localVariableDeclaration instanceof CompoundStatement) {
+      return _doGenerate(context, (CompoundStatement)localVariableDeclaration);
     } else if (localVariableDeclaration instanceof ForStatement) {
       return _doGenerate(context, (ForStatement)localVariableDeclaration);
     } else if (localVariableDeclaration instanceof IfStatement) {
@@ -293,8 +293,8 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
   }
   
   private CharSequence generateThenStatement(final IMscriptGeneratorContext context, final Statement compound) {
-    if (compound instanceof Compound) {
-      return _generateThenStatement(context, (Compound)compound);
+    if (compound instanceof CompoundStatement) {
+      return _generateThenStatement(context, (CompoundStatement)compound);
     } else if (compound != null) {
       return _generateThenStatement(context, compound);
     } else {

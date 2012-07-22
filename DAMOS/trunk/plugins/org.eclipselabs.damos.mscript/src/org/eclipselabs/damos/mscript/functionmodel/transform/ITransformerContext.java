@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 
@@ -28,8 +28,8 @@ public interface ITransformerContext {
 	void enterScope();
 	void leaveScope();
 	
-	Compound getCompound();
-	void setCompound(Compound compound);
+	CompoundStatement getCompound();
+	void setCompound(CompoundStatement compoundStatement);
 	
 	void addVariableDeclarationMapping(VariableDeclaration oldVariableDeclaration, VariableDeclaration newVariableDeclaration);
 	VariableDeclaration mapVariableDeclaration(VariableDeclaration variableDeclaration);

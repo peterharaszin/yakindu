@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -36,7 +36,7 @@ public class LetExpressionExpander implements IExpressionTransformStrategy {
 	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		LetExpression letExpression = (LetExpression) expression;
 
-		Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement compoundStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		context.getCompound().getStatements().add(compoundStatement);
 		
 		context.enterScope();

@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -155,7 +155,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	private IStatus constructInitializationCompound(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescriptor>> equationCompounds, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Initialization compound construction", null);
 		
-		Compound compound = MscriptFactory.eINSTANCE.createCompound();
+		CompoundStatement compoundStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		for (Iterator<List<EquationDescriptor>> it = equationCompounds.iterator(); it.hasNext();) {
 			List<EquationDescriptor> equationDescriptors = it.next();
 			boolean processed = false;
@@ -163,7 +163,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescriptor);
 				if (lhsVariableStep != null && lhsVariableStep.isInitial()) {
 					context.enterScope();
-					context.setCompound(compound);
+					context.setCompound(compoundStatement);
 
 					IExpressionTransformer transformer = new ExpressionTransformer(context);
 					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getDescriptor()), lhsVariableStep.getIndex());
@@ -178,7 +178,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 				it.remove();
 			}
 		}
-		context.getFunctionInstance().setInitializationCompound(compound);
+		context.getFunctionInstance().setInitializationCompound(compoundStatement);
 		
 		return status.isOK() ? Status.OK_STATUS : status;
 	}

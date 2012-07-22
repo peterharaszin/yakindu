@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
@@ -129,24 +129,24 @@ public class MscriptUtil {
 		return variableReference;
 	}
 	
-	public static String findAvailableLocalVariableName(Compound compound, String preferredName) {
+	public static String findAvailableLocalVariableName(CompoundStatement compoundStatement, String preferredName) {
 		String name = preferredName;
 		int i = 2;
-		while (!isLocalVariableNameAvailable(compound, name)) {
+		while (!isLocalVariableNameAvailable(compoundStatement, name)) {
 			name = preferredName + i++;
 		}
 		return name;
 	}
 	
-	private static boolean isLocalVariableNameAvailable(Compound compound, String name) {
+	private static boolean isLocalVariableNameAvailable(CompoundStatement compoundStatement, String name) {
 		if (RESERVED_WORDS.contains(name)) {
 			return false;
 		}
 		
-		EObject container = compound;
+		EObject container = compoundStatement;
 		while (container != null) {
-			if (container instanceof Compound) {
-				for (LocalVariableDeclaration localVariableDeclaration : ((Compound) container).getLocalVariableDeclarations()) {
+			if (container instanceof CompoundStatement) {
+				for (LocalVariableDeclaration localVariableDeclaration : ((CompoundStatement) container).getLocalVariableDeclarations()) {
 					if (name.equals(localVariableDeclaration.getName())) {
 						return false;
 					}

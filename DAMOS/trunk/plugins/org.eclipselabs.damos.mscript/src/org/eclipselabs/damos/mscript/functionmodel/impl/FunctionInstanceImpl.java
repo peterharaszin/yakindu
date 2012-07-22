@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
@@ -57,7 +57,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * @generated
 	 * @ordered
 	 */
-	protected Compound initializationCompound;
+	protected CompoundStatement initializationCompound;
 
 	/**
 	 * The cached value of the '{@link #getComputationCompounds() <em>Computation Compounds</em>}' containment reference list.
@@ -131,7 +131,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Compound getInitializationCompound() {
+	public CompoundStatement getInitializationCompound() {
 		return initializationCompound;
 	}
 
@@ -140,8 +140,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitializationCompound(Compound newInitializationCompound, NotificationChain msgs) {
-		Compound oldInitializationCompound = initializationCompound;
+	public NotificationChain basicSetInitializationCompound(CompoundStatement newInitializationCompound, NotificationChain msgs) {
+		CompoundStatement oldInitializationCompound = initializationCompound;
 		initializationCompound = newInitializationCompound;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, oldInitializationCompound, newInitializationCompound);
@@ -155,7 +155,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitializationCompound(Compound newInitializationCompound) {
+	public void setInitializationCompound(CompoundStatement newInitializationCompound) {
 		if (newInitializationCompound != initializationCompound) {
 			NotificationChain msgs = null;
 			if (initializationCompound != null)
@@ -229,7 +229,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 				setFunctionDeclaration((FunctionDeclaration)newValue);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
-				setInitializationCompound((Compound)newValue);
+				setInitializationCompound((CompoundStatement)newValue);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				getComputationCompounds().clear();
@@ -251,7 +251,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 				setFunctionDeclaration((FunctionDeclaration)null);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
-				setInitializationCompound((Compound)null);
+				setInitializationCompound((CompoundStatement)null);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				getComputationCompounds().clear();

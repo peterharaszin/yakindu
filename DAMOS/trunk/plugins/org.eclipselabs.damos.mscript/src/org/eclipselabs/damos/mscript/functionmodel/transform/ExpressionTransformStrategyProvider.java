@@ -29,6 +29,7 @@ public class ExpressionTransformStrategyProvider implements IExpressionTransform
 		expressionTransformStrategies.add(new ArrayConstructionOperatorExpander());
 		expressionTransformStrategies.add(new VectorMultiplyExpressionExpander());
 		expressionTransformStrategies.add(new ComplexOperationSplitter());
+		expressionTransformStrategies.add(new LambdaExpressionExpander());
 		expressionTransformStrategies.add(new DefaultExpressionTransformStrategy());
 	}
 	

@@ -37,6 +37,7 @@ public class BuiltinFunctionLookup implements IBuiltinFunctionLookup {
 		functions.put(BuiltinFunctionKind.SIN.getName(), new SinFunction());
 		functions.put(BuiltinFunctionKind.COS.getName(), new CosFunction());
 		functions.put(BuiltinFunctionKind.TAN.getName(), new TanFunction());
+		functions.put(BuiltinFunctionKind.FOLD.getName(), new FoldFunction());
 	}
 	
 	public IBuiltinFunction getFunction(FunctionCall functionCall) {

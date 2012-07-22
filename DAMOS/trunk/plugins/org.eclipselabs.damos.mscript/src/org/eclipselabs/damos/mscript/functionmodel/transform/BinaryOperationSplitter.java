@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class ComplexOperationSplitter implements IExpressionTransformStrategy {
+public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 
 	public boolean canHandle(ITransformerContext context, Expression expression) {
 		if (expression instanceof BinaryExpression) {

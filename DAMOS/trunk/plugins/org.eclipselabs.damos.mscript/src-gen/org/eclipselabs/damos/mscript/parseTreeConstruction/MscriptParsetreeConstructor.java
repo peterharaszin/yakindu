@@ -68,79 +68,80 @@ protected class ThisRootNode extends RootToken {
 			case 34: return new StructMember_Group(this, this, 34, inst);
 			case 35: return new Expression_Alternatives(this, this, 35, inst);
 			case 36: return new LambdaExpression_Group(this, this, 36, inst);
-			case 37: return new LetExpression_Group(this, this, 37, inst);
-			case 38: return new LetExpressionAssignment_Group(this, this, 38, inst);
-			case 39: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 39, inst);
-			case 40: return new IfExpression_Group(this, this, 40, inst);
-			case 41: return new SwitchExpression_Group(this, this, 41, inst);
-			case 42: return new SwitchCase_Group(this, this, 42, inst);
-			case 43: return new RangeExpression_Group(this, this, 43, inst);
-			case 44: return new ImpliesExpression_Group(this, this, 44, inst);
-			case 45: return new LogicalOrExpression_Group(this, this, 45, inst);
-			case 46: return new LogicalAndExpression_Group(this, this, 46, inst);
-			case 47: return new EqualityExpression_Group(this, this, 47, inst);
-			case 48: return new RelationalExpression_Group(this, this, 48, inst);
-			case 49: return new AdditiveExpression_Group(this, this, 49, inst);
-			case 50: return new MultiplicativeExpression_Group(this, this, 50, inst);
-			case 51: return new PowerExpression_Group(this, this, 51, inst);
-			case 52: return new PrefixUnaryExpression_Alternatives(this, this, 52, inst);
-			case 53: return new PostfixUnaryExpression_Group(this, this, 53, inst);
-			case 54: return new MemberFeatureCall_Group(this, this, 54, inst);
-			case 55: return new IterationAccumulator_Group(this, this, 55, inst);
-			case 56: return new IterationVariableDeclaration_NameAssignment(this, this, 56, inst);
-			case 57: return new ArraySubscript_Alternatives(this, this, 57, inst);
-			case 58: return new PrimaryExpression_Alternatives(this, this, 58, inst);
-			case 59: return new Literal_Alternatives(this, this, 59, inst);
-			case 60: return new NumericLiteral_Alternatives(this, this, 60, inst);
-			case 61: return new RealLiteral_Group(this, this, 61, inst);
-			case 62: return new IntegerLiteral_Group(this, this, 62, inst);
-			case 63: return new BooleanLiteral_Group(this, this, 63, inst);
-			case 64: return new StringLiteral_TextAssignment(this, this, 64, inst);
-			case 65: return new TemplateExpression_Group(this, this, 65, inst);
-			case 66: return new ConstantTemplateSegment_TextAssignment(this, this, 66, inst);
-			case 67: return new ExpressionTemplateSegment_Group(this, this, 67, inst);
-			case 68: return new FeatureCall_Alternatives(this, this, 68, inst);
-			case 69: return new VariableReference_Group(this, this, 69, inst);
-			case 70: return new FunctionCall_Group(this, this, 70, inst);
-			case 71: return new QualifiedFeatureCall_Alternatives(this, this, 71, inst);
-			case 72: return new QualifiedVariableReference_Group(this, this, 72, inst);
-			case 73: return new QualifiedFunctionCall_Group(this, this, 73, inst);
-			case 74: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 74, inst);
-			case 75: return new RangeStepExpression_Group(this, this, 75, inst);
-			case 76: return new AdditiveStepExpression_Group(this, this, 76, inst);
-			case 77: return new NegateStepExpression_Alternatives(this, this, 77, inst);
-			case 78: return new PrimitiveStepExpression_Alternatives(this, this, 78, inst);
-			case 79: return new StepLiteral_ValueAssignment(this, this, 79, inst);
-			case 80: return new StepN_Group(this, this, 80, inst);
-			case 81: return new ArrayConstructionOperator_Group(this, this, 81, inst);
-			case 82: return new ArrayConstructionIterationClause_Group(this, this, 82, inst);
-			case 83: return new ArrayConcatenationOperator_Group(this, this, 83, inst);
-			case 84: return new ExpressionList_Group(this, this, 84, inst);
-			case 85: return new StructConstructionOperator_Group(this, this, 85, inst);
-			case 86: return new StructConstructionMember_Group(this, this, 86, inst);
-			case 87: return new UnitConstructionOperator_Group(this, this, 87, inst);
-			case 88: return new ParenthesizedExpression_Group(this, this, 88, inst);
-			case 89: return new EndExpression_Group(this, this, 89, inst);
-			case 90: return new AlgorithmExpression_Group(this, this, 90, inst);
-			case 91: return new Compound_Group(this, this, 91, inst);
-			case 92: return new Statement_Alternatives(this, this, 92, inst);
-			case 93: return new Assignment_Group(this, this, 93, inst);
-			case 94: return new AssignableMemberFeatureCall_Group(this, this, 94, inst);
-			case 95: return new AssignablePrimaryExpression_Alternatives(this, this, 95, inst);
-			case 96: return new LocalVariableDeclaration_Group(this, this, 96, inst);
-			case 97: return new IfStatement_Group(this, this, 97, inst);
-			case 98: return new WhileStatement_Group(this, this, 98, inst);
-			case 99: return new ForStatement_Group(this, this, 99, inst);
-			case 100: return new DoWhileStatement_Group(this, this, 100, inst);
-			case 101: return new ContinueStatement_Group(this, this, 101, inst);
-			case 102: return new BreakStatement_Group(this, this, 102, inst);
-			case 103: return new ReturnStatement_Group(this, this, 103, inst);
-			case 104: return new Unit_Group(this, this, 104, inst);
-			case 105: return new ExplicitUnit_Group(this, this, 105, inst);
-			case 106: return new UnitNumerator_Alternatives(this, this, 106, inst);
-			case 107: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 107, inst);
-			case 108: return new UnitDenominator_Alternatives(this, this, 108, inst);
-			case 109: return new UnitFactor_Group(this, this, 109, inst);
+			case 37: return new LambdaExpressionParameter_NameAssignment(this, this, 37, inst);
+			case 38: return new LetExpression_Group(this, this, 38, inst);
+			case 39: return new LetExpressionAssignment_Group(this, this, 39, inst);
+			case 40: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 40, inst);
+			case 41: return new IfExpression_Group(this, this, 41, inst);
+			case 42: return new SwitchExpression_Group(this, this, 42, inst);
+			case 43: return new SwitchCase_Group(this, this, 43, inst);
+			case 44: return new RangeExpression_Group(this, this, 44, inst);
+			case 45: return new ImpliesExpression_Group(this, this, 45, inst);
+			case 46: return new LogicalOrExpression_Group(this, this, 46, inst);
+			case 47: return new LogicalAndExpression_Group(this, this, 47, inst);
+			case 48: return new EqualityExpression_Group(this, this, 48, inst);
+			case 49: return new RelationalExpression_Group(this, this, 49, inst);
+			case 50: return new AdditiveExpression_Group(this, this, 50, inst);
+			case 51: return new MultiplicativeExpression_Group(this, this, 51, inst);
+			case 52: return new PowerExpression_Group(this, this, 52, inst);
+			case 53: return new PrefixUnaryExpression_Alternatives(this, this, 53, inst);
+			case 54: return new PostfixUnaryExpression_Group(this, this, 54, inst);
+			case 55: return new MemberFeatureCall_Group(this, this, 55, inst);
+			case 56: return new IterationAccumulator_Group(this, this, 56, inst);
+			case 57: return new IterationVariableDeclaration_NameAssignment(this, this, 57, inst);
+			case 58: return new ArraySubscript_Alternatives(this, this, 58, inst);
+			case 59: return new PrimaryExpression_Alternatives(this, this, 59, inst);
+			case 60: return new Literal_Alternatives(this, this, 60, inst);
+			case 61: return new NumericLiteral_Alternatives(this, this, 61, inst);
+			case 62: return new RealLiteral_Group(this, this, 62, inst);
+			case 63: return new IntegerLiteral_Group(this, this, 63, inst);
+			case 64: return new BooleanLiteral_Group(this, this, 64, inst);
+			case 65: return new StringLiteral_TextAssignment(this, this, 65, inst);
+			case 66: return new TemplateExpression_Group(this, this, 66, inst);
+			case 67: return new ConstantTemplateSegment_TextAssignment(this, this, 67, inst);
+			case 68: return new ExpressionTemplateSegment_Group(this, this, 68, inst);
+			case 69: return new FeatureCall_Alternatives(this, this, 69, inst);
+			case 70: return new VariableReference_Group(this, this, 70, inst);
+			case 71: return new FunctionCall_Group(this, this, 71, inst);
+			case 72: return new QualifiedFeatureCall_Alternatives(this, this, 72, inst);
+			case 73: return new QualifiedVariableReference_Group(this, this, 73, inst);
+			case 74: return new QualifiedFunctionCall_Group(this, this, 74, inst);
+			case 75: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 75, inst);
+			case 76: return new RangeStepExpression_Group(this, this, 76, inst);
+			case 77: return new AdditiveStepExpression_Group(this, this, 77, inst);
+			case 78: return new NegateStepExpression_Alternatives(this, this, 78, inst);
+			case 79: return new PrimitiveStepExpression_Alternatives(this, this, 79, inst);
+			case 80: return new StepLiteral_ValueAssignment(this, this, 80, inst);
+			case 81: return new StepN_Group(this, this, 81, inst);
+			case 82: return new ArrayConstructionOperator_Group(this, this, 82, inst);
+			case 83: return new ArrayConstructionIterationClause_Group(this, this, 83, inst);
+			case 84: return new ArrayConcatenationOperator_Group(this, this, 84, inst);
+			case 85: return new ExpressionList_Group(this, this, 85, inst);
+			case 86: return new StructConstructionOperator_Group(this, this, 86, inst);
+			case 87: return new StructConstructionMember_Group(this, this, 87, inst);
+			case 88: return new UnitConstructionOperator_Group(this, this, 88, inst);
+			case 89: return new ParenthesizedExpression_Group(this, this, 89, inst);
+			case 90: return new EndExpression_Group(this, this, 90, inst);
+			case 91: return new AlgorithmExpression_Group(this, this, 91, inst);
+			case 92: return new Compound_Group(this, this, 92, inst);
+			case 93: return new Statement_Alternatives(this, this, 93, inst);
+			case 94: return new Assignment_Group(this, this, 94, inst);
+			case 95: return new AssignableMemberFeatureCall_Group(this, this, 95, inst);
+			case 96: return new AssignablePrimaryExpression_Alternatives(this, this, 96, inst);
+			case 97: return new LocalVariableDeclaration_Group(this, this, 97, inst);
+			case 98: return new IfStatement_Group(this, this, 98, inst);
+			case 99: return new WhileStatement_Group(this, this, 99, inst);
+			case 100: return new ForStatement_Group(this, this, 100, inst);
+			case 101: return new DoWhileStatement_Group(this, this, 101, inst);
+			case 102: return new ContinueStatement_Group(this, this, 102, inst);
+			case 103: return new BreakStatement_Group(this, this, 103, inst);
+			case 104: return new ReturnStatement_Group(this, this, 104, inst);
+			case 105: return new Unit_Group(this, this, 105, inst);
+			case 106: return new ExplicitUnit_Group(this, this, 106, inst);
+			case 107: return new UnitNumerator_Alternatives(this, this, 107, inst);
+			case 108: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 108, inst);
+			case 109: return new UnitDenominator_Alternatives(this, this, 109, inst);
+			case 110: return new UnitFactor_Group(this, this, 110, inst);
 			default: return null;
 		}	
 	}	
@@ -6956,13 +6957,13 @@ protected class Expression_RangeExpressionParserRuleCall_4 extends RuleCallToken
 /************ begin Rule LambdaExpression ****************
  *
  * LambdaExpression:
- * 	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
- * 	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+ * 	(parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+ * 	parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression;
  *
  **/
 
-// (parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-// parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression
+// (parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+// parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression
 protected class LambdaExpression_Group extends GroupToken {
 	
 	public LambdaExpression_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6991,8 +6992,8 @@ protected class LambdaExpression_Group extends GroupToken {
 
 }
 
-// parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-// parameters+=InputParameterDeclaration)*)? ")"
+// parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+// parameters+=LambdaExpressionParameter)*)? ")"
 protected class LambdaExpression_Alternatives_0 extends AlternativesToken {
 
 	public LambdaExpression_Alternatives_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7015,7 +7016,7 @@ protected class LambdaExpression_Alternatives_0 extends AlternativesToken {
 
 }
 
-// parameters+=InputParameterDeclaration
+// parameters+=LambdaExpressionParameter
 protected class LambdaExpression_ParametersAssignment_0_0 extends AssignmentToken  {
 	
 	public LambdaExpression_ParametersAssignment_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7030,7 +7031,7 @@ protected class LambdaExpression_ParametersAssignment_0_0 extends AssignmentToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputParameterDeclaration_NameAssignment(this, this, 0, inst);
+			case 0: return new LambdaExpressionParameter_NameAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7041,9 +7042,9 @@ protected class LambdaExpression_ParametersAssignment_0_0 extends AssignmentToke
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("parameters");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getInputParameterDeclarationRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getLambdaExpressionParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_0_0(); 
+				element = grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -7060,7 +7061,7 @@ protected class LambdaExpression_ParametersAssignment_0_0 extends AssignmentToke
 	}	
 }
 
-// "(" (parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)? ")"
+// "(" (parameters+=LambdaExpressionParameter ("," parameters+=LambdaExpressionParameter)*)? ")"
 protected class LambdaExpression_Group_0_1 extends GroupToken {
 	
 	public LambdaExpression_Group_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7103,7 +7104,7 @@ protected class LambdaExpression_LeftParenthesisKeyword_0_1_0 extends KeywordTok
 
 }
 
-// (parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)?
+// (parameters+=LambdaExpressionParameter ("," parameters+=LambdaExpressionParameter)*)?
 protected class LambdaExpression_Group_0_1_1 extends GroupToken {
 	
 	public LambdaExpression_Group_0_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7126,7 +7127,7 @@ protected class LambdaExpression_Group_0_1_1 extends GroupToken {
 
 }
 
-// parameters+=InputParameterDeclaration
+// parameters+=LambdaExpressionParameter
 protected class LambdaExpression_ParametersAssignment_0_1_1_0 extends AssignmentToken  {
 	
 	public LambdaExpression_ParametersAssignment_0_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7141,7 +7142,7 @@ protected class LambdaExpression_ParametersAssignment_0_1_1_0 extends Assignment
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputParameterDeclaration_NameAssignment(this, this, 0, inst);
+			case 0: return new LambdaExpressionParameter_NameAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7152,9 +7153,9 @@ protected class LambdaExpression_ParametersAssignment_0_1_1_0 extends Assignment
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("parameters");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getInputParameterDeclarationRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getLambdaExpressionParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0(); 
+				element = grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -7172,7 +7173,7 @@ protected class LambdaExpression_ParametersAssignment_0_1_1_0 extends Assignment
 	}	
 }
 
-// ("," parameters+=InputParameterDeclaration)*
+// ("," parameters+=LambdaExpressionParameter)*
 protected class LambdaExpression_Group_0_1_1_1 extends GroupToken {
 	
 	public LambdaExpression_Group_0_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7217,7 +7218,7 @@ protected class LambdaExpression_CommaKeyword_0_1_1_1_0 extends KeywordToken  {
 
 }
 
-// parameters+=InputParameterDeclaration
+// parameters+=LambdaExpressionParameter
 protected class LambdaExpression_ParametersAssignment_0_1_1_1_1 extends AssignmentToken  {
 	
 	public LambdaExpression_ParametersAssignment_0_1_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7232,7 +7233,7 @@ protected class LambdaExpression_ParametersAssignment_0_1_1_1_1 extends Assignme
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputParameterDeclaration_NameAssignment(this, this, 0, inst);
+			case 0: return new LambdaExpressionParameter_NameAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7243,9 +7244,9 @@ protected class LambdaExpression_ParametersAssignment_0_1_1_1_1 extends Assignme
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("parameters");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getInputParameterDeclarationRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getLambdaExpressionParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLambdaExpressionAccess().getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0(); 
+				element = grammarAccess.getLambdaExpressionAccess().getParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -7360,6 +7361,51 @@ protected class LambdaExpression_ExpressionAssignment_2 extends AssignmentToken 
 
 
 /************ end Rule LambdaExpression ****************/
+
+
+/************ begin Rule LambdaExpressionParameter ****************
+ *
+ * LambdaExpressionParameter:
+ * 	name=ValidID;
+ *
+ **/
+
+// name=ValidID
+protected class LambdaExpressionParameter_NameAssignment extends AssignmentToken  {
+	
+	public LambdaExpressionParameter_NameAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getLambdaExpressionParameterAccess().getNameAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getLambdaExpressionParameterRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLambdaExpressionParameterAccess().getNameValidIDParserRuleCall_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getLambdaExpressionParameterAccess().getNameValidIDParserRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule LambdaExpressionParameter ****************/
 
 
 /************ begin Rule LetExpression ****************

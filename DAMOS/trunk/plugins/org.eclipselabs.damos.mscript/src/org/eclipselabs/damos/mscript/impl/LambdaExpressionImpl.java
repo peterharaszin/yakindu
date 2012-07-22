@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.LambdaExpression;
+import org.eclipselabs.damos.mscript.LambdaExpressionParameter;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -40,7 +40,7 @@ public class LambdaExpressionImpl extends ExpressionImpl implements LambdaExpres
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InputParameterDeclaration> parameters;
+	protected EList<LambdaExpressionParameter> parameters;
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
@@ -76,9 +76,9 @@ public class LambdaExpressionImpl extends ExpressionImpl implements LambdaExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InputParameterDeclaration> getParameters() {
+	public EList<LambdaExpressionParameter> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, MscriptPackage.LAMBDA_EXPRESSION__PARAMETERS);
+			parameters = new EObjectContainmentEList<LambdaExpressionParameter>(LambdaExpressionParameter.class, this, MscriptPackage.LAMBDA_EXPRESSION__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -169,7 +169,7 @@ public class LambdaExpressionImpl extends ExpressionImpl implements LambdaExpres
 		switch (featureID) {
 			case MscriptPackage.LAMBDA_EXPRESSION__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends InputParameterDeclaration>)newValue);
+				getParameters().addAll((Collection<? extends LambdaExpressionParameter>)newValue);
 				return;
 			case MscriptPackage.LAMBDA_EXPRESSION__EXPRESSION:
 				setExpression((Expression)newValue);

@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.IterationAccumulator;
 import org.eclipselabs.damos.mscript.IterationCall;
+import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
@@ -58,6 +59,9 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					elements.add(accumulator);
 				}
 				elements.addAll(iterationCall.getIterationVariables());
+			} else if (container instanceof LambdaExpression) {
+				LambdaExpression lambdaExpression = (LambdaExpression) container;
+				elements.addAll(lambdaExpression.getParameters());
 			} else if (container instanceof ArrayConstructionOperator) {
 				ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator) container;
 				for (ArrayConstructionIterationClause clause : arrayConstructionOperator.getIterationClauses()) {

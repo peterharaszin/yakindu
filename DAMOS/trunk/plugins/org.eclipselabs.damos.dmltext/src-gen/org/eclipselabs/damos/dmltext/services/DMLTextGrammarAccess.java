@@ -1774,14 +1774,24 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaExpression:
-	//	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-	//	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+	//	(parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+	//	parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression;
 	public MscriptGrammarAccess.LambdaExpressionElements getLambdaExpressionAccess() {
 		return gaMscript.getLambdaExpressionAccess();
 	}
 	
 	public ParserRule getLambdaExpressionRule() {
 		return getLambdaExpressionAccess().getRule();
+	}
+
+	//LambdaExpressionParameter:
+	//	name=ValidID;
+	public MscriptGrammarAccess.LambdaExpressionParameterElements getLambdaExpressionParameterAccess() {
+		return gaMscript.getLambdaExpressionParameterAccess();
+	}
+	
+	public ParserRule getLambdaExpressionParameterRule() {
+		return getLambdaExpressionParameterAccess().getRule();
 	}
 
 	//LetExpression:

@@ -1436,66 +1436,66 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Assignment cParametersAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
-		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_0_0 = (RuleCall)cParametersAssignment_0_0.eContents().get(0);
+		private final RuleCall cParametersLambdaExpressionParameterParserRuleCall_0_0_0 = (RuleCall)cParametersAssignment_0_0.eContents().get(0);
 		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
 		private final Group cGroup_0_1_1 = (Group)cGroup_0_1.eContents().get(1);
 		private final Assignment cParametersAssignment_0_1_1_0 = (Assignment)cGroup_0_1_1.eContents().get(0);
-		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0 = (RuleCall)cParametersAssignment_0_1_1_0.eContents().get(0);
+		private final RuleCall cParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0 = (RuleCall)cParametersAssignment_0_1_1_0.eContents().get(0);
 		private final Group cGroup_0_1_1_1 = (Group)cGroup_0_1_1.eContents().get(1);
 		private final Keyword cCommaKeyword_0_1_1_1_0 = (Keyword)cGroup_0_1_1_1.eContents().get(0);
 		private final Assignment cParametersAssignment_0_1_1_1_1 = (Assignment)cGroup_0_1_1_1.eContents().get(1);
-		private final RuleCall cParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0 = (RuleCall)cParametersAssignment_0_1_1_1_1.eContents().get(0);
+		private final RuleCall cParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0 = (RuleCall)cParametersAssignment_0_1_1_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cExpressionExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//LambdaExpression:
-		//	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-		//	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+		//	(parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+		//	parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression;
 		public ParserRule getRule() { return rule; }
 
-		//(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-		//parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression
+		//(parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+		//parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression
 		public Group getGroup() { return cGroup; }
 
-		//parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-		//parameters+=InputParameterDeclaration)*)? ")"
+		//parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+		//parameters+=LambdaExpressionParameter)*)? ")"
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//parameters+=InputParameterDeclaration
+		//parameters+=LambdaExpressionParameter
 		public Assignment getParametersAssignment_0_0() { return cParametersAssignment_0_0; }
 
-		//InputParameterDeclaration
-		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_0_0() { return cParametersInputParameterDeclarationParserRuleCall_0_0_0; }
+		//LambdaExpressionParameter
+		public RuleCall getParametersLambdaExpressionParameterParserRuleCall_0_0_0() { return cParametersLambdaExpressionParameterParserRuleCall_0_0_0; }
 
-		//"(" (parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)? ")"
+		//"(" (parameters+=LambdaExpressionParameter ("," parameters+=LambdaExpressionParameter)*)? ")"
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_0_1_0() { return cLeftParenthesisKeyword_0_1_0; }
 
-		//(parameters+=InputParameterDeclaration ("," parameters+=InputParameterDeclaration)*)?
+		//(parameters+=LambdaExpressionParameter ("," parameters+=LambdaExpressionParameter)*)?
 		public Group getGroup_0_1_1() { return cGroup_0_1_1; }
 
-		//parameters+=InputParameterDeclaration
+		//parameters+=LambdaExpressionParameter
 		public Assignment getParametersAssignment_0_1_1_0() { return cParametersAssignment_0_1_1_0; }
 
-		//InputParameterDeclaration
-		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0() { return cParametersInputParameterDeclarationParserRuleCall_0_1_1_0_0; }
+		//LambdaExpressionParameter
+		public RuleCall getParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0() { return cParametersLambdaExpressionParameterParserRuleCall_0_1_1_0_0; }
 
-		//("," parameters+=InputParameterDeclaration)*
+		//("," parameters+=LambdaExpressionParameter)*
 		public Group getGroup_0_1_1_1() { return cGroup_0_1_1_1; }
 
 		//","
 		public Keyword getCommaKeyword_0_1_1_1_0() { return cCommaKeyword_0_1_1_1_0; }
 
-		//parameters+=InputParameterDeclaration
+		//parameters+=LambdaExpressionParameter
 		public Assignment getParametersAssignment_0_1_1_1_1() { return cParametersAssignment_0_1_1_1_1; }
 
-		//InputParameterDeclaration
-		public RuleCall getParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0() { return cParametersInputParameterDeclarationParserRuleCall_0_1_1_1_1_0; }
+		//LambdaExpressionParameter
+		public RuleCall getParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0() { return cParametersLambdaExpressionParameterParserRuleCall_0_1_1_1_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_0_1_2() { return cRightParenthesisKeyword_0_1_2; }
@@ -1508,6 +1508,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_2_0() { return cExpressionExpressionParserRuleCall_2_0; }
+	}
+
+	public class LambdaExpressionParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LambdaExpressionParameter");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//LambdaExpressionParameter:
+		//	name=ValidID;
+		public ParserRule getRule() { return rule; }
+
+		//name=ValidID
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_0() { return cNameValidIDParserRuleCall_0; }
 	}
 
 	public class LetExpressionElements extends AbstractParserRuleElementFinder {
@@ -5269,6 +5285,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private StructMemberElements pStructMember;
 	private ExpressionElements pExpression;
 	private LambdaExpressionElements pLambdaExpression;
+	private LambdaExpressionParameterElements pLambdaExpressionParameter;
 	private LetExpressionElements pLetExpression;
 	private LetExpressionAssignmentElements pLetExpressionAssignment;
 	private LetExpressionVariableDeclarationElements pLetExpressionVariableDeclaration;
@@ -5807,14 +5824,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaExpression:
-	//	(parameters+=InputParameterDeclaration | "(" (parameters+=InputParameterDeclaration (","
-	//	parameters+=InputParameterDeclaration)*)? ")") "->" expression=Expression;
+	//	(parameters+=LambdaExpressionParameter | "(" (parameters+=LambdaExpressionParameter (","
+	//	parameters+=LambdaExpressionParameter)*)? ")") "->" expression=Expression;
 	public LambdaExpressionElements getLambdaExpressionAccess() {
 		return (pLambdaExpression != null) ? pLambdaExpression : (pLambdaExpression = new LambdaExpressionElements());
 	}
 	
 	public ParserRule getLambdaExpressionRule() {
 		return getLambdaExpressionAccess().getRule();
+	}
+
+	//LambdaExpressionParameter:
+	//	name=ValidID;
+	public LambdaExpressionParameterElements getLambdaExpressionParameterAccess() {
+		return (pLambdaExpressionParameter != null) ? pLambdaExpressionParameter : (pLambdaExpressionParameter = new LambdaExpressionParameterElements());
+	}
+	
+	public ParserRule getLambdaExpressionParameterRule() {
+		return getLambdaExpressionParameterAccess().getRule();
 	}
 
 	//LetExpression:

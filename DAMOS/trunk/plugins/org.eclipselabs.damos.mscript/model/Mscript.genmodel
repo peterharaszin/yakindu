@@ -265,6 +265,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//LambdaExpression/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//LambdaExpression/expression"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//LambdaExpressionParameter"/>
     <genClasses ecoreClass="Mscript.ecore#//AlgorithmExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AlgorithmExpression/body"/>
     </genClasses>

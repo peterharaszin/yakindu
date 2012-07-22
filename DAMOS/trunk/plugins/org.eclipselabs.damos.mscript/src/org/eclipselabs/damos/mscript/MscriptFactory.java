@@ -548,6 +548,15 @@ public interface MscriptFactory extends EFactory {
 	LambdaExpression createLambdaExpression();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Expression Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Expression Parameter</em>'.
+	 * @generated
+	 */
+	LambdaExpressionParameter createLambdaExpressionParameter();
+
+	/**
 	 * Returns a new object of class '<em>Algorithm Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -405,6 +405,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_0(), "rule__LambdaExpression__ParametersAssignment_0_1_1_0");
 					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_1_1(), "rule__LambdaExpression__ParametersAssignment_0_1_1_1_1");
 					put(grammarAccess.getLambdaExpressionAccess().getExpressionAssignment_2(), "rule__LambdaExpression__ExpressionAssignment_2");
+					put(grammarAccess.getLambdaExpressionParameterAccess().getNameAssignment(), "rule__LambdaExpressionParameter__NameAssignment");
 					put(grammarAccess.getLetExpressionAccess().getAssignmentsAssignment_1(), "rule__LetExpression__AssignmentsAssignment_1");
 					put(grammarAccess.getLetExpressionAccess().getAssignmentsAssignment_2_1(), "rule__LetExpression__AssignmentsAssignment_2_1");
 					put(grammarAccess.getLetExpressionAccess().getTargetAssignment_4(), "rule__LetExpression__TargetAssignment_4");

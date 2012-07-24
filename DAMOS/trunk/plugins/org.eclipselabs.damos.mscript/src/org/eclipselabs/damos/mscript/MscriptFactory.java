@@ -251,15 +251,6 @@ public interface MscriptFactory extends EFactory {
 	ArraySubscript createArraySubscript();
 
 	/**
-	 * Returns a new object of class '<em>Iteration Call</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Iteration Call</em>'.
-	 * @generated
-	 */
-	IterationCall createIterationCall();
-
-	/**
 	 * Returns a new object of class '<em>Iteration Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,15 +258,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	IterationVariableDeclaration createIterationVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Iteration Accumulator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Iteration Accumulator</em>'.
-	 * @generated
-	 */
-	IterationAccumulator createIterationAccumulator();
 
 	/**
 	 * Returns a new object of class '<em>Array Construction Operator</em>'.

@@ -83,9 +83,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.SWITCH_CASE: return createSwitchCase();
 			case MscriptPackage.ARRAY_ELEMENT_ACCESS: return createArrayElementAccess();
 			case MscriptPackage.ARRAY_SUBSCRIPT: return createArraySubscript();
-			case MscriptPackage.ITERATION_CALL: return createIterationCall();
 			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: return createIterationVariableDeclaration();
-			case MscriptPackage.ITERATION_ACCUMULATOR: return createIterationAccumulator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: return createArrayConstructionOperator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: return createArrayConstructionIterationClause();
 			case MscriptPackage.ARRAY_CONCATENATION_OPERATOR: return createArrayConcatenationOperator();
@@ -468,29 +466,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IterationCall createIterationCall() {
-		IterationCallImpl iterationCall = new IterationCallImpl();
-		return iterationCall;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IterationVariableDeclaration createIterationVariableDeclaration() {
 		IterationVariableDeclarationImpl iterationVariableDeclaration = new IterationVariableDeclarationImpl();
 		return iterationVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IterationAccumulator createIterationAccumulator() {
-		IterationAccumulatorImpl iterationAccumulator = new IterationAccumulatorImpl();
-		return iterationAccumulator;
 	}
 
 	/**

@@ -200,11 +200,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_2(), "rule__MemberFeatureCall__Group_1_2__0");
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_2_4(), "rule__MemberFeatureCall__Group_1_2_4__0");
 					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_2_4_1(), "rule__MemberFeatureCall__Group_1_2_4_1__0");
-					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3(), "rule__MemberFeatureCall__Group_1_3__0");
-					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_5(), "rule__MemberFeatureCall__Group_1_3_5__0");
-					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_6(), "rule__MemberFeatureCall__Group_1_3_6__0");
-					put(grammarAccess.getMemberFeatureCallAccess().getGroup_1_3_7(), "rule__MemberFeatureCall__Group_1_3_7__0");
-					put(grammarAccess.getIterationAccumulatorAccess().getGroup(), "rule__IterationAccumulator__Group__0");
 					put(grammarAccess.getRealLiteralAccess().getGroup(), "rule__RealLiteral__Group__0");
 					put(grammarAccess.getRealDataAccess().getGroup(), "rule__RealData__Group__0");
 					put(grammarAccess.getRealDataAccess().getGroup_1_0(), "rule__RealData__Group_1_0__0");
@@ -450,14 +445,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberFeatureCallAccess().getFeatureAssignment_1_2_2(), "rule__MemberFeatureCall__FeatureAssignment_1_2_2");
 					put(grammarAccess.getMemberFeatureCallAccess().getArgumentsAssignment_1_2_4_0(), "rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_0");
 					put(grammarAccess.getMemberFeatureCallAccess().getArgumentsAssignment_1_2_4_1_1(), "rule__MemberFeatureCall__ArgumentsAssignment_1_2_4_1_1");
-					put(grammarAccess.getMemberFeatureCallAccess().getIdentifierAssignment_1_3_2(), "rule__MemberFeatureCall__IdentifierAssignment_1_3_2");
-					put(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesAssignment_1_3_4(), "rule__MemberFeatureCall__IterationVariablesAssignment_1_3_4");
-					put(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesAssignment_1_3_5_1(), "rule__MemberFeatureCall__IterationVariablesAssignment_1_3_5_1");
-					put(grammarAccess.getMemberFeatureCallAccess().getAccumulatorAssignment_1_3_6_1(), "rule__MemberFeatureCall__AccumulatorAssignment_1_3_6_1");
-					put(grammarAccess.getMemberFeatureCallAccess().getBreakConditionAssignment_1_3_7_1(), "rule__MemberFeatureCall__BreakConditionAssignment_1_3_7_1");
-					put(grammarAccess.getMemberFeatureCallAccess().getExpressionAssignment_1_3_9(), "rule__MemberFeatureCall__ExpressionAssignment_1_3_9");
-					put(grammarAccess.getIterationAccumulatorAccess().getNameAssignment_0(), "rule__IterationAccumulator__NameAssignment_0");
-					put(grammarAccess.getIterationAccumulatorAccess().getInitializerAssignment_2(), "rule__IterationAccumulator__InitializerAssignment_2");
 					put(grammarAccess.getIterationVariableDeclarationAccess().getNameAssignment(), "rule__IterationVariableDeclaration__NameAssignment");
 					put(grammarAccess.getArraySubscriptAccess().getSliceAssignment_0(), "rule__ArraySubscript__SliceAssignment_0");
 					put(grammarAccess.getArraySubscriptAccess().getExpressionAssignment_1(), "rule__ArraySubscript__ExpressionAssignment_1");

@@ -298,29 +298,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.ITERATION_CALL: {
-				IterationCall iterationCall = (IterationCall)theEObject;
-				T result = caseIterationCall(iterationCall);
-				if (result == null) result = caseExpression(iterationCall);
-				if (result == null) result = caseEvaluable(iterationCall);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: {
 				IterationVariableDeclaration iterationVariableDeclaration = (IterationVariableDeclaration)theEObject;
 				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
 				if (result == null) result = caseEvaluable(iterationVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.ITERATION_ACCUMULATOR: {
-				IterationAccumulator iterationAccumulator = (IterationAccumulator)theEObject;
-				T result = caseIterationAccumulator(iterationAccumulator);
-				if (result == null) result = caseVariableDeclaration(iterationAccumulator);
-				if (result == null) result = caseCallableElement(iterationAccumulator);
-				if (result == null) result = caseEvaluable(iterationAccumulator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1473,21 +1456,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iteration Call</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iteration Call</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIterationCall(IterationCall object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Iteration Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1499,21 +1467,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIterationVariableDeclaration(IterationVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iteration Accumulator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iteration Accumulator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIterationAccumulator(IterationAccumulator object) {
 		return null;
 	}
 

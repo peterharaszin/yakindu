@@ -268,11 +268,7 @@ enum PostfixUnaryOperator returns OperatorKind:
 MemberFeatureCall returns Expression:
 	PrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
 		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID)
-		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')
-		| ({IterationCall.target=current} '.' identifier=ValidID '(' iterationVariables+=IterationVariableDeclaration (',' iterationVariables+=IterationVariableDeclaration)* (';' accumulator=IterationAccumulator)? (';' breakCondition=Expression)? '|' expression=Expression ')'))*;
-
-IterationAccumulator:
-	name=ValidID '=' initializer=Expression;
+		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')'))*;
 
 IterationVariableDeclaration:
 	name=ValidID;

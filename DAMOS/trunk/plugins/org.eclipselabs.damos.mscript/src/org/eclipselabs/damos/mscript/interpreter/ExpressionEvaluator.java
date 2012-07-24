@@ -42,7 +42,6 @@ import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.InvalidType;
-import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -1352,95 +1351,6 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			}
 			
 			return InvalidValue.SINGLETON;
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIterationCall(org.eclipselabs.mscript.language.ast.IterationCall)
-		 */
-		@Override
-		public IValue caseIterationCall(IterationCall iterationCall) {
-			if (!"iterate".equals(iterationCall.getIdentifier())) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid iteration call " + iterationCall.getIdentifier(), iterationCall));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			if (iterationCall.getTarget() == null) {
-				return InvalidValue.SINGLETON;
-			}
-			
-			IValue targetValue = evaluate(iterationCall.getTarget());
-			if (targetValue instanceof InvalidValue) {
-				return InvalidValue.SINGLETON;
-			}
-
-			if (!(targetValue.getDataType() instanceof ArrayType)) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call target must be array type", iterationCall));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			ArrayType arrayType = (ArrayType) targetValue.getDataType();
-
-			if (arrayType.getDimensionality() != 1) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call target array type must have dimensionality of 1", iterationCall));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			// TODO: Evaluate all array sizes ahead of time
-			Expression sizeExpression = arrayType.getDimensions().get(0).getSize();
-			IValue sizeValue = evaluate(sizeExpression);
-			if (!(sizeValue instanceof ISimpleNumericValue) || !(sizeValue.getDataType() instanceof IntegerType)) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array size expression must be integer", sizeExpression));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			IValue accumulatorValue = evaluate(iterationCall.getAccumulator().getInitializer());
-			if (accumulatorValue instanceof InvalidValue) {
-				return InvalidValue.SINGLETON;
-			}
-
-			if (!(accumulatorValue instanceof AnyValue)) {
-				accumulatorValue = new AnyValue(context.getComputationContext(), accumulatorValue.getDataType());
-			}
-
-			context.processValue(iterationCall.getAccumulator(), accumulatorValue);
-
-			if (iterationCall.getIterationVariables().size() != 1) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call must have exactly one iteration variable", iterationCall));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			context.processValue(iterationCall.getIterationVariables().get(0), new AnyValue(context.getComputationContext(), arrayType.getElementType()));
-
-			IValue expressionValue = evaluate(iterationCall.getExpression());
-			if (expressionValue instanceof InvalidValue) {
-				return InvalidValue.SINGLETON;
-			}
-
-			Type resultingDataType = TypeUtil.getLeftHandDataType(accumulatorValue.getDataType(), expressionValue.getDataType());
-			if (resultingDataType == null) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call accumulator type is incompatabile with expression type", iterationCall));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			if (!accumulatorValue.getDataType().isAssignableFrom(resultingDataType)) {
-				accumulatorValue = new AnyValue(context.getComputationContext(), resultingDataType);
-				context.processValue(iterationCall.getAccumulator(), accumulatorValue);
-			}
-
-			// TODO: If possible, return static value
-			return new AnyValue(context.getComputationContext(), resultingDataType);
 		}
 
 		/* (non-Javadoc)

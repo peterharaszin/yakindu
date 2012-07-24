@@ -20,8 +20,6 @@ import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.IterationAccumulator;
-import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -52,13 +50,6 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 						elements.add(variable);
 					}
 				}
-			} else if (container instanceof IterationCall) {
-				IterationCall iterationCall = (IterationCall) container;
-				IterationAccumulator accumulator = iterationCall.getAccumulator();
-				if (accumulator != null) {
-					elements.add(accumulator);
-				}
-				elements.addAll(iterationCall.getIterationVariables());
 			} else if (container instanceof LambdaExpression) {
 				LambdaExpression lambdaExpression = (LambdaExpression) container;
 				elements.addAll(lambdaExpression.getParameters());

@@ -17,19 +17,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BinaryExpression;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  *
  */
-public class BinaryOperationSplitter implements IExpressionTransformStrategy {
+public class BinaryOperationSplitter extends AbstractExpressionSplitter {
 
 	public boolean canHandle(ITransformerContext context, Expression expression) {
 		if (expression instanceof BinaryExpression) {
@@ -96,22 +94,4 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 		context.getCompound().getStatements().add(assignment);
 	}
 	
-	private VariableReference createVariableReference(ITransformerContext context, Expression operand, String name, IExpressionTransformer transformer) {
-		IValue operandValue = context.getStaticEvaluationResult().getValue(operand);
-
-		LocalVariableDeclaration variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), name));
-		context.getStaticEvaluationResult().setValue(variableDeclaration, operandValue);
-		context.getCompound().getStatements().add(variableDeclaration);
-		
-		VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclaration);
-		transformer.transform(operand, target.asList());
-		
-		return target.createVariableReference(operandValue.getDataType());
-	}
-
-	private Type getDataType(ITransformerContext context, Expression expression) {
-		return context.getStaticEvaluationResult().getValue(expression).getDataType();
-	}
-
 }

@@ -33,13 +33,7 @@ Declaration:
  */
  
 TypeDeclaration:
-	('type' name=ValidID '=' typeSpecifier=TypeSpecifier) | ('struct' name=ValidID typeSpecifier=StructDeclarationTypeSpecifier);
-
-StructDeclarationTypeSpecifier returns AnonymousTypeSpecifier:
-	type=StructDeclarationType;
-
-StructDeclarationType returns StructType:
-	'{' members+=StructMember (';' members+=StructMember)* ';'? '}';
+	'type' name=ValidID '=' typeSpecifier=TypeSpecifier;
 
 /*
  * Enumeration
@@ -117,7 +111,7 @@ TypeSpecifier:
 	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
 
 AnonymousTypeSpecifier:
-	type=(PrimitiveType | ArrayType | StructType);
+	type=(AnonymousArrayType | DeclaredArrayType);
 	
 DeclaredTypeSpecifier:
 	typeDeclaration=[TypeDeclaration|QualifiedName];
@@ -146,22 +140,17 @@ BooleanType:
 StringType:
 	{StringType} 'string';
 	
-ArrayType:
-	elementTypeSpecifier=ArrayTypeSpecifier '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
-	
-ArrayTypeSpecifier returns TypeSpecifier:
-	AnonymousArrayTypeSpecifier | DeclaredTypeSpecifier;
-	
-AnonymousArrayTypeSpecifier returns AnonymousTypeSpecifier:
-	type=PrimitiveType;
+AnonymousArrayType returns DataType:
+	(PrimitiveType | StructType) ({AnonymousArrayType.elementType=current} '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']')?;
 
+DeclaredArrayType:
+	elementTypeDeclaration=[TypeDeclaration|QualifiedName] '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;
 
 StructType:
-	'struct' '{'
-		members+=StructMember (';' members+=StructMember)* ';'?
-	'}'; 
+	(label=ValidID | anyLabel?='?')? '{' members+=StructMember (';' members+=StructMember)* ';'? '}'; 
 
 StructMember:
 	typeSpecifier=TypeSpecifier name=ValidID;
@@ -352,10 +341,10 @@ QualifiedFeatureCall returns Expression:
 	QualifiedVariableReference | QualifiedFunctionCall;
 
 QualifiedVariableReference returns Expression:
-	{VariableReference} '::' feature=[CallableElement|QualifiedName];
+	{VariableReference} '.' feature=[CallableElement|QualifiedName];
 
 QualifiedFunctionCall returns Expression:
-	{FunctionCall} '::' feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
+	{FunctionCall} '.' feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
 
 StepExpression:
 	RangeStepExpression;
@@ -391,7 +380,7 @@ ExpressionList:
 	expressions+=Expression (',' expressions+=Expression)*;
 	
 StructConstructionOperator:
-	'{' members+=StructConstructionMember (',' members+=StructConstructionMember)* '}';
+	(label=ValidID)? '{' members+=StructConstructionMember (',' members+=StructConstructionMember)* '}';
 	
 StructConstructionMember:
 	name=ValidID '=' value=Expression;

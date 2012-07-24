@@ -14,8 +14,10 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.ReturnStatement;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.codegen.c.CompoundStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
@@ -24,9 +26,9 @@ import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IOperationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IOperationGeneratorProvider;
+import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -36,7 +38,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class CompoundStatementGenerator implements ICompoundStatementGenerator {
+public class StatementGenerator implements IStatementGenerator {
   private final IExpressionGenerator expressionGenerator;
   
   private final DataTypeGenerator dataTypeGenerator;
@@ -47,23 +49,27 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
   
   private final IOperationGeneratorProvider operationGeneratorProvider;
   
+  private final ICompoundStatementGenerator compoundStatementGenerator;
+  
   @Inject
-  public CompoundStatementGenerator(final IExpressionGenerator expressionGenerator, final DataTypeGenerator dataTypeGenerator, final VariableDeclarationGenerator variableDeclarationGenerator, final VariableReferenceGenerator variableAccessGenerator, final IOperationGeneratorProvider operationGeneratorProvider) {
+  public StatementGenerator(final IExpressionGenerator expressionGenerator, final DataTypeGenerator dataTypeGenerator, final VariableDeclarationGenerator variableDeclarationGenerator, final VariableReferenceGenerator variableAccessGenerator, final IOperationGeneratorProvider operationGeneratorProvider) {
     this.expressionGenerator = expressionGenerator;
     this.dataTypeGenerator = dataTypeGenerator;
     this.variableDeclarationGenerator = variableDeclarationGenerator;
     this.variableReferenceGenerator = variableAccessGenerator;
     this.operationGeneratorProvider = operationGeneratorProvider;
+    CompoundStatementGenerator _compoundStatementGenerator = new CompoundStatementGenerator(this, variableDeclarationGenerator);
+    this.compoundStatementGenerator = _compoundStatementGenerator;
   }
   
-  public CharSequence generate(final IMscriptGeneratorContext context, final CompoundStatement compound) {
-    CharSequence _doGenerate = this.doGenerate(context, compound);
+  public CharSequence generate(final IMscriptGeneratorContext context, final Statement statement) {
+    CharSequence _doGenerate = this.doGenerate(context, statement);
     return _doGenerate;
   }
   
-  private CharSequence _doGenerate(final IMscriptGeneratorContext context, final CompoundStatement compound) {
+  private CharSequence _doGenerate(final IMscriptGeneratorContext context, final CompoundStatement compoundStatement) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _generateCompound = this.generateCompound(context, compound);
+    CharSequence _generateCompound = this.generateCompound(context, compoundStatement);
     _builder.append(_generateCompound, "");
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -187,43 +193,36 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
     return _builder;
   }
   
+  private CharSequence _doGenerate(final IMscriptGeneratorContext context, final ReturnStatement returnStatement) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("return ");
+    Expression _expression = returnStatement.getExpression();
+    CharSequence _generate = this.expressionGenerator.generate(context, _expression);
+    _builder.append(_generate, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   private CharSequence _generateThenStatement(final IMscriptGeneratorContext context, final Statement statement) {
     CharSequence _doGenerate = this.doGenerate(context, statement);
     return _doGenerate;
   }
   
-  private CharSequence _generateThenStatement(final IMscriptGeneratorContext context, final CompoundStatement compound) {
-    CharSequence _generateCompound = this.generateCompound(context, compound);
+  private CharSequence _generateThenStatement(final IMscriptGeneratorContext context, final CompoundStatement compoundStatement) {
+    CharSequence _generateCompound = this.generateCompound(context, compoundStatement);
     return _generateCompound;
   }
   
-  private CharSequence generateCompound(final IMscriptGeneratorContext context, final CompoundStatement compound) {
+  private CharSequence generateCompound(final IMscriptGeneratorContext context, final CompoundStatement compoundStatement) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("{");
     _builder.newLine();
-    {
-      EList<LocalVariableDeclaration> _localVariableDeclarations = compound.getLocalVariableDeclarations();
-      for(final LocalVariableDeclaration localVariableDeclaration : _localVariableDeclarations) {
-        _builder.append("\t");
-        IMscriptGeneratorConfiguration _configuration = context.getConfiguration();
-        ICodeFragmentCollector _codeFragmentCollector = context.getCodeFragmentCollector();
-        Type _dataType = this.getDataType(context, localVariableDeclaration);
-        String _name = localVariableDeclaration.getName();
-        CharSequence _generateVariableDeclaration = this.variableDeclarationGenerator.generateVariableDeclaration(_configuration, _codeFragmentCollector, _dataType, _name, false, null);
-        _builder.append(_generateVariableDeclaration, "	");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EList<Statement> _statements = compound.getStatements();
-      for(final Statement statement : _statements) {
-        _builder.append("\t");
-        CharSequence _doGenerate = this.doGenerate(context, statement);
-        _builder.append(_doGenerate, "	");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    _builder.append("\t");
+    EList<Statement> _statements = compoundStatement.getStatements();
+    CharSequence _generate = this.compoundStatementGenerator.generate(context, _statements);
+    _builder.append(_generate, "	");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     return _builder;
   }
@@ -234,42 +233,10 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
     if (_notEquals) {
       return operationGenerator.generate(context, targetDataType, target, assignedExpression);
     }
-    return this.doGenerateAssignment(context, targetDataType, target, assignedExpression);
+    return "";
   }
   
-  private CharSequence _doGenerateAssignment(final IMscriptGeneratorContext context, final Type targetDataType, final CharSequence target, final Expression assignedExpression) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append(target, "");
-    _builder.append(" = ");
-    CharSequence _generateAssignedExpression = this.generateAssignedExpression(context, targetDataType, assignedExpression);
-    _builder.append(_generateAssignedExpression, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  private CharSequence _doGenerateAssignment(final IMscriptGeneratorContext context, final ArrayType targetDataType, final CharSequence target, final Expression assignedExpression) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("memcpy(");
-    _builder.append(target, "");
-    _builder.append(", ");
-    CharSequence _generateAssignedExpression = this.generateAssignedExpression(context, targetDataType, assignedExpression);
-    _builder.append(_generateAssignedExpression, "");
-    _builder.append(", sizeof (");
-    IMscriptGeneratorConfiguration _configuration = context.getConfiguration();
-    ICodeFragmentCollector _codeFragmentCollector = context.getCodeFragmentCollector();
-    CharSequence _generateDataType = this.dataTypeGenerator.generateDataType(_configuration, null, _codeFragmentCollector, targetDataType, null);
-    _builder.append(_generateDataType, "");
-    _builder.append("));");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  public CharSequence generateAssignedExpression(final IMscriptGeneratorContext context, final Type targetDataType, final Expression expression) {
-    return MscriptGeneratorUtil.cast(context, expression, targetDataType);
-  }
-  
-  public Type getDataType(final IMscriptGeneratorContext context, final Evaluable evaluable) {
+  private Type getDataType(final IMscriptGeneratorContext context, final Evaluable evaluable) {
     IStaticEvaluationResult _staticEvaluationResult = context.getStaticEvaluationResult();
     IValue _value = _staticEvaluationResult.getValue(evaluable);
     return _value==null?(Type)null:_value.getDataType();
@@ -286,31 +253,22 @@ public class CompoundStatementGenerator implements ICompoundStatementGenerator {
       return _doGenerate(context, (ForStatement)localVariableDeclaration);
     } else if (localVariableDeclaration instanceof IfStatement) {
       return _doGenerate(context, (IfStatement)localVariableDeclaration);
+    } else if (localVariableDeclaration instanceof ReturnStatement) {
+      return _doGenerate(context, (ReturnStatement)localVariableDeclaration);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(context, localVariableDeclaration).toString());
     }
   }
   
-  private CharSequence generateThenStatement(final IMscriptGeneratorContext context, final Statement compound) {
-    if (compound instanceof CompoundStatement) {
-      return _generateThenStatement(context, (CompoundStatement)compound);
-    } else if (compound != null) {
-      return _generateThenStatement(context, compound);
+  private CharSequence generateThenStatement(final IMscriptGeneratorContext context, final Statement compoundStatement) {
+    if (compoundStatement instanceof CompoundStatement) {
+      return _generateThenStatement(context, (CompoundStatement)compoundStatement);
+    } else if (compoundStatement != null) {
+      return _generateThenStatement(context, compoundStatement);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(context, compound).toString());
-    }
-  }
-  
-  private CharSequence doGenerateAssignment(final IMscriptGeneratorContext context, final Type targetDataType, final CharSequence target, final Expression assignedExpression) {
-    if (targetDataType instanceof ArrayType) {
-      return _doGenerateAssignment(context, (ArrayType)targetDataType, target, assignedExpression);
-    } else if (targetDataType != null) {
-      return _doGenerateAssignment(context, targetDataType, target, assignedExpression);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(context, targetDataType, target, assignedExpression).toString());
+        Arrays.<Object>asList(context, compoundStatement).toString());
     }
   }
 }

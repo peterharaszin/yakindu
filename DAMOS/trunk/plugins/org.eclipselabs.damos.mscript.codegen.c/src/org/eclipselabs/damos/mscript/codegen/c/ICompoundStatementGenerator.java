@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.CompoundStatement;
+import org.eclipselabs.damos.mscript.Statement;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import org.eclipselabs.damos.mscript.CompoundStatement;
  */
 public interface ICompoundStatementGenerator {
 
-	CharSequence generate(IMscriptGeneratorContext context, CompoundStatement compoundStatement);
-
+	CharSequence generate(IMscriptGeneratorContext context, Iterable<Statement> statements);
+	
 }

@@ -106,17 +106,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_DECLARATION: {
-				StructDeclaration structDeclaration = (StructDeclaration)theEObject;
-				T result = caseStructDeclaration(structDeclaration);
-				if (result == null) result = caseTypeDeclaration(structDeclaration);
-				if (result == null) result = caseStructType(structDeclaration);
-				if (result == null) result = caseDeclaration(structDeclaration);
-				if (result == null) result = caseDataType(structDeclaration);
-				if (result == null) result = caseType(structDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MscriptPackage.FUNCTION_DECLARATION: {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration)theEObject;
 				T result = caseFunctionDeclaration(functionDeclaration);
@@ -854,6 +843,24 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.ANONYMOUS_ARRAY_TYPE: {
+				AnonymousArrayType anonymousArrayType = (AnonymousArrayType)theEObject;
+				T result = caseAnonymousArrayType(anonymousArrayType);
+				if (result == null) result = caseArrayType(anonymousArrayType);
+				if (result == null) result = caseDataType(anonymousArrayType);
+				if (result == null) result = caseType(anonymousArrayType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.DECLARED_ARRAY_TYPE: {
+				DeclaredArrayType declaredArrayType = (DeclaredArrayType)theEObject;
+				T result = caseDeclaredArrayType(declaredArrayType);
+				if (result == null) result = caseArrayType(declaredArrayType);
+				if (result == null) result = caseDataType(declaredArrayType);
+				if (result == null) result = caseType(declaredArrayType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.ARRAY_DIMENSION: {
 				ArrayDimension arrayDimension = (ArrayDimension)theEObject;
 				T result = caseArrayDimension(arrayDimension);
@@ -1087,21 +1094,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEnumerationLiteralDeclaration(EnumerationLiteralDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStructDeclaration(StructDeclaration object) {
 		return null;
 	}
 
@@ -2497,6 +2489,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArrayType(ArrayType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Anonymous Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Anonymous Array Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnonymousArrayType(AnonymousArrayType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Array Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredArrayType(DeclaredArrayType object) {
 		return null;
 	}
 

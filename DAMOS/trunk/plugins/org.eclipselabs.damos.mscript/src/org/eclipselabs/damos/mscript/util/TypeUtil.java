@@ -11,12 +11,13 @@
 
 package org.eclipselabs.damos.mscript.util;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
-import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
+import org.eclipselabs.damos.mscript.AnonymousArrayType;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Expression;
@@ -103,11 +104,15 @@ public class TypeUtil {
 		return arrayType;
 	}
 	
+	public static ArrayType createArrayType(Type elementType, Collection<? extends ArrayDimension> dimensions) {
+		ArrayType arrayType = doCreateArrayType(elementType);
+		arrayType.getDimensions().addAll(dimensions);
+		return arrayType;
+	}
+
 	private static ArrayType doCreateArrayType(Type elementType) {
-		ArrayType arrayType = MscriptFactory.eINSTANCE.createArrayType();
-		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
-		elementTypeSpecifier.setType(elementType);
-		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
+		AnonymousArrayType arrayType = MscriptFactory.eINSTANCE.createAnonymousArrayType();
+		arrayType.setElementType(elementType);
 		return arrayType;
 	}
 	
@@ -122,12 +127,6 @@ public class TypeUtil {
 		}
 	}
 	
-	public static void setArrayElementType(ArrayType arrayType, Type elementType) {
-		AnonymousTypeSpecifier elementTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
-		elementTypeSpecifier.setType(elementType);
-		arrayType.setElementTypeSpecifier(elementTypeSpecifier);
-	}
-
 	@SuppressWarnings("unchecked")
 	public static boolean equalArrayDimensions(ArrayType arrayType1, ArrayType arrayType2) {
 		return new EqualityHelper().equals(

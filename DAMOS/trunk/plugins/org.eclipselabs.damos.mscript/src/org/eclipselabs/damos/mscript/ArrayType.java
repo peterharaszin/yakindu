@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayType#isDimensional <em>Dimensional</em>}</li>
@@ -28,36 +27,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ArrayType extends DataType {
-	/**
-	 * Returns the value of the '<em><b>Element Type Specifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element Type Specifier</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element Type Specifier</em>' containment reference.
-	 * @see #setElementTypeSpecifier(TypeSpecifier)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayType_ElementTypeSpecifier()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TypeSpecifier getElementTypeSpecifier();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ArrayType#getElementTypeSpecifier <em>Element Type Specifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element Type Specifier</em>' containment reference.
-	 * @see #getElementTypeSpecifier()
-	 * @generated
-	 */
-	void setElementTypeSpecifier(TypeSpecifier value);
-
 	/**
 	 * Returns the value of the '<em><b>Numeric</b></em>' attribute.
 	 * <!-- begin-user-doc -->

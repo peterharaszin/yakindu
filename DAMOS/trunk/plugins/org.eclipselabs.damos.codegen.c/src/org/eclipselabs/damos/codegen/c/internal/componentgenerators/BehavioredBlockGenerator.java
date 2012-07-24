@@ -42,7 +42,7 @@ import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.ICompoundStatementGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
@@ -72,7 +72,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 
-	private final ICompoundStatementGenerator compoundStatementGenerator;
+	private final IStatementGenerator statementGenerator;
 
 	private FunctionInstance functionInstance;
 	
@@ -81,8 +81,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private IVariableAccessStrategy cachedVariableAccessStrategy;
 	
 	@Inject
-	public BehavioredBlockGenerator(ICompoundStatementGenerator compoundStatementGenerator) {
-		this.compoundStatementGenerator = compoundStatementGenerator;
+	public BehavioredBlockGenerator(IStatementGenerator statementGenerator) {
+		this.statementGenerator = statementGenerator;
 	}
 	
 	@Override
@@ -159,7 +159,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult, getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
-		sb.append(compoundStatementGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound()));
+		sb.append(statementGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound()));
 		return sb;
 	}
 	
@@ -195,7 +195,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				sb.append(compoundStatementGenerator.generate(mscriptGeneratorContext, compound));
+				sb.append(statementGenerator.generate(mscriptGeneratorContext, compound));
 			}
 		}
 		
@@ -233,7 +233,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				sb.append(compoundStatementGenerator.generate(mscriptGeneratorContext, compound));
+				sb.append(statementGenerator.generate(mscriptGeneratorContext, compound));
 			}
 		}
 		

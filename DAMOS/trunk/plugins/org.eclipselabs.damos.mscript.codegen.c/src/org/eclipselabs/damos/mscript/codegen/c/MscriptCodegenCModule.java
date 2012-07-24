@@ -33,7 +33,7 @@ public class MscriptCodegenCModule extends AbstractModule {
 	}
 
 	protected void bindICompoundStatementGenerator() {
-		bind(ICompoundStatementGenerator.class).to(CompoundStatementGenerator.class);
+		bind(IStatementGenerator.class).to(StatementGenerator.class);
 	}
 
 	protected void bindIExpressionGenerator() {

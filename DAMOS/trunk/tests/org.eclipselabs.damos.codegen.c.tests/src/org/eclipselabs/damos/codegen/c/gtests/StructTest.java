@@ -32,14 +32,14 @@ public class StructTest extends AbstractGeneratorGTest {
 	public void setUp() {
 		super.setUp();
 		
-		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("struct { int x; int y }");
+		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("{ int x; int y }");
 
 		Inport inport = createInport("In", structTypeSpecification, 1);
 		Block structTest = createTestBlock("StructTest", "StructTest");
 		Block structExtractX = createTestBlock("StructExtractX", "StructExtractX");
 		Outport outport = createOutport("Out", EcoreUtil.copy(structTypeSpecification));
 		Outport outportX = createOutport("OutX", createIntegerTypeSpecification());
-		Outport outportStructLiteral = createOutport("OutStructLiteral", createDataTypeSpecification("struct { int x; struct { int a; int[2] b } y }"));
+		Outport outportStructLiteral = createOutport("OutStructLiteral", createDataTypeSpecification("{ int x; { int a; int[2] b } y }"));
 		
 		connect(inport, structTest);
 		connect(structTest, 0, outport);

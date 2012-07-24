@@ -71,15 +71,6 @@ public interface MscriptFactory extends EFactory {
 	EnumerationLiteralDeclaration createEnumerationLiteralDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Struct Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Declaration</em>'.
-	 * @generated
-	 */
-	StructDeclaration createStructDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -800,13 +791,22 @@ public interface MscriptFactory extends EFactory {
 	StringType createStringType();
 
 	/**
-	 * Returns a new object of class '<em>Array Type</em>'.
+	 * Returns a new object of class '<em>Anonymous Array Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Array Type</em>'.
+	 * @return a new object of class '<em>Anonymous Array Type</em>'.
 	 * @generated
 	 */
-	ArrayType createArrayType();
+	AnonymousArrayType createAnonymousArrayType();
+
+	/**
+	 * Returns a new object of class '<em>Declared Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Array Type</em>'.
+	 * @generated
+	 */
+	DeclaredArrayType createDeclaredArrayType();
 
 	/**
 	 * Returns a new object of class '<em>Array Dimension</em>'.

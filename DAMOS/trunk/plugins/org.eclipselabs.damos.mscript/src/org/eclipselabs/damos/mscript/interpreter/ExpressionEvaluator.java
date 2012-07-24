@@ -941,6 +941,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		@Override
 		public IValue caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
 			StructType structType = MscriptFactory.eINSTANCE.createStructType();
+			structType.setLabel(structConstructionOperator.getLabel());
+			
 			IValue[] values = new IValue[structConstructionOperator.getMembers().size()];
 
 			boolean anyValue = false;

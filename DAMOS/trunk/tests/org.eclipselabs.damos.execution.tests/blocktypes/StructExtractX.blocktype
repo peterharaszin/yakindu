@@ -5,16 +5,16 @@ blockType StructExtractX {
 	input x
 	output y
 	
-	struct MyNamedStruct {
+	type MyNamedStruct = {
 		int x;
 		int y;
 	}
 
 	function main(x) -> y {
-		check(struct { int x; int y }) -> int
+		check({ int x; int y }) -> int
 
-		static assert x is struct { int x; int y } :
-			error "X must be struct { int x; int y }"
+		static assert x is { int x; int y } :
+			error "X must be { int x; int y }"
 
 		eq y = x.x
 	}

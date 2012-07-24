@@ -36,7 +36,7 @@ public class MscriptGenerator {
 	
 	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	private final VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator());
-	private final ICompoundStatementGenerator compoundStatementGenerator;
+	private final IStatementGenerator statementGenerator;
 	
 	private FunctionInstance functionInstance;
 	
@@ -44,8 +44,8 @@ public class MscriptGenerator {
 	
 	private String functionName;
 	
-	public MscriptGenerator(ICompoundStatementGenerator compoundStatementGenerator, FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
-		this.compoundStatementGenerator = compoundStatementGenerator;
+	public MscriptGenerator(IStatementGenerator statementGenerator, FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
+		this.statementGenerator = statementGenerator;
 		this.functionInstance = functionInstance;
 		this.context = context;
 		this.functionName = functionName;
@@ -180,7 +180,7 @@ public class MscriptGenerator {
 			out.print(generateStatelessFunctionHeader());
 			out.println(" {");
 			for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
-				out.print(compoundStatementGenerator.generate(context, compound));
+				out.print(statementGenerator.generate(context, compound));
 			}
 			out.println("}");
 		}
@@ -209,7 +209,7 @@ public class MscriptGenerator {
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getInputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getFunctionDeclaration().getStateVariableDeclarations()));
-		out.print(compoundStatementGenerator.generate(context, functionInstance.getInitializationCompound()));
+		out.print(statementGenerator.generate(context, functionInstance.getInitializationCompound()));
 		out.println("}");
 		return sb;
 	}
@@ -253,7 +253,7 @@ public class MscriptGenerator {
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				out.print(compoundStatementGenerator.generate(context, compound));
+				out.print(statementGenerator.generate(context, compound));
 			}
 		}
 		
@@ -298,7 +298,7 @@ public class MscriptGenerator {
 		out.println(" {");
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				compoundStatementGenerator.generate(context, compound);
+				statementGenerator.generate(context, compound);
 			}
 		}
 		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {

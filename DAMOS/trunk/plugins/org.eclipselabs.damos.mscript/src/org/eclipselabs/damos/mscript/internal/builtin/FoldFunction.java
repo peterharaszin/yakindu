@@ -98,6 +98,8 @@ public class FoldFunction extends AbstractBuiltinFunction {
 			}
 			return InvalidValue.SINGLETON;
 		}
+		
+		evaluate(context, functionCall.getArguments().get(2));
 
 		context.processValue(lambdaExpression.getParameters().get(0), new AnyValue(context.getComputationContext(), resultValue.getDataType()));
 		context.processValue(lambdaExpression.getParameters().get(1), new AnyValue(context.getComputationContext(), arrayType.getElementType()));

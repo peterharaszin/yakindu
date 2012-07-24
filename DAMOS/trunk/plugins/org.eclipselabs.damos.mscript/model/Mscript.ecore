@@ -26,7 +26,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteralDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructDeclaration" eSuperTypes="#//TypeDeclaration #//StructType"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//Declaration #//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//FunctionKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="staticParameterDeclarations"
@@ -207,6 +206,7 @@
         eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructConstructionOperator" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//StructConstructionMember" containment="true"/>
   </eClassifiers>
@@ -418,10 +418,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="GaussianType" eSuperTypes="#//NumericType"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//DataType">
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayType" abstract="true" eSuperTypes="#//DataType">
     <eOperations name="getElementType" eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeSpecifier" eType="#//TypeSpecifier"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" upperBound="-1"
         eType="#//ArrayDimension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimensionality" lowerBound="1"
@@ -443,6 +441,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
         volatile="true" transient="true" derived="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnonymousArrayType" eSuperTypes="#//ArrayType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//Type"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredArrayType" eSuperTypes="#//ArrayType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeDeclaration"
+        eType="#//TypeDeclaration"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayDimension">
     <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//Expression"
         containment="true"/>
@@ -454,6 +460,8 @@
     <eOperations name="getMemberIndex" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="anyLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//StructMember" containment="true"/>
   </eClassifiers>

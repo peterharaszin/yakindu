@@ -27,9 +27,6 @@ import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.InvalidExpression;
-import org.eclipselabs.damos.mscript.IterationAccumulator;
-import org.eclipselabs.damos.mscript.IterationCall;
-import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
@@ -78,8 +75,6 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformVariableReference(context, targets, transformer, (VariableReference) expression);
 		} else if (expression instanceof FunctionCall) {
 			transformFunctionCall(context, targets, transformer, (FunctionCall) expression);
-		} else if (expression instanceof IterationCall) {
-			transformIterationCall(context, targets, transformer, (IterationCall) expression);
 		} else if (expression instanceof ImpliesExpression) {
 			transformImpliesExpression(context, targets, transformer, (ImpliesExpression) expression);
 		} else if (expression instanceof LogicalOrExpression) {
@@ -180,28 +175,6 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformedFunctionCall.getArguments().add(transformedExpression);
 		}
 		assignExpression(context, functionCall, transformedFunctionCall, targets);
-	}
-	
-	protected void transformIterationCall(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, IterationCall iterationCall) {
-		IterationCall transformedIterationCall = MscriptFactory.eINSTANCE.createIterationCall();
-		
-		transformedIterationCall.setIdentifier(iterationCall.getIdentifier());
-		transformedIterationCall.setTarget(transformNext(context, iterationCall.getTarget(), transformer));
-		transformedIterationCall.setBreakCondition(transformNext(context, iterationCall.getBreakCondition(), transformer));
-		transformedIterationCall.setExpression(transformNext(context, iterationCall.getExpression(), transformer));
-		
-		IterationAccumulator transformedAccumulator = MscriptFactory.eINSTANCE.createIterationAccumulator();
-		transformedAccumulator.setName(iterationCall.getAccumulator().getName());
-		transformedAccumulator.setInitializer(transformNext(context, iterationCall.getAccumulator().getInitializer(), transformer));
-		context.addVariableDeclarationMapping(iterationCall.getAccumulator(), transformedAccumulator);
-		
-		for (IterationVariableDeclaration iterationVariable : iterationCall.getIterationVariables()) {
-			IterationVariableDeclaration transformedIterationVariable = EcoreUtil.copy(iterationVariable);
-			transformedIterationCall.getIterationVariables().add(transformedIterationVariable);
-			context.addVariableDeclarationMapping(iterationVariable, transformedIterationVariable);
-		}
-		
-		assignExpression(context, iterationCall, transformedIterationCall, targets);
 	}
 	
 	protected void transformImpliesExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ImpliesExpression impliesExpression) {

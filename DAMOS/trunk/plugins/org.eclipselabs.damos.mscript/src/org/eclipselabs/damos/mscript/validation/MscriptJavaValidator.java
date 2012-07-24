@@ -27,7 +27,6 @@ import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -149,17 +148,6 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 						SwitchCase switchCase = (SwitchCase) container;
 						if (!switchCase.getOwner().isStatic() && (switchCase.getCaseExpression() == element || switchCase.getResultExpression() == element)) {
 							error("Stateful function calls must not be contained within non-static switch case expression", null);
-							break;
-						}
-					}
-					if (container instanceof IterationCall) {
-						IterationCall iterationCall = (IterationCall) container;
-						if (iterationCall.getBreakCondition() == element) {
-							error("Stateful function calls must not be contained within iteration call break condition", null);
-							break;
-						}
-						if (iterationCall.getExpression() == element) {
-							error("Stateful function calls must not be contained within iteration call expression", null);
 							break;
 						}
 					}

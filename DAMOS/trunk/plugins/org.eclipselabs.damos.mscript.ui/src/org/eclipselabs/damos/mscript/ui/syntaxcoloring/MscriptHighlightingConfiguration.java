@@ -29,7 +29,6 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 	public static final String CONSTANT_ID = "constant";
 	public static final String STATE_VARIABLE_ID = "stateVariable";
 	public static final String FUNCTION_ID = "function";
-	public static final String ITERATION_ID = "iteration";
 	public static final String BUILTIN_ID = "builtin";
 	public static final String UNIT_ID = "unit";
 	public static final String STEP_EXPRESSION_ID = "stepExpression";
@@ -42,7 +41,6 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		acceptor.acceptDefaultHighlighting(CONSTANT_ID, "Constant", constantTextStyle());
 		acceptor.acceptDefaultHighlighting(STATE_VARIABLE_ID, "State variable", stateVariableTextStyle());
 		acceptor.acceptDefaultHighlighting(FUNCTION_ID, "Function", functionTextStyle());
-		acceptor.acceptDefaultHighlighting(ITERATION_ID, "Iteration", iterationTextStyle());
 		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in symbol", builtinTextStyle());
 		acceptor.acceptDefaultHighlighting(UNIT_ID, "Unit", unitTextStyle());
 		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_ID, "Step expression", stepExpressionTextStyle());
@@ -89,13 +87,6 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 	public TextStyle functionTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(0, 0, 0));
-		textStyle.setStyle(SWT.BOLD);
-		return textStyle;
-	}
-
-	public TextStyle iterationTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
-		textStyle.setColor(new RGB(100, 40, 128));
 		textStyle.setStyle(SWT.BOLD);
 		return textStyle;
 	}

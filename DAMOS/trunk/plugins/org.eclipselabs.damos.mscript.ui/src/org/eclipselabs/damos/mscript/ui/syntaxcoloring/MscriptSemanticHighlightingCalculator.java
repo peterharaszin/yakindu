@@ -25,7 +25,6 @@ import org.eclipselabs.damos.mscript.BuiltinDeclaration;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.FeatureCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
@@ -80,8 +79,6 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.STATIC_PARAMETER_ID, acceptor);
 		} else if (eObject instanceof StateVariableDeclaration) {
 			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
-		} else if (eObject instanceof IterationCall) {
-			highlightFeature(eObject, MscriptPackage.eINSTANCE.getIterationCall_Identifier(), MscriptHighlightingConfiguration.ITERATION_ID, acceptor);
 		} else if (eObject instanceof Unit) {
 			INode node = NodeModelUtils.getNode(eObject);
 			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.UNIT_ID);

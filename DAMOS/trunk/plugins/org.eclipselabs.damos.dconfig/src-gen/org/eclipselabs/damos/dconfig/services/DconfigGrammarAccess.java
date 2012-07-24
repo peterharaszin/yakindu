@@ -2548,26 +2548,13 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	//MemberFeatureCall returns Expression:
 	//	PrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
 	//	"]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID | {FunctionCall.arguments+=current} "."
-	//	feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")" |
-	//	{IterationCall.target=current} "." identifier=ValidID "(" iterationVariables+=IterationVariableDeclaration (","
-	//	iterationVariables+=IterationVariableDeclaration)* (";" accumulator=IterationAccumulator)? (";"
-	//	breakCondition=Expression)? "|" expression=Expression ")")*;
+	//	feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")")*;
 	public MscriptGrammarAccess.MemberFeatureCallElements getMemberFeatureCallAccess() {
 		return gaMscript.getMemberFeatureCallAccess();
 	}
 	
 	public ParserRule getMemberFeatureCallRule() {
 		return getMemberFeatureCallAccess().getRule();
-	}
-
-	//IterationAccumulator:
-	//	name=ValidID "=" initializer=Expression;
-	public MscriptGrammarAccess.IterationAccumulatorElements getIterationAccumulatorAccess() {
-		return gaMscript.getIterationAccumulatorAccess();
-	}
-	
-	public ParserRule getIterationAccumulatorRule() {
-		return getIterationAccumulatorAccess().getRule();
 	}
 
 	//IterationVariableDeclaration:

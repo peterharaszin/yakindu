@@ -71,7 +71,6 @@
     <genClasses ecoreClass="Mscript.ecore#//EnumerationLiteralDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//EnumerationLiteralDeclaration/name"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//FunctionDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/kind"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/staticParameterDeclarations"/>
@@ -192,6 +191,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ExpressionList/expressions"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StructConstructionOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructConstructionOperator/label"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructConstructionOperator/members"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StructConstructionMember">
@@ -340,7 +340,6 @@
     <genClasses ecoreClass="Mscript.ecore#//BooleanType"/>
     <genClasses ecoreClass="Mscript.ecore#//StringType"/>
     <genClasses ecoreClass="Mscript.ecore#//ArrayType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayType/elementTypeSpecifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayType/dimensions"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ArrayType/dimensionality"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ArrayType/dimensional"/>
@@ -350,10 +349,18 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ArrayType/numericMatrix"/>
       <genOperations ecoreOperation="Mscript.ecore#//ArrayType/getElementType"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//AnonymousArrayType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AnonymousArrayType/elementType"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//DeclaredArrayType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//DeclaredArrayType/elementTypeDeclaration"/>
+    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayDimension">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayDimension/size"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StructType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructType/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructType/anyLabel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructType/members"/>
       <genOperations ecoreOperation="Mscript.ecore#//StructType/getMember">
         <genParameters ecoreParameter="Mscript.ecore#//StructType/getMember/name"/>

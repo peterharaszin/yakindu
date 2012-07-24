@@ -63,7 +63,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.TYPE_DECLARATION: return createTypeDeclaration();
 			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
-			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
 			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
 			case MscriptPackage.STATIC_PARAMETER_DECLARATION: return createStaticParameterDeclaration();
@@ -144,7 +143,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.GAUSSIAN_TYPE: return createGaussianType();
 			case MscriptPackage.BOOLEAN_TYPE: return createBooleanType();
 			case MscriptPackage.STRING_TYPE: return createStringType();
-			case MscriptPackage.ARRAY_TYPE: return createArrayType();
+			case MscriptPackage.ANONYMOUS_ARRAY_TYPE: return createAnonymousArrayType();
+			case MscriptPackage.DECLARED_ARRAY_TYPE: return createDeclaredArrayType();
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
 			case MscriptPackage.STRUCT_TYPE: return createStructType();
 			case MscriptPackage.STRUCT_MEMBER: return createStructMember();
@@ -261,16 +261,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public EnumerationLiteralDeclaration createEnumerationLiteralDeclaration() {
 		EnumerationLiteralDeclarationImpl enumerationLiteralDeclaration = new EnumerationLiteralDeclarationImpl();
 		return enumerationLiteralDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StructDeclaration createStructDeclaration() {
-		StructDeclarationImpl structDeclaration = new StructDeclarationImpl();
-		return structDeclaration;
 	}
 
 	/**
@@ -1078,9 +1068,19 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArrayType createArrayType() {
-		ArrayTypeImpl arrayType = new ArrayTypeImpl();
-		return arrayType;
+	public AnonymousArrayType createAnonymousArrayType() {
+		AnonymousArrayTypeImpl anonymousArrayType = new AnonymousArrayTypeImpl();
+		return anonymousArrayType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredArrayType createDeclaredArrayType() {
+		DeclaredArrayTypeImpl declaredArrayType = new DeclaredArrayTypeImpl();
+		return declaredArrayType;
 	}
 
 	/**

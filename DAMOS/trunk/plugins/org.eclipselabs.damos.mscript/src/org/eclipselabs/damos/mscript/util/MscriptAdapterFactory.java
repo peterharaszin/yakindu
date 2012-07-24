@@ -93,10 +93,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createEnumerationLiteralDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseStructDeclaration(StructDeclaration object) {
-				return createStructDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseFunctionDeclaration(FunctionDeclaration object) {
 				return createFunctionDeclarationAdapter();
 			}
@@ -469,6 +465,14 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createArrayTypeAdapter();
 			}
 			@Override
+			public Adapter caseAnonymousArrayType(AnonymousArrayType object) {
+				return createAnonymousArrayTypeAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredArrayType(DeclaredArrayType object) {
+				return createDeclaredArrayTypeAdapter();
+			}
+			@Override
 			public Adapter caseArrayDimension(ArrayDimension object) {
 				return createArrayDimensionAdapter();
 			}
@@ -645,20 +649,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnumerationLiteralDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructDeclaration <em>Struct Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructDeclaration
-	 * @generated
-	 */
-	public Adapter createStructDeclarationAdapter() {
 		return null;
 	}
 
@@ -1961,6 +1951,34 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArrayTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.AnonymousArrayType <em>Anonymous Array Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.AnonymousArrayType
+	 * @generated
+	 */
+	public Adapter createAnonymousArrayTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DeclaredArrayType <em>Declared Array Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.DeclaredArrayType
+	 * @generated
+	 */
+	public Adapter createDeclaredArrayTypeAdapter() {
 		return null;
 	}
 

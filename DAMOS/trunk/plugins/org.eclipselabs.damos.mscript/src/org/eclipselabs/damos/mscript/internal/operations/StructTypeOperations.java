@@ -18,6 +18,8 @@ import org.eclipselabs.damos.mscript.StructMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.Type;
 
+import com.google.common.base.Objects;
+
 public class StructTypeOperations extends TypeOperations {
 	
 	public static StructMember getMember(StructType structType, String name) {
@@ -56,6 +58,11 @@ public class StructTypeOperations extends TypeOperations {
 	public static boolean isAssignableFrom(StructType structType, Type other) {
 		if (other instanceof StructType) {
 			StructType otherStructType = (StructType) other;
+			
+			if (!structType.isAnyLabel() && !Objects.equal(structType.getLabel(), otherStructType.getLabel())) {
+				return false;
+			}
+			
 			EList<StructMember> members = structType.getMembers();
 			EList<StructMember> otherMembers = otherStructType.getMembers();
 			if (members.size() != otherMembers.size()) {

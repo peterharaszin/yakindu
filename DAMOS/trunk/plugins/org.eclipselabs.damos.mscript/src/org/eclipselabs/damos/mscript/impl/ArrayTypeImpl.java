@@ -8,12 +8,10 @@ package org.eclipselabs.damos.mscript.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.ArrayDimension;
@@ -22,7 +20,6 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
 
 /**
@@ -32,7 +29,6 @@ import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getElementTypeSpecifier <em>Element Type Specifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensions <em>Dimensions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#getDimensionality <em>Dimensionality</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayTypeImpl#isDimensional <em>Dimensional</em>}</li>
@@ -45,17 +41,7 @@ import org.eclipselabs.damos.mscript.internal.operations.ArrayTypeOperations;
  *
  * @generated
  */
-public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
-	/**
-	 * The cached value of the '{@link #getElementTypeSpecifier() <em>Element Type Specifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementTypeSpecifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeSpecifier elementTypeSpecifier;
-
+public abstract class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	/**
 	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -143,49 +129,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.ARRAY_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeSpecifier getElementTypeSpecifier() {
-		return elementTypeSpecifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetElementTypeSpecifier(TypeSpecifier newElementTypeSpecifier, NotificationChain msgs) {
-		TypeSpecifier oldElementTypeSpecifier = elementTypeSpecifier;
-		elementTypeSpecifier = newElementTypeSpecifier;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, oldElementTypeSpecifier, newElementTypeSpecifier);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElementTypeSpecifier(TypeSpecifier newElementTypeSpecifier) {
-		if (newElementTypeSpecifier != elementTypeSpecifier) {
-			NotificationChain msgs = null;
-			if (elementTypeSpecifier != null)
-				msgs = ((InternalEObject)elementTypeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, null, msgs);
-			if (newElementTypeSpecifier != null)
-				msgs = ((InternalEObject)newElementTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, null, msgs);
-			msgs = basicSetElementTypeSpecifier(newElementTypeSpecifier, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER, newElementTypeSpecifier, newElementTypeSpecifier));
 	}
 
 	/**
@@ -283,9 +226,7 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Type getElementType() {
-		return ArrayTypeOperations.getElementType(this);
-	}
+	public abstract Type getElementType();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -295,8 +236,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				return basicSetElementTypeSpecifier(null, msgs);
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return ((InternalEList<?>)getDimensions()).basicRemove(otherEnd, msgs);
 		}
@@ -311,8 +250,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				return getElementTypeSpecifier();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return getDimensions();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:
@@ -340,9 +277,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				setElementTypeSpecifier((TypeSpecifier)newValue);
-				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();
 				getDimensions().addAll((Collection<? extends ArrayDimension>)newValue);
@@ -359,9 +293,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				setElementTypeSpecifier((TypeSpecifier)null);
-				return;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				getDimensions().clear();
 				return;
@@ -377,8 +308,6 @@ public class ArrayTypeImpl extends DataTypeImpl implements ArrayType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ARRAY_TYPE__ELEMENT_TYPE_SPECIFIER:
-				return elementTypeSpecifier != null;
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONS:
 				return dimensions != null && !dimensions.isEmpty();
 			case MscriptPackage.ARRAY_TYPE__DIMENSIONALITY:

@@ -11,7 +11,7 @@ blockType And {
 		static assert _input is boolean[] :
 			error "Input values must be boolean"
 			
-		eq y = _input.iterate(e; result = true | result && e)
+		eq y = _input.fold(true, (result, e) -> result && e)
 	}
 	
 }

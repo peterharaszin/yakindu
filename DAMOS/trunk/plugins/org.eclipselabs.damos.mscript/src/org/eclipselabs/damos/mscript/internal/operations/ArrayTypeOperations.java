@@ -25,10 +25,6 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ArrayTypeOperations extends TypeOperations {
 
-	public static Type getElementType(ArrayType arrayType) {
-		return arrayType.getElementTypeSpecifier().getType();
-	}
-
 	public static boolean isAssignableFrom(ArrayType arrayType, Type other) {
 		if (other instanceof ArrayType) {
 			ArrayType otherArrayType = (ArrayType) other;
@@ -95,9 +91,7 @@ public class ArrayTypeOperations extends TypeOperations {
 		if (elementType instanceof InvalidType) {
 			return elementType;
 		}
-		ArrayType result = EcoreUtil.copy(arrayType);
-		TypeUtil.setArrayElementType(result, elementType);
-		return result;
+		return TypeUtil.createArrayType(elementType, EcoreUtil.copyAll(arrayType.getDimensions()));
 	}
 
 	static Type evaluateElementWiseScalar(NumericType numericType, OperatorKind operator, ArrayType arrayType) {
@@ -105,9 +99,7 @@ public class ArrayTypeOperations extends TypeOperations {
 		if (elementType instanceof InvalidType) {
 			return elementType;
 		}
-		ArrayType result = EcoreUtil.copy(arrayType);
-		TypeUtil.setArrayElementType(result, elementType);
-		return result;
+		return TypeUtil.createArrayType(elementType, EcoreUtil.copyAll(arrayType.getDimensions()));
 	}
 
 	private static Type evaluateElementWiseArray(ArrayType arrayType, OperatorKind operator, ArrayType otherArrayType) {
@@ -116,9 +108,7 @@ public class ArrayTypeOperations extends TypeOperations {
 			if (elementType instanceof InvalidType) {
 				return elementType;
 			}
-			ArrayType result = EcoreUtil.copy(arrayType);
-			TypeUtil.setArrayElementType(result, elementType);
-			return result;
+			return TypeUtil.createArrayType(elementType, EcoreUtil.copyAll(arrayType.getDimensions()));
 		}
 		return MscriptFactory.eINSTANCE.createInvalidType();
 	}

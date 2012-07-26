@@ -90,6 +90,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.EXPRESSION_LIST: return createExpressionList();
 			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: return createStructConstructionOperator();
 			case MscriptPackage.STRUCT_CONSTRUCTION_MEMBER: return createStructConstructionMember();
+			case MscriptPackage.UNION_CONSTRUCTION_OPERATOR: return createUnionConstructionOperator();
 			case MscriptPackage.UNIT_CONSTRUCTION_OPERATOR: return createUnitConstructionOperator();
 			case MscriptPackage.PARENTHESIZED_EXPRESSION: return createParenthesizedExpression();
 			case MscriptPackage.END_EXPRESSION: return createEndExpression();
@@ -114,6 +115,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.MEMBER_VARIABLE_ACCESS: return createMemberVariableAccess();
 			case MscriptPackage.LAMBDA_EXPRESSION: return createLambdaExpression();
 			case MscriptPackage.LAMBDA_EXPRESSION_PARAMETER: return createLambdaExpressionParameter();
+			case MscriptPackage.INSPECT_EXPRESSION: return createInspectExpression();
+			case MscriptPackage.INSPECT_WHEN_CLAUSE: return createInspectWhenClause();
 			case MscriptPackage.ALGORITHM_EXPRESSION: return createAlgorithmExpression();
 			case MscriptPackage.INVALID_EXPRESSION: return createInvalidExpression();
 			case MscriptPackage.COMPOUND_STATEMENT: return createCompoundStatement();
@@ -144,8 +147,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ANONYMOUS_ARRAY_TYPE: return createAnonymousArrayType();
 			case MscriptPackage.DECLARED_ARRAY_TYPE: return createDeclaredArrayType();
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER: return createCompositeTypeMember();
 			case MscriptPackage.STRUCT_TYPE: return createStructType();
-			case MscriptPackage.STRUCT_MEMBER: return createStructMember();
+			case MscriptPackage.UNION_TYPE: return createUnionType();
 			case MscriptPackage.EXPRESSION: return createExpression();
 			case MscriptPackage.UNIT: return createUnit();
 			case MscriptPackage.UNIT_NUMERATOR: return createUnitNumerator();
@@ -536,6 +540,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnionConstructionOperator createUnionConstructionOperator() {
+		UnionConstructionOperatorImpl unionConstructionOperator = new UnionConstructionOperatorImpl();
+		return unionConstructionOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UnitConstructionOperator createUnitConstructionOperator() {
 		UnitConstructionOperatorImpl unitConstructionOperator = new UnitConstructionOperatorImpl();
 		return unitConstructionOperator;
@@ -769,6 +783,26 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public LambdaExpressionParameter createLambdaExpressionParameter() {
 		LambdaExpressionParameterImpl lambdaExpressionParameter = new LambdaExpressionParameterImpl();
 		return lambdaExpressionParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InspectExpression createInspectExpression() {
+		InspectExpressionImpl inspectExpression = new InspectExpressionImpl();
+		return inspectExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InspectWhenClause createInspectWhenClause() {
+		InspectWhenClauseImpl inspectWhenClause = new InspectWhenClauseImpl();
+		return inspectWhenClause;
 	}
 
 	/**
@@ -1076,6 +1110,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CompositeTypeMember createCompositeTypeMember() {
+		CompositeTypeMemberImpl compositeTypeMember = new CompositeTypeMemberImpl();
+		return compositeTypeMember;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StructType createStructType() {
 		StructTypeImpl structType = new StructTypeImpl();
 		return structType;
@@ -1086,9 +1130,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructMember createStructMember() {
-		StructMemberImpl structMember = new StructMemberImpl();
-		return structMember;
+	public UnionType createUnionType() {
+		UnionTypeImpl unionType = new UnionTypeImpl();
+		return unionType;
 	}
 
 	/**

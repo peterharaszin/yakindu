@@ -349,6 +349,14 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.UNION_CONSTRUCTION_OPERATOR: {
+				UnionConstructionOperator unionConstructionOperator = (UnionConstructionOperator)theEObject;
+				T result = caseUnionConstructionOperator(unionConstructionOperator);
+				if (result == null) result = caseExpression(unionConstructionOperator);
+				if (result == null) result = caseEvaluable(unionConstructionOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.UNIT_CONSTRUCTION_OPERATOR: {
 				UnitConstructionOperator unitConstructionOperator = (UnitConstructionOperator)theEObject;
 				T result = caseUnitConstructionOperator(unitConstructionOperator);
@@ -575,6 +583,23 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseVariableDeclaration(lambdaExpressionParameter);
 				if (result == null) result = caseCallableElement(lambdaExpressionParameter);
 				if (result == null) result = caseEvaluable(lambdaExpressionParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.INSPECT_EXPRESSION: {
+				InspectExpression inspectExpression = (InspectExpression)theEObject;
+				T result = caseInspectExpression(inspectExpression);
+				if (result == null) result = caseExpression(inspectExpression);
+				if (result == null) result = caseEvaluable(inspectExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.INSPECT_WHEN_CLAUSE: {
+				InspectWhenClause inspectWhenClause = (InspectWhenClause)theEObject;
+				T result = caseInspectWhenClause(inspectWhenClause);
+				if (result == null) result = caseVariableDeclaration(inspectWhenClause);
+				if (result == null) result = caseCallableElement(inspectWhenClause);
+				if (result == null) result = caseEvaluable(inspectWhenClause);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -850,17 +875,35 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.COMPOSITE_TYPE: {
+				CompositeType compositeType = (CompositeType)theEObject;
+				T result = caseCompositeType(compositeType);
+				if (result == null) result = caseDataType(compositeType);
+				if (result == null) result = caseType(compositeType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER: {
+				CompositeTypeMember compositeTypeMember = (CompositeTypeMember)theEObject;
+				T result = caseCompositeTypeMember(compositeTypeMember);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.STRUCT_TYPE: {
 				StructType structType = (StructType)theEObject;
 				T result = caseStructType(structType);
+				if (result == null) result = caseCompositeType(structType);
 				if (result == null) result = caseDataType(structType);
 				if (result == null) result = caseType(structType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_MEMBER: {
-				StructMember structMember = (StructMember)theEObject;
-				T result = caseStructMember(structMember);
+			case MscriptPackage.UNION_TYPE: {
+				UnionType unionType = (UnionType)theEObject;
+				T result = caseUnionType(unionType);
+				if (result == null) result = caseCompositeType(unionType);
+				if (result == null) result = caseDataType(unionType);
+				if (result == null) result = caseType(unionType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1561,6 +1604,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Union Construction Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Union Construction Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnionConstructionOperator(UnionConstructionOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unit Construction Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1977,6 +2035,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLambdaExpressionParameter(LambdaExpressionParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inspect Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inspect Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInspectExpression(InspectExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inspect When Clause</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inspect When Clause</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInspectWhenClause(InspectWhenClause object) {
 		return null;
 	}
 
@@ -2491,6 +2579,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeType(CompositeType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Type Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Type Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeTypeMember(CompositeTypeMember object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Struct Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2506,17 +2624,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Union Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Union Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructMember(StructMember object) {
+	public T caseUnionType(UnionType object) {
 		return null;
 	}
 

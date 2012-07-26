@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
@@ -46,7 +46,7 @@ public class StructValue extends AbstractExplicitDataTypeValue {
 	
 	public IValue get(String memberName) {
 		int i = 0;
-		for (StructMember member : getDataType().getMembers()) {
+		for (CompositeTypeMember member : getDataType().getMembers()) {
 			if (memberName.equals(member.getName())) {
 				return members[i]; 
 			}

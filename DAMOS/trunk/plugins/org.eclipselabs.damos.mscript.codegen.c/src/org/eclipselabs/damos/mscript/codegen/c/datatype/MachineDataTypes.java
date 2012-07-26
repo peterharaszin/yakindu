@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.StringType;
-import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -72,9 +72,9 @@ public class MachineDataTypes {
 
 	public static MachineStructType create(IMscriptGeneratorConfiguration configuration, StructType structType) {
 		List<MachineStructMember> machineStructMembers = new ArrayList<MachineStructMember>();
-		for (StructMember structMember : structType.getMembers()) {
-			machineStructMembers.add(new MachineStructMember(structMember.getName(), create(configuration,
-					structMember.getTypeSpecifier().getType())));
+		for (CompositeTypeMember compositeTypeMember : structType.getMembers()) {
+			machineStructMembers.add(new MachineStructMember(compositeTypeMember.getName(), create(configuration,
+					compositeTypeMember.getTypeSpecifier().getType())));
 		}
 		return new MachineStructType(Collections.unmodifiableList(machineStructMembers));
 	}

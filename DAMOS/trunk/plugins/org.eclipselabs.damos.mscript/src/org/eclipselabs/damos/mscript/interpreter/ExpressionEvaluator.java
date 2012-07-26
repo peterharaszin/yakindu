@@ -63,7 +63,7 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
-import org.eclipselabs.damos.mscript.StructMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
@@ -963,7 +963,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 						anyValue = true;
 					}
 
-					StructMember member = MscriptFactory.eINSTANCE.createStructMember();
+					CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
 					member.setName(constructionMember.getName());
 					AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 					dataTypeSpecifier.setType(EcoreUtil.copy(value.getDataType()));

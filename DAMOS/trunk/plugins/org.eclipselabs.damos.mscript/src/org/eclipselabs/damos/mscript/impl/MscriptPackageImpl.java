@@ -294,6 +294,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass unionConstructionOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass unitConstructionOperatorEClass = null;
 
 	/**
@@ -484,6 +491,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	private EClass lambdaExpressionParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inspectExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inspectWhenClauseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -728,6 +749,20 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass compositeTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeTypeMemberEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass structTypeEClass = null;
 
 	/**
@@ -735,7 +770,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass structMemberEClass = null;
+	private EClass unionTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1877,6 +1912,42 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUnionConstructionOperator() {
+		return unionConstructionOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnionConstructionOperator_Member() {
+		return (EReference)unionConstructionOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnionConstructionOperator_Value() {
+		return (EReference)unionConstructionOperatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnionConstructionOperator_TypeSpecifier() {
+		return (EReference)unionConstructionOperatorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUnitConstructionOperator() {
 		return unitConstructionOperatorEClass;
 	}
@@ -2338,6 +2409,51 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EClass getLambdaExpressionParameter() {
 		return lambdaExpressionParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInspectExpression() {
+		return inspectExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInspectExpression_UnionExpression() {
+		return (EReference)inspectExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInspectExpression_WhenClauses() {
+		return (EReference)inspectExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInspectWhenClause() {
+		return inspectWhenClauseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInspectWhenClause_Expression() {
+		return (EReference)inspectWhenClauseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2894,6 +3010,69 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompositeType() {
+		return compositeTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeType_Label() {
+		return (EAttribute)compositeTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeType_AnyLabel() {
+		return (EAttribute)compositeTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeType_Members() {
+		return (EReference)compositeTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompositeTypeMember() {
+		return compositeTypeMemberEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompositeTypeMember_Name() {
+		return (EAttribute)compositeTypeMemberEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeTypeMember_TypeSpecifier() {
+		return (EReference)compositeTypeMemberEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStructType() {
 		return structTypeEClass;
 	}
@@ -2903,53 +3082,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStructType_Label() {
-		return (EAttribute)structTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStructType_AnyLabel() {
-		return (EAttribute)structTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStructType_Members() {
-		return (EReference)structTypeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStructMember() {
-		return structMemberEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStructMember_Name() {
-		return (EAttribute)structMemberEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStructMember_TypeSpecifier() {
-		return (EReference)structMemberEClass.getEStructuralFeatures().get(1);
+	public EClass getUnionType() {
+		return unionTypeEClass;
 	}
 
 	/**
@@ -3481,6 +3615,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(structConstructionMemberEClass, STRUCT_CONSTRUCTION_MEMBER__NAME);
 		createEReference(structConstructionMemberEClass, STRUCT_CONSTRUCTION_MEMBER__VALUE);
 
+		unionConstructionOperatorEClass = createEClass(UNION_CONSTRUCTION_OPERATOR);
+		createEReference(unionConstructionOperatorEClass, UNION_CONSTRUCTION_OPERATOR__MEMBER);
+		createEReference(unionConstructionOperatorEClass, UNION_CONSTRUCTION_OPERATOR__VALUE);
+		createEReference(unionConstructionOperatorEClass, UNION_CONSTRUCTION_OPERATOR__TYPE_SPECIFIER);
+
 		unitConstructionOperatorEClass = createEClass(UNIT_CONSTRUCTION_OPERATOR);
 		createEReference(unitConstructionOperatorEClass, UNIT_CONSTRUCTION_OPERATOR__UNIT);
 
@@ -3560,6 +3699,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(lambdaExpressionEClass, LAMBDA_EXPRESSION__EXPRESSION);
 
 		lambdaExpressionParameterEClass = createEClass(LAMBDA_EXPRESSION_PARAMETER);
+
+		inspectExpressionEClass = createEClass(INSPECT_EXPRESSION);
+		createEReference(inspectExpressionEClass, INSPECT_EXPRESSION__UNION_EXPRESSION);
+		createEReference(inspectExpressionEClass, INSPECT_EXPRESSION__WHEN_CLAUSES);
+
+		inspectWhenClauseEClass = createEClass(INSPECT_WHEN_CLAUSE);
+		createEReference(inspectWhenClauseEClass, INSPECT_WHEN_CLAUSE__EXPRESSION);
 
 		algorithmExpressionEClass = createEClass(ALGORITHM_EXPRESSION);
 		createEReference(algorithmExpressionEClass, ALGORITHM_EXPRESSION__BODY);
@@ -3656,14 +3802,18 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		arrayDimensionEClass = createEClass(ARRAY_DIMENSION);
 		createEReference(arrayDimensionEClass, ARRAY_DIMENSION__SIZE);
 
-		structTypeEClass = createEClass(STRUCT_TYPE);
-		createEAttribute(structTypeEClass, STRUCT_TYPE__LABEL);
-		createEAttribute(structTypeEClass, STRUCT_TYPE__ANY_LABEL);
-		createEReference(structTypeEClass, STRUCT_TYPE__MEMBERS);
+		compositeTypeEClass = createEClass(COMPOSITE_TYPE);
+		createEAttribute(compositeTypeEClass, COMPOSITE_TYPE__LABEL);
+		createEAttribute(compositeTypeEClass, COMPOSITE_TYPE__ANY_LABEL);
+		createEReference(compositeTypeEClass, COMPOSITE_TYPE__MEMBERS);
 
-		structMemberEClass = createEClass(STRUCT_MEMBER);
-		createEAttribute(structMemberEClass, STRUCT_MEMBER__NAME);
-		createEReference(structMemberEClass, STRUCT_MEMBER__TYPE_SPECIFIER);
+		compositeTypeMemberEClass = createEClass(COMPOSITE_TYPE_MEMBER);
+		createEAttribute(compositeTypeMemberEClass, COMPOSITE_TYPE_MEMBER__NAME);
+		createEReference(compositeTypeMemberEClass, COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER);
+
+		structTypeEClass = createEClass(STRUCT_TYPE);
+
+		unionTypeEClass = createEClass(UNION_TYPE);
 
 		expressionEClass = createEClass(EXPRESSION);
 
@@ -3778,6 +3928,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		arrayConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		arrayConcatenationOperatorEClass.getESuperTypes().add(this.getExpression());
 		structConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
+		unionConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		unitConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		parenthesizedExpressionEClass.getESuperTypes().add(this.getExpression());
 		endExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -3805,6 +3956,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		memberVariableAccessEClass.getESuperTypes().add(this.getExpression());
 		lambdaExpressionEClass.getESuperTypes().add(this.getExpression());
 		lambdaExpressionParameterEClass.getESuperTypes().add(this.getVariableDeclaration());
+		inspectExpressionEClass.getESuperTypes().add(this.getExpression());
+		inspectWhenClauseEClass.getESuperTypes().add(this.getVariableDeclaration());
 		algorithmExpressionEClass.getESuperTypes().add(this.getExpression());
 		invalidExpressionEClass.getESuperTypes().add(this.getExpression());
 		compoundStatementEClass.getESuperTypes().add(this.getStatement());
@@ -3838,7 +3991,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		arrayTypeEClass.getESuperTypes().add(this.getDataType());
 		anonymousArrayTypeEClass.getESuperTypes().add(this.getArrayType());
 		declaredArrayTypeEClass.getESuperTypes().add(this.getArrayType());
-		structTypeEClass.getESuperTypes().add(this.getDataType());
+		compositeTypeEClass.getESuperTypes().add(this.getDataType());
+		structTypeEClass.getESuperTypes().add(this.getCompositeType());
+		unionTypeEClass.getESuperTypes().add(this.getCompositeType());
 		expressionEClass.getESuperTypes().add(this.getEvaluable());
 		unitNumeratorEClass.getESuperTypes().add(this.getUnitProduct());
 		unitDenominatorEClass.getESuperTypes().add(this.getUnitProduct());
@@ -4000,6 +4155,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getStructConstructionMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructConstructionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStructConstructionMember_Value(), this.getExpression(), null, "value", null, 0, 1, StructConstructionMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(unionConstructionOperatorEClass, UnionConstructionOperator.class, "UnionConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnionConstructionOperator_Member(), this.getCompositeTypeMember(), null, "member", null, 0, 1, UnionConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnionConstructionOperator_Value(), this.getExpression(), null, "value", null, 0, 1, UnionConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnionConstructionOperator_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, UnionConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(unitConstructionOperatorEClass, UnitConstructionOperator.class, "UnitConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitConstructionOperator_Unit(), this.getUnit(), null, "unit", null, 0, 1, UnitConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4081,6 +4241,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getLambdaExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, LambdaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(lambdaExpressionParameterEClass, LambdaExpressionParameter.class, "LambdaExpressionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(inspectExpressionEClass, InspectExpression.class, "InspectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInspectExpression_UnionExpression(), this.getExpression(), null, "unionExpression", null, 0, 1, InspectExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInspectExpression_WhenClauses(), this.getInspectWhenClause(), null, "whenClauses", null, 0, -1, InspectExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(inspectWhenClauseEClass, InspectWhenClause.class, "InspectWhenClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInspectWhenClause_Expression(), this.getExpression(), null, "expression", null, 0, 1, InspectWhenClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlgorithmExpression_Body(), this.getCompoundStatement(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4195,20 +4362,24 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(arrayDimensionEClass, ArrayDimension.class, "ArrayDimension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayDimension_Size(), this.getExpression(), null, "size", null, 0, 1, ArrayDimension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(compositeTypeEClass, CompositeType.class, "CompositeType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompositeType_Label(), ecorePackage.getEString(), "label", null, 0, 1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeType_AnyLabel(), ecorePackage.getEBoolean(), "anyLabel", null, 0, 1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeType_Members(), this.getCompositeTypeMember(), null, "members", null, 0, -1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(compositeTypeEClass, this.getCompositeTypeMember(), "getMember", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(compositeTypeEClass, ecorePackage.getEInt(), "getMemberIndex", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(compositeTypeMemberEClass, CompositeTypeMember.class, "CompositeTypeMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCompositeTypeMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, CompositeTypeMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeTypeMember_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, CompositeTypeMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(structTypeEClass, StructType.class, "StructType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStructType_Label(), ecorePackage.getEString(), "label", null, 0, 1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStructType_AnyLabel(), ecorePackage.getEBoolean(), "anyLabel", null, 0, 1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStructType_Members(), this.getStructMember(), null, "members", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(structTypeEClass, this.getStructMember(), "getMember", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(structTypeEClass, ecorePackage.getEInt(), "getMemberIndex", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(structMemberEClass, StructMember.class, "StructMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStructMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStructMember_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(unionTypeEClass, UnionType.class, "UnionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

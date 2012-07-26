@@ -141,7 +141,7 @@ StringType:
 	{StringType} 'string';
 	
 AnonymousArrayType returns DataType:
-	(PrimitiveType | StructType) ({AnonymousArrayType.elementType=current} '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']')?;
+	(PrimitiveType | CompositeType) ({AnonymousArrayType.elementType=current} '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']')?;
 
 DeclaredArrayType:
 	elementTypeDeclaration=[TypeDeclaration|QualifiedName] '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
@@ -149,10 +149,16 @@ DeclaredArrayType:
 ArrayDimension:
 	{ArrayDimension} (size=Expression)?;
 
-StructType:
-	(label=ValidID | anyLabel?='?')? '{' members+=StructMember (';' members+=StructMember)* ';'? '}'; 
+CompositeType:
+	StructType | UnionType;
 
-StructMember:
+StructType:
+	(label=ValidID | anyLabel?='?')? '{' members+=CompositeTypeMember (';' members+=CompositeTypeMember)* ';'? '}'; 
+
+UnionType:
+	'union' (label=ValidID | anyLabel?='?')? '{' members+=CompositeTypeMember (';' members+=CompositeTypeMember)* ';'? '}';
+
+CompositeTypeMember:
 	typeSpecifier=TypeSpecifier name=ValidID;
 
 /*
@@ -160,7 +166,7 @@ StructMember:
  */
 
 Expression:
-	LambdaExpression | LetExpression | IfExpression | SwitchExpression | RangeExpression;
+	LambdaExpression | LetExpression | IfExpression | SwitchExpression | InspectExpression | UnionConstructionOperator | RangeExpression;
 
 LambdaExpression:
 	(parameters+=LambdaExpressionParameter | '(' (parameters+=LambdaExpressionParameter (',' parameters+=LambdaExpressionParameter)*)? ')') '->' expression=Expression;
@@ -188,6 +194,12 @@ SwitchExpression:
 SwitchCase:
 	'case' caseExpression=ImpliesExpression ':' resultExpression=Expression;
 
+InspectExpression:
+	'inspect' unionExpression=Expression (whenClauses+=InspectWhenClause)*;
+
+InspectWhenClause:
+	=>'when' name=ValidID ':' expression=Expression;
+	
 RangeExpression returns Expression:
 	ImpliesExpression ({RangeExpression.operands+=current} ':' operands+=ImpliesExpression (':' operands+=ImpliesExpression)?)?;
 
@@ -381,6 +393,15 @@ StructConstructionOperator:
 StructConstructionMember:
 	name=ValidID '=' value=Expression;
 	
+UnionConstructionOperator:
+	'new' typeSpecifier=UnionTypeSpecifier 'with' member=[CompositeTypeMember|ValidID] '=' value=Expression;
+
+UnionTypeSpecifier returns TypeSpecifier:
+	AnonymousUnionTypeSpecifier | DeclaredTypeSpecifier;
+
+AnonymousUnionTypeSpecifier returns AnonymousTypeSpecifier:
+	type=UnionType;
+
 UnitConstructionOperator:
 	'unitlit' unit=ExplicitUnit;
 

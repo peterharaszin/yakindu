@@ -221,6 +221,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createStructConstructionMemberAdapter();
 			}
 			@Override
+			public Adapter caseUnionConstructionOperator(UnionConstructionOperator object) {
+				return createUnionConstructionOperatorAdapter();
+			}
+			@Override
 			public Adapter caseUnitConstructionOperator(UnitConstructionOperator object) {
 				return createUnitConstructionOperatorAdapter();
 			}
@@ -331,6 +335,14 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLambdaExpressionParameter(LambdaExpressionParameter object) {
 				return createLambdaExpressionParameterAdapter();
+			}
+			@Override
+			public Adapter caseInspectExpression(InspectExpression object) {
+				return createInspectExpressionAdapter();
+			}
+			@Override
+			public Adapter caseInspectWhenClause(InspectWhenClause object) {
+				return createInspectWhenClauseAdapter();
 			}
 			@Override
 			public Adapter caseAlgorithmExpression(AlgorithmExpression object) {
@@ -469,12 +481,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createArrayDimensionAdapter();
 			}
 			@Override
+			public Adapter caseCompositeType(CompositeType object) {
+				return createCompositeTypeAdapter();
+			}
+			@Override
+			public Adapter caseCompositeTypeMember(CompositeTypeMember object) {
+				return createCompositeTypeMemberAdapter();
+			}
+			@Override
 			public Adapter caseStructType(StructType object) {
 				return createStructTypeAdapter();
 			}
 			@Override
-			public Adapter caseStructMember(StructMember object) {
-				return createStructMemberAdapter();
+			public Adapter caseUnionType(UnionType object) {
+				return createUnionTypeAdapter();
 			}
 			@Override
 			public Adapter caseExpression(Expression object) {
@@ -1093,6 +1113,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnionConstructionOperator <em>Union Construction Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.UnionConstructionOperator
+	 * @generated
+	 */
+	public Adapter createUnionConstructionOperatorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitConstructionOperator <em>Unit Construction Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1481,6 +1515,34 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLambdaExpressionParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.InspectExpression <em>Inspect Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.InspectExpression
+	 * @generated
+	 */
+	public Adapter createInspectExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.InspectWhenClause <em>Inspect When Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.InspectWhenClause
+	 * @generated
+	 */
+	public Adapter createInspectWhenClauseAdapter() {
 		return null;
 	}
 
@@ -1961,6 +2023,34 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.CompositeType <em>Composite Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.CompositeType
+	 * @generated
+	 */
+	public Adapter createCompositeTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.CompositeTypeMember <em>Composite Type Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.CompositeTypeMember
+	 * @generated
+	 */
+	public Adapter createCompositeTypeMemberAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructType <em>Struct Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1975,16 +2065,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructMember <em>Struct Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnionType <em>Union Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructMember
+	 * @see org.eclipselabs.damos.mscript.UnionType
 	 * @generated
 	 */
-	public Adapter createStructMemberAdapter() {
+	public Adapter createUnionTypeAdapter() {
 		return null;
 	}
 

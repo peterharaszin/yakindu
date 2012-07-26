@@ -49,7 +49,9 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
 					put(grammarAccess.getNumericTypeAccess().getAlternatives(), "rule__NumericType__Alternatives");
 					put(grammarAccess.getAnonymousArrayTypeAccess().getAlternatives_0(), "rule__AnonymousArrayType__Alternatives_0");
+					put(grammarAccess.getCompositeTypeAccess().getAlternatives(), "rule__CompositeType__Alternatives");
 					put(grammarAccess.getStructTypeAccess().getAlternatives_0(), "rule__StructType__Alternatives_0");
+					put(grammarAccess.getUnionTypeAccess().getAlternatives_1(), "rule__UnionType__Alternatives_1");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 					put(grammarAccess.getLambdaExpressionAccess().getAlternatives_0(), "rule__LambdaExpression__Alternatives_0");
 					put(grammarAccess.getLetExpressionAssignmentAccess().getAlternatives_0(), "rule__LetExpressionAssignment__Alternatives_0");
@@ -73,6 +75,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNegateStepExpressionAccess().getAlternatives(), "rule__NegateStepExpression__Alternatives");
 					put(grammarAccess.getPrimitiveStepExpressionAccess().getAlternatives(), "rule__PrimitiveStepExpression__Alternatives");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getAlternatives_2(), "rule__ArrayConstructionOperator__Alternatives_2");
+					put(grammarAccess.getUnionTypeSpecifierAccess().getAlternatives(), "rule__UnionTypeSpecifier__Alternatives");
 					put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 					put(grammarAccess.getAssignableMemberFeatureCallAccess().getAlternatives_1(), "rule__AssignableMemberFeatureCall__Alternatives_1");
 					put(grammarAccess.getAssignablePrimaryExpressionAccess().getAlternatives(), "rule__AssignablePrimaryExpression__Alternatives");
@@ -156,7 +159,9 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArrayDimensionAccess().getGroup(), "rule__ArrayDimension__Group__0");
 					put(grammarAccess.getStructTypeAccess().getGroup(), "rule__StructType__Group__0");
 					put(grammarAccess.getStructTypeAccess().getGroup_3(), "rule__StructType__Group_3__0");
-					put(grammarAccess.getStructMemberAccess().getGroup(), "rule__StructMember__Group__0");
+					put(grammarAccess.getUnionTypeAccess().getGroup(), "rule__UnionType__Group__0");
+					put(grammarAccess.getUnionTypeAccess().getGroup_4(), "rule__UnionType__Group_4__0");
+					put(grammarAccess.getCompositeTypeMemberAccess().getGroup(), "rule__CompositeTypeMember__Group__0");
 					put(grammarAccess.getLambdaExpressionAccess().getGroup(), "rule__LambdaExpression__Group__0");
 					put(grammarAccess.getLambdaExpressionAccess().getGroup_0_1(), "rule__LambdaExpression__Group_0_1__0");
 					put(grammarAccess.getLambdaExpressionAccess().getGroup_0_1_1(), "rule__LambdaExpression__Group_0_1_1__0");
@@ -169,6 +174,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfExpressionAccess().getGroup(), "rule__IfExpression__Group__0");
 					put(grammarAccess.getSwitchExpressionAccess().getGroup(), "rule__SwitchExpression__Group__0");
 					put(grammarAccess.getSwitchCaseAccess().getGroup(), "rule__SwitchCase__Group__0");
+					put(grammarAccess.getInspectExpressionAccess().getGroup(), "rule__InspectExpression__Group__0");
+					put(grammarAccess.getInspectWhenClauseAccess().getGroup(), "rule__InspectWhenClause__Group__0");
 					put(grammarAccess.getRangeExpressionAccess().getGroup(), "rule__RangeExpression__Group__0");
 					put(grammarAccess.getRangeExpressionAccess().getGroup_1(), "rule__RangeExpression__Group_1__0");
 					put(grammarAccess.getRangeExpressionAccess().getGroup_1_3(), "rule__RangeExpression__Group_1_3__0");
@@ -238,6 +245,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructConstructionOperatorAccess().getGroup(), "rule__StructConstructionOperator__Group__0");
 					put(grammarAccess.getStructConstructionOperatorAccess().getGroup_3(), "rule__StructConstructionOperator__Group_3__0");
 					put(grammarAccess.getStructConstructionMemberAccess().getGroup(), "rule__StructConstructionMember__Group__0");
+					put(grammarAccess.getUnionConstructionOperatorAccess().getGroup(), "rule__UnionConstructionOperator__Group__0");
 					put(grammarAccess.getUnitConstructionOperatorAccess().getGroup(), "rule__UnitConstructionOperator__Group__0");
 					put(grammarAccess.getParenthesizedExpressionAccess().getGroup(), "rule__ParenthesizedExpression__Group__0");
 					put(grammarAccess.getParenthesizedExpressionAccess().getGroup_2(), "rule__ParenthesizedExpression__Group_2__0");
@@ -392,8 +400,12 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructTypeAccess().getAnyLabelAssignment_0_1(), "rule__StructType__AnyLabelAssignment_0_1");
 					put(grammarAccess.getStructTypeAccess().getMembersAssignment_2(), "rule__StructType__MembersAssignment_2");
 					put(grammarAccess.getStructTypeAccess().getMembersAssignment_3_1(), "rule__StructType__MembersAssignment_3_1");
-					put(grammarAccess.getStructMemberAccess().getTypeSpecifierAssignment_0(), "rule__StructMember__TypeSpecifierAssignment_0");
-					put(grammarAccess.getStructMemberAccess().getNameAssignment_1(), "rule__StructMember__NameAssignment_1");
+					put(grammarAccess.getUnionTypeAccess().getLabelAssignment_1_0(), "rule__UnionType__LabelAssignment_1_0");
+					put(grammarAccess.getUnionTypeAccess().getAnyLabelAssignment_1_1(), "rule__UnionType__AnyLabelAssignment_1_1");
+					put(grammarAccess.getUnionTypeAccess().getMembersAssignment_3(), "rule__UnionType__MembersAssignment_3");
+					put(grammarAccess.getUnionTypeAccess().getMembersAssignment_4_1(), "rule__UnionType__MembersAssignment_4_1");
+					put(grammarAccess.getCompositeTypeMemberAccess().getTypeSpecifierAssignment_0(), "rule__CompositeTypeMember__TypeSpecifierAssignment_0");
+					put(grammarAccess.getCompositeTypeMemberAccess().getNameAssignment_1(), "rule__CompositeTypeMember__NameAssignment_1");
 					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_0(), "rule__LambdaExpression__ParametersAssignment_0_0");
 					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_0(), "rule__LambdaExpression__ParametersAssignment_0_1_1_0");
 					put(grammarAccess.getLambdaExpressionAccess().getParametersAssignment_0_1_1_1_1(), "rule__LambdaExpression__ParametersAssignment_0_1_1_1_1");
@@ -417,6 +429,10 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSwitchExpressionAccess().getDefaultExpressionAssignment_6(), "rule__SwitchExpression__DefaultExpressionAssignment_6");
 					put(grammarAccess.getSwitchCaseAccess().getCaseExpressionAssignment_1(), "rule__SwitchCase__CaseExpressionAssignment_1");
 					put(grammarAccess.getSwitchCaseAccess().getResultExpressionAssignment_3(), "rule__SwitchCase__ResultExpressionAssignment_3");
+					put(grammarAccess.getInspectExpressionAccess().getUnionExpressionAssignment_1(), "rule__InspectExpression__UnionExpressionAssignment_1");
+					put(grammarAccess.getInspectExpressionAccess().getWhenClausesAssignment_2(), "rule__InspectExpression__WhenClausesAssignment_2");
+					put(grammarAccess.getInspectWhenClauseAccess().getNameAssignment_1(), "rule__InspectWhenClause__NameAssignment_1");
+					put(grammarAccess.getInspectWhenClauseAccess().getExpressionAssignment_3(), "rule__InspectWhenClause__ExpressionAssignment_3");
 					put(grammarAccess.getRangeExpressionAccess().getOperandsAssignment_1_2(), "rule__RangeExpression__OperandsAssignment_1_2");
 					put(grammarAccess.getRangeExpressionAccess().getOperandsAssignment_1_3_1(), "rule__RangeExpression__OperandsAssignment_1_3_1");
 					put(grammarAccess.getImpliesExpressionAccess().getOperatorAssignment_1_1(), "rule__ImpliesExpression__OperatorAssignment_1_1");
@@ -488,6 +504,10 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructConstructionOperatorAccess().getMembersAssignment_3_1(), "rule__StructConstructionOperator__MembersAssignment_3_1");
 					put(grammarAccess.getStructConstructionMemberAccess().getNameAssignment_0(), "rule__StructConstructionMember__NameAssignment_0");
 					put(grammarAccess.getStructConstructionMemberAccess().getValueAssignment_2(), "rule__StructConstructionMember__ValueAssignment_2");
+					put(grammarAccess.getUnionConstructionOperatorAccess().getTypeSpecifierAssignment_1(), "rule__UnionConstructionOperator__TypeSpecifierAssignment_1");
+					put(grammarAccess.getUnionConstructionOperatorAccess().getMemberAssignment_3(), "rule__UnionConstructionOperator__MemberAssignment_3");
+					put(grammarAccess.getUnionConstructionOperatorAccess().getValueAssignment_5(), "rule__UnionConstructionOperator__ValueAssignment_5");
+					put(grammarAccess.getAnonymousUnionTypeSpecifierAccess().getTypeAssignment(), "rule__AnonymousUnionTypeSpecifier__TypeAssignment");
 					put(grammarAccess.getUnitConstructionOperatorAccess().getUnitAssignment_1(), "rule__UnitConstructionOperator__UnitAssignment_1");
 					put(grammarAccess.getParenthesizedExpressionAccess().getExpressionsAssignment_1(), "rule__ParenthesizedExpression__ExpressionsAssignment_1");
 					put(grammarAccess.getParenthesizedExpressionAccess().getExpressionsAssignment_2_1(), "rule__ParenthesizedExpression__ExpressionsAssignment_2_1");

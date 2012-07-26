@@ -314,6 +314,15 @@ public interface MscriptFactory extends EFactory {
 	StructConstructionMember createStructConstructionMember();
 
 	/**
+	 * Returns a new object of class '<em>Union Construction Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Union Construction Operator</em>'.
+	 * @generated
+	 */
+	UnionConstructionOperator createUnionConstructionOperator();
+
+	/**
 	 * Returns a new object of class '<em>Unit Construction Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -528,6 +537,24 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	LambdaExpressionParameter createLambdaExpressionParameter();
+
+	/**
+	 * Returns a new object of class '<em>Inspect Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inspect Expression</em>'.
+	 * @generated
+	 */
+	InspectExpression createInspectExpression();
+
+	/**
+	 * Returns a new object of class '<em>Inspect When Clause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inspect When Clause</em>'.
+	 * @generated
+	 */
+	InspectWhenClause createInspectWhenClause();
 
 	/**
 	 * Returns a new object of class '<em>Algorithm Expression</em>'.
@@ -800,6 +827,15 @@ public interface MscriptFactory extends EFactory {
 	ArrayDimension createArrayDimension();
 
 	/**
+	 * Returns a new object of class '<em>Composite Type Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Type Member</em>'.
+	 * @generated
+	 */
+	CompositeTypeMember createCompositeTypeMember();
+
+	/**
 	 * Returns a new object of class '<em>Struct Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -809,13 +845,13 @@ public interface MscriptFactory extends EFactory {
 	StructType createStructType();
 
 	/**
-	 * Returns a new object of class '<em>Struct Member</em>'.
+	 * Returns a new object of class '<em>Union Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Member</em>'.
+	 * @return a new object of class '<em>Union Type</em>'.
 	 * @generated
 	 */
-	StructMember createStructMember();
+	UnionType createUnionType();
 
 	/**
 	 * Returns a new object of class '<em>Expression</em>'.

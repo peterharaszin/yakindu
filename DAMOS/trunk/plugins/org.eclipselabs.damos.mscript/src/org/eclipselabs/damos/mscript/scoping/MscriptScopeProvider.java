@@ -4,6 +4,7 @@
 package org.eclipselabs.damos.mscript.scoping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +29,11 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.UnionConstructionOperator;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.InspectWhenClause;
 
 public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -58,6 +63,8 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 				for (ArrayConstructionIterationClause clause : arrayConstructionOperator.getIterationClauses()) {
 					elements.add(clause.getIterationVariable());
 				}
+			} else if (container instanceof InspectWhenClause) {
+				elements.add(container);
 			} else if (container instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) container;
 				
@@ -112,4 +119,18 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(elements, new SimpleScope(filteredParentElements));
 	}
 
+	public IScope scope_UnionConstructionOperator_member(UnionConstructionOperator context, EReference reference) {
+		if (isResolved(context.getTypeSpecifier())) {
+			Type type = context.getTypeSpecifier().getType();
+			if (isResolved(type) && type instanceof UnionType) {
+				return Scopes.scopeFor(((UnionType) type).getMembers());
+			}
+		}
+		return Scopes.scopeFor(Collections.<EObject>emptyList());
+	}
+	
+	private boolean isResolved(EObject eObject) {
+		return eObject != null && !eObject.eIsProxy();
+	}
+	
 }

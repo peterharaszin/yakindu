@@ -14,13 +14,12 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
-import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
-import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -33,7 +32,6 @@ import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionConstructionOperator;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.InspectWhenClause;
 
 public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -58,11 +56,6 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 			} else if (container instanceof LambdaExpression) {
 				LambdaExpression lambdaExpression = (LambdaExpression) container;
 				elements.addAll(lambdaExpression.getParameters());
-			} else if (container instanceof ArrayConstructionOperator) {
-				ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator) container;
-				for (ArrayConstructionIterationClause clause : arrayConstructionOperator.getIterationClauses()) {
-					elements.add(clause.getIterationVariable());
-				}
 			} else if (container instanceof InspectWhenClause) {
 				elements.add(container);
 			} else if (container instanceof FunctionDeclaration) {

@@ -4,7 +4,9 @@ package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionType;
+import org.eclipselabs.damos.mscript.internal.operations.UnionTypeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +35,11 @@ public class UnionTypeImpl extends CompositeTypeImpl implements UnionType {
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.UNION_TYPE;
+	}
+	
+	@Override
+	public boolean isAssignableFrom(Type other) {
+		return UnionTypeOperations.isAssignableFrom(this, other);
 	}
 
 } //UnionTypeImpl

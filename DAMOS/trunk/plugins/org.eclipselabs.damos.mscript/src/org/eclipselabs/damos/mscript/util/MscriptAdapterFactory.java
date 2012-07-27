@@ -193,16 +193,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createArraySubscriptAdapter();
 			}
 			@Override
-			public Adapter caseIterationVariableDeclaration(IterationVariableDeclaration object) {
-				return createIterationVariableDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseArrayConstructionOperator(ArrayConstructionOperator object) {
 				return createArrayConstructionOperatorAdapter();
-			}
-			@Override
-			public Adapter caseArrayConstructionIterationClause(ArrayConstructionIterationClause object) {
-				return createArrayConstructionIterationClauseAdapter();
 			}
 			@Override
 			public Adapter caseArrayConcatenationOperator(ArrayConcatenationOperator object) {
@@ -383,6 +375,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseForStatement(ForStatement object) {
 				return createForStatementAdapter();
+			}
+			@Override
+			public Adapter caseIterationVariableDeclaration(IterationVariableDeclaration object) {
+				return createIterationVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseContinueStatement(ContinueStatement object) {
@@ -1039,20 +1035,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArrayConstructionOperatorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause <em>Array Construction Iteration Clause</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.ArrayConstructionIterationClause
-	 * @generated
-	 */
-	public Adapter createArrayConstructionIterationClauseAdapter() {
 		return null;
 	}
 

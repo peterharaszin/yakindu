@@ -298,26 +298,11 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: {
-				IterationVariableDeclaration iterationVariableDeclaration = (IterationVariableDeclaration)theEObject;
-				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
-				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
-				if (result == null) result = caseEvaluable(iterationVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: {
 				ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator)theEObject;
 				T result = caseArrayConstructionOperator(arrayConstructionOperator);
 				if (result == null) result = caseExpression(arrayConstructionOperator);
 				if (result == null) result = caseEvaluable(arrayConstructionOperator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: {
-				ArrayConstructionIterationClause arrayConstructionIterationClause = (ArrayConstructionIterationClause)theEObject;
-				T result = caseArrayConstructionIterationClause(arrayConstructionIterationClause);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -674,6 +659,15 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ForStatement forStatement = (ForStatement)theEObject;
 				T result = caseForStatement(forStatement);
 				if (result == null) result = caseStatement(forStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: {
+				IterationVariableDeclaration iterationVariableDeclaration = (IterationVariableDeclaration)theEObject;
+				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
+				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
+				if (result == null) result = caseEvaluable(iterationVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1525,21 +1519,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArrayConstructionOperator(ArrayConstructionOperator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Array Construction Iteration Clause</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Array Construction Iteration Clause</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseArrayConstructionIterationClause(ArrayConstructionIterationClause object) {
 		return null;
 	}
 

@@ -2885,24 +2885,13 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayConstructionOperator:
-	//	"{" expressions+=Expression (("," expressions+=Expression)* | "for" iterationClauses+=ArrayConstructionIterationClause
-	//	("," iterationClauses+=ArrayConstructionIterationClause)*) "}";
+	//	"{" expressions+=Expression ("," expressions+=Expression)* "}";
 	public MscriptGrammarAccess.ArrayConstructionOperatorElements getArrayConstructionOperatorAccess() {
 		return gaMscript.getArrayConstructionOperatorAccess();
 	}
 	
 	public ParserRule getArrayConstructionOperatorRule() {
 		return getArrayConstructionOperatorAccess().getRule();
-	}
-
-	//ArrayConstructionIterationClause:
-	//	iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression;
-	public MscriptGrammarAccess.ArrayConstructionIterationClauseElements getArrayConstructionIterationClauseAccess() {
-		return gaMscript.getArrayConstructionIterationClauseAccess();
-	}
-	
-	public ParserRule getArrayConstructionIterationClauseRule() {
-		return getArrayConstructionIterationClauseAccess().getRule();
 	}
 
 	//ArrayConcatenationOperator:

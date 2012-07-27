@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
-import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
@@ -271,13 +270,6 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		ArrayConstructionOperator transformedExpression = MscriptFactory.eINSTANCE.createArrayConstructionOperator();
 		for (Expression expression : arrayConstructionOperator.getExpressions()) {
 			transformedExpression.getExpressions().add(transformNext(context, expression, transformer));
-		}
-		for (ArrayConstructionIterationClause iterationClause : arrayConstructionOperator.getIterationClauses()) {
-			Expression transformedCollectionExpression = transformNext(context, iterationClause.getCollectionExpression(), transformer);
-			ArrayConstructionIterationClause transformedIterationClause = MscriptFactory.eINSTANCE.createArrayConstructionIterationClause();
-			transformedIterationClause.setIterationVariable(EcoreUtil.copy(iterationClause.getIterationVariable()));
-			transformedIterationClause.setCollectionExpression(transformedCollectionExpression);
-			transformedExpression.getIterationClauses().add(transformedIterationClause);
 		}
 		assignExpression(context, arrayConstructionOperator, transformedExpression, targets);
 	}

@@ -28,7 +28,8 @@ public enum BuiltinFunctionKind {
 	SIN("sin"),
 	COS("cos"),
 	TAN("tan"),
-	FOLD("fold");
+	FOLD("fold"),
+	MAP("map");
 	
 	private String name;
 

@@ -83,9 +83,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.SWITCH_CASE: return createSwitchCase();
 			case MscriptPackage.ARRAY_ELEMENT_ACCESS: return createArrayElementAccess();
 			case MscriptPackage.ARRAY_SUBSCRIPT: return createArraySubscript();
-			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: return createIterationVariableDeclaration();
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: return createArrayConstructionOperator();
-			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: return createArrayConstructionIterationClause();
 			case MscriptPackage.ARRAY_CONCATENATION_OPERATOR: return createArrayConcatenationOperator();
 			case MscriptPackage.EXPRESSION_LIST: return createExpressionList();
 			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: return createStructConstructionOperator();
@@ -126,6 +124,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.WHILE_STATEMENT: return createWhileStatement();
 			case MscriptPackage.DO_WHILE_STATEMENT: return createDoWhileStatement();
 			case MscriptPackage.FOR_STATEMENT: return createForStatement();
+			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: return createIterationVariableDeclaration();
 			case MscriptPackage.CONTINUE_STATEMENT: return createContinueStatement();
 			case MscriptPackage.BREAK_STATEMENT: return createBreakStatement();
 			case MscriptPackage.RETURN_STATEMENT: return createReturnStatement();
@@ -483,16 +482,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ArrayConstructionOperator createArrayConstructionOperator() {
 		ArrayConstructionOperatorImpl arrayConstructionOperator = new ArrayConstructionOperatorImpl();
 		return arrayConstructionOperator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ArrayConstructionIterationClause createArrayConstructionIterationClause() {
-		ArrayConstructionIterationClauseImpl arrayConstructionIterationClause = new ArrayConstructionIterationClauseImpl();
-		return arrayConstructionIterationClause;
 	}
 
 	/**

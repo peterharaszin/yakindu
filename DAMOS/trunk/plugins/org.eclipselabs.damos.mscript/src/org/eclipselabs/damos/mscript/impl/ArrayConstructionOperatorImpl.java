@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -27,7 +26,6 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionOperatorImpl#getExpressions <em>Expressions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionOperatorImpl#getIterationClauses <em>Iteration Clauses</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,16 +41,6 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 	 * @ordered
 	 */
 	protected EList<Expression> expressions;
-
-	/**
-	 * The cached value of the '{@link #getIterationClauses() <em>Iteration Clauses</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIterationClauses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ArrayConstructionIterationClause> iterationClauses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,25 +78,11 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ArrayConstructionIterationClause> getIterationClauses() {
-		if (iterationClauses == null) {
-			iterationClauses = new EObjectContainmentEList<ArrayConstructionIterationClause>(ArrayConstructionIterationClause.class, this, MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES);
-		}
-		return iterationClauses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__EXPRESSIONS:
 				return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES:
-				return ((InternalEList<?>)getIterationClauses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -123,8 +97,6 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 		switch (featureID) {
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__EXPRESSIONS:
 				return getExpressions();
-			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES:
-				return getIterationClauses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,10 +114,6 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 				getExpressions().clear();
 				getExpressions().addAll((Collection<? extends Expression>)newValue);
 				return;
-			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES:
-				getIterationClauses().clear();
-				getIterationClauses().addAll((Collection<? extends ArrayConstructionIterationClause>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -161,9 +129,6 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__EXPRESSIONS:
 				getExpressions().clear();
 				return;
-			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES:
-				getIterationClauses().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -178,8 +143,6 @@ public class ArrayConstructionOperatorImpl extends ExpressionImpl implements Arr
 		switch (featureID) {
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__EXPRESSIONS:
 				return expressions != null && !expressions.isEmpty();
-			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR__ITERATION_CLAUSES:
-				return iterationClauses != null && !iterationClauses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

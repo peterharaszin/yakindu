@@ -269,15 +269,6 @@ public interface MscriptFactory extends EFactory {
 	ArrayConstructionOperator createArrayConstructionOperator();
 
 	/**
-	 * Returns a new object of class '<em>Array Construction Iteration Clause</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Array Construction Iteration Clause</em>'.
-	 * @generated
-	 */
-	ArrayConstructionIterationClause createArrayConstructionIterationClause();
-
-	/**
 	 * Returns a new object of class '<em>Array Concatenation Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

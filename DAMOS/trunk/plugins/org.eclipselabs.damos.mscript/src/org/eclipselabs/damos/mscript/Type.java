@@ -51,4 +51,4 @@ public interface Type extends EObject {
 	 */
 	boolean isEquivalentTo(Type other);
 
-} // DataType
+} // Type

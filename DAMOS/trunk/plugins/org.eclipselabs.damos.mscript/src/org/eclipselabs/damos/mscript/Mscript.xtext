@@ -376,10 +376,7 @@ StepN:
 	{StepN} N;
 
 ArrayConstructionOperator:
-	'{' expressions+=Expression ((',' expressions+=Expression)* | 'for' iterationClauses+=ArrayConstructionIterationClause (',' iterationClauses+=ArrayConstructionIterationClause)*) '}';
-
-ArrayConstructionIterationClause:
-	iterationVariable=IterationVariableDeclaration 'in' collectionExpression=Expression;
+	'{' expressions+=Expression (',' expressions+=Expression)* '}';
 
 ArrayConcatenationOperator:
 	'[' rows+=ExpressionList (';' rows+=ExpressionList)* ']';

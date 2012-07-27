@@ -7785,14 +7785,14 @@ ruleArrayConstructionOperator returns [EObject current=null]
 	    }
 
 )
-)((	otherlv_2=',' 
+)(	otherlv_2=',' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_0_0());
+    	newLeafNode(otherlv_2, grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsExpressionParserRuleCall_2_0_1_0()); 
+	        newCompositeNode(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsExpressionParserRuleCall_2_1_0()); 
 	    }
 		lv_expressions_3_0=ruleExpression		{
 	        if ($current==null) {
@@ -7807,117 +7807,11 @@ ruleArrayConstructionOperator returns [EObject current=null]
 	    }
 
 )
-))*
-    |(	otherlv_4='for' 
+))*	otherlv_4='}' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getArrayConstructionOperatorAccess().getForKeyword_2_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesArrayConstructionIterationClauseParserRuleCall_2_1_1_0()); 
-	    }
-		lv_iterationClauses_5_0=ruleArrayConstructionIterationClause		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getArrayConstructionOperatorRule());
-	        }
-       		add(
-       			$current, 
-       			"iterationClauses",
-        		lv_iterationClauses_5_0, 
-        		"ArrayConstructionIterationClause");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_6=',' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getArrayConstructionOperatorAccess().getCommaKeyword_2_1_2_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesArrayConstructionIterationClauseParserRuleCall_2_1_2_1_0()); 
-	    }
-		lv_iterationClauses_7_0=ruleArrayConstructionIterationClause		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getArrayConstructionOperatorRule());
-	        }
-       		add(
-       			$current, 
-       			"iterationClauses",
-        		lv_iterationClauses_7_0, 
-        		"ArrayConstructionIterationClause");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*))	otherlv_8='}' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getArrayConstructionOperatorAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getArrayConstructionOperatorAccess().getRightCurlyBracketKeyword_3());
     }
 )
-;
-
-
-
-
-
-// Entry rule entryRuleArrayConstructionIterationClause
-entryRuleArrayConstructionIterationClause returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getArrayConstructionIterationClauseRule()); }
-	 iv_ruleArrayConstructionIterationClause=ruleArrayConstructionIterationClause 
-	 { $current=$iv_ruleArrayConstructionIterationClause.current; } 
-	 EOF 
-;
-
-// Rule ArrayConstructionIterationClause
-ruleArrayConstructionIterationClause returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_0_0()); 
-	    }
-		lv_iterationVariable_0_0=ruleIterationVariableDeclaration		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getArrayConstructionIterationClauseRule());
-	        }
-       		set(
-       			$current, 
-       			"iterationVariable",
-        		lv_iterationVariable_0_0, 
-        		"IterationVariableDeclaration");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_1='in' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getArrayConstructionIterationClauseAccess().getInKeyword_1());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getArrayConstructionIterationClauseAccess().getCollectionExpressionExpressionParserRuleCall_2_0()); 
-	    }
-		lv_collectionExpression_2_0=ruleExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getArrayConstructionIterationClauseRule());
-	        }
-       		set(
-       			$current, 
-       			"collectionExpression",
-        		lv_collectionExpression_2_0, 
-        		"Expression");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

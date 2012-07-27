@@ -78,4 +78,4 @@ public abstract class TypeImpl extends MinimalEObjectImpl.Container implements T
 		return TypeOperations.isEquivalentTo(this, other);
 	}
 
-} //DataTypeImpl
+} //TypeImpl

@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.ArrayConstructionOperator#getExpressions <em>Expressions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.ArrayConstructionOperator#getIterationClauses <em>Iteration Clauses</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,21 +40,5 @@ public interface ArrayConstructionOperator extends Expression {
 	 * @generated
 	 */
 	EList<Expression> getExpressions();
-
-	/**
-	 * Returns the value of the '<em><b>Iteration Clauses</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ArrayConstructionIterationClause}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Iteration Clauses</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iteration Clauses</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getArrayConstructionOperator_IterationClauses()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ArrayConstructionIterationClause> getIterationClauses();
 
 } // ArrayConstructionOperator

@@ -164,14 +164,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ArraySubscript/slice"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArraySubscript/expression"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//IterationVariableDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//ArrayConstructionOperator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionOperator/expressions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionOperator/iterationClauses"/>
-    </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//ArrayConstructionIterationClause">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionIterationClause/iterationVariable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionIterationClause/collectionExpression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayConcatenationOperator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConcatenationOperator/rows"/>
@@ -301,6 +295,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ForStatement/collectionExpression"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ForStatement/body"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//IterationVariableDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//ContinueStatement"/>
     <genClasses ecoreClass="Mscript.ecore#//BreakStatement"/>
     <genClasses ecoreClass="Mscript.ecore#//ReturnStatement">

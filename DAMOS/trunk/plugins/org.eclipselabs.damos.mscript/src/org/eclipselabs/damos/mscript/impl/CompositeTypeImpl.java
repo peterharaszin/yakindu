@@ -15,6 +15,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.CompositeType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.internal.operations.CompositeTypeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,25 +161,43 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public CompositeTypeMember getMember(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return CompositeTypeOperations.getMember(this, name);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public int getMemberIndex(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return CompositeTypeOperations.getMemberIndex(this, name);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.TypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, org.eclipselabs.damos.mscript.Type)
+	 */
+	@Override
+	public Type evaluate(OperatorKind operator, Type other) {
+		return CompositeTypeOperations.evaluate(this, operator, other);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.TypeImpl#evaluate(org.eclipselabs.damos.mscript.OperatorKind, int)
+	 */
+	@Override
+	public Type evaluate(OperatorKind operator, int n) {
+		return CompositeTypeOperations.evaluate(this, operator, n);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.TypeImpl#isAssignableFrom(org.eclipselabs.damos.mscript.Type)
+	 */
+	@Override
+	public abstract boolean isAssignableFrom(Type other);
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

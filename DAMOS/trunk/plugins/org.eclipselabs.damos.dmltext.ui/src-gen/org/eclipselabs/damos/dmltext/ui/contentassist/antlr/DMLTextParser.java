@@ -74,7 +74,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedFeatureCallAccess().getAlternatives(), "rule__QualifiedFeatureCall__Alternatives");
 					put(grammarAccess.getNegateStepExpressionAccess().getAlternatives(), "rule__NegateStepExpression__Alternatives");
 					put(grammarAccess.getPrimitiveStepExpressionAccess().getAlternatives(), "rule__PrimitiveStepExpression__Alternatives");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getAlternatives_2(), "rule__ArrayConstructionOperator__Alternatives_2");
 					put(grammarAccess.getUnionTypeSpecifierAccess().getAlternatives(), "rule__UnionTypeSpecifier__Alternatives");
 					put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 					put(grammarAccess.getAssignableMemberFeatureCallAccess().getAlternatives_1(), "rule__AssignableMemberFeatureCall__Alternatives_1");
@@ -234,10 +233,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNegateStepExpressionAccess().getGroup_1(), "rule__NegateStepExpression__Group_1__0");
 					put(grammarAccess.getStepNAccess().getGroup(), "rule__StepN__Group__0");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup(), "rule__ArrayConstructionOperator__Group__0");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_0(), "rule__ArrayConstructionOperator__Group_2_0__0");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_1(), "rule__ArrayConstructionOperator__Group_2_1__0");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_1_2(), "rule__ArrayConstructionOperator__Group_2_1_2__0");
-					put(grammarAccess.getArrayConstructionIterationClauseAccess().getGroup(), "rule__ArrayConstructionIterationClause__Group__0");
+					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2(), "rule__ArrayConstructionOperator__Group_2__0");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getGroup(), "rule__ArrayConcatenationOperator__Group__0");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getGroup_2(), "rule__ArrayConcatenationOperator__Group_2__0");
 					put(grammarAccess.getExpressionListAccess().getGroup(), "rule__ExpressionList__Group__0");
@@ -490,11 +486,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNegateStepExpressionAccess().getOperandAssignment_1_2(), "rule__NegateStepExpression__OperandAssignment_1_2");
 					put(grammarAccess.getStepLiteralAccess().getValueAssignment(), "rule__StepLiteral__ValueAssignment");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_1");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_2_0_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesAssignment_2_1_1(), "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1");
-					put(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesAssignment_2_1_2_1(), "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_2_1");
-					put(grammarAccess.getArrayConstructionIterationClauseAccess().getIterationVariableAssignment_0(), "rule__ArrayConstructionIterationClause__IterationVariableAssignment_0");
-					put(grammarAccess.getArrayConstructionIterationClauseAccess().getCollectionExpressionAssignment_2(), "rule__ArrayConstructionIterationClause__CollectionExpressionAssignment_2");
+					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_2_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_2_1");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getRowsAssignment_1(), "rule__ArrayConcatenationOperator__RowsAssignment_1");
 					put(grammarAccess.getArrayConcatenationOperatorAccess().getRowsAssignment_2_1(), "rule__ArrayConcatenationOperator__RowsAssignment_2_1");
 					put(grammarAccess.getExpressionListAccess().getExpressionsAssignment_0(), "rule__ExpressionList__ExpressionsAssignment_0");

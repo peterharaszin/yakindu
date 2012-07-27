@@ -41,16 +41,16 @@ continuous blockType TransferFunction {
 		const I = 0 : size(Q) - 1
 		
 		// Zero vector
-		const Z = { 0 for i in I }
+		const Z = I.map(i -> 0)
 
 		// State matrix
-		const A = { { if i == 0 then -Q[j] else if i == j + 1 then 1 else 0 for j in I } for i in I }
+		const A = I.map(i -> I.map(j -> if i == 0 then -Q[j] else if i == j + 1 then 1 else 0))
 		
 		// Input vector
-		const B = { if i == 0 then 1 else 0 for i in I }
+		const B = I.map(i -> if i == 0 then 1 else 0)
 		
 		// Output vector
-		const C = { if i < d then 0 else P[i - d] for i in I }
+		const C = I.map(i -> if i < d then 0 else P[i - d])
 		
 		initial eq x = Z
 		eq x' = (A * x + B * u) * 1(1/s)

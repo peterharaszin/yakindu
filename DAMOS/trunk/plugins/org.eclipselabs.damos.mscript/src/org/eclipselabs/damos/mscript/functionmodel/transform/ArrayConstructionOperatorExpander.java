@@ -43,11 +43,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 	private final static int[] EMPTY_INT_ARRAY = new int[0];
 	
 	public boolean canHandle(ITransformerContext context, Expression expression) {
-		if (expression instanceof ArrayConstructionOperator) {
-			ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator) expression;
-			return arrayConstructionOperator.getIterationClauses().isEmpty();
-		}
-		return false;
+		return expression instanceof ArrayConstructionOperator;
 	}
 	
 	public void transform(ITransformerContext context, Expression expression,

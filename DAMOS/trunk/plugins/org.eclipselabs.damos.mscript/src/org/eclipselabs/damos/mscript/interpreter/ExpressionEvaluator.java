@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
-import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
@@ -30,6 +29,7 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -41,7 +41,6 @@ import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.InvalidType;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -63,7 +62,6 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.StructConstructionMember;
 import org.eclipselabs.damos.mscript.StructConstructionOperator;
-import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
@@ -105,6 +103,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 	
 	private static class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 
+		private final ExpressionEvaluatorHelper expressionEvaluatorHelper = new ExpressionEvaluatorHelper();
+		
 		private final IBuiltinFunctionLookup builtinFunctionLookup = new BuiltinFunctionLookup();
 
 		private final IExpressionEvaluationContext context;
@@ -734,166 +734,25 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
+			int size = arrayConstructionOperator.getExpressions().size();
+			IValue[] elements = new IValue[size];
+
 			boolean anyValue = false;
-			IValue[] elements = null;
-			
-			if (!arrayConstructionOperator.getIterationClauses().isEmpty()) {
-				if (arrayConstructionOperator.getIterationClauses().size() > 1) {
-					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Only one iteration clause supported", arrayConstructionOperator));
+			{
+				int i = 0;
+				for (Expression expression : arrayConstructionOperator.getExpressions()) {
+					IValue value = evaluate(expression);
+					if (value instanceof InvalidValue) {
+						return value;
 					}
-					return InvalidValue.SINGLETON;
-				}
-				
-				ArrayConstructionIterationClause clause = arrayConstructionOperator.getIterationClauses().get(0);
-				
-				if (clause.getCollectionExpression() == null || clause.getIterationVariable() == null) {
-					return InvalidValue.SINGLETON;
-				}
-				
-				IValue collectionValue = evaluate(clause.getCollectionExpression());
-				if (collectionValue instanceof InvalidValue) {
-					return InvalidValue.SINGLETON;
-				}
-				
-				if (!(collectionValue.getDataType() instanceof ArrayType) || ((ArrayType) collectionValue.getDataType()).getDimensionality() != 1) {
-					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration expression must be vector", clause.getCollectionExpression()));
+					if (value instanceof AnyValue) {
+						anyValue = true;
 					}
-					return InvalidValue.SINGLETON;
-				}
-				
-				ArrayType collectionType = (ArrayType) collectionValue.getDataType();
-				int size = TypeUtil.getArraySize(collectionType);
-
-				if (collectionValue instanceof VectorValue) {
-					VectorValue vectorValue = (VectorValue) collectionValue;
-					elements = new IValue[vectorValue.getSize()];
-					for (int i = 0; i < vectorValue.getSize(); ++i) {
-						context.enterVariableScope();
-						context.addVariable(new IteratorVariable(clause.getIterationVariable(), vectorValue.get(i)));
-						elements[i] = doEvaluate(arrayConstructionOperator.getExpressions().get(0));
-						context.leaveVariableScope();
-						if (elements[i] instanceof InvalidValue) {
-							return InvalidValue.SINGLETON;
-						}
-						if (elements[i] instanceof AnyValue) {
-							anyValue = true;
-						}
-					}
-				} else {
-					elements = new IValue[size];
-					for (int i = 0; i < size; ++i) {
-						context.enterVariableScope();
-						context.addVariable(new IteratorVariable(clause.getIterationVariable(), new AnyValue(context.getComputationContext(), EcoreUtil.copy(collectionType.getElementType()))));
-						elements[i] = doEvaluate(arrayConstructionOperator.getExpressions().get(0));
-						context.leaveVariableScope();
-						if (elements[i] instanceof InvalidValue) {
-							return InvalidValue.SINGLETON;
-						}
-						if (elements[i] instanceof AnyValue) {
-							anyValue = true;
-						}
-					}
-				}
-			} else {
-				int size = arrayConstructionOperator.getExpressions().size();
-	
-				elements = new IValue[size];
-	
-				{
-					int i = 0;
-					for (Expression expression : arrayConstructionOperator.getExpressions()) {
-						IValue value = evaluate(expression);
-						if (value instanceof InvalidValue) {
-							return value;
-						}
-						if (value instanceof AnyValue) {
-							anyValue = true;
-						}
-						elements[i++] = value;
-					}
+					elements[i++] = value;
 				}
 			}
 
-			if (anyValue) {
-				for (int i = 0; i < elements.length; ++i) {
-					if (!(elements[i] instanceof AnyValue)) {
-						elements[i] = new AnyValue(context.getComputationContext(), elements[i].getDataType());
-					}
-				}
-			}
-
-			ArrayType arrayType = createArrayType(elements);
-
-			if (arrayType == null) {
-				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Incompatible array construction elements", arrayConstructionOperator));
-				}
-				return InvalidValue.SINGLETON;
-			}
-
-			// Vector
-			if (arrayType.getDimensionality() == 1) {
-				context.processValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), elements.length));
-		
-				if (anyValue) {
-					return new AnyValue(context.getComputationContext(), arrayType);
-				}
-		
-				return new VectorValue(context.getComputationContext(), arrayType, elements);
-			}
-			
-			// Matrix
-			int rowSize = TypeUtil.getArrayRowSize(arrayType);
-			context.processValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), rowSize));
-			int columnSize = TypeUtil.getArrayColumnSize(arrayType);
-			context.processValue(arrayType.getDimensions().get(1).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), columnSize));
-			
-			if (anyValue) {
-				return new AnyValue(context.getComputationContext(), arrayType);
-			}
-
-			IValue[][] values = new IValue[rowSize][columnSize];
-			for (int i = 0; i < rowSize; ++i) {
-				for (int j = 0; j < columnSize; ++j) {
-					values[i][j] = ((IArrayValue) elements[i]).get(j);
-				}
-			}
-			return new MatrixValue(context.getComputationContext(), arrayType, values);
-		}
-
-		private ArrayType createArrayType(IValue[] elements) {
-			Type elementType = null;
-
-			for (IValue elementValue : elements) {
-				Type type = elementValue.getDataType();
-
-				if (type == null || type instanceof InvalidType) {
-					return null;
-				}
-
-				if (elementType != null && !elementType.isEquivalentTo(type)) {
-					Type leftHandDataType = TypeUtil.getLeftHandDataType(elementType, type);
-					if (leftHandDataType == null) {
-						return null;
-					}
-					type = leftHandDataType;
-				}
-
-				elementType = type;
-			}
-			
-			if (elementType instanceof ArrayType) {
-				ArrayType elementArrayType = (ArrayType) elementType;
-				if (elementArrayType.getDimensionality() != 1) {
-					// We do not support tensors yet
-					return null;
-				}
-				return TypeUtil.createArrayType(EcoreUtil.copy(elementArrayType.getElementType()), elements.length, TypeUtil.getArraySize(elementArrayType));
-			}
-
-			return TypeUtil.createArrayType(EcoreUtil.copy(elementType), elements.length);
+			return expressionEvaluatorHelper.createArrayValue(context, elements, anyValue, arrayConstructionOperator);
 		}
 
 		@Override

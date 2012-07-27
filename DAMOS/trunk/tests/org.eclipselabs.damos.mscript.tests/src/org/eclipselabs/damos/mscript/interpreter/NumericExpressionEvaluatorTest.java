@@ -81,7 +81,7 @@ public class NumericExpressionEvaluatorTest extends AbstractExpressionEvaluatorT
 	
 	@Test
 	public void constructVector() {
-		IValue value = evaluate("{ i * 10 * i for i in { 1, 2.1, 3 } }", true);
+		IValue value = evaluate("{ 1, 2.1, 3 }.map(i -> i * 10 * i)", true);
 		
 		assertTrue(value instanceof IArrayValue);
 		IArrayValue arrayValue = (IArrayValue) value;
@@ -96,7 +96,7 @@ public class NumericExpressionEvaluatorTest extends AbstractExpressionEvaluatorT
 
 	@Test
 	public void constructMatrix() {
-		IValue value = evaluate("{ { i * j * 1.0 for j in 3:5 } for i in 1:2 }", true);
+		IValue value = evaluate("(1:2).map(i -> (3:5).map(j -> i * j * 1.0))", true);
 		
 		assertTrue(value instanceof IArrayValue);
 		IArrayValue arrayValue = (IArrayValue) value;

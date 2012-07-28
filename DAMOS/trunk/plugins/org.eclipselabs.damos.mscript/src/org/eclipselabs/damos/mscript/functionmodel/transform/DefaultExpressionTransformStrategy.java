@@ -25,6 +25,8 @@ import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
+import org.eclipselabs.damos.mscript.InspectExpression;
+import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.InvalidExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -42,8 +44,11 @@ import org.eclipselabs.damos.mscript.RecordConstructionOperator;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
+import org.eclipselabs.damos.mscript.UnionConstructionOperator;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -68,6 +73,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformLetExpression(context, targets, transformer, (LetExpression) expression);
 		} else if (expression instanceof IfExpression) {
 			transformIfExpression(context, targets, transformer, (IfExpression) expression);
+		} else if (expression instanceof InspectExpression) {
+			transformInspectExpression(context, targets, transformer, (InspectExpression) expression);
 		} else if (expression instanceof RangeExpression) {
 			transformRangeExpression(context, targets, transformer, (RangeExpression) expression);
 		} else if (expression instanceof VariableReference) {
@@ -96,6 +103,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformPowerExpression(context, targets, transformer, (PowerExpression) expression);
 		} else if (expression instanceof ArrayConstructionOperator) {
 			transformArrayConstructionOperator(context, targets, transformer, (ArrayConstructionOperator) expression);
+		} else if (expression instanceof UnionConstructionOperator) {
+			transformUnionConstructionOperator(context, targets, transformer, (UnionConstructionOperator) expression);
 		} else if (expression instanceof ArrayElementAccess) {
 			transformArrayElementAccess(context, targets, transformer, (ArrayElementAccess) expression);
 		} else if (expression instanceof RecordConstructionOperator) {
@@ -142,6 +151,22 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		assignExpression(context, ifExpression, transformedIfExpression, targets);
 	}
 	
+	protected void transformInspectExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, InspectExpression inspectExpression) {
+		InspectExpression transformedInspectExpression = MscriptFactory.eINSTANCE.createInspectExpression();
+		
+		transformedInspectExpression.setUnionExpression(transformNext(context, inspectExpression.getUnionExpression(), transformer));
+		
+		for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
+			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
+			transformedWhenClause.setName(whenClause.getName());
+			transformedWhenClause.setExpression(transformNext(context, whenClause.getExpression(), transformer));
+			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
+			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
+		}
+		
+		assignExpression(context, inspectExpression, transformedInspectExpression, targets);
+	}
+
 	protected void transformRangeExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, RangeExpression rangeExpression) {
 		RangeExpression transformedRangeExpression = MscriptFactory.eINSTANCE.createRangeExpression();
 		for (Expression operand : rangeExpression.getOperands()) {
@@ -274,6 +299,22 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		assignExpression(context, arrayConstructionOperator, transformedExpression, targets);
 	}
 	
+	protected void transformUnionConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, UnionConstructionOperator unionConstructionOperator) {
+		UnionConstructionOperator transformedExpression = MscriptFactory.eINSTANCE.createUnionConstructionOperator();
+		TypeSpecifier typeSpecifier = unionConstructionOperator.getTypeSpecifier();
+		if (typeSpecifier != null && typeSpecifier.getType() instanceof UnionType) {
+			UnionType unionType = (UnionType) typeSpecifier.getType();
+			TypeSpecifier transformedTypeSpecifier = EcoreUtil.copy(typeSpecifier);
+			transformedExpression.setTypeSpecifier(transformedTypeSpecifier);
+			int memberIndex = unionType.getMembers().indexOf(unionConstructionOperator.getMember());
+			if (memberIndex != -1) {
+				transformedExpression.setMember(((UnionType) transformedTypeSpecifier.getType()).getMembers().get(memberIndex));
+			}
+		}
+		transformedExpression.setValue(transformNext(context, unionConstructionOperator.getValue(), transformer));
+		assignExpression(context, unionConstructionOperator, transformedExpression, targets);
+	}
+
 	protected void transformArrayElementAccess(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ArrayElementAccess arrayElementAccess) {
 		ArrayElementAccess transformedAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 		transformedAccess.setArray(transformNext(context, arrayElementAccess.getArray(), transformer));

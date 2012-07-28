@@ -100,10 +100,20 @@ public class TypeUtil {
 	
 	public static ArrayType createArrayType(Type elementType, int... sizes) {
 		ArrayType arrayType = doCreateArrayType(elementType);
-		initializeArrayDimensions(arrayType, sizes);
+		for (int size : sizes) {
+			addArrayDimension(arrayType, size);
+		}
 		return arrayType;
 	}
 	
+	public static ArrayType createArrayType(Type elementType, Iterable<Integer> sizes) {
+		ArrayType arrayType = doCreateArrayType(elementType);
+		for (int size : sizes) {
+			addArrayDimension(arrayType, size);
+		}
+		return arrayType;
+	}
+
 	public static ArrayType createArrayType(Type elementType, Collection<? extends ArrayDimension> dimensions) {
 		ArrayType arrayType = doCreateArrayType(elementType);
 		arrayType.getDimensions().addAll(dimensions);
@@ -116,15 +126,13 @@ public class TypeUtil {
 		return arrayType;
 	}
 	
-	private static void initializeArrayDimensions(ArrayType arrayType, int... sizes) {
-		for (int size : sizes) {
-			ArrayDimension dimension = MscriptFactory.eINSTANCE.createArrayDimension();
-			IntegerLiteral sizeExpression = MscriptFactory.eINSTANCE.createIntegerLiteral();
-			sizeExpression.setUnit(TypeUtil.createUnit());
-			sizeExpression.setValue(size);
-			dimension.setSize(sizeExpression);
-			arrayType.getDimensions().add(dimension);
-		}
+	private static void addArrayDimension(ArrayType arrayType, int size) {
+		ArrayDimension dimension = MscriptFactory.eINSTANCE.createArrayDimension();
+		IntegerLiteral sizeExpression = MscriptFactory.eINSTANCE.createIntegerLiteral();
+		sizeExpression.setUnit(TypeUtil.createUnit());
+		sizeExpression.setValue(size);
+		dimension.setSize(sizeExpression);
+		arrayType.getDimensions().add(dimension);
 	}
 	
 	@SuppressWarnings("unchecked")

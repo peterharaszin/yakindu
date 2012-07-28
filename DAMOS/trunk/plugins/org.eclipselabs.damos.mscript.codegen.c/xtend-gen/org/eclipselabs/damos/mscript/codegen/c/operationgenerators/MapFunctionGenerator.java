@@ -1,9 +1,13 @@
 package org.eclipselabs.damos.mscript.codegen.c.operationgenerators;
 
 import com.google.common.base.Objects;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
@@ -27,12 +31,13 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class FoldFunctionGenerator implements IOperationGenerator {
+public class MapFunctionGenerator implements IOperationGenerator {
   private final IOperationGeneratorProvider operationGeneratorProvider = new Function0<IOperationGeneratorProvider>() {
     public IOperationGeneratorProvider apply() {
       OperationGeneratorProvider _operationGeneratorProvider = new OperationGeneratorProvider();
@@ -57,7 +62,7 @@ public class FoldFunctionGenerator implements IOperationGenerator {
       } else {
         CallableElement _feature_1 = functionCall.getFeature();
         String _name = _feature_1.getName();
-        String _name_1 = BuiltinFunctionKind.FOLD.getName();
+        String _name_1 = BuiltinFunctionKind.MAP.getName();
         boolean _equals = Objects.equal(_name, _name_1);
         _and = ((_feature instanceof BuiltinFunctionDeclaration) && _equals);
       }
@@ -71,7 +76,7 @@ public class FoldFunctionGenerator implements IOperationGenerator {
     {
       final FunctionCall functionCall = ((FunctionCall) expression);
       EList<Expression> _arguments = functionCall.getArguments();
-      Expression _get = _arguments.get(2);
+      Expression _get = _arguments.get(1);
       final LambdaExpression lambdaExpression = ((LambdaExpression) _get);
       final ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
       IMscriptGeneratorConfiguration _configuration = context.getConfiguration();
@@ -82,25 +87,33 @@ public class FoldFunctionGenerator implements IOperationGenerator {
       Type _dataType = _value.getDataType();
       final MachineArrayType vectorType = MachineDataTypes.create(_configuration, ((ArrayType) _dataType));
       IMscriptGeneratorConfiguration _configuration_1 = context.getConfiguration();
-      final MachineDataType resultType = MachineDataTypes.create(_configuration_1, resultDataType);
+      Type _elementType = ((ArrayType) resultDataType).getElementType();
+      final MachineDataType elementType = MachineDataTypes.create(_configuration_1, _elementType);
+      Type _xifexpression = null;
+      int _dimensionality = ((ArrayType) resultDataType).getDimensionality();
+      boolean _greaterThan = (_dimensionality > 1);
+      if (_greaterThan) {
+        Type _elementType_1 = ((ArrayType) resultDataType).getElementType();
+        EList<ArrayDimension> _dimensions = ((ArrayType) resultDataType).getDimensions();
+        final Function1<ArrayDimension,Integer> _function = new Function1<ArrayDimension,Integer>() {
+            public Integer apply(final ArrayDimension it) {
+              int _arrayDimensionSize = TypeUtil.getArrayDimensionSize(it);
+              return Integer.valueOf(_arrayDimensionSize);
+            }
+          };
+        List<Integer> _map = ListExtensions.<ArrayDimension, Integer>map(_dimensions, _function);
+        ArrayType _createArrayType = TypeUtil.createArrayType(_elementType_1, _map);
+        _xifexpression = _createArrayType;
+      } else {
+        Type _elementType_2 = ((ArrayType) resultDataType).getElementType();
+        _xifexpression = _elementType_2;
+      }
+      final Type subType = _xifexpression;
       Expression _expression = lambdaExpression.getExpression();
       final String indexName = MscriptUtil.findAvailableLocalVariableName(_expression, "i");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("{");
       _builder.newLine();
-      _builder.append("\t");
-      EList<LambdaExpressionParameter> _parameters = lambdaExpression.getParameters();
-      LambdaExpressionParameter _get_2 = _parameters.get(0);
-      String _name = _get_2.getName();
-      CharSequence _generateDataType = resultType.generateDataType(_name, codeFragmentCollector, null);
-      _builder.append(_generateDataType, "	");
-      _builder.append(" = ");
-      EList<Expression> _arguments_2 = functionCall.getArguments();
-      Expression _get_3 = _arguments_2.get(1);
-      CharSequence _generate = this.expressionGenerator.generate(context, _get_3);
-      _builder.append(_generate, "	");
-      _builder.append(";");
-      _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.append("int ");
       _builder.append(indexName, "	");
@@ -119,42 +132,33 @@ public class FoldFunctionGenerator implements IOperationGenerator {
       _builder.append(") {");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
-      EList<LambdaExpressionParameter> _parameters_1 = lambdaExpression.getParameters();
-      LambdaExpressionParameter _get_4 = _parameters_1.get(1);
-      String _name_1 = _get_4.getName();
-      CharSequence _generateDataType_1 = resultType.generateDataType(_name_1, codeFragmentCollector, null);
-      _builder.append(_generateDataType_1, "		");
+      EList<LambdaExpressionParameter> _parameters = lambdaExpression.getParameters();
+      LambdaExpressionParameter _get_2 = _parameters.get(0);
+      String _name = _get_2.getName();
+      CharSequence _generateDataType = elementType.generateDataType(_name, codeFragmentCollector, null);
+      _builder.append(_generateDataType, "		");
       _builder.append(" = ");
-      EList<Expression> _arguments_3 = functionCall.getArguments();
-      Expression _get_5 = _arguments_3.get(0);
-      CharSequence _generate_1 = this.expressionGenerator.generate(context, _get_5);
-      _builder.append(_generate_1, "		");
+      EList<Expression> _arguments_2 = functionCall.getArguments();
+      Expression _get_3 = _arguments_2.get(0);
+      CharSequence _generate = this.expressionGenerator.generate(context, _get_3);
+      _builder.append(_generate, "		");
       _builder.append("[");
       _builder.append(indexName, "		");
       _builder.append("];");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
       Expression _expression_1 = lambdaExpression.getExpression();
-      IOperationGenerator _generator = this.operationGeneratorProvider.getGenerator(context, resultDataType, _expression_1);
-      EList<LambdaExpressionParameter> _parameters_2 = lambdaExpression.getParameters();
-      LambdaExpressionParameter _get_6 = _parameters_2.get(0);
-      String _name_2 = _get_6.getName();
+      IOperationGenerator _generator = this.operationGeneratorProvider.getGenerator(context, subType, _expression_1);
+      String _plus = (target + "[");
+      String _plus_1 = (_plus + indexName);
+      String _plus_2 = (_plus_1 + "]");
       Expression _expression_2 = lambdaExpression.getExpression();
-      CharSequence _generate_2 = _generator.generate(context, resultDataType, _name_2, _expression_2);
-      _builder.append(_generate_2, "		");
+      CharSequence _generate_1 = _generator.generate(context, subType, _plus_2, _expression_2);
+      _builder.append(_generate_1, "		");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.append("}");
       _builder.newLine();
-      _builder.append("\t");
-      _builder.append(target, "	");
-      _builder.append(" = ");
-      EList<LambdaExpressionParameter> _parameters_3 = lambdaExpression.getParameters();
-      LambdaExpressionParameter _get_7 = _parameters_3.get(0);
-      String _name_3 = _get_7.getName();
-      _builder.append(_name_3, "	");
-      _builder.append(";");
-      _builder.newLineIfNotEmpty();
       _builder.append("}");
       _builder.newLine();
       _xblockexpression = (_builder);

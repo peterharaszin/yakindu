@@ -71,11 +71,11 @@ public class MachineDataTypes {
 	}
 
 	public static MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {
-		List<MachineStructMember> machineStructMembers = new ArrayList<MachineStructMember>();
+		List<MachineRecordMember> machineRecordMembers = new ArrayList<MachineRecordMember>();
 		for (CompositeTypeMember compositeTypeMember : recordType.getMembers()) {
-			machineStructMembers.add(new MachineStructMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
+			machineRecordMembers.add(new MachineRecordMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
 		}
-		return new MachineRecordType(Collections.unmodifiableList(machineStructMembers));
+		return new MachineRecordType(Collections.unmodifiableList(machineRecordMembers));
 	}
 
 }

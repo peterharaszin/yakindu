@@ -76,7 +76,7 @@ class RecordConstructionFunction extends AbstractCodeFragment {
 			«IF internal»static «ENDIF»«functionSignature» {
 				«typeName» «v»;
 				«FOR member : recordType.getMembers»
-					«v».«member.name» = «member.name»;
+					«v».«member.getName» = «member.getName»;
 				«ENDFOR»
 				return «v»;
 			}
@@ -84,10 +84,10 @@ class RecordConstructionFunction extends AbstractCodeFragment {
 	}
 	
 	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) '''
-		«typeName» «name»(«FOR member : recordType.getMembers SEPARATOR ", "»«member.type.generateDataType(member.name, codeFragmentCollector, this)»«ENDFOR»)'''
+		«typeName» «name»(«FOR member : recordType.getMembers SEPARATOR ", "»«member.getType.generateDataType(member.getName, codeFragmentCollector, this)»«ENDFOR»)'''
 	
 	def private String getVariableName() {
-		val names = new HashSet<String>(recordType.getMembers.map([it.name]))
+		val names = new HashSet<String>(recordType.getMembers.map([it.getName]))
 		var name = PREFERRED_VARIABLE_NAME
 		var i = 2
 		while (names.contains(name)) {

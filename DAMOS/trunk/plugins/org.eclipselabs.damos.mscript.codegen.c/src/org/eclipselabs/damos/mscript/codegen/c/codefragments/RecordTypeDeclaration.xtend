@@ -48,7 +48,7 @@ class RecordTypeDeclaration extends AbstractCodeFragment {
 		declaration = '''
 			typedef struct {
 				«FOR member : recordType.getMembers»
-					«member.type.generateDataType(member.name, codeFragmentCollector, this)»;
+					«member.getType.generateDataType(member.getName, codeFragmentCollector, this)»;
 				«ENDFOR»
 			} «name»;
 		'''

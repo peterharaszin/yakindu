@@ -18,7 +18,7 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
  * @author Andreas Unger
  *
  */
-public interface IStructConstructionFunctionFactory {
+public interface IRecordConstructionFunctionFactory {
 
 	ICodeFragment create(MachineRecordType structType);
 	

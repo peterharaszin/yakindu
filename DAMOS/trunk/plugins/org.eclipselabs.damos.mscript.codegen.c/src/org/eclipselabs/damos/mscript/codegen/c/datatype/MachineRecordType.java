@@ -27,12 +27,12 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordTypeDeclarati
  */
 public class MachineRecordType extends MachineDataType {
 
-	private final List<MachineStructMember> members;
+	private final List<MachineRecordMember> members;
 
 	/**
 	 * 
 	 */
-	MachineRecordType(List<MachineStructMember> members) {
+	MachineRecordType(List<MachineRecordMember> members) {
 		this.members = members;
 	}
 	
@@ -62,7 +62,7 @@ public class MachineRecordType extends MachineDataType {
 	/**
 	 * @return the members
 	 */
-	public List<MachineStructMember> getMembers() {
+	public List<MachineRecordMember> getMembers() {
 		return members;
 	}
 	

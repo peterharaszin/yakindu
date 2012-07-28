@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.CompositeType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Type;
@@ -28,7 +29,7 @@ import org.eclipselabs.damos.mscript.internal.operations.CompositeTypeOperations
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeImpl#isAnyLabel <em>Any Label</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeImpl#getMembers <em>Members</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeImpl#getMemberLists <em>Member Lists</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,14 +77,14 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 	protected boolean anyLabel = ANY_LABEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
+	 * The cached value of the '{@link #getMemberLists() <em>Member Lists</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMembers()
+	 * @see #getMemberLists()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositeTypeMember> members;
+	protected EList<CompositeTypeMemberList> memberLists;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,11 +152,20 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompositeTypeMember> getMembers() {
-		if (members == null) {
-			members = new EObjectContainmentEList<CompositeTypeMember>(CompositeTypeMember.class, this, MscriptPackage.COMPOSITE_TYPE__MEMBERS);
+	public EList<CompositeTypeMemberList> getMemberLists() {
+		if (memberLists == null) {
+			memberLists = new EObjectContainmentEList<CompositeTypeMemberList>(CompositeTypeMemberList.class, this, MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS);
 		}
-		return members;
+		return memberLists;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<CompositeTypeMember> getMembers() {
+		return CompositeTypeOperations.getMembers(this);
 	}
 
 	/**
@@ -206,8 +216,8 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.COMPOSITE_TYPE__MEMBERS:
-				return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS:
+				return ((InternalEList<?>)getMemberLists()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -224,8 +234,8 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 				return getLabel();
 			case MscriptPackage.COMPOSITE_TYPE__ANY_LABEL:
 				return isAnyLabel();
-			case MscriptPackage.COMPOSITE_TYPE__MEMBERS:
-				return getMembers();
+			case MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS:
+				return getMemberLists();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,9 +255,9 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 			case MscriptPackage.COMPOSITE_TYPE__ANY_LABEL:
 				setAnyLabel((Boolean)newValue);
 				return;
-			case MscriptPackage.COMPOSITE_TYPE__MEMBERS:
-				getMembers().clear();
-				getMembers().addAll((Collection<? extends CompositeTypeMember>)newValue);
+			case MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS:
+				getMemberLists().clear();
+				getMemberLists().addAll((Collection<? extends CompositeTypeMemberList>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,8 +277,8 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 			case MscriptPackage.COMPOSITE_TYPE__ANY_LABEL:
 				setAnyLabel(ANY_LABEL_EDEFAULT);
 				return;
-			case MscriptPackage.COMPOSITE_TYPE__MEMBERS:
-				getMembers().clear();
+			case MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS:
+				getMemberLists().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -286,8 +296,8 @@ public abstract class CompositeTypeImpl extends DataTypeImpl implements Composit
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 			case MscriptPackage.COMPOSITE_TYPE__ANY_LABEL:
 				return anyLabel != ANY_LABEL_EDEFAULT;
-			case MscriptPackage.COMPOSITE_TYPE__MEMBERS:
-				return members != null && !members.isEmpty();
+			case MscriptPackage.COMPOSITE_TYPE__MEMBER_LISTS:
+				return memberLists != null && !memberLists.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

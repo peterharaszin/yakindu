@@ -153,13 +153,16 @@ CompositeType:
 	StructType | UnionType;
 
 StructType:
-	(label=ValidID | anyLabel?='?')? '{' members+=CompositeTypeMember (';' members+=CompositeTypeMember)* ';'? '}'; 
+	(label=ValidID | anyLabel?='?')? '{' memberLists+=CompositeTypeMemberList (';' memberLists+=CompositeTypeMemberList)* ';'? '}'; 
 
 UnionType:
-	'union' (label=ValidID | anyLabel?='?')? '{' members+=CompositeTypeMember (';' members+=CompositeTypeMember)* ';'? '}';
+	'union' (label=ValidID | anyLabel?='?')? '{' memberLists+=CompositeTypeMemberList (';' memberLists+=CompositeTypeMemberList)* ';'? '}';
+
+CompositeTypeMemberList:
+	typeSpecifier=TypeSpecifier members+=CompositeTypeMember (',' members+=CompositeTypeMember)*;
 
 CompositeTypeMember:
-	typeSpecifier=TypeSpecifier name=ValidID;
+	name=ValidID;
 
 /*
  * Expressions

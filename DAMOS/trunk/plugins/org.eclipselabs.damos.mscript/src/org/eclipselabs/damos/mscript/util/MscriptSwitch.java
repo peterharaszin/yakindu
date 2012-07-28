@@ -877,6 +877,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER_LIST: {
+				CompositeTypeMemberList compositeTypeMemberList = (CompositeTypeMemberList)theEObject;
+				T result = caseCompositeTypeMemberList(compositeTypeMemberList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER: {
 				CompositeTypeMember compositeTypeMember = (CompositeTypeMember)theEObject;
 				T result = caseCompositeTypeMember(compositeTypeMember);
@@ -2569,6 +2575,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCompositeType(CompositeType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Type Member List</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Type Member List</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompositeTypeMemberList(CompositeTypeMemberList object) {
 		return null;
 	}
 

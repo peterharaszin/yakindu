@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.CompositeType#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.CompositeType#isAnyLabel <em>Any Label</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.CompositeType#getMembers <em>Members</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.CompositeType#getMemberLists <em>Member Lists</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,17 +76,29 @@ public interface CompositeType extends DataType {
 	void setAnyLabel(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.CompositeTypeMember}.
+	 * Returns the value of the '<em><b>Member Lists</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.CompositeTypeMemberList}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Member Lists</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Member Lists</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompositeType_MemberLists()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CompositeTypeMemberList> getMemberLists();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Members</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Members</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCompositeType_Members()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<CompositeTypeMember> getMembers();

@@ -11,9 +11,12 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.CompositeType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Type;
@@ -21,6 +24,14 @@ import org.eclipselabs.damos.mscript.Type;
 import com.google.common.base.Objects;
 
 public class CompositeTypeOperations extends TypeOperations {
+	
+	public static EList<CompositeTypeMember> getMembers(CompositeType compositeType) {
+		EList<CompositeTypeMember> members = new BasicEList<CompositeTypeMember>();
+		for (CompositeTypeMemberList memberList : compositeType.getMemberLists()) {
+			members.addAll(memberList.getMembers());
+		}
+		return ECollections.unmodifiableEList(members);
+	}
 	
 	public static CompositeTypeMember getMember(CompositeType compositeType, String name) {
 		for (CompositeTypeMember member : compositeType.getMembers()) {
@@ -76,8 +87,8 @@ public class CompositeTypeOperations extends TypeOperations {
 					return false;
 				}
 
-				Type type = member.getTypeSpecifier().getType();
-				Type otherType = otherMember.getTypeSpecifier().getType();
+				Type type = member.getType();
+				Type otherType = otherMember.getType();
 				if (type == null || otherType == null || type.eIsProxy() || otherType.eIsProxy() || !type.isAssignableFrom(otherType)) {
 					return false;
 				}

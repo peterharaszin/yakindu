@@ -818,6 +818,15 @@ public interface MscriptFactory extends EFactory {
 	ArrayDimension createArrayDimension();
 
 	/**
+	 * Returns a new object of class '<em>Composite Type Member List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Type Member List</em>'.
+	 * @generated
+	 */
+	CompositeTypeMemberList createCompositeTypeMemberList();
+
+	/**
 	 * Returns a new object of class '<em>Composite Type Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

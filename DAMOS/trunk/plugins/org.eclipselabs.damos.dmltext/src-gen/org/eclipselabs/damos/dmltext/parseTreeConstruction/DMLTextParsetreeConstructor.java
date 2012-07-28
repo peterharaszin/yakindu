@@ -82,86 +82,87 @@ protected class ThisRootNode extends RootToken {
 			case 48: return new CompositeType_Alternatives(this, this, 48, inst);
 			case 49: return new StructType_Group(this, this, 49, inst);
 			case 50: return new UnionType_Group(this, this, 50, inst);
-			case 51: return new CompositeTypeMember_Group(this, this, 51, inst);
-			case 52: return new Expression_Alternatives(this, this, 52, inst);
-			case 53: return new LambdaExpression_Group(this, this, 53, inst);
-			case 54: return new LambdaExpressionParameter_NameAssignment(this, this, 54, inst);
-			case 55: return new LetExpression_Group(this, this, 55, inst);
-			case 56: return new LetExpressionAssignment_Group(this, this, 56, inst);
-			case 57: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 57, inst);
-			case 58: return new IfExpression_Group(this, this, 58, inst);
-			case 59: return new SwitchExpression_Group(this, this, 59, inst);
-			case 60: return new SwitchCase_Group(this, this, 60, inst);
-			case 61: return new InspectExpression_Group(this, this, 61, inst);
-			case 62: return new InspectWhenClause_Group(this, this, 62, inst);
-			case 63: return new RangeExpression_Group(this, this, 63, inst);
-			case 64: return new ImpliesExpression_Group(this, this, 64, inst);
-			case 65: return new LogicalOrExpression_Group(this, this, 65, inst);
-			case 66: return new LogicalAndExpression_Group(this, this, 66, inst);
-			case 67: return new EqualityExpression_Group(this, this, 67, inst);
-			case 68: return new RelationalExpression_Group(this, this, 68, inst);
-			case 69: return new AdditiveExpression_Group(this, this, 69, inst);
-			case 70: return new MultiplicativeExpression_Group(this, this, 70, inst);
-			case 71: return new PowerExpression_Group(this, this, 71, inst);
-			case 72: return new PrefixUnaryExpression_Alternatives(this, this, 72, inst);
-			case 73: return new PostfixUnaryExpression_Group(this, this, 73, inst);
-			case 74: return new MemberFeatureCall_Group(this, this, 74, inst);
-			case 75: return new IterationVariableDeclaration_NameAssignment(this, this, 75, inst);
-			case 76: return new ArraySubscript_Alternatives(this, this, 76, inst);
-			case 77: return new PrimaryExpression_Alternatives(this, this, 77, inst);
-			case 78: return new Literal_Alternatives(this, this, 78, inst);
-			case 79: return new NumericLiteral_Alternatives(this, this, 79, inst);
-			case 80: return new RealLiteral_Group(this, this, 80, inst);
-			case 81: return new IntegerLiteral_Group(this, this, 81, inst);
-			case 82: return new BooleanLiteral_Group(this, this, 82, inst);
-			case 83: return new StringLiteral_TextAssignment(this, this, 83, inst);
-			case 84: return new TemplateExpression_Group(this, this, 84, inst);
-			case 85: return new ConstantTemplateSegment_TextAssignment(this, this, 85, inst);
-			case 86: return new ExpressionTemplateSegment_Group(this, this, 86, inst);
-			case 87: return new FeatureCall_Alternatives(this, this, 87, inst);
-			case 88: return new VariableReference_Group(this, this, 88, inst);
-			case 89: return new FunctionCall_Group(this, this, 89, inst);
-			case 90: return new QualifiedFeatureCall_Alternatives(this, this, 90, inst);
-			case 91: return new QualifiedVariableReference_Group(this, this, 91, inst);
-			case 92: return new QualifiedFunctionCall_Group(this, this, 92, inst);
-			case 93: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 93, inst);
-			case 94: return new RangeStepExpression_Group(this, this, 94, inst);
-			case 95: return new AdditiveStepExpression_Group(this, this, 95, inst);
-			case 96: return new NegateStepExpression_Alternatives(this, this, 96, inst);
-			case 97: return new PrimitiveStepExpression_Alternatives(this, this, 97, inst);
-			case 98: return new StepLiteral_ValueAssignment(this, this, 98, inst);
-			case 99: return new StepN_Group(this, this, 99, inst);
-			case 100: return new ArrayConstructionOperator_Group(this, this, 100, inst);
-			case 101: return new ArrayConcatenationOperator_Group(this, this, 101, inst);
-			case 102: return new ExpressionList_Group(this, this, 102, inst);
-			case 103: return new StructConstructionOperator_Group(this, this, 103, inst);
-			case 104: return new StructConstructionMember_Group(this, this, 104, inst);
-			case 105: return new UnionConstructionOperator_Group(this, this, 105, inst);
-			case 106: return new UnionTypeSpecifier_Alternatives(this, this, 106, inst);
-			case 107: return new AnonymousUnionTypeSpecifier_TypeAssignment(this, this, 107, inst);
-			case 108: return new UnitConstructionOperator_Group(this, this, 108, inst);
-			case 109: return new ParenthesizedExpression_Group(this, this, 109, inst);
-			case 110: return new EndExpression_Group(this, this, 110, inst);
-			case 111: return new AlgorithmExpression_Group(this, this, 111, inst);
-			case 112: return new CompoundStatement_Group(this, this, 112, inst);
-			case 113: return new Statement_Alternatives(this, this, 113, inst);
-			case 114: return new Assignment_Group(this, this, 114, inst);
-			case 115: return new AssignableMemberFeatureCall_Group(this, this, 115, inst);
-			case 116: return new AssignablePrimaryExpression_Alternatives(this, this, 116, inst);
-			case 117: return new LocalVariableDeclaration_Group(this, this, 117, inst);
-			case 118: return new IfStatement_Group(this, this, 118, inst);
-			case 119: return new WhileStatement_Group(this, this, 119, inst);
-			case 120: return new ForStatement_Group(this, this, 120, inst);
-			case 121: return new DoWhileStatement_Group(this, this, 121, inst);
-			case 122: return new ContinueStatement_Group(this, this, 122, inst);
-			case 123: return new BreakStatement_Group(this, this, 123, inst);
-			case 124: return new ReturnStatement_Group(this, this, 124, inst);
-			case 125: return new Unit_Group(this, this, 125, inst);
-			case 126: return new ExplicitUnit_Group(this, this, 126, inst);
-			case 127: return new UnitNumerator_Alternatives(this, this, 127, inst);
-			case 128: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 128, inst);
-			case 129: return new UnitDenominator_Alternatives(this, this, 129, inst);
-			case 130: return new UnitFactor_Group(this, this, 130, inst);
+			case 51: return new CompositeTypeMemberList_Group(this, this, 51, inst);
+			case 52: return new CompositeTypeMember_NameAssignment(this, this, 52, inst);
+			case 53: return new Expression_Alternatives(this, this, 53, inst);
+			case 54: return new LambdaExpression_Group(this, this, 54, inst);
+			case 55: return new LambdaExpressionParameter_NameAssignment(this, this, 55, inst);
+			case 56: return new LetExpression_Group(this, this, 56, inst);
+			case 57: return new LetExpressionAssignment_Group(this, this, 57, inst);
+			case 58: return new LetExpressionVariableDeclaration_NameAssignment(this, this, 58, inst);
+			case 59: return new IfExpression_Group(this, this, 59, inst);
+			case 60: return new SwitchExpression_Group(this, this, 60, inst);
+			case 61: return new SwitchCase_Group(this, this, 61, inst);
+			case 62: return new InspectExpression_Group(this, this, 62, inst);
+			case 63: return new InspectWhenClause_Group(this, this, 63, inst);
+			case 64: return new RangeExpression_Group(this, this, 64, inst);
+			case 65: return new ImpliesExpression_Group(this, this, 65, inst);
+			case 66: return new LogicalOrExpression_Group(this, this, 66, inst);
+			case 67: return new LogicalAndExpression_Group(this, this, 67, inst);
+			case 68: return new EqualityExpression_Group(this, this, 68, inst);
+			case 69: return new RelationalExpression_Group(this, this, 69, inst);
+			case 70: return new AdditiveExpression_Group(this, this, 70, inst);
+			case 71: return new MultiplicativeExpression_Group(this, this, 71, inst);
+			case 72: return new PowerExpression_Group(this, this, 72, inst);
+			case 73: return new PrefixUnaryExpression_Alternatives(this, this, 73, inst);
+			case 74: return new PostfixUnaryExpression_Group(this, this, 74, inst);
+			case 75: return new MemberFeatureCall_Group(this, this, 75, inst);
+			case 76: return new IterationVariableDeclaration_NameAssignment(this, this, 76, inst);
+			case 77: return new ArraySubscript_Alternatives(this, this, 77, inst);
+			case 78: return new PrimaryExpression_Alternatives(this, this, 78, inst);
+			case 79: return new Literal_Alternatives(this, this, 79, inst);
+			case 80: return new NumericLiteral_Alternatives(this, this, 80, inst);
+			case 81: return new RealLiteral_Group(this, this, 81, inst);
+			case 82: return new IntegerLiteral_Group(this, this, 82, inst);
+			case 83: return new BooleanLiteral_Group(this, this, 83, inst);
+			case 84: return new StringLiteral_TextAssignment(this, this, 84, inst);
+			case 85: return new TemplateExpression_Group(this, this, 85, inst);
+			case 86: return new ConstantTemplateSegment_TextAssignment(this, this, 86, inst);
+			case 87: return new ExpressionTemplateSegment_Group(this, this, 87, inst);
+			case 88: return new FeatureCall_Alternatives(this, this, 88, inst);
+			case 89: return new VariableReference_Group(this, this, 89, inst);
+			case 90: return new FunctionCall_Group(this, this, 90, inst);
+			case 91: return new QualifiedFeatureCall_Alternatives(this, this, 91, inst);
+			case 92: return new QualifiedVariableReference_Group(this, this, 92, inst);
+			case 93: return new QualifiedFunctionCall_Group(this, this, 93, inst);
+			case 94: return new StepExpression_RangeStepExpressionParserRuleCall(this, this, 94, inst);
+			case 95: return new RangeStepExpression_Group(this, this, 95, inst);
+			case 96: return new AdditiveStepExpression_Group(this, this, 96, inst);
+			case 97: return new NegateStepExpression_Alternatives(this, this, 97, inst);
+			case 98: return new PrimitiveStepExpression_Alternatives(this, this, 98, inst);
+			case 99: return new StepLiteral_ValueAssignment(this, this, 99, inst);
+			case 100: return new StepN_Group(this, this, 100, inst);
+			case 101: return new ArrayConstructionOperator_Group(this, this, 101, inst);
+			case 102: return new ArrayConcatenationOperator_Group(this, this, 102, inst);
+			case 103: return new ExpressionList_Group(this, this, 103, inst);
+			case 104: return new StructConstructionOperator_Group(this, this, 104, inst);
+			case 105: return new StructConstructionMember_Group(this, this, 105, inst);
+			case 106: return new UnionConstructionOperator_Group(this, this, 106, inst);
+			case 107: return new UnionTypeSpecifier_Alternatives(this, this, 107, inst);
+			case 108: return new AnonymousUnionTypeSpecifier_TypeAssignment(this, this, 108, inst);
+			case 109: return new UnitConstructionOperator_Group(this, this, 109, inst);
+			case 110: return new ParenthesizedExpression_Group(this, this, 110, inst);
+			case 111: return new EndExpression_Group(this, this, 111, inst);
+			case 112: return new AlgorithmExpression_Group(this, this, 112, inst);
+			case 113: return new CompoundStatement_Group(this, this, 113, inst);
+			case 114: return new Statement_Alternatives(this, this, 114, inst);
+			case 115: return new Assignment_Group(this, this, 115, inst);
+			case 116: return new AssignableMemberFeatureCall_Group(this, this, 116, inst);
+			case 117: return new AssignablePrimaryExpression_Alternatives(this, this, 117, inst);
+			case 118: return new LocalVariableDeclaration_Group(this, this, 118, inst);
+			case 119: return new IfStatement_Group(this, this, 119, inst);
+			case 120: return new WhileStatement_Group(this, this, 120, inst);
+			case 121: return new ForStatement_Group(this, this, 121, inst);
+			case 122: return new DoWhileStatement_Group(this, this, 122, inst);
+			case 123: return new ContinueStatement_Group(this, this, 123, inst);
+			case 124: return new BreakStatement_Group(this, this, 124, inst);
+			case 125: return new ReturnStatement_Group(this, this, 125, inst);
+			case 126: return new Unit_Group(this, this, 126, inst);
+			case 127: return new ExplicitUnit_Group(this, this, 127, inst);
+			case 128: return new UnitNumerator_Alternatives(this, this, 128, inst);
+			case 129: return new ImplicitUnitNumerator_UnitNumeratorAction(this, this, 129, inst);
+			case 130: return new UnitDenominator_Alternatives(this, this, 130, inst);
+			case 131: return new UnitFactor_Group(this, this, 131, inst);
 			default: return null;
 		}	
 	}	
@@ -10477,11 +10478,13 @@ protected class CompositeType_UnionTypeParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule StructType ****************
  *
  * StructType:
- * 	(label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}";
+ * 	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+ * 	";"? "}";
  *
  **/
 
-// (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}"
+// (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+// ";"? "}"
 protected class StructType_Group extends GroupToken {
 	
 	public StructType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10622,35 +10625,35 @@ protected class StructType_LeftCurlyBracketKeyword_1 extends KeywordToken  {
 
 }
 
-// members+=CompositeTypeMember
-protected class StructType_MembersAssignment_2 extends AssignmentToken  {
+// memberLists+=CompositeTypeMemberList
+protected class StructType_MemberListsAssignment_2 extends AssignmentToken  {
 	
-	public StructType_MembersAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructType_MemberListsAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructTypeAccess().getMembersAssignment_2();
+		return grammarAccess.getStructTypeAccess().getMemberListsAssignment_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_Group(this, this, 0, inst);
+			case 0: return new CompositeTypeMemberList_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("members",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if((value = eObjectConsumer.getConsumable("memberLists",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("memberLists");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberListRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getStructTypeAccess().getMembersCompositeTypeMemberParserRuleCall_2_0(); 
+				element = grammarAccess.getStructTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -10668,7 +10671,7 @@ protected class StructType_MembersAssignment_2 extends AssignmentToken  {
 	}	
 }
 
-// (";" members+=CompositeTypeMember)*
+// (";" memberLists+=CompositeTypeMemberList)*
 protected class StructType_Group_3 extends GroupToken {
 	
 	public StructType_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10683,7 +10686,7 @@ protected class StructType_Group_3 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new StructType_MembersAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new StructType_MemberListsAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -10706,42 +10709,42 @@ protected class StructType_SemicolonKeyword_3_0 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new StructType_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new StructType_MembersAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new StructType_MemberListsAssignment_2(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// members+=CompositeTypeMember
-protected class StructType_MembersAssignment_3_1 extends AssignmentToken  {
+// memberLists+=CompositeTypeMemberList
+protected class StructType_MemberListsAssignment_3_1 extends AssignmentToken  {
 	
-	public StructType_MembersAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public StructType_MemberListsAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructTypeAccess().getMembersAssignment_3_1();
+		return grammarAccess.getStructTypeAccess().getMemberListsAssignment_3_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_Group(this, this, 0, inst);
+			case 0: return new CompositeTypeMemberList_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("members",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if((value = eObjectConsumer.getConsumable("memberLists",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("memberLists");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberListRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getStructTypeAccess().getMembersCompositeTypeMemberParserRuleCall_3_1_0(); 
+				element = grammarAccess.getStructTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_3_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -10776,7 +10779,7 @@ protected class StructType_RightCurlyBracketKeyword_5 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new StructType_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new StructType_MembersAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new StructType_MemberListsAssignment_2(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -10790,12 +10793,13 @@ protected class StructType_RightCurlyBracketKeyword_5 extends KeywordToken  {
 /************ begin Rule UnionType ****************
  *
  * UnionType:
- * 	"union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"?
- * 	"}";
+ * 	"union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+ * 	memberLists+=CompositeTypeMemberList)* ";"? "}";
  *
  **/
 
-// "union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}"
+// "union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+// memberLists+=CompositeTypeMemberList)* ";"? "}"
 protected class UnionType_Group extends GroupToken {
 	
 	public UnionType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10960,35 +10964,35 @@ protected class UnionType_LeftCurlyBracketKeyword_2 extends KeywordToken  {
 
 }
 
-// members+=CompositeTypeMember
-protected class UnionType_MembersAssignment_3 extends AssignmentToken  {
+// memberLists+=CompositeTypeMemberList
+protected class UnionType_MemberListsAssignment_3 extends AssignmentToken  {
 	
-	public UnionType_MembersAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public UnionType_MemberListsAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getUnionTypeAccess().getMembersAssignment_3();
+		return grammarAccess.getUnionTypeAccess().getMemberListsAssignment_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_Group(this, this, 0, inst);
+			case 0: return new CompositeTypeMemberList_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("members",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if((value = eObjectConsumer.getConsumable("memberLists",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("memberLists");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberListRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getUnionTypeAccess().getMembersCompositeTypeMemberParserRuleCall_3_0(); 
+				element = grammarAccess.getUnionTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -11006,7 +11010,7 @@ protected class UnionType_MembersAssignment_3 extends AssignmentToken  {
 	}	
 }
 
-// (";" members+=CompositeTypeMember)*
+// (";" memberLists+=CompositeTypeMemberList)*
 protected class UnionType_Group_4 extends GroupToken {
 	
 	public UnionType_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11021,7 +11025,7 @@ protected class UnionType_Group_4 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new UnionType_MembersAssignment_4_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new UnionType_MemberListsAssignment_4_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -11044,42 +11048,42 @@ protected class UnionType_SemicolonKeyword_4_0 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new UnionType_Group_4(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new UnionType_MembersAssignment_3(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new UnionType_MemberListsAssignment_3(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// members+=CompositeTypeMember
-protected class UnionType_MembersAssignment_4_1 extends AssignmentToken  {
+// memberLists+=CompositeTypeMemberList
+protected class UnionType_MemberListsAssignment_4_1 extends AssignmentToken  {
 	
-	public UnionType_MembersAssignment_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public UnionType_MemberListsAssignment_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getUnionTypeAccess().getMembersAssignment_4_1();
+		return grammarAccess.getUnionTypeAccess().getMemberListsAssignment_4_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_Group(this, this, 0, inst);
+			case 0: return new CompositeTypeMemberList_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("members",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if((value = eObjectConsumer.getConsumable("memberLists",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("memberLists");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberListRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getUnionTypeAccess().getMembersCompositeTypeMemberParserRuleCall_4_1_0(); 
+				element = grammarAccess.getUnionTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_4_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -11114,7 +11118,7 @@ protected class UnionType_RightCurlyBracketKeyword_6 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new UnionType_Group_4(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new UnionType_MembersAssignment_3(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new UnionType_MemberListsAssignment_3(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -11125,36 +11129,37 @@ protected class UnionType_RightCurlyBracketKeyword_6 extends KeywordToken  {
 /************ end Rule UnionType ****************/
 
 
-/************ begin Rule CompositeTypeMember ****************
+/************ begin Rule CompositeTypeMemberList ****************
  *
- * CompositeTypeMember:
- * 	typeSpecifier=TypeSpecifier name=ValidID;
+ * CompositeTypeMemberList:
+ * 	typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*;
  *
  **/
 
-// typeSpecifier=TypeSpecifier name=ValidID
-protected class CompositeTypeMember_Group extends GroupToken {
+// typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*
+protected class CompositeTypeMemberList_Group extends GroupToken {
 	
-	public CompositeTypeMember_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompositeTypeMemberList_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getCompositeTypeMemberAccess().getGroup();
+		return grammarAccess.getCompositeTypeMemberListAccess().getGroup();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_NameAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CompositeTypeMemberList_Group_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new CompositeTypeMemberList_MembersAssignment_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getCompositeTypeMemberListRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -11162,15 +11167,15 @@ protected class CompositeTypeMember_Group extends GroupToken {
 }
 
 // typeSpecifier=TypeSpecifier
-protected class CompositeTypeMember_TypeSpecifierAssignment_0 extends AssignmentToken  {
+protected class CompositeTypeMemberList_TypeSpecifierAssignment_0 extends AssignmentToken  {
 	
-	public CompositeTypeMember_TypeSpecifierAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompositeTypeMemberList_TypeSpecifierAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompositeTypeMemberAccess().getTypeSpecifierAssignment_0();
+		return grammarAccess.getCompositeTypeMemberListAccess().getTypeSpecifierAssignment_0();
 	}
 
     @Override
@@ -11189,7 +11194,7 @@ protected class CompositeTypeMember_TypeSpecifierAssignment_0 extends Assignment
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTypeSpecifierRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCompositeTypeMemberAccess().getTypeSpecifierTypeSpecifierParserRuleCall_0_0(); 
+				element = grammarAccess.getCompositeTypeMemberListAccess().getTypeSpecifierTypeSpecifierParserRuleCall_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -11206,40 +11211,189 @@ protected class CompositeTypeMember_TypeSpecifierAssignment_0 extends Assignment
 	}	
 }
 
-// name=ValidID
-protected class CompositeTypeMember_NameAssignment_1 extends AssignmentToken  {
+// members+=CompositeTypeMember
+protected class CompositeTypeMemberList_MembersAssignment_1 extends AssignmentToken  {
 	
-	public CompositeTypeMember_NameAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CompositeTypeMemberList_MembersAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompositeTypeMemberAccess().getNameAssignment_1();
+		return grammarAccess.getCompositeTypeMemberListAccess().getMembersAssignment_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CompositeTypeMember_TypeSpecifierAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CompositeTypeMember_NameAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("members",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCompositeTypeMemberListAccess().getMembersCompositeTypeMemberParserRuleCall_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new CompositeTypeMemberList_TypeSpecifierAssignment_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ("," members+=CompositeTypeMember)*
+protected class CompositeTypeMemberList_Group_2 extends GroupToken {
+	
+	public CompositeTypeMemberList_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getCompositeTypeMemberListAccess().getGroup_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CompositeTypeMemberList_MembersAssignment_2_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ","
+protected class CompositeTypeMemberList_CommaKeyword_2_0 extends KeywordToken  {
+	
+	public CompositeTypeMemberList_CommaKeyword_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getCompositeTypeMemberListAccess().getCommaKeyword_2_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CompositeTypeMemberList_Group_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new CompositeTypeMemberList_MembersAssignment_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// members+=CompositeTypeMember
+protected class CompositeTypeMemberList_MembersAssignment_2_1 extends AssignmentToken  {
+	
+	public CompositeTypeMemberList_MembersAssignment_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCompositeTypeMemberListAccess().getMembersAssignment_2_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CompositeTypeMember_NameAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("members",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("members");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCompositeTypeMemberListAccess().getMembersCompositeTypeMemberParserRuleCall_2_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new CompositeTypeMemberList_CommaKeyword_2_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+
+/************ end Rule CompositeTypeMemberList ****************/
+
+
+/************ begin Rule CompositeTypeMember ****************
+ *
+ * CompositeTypeMember:
+ * 	name=ValidID;
+ *
+ **/
+
+// name=ValidID
+protected class CompositeTypeMember_NameAssignment extends AssignmentToken  {
+	
+	public CompositeTypeMember_NameAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCompositeTypeMemberAccess().getNameAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getCompositeTypeMemberRule().getType().getClassifier())
+			return null;
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getCompositeTypeMemberAccess().getNameValidIDParserRuleCall_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getCompositeTypeMemberAccess().getNameValidIDParserRuleCall_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getCompositeTypeMemberAccess().getNameValidIDParserRuleCall_1_0();
+			element = grammarAccess.getCompositeTypeMemberAccess().getNameValidIDParserRuleCall_0();
 			return obj;
 		}
 		return null;
 	}
 
 }
-
 
 /************ end Rule CompositeTypeMember ****************/
 

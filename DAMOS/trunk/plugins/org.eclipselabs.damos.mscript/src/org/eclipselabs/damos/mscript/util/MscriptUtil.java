@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -129,25 +129,31 @@ public class MscriptUtil {
 		return variableReference;
 	}
 	
-	public static String findAvailableLocalVariableName(CompoundStatement compoundStatement, String preferredName) {
+	public static String findAvailableLocalVariableName(EObject context, String preferredName) {
 		String name = preferredName;
 		int i = 2;
-		while (!isLocalVariableNameAvailable(compoundStatement, name)) {
+		while (!isLocalVariableNameAvailable(context, name)) {
 			name = preferredName + i++;
 		}
 		return name;
 	}
 	
-	private static boolean isLocalVariableNameAvailable(CompoundStatement compoundStatement, String name) {
+	private static boolean isLocalVariableNameAvailable(EObject context, String name) {
 		if (RESERVED_WORDS.contains(name)) {
 			return false;
 		}
 		
-		EObject container = compoundStatement;
+		EObject container = context;
 		while (container != null) {
 			if (container instanceof CompoundStatement) {
-				for (LocalVariableDeclaration localVariableDeclaration : ((CompoundStatement) container).getLocalVariableDeclarations()) {
-					if (name.equals(localVariableDeclaration.getName())) {
+				for (VariableDeclaration variable : ((CompoundStatement) container).getLocalVariableDeclarations()) {
+					if (name.equals(variable.getName())) {
+						return false;
+					}
+				}
+			} else if (container instanceof LambdaExpression) {
+				for (VariableDeclaration variable : ((LambdaExpression) container).getParameters()) {
+					if (name.equals(variable.getName())) {
 						return false;
 					}
 				}

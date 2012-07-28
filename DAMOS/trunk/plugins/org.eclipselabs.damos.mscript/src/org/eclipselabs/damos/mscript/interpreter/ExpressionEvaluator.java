@@ -12,7 +12,9 @@
 package org.eclipselabs.damos.mscript.interpreter;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
@@ -40,6 +42,8 @@ import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
+import org.eclipselabs.damos.mscript.InspectExpression;
+import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.LambdaExpression;
@@ -69,6 +73,8 @@ import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
+import org.eclipselabs.damos.mscript.UnionConstructionOperator;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableReference;
@@ -83,8 +89,9 @@ import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
+import org.eclipselabs.damos.mscript.interpreter.value.UnionValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -208,6 +215,115 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			}
 
 			return new AnyValue(context.getComputationContext(), type);
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseInspectExpression(org.eclipselabs.damos.mscript.InspectExpression)
+		 */
+		@Override
+		public IValue caseInspectExpression(InspectExpression inspectExpression) {
+			IValue value = evaluate(inspectExpression.getUnionExpression());
+			if (value instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(value.getDataType() instanceof UnionType)) {
+				if (context.getStatusCollector() != null) {
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Inspect expression must result to union type", inspectExpression.getUnionExpression()));
+				}
+				return InvalidValue.SINGLETON;
+			}
+			
+			UnionType unionType = (UnionType) value.getDataType();
+
+			UnionValue unionValue = null;
+			if (value instanceof UnionValue) {
+				unionValue = (UnionValue) value;
+			}
+
+			boolean invalidValue = false;
+
+			Type resultDataType = null;
+			IValue resultValue = null;
+			
+			Set<CompositeTypeMember> members = new LinkedHashSet<CompositeTypeMember>(unionType.getMembers());
+			
+			for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
+				CompositeTypeMember member = unionType.getMember(whenClause.getName());
+				if (member != null) {
+					members.remove(member);
+					
+					IValue memberValue;
+					
+					if (unionValue != null && unionType.getMembers().indexOf(member) == unionValue.getTag()) {
+						memberValue = unionValue.getValue();
+					} else {
+						memberValue = new AnyValue(context.getComputationContext(), member.getType());
+					}
+					
+					context.enterVariableScope();
+					context.addVariable(new IteratorVariable(whenClause, memberValue));
+					IValue whenClauseResultValue = evaluate(whenClause.getExpression());
+					context.leaveVariableScope();
+					
+					if (whenClauseResultValue instanceof InvalidValue) {
+						invalidValue = true;
+						continue;
+					}
+					
+					if (!(whenClauseResultValue instanceof AnyValue)) {
+						resultValue = whenClauseResultValue;
+					}
+					
+					if (resultDataType == null) {
+						resultDataType = whenClauseResultValue.getDataType();
+					} else {
+						resultDataType = TypeUtil.getLeftHandDataType(resultDataType, whenClauseResultValue.getDataType());
+						if (resultDataType == null) {
+							if (context.getStatusCollector() != null) {
+								context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Incompatible data type with previous when clauses", whenClause.getExpression()));
+							}
+							invalidValue = true;
+						}
+					}
+				} else {
+					if (context.getStatusCollector() != null) {
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, whenClause.getName() + " is not member of union", whenClause, MscriptPackage.eINSTANCE.getVariableDeclaration_Name()));
+					}
+					invalidValue = true;
+				}
+			}
+			
+			if (!members.isEmpty()) {
+				if (context.getStatusCollector() != null) {
+					StringBuilder message = new StringBuilder("Inspect expression does not handle member");
+					if (members.size() > 1) {
+						message.append("s");
+					}
+					message.append(" ");
+					boolean first = true;
+					for (CompositeTypeMember member : members) {
+						if (first) {
+							first = false;
+						} else {
+							message.append(", ");
+						}
+						message.append(member.getName());
+					}
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, message.toString(), inspectExpression.getUnionExpression()));
+				}
+				invalidValue = true;
+			}
+			
+			if (invalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (resultValue == null) {
+				resultValue = new AnyValue(context.getComputationContext(), resultDataType);
+			}
+			
+			return resultValue;
 		}
 
 		/* (non-Javadoc)
@@ -846,6 +962,54 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			return new RecordValue(context.getComputationContext(), recordType, values);
 		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseUnionConstructionOperator(org.eclipselabs.damos.mscript.UnionConstructionOperator)
+		 */
+		@Override
+		public IValue caseUnionConstructionOperator(UnionConstructionOperator unionConstructionOperator) {
+			if (!isResolved(unionConstructionOperator.getTypeSpecifier())) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			Type type = unionConstructionOperator.getTypeSpecifier().getType();
+			
+			if (!isResolved(type)) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(type instanceof UnionType)) {
+				if (context.getStatusCollector() != null) {
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Type must be union type", unionConstructionOperator.getTypeSpecifier()));
+				}
+				return InvalidValue.SINGLETON;
+			}
+			
+			UnionType unionType = (UnionType) type;
+			
+			if (!isResolved(unionConstructionOperator.getMember())) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			IValue value = evaluate(unionConstructionOperator.getValue());
+			
+			if (value instanceof InvalidValue) {
+				return value;
+			}
+			
+			if (!unionConstructionOperator.getMember().getType().isAssignableFrom(value.getDataType())) {
+				if (context.getStatusCollector() != null) {
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Union value has incompatible data type", unionConstructionOperator.getValue()));
+				}
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (value instanceof AnyValue) {
+				return new AnyValue(context.getComputationContext(), type);
+			}
+			
+			return new UnionValue(context.getComputationContext(), unionType, unionType.getMembers().indexOf(unionConstructionOperator.getMember()), value.convert(unionConstructionOperator.getMember().getType()));
+		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnitConstructionOperator(org.eclipselabs.mscript.language.ast.UnitConstructionOperator)
@@ -1134,7 +1298,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseVariableReference(VariableReference variableReference) {
-			if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
+			if (!isResolved(variableReference.getFeature())) {
 				return InvalidValue.SINGLETON;
 			}
 			IValue value = context.getValue(variableReference);
@@ -1198,7 +1362,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		@Override
 		public IValue caseFunctionCall(FunctionCall functionCall) {
 			CallableElement feature = functionCall.getFeature();
-			if (feature == null || feature.eIsProxy() || feature.getName() == null) {
+			if (!isResolved(feature) || feature.getName() == null) {
 				return InvalidValue.SINGLETON;
 			}
 			
@@ -1405,6 +1569,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
 			}
 			return InvalidValue.SINGLETON;
+		}
+		
+		private boolean isResolved(EObject eObject) {
+			return eObject != null && !eObject.eIsProxy();
 		}
 		
 	}

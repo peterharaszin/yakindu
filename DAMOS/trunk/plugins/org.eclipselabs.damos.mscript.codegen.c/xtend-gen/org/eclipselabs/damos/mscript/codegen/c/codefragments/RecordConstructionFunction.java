@@ -15,8 +15,8 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataType;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 
 /**
  * @author Andreas Unger
@@ -108,8 +108,8 @@ public class RecordConstructionFunction extends AbstractCodeFragment {
       _builder.append(";");
       _builder.newLineIfNotEmpty();
       {
-        List<MachineStructMember> _members = this.recordType.getMembers();
-        for(final MachineStructMember member : _members) {
+        List<MachineRecordMember> _members = this.recordType.getMembers();
+        for(final MachineRecordMember member : _members) {
           _builder.append("\t");
           _builder.append(v, "	");
           _builder.append(".");
@@ -141,9 +141,9 @@ public class RecordConstructionFunction extends AbstractCodeFragment {
     _builder.append(this.name, "");
     _builder.append("(");
     {
-      List<MachineStructMember> _members = this.recordType.getMembers();
+      List<MachineRecordMember> _members = this.recordType.getMembers();
       boolean _hasElements = false;
-      for(final MachineStructMember member : _members) {
+      for(final MachineRecordMember member : _members) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -160,14 +160,14 @@ public class RecordConstructionFunction extends AbstractCodeFragment {
   }
   
   private String getVariableName() {
-    List<MachineStructMember> _members = this.recordType.getMembers();
-    final Function1<MachineStructMember,String> _function = new Function1<MachineStructMember,String>() {
-        public String apply(final MachineStructMember it) {
+    List<MachineRecordMember> _members = this.recordType.getMembers();
+    final Function1<MachineRecordMember,String> _function = new Function1<MachineRecordMember,String>() {
+        public String apply(final MachineRecordMember it) {
           String _name = it.getName();
           return _name;
         }
       };
-    List<String> _map = ListExtensions.<MachineStructMember, String>map(_members, _function);
+    List<String> _map = ListExtensions.<MachineRecordMember, String>map(_members, _function);
     HashSet<String> _hashSet = new HashSet<String>(_map);
     final HashSet<String> names = _hashSet;
     String name = RecordConstructionFunction.PREFERRED_VARIABLE_NAME;

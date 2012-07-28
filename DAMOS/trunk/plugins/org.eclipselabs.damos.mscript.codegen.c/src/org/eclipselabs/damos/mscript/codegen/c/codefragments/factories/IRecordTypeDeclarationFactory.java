@@ -12,15 +12,14 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
-import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IStructLiteralDeclarationFactory {
+public interface IRecordTypeDeclarationFactory {
 
-	ICodeFragment create(IMscriptGeneratorConfiguration configuration, RecordValue value);
+	ICodeFragment create(MachineRecordType structType);
 	
 }

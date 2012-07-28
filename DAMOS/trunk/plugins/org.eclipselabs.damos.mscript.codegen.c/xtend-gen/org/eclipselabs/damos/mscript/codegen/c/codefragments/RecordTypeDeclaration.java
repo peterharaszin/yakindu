@@ -9,8 +9,8 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataType;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordMember;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructMember;
 
 /**
  * @author Andreas Unger
@@ -43,8 +43,8 @@ public class RecordTypeDeclaration extends AbstractCodeFragment {
     _builder.append("typedef struct {");
     _builder.newLine();
     {
-      List<MachineStructMember> _members = this.recordType.getMembers();
-      for(final MachineStructMember member : _members) {
+      List<MachineRecordMember> _members = this.recordType.getMembers();
+      for(final MachineRecordMember member : _members) {
         _builder.append("\t");
         MachineDataType _type = member.getType();
         String _name = member.getName();

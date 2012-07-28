@@ -911,7 +911,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 106;
+	int EXPRESSION = 107;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -3667,13 +3667,13 @@ public interface MscriptPackage extends EPackage {
 	int COMPOSITE_TYPE__ANY_LABEL = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Member Lists</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TYPE__MEMBERS = DATA_TYPE_FEATURE_COUNT + 2;
+	int COMPOSITE_TYPE__MEMBER_LISTS = DATA_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Composite Type</em>' class.
@@ -3685,23 +3685,14 @@ public interface MscriptPackage extends EPackage {
 	int COMPOSITE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl <em>Composite Type Member</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberListImpl <em>Composite Type Member List</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompositeTypeMember()
+	 * @see org.eclipselabs.damos.mscript.impl.CompositeTypeMemberListImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompositeTypeMemberList()
 	 * @generated
 	 */
-	int COMPOSITE_TYPE_MEMBER = 103;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_TYPE_MEMBER__NAME = 0;
+	int COMPOSITE_TYPE_MEMBER_LIST = 103;
 
 	/**
 	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
@@ -3710,7 +3701,53 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER = 1;
+	int COMPOSITE_TYPE_MEMBER_LIST__TYPE_SPECIFIER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE_MEMBER_LIST__MEMBERS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Composite Type Member List</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE_MEMBER_LIST_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl <em>Composite Type Member</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompositeTypeMember()
+	 * @generated
+	 */
+	int COMPOSITE_TYPE_MEMBER = 104;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE_MEMBER__OWNER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_TYPE_MEMBER__NAME = 1;
 
 	/**
 	 * The number of structural features of the '<em>Composite Type Member</em>' class.
@@ -3729,7 +3766,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructType()
 	 * @generated
 	 */
-	int STRUCT_TYPE = 104;
+	int STRUCT_TYPE = 105;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -3750,13 +3787,13 @@ public interface MscriptPackage extends EPackage {
 	int STRUCT_TYPE__ANY_LABEL = COMPOSITE_TYPE__ANY_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Member Lists</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_TYPE__MEMBERS = COMPOSITE_TYPE__MEMBERS;
+	int STRUCT_TYPE__MEMBER_LISTS = COMPOSITE_TYPE__MEMBER_LISTS;
 
 	/**
 	 * The number of structural features of the '<em>Struct Type</em>' class.
@@ -3775,7 +3812,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnionType()
 	 * @generated
 	 */
-	int UNION_TYPE = 105;
+	int UNION_TYPE = 106;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -3796,13 +3833,13 @@ public interface MscriptPackage extends EPackage {
 	int UNION_TYPE__ANY_LABEL = COMPOSITE_TYPE__ANY_LABEL;
 
 	/**
-	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Member Lists</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_TYPE__MEMBERS = COMPOSITE_TYPE__MEMBERS;
+	int UNION_TYPE__MEMBER_LISTS = COMPOSITE_TYPE__MEMBER_LISTS;
 
 	/**
 	 * The number of structural features of the '<em>Union Type</em>' class.
@@ -3821,7 +3858,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnit()
 	 * @generated
 	 */
-	int UNIT = 107;
+	int UNIT = 108;
 
 	/**
 	 * The feature id for the '<em><b>Numerator</b></em>' containment reference.
@@ -3876,7 +3913,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitProduct()
 	 * @generated
 	 */
-	int UNIT_PRODUCT = 108;
+	int UNIT_PRODUCT = 109;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3904,7 +3941,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitNumerator()
 	 * @generated
 	 */
-	int UNIT_NUMERATOR = 109;
+	int UNIT_NUMERATOR = 110;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3932,7 +3969,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominator()
 	 * @generated
 	 */
-	int UNIT_DENOMINATOR = 110;
+	int UNIT_DENOMINATOR = 111;
 
 	/**
 	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
@@ -3960,7 +3997,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitFactor()
 	 * @generated
 	 */
-	int UNIT_FACTOR = 111;
+	int UNIT_FACTOR = 112;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -3997,7 +4034,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLiteral()
 	 * @generated
 	 */
-	int LITERAL = 112;
+	int LITERAL = 113;
 
 	/**
 	 * The number of structural features of the '<em>Literal</em>' class.
@@ -4016,7 +4053,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getNumericLiteral()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL = 113;
+	int NUMERIC_LITERAL = 114;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4044,7 +4081,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 114;
+	int REAL_LITERAL = 115;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4090,7 +4127,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerLiteral()
 	 * @generated
 	 */
-	int INTEGER_LITERAL = 115;
+	int INTEGER_LITERAL = 116;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4136,7 +4173,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 116;
+	int BOOLEAN_LITERAL = 117;
 
 	/**
 	 * The feature id for the '<em><b>True</b></em>' attribute.
@@ -4164,7 +4201,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 117;
+	int STRING_LITERAL = 118;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -4192,7 +4229,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateExpression()
 	 * @generated
 	 */
-	int TEMPLATE_EXPRESSION = 118;
+	int TEMPLATE_EXPRESSION = 119;
 
 	/**
 	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
@@ -4220,7 +4257,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateSegment()
 	 * @generated
 	 */
-	int TEMPLATE_SEGMENT = 119;
+	int TEMPLATE_SEGMENT = 120;
 
 	/**
 	 * The number of structural features of the '<em>Template Segment</em>' class.
@@ -4239,7 +4276,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantTemplateSegment()
 	 * @generated
 	 */
-	int CONSTANT_TEMPLATE_SEGMENT = 120;
+	int CONSTANT_TEMPLATE_SEGMENT = 121;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -4276,7 +4313,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpressionTemplateSegment()
 	 * @generated
 	 */
-	int EXPRESSION_TEMPLATE_SEGMENT = 121;
+	int EXPRESSION_TEMPLATE_SEGMENT = 122;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -4313,7 +4350,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionKind()
 	 * @generated
 	 */
-	int FUNCTION_KIND = 122;
+	int FUNCTION_KIND = 123;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AssertionStatusKind <em>Assertion Status Kind</em>}' enum.
@@ -4323,7 +4360,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssertionStatusKind()
 	 * @generated
 	 */
-	int ASSERTION_STATUS_KIND = 123;
+	int ASSERTION_STATUS_KIND = 124;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
@@ -4333,7 +4370,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 124;
+	int OPERATOR_KIND = 125;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -4343,7 +4380,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 125;
+	int REAL_DATA = 126;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -4353,7 +4390,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 126;
+	int INTEGER_DATA = 127;
 
 
 	/**
@@ -6718,15 +6755,47 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getCompositeType_AnyLabel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.CompositeType#getMembers <em>Members</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.CompositeType#getMemberLists <em>Member Lists</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Members</em>'.
-	 * @see org.eclipselabs.damos.mscript.CompositeType#getMembers()
+	 * @return the meta object for the containment reference list '<em>Member Lists</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompositeType#getMemberLists()
 	 * @see #getCompositeType()
 	 * @generated
 	 */
-	EReference getCompositeType_Members();
+	EReference getCompositeType_MemberLists();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.CompositeTypeMemberList <em>Composite Type Member List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Type Member List</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompositeTypeMemberList
+	 * @generated
+	 */
+	EClass getCompositeTypeMemberList();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.CompositeTypeMemberList#getTypeSpecifier <em>Type Specifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompositeTypeMemberList#getTypeSpecifier()
+	 * @see #getCompositeTypeMemberList()
+	 * @generated
+	 */
+	EReference getCompositeTypeMemberList_TypeSpecifier();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.CompositeTypeMemberList#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Members</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompositeTypeMemberList#getMembers()
+	 * @see #getCompositeTypeMemberList()
+	 * @generated
+	 */
+	EReference getCompositeTypeMemberList_Members();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.CompositeTypeMember <em>Composite Type Member</em>}'.
@@ -6739,6 +6808,17 @@ public interface MscriptPackage extends EPackage {
 	EClass getCompositeTypeMember();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.CompositeTypeMember#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipselabs.damos.mscript.CompositeTypeMember#getOwner()
+	 * @see #getCompositeTypeMember()
+	 * @generated
+	 */
+	EReference getCompositeTypeMember_Owner();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.CompositeTypeMember#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6748,17 +6828,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCompositeTypeMember_Name();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.CompositeTypeMember#getTypeSpecifier <em>Type Specifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
-	 * @see org.eclipselabs.damos.mscript.CompositeTypeMember#getTypeSpecifier()
-	 * @see #getCompositeTypeMember()
-	 * @generated
-	 */
-	EReference getCompositeTypeMember_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StructType <em>Struct Type</em>}'.
@@ -9222,12 +9291,38 @@ public interface MscriptPackage extends EPackage {
 		EAttribute COMPOSITE_TYPE__ANY_LABEL = eINSTANCE.getCompositeType_AnyLabel();
 
 		/**
+		 * The meta object literal for the '<em><b>Member Lists</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_TYPE__MEMBER_LISTS = eINSTANCE.getCompositeType_MemberLists();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberListImpl <em>Composite Type Member List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.CompositeTypeMemberListImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getCompositeTypeMemberList()
+		 * @generated
+		 */
+		EClass COMPOSITE_TYPE_MEMBER_LIST = eINSTANCE.getCompositeTypeMemberList();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_TYPE_MEMBER_LIST__TYPE_SPECIFIER = eINSTANCE.getCompositeTypeMemberList_TypeSpecifier();
+
+		/**
 		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITE_TYPE__MEMBERS = eINSTANCE.getCompositeType_Members();
+		EReference COMPOSITE_TYPE_MEMBER_LIST__MEMBERS = eINSTANCE.getCompositeTypeMemberList_Members();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl <em>Composite Type Member</em>}' class.
@@ -9240,20 +9335,20 @@ public interface MscriptPackage extends EPackage {
 		EClass COMPOSITE_TYPE_MEMBER = eINSTANCE.getCompositeTypeMember();
 
 		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_TYPE_MEMBER__OWNER = eINSTANCE.getCompositeTypeMember_Owner();
+
+		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute COMPOSITE_TYPE_MEMBER__NAME = eINSTANCE.getCompositeTypeMember_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER = eINSTANCE.getCompositeTypeMember_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StructTypeImpl <em>Struct Type</em>}' class.

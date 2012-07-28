@@ -12,9 +12,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.TypeSpecifier;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.internal.operations.CompositeTypeMemberOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +26,8 @@ import org.eclipselabs.damos.mscript.TypeSpecifier;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CompositeTypeMemberImpl#getTypeSpecifier <em>Type Specifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,16 +55,6 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeSpecifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeSpecifier typeSpecifier;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -78,6 +71,47 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.COMPOSITE_TYPE_MEMBER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeTypeMemberList getOwner() {
+		if (eContainerFeatureID() != MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER) return null;
+		return (CompositeTypeMemberList)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(CompositeTypeMemberList newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(CompositeTypeMemberList newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, MscriptPackage.COMPOSITE_TYPE_MEMBER_LIST__MEMBERS, CompositeTypeMemberList.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -104,10 +138,10 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public TypeSpecifier getTypeSpecifier() {
-		return typeSpecifier;
+	public Type getType() {
+		return CompositeTypeMemberOperations.getType(this);
 	}
 
 	/**
@@ -115,33 +149,15 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeSpecifier(TypeSpecifier newTypeSpecifier, NotificationChain msgs) {
-		TypeSpecifier oldTypeSpecifier = typeSpecifier;
-		typeSpecifier = newTypeSpecifier;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((CompositeTypeMemberList)otherEnd, msgs);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTypeSpecifier(TypeSpecifier newTypeSpecifier) {
-		if (newTypeSpecifier != typeSpecifier) {
-			NotificationChain msgs = null;
-			if (typeSpecifier != null)
-				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER, null, msgs);
-			if (newTypeSpecifier != null)
-				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER, null, msgs);
-			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -152,8 +168,8 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER:
-				return basicSetTypeSpecifier(null, msgs);
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -164,12 +180,26 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				return eInternalContainer().eInverseRemove(this, MscriptPackage.COMPOSITE_TYPE_MEMBER_LIST__MEMBERS, CompositeTypeMemberList.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				return getOwner();
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER__NAME:
 				return getName();
-			case MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER:
-				return getTypeSpecifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,11 +212,11 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				setOwner((CompositeTypeMemberList)newValue);
+				return;
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER__NAME:
 				setName((String)newValue);
-				return;
-			case MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER:
-				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -200,11 +230,11 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				setOwner((CompositeTypeMemberList)null);
+				return;
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER:
-				setTypeSpecifier((TypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -218,10 +248,10 @@ public class CompositeTypeMemberImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER__OWNER:
+				return getOwner() != null;
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MscriptPackage.COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER:
-				return typeSpecifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

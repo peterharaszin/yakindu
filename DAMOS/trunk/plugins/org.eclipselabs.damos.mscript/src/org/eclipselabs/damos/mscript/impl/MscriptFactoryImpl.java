@@ -146,6 +146,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ANONYMOUS_ARRAY_TYPE: return createAnonymousArrayType();
 			case MscriptPackage.DECLARED_ARRAY_TYPE: return createDeclaredArrayType();
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
+			case MscriptPackage.COMPOSITE_TYPE_MEMBER_LIST: return createCompositeTypeMemberList();
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER: return createCompositeTypeMember();
 			case MscriptPackage.STRUCT_TYPE: return createStructType();
 			case MscriptPackage.UNION_TYPE: return createUnionType();
@@ -1092,6 +1093,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ArrayDimension createArrayDimension() {
 		ArrayDimensionImpl arrayDimension = new ArrayDimensionImpl();
 		return arrayDimension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeTypeMemberList createCompositeTypeMemberList() {
+		CompositeTypeMemberListImpl compositeTypeMemberList = new CompositeTypeMemberListImpl();
+		return compositeTypeMemberList;
 	}
 
 	/**

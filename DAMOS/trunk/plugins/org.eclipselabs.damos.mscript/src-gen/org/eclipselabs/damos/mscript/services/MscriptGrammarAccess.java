@@ -1285,20 +1285,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAnyLabelAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
 		private final Keyword cAnyLabelQuestionMarkKeyword_0_1_0 = (Keyword)cAnyLabelAssignment_0_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMembersAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
+		private final Assignment cMemberListsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMemberListsCompositeTypeMemberListParserRuleCall_2_0 = (RuleCall)cMemberListsAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cSemicolonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_3_1_0 = (RuleCall)cMembersAssignment_3_1.eContents().get(0);
+		private final Assignment cMemberListsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cMemberListsCompositeTypeMemberListParserRuleCall_3_1_0 = (RuleCall)cMemberListsAssignment_3_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//StructType:
-		//	(label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}";
+		//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+		//	";"? "}";
 		public ParserRule getRule() { return rule; }
 
-		//(label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}"
+		//(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+		//";"? "}"
 		public Group getGroup() { return cGroup; }
 
 		//(label=ValidID | anyLabel?="?")?
@@ -1319,23 +1321,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//members+=CompositeTypeMember
-		public Assignment getMembersAssignment_2() { return cMembersAssignment_2; }
+		//memberLists+=CompositeTypeMemberList
+		public Assignment getMemberListsAssignment_2() { return cMemberListsAssignment_2; }
 
-		//CompositeTypeMember
-		public RuleCall getMembersCompositeTypeMemberParserRuleCall_2_0() { return cMembersCompositeTypeMemberParserRuleCall_2_0; }
+		//CompositeTypeMemberList
+		public RuleCall getMemberListsCompositeTypeMemberListParserRuleCall_2_0() { return cMemberListsCompositeTypeMemberListParserRuleCall_2_0; }
 
-		//(";" members+=CompositeTypeMember)*
+		//(";" memberLists+=CompositeTypeMemberList)*
 		public Group getGroup_3() { return cGroup_3; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3_0() { return cSemicolonKeyword_3_0; }
 
-		//members+=CompositeTypeMember
-		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
+		//memberLists+=CompositeTypeMemberList
+		public Assignment getMemberListsAssignment_3_1() { return cMemberListsAssignment_3_1; }
 
-		//CompositeTypeMember
-		public RuleCall getMembersCompositeTypeMemberParserRuleCall_3_1_0() { return cMembersCompositeTypeMemberParserRuleCall_3_1_0; }
+		//CompositeTypeMemberList
+		public RuleCall getMemberListsCompositeTypeMemberListParserRuleCall_3_1_0() { return cMemberListsCompositeTypeMemberListParserRuleCall_3_1_0; }
 
 		//";"?
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
@@ -1354,21 +1356,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAnyLabelAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
 		private final Keyword cAnyLabelQuestionMarkKeyword_1_1_0 = (Keyword)cAnyLabelAssignment_1_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cMembersAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_3_0 = (RuleCall)cMembersAssignment_3.eContents().get(0);
+		private final Assignment cMemberListsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMemberListsCompositeTypeMemberListParserRuleCall_3_0 = (RuleCall)cMemberListsAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cSemicolonKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_4_1_0 = (RuleCall)cMembersAssignment_4_1.eContents().get(0);
+		private final Assignment cMemberListsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cMemberListsCompositeTypeMemberListParserRuleCall_4_1_0 = (RuleCall)cMemberListsAssignment_4_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//UnionType:
-		//	"union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"?
-		//	"}";
+		//	"union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+		//	memberLists+=CompositeTypeMemberList)* ";"? "}";
 		public ParserRule getRule() { return rule; }
 
-		//"union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}"
+		//"union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+		//memberLists+=CompositeTypeMemberList)* ";"? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"union"
@@ -1392,23 +1395,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//members+=CompositeTypeMember
-		public Assignment getMembersAssignment_3() { return cMembersAssignment_3; }
+		//memberLists+=CompositeTypeMemberList
+		public Assignment getMemberListsAssignment_3() { return cMemberListsAssignment_3; }
 
-		//CompositeTypeMember
-		public RuleCall getMembersCompositeTypeMemberParserRuleCall_3_0() { return cMembersCompositeTypeMemberParserRuleCall_3_0; }
+		//CompositeTypeMemberList
+		public RuleCall getMemberListsCompositeTypeMemberListParserRuleCall_3_0() { return cMemberListsCompositeTypeMemberListParserRuleCall_3_0; }
 
-		//(";" members+=CompositeTypeMember)*
+		//(";" memberLists+=CompositeTypeMemberList)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//";"
 		public Keyword getSemicolonKeyword_4_0() { return cSemicolonKeyword_4_0; }
 
-		//members+=CompositeTypeMember
-		public Assignment getMembersAssignment_4_1() { return cMembersAssignment_4_1; }
+		//memberLists+=CompositeTypeMemberList
+		public Assignment getMemberListsAssignment_4_1() { return cMemberListsAssignment_4_1; }
 
-		//CompositeTypeMember
-		public RuleCall getMembersCompositeTypeMemberParserRuleCall_4_1_0() { return cMembersCompositeTypeMemberParserRuleCall_4_1_0; }
+		//CompositeTypeMemberList
+		public RuleCall getMemberListsCompositeTypeMemberListParserRuleCall_4_1_0() { return cMemberListsCompositeTypeMemberListParserRuleCall_4_1_0; }
 
 		//";"?
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
@@ -1417,19 +1420,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
-	public class CompositeTypeMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompositeTypeMember");
+	public class CompositeTypeMemberListElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompositeTypeMemberList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeSpecifierAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTypeSpecifierTypeSpecifierParserRuleCall_0_0 = (RuleCall)cTypeSpecifierAssignment_0.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cMembersAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_1_0 = (RuleCall)cMembersAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cMembersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cMembersCompositeTypeMemberParserRuleCall_2_1_0 = (RuleCall)cMembersAssignment_2_1.eContents().get(0);
 		
-		//CompositeTypeMember:
-		//	typeSpecifier=TypeSpecifier name=ValidID;
+		//CompositeTypeMemberList:
+		//	typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*;
 		public ParserRule getRule() { return rule; }
 
-		//typeSpecifier=TypeSpecifier name=ValidID
+		//typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*
 		public Group getGroup() { return cGroup; }
 
 		//typeSpecifier=TypeSpecifier
@@ -1438,11 +1445,39 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeSpecifier
 		public RuleCall getTypeSpecifierTypeSpecifierParserRuleCall_0_0() { return cTypeSpecifierTypeSpecifierParserRuleCall_0_0; }
 
+		//members+=CompositeTypeMember
+		public Assignment getMembersAssignment_1() { return cMembersAssignment_1; }
+
+		//CompositeTypeMember
+		public RuleCall getMembersCompositeTypeMemberParserRuleCall_1_0() { return cMembersCompositeTypeMemberParserRuleCall_1_0; }
+
+		//("," members+=CompositeTypeMember)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//members+=CompositeTypeMember
+		public Assignment getMembersAssignment_2_1() { return cMembersAssignment_2_1; }
+
+		//CompositeTypeMember
+		public RuleCall getMembersCompositeTypeMemberParserRuleCall_2_1_0() { return cMembersCompositeTypeMemberParserRuleCall_2_1_0; }
+	}
+
+	public class CompositeTypeMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompositeTypeMember");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//CompositeTypeMember:
+		//	name=ValidID;
+		public ParserRule getRule() { return rule; }
+
 		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment() { return cNameAssignment; }
 
 		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
+		public RuleCall getNameValidIDParserRuleCall_0() { return cNameValidIDParserRuleCall_0; }
 	}
 
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
@@ -5292,6 +5327,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private CompositeTypeElements pCompositeType;
 	private StructTypeElements pStructType;
 	private UnionTypeElements pUnionType;
+	private CompositeTypeMemberListElements pCompositeTypeMemberList;
 	private CompositeTypeMemberElements pCompositeTypeMember;
 	private ExpressionElements pExpression;
 	private LambdaExpressionElements pLambdaExpression;
@@ -5786,7 +5822,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructType:
-	//	(label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}";
+	//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+	//	";"? "}";
 	public StructTypeElements getStructTypeAccess() {
 		return (pStructType != null) ? pStructType : (pStructType = new StructTypeElements());
 	}
@@ -5796,8 +5833,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnionType:
-	//	"union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"?
-	//	"}";
+	//	"union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+	//	memberLists+=CompositeTypeMemberList)* ";"? "}";
 	public UnionTypeElements getUnionTypeAccess() {
 		return (pUnionType != null) ? pUnionType : (pUnionType = new UnionTypeElements());
 	}
@@ -5806,8 +5843,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnionTypeAccess().getRule();
 	}
 
+	//CompositeTypeMemberList:
+	//	typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*;
+	public CompositeTypeMemberListElements getCompositeTypeMemberListAccess() {
+		return (pCompositeTypeMemberList != null) ? pCompositeTypeMemberList : (pCompositeTypeMemberList = new CompositeTypeMemberListElements());
+	}
+	
+	public ParserRule getCompositeTypeMemberListRule() {
+		return getCompositeTypeMemberListAccess().getRule();
+	}
+
 	//CompositeTypeMember:
-	//	typeSpecifier=TypeSpecifier name=ValidID;
+	//	name=ValidID;
 	public CompositeTypeMemberElements getCompositeTypeMemberAccess() {
 		return (pCompositeTypeMember != null) ? pCompositeTypeMember : (pCompositeTypeMember = new CompositeTypeMemberElements());
 	}

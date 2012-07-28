@@ -73,8 +73,7 @@ public class MachineDataTypes {
 	public static MachineStructType create(IMscriptGeneratorConfiguration configuration, StructType structType) {
 		List<MachineStructMember> machineStructMembers = new ArrayList<MachineStructMember>();
 		for (CompositeTypeMember compositeTypeMember : structType.getMembers()) {
-			machineStructMembers.add(new MachineStructMember(compositeTypeMember.getName(), create(configuration,
-					compositeTypeMember.getTypeSpecifier().getType())));
+			machineStructMembers.add(new MachineStructMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
 		}
 		return new MachineStructType(Collections.unmodifiableList(machineStructMembers));
 	}

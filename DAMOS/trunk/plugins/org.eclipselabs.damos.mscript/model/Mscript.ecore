@@ -446,6 +446,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeType" abstract="true" eSuperTypes="#//DataType">
+    <eOperations name="getMembers" upperBound="-1" eType="#//CompositeTypeMember"/>
     <eOperations name="getMember" eType="#//CompositeTypeMember">
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -454,13 +455,20 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="anyLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-        eType="#//CompositeTypeMember" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberLists" upperBound="-1"
+        eType="#//CompositeTypeMemberList" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeTypeMember">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeTypeMemberList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//TypeSpecifier"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//CompositeTypeMember" containment="true" eOpposite="#//CompositeTypeMember/owner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeTypeMember">
+    <eOperations name="getType" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//CompositeTypeMemberList"
+        eOpposite="#//CompositeTypeMemberList/members"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructType" eSuperTypes="#//CompositeType"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//CompositeType"/>

@@ -1723,7 +1723,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructType:
-	//	(label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"? "}";
+	//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
+	//	";"? "}";
 	public MscriptGrammarAccess.StructTypeElements getStructTypeAccess() {
 		return gaMscript.getStructTypeAccess();
 	}
@@ -1733,8 +1734,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnionType:
-	//	"union" (label=ValidID | anyLabel?="?")? "{" members+=CompositeTypeMember (";" members+=CompositeTypeMember)* ";"?
-	//	"}";
+	//	"union" (label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";"
+	//	memberLists+=CompositeTypeMemberList)* ";"? "}";
 	public MscriptGrammarAccess.UnionTypeElements getUnionTypeAccess() {
 		return gaMscript.getUnionTypeAccess();
 	}
@@ -1743,8 +1744,18 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnionTypeAccess().getRule();
 	}
 
+	//CompositeTypeMemberList:
+	//	typeSpecifier=TypeSpecifier members+=CompositeTypeMember ("," members+=CompositeTypeMember)*;
+	public MscriptGrammarAccess.CompositeTypeMemberListElements getCompositeTypeMemberListAccess() {
+		return gaMscript.getCompositeTypeMemberListAccess();
+	}
+	
+	public ParserRule getCompositeTypeMemberListRule() {
+		return getCompositeTypeMemberListAccess().getRule();
+	}
+
 	//CompositeTypeMember:
-	//	typeSpecifier=TypeSpecifier name=ValidID;
+	//	name=ValidID;
 	public MscriptGrammarAccess.CompositeTypeMemberElements getCompositeTypeMemberAccess() {
 		return gaMscript.getCompositeTypeMemberAccess();
 	}

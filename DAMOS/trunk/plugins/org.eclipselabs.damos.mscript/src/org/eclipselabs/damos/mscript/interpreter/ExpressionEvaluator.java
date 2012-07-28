@@ -30,6 +30,7 @@ import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -824,10 +825,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 					CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
 					member.setName(constructionMember.getName());
+
 					AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 					dataTypeSpecifier.setType(EcoreUtil.copy(value.getDataType()));
-					member.setTypeSpecifier(dataTypeSpecifier);
-					structType.getMembers().add(member);
+					CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+					memberList.setTypeSpecifier(dataTypeSpecifier);
+					memberList.getMembers().add(member);
+					
+					structType.getMemberLists().add(memberList);
 
 					values[i++] = value;
 				}
@@ -1187,7 +1192,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return ((StructValue) value).get(memberIndex);
 			}
 
-			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(structType.getMembers().get(memberIndex).getTypeSpecifier().getType()));
+			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(structType.getMembers().get(memberIndex).getType()));
 		}
 
 		/* (non-Javadoc)

@@ -749,6 +749,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass compositeTypeMemberListEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compositeTypeMemberEClass = null;
 
 	/**
@@ -2994,8 +3001,35 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompositeType_Members() {
+	public EReference getCompositeType_MemberLists() {
 		return (EReference)compositeTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompositeTypeMemberList() {
+		return compositeTypeMemberListEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeTypeMemberList_TypeSpecifier() {
+		return (EReference)compositeTypeMemberListEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeTypeMemberList_Members() {
+		return (EReference)compositeTypeMemberListEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3012,8 +3046,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCompositeTypeMember_Name() {
-		return (EAttribute)compositeTypeMemberEClass.getEStructuralFeatures().get(0);
+	public EReference getCompositeTypeMember_Owner() {
+		return (EReference)compositeTypeMemberEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3021,8 +3055,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompositeTypeMember_TypeSpecifier() {
-		return (EReference)compositeTypeMemberEClass.getEStructuralFeatures().get(1);
+	public EAttribute getCompositeTypeMember_Name() {
+		return (EAttribute)compositeTypeMemberEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3757,11 +3791,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		compositeTypeEClass = createEClass(COMPOSITE_TYPE);
 		createEAttribute(compositeTypeEClass, COMPOSITE_TYPE__LABEL);
 		createEAttribute(compositeTypeEClass, COMPOSITE_TYPE__ANY_LABEL);
-		createEReference(compositeTypeEClass, COMPOSITE_TYPE__MEMBERS);
+		createEReference(compositeTypeEClass, COMPOSITE_TYPE__MEMBER_LISTS);
+
+		compositeTypeMemberListEClass = createEClass(COMPOSITE_TYPE_MEMBER_LIST);
+		createEReference(compositeTypeMemberListEClass, COMPOSITE_TYPE_MEMBER_LIST__TYPE_SPECIFIER);
+		createEReference(compositeTypeMemberListEClass, COMPOSITE_TYPE_MEMBER_LIST__MEMBERS);
 
 		compositeTypeMemberEClass = createEClass(COMPOSITE_TYPE_MEMBER);
+		createEReference(compositeTypeMemberEClass, COMPOSITE_TYPE_MEMBER__OWNER);
 		createEAttribute(compositeTypeMemberEClass, COMPOSITE_TYPE_MEMBER__NAME);
-		createEReference(compositeTypeMemberEClass, COMPOSITE_TYPE_MEMBER__TYPE_SPECIFIER);
 
 		structTypeEClass = createEClass(STRUCT_TYPE);
 
@@ -4312,7 +4350,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(compositeTypeEClass, CompositeType.class, "CompositeType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompositeType_Label(), ecorePackage.getEString(), "label", null, 0, 1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompositeType_AnyLabel(), ecorePackage.getEBoolean(), "anyLabel", null, 0, 1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeType_Members(), this.getCompositeTypeMember(), null, "members", null, 0, -1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeType_MemberLists(), this.getCompositeTypeMemberList(), null, "memberLists", null, 0, -1, CompositeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(compositeTypeEClass, this.getCompositeTypeMember(), "getMembers", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(compositeTypeEClass, this.getCompositeTypeMember(), "getMember", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -4320,9 +4360,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		op = addEOperation(compositeTypeEClass, ecorePackage.getEInt(), "getMemberIndex", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(compositeTypeMemberListEClass, CompositeTypeMemberList.class, "CompositeTypeMemberList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeTypeMemberList_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, CompositeTypeMemberList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeTypeMemberList_Members(), this.getCompositeTypeMember(), this.getCompositeTypeMember_Owner(), "members", null, 0, -1, CompositeTypeMemberList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(compositeTypeMemberEClass, CompositeTypeMember.class, "CompositeTypeMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeTypeMember_Owner(), this.getCompositeTypeMemberList(), this.getCompositeTypeMemberList_Members(), "owner", null, 0, 1, CompositeTypeMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompositeTypeMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, CompositeTypeMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositeTypeMember_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, CompositeTypeMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(compositeTypeMemberEClass, this.getType(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(structTypeEClass, StructType.class, "StructType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

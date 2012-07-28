@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
 
 /**
  * @author Andreas Unger
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStructType;
  */
 public interface IStructTypeDeclarationFactory {
 
-	ICodeFragment create(MachineStructType structType);
+	ICodeFragment create(MachineRecordType structType);
 	
 }

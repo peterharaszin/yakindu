@@ -1349,14 +1349,14 @@ public interface MscriptPackage extends EPackage {
 	int EXPRESSION_LIST_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StructConstructionOperatorImpl <em>Struct Construction Operator</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.RecordConstructionOperatorImpl <em>Record Construction Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.StructConstructionOperatorImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructConstructionOperator()
+	 * @see org.eclipselabs.damos.mscript.impl.RecordConstructionOperatorImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordConstructionOperator()
 	 * @generated
 	 */
-	int STRUCT_CONSTRUCTION_OPERATOR = 34;
+	int RECORD_CONSTRUCTION_OPERATOR = 34;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1365,7 +1365,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_OPERATOR__LABEL = EXPRESSION_FEATURE_COUNT + 0;
+	int RECORD_CONSTRUCTION_OPERATOR__LABEL = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -1374,26 +1374,26 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_OPERATOR__MEMBERS = EXPRESSION_FEATURE_COUNT + 1;
+	int RECORD_CONSTRUCTION_OPERATOR__MEMBERS = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Struct Construction Operator</em>' class.
+	 * The number of structural features of the '<em>Record Construction Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_OPERATOR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int RECORD_CONSTRUCTION_OPERATOR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StructConstructionMemberImpl <em>Struct Construction Member</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.RecordConstructionMemberImpl <em>Record Construction Member</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.StructConstructionMemberImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructConstructionMember()
+	 * @see org.eclipselabs.damos.mscript.impl.RecordConstructionMemberImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordConstructionMember()
 	 * @generated
 	 */
-	int STRUCT_CONSTRUCTION_MEMBER = 35;
+	int RECORD_CONSTRUCTION_MEMBER = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1402,7 +1402,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_MEMBER__NAME = 0;
+	int RECORD_CONSTRUCTION_MEMBER__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1411,16 +1411,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_MEMBER__VALUE = 1;
+	int RECORD_CONSTRUCTION_MEMBER__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Struct Construction Member</em>' class.
+	 * The number of structural features of the '<em>Record Construction Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_CONSTRUCTION_MEMBER_FEATURE_COUNT = 2;
+	int RECORD_CONSTRUCTION_MEMBER_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnionConstructionOperatorImpl <em>Union Construction Operator</em>}' class.
@@ -3759,14 +3759,14 @@ public interface MscriptPackage extends EPackage {
 	int COMPOSITE_TYPE_MEMBER_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StructTypeImpl <em>Struct Type</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.RecordTypeImpl <em>Record Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.StructTypeImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructType()
+	 * @see org.eclipselabs.damos.mscript.impl.RecordTypeImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordType()
 	 * @generated
 	 */
-	int STRUCT_TYPE = 105;
+	int RECORD_TYPE = 105;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -3775,7 +3775,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_TYPE__LABEL = COMPOSITE_TYPE__LABEL;
+	int RECORD_TYPE__LABEL = COMPOSITE_TYPE__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Any Label</b></em>' attribute.
@@ -3784,7 +3784,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_TYPE__ANY_LABEL = COMPOSITE_TYPE__ANY_LABEL;
+	int RECORD_TYPE__ANY_LABEL = COMPOSITE_TYPE__ANY_LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Member Lists</b></em>' containment reference list.
@@ -3793,16 +3793,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_TYPE__MEMBER_LISTS = COMPOSITE_TYPE__MEMBER_LISTS;
+	int RECORD_TYPE__MEMBER_LISTS = COMPOSITE_TYPE__MEMBER_LISTS;
 
 	/**
-	 * The number of structural features of the '<em>Struct Type</em>' class.
+	 * The number of structural features of the '<em>Record Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_TYPE_FEATURE_COUNT = COMPOSITE_TYPE_FEATURE_COUNT + 0;
+	int RECORD_TYPE_FEATURE_COUNT = COMPOSITE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnionTypeImpl <em>Union Type</em>}' class.
@@ -5382,68 +5382,68 @@ public interface MscriptPackage extends EPackage {
 	EReference getExpressionList_Expressions();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StructConstructionOperator <em>Struct Construction Operator</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.RecordConstructionOperator <em>Record Construction Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Struct Construction Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionOperator
+	 * @return the meta object for class '<em>Record Construction Operator</em>'.
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionOperator
 	 * @generated
 	 */
-	EClass getStructConstructionOperator();
+	EClass getRecordConstructionOperator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.StructConstructionOperator#getLabel <em>Label</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.RecordConstructionOperator#getLabel <em>Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Label</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionOperator#getLabel()
-	 * @see #getStructConstructionOperator()
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionOperator#getLabel()
+	 * @see #getRecordConstructionOperator()
 	 * @generated
 	 */
-	EAttribute getStructConstructionOperator_Label();
+	EAttribute getRecordConstructionOperator_Label();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.StructConstructionOperator#getMembers <em>Members</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.RecordConstructionOperator#getMembers <em>Members</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Members</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionOperator#getMembers()
-	 * @see #getStructConstructionOperator()
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionOperator#getMembers()
+	 * @see #getRecordConstructionOperator()
 	 * @generated
 	 */
-	EReference getStructConstructionOperator_Members();
+	EReference getRecordConstructionOperator_Members();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StructConstructionMember <em>Struct Construction Member</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.RecordConstructionMember <em>Record Construction Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Struct Construction Member</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionMember
+	 * @return the meta object for class '<em>Record Construction Member</em>'.
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionMember
 	 * @generated
 	 */
-	EClass getStructConstructionMember();
+	EClass getRecordConstructionMember();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.StructConstructionMember#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.RecordConstructionMember#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionMember#getName()
-	 * @see #getStructConstructionMember()
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionMember#getName()
+	 * @see #getRecordConstructionMember()
 	 * @generated
 	 */
-	EAttribute getStructConstructionMember_Name();
+	EAttribute getRecordConstructionMember_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.StructConstructionMember#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.RecordConstructionMember#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionMember#getValue()
-	 * @see #getStructConstructionMember()
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionMember#getValue()
+	 * @see #getRecordConstructionMember()
 	 * @generated
 	 */
-	EReference getStructConstructionMember_Value();
+	EReference getRecordConstructionMember_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnionConstructionOperator <em>Union Construction Operator</em>}'.
@@ -6830,14 +6830,14 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getCompositeTypeMember_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StructType <em>Struct Type</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.RecordType <em>Record Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Struct Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructType
+	 * @return the meta object for class '<em>Record Type</em>'.
+	 * @see org.eclipselabs.damos.mscript.RecordType
 	 * @generated
 	 */
-	EClass getStructType();
+	EClass getRecordType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnionType <em>Union Type</em>}'.
@@ -8107,14 +8107,14 @@ public interface MscriptPackage extends EPackage {
 		EReference EXPRESSION_LIST__EXPRESSIONS = eINSTANCE.getExpressionList_Expressions();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StructConstructionOperatorImpl <em>Struct Construction Operator</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.RecordConstructionOperatorImpl <em>Record Construction Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.StructConstructionOperatorImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructConstructionOperator()
+		 * @see org.eclipselabs.damos.mscript.impl.RecordConstructionOperatorImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordConstructionOperator()
 		 * @generated
 		 */
-		EClass STRUCT_CONSTRUCTION_OPERATOR = eINSTANCE.getStructConstructionOperator();
+		EClass RECORD_CONSTRUCTION_OPERATOR = eINSTANCE.getRecordConstructionOperator();
 
 		/**
 		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
@@ -8122,7 +8122,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRUCT_CONSTRUCTION_OPERATOR__LABEL = eINSTANCE.getStructConstructionOperator_Label();
+		EAttribute RECORD_CONSTRUCTION_OPERATOR__LABEL = eINSTANCE.getRecordConstructionOperator_Label();
 
 		/**
 		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
@@ -8130,17 +8130,17 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRUCT_CONSTRUCTION_OPERATOR__MEMBERS = eINSTANCE.getStructConstructionOperator_Members();
+		EReference RECORD_CONSTRUCTION_OPERATOR__MEMBERS = eINSTANCE.getRecordConstructionOperator_Members();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StructConstructionMemberImpl <em>Struct Construction Member</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.RecordConstructionMemberImpl <em>Record Construction Member</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.StructConstructionMemberImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructConstructionMember()
+		 * @see org.eclipselabs.damos.mscript.impl.RecordConstructionMemberImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordConstructionMember()
 		 * @generated
 		 */
-		EClass STRUCT_CONSTRUCTION_MEMBER = eINSTANCE.getStructConstructionMember();
+		EClass RECORD_CONSTRUCTION_MEMBER = eINSTANCE.getRecordConstructionMember();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -8148,7 +8148,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRUCT_CONSTRUCTION_MEMBER__NAME = eINSTANCE.getStructConstructionMember_Name();
+		EAttribute RECORD_CONSTRUCTION_MEMBER__NAME = eINSTANCE.getRecordConstructionMember_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -8156,7 +8156,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRUCT_CONSTRUCTION_MEMBER__VALUE = eINSTANCE.getStructConstructionMember_Value();
+		EReference RECORD_CONSTRUCTION_MEMBER__VALUE = eINSTANCE.getRecordConstructionMember_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnionConstructionOperatorImpl <em>Union Construction Operator</em>}' class.
@@ -9351,14 +9351,14 @@ public interface MscriptPackage extends EPackage {
 		EAttribute COMPOSITE_TYPE_MEMBER__NAME = eINSTANCE.getCompositeTypeMember_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StructTypeImpl <em>Struct Type</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.RecordTypeImpl <em>Record Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.StructTypeImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStructType()
+		 * @see org.eclipselabs.damos.mscript.impl.RecordTypeImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRecordType()
 		 * @generated
 		 */
-		EClass STRUCT_TYPE = eINSTANCE.getStructType();
+		EClass RECORD_TYPE = eINSTANCE.getRecordType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnionTypeImpl <em>Union Type</em>}' class.

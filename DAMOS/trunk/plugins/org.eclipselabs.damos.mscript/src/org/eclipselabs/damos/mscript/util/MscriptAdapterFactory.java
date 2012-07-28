@@ -205,12 +205,12 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionListAdapter();
 			}
 			@Override
-			public Adapter caseStructConstructionOperator(StructConstructionOperator object) {
-				return createStructConstructionOperatorAdapter();
+			public Adapter caseRecordConstructionOperator(RecordConstructionOperator object) {
+				return createRecordConstructionOperatorAdapter();
 			}
 			@Override
-			public Adapter caseStructConstructionMember(StructConstructionMember object) {
-				return createStructConstructionMemberAdapter();
+			public Adapter caseRecordConstructionMember(RecordConstructionMember object) {
+				return createRecordConstructionMemberAdapter();
 			}
 			@Override
 			public Adapter caseUnionConstructionOperator(UnionConstructionOperator object) {
@@ -489,8 +489,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createCompositeTypeMemberAdapter();
 			}
 			@Override
-			public Adapter caseStructType(StructType object) {
-				return createStructTypeAdapter();
+			public Adapter caseRecordType(RecordType object) {
+				return createRecordTypeAdapter();
 			}
 			@Override
 			public Adapter caseUnionType(UnionType object) {
@@ -1071,30 +1071,30 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructConstructionOperator <em>Struct Construction Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.RecordConstructionOperator <em>Record Construction Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionOperator
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionOperator
 	 * @generated
 	 */
-	public Adapter createStructConstructionOperatorAdapter() {
+	public Adapter createRecordConstructionOperatorAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructConstructionMember <em>Struct Construction Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.RecordConstructionMember <em>Record Construction Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructConstructionMember
+	 * @see org.eclipselabs.damos.mscript.RecordConstructionMember
 	 * @generated
 	 */
-	public Adapter createStructConstructionMemberAdapter() {
+	public Adapter createRecordConstructionMemberAdapter() {
 		return null;
 	}
 
@@ -2051,16 +2051,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructType <em>Struct Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.RecordType <em>Record Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructType
+	 * @see org.eclipselabs.damos.mscript.RecordType
 	 * @generated
 	 */
-	public Adapter createStructTypeAdapter() {
+	public Adapter createRecordTypeAdapter() {
 		return null;
 	}
 

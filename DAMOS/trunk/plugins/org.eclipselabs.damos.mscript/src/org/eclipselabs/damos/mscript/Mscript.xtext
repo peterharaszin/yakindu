@@ -150,9 +150,9 @@ ArrayDimension:
 	{ArrayDimension} (size=Expression)?;
 
 CompositeType:
-	StructType | UnionType;
+	RecordType | UnionType;
 
-StructType:
+RecordType:
 	(label=ValidID | anyLabel?='?')? '{' memberLists+=CompositeTypeMemberList (';' memberLists+=CompositeTypeMemberList)* ';'? '}'; 
 
 UnionType:
@@ -298,7 +298,7 @@ PrimaryExpression returns Expression:
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
 	ArrayConcatenationOperator |
-	StructConstructionOperator |
+	RecordConstructionOperator |
 	ParenthesizedExpression |
 	EndExpression |
 	AlgorithmExpression;
@@ -387,10 +387,10 @@ ArrayConcatenationOperator:
 ExpressionList:
 	expressions+=Expression (',' expressions+=Expression)*;
 	
-StructConstructionOperator:
-	(label=ValidID)? '{' members+=StructConstructionMember (',' members+=StructConstructionMember)* '}';
+RecordConstructionOperator:
+	(label=ValidID)? '{' members+=RecordConstructionMember (',' members+=RecordConstructionMember)* '}';
 	
-StructConstructionMember:
+RecordConstructionMember:
 	name=ValidID '=' value=Expression;
 	
 UnionConstructionOperator:

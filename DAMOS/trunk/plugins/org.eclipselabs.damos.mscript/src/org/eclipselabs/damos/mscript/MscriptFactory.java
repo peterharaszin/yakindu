@@ -287,22 +287,22 @@ public interface MscriptFactory extends EFactory {
 	ExpressionList createExpressionList();
 
 	/**
-	 * Returns a new object of class '<em>Struct Construction Operator</em>'.
+	 * Returns a new object of class '<em>Record Construction Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Construction Operator</em>'.
+	 * @return a new object of class '<em>Record Construction Operator</em>'.
 	 * @generated
 	 */
-	StructConstructionOperator createStructConstructionOperator();
+	RecordConstructionOperator createRecordConstructionOperator();
 
 	/**
-	 * Returns a new object of class '<em>Struct Construction Member</em>'.
+	 * Returns a new object of class '<em>Record Construction Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Construction Member</em>'.
+	 * @return a new object of class '<em>Record Construction Member</em>'.
 	 * @generated
 	 */
-	StructConstructionMember createStructConstructionMember();
+	RecordConstructionMember createRecordConstructionMember();
 
 	/**
 	 * Returns a new object of class '<em>Union Construction Operator</em>'.
@@ -836,13 +836,13 @@ public interface MscriptFactory extends EFactory {
 	CompositeTypeMember createCompositeTypeMember();
 
 	/**
-	 * Returns a new object of class '<em>Struct Type</em>'.
+	 * Returns a new object of class '<em>Record Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Type</em>'.
+	 * @return a new object of class '<em>Record Type</em>'.
 	 * @generated
 	 */
-	StructType createStructType();
+	RecordType createRecordType();
 
 	/**
 	 * Returns a new object of class '<em>Union Type</em>'.

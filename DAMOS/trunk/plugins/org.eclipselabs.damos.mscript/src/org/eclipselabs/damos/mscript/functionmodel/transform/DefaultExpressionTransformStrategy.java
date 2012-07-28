@@ -37,9 +37,9 @@ import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RangeExpression;
+import org.eclipselabs.damos.mscript.RecordConstructionMember;
+import org.eclipselabs.damos.mscript.RecordConstructionOperator;
 import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.StructConstructionMember;
-import org.eclipselabs.damos.mscript.StructConstructionOperator;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
@@ -98,8 +98,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformArrayConstructionOperator(context, targets, transformer, (ArrayConstructionOperator) expression);
 		} else if (expression instanceof ArrayElementAccess) {
 			transformArrayElementAccess(context, targets, transformer, (ArrayElementAccess) expression);
-		} else if (expression instanceof StructConstructionOperator) {
-			transformStructConstructionOperator(context, targets, transformer, (StructConstructionOperator) expression);
+		} else if (expression instanceof RecordConstructionOperator) {
+			transformRecordConstructionOperator(context, targets, transformer, (RecordConstructionOperator) expression);
 		} else if (expression instanceof MemberVariableAccess) {
 			transformMemberVariableAccess(context, targets, transformer, (MemberVariableAccess) expression);
 		} else if (expression instanceof ParenthesizedExpression) {
@@ -286,15 +286,15 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		assignExpression(context, arrayElementAccess, transformedAccess, targets);
 	}
 	
-	protected void transformStructConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, StructConstructionOperator structConstructionOperator) {
-		StructConstructionOperator transformedStructConstructionOperator = MscriptFactory.eINSTANCE.createStructConstructionOperator();
-		for (StructConstructionMember member : structConstructionOperator.getMembers()) {
-			StructConstructionMember transformedMember = MscriptFactory.eINSTANCE.createStructConstructionMember();
+	protected void transformRecordConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, RecordConstructionOperator recordConstructionOperator) {
+		RecordConstructionOperator transformedStructConstructionOperator = MscriptFactory.eINSTANCE.createRecordConstructionOperator();
+		for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
+			RecordConstructionMember transformedMember = MscriptFactory.eINSTANCE.createRecordConstructionMember();
 			transformedMember.setName(member.getName());
 			transformedMember.setValue(transformNext(context, member.getValue(), transformer));
 			transformedStructConstructionOperator.getMembers().add(transformedMember);
 		}
-		assignExpression(context, structConstructionOperator, transformedStructConstructionOperator, targets);
+		assignExpression(context, recordConstructionOperator, transformedStructConstructionOperator, targets);
 	}
 	
 	protected void transformMemberVariableAccess(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, MemberVariableAccess memberVariableAccess) {

@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
-import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.RecordType;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -41,8 +41,8 @@ public class MachineDataTypes {
 		if (type instanceof StringType) {
 			return create(configuration, (StringType) type);
 		}
-		if (type instanceof StructType) {
-			return create(configuration, (StructType) type);
+		if (type instanceof RecordType) {
+			return create(configuration, (RecordType) type);
 		}
 		if (type instanceof ArrayType) {
 			return create(configuration, (ArrayType) type);
@@ -70,12 +70,12 @@ public class MachineDataTypes {
 		return new MachineArrayType(create(configuration, arrayType.getElementType()), dimensionSizes);
 	}
 
-	public static MachineStructType create(IMscriptGeneratorConfiguration configuration, StructType structType) {
+	public static MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {
 		List<MachineStructMember> machineStructMembers = new ArrayList<MachineStructMember>();
-		for (CompositeTypeMember compositeTypeMember : structType.getMembers()) {
+		for (CompositeTypeMember compositeTypeMember : recordType.getMembers()) {
 			machineStructMembers.add(new MachineStructMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
 		}
-		return new MachineStructType(Collections.unmodifiableList(machineStructMembers));
+		return new MachineRecordType(Collections.unmodifiableList(machineStructMembers));
 	}
 
 }

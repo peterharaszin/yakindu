@@ -1713,7 +1713,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CompositeType:
-	//	StructType | UnionType;
+	//	RecordType | UnionType;
 	public MscriptGrammarAccess.CompositeTypeElements getCompositeTypeAccess() {
 		return gaMscript.getCompositeTypeAccess();
 	}
@@ -1722,15 +1722,15 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getCompositeTypeAccess().getRule();
 	}
 
-	//StructType:
+	//RecordType:
 	//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
 	//	";"? "}";
-	public MscriptGrammarAccess.StructTypeElements getStructTypeAccess() {
-		return gaMscript.getStructTypeAccess();
+	public MscriptGrammarAccess.RecordTypeElements getRecordTypeAccess() {
+		return gaMscript.getRecordTypeAccess();
 	}
 	
-	public ParserRule getStructTypeRule() {
-		return getStructTypeAccess().getRule();
+	public ParserRule getRecordTypeRule() {
+		return getRecordTypeAccess().getRule();
 	}
 
 	//UnionType:
@@ -2132,7 +2132,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PrimaryExpression returns Expression:
 	//	Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
-	//	ArrayConcatenationOperator | StructConstructionOperator | ParenthesizedExpression | EndExpression |
+	//	ArrayConcatenationOperator | RecordConstructionOperator | ParenthesizedExpression | EndExpression |
 	//	AlgorithmExpression;
 	public MscriptGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return gaMscript.getPrimaryExpressionAccess();
@@ -2425,24 +2425,24 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionListAccess().getRule();
 	}
 
-	//StructConstructionOperator:
-	//	label=ValidID? "{" members+=StructConstructionMember ("," members+=StructConstructionMember)* "}";
-	public MscriptGrammarAccess.StructConstructionOperatorElements getStructConstructionOperatorAccess() {
-		return gaMscript.getStructConstructionOperatorAccess();
+	//RecordConstructionOperator:
+	//	label=ValidID? "{" members+=RecordConstructionMember ("," members+=RecordConstructionMember)* "}";
+	public MscriptGrammarAccess.RecordConstructionOperatorElements getRecordConstructionOperatorAccess() {
+		return gaMscript.getRecordConstructionOperatorAccess();
 	}
 	
-	public ParserRule getStructConstructionOperatorRule() {
-		return getStructConstructionOperatorAccess().getRule();
+	public ParserRule getRecordConstructionOperatorRule() {
+		return getRecordConstructionOperatorAccess().getRule();
 	}
 
-	//StructConstructionMember:
+	//RecordConstructionMember:
 	//	name=ValidID "=" value=Expression;
-	public MscriptGrammarAccess.StructConstructionMemberElements getStructConstructionMemberAccess() {
-		return gaMscript.getStructConstructionMemberAccess();
+	public MscriptGrammarAccess.RecordConstructionMemberElements getRecordConstructionMemberAccess() {
+		return gaMscript.getRecordConstructionMemberAccess();
 	}
 	
-	public ParserRule getStructConstructionMemberRule() {
-		return getStructConstructionMemberAccess().getRule();
+	public ParserRule getRecordConstructionMemberRule() {
+		return getRecordConstructionMemberAccess().getRule();
 	}
 
 	//UnionConstructionOperator:

@@ -24,7 +24,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	ActionTest.class,
 	DoWhileLoopTest.class,
 	WhileLoopTest.class,
-	StructTest.class,
+	RecordTest.class,
 	VectorScalarMultiplyTest.class,
 	VectorTest.class,
 	TransferFunctionTest.class

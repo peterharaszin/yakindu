@@ -6275,11 +6275,11 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCompositeType"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2172:1: ruleCompositeType returns [EObject current=null] : (this_StructType_0= ruleStructType | this_UnionType_1= ruleUnionType ) ;
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2172:1: ruleCompositeType returns [EObject current=null] : (this_RecordType_0= ruleRecordType | this_UnionType_1= ruleUnionType ) ;
     public final EObject ruleCompositeType() throws RecognitionException {
         EObject current = null;
 
-        EObject this_StructType_0 = null;
+        EObject this_RecordType_0 = null;
 
         EObject this_UnionType_1 = null;
 
@@ -6287,10 +6287,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2175:28: ( (this_StructType_0= ruleStructType | this_UnionType_1= ruleUnionType ) )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2176:1: (this_StructType_0= ruleStructType | this_UnionType_1= ruleUnionType )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2175:28: ( (this_RecordType_0= ruleRecordType | this_UnionType_1= ruleUnionType ) )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2176:1: (this_RecordType_0= ruleRecordType | this_UnionType_1= ruleUnionType )
             {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2176:1: (this_StructType_0= ruleStructType | this_UnionType_1= ruleUnionType )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2176:1: (this_RecordType_0= ruleRecordType | this_UnionType_1= ruleUnionType )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -6309,21 +6309,21 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             }
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2177:5: this_StructType_0= ruleStructType
+                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2177:5: this_RecordType_0= ruleRecordType
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getCompositeTypeAccess().getStructTypeParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getCompositeTypeAccess().getRecordTypeParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleStructType_in_ruleCompositeType4690);
-                    this_StructType_0=ruleStructType();
+                    pushFollow(FOLLOW_ruleRecordType_in_ruleCompositeType4690);
+                    this_RecordType_0=ruleRecordType();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_StructType_0; 
+                              current = this_RecordType_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -6374,30 +6374,30 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleCompositeType"
 
 
-    // $ANTLR start "entryRuleStructType"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2203:1: entryRuleStructType returns [EObject current=null] : iv_ruleStructType= ruleStructType EOF ;
-    public final EObject entryRuleStructType() throws RecognitionException {
+    // $ANTLR start "entryRuleRecordType"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2203:1: entryRuleRecordType returns [EObject current=null] : iv_ruleRecordType= ruleRecordType EOF ;
+    public final EObject entryRuleRecordType() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleStructType = null;
+        EObject iv_ruleRecordType = null;
 
 
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2204:2: (iv_ruleStructType= ruleStructType EOF )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2205:2: iv_ruleStructType= ruleStructType EOF
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2204:2: (iv_ruleRecordType= ruleRecordType EOF )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2205:2: iv_ruleRecordType= ruleRecordType EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getStructTypeRule()); 
+               newCompositeNode(grammarAccess.getRecordTypeRule()); 
             }
-            pushFollow(FOLLOW_ruleStructType_in_entryRuleStructType4752);
-            iv_ruleStructType=ruleStructType();
+            pushFollow(FOLLOW_ruleRecordType_in_entryRuleRecordType4752);
+            iv_ruleRecordType=ruleRecordType();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleStructType; 
+               current =iv_ruleRecordType; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructType4762); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRecordType4762); if (state.failed) return current;
 
             }
 
@@ -6411,12 +6411,12 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleStructType"
+    // $ANTLR end "entryRuleRecordType"
 
 
-    // $ANTLR start "ruleStructType"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2212:1: ruleStructType returns [EObject current=null] : ( ( ( (lv_label_0_0= ruleValidID ) ) | ( (lv_anyLabel_1_0= '?' ) ) )? otherlv_2= '{' ( (lv_memberLists_3_0= ruleCompositeTypeMemberList ) ) (otherlv_4= ';' ( (lv_memberLists_5_0= ruleCompositeTypeMemberList ) ) )* (otherlv_6= ';' )? otherlv_7= '}' ) ;
-    public final EObject ruleStructType() throws RecognitionException {
+    // $ANTLR start "ruleRecordType"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2212:1: ruleRecordType returns [EObject current=null] : ( ( ( (lv_label_0_0= ruleValidID ) ) | ( (lv_anyLabel_1_0= '?' ) ) )? otherlv_2= '{' ( (lv_memberLists_3_0= ruleCompositeTypeMemberList ) ) (otherlv_4= ';' ( (lv_memberLists_5_0= ruleCompositeTypeMemberList ) ) )* (otherlv_6= ';' )? otherlv_7= '}' ) ;
+    public final EObject ruleRecordType() throws RecognitionException {
         EObject current = null;
 
         Token lv_anyLabel_1_0=null;
@@ -6462,10 +6462,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getStructTypeAccess().getLabelValidIDParserRuleCall_0_0_0()); 
+                      	        newCompositeNode(grammarAccess.getRecordTypeAccess().getLabelValidIDParserRuleCall_0_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleStructType4809);
+                    pushFollow(FOLLOW_ruleValidID_in_ruleRecordType4809);
                     lv_label_0_0=ruleValidID();
 
                     state._fsp--;
@@ -6473,7 +6473,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getStructTypeRule());
+                      	            current = createModelElementForParent(grammarAccess.getRecordTypeRule());
                       	        }
                              		set(
                              			current, 
@@ -6501,16 +6501,16 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2236:1: (lv_anyLabel_1_0= '?' )
                     // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2237:3: lv_anyLabel_1_0= '?'
                     {
-                    lv_anyLabel_1_0=(Token)match(input,48,FOLLOW_48_in_ruleStructType4833); if (state.failed) return current;
+                    lv_anyLabel_1_0=(Token)match(input,48,FOLLOW_48_in_ruleRecordType4833); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              newLeafNode(lv_anyLabel_1_0, grammarAccess.getStructTypeAccess().getAnyLabelQuestionMarkKeyword_0_1_0());
+                              newLeafNode(lv_anyLabel_1_0, grammarAccess.getRecordTypeAccess().getAnyLabelQuestionMarkKeyword_0_1_0());
                           
                     }
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElement(grammarAccess.getStructTypeRule());
+                      	            current = createModelElement(grammarAccess.getRecordTypeRule());
                       	        }
                              		setWithLastConsumed(current, "anyLabel", true, "?");
                       	    
@@ -6527,10 +6527,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleStructType4860); if (state.failed) return current;
+            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleRecordType4860); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getStructTypeAccess().getLeftCurlyBracketKeyword_1());
+                  	newLeafNode(otherlv_2, grammarAccess.getRecordTypeAccess().getLeftCurlyBracketKeyword_1());
                   
             }
             // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2254:1: ( (lv_memberLists_3_0= ruleCompositeTypeMemberList ) )
@@ -6541,10 +6541,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getStructTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getRecordTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleCompositeTypeMemberList_in_ruleStructType4881);
+            pushFollow(FOLLOW_ruleCompositeTypeMemberList_in_ruleRecordType4881);
             lv_memberLists_3_0=ruleCompositeTypeMemberList();
 
             state._fsp--;
@@ -6552,7 +6552,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getStructTypeRule());
+              	            current = createModelElementForParent(grammarAccess.getRecordTypeRule());
               	        }
                      		add(
                      			current, 
@@ -6589,10 +6589,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2272:4: otherlv_4= ';' ( (lv_memberLists_5_0= ruleCompositeTypeMemberList ) )
             	    {
-            	    otherlv_4=(Token)match(input,49,FOLLOW_49_in_ruleStructType4894); if (state.failed) return current;
+            	    otherlv_4=(Token)match(input,49,FOLLOW_49_in_ruleRecordType4894); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	          	newLeafNode(otherlv_4, grammarAccess.getStructTypeAccess().getSemicolonKeyword_3_0());
+            	          	newLeafNode(otherlv_4, grammarAccess.getRecordTypeAccess().getSemicolonKeyword_3_0());
             	          
             	    }
             	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2276:1: ( (lv_memberLists_5_0= ruleCompositeTypeMemberList ) )
@@ -6603,10 +6603,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getStructTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_3_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getRecordTypeAccess().getMemberListsCompositeTypeMemberListParserRuleCall_3_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleCompositeTypeMemberList_in_ruleStructType4915);
+            	    pushFollow(FOLLOW_ruleCompositeTypeMemberList_in_ruleRecordType4915);
             	    lv_memberLists_5_0=ruleCompositeTypeMemberList();
 
             	    state._fsp--;
@@ -6614,7 +6614,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getStructTypeRule());
+            	      	            current = createModelElementForParent(grammarAccess.getRecordTypeRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -6650,10 +6650,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:2294:6: otherlv_6= ';'
                     {
-                    otherlv_6=(Token)match(input,49,FOLLOW_49_in_ruleStructType4930); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,49,FOLLOW_49_in_ruleRecordType4930); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_6, grammarAccess.getStructTypeAccess().getSemicolonKeyword_4());
+                          	newLeafNode(otherlv_6, grammarAccess.getRecordTypeAccess().getSemicolonKeyword_4());
                           
                     }
 
@@ -6662,10 +6662,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,25,FOLLOW_25_in_ruleStructType4944); if (state.failed) return current;
+            otherlv_7=(Token)match(input,25,FOLLOW_25_in_ruleRecordType4944); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_7, grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_5());
+                  	newLeafNode(otherlv_7, grammarAccess.getRecordTypeAccess().getRightCurlyBracketKeyword_5());
                   
             }
 
@@ -6687,7 +6687,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleStructType"
+    // $ANTLR end "ruleRecordType"
 
 
     // $ANTLR start "entryRuleUnionType"
@@ -12950,7 +12950,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimaryExpression"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4539:1: rulePrimaryExpression returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_StructConstructionOperator_6= ruleStructConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression ) ;
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4539:1: rulePrimaryExpression returns [EObject current=null] : (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_RecordConstructionOperator_6= ruleRecordConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression ) ;
     public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -12966,7 +12966,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
         EObject this_ArrayConcatenationOperator_5 = null;
 
-        EObject this_StructConstructionOperator_6 = null;
+        EObject this_RecordConstructionOperator_6 = null;
 
         EObject this_ParenthesizedExpression_7 = null;
 
@@ -12978,10 +12978,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4542:28: ( (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_StructConstructionOperator_6= ruleStructConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression ) )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_StructConstructionOperator_6= ruleStructConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4542:28: ( (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_RecordConstructionOperator_6= ruleRecordConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression ) )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_RecordConstructionOperator_6= ruleRecordConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )
             {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_StructConstructionOperator_6= ruleStructConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_RecordConstructionOperator_6= ruleRecordConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )
             int alt70=10;
             alt70 = dfa70.predict(input);
             switch (alt70) {
@@ -13118,21 +13118,21 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4604:5: this_StructConstructionOperator_6= ruleStructConstructionOperator
+                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4604:5: this_RecordConstructionOperator_6= ruleRecordConstructionOperator
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getStructConstructionOperatorParserRuleCall_6()); 
+                              newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getRecordConstructionOperatorParserRuleCall_6()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleStructConstructionOperator_in_rulePrimaryExpression9885);
-                    this_StructConstructionOperator_6=ruleStructConstructionOperator();
+                    pushFollow(FOLLOW_ruleRecordConstructionOperator_in_rulePrimaryExpression9885);
+                    this_RecordConstructionOperator_6=ruleRecordConstructionOperator();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_StructConstructionOperator_6; 
+                              current = this_RecordConstructionOperator_6; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -18404,30 +18404,30 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleExpressionList"
 
 
-    // $ANTLR start "entryRuleStructConstructionOperator"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6294:1: entryRuleStructConstructionOperator returns [EObject current=null] : iv_ruleStructConstructionOperator= ruleStructConstructionOperator EOF ;
-    public final EObject entryRuleStructConstructionOperator() throws RecognitionException {
+    // $ANTLR start "entryRuleRecordConstructionOperator"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6294:1: entryRuleRecordConstructionOperator returns [EObject current=null] : iv_ruleRecordConstructionOperator= ruleRecordConstructionOperator EOF ;
+    public final EObject entryRuleRecordConstructionOperator() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleStructConstructionOperator = null;
+        EObject iv_ruleRecordConstructionOperator = null;
 
 
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6295:2: (iv_ruleStructConstructionOperator= ruleStructConstructionOperator EOF )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6296:2: iv_ruleStructConstructionOperator= ruleStructConstructionOperator EOF
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6295:2: (iv_ruleRecordConstructionOperator= ruleRecordConstructionOperator EOF )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6296:2: iv_ruleRecordConstructionOperator= ruleRecordConstructionOperator EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getStructConstructionOperatorRule()); 
+               newCompositeNode(grammarAccess.getRecordConstructionOperatorRule()); 
             }
-            pushFollow(FOLLOW_ruleStructConstructionOperator_in_entryRuleStructConstructionOperator14010);
-            iv_ruleStructConstructionOperator=ruleStructConstructionOperator();
+            pushFollow(FOLLOW_ruleRecordConstructionOperator_in_entryRuleRecordConstructionOperator14010);
+            iv_ruleRecordConstructionOperator=ruleRecordConstructionOperator();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleStructConstructionOperator; 
+               current =iv_ruleRecordConstructionOperator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructConstructionOperator14020); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRecordConstructionOperator14020); if (state.failed) return current;
 
             }
 
@@ -18441,12 +18441,12 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleStructConstructionOperator"
+    // $ANTLR end "entryRuleRecordConstructionOperator"
 
 
-    // $ANTLR start "ruleStructConstructionOperator"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6303:1: ruleStructConstructionOperator returns [EObject current=null] : ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleStructConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )* otherlv_5= '}' ) ;
-    public final EObject ruleStructConstructionOperator() throws RecognitionException {
+    // $ANTLR start "ruleRecordConstructionOperator"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6303:1: ruleRecordConstructionOperator returns [EObject current=null] : ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleRecordConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )* otherlv_5= '}' ) ;
+    public final EObject ruleRecordConstructionOperator() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -18462,11 +18462,11 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6306:28: ( ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleStructConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )* otherlv_5= '}' ) )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:1: ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleStructConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )* otherlv_5= '}' )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6306:28: ( ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleRecordConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )* otherlv_5= '}' ) )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:1: ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleRecordConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )* otherlv_5= '}' )
             {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:1: ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleStructConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )* otherlv_5= '}' )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:2: ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleStructConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )* otherlv_5= '}'
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:1: ( ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleRecordConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )* otherlv_5= '}' )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:2: ( (lv_label_0_0= ruleValidID ) )? otherlv_1= '{' ( (lv_members_2_0= ruleRecordConstructionMember ) ) (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )* otherlv_5= '}'
             {
             // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6307:2: ( (lv_label_0_0= ruleValidID ) )?
             int alt100=2;
@@ -18484,10 +18484,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getStructConstructionOperatorAccess().getLabelValidIDParserRuleCall_0_0()); 
+                      	        newCompositeNode(grammarAccess.getRecordConstructionOperatorAccess().getLabelValidIDParserRuleCall_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleStructConstructionOperator14066);
+                    pushFollow(FOLLOW_ruleValidID_in_ruleRecordConstructionOperator14066);
                     lv_label_0_0=ruleValidID();
 
                     state._fsp--;
@@ -18495,7 +18495,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getStructConstructionOperatorRule());
+                      	            current = createModelElementForParent(grammarAccess.getRecordConstructionOperatorRule());
                       	        }
                              		set(
                              			current, 
@@ -18514,38 +18514,38 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,23,FOLLOW_23_in_ruleStructConstructionOperator14079); if (state.failed) return current;
+            otherlv_1=(Token)match(input,23,FOLLOW_23_in_ruleRecordConstructionOperator14079); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getStructConstructionOperatorAccess().getLeftCurlyBracketKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getRecordConstructionOperatorAccess().getLeftCurlyBracketKeyword_1());
                   
             }
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6329:1: ( (lv_members_2_0= ruleStructConstructionMember ) )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6330:1: (lv_members_2_0= ruleStructConstructionMember )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6329:1: ( (lv_members_2_0= ruleRecordConstructionMember ) )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6330:1: (lv_members_2_0= ruleRecordConstructionMember )
             {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6330:1: (lv_members_2_0= ruleStructConstructionMember )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6331:3: lv_members_2_0= ruleStructConstructionMember
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6330:1: (lv_members_2_0= ruleRecordConstructionMember )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6331:3: lv_members_2_0= ruleRecordConstructionMember
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getStructConstructionOperatorAccess().getMembersStructConstructionMemberParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getRecordConstructionOperatorAccess().getMembersRecordConstructionMemberParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleStructConstructionMember_in_ruleStructConstructionOperator14100);
-            lv_members_2_0=ruleStructConstructionMember();
+            pushFollow(FOLLOW_ruleRecordConstructionMember_in_ruleRecordConstructionOperator14100);
+            lv_members_2_0=ruleRecordConstructionMember();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getStructConstructionOperatorRule());
+              	            current = createModelElementForParent(grammarAccess.getRecordConstructionOperatorRule());
               	        }
                      		add(
                      			current, 
                      			"members",
                       		lv_members_2_0, 
-                      		"StructConstructionMember");
+                      		"RecordConstructionMember");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -18555,7 +18555,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6347:2: (otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) ) )*
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6347:2: (otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) ) )*
             loop101:
             do {
                 int alt101=2;
@@ -18568,40 +18568,40 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
                 switch (alt101) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6347:4: otherlv_3= ',' ( (lv_members_4_0= ruleStructConstructionMember ) )
+            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6347:4: otherlv_3= ',' ( (lv_members_4_0= ruleRecordConstructionMember ) )
             	    {
-            	    otherlv_3=(Token)match(input,24,FOLLOW_24_in_ruleStructConstructionOperator14113); if (state.failed) return current;
+            	    otherlv_3=(Token)match(input,24,FOLLOW_24_in_ruleRecordConstructionOperator14113); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	          	newLeafNode(otherlv_3, grammarAccess.getStructConstructionOperatorAccess().getCommaKeyword_3_0());
+            	          	newLeafNode(otherlv_3, grammarAccess.getRecordConstructionOperatorAccess().getCommaKeyword_3_0());
             	          
             	    }
-            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6351:1: ( (lv_members_4_0= ruleStructConstructionMember ) )
-            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6352:1: (lv_members_4_0= ruleStructConstructionMember )
+            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6351:1: ( (lv_members_4_0= ruleRecordConstructionMember ) )
+            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6352:1: (lv_members_4_0= ruleRecordConstructionMember )
             	    {
-            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6352:1: (lv_members_4_0= ruleStructConstructionMember )
-            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6353:3: lv_members_4_0= ruleStructConstructionMember
+            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6352:1: (lv_members_4_0= ruleRecordConstructionMember )
+            	    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6353:3: lv_members_4_0= ruleRecordConstructionMember
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getStructConstructionOperatorAccess().getMembersStructConstructionMemberParserRuleCall_3_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getRecordConstructionOperatorAccess().getMembersRecordConstructionMemberParserRuleCall_3_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleStructConstructionMember_in_ruleStructConstructionOperator14134);
-            	    lv_members_4_0=ruleStructConstructionMember();
+            	    pushFollow(FOLLOW_ruleRecordConstructionMember_in_ruleRecordConstructionOperator14134);
+            	    lv_members_4_0=ruleRecordConstructionMember();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getStructConstructionOperatorRule());
+            	      	            current = createModelElementForParent(grammarAccess.getRecordConstructionOperatorRule());
             	      	        }
             	             		add(
             	             			current, 
             	             			"members",
             	              		lv_members_4_0, 
-            	              		"StructConstructionMember");
+            	              		"RecordConstructionMember");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -18620,10 +18620,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,25,FOLLOW_25_in_ruleStructConstructionOperator14148); if (state.failed) return current;
+            otherlv_5=(Token)match(input,25,FOLLOW_25_in_ruleRecordConstructionOperator14148); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_5, grammarAccess.getStructConstructionOperatorAccess().getRightCurlyBracketKeyword_4());
+                  	newLeafNode(otherlv_5, grammarAccess.getRecordConstructionOperatorAccess().getRightCurlyBracketKeyword_4());
                   
             }
 
@@ -18645,33 +18645,33 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleStructConstructionOperator"
+    // $ANTLR end "ruleRecordConstructionOperator"
 
 
-    // $ANTLR start "entryRuleStructConstructionMember"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6381:1: entryRuleStructConstructionMember returns [EObject current=null] : iv_ruleStructConstructionMember= ruleStructConstructionMember EOF ;
-    public final EObject entryRuleStructConstructionMember() throws RecognitionException {
+    // $ANTLR start "entryRuleRecordConstructionMember"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6381:1: entryRuleRecordConstructionMember returns [EObject current=null] : iv_ruleRecordConstructionMember= ruleRecordConstructionMember EOF ;
+    public final EObject entryRuleRecordConstructionMember() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleStructConstructionMember = null;
+        EObject iv_ruleRecordConstructionMember = null;
 
 
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6382:2: (iv_ruleStructConstructionMember= ruleStructConstructionMember EOF )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6383:2: iv_ruleStructConstructionMember= ruleStructConstructionMember EOF
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6382:2: (iv_ruleRecordConstructionMember= ruleRecordConstructionMember EOF )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6383:2: iv_ruleRecordConstructionMember= ruleRecordConstructionMember EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getStructConstructionMemberRule()); 
+               newCompositeNode(grammarAccess.getRecordConstructionMemberRule()); 
             }
-            pushFollow(FOLLOW_ruleStructConstructionMember_in_entryRuleStructConstructionMember14184);
-            iv_ruleStructConstructionMember=ruleStructConstructionMember();
+            pushFollow(FOLLOW_ruleRecordConstructionMember_in_entryRuleRecordConstructionMember14184);
+            iv_ruleRecordConstructionMember=ruleRecordConstructionMember();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleStructConstructionMember; 
+               current =iv_ruleRecordConstructionMember; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructConstructionMember14194); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRecordConstructionMember14194); if (state.failed) return current;
 
             }
 
@@ -18685,12 +18685,12 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleStructConstructionMember"
+    // $ANTLR end "entryRuleRecordConstructionMember"
 
 
-    // $ANTLR start "ruleStructConstructionMember"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6390:1: ruleStructConstructionMember returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
-    public final EObject ruleStructConstructionMember() throws RecognitionException {
+    // $ANTLR start "ruleRecordConstructionMember"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6390:1: ruleRecordConstructionMember returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleExpression ) ) ) ;
+    public final EObject ruleRecordConstructionMember() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -18716,10 +18716,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getStructConstructionMemberAccess().getNameValidIDParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getRecordConstructionMemberAccess().getNameValidIDParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleStructConstructionMember14240);
+            pushFollow(FOLLOW_ruleValidID_in_ruleRecordConstructionMember14240);
             lv_name_0_0=ruleValidID();
 
             state._fsp--;
@@ -18727,7 +18727,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getStructConstructionMemberRule());
+              	            current = createModelElementForParent(grammarAccess.getRecordConstructionMemberRule());
               	        }
                      		set(
                      			current, 
@@ -18743,10 +18743,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,21,FOLLOW_21_in_ruleStructConstructionMember14252); if (state.failed) return current;
+            otherlv_1=(Token)match(input,21,FOLLOW_21_in_ruleRecordConstructionMember14252); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getStructConstructionMemberAccess().getEqualsSignKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getRecordConstructionMemberAccess().getEqualsSignKeyword_1());
                   
             }
             // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:6416:1: ( (lv_value_2_0= ruleExpression ) )
@@ -18757,10 +18757,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getStructConstructionMemberAccess().getValueExpressionParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getRecordConstructionMemberAccess().getValueExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleStructConstructionMember14273);
+            pushFollow(FOLLOW_ruleExpression_in_ruleRecordConstructionMember14273);
             lv_value_2_0=ruleExpression();
 
             state._fsp--;
@@ -18768,7 +18768,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getStructConstructionMemberRule());
+              	            current = createModelElementForParent(grammarAccess.getRecordConstructionMemberRule());
               	        }
                      		set(
                      			current, 
@@ -18803,7 +18803,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleStructConstructionMember"
+    // $ANTLR end "ruleRecordConstructionMember"
 
 
     // $ANTLR start "entryRuleUnionConstructionOperator"
@@ -26258,7 +26258,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             this.transition = DFA70_transition;
         }
         public String getDescription() {
-            return "4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_StructConstructionOperator_6= ruleStructConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )";
+            return "4543:1: (this_Literal_0= ruleLiteral | this_TemplateExpression_1= ruleTemplateExpression | this_FeatureCall_2= ruleFeatureCall | this_UnitConstructionOperator_3= ruleUnitConstructionOperator | this_ArrayConstructionOperator_4= ruleArrayConstructionOperator | this_ArrayConcatenationOperator_5= ruleArrayConcatenationOperator | this_RecordConstructionOperator_6= ruleRecordConstructionOperator | this_ParenthesizedExpression_7= ruleParenthesizedExpression | this_EndExpression_8= ruleEndExpression | this_AlgorithmExpression_9= ruleAlgorithmExpression )";
         }
     }
     static final String DFA90_eotS =
@@ -26553,18 +26553,18 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayDimension4596 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompositeType_in_entryRuleCompositeType4633 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCompositeType4643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_ruleCompositeType4690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordType_in_ruleCompositeType4690 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnionType_in_ruleCompositeType4717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_entryRuleStructType4752 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructType4762 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleStructType4809 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_48_in_ruleStructType4833 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleStructType4860 = new BitSet(new long[]{0x00053F0000804A70L});
-    public static final BitSet FOLLOW_ruleCompositeTypeMemberList_in_ruleStructType4881 = new BitSet(new long[]{0x0002000002000000L});
-    public static final BitSet FOLLOW_49_in_ruleStructType4894 = new BitSet(new long[]{0x00053F0000804A70L});
-    public static final BitSet FOLLOW_ruleCompositeTypeMemberList_in_ruleStructType4915 = new BitSet(new long[]{0x0002000002000000L});
-    public static final BitSet FOLLOW_49_in_ruleStructType4930 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleStructType4944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordType_in_entryRuleRecordType4752 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRecordType4762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleRecordType4809 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_48_in_ruleRecordType4833 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleRecordType4860 = new BitSet(new long[]{0x00053F0000804A70L});
+    public static final BitSet FOLLOW_ruleCompositeTypeMemberList_in_ruleRecordType4881 = new BitSet(new long[]{0x0002000002000000L});
+    public static final BitSet FOLLOW_49_in_ruleRecordType4894 = new BitSet(new long[]{0x00053F0000804A70L});
+    public static final BitSet FOLLOW_ruleCompositeTypeMemberList_in_ruleRecordType4915 = new BitSet(new long[]{0x0002000002000000L});
+    public static final BitSet FOLLOW_49_in_ruleRecordType4930 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleRecordType4944 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnionType_in_entryRuleUnionType4980 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnionType4990 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_50_in_ruleUnionType5027 = new BitSet(new long[]{0x0001000000804A70L});
@@ -26754,7 +26754,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleUnitConstructionOperator_in_rulePrimaryExpression9804 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConstructionOperator_in_rulePrimaryExpression9831 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConcatenationOperator_in_rulePrimaryExpression9858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructConstructionOperator_in_rulePrimaryExpression9885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordConstructionOperator_in_rulePrimaryExpression9885 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleParenthesizedExpression_in_rulePrimaryExpression9912 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEndExpression_in_rulePrimaryExpression9939 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAlgorithmExpression_in_rulePrimaryExpression9966 = new BitSet(new long[]{0x0000000000000002L});
@@ -26906,19 +26906,19 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList13938 = new BitSet(new long[]{0x0000000001000002L});
     public static final BitSet FOLLOW_24_in_ruleExpressionList13951 = new BitSet(new long[]{0x4928400220807AF0L,0x0000020000000E8FL});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList13972 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_ruleStructConstructionOperator_in_entryRuleStructConstructionOperator14010 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructConstructionOperator14020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleStructConstructionOperator14066 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleStructConstructionOperator14079 = new BitSet(new long[]{0x0000000000004A70L});
-    public static final BitSet FOLLOW_ruleStructConstructionMember_in_ruleStructConstructionOperator14100 = new BitSet(new long[]{0x0000000003000000L});
-    public static final BitSet FOLLOW_24_in_ruleStructConstructionOperator14113 = new BitSet(new long[]{0x0000000000004A70L});
-    public static final BitSet FOLLOW_ruleStructConstructionMember_in_ruleStructConstructionOperator14134 = new BitSet(new long[]{0x0000000003000000L});
-    public static final BitSet FOLLOW_25_in_ruleStructConstructionOperator14148 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructConstructionMember_in_entryRuleStructConstructionMember14184 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructConstructionMember14194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleStructConstructionMember14240 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleStructConstructionMember14252 = new BitSet(new long[]{0x4928400220807AF0L,0x0000020000000E8FL});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleStructConstructionMember14273 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordConstructionOperator_in_entryRuleRecordConstructionOperator14010 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRecordConstructionOperator14020 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleRecordConstructionOperator14066 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleRecordConstructionOperator14079 = new BitSet(new long[]{0x0000000000004A70L});
+    public static final BitSet FOLLOW_ruleRecordConstructionMember_in_ruleRecordConstructionOperator14100 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_24_in_ruleRecordConstructionOperator14113 = new BitSet(new long[]{0x0000000000004A70L});
+    public static final BitSet FOLLOW_ruleRecordConstructionMember_in_ruleRecordConstructionOperator14134 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_25_in_ruleRecordConstructionOperator14148 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordConstructionMember_in_entryRuleRecordConstructionMember14184 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRecordConstructionMember14194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleRecordConstructionMember14240 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleRecordConstructionMember14252 = new BitSet(new long[]{0x4928400220807AF0L,0x0000020000000E8FL});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleRecordConstructionMember14273 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnionConstructionOperator_in_entryRuleUnionConstructionOperator14309 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnionConstructionOperator14319 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_71_in_ruleUnionConstructionOperator14356 = new BitSet(new long[]{0x00053F0000804A70L});

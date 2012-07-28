@@ -86,8 +86,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: return createArrayConstructionOperator();
 			case MscriptPackage.ARRAY_CONCATENATION_OPERATOR: return createArrayConcatenationOperator();
 			case MscriptPackage.EXPRESSION_LIST: return createExpressionList();
-			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: return createStructConstructionOperator();
-			case MscriptPackage.STRUCT_CONSTRUCTION_MEMBER: return createStructConstructionMember();
+			case MscriptPackage.RECORD_CONSTRUCTION_OPERATOR: return createRecordConstructionOperator();
+			case MscriptPackage.RECORD_CONSTRUCTION_MEMBER: return createRecordConstructionMember();
 			case MscriptPackage.UNION_CONSTRUCTION_OPERATOR: return createUnionConstructionOperator();
 			case MscriptPackage.UNIT_CONSTRUCTION_OPERATOR: return createUnitConstructionOperator();
 			case MscriptPackage.PARENTHESIZED_EXPRESSION: return createParenthesizedExpression();
@@ -148,7 +148,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ARRAY_DIMENSION: return createArrayDimension();
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER_LIST: return createCompositeTypeMemberList();
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER: return createCompositeTypeMember();
-			case MscriptPackage.STRUCT_TYPE: return createStructType();
+			case MscriptPackage.RECORD_TYPE: return createRecordType();
 			case MscriptPackage.UNION_TYPE: return createUnionType();
 			case MscriptPackage.EXPRESSION: return createExpression();
 			case MscriptPackage.UNIT: return createUnit();
@@ -510,9 +510,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructConstructionOperator createStructConstructionOperator() {
-		StructConstructionOperatorImpl structConstructionOperator = new StructConstructionOperatorImpl();
-		return structConstructionOperator;
+	public RecordConstructionOperator createRecordConstructionOperator() {
+		RecordConstructionOperatorImpl recordConstructionOperator = new RecordConstructionOperatorImpl();
+		return recordConstructionOperator;
 	}
 
 	/**
@@ -520,9 +520,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructConstructionMember createStructConstructionMember() {
-		StructConstructionMemberImpl structConstructionMember = new StructConstructionMemberImpl();
-		return structConstructionMember;
+	public RecordConstructionMember createRecordConstructionMember() {
+		RecordConstructionMemberImpl recordConstructionMember = new RecordConstructionMemberImpl();
+		return recordConstructionMember;
 	}
 
 	/**
@@ -1120,9 +1120,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructType createStructType() {
-		StructTypeImpl structType = new StructTypeImpl();
-		return structType;
+	public RecordType createRecordType() {
+		RecordTypeImpl recordType = new RecordTypeImpl();
+		return recordType;
 	}
 
 	/**

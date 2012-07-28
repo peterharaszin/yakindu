@@ -44,9 +44,9 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StringType;
-import org.eclipselabs.damos.mscript.StructConstructionMember;
-import org.eclipselabs.damos.mscript.StructConstructionOperator;
-import org.eclipselabs.damos.mscript.StructType;
+import org.eclipselabs.damos.mscript.RecordConstructionMember;
+import org.eclipselabs.damos.mscript.RecordConstructionOperator;
+import org.eclipselabs.damos.mscript.RecordType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.UnaryExpression;
@@ -57,7 +57,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructConstructionFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
@@ -72,7 +72,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
+import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -535,20 +535,17 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
-		 */
 		@Override
-		public Boolean caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
-			IValue value = context.getStaticEvaluationResult().getValue(structConstructionOperator);
-			if (value instanceof StructValue) {
+		public Boolean caseRecordConstructionOperator(RecordConstructionOperator recordConstructionOperator) {
+			IValue value = context.getStaticEvaluationResult().getValue(recordConstructionOperator);
+			if (value instanceof RecordValue) {
 				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 			} else {
-				StructConstructionFunction codeFragment = (StructConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new StructConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (StructType) value.getDataType())), new NullProgressMonitor());
+				RecordConstructionFunction codeFragment = (RecordConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new RecordConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (RecordType) value.getDataType())), new NullProgressMonitor());
 				out.print(codeFragment.getName());
 				out.print("(");
 				boolean first = true;
-				for (StructConstructionMember member : structConstructionOperator.getMembers()) {
+				for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
 					if (first) {
 						first = false;
 					} else {

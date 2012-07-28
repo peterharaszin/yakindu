@@ -1,0 +1,30 @@
+package damos.tests
+
+blockType RecordTest {
+
+	input x
+	output y1
+	output y2
+	
+	type RecordA = { int a; int[2] b }
+	type RecordB = { int x; RecordA y }
+
+	type MyNamedRecord = { int x, y }
+
+	function main(x) -> y1, y2 {
+		check({ int x; int y }) -> MyNamedRecord, RecordB
+
+		static assert x is { int x; int y } :
+			error "X must be { int x; int y }"
+
+		eq y1 = x
+		eq y2 = {
+			x = 2,
+			y = {
+				a = 5,
+				b = { 7, 19 }
+			}
+		}
+	}
+
+}

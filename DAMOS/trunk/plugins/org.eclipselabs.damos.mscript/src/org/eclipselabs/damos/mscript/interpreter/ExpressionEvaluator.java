@@ -58,12 +58,12 @@ import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RangeExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.RecordConstructionMember;
+import org.eclipselabs.damos.mscript.RecordConstructionOperator;
+import org.eclipselabs.damos.mscript.RecordType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.StringType;
-import org.eclipselabs.damos.mscript.StructConstructionMember;
-import org.eclipselabs.damos.mscript.StructConstructionOperator;
-import org.eclipselabs.damos.mscript.StructType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.Type;
@@ -84,7 +84,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
+import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
@@ -794,26 +794,23 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			return InvalidValue.SINGLETON;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStructConstructionOperator(org.eclipselabs.damos.mscript.StructConstructionOperator)
-		 */
 		@Override
-		public IValue caseStructConstructionOperator(StructConstructionOperator structConstructionOperator) {
-			StructType structType = MscriptFactory.eINSTANCE.createStructType();
-			structType.setLabel(structConstructionOperator.getLabel());
+		public IValue caseRecordConstructionOperator(RecordConstructionOperator recordConstructionOperator) {
+			RecordType recordType = MscriptFactory.eINSTANCE.createRecordType();
+			recordType.setLabel(recordConstructionOperator.getLabel());
 			
-			IValue[] values = new IValue[structConstructionOperator.getMembers().size()];
+			IValue[] values = new IValue[recordConstructionOperator.getMembers().size()];
 
 			boolean anyValue = false;
 
 			{
 				int i = 0;
-				for (StructConstructionMember constructionMember : structConstructionOperator.getMembers()) {
-					if (constructionMember.getValue() == null) {
+				for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
+					if (member.getValue() == null) {
 						return InvalidValue.SINGLETON;
 					}
 					
-					IValue value = evaluate(constructionMember.getValue());
+					IValue value = evaluate(member.getValue());
 
 					if (value instanceof InvalidValue) {
 						return InvalidValue.SINGLETON;
@@ -823,16 +820,16 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 						anyValue = true;
 					}
 
-					CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
-					member.setName(constructionMember.getName());
+					CompositeTypeMember compositeTypeMember = MscriptFactory.eINSTANCE.createCompositeTypeMember();
+					compositeTypeMember.setName(member.getName());
 
 					AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 					dataTypeSpecifier.setType(EcoreUtil.copy(value.getDataType()));
-					CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
-					memberList.setTypeSpecifier(dataTypeSpecifier);
-					memberList.getMembers().add(member);
+					CompositeTypeMemberList compositeTypeMemberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+					compositeTypeMemberList.setTypeSpecifier(dataTypeSpecifier);
+					compositeTypeMemberList.getMembers().add(compositeTypeMember);
 					
-					structType.getMemberLists().add(memberList);
+					recordType.getMemberLists().add(compositeTypeMemberList);
 
 					values[i++] = value;
 				}
@@ -844,10 +841,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 						values[i] = new AnyValue(context.getComputationContext(), values[i].getDataType());
 					}
 				}
-				return new AnyValue(context.getComputationContext(), structType);
+				return new AnyValue(context.getComputationContext(), recordType);
 			}
 
-			return new StructValue(context.getComputationContext(), structType, values);
+			return new RecordValue(context.getComputationContext(), recordType, values);
 		}
 
 		/* (non-Javadoc)
@@ -1171,16 +1168,16 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			if (!(value.getDataType() instanceof StructType)) {
+			if (!(value.getDataType() instanceof RecordType)) {
 				if (context.getStatusCollector() != null) {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Member variable access is only applicable to structs", memberVariableAccess, MscriptPackage.eINSTANCE.getMemberVariableAccess_MemberVariable()));
 				}
 				return InvalidValue.SINGLETON;
 			}
 
-			StructType structType = (StructType) value.getDataType();
+			RecordType recordType = (RecordType) value.getDataType();
 
-			int memberIndex = structType.getMemberIndex(memberVariableAccess.getMemberVariable());
+			int memberIndex = recordType.getMemberIndex(memberVariableAccess.getMemberVariable());
 			if (memberIndex == -1) {
 				if (context.getStatusCollector() != null) {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, memberVariableAccess.getMemberVariable() + " is not a member variable", memberVariableAccess, MscriptPackage.eINSTANCE.getMemberVariableAccess_MemberVariable()));
@@ -1188,11 +1185,11 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			if (value instanceof StructValue) {
-				return ((StructValue) value).get(memberIndex);
+			if (value instanceof RecordValue) {
+				return ((RecordValue) value).get(memberIndex);
 			}
 
-			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(structType.getMembers().get(memberIndex).getType()));
+			return new AnyValue(context.getComputationContext(), EcoreUtil.copy(recordType.getMembers().get(memberIndex).getType()));
 		}
 
 		/* (non-Javadoc)

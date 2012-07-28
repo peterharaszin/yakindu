@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,8 @@
 
 package org.eclipselabs.damos.mscript.interpreter.value;
 
-import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.RecordType;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
@@ -20,88 +21,38 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
  */
 public class RecordValue extends AbstractExplicitDataTypeValue {
 
-//	private List<Slot> slots = new ArrayList<Slot>();
-//	
+	private IValue[] members;
+	
 	/**
+	 * @param context
 	 * @param dataType
 	 */
-	public RecordValue(IComputationContext context/*, Record record*/) {
-		super(context, /*record*/ null);
+	public RecordValue(IComputationContext context, RecordType dataType, IValue[] members) {
+		super(context, dataType);
+		this.members = members;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doConvert(org.eclipselabs.mscript.typesystem.DataType)
+	 * @see org.eclipselabs.mscript.computation.core.value.AbstractExplicitDataTypeValue#getDataType()
 	 */
 	@Override
-	protected IValue doConvert(Type type) {
-		return this;
+	public RecordType getDataType() {
+		return (RecordType) super.getDataType();
 	}
-//	
-//	public void addSlot(Slot slot) {
-//		this.slots.add(slot);
-//	}
-//
-//	/**
-//	 * @return the slots
-//	 */
-//	public List<Slot> getSlots() {
-//		return slots;
-//	}
-//	
-//	public Slot getSlot(String name) {
-//		for (Slot slot : slots) {
-//			if (name.equals(slot.name)) {
-//				return slot;
-//			}
-//		}
-//		return null;
-//	}
-//
-//	public void setSlotValue(String name, IValue value) {
-//		Slot field = getSlot(name);
-//		if (field != null) {
-//			field.setValue(value);
-//		}
-//	}
-//	
-//	public IValue getSlotValue(String name) {
-//		Slot slot = getSlot(name);
-//		return slot != null ? slot.getValue() : null;
-//	}
-//	
-//	public static class Slot {
-//		
-//		private String name;
-//		private IValue value;
-//		
-//		/**
-//		 * @return the name
-//		 */
-//		public String getName() {
-//			return name;
-//		}
-//		
-//		/**
-//		 * @param name the name to set
-//		 */
-//		public void setName(String name) {
-//			this.name = name;
-//		}
-//
-//		/**
-//		 * @return the value
-//		 */
-//		public IValue getValue() {
-//			return value;
-//		}
-//		
-//		/**
-//		 * @param value the value to set
-//		 */
-//		public void setValue(IValue value) {
-//			this.value = value;
-//		}
-//		
-//	}
-
+	
+	public IValue get(int memberIndex) {
+		return members[memberIndex];
+	}
+	
+	public IValue get(String memberName) {
+		int i = 0;
+		for (CompositeTypeMember member : getDataType().getMembers()) {
+			if (memberName.equals(member.getName())) {
+				return members[i]; 
+			}
+			++i;
+		}
+		throw new IllegalArgumentException("Invalid member " + memberName);
+	}
+	
 }

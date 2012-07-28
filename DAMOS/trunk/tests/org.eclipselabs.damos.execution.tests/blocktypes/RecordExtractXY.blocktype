@@ -1,0 +1,24 @@
+package damos.tests
+
+blockType RecordExtractXY {
+
+	input x
+	output outX
+	output outY
+	
+	type MyNamedRecord = {
+		int x;
+		int y;
+	}
+
+	function main(x) -> outX, outY {
+		check({ int x; int y }) -> int, int
+
+		static assert x is { int x; int y } :
+			error "X must be { int x; int y }"
+
+		eq outX = x.x
+		eq outY = x.y
+	}
+
+}

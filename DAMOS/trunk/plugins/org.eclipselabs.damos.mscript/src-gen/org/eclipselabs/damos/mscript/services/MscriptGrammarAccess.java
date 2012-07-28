@@ -1259,25 +1259,25 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class CompositeTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompositeType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cStructTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRecordTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUnionTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//CompositeType:
-		//	StructType | UnionType;
+		//	RecordType | UnionType;
 		public ParserRule getRule() { return rule; }
 
-		//StructType | UnionType
+		//RecordType | UnionType
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//StructType
-		public RuleCall getStructTypeParserRuleCall_0() { return cStructTypeParserRuleCall_0; }
+		//RecordType
+		public RuleCall getRecordTypeParserRuleCall_0() { return cRecordTypeParserRuleCall_0; }
 
 		//UnionType
 		public RuleCall getUnionTypeParserRuleCall_1() { return cUnionTypeParserRuleCall_1; }
 	}
 
-	public class StructTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructType");
+	public class RecordTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Assignment cLabelAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
@@ -1294,7 +1294,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//StructType:
+		//RecordType:
 		//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
 		//	";"? "}";
 		public ParserRule getRule() { return rule; }
@@ -2676,19 +2676,19 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitConstructionOperatorParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cArrayConstructionOperatorParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cArrayConcatenationOperatorParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cStructConstructionOperatorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cRecordConstructionOperatorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cParenthesizedExpressionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cEndExpressionParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cAlgorithmExpressionParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//PrimaryExpression returns Expression:
 		//	Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
-		//	ArrayConcatenationOperator | StructConstructionOperator | ParenthesizedExpression | EndExpression |
+		//	ArrayConcatenationOperator | RecordConstructionOperator | ParenthesizedExpression | EndExpression |
 		//	AlgorithmExpression;
 		public ParserRule getRule() { return rule; }
 
 		//Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
-		//ArrayConcatenationOperator | StructConstructionOperator | ParenthesizedExpression | EndExpression | AlgorithmExpression
+		//ArrayConcatenationOperator | RecordConstructionOperator | ParenthesizedExpression | EndExpression | AlgorithmExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Literal
@@ -2709,8 +2709,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//ArrayConcatenationOperator
 		public RuleCall getArrayConcatenationOperatorParserRuleCall_5() { return cArrayConcatenationOperatorParserRuleCall_5; }
 
-		//StructConstructionOperator
-		public RuleCall getStructConstructionOperatorParserRuleCall_6() { return cStructConstructionOperatorParserRuleCall_6; }
+		//RecordConstructionOperator
+		public RuleCall getRecordConstructionOperatorParserRuleCall_6() { return cRecordConstructionOperatorParserRuleCall_6; }
 
 		//ParenthesizedExpression
 		public RuleCall getParenthesizedExpressionParserRuleCall_7() { return cParenthesizedExpressionParserRuleCall_7; }
@@ -3679,25 +3679,25 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExpressionsExpressionParserRuleCall_1_1_0() { return cExpressionsExpressionParserRuleCall_1_1_0; }
 	}
 
-	public class StructConstructionOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructConstructionOperator");
+	public class RecordConstructionOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordConstructionOperator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLabelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLabelValidIDParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cMembersAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMembersStructConstructionMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
+		private final RuleCall cMembersRecordConstructionMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMembersStructConstructionMemberParserRuleCall_3_1_0 = (RuleCall)cMembersAssignment_3_1.eContents().get(0);
+		private final RuleCall cMembersRecordConstructionMemberParserRuleCall_3_1_0 = (RuleCall)cMembersAssignment_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//StructConstructionOperator:
-		//	label=ValidID? "{" members+=StructConstructionMember ("," members+=StructConstructionMember)* "}";
+		//RecordConstructionOperator:
+		//	label=ValidID? "{" members+=RecordConstructionMember ("," members+=RecordConstructionMember)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//label=ValidID? "{" members+=StructConstructionMember ("," members+=StructConstructionMember)* "}"
+		//label=ValidID? "{" members+=RecordConstructionMember ("," members+=RecordConstructionMember)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//label=ValidID?
@@ -3709,30 +3709,30 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//members+=StructConstructionMember
+		//members+=RecordConstructionMember
 		public Assignment getMembersAssignment_2() { return cMembersAssignment_2; }
 
-		//StructConstructionMember
-		public RuleCall getMembersStructConstructionMemberParserRuleCall_2_0() { return cMembersStructConstructionMemberParserRuleCall_2_0; }
+		//RecordConstructionMember
+		public RuleCall getMembersRecordConstructionMemberParserRuleCall_2_0() { return cMembersRecordConstructionMemberParserRuleCall_2_0; }
 
-		//("," members+=StructConstructionMember)*
+		//("," members+=RecordConstructionMember)*
 		public Group getGroup_3() { return cGroup_3; }
 
 		//","
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
-		//members+=StructConstructionMember
+		//members+=RecordConstructionMember
 		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
 
-		//StructConstructionMember
-		public RuleCall getMembersStructConstructionMemberParserRuleCall_3_1_0() { return cMembersStructConstructionMemberParserRuleCall_3_1_0; }
+		//RecordConstructionMember
+		public RuleCall getMembersRecordConstructionMemberParserRuleCall_3_1_0() { return cMembersRecordConstructionMemberParserRuleCall_3_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
-	public class StructConstructionMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructConstructionMember");
+	public class RecordConstructionMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordConstructionMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameValidIDParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -3740,7 +3740,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueExpressionParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
-		//StructConstructionMember:
+		//RecordConstructionMember:
 		//	name=ValidID "=" value=Expression;
 		public ParserRule getRule() { return rule; }
 
@@ -5325,7 +5325,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private DeclaredArrayTypeElements pDeclaredArrayType;
 	private ArrayDimensionElements pArrayDimension;
 	private CompositeTypeElements pCompositeType;
-	private StructTypeElements pStructType;
+	private RecordTypeElements pRecordType;
 	private UnionTypeElements pUnionType;
 	private CompositeTypeMemberListElements pCompositeTypeMemberList;
 	private CompositeTypeMemberElements pCompositeTypeMember;
@@ -5393,8 +5393,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private ArrayConstructionOperatorElements pArrayConstructionOperator;
 	private ArrayConcatenationOperatorElements pArrayConcatenationOperator;
 	private ExpressionListElements pExpressionList;
-	private StructConstructionOperatorElements pStructConstructionOperator;
-	private StructConstructionMemberElements pStructConstructionMember;
+	private RecordConstructionOperatorElements pRecordConstructionOperator;
+	private RecordConstructionMemberElements pRecordConstructionMember;
 	private UnionConstructionOperatorElements pUnionConstructionOperator;
 	private UnionTypeSpecifierElements pUnionTypeSpecifier;
 	private AnonymousUnionTypeSpecifierElements pAnonymousUnionTypeSpecifier;
@@ -5812,7 +5812,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CompositeType:
-	//	StructType | UnionType;
+	//	RecordType | UnionType;
 	public CompositeTypeElements getCompositeTypeAccess() {
 		return (pCompositeType != null) ? pCompositeType : (pCompositeType = new CompositeTypeElements());
 	}
@@ -5821,15 +5821,15 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getCompositeTypeAccess().getRule();
 	}
 
-	//StructType:
+	//RecordType:
 	//	(label=ValidID | anyLabel?="?")? "{" memberLists+=CompositeTypeMemberList (";" memberLists+=CompositeTypeMemberList)*
 	//	";"? "}";
-	public StructTypeElements getStructTypeAccess() {
-		return (pStructType != null) ? pStructType : (pStructType = new StructTypeElements());
+	public RecordTypeElements getRecordTypeAccess() {
+		return (pRecordType != null) ? pRecordType : (pRecordType = new RecordTypeElements());
 	}
 	
-	public ParserRule getStructTypeRule() {
-		return getStructTypeAccess().getRule();
+	public ParserRule getRecordTypeRule() {
+		return getRecordTypeAccess().getRule();
 	}
 
 	//UnionType:
@@ -6231,7 +6231,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PrimaryExpression returns Expression:
 	//	Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
-	//	ArrayConcatenationOperator | StructConstructionOperator | ParenthesizedExpression | EndExpression |
+	//	ArrayConcatenationOperator | RecordConstructionOperator | ParenthesizedExpression | EndExpression |
 	//	AlgorithmExpression;
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return (pPrimaryExpression != null) ? pPrimaryExpression : (pPrimaryExpression = new PrimaryExpressionElements());
@@ -6524,24 +6524,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionListAccess().getRule();
 	}
 
-	//StructConstructionOperator:
-	//	label=ValidID? "{" members+=StructConstructionMember ("," members+=StructConstructionMember)* "}";
-	public StructConstructionOperatorElements getStructConstructionOperatorAccess() {
-		return (pStructConstructionOperator != null) ? pStructConstructionOperator : (pStructConstructionOperator = new StructConstructionOperatorElements());
+	//RecordConstructionOperator:
+	//	label=ValidID? "{" members+=RecordConstructionMember ("," members+=RecordConstructionMember)* "}";
+	public RecordConstructionOperatorElements getRecordConstructionOperatorAccess() {
+		return (pRecordConstructionOperator != null) ? pRecordConstructionOperator : (pRecordConstructionOperator = new RecordConstructionOperatorElements());
 	}
 	
-	public ParserRule getStructConstructionOperatorRule() {
-		return getStructConstructionOperatorAccess().getRule();
+	public ParserRule getRecordConstructionOperatorRule() {
+		return getRecordConstructionOperatorAccess().getRule();
 	}
 
-	//StructConstructionMember:
+	//RecordConstructionMember:
 	//	name=ValidID "=" value=Expression;
-	public StructConstructionMemberElements getStructConstructionMemberAccess() {
-		return (pStructConstructionMember != null) ? pStructConstructionMember : (pStructConstructionMember = new StructConstructionMemberElements());
+	public RecordConstructionMemberElements getRecordConstructionMemberAccess() {
+		return (pRecordConstructionMember != null) ? pRecordConstructionMember : (pRecordConstructionMember = new RecordConstructionMemberElements());
 	}
 	
-	public ParserRule getStructConstructionMemberRule() {
-		return getStructConstructionMemberAccess().getRule();
+	public ParserRule getRecordConstructionMemberRule() {
+		return getRecordConstructionMemberAccess().getRule();
 	}
 
 	//UnionConstructionOperator:

@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclara
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.StructLiteralDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.util.StringTableUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
@@ -33,7 +33,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StructValue;
+import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -104,8 +104,8 @@ public class LiteralGenerator {
 			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
-		if (value instanceof StructValue) {
-			StructLiteralDeclaration codeFragment = new StructLiteralDeclaration(configuration, (StructValue) value);
+		if (value instanceof RecordValue) {
+			RecordLiteralDeclaration codeFragment = new RecordLiteralDeclaration(configuration, (RecordValue) value);
 			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
@@ -142,8 +142,8 @@ public class LiteralGenerator {
 			return generateVectorInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
 		} else if (value instanceof MatrixValue) {
 			return generateMatrixInitializer(computationModel, codeFragmentCollector, (IArrayValue) value);
-		} else if (value instanceof StructValue) {
-			return generateStructInitializer(computationModel, codeFragmentCollector, (StructValue) value);
+		} else if (value instanceof RecordValue) {
+			return generateStructInitializer(computationModel, codeFragmentCollector, (RecordValue) value);
 		}
 		throw new IllegalArgumentException();
 	}
@@ -205,7 +205,7 @@ public class LiteralGenerator {
 		return sb;
 	}
 
-	private CharSequence generateStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, StructValue value) {
+	private CharSequence generateStructInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, RecordValue value) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{ ");
 		for (int i = 0; i < value.getDataType().getMembers().size(); ++i) {

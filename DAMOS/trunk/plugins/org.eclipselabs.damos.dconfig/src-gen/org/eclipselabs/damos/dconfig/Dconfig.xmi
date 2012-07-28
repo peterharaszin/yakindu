@@ -1287,9 +1287,9 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.34"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="StructType">
+    <rules xsi:type="xtext:ParserRule" name="RecordType">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructType"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RecordType"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Alternatives" cardinality="?">
@@ -2536,9 +2536,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="StructConstructionOperator">
+    <rules xsi:type="xtext:ParserRule" name="RecordConstructionOperator">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructConstructionOperator"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RecordConstructionOperator"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="label" operator="=">
@@ -2557,9 +2557,9 @@
         <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="StructConstructionMember">
+    <rules xsi:type="xtext:ParserRule" name="RecordConstructionMember">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructConstructionMember"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//RecordConstructionMember"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">

@@ -179,12 +179,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructConstructionOperator" eSuperTypes="#//Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="RecordConstructionOperator" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-        eType="#//StructConstructionMember" containment="true"/>
+        eType="#//RecordConstructionMember" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructConstructionMember">
+  <eClassifiers xsi:type="ecore:EClass" name="RecordConstructionMember">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>
@@ -470,7 +470,7 @@
         eOpposite="#//CompositeTypeMemberList/members"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructType" eSuperTypes="#//CompositeType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordType" eSuperTypes="#//CompositeType"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//CompositeType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Evaluable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit">

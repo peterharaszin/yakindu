@@ -320,17 +320,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_CONSTRUCTION_OPERATOR: {
-				StructConstructionOperator structConstructionOperator = (StructConstructionOperator)theEObject;
-				T result = caseStructConstructionOperator(structConstructionOperator);
-				if (result == null) result = caseExpression(structConstructionOperator);
-				if (result == null) result = caseEvaluable(structConstructionOperator);
+			case MscriptPackage.RECORD_CONSTRUCTION_OPERATOR: {
+				RecordConstructionOperator recordConstructionOperator = (RecordConstructionOperator)theEObject;
+				T result = caseRecordConstructionOperator(recordConstructionOperator);
+				if (result == null) result = caseExpression(recordConstructionOperator);
+				if (result == null) result = caseEvaluable(recordConstructionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_CONSTRUCTION_MEMBER: {
-				StructConstructionMember structConstructionMember = (StructConstructionMember)theEObject;
-				T result = caseStructConstructionMember(structConstructionMember);
+			case MscriptPackage.RECORD_CONSTRUCTION_MEMBER: {
+				RecordConstructionMember recordConstructionMember = (RecordConstructionMember)theEObject;
+				T result = caseRecordConstructionMember(recordConstructionMember);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -889,12 +889,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_TYPE: {
-				StructType structType = (StructType)theEObject;
-				T result = caseStructType(structType);
-				if (result == null) result = caseCompositeType(structType);
-				if (result == null) result = caseDataType(structType);
-				if (result == null) result = caseType(structType);
+			case MscriptPackage.RECORD_TYPE: {
+				RecordType recordType = (RecordType)theEObject;
+				T result = caseRecordType(recordType);
+				if (result == null) result = caseCompositeType(recordType);
+				if (result == null) result = caseDataType(recordType);
+				if (result == null) result = caseType(recordType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1559,32 +1559,32 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Construction Operator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Record Construction Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Construction Operator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Record Construction Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructConstructionOperator(StructConstructionOperator object) {
+	public T caseRecordConstructionOperator(RecordConstructionOperator object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Construction Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Record Construction Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Construction Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Record Construction Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructConstructionMember(StructConstructionMember object) {
+	public T caseRecordConstructionMember(RecordConstructionMember object) {
 		return null;
 	}
 
@@ -2609,17 +2609,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Record Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Record Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructType(StructType object) {
+	public T caseRecordType(RecordType object) {
 		return null;
 	}
 

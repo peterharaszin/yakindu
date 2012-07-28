@@ -173,13 +173,13 @@
     <genClasses ecoreClass="Mscript.ecore#//ExpressionList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ExpressionList/expressions"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructConstructionOperator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructConstructionOperator/label"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructConstructionOperator/members"/>
+    <genClasses ecoreClass="Mscript.ecore#//RecordConstructionOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//RecordConstructionOperator/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//RecordConstructionOperator/members"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructConstructionMember">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructConstructionMember/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructConstructionMember/value"/>
+    <genClasses ecoreClass="Mscript.ecore#//RecordConstructionMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//RecordConstructionMember/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//RecordConstructionMember/value"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//UnionConstructionOperator">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnionConstructionOperator/member"/>
@@ -375,7 +375,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//CompositeTypeMember/name"/>
       <genOperations ecoreOperation="Mscript.ecore#//CompositeTypeMember/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//StructType"/>
+    <genClasses ecoreClass="Mscript.ecore#//RecordType"/>
     <genClasses ecoreClass="Mscript.ecore#//UnionType"/>
     <genClasses ecoreClass="Mscript.ecore#//Expression"/>
     <genClasses ecoreClass="Mscript.ecore#//Unit">

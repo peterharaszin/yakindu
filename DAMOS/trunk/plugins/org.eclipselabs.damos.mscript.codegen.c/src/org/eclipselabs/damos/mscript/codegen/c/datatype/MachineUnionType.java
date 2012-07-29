@@ -19,27 +19,27 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordTypeDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MachineRecordType extends MachineDataType {
+public class MachineUnionType extends MachineDataType {
 
 	private final List<MachineCompositeTypeMember> members;
 
 	/**
 	 * 
 	 */
-	MachineRecordType(List<MachineCompositeTypeMember> members) {
+	MachineUnionType(List<MachineCompositeTypeMember> members) {
 		this.members = members;
 	}
 	
 	@Override
 	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector,
 			ICodeFragment dependentCodeFragment) {
-		final RecordTypeDeclaration codeFragment = codeFragmentCollector.addCodeFragment(new RecordTypeDeclaration(this), new NullProgressMonitor());
+		final UnionTypeDeclaration codeFragment = codeFragmentCollector.addCodeFragment(new UnionTypeDeclaration(this), new NullProgressMonitor());
 		if (dependentCodeFragment != null) {
 			dependentCodeFragment.addDependency(FORWARD_DECLARATION_DEPENDS_ON, new IDependencyRule() {
 				
@@ -79,8 +79,8 @@ public class MachineRecordType extends MachineDataType {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof MachineRecordType) {
-			MachineRecordType other = (MachineRecordType) obj;
+		if (obj instanceof MachineUnionType) {
+			MachineUnionType other = (MachineUnionType) obj;
 			return other.members.equals(members);
 		}
 		return false;

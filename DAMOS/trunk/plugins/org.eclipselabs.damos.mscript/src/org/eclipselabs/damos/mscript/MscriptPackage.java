@@ -2516,13 +2516,22 @@ public interface MscriptPackage extends EPackage {
 	int INSPECT_WHEN_CLAUSE__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSPECT_WHEN_CLAUSE__OWNER = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSPECT_WHEN_CLAUSE__EXPRESSION = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int INSPECT_WHEN_CLAUSE__EXPRESSION = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Inspect When Clause</em>' class.
@@ -2531,7 +2540,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSPECT_WHEN_CLAUSE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+	int INSPECT_WHEN_CLAUSE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.AlgorithmExpressionImpl <em>Algorithm Expression</em>}' class.
@@ -6075,6 +6084,17 @@ public interface MscriptPackage extends EPackage {
 	EClass getInspectWhenClause();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.InspectWhenClause#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipselabs.damos.mscript.InspectWhenClause#getOwner()
+	 * @see #getInspectWhenClause()
+	 * @generated
+	 */
+	EReference getInspectWhenClause_Owner();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.InspectWhenClause#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8699,6 +8719,14 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSPECT_WHEN_CLAUSE = eINSTANCE.getInspectWhenClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSPECT_WHEN_CLAUSE__OWNER = eINSTANCE.getInspectWhenClause_Owner();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.

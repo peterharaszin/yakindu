@@ -21,9 +21,11 @@ import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.ArrayElementW
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.ArrayScalarMultiplyGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.DefaultOperationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.FoldFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.InspectExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.MapFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.MatrixMultiplyGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.MatrixVectorMultiplyGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.UnionConstructionOperatorGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.operationgenerators.VectorMatrixMultiplyGenerator;
 
 /**
@@ -43,6 +45,8 @@ public class OperationGeneratorProvider implements IOperationGeneratorProvider {
 		GENERATORS.add(new FoldFunctionGenerator());
 		GENERATORS.add(new MapFunctionGenerator());
 		GENERATORS.add(new AlgorithmExpressionGenerator());
+		GENERATORS.add(new InspectExpressionGenerator());
+		GENERATORS.add(new UnionConstructionOperatorGenerator());
 		GENERATORS.add(new DefaultOperationGenerator());
 	}
 

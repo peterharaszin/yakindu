@@ -1,11 +1,13 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
+import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -16,9 +18,11 @@ import com.google.inject.Inject;
 public class VariableReferenceGenerator {
 
 	private final LiteralGenerator literalGenerator;
+	private final IExpressionGenerator expressionGenerator;
 	
 	@Inject
-	public VariableReferenceGenerator(LiteralGenerator literalGenerator) {
+	public VariableReferenceGenerator(IExpressionGenerator expressionGenerator, LiteralGenerator literalGenerator) {
+		this.expressionGenerator = expressionGenerator;
 		this.literalGenerator = literalGenerator;
 	}
 
@@ -56,17 +60,16 @@ public class VariableReferenceGenerator {
 			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStateVariableDeclaration(org.eclipselabs.damos.mscript.StateVariableDeclaration)
-		 */
 		@Override
 		public CharSequence caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
 			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseVariableDeclaration(org.eclipselabs.damos.mscript.VariableDeclaration)
-		 */
+		@Override
+		public CharSequence caseInspectWhenClause(InspectWhenClause inspectWhenClause) {
+			return expressionGenerator.generate(context, inspectWhenClause.getOwner().getUnionExpression()) + ".value." + inspectWhenClause.getName();
+		}
+		
 		@Override
 		public CharSequence caseVariableDeclaration(VariableDeclaration variableDeclaration) {
 			return variableDeclaration.getName();

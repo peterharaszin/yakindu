@@ -1,0 +1,28 @@
+package damos.tests
+
+blockType UnionTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	type Union = union {
+		int x;
+		real y;
+	}
+	
+	function main(a, b) -> y1, y2 {
+		check(int, real) -> Union, Union
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is real :
+			error "B must be real"
+
+		eq y1 = new Union with x = a
+		eq y2 = new Union with y = b
+	}
+
+}

@@ -15,7 +15,7 @@ package org.eclipselabs.damos.mscript.codegen.c.datatype;
  * @author Andreas Unger
  *
  */
-public class MachineRecordMember {
+public class MachineCompositeTypeMember {
 
 	private final String name;
 	private final MachineDataType type;
@@ -23,7 +23,7 @@ public class MachineRecordMember {
 	/**
 	 * 
 	 */
-	MachineRecordMember(String name, MachineDataType type) {
+	MachineCompositeTypeMember(String name, MachineDataType type) {
 		this.name = name;
 		this.type = type;
 	}
@@ -55,8 +55,8 @@ public class MachineRecordMember {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof MachineRecordMember) {
-			MachineRecordMember other = (MachineRecordMember) obj;
+		if (obj instanceof MachineCompositeTypeMember) {
+			MachineCompositeTypeMember other = (MachineCompositeTypeMember) obj;
 			return other.name.equals(name) && other.type.equals(type);
 		}
 		return false;

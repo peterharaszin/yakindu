@@ -11,6 +11,7 @@ package org.eclipselabs.damos.mscript;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.InspectWhenClause#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.InspectWhenClause#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -20,6 +21,34 @@ package org.eclipselabs.damos.mscript;
  * @generated
  */
 public interface InspectWhenClause extends VariableDeclaration {
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.InspectExpression#getWhenClauses <em>When Clauses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(InspectExpression)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getInspectWhenClause_Owner()
+	 * @see org.eclipselabs.damos.mscript.InspectExpression#getWhenClauses
+	 * @model opposite="whenClauses" transient="false"
+	 * @generated
+	 */
+	InspectExpression getOwner();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.InspectWhenClause#getOwner <em>Owner</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(InspectExpression value);
+
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

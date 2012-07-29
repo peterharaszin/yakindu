@@ -22,8 +22,8 @@ import org.junit.Before;
  * @author Andreas Unger
  *
  */
-@GTest(sourceFile="gtests/RecordConstructionTest.cpp", program="gtests/RecordConstructionTest")
-public class RecordConstructionTest extends AbstractGeneratorGTest {
+@GTest(sourceFile="gtests/UnionTest.cpp", program="gtests/UnionTest")
+public class UnionTest extends AbstractGeneratorGTest {
 
 	@Before
 	@Override
@@ -32,12 +32,20 @@ public class RecordConstructionTest extends AbstractGeneratorGTest {
 		
 		Inport inA = createInport("InA", createIntegerTypeSpecification(), 1);
 		Inport inB = createInport("InB", createIntegerTypeSpecification(), 1);
-		Block recordConstructionTest = createTestBlock("RecordConstructionTest", "RecordConstructionTest");
-		Outport outport = createOutport("Out", createDataTypeSpecification("{ int x; int y; int z }"));
+		Block unionTest = createTestBlock("UnionTest", "UnionTest");
 		
-		connect(inA, recordConstructionTest, 0);
-		connect(inB, recordConstructionTest, 1);
-		connect(recordConstructionTest, outport);
+		Block inspectTest1 = createTestBlock("InspectTest", "InspectTest1");
+		Block inspectTest2 = createTestBlock("InspectTest", "InspectTest2");
+
+		Outport outport1 = createOutport("Out1", createDataTypeSpecification("union { int x; real y }"));
+		Outport outport2 = createOutport("Out2", createDataTypeSpecification("union { int x; real y }"));
+		
+		connect(inA, unionTest, 0);
+		connect(inB, unionTest, 1);
+		connect(unionTest, 0, inspectTest1);
+		connect(unionTest, 1, inspectTest2);
+		connect(inspectTest1, outport1);
+		connect(inspectTest2, outport2);
 
 		generateAndCompile();
 	}

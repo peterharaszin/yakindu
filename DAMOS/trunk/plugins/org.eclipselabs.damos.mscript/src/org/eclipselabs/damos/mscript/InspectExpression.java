@@ -51,6 +51,7 @@ public interface InspectExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>When Clauses</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.InspectWhenClause}.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.InspectWhenClause#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Clauses</em>' containment reference list isn't clear,
@@ -59,7 +60,8 @@ public interface InspectExpression extends Expression {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>When Clauses</em>' containment reference list.
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getInspectExpression_WhenClauses()
-	 * @model containment="true"
+	 * @see org.eclipselabs.damos.mscript.InspectWhenClause#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<InspectWhenClause> getWhenClauses();

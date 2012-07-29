@@ -32,14 +32,14 @@ public class MapFunctionTest extends AbstractGeneratorGTest {
 		
 		Inport inA = createInport("InA", createIntegerTypeSpecification(), 1);
 		Inport inB = createInport("InB", createIntegerTypeSpecification(), 1);
-		Block arrayTest = createTestBlock("MapFunctionTest", "MapFunctionTest");
+		Block block = createTestBlock("MapFunctionTest", "MapFunctionTest");
 		Outport outport1 = createOutport("Out1", createDataTypeSpecification("real[3]"));
 		Outport outport2 = createOutport("Out2", createDataTypeSpecification("real[2, 3]"));
 		
-		connect(inA, arrayTest, 0);
-		connect(inB, arrayTest, 1);
-		connect(arrayTest, 0, outport1);
-		connect(arrayTest, 1, outport2);
+		connect(inA, block, 0);
+		connect(inB, block, 1);
+		connect(block, 0, outport1);
+		connect(block, 1, outport2);
 
 		generateAndCompile();
 	}

@@ -79,7 +79,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 public class ExpressionGenerator implements IExpressionGenerator {
 	
 	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
-	private final VariableReferenceGenerator variableReferenceGenerator = new VariableReferenceGenerator(literalGenerator);
+	private final VariableReferenceGenerator variableReferenceGenerator = new VariableReferenceGenerator(this, literalGenerator);
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		StringBuilder sb = new StringBuilder();

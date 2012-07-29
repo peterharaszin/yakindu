@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
@@ -21,15 +20,17 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class FunctionCallSplitter extends AbstractExpressionSplitter {
+public class FunctionCallSplitter implements IExpressionTransformStrategy {
 
+	private final ExpressionTransformHelper helper = new ExpressionTransformHelper();
+	
 	public boolean canHandle(ITransformerContext context, Expression expression) {
 		if (expression instanceof FunctionCall) {
 			FunctionCall functionCall = (FunctionCall) expression;
@@ -62,12 +63,8 @@ public class FunctionCallSplitter extends AbstractExpressionSplitter {
 				InlineExpressionTarget lambdaExpressionTarget = new InlineExpressionTarget(context);
 				transformer.transform(argument, lambdaExpressionTarget.asList());
 				transformedFunctionCall.getArguments().add(lambdaExpressionTarget.getAssignedExpression());
-			} else if (argument instanceof VariableReference) {
-				VariableReference variableReference = EcoreUtil.copy((VariableReference) argument);
-				context.getStaticEvaluationResult().setValue(variableReference, context.getStaticEvaluationResult().getValue(argument));
-				transformedFunctionCall.getArguments().add(variableReference);
 			} else {
-				transformedFunctionCall.getArguments().add(createVariableReference(context, argument, "arg", transformer));
+				transformedFunctionCall.getArguments().add(helper.transformToVariableReference(context, argument, "arg", transformer));
 			}
 		}
 		
@@ -76,6 +73,10 @@ public class FunctionCallSplitter extends AbstractExpressionSplitter {
 		assignment.setAssignedExpression(transformedFunctionCall);
 		
 		context.getCompound().getStatements().add(assignment);
+	}
+
+	private Type getDataType(ITransformerContext context, Expression expression) {
+		return context.getStaticEvaluationResult().getValue(expression).getDataType();
 	}
 
 }

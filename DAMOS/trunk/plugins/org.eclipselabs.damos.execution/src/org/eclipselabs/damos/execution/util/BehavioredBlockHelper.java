@@ -32,13 +32,13 @@ import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
@@ -126,57 +126,68 @@ public class BehavioredBlockHelper {
 	public List<Type> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
 		List<Type> types = new ArrayList<Type>();
 
+		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
+
 		if (!block.getInputSockets().isEmpty()) {
 			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
 			messageKindDataType.setUnit(TypeUtil.createUnit());
 			types.add(messageKindDataType);
+
+			if (!parameterDeclarationIterator.hasNext()) {
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for socket inputs"));
+				return null;
+			}
+
+			parameterDeclarationIterator.next();
 		}
 		
-		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
-			
+
 			if (!parameterDeclarationIterator.hasNext()) {
 				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for input '" + blockInput.getDefinition().getName() + "'"));
 				return null;
 			}
 
-			ParameterDeclaration parameterDeclaration = parameterDeclarationIterator.next();
-			
-			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-				Type elementDataType = null;
-				for (InputPort inputPort : input.getPorts()) {
-					Type type = signature.getInputDataType(inputPort);
-					if (type != null) {
+			parameterDeclarationIterator.next();
+
+			Type type = getInputParameterDataType(blockInput, signature, status);
+			if (type == null) {
+				return null;
+			}
+			types.add(type);
+		}
+		return types;
+	}
+	
+	private Type getInputParameterDataType(BlockInput blockInput, IComponentSignature signature, MultiStatus status) {
+		if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
+			Type elementDataType = null;
+			for (InputPort inputPort : blockInput.getPorts()) {
+				Type type = signature.getInputDataType(inputPort);
+				if (type != null) {
+					if (elementDataType == null) {
+						elementDataType = type;
+					} else {
+						elementDataType = TypeUtil.getLeftHandDataType(elementDataType, type);
 						if (elementDataType == null) {
-							elementDataType = type;
-						} else {
-							elementDataType = TypeUtil.getLeftHandDataType(elementDataType, type);
-							if (elementDataType == null) {
-								status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
-								continue;
-							}
+							status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Input '" + blockInput.getName() + "' has incompatible input values"));
+							continue;
 						}
 					}
 				}
-				if (elementDataType == null) {
-					return null;
-				}
-				types.add(TypeUtil.createArrayType(elementDataType, input.getPorts().size()));
-			} else {
-				Type type = null;
-				if (input.getPorts().isEmpty()) {
-					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
-					continue;
-				}
-				type = signature.getInputDataType(input.getPorts().get(0));
-				if (type == null) {
-					return null;
-				}
-				types.add(type);
 			}
+			if (elementDataType == null) {
+				return null;
+			}
+			return TypeUtil.createArrayType(elementDataType, blockInput.getPorts().size());
 		}
-		return types;
+
+		if (blockInput.getPorts().isEmpty()) {
+			status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid input '" + blockInput.getName() + "'"));
+			return null;
+		}
+		return signature.getInputDataType(blockInput.getPorts().get(0));
 	}
 	
 	private IValue getParameterStaticArgumentValue(String parameterName) throws CoreException {

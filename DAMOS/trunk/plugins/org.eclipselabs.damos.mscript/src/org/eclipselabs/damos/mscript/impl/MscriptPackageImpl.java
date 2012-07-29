@@ -2416,8 +2416,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInspectWhenClause_Expression() {
+	public EReference getInspectWhenClause_Owner() {
 		return (EReference)inspectWhenClauseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInspectWhenClause_Expression() {
+		return (EReference)inspectWhenClauseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3689,6 +3698,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(inspectExpressionEClass, INSPECT_EXPRESSION__WHEN_CLAUSES);
 
 		inspectWhenClauseEClass = createEClass(INSPECT_WHEN_CLAUSE);
+		createEReference(inspectWhenClauseEClass, INSPECT_WHEN_CLAUSE__OWNER);
 		createEReference(inspectWhenClauseEClass, INSPECT_WHEN_CLAUSE__EXPRESSION);
 
 		algorithmExpressionEClass = createEClass(ALGORITHM_EXPRESSION);
@@ -4227,9 +4237,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(inspectExpressionEClass, InspectExpression.class, "InspectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInspectExpression_UnionExpression(), this.getExpression(), null, "unionExpression", null, 0, 1, InspectExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInspectExpression_WhenClauses(), this.getInspectWhenClause(), null, "whenClauses", null, 0, -1, InspectExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInspectExpression_WhenClauses(), this.getInspectWhenClause(), this.getInspectWhenClause_Owner(), "whenClauses", null, 0, -1, InspectExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inspectWhenClauseEClass, InspectWhenClause.class, "InspectWhenClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInspectWhenClause_Owner(), this.getInspectExpression(), this.getInspectExpression_WhenClauses(), "owner", null, 0, 1, InspectWhenClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInspectWhenClause_Expression(), this.getExpression(), null, "expression", null, 0, 1, InspectWhenClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

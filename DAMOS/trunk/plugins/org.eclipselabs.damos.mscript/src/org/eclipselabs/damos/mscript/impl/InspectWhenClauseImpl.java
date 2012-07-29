@@ -7,7 +7,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.InspectExpression;
 import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -18,6 +20,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.InspectWhenClauseImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.InspectWhenClauseImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -52,6 +55,47 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.INSPECT_WHEN_CLAUSE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InspectExpression getOwner() {
+		if (eContainerFeatureID() != MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER) return null;
+		return (InspectExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(InspectExpression newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(InspectExpression newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, MscriptPackage.INSPECT_EXPRESSION__WHEN_CLAUSES, InspectExpression.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -103,8 +147,26 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((InspectExpression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				return basicSetOwner(null, msgs);
 			case MscriptPackage.INSPECT_WHEN_CLAUSE__EXPRESSION:
 				return basicSetExpression(null, msgs);
 		}
@@ -117,8 +179,24 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				return eInternalContainer().eInverseRemove(this, MscriptPackage.INSPECT_EXPRESSION__WHEN_CLAUSES, InspectExpression.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				return getOwner();
 			case MscriptPackage.INSPECT_WHEN_CLAUSE__EXPRESSION:
 				return getExpression();
 		}
@@ -133,6 +211,9 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				setOwner((InspectExpression)newValue);
+				return;
 			case MscriptPackage.INSPECT_WHEN_CLAUSE__EXPRESSION:
 				setExpression((Expression)newValue);
 				return;
@@ -148,6 +229,9 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				setOwner((InspectExpression)null);
+				return;
 			case MscriptPackage.INSPECT_WHEN_CLAUSE__EXPRESSION:
 				setExpression((Expression)null);
 				return;
@@ -163,6 +247,8 @@ public class InspectWhenClauseImpl extends VariableDeclarationImpl implements In
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER:
+				return getOwner() != null;
 			case MscriptPackage.INSPECT_WHEN_CLAUSE__EXPRESSION:
 				return expression != null;
 		}

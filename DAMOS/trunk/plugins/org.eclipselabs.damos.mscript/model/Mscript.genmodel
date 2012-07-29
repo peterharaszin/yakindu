@@ -259,6 +259,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//InspectExpression/whenClauses"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//InspectWhenClause">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//InspectWhenClause/owner"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//InspectWhenClause/expression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//AlgorithmExpression">

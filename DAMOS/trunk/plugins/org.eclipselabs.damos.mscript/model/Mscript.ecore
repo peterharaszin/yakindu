@@ -286,9 +286,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="unionExpression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whenClauses" upperBound="-1"
-        eType="#//InspectWhenClause" containment="true"/>
+        eType="#//InspectWhenClause" containment="true" eOpposite="#//InspectWhenClause/owner"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InspectWhenClause" eSuperTypes="#//VariableDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//InspectExpression"
+        eOpposite="#//InspectExpression/whenClauses"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>

@@ -17,11 +17,12 @@ import java.util.List;
 
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanType;
-import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RecordType;
+import org.eclipselabs.damos.mscript.StringType;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -43,6 +44,9 @@ public class MachineDataTypes {
 		}
 		if (type instanceof RecordType) {
 			return create(configuration, (RecordType) type);
+		}
+		if (type instanceof UnionType) {
+			return create(configuration, (UnionType) type);
 		}
 		if (type instanceof ArrayType) {
 			return create(configuration, (ArrayType) type);
@@ -71,11 +75,19 @@ public class MachineDataTypes {
 	}
 
 	public static MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {
-		List<MachineRecordMember> machineRecordMembers = new ArrayList<MachineRecordMember>();
+		List<MachineCompositeTypeMember> machineCompositeTypeMembers = new ArrayList<MachineCompositeTypeMember>();
 		for (CompositeTypeMember compositeTypeMember : recordType.getMembers()) {
-			machineRecordMembers.add(new MachineRecordMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
+			machineCompositeTypeMembers.add(new MachineCompositeTypeMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
 		}
-		return new MachineRecordType(Collections.unmodifiableList(machineRecordMembers));
+		return new MachineRecordType(Collections.unmodifiableList(machineCompositeTypeMembers));
+	}
+
+	public static MachineUnionType create(IMscriptGeneratorConfiguration configuration, UnionType unionType) {
+		List<MachineCompositeTypeMember> machineCompositeTypeMembers = new ArrayList<MachineCompositeTypeMember>();
+		for (CompositeTypeMember compositeTypeMember : unionType.getMembers()) {
+			machineCompositeTypeMembers.add(new MachineCompositeTypeMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
+		}
+		return new MachineUnionType(Collections.unmodifiableList(machineCompositeTypeMembers));
 	}
 
 }

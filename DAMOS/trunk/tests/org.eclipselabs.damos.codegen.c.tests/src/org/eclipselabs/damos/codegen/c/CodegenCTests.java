@@ -27,9 +27,10 @@ import org.eclipselabs.damos.codegen.c.gtests.MatrixScalarMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixTest;
 import org.eclipselabs.damos.codegen.c.gtests.MatrixVectorMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.OutportOnlyTest;
-import org.eclipselabs.damos.codegen.c.gtests.StringTest;
 import org.eclipselabs.damos.codegen.c.gtests.RecordConstructionTest;
 import org.eclipselabs.damos.codegen.c.gtests.RecordTest;
+import org.eclipselabs.damos.codegen.c.gtests.StringTest;
+import org.eclipselabs.damos.codegen.c.gtests.UnionTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorMatrixMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorMultiplyTest;
 import org.eclipselabs.damos.codegen.c.gtests.VectorScalarMultiplyTest;
@@ -68,6 +69,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	MatrixScalarMultiplyTest.class,
 	RecordTest.class,
 	RecordConstructionTest.class,
+	UnionTest.class,
 	MapFunctionTest.class
 })
 public class CodegenCTests {

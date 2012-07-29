@@ -40,7 +40,7 @@ class AlgorithmExpressionGenerator implements IOperationGenerator {
 	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
 	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
 	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(dataTypeGenerator)
-	val IStatementGenerator statementGenerator = new StatementGenerator(expressionGenerator, dataTypeGenerator, variableDeclarationGenerator, new VariableReferenceGenerator(new LiteralGenerator(dataTypeGenerator)), new OperationGeneratorProvider())
+	val IStatementGenerator statementGenerator = new StatementGenerator(expressionGenerator, dataTypeGenerator, variableDeclarationGenerator, new VariableReferenceGenerator(expressionGenerator, new LiteralGenerator(dataTypeGenerator)), new OperationGeneratorProvider())
 	val ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator(statementGenerator, variableDeclarationGenerator)
 
 	override boolean canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {

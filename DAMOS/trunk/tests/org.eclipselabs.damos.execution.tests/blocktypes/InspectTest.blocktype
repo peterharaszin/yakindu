@@ -1,0 +1,27 @@
+package damos.tests
+
+blockType InspectTest {
+
+	input a
+	output y
+	
+	type Union = union {
+		int x;
+		real y;
+	}
+	
+	function main(a) -> y {
+		check(Union) -> Union
+
+		static assert a is Union :
+			error "A must be Union"
+
+		eq y =
+			inspect a
+			when x:
+				new Union with x = x * 10
+			when y:
+				new Union with y = y * 20
+	}
+
+}

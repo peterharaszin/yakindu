@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.InspectExpression;
@@ -121,9 +121,24 @@ public class InspectExpressionImpl extends ExpressionImpl implements InspectExpr
 	 */
 	public EList<InspectWhenClause> getWhenClauses() {
 		if (whenClauses == null) {
-			whenClauses = new EObjectContainmentEList<InspectWhenClause>(InspectWhenClause.class, this, MscriptPackage.INSPECT_EXPRESSION__WHEN_CLAUSES);
+			whenClauses = new EObjectContainmentWithInverseEList<InspectWhenClause>(InspectWhenClause.class, this, MscriptPackage.INSPECT_EXPRESSION__WHEN_CLAUSES, MscriptPackage.INSPECT_WHEN_CLAUSE__OWNER);
 		}
 		return whenClauses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MscriptPackage.INSPECT_EXPRESSION__WHEN_CLAUSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getWhenClauses()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

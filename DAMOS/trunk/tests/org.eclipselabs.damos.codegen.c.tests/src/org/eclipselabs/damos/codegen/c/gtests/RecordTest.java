@@ -35,17 +35,17 @@ public class RecordTest extends AbstractGeneratorGTest {
 		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("{ int x; int y }");
 
 		Inport inport = createInport("In", structTypeSpecification, 1);
-		Block structTest = createTestBlock("RecordTest", "RecordTest");
-		Block structExtractX = createTestBlock("RecordExtractX", "RecordExtractX");
+		Block recordTest = createTestBlock("RecordTest", "RecordTest");
+		Block recordExtractX = createTestBlock("RecordExtractX", "RecordExtractX");
 		Outport outport = createOutport("Out", EcoreUtil.copy(structTypeSpecification));
 		Outport outportX = createOutport("OutX", createIntegerTypeSpecification());
 		Outport outportRecordLiteral = createOutport("OutRecordLiteral", createDataTypeSpecification("{ int x; { int a; int[2] b } y }"));
 		
-		connect(inport, structTest);
-		connect(structTest, 0, outport);
-		connect(structTest, 0, structExtractX);
-		connect(structExtractX, outportX);
-		connect(structTest, 1, outportRecordLiteral);
+		connect(inport, recordTest);
+		connect(recordTest, 0, outport);
+		connect(recordTest, 0, recordExtractX);
+		connect(recordExtractX, outportX);
+		connect(recordTest, 1, outportRecordLiteral);
 
 		generateAndCompile();
 	}

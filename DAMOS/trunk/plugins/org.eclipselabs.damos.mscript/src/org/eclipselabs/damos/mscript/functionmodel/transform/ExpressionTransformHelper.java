@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
@@ -23,24 +23,26 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractExpressionSplitter implements IExpressionTransformStrategy {
+public class ExpressionTransformHelper {
 
-	protected VariableReference createVariableReference(ITransformerContext context, Expression operand, String name, IExpressionTransformer transformer) {
-		IValue operandValue = context.getStaticEvaluationResult().getValue(operand);
-	
+	public VariableReference transformToVariableReference(ITransformerContext context, Expression expression, String name, IExpressionTransformer transformer) {
+		if (expression instanceof VariableReference) {
+			VariableReference newVariableReference = EcoreUtil.copy((VariableReference) expression);
+			context.getStaticEvaluationResult().setValue(newVariableReference, context.getStaticEvaluationResult().getValue(expression));
+			return newVariableReference;
+		}
+		
+		IValue operandValue = context.getStaticEvaluationResult().getValue(expression);
+		
 		LocalVariableDeclaration variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), name));
 		context.getStaticEvaluationResult().setValue(variableDeclaration, operandValue);
 		context.getCompound().getStatements().add(variableDeclaration);
 		
 		VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclaration);
-		transformer.transform(operand, target.asList());
+		transformer.transform(expression, target.asList());
 		
 		return target.createVariableReference(operandValue.getDataType());
-	}
-
-	protected Type getDataType(ITransformerContext context, Expression expression) {
-		return context.getStaticEvaluationResult().getValue(expression).getDataType();
 	}
 
 }

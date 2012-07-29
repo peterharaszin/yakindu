@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BinaryExpression;
 import org.eclipselabs.damos.mscript.Expression;
@@ -27,7 +26,9 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class BinaryOperationSplitter extends AbstractExpressionSplitter {
+public class BinaryOperationSplitter implements IExpressionTransformStrategy {
+
+	private final ExpressionTransformHelper helper = new ExpressionTransformHelper();
 
 	public boolean canHandle(ITransformerContext context, Expression expression) {
 		if (expression instanceof BinaryExpression) {
@@ -64,22 +65,8 @@ public class BinaryOperationSplitter extends AbstractExpressionSplitter {
 
 		IValue binaryExpressionValue = context.getStaticEvaluationResult().getValue(binaryExpression);
 
-		VariableReference leftVariableReference;
-		VariableReference rightVariableReference;
-		
-		if (leftOperand instanceof VariableReference) {
-			leftVariableReference = EcoreUtil.copy((VariableReference) leftOperand);
-			context.getStaticEvaluationResult().setValue(leftVariableReference, context.getStaticEvaluationResult().getValue(leftOperand));
-		} else {
-			leftVariableReference = createVariableReference(context, leftOperand, "left", transformer);
-		}
-
-		if (rightOperand instanceof VariableReference) {
-			rightVariableReference = EcoreUtil.copy((VariableReference) rightOperand);
-			context.getStaticEvaluationResult().setValue(rightVariableReference, context.getStaticEvaluationResult().getValue(rightOperand));
-		} else {
-			rightVariableReference = createVariableReference(context, rightOperand, "right", transformer);
-		}
+		VariableReference leftVariableReference = helper.transformToVariableReference(context, leftOperand, "left", transformer);
+		VariableReference rightVariableReference = helper.transformToVariableReference(context, rightOperand, "right", transformer);
 		
 		BinaryExpression transformedBinaryExpression = (BinaryExpression) MscriptFactory.eINSTANCE.create(binaryExpression.eClass());
 		transformedBinaryExpression.setLeftOperand(leftVariableReference);
@@ -94,4 +81,8 @@ public class BinaryOperationSplitter extends AbstractExpressionSplitter {
 		context.getCompound().getStatements().add(assignment);
 	}
 	
+	private Type getDataType(ITransformerContext context, Expression expression) {
+		return context.getStaticEvaluationResult().getValue(expression).getDataType();
+	}
+
 }

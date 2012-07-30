@@ -29,12 +29,19 @@ public class ExpressionEvaluationContext extends AbstractExpressionEvaluationCon
 		this.interpreterContext = interpreterContext;
 	}
 	
+	/**
+	 * @return the interpreterContext
+	 */
+	public IInterpreterContext getInterpreterContext() {
+		return interpreterContext;
+	}
+	
 	public IComputationContext getComputationContext() {
 		return interpreterContext.getComputationContext();
 	}
 	
 	public void enterVariableScope() {
-		interpreterContext.leaveVariableScope();
+		interpreterContext.enterVariableScope();
 	}
 	
 	public void leaveVariableScope() {

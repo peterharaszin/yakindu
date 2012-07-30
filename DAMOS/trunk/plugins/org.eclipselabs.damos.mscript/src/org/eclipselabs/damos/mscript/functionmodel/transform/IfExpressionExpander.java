@@ -42,6 +42,9 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 			return;
 		}
 		
+		IValue ifExpressionValue = context.getStaticEvaluationResult().getValue(ifExpression);
+		targets = targets.get(0).toVariableExpressionTarget(ifExpressionValue.getDataType()).asList();
+
 		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(context);
 		transformer.transform(ifExpression.getCondition(), conditionTarget.asList());
 		Expression conditionExpression = conditionTarget.getAssignedExpression();

@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.CompoundStatement;
-
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.CompoundStatement;
  */
 public interface ICompoundStatementInterpreter {
 
-	void execute(IInterpreterContext context, CompoundStatement compoundStatement);
+	IValue execute(IInterpreterContext context, CompoundStatement compoundStatement);
 
 }

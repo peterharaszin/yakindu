@@ -62,6 +62,11 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 
 	@Check
+	public void checkAlgorithmExpression(AlgorithmExpression algorithmExpression) {
+		error("Algorithm expressions not supported", null);
+	}
+	
+	@Check
 	public void checkStatelessFunction(FunctionDeclaration functionDeclaration) {
 		if (functionDeclaration.getKind() == FunctionKind.STATELESS) {
 			for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {

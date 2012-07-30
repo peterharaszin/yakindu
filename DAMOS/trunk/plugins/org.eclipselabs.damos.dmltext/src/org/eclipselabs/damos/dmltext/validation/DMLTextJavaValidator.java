@@ -172,8 +172,9 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		for (InoutputDefinition inoutputDefinition : inoutputDefinitions) {
 			if (inoutputDefinition.isSocket()) {
 				hasSockets = true;
+			} else {
+				++count;
 			}
-			++count;
 		}
 		if (hasSockets) {
 			++count;

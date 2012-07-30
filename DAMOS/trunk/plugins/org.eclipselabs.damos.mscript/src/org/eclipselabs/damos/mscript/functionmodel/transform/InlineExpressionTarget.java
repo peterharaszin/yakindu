@@ -11,9 +11,6 @@
 
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -30,7 +27,7 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  * @author Andreas Unger
  *
  */
-public class InlineExpressionTarget implements IExpressionTarget {
+public class InlineExpressionTarget extends AbstractExpressionTarget {
 
 	private final ITransformerContext context;
 	
@@ -58,6 +55,11 @@ public class InlineExpressionTarget implements IExpressionTarget {
 			this.targetDataType = targetDataType;
 		}
 		return createVariableReference();
+	}
+	
+	public VariableExpressionTarget toVariableExpressionTarget(Type targetDataType) {
+		assignedExpression = createVariableReference(targetDataType);
+		return new VariableExpressionTarget(context, variableDeclaration);
 	}
 	
 	public Expression getAssignedExpression() {
@@ -100,10 +102,6 @@ public class InlineExpressionTarget implements IExpressionTarget {
 			return "string";
 		}
 		return "temp";
-	}
-
-	public List<IExpressionTarget> asList() {
-		return Collections.<IExpressionTarget>singletonList(this);
 	}
 
 }

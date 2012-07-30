@@ -31,14 +31,17 @@ import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
@@ -129,19 +132,41 @@ public class BehavioredBlockHelper {
 		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
 
 		if (!block.getInputSockets().isEmpty()) {
-			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
-			messageKindDataType.setUnit(TypeUtil.createUnit());
-			types.add(messageKindDataType);
-
 			if (!parameterDeclarationIterator.hasNext()) {
 				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for socket inputs"));
 				return null;
 			}
 
 			parameterDeclarationIterator.next();
+			
+			UnionType messageType = MscriptFactory.eINSTANCE.createUnionType();
+			for (Input input : block.getInputSockets()) {
+				BlockInput blockInput = (BlockInput) input;
+
+				Type type = getInputParameterDataType(blockInput, signature, status);
+				if (type == null) {
+					return null;
+				}
+				
+				CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
+				member.setName(input.getName());
+				
+				CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+				AnonymousTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+				typeSpecifier.setType(type);
+				memberList.setTypeSpecifier(typeSpecifier);
+				memberList.getMembers().add(member);
+				
+				messageType.getMemberLists().add(memberList);
+			}
+			types.add(messageType);
 		}
 		
 		for (Input input : block.getInputs()) {
+			if (input.isSocket()) {
+				continue;
+			}
+			
 			BlockInput blockInput = (BlockInput) input;
 
 			if (!parameterDeclarationIterator.hasNext()) {

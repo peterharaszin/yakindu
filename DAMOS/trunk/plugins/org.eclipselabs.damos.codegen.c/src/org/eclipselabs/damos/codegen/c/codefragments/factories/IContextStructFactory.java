@@ -31,16 +31,14 @@ public interface IContextStructFactory {
 	class Default implements IContextStructFactory {
 		
 		private final ITaskGenerator taskGenerator;
-		private final ITaskMessageStructFactory taskMessageStructFactory;
 
 		@Inject
-		Default(ITaskGenerator taskGenerator, ITaskMessageStructFactory taskMessageStructFactory) {
+		Default(ITaskGenerator taskGenerator) {
 			this.taskGenerator = taskGenerator;
-			this.taskMessageStructFactory = taskMessageStructFactory;
 		}
 
 		public ICodeFragment create() {
-			return new ContextStruct(taskGenerator, taskMessageStructFactory);
+			return new ContextStruct(taskGenerator);
 		}
 		
 	}

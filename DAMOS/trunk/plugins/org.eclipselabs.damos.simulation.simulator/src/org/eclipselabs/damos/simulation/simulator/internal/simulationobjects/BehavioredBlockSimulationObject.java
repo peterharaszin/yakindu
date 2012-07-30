@@ -20,20 +20,24 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.CompoundStatement;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -54,6 +58,7 @@ import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.UnionValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -70,7 +75,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 
 	private boolean hasInputSockets;
-	private IValue[] messageKinds;
+	private UnionType messageType;
+	private int[] messageKinds;
 	
 	private IInterpreterContext interpreterContext;
 	private IFunctionObject functionObject;
@@ -97,18 +103,27 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
-			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
-			messageKindDataType.setUnit(TypeUtil.createUnit());
-
 			EList<Input> inputs = block.getInputs();
 			EList<Input> socketInputs = block.getInputSockets();
 			
-			messageKinds = new IValue[inputs.size()];
+			messageType = MscriptFactory.eINSTANCE.createUnionType();
+			for (Input socketInput : socketInputs) {
+				CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
+				member.setName(socketInput.getName());
+				
+				CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+				AnonymousTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+				// TODO: Check port count
+				typeSpecifier.setType(EcoreUtil.copy(getComponentSignature().getInputDataType(socketInput.getPorts().get(0))));
+				memberList.setTypeSpecifier(typeSpecifier);
+				memberList.getMembers().add(member);
+				
+				messageType.getMemberLists().add(memberList);
+			}
+			
+			messageKinds = new int[inputs.size()];
 			for (int i = 0; i < messageKinds.length; ++i) {
-				int socketIndex = socketInputs.indexOf(inputs.get(i));
-				if (socketIndex >= 0) {
-					messageKinds[i] = Values.valueOf(getComputationContext(), messageKindDataType, socketIndex);
-				}
+				messageKinds[i] = socketInputs.indexOf(inputs.get(i));
 			}
 		}
 
@@ -172,6 +187,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDeclaration().getInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			
+			// TODO: Check if this code works for combination of sockets and non-sockets (probably not)
 			int inputIndex = hasInputSockets ? i - 1 : i;
 			if (inputIndex >= 0) {
 				BlockInput input = (BlockInput) getComponent().getInputs().get(inputIndex);
@@ -232,9 +248,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		if (hasInputSockets) {
-			IValue messageKind = messageKinds[inputIndex];
-			if (messageKind != null) {
-				inputVariables[0].setValue(0, messageKind);
+			int messageKind = messageKinds[inputIndex];
+			if (messageKind != -1) {
+				inputVariables[0].setValue(0, new UnionValue(getComputationContext(), messageType, messageKind, value));
+				return;
 			}
 			++inputIndex;
 		}

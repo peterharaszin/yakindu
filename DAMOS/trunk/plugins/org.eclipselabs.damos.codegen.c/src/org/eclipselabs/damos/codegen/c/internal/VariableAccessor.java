@@ -82,7 +82,7 @@ public class VariableAccessor implements IVariableAccessor {
 			TaskInputNode inputNode = (TaskInputNode) sourceEnd.getNode();
 			Input input = inputPort.getInput();
 			if (input.isSocket()) {
-				return TaskGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message.data." + input.getName();
+				return TaskGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message";
 			}
 			return TaskGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
 		}
@@ -134,7 +134,7 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append("&");
 		}
 		sb.append(TaskGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
-		sb.append("_message.kind");
+		sb.append("_message");
 		return sb.toString();
 	}
 	

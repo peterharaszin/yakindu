@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.internal.util;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.IComponentGenerator;
@@ -27,8 +28,17 @@ import org.eclipselabs.damos.execution.DataFlowEnd;
 import org.eclipselabs.damos.execution.Node;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
+import org.eclipselabs.damos.execution.datatype.IComponentSignature;
+import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
+import org.eclipselabs.damos.mscript.CompositeTypeMember;
+import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
+import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
+import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineUnionType;
 
 /**
  * @author Andreas Unger
@@ -82,7 +92,39 @@ public class TaskGeneratorUtil {
 	}
 	
 	public static MessageQueueInfo createMessageQueueInfoFor(IGeneratorContext context, TaskGraph taskGraph) {
-		return new MessageQueueInfo("10", "sizeof(" + TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph) + "_Message)");
+		UnionTypeDeclaration messageUnionTypeDeclaration = createMessageUnionTypeDeclaration(context, taskGraph);
+		return new MessageQueueInfo("10", "sizeof(" + messageUnionTypeDeclaration.getName() + ")");
+	}
+	
+	public static UnionTypeDeclaration createMessageUnionTypeDeclaration(IGeneratorContext context, TaskGraph taskGraph) {
+		EList<Input> inputSockets = TaskGeneratorUtil.getInputSockets(taskGraph);
+		if (!inputSockets.isEmpty()) {
+			ComponentNode componentNode = (ComponentNode) taskGraph.getInitialNodes().get(0);
+			UnionType messageType = MscriptFactory.eINSTANCE.createUnionType();
+			for (Input input : inputSockets) {
+				if (!input.getPorts().isEmpty()) {
+					IComponentGenerator generator = GeneratorNodeExtensions.getComponentGenerator(componentNode);
+					IComponentSignature signature = generator.getContext().getComponentSignature();
+					Type type = signature.getInputDataType(input.getPorts().get(0));
+
+					CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
+					member.setName(input.getName());
+					
+					CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+					AnonymousTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+					typeSpecifier.setType(type);
+					memberList.setTypeSpecifier(typeSpecifier);
+					memberList.getMembers().add(member);
+					
+					messageType.getMemberLists().add(memberList);
+				}
+			}
+			if (!messageType.getMemberLists().isEmpty()) {
+				MachineUnionType machineDataType = MachineDataTypes.create(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), messageType);
+				return context.addCodeFragment(new UnionTypeDeclaration(machineDataType), new NullProgressMonitor());
+			}
+		}
+		return null;
 	}
 
 	public static String getTaskName(Configuration configuration, TaskGraph taskGraph) {

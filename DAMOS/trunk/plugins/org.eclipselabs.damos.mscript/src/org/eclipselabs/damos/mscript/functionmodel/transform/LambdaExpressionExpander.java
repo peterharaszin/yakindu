@@ -48,6 +48,17 @@ public class LambdaExpressionExpander implements IExpressionTransformStrategy {
 		CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 		algorithmExpression.setBody(body);
 		
+		LambdaExpression transformedLambdaExpression = MscriptFactory.eINSTANCE.createLambdaExpression();
+		transformedLambdaExpression.setExpression(algorithmExpression);
+		context.getStaticEvaluationResult().setValue(transformedLambdaExpression, context.getStaticEvaluationResult().getValue(lambdaExpression));
+		
+		for (LambdaExpressionParameter parameter : lambdaExpression.getParameters()) {
+			LambdaExpressionParameter transformedParameter = MscriptFactory.eINSTANCE.createLambdaExpressionParameter();
+			transformedParameter.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), parameter.getName()));
+			context.addVariableDeclarationMapping(parameter, transformedParameter);
+			transformedLambdaExpression.getParameters().add(transformedParameter);
+		}
+		
 		context.enterScope();
 		context.setCompound(body);
 		
@@ -60,17 +71,6 @@ public class LambdaExpressionExpander implements IExpressionTransformStrategy {
 		
 		context.leaveScope();
 
-		LambdaExpression transformedLambdaExpression = MscriptFactory.eINSTANCE.createLambdaExpression();
-		transformedLambdaExpression.setExpression(algorithmExpression);
-		context.getStaticEvaluationResult().setValue(transformedLambdaExpression, context.getStaticEvaluationResult().getValue(lambdaExpression));
-		
-		for (LambdaExpressionParameter parameter : lambdaExpression.getParameters()) {
-			LambdaExpressionParameter transformedParameter = MscriptFactory.eINSTANCE.createLambdaExpressionParameter();
-			transformedParameter.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), parameter.getName()));
-			context.addVariableDeclarationMapping(parameter, transformedParameter);
-			transformedLambdaExpression.getParameters().add(transformedParameter);
-		}
-		
 		targets.get(0).assignExpression(transformedLambdaExpression);
 	}
 

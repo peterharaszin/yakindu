@@ -142,9 +142,9 @@ public class TaskGenerator implements ITaskGenerator {
 					Input input = inputPort.getInput();
 					if (input.isSocket()) {
 						out.print("{\n");
-						out.print(TaskGeneratorUtil.getTaskName(context.getConfiguration(), inputNode.getTaskGraph()) + "_Message message;\n");
-						out.printf("message.kind = %d;\n", input.getComponent().getInputSockets().indexOf(input));
-						out.printf("message.data.%s = %s;\n", input.getName(), outputVariable);
+						out.print(TaskGeneratorUtil.createMessageUnionTypeDeclaration(context, inputNode.getTaskGraph()).getName() + " message;\n");
+						out.printf("message.tag = %d;\n", input.getComponent().getInputSockets().indexOf(input));
+						out.printf("message.value.%s = %s;\n", input.getName(), outputVariable);
 						MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode.getTaskGraph());
 						out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getMessageQueueGenerator().generateSendCode(context, qualifier, "&message", messageQueueInfo));
 						out.print("}\n");

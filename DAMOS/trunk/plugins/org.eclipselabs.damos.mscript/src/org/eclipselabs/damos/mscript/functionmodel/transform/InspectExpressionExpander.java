@@ -45,6 +45,7 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 		
 		InspectExpression transformedInspectExpression = MscriptFactory.eINSTANCE.createInspectExpression();
 		transformedInspectExpression.setUnionExpression(helper.transformToVariableReference(context, inspectExpression.getUnionExpression(), "unionval", transformer));
+		context.getStaticEvaluationResult().setValue(transformedInspectExpression, context.getStaticEvaluationResult().getValue(inspectExpression));
 
 		for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
 			AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
@@ -56,6 +57,14 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 			context.enterScope();
 			context.setCompound(body);
 			
+			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
+			transformedWhenClause.setName(whenClause.getName());
+			transformedWhenClause.setExpression(algorithmExpression);
+			context.getStaticEvaluationResult().setValue(transformedWhenClause, context.getStaticEvaluationResult().getValue(whenClause));
+			
+			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
+			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
+
 			InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);
 			transformer.transform(whenClause.getExpression(), bodyTarget.asList());
 			
@@ -64,14 +73,6 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 			context.getCompound().getStatements().add(returnStatement);
 			
 			context.leaveScope();
-			
-			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
-			transformedWhenClause.setName(whenClause.getName());
-			transformedWhenClause.setExpression(algorithmExpression);
-			context.getStaticEvaluationResult().setValue(transformedInspectExpression, context.getStaticEvaluationResult().getValue(inspectExpression));
-			
-			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
-			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
 		}
 		
 		targets.get(0).assignExpression(transformedInspectExpression);

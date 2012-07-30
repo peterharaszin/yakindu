@@ -15,5 +15,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipselabs.damos.mscript.codegen.c,
  org.eclipselabs.damos.mscript.codegen.c.codefragments,
+ org.eclipselabs.damos.mscript.codegen.c.datatype,
  org.eclipselabs.damos.mscript.codegen.c.util
 

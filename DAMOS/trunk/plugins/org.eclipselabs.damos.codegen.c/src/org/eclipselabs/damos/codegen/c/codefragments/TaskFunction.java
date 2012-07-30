@@ -26,6 +26,7 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
 
 /**
  * @author Andreas Unger
@@ -98,8 +99,9 @@ public class TaskFunction extends PrimaryCodeFragment {
 					String taskInputVariableName = TaskGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
 					sb.append(TaskGeneratorUtil.getCDataTypeFor(context, taskInputVariableName, inputNode)).append(";\n");
 				} else {
-					sb.append(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
-					sb.append("_Message ");
+					UnionTypeDeclaration messageUnionTypeDeclaration = TaskGeneratorUtil.createMessageUnionTypeDeclaration(context, taskGraph);
+					sb.append(messageUnionTypeDeclaration.getName());
+					sb.append(" ");
 					sb.append(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
 					sb.append("_message;\n");
 				}

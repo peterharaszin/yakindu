@@ -26,4 +26,6 @@ public interface IExpressionTarget {
 	
 	VariableReference createVariableReference(Type targetDataType);
 	
+	VariableExpressionTarget toVariableExpressionTarget(Type targetDataType);
+	
 }

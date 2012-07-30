@@ -24,11 +24,13 @@ asynchronous blockType Counter {
 		1 as "Falling",
 		2 as "Both"
 	}
+	
+	type Message = union { boolean up, down }
 
-	stateful function main<initialValue, step, upperLimit, lowerLimit, upTrigger, downTrigger>(triggerKind, up, down) -> y {
-		check<0, 1, 10, 0, 0, 0>(int, boolean, boolean) -> int
-		check<0, 1, 10, 0, 1, 1>(int, boolean, boolean) -> int
-		check<0, 1, 10, 0, 2, 2>(int, boolean, boolean) -> int
+	stateful function main<initialValue, step, upperLimit, lowerLimit, upTrigger, downTrigger>(message) -> y {
+		check<0, 1, 10, 0, 0, 0>(Message) -> int
+		check<0, 1, 10, 0, 1, 1>(Message) -> int
+		check<0, 1, 10, 0, 2, 2>(Message) -> int
 		
 		static assert initialValue is real() :
 			error "Initial value must be numeric"
@@ -51,11 +53,8 @@ asynchronous blockType Counter {
 		static assert initialValue is real() && lowerLimit is real() => unit(initialValue) == unit(lowerLimit) :
 			error "Initial value and lower limit value must have same unit"
 	
-		static assert up is boolean:
-			error "Up input value must be boolean"
-	
-		static assert down is boolean:
-			error "Down input value must be boolean"
+		static assert message is Message:
+			error "Up and down inputs must be boolean"
 	
 		static assert upTrigger is int:
 			error "Up trigger value must be integer"
@@ -68,7 +67,8 @@ asynchronous blockType Counter {
 	
 		eq y{-1} = initialValue
 		eq y{n} =
-			if triggerKind == 0 then
+			inspect message
+			when up:
 				if static if upTrigger == 0 then up else static if upTrigger == 1 then !up else true then
 					let result = y{n-1} + step in
 						if result < upperLimit then
@@ -77,7 +77,7 @@ asynchronous blockType Counter {
 							upperLimit
 				else
 					y{n-1}
-			else
+			when down:
 				if static if downTrigger == 0 then down else static if downTrigger == 1 then !down else true then
 					let result = y{n-1} - step in
 						if result > lowerLimit then

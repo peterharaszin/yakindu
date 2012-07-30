@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
@@ -112,6 +113,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 	private static class ExpressionEvaluatorSwitch extends MscriptSwitch<IValue> {
 
 		private final ExpressionEvaluatorHelper expressionEvaluatorHelper = new ExpressionEvaluatorHelper();
+		
+		private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 		
 		private final IBuiltinFunctionLookup builtinFunctionLookup = new BuiltinFunctionLookup();
 
@@ -258,6 +261,10 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					if (unionValue != null && unionType.getMembers().indexOf(member) == unionValue.getTag()) {
 						memberValue = unionValue.getValue();
 					} else {
+						// This has to be improved
+						if (context.getStatusCollector() == null) {
+							continue;
+						}
 						memberValue = new AnyValue(context.getComputationContext(), member.getType());
 					}
 					
@@ -1558,6 +1565,18 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		@Override
 		public IValue caseLambdaExpression(LambdaExpression lambdaExpression) {
 			return new AnyValue(context.getComputationContext(), MscriptFactory.eINSTANCE.createFunctionType());
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseAlgorithmExpression(org.eclipselabs.damos.mscript.AlgorithmExpression)
+		 */
+		@Override
+		public IValue caseAlgorithmExpression(AlgorithmExpression algorithmExpression) {
+			IValue returnValue = compoundStatementInterpreter.execute(((ExpressionEvaluationContext) context).getInterpreterContext(), algorithmExpression.getBody());
+			if (returnValue == null) {
+				return InvalidValue.SINGLETON;
+			}
+			return returnValue;
 		}
 
 		/* (non-Javadoc)

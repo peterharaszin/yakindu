@@ -16,9 +16,9 @@ import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
 import org.eclipselabs.damos.codegen.c.ITaskGenerator
-import org.eclipselabs.damos.codegen.c.codefragments.factories.ITaskMessageStructFactory
 import org.eclipselabs.damos.execution.ComponentNode
 import org.eclipselabs.damos.mscript.codegen.c.Include
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -33,26 +33,19 @@ class ContextStruct extends PrimaryCodeFragment {
 
 	val ITaskGenerator taskGenerator
 	
-	val ITaskMessageStructFactory taskMessageStructFactory
-	
 	val Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>()
 	
 	boolean unused
 	
 	CharSequence content
 	
-	new(ITaskGenerator taskGenerator, ITaskMessageStructFactory taskMessageStructFactory) {
+	new(ITaskGenerator taskGenerator) {
 		this.taskGenerator = taskGenerator
-		this.taskMessageStructFactory = taskMessageStructFactory
 	}
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
-		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof TaskMessageStruct])
+		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof UnionTypeDeclaration])
 		
-		if (!context.executionFlow.taskGraphs.empty) {
-			context.addCodeFragment(taskMessageStructFactory.create(), monitor)
-		}
-	
 		val prefix = context.configuration.prefix;
 		val nodes = context.executionFlow.allNodes
 				.filter(typeof(ComponentNode))

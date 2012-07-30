@@ -54,6 +54,10 @@ public class VariableExpressionTarget extends AbstractExpressionTarget {
 		return variableReference;
 	}
 	
+	public VariableExpressionTarget toVariableExpressionTarget(Type targetDataType) {
+		return this;
+	}
+	
 	private Type getDataType() {
 		IValue value = context.getStaticEvaluationResult().getValue(variableDeclaration);
 		return value.getDataType();

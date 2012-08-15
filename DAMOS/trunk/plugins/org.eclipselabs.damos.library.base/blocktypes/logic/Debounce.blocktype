@@ -6,15 +6,15 @@ synchronous blockType Debounce {
 	output y
 
 	parameter initialOutput = false predefined { true, false }
-	parameter delay = 0.05(s)
+	parameter delay = 0.05{s}
 
 	stateful function main<initialOutput, delay, Ts>(u) -> y {
-		check<false, 0.05(s), 1(s)>(boolean) -> boolean
+		check<false, 0.05{s}, 1{s}>(boolean) -> boolean
 
 		static assert initialOutput is boolean :
 			error "Initial output must be boolean value"
 
-		static assert delay is real(s) :
+		static assert delay is real{s} :
 			error "Delay must be real value in seconds"
 
 		static assert u is boolean :
@@ -25,9 +25,9 @@ synchronous blockType Debounce {
 		eq counter{0} = 0
 		eq counter{n+1} =
 			if y != y{n-1} then
-				round(delay * 10000(1/s))
+				round(delay * 10000{1/s})
 			else
-				let c = counter - round(Ts * 10000(1/s)) in
+				let c = counter - round(Ts * 10000{1/s}) in
 					if c > 0 then
 						c
 					else

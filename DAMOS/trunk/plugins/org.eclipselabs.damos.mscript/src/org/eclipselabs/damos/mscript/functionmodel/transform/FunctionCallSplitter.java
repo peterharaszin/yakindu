@@ -17,6 +17,7 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -54,7 +55,9 @@ public class FunctionCallSplitter implements IExpressionTransformStrategy {
 		IValue functionCallValue = context.getStaticEvaluationResult().getValue(functionCall);
 
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
-		transformedFunctionCall.setFeature(functionCall.getFeature());
+		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
+		featureReference.setFeature(functionCall.getFeature());
+		transformedFunctionCall.setTarget(featureReference);
 		context.getStaticEvaluationResult().setValue(transformedFunctionCall, functionCallValue);
 
 		for (Expression argument : functionCall.getArguments()) {

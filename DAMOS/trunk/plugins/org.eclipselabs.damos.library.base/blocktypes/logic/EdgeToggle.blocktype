@@ -7,8 +7,8 @@ blockType EdgeToggle {
 
 	parameter initialValue = false predefined { true, false }
 	parameter trigger = 0 predefined {
-		0 as "Rising",
-		1 as "Falling"
+		0 alias "Rising",
+		1 alias "Falling"
 	}
 
 	stateful function main<initialValue, trigger>(u) -> y {

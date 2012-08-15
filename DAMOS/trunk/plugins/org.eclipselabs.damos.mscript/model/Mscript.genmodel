@@ -49,18 +49,43 @@
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Derivative"/>
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Root"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//UnitPrefix">
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/None"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Deca"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Hecto"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Kilo"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Mega"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Giga"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Tera"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Peta"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Exa"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Zetta"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Yotta"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Deci"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Centi"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Milli"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Micro"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Nano"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Pico"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Femto"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Atto"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Zepto"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnitPrefix/Yocto"/>
+    </genEnums>
     <genDataTypes ecoreDataType="Mscript.ecore#//RealData"/>
     <genDataTypes ecoreDataType="Mscript.ecore#//IntegerData"/>
     <genClasses ecoreClass="Mscript.ecore#//Module">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Module/packageName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Module/importDeclarations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Module/declarations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ImportDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ImportDeclaration/importedNamespace"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Declaration/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//DeclarationContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DeclarationContainer/declarations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//TypeDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeDeclaration/typeSpecifier"/>
@@ -189,6 +214,10 @@
     <genClasses ecoreClass="Mscript.ecore#//UnitConstructionOperator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitConstructionOperator/unit"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//UnitConversionExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitConversionExpression/operand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitConversionExpression/unit"/>
+    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ParenthesizedExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ParenthesizedExpression/expressions"/>
     </genClasses>
@@ -217,12 +246,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnaryExpression/operator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnaryExpression/operand"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//FeatureCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//FeatureCall/feature"/>
-    </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//VariableReference">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//VariableReference/stepExpression"/>
-      <genOperations ecoreOperation="Mscript.ecore#//VariableReference/isInitial"/>
+    <genClasses ecoreClass="Mscript.ecore#//FeatureReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//FeatureReference/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FeatureReference/stepExpression"/>
+      <genOperations ecoreOperation="Mscript.ecore#//FeatureReference/isInitial"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//StepExpression"/>
     <genClasses ecoreClass="Mscript.ecore#//RangeStepExpression">
@@ -243,7 +270,9 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StepN"/>
     <genClasses ecoreClass="Mscript.ecore#//FunctionCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionCall/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionCall/arguments"/>
+      <genOperations ecoreOperation="Mscript.ecore#//FunctionCall/getFeature"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//MemberVariableAccess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//MemberVariableAccess/target"/>
@@ -407,9 +436,20 @@
     <genClasses ecoreClass="Mscript.ecore#//UnitNumerator"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitDenominator"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitFactor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/symbol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//UnitFactor/symbol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/symbolName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/exponent"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//UnitDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitDeclaration/symbols"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//UnitSymbol">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//UnitSymbol/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitSymbol/prefix"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitSymbol/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitSymbol/scale"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//BaseUnitDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//Literal"/>
     <genClasses ecoreClass="Mscript.ecore#//NumericLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//NumericLiteral/unit"/>

@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
+import org.eclipselabs.damos.mscript.DeclarationContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,6 +126,10 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBlockType(BlockType object) {
 				return createBlockTypeAdapter();
+			}
+			@Override
+			public Adapter caseDeclarationContainer(DeclarationContainer object) {
+				return createDeclarationContainerAdapter();
 			}
 			@Override
 			public Adapter caseSystemInterface(SystemInterface object) {
@@ -309,6 +314,20 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBlockTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DeclarationContainer <em>Declaration Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.DeclarationContainer
+	 * @generated
+	 */
+	public Adapter createDeclarationContainerAdapter() {
 		return null;
 	}
 

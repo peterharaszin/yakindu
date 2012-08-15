@@ -27,13 +27,13 @@ import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelValidator;
+import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,7 +231,7 @@ public class EquationDescriptorImpl extends EObjectImpl implements EquationDescr
 	public boolean isLeftHandSideValid(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Expression lhsExpression = getEquation().getLeftHandSide();
 		String message = null;
-		if (getLeftHandSide().getParts().size() == 1 && lhsExpression instanceof VariableReference) {
+		if (getLeftHandSide().getParts().size() == 1 && MscriptUtil.isVariableReference(lhsExpression)) {
 			EquationPart part = getLeftHandSide().getParts().get(0);
 			switch (part.getVariableStep().getDescriptor().getKind()) {
 			case STATIC_PARAMETER:

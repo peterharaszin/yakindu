@@ -8,6 +8,7 @@ import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.parser.IAstFactory;
 import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
@@ -18,6 +19,7 @@ import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
+import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
@@ -64,6 +66,11 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 	@Override
 	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return MscriptLocationInFileProvider.class;
+	}
+
+	@Override
+	public Class<? extends IAstFactory> bindIAstFactory() {
+		return MscriptEcoreElementFactory.class;
 	}
 
 }

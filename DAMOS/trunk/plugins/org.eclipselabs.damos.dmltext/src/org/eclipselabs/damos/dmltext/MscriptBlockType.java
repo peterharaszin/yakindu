@@ -8,7 +8,7 @@ package org.eclipselabs.damos.dmltext;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.BlockType;
-import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.DeclarationContainer;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
 
 /**
@@ -20,7 +20,6 @@ import org.eclipselabs.damos.mscript.ImportDeclaration;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getImportDeclarations <em>Import Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,7 +27,7 @@ import org.eclipselabs.damos.mscript.ImportDeclaration;
  * @model
  * @generated
  */
-public interface MscriptBlockType extends BlockType {
+public interface MscriptBlockType extends BlockType, DeclarationContainer {
 	/**
 	 * Returns the value of the '<em><b>Import Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ImportDeclaration}.
@@ -44,21 +43,5 @@ public interface MscriptBlockType extends BlockType {
 	 * @generated
 	 */
 	EList<ImportDeclaration> getImportDeclarations();
-
-	/**
-	 * Returns the value of the '<em><b>Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Declaration}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.dmltext.DMLTextPackage#getMscriptBlockType_Declarations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Declaration> getDeclarations();
 
 } // MscriptBlockType

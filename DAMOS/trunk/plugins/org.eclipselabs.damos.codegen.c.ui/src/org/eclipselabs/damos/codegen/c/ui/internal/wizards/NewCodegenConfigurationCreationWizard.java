@@ -122,9 +122,9 @@ public class NewCodegenConfigurationCreationWizard extends NewConfigurationCreat
 		appendable.append(indent);
 		appendable.append("propagate computation {\n");
 		appendable.append(indent);
-		appendable.append("\tmap real() to float64\n");
+		appendable.append("\tmap real{?} to float64\n");
 		appendable.append(indent);
-		appendable.append("\tmap int() to int32\n");
+		appendable.append("\tmap int{?} to int32\n");
 		appendable.append(indent);
 		appendable.append("}\n");
 	}

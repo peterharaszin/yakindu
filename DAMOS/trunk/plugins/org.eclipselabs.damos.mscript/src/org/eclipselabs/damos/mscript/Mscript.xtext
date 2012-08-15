@@ -26,7 +26,8 @@ ImportDeclaration:
 Declaration:
 	TypeDeclaration |
 	EnumerationDeclaration |
-	FunctionDeclaration;
+	FunctionDeclaration |
+	UnitDeclaration;
 
 /*
  * TypeDeclaration
@@ -34,6 +35,16 @@ Declaration:
  
 TypeDeclaration:
 	'type' name=ValidID '=' typeSpecifier=TypeSpecifier;
+
+/*
+ * UnitDeclaration
+ */
+
+UnitDeclaration:
+	BaseUnitDeclaration;
+
+BaseUnitDeclaration:
+	'unit' name=ValidID;
 
 /*
  * Enumeration
@@ -123,16 +134,16 @@ NumericType:
 	RealType | IntegerType | ComplexType | GaussianType;
 	
 RealType:
-	{RealType} 'real' unit=Unit;
+	{RealType} 'real' unit=UnitWithWildcard;
 	
 IntegerType:
-	{IntegerType} 'int' unit=Unit;
+	{IntegerType} 'int' unit=UnitWithWildcard;
 	
 ComplexType:
-	{ComplexType} 'complex' unit=Unit;
+	{ComplexType} 'complex' unit=UnitWithWildcard;
 
 GaussianType:
-	{GaussianType} 'gaussian' unit=Unit;
+	{GaussianType} 'gaussian' unit=UnitWithWildcard;
 
 BooleanType:
 	{BooleanType} 'boolean';
@@ -268,23 +279,29 @@ enum PowerOperator returns OperatorKind:
 	ElementWisePower='.^';
 	
 PrefixUnaryExpression returns Expression:
-	PostfixUnaryExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=PostfixUnaryExpression;
+	UnitConversionExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=UnitConversionExpression;
 	
 enum PrefixUnaryOperator returns OperatorKind:
 	Negate='-' |
 	LogicalNot='!';
 	
+UnitConversionExpression returns Expression:
+	PostfixUnaryExpression ({UnitConversionExpression.operand=current} 'as' unit=ExplicitUnit)?;
+	
 PostfixUnaryExpression returns Expression:
-	(QualifiedFeatureCall | MemberFeatureCall) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 
 enum PostfixUnaryOperator returns OperatorKind:
 	Derivative="'";
 
-MemberFeatureCall returns Expression:
-	PrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+MemberAccess returns Expression:
+	FunctionCall (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
 		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID)
-		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')'))*;
+		| ({FunctionCall.arguments+=current} '.' target=FeatureReference '(' (arguments+=Expression (',' arguments+=Expression)*)? ')'))*;
 
+FunctionCall returns Expression:
+	PrimaryExpression ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
+	
 IterationVariableDeclaration:
 	name=ValidID;
 
@@ -294,7 +311,7 @@ ArraySubscript:
 PrimaryExpression returns Expression:
 	Literal |
 	TemplateExpression |
-	FeatureCall |
+	FeatureReference |
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
 	ArrayConcatenationOperator |
@@ -338,30 +355,21 @@ ConstantString:
 	
 ExpressionTemplateSegment hidden(WS, ML_COMMENT):
 	'\u00ab' expression=Expression '\u00bb';
-	
-FeatureCall returns Expression:
-	VariableReference | FunctionCall;
-	
-VariableReference returns Expression:
-	{VariableReference} feature=[CallableElement|ValidID] ('{' stepExpression=StepExpression '}')?;
 
-FunctionCall returns Expression:
-	{FunctionCall} feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
-
-QualifiedFeatureCall returns Expression:
-	QualifiedVariableReference | QualifiedFunctionCall;
-
-QualifiedVariableReference returns Expression:
-	{VariableReference} '.' feature=[CallableElement|QualifiedName];
+FeatureReference returns Expression:
+	{FeatureReference} (feature=[CallableElement|ValidIDWithUnit] | feature=[CallableElement|ValidID] '{' stepExpression=StepExpression '}');
 
 QualifiedFunctionCall returns Expression:
-	{FunctionCall} '.' feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
+	QualifiedFeatureReference ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
+
+QualifiedFeatureReference returns Expression:
+	{FeatureReference} '.' feature=[CallableElement|QualifiedNameWithUnit];
 
 StepExpression:
 	RangeStepExpression;
 	
 RangeStepExpression returns StepExpression:
-	AdditiveStepExpression ({RangeStepExpression.start=current} '..' end=AdditiveStepExpression)?;
+	AdditiveStepExpression ({RangeStepExpression.start=current} ':' end=AdditiveStepExpression)?;
 
 AdditiveStepExpression returns StepExpression:
 	NegateStepExpression ({AdditiveStepExpression.leftOperand=current} operator=AdditiveOperator rightOperand=NegateStepExpression)*;
@@ -403,7 +411,7 @@ AnonymousUnionTypeSpecifier returns AnonymousTypeSpecifier:
 	type=UnionType;
 
 UnitConstructionOperator:
-	'unitlit' unit=ExplicitUnit;
+	'unit' unit=ExplicitUnit;
 
 ParenthesizedExpression:
 	'(' expressions+=Expression (',' expressions+=Expression)* ')';
@@ -430,14 +438,14 @@ Statement:
 	ReturnStatement;
 	
 Assignment:
-	target=AssignableMemberFeatureCall '=' assignedExpression=Expression ';';
+	target=AssignableMemberFeatureReference '=' assignedExpression=Expression ';';
 	
-AssignableMemberFeatureCall returns Expression:
+AssignableMemberFeatureReference returns Expression:
 	AssignablePrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
 		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID))*;
 
 AssignablePrimaryExpression returns Expression:
-	VariableReference |
+	FeatureReference |
 	ParenthesizedExpression;
 
 LocalVariableDeclaration:
@@ -469,10 +477,13 @@ ReturnStatement:
  */
 	
 Unit:
-	{Unit} ('(' ')' | '(' numerator=UnitNumerator ('/' denominator=UnitDenominator)? ')' | numerator=ImplicitUnitNumerator);
+	'{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}' | numerator=ImplicitUnitNumerator;
+
+UnitWithWildcard returns Unit:
+	{Unit} '{' '?' '}' | '{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}' | numerator=ImplicitUnitNumerator;
 
 ExplicitUnit returns Unit:
-	'(' numerator=UnitNumerator ('/' denominator=UnitDenominator)? ')';
+	'{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}';
 
 UnitNumerator:
 	{UnitNumerator} ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*;
@@ -484,13 +495,17 @@ UnitDenominator:
 	factors+=UnitFactor | '(' factors+=UnitFactor ('*' factors+=UnitFactor)* ')';
 
 UnitFactor:
-	symbol=ValidID ('^' exponent=UnitExponent)?;
+//	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
+	symbolName=ValidID ('^' exponent=UnitExponent)?;
 
 UnitExponent returns ecore::EInt:
 	('-')? ValidInt;
 
 QualifiedName:
 	ValidID ('.' ValidID)*;
+
+QualifiedNameWithUnit:
+	ValidIDWithUnit ('.' ValidIDWithUnit)*;
 
 QualifiedNameWithWildcard:
 	QualifiedName ('.*' | '.' '*')?;
@@ -500,7 +515,10 @@ ValidInt returns ecore::EInt:
 
 ValidID:
 	N | IJ | E | EXP | EXPIJ | ID;
-	
+
+ValidIDWithUnit:
+	ValidID | 'unit';
+
 /*
  * Terminals
  */

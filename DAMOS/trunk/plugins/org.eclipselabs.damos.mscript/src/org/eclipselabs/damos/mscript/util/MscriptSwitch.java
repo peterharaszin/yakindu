@@ -71,6 +71,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.MODULE: {
 				Module module = (Module)theEObject;
 				T result = caseModule(module);
+				if (result == null) result = caseDeclarationContainer(module);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -83,6 +84,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.DECLARATION: {
 				Declaration declaration = (Declaration)theEObject;
 				T result = caseDeclaration(declaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.DECLARATION_CONTAINER: {
+				DeclarationContainer declarationContainer = (DeclarationContainer)theEObject;
+				T result = caseDeclarationContainer(declarationContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -350,6 +357,14 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.UNIT_CONVERSION_EXPRESSION: {
+				UnitConversionExpression unitConversionExpression = (UnitConversionExpression)theEObject;
+				T result = caseUnitConversionExpression(unitConversionExpression);
+				if (result == null) result = caseExpression(unitConversionExpression);
+				if (result == null) result = caseEvaluable(unitConversionExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.PARENTHESIZED_EXPRESSION: {
 				ParenthesizedExpression parenthesizedExpression = (ParenthesizedExpression)theEObject;
 				T result = caseParenthesizedExpression(parenthesizedExpression);
@@ -470,20 +485,11 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.FEATURE_CALL: {
-				FeatureCall featureCall = (FeatureCall)theEObject;
-				T result = caseFeatureCall(featureCall);
-				if (result == null) result = caseExpression(featureCall);
-				if (result == null) result = caseEvaluable(featureCall);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.VARIABLE_REFERENCE: {
-				VariableReference variableReference = (VariableReference)theEObject;
-				T result = caseVariableReference(variableReference);
-				if (result == null) result = caseFeatureCall(variableReference);
-				if (result == null) result = caseExpression(variableReference);
-				if (result == null) result = caseEvaluable(variableReference);
+			case MscriptPackage.FEATURE_REFERENCE: {
+				FeatureReference featureReference = (FeatureReference)theEObject;
+				T result = caseFeatureReference(featureReference);
+				if (result == null) result = caseExpression(featureReference);
+				if (result == null) result = caseEvaluable(featureReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -540,7 +546,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.FUNCTION_CALL: {
 				FunctionCall functionCall = (FunctionCall)theEObject;
 				T result = caseFunctionCall(functionCall);
-				if (result == null) result = caseFeatureCall(functionCall);
 				if (result == null) result = caseExpression(functionCall);
 				if (result == null) result = caseEvaluable(functionCall);
 				if (result == null) result = defaultCase(theEObject);
@@ -946,6 +951,27 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.UNIT_DECLARATION: {
+				UnitDeclaration unitDeclaration = (UnitDeclaration)theEObject;
+				T result = caseUnitDeclaration(unitDeclaration);
+				if (result == null) result = caseDeclaration(unitDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.UNIT_SYMBOL: {
+				UnitSymbol unitSymbol = (UnitSymbol)theEObject;
+				T result = caseUnitSymbol(unitSymbol);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.BASE_UNIT_DECLARATION: {
+				BaseUnitDeclaration baseUnitDeclaration = (BaseUnitDeclaration)theEObject;
+				T result = caseBaseUnitDeclaration(baseUnitDeclaration);
+				if (result == null) result = caseUnitDeclaration(baseUnitDeclaration);
+				if (result == null) result = caseDeclaration(baseUnitDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.LITERAL: {
 				Literal literal = (Literal)theEObject;
 				T result = caseLiteral(literal);
@@ -1075,6 +1101,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeclaration(Declaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclarationContainer(DeclarationContainer object) {
 		return null;
 	}
 
@@ -1619,6 +1660,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unit Conversion Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unit Conversion Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnitConversionExpression(UnitConversionExpression object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Parenthesized Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1829,32 +1885,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature Call</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureCall(FeatureCall object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableReference(VariableReference object) {
+	public T caseFeatureReference(FeatureReference object) {
 		return null;
 	}
 
@@ -2725,6 +2766,51 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUnitFactor(UnitFactor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unit Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unit Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnitDeclaration(UnitDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unit Symbol</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unit Symbol</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnitSymbol(UnitSymbol object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Base Unit Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Base Unit Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBaseUnitDeclaration(BaseUnitDeclaration object) {
 		return null;
 	}
 

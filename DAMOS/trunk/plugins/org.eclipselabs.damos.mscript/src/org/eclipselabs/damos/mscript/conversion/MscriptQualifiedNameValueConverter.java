@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 
@@ -29,21 +30,32 @@ public class MscriptQualifiedNameValueConverter extends QualifiedNameValueConver
 	{
 		ruleNames.add("N");
 		ruleNames.add("IJ");
-		ruleNames.add("EXPIJ");
 		ruleNames.add("E");
+		ruleNames.add("EXP");
+		ruleNames.add("EXPIJ");
 		ruleNames.add("ID");
 	}
 	
+	private final Set<String> keywordValues = new HashSet<String>();
+	
+	{
+		keywordValues.add("unit");
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter#isDelegateRuleCall(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	protected boolean isDelegateRuleCall(EObject grammarElement) {
-		if (!(grammarElement instanceof RuleCall)) {
-			return false;
+		if (grammarElement instanceof RuleCall) {
+			RuleCall ruleCall = (RuleCall) grammarElement;
+			return ruleNames.contains(ruleCall.getRule().getName());
 		}
-		RuleCall ruleCall = (RuleCall) grammarElement;
-		return ruleNames.contains(ruleCall.getRule().getName());
+		if (grammarElement instanceof Keyword) {
+			Keyword keyword = (Keyword) grammarElement;
+			return keywordValues.contains(keyword.getValue());
+		}
+		return false;
 	}
 	
 }

@@ -68,7 +68,7 @@ public class LaunchConfigurationUtil {
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_ID);
 		Map<String, String> solverConfiguration = new HashMap<String, String>();
-		solverConfiguration.put("minimumStepSize", "1e-10(s)");
+		solverConfiguration.put("minimumStepSize", "1e-10{s}");
 		solverConfiguration.put("absoluteTolerance", "1e-10");
 		solverConfiguration.put("relativeTolerance", "1e-10");
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, solverConfiguration);
@@ -108,7 +108,7 @@ public class LaunchConfigurationUtil {
 		if (realTimeSimulation) {
 			createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
 		} else {
-			String simulationTime = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10(s)");
+			String simulationTime = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10{s}");
 			if (simulationTime.trim().length() > 0) {
 				SimpleProperty property = createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
 				if (property != null) {

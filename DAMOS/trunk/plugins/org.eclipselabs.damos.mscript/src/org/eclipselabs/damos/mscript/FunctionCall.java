@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionCall#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionCall#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
@@ -24,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface FunctionCall extends FeatureCall {
+public interface FunctionCall extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Expression}.
@@ -40,5 +41,39 @@ public interface FunctionCall extends FeatureCall {
 	 * @generated
 	 */
 	EList<Expression> getArguments();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	CallableElement getFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' containment reference.
+	 * @see #setTarget(Expression)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionCall_Target()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getTarget();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionCall#getTarget <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' containment reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(Expression value);
 
 } // FunctionCall

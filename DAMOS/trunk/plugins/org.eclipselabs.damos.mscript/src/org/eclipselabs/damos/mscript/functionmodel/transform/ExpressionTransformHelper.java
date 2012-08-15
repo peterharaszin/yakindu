@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
@@ -25,9 +25,9 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  */
 public class ExpressionTransformHelper {
 
-	public VariableReference transformToVariableReference(ITransformerContext context, Expression expression, String name, IExpressionTransformer transformer) {
-		if (expression instanceof VariableReference) {
-			VariableReference newVariableReference = EcoreUtil.copy((VariableReference) expression);
+	public FeatureReference transformToVariableReference(ITransformerContext context, Expression expression, String name, IExpressionTransformer transformer) {
+		if (expression instanceof FeatureReference) {
+			FeatureReference newVariableReference = EcoreUtil.copy((FeatureReference) expression);
 			context.getStaticEvaluationResult().setValue(newVariableReference, context.getStaticEvaluationResult().getValue(expression));
 			return newVariableReference;
 		}

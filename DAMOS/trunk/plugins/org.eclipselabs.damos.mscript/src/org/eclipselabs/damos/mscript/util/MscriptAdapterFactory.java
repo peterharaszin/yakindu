@@ -81,6 +81,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createDeclarationAdapter();
 			}
 			@Override
+			public Adapter caseDeclarationContainer(DeclarationContainer object) {
+				return createDeclarationContainerAdapter();
+			}
+			@Override
 			public Adapter caseTypeDeclaration(TypeDeclaration object) {
 				return createTypeDeclarationAdapter();
 			}
@@ -221,6 +225,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createUnitConstructionOperatorAdapter();
 			}
 			@Override
+			public Adapter caseUnitConversionExpression(UnitConversionExpression object) {
+				return createUnitConversionExpressionAdapter();
+			}
+			@Override
 			public Adapter caseParenthesizedExpression(ParenthesizedExpression object) {
 				return createParenthesizedExpressionAdapter();
 			}
@@ -277,12 +285,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createUnaryExpressionAdapter();
 			}
 			@Override
-			public Adapter caseFeatureCall(FeatureCall object) {
-				return createFeatureCallAdapter();
-			}
-			@Override
-			public Adapter caseVariableReference(VariableReference object) {
-				return createVariableReferenceAdapter();
+			public Adapter caseFeatureReference(FeatureReference object) {
+				return createFeatureReferenceAdapter();
 			}
 			@Override
 			public Adapter caseStepExpression(StepExpression object) {
@@ -521,6 +525,18 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createUnitFactorAdapter();
 			}
 			@Override
+			public Adapter caseUnitDeclaration(UnitDeclaration object) {
+				return createUnitDeclarationAdapter();
+			}
+			@Override
+			public Adapter caseUnitSymbol(UnitSymbol object) {
+				return createUnitSymbolAdapter();
+			}
+			@Override
+			public Adapter caseBaseUnitDeclaration(BaseUnitDeclaration object) {
+				return createBaseUnitDeclarationAdapter();
+			}
+			@Override
 			public Adapter caseLiteral(Literal object) {
 				return createLiteralAdapter();
 			}
@@ -619,6 +635,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeclarationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DeclarationContainer <em>Declaration Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.DeclarationContainer
+	 * @generated
+	 */
+	public Adapter createDeclarationContainerAdapter() {
 		return null;
 	}
 
@@ -1127,6 +1157,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitConversionExpression <em>Unit Conversion Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.UnitConversionExpression
+	 * @generated
+	 */
+	public Adapter createUnitConversionExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.ParenthesizedExpression <em>Parenthesized Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1323,30 +1367,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FeatureCall <em>Feature Call</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FeatureReference <em>Feature Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.FeatureCall
+	 * @see org.eclipselabs.damos.mscript.FeatureReference
 	 * @generated
 	 */
-	public Adapter createFeatureCallAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableReference <em>Variable Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.VariableReference
-	 * @generated
-	 */
-	public Adapter createVariableReferenceAdapter() {
+	public Adapter createFeatureReferenceAdapter() {
 		return null;
 	}
 
@@ -2159,6 +2189,48 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnitFactorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitDeclaration <em>Unit Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.UnitDeclaration
+	 * @generated
+	 */
+	public Adapter createUnitDeclarationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitSymbol <em>Unit Symbol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.UnitSymbol
+	 * @generated
+	 */
+	public Adapter createUnitSymbolAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BaseUnitDeclaration <em>Base Unit Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.BaseUnitDeclaration
+	 * @generated
+	 */
+	public Adapter createBaseUnitDeclarationAdapter() {
 		return null;
 	}
 

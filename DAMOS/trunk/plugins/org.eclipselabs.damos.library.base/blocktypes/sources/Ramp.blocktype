@@ -5,7 +5,7 @@ blockType Ramp {
 	output _output
 	
 	parameter initialValue = 0.0
-	parameter startTime = 0(s)
-	parameter slope = 1(1/s)
+	parameter startTime = 0{s}
+	parameter slope = 1{1/s}
 
 }

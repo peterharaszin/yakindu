@@ -26,7 +26,7 @@ public class TransferFunctionTest extends AbstractSimulationTest {
 	@Test
 	public void stepResponse() {
 		Block step = createBlock(STEP, "Step");
-		setArgument(step, StepConstants.PARAMETER__STEP_TIME, "0(s)");
+		setArgument(step, StepConstants.PARAMETER__STEP_TIME, "0{s}");
 		
 		Block transferFunction = createBlock(TRANSFER_FUNCTION, "TransferFunction");
 		setArgument(transferFunction, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS, "{ 2, 3 }");
@@ -47,7 +47,7 @@ public class TransferFunctionTest extends AbstractSimulationTest {
 	 */
 	@Override
 	protected String getSimulationTime() {
-		return "30(s)";
+		return "30{s}";
 	}
 
 }

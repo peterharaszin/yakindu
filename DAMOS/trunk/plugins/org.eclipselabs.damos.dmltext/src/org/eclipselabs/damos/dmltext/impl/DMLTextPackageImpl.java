@@ -172,15 +172,6 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMscriptBlockType_Declarations() {
-		return (EReference)mscriptBlockTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMscriptSystemInterface() {
 		return mscriptSystemInterfaceEClass;
 	}
@@ -273,7 +264,6 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 
 		mscriptBlockTypeEClass = createEClass(MSCRIPT_BLOCK_TYPE);
 		createEReference(mscriptBlockTypeEClass, MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS);
-		createEReference(mscriptBlockTypeEClass, MSCRIPT_BLOCK_TYPE__DECLARATIONS);
 
 		mscriptSystemInterfaceEClass = createEClass(MSCRIPT_SYSTEM_INTERFACE);
 		createEReference(mscriptSystemInterfaceEClass, MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS);
@@ -319,6 +309,7 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 
 		// Add supertypes to classes
 		mscriptBlockTypeEClass.getESuperTypes().add(theDMLPackage.getBlockType());
+		mscriptBlockTypeEClass.getESuperTypes().add(theMscriptPackage.getDeclarationContainer());
 		mscriptSystemInterfaceEClass.getESuperTypes().add(theDMLPackage.getSystemInterface());
 		mscriptDataTypeSpecificationEClass.getESuperTypes().add(theDMLPackage.getDataTypeSpecification());
 		mscriptValueSpecificationEClass.getESuperTypes().add(theDMLPackage.getValueSpecification());
@@ -330,7 +321,6 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 
 		initEClass(mscriptBlockTypeEClass, MscriptBlockType.class, "MscriptBlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptBlockType_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptBlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMscriptBlockType_Declarations(), theMscriptPackage.getDeclaration(), null, "declarations", null, 0, -1, MscriptBlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mscriptSystemInterfaceEClass, MscriptSystemInterface.class, "MscriptSystemInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptSystemInterface_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptSystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

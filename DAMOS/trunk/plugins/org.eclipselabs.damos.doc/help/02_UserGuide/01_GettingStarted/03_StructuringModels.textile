@@ -50,7 +50,7 @@ The block diagram should now look as follows (notice the solid subsystem border)
 
 Finally, we need to add the following blocks:
 
-* *Step* block with initial value of @0@, final value of @100@, and step time of @1(s)@
+* *Step* block with initial value of @0@, final value of @100@, and step time of @1{s}@
 * *Transfer Function* block with numerator coefficient of <code>{ 200 }</code> and denominator coefficients of <code>{ 10, 1 }</code>
 * 2 *Scope* blocks
 

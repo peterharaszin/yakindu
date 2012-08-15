@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.FeatureReference;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import org.eclipselabs.damos.mscript.VariableReference;
  */
 public interface IVariableAccessStrategy {
 
-	CharSequence generateVariableReference(VariableReference variableReference);
+	CharSequence generateVariableReference(FeatureReference variableReference);
 	
 }

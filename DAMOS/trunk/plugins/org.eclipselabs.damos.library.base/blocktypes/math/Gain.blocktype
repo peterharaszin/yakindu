@@ -10,7 +10,7 @@ blockType Gain {
 	function main<gain>(u) -> y {
 		check<1>(real) -> real
 		
-		static assert u is real() :
+		static assert u is real{?} :
 			error "Input value must be numeric"
 	
 		eq y = gain * u

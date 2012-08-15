@@ -24,10 +24,10 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
@@ -41,23 +41,23 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
-import org.eclipselabs.damos.mscript.RelationalExpression;
-import org.eclipselabs.damos.mscript.StringLiteral;
-import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.RecordConstructionMember;
 import org.eclipselabs.damos.mscript.RecordConstructionOperator;
 import org.eclipselabs.damos.mscript.RecordType;
+import org.eclipselabs.damos.mscript.RelationalExpression;
+import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ExpressionStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
@@ -71,8 +71,8 @@ import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
-import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
+import org.eclipselabs.damos.mscript.interpreter.value.StringValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -569,7 +569,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 
-		public Boolean caseVariableReference(VariableReference variableReference) {
+		public Boolean caseFeatureReference(FeatureReference variableReference) {
 			out.print(variableReferenceGenerator.generate(context, variableReference));
 			return true;
 		}

@@ -14,10 +14,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -31,13 +29,12 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ModuleImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ModuleImpl#getImportDeclarations <em>Import Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ModuleImpl#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
+public class ModuleImpl extends DeclarationContainerImpl implements Module {
 	/**
 	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -65,16 +62,6 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @ordered
 	 */
 	protected EList<ImportDeclaration> importDeclarations;
-	/**
-	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeclarations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Declaration> declarations;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,25 +119,11 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Declaration> getDeclarations() {
-		if (declarations == null) {
-			declarations = new EObjectContainmentEList<Declaration>(Declaration.class, this, MscriptPackage.MODULE__DECLARATIONS);
-		}
-		return declarations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MscriptPackage.MODULE__IMPORT_DECLARATIONS:
 				return ((InternalEList<?>)getImportDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.MODULE__DECLARATIONS:
-				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -167,8 +140,6 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 				return getPackageName();
 			case MscriptPackage.MODULE__IMPORT_DECLARATIONS:
 				return getImportDeclarations();
-			case MscriptPackage.MODULE__DECLARATIONS:
-				return getDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,10 +160,6 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 				getImportDeclarations().clear();
 				getImportDeclarations().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
-			case MscriptPackage.MODULE__DECLARATIONS:
-				getDeclarations().clear();
-				getDeclarations().addAll((Collection<? extends Declaration>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -211,9 +178,6 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			case MscriptPackage.MODULE__IMPORT_DECLARATIONS:
 				getImportDeclarations().clear();
 				return;
-			case MscriptPackage.MODULE__DECLARATIONS:
-				getDeclarations().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,8 +194,6 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
 			case MscriptPackage.MODULE__IMPORT_DECLARATIONS:
 				return importDeclarations != null && !importDeclarations.isEmpty();
-			case MscriptPackage.MODULE__DECLARATIONS:
-				return declarations != null && !declarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

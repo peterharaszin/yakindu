@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -35,18 +35,15 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		this.staticEvaluationResult = staticEvaluationResult;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy#getVariableAccessString(org.eclipselabs.mscript.language.il.VariableAccess)
-	 */
-	public String generateVariableReference(VariableReference variableReference) {
+	public String generateVariableReference(FeatureReference variableReference) {
 		return new VariableAccessSwitch(variableReference).doSwitch(variableReference.getFeature());
 	}
 
 	public class VariableAccessSwitch extends MscriptSwitch<String> {
 
-		private VariableReference variableReference;
+		private FeatureReference variableReference;
 		
-		public VariableAccessSwitch(VariableReference variableReference) {
+		public VariableAccessSwitch(FeatureReference variableReference) {
 			this.variableReference = variableReference;
 		}
 

@@ -16,13 +16,13 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.CompoundStatement;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.ReturnStatement;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -65,8 +65,8 @@ public class CompoundStatementInterpreter implements ICompoundStatementInterpret
 		@Override
 		public Boolean caseAssignment(Assignment assignment) {
 			ExpressionEvaluationContext expressionEvaluationContext = new ExpressionEvaluationContext(context);
-			if (assignment.getTarget() instanceof VariableReference) {
-				VariableReference variableReference = (VariableReference) assignment.getTarget();
+			if (assignment.getTarget() instanceof FeatureReference) {
+				FeatureReference variableReference = (FeatureReference) assignment.getTarget();
 
 				if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 					throw new IllegalArgumentException();
@@ -78,8 +78,8 @@ public class CompoundStatementInterpreter implements ICompoundStatementInterpret
 				variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), value);
 			} else if (assignment.getTarget() instanceof ArrayElementAccess) {
 				ArrayElementAccess arrayElementAccess = (ArrayElementAccess) assignment.getTarget();
-				if (arrayElementAccess.getArray() instanceof VariableReference) {
-					VariableReference variableReference = (VariableReference) arrayElementAccess.getArray();
+				if (arrayElementAccess.getArray() instanceof FeatureReference) {
+					FeatureReference variableReference = (FeatureReference) arrayElementAccess.getArray();
 					if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 						throw new IllegalArgumentException();
 					}

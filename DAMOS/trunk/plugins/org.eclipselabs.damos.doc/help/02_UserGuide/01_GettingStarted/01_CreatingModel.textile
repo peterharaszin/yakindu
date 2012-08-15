@@ -46,7 +46,7 @@ When adding new blocks to the block diagram, the values of the block parameters 
 
 In our example model, we need to change the following parameters:
 * The gain value of the *Gain* block will be set to 10: !01_CreatingModel_images/GainParameters.png(Gain parameters)!
-* The gain value of the *Integrator* block will be set to 10(1/s): !01_CreatingModel_images/IntegratorParameters.png(Integrator parameters)!
+* The gain value of the *Integrator* block will be set to 10{1/s}: !01_CreatingModel_images/IntegratorParameters.png(Integrator parameters)!
 
 Note that you can also set the gain value of the *Gain* block by clicking (not double-clicking!) on the gain value of the *Gain* block (do not move the mouse after the click). This _direct editing_ behavior can also be found with other blocks.
 

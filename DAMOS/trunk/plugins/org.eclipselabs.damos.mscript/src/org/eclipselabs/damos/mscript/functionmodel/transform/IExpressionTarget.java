@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.VariableReference;
 
 
 /**
@@ -24,7 +24,7 @@ public interface IExpressionTarget {
 
 	void assignExpression(Expression expression);
 	
-	VariableReference createVariableReference(Type targetDataType);
+	FeatureReference createVariableReference(Type targetDataType);
 	
 	VariableExpressionTarget toVariableExpressionTarget(Type targetDataType);
 	

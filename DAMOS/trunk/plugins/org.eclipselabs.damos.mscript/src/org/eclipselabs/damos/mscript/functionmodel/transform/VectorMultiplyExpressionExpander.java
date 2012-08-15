@@ -21,6 +21,7 @@ import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
@@ -31,7 +32,6 @@ import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
@@ -71,17 +71,17 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		
 		Type resultDataType = leftArrayType.getElementType().evaluate(OperatorKind.MULTIPLY, rightArrayType.getElementType());
 		
-		VariableReference leftVariableReference;
-		VariableReference rightVariableReference;
+		FeatureReference leftVariableReference;
+		FeatureReference rightVariableReference;
 		
-		if (leftOperand instanceof VariableReference) {
-			leftVariableReference = (VariableReference) leftOperand;
+		if (leftOperand instanceof FeatureReference) {
+			leftVariableReference = (FeatureReference) leftOperand;
 		} else {
 			leftVariableReference = createVariableReference(context, leftOperand, "left", transformer);
 		}
 
-		if (rightOperand instanceof VariableReference) {
-			rightVariableReference = (VariableReference) rightOperand;
+		if (rightOperand instanceof FeatureReference) {
+			rightVariableReference = (FeatureReference) rightOperand;
 		} else {
 			rightVariableReference = createVariableReference(context, rightOperand, "right", transformer);
 		}
@@ -123,7 +123,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 	 * @param index
 	 * @return
 	 */
-	private Expression createArrayElementAccess(ITransformerContext context, VariableReference operand, ArrayType arrayType, int index) {
+	private Expression createArrayElementAccess(ITransformerContext context, FeatureReference operand, ArrayType arrayType, int index) {
 		IValue value = context.getStaticEvaluationResult().getValue(operand);
 		if (value instanceof IArrayValue) {
 			IValue elementValue = ((IArrayValue) value).get(index);
@@ -146,7 +146,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 			}
 		}
 		
-		VariableReference variableReference = EcoreUtil.copy(operand);
+		FeatureReference variableReference = EcoreUtil.copy(operand);
 		setDataType(context, variableReference, EcoreUtil.copy(arrayType));
 		IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 		integerLiteral.setUnit(TypeUtil.createUnit());
@@ -163,7 +163,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		return arrayElementAccess;
 	}
 	
-	private VariableReference createVariableReference(ITransformerContext context, Expression operand, String name, IExpressionTransformer transformer) {
+	private FeatureReference createVariableReference(ITransformerContext context, Expression operand, String name, IExpressionTransformer transformer) {
 		LocalVariableDeclaration variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), name));
 		context.getCompound().getStatements().add(variableDeclaration);
@@ -182,7 +182,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		
 		context.leaveScope();
 
-		VariableReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
+		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
 		context.getStaticEvaluationResult().setValue(variableReference, value);
 		return variableReference;
 	}

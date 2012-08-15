@@ -16,9 +16,9 @@ import java.util.List;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BinaryExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -65,8 +65,8 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 
 		IValue binaryExpressionValue = context.getStaticEvaluationResult().getValue(binaryExpression);
 
-		VariableReference leftVariableReference = helper.transformToVariableReference(context, leftOperand, "left", transformer);
-		VariableReference rightVariableReference = helper.transformToVariableReference(context, rightOperand, "right", transformer);
+		FeatureReference leftVariableReference = helper.transformToVariableReference(context, leftOperand, "left", transformer);
+		FeatureReference rightVariableReference = helper.transformToVariableReference(context, rightOperand, "right", transformer);
 		
 		BinaryExpression transformedBinaryExpression = (BinaryExpression) MscriptFactory.eINSTANCE.create(binaryExpression.eClass());
 		transformedBinaryExpression.setLeftOperand(leftVariableReference);

@@ -6,7 +6,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -20,7 +20,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -31,7 +31,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -42,7 +42,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -74,7 +74,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -85,7 +85,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -96,7 +96,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>
@@ -128,7 +128,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbol="s"/>
+            <factors symbolName="s"/>
           </numerator>
         </unit>
       </type>

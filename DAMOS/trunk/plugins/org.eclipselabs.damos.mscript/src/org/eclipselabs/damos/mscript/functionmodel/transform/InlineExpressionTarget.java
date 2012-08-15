@@ -13,13 +13,13 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.StringType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
@@ -46,7 +46,7 @@ public class InlineExpressionTarget extends AbstractExpressionTarget {
 		assignedExpression = expression;
 	}
 
-	public VariableReference createVariableReference(Type targetDataType) {
+	public FeatureReference createVariableReference(Type targetDataType) {
 		if (variableDeclaration == null) {
 			variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 			variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(targetDataType)));
@@ -72,11 +72,11 @@ public class InlineExpressionTarget extends AbstractExpressionTarget {
 	/**
 	 * @return
 	 */
-	private VariableReference createVariableReference() {
+	private FeatureReference createVariableReference() {
 		if (variableDeclaration == null || targetDataType == null) {
 			throw new IllegalStateException();
 		}
-		VariableReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
+		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
 		context.getStaticEvaluationResult().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), targetDataType));
 		return variableReference;
 	}

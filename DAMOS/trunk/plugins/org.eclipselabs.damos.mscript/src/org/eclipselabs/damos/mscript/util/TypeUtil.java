@@ -182,7 +182,7 @@ public class TypeUtil {
 				factor.setExponent(factor.getExponent() + 1);
 			} else {
 				factor = MscriptFactory.eINSTANCE.createUnitFactor();
-				factor.setSymbol(symbol);
+				factor.setSymbolName(symbol);
 				unit.getNumerator().getFactors().add(factor);
 			}
 		}

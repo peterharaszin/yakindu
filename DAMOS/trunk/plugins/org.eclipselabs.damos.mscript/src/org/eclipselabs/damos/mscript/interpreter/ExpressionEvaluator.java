@@ -40,6 +40,7 @@ import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionList;
 import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
@@ -78,7 +79,6 @@ import org.eclipselabs.damos.mscript.UnionConstructionOperator;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookup;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
@@ -1300,11 +1300,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			return arrayValue.get(indices);
 		}
 
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseVariableAccess(org.eclipselabs.mscript.language.ast.VariableAccess)
-		 */
 		@Override
-		public IValue caseVariableReference(VariableReference variableReference) {
+		public IValue caseFeatureReference(FeatureReference variableReference) {
 			if (!isResolved(variableReference.getFeature())) {
 				return InvalidValue.SINGLETON;
 			}

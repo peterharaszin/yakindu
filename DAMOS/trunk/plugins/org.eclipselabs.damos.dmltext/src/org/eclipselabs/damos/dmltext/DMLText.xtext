@@ -53,10 +53,10 @@ MscriptParameter returns Parameter:
 		('predefined' '{' predefinedValues+=MscriptParameterPredefinedValue (',' predefinedValues+=MscriptParameterPredefinedValue)* '}')?;
 
 OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
-	value=StringValueSpecification ('as' alias=STRING)?;
+	value=StringValueSpecification ('alias' alias=STRING)?;
 
 MscriptParameterPredefinedValue returns ParameterPredefinedValue:
-	value=MscriptValueSpecification ('as' alias=STRING)?;
+	value=MscriptValueSpecification ('alias' alias=STRING)?;
 
 enum ParameterVisibilityKind:
 	Public='public' | Private='private';

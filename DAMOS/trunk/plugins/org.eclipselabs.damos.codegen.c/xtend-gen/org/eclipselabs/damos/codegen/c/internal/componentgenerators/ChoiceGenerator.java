@@ -22,7 +22,7 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.VariableReference;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
@@ -133,15 +133,15 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
       Configuration _configuration = this.getConfiguration();
       MscriptGeneratorConfiguration _mscriptGeneratorConfiguration = new MscriptGeneratorConfiguration(_computationModel, _configuration);
       StaticEvaluationResult _staticEvaluationResult = new StaticEvaluationResult();
-      final Function1<VariableReference,String> _function = new Function1<VariableReference,String>() {
-          public String apply(final VariableReference v) {
+      final Function1<FeatureReference,String> _function = new Function1<FeatureReference,String>() {
+          public String apply(final FeatureReference v) {
             return "";
           }
         };
       IComponentGeneratorContext _context = this.getContext();
       ICodeFragmentCollector _codeFragmentCollector = _context.getCodeFragmentCollector();
       MscriptGeneratorContext _mscriptGeneratorContext = new MscriptGeneratorContext(_mscriptGeneratorConfiguration, _staticEvaluationResult, new IVariableAccessStrategy() {
-          public CharSequence generateVariableReference(VariableReference variableReference) {
+          public CharSequence generateVariableReference(FeatureReference variableReference) {
             return _function.apply(variableReference);
           }
       }, _codeFragmentCollector);

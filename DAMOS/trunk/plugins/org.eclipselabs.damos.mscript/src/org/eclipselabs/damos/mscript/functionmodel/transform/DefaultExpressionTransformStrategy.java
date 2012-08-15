@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
@@ -50,7 +51,6 @@ import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnionConstructionOperator;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 
@@ -77,8 +77,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			transformInspectExpression(context, targets, transformer, (InspectExpression) expression);
 		} else if (expression instanceof RangeExpression) {
 			transformRangeExpression(context, targets, transformer, (RangeExpression) expression);
-		} else if (expression instanceof VariableReference) {
-			transformVariableReference(context, targets, transformer, (VariableReference) expression);
+		} else if (expression instanceof FeatureReference) {
+			transformVariableReference(context, targets, transformer, (FeatureReference) expression);
 		} else if (expression instanceof FunctionCall) {
 			transformFunctionCall(context, targets, transformer, (FunctionCall) expression);
 		} else if (expression instanceof ImpliesExpression) {
@@ -173,7 +173,7 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		assignExpression(context, rangeExpression, transformedRangeExpression, targets);
 	}
 	
-	protected void transformVariableReference(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, VariableReference variableReference) {
+	protected void transformVariableReference(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, FeatureReference variableReference) {
 		if (variableReference.getFeature() instanceof VariableDeclaration) {
 			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 			if (variableDeclaration != null) {
@@ -187,7 +187,9 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 
 	protected void transformFunctionCall(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, FunctionCall functionCall) {
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
-		transformedFunctionCall.setFeature(functionCall.getFeature());
+		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
+		featureReference.setFeature(functionCall.getFeature());
+		transformedFunctionCall.setTarget(featureReference);
 		for (Expression expression : functionCall.getArguments()) {
 			Expression transformedExpression = transformNext(context, expression, transformer);
 			if (transformedExpression instanceof InvalidExpression) {

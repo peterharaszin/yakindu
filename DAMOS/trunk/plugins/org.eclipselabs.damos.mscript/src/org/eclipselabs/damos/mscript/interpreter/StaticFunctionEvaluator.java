@@ -31,6 +31,7 @@ import org.eclipselabs.damos.mscript.AssertionStatusKind;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -38,7 +39,6 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -190,7 +190,7 @@ public class StaticFunctionEvaluator {
 					leftHandSideExpression = ((UnaryExpression) leftHandSideExpression).getOperand();
 					derivative = true;
 				}
-				VariableReference variableReference = (VariableReference) leftHandSideExpression;
+				FeatureReference variableReference = (FeatureReference) leftHandSideExpression;
 				
 				IValue leftHandSideValue = result.getValue(variableReference.getFeature());
 				IValue rightHandSideValue = result.getValue(equationDescriptor.getRightHandSide().getExpression());
@@ -242,7 +242,7 @@ public class StaticFunctionEvaluator {
 				EquationDescriptor equationDescriptor = it.next();
 				boolean defined = true;
 				for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
-					VariableReference variableReference = (VariableReference) part.getVariableAccess();
+					FeatureReference variableReference = (FeatureReference) part.getVariableAccess();
 					if (variableReference.getFeature() instanceof StaticParameterDeclaration || variableReference.getFeature() instanceof InputParameterDeclaration) {
 						continue;
 					}
@@ -259,8 +259,8 @@ public class StaticFunctionEvaluator {
 							expression = postfixExpression.getOperand();
 						}
 					}
-					if (expression instanceof VariableReference) {
-						VariableReference variableReference = (VariableReference) expression;
+					if (expression instanceof FeatureReference) {
+						FeatureReference variableReference = (FeatureReference) expression;
 						definedFeatures.add(variableReference.getFeature());
 						sortedEquations.add(equationDescriptor);
 						it.remove();
@@ -272,7 +272,7 @@ public class StaticFunctionEvaluator {
 		
 		for (EquationDescriptor equationDescriptor : backlog) {
 			for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
-				VariableReference variableReference = (VariableReference) part.getVariableAccess();
+				FeatureReference variableReference = (FeatureReference) part.getVariableAccess();
 				if (!definedFeatures.contains(variableReference.getFeature())) {
 					result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 							"The data type of the variable " + variableReference.getFeature().getName()
@@ -298,8 +298,8 @@ public class StaticFunctionEvaluator {
 				boolean defined = true;
 				for (TreeIterator<EObject> initializerIt = constant.getInitializer().eAllContents(); initializerIt.hasNext();) {
 					EObject next = initializerIt.next();
-					if (next instanceof VariableReference) {
-						VariableReference variableReference = (VariableReference) next;
+					if (next instanceof FeatureReference) {
+						FeatureReference variableReference = (FeatureReference) next;
 						if (!(variableReference.getFeature() instanceof ConstantDeclaration)) {
 							continue;
 						}
@@ -321,8 +321,8 @@ public class StaticFunctionEvaluator {
 		for (ConstantDeclaration constant : backlog) {
 			for (TreeIterator<EObject> initializerIt = constant.getInitializer().eAllContents(); initializerIt.hasNext();) {
 				EObject next = initializerIt.next();
-				if (next instanceof VariableReference) {
-					VariableReference variableReference = (VariableReference) next;
+				if (next instanceof FeatureReference) {
+					FeatureReference variableReference = (FeatureReference) next;
 					if (!definedConstants.contains(variableReference.getFeature())) {
 						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 								"The value of the constant " + variableReference.getFeature().getName()

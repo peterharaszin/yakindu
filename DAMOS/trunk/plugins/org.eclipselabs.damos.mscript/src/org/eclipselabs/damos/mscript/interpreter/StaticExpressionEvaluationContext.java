@@ -13,8 +13,8 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -48,8 +48,8 @@ public class StaticExpressionEvaluationContext extends AbstractExpressionEvaluat
 	}
 	
 	public IValue getValue(Evaluable evaluable) {
-		if (evaluable instanceof VariableReference) {
-			CallableElement feature = ((VariableReference) evaluable).getFeature();
+		if (evaluable instanceof FeatureReference) {
+			CallableElement feature = ((FeatureReference) evaluable).getFeature();
 			if (feature instanceof VariableDeclaration) {
 				IVariable variable = scope.findInEnclosingScopes((VariableDeclaration) feature);
 				if (variable != null) {

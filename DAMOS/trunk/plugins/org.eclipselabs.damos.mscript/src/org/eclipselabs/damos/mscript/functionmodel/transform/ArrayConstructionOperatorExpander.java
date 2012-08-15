@@ -21,11 +21,11 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
@@ -67,7 +67,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 			if (elementExpression instanceof ArrayConstructionOperator) {
 				transformArrayExpression(context, transformer, (ArrayConstructionOperator) elementExpression, arrayType, targets, currentIndices);
 			} else if (currentIndices.size() == arrayType.getDimensionality()) {
-				VariableReference variableReference = targets.get(0).createVariableReference(arrayType);
+				FeatureReference variableReference = targets.get(0).createVariableReference(arrayType);
 				
 				ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 				arrayElementAccess.setArray(variableReference);
@@ -123,7 +123,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 				}
 				do {
 					Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
-					VariableReference variableReference = targets.get(0).createVariableReference(arrayType);
+					FeatureReference variableReference = targets.get(0).createVariableReference(arrayType);
 					
 					ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 					arrayElementAccess.setArray(variableReference);
@@ -141,7 +141,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					if (elementExpressionType instanceof ArrayType) {
 						ArrayType elementExpressionArrayType = (ArrayType) elementExpressionType;
 
-						VariableReference elementVariableReference = MscriptUtil.createVariableReference(staticEvaluationResult, elementVariableDeclaration, 0, false);
+						FeatureReference elementVariableReference = MscriptUtil.createVariableReference(staticEvaluationResult, elementVariableDeclaration, 0, false);
 						staticEvaluationResult.setValue(elementVariableReference, new AnyValue(computationContext, elementExpressionArrayType.getElementType()));
 
 						ArrayElementAccess rightArrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();

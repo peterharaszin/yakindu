@@ -81,7 +81,7 @@ public abstract class UnitProductImpl extends MinimalEObjectImpl.Container imple
 	 */
 	public UnitFactor getFactor(String symbol) {
 		for (UnitFactor factor : getFactors()) {
-			if (symbol.equals(factor.getSymbol())) {
+			if (symbol.equals(factor.getSymbolName())) {
 				return factor;
 			}
 		}

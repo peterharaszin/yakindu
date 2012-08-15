@@ -45,9 +45,9 @@ public class NewBlockTypeCreationWizard extends NewDMLTextCreationWizard {
 		appendable.append("\tparameter gain = 1\n\n");
 		appendable.append("\tfunction main<gain>(x) -> y {\n");
 		appendable.append("\t\tcheck<1>(real) -> real\n\n");		
-		appendable.append("\t\tstatic assert gain is real() :\n");
+		appendable.append("\t\tstatic assert gain is real{?} :\n");
 		appendable.append("\t\t\terror \"Gain must be real value\"\n\n");
-		appendable.append("\t\tstatic assert x is real() :\n");
+		appendable.append("\t\tstatic assert x is real{?} :\n");
 		appendable.append("\t\t\terror \"X must be real value\"\n\n");
 		appendable.append("\t\teq y = gain * x\n");
 		appendable.append("\t}\n");

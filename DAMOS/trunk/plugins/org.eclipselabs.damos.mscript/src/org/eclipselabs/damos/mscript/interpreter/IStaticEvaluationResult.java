@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -32,8 +32,8 @@ public interface IStaticEvaluationResult extends IStatusCollector {
 	IValue getValue(Evaluable evaluable);
 	void setValue(Evaluable evaluable, IValue value);
 	
-	int getStepIndex(VariableReference variableReference);
-	void setStepIndex(VariableReference variableReference, int stepIndex);
+	int getStepIndex(FeatureReference variableReference);
+	void setStepIndex(FeatureReference variableReference, int stepIndex);
 	
 	int getCircularBufferSize(VariableDeclaration variableDeclaration);
 	void setCircularBufferSize(VariableDeclaration variableDeclaration, int size);

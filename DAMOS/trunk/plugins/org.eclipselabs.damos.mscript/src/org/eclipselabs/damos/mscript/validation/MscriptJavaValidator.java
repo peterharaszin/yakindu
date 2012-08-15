@@ -15,11 +15,11 @@ import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
-import org.eclipselabs.damos.mscript.BuiltinVariableDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -33,7 +33,6 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
@@ -43,8 +42,6 @@ import org.eclipselabs.damos.mscript.SwitchExpression;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeDeclaration;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
@@ -82,21 +79,21 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		}
 	}
 	
-	@Check
-	public void checkVariableReferenceReferencesVariable(VariableReference variableReference) {
-		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
-			return;
-		}
-		CallableElement ce = variableReference.getFeature();
-		if (!(ce instanceof ParameterDeclaration
-				|| ce instanceof VariableDeclaration
-				|| ce instanceof BuiltinVariableDeclaration)) {
-			error("Invalid variable reference " + variableReference.getFeature().getName(), null);
-		}
-	}
+//	@Check
+//	public void checkVariableReferenceReferencesVariable(VariableReference variableReference) {
+//		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
+//			return;
+//		}
+//		CallableElement ce = variableReference.getFeature();
+//		if (!(ce instanceof ParameterDeclaration
+//				|| ce instanceof VariableDeclaration
+//				|| ce instanceof BuiltinVariableDeclaration)) {
+//			error("Invalid variable reference " + variableReference.getFeature().getName(), null);
+//		}
+//	}
 
 	@Check
-	public void checkVariableAccessStepExpressionApplication(VariableReference variableReference) {
+	public void checkVariableAccessStepExpressionApplication(FeatureReference variableReference) {
 		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
 			return;
 		}

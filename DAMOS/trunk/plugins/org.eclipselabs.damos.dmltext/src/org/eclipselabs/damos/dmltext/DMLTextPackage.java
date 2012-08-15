@@ -197,22 +197,22 @@ public interface DMLTextPackage extends EPackage {
 	int MSCRIPT_BLOCK_TYPE__BOUNDARY = DMLPackage.BLOCK_TYPE__BOUNDARY;
 
 	/**
-	 * The feature id for the '<em><b>Import Declarations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSCRIPT_BLOCK_TYPE__DECLARATIONS = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 1;
+	int MSCRIPT_BLOCK_TYPE__DECLARATIONS = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Import Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Mscript Block Type</em>' class.
@@ -417,17 +417,6 @@ public interface DMLTextPackage extends EPackage {
 	EReference getMscriptBlockType_ImportDeclarations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getDeclarations <em>Declarations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Declarations</em>'.
-	 * @see org.eclipselabs.damos.dmltext.MscriptBlockType#getDeclarations()
-	 * @see #getMscriptBlockType()
-	 * @generated
-	 */
-	EReference getMscriptBlockType_Declarations();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptSystemInterface <em>Mscript System Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,14 +555,6 @@ public interface DMLTextPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS = eINSTANCE.getMscriptBlockType_ImportDeclarations();
-
-		/**
-		 * The meta object literal for the '<em><b>Declarations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MSCRIPT_BLOCK_TYPE__DECLARATIONS = eINSTANCE.getMscriptBlockType_Declarations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl <em>Mscript System Interface</em>}' class.

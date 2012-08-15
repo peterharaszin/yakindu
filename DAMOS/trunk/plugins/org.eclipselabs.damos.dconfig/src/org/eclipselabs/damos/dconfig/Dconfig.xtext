@@ -126,7 +126,7 @@ QualifiedNameWithoutIJ:
 	ValidIDWithoutIJ ('.' ValidIDWithoutIJ)*;
 
 ValidIDWithoutIJ:
-	N | E | EXP| ID;
+	N | E | EXP | ID;
 
 ValidDouble returns ecore::EDouble hidden():
 	('-')? ValidInt (('.' ValidInt (EXP | (E ('+' | '-') ValidInt))?) | (EXP | (E ('+' | '-') ValidInt)))?;

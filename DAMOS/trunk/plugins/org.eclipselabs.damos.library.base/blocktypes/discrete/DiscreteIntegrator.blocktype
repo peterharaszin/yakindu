@@ -7,35 +7,35 @@ synchronous blockType DiscreteIntegrator {
 	}
 	output y
 	
-	parameter gain = 1(1/s) // normalize
+	parameter gain = 1{1/s} // normalize
 	parameter initialCondition = 0
 	parameter accumulate = false predefined {
-		true as "yes",
-		false as "no"
+		true alias "yes",
+		false alias "no"
 	}
 
 	stateful function main<gain, initialCondition, accumulate, Ts>(u) -> y {
-		check<1, 0(kg*s), false, 1(s)>(real(kg)) -> real(kg*s)
-		check<1, 0(s), false, 1(s)>(real) -> real(s)
-		check<1(1/s), 0, false, 1(s)>(real) -> real
+		check<1, 0{kg*s}, false, 1{s}>(real{kg}) -> real{kg*s}
+		check<1, 0{s}, false, 1{s}>(real) -> real{s}
+		check<1{1/s}, 0, false, 1{s}>(real) -> real
 		// accumulate checks
-		check<1, 0(kg), true, 1(s)>(real(kg)) -> real(kg)
-		check<1, 0, true, 1(s)>(real) -> real
-		check<1, 0, true, 1(s)>(real) -> real
+		check<1, 0{kg}, true, 1{s}>(real{kg}) -> real{kg}
+		check<1, 0, true, 1{s}>(real) -> real
+		check<1, 0, true, 1{s}>(real) -> real
 	
-		static assert u is real() :
+		static assert u is real{?} :
 			error "Input value must be numeric"
 	
-		static assert initialCondition is real() :
+		static assert initialCondition is real{?} :
 			error "Initial value must be numeric"
 			
-		static assert !accumulate && initialCondition is real() && u is real() && gain is real() => unit(initialCondition) == unit(gain) * unit(u) * unitlit(s) :
+		static assert !accumulate && initialCondition is real{?} && u is real{?} && gain is real{?} => unit(initialCondition) == unit(gain) * unit(u) * unit{s} :
 			error "Initial condition unit must be input value unit times gain unit times second"
 			
-		static assert accumulate && initialCondition is real() && u is real() && gain is real() => unit(initialCondition) == unit(gain) * unit(u) :
+		static assert accumulate && initialCondition is real{?} && u is real{?} && gain is real{?} => unit(initialCondition) == unit(gain) * unit(u) :
 			error "Initial condition unit must be input value unit times gain unit"
 
-		static assert gain is real() :
+		static assert gain is real{?} :
 			error "Gain value must be numeric"
 			
 		static assert accumulate is boolean :

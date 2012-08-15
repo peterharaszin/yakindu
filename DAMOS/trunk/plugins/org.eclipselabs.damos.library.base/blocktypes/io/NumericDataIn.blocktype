@@ -7,6 +7,6 @@ discrete boundary blockType NumericDataIn {
 	
 	parameter minimumValue = 0
 	parameter maximumValue = 1
-	parameter integer = false predefined { true as "yes", false as "no" }
+	parameter integer = false predefined { true alias "yes", false alias "no" }
 
 }

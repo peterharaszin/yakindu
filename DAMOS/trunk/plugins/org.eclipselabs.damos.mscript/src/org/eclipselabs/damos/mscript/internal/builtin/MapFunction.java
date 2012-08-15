@@ -45,7 +45,7 @@ public class MapFunction extends AbstractBuiltinFunction {
 	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
 		if (functionCall.getArguments().size() != 2) {
 			if (context.getStatusCollector() != null) {
-				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function expects 2 arguments", functionCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature()));
+				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function expects 2 arguments", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
 			}
 			return InvalidValue.SINGLETON;
 		}
@@ -57,7 +57,7 @@ public class MapFunction extends AbstractBuiltinFunction {
 
 		if (!(targetValue.getDataType() instanceof ArrayType)) {
 			if (context.getStatusCollector() != null) {
-				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function target must be array type", functionCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature()));
+				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function target must be array type", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
 			}
 			return InvalidValue.SINGLETON;
 		}
@@ -66,7 +66,7 @@ public class MapFunction extends AbstractBuiltinFunction {
 
 		if (arrayType.getDimensionality() != 1) {
 			if (context.getStatusCollector() != null) {
-				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function target array type must have dimensionality of 1", functionCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature()));
+				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function target array type must have dimensionality of 1", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
 			}
 			return InvalidValue.SINGLETON;
 		}

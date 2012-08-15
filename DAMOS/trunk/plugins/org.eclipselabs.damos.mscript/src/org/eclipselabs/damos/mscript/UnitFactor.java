@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbolName <em>Symbol Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getExponent <em>Exponent</em>}</li>
  * </ul>
  * </p>
@@ -27,30 +28,56 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface UnitFactor extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
+	 * Returns the value of the '<em><b>Symbol</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Symbol</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Symbol</em>' reference.
+	 * @see #setSymbol(UnitSymbol)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnitFactor_Symbol()
+	 * @model
+	 * @generated
+	 */
+	UnitSymbol getSymbol();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbol <em>Symbol</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Symbol</em>' reference.
+	 * @see #getSymbol()
+	 * @generated
+	 */
+	void setSymbol(UnitSymbol value);
+
+	/**
+	 * Returns the value of the '<em><b>Symbol Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Symbol</em>' attribute.
-	 * @see #setSymbol(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnitFactor_Symbol()
+	 * @return the value of the '<em>Symbol Name</em>' attribute.
+	 * @see #setSymbolName(String)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnitFactor_SymbolName()
 	 * @model
 	 * @generated
 	 */
-	String getSymbol();
+	String getSymbolName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbol <em>Symbol</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbolName <em>Symbol Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Symbol</em>' attribute.
-	 * @see #getSymbol()
+	 * @param value the new value of the '<em>Symbol Name</em>' attribute.
+	 * @see #getSymbolName()
 	 * @generated
 	 */
-	void setSymbol(String value);
+	void setSymbolName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Exponent</b></em>' attribute.

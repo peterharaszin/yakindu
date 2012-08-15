@@ -1,12 +1,12 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
@@ -26,19 +26,19 @@ public class VariableReferenceGenerator {
 		this.literalGenerator = literalGenerator;
 	}
 
-	public CharSequence generate(IMscriptGeneratorContext context, VariableReference variableReference) {
+	public CharSequence generate(IMscriptGeneratorContext context, FeatureReference variableReference) {
 		return new VariableAccessGeneratorSwitch(context, variableReference).doSwitch(variableReference.getFeature());
 	}
 	
 	private class VariableAccessGeneratorSwitch extends MscriptSwitch<CharSequence> {
 	
 		private final IMscriptGeneratorContext context;
-		private final VariableReference variableReference;
+		private final FeatureReference variableReference;
 		
 		/**
 		 * 
 		 */
-		public VariableAccessGeneratorSwitch(IMscriptGeneratorContext context, VariableReference variableReference) {
+		public VariableAccessGeneratorSwitch(IMscriptGeneratorContext context, FeatureReference variableReference) {
 			this.context = context;
 			this.variableReference = variableReference;
 		}

@@ -2,18 +2,20 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
     nsPrefix="mscript">
-  <eClassifiers xsi:type="ecore:EClass" name="Module">
+  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//DeclarationContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="#//ImportDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
-        eType="#//Declaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclarationContainer" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
+        eType="#//Declaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//TypeSpecifier"
@@ -199,6 +201,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnitConstructionOperator" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//Unit" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitConversionExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//Unit" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParenthesizedExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
@@ -234,11 +241,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureCall" abstract="true" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//CallableElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableReference" eSuperTypes="#//FeatureCall">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureReference" eSuperTypes="#//Expression">
     <eOperations name="isInitial" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//CallableElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stepExpression" eType="#//StepExpression"
         containment="true"/>
   </eClassifiers>
@@ -266,7 +271,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepN" eSuperTypes="#//PrimitiveStepExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//FeatureCall">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Expression">
+    <eOperations name="getFeature" eType="#//CallableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Expression"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
@@ -508,10 +516,48 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnitNumerator" eSuperTypes="#//UnitProduct"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnitDenominator" eSuperTypes="#//UnitProduct"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnitFactor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbol" eType="#//UnitSymbol"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbolName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exponent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitDeclaration" abstract="true" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbols" upperBound="-1"
+        eType="#//UnitSymbol" containment="true" eOpposite="#//UnitSymbol/owner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitSymbol">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//UnitDeclaration"
+        eOpposite="#//UnitDeclaration/symbols"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="#//UnitPrefix"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UnitPrefix">
+    <eLiterals name="None" literal=""/>
+    <eLiterals name="Deca" value="1" literal="da"/>
+    <eLiterals name="Hecto" value="2" literal="h"/>
+    <eLiterals name="Kilo" value="3" literal="k"/>
+    <eLiterals name="Mega" value="6" literal="M"/>
+    <eLiterals name="Giga" value="9" literal="G"/>
+    <eLiterals name="Tera" value="12" literal="T"/>
+    <eLiterals name="Peta" value="15" literal="P"/>
+    <eLiterals name="Exa" value="18" literal="E"/>
+    <eLiterals name="Zetta" value="21" literal="Z"/>
+    <eLiterals name="Yotta" value="24" literal="Y"/>
+    <eLiterals name="Deci" value="-1" literal="d"/>
+    <eLiterals name="Centi" value="-2" literal="c"/>
+    <eLiterals name="Milli" value="-3" literal="m"/>
+    <eLiterals name="Micro" value="-6" literal="u"/>
+    <eLiterals name="Nano" value="-9" literal="n"/>
+    <eLiterals name="Pico" value="-12" literal="p"/>
+    <eLiterals name="Femto" value="-15" literal="f"/>
+    <eLiterals name="Atto" value="-18" literal="a"/>
+    <eLiterals name="Zepto" value="-21" literal="z"/>
+    <eLiterals name="Yocto" value="-24" literal="y"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseUnitDeclaration" eSuperTypes="#//UnitDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral" eSuperTypes="#//Literal">
     <eOperations name="isComplex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

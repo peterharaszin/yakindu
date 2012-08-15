@@ -90,6 +90,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.RECORD_CONSTRUCTION_MEMBER: return createRecordConstructionMember();
 			case MscriptPackage.UNION_CONSTRUCTION_OPERATOR: return createUnionConstructionOperator();
 			case MscriptPackage.UNIT_CONSTRUCTION_OPERATOR: return createUnitConstructionOperator();
+			case MscriptPackage.UNIT_CONVERSION_EXPRESSION: return createUnitConversionExpression();
 			case MscriptPackage.PARENTHESIZED_EXPRESSION: return createParenthesizedExpression();
 			case MscriptPackage.END_EXPRESSION: return createEndExpression();
 			case MscriptPackage.RANGE_EXPRESSION: return createRangeExpression();
@@ -103,7 +104,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.MULTIPLICATIVE_EXPRESSION: return createMultiplicativeExpression();
 			case MscriptPackage.POWER_EXPRESSION: return createPowerExpression();
 			case MscriptPackage.UNARY_EXPRESSION: return createUnaryExpression();
-			case MscriptPackage.VARIABLE_REFERENCE: return createVariableReference();
+			case MscriptPackage.FEATURE_REFERENCE: return createFeatureReference();
 			case MscriptPackage.RANGE_STEP_EXPRESSION: return createRangeStepExpression();
 			case MscriptPackage.ADDITIVE_STEP_EXPRESSION: return createAdditiveStepExpression();
 			case MscriptPackage.NEGATE_STEP_EXPRESSION: return createNegateStepExpression();
@@ -155,6 +156,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.UNIT_NUMERATOR: return createUnitNumerator();
 			case MscriptPackage.UNIT_DENOMINATOR: return createUnitDenominator();
 			case MscriptPackage.UNIT_FACTOR: return createUnitFactor();
+			case MscriptPackage.UNIT_SYMBOL: return createUnitSymbol();
+			case MscriptPackage.BASE_UNIT_DECLARATION: return createBaseUnitDeclaration();
 			case MscriptPackage.LITERAL: return createLiteral();
 			case MscriptPackage.NUMERIC_LITERAL: return createNumericLiteral();
 			case MscriptPackage.REAL_LITERAL: return createRealLiteral();
@@ -183,6 +186,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 				return createAssertionStatusKindFromString(eDataType, initialValue);
 			case MscriptPackage.OPERATOR_KIND:
 				return createOperatorKindFromString(eDataType, initialValue);
+			case MscriptPackage.UNIT_PREFIX:
+				return createUnitPrefixFromString(eDataType, initialValue);
 			case MscriptPackage.REAL_DATA:
 				return createRealDataFromString(eDataType, initialValue);
 			case MscriptPackage.INTEGER_DATA:
@@ -206,6 +211,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 				return convertAssertionStatusKindToString(eDataType, instanceValue);
 			case MscriptPackage.OPERATOR_KIND:
 				return convertOperatorKindToString(eDataType, instanceValue);
+			case MscriptPackage.UNIT_PREFIX:
+				return convertUnitPrefixToString(eDataType, instanceValue);
 			case MscriptPackage.REAL_DATA:
 				return convertRealDataToString(eDataType, instanceValue);
 			case MscriptPackage.INTEGER_DATA:
@@ -550,6 +557,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnitConversionExpression createUnitConversionExpression() {
+		UnitConversionExpressionImpl unitConversionExpression = new UnitConversionExpressionImpl();
+		return unitConversionExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ParenthesizedExpression createParenthesizedExpression() {
 		ParenthesizedExpressionImpl parenthesizedExpression = new ParenthesizedExpressionImpl();
 		return parenthesizedExpression;
@@ -680,9 +697,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableReference createVariableReference() {
-		VariableReferenceImpl variableReference = new VariableReferenceImpl();
-		return variableReference;
+	public FeatureReference createFeatureReference() {
+		FeatureReferenceImpl featureReference = new FeatureReferenceImpl();
+		return featureReference;
 	}
 
 	/**
@@ -1190,6 +1207,26 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UnitSymbol createUnitSymbol() {
+		UnitSymbolImpl unitSymbol = new UnitSymbolImpl();
+		return unitSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BaseUnitDeclaration createBaseUnitDeclaration() {
+		BaseUnitDeclarationImpl baseUnitDeclaration = new BaseUnitDeclarationImpl();
+		return baseUnitDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Literal createLiteral() {
 		LiteralImpl literal = new LiteralImpl();
 		return literal;
@@ -1332,6 +1369,26 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * @generated
 	 */
 	public String convertOperatorKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnitPrefix createUnitPrefixFromString(EDataType eDataType, String initialValue) {
+		UnitPrefix result = UnitPrefix.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUnitPrefixToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

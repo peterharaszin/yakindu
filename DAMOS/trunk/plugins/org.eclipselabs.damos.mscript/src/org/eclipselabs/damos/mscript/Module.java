@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.Module#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.Module#getImportDeclarations <em>Import Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Module#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Module extends EObject {
+public interface Module extends DeclarationContainer {
 	/**
 	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,21 +68,5 @@ public interface Module extends EObject {
 	 * @generated
 	 */
 	EList<ImportDeclaration> getImportDeclarations();
-
-	/**
-	 * Returns the value of the '<em><b>Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Declaration}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Definitions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getModule_Declarations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Declaration> getDeclarations();
 
 } // Module

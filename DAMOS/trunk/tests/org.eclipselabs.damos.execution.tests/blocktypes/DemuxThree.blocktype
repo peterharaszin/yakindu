@@ -10,7 +10,7 @@ blockType DemuxThree {
 	function main(x) -> a, b, c {
 		check(real[3]) -> real, real, real
 
-		static assert x is real()[] :
+		static assert x is real{?}[] :
 			error "X must be real array"
 
 		eq a = x[0]

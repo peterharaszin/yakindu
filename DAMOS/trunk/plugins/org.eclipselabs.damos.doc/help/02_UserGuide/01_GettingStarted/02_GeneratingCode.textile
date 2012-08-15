@@ -30,7 +30,7 @@ Next, we add the following block to the block diagram:
 * *Gain* block with a gain value of @0.1@
 * *Constant* block with a value of @0@
 * *Switch* block
-* *Discrete Integrator* block with an initial value of 0 and a gain value of @0.075(1/s)@
+* *Discrete Integrator* block with an initial value of 0 and a gain value of @0.075{1/s}@
 * *Saturate* block with upper limit of @1@ and lower limit of @0@
 * *Compare* block with an equals (@==@) operator
 
@@ -42,7 +42,7 @@ _Important:_ Before we can generate code from the model, we must specify the sam
 
 # Select the leftmost *Sum* block.
 # In the *General* tab of the Properties view, set the *Timing Constraint* property to _Synchronous_.
-# Enter @0.1(s)@ into the *Sample Time (second)* field.
+# Enter @0.1{s}@ into the *Sample Time (second)* field.
 
 The other blocks will automatically inherit the timing constraint from the Sum block. If you forget to set this property, you will get an error stating that the sample time could not be resolved for certain blocks when invoking the code generator or simulator.
 
@@ -82,8 +82,8 @@ configuration GenerateCruiseControl {
 
 		// Specify which machine data types to use
 		propagate computation {
-			map real() to float64
-			map int() to int32
+			map real{?} to float64
+			map int{?} to int32
 		}
 	}
 

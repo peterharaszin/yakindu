@@ -15,14 +15,14 @@ asynchronous blockType Counter {
 	parameter upperLimit = 10
 	parameter lowerLimit = 0
 	parameter upTrigger = 0 predefined {
-		0 as "Rising",
-		1 as "Falling",
-		2 as "Both"
+		0 alias "Rising",
+		1 alias "Falling",
+		2 alias "Both"
 	}
 	parameter downTrigger = 0 predefined {
-		0 as "Rising",
-		1 as "Falling",
-		2 as "Both"
+		0 alias "Rising",
+		1 alias "Falling",
+		2 alias "Both"
 	}
 	
 	type Message = union { boolean up, down }
@@ -32,25 +32,25 @@ asynchronous blockType Counter {
 		check<0, 1, 10, 0, 1, 1>(Message) -> int
 		check<0, 1, 10, 0, 2, 2>(Message) -> int
 		
-		static assert initialValue is real() :
+		static assert initialValue is real{?} :
 			error "Initial value must be numeric"
 			
-		static assert step is real() :
+		static assert step is real{?} :
 			error "Step value must be numeric"
 	
-		static assert upperLimit is real() :
+		static assert upperLimit is real{?} :
 			error "Upper limit value must be numeric"
 			
-		static assert lowerLimit is real() :
+		static assert lowerLimit is real{?} :
 			error "Lower limit value must be numeric"
 	
-		static assert initialValue is real() && step is real() => unit(initialValue) == unit(step) :
+		static assert initialValue is real{?} && step is real{?} => unit(initialValue) == unit(step) :
 			error "Initial value and step value must have same unit"
 			
-		static assert initialValue is real() && upperLimit is real() => unit(initialValue) == unit(upperLimit) :
+		static assert initialValue is real{?} && upperLimit is real{?} => unit(initialValue) == unit(upperLimit) :
 			error "Initial value and upper limit value must have same unit"
 	
-		static assert initialValue is real() && lowerLimit is real() => unit(initialValue) == unit(lowerLimit) :
+		static assert initialValue is real{?} && lowerLimit is real{?} => unit(initialValue) == unit(lowerLimit) :
 			error "Initial value and lower limit value must have same unit"
 	
 		static assert message is Message:
@@ -62,7 +62,7 @@ asynchronous blockType Counter {
 		static assert downTrigger is int:
 			error "Down trigger value must be integer"
 	
-		static assert upperLimit is real() && lowerLimit is real() && unit(upperLimit) == unit(lowerLimit) => upperLimit >= lowerLimit :
+		static assert upperLimit is real{?} && lowerLimit is real{?} && unit(upperLimit) == unit(lowerLimit) => upperLimit >= lowerLimit :
 			warning "Upper limit value should be greater than or equal to lower limit value"
 	
 		eq y{-1} = initialValue

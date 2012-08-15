@@ -11,22 +11,22 @@ blockType Saturation {
 	function main<upperLimit, lowerLimit>(u) -> y {
 		check<1, -1>(real) -> real
 		
-		static assert u is real() :
+		static assert u is real{?} :
 			error "Input value must be numeric"
 			
-		static assert upperLimit is real() :
+		static assert upperLimit is real{?} :
 			error "Upper limit value must be numeric"
 			
-		static assert lowerLimit is real() :
+		static assert lowerLimit is real{?} :
 			error "Lower limit value must be numeric"
 			
-		static assert u is real() && upperLimit is real() => unit(u) == unit(upperLimit) :
+		static assert u is real{?} && upperLimit is real{?} => unit(u) == unit(upperLimit) :
 			error "Input value and upper limit value must have same unit"
 			
-		static assert u is real() && lowerLimit is real() => unit(u) == unit(lowerLimit) :
+		static assert u is real{?} && lowerLimit is real{?} => unit(u) == unit(lowerLimit) :
 			error "Input value and lower limit value must have same unit"
 		
-		static assert upperLimit is real() && lowerLimit is real() && unit(upperLimit) == unit(lowerLimit) => upperLimit >= lowerLimit :
+		static assert upperLimit is real{?} && lowerLimit is real{?} && unit(upperLimit) == unit(lowerLimit) => upperLimit >= lowerLimit :
 			warning "Upper limit should be greater than or equal to lower limit"
 		
 		eq y =

@@ -5,22 +5,22 @@ synchronous blockType DiscreteDerivative {
 	input u
 	output y
 	
-	parameter gain = 1(s) // normalize
+	parameter gain = 1{s} // normalize
 	parameter initialCondition = 0
 
 	stateful function main<initialCondition, gain, fs>(u) -> y {
-		check<0, 1(s), 1(1/s)>(real) -> real
+		check<0, 1{s}, 1{1/s}>(real) -> real
 		
-		static assert u is real() :
+		static assert u is real{?} :
 			error "Input value must be numeric"
 	
-		static assert initialCondition is real() :
+		static assert initialCondition is real{?} :
 			error "Initial condition must be numeric"
 			
-		static assert initialCondition is real() && u is real() => unit(initialCondition) == unit(u) :
+		static assert initialCondition is real{?} && u is real{?} => unit(initialCondition) == unit(u) :
 			error "Initial condition and input value must have same unit"
 			
-		static assert gain is real() :
+		static assert gain is real{?} :
 			error "Gain value must be numeric"
 	
 		eq u{-1} = initialCondition

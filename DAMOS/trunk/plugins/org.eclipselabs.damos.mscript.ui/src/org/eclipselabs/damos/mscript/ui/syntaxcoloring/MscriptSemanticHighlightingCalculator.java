@@ -23,7 +23,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipselabs.damos.mscript.BuiltinDeclaration;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
-import org.eclipselabs.damos.mscript.FeatureCall;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -62,16 +62,16 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 		boolean proceed = true;
 		if (eObject instanceof FunctionDeclaration) {
 			highlightFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
-		} else if (eObject instanceof FeatureCall) {
-			FeatureCall featureCall = (FeatureCall) eObject;
-			if (featureCall.getFeature() instanceof StateVariableDeclaration) {
-				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
-			} else if (featureCall.getFeature() instanceof ConstantDeclaration) {
-				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
-			} else if (featureCall.getFeature() instanceof StaticParameterDeclaration) {
-				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.STATIC_PARAMETER_ID, acceptor);
-			} else if (featureCall.getFeature() instanceof BuiltinDeclaration) {
-				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureCall_Feature(), MscriptHighlightingConfiguration.BUILTIN_ID, acceptor);
+		} else if (eObject instanceof FeatureReference) {
+			FeatureReference featureReference = (FeatureReference) eObject;
+			if (featureReference.getFeature() instanceof StateVariableDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureReference_Feature(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
+			} else if (featureReference.getFeature() instanceof ConstantDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureReference_Feature(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+			} else if (featureReference.getFeature() instanceof StaticParameterDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureReference_Feature(), MscriptHighlightingConfiguration.STATIC_PARAMETER_ID, acceptor);
+			} else if (featureReference.getFeature() instanceof BuiltinDeclaration) {
+				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureReference_Feature(), MscriptHighlightingConfiguration.BUILTIN_ID, acceptor);
 			}
 		} else if (eObject instanceof ConstantDeclaration) {
 			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);

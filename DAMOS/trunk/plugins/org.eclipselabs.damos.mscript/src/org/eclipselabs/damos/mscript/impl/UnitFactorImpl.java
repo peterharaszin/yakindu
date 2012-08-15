@@ -8,10 +8,12 @@ package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.UnitFactor;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +23,7 @@ import org.eclipselabs.damos.mscript.UnitFactor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getSymbolName <em>Symbol Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getExponent <em>Exponent</em>}</li>
  * </ul>
  * </p>
@@ -29,24 +32,34 @@ import org.eclipselabs.damos.mscript.UnitFactor;
  */
 public class UnitFactorImpl extends MinimalEObjectImpl.Container implements UnitFactor {
 	/**
-	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SYMBOL_EDEFAULT = null;
+	protected UnitSymbol symbol;
 
 	/**
-	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * The default value of the '{@link #getSymbolName() <em>Symbol Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSymbol()
+	 * @see #getSymbolName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String symbol = SYMBOL_EDEFAULT;
+	protected static final String SYMBOL_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSymbolName() <em>Symbol Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSymbolName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String symbolName = SYMBOL_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExponent() <em>Exponent</em>}' attribute.
@@ -92,7 +105,15 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSymbol() {
+	public UnitSymbol getSymbol() {
+		if (symbol != null && symbol.eIsProxy()) {
+			InternalEObject oldSymbol = (InternalEObject)symbol;
+			symbol = (UnitSymbol)eResolveProxy(oldSymbol);
+			if (symbol != oldSymbol) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.UNIT_FACTOR__SYMBOL, oldSymbol, symbol));
+			}
+		}
 		return symbol;
 	}
 
@@ -101,11 +122,41 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSymbol(String newSymbol) {
-		String oldSymbol = symbol;
+	public UnitSymbol basicGetSymbol() {
+		return symbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSymbol(UnitSymbol newSymbol) {
+		UnitSymbol oldSymbol = symbol;
 		symbol = newSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT_FACTOR__SYMBOL, oldSymbol, symbol));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSymbolName() {
+		return symbolName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSymbolName(String newSymbolName) {
+		String oldSymbolName = symbolName;
+		symbolName = newSymbolName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT_FACTOR__SYMBOL_NAME, oldSymbolName, symbolName));
 	}
 
 	/**
@@ -138,7 +189,10 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
-				return getSymbol();
+				if (resolve) return getSymbol();
+				return basicGetSymbol();
+			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
+				return getSymbolName();
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				return getExponent();
 		}
@@ -154,7 +208,10 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
-				setSymbol((String)newValue);
+				setSymbol((UnitSymbol)newValue);
+				return;
+			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
+				setSymbolName((String)newValue);
 				return;
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				setExponent((Integer)newValue);
@@ -172,7 +229,10 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
-				setSymbol(SYMBOL_EDEFAULT);
+				setSymbol((UnitSymbol)null);
+				return;
+			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
+				setSymbolName(SYMBOL_NAME_EDEFAULT);
 				return;
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				setExponent(EXPONENT_EDEFAULT);
@@ -190,7 +250,9 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
-				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+				return symbol != null;
+			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
+				return SYMBOL_NAME_EDEFAULT == null ? symbolName != null : !SYMBOL_NAME_EDEFAULT.equals(symbolName);
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				return exponent != EXPONENT_EDEFAULT;
 		}
@@ -207,8 +269,8 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (symbol: ");
-		result.append(symbol);
+		result.append(" (symbolName: ");
+		result.append(symbolName);
 		result.append(", exponent: ");
 		result.append(exponent);
 		result.append(')');

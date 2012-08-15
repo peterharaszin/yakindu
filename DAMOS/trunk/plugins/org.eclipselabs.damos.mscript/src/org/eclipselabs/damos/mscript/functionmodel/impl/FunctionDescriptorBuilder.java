@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -24,7 +25,6 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
@@ -38,6 +38,7 @@ import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
+import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 
 /**
@@ -108,7 +109,10 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		}
 		
 		@Override
-		public Boolean caseVariableReference(VariableReference variableReference) {
+		public Boolean caseFeatureReference(FeatureReference variableReference) {
+			if (!MscriptUtil.isVariableReference(variableReference)) {
+				return true;
+			}
 			String name = variableReference.getFeature().getName();
 			
 			FunctionDescriptor functionDescriptor = equationSide.getDescriptor().getFunctionDescriptor();
@@ -156,7 +160,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		 * @param featureCall
 		 * @param variableKind
 		 */
-		private void checkFeatureCall(VariableReference variableReference, VariableKind variableKind) {
+		private void checkFeatureCall(FeatureReference variableReference, VariableKind variableKind) {
 			String message = null;
 			switch (variableKind) {
 			case INPUT_PARAMETER:

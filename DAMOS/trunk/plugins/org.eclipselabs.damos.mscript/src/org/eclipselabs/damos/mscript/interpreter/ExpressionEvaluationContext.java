@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 
@@ -53,8 +53,8 @@ public class ExpressionEvaluationContext extends AbstractExpressionEvaluationCon
 	}
 	
 	public IValue getValue(Evaluable evaluable) {
-		if (evaluable instanceof VariableReference) {
-			VariableReference variableReference = (VariableReference) evaluable;
+		if (evaluable instanceof FeatureReference) {
+			FeatureReference variableReference = (FeatureReference) evaluable;
 			if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 				return InvalidValue.SINGLETON;
 			}

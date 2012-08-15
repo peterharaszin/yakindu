@@ -8,9 +8,9 @@ blockType Sum {
 	output y
 
 	function main<sign>(_input) -> y {
-		check<{1, -1}>(real[2]) -> real
+		check<{ 1, -1 }>(real[2]) -> real
 		
-		static assert _input is real()[] :
+		static assert _input is real{?}[] :
 			error "Input values must be numeric"
 	
 		eq y = sign * _input

@@ -6,6 +6,6 @@ blockType Step {
 	
 	parameter initialValue = 0
 	parameter finalValue = 1
-	parameter stepTime = 1(s)
+	parameter stepTime = 1{s}
 
 }

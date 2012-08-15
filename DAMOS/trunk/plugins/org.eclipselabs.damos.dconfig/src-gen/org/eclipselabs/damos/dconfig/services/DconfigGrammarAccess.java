@@ -1893,7 +1893,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration;
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
 	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
 		return gaMscript.getDeclarationAccess();
 	}
@@ -1912,6 +1912,28 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypeDeclarationRule() {
 		return getTypeDeclarationAccess().getRule();
+	}
+
+	/// *
+	// * UnitDeclaration
+	// * / UnitDeclaration:
+	//	BaseUnitDeclaration;
+	public MscriptGrammarAccess.UnitDeclarationElements getUnitDeclarationAccess() {
+		return gaMscript.getUnitDeclarationAccess();
+	}
+	
+	public ParserRule getUnitDeclarationRule() {
+		return getUnitDeclarationAccess().getRule();
+	}
+
+	//BaseUnitDeclaration:
+	//	"unit" name=ValidID;
+	public MscriptGrammarAccess.BaseUnitDeclarationElements getBaseUnitDeclarationAccess() {
+		return gaMscript.getBaseUnitDeclarationAccess();
+	}
+	
+	public ParserRule getBaseUnitDeclarationRule() {
+		return getBaseUnitDeclarationAccess().getRule();
 	}
 
 	/// *
@@ -2121,7 +2143,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealType:
-	//	{RealType} "real" unit=Unit;
+	//	{RealType} "real" unit=UnitWithWildcard;
 	public MscriptGrammarAccess.RealTypeElements getRealTypeAccess() {
 		return gaMscript.getRealTypeAccess();
 	}
@@ -2131,7 +2153,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerType:
-	//	{IntegerType} "int" unit=Unit;
+	//	{IntegerType} "int" unit=UnitWithWildcard;
 	public MscriptGrammarAccess.IntegerTypeElements getIntegerTypeAccess() {
 		return gaMscript.getIntegerTypeAccess();
 	}
@@ -2141,7 +2163,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ComplexType:
-	//	{ComplexType} "complex" unit=Unit;
+	//	{ComplexType} "complex" unit=UnitWithWildcard;
 	public MscriptGrammarAccess.ComplexTypeElements getComplexTypeAccess() {
 		return gaMscript.getComplexTypeAccess();
 	}
@@ -2151,7 +2173,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GaussianType:
-	//	{GaussianType} "gaussian" unit=Unit;
+	//	{GaussianType} "gaussian" unit=UnitWithWildcard;
 	public MscriptGrammarAccess.GaussianTypeElements getGaussianTypeAccess() {
 		return gaMscript.getGaussianTypeAccess();
 	}
@@ -2559,7 +2581,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrefixUnaryExpression returns Expression:
-	//	PostfixUnaryExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=PostfixUnaryExpression;
+	//	UnitConversionExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=UnitConversionExpression;
 	public MscriptGrammarAccess.PrefixUnaryExpressionElements getPrefixUnaryExpressionAccess() {
 		return gaMscript.getPrefixUnaryExpressionAccess();
 	}
@@ -2578,8 +2600,18 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrefixUnaryOperatorAccess().getRule();
 	}
 
+	//UnitConversionExpression returns Expression:
+	//	PostfixUnaryExpression ({UnitConversionExpression.operand=current} "as" unit=ExplicitUnit)?;
+	public MscriptGrammarAccess.UnitConversionExpressionElements getUnitConversionExpressionAccess() {
+		return gaMscript.getUnitConversionExpressionAccess();
+	}
+	
+	public ParserRule getUnitConversionExpressionRule() {
+		return getUnitConversionExpressionAccess().getRule();
+	}
+
 	//PostfixUnaryExpression returns Expression:
-	//	(QualifiedFeatureCall | MemberFeatureCall) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	//	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 	public MscriptGrammarAccess.PostfixUnaryExpressionElements getPostfixUnaryExpressionAccess() {
 		return gaMscript.getPostfixUnaryExpressionAccess();
 	}
@@ -2598,16 +2630,26 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getPostfixUnaryOperatorAccess().getRule();
 	}
 
-	//MemberFeatureCall returns Expression:
-	//	PrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
-	//	"]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID | {FunctionCall.arguments+=current} "."
-	//	feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")")*;
-	public MscriptGrammarAccess.MemberFeatureCallElements getMemberFeatureCallAccess() {
-		return gaMscript.getMemberFeatureCallAccess();
+	//MemberAccess returns Expression:
+	//	FunctionCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)* "]"
+	//	| {MemberVariableAccess.target=current} "." memberVariable=ValidID | {FunctionCall.arguments+=current} "."
+	//	target=FeatureReference "(" (arguments+=Expression ("," arguments+=Expression)*)? ")")*;
+	public MscriptGrammarAccess.MemberAccessElements getMemberAccessAccess() {
+		return gaMscript.getMemberAccessAccess();
 	}
 	
-	public ParserRule getMemberFeatureCallRule() {
-		return getMemberFeatureCallAccess().getRule();
+	public ParserRule getMemberAccessRule() {
+		return getMemberAccessAccess().getRule();
+	}
+
+	//FunctionCall returns Expression:
+	//	PrimaryExpression ({FunctionCall.target=current} "(" (arguments+=Expression ("," arguments+=Expression)*)? ")")?;
+	public MscriptGrammarAccess.FunctionCallElements getFunctionCallAccess() {
+		return gaMscript.getFunctionCallAccess();
+	}
+	
+	public ParserRule getFunctionCallRule() {
+		return getFunctionCallAccess().getRule();
 	}
 
 	//IterationVariableDeclaration:
@@ -2631,7 +2673,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimaryExpression returns Expression:
-	//	Literal | TemplateExpression | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator |
+	//	Literal | TemplateExpression | FeatureReference | UnitConstructionOperator | ArrayConstructionOperator |
 	//	ArrayConcatenationOperator | RecordConstructionOperator | ParenthesizedExpression | EndExpression |
 	//	AlgorithmExpression;
 	public MscriptGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
@@ -2763,65 +2805,36 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionTemplateSegmentAccess().getRule();
 	}
 
-	//FeatureCall returns Expression:
-	//	VariableReference | FunctionCall;
-	public MscriptGrammarAccess.FeatureCallElements getFeatureCallAccess() {
-		return gaMscript.getFeatureCallAccess();
+	//FeatureReference returns Expression:
+	//	{FeatureReference} (feature=[CallableElement|ValidIDWithUnit] | feature=[CallableElement|ValidID] "{"
+	//	stepExpression=StepExpression "}");
+	public MscriptGrammarAccess.FeatureReferenceElements getFeatureReferenceAccess() {
+		return gaMscript.getFeatureReferenceAccess();
 	}
 	
-	public ParserRule getFeatureCallRule() {
-		return getFeatureCallAccess().getRule();
-	}
-
-	//VariableReference returns Expression:
-	//	{VariableReference} feature=[CallableElement|ValidID] ("{" stepExpression=StepExpression "}")?;
-	public MscriptGrammarAccess.VariableReferenceElements getVariableReferenceAccess() {
-		return gaMscript.getVariableReferenceAccess();
-	}
-	
-	public ParserRule getVariableReferenceRule() {
-		return getVariableReferenceAccess().getRule();
-	}
-
-	//FunctionCall returns Expression:
-	//	{FunctionCall} feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
-	public MscriptGrammarAccess.FunctionCallElements getFunctionCallAccess() {
-		return gaMscript.getFunctionCallAccess();
-	}
-	
-	public ParserRule getFunctionCallRule() {
-		return getFunctionCallAccess().getRule();
-	}
-
-	//QualifiedFeatureCall returns Expression:
-	//	QualifiedVariableReference | QualifiedFunctionCall;
-	public MscriptGrammarAccess.QualifiedFeatureCallElements getQualifiedFeatureCallAccess() {
-		return gaMscript.getQualifiedFeatureCallAccess();
-	}
-	
-	public ParserRule getQualifiedFeatureCallRule() {
-		return getQualifiedFeatureCallAccess().getRule();
-	}
-
-	//QualifiedVariableReference returns Expression:
-	//	{VariableReference} "." feature=[CallableElement|QualifiedName];
-	public MscriptGrammarAccess.QualifiedVariableReferenceElements getQualifiedVariableReferenceAccess() {
-		return gaMscript.getQualifiedVariableReferenceAccess();
-	}
-	
-	public ParserRule getQualifiedVariableReferenceRule() {
-		return getQualifiedVariableReferenceAccess().getRule();
+	public ParserRule getFeatureReferenceRule() {
+		return getFeatureReferenceAccess().getRule();
 	}
 
 	//QualifiedFunctionCall returns Expression:
-	//	{FunctionCall} "." feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)?
-	//	")";
+	//	QualifiedFeatureReference ({FunctionCall.target=current} "(" (arguments+=Expression ("," arguments+=Expression)*)?
+	//	")")?;
 	public MscriptGrammarAccess.QualifiedFunctionCallElements getQualifiedFunctionCallAccess() {
 		return gaMscript.getQualifiedFunctionCallAccess();
 	}
 	
 	public ParserRule getQualifiedFunctionCallRule() {
 		return getQualifiedFunctionCallAccess().getRule();
+	}
+
+	//QualifiedFeatureReference returns Expression:
+	//	{FeatureReference} "." feature=[CallableElement|QualifiedNameWithUnit];
+	public MscriptGrammarAccess.QualifiedFeatureReferenceElements getQualifiedFeatureReferenceAccess() {
+		return gaMscript.getQualifiedFeatureReferenceAccess();
+	}
+	
+	public ParserRule getQualifiedFeatureReferenceRule() {
+		return getQualifiedFeatureReferenceAccess().getRule();
 	}
 
 	//StepExpression:
@@ -2835,7 +2848,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RangeStepExpression returns StepExpression:
-	//	AdditiveStepExpression ({RangeStepExpression.start=current} ".." end=AdditiveStepExpression)?;
+	//	AdditiveStepExpression ({RangeStepExpression.start=current} ":" end=AdditiveStepExpression)?;
 	public MscriptGrammarAccess.RangeStepExpressionElements getRangeStepExpressionAccess() {
 		return gaMscript.getRangeStepExpressionAccess();
 	}
@@ -2976,7 +2989,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitConstructionOperator:
-	//	"unitlit" unit=ExplicitUnit;
+	//	"unit" unit=ExplicitUnit;
 	public MscriptGrammarAccess.UnitConstructionOperatorElements getUnitConstructionOperatorAccess() {
 		return gaMscript.getUnitConstructionOperatorAccess();
 	}
@@ -3037,7 +3050,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//	target=AssignableMemberFeatureCall "=" assignedExpression=Expression ";";
+	//	target=AssignableMemberFeatureReference "=" assignedExpression=Expression ";";
 	public MscriptGrammarAccess.AssignmentElements getAssignmentAccess() {
 		return gaMscript.getAssignmentAccess();
 	}
@@ -3046,19 +3059,19 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentAccess().getRule();
 	}
 
-	//AssignableMemberFeatureCall returns Expression:
+	//AssignableMemberFeatureReference returns Expression:
 	//	AssignablePrimaryExpression ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
 	//	subscripts+=ArraySubscript)* "]" | {MemberVariableAccess.target=current} "." memberVariable=ValidID)*;
-	public MscriptGrammarAccess.AssignableMemberFeatureCallElements getAssignableMemberFeatureCallAccess() {
-		return gaMscript.getAssignableMemberFeatureCallAccess();
+	public MscriptGrammarAccess.AssignableMemberFeatureReferenceElements getAssignableMemberFeatureReferenceAccess() {
+		return gaMscript.getAssignableMemberFeatureReferenceAccess();
 	}
 	
-	public ParserRule getAssignableMemberFeatureCallRule() {
-		return getAssignableMemberFeatureCallAccess().getRule();
+	public ParserRule getAssignableMemberFeatureReferenceRule() {
+		return getAssignableMemberFeatureReferenceAccess().getRule();
 	}
 
 	//AssignablePrimaryExpression returns Expression:
-	//	VariableReference | ParenthesizedExpression;
+	//	FeatureReference | ParenthesizedExpression;
 	public MscriptGrammarAccess.AssignablePrimaryExpressionElements getAssignablePrimaryExpressionAccess() {
 		return gaMscript.getAssignablePrimaryExpressionAccess();
 	}
@@ -3150,8 +3163,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Unit expressions
 	// * / Unit:
-	//	{Unit} ("(" ")" | "(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")" |
-	//	numerator=ImplicitUnitNumerator);
+	//	"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}" | numerator=ImplicitUnitNumerator;
 	public MscriptGrammarAccess.UnitElements getUnitAccess() {
 		return gaMscript.getUnitAccess();
 	}
@@ -3160,8 +3172,19 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnitAccess().getRule();
 	}
 
+	//UnitWithWildcard returns Unit:
+	//	{Unit} "{" "?" "}" | "{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}" |
+	//	numerator=ImplicitUnitNumerator;
+	public MscriptGrammarAccess.UnitWithWildcardElements getUnitWithWildcardAccess() {
+		return gaMscript.getUnitWithWildcardAccess();
+	}
+	
+	public ParserRule getUnitWithWildcardRule() {
+		return getUnitWithWildcardAccess().getRule();
+	}
+
 	//ExplicitUnit returns Unit:
-	//	"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")";
+	//	"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}";
 	public MscriptGrammarAccess.ExplicitUnitElements getExplicitUnitAccess() {
 		return gaMscript.getExplicitUnitAccess();
 	}
@@ -3200,8 +3223,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnitDenominatorAccess().getRule();
 	}
 
-	//UnitFactor:
-	//	symbol=ValidID ("^" exponent=UnitExponent)?;
+	//UnitFactor: //	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
+	//	symbolName=ValidID ("^" exponent=UnitExponent)?;
 	public MscriptGrammarAccess.UnitFactorElements getUnitFactorAccess() {
 		return gaMscript.getUnitFactorAccess();
 	}
@@ -3230,6 +3253,16 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameAccess().getRule();
 	}
 
+	//QualifiedNameWithUnit:
+	//	ValidIDWithUnit ("." ValidIDWithUnit)*;
+	public MscriptGrammarAccess.QualifiedNameWithUnitElements getQualifiedNameWithUnitAccess() {
+		return gaMscript.getQualifiedNameWithUnitAccess();
+	}
+	
+	public ParserRule getQualifiedNameWithUnitRule() {
+		return getQualifiedNameWithUnitAccess().getRule();
+	}
+
 	//ValidInt returns ecore::EInt:
 	//	ONE | INT;
 	public MscriptGrammarAccess.ValidIntElements getValidIntAccess() {
@@ -3248,6 +3281,16 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getValidIDRule() {
 		return getValidIDAccess().getRule();
+	}
+
+	//ValidIDWithUnit:
+	//	ValidID | "unit";
+	public MscriptGrammarAccess.ValidIDWithUnitElements getValidIDWithUnitAccess() {
+		return gaMscript.getValidIDWithUnitAccess();
+	}
+	
+	public ParserRule getValidIDWithUnitRule() {
+		return getValidIDWithUnitAccess().getRule();
 	}
 
 	/// *

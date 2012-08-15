@@ -66,7 +66,7 @@ public class UnitOperations {
 		int scale = 0;
 		List<UnitFactor> factors = null;
 
-		String symbolString = factor.getSymbol();
+		String symbolString = factor.getSymbolName();
 		
 		if (symbolString.equals("g")) {
 			factors = cachedFactorMap.get(KILOGRAM);
@@ -168,7 +168,7 @@ public class UnitOperations {
 	
 	private static void addFactorsToUnit(Unit unit, List<UnitFactor> factors, int exponent) {
 		for (UnitFactor factor : factors) {
-			UnitFactor existingFactor = unit.getNumerator().getFactor(factor.getSymbol());
+			UnitFactor existingFactor = unit.getNumerator().getFactor(factor.getSymbolName());
 			int newExponent = exponent * factor.getExponent();
 			if (existingFactor != null) {
 				newExponent += existingFactor.getExponent();
@@ -179,7 +179,7 @@ public class UnitOperations {
 				}
 			} else if (newExponent != 0){
 				UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
-				newFactor.setSymbol(factor.getSymbol());
+				newFactor.setSymbolName(factor.getSymbolName());
 				newFactor.setExponent(newExponent);
 				unit.getNumerator().getFactors().add(newFactor);
 			}
@@ -308,11 +308,11 @@ public class UnitOperations {
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() + other.getScale());
 			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
+				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbolName());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() + otherFactor.getExponent());
 				} else {
-					factor = createUnitFactor(otherFactor.getSymbol(), otherFactor.getExponent());
+					factor = createUnitFactor(otherFactor.getSymbolName(), otherFactor.getExponent());
 					unit.getNumerator().getFactors().add(factor);
 				}
 			}
@@ -323,11 +323,11 @@ public class UnitOperations {
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() - other.getScale());
 			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
+				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbolName());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() - otherFactor.getExponent());
 				} else {
-					factor = createUnitFactor(otherFactor.getSymbol(), -otherFactor.getExponent());
+					factor = createUnitFactor(otherFactor.getSymbolName(), -otherFactor.getExponent());
 					unit.getNumerator().getFactors().add(factor);
 				}
 			}
@@ -386,7 +386,7 @@ public class UnitOperations {
 			return false;
 		}
 		for (UnitFactor factor : factors) {
-			UnitFactor otherFactor = other.getNumerator().getFactor(factor.getSymbol());
+			UnitFactor otherFactor = other.getNumerator().getFactor(factor.getSymbolName());
 			if (otherFactor == null || otherFactor.getExponent() != factor.getExponent()) {
 				return false;
 			}
@@ -420,7 +420,7 @@ public class UnitOperations {
 
 	private static UnitFactor createUnitFactor(String symbol, int exponent) {
 		UnitFactor factor = MscriptFactory.eINSTANCE.createUnitFactor();
-		factor.setSymbol(symbol);
+		factor.setSymbolName(symbol);
 		factor.setExponent(exponent);
 		return factor;
 	}

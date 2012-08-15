@@ -8,7 +8,7 @@ blockType MatrixScalarMultiply {
 	function main(x) -> y {
 		check(real[3, 2]) -> real[3, 2]
 
-		static assert x is real()[,] :
+		static assert x is real{?}[,] :
 			error "X must be real[,] value"
 			
 		const gain1 = 7

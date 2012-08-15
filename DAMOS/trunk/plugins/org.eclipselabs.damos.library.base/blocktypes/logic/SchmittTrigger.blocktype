@@ -12,22 +12,22 @@ blockType SchmittTrigger {
 	stateful function main<upperThreshold, lowerThreshold, initialOutput>(u) -> y {
 		check<1, -1, true>(real) -> boolean
 		
-		static assert u is real() :
+		static assert u is real{?} :
 			error "Input value must be numeric"
 			
-		static assert upperThreshold is real() :
+		static assert upperThreshold is real{?} :
 			error "Upper threshold value must be numeric"
 			
-		static assert lowerThreshold is real() :
+		static assert lowerThreshold is real{?} :
 			error "Lower threshold value must be numeric"
 			
-		static assert u is real() && upperThreshold is real() => unit(u) == unit(upperThreshold) :
+		static assert u is real{?} && upperThreshold is real{?} => unit(u) == unit(upperThreshold) :
 			error "Input value and upper threshold value must have same unit"
 			
-		static assert u is real() && lowerThreshold is real() => unit(u) == unit(lowerThreshold) :
+		static assert u is real{?} && lowerThreshold is real{?} => unit(u) == unit(lowerThreshold) :
 			error "Input value and lower threshold value must have same unit"
 	
-		static assert upperThreshold is real() && lowerThreshold is real() && unit(upperThreshold) == unit(lowerThreshold) => upperThreshold >= lowerThreshold :
+		static assert upperThreshold is real{?} && lowerThreshold is real{?} && unit(upperThreshold) == unit(lowerThreshold) => upperThreshold >= lowerThreshold :
 			warning "Upper threshold should be greater than or equal to lower threshold"
 	
 		static assert initialOutput is boolean :

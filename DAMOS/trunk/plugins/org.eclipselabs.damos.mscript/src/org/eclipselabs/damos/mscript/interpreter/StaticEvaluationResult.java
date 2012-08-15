@@ -17,9 +17,9 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
@@ -35,7 +35,7 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	
 	private Map<Evaluable, IValue> values = new HashMap<Evaluable, IValue>();
 	
-	private Map<VariableReference, Integer> stepIndices = new HashMap<VariableReference, Integer>();
+	private Map<FeatureReference, Integer> stepIndices = new HashMap<FeatureReference, Integer>();
 	private Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
 	
 	private Map<FunctionDeclaration, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDeclaration, FunctionDescriptor>();
@@ -65,10 +65,7 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 		values.put(evaluable, value);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess)
-	 */
-	public int getStepIndex(VariableReference variableReference) {
+	public int getStepIndex(FeatureReference variableReference) {
 		Integer stepIndex = stepIndices.get(variableReference);
 		if (stepIndex == null) {
 			return 0;
@@ -79,7 +76,7 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setStepIndex(org.eclipselabs.mscript.language.ast.VariableAccess, int)
 	 */
-	public void setStepIndex(VariableReference variableReference, int stepIndex) {
+	public void setStepIndex(FeatureReference variableReference, int stepIndex) {
 		stepIndices.put(variableReference, stepIndex);
 	}
 	

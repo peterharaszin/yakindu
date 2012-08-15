@@ -323,6 +323,15 @@ public interface MscriptFactory extends EFactory {
 	UnitConstructionOperator createUnitConstructionOperator();
 
 	/**
+	 * Returns a new object of class '<em>Unit Conversion Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unit Conversion Expression</em>'.
+	 * @generated
+	 */
+	UnitConversionExpression createUnitConversionExpression();
+
+	/**
 	 * Returns a new object of class '<em>Parenthesized Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -440,13 +449,13 @@ public interface MscriptFactory extends EFactory {
 	UnaryExpression createUnaryExpression();
 
 	/**
-	 * Returns a new object of class '<em>Variable Reference</em>'.
+	 * Returns a new object of class '<em>Feature Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Reference</em>'.
+	 * @return a new object of class '<em>Feature Reference</em>'.
 	 * @generated
 	 */
-	VariableReference createVariableReference();
+	FeatureReference createFeatureReference();
 
 	/**
 	 * Returns a new object of class '<em>Range Step Expression</em>'.
@@ -897,6 +906,24 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	UnitFactor createUnitFactor();
+
+	/**
+	 * Returns a new object of class '<em>Unit Symbol</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unit Symbol</em>'.
+	 * @generated
+	 */
+	UnitSymbol createUnitSymbol();
+
+	/**
+	 * Returns a new object of class '<em>Base Unit Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Base Unit Declaration</em>'.
+	 * @generated
+	 */
+	BaseUnitDeclaration createBaseUnitDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Literal</em>'.

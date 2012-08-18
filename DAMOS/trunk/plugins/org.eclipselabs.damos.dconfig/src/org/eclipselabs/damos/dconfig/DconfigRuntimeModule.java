@@ -6,6 +6,7 @@ package org.eclipselabs.damos.dconfig;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
+import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IAstFactory;
 import org.eclipse.xtext.parser.antlr.Lexer;
@@ -21,6 +22,7 @@ import org.eclipselabs.damos.dconfig.scoping.DconfigGlobalScopeProvider;
 import org.eclipselabs.damos.dconfig.scoping.DconfigImportedNamespaceScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
+import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 
@@ -31,6 +33,10 @@ import com.google.inject.name.Names;
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class DconfigRuntimeModule extends org.eclipselabs.damos.dconfig.AbstractDconfigRuntimeModule {
+
+	public Class<? extends ILinker> bindILinker() {
+		return MscriptLinker.class;
+	}
 
 	public Class<? extends AbstractIDValueConverter> bindAbstractIDValueConverter() {
 		return MscriptIDValueConverter.class;

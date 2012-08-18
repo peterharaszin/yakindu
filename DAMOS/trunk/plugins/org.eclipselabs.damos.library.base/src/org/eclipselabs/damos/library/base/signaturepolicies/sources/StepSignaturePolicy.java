@@ -28,12 +28,11 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.sources.StepConstants;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -77,7 +76,7 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value and Final Value must have same unit"));
 		}
 		
-		if (!stepTimeDataType.getUnit().isEquivalentTo(TypeUtil.createUnit(UnitSymbol.SECOND), true)) {
+		if (!stepTimeDataType.getUnit().isEquivalentTo(TypeUtil.createUnit(block.eResource().getResourceSet(), TypeUtil.SECOND_UNIT), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Step Time unit must be second"));
 		}
 

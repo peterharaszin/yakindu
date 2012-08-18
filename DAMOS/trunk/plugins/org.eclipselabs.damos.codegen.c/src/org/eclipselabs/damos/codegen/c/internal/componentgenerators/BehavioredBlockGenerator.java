@@ -31,20 +31,19 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
@@ -337,14 +336,14 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
+				realType.setUnit(TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
 				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
-				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
+				Unit herzUnit = TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT);
+				herzUnit.getNumerator().getFactor(TypeUtil.SECOND_UNIT).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}

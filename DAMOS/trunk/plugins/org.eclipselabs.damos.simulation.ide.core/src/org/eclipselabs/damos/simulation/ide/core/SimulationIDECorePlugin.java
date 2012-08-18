@@ -1,6 +1,7 @@
 package org.eclipselabs.damos.simulation.ide.core;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.xtext.linking.ILinker;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
 import org.osgi.framework.BundleContext;
@@ -18,6 +19,8 @@ public class SimulationIDECorePlugin extends Plugin {
 	
 	private MscriptParser mscriptParser;
 	
+	private ILinker linker;
+
 	/**
 	 * The constructor
 	 */
@@ -34,6 +37,7 @@ public class SimulationIDECorePlugin extends Plugin {
 
 		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
 		mscriptParser = injector.getInstance(MscriptParser.class);
+		linker = injector.getInstance(ILinker.class);
 	}
 
 	/*
@@ -42,6 +46,7 @@ public class SimulationIDECorePlugin extends Plugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		mscriptParser = null;
+		linker = null;
 		plugin = null;
 		super.stop(context);
 	}
@@ -51,6 +56,13 @@ public class SimulationIDECorePlugin extends Plugin {
 	 */
 	public MscriptParser getMscriptParser() {
 		return mscriptParser;
+	}
+	
+	/**
+	 * @return the linker
+	 */
+	public ILinker getLinker() {
+		return linker;
 	}
 	
 	/**

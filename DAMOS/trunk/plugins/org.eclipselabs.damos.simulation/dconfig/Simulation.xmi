@@ -5,7 +5,9 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <numerator>
-            <factors symbolName="s"/>
+            <factors>
+              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            </factors>
           </numerator>
         </unit>
       </type>

@@ -11,7 +11,9 @@
 
 package org.eclipselabs.damos.mscript.linking;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * @author Andreas Unger
@@ -19,4 +21,14 @@ import org.eclipse.xtext.linking.lazy.LazyLinker;
  */
 public class MscriptLinker extends LazyLinker {
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.linking.impl.AbstractCleaningLinker#clearAllReferences(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected void clearAllReferences(EObject model) {
+		if (NodeModelUtils.getNode(model) != null) {
+			super.clearAllReferences(model);
+		}
+	}
+	
 }

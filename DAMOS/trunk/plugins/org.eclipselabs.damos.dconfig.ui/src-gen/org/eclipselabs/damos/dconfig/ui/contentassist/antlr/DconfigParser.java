@@ -55,6 +55,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValidDoubleAccess().getAlternatives_2_1(), "rule__ValidDouble__Alternatives_2_1");
 					put(grammarAccess.getValidDoubleAccess().getAlternatives_2_1_1_1(), "rule__ValidDouble__Alternatives_2_1_1_1");
 					put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
+					put(grammarAccess.getUnitDeclarationAccess().getAlternatives(), "rule__UnitDeclaration__Alternatives");
 					put(grammarAccess.getFunctionDeclarationAccess().getAlternatives_11(), "rule__FunctionDeclaration__Alternatives_11");
 					put(grammarAccess.getTypeSpecifierAccess().getAlternatives(), "rule__TypeSpecifier__Alternatives");
 					put(grammarAccess.getAnonymousTypeSpecifierAccess().getTypeAlternatives_0(), "rule__AnonymousTypeSpecifier__TypeAlternatives_0");
@@ -70,8 +71,10 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRelationalExpressionAccess().getAlternatives_1_0(), "rule__RelationalExpression__Alternatives_1_0");
 					put(grammarAccess.getPrefixUnaryExpressionAccess().getAlternatives(), "rule__PrefixUnaryExpression__Alternatives");
 					put(grammarAccess.getPostfixUnaryExpressionAccess().getAlternatives_0(), "rule__PostfixUnaryExpression__Alternatives_0");
+					put(grammarAccess.getMemberAccessAccess().getAlternatives_0(), "rule__MemberAccess__Alternatives_0");
 					put(grammarAccess.getMemberAccessAccess().getAlternatives_1(), "rule__MemberAccess__Alternatives_1");
 					put(grammarAccess.getArraySubscriptAccess().getAlternatives(), "rule__ArraySubscript__Alternatives");
+					put(grammarAccess.getCallablePrimaryExpressionAccess().getAlternatives(), "rule__CallablePrimaryExpression__Alternatives");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getNumericLiteralAccess().getAlternatives(), "rule__NumericLiteral__Alternatives");
@@ -91,6 +94,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssignablePrimaryExpressionAccess().getAlternatives(), "rule__AssignablePrimaryExpression__Alternatives");
 					put(grammarAccess.getUnitAccess().getAlternatives(), "rule__Unit__Alternatives");
 					put(grammarAccess.getUnitWithWildcardAccess().getAlternatives(), "rule__UnitWithWildcard__Alternatives");
+					put(grammarAccess.getUnitWithWildcardAccess().getAlternatives_0_2(), "rule__UnitWithWildcard__Alternatives_0_2");
 					put(grammarAccess.getUnitNumeratorAccess().getAlternatives(), "rule__UnitNumerator__Alternatives");
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
@@ -151,6 +155,9 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImportDeclarationAccess().getGroup(), "rule__ImportDeclaration__Group__0");
 					put(grammarAccess.getTypeDeclarationAccess().getGroup(), "rule__TypeDeclaration__Group__0");
 					put(grammarAccess.getBaseUnitDeclarationAccess().getGroup(), "rule__BaseUnitDeclaration__Group__0");
+					put(grammarAccess.getDerivedUnitDeclarationAccess().getGroup(), "rule__DerivedUnitDeclaration__Group__0");
+					put(grammarAccess.getUnitDefinitionAccess().getGroup(), "rule__UnitDefinition__Group__0");
+					put(grammarAccess.getUnitDefinitionAccess().getGroup_1(), "rule__UnitDefinition__Group_1__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup(), "rule__EnumerationDeclaration__Group__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup_3(), "rule__EnumerationDeclaration__Group_3__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup_3_1(), "rule__EnumerationDeclaration__Group_3_1__0");
@@ -299,8 +306,8 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitAccess().getGroup_0(), "rule__Unit__Group_0__0");
 					put(grammarAccess.getUnitAccess().getGroup_0_2(), "rule__Unit__Group_0_2__0");
 					put(grammarAccess.getUnitWithWildcardAccess().getGroup_0(), "rule__UnitWithWildcard__Group_0__0");
-					put(grammarAccess.getUnitWithWildcardAccess().getGroup_1(), "rule__UnitWithWildcard__Group_1__0");
-					put(grammarAccess.getUnitWithWildcardAccess().getGroup_1_2(), "rule__UnitWithWildcard__Group_1_2__0");
+					put(grammarAccess.getUnitWithWildcardAccess().getGroup_0_2_1(), "rule__UnitWithWildcard__Group_0_2_1__0");
+					put(grammarAccess.getUnitWithWildcardAccess().getGroup_0_2_1_1(), "rule__UnitWithWildcard__Group_0_2_1_1__0");
 					put(grammarAccess.getExplicitUnitAccess().getGroup(), "rule__ExplicitUnit__Group__0");
 					put(grammarAccess.getExplicitUnitAccess().getGroup_2(), "rule__ExplicitUnit__Group_2__0");
 					put(grammarAccess.getUnitNumeratorAccess().getGroup_0(), "rule__UnitNumerator__Group_0__0");
@@ -380,6 +387,10 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeDeclarationAccess().getNameAssignment_1(), "rule__TypeDeclaration__NameAssignment_1");
 					put(grammarAccess.getTypeDeclarationAccess().getTypeSpecifierAssignment_3(), "rule__TypeDeclaration__TypeSpecifierAssignment_3");
 					put(grammarAccess.getBaseUnitDeclarationAccess().getNameAssignment_1(), "rule__BaseUnitDeclaration__NameAssignment_1");
+					put(grammarAccess.getDerivedUnitDeclarationAccess().getNameAssignment_1(), "rule__DerivedUnitDeclaration__NameAssignment_1");
+					put(grammarAccess.getDerivedUnitDeclarationAccess().getDefinitionAssignment_3(), "rule__DerivedUnitDeclaration__DefinitionAssignment_3");
+					put(grammarAccess.getUnitDefinitionAccess().getNumeratorAssignment_0(), "rule__UnitDefinition__NumeratorAssignment_0");
+					put(grammarAccess.getUnitDefinitionAccess().getDenominatorAssignment_1_1(), "rule__UnitDefinition__DenominatorAssignment_1_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1(), "rule__EnumerationDeclaration__NameAssignment_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_1_1(), "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1");
@@ -569,9 +580,9 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitAccess().getNumeratorAssignment_0_1(), "rule__Unit__NumeratorAssignment_0_1");
 					put(grammarAccess.getUnitAccess().getDenominatorAssignment_0_2_1(), "rule__Unit__DenominatorAssignment_0_2_1");
 					put(grammarAccess.getUnitAccess().getNumeratorAssignment_1(), "rule__Unit__NumeratorAssignment_1");
-					put(grammarAccess.getUnitWithWildcardAccess().getNumeratorAssignment_1_1(), "rule__UnitWithWildcard__NumeratorAssignment_1_1");
-					put(grammarAccess.getUnitWithWildcardAccess().getDenominatorAssignment_1_2_1(), "rule__UnitWithWildcard__DenominatorAssignment_1_2_1");
-					put(grammarAccess.getUnitWithWildcardAccess().getNumeratorAssignment_2(), "rule__UnitWithWildcard__NumeratorAssignment_2");
+					put(grammarAccess.getUnitWithWildcardAccess().getNumeratorAssignment_0_2_1_0(), "rule__UnitWithWildcard__NumeratorAssignment_0_2_1_0");
+					put(grammarAccess.getUnitWithWildcardAccess().getDenominatorAssignment_0_2_1_1_1(), "rule__UnitWithWildcard__DenominatorAssignment_0_2_1_1_1");
+					put(grammarAccess.getUnitWithWildcardAccess().getNumeratorAssignment_1(), "rule__UnitWithWildcard__NumeratorAssignment_1");
 					put(grammarAccess.getExplicitUnitAccess().getNumeratorAssignment_1(), "rule__ExplicitUnit__NumeratorAssignment_1");
 					put(grammarAccess.getExplicitUnitAccess().getDenominatorAssignment_2_1(), "rule__ExplicitUnit__DenominatorAssignment_2_1");
 					put(grammarAccess.getUnitNumeratorAccess().getFactorsAssignment_1_0(), "rule__UnitNumerator__FactorsAssignment_1_0");
@@ -579,7 +590,7 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getFactorsAssignment_0(), "rule__UnitDenominator__FactorsAssignment_0");
 					put(grammarAccess.getUnitDenominatorAccess().getFactorsAssignment_1_1(), "rule__UnitDenominator__FactorsAssignment_1_1");
 					put(grammarAccess.getUnitDenominatorAccess().getFactorsAssignment_1_2_1(), "rule__UnitDenominator__FactorsAssignment_1_2_1");
-					put(grammarAccess.getUnitFactorAccess().getSymbolNameAssignment_0(), "rule__UnitFactor__SymbolNameAssignment_0");
+					put(grammarAccess.getUnitFactorAccess().getSymbolAssignment_0(), "rule__UnitFactor__SymbolAssignment_0");
 					put(grammarAccess.getUnitFactorAccess().getExponentAssignment_1_1(), "rule__UnitFactor__ExponentAssignment_1_1");
 				}
 			};

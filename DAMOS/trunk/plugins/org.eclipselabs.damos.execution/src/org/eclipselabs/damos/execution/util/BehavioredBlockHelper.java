@@ -77,6 +77,13 @@ public class BehavioredBlockHelper {
 		this.block = block;
 	}
 	
+	/**
+	 * @return the block
+	 */
+	public Block getBlock() {
+		return block;
+	}
+	
 	public FunctionDeclaration createFunctionDefinition() throws CoreException {
 		MscriptBlockType blockType = (MscriptBlockType) block.getType();
 		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(blockType.getDeclarations(), "main");

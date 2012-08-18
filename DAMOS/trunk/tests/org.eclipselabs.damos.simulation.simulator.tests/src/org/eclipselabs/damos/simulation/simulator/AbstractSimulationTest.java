@@ -63,7 +63,7 @@ public class AbstractSimulationTest extends AbstractExecutionTest {
 	}
 	
 	protected String getSimulationTime() {
-		return "10{s}";
+		return "10(s)";
 	}
 	
 	protected IXYChartData getChartData(ISimulation simulation, Component component) {

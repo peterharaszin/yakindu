@@ -31,7 +31,7 @@ public class InvalidValue extends AbstractValue {
 	}
 
 	public Type getDataType() {
-		return TypeUtil.INVALID_DATA_TYPE;
+		return TypeUtil.INVALID_TYPE;
 	}
 	
 	@Override

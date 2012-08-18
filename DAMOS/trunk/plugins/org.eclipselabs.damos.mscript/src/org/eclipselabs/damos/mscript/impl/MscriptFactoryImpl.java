@@ -158,6 +158,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.UNIT_FACTOR: return createUnitFactor();
 			case MscriptPackage.UNIT_SYMBOL: return createUnitSymbol();
 			case MscriptPackage.BASE_UNIT_DECLARATION: return createBaseUnitDeclaration();
+			case MscriptPackage.DERIVED_UNIT_DECLARATION: return createDerivedUnitDeclaration();
 			case MscriptPackage.LITERAL: return createLiteral();
 			case MscriptPackage.NUMERIC_LITERAL: return createNumericLiteral();
 			case MscriptPackage.REAL_LITERAL: return createRealLiteral();
@@ -1220,6 +1221,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public BaseUnitDeclaration createBaseUnitDeclaration() {
 		BaseUnitDeclarationImpl baseUnitDeclaration = new BaseUnitDeclarationImpl();
 		return baseUnitDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DerivedUnitDeclaration createDerivedUnitDeclaration() {
+		DerivedUnitDeclarationImpl derivedUnitDeclaration = new DerivedUnitDeclarationImpl();
+		return derivedUnitDeclaration;
 	}
 
 	/**

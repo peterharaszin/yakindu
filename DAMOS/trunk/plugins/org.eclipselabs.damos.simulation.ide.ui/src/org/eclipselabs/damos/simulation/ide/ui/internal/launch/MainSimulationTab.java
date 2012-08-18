@@ -238,7 +238,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		overrideConfigurationControls.add(label);
 
 		simulationTimeText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		simulationTimeText.setToolTipText("Simulation time in seconds, e.g. 10{s}");
+		simulationTimeText.setToolTipText("Simulation time in seconds, e.g. 10(s)");
 		simulationTimeText.addModifyListener(new ModifyListener() {
 			
 			public void modifyText(ModifyEvent event) {

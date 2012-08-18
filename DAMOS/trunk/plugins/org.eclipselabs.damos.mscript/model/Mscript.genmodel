@@ -430,14 +430,16 @@
     <genClasses image="false" ecoreClass="Mscript.ecore#//UnitProduct">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitProduct/factors"/>
       <genOperations ecoreOperation="Mscript.ecore#//UnitProduct/getFactor">
-        <genParameters ecoreParameter="Mscript.ecore#//UnitProduct/getFactor/symbol"/>
+        <genParameters ecoreParameter="Mscript.ecore#//UnitProduct/getFactor/symbolName"/>
+      </genOperations>
+      <genOperations ecoreOperation="Mscript.ecore#//UnitProduct/getFactor.1">
+        <genParameters ecoreParameter="Mscript.ecore#//UnitProduct/getFactor.1/symbol"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//UnitNumerator"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitDenominator"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitFactor">
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//UnitFactor/symbol"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/symbolName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/exponent"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//UnitDeclaration">
@@ -450,6 +452,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitSymbol/scale"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//BaseUnitDeclaration"/>
+    <genClasses ecoreClass="Mscript.ecore#//DerivedUnitDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DerivedUnitDeclaration/definition"/>
+    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Literal"/>
     <genClasses ecoreClass="Mscript.ecore#//NumericLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//NumericLiteral/unit"/>

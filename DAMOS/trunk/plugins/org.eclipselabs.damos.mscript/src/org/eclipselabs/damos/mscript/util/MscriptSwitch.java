@@ -972,6 +972,14 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.DERIVED_UNIT_DECLARATION: {
+				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration)theEObject;
+				T result = caseDerivedUnitDeclaration(derivedUnitDeclaration);
+				if (result == null) result = caseUnitDeclaration(derivedUnitDeclaration);
+				if (result == null) result = caseDeclaration(derivedUnitDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.LITERAL: {
 				Literal literal = (Literal)theEObject;
 				T result = caseLiteral(literal);
@@ -2811,6 +2819,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBaseUnitDeclaration(BaseUnitDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Derived Unit Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Derived Unit Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDerivedUnitDeclaration(DerivedUnitDeclaration object) {
 		return null;
 	}
 

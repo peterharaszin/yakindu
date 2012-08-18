@@ -847,6 +847,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass derivedUnitDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass literalEClass = null;
 
 	/**
@@ -3270,17 +3277,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnitFactor_SymbolName() {
-		return (EAttribute)unitFactorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getUnitFactor_Exponent() {
-		return (EAttribute)unitFactorEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)unitFactorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3353,6 +3351,24 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EClass getBaseUnitDeclaration() {
 		return baseUnitDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDerivedUnitDeclaration() {
+		return derivedUnitDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDerivedUnitDeclaration_Definition() {
+		return (EReference)derivedUnitDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3998,7 +4014,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		unitFactorEClass = createEClass(UNIT_FACTOR);
 		createEReference(unitFactorEClass, UNIT_FACTOR__SYMBOL);
-		createEAttribute(unitFactorEClass, UNIT_FACTOR__SYMBOL_NAME);
 		createEAttribute(unitFactorEClass, UNIT_FACTOR__EXPONENT);
 
 		unitDeclarationEClass = createEClass(UNIT_DECLARATION);
@@ -4011,6 +4026,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(unitSymbolEClass, UNIT_SYMBOL__SCALE);
 
 		baseUnitDeclarationEClass = createEClass(BASE_UNIT_DECLARATION);
+
+		derivedUnitDeclarationEClass = createEClass(DERIVED_UNIT_DECLARATION);
+		createEReference(derivedUnitDeclarationEClass, DERIVED_UNIT_DECLARATION__DEFINITION);
 
 		literalEClass = createEClass(LITERAL);
 
@@ -4179,6 +4197,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		unitDenominatorEClass.getESuperTypes().add(this.getUnitProduct());
 		unitDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		baseUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
+		derivedUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
 		literalEClass.getESuperTypes().add(this.getExpression());
 		numericLiteralEClass.getESuperTypes().add(this.getLiteral());
 		realLiteralEClass.getESuperTypes().add(this.getNumericLiteral());
@@ -4600,7 +4619,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getUnitProduct_Factors(), this.getUnitFactor(), null, "factors", null, 0, -1, UnitProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(unitProductEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "symbol", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "symbolName", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(unitProductEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUnitSymbol(), "symbol", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(unitNumeratorEClass, UnitNumerator.class, "UnitNumerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4608,7 +4630,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(unitFactorEClass, UnitFactor.class, "UnitFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitFactor_Symbol(), this.getUnitSymbol(), null, "symbol", null, 0, 1, UnitFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUnitFactor_SymbolName(), ecorePackage.getEString(), "symbolName", null, 0, 1, UnitFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnitFactor_Exponent(), ecorePackage.getEInt(), "exponent", "1", 0, 1, UnitFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unitDeclarationEClass, UnitDeclaration.class, "UnitDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4621,6 +4642,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getUnitSymbol_Scale(), ecorePackage.getEInt(), "scale", null, 0, 1, UnitSymbol.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(baseUnitDeclarationEClass, BaseUnitDeclaration.class, "BaseUnitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(derivedUnitDeclarationEClass, DerivedUnitDeclaration.class, "DerivedUnitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDerivedUnitDeclaration_Definition(), this.getUnit(), null, "definition", null, 0, 1, DerivedUnitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -56,13 +56,13 @@ public class NewSimulationConfigurationCreationWizard extends NewConfigurationCr
 
 	protected void writeGlobalProperties(String indent, Appendable appendable) throws IOException {
 		appendable.append(indent);
-		appendable.append("simulationTime = 10{s} // comment out to perform real-time simulation\n\n");
+		appendable.append("simulationTime = 10(s) // comment out to perform real-time simulation\n\n");
 
 		appendable.append(indent);
 		appendable.append("select solver DormandPrince54 {\n");
 		
 		appendable.append(indent);
-		appendable.append("\tminimumStepSize = 1e-10{s}\n");
+		appendable.append("\tminimumStepSize = 1e-10(s)\n");
 
 		appendable.append(indent);
 		appendable.append("\tabsoluteTolerance = 1e-10\n");

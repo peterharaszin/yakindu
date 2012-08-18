@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbol <em>Symbol</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbolName <em>Symbol Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.UnitFactor#getExponent <em>Exponent</em>}</li>
  * </ul>
  * </p>
@@ -52,32 +51,6 @@ public interface UnitFactor extends EObject {
 	 * @generated
 	 */
 	void setSymbol(UnitSymbol value);
-
-	/**
-	 * Returns the value of the '<em><b>Symbol Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Symbol Name</em>' attribute.
-	 * @see #setSymbolName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnitFactor_SymbolName()
-	 * @model
-	 * @generated
-	 */
-	String getSymbolName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.UnitFactor#getSymbolName <em>Symbol Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Symbol Name</em>' attribute.
-	 * @see #getSymbolName()
-	 * @generated
-	 */
-	void setSymbolName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Exponent</b></em>' attribute.

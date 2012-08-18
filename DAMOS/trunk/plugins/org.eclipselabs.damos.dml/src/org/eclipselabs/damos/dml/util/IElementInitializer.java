@@ -13,6 +13,7 @@ package org.eclipselabs.damos.dml.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * @author Andreas Unger
@@ -20,6 +21,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface IElementInitializer {
 
-	boolean initialize(EObject element, EStructuralFeature feature, Object hint);
+	boolean initialize(ResourceSet resourceSet, EObject element, EStructuralFeature feature, Object hint);
 	
 }

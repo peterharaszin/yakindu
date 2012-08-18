@@ -11,11 +11,15 @@
 
 package org.eclipselabs.damos.simulation.simulator;
 
+import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
 import org.eclipselabs.damos.library.base.util.sources.StepConstants;
 import org.eclipselabs.damos.simulation.ISimulation;
 import org.junit.Test;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -23,10 +27,13 @@ import org.junit.Test;
  */
 public class TransferFunctionTest extends AbstractSimulationTest {
 
+	@Inject
+	private ILinker linker;
+	
 	@Test
 	public void stepResponse() {
 		Block step = createBlock(STEP, "Step");
-		setArgument(step, StepConstants.PARAMETER__STEP_TIME, "0{s}");
+		setArgument(step, StepConstants.PARAMETER__STEP_TIME, "0(s)");
 		
 		Block transferFunction = createBlock(TRANSFER_FUNCTION, "TransferFunction");
 		setArgument(transferFunction, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS, "{ 2, 3 }");
@@ -36,6 +43,8 @@ public class TransferFunctionTest extends AbstractSimulationTest {
 
 		connect(step, transferFunction);
 		connect(transferFunction, scope);
+		
+		linker.linkModel(system, new ListBasedDiagnosticConsumer());
 
 		ISimulation simulation = simulate();
 		
@@ -47,7 +56,7 @@ public class TransferFunctionTest extends AbstractSimulationTest {
 	 */
 	@Override
 	protected String getSimulationTime() {
-		return "30{s}";
+		return "30(s)";
 	}
 
 }

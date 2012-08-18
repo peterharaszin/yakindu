@@ -199,7 +199,7 @@ public class StaticFunctionEvaluator {
 					
 					Type rightHandSideDataType = rightHandSideValue.getDataType();
 					if (derivative) {
-						rightHandSideDataType = rightHandSideDataType.evaluate(OperatorKind.MULTIPLY, TypeUtil.createRealType("s"));
+						rightHandSideDataType = rightHandSideDataType.evaluate(OperatorKind.MULTIPLY, TypeUtil.createRealType(equationDescriptor.getEquation().eResource().getResourceSet(), "s"));
 					}
 					if (leftHandSideValue != null) {
 						type = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideDataType);

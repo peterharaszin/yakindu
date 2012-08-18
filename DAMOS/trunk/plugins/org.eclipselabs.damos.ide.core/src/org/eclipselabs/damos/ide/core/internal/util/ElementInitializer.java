@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Latch;
@@ -17,11 +18,11 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ElementInitializer implements IElementInitializer {
 
-	public boolean initialize(EObject element, EStructuralFeature feature, Object hint) {
+	public boolean initialize(ResourceSet resourceSet, EObject element, EStructuralFeature feature, Object hint) {
 		if (element instanceof SynchronousTimingConstraint
 				&& feature == DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime()) {
 			SynchronousTimingConstraint stc = (SynchronousTimingConstraint) element;
-			MscriptValueSpecification valueSpecification = DMLTextUtil.createValueSpecification(1, TypeUtil.createUnit("s"));
+			MscriptValueSpecification valueSpecification = DMLTextUtil.createValueSpecification(1, TypeUtil.createUnit(resourceSet, "s"));
 			stc.setSampleTime(valueSpecification);
 			return true;
 		}

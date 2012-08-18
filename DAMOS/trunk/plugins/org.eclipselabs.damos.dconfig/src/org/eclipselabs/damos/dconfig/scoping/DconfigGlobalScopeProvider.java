@@ -27,11 +27,11 @@ import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipselabs.damos.dconfig.ConfigurationDefinition;
 import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
 import org.eclipselabs.damos.dconfig.internal.DconfigPlugin;
 import org.eclipselabs.damos.dconfig.internal.registry.DefinitionRegistry;
+import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
@@ -40,7 +40,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DconfigGlobalScopeProvider extends DefaultGlobalScopeProvider {
+public class DconfigGlobalScopeProvider extends MscriptGlobalScopeProvider {
 	
 	@Inject
 	private ResourceSet resourceSet;

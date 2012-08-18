@@ -926,6 +926,15 @@ public interface MscriptFactory extends EFactory {
 	BaseUnitDeclaration createBaseUnitDeclaration();
 
 	/**
+	 * Returns a new object of class '<em>Derived Unit Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Derived Unit Declaration</em>'.
+	 * @generated
+	 */
+	DerivedUnitDeclaration createDerivedUnitDeclaration();
+
+	/**
 	 * Returns a new object of class '<em>Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

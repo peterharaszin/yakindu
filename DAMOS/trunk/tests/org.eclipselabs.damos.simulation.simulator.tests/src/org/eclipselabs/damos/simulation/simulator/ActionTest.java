@@ -112,7 +112,7 @@ public class ActionTest extends AbstractSimulationTest {
 	
 	@Override
 	protected String getSimulationTime() {
-		return "2.0{s}";
+		return "2.0(s)";
 	}
 
 }

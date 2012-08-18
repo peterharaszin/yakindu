@@ -25,9 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface UnitSymbol extends EObject {
 	
-	// TODO: Remove this
-	String SECOND = "s";
-	
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.UnitDeclaration#getSymbols <em>Symbols</em>}'.

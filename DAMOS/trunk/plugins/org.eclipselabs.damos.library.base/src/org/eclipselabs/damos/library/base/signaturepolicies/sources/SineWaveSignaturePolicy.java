@@ -28,12 +28,11 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationRes
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.util.sources.SineWaveConstants;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -84,7 +83,7 @@ public class SineWaveSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Amplitude and Bias must have same unit"));
 		}
 		
-		if (!frequencyDataType.getUnit().isEquivalentTo(TypeUtil.createUnit().evaluate(OperatorKind.DIVIDE, TypeUtil.createUnit(UnitSymbol.SECOND)), true)) {
+		if (!frequencyDataType.getUnit().isEquivalentTo(TypeUtil.createUnit().evaluate(OperatorKind.DIVIDE, TypeUtil.createUnit(block.eResource().getResourceSet(), TypeUtil.SECOND_UNIT)), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Frequency unit must be 1/s"));
 		}
 

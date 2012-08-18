@@ -275,7 +275,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 				} else {
 					synchronousTimingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
 					if (elementInitializer != null) {
-						elementInitializer.initialize(synchronousTimingConstraint,
+						elementInitializer.initialize(getComponent().eResource().getResourceSet(), synchronousTimingConstraint,
 								DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime(), null);
 					}
 				}

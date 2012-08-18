@@ -39,7 +39,6 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
@@ -142,13 +141,13 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
 			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
+				realType.setUnit(TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
 			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
-				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
+				Unit herzUnit = TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT);
+				herzUnit.getNumerator().getFactor(TypeUtil.SECOND_UNIT).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}

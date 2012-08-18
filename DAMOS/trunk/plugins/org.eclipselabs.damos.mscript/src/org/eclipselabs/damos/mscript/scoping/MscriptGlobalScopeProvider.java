@@ -23,8 +23,10 @@ import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
-import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider;
+import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.UnitDeclaration;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
@@ -33,12 +35,12 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class MscriptGlobalScopeProvider extends ImportUriGlobalScopeProvider {
+public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
 	/**
 	 * 
 	 */
-	private static final String LIBRARY_URI = "http://www.eclipselabs.org/damos/mscript/library/Standard.xmi";
+	public static final String LIBRARY_URI = "http://www.eclipselabs.org/damos/mscript/library/Standard.xmi";
 
 	@Inject
 	private ResourceSet resourceSet;
@@ -50,7 +52,7 @@ public class MscriptGlobalScopeProvider extends ImportUriGlobalScopeProvider {
 	 */
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
-		return new AbstractScope(IScope.NULLSCOPE, ignoreCase) {
+		return new AbstractScope(super.getScope(resource, ignoreCase, type, filter), ignoreCase) {
 			
 			@Override
 			protected Iterable<IEObjectDescription> getAllLocalElements() {
@@ -70,7 +72,16 @@ public class MscriptGlobalScopeProvider extends ImportUriGlobalScopeProvider {
 				URI uri = URI.createURI(LIBRARY_URI, true);
 				Resource resource = resourceSet.getResource(uri, true);
 				for (EObject eObject : resource.getContents().get(0).eContents()) {
-					eObjectDescriptions.add(EObjectDescription.create(((Declaration) eObject).getName(), eObject));
+					if (eObject instanceof Declaration) {
+						Declaration declaration = (Declaration) eObject;
+						eObjectDescriptions.add(EObjectDescription.create(declaration.getName(), eObject));
+						if (declaration instanceof UnitDeclaration) {
+							UnitDeclaration unitDeclaration = (UnitDeclaration) declaration;
+							for (UnitSymbol unitSymbol : unitDeclaration.getSymbols()) {
+								eObjectDescriptions.add(EObjectDescription.create(unitSymbol.getName(), unitSymbol));
+							}
+						}
+					}
 				}
 				resource.unload();
 			}

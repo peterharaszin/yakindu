@@ -44,10 +44,10 @@ public abstract class AbstractExpressionEvaluatorTest {
 	private IParser parser;
 	
 	@Inject
-	private MscriptGrammarAccess grammarAccess;
+	private ILinker linker;
 	
 	@Inject
-	private ILinker linker;
+	private MscriptGrammarAccess grammarAccess;
 	
 	@Before
 	public void setUp() {
@@ -76,7 +76,6 @@ public abstract class AbstractExpressionEvaluatorTest {
 		
 		Expression expression = (Expression) result.getRootASTElement();
 		if (link) {
-			
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.createResource(URI.createURI("__test.mscript"));
 			resource.getContents().add(expression);

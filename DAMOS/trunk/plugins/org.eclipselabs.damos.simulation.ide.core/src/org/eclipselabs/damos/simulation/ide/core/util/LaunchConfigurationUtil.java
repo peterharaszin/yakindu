@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigFactory;
@@ -40,8 +41,8 @@ import org.eclipselabs.damos.dconfig.SimpleProperty;
 import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
@@ -68,7 +69,7 @@ public class LaunchConfigurationUtil {
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_ID);
 		Map<String, String> solverConfiguration = new HashMap<String, String>();
-		solverConfiguration.put("minimumStepSize", "1e-10{s}");
+		solverConfiguration.put("minimumStepSize", "1e-10(s)");
 		solverConfiguration.put("absoluteTolerance", "1e-10");
 		solverConfiguration.put("relativeTolerance", "1e-10");
 		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, solverConfiguration);
@@ -99,16 +100,18 @@ public class LaunchConfigurationUtil {
 			return baseConfiguration;
 		}
 
+		Resource resource = helper.getResourceSet().createResource(URI.createURI("__temp.dconfig"));
 		Configuration configuration = DconfigFactory.eINSTANCE.createConfiguration();
 		configuration.setPackageName("__temp");
 		configuration.setName("__temp");
 		configuration.setBaseConfiguration(baseConfiguration);
+		resource.getContents().add(configuration);
 		
 		boolean realTimeSimulation = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__REAL_TIME_SIMULATION, false);
 		if (realTimeSimulation) {
 			createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
 		} else {
-			String simulationTime = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10{s}");
+			String simulationTime = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10(s)");
 			if (simulationTime.trim().length() > 0) {
 				SimpleProperty property = createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
 				if (property != null) {
@@ -134,6 +137,7 @@ public class LaunchConfigurationUtil {
 		SelectionPropertyDeclaration solverPropertyDeclaration = (SelectionPropertyDeclaration) propertyDeclaration;
 		SelectionProperty solverProperty = DconfigFactory.eINSTANCE.createSelectionProperty();
 		solverProperty.setDeclaration(solverPropertyDeclaration);
+		configuration.getProperties().add(solverProperty);
 
 		SelectionPropertyOption solverPropertyOption = helper.getSelectionPropertyOption("damos.simulation.solver", solverId);
 		if (solverPropertyOption == null) {
@@ -153,12 +157,11 @@ public class LaunchConfigurationUtil {
 				if (value instanceof String) {
 					SimpleProperty property = DconfigFactory.eINSTANCE.createSimpleProperty();
 					property.setDeclaration(simplePropertyDeclaration);
-					setSimplePropertyValue(property, value.toString());
 					body.getProperties().add(property);
+					setSimplePropertyValue(property, value.toString());
 				}
 			}
 		}
-		configuration.getProperties().add(solverProperty);
 		
 		String fragmentURIString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, "").trim();
 		if (fragmentURIString.length() == 0) {
@@ -191,6 +194,11 @@ public class LaunchConfigurationUtil {
 		}
 		
 		Expression expression = (Expression) result.getRootASTElement();
+		property.setValue(expression);
+		
+		ListBasedDiagnosticConsumer diagnosticsConsumer = new ListBasedDiagnosticConsumer();
+		SimulationIDECorePlugin.getDefault().getLinker().linkModel(expression, diagnosticsConsumer);
+		
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
@@ -204,8 +212,6 @@ public class LaunchConfigurationUtil {
 		if (typeSpecifier != null && typeSpecifier.getType() != null && !typeSpecifier.getType().isAssignableFrom(value.getDataType())) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " data type"));
 		}
-		
-		property.setValue(expression);
 	}
 
 	private static SimpleProperty createSimpleProperty(PropertyEnumerationHelper helper, Configuration configuration, String qualifiedName) throws CoreException {

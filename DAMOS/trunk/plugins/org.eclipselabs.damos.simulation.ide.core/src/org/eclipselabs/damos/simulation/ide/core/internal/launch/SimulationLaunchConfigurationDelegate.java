@@ -22,7 +22,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 	public static final String ATTRIBUTE__SOLVER = "solver";
 	public static final String ATTRIBUTE__SOLVER_CONFIGURATION = "solverConfiguration";
 
-	public static final String DEFAULT_SIMULATION_TIME = "10{s}";
+	public static final String DEFAULT_SIMULATION_TIME = "10(s)";
 	public static final String DEFAULT_SOLVER_ID = "damos.simulation.solvers.DormandPrince54";
 
 	public void launch(ILaunchConfiguration launchConfiguration, String mode, ILaunch launch, IProgressMonitor progressMonitor) throws CoreException {

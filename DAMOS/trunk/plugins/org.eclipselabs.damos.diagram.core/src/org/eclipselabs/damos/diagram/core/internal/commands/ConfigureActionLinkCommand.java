@@ -53,7 +53,7 @@ public class ConfigureActionLinkCommand extends ConfigureElementCommand {
     	List<ActionLink> actionLinks = actionLink.getChoice().getActionLinks();
     	if (actionLinks.size() < 3) {
 	    	if (elementInitializer != null) {
-	    		elementInitializer.initialize(actionLink, DMLPackage.eINSTANCE.getActionLink_Condition(), null);
+	    		elementInitializer.initialize(getElementToEdit().eResource().getResourceSet(), actionLink, DMLPackage.eINSTANCE.getActionLink_Condition(), null);
 	    	}
     	}
     	

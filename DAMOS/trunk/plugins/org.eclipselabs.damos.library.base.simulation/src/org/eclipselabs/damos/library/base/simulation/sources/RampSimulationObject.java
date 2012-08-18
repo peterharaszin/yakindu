@@ -17,7 +17,6 @@ import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.util.sources.RampConstants;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -48,7 +47,7 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 		defaultComputationContext = new ComputationContext();
 		
 		timeDataType = MscriptFactory.eINSTANCE.createRealType();
-		timeDataType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
+		timeDataType.setUnit(TypeUtil.createUnit(getComponent().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
 		
 		initialValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__INITIAL_VALUE);
 		startTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__START_TIME);

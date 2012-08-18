@@ -45,9 +45,17 @@ public interface UnitProduct extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model symbolNameRequired="true"
+	 * @generated
+	 */
+	UnitFactor getFactor(String symbolName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model symbolRequired="true"
 	 * @generated
 	 */
-	UnitFactor getFactor(String symbol);
+	UnitFactor getFactor(UnitSymbol symbol);
 
 } // UnitProduct

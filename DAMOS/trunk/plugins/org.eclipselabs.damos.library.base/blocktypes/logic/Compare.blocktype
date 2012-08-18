@@ -20,19 +20,19 @@ blockType Compare {
 		check<1>(boolean, boolean) -> boolean
 		check<1>(string, string) -> boolean
 
-		static assert operator < 2 => a is real{?} || a is boolean || a is string :
+		static assert operator < 2 => a is real(?) || a is boolean || a is string :
 			error "Input value A must be numeric, boolean, or string"
 			
-		static assert operator < 2 => b is real{?} || b is boolean || a is string :
+		static assert operator < 2 => b is real(?) || b is boolean || a is string :
 			error "Input value B must be numeric, boolean, or string"
 	
-		static assert operator >= 2 => a is real{?} :
+		static assert operator >= 2 => a is real(?) :
 			error "Input value A must be numeric"
 			
-		static assert operator >= 2 => b is real{?} :
+		static assert operator >= 2 => b is real(?) :
 			error "Input value B must be numeric"
 			
-		static assert a is real{?} && b is real{?} => unit(a) == unit(b) :
+		static assert a is real(?) && b is real(?) => unit(a) == unit(b) :
 			error "Input values must have same unit"
 			
 		static assert operator is real && operator >=0 && operator <= 5 :

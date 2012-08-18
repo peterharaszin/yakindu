@@ -11,18 +11,17 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.BaseUnitDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitFactor;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 
 /**
  * @author Andreas Unger
@@ -30,16 +29,6 @@ import org.eclipselabs.damos.mscript.UnitFactor;
  */
 public class UnitOperations {
 	
-	private static final String METER = "m";
-	private static final String KILOGRAM = "kg";
-	private static final String SECOND = "s";
-	private static final String AMPERE = "A";
-	private static final String KELVIN = "K";
-	private static final String MOLE = "mol";
-	private static final String CANDELA = "cd";
-	
-	private static Map<String, List<UnitFactor>> cachedFactorMap;
-
 	public static Unit getNormalized(Unit unit) {
 		Unit result = MscriptFactory.eINSTANCE.createUnit();
 		result.setNumerator(MscriptFactory.eINSTANCE.createUnitNumerator());
@@ -64,51 +53,9 @@ public class UnitOperations {
 
 	private static void evaluateFactor(UnitFactor factor, boolean reciprocal, Unit result) throws InvalidUnitExpressionOperandException {
 		int scale = 0;
-		List<UnitFactor> factors = null;
+		List<UnitFactor> factors = new ArrayList<UnitFactor>();
 
-		String symbolString = factor.getSymbolName();
-		
-		if (symbolString.equals("g")) {
-			factors = cachedFactorMap.get(KILOGRAM);
-			scale = -3;
-		} else {
-			factors = normalizeSymbol(symbolString);
-			if (factors == null) {
-				if (symbolString.length() < 2) {
-					throw new InvalidUnitExpressionOperandException(factor);
-				}
-				if (symbolString.substring(1).equals("g")) {
-					scale = getScale(symbolString.charAt(0));
-					if (scale == 0) {
-						throw new InvalidUnitExpressionOperandException(factor);
-					}
-					factors = cachedFactorMap.get(KILOGRAM);
-					scale -= 3;
-				} else {
-					factors = normalizeSymbol(symbolString.substring(1));
-					if (factors == null) {
-						if (symbolString.length() < 3 || !symbolString.startsWith("da")) {
-							throw new InvalidUnitExpressionOperandException(factor);
-						}
-						scale = 1;
-						if (symbolString.substring(2).equals("g")) {
-							factors = cachedFactorMap.get(KILOGRAM);
-							scale -= 3;
-						} else {
-							factors = normalizeSymbol(symbolString.substring(2));
-							if (factors == null) {
-								throw new InvalidUnitExpressionOperandException(factor);
-							}
-						}
-					} else {
-						scale = getScale(symbolString.charAt(0));
-						if (scale == 0) {
-							throw new InvalidUnitExpressionOperandException(factor);
-						}
-					}
-				}
-			}
-		}
+		expandFactor(factor, factors);
 				
 		int exponent = factor.getExponent();
 		
@@ -122,53 +69,20 @@ public class UnitOperations {
 		}
 	}
 	
-	private static int getScale(char prefix) {
-		switch (prefix) {
-		case 'Y':
-			return 24; 
-		case 'Z':
-			return 21;
-		case 'E':
-			return 18;
-		case 'P':
-			return 15;
-		case 'T':
-			return 12;
-		case 'G':
-			return 9;
-		case 'M':
-			return 6;
-		case 'k':
-			return 3;
-		case 'h':
-			return 2;
-		case 'd':
-			return -1;
-		case 'c':
-			return -2;
-		case 'm':
-			return -3;
-		case 'u':
-			return -6;
-		case 'n':
-			return -9;
-		case 'p':
-			return -12;
-		case 'f':
-			return -15;
-		case 'a':
-			return -18;
-		case 'z':
-			return -21;
-		case 'y':
-			return -24;
+	private static void expandFactor(UnitFactor factor, List<UnitFactor> factors) throws InvalidUnitExpressionOperandException {
+		if (factor.getSymbol() == null) {
+			throw new InvalidUnitExpressionOperandException(factor);
 		}
-		return 0;
+		if (factor.getSymbol().getOwner() instanceof BaseUnitDeclaration) {
+			UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
+			newFactor.setSymbol(factor.getSymbol());
+			factors.add(newFactor);
+		}
 	}
 	
 	private static void addFactorsToUnit(Unit unit, List<UnitFactor> factors, int exponent) {
 		for (UnitFactor factor : factors) {
-			UnitFactor existingFactor = unit.getNumerator().getFactor(factor.getSymbolName());
+			UnitFactor existingFactor = unit.getNumerator().getFactor(factor.getSymbol());
 			int newExponent = exponent * factor.getExponent();
 			if (existingFactor != null) {
 				newExponent += existingFactor.getExponent();
@@ -179,114 +93,13 @@ public class UnitOperations {
 				}
 			} else if (newExponent != 0){
 				UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
-				newFactor.setSymbolName(factor.getSymbolName());
+				newFactor.setSymbol(factor.getSymbol());
 				newFactor.setExponent(newExponent);
 				unit.getNumerator().getFactors().add(newFactor);
 			}
 		}
 	}
 
-	private static List<UnitFactor> normalizeSymbol(String symbol) {
-		return getFactorMap().get(symbol);
-	}
-	
-	private static Map<String, List<UnitFactor>> getFactorMap() {
-		if (cachedFactorMap == null) {
-			cachedFactorMap = createFactorMap();
-		}
-		return cachedFactorMap;
-	}
-	
-	private static Map<String, List<UnitFactor>> createFactorMap() {
-		Map<String, List<UnitFactor>> factorMap = new HashMap<String, List<UnitFactor>>();
-		fillFactorMapWithBaseUnits(factorMap);
-		fillFactorMapWithDerivedUnits(factorMap);
-		return factorMap;
-	}
-	
-	private static void fillFactorMapWithBaseUnits(Map<String, List<UnitFactor>> factorMap) {
-		factorMap.put(METER, Collections.singletonList(createUnitFactor(METER, 1)));
-		factorMap.put(KILOGRAM, Collections.singletonList(createUnitFactor(KILOGRAM, 1)));
-		factorMap.put(SECOND, Collections.singletonList(createUnitFactor(SECOND, 1)));
-		factorMap.put(AMPERE, Collections.singletonList(createUnitFactor(AMPERE, 1)));
-		factorMap.put(KELVIN, Collections.singletonList(createUnitFactor(KELVIN, 1)));
-		factorMap.put(MOLE, Collections.singletonList(createUnitFactor(MOLE, 1)));
-		factorMap.put(CANDELA, Collections.singletonList(createUnitFactor(CANDELA, 1)));
-	}
-	
-	private static void fillFactorMapWithDerivedUnits(Map<String, List<UnitFactor>> factorMap) {
-		factorMap.put("Hz", Collections.singletonList(createUnitFactor(SECOND, -1)));
-		factorMap.put("rad", Arrays.asList(new UnitFactor[] {}));
-		factorMap.put("sr", Arrays.asList(new UnitFactor[] {}));
-		factorMap.put("N", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(METER, 1),
-				createUnitFactor(SECOND, -2)}));
-		factorMap.put("Pa", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, -1),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -2)}));
-		factorMap.put("J", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -2)}));
-		factorMap.put("W", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -3)}));
-		factorMap.put("C", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(SECOND, 1),
-				createUnitFactor(AMPERE, 1)}));
-		factorMap.put("V", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -3),
-				createUnitFactor(AMPERE, -1)}));
-		factorMap.put("F", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, -2),
-				createUnitFactor(KILOGRAM, -1),
-				createUnitFactor(SECOND, 4),
-				createUnitFactor(AMPERE, 2)}));
-		factorMap.put("Ohm", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -3),
-				createUnitFactor(AMPERE, -2)}));
-		factorMap.put("S", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, -2),
-				createUnitFactor(KILOGRAM, -1),
-				createUnitFactor(SECOND, 3),
-				createUnitFactor(AMPERE, 2)}));
-		factorMap.put("Wb", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -2),
-				createUnitFactor(AMPERE, -1)}));
-		factorMap.put("T", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -2),
-				createUnitFactor(AMPERE, -1)}));
-		factorMap.put("H", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(KILOGRAM, 1),
-				createUnitFactor(SECOND, -2),
-				createUnitFactor(AMPERE, -2)}));
-		factorMap.put("lm", Arrays.asList(new UnitFactor[] {createUnitFactor(CANDELA, 1)}));
-		factorMap.put("lx", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, -2),
-				createUnitFactor(CANDELA, 1)}));
-		factorMap.put("Bq", Collections.singletonList(createUnitFactor(SECOND, -1)));
-		factorMap.put("Gy", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(SECOND, -2)}));
-		factorMap.put("Sv", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(METER, 2),
-				createUnitFactor(SECOND, -2)}));
-		factorMap.put("kat", Arrays.asList(new UnitFactor[] {
-				createUnitFactor(SECOND, -1),
-				createUnitFactor(MOLE, 1)}));
-	}
-	
 	public static Unit evaluate(Unit unit, OperatorKind operator, Unit other) {
 		switch (operator) {
 		case ADD:
@@ -308,11 +121,11 @@ public class UnitOperations {
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() + other.getScale());
 			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbolName());
+				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() + otherFactor.getExponent());
 				} else {
-					factor = createUnitFactor(otherFactor.getSymbolName(), otherFactor.getExponent());
+					factor = createUnitFactor(otherFactor.getSymbol(), otherFactor.getExponent());
 					unit.getNumerator().getFactors().add(factor);
 				}
 			}
@@ -323,11 +136,11 @@ public class UnitOperations {
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() - other.getScale());
 			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbolName());
+				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() - otherFactor.getExponent());
 				} else {
-					factor = createUnitFactor(otherFactor.getSymbolName(), -otherFactor.getExponent());
+					factor = createUnitFactor(otherFactor.getSymbol(), -otherFactor.getExponent());
 					unit.getNumerator().getFactors().add(factor);
 				}
 			}
@@ -377,6 +190,9 @@ public class UnitOperations {
 	public static boolean isEquivalentTo(Unit unit, Unit other, boolean ignoreScale) {
 		unit = unit.getNormalized();
 		other = other.getNormalized();
+		if (unit == null || other == null) {
+			return false;
+		}
 		if (!ignoreScale && unit.getScale() != other.getScale()) {
 			return false;
 		}
@@ -386,7 +202,7 @@ public class UnitOperations {
 			return false;
 		}
 		for (UnitFactor factor : factors) {
-			UnitFactor otherFactor = other.getNumerator().getFactor(factor.getSymbolName());
+			UnitFactor otherFactor = other.getNumerator().getFactor(factor.getSymbol());
 			if (otherFactor == null || otherFactor.getExponent() != factor.getExponent()) {
 				return false;
 			}
@@ -418,9 +234,9 @@ public class UnitOperations {
 		return true;
 	}
 
-	private static UnitFactor createUnitFactor(String symbol, int exponent) {
+	private static UnitFactor createUnitFactor(UnitSymbol symbol, int exponent) {
 		UnitFactor factor = MscriptFactory.eINSTANCE.createUnitFactor();
-		factor.setSymbolName(symbol);
+		factor.setSymbol(symbol);
 		factor.setExponent(exponent);
 		return factor;
 	}

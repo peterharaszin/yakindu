@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.UnitFactor;
 import org.eclipselabs.damos.mscript.UnitProduct;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,9 +80,24 @@ public abstract class UnitProductImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public UnitFactor getFactor(String symbol) {
+	public UnitFactor getFactor(String symbolName) {
 		for (UnitFactor factor : getFactors()) {
-			if (symbol.equals(factor.getSymbolName())) {
+			UnitSymbol symbol = factor.getSymbol();
+			if (symbol != null && symbolName.equals(symbol.getName())) {
+				return factor;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public UnitFactor getFactor(UnitSymbol symbol) {
+		for (UnitFactor factor : getFactors()) {
+			if (symbol == factor.getSymbol()) {
 				return factor;
 			}
 		}

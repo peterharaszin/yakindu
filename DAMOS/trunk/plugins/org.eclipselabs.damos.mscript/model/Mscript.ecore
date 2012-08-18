@@ -508,7 +508,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnitProduct" abstract="true">
     <eOperations name="getFactor" eType="#//UnitFactor">
-      <eParameters name="symbol" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="symbolName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getFactor" eType="#//UnitFactor">
+      <eParameters name="symbol" lowerBound="1" eType="#//UnitSymbol"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="factors" upperBound="-1"
         eType="#//UnitFactor" containment="true"/>
@@ -517,7 +520,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnitDenominator" eSuperTypes="#//UnitProduct"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnitFactor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="symbol" eType="#//UnitSymbol"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbolName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exponent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
   </eClassifiers>
@@ -558,6 +560,10 @@
     <eLiterals name="Yocto" value="-24" literal="y"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BaseUnitDeclaration" eSuperTypes="#//UnitDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DerivedUnitDeclaration" eSuperTypes="#//UnitDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//Unit"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral" eSuperTypes="#//Literal">
     <eOperations name="isComplex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

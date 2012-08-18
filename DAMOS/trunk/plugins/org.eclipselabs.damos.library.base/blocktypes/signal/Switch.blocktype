@@ -9,13 +9,13 @@ blockType Switch {
 	function main(onTrue, control, onFalse) -> y {
 		check(real, boolean, real) -> real
 		
-		static assert onTrue is real{?} :
+		static assert onTrue is real(?) :
 			error "On-true input must be numeric"
 	
-		static assert onFalse is real{?} :
+		static assert onFalse is real(?) :
 			error "On-false input must be numeric"
 	
-		static assert onTrue is real{?} && onFalse is real{?} => unit(onTrue) == unit(onFalse) :
+		static assert onTrue is real(?) && onFalse is real(?) => unit(onTrue) == unit(onFalse) :
 			error "On-true input and on-false input must have same unit"
 	
 		static assert control is boolean :

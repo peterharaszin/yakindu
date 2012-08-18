@@ -31,7 +31,6 @@ public class ProblemMarkerDecoratorProvider extends AbstractProvider implements 
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		EObject targetElement = getTargetElement(decoratorTarget);
 		return targetElement != null && (targetElement instanceof FragmentElement || targetElement instanceof ActionLink);
-
 	}
 
 	private EObject getTargetElement(IDecoratorTarget decoratorTarget) {

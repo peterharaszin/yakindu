@@ -537,6 +537,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createBaseUnitDeclarationAdapter();
 			}
 			@Override
+			public Adapter caseDerivedUnitDeclaration(DerivedUnitDeclaration object) {
+				return createDerivedUnitDeclarationAdapter();
+			}
+			@Override
 			public Adapter caseLiteral(Literal object) {
 				return createLiteralAdapter();
 			}
@@ -2231,6 +2235,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBaseUnitDeclarationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DerivedUnitDeclaration <em>Derived Unit Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.DerivedUnitDeclaration
+	 * @generated
+	 */
+	public Adapter createDerivedUnitDeclarationAdapter() {
 		return null;
 	}
 

@@ -14,7 +14,10 @@ package org.eclipselabs.damos.mscript.util;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipselabs.damos.mscript.AnonymousArrayType;
@@ -23,12 +26,18 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitDeclaration;
 import org.eclipselabs.damos.mscript.UnitFactor;
+import org.eclipselabs.damos.mscript.UnitPrefix;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
 /**
  * @author Andreas Unger
@@ -36,17 +45,19 @@ import org.eclipselabs.damos.mscript.UnitFactor;
  */
 public class TypeUtil {
 	
-	public static final Type INVALID_DATA_TYPE = MscriptFactory.eINSTANCE.createInvalidType();
+	public static final Type INVALID_TYPE = MscriptFactory.eINSTANCE.createInvalidType();
 	public static final Type BOOLEAN_TYPE = MscriptFactory.eINSTANCE.createBooleanType();
 	public static final Type STRING_TYPE = MscriptFactory.eINSTANCE.createStringType();
 	public static final Type UNIT_TYPE = MscriptFactory.eINSTANCE.createUnitType();
 	
+	public static final String SECOND_UNIT = "s";
+
 	public static RealType createRealType() {
 		return createRealType(createUnit());
 	}
 	
-	public static RealType createRealType(String... symbols) {
-		return createRealType(createUnit(symbols));
+	public static RealType createRealType(ResourceSet resourceSet, String... unitSymbolNames) {
+		return createRealType(createUnit(resourceSet, unitSymbolNames));
 	}
 
 	public static RealType createRealType(Unit unit) {
@@ -59,8 +70,8 @@ public class TypeUtil {
 		return createIntegerType(createUnit());
 	}
 	
-	public static IntegerType createIntegerType(String... symbols) {
-		return createIntegerType(createUnit(symbols));
+	public static IntegerType createIntegerType(ResourceSet resourceSet, String... unitSymbolNames) {
+		return createIntegerType(createUnit(resourceSet, unitSymbolNames));
 	}
 
 	public static IntegerType createIntegerType(Unit unit) {
@@ -163,8 +174,8 @@ public class TypeUtil {
 		return createUnit(0);
 	}
 
-	public static Unit createUnit(String... symbols) {
-		return createUnit(0, symbols);
+	public static Unit createUnit(ResourceSet resourceSet, String... symbolNames) {
+		return createUnit(resourceSet, 0, symbolNames);
 	}
 	
 	public static Unit createUnit(int scale) {
@@ -174,19 +185,46 @@ public class TypeUtil {
 		return unit;
 	}
 	
-	public static Unit createUnit(int scale, String... symbols) {
+	public static Unit createUnit(ResourceSet resourceSet, int scale, String... symbolNames) {
+		Resource resource = resourceSet.getResource(URI.createURI(MscriptGlobalScopeProvider.LIBRARY_URI), true);
+		Module module = (Module) EcoreUtil.getObjectByType(resource.getContents(), MscriptPackage.eINSTANCE.getModule());
+		if (module == null) {
+			return null;
+		}
+		
 		Unit unit = createUnit(scale);
-		for (String symbol : symbols) {
+		for (String symbolName : symbolNames) {
+			UnitSymbol symbol = findUnitSymbol(module, symbolName);
+			if (symbol == null) {
+				continue;
+			}
 			UnitFactor factor = unit.getNumerator().getFactor(symbol);
 			if (factor != null) {
 				factor.setExponent(factor.getExponent() + 1);
 			} else {
 				factor = MscriptFactory.eINSTANCE.createUnitFactor();
-				factor.setSymbolName(symbol);
+				factor.setSymbol(symbol);
 				unit.getNumerator().getFactors().add(factor);
 			}
 		}
+		
 		return unit;
+	}
+	
+	private static UnitSymbol findUnitSymbol(Module module, String name) {
+		for (EObject eObject : module.getDeclarations()) {
+			if (eObject instanceof UnitDeclaration) {
+				UnitDeclaration unitDeclaration = (UnitDeclaration) eObject;
+				if (name.equals(unitDeclaration.getName())) {
+					for (UnitSymbol unitSymbol : unitDeclaration.getSymbols()) {
+						if (unitSymbol.getPrefix() == UnitPrefix.NONE) {
+							return unitSymbol;
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 		
 	public static Type getLeftHandDataType(Type dataType1, Type dataType2) {

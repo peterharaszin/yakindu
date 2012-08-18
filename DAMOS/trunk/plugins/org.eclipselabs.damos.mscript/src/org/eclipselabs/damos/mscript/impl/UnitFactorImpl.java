@@ -23,7 +23,6 @@ import org.eclipselabs.damos.mscript.UnitSymbol;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getSymbol <em>Symbol</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getSymbolName <em>Symbol Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl#getExponent <em>Exponent</em>}</li>
  * </ul>
  * </p>
@@ -40,26 +39,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	 * @ordered
 	 */
 	protected UnitSymbol symbol;
-
-	/**
-	 * The default value of the '{@link #getSymbolName() <em>Symbol Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSymbolName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SYMBOL_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSymbolName() <em>Symbol Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSymbolName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String symbolName = SYMBOL_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExponent() <em>Exponent</em>}' attribute.
@@ -143,27 +122,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSymbolName() {
-		return symbolName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSymbolName(String newSymbolName) {
-		String oldSymbolName = symbolName;
-		symbolName = newSymbolName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT_FACTOR__SYMBOL_NAME, oldSymbolName, symbolName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getExponent() {
 		return exponent;
 	}
@@ -191,8 +149,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
 				if (resolve) return getSymbol();
 				return basicGetSymbol();
-			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
-				return getSymbolName();
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				return getExponent();
 		}
@@ -209,9 +165,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
 				setSymbol((UnitSymbol)newValue);
-				return;
-			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
-				setSymbolName((String)newValue);
 				return;
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				setExponent((Integer)newValue);
@@ -231,9 +184,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
 				setSymbol((UnitSymbol)null);
 				return;
-			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
-				setSymbolName(SYMBOL_NAME_EDEFAULT);
-				return;
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				setExponent(EXPONENT_EDEFAULT);
 				return;
@@ -251,8 +201,6 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 		switch (featureID) {
 			case MscriptPackage.UNIT_FACTOR__SYMBOL:
 				return symbol != null;
-			case MscriptPackage.UNIT_FACTOR__SYMBOL_NAME:
-				return SYMBOL_NAME_EDEFAULT == null ? symbolName != null : !SYMBOL_NAME_EDEFAULT.equals(symbolName);
 			case MscriptPackage.UNIT_FACTOR__EXPONENT:
 				return exponent != EXPONENT_EDEFAULT;
 		}
@@ -269,9 +217,7 @@ public class UnitFactorImpl extends MinimalEObjectImpl.Container implements Unit
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (symbolName: ");
-		result.append(symbolName);
-		result.append(", exponent: ");
+		result.append(" (exponent: ");
 		result.append(exponent);
 		result.append(')');
 		return result.toString();

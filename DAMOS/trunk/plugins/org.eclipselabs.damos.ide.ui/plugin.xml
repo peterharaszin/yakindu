@@ -265,6 +265,15 @@
       </GlobalActionHandlerProvider>
    </extension>
    <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+      <editpolicyProvider
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.ide.ui.internal.providers.EditPolicyProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </editpolicyProvider>
+   </extension>
+   <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <decoratorProvider
             class="org.eclipselabs.damos.ide.ui.internal.providers.NatureCheckingDecoratorProvider">

@@ -51,7 +51,7 @@ public class ConfigureLatchCommand extends ConfigureElementCommand {
     	
     	latch.setName(DMLUtil.findAvailableComponentName(latch.getEnclosingFragment(), "Latch"));
     	if (elementInitializer != null) {
-    		elementInitializer.initialize(latch, DMLPackage.eINSTANCE.getLatch_InitialValue(), null);
+    		elementInitializer.initialize(getElementToEdit().eResource().getResourceSet(), latch, DMLPackage.eINSTANCE.getLatch_InitialValue(), null);
     	}
  
     	Input input = DMLFactory.eINSTANCE.createLatchInput();

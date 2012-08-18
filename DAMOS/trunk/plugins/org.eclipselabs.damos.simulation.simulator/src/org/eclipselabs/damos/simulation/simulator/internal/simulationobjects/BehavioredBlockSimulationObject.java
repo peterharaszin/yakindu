@@ -39,7 +39,6 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -320,14 +319,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
+				realType.setUnit(TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
 				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
-				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
+				Unit herzUnit = TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT);
+				herzUnit.getNumerator().getFactor(TypeUtil.SECOND_UNIT).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}

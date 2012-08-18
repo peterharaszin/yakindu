@@ -41,11 +41,17 @@ TypeDeclaration:
  */
 
 UnitDeclaration:
-	BaseUnitDeclaration;
+	BaseUnitDeclaration | DerivedUnitDeclaration;
 
 BaseUnitDeclaration:
 	'unit' name=ValidID;
 
+DerivedUnitDeclaration:
+	'unit' name=ValidID '=' definition=UnitDefinition;
+
+UnitDefinition returns Unit:
+	numerator=UnitNumerator ('/' denominator=UnitDenominator)?;
+	
 /*
  * Enumeration
  */
@@ -295,12 +301,12 @@ enum PostfixUnaryOperator returns OperatorKind:
 	Derivative="'";
 
 MemberAccess returns Expression:
-	FunctionCall (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+	(FunctionCall | PrimaryExpression) (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
 		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID)
 		| ({FunctionCall.arguments+=current} '.' target=FeatureReference '(' (arguments+=Expression (',' arguments+=Expression)*)? ')'))*;
 
 FunctionCall returns Expression:
-	PrimaryExpression ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
+	CallablePrimaryExpression ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
 	
 IterationVariableDeclaration:
 	name=ValidID;
@@ -308,15 +314,17 @@ IterationVariableDeclaration:
 ArraySubscript:
 	slice?=':' | expression=Expression;
 
+CallablePrimaryExpression returns Expression:
+	FeatureReference |
+	ParenthesizedExpression;
+
 PrimaryExpression returns Expression:
 	Literal |
 	TemplateExpression |
-	FeatureReference |
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
 	ArrayConcatenationOperator |
 	RecordConstructionOperator |
-	ParenthesizedExpression |
 	EndExpression |
 	AlgorithmExpression;
 
@@ -477,10 +485,10 @@ ReturnStatement:
  */
 	
 Unit:
-	'{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}' | numerator=ImplicitUnitNumerator;
+	'(' numerator=UnitNumerator ('/' denominator=UnitDenominator)? ')' | numerator=ImplicitUnitNumerator;
 
 UnitWithWildcard returns Unit:
-	{Unit} '{' '?' '}' | '{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}' | numerator=ImplicitUnitNumerator;
+	{Unit} '(' ('?' | numerator=UnitNumerator ('/' denominator=UnitDenominator)?) ')' | numerator=ImplicitUnitNumerator;
 
 ExplicitUnit returns Unit:
 	'{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}';
@@ -495,8 +503,7 @@ UnitDenominator:
 	factors+=UnitFactor | '(' factors+=UnitFactor ('*' factors+=UnitFactor)* ')';
 
 UnitFactor:
-//	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
-	symbolName=ValidID ('^' exponent=UnitExponent)?;
+	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
 
 UnitExponent returns ecore::EInt:
 	('-')? ValidInt;

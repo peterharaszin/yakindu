@@ -23,7 +23,7 @@
     <symbols prefix="z"/>
     <symbols prefix="y"/>
   </declarations>
-  <declarations xsi:type="mscript:BaseUnitDeclaration" name="kg">
+  <declarations xsi:type="mscript:BaseUnitDeclaration" name="g">
     <symbols/>
     <symbols prefix="da"/>
     <symbols prefix="h"/>

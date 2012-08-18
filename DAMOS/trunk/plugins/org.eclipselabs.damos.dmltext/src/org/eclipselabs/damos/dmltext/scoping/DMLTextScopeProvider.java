@@ -21,7 +21,7 @@ public class DMLTextScopeProvider extends MscriptScopeProvider {
 				unitSymbols.addAll(((UnitDeclaration) d).getSymbols());
 			}
 		}
-		return Scopes.scopeFor(unitSymbols, super.scope_UnitFactor_symbol(context, reference));
+		return Scopes.scopeFor(unitSymbols, super.scope_UnitSymbol(context, reference));
 	}
 
 }

@@ -122,7 +122,7 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(Collections.<EObject>emptyList());
 	}
 	
-	public IScope scope_UnitFactor_symbol(EObject context, EReference reference) {
+	public IScope scope_UnitSymbol(EObject context, EReference reference) {
 		Iterable<IEObjectDescription> parentElements = getDelegate().getScope(context, reference).getAllElements();
 		Iterable<IEObjectDescription> filteredParentElements = Scopes.selectCompatible(parentElements, MscriptPackage.eINSTANCE.getUnitSymbol());
 		return new SimpleScope(filteredParentElements);

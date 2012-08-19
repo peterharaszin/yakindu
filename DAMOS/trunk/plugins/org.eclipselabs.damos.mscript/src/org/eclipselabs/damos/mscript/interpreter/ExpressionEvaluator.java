@@ -1026,10 +1026,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 			if (unitConstructionOperator.getUnit() == null) {
 				return InvalidValue.SINGLETON;
 			}
-			Unit unit = null;
-			if (unitConstructionOperator.getUnit().getNumerator() != null) {
-				unit = EcoreUtil.copy(unitConstructionOperator.getUnit());
-			}
+			Unit unit = EcoreUtil.copy(unitConstructionOperator.getUnit());
 			return new UnitValue(context.getComputationContext(), unit);
 		}
 

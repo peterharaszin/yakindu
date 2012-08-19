@@ -70,7 +70,6 @@
         <type
             xsi:type="mscript:IntegerType">
           <unit>
-            <numerator/>
           </unit>
         </type>
       </typeSpecifier>

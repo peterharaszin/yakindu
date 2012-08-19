@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.mscript;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,10 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.Unit#getNumerator <em>Numerator</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Unit#getDenominator <em>Denominator</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.Unit#getScale <em>Scale</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Unit#isWildcard <em>Wildcard</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Unit#isAny <em>Any</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Unit#getFactors <em>Factors</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,58 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Unit extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Numerator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Numerator</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Numerator</em>' containment reference.
-	 * @see #setNumerator(UnitNumerator)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnit_Numerator()
-	 * @model containment="true"
-	 * @generated
-	 */
-	UnitNumerator getNumerator();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Unit#getNumerator <em>Numerator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Numerator</em>' containment reference.
-	 * @see #getNumerator()
-	 * @generated
-	 */
-	void setNumerator(UnitNumerator value);
-
-	/**
-	 * Returns the value of the '<em><b>Denominator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Denominator</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Denominator</em>' containment reference.
-	 * @see #setDenominator(UnitDenominator)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnit_Denominator()
-	 * @model containment="true"
-	 * @generated
-	 */
-	UnitDenominator getDenominator();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Unit#getDenominator <em>Denominator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Denominator</em>' containment reference.
-	 * @see #getDenominator()
-	 * @generated
-	 */
-	void setDenominator(UnitDenominator value);
-
 	/**
 	 * Returns the value of the '<em><b>Scale</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -107,19 +55,62 @@ public interface Unit extends EObject {
 	void setScale(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Wildcard</b></em>' attribute.
+	 * Returns the value of the '<em><b>Any</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Wildcard</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Wildcard</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnit_Wildcard()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @return the value of the '<em>Any</em>' attribute.
+	 * @see #setAny(boolean)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnit_Any()
+	 * @model required="true"
 	 * @generated
 	 */
-	boolean isWildcard();
+	boolean isAny();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Unit#isAny <em>Any</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Any</em>' attribute.
+	 * @see #isAny()
+	 * @generated
+	 */
+	void setAny(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Factors</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.UnitFactor}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Factors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Factors</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getUnit_Factors()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<UnitFactor> getFactors();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model symbolNameRequired="true"
+	 * @generated
+	 */
+	UnitFactor getFactor(String symbolName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model symbolRequired="true"
+	 * @generated
+	 */
+	UnitFactor getFactor(UnitSymbol symbol);
 
 	/**
 	 * <!-- begin-user-doc -->

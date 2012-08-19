@@ -798,28 +798,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass unitProductEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass unitNumeratorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass unitDenominatorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass unitFactorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unitDenominatorFactorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3187,26 +3173,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnit_Numerator() {
-		return (EReference)unitEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUnit_Denominator() {
-		return (EReference)unitEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getUnit_Scale() {
-		return (EAttribute)unitEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)unitEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3214,8 +3182,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUnit_Wildcard() {
-		return (EAttribute)unitEClass.getEStructuralFeatures().get(3);
+	public EAttribute getUnit_Any() {
+		return (EAttribute)unitEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3223,35 +3191,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnitProduct() {
-		return unitProductEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUnitProduct_Factors() {
-		return (EReference)unitProductEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUnitNumerator() {
-		return unitNumeratorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUnitDenominator() {
-		return unitDenominatorEClass;
+	public EReference getUnit_Factors() {
+		return (EReference)unitEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3279,6 +3220,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EAttribute getUnitFactor_Exponent() {
 		return (EAttribute)unitFactorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUnitDenominatorFactor() {
+		return unitDenominatorFactorEClass;
 	}
 
 	/**
@@ -4000,21 +3950,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		expressionEClass = createEClass(EXPRESSION);
 
 		unitEClass = createEClass(UNIT);
-		createEReference(unitEClass, UNIT__NUMERATOR);
-		createEReference(unitEClass, UNIT__DENOMINATOR);
 		createEAttribute(unitEClass, UNIT__SCALE);
-		createEAttribute(unitEClass, UNIT__WILDCARD);
-
-		unitProductEClass = createEClass(UNIT_PRODUCT);
-		createEReference(unitProductEClass, UNIT_PRODUCT__FACTORS);
-
-		unitNumeratorEClass = createEClass(UNIT_NUMERATOR);
-
-		unitDenominatorEClass = createEClass(UNIT_DENOMINATOR);
+		createEAttribute(unitEClass, UNIT__ANY);
+		createEReference(unitEClass, UNIT__FACTORS);
 
 		unitFactorEClass = createEClass(UNIT_FACTOR);
 		createEReference(unitFactorEClass, UNIT_FACTOR__SYMBOL);
 		createEAttribute(unitFactorEClass, UNIT_FACTOR__EXPONENT);
+
+		unitDenominatorFactorEClass = createEClass(UNIT_DENOMINATOR_FACTOR);
 
 		unitDeclarationEClass = createEClass(UNIT_DECLARATION);
 		createEReference(unitDeclarationEClass, UNIT_DECLARATION__SYMBOLS);
@@ -4193,8 +4137,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		recordTypeEClass.getESuperTypes().add(this.getCompositeType());
 		unionTypeEClass.getESuperTypes().add(this.getCompositeType());
 		expressionEClass.getESuperTypes().add(this.getEvaluable());
-		unitNumeratorEClass.getESuperTypes().add(this.getUnitProduct());
-		unitDenominatorEClass.getESuperTypes().add(this.getUnitProduct());
+		unitDenominatorFactorEClass.getESuperTypes().add(this.getUnitFactor());
 		unitDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		baseUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
 		derivedUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
@@ -4596,10 +4539,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unitEClass, Unit.class, "Unit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnit_Numerator(), this.getUnitNumerator(), null, "numerator", null, 0, 1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUnit_Denominator(), this.getUnitDenominator(), null, "denominator", null, 0, 1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnit_Scale(), ecorePackage.getEInt(), "scale", null, 1, 1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUnit_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 1, 1, Unit.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnit_Any(), ecorePackage.getEBoolean(), "any", null, 1, 1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnit_Factors(), this.getUnitFactor(), null, "factors", null, 0, -1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(unitEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "symbolName", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(unitEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUnitSymbol(), "symbol", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(unitEClass, this.getUnit(), "getNormalized", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -4615,25 +4563,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEParameter(op, this.getUnit(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "ignoreScale", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(unitProductEClass, UnitProduct.class, "UnitProduct", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnitProduct_Factors(), this.getUnitFactor(), null, "factors", null, 0, -1, UnitProduct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(unitProductEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "symbolName", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(unitProductEClass, this.getUnitFactor(), "getFactor", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getUnitSymbol(), "symbol", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(unitNumeratorEClass, UnitNumerator.class, "UnitNumerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(unitDenominatorEClass, UnitDenominator.class, "UnitDenominator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(unitFactorEClass, UnitFactor.class, "UnitFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitFactor_Symbol(), this.getUnitSymbol(), null, "symbol", null, 0, 1, UnitFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnitFactor_Exponent(), ecorePackage.getEInt(), "exponent", "1", 0, 1, UnitFactor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(unitDenominatorFactorEClass, UnitDenominatorFactor.class, "UnitDenominatorFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(unitDeclarationEClass, UnitDeclaration.class, "UnitDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitDeclaration_Symbols(), this.getUnitSymbol(), this.getUnitSymbol_Owner(), "symbols", null, 0, -1, UnitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(unitDeclarationEClass, this.getUnitSymbol(), "getSymbol", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUnitPrefix(), "prefix", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(unitSymbolEClass, UnitSymbol.class, "UnitSymbol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitSymbol_Owner(), this.getUnitDeclaration(), this.getUnitDeclaration_Symbols(), "owner", null, 0, 1, UnitSymbol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

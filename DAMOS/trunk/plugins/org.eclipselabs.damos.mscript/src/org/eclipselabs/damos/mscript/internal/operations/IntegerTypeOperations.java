@@ -55,7 +55,7 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 	public static boolean isAssignableFrom(IntegerType integerType, Type other) {
 		if (other instanceof IntegerType) {
 			IntegerType otherIntegerType = (IntegerType) other;
-			return integerType.getUnit().isWildcard() || integerType.getUnit().isEquivalentTo(otherIntegerType.getUnit(), false);
+			return integerType.getUnit().isAny() || integerType.getUnit().isEquivalentTo(otherIntegerType.getUnit(), false);
 		}
 		return false;
 	}

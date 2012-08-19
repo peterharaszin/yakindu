@@ -161,6 +161,29 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 		};
 	}
 
+	@ValueConverter(rule = "UnitDenominatorExponent")
+	public IValueConverter<Integer> UnitDenominatorExponent() {
+		return new IValueConverter<Integer>() {
+			
+			public Integer toValue(String string, INode node) {
+				if (Strings.isEmpty(string)) {
+					return Integer.valueOf(0);
+				}
+				try {
+					return -Integer.valueOf(WHITE_SPACE_PATTERN.matcher(string).replaceAll(""));
+				} catch (NumberFormatException e) {
+					// Ignore number format exception, return 0
+				}
+				return 0;
+			}
+
+			public String toString(Integer value) {
+				return Integer.valueOf(-value.intValue()).toString();
+			}
+
+		};
+	}
+
 	@ValueConverter(rule = "QualifiedName")
 	public IValueConverter<String> QualifiedName() {
 		return qualifiedNameValueConverter;

@@ -39,4 +39,12 @@ public interface UnitDeclaration extends Declaration {
 	 */
 	EList<UnitSymbol> getSymbols();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model prefixRequired="true"
+	 * @generated
+	 */
+	UnitSymbol getSymbol(UnitPrefix prefix);
+
 } // UnitDeclaration

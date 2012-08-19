@@ -881,24 +881,6 @@ public interface MscriptFactory extends EFactory {
 	Unit createUnit();
 
 	/**
-	 * Returns a new object of class '<em>Unit Numerator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unit Numerator</em>'.
-	 * @generated
-	 */
-	UnitNumerator createUnitNumerator();
-
-	/**
-	 * Returns a new object of class '<em>Unit Denominator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unit Denominator</em>'.
-	 * @generated
-	 */
-	UnitDenominator createUnitDenominator();
-
-	/**
 	 * Returns a new object of class '<em>Unit Factor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,6 +888,15 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	UnitFactor createUnitFactor();
+
+	/**
+	 * Returns a new object of class '<em>Unit Denominator Factor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unit Denominator Factor</em>'.
+	 * @generated
+	 */
+	UnitDenominatorFactor createUnitDenominatorFactor();
 
 	/**
 	 * Returns a new object of class '<em>Unit Symbol</em>'.

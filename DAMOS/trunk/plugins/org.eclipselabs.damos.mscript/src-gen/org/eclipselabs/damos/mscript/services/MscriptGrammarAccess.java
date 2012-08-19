@@ -233,37 +233,111 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnitDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNumeratorAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNumeratorUnitNumeratorParserRuleCall_0_0 = (RuleCall)cNumeratorAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cSolidusKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cDenominatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cDenominatorUnitDenominatorParserRuleCall_1_1_0 = (RuleCall)cDenominatorAssignment_1_1.eContents().get(0);
+		private final Action cUnitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cONETerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cFactorsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_0_0 = (RuleCall)cFactorsAssignment_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_1_1_0 = (Keyword)cGroup_1_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_1_0 = (RuleCall)cFactorsAssignment_1_1_1_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cSolidusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Alternatives cAlternatives_2_1 = (Alternatives)cGroup_2.eContents().get(1);
+		private final Assignment cFactorsAssignment_2_1_0 = (Assignment)cAlternatives_2_1.eContents().get(0);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_2_1_0_0 = (RuleCall)cFactorsAssignment_2_1_0.eContents().get(0);
+		private final Group cGroup_2_1_1 = (Group)cAlternatives_2_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_2_1_1_1_0 = (RuleCall)cFactorsAssignment_2_1_1_1.eContents().get(0);
+		private final Group cGroup_2_1_1_2 = (Group)cGroup_2_1_1.eContents().get(2);
+		private final Keyword cAsteriskKeyword_2_1_1_2_0 = (Keyword)cGroup_2_1_1_2.eContents().get(0);
+		private final Assignment cFactorsAssignment_2_1_1_2_1 = (Assignment)cGroup_2_1_1_2.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_2_1_1_2_1_0 = (RuleCall)cFactorsAssignment_2_1_1_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_1_1_3 = (Keyword)cGroup_2_1_1.eContents().get(3);
 		
 		//UnitDefinition returns Unit:
-		//	numerator=UnitNumerator ("/" denominator=UnitDenominator)?;
+		//	{Unit} (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?;
 		public ParserRule getRule() { return rule; }
 
-		//numerator=UnitNumerator ("/" denominator=UnitDenominator)?
+		//{Unit} (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
 		public Group getGroup() { return cGroup; }
 
-		//numerator=UnitNumerator
-		public Assignment getNumeratorAssignment_0() { return cNumeratorAssignment_0; }
+		//{Unit}
+		public Action getUnitAction_0() { return cUnitAction_0; }
 
-		//UnitNumerator
-		public RuleCall getNumeratorUnitNumeratorParserRuleCall_0_0() { return cNumeratorUnitNumeratorParserRuleCall_0_0; }
+		//ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//("/" denominator=UnitDenominator)?
-		public Group getGroup_1() { return cGroup_1; }
+		//ONE
+		public RuleCall getONETerminalRuleCall_1_0() { return cONETerminalRuleCall_1_0; }
+
+		//factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_1_1_0() { return cFactorsAssignment_1_1_0; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_0_0() { return cFactorsUnitFactorParserRuleCall_1_1_0_0; }
+
+		//("*" factors+=UnitFactor)*
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_1_1_0() { return cAsteriskKeyword_1_1_1_0; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_1_1_1_1() { return cFactorsAssignment_1_1_1_1; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_1_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_1_0; }
+
+		//("/" (factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"/"
-		public Keyword getSolidusKeyword_1_0() { return cSolidusKeyword_1_0; }
+		public Keyword getSolidusKeyword_2_0() { return cSolidusKeyword_2_0; }
 
-		//denominator=UnitDenominator
-		public Assignment getDenominatorAssignment_1_1() { return cDenominatorAssignment_1_1; }
+		//factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
 
-		//UnitDenominator
-		public RuleCall getDenominatorUnitDenominatorParserRuleCall_1_1_0() { return cDenominatorUnitDenominatorParserRuleCall_1_1_0; }
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_2_1_0() { return cFactorsAssignment_2_1_0; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_2_1_0_0() { return cFactorsUnitDenominatorFactorParserRuleCall_2_1_0_0; }
+
+		//"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2_1_1_0() { return cLeftParenthesisKeyword_2_1_1_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_2_1_1_1() { return cFactorsAssignment_2_1_1_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_2_1_1_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_2_1_1_1_0; }
+
+		//("*" factors+=UnitDenominatorFactor)*
+		public Group getGroup_2_1_1_2() { return cGroup_2_1_1_2; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_2_1_1_2_0() { return cAsteriskKeyword_2_1_1_2_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_2_1_1_2_1() { return cFactorsAssignment_2_1_1_2_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_2_1_1_2_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_2_1_1_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_2_1_1_3() { return cRightParenthesisKeyword_2_1_1_3; }
 	}
 
 	public class EnumerationDeclarationElements extends AbstractParserRuleElementFinder {
@@ -1084,13 +1158,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cRealTypeAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cRealKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cUnitUnitWithWildcardParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitWithAnyParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//RealType:
-		//	{RealType} "real" unit=UnitWithWildcard;
+		//	{RealType} "real" unit=ImplicitUnitWithAny;
 		public ParserRule getRule() { return rule; }
 
-		//{RealType} "real" unit=UnitWithWildcard
+		//{RealType} "real" unit=ImplicitUnitWithAny
 		public Group getGroup() { return cGroup; }
 
 		//{RealType}
@@ -1099,11 +1173,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"real"
 		public Keyword getRealKeyword_1() { return cRealKeyword_1; }
 
-		//unit=UnitWithWildcard
+		//unit=ImplicitUnitWithAny
 		public Assignment getUnitAssignment_2() { return cUnitAssignment_2; }
 
-		//UnitWithWildcard
-		public RuleCall getUnitUnitWithWildcardParserRuleCall_2_0() { return cUnitUnitWithWildcardParserRuleCall_2_0; }
+		//ImplicitUnitWithAny
+		public RuleCall getUnitImplicitUnitWithAnyParserRuleCall_2_0() { return cUnitImplicitUnitWithAnyParserRuleCall_2_0; }
 	}
 
 	public class IntegerTypeElements extends AbstractParserRuleElementFinder {
@@ -1112,13 +1186,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cIntegerTypeAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cIntKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cUnitUnitWithWildcardParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitWithAnyParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//IntegerType:
-		//	{IntegerType} "int" unit=UnitWithWildcard;
+		//	{IntegerType} "int" unit=ImplicitUnitWithAny;
 		public ParserRule getRule() { return rule; }
 
-		//{IntegerType} "int" unit=UnitWithWildcard
+		//{IntegerType} "int" unit=ImplicitUnitWithAny
 		public Group getGroup() { return cGroup; }
 
 		//{IntegerType}
@@ -1127,11 +1201,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"int"
 		public Keyword getIntKeyword_1() { return cIntKeyword_1; }
 
-		//unit=UnitWithWildcard
+		//unit=ImplicitUnitWithAny
 		public Assignment getUnitAssignment_2() { return cUnitAssignment_2; }
 
-		//UnitWithWildcard
-		public RuleCall getUnitUnitWithWildcardParserRuleCall_2_0() { return cUnitUnitWithWildcardParserRuleCall_2_0; }
+		//ImplicitUnitWithAny
+		public RuleCall getUnitImplicitUnitWithAnyParserRuleCall_2_0() { return cUnitImplicitUnitWithAnyParserRuleCall_2_0; }
 	}
 
 	public class ComplexTypeElements extends AbstractParserRuleElementFinder {
@@ -1140,13 +1214,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cComplexTypeAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cComplexKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cUnitUnitWithWildcardParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitWithAnyParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//ComplexType:
-		//	{ComplexType} "complex" unit=UnitWithWildcard;
+		//	{ComplexType} "complex" unit=ImplicitUnitWithAny;
 		public ParserRule getRule() { return rule; }
 
-		//{ComplexType} "complex" unit=UnitWithWildcard
+		//{ComplexType} "complex" unit=ImplicitUnitWithAny
 		public Group getGroup() { return cGroup; }
 
 		//{ComplexType}
@@ -1155,11 +1229,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"complex"
 		public Keyword getComplexKeyword_1() { return cComplexKeyword_1; }
 
-		//unit=UnitWithWildcard
+		//unit=ImplicitUnitWithAny
 		public Assignment getUnitAssignment_2() { return cUnitAssignment_2; }
 
-		//UnitWithWildcard
-		public RuleCall getUnitUnitWithWildcardParserRuleCall_2_0() { return cUnitUnitWithWildcardParserRuleCall_2_0; }
+		//ImplicitUnitWithAny
+		public RuleCall getUnitImplicitUnitWithAnyParserRuleCall_2_0() { return cUnitImplicitUnitWithAnyParserRuleCall_2_0; }
 	}
 
 	public class GaussianTypeElements extends AbstractParserRuleElementFinder {
@@ -1168,13 +1242,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cGaussianTypeAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cGaussianKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cUnitUnitWithWildcardParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitWithAnyParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//GaussianType:
-		//	{GaussianType} "gaussian" unit=UnitWithWildcard;
+		//	{GaussianType} "gaussian" unit=ImplicitUnitWithAny;
 		public ParserRule getRule() { return rule; }
 
-		//{GaussianType} "gaussian" unit=UnitWithWildcard
+		//{GaussianType} "gaussian" unit=ImplicitUnitWithAny
 		public Group getGroup() { return cGroup; }
 
 		//{GaussianType}
@@ -1183,11 +1257,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"gaussian"
 		public Keyword getGaussianKeyword_1() { return cGaussianKeyword_1; }
 
-		//unit=UnitWithWildcard
+		//unit=ImplicitUnitWithAny
 		public Assignment getUnitAssignment_2() { return cUnitAssignment_2; }
 
-		//UnitWithWildcard
-		public RuleCall getUnitUnitWithWildcardParserRuleCall_2_0() { return cUnitUnitWithWildcardParserRuleCall_2_0; }
+		//ImplicitUnitWithAny
+		public RuleCall getUnitImplicitUnitWithAnyParserRuleCall_2_0() { return cUnitImplicitUnitWithAnyParserRuleCall_2_0; }
 	}
 
 	public class BooleanTypeElements extends AbstractParserRuleElementFinder {
@@ -3008,13 +3082,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDataAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDataRealDataParserRuleCall_0_0 = (RuleCall)cDataAssignment_0.eContents().get(0);
 		private final Assignment cUnitAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cUnitUnitParserRuleCall_1_0 = (RuleCall)cUnitAssignment_1.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitParserRuleCall_1_0 = (RuleCall)cUnitAssignment_1.eContents().get(0);
 		
 		//RealLiteral:
-		//	data=RealData unit=Unit;
+		//	data=RealData unit=ImplicitUnit;
 		public ParserRule getRule() { return rule; }
 
-		//data=RealData unit=Unit
+		//data=RealData unit=ImplicitUnit
 		public Group getGroup() { return cGroup; }
 
 		//data=RealData
@@ -3023,11 +3097,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//RealData
 		public RuleCall getDataRealDataParserRuleCall_0_0() { return cDataRealDataParserRuleCall_0_0; }
 
-		//unit=Unit
+		//unit=ImplicitUnit
 		public Assignment getUnitAssignment_1() { return cUnitAssignment_1; }
 
-		//Unit
-		public RuleCall getUnitUnitParserRuleCall_1_0() { return cUnitUnitParserRuleCall_1_0; }
+		//ImplicitUnit
+		public RuleCall getUnitImplicitUnitParserRuleCall_1_0() { return cUnitImplicitUnitParserRuleCall_1_0; }
 	}
 
 	public class RealDataElements extends AbstractParserRuleElementFinder {
@@ -3144,13 +3218,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDataAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDataIntegerDataParserRuleCall_0_0 = (RuleCall)cDataAssignment_0.eContents().get(0);
 		private final Assignment cUnitAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cUnitUnitParserRuleCall_1_0 = (RuleCall)cUnitAssignment_1.eContents().get(0);
+		private final RuleCall cUnitImplicitUnitParserRuleCall_1_0 = (RuleCall)cUnitAssignment_1.eContents().get(0);
 		
 		//IntegerLiteral:
-		//	data=IntegerData unit=Unit;
+		//	data=IntegerData unit=ImplicitUnit;
 		public ParserRule getRule() { return rule; }
 
-		//data=IntegerData unit=Unit
+		//data=IntegerData unit=ImplicitUnit
 		public Group getGroup() { return cGroup; }
 
 		//data=IntegerData
@@ -3159,11 +3233,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//IntegerData
 		public RuleCall getDataIntegerDataParserRuleCall_0_0() { return cDataIntegerDataParserRuleCall_0_0; }
 
-		//unit=Unit
+		//unit=ImplicitUnit
 		public Assignment getUnitAssignment_1() { return cUnitAssignment_1; }
 
-		//Unit
-		public RuleCall getUnitUnitParserRuleCall_1_0() { return cUnitUnitParserRuleCall_1_0; }
+		//ImplicitUnit
+		public RuleCall getUnitImplicitUnitParserRuleCall_1_0() { return cUnitImplicitUnitParserRuleCall_1_0; }
 	}
 
 	public class IntegerDataElements extends AbstractParserRuleElementFinder {
@@ -4646,298 +4720,388 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
-	public class UnitElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Unit");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cNumeratorAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cNumeratorUnitNumeratorParserRuleCall_0_1_0 = (RuleCall)cNumeratorAssignment_0_1.eContents().get(0);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final Keyword cSolidusKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
-		private final Assignment cDenominatorAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cDenominatorUnitDenominatorParserRuleCall_0_2_1_0 = (RuleCall)cDenominatorAssignment_0_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
-		private final Assignment cNumeratorAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cNumeratorImplicitUnitNumeratorParserRuleCall_1_0 = (RuleCall)cNumeratorAssignment_1.eContents().get(0);
+	public class ImplicitUnitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplicitUnit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cUnitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final RuleCall cONETerminalRuleCall_1_1_0 = (RuleCall)cAlternatives_1_1.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
+		private final Assignment cFactorsAssignment_1_1_1_0 = (Assignment)cGroup_1_1_1.eContents().get(0);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_0_0 = (RuleCall)cFactorsAssignment_1_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1_1 = (Group)cGroup_1_1_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_1_1_1_0 = (Keyword)cGroup_1_1_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_1_1_1_1 = (Assignment)cGroup_1_1_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_1_1_0 = (RuleCall)cFactorsAssignment_1_1_1_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cSolidusKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Alternatives cAlternatives_1_2_1 = (Alternatives)cGroup_1_2.eContents().get(1);
+		private final Assignment cFactorsAssignment_1_2_1_0 = (Assignment)cAlternatives_1_2_1.eContents().get(0);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_0_0 = (RuleCall)cFactorsAssignment_1_2_1_0.eContents().get(0);
+		private final Group cGroup_1_2_1_1 = (Group)cAlternatives_1_2_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_2_1_1_0 = (Keyword)cGroup_1_2_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_2_1_1_1 = (Assignment)cGroup_1_2_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_1_0 = (RuleCall)cFactorsAssignment_1_2_1_1_1.eContents().get(0);
+		private final Group cGroup_1_2_1_1_2 = (Group)cGroup_1_2_1_1.eContents().get(2);
+		private final Keyword cAsteriskKeyword_1_2_1_1_2_0 = (Keyword)cGroup_1_2_1_1_2.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_2_1_1_2_1 = (Assignment)cGroup_1_2_1_1_2.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_2_1_0 = (RuleCall)cFactorsAssignment_1_2_1_1_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2_1_1_3 = (Keyword)cGroup_1_2_1_1.eContents().get(3);
+		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		/// *
 		// * Unit expressions
-		// * / Unit:
-		//	"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")" | numerator=ImplicitUnitNumerator;
+		// * / ImplicitUnit returns Unit:
+		//	{Unit} ("(" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? ")")?;
 		public ParserRule getRule() { return rule; }
 
-		//"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")" | numerator=ImplicitUnitNumerator
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")"
-		public Group getGroup_0() { return cGroup_0; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_0_0() { return cLeftParenthesisKeyword_0_0; }
-
-		//numerator=UnitNumerator
-		public Assignment getNumeratorAssignment_0_1() { return cNumeratorAssignment_0_1; }
-
-		//UnitNumerator
-		public RuleCall getNumeratorUnitNumeratorParserRuleCall_0_1_0() { return cNumeratorUnitNumeratorParserRuleCall_0_1_0; }
-
-		//("/" denominator=UnitDenominator)?
-		public Group getGroup_0_2() { return cGroup_0_2; }
-
-		//"/"
-		public Keyword getSolidusKeyword_0_2_0() { return cSolidusKeyword_0_2_0; }
-
-		//denominator=UnitDenominator
-		public Assignment getDenominatorAssignment_0_2_1() { return cDenominatorAssignment_0_2_1; }
-
-		//UnitDenominator
-		public RuleCall getDenominatorUnitDenominatorParserRuleCall_0_2_1_0() { return cDenominatorUnitDenominatorParserRuleCall_0_2_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
-
-		//numerator=ImplicitUnitNumerator
-		public Assignment getNumeratorAssignment_1() { return cNumeratorAssignment_1; }
-
-		//ImplicitUnitNumerator
-		public RuleCall getNumeratorImplicitUnitNumeratorParserRuleCall_1_0() { return cNumeratorImplicitUnitNumeratorParserRuleCall_1_0; }
-	}
-
-	public class UnitWithWildcardElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitWithWildcard");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cUnitAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Alternatives cAlternatives_0_2 = (Alternatives)cGroup_0.eContents().get(2);
-		private final Keyword cQuestionMarkKeyword_0_2_0 = (Keyword)cAlternatives_0_2.eContents().get(0);
-		private final Group cGroup_0_2_1 = (Group)cAlternatives_0_2.eContents().get(1);
-		private final Assignment cNumeratorAssignment_0_2_1_0 = (Assignment)cGroup_0_2_1.eContents().get(0);
-		private final RuleCall cNumeratorUnitNumeratorParserRuleCall_0_2_1_0_0 = (RuleCall)cNumeratorAssignment_0_2_1_0.eContents().get(0);
-		private final Group cGroup_0_2_1_1 = (Group)cGroup_0_2_1.eContents().get(1);
-		private final Keyword cSolidusKeyword_0_2_1_1_0 = (Keyword)cGroup_0_2_1_1.eContents().get(0);
-		private final Assignment cDenominatorAssignment_0_2_1_1_1 = (Assignment)cGroup_0_2_1_1.eContents().get(1);
-		private final RuleCall cDenominatorUnitDenominatorParserRuleCall_0_2_1_1_1_0 = (RuleCall)cDenominatorAssignment_0_2_1_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
-		private final Assignment cNumeratorAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cNumeratorImplicitUnitNumeratorParserRuleCall_1_0 = (RuleCall)cNumeratorAssignment_1.eContents().get(0);
-		
-		//UnitWithWildcard returns Unit:
-		//	{Unit} "(" ("?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?) ")" | numerator=ImplicitUnitNumerator;
-		public ParserRule getRule() { return rule; }
-
-		//{Unit} "(" ("?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?) ")" | numerator=ImplicitUnitNumerator
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//{Unit} "(" ("?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?) ")"
-		public Group getGroup_0() { return cGroup_0; }
-
-		//{Unit}
-		public Action getUnitAction_0_0() { return cUnitAction_0_0; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
-
-		//"?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?
-		public Alternatives getAlternatives_0_2() { return cAlternatives_0_2; }
-
-		//"?"
-		public Keyword getQuestionMarkKeyword_0_2_0() { return cQuestionMarkKeyword_0_2_0; }
-
-		//numerator=UnitNumerator ("/" denominator=UnitDenominator)?
-		public Group getGroup_0_2_1() { return cGroup_0_2_1; }
-
-		//numerator=UnitNumerator
-		public Assignment getNumeratorAssignment_0_2_1_0() { return cNumeratorAssignment_0_2_1_0; }
-
-		//UnitNumerator
-		public RuleCall getNumeratorUnitNumeratorParserRuleCall_0_2_1_0_0() { return cNumeratorUnitNumeratorParserRuleCall_0_2_1_0_0; }
-
-		//("/" denominator=UnitDenominator)?
-		public Group getGroup_0_2_1_1() { return cGroup_0_2_1_1; }
-
-		//"/"
-		public Keyword getSolidusKeyword_0_2_1_1_0() { return cSolidusKeyword_0_2_1_1_0; }
-
-		//denominator=UnitDenominator
-		public Assignment getDenominatorAssignment_0_2_1_1_1() { return cDenominatorAssignment_0_2_1_1_1; }
-
-		//UnitDenominator
-		public RuleCall getDenominatorUnitDenominatorParserRuleCall_0_2_1_1_1_0() { return cDenominatorUnitDenominatorParserRuleCall_0_2_1_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
-
-		//numerator=ImplicitUnitNumerator
-		public Assignment getNumeratorAssignment_1() { return cNumeratorAssignment_1; }
-
-		//ImplicitUnitNumerator
-		public RuleCall getNumeratorImplicitUnitNumeratorParserRuleCall_1_0() { return cNumeratorImplicitUnitNumeratorParserRuleCall_1_0; }
-	}
-
-	public class ExplicitUnitElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExplicitUnit");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNumeratorAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNumeratorUnitNumeratorParserRuleCall_1_0 = (RuleCall)cNumeratorAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cSolidusKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cDenominatorAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cDenominatorUnitDenominatorParserRuleCall_2_1_0 = (RuleCall)cDenominatorAssignment_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//ExplicitUnit returns Unit:
-		//	"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}";
-		public ParserRule getRule() { return rule; }
-
-		//"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}"
+		//{Unit} ("(" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? ")")?
 		public Group getGroup() { return cGroup; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		//{Unit}
+		public Action getUnitAction_0() { return cUnitAction_0; }
 
-		//numerator=UnitNumerator
-		public Assignment getNumeratorAssignment_1() { return cNumeratorAssignment_1; }
-
-		//UnitNumerator
-		public RuleCall getNumeratorUnitNumeratorParserRuleCall_1_0() { return cNumeratorUnitNumeratorParserRuleCall_1_0; }
-
-		//("/" denominator=UnitDenominator)?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//"/"
-		public Keyword getSolidusKeyword_2_0() { return cSolidusKeyword_2_0; }
-
-		//denominator=UnitDenominator
-		public Assignment getDenominatorAssignment_2_1() { return cDenominatorAssignment_2_1; }
-
-		//UnitDenominator
-		public RuleCall getDenominatorUnitDenominatorParserRuleCall_2_1_0() { return cDenominatorUnitDenominatorParserRuleCall_2_1_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-
-	public class UnitNumeratorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitNumerator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cUnitNumeratorAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cONETerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cFactorsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cFactorsUnitFactorParserRuleCall_1_0_0 = (RuleCall)cFactorsAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cAsteriskKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cFactorsAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_0 = (RuleCall)cFactorsAssignment_1_1_1.eContents().get(0);
-		
-		//UnitNumerator:
-		//	{UnitNumerator} ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*;
-		public ParserRule getRule() { return rule; }
-
-		//{UnitNumerator} ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//{UnitNumerator} ONE
-		public Group getGroup_0() { return cGroup_0; }
-
-		//{UnitNumerator}
-		public Action getUnitNumeratorAction_0_0() { return cUnitNumeratorAction_0_0; }
-
-		//ONE
-		public RuleCall getONETerminalRuleCall_0_1() { return cONETerminalRuleCall_0_1; }
-
-		//factors+=UnitFactor ("*" factors+=UnitFactor)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//factors+=UnitFactor
-		public Assignment getFactorsAssignment_1_0() { return cFactorsAssignment_1_0; }
-
-		//UnitFactor
-		public RuleCall getFactorsUnitFactorParserRuleCall_1_0_0() { return cFactorsUnitFactorParserRuleCall_1_0_0; }
-
-		//("*" factors+=UnitFactor)*
-		public Group getGroup_1_1() { return cGroup_1_1; }
-
-		//"*"
-		public Keyword getAsteriskKeyword_1_1_0() { return cAsteriskKeyword_1_1_0; }
-
-		//factors+=UnitFactor
-		public Assignment getFactorsAssignment_1_1_1() { return cFactorsAssignment_1_1_1; }
-
-		//UnitFactor
-		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_0; }
-	}
-
-	public class ImplicitUnitNumeratorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplicitUnitNumerator");
-		private final Action cUnitNumeratorAction = (Action)rule.eContents().get(1);
-		
-		//ImplicitUnitNumerator returns UnitNumerator:
-		//	{UnitNumerator};
-		public ParserRule getRule() { return rule; }
-
-		//{UnitNumerator}
-		public Action getUnitNumeratorAction() { return cUnitNumeratorAction; }
-	}
-
-	public class UnitDenominatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitDenominator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cFactorsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cFactorsUnitFactorParserRuleCall_0_0 = (RuleCall)cFactorsAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cFactorsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_0 = (RuleCall)cFactorsAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cAsteriskKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cFactorsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cFactorsUnitFactorParserRuleCall_1_2_1_0 = (RuleCall)cFactorsAssignment_1_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		
-		//UnitDenominator:
-		//	factors+=UnitFactor | "(" factors+=UnitFactor ("*" factors+=UnitFactor)* ")";
-		public ParserRule getRule() { return rule; }
-
-		//factors+=UnitFactor | "(" factors+=UnitFactor ("*" factors+=UnitFactor)* ")"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//factors+=UnitFactor
-		public Assignment getFactorsAssignment_0() { return cFactorsAssignment_0; }
-
-		//UnitFactor
-		public RuleCall getFactorsUnitFactorParserRuleCall_0_0() { return cFactorsUnitFactorParserRuleCall_0_0; }
-
-		//"(" factors+=UnitFactor ("*" factors+=UnitFactor)* ")"
+		//("(" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? ")")?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 
+		//ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+
+		//ONE
+		public RuleCall getONETerminalRuleCall_1_1_0() { return cONETerminalRuleCall_1_1_0; }
+
+		//factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
 		//factors+=UnitFactor
-		public Assignment getFactorsAssignment_1_1() { return cFactorsAssignment_1_1; }
+		public Assignment getFactorsAssignment_1_1_1_0() { return cFactorsAssignment_1_1_1_0; }
 
 		//UnitFactor
-		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_0() { return cFactorsUnitFactorParserRuleCall_1_1_0; }
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_0_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_0_0; }
 
 		//("*" factors+=UnitFactor)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		public Group getGroup_1_1_1_1() { return cGroup_1_1_1_1; }
 
 		//"*"
-		public Keyword getAsteriskKeyword_1_2_0() { return cAsteriskKeyword_1_2_0; }
+		public Keyword getAsteriskKeyword_1_1_1_1_0() { return cAsteriskKeyword_1_1_1_1_0; }
 
 		//factors+=UnitFactor
-		public Assignment getFactorsAssignment_1_2_1() { return cFactorsAssignment_1_2_1; }
+		public Assignment getFactorsAssignment_1_1_1_1_1() { return cFactorsAssignment_1_1_1_1_1; }
 
 		//UnitFactor
-		public RuleCall getFactorsUnitFactorParserRuleCall_1_2_1_0() { return cFactorsUnitFactorParserRuleCall_1_2_1_0; }
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_1_1_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_1_1_0; }
+
+		//("/" (factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//"/"
+		public Keyword getSolidusKeyword_1_2_0() { return cSolidusKeyword_1_2_0; }
+
+		//factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Alternatives getAlternatives_1_2_1() { return cAlternatives_1_2_1; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_2_1_0() { return cFactorsAssignment_1_2_1_0; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_2_1_0_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_0_0; }
+
+		//"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Group getGroup_1_2_1_1() { return cGroup_1_2_1_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_2_1_1_0() { return cLeftParenthesisKeyword_1_2_1_1_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_2_1_1_1() { return cFactorsAssignment_1_2_1_1_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_1_0; }
+
+		//("*" factors+=UnitDenominatorFactor)*
+		public Group getGroup_1_2_1_1_2() { return cGroup_1_2_1_1_2; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_2_1_1_2_0() { return cAsteriskKeyword_1_2_1_1_2_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_2_1_1_2_1() { return cFactorsAssignment_1_2_1_1_2_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_2_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_2_1_1_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_2_1_1_3() { return cRightParenthesisKeyword_1_2_1_1_3; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+	}
+
+	public class ImplicitUnitWithAnyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImplicitUnitWithAny");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cUnitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Assignment cAnyAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
+		private final Keyword cAnyQuestionMarkKeyword_1_1_0_0 = (Keyword)cAnyAssignment_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
+		private final Alternatives cAlternatives_1_1_1_0 = (Alternatives)cGroup_1_1_1.eContents().get(0);
+		private final RuleCall cONETerminalRuleCall_1_1_1_0_0 = (RuleCall)cAlternatives_1_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1_0_1 = (Group)cAlternatives_1_1_1_0.eContents().get(1);
+		private final Assignment cFactorsAssignment_1_1_1_0_1_0 = (Assignment)cGroup_1_1_1_0_1.eContents().get(0);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_0_1_0_0 = (RuleCall)cFactorsAssignment_1_1_1_0_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1_0_1_1 = (Group)cGroup_1_1_1_0_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_1_1_0_1_1_0 = (Keyword)cGroup_1_1_1_0_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_1_1_0_1_1_1 = (Assignment)cGroup_1_1_1_0_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_1_1_1_0_1_1_1_0 = (RuleCall)cFactorsAssignment_1_1_1_0_1_1_1.eContents().get(0);
+		private final Group cGroup_1_1_1_1 = (Group)cGroup_1_1_1.eContents().get(1);
+		private final Keyword cSolidusKeyword_1_1_1_1_0 = (Keyword)cGroup_1_1_1_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1_1_1_1 = (Alternatives)cGroup_1_1_1_1.eContents().get(1);
+		private final Assignment cFactorsAssignment_1_1_1_1_1_0 = (Assignment)cAlternatives_1_1_1_1_1.eContents().get(0);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_0_0 = (RuleCall)cFactorsAssignment_1_1_1_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1_1_1_1 = (Group)cAlternatives_1_1_1_1_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_1_1_1_1_1_0 = (Keyword)cGroup_1_1_1_1_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_1_1_1_1_1_1 = (Assignment)cGroup_1_1_1_1_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_1_0 = (RuleCall)cFactorsAssignment_1_1_1_1_1_1_1.eContents().get(0);
+		private final Group cGroup_1_1_1_1_1_1_2 = (Group)cGroup_1_1_1_1_1_1.eContents().get(2);
+		private final Keyword cAsteriskKeyword_1_1_1_1_1_1_2_0 = (Keyword)cGroup_1_1_1_1_1_1_2.eContents().get(0);
+		private final Assignment cFactorsAssignment_1_1_1_1_1_1_2_1 = (Assignment)cGroup_1_1_1_1_1_1_2.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_2_1_0 = (RuleCall)cFactorsAssignment_1_1_1_1_1_1_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_1_1_1_1_1_3 = (Keyword)cGroup_1_1_1_1_1_1.eContents().get(3);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		
+		//ImplicitUnitWithAny returns Unit:
+		//	{Unit} ("(" (any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor |
+		//	"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?) ")")?;
+		public ParserRule getRule() { return rule; }
+
+		//{Unit} ("(" (any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor |
+		//"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?) ")")?
+		public Group getGroup() { return cGroup; }
+
+		//{Unit}
+		public Action getUnitAction_0() { return cUnitAction_0; }
+
+		//("(" (any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?) ")")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+
+		//any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+
+		//any?="?"
+		public Assignment getAnyAssignment_1_1_0() { return cAnyAssignment_1_1_0; }
+
+		//"?"
+		public Keyword getAnyQuestionMarkKeyword_1_1_0_0() { return cAnyQuestionMarkKeyword_1_1_0_0; }
+
+		//(ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
+		//ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Alternatives getAlternatives_1_1_1_0() { return cAlternatives_1_1_1_0; }
+
+		//ONE
+		public RuleCall getONETerminalRuleCall_1_1_1_0_0() { return cONETerminalRuleCall_1_1_1_0_0; }
+
+		//factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Group getGroup_1_1_1_0_1() { return cGroup_1_1_1_0_1; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_1_1_1_0_1_0() { return cFactorsAssignment_1_1_1_0_1_0; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_0_1_0_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_0_1_0_0; }
+
+		//("*" factors+=UnitFactor)*
+		public Group getGroup_1_1_1_0_1_1() { return cGroup_1_1_1_0_1_1; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_1_1_0_1_1_0() { return cAsteriskKeyword_1_1_1_0_1_1_0; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_1_1_1_0_1_1_1() { return cFactorsAssignment_1_1_1_0_1_1_1; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_1_1_1_0_1_1_1_0() { return cFactorsUnitFactorParserRuleCall_1_1_1_0_1_1_1_0; }
+
+		//("/" (factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Group getGroup_1_1_1_1() { return cGroup_1_1_1_1; }
+
+		//"/"
+		public Keyword getSolidusKeyword_1_1_1_1_0() { return cSolidusKeyword_1_1_1_1_0; }
+
+		//factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Alternatives getAlternatives_1_1_1_1_1() { return cAlternatives_1_1_1_1_1; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_1_1_1_1_0() { return cFactorsAssignment_1_1_1_1_1_0; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_0_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_0_0; }
+
+		//"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Group getGroup_1_1_1_1_1_1() { return cGroup_1_1_1_1_1_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_1_1_1_1_1_0() { return cLeftParenthesisKeyword_1_1_1_1_1_1_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_1_1_1_1_1_1() { return cFactorsAssignment_1_1_1_1_1_1_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_1_0; }
+
+		//("*" factors+=UnitDenominatorFactor)*
+		public Group getGroup_1_1_1_1_1_1_2() { return cGroup_1_1_1_1_1_1_2; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_1_1_1_1_1_2_0() { return cAsteriskKeyword_1_1_1_1_1_1_2_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_1_1_1_1_1_1_2_1() { return cFactorsAssignment_1_1_1_1_1_1_2_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_2_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_1_1_1_1_1_1_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_1_1_1_1_1_3() { return cRightParenthesisKeyword_1_1_1_1_1_1_3; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+	}
+
+	public class ExplicitUnitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExplicitUnit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cUnitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cONETerminalRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Assignment cFactorsAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_2_1_0_0 = (RuleCall)cFactorsAssignment_2_1_0.eContents().get(0);
+		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitFactorParserRuleCall_2_1_1_1_0 = (RuleCall)cFactorsAssignment_2_1_1_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cSolidusKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
+		private final Assignment cFactorsAssignment_3_1_0 = (Assignment)cAlternatives_3_1.eContents().get(0);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_3_1_0_0 = (RuleCall)cFactorsAssignment_3_1_0.eContents().get(0);
+		private final Group cGroup_3_1_1 = (Group)cAlternatives_3_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_3_1_1_0 = (Keyword)cGroup_3_1_1.eContents().get(0);
+		private final Assignment cFactorsAssignment_3_1_1_1 = (Assignment)cGroup_3_1_1.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_3_1_1_1_0 = (RuleCall)cFactorsAssignment_3_1_1_1.eContents().get(0);
+		private final Group cGroup_3_1_1_2 = (Group)cGroup_3_1_1.eContents().get(2);
+		private final Keyword cAsteriskKeyword_3_1_1_2_0 = (Keyword)cGroup_3_1_1_2.eContents().get(0);
+		private final Assignment cFactorsAssignment_3_1_1_2_1 = (Assignment)cGroup_3_1_1_2.eContents().get(1);
+		private final RuleCall cFactorsUnitDenominatorFactorParserRuleCall_3_1_1_2_1_0 = (RuleCall)cFactorsAssignment_3_1_1_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3_1_1_3 = (Keyword)cGroup_3_1_1.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ExplicitUnit returns Unit:
+		//	{Unit} "{" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? "}";
+		public ParserRule getRule() { return rule; }
+
+		//{Unit} "{" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+		//factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? "}"
+		public Group getGroup() { return cGroup; }
+
+		//{Unit}
+		public Action getUnitAction_0() { return cUnitAction_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+
+		//ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//ONE
+		public RuleCall getONETerminalRuleCall_2_0() { return cONETerminalRuleCall_2_0; }
+
+		//factors+=UnitFactor ("*" factors+=UnitFactor)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_2_1_0() { return cFactorsAssignment_2_1_0; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_2_1_0_0() { return cFactorsUnitFactorParserRuleCall_2_1_0_0; }
+
+		//("*" factors+=UnitFactor)*
+		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_2_1_1_0() { return cAsteriskKeyword_2_1_1_0; }
+
+		//factors+=UnitFactor
+		public Assignment getFactorsAssignment_2_1_1_1() { return cFactorsAssignment_2_1_1_1; }
+
+		//UnitFactor
+		public RuleCall getFactorsUnitFactorParserRuleCall_2_1_1_1_0() { return cFactorsUnitFactorParserRuleCall_2_1_1_1_0; }
+
+		//("/" (factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"/"
+		public Keyword getSolidusKeyword_3_0() { return cSolidusKeyword_3_0; }
+
+		//factors+=UnitDenominatorFactor | "(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_3_1_0() { return cFactorsAssignment_3_1_0; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_3_1_0_0() { return cFactorsUnitDenominatorFactorParserRuleCall_3_1_0_0; }
+
+		//"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"
+		public Group getGroup_3_1_1() { return cGroup_3_1_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_3_1_1_0() { return cLeftParenthesisKeyword_3_1_1_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_3_1_1_1() { return cFactorsAssignment_3_1_1_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_3_1_1_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_3_1_1_1_0; }
+
+		//("*" factors+=UnitDenominatorFactor)*
+		public Group getGroup_3_1_1_2() { return cGroup_3_1_1_2; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_3_1_1_2_0() { return cAsteriskKeyword_3_1_1_2_0; }
+
+		//factors+=UnitDenominatorFactor
+		public Assignment getFactorsAssignment_3_1_1_2_1() { return cFactorsAssignment_3_1_1_2_1; }
+
+		//UnitDenominatorFactor
+		public RuleCall getFactorsUnitDenominatorFactorParserRuleCall_3_1_1_2_1_0() { return cFactorsUnitDenominatorFactorParserRuleCall_3_1_1_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3_1_1_3() { return cRightParenthesisKeyword_3_1_1_3; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class UnitFactorElements extends AbstractParserRuleElementFinder {
@@ -4980,6 +5144,46 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExponentUnitExponentParserRuleCall_1_1_0() { return cExponentUnitExponentParserRuleCall_1_1_0; }
 	}
 
+	public class UnitDenominatorFactorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitDenominatorFactor");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSymbolAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cSymbolUnitSymbolCrossReference_0_0 = (CrossReference)cSymbolAssignment_0.eContents().get(0);
+		private final RuleCall cSymbolUnitSymbolQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cSymbolUnitSymbolCrossReference_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCircumflexAccentKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cExponentAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cExponentUnitDenominatorExponentParserRuleCall_1_1_0 = (RuleCall)cExponentAssignment_1_1.eContents().get(0);
+		
+		//UnitDenominatorFactor:
+		//	symbol=[UnitSymbol|QualifiedName] ("^" exponent=UnitDenominatorExponent)?;
+		public ParserRule getRule() { return rule; }
+
+		//symbol=[UnitSymbol|QualifiedName] ("^" exponent=UnitDenominatorExponent)?
+		public Group getGroup() { return cGroup; }
+
+		//symbol=[UnitSymbol|QualifiedName]
+		public Assignment getSymbolAssignment_0() { return cSymbolAssignment_0; }
+
+		//[UnitSymbol|QualifiedName]
+		public CrossReference getSymbolUnitSymbolCrossReference_0_0() { return cSymbolUnitSymbolCrossReference_0_0; }
+
+		//QualifiedName
+		public RuleCall getSymbolUnitSymbolQualifiedNameParserRuleCall_0_0_1() { return cSymbolUnitSymbolQualifiedNameParserRuleCall_0_0_1; }
+
+		//("^" exponent=UnitDenominatorExponent)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"^"
+		public Keyword getCircumflexAccentKeyword_1_0() { return cCircumflexAccentKeyword_1_0; }
+
+		//exponent=UnitDenominatorExponent
+		public Assignment getExponentAssignment_1_1() { return cExponentAssignment_1_1; }
+
+		//UnitDenominatorExponent
+		public RuleCall getExponentUnitDenominatorExponentParserRuleCall_1_1_0() { return cExponentUnitDenominatorExponentParserRuleCall_1_1_0; }
+	}
+
 	public class UnitExponentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitExponent");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -4987,6 +5191,26 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValidIntParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//UnitExponent returns ecore::EInt:
+		//	"-"? ValidInt;
+		public ParserRule getRule() { return rule; }
+
+		//"-"? ValidInt
+		public Group getGroup() { return cGroup; }
+
+		//"-"?
+		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
+
+		//ValidInt
+		public RuleCall getValidIntParserRuleCall_1() { return cValidIntParserRuleCall_1; }
+	}
+
+	public class UnitDenominatorExponentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitDenominatorExponent");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cValidIntParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		
+		//UnitDenominatorExponent returns ecore::EInt:
 		//	"-"? ValidInt;
 		public ParserRule getRule() { return rule; }
 
@@ -5664,14 +5888,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private ContinueStatementElements pContinueStatement;
 	private BreakStatementElements pBreakStatement;
 	private ReturnStatementElements pReturnStatement;
-	private UnitElements pUnit;
-	private UnitWithWildcardElements pUnitWithWildcard;
+	private ImplicitUnitElements pImplicitUnit;
+	private ImplicitUnitWithAnyElements pImplicitUnitWithAny;
 	private ExplicitUnitElements pExplicitUnit;
-	private UnitNumeratorElements pUnitNumerator;
-	private ImplicitUnitNumeratorElements pImplicitUnitNumerator;
-	private UnitDenominatorElements pUnitDenominator;
 	private UnitFactorElements pUnitFactor;
+	private UnitDenominatorFactorElements pUnitDenominatorFactor;
 	private UnitExponentElements pUnitExponent;
+	private UnitDenominatorExponentElements pUnitDenominatorExponent;
 	private QualifiedNameElements pQualifiedName;
 	private QualifiedNameWithUnitElements pQualifiedNameWithUnit;
 	private QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
@@ -5798,7 +6021,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitDefinition returns Unit:
-	//	numerator=UnitNumerator ("/" denominator=UnitDenominator)?;
+	//	{Unit} (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?;
 	public UnitDefinitionElements getUnitDefinitionAccess() {
 		return (pUnitDefinition != null) ? pUnitDefinition : (pUnitDefinition = new UnitDefinitionElements());
 	}
@@ -6014,7 +6238,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealType:
-	//	{RealType} "real" unit=UnitWithWildcard;
+	//	{RealType} "real" unit=ImplicitUnitWithAny;
 	public RealTypeElements getRealTypeAccess() {
 		return (pRealType != null) ? pRealType : (pRealType = new RealTypeElements());
 	}
@@ -6024,7 +6248,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerType:
-	//	{IntegerType} "int" unit=UnitWithWildcard;
+	//	{IntegerType} "int" unit=ImplicitUnitWithAny;
 	public IntegerTypeElements getIntegerTypeAccess() {
 		return (pIntegerType != null) ? pIntegerType : (pIntegerType = new IntegerTypeElements());
 	}
@@ -6034,7 +6258,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ComplexType:
-	//	{ComplexType} "complex" unit=UnitWithWildcard;
+	//	{ComplexType} "complex" unit=ImplicitUnitWithAny;
 	public ComplexTypeElements getComplexTypeAccess() {
 		return (pComplexType != null) ? pComplexType : (pComplexType = new ComplexTypeElements());
 	}
@@ -6044,7 +6268,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GaussianType:
-	//	{GaussianType} "gaussian" unit=UnitWithWildcard;
+	//	{GaussianType} "gaussian" unit=ImplicitUnitWithAny;
 	public GaussianTypeElements getGaussianTypeAccess() {
 		return (pGaussianType != null) ? pGaussianType : (pGaussianType = new GaussianTypeElements());
 	}
@@ -6587,7 +6811,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealLiteral:
-	//	data=RealData unit=Unit;
+	//	data=RealData unit=ImplicitUnit;
 	public RealLiteralElements getRealLiteralAccess() {
 		return (pRealLiteral != null) ? pRealLiteral : (pRealLiteral = new RealLiteralElements());
 	}
@@ -6607,7 +6831,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerLiteral:
-	//	data=IntegerData unit=Unit;
+	//	data=IntegerData unit=ImplicitUnit;
 	public IntegerLiteralElements getIntegerLiteralAccess() {
 		return (pIntegerLiteral != null) ? pIntegerLiteral : (pIntegerLiteral = new IntegerLiteralElements());
 	}
@@ -7044,64 +7268,37 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Unit expressions
-	// * / Unit:
-	//	"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")" | numerator=ImplicitUnitNumerator;
-	public UnitElements getUnitAccess() {
-		return (pUnit != null) ? pUnit : (pUnit = new UnitElements());
+	// * / ImplicitUnit returns Unit:
+	//	{Unit} ("(" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? ")")?;
+	public ImplicitUnitElements getImplicitUnitAccess() {
+		return (pImplicitUnit != null) ? pImplicitUnit : (pImplicitUnit = new ImplicitUnitElements());
 	}
 	
-	public ParserRule getUnitRule() {
-		return getUnitAccess().getRule();
+	public ParserRule getImplicitUnitRule() {
+		return getImplicitUnitAccess().getRule();
 	}
 
-	//UnitWithWildcard returns Unit:
-	//	{Unit} "(" ("?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?) ")" | numerator=ImplicitUnitNumerator;
-	public UnitWithWildcardElements getUnitWithWildcardAccess() {
-		return (pUnitWithWildcard != null) ? pUnitWithWildcard : (pUnitWithWildcard = new UnitWithWildcardElements());
+	//ImplicitUnitWithAny returns Unit:
+	//	{Unit} ("(" (any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor |
+	//	"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?) ")")?;
+	public ImplicitUnitWithAnyElements getImplicitUnitWithAnyAccess() {
+		return (pImplicitUnitWithAny != null) ? pImplicitUnitWithAny : (pImplicitUnitWithAny = new ImplicitUnitWithAnyElements());
 	}
 	
-	public ParserRule getUnitWithWildcardRule() {
-		return getUnitWithWildcardAccess().getRule();
+	public ParserRule getImplicitUnitWithAnyRule() {
+		return getImplicitUnitWithAnyAccess().getRule();
 	}
 
 	//ExplicitUnit returns Unit:
-	//	"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}";
+	//	{Unit} "{" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? "}";
 	public ExplicitUnitElements getExplicitUnitAccess() {
 		return (pExplicitUnit != null) ? pExplicitUnit : (pExplicitUnit = new ExplicitUnitElements());
 	}
 	
 	public ParserRule getExplicitUnitRule() {
 		return getExplicitUnitAccess().getRule();
-	}
-
-	//UnitNumerator:
-	//	{UnitNumerator} ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*;
-	public UnitNumeratorElements getUnitNumeratorAccess() {
-		return (pUnitNumerator != null) ? pUnitNumerator : (pUnitNumerator = new UnitNumeratorElements());
-	}
-	
-	public ParserRule getUnitNumeratorRule() {
-		return getUnitNumeratorAccess().getRule();
-	}
-
-	//ImplicitUnitNumerator returns UnitNumerator:
-	//	{UnitNumerator};
-	public ImplicitUnitNumeratorElements getImplicitUnitNumeratorAccess() {
-		return (pImplicitUnitNumerator != null) ? pImplicitUnitNumerator : (pImplicitUnitNumerator = new ImplicitUnitNumeratorElements());
-	}
-	
-	public ParserRule getImplicitUnitNumeratorRule() {
-		return getImplicitUnitNumeratorAccess().getRule();
-	}
-
-	//UnitDenominator:
-	//	factors+=UnitFactor | "(" factors+=UnitFactor ("*" factors+=UnitFactor)* ")";
-	public UnitDenominatorElements getUnitDenominatorAccess() {
-		return (pUnitDenominator != null) ? pUnitDenominator : (pUnitDenominator = new UnitDenominatorElements());
-	}
-	
-	public ParserRule getUnitDenominatorRule() {
-		return getUnitDenominatorAccess().getRule();
 	}
 
 	//UnitFactor:
@@ -7114,6 +7311,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnitFactorAccess().getRule();
 	}
 
+	//UnitDenominatorFactor:
+	//	symbol=[UnitSymbol|QualifiedName] ("^" exponent=UnitDenominatorExponent)?;
+	public UnitDenominatorFactorElements getUnitDenominatorFactorAccess() {
+		return (pUnitDenominatorFactor != null) ? pUnitDenominatorFactor : (pUnitDenominatorFactor = new UnitDenominatorFactorElements());
+	}
+	
+	public ParserRule getUnitDenominatorFactorRule() {
+		return getUnitDenominatorFactorAccess().getRule();
+	}
+
 	//UnitExponent returns ecore::EInt:
 	//	"-"? ValidInt;
 	public UnitExponentElements getUnitExponentAccess() {
@@ -7122,6 +7329,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnitExponentRule() {
 		return getUnitExponentAccess().getRule();
+	}
+
+	//UnitDenominatorExponent returns ecore::EInt:
+	//	"-"? ValidInt;
+	public UnitDenominatorExponentElements getUnitDenominatorExponentAccess() {
+		return (pUnitDenominatorExponent != null) ? pUnitDenominatorExponent : (pUnitDenominatorExponent = new UnitDenominatorExponentElements());
+	}
+	
+	public ParserRule getUnitDenominatorExponentRule() {
+		return getUnitDenominatorExponentAccess().getRule();
 	}
 
 	//QualifiedName:

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.UnitDeclaration;
+import org.eclipselabs.damos.mscript.UnitPrefix;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 
 /**
@@ -67,6 +68,20 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 			symbols = new EObjectContainmentWithInverseEList<UnitSymbol>(UnitSymbol.class, this, MscriptPackage.UNIT_DECLARATION__SYMBOLS, MscriptPackage.UNIT_SYMBOL__OWNER);
 		}
 		return symbols;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public UnitSymbol getSymbol(UnitPrefix prefix) {
+		for (UnitSymbol symbol : getSymbols()) {
+			if (symbol.getPrefix() == prefix) {
+				return symbol;
+			}
+		}
+		return null;
 	}
 
 	/**

@@ -40,7 +40,7 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 	public static boolean isAssignableFrom(RealType realType, Type other) {
 		if (other instanceof NumericType) {
 			NumericType otherNumericType = (NumericType) other;
-			return realType.getUnit().isWildcard() || realType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false);
+			return realType.getUnit().isAny() || realType.getUnit().isEquivalentTo(otherNumericType.getUnit(), false);
 		}
 		return false;
 	}

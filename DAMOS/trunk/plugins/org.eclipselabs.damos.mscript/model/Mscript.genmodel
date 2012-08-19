@@ -409,10 +409,15 @@
     <genClasses ecoreClass="Mscript.ecore#//UnionType"/>
     <genClasses ecoreClass="Mscript.ecore#//Expression"/>
     <genClasses ecoreClass="Mscript.ecore#//Unit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Unit/numerator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Unit/denominator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Unit/scale"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Unit/wildcard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Unit/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Unit/factors"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Unit/getFactor">
+        <genParameters ecoreParameter="Mscript.ecore#//Unit/getFactor/symbolName"/>
+      </genOperations>
+      <genOperations ecoreOperation="Mscript.ecore#//Unit/getFactor.1">
+        <genParameters ecoreParameter="Mscript.ecore#//Unit/getFactor.1/symbol"/>
+      </genOperations>
       <genOperations ecoreOperation="Mscript.ecore#//Unit/getNormalized"/>
       <genOperations ecoreOperation="Mscript.ecore#//Unit/evaluate">
         <genParameters ecoreParameter="Mscript.ecore#//Unit/evaluate/operator"/>
@@ -427,23 +432,16 @@
         <genParameters ecoreParameter="Mscript.ecore#//Unit/isEquivalentTo/ignoreScale"/>
       </genOperations>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//UnitProduct">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitProduct/factors"/>
-      <genOperations ecoreOperation="Mscript.ecore#//UnitProduct/getFactor">
-        <genParameters ecoreParameter="Mscript.ecore#//UnitProduct/getFactor/symbolName"/>
-      </genOperations>
-      <genOperations ecoreOperation="Mscript.ecore#//UnitProduct/getFactor.1">
-        <genParameters ecoreParameter="Mscript.ecore#//UnitProduct/getFactor.1/symbol"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//UnitNumerator"/>
-    <genClasses ecoreClass="Mscript.ecore#//UnitDenominator"/>
     <genClasses ecoreClass="Mscript.ecore#//UnitFactor">
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//UnitFactor/symbol"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitFactor/exponent"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//UnitDenominatorFactor"/>
     <genClasses image="false" ecoreClass="Mscript.ecore#//UnitDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitDeclaration/symbols"/>
+      <genOperations ecoreOperation="Mscript.ecore#//UnitDeclaration/getSymbol">
+        <genParameters ecoreParameter="Mscript.ecore#//UnitDeclaration/getSymbol/prefix"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//UnitSymbol">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//UnitSymbol/owner"/>

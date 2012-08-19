@@ -925,29 +925,16 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.UNIT_PRODUCT: {
-				UnitProduct unitProduct = (UnitProduct)theEObject;
-				T result = caseUnitProduct(unitProduct);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.UNIT_NUMERATOR: {
-				UnitNumerator unitNumerator = (UnitNumerator)theEObject;
-				T result = caseUnitNumerator(unitNumerator);
-				if (result == null) result = caseUnitProduct(unitNumerator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.UNIT_DENOMINATOR: {
-				UnitDenominator unitDenominator = (UnitDenominator)theEObject;
-				T result = caseUnitDenominator(unitDenominator);
-				if (result == null) result = caseUnitProduct(unitDenominator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MscriptPackage.UNIT_FACTOR: {
 				UnitFactor unitFactor = (UnitFactor)theEObject;
 				T result = caseUnitFactor(unitFactor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.UNIT_DENOMINATOR_FACTOR: {
+				UnitDenominatorFactor unitDenominatorFactor = (UnitDenominatorFactor)theEObject;
+				T result = caseUnitDenominatorFactor(unitDenominatorFactor);
+				if (result == null) result = caseUnitFactor(unitDenominatorFactor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2718,51 +2705,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unit Product</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unit Product</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnitProduct(UnitProduct object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unit Numerator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unit Numerator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnitNumerator(UnitNumerator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unit Denominator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unit Denominator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnitDenominator(UnitDenominator object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unit Factor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2774,6 +2716,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUnitFactor(UnitFactor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unit Denominator Factor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unit Denominator Factor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnitDenominatorFactor(UnitDenominatorFactor object) {
 		return null;
 	}
 

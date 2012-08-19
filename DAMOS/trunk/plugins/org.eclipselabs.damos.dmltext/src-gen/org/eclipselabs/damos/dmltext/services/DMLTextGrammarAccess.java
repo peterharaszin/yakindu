@@ -1447,7 +1447,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitDefinition returns Unit:
-	//	numerator=UnitNumerator ("/" denominator=UnitDenominator)?;
+	//	{Unit} (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?;
 	public MscriptGrammarAccess.UnitDefinitionElements getUnitDefinitionAccess() {
 		return gaMscript.getUnitDefinitionAccess();
 	}
@@ -1663,7 +1664,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealType:
-	//	{RealType} "real" unit=UnitWithWildcard;
+	//	{RealType} "real" unit=ImplicitUnitWithAny;
 	public MscriptGrammarAccess.RealTypeElements getRealTypeAccess() {
 		return gaMscript.getRealTypeAccess();
 	}
@@ -1673,7 +1674,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerType:
-	//	{IntegerType} "int" unit=UnitWithWildcard;
+	//	{IntegerType} "int" unit=ImplicitUnitWithAny;
 	public MscriptGrammarAccess.IntegerTypeElements getIntegerTypeAccess() {
 		return gaMscript.getIntegerTypeAccess();
 	}
@@ -1683,7 +1684,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ComplexType:
-	//	{ComplexType} "complex" unit=UnitWithWildcard;
+	//	{ComplexType} "complex" unit=ImplicitUnitWithAny;
 	public MscriptGrammarAccess.ComplexTypeElements getComplexTypeAccess() {
 		return gaMscript.getComplexTypeAccess();
 	}
@@ -1693,7 +1694,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GaussianType:
-	//	{GaussianType} "gaussian" unit=UnitWithWildcard;
+	//	{GaussianType} "gaussian" unit=ImplicitUnitWithAny;
 	public MscriptGrammarAccess.GaussianTypeElements getGaussianTypeAccess() {
 		return gaMscript.getGaussianTypeAccess();
 	}
@@ -2236,7 +2237,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealLiteral:
-	//	data=RealData unit=Unit;
+	//	data=RealData unit=ImplicitUnit;
 	public MscriptGrammarAccess.RealLiteralElements getRealLiteralAccess() {
 		return gaMscript.getRealLiteralAccess();
 	}
@@ -2256,7 +2257,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerLiteral:
-	//	data=IntegerData unit=Unit;
+	//	data=IntegerData unit=ImplicitUnit;
 	public MscriptGrammarAccess.IntegerLiteralElements getIntegerLiteralAccess() {
 		return gaMscript.getIntegerLiteralAccess();
 	}
@@ -2693,64 +2694,37 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Unit expressions
-	// * / Unit:
-	//	"(" numerator=UnitNumerator ("/" denominator=UnitDenominator)? ")" | numerator=ImplicitUnitNumerator;
-	public MscriptGrammarAccess.UnitElements getUnitAccess() {
-		return gaMscript.getUnitAccess();
+	// * / ImplicitUnit returns Unit:
+	//	{Unit} ("(" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? ")")?;
+	public MscriptGrammarAccess.ImplicitUnitElements getImplicitUnitAccess() {
+		return gaMscript.getImplicitUnitAccess();
 	}
 	
-	public ParserRule getUnitRule() {
-		return getUnitAccess().getRule();
+	public ParserRule getImplicitUnitRule() {
+		return getImplicitUnitAccess().getRule();
 	}
 
-	//UnitWithWildcard returns Unit:
-	//	{Unit} "(" ("?" | numerator=UnitNumerator ("/" denominator=UnitDenominator)?) ")" | numerator=ImplicitUnitNumerator;
-	public MscriptGrammarAccess.UnitWithWildcardElements getUnitWithWildcardAccess() {
-		return gaMscript.getUnitWithWildcardAccess();
+	//ImplicitUnitWithAny returns Unit:
+	//	{Unit} ("(" (any?="?" | (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor |
+	//	"(" factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))?) ")")?;
+	public MscriptGrammarAccess.ImplicitUnitWithAnyElements getImplicitUnitWithAnyAccess() {
+		return gaMscript.getImplicitUnitWithAnyAccess();
 	}
 	
-	public ParserRule getUnitWithWildcardRule() {
-		return getUnitWithWildcardAccess().getRule();
+	public ParserRule getImplicitUnitWithAnyRule() {
+		return getImplicitUnitWithAnyAccess().getRule();
 	}
 
 	//ExplicitUnit returns Unit:
-	//	"{" numerator=UnitNumerator ("/" denominator=UnitDenominator)? "}";
+	//	{Unit} "{" (ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*) ("/" (factors+=UnitDenominatorFactor | "("
+	//	factors+=UnitDenominatorFactor ("*" factors+=UnitDenominatorFactor)* ")"))? "}";
 	public MscriptGrammarAccess.ExplicitUnitElements getExplicitUnitAccess() {
 		return gaMscript.getExplicitUnitAccess();
 	}
 	
 	public ParserRule getExplicitUnitRule() {
 		return getExplicitUnitAccess().getRule();
-	}
-
-	//UnitNumerator:
-	//	{UnitNumerator} ONE | factors+=UnitFactor ("*" factors+=UnitFactor)*;
-	public MscriptGrammarAccess.UnitNumeratorElements getUnitNumeratorAccess() {
-		return gaMscript.getUnitNumeratorAccess();
-	}
-	
-	public ParserRule getUnitNumeratorRule() {
-		return getUnitNumeratorAccess().getRule();
-	}
-
-	//ImplicitUnitNumerator returns UnitNumerator:
-	//	{UnitNumerator};
-	public MscriptGrammarAccess.ImplicitUnitNumeratorElements getImplicitUnitNumeratorAccess() {
-		return gaMscript.getImplicitUnitNumeratorAccess();
-	}
-	
-	public ParserRule getImplicitUnitNumeratorRule() {
-		return getImplicitUnitNumeratorAccess().getRule();
-	}
-
-	//UnitDenominator:
-	//	factors+=UnitFactor | "(" factors+=UnitFactor ("*" factors+=UnitFactor)* ")";
-	public MscriptGrammarAccess.UnitDenominatorElements getUnitDenominatorAccess() {
-		return gaMscript.getUnitDenominatorAccess();
-	}
-	
-	public ParserRule getUnitDenominatorRule() {
-		return getUnitDenominatorAccess().getRule();
 	}
 
 	//UnitFactor:
@@ -2763,6 +2737,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnitFactorAccess().getRule();
 	}
 
+	//UnitDenominatorFactor:
+	//	symbol=[UnitSymbol|QualifiedName] ("^" exponent=UnitDenominatorExponent)?;
+	public MscriptGrammarAccess.UnitDenominatorFactorElements getUnitDenominatorFactorAccess() {
+		return gaMscript.getUnitDenominatorFactorAccess();
+	}
+	
+	public ParserRule getUnitDenominatorFactorRule() {
+		return getUnitDenominatorFactorAccess().getRule();
+	}
+
 	//UnitExponent returns ecore::EInt:
 	//	"-"? ValidInt;
 	public MscriptGrammarAccess.UnitExponentElements getUnitExponentAccess() {
@@ -2771,6 +2755,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnitExponentRule() {
 		return getUnitExponentAccess().getRule();
+	}
+
+	//UnitDenominatorExponent returns ecore::EInt:
+	//	"-"? ValidInt;
+	public MscriptGrammarAccess.UnitDenominatorExponentElements getUnitDenominatorExponentAccess() {
+		return gaMscript.getUnitDenominatorExponentAccess();
+	}
+	
+	public ParserRule getUnitDenominatorExponentRule() {
+		return getUnitDenominatorExponentAccess().getRule();
 	}
 
 	//QualifiedName:

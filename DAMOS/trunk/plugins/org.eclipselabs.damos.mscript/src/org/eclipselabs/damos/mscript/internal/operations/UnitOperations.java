@@ -49,10 +49,8 @@ public class UnitOperations {
 			normalizedUnit.setScale(normalizedUnit.getScale() + newExponent * factor.getSymbol().getScale());
 
 			if (factor.getSymbol().getOwner() instanceof BaseUnitDeclaration) {
-				UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
-				newFactor.setSymbol(factor.getSymbol().getOwner().getSymbol(UnitPrefix.NONE));
-				newFactor.setExponent(newExponent);
-				addFactor(normalizedUnit, newFactor);
+				UnitSymbol symbol = factor.getSymbol().getOwner().getSymbol(UnitPrefix.NONE);
+				addFactor(normalizedUnit, symbol, newExponent);
 			} else if (factor.getSymbol().getOwner() instanceof DerivedUnitDeclaration) {
 				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration) factor.getSymbol().getOwner();
 				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent);
@@ -60,20 +58,19 @@ public class UnitOperations {
 		}
 	}
 
-	private static void addFactor(Unit unit, UnitFactor factor) {
-		UnitFactor existingFactor = unit.getFactor(factor.getSymbol());
-		int newExponent = factor.getExponent();
+	private static void addFactor(Unit unit, UnitSymbol symbol, int exponent) {
+		UnitFactor existingFactor = unit.getFactor(symbol);
 		if (existingFactor != null) {
-			newExponent += existingFactor.getExponent();
-			if (newExponent != 0) {
-				existingFactor.setExponent(newExponent);
+			exponent += existingFactor.getExponent();
+			if (exponent != 0) {
+				existingFactor.setExponent(exponent);
 			} else {
 				unit.getFactors().remove(existingFactor);
 			}
-		} else if (newExponent != 0){
+		} else if (exponent != 0){
 			UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
-			newFactor.setSymbol(factor.getSymbol());
-			newFactor.setExponent(newExponent);
+			newFactor.setSymbol(symbol);
+			newFactor.setExponent(exponent);
 			unit.getFactors().add(newFactor);
 		}
 	}

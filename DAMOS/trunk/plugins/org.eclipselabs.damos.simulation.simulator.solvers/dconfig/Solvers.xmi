@@ -5,11 +5,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -21,11 +19,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -34,11 +30,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -47,11 +41,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -60,7 +52,6 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator/>
         </unit>
       </type>
     </typeSpecifier>
@@ -69,7 +60,6 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator/>
         </unit>
       </type>
     </typeSpecifier>
@@ -81,11 +71,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -94,11 +82,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -107,11 +93,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>
@@ -120,7 +104,6 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator/>
         </unit>
       </type>
     </typeSpecifier>
@@ -129,7 +112,6 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator/>
         </unit>
       </type>
     </typeSpecifier>
@@ -141,11 +123,9 @@
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
-          <numerator>
-            <factors>
-              <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
-            </factors>
-          </numerator>
+          <factors>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+          </factors>
         </unit>
       </type>
     </typeSpecifier>

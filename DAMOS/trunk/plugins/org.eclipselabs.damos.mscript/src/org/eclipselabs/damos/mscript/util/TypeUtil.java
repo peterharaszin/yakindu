@@ -157,16 +157,10 @@ public class TypeUtil {
 		if (unit == null) {
 			return EcoreUtil.copy(other);
 		}
-		if (unit.getNumerator() == null) {
-			MscriptFactory.eINSTANCE.createInvalidType();
-		}
 		return unit.evaluate(operator, other);
 	}
 
 	public static Unit evaluateUnit(Unit unit, OperatorKind operator, int n) {
-		if (unit.getNumerator() == null) {
-			MscriptFactory.eINSTANCE.createInvalidType();
-		}
 		return unit.evaluate(operator, n);
 	}
 
@@ -180,7 +174,6 @@ public class TypeUtil {
 	
 	public static Unit createUnit(int scale) {
 		Unit unit = MscriptFactory.eINSTANCE.createUnit();
-		unit.setNumerator(MscriptFactory.eINSTANCE.createUnitNumerator());
 		unit.setScale(scale);
 		return unit;
 	}
@@ -198,13 +191,13 @@ public class TypeUtil {
 			if (symbol == null) {
 				continue;
 			}
-			UnitFactor factor = unit.getNumerator().getFactor(symbol);
+			UnitFactor factor = unit.getFactor(symbol);
 			if (factor != null) {
 				factor.setExponent(factor.getExponent() + 1);
 			} else {
 				factor = MscriptFactory.eINSTANCE.createUnitFactor();
 				factor.setSymbol(symbol);
-				unit.getNumerator().getFactors().add(factor);
+				unit.getFactors().add(factor);
 			}
 		}
 		

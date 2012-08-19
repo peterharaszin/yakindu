@@ -50,7 +50,8 @@ DerivedUnitDeclaration:
 	'unit' name=ValidID '=' definition=UnitDefinition;
 
 UnitDefinition returns Unit:
-	numerator=UnitNumerator ('/' denominator=UnitDenominator)?;
+	{Unit} (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))?;
 	
 /*
  * Enumeration
@@ -140,16 +141,16 @@ NumericType:
 	RealType | IntegerType | ComplexType | GaussianType;
 	
 RealType:
-	{RealType} 'real' unit=UnitWithWildcard;
+	{RealType} 'real' unit=ImplicitUnitWithAny;
 	
 IntegerType:
-	{IntegerType} 'int' unit=UnitWithWildcard;
+	{IntegerType} 'int' unit=ImplicitUnitWithAny;
 	
 ComplexType:
-	{ComplexType} 'complex' unit=UnitWithWildcard;
+	{ComplexType} 'complex' unit=ImplicitUnitWithAny;
 
 GaussianType:
-	{GaussianType} 'gaussian' unit=UnitWithWildcard;
+	{GaussianType} 'gaussian' unit=ImplicitUnitWithAny;
 
 BooleanType:
 	{BooleanType} 'boolean';
@@ -335,13 +336,13 @@ NumericLiteral:
 	IntegerLiteral | RealLiteral;
 	
 RealLiteral:
-	data=RealData unit=Unit;
+	data=RealData unit=ImplicitUnit;
 	
 RealData returns RealData hidden():
 	ValidInt (('.' ValidInt (IJ | EXPIJ | (E ('+' | '-') ValidInt IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt IJ?)));
 
 IntegerLiteral:
-	data=IntegerData unit=Unit;
+	data=IntegerData unit=ImplicitUnit;
 
 IntegerData returns IntegerData hidden():
 	ValidInt IJ?;
@@ -483,29 +484,29 @@ ReturnStatement:
 /*
  * Unit expressions
  */
-	
-Unit:
-	'(' numerator=UnitNumerator ('/' denominator=UnitDenominator)? ')' | numerator=ImplicitUnitNumerator;
 
-UnitWithWildcard returns Unit:
-	{Unit} '(' ('?' | numerator=UnitNumerator ('/' denominator=UnitDenominator)?) ')' | numerator=ImplicitUnitNumerator;
+ImplicitUnit returns Unit:
+	{Unit} ('(' (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))? ')')?;
+
+ImplicitUnitWithAny returns Unit:
+	{Unit} ('(' (any?='?' | (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))?) ')')?;
 
 ExplicitUnit returns Unit:
-	'{' numerator=UnitNumerator ('/' denominator=UnitDenominator)? '}';
-
-UnitNumerator:
-	{UnitNumerator} ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*;
-	
-ImplicitUnitNumerator returns UnitNumerator:
-	{UnitNumerator};
-
-UnitDenominator:
-	factors+=UnitFactor | '(' factors+=UnitFactor ('*' factors+=UnitFactor)* ')';
+	{Unit} '{' (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))? '}';
 
 UnitFactor:
 	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
 
+UnitDenominatorFactor:
+	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitDenominatorExponent)?;
+
 UnitExponent returns ecore::EInt:
+	('-')? ValidInt;
+
+UnitDenominatorExponent returns ecore::EInt:
 	('-')? ValidInt;
 
 QualifiedName:

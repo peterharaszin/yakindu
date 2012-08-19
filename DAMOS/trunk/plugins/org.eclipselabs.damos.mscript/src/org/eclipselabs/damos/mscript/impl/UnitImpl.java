@@ -6,17 +6,22 @@
  */
 package org.eclipselabs.damos.mscript.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.UnitDenominator;
-import org.eclipselabs.damos.mscript.UnitNumerator;
+import org.eclipselabs.damos.mscript.UnitFactor;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.internal.operations.UnitOperations;
 
 /**
@@ -26,36 +31,15 @@ import org.eclipselabs.damos.mscript.internal.operations.UnitOperations;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#getNumerator <em>Numerator</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#getDenominator <em>Denominator</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#getScale <em>Scale</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#isWildcard <em>Wildcard</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#isAny <em>Any</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitImpl#getFactors <em>Factors</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
-	/**
-	 * The cached value of the '{@link #getNumerator() <em>Numerator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumerator()
-	 * @generated
-	 * @ordered
-	 */
-	protected UnitNumerator numerator;
-
-	/**
-	 * The cached value of the '{@link #getDenominator() <em>Denominator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDenominator()
-	 * @generated
-	 * @ordered
-	 */
-	protected UnitDenominator denominator;
-
 	/**
 	 * The default value of the '{@link #getScale() <em>Scale</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,14 +61,34 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	protected int scale = SCALE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isWildcard() <em>Wildcard</em>}' attribute.
+	 * The default value of the '{@link #isAny() <em>Any</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isWildcard()
+	 * @see #isAny()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean WILDCARD_EDEFAULT = false;
+	protected static final boolean ANY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAny() <em>Any</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAny()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean any = ANY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFactors() <em>Factors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFactors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UnitFactor> factors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,92 +107,6 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.UNIT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnitNumerator getNumerator() {
-		return numerator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetNumerator(UnitNumerator newNumerator, NotificationChain msgs) {
-		UnitNumerator oldNumerator = numerator;
-		numerator = newNumerator;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT__NUMERATOR, oldNumerator, newNumerator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNumerator(UnitNumerator newNumerator) {
-		if (newNumerator != numerator) {
-			NotificationChain msgs = null;
-			if (numerator != null)
-				msgs = ((InternalEObject)numerator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.UNIT__NUMERATOR, null, msgs);
-			if (newNumerator != null)
-				msgs = ((InternalEObject)newNumerator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.UNIT__NUMERATOR, null, msgs);
-			msgs = basicSetNumerator(newNumerator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT__NUMERATOR, newNumerator, newNumerator));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnitDenominator getDenominator() {
-		return denominator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDenominator(UnitDenominator newDenominator, NotificationChain msgs) {
-		UnitDenominator oldDenominator = denominator;
-		denominator = newDenominator;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT__DENOMINATOR, oldDenominator, newDenominator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDenominator(UnitDenominator newDenominator) {
-		if (newDenominator != denominator) {
-			NotificationChain msgs = null;
-			if (denominator != null)
-				msgs = ((InternalEObject)denominator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.UNIT__DENOMINATOR, null, msgs);
-			if (newDenominator != null)
-				msgs = ((InternalEObject)newDenominator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.UNIT__DENOMINATOR, null, msgs);
-			msgs = basicSetDenominator(newDenominator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT__DENOMINATOR, newDenominator, newDenominator));
 	}
 
 	/**
@@ -215,10 +133,63 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAny() {
+		return any;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAny(boolean newAny) {
+		boolean oldAny = any;
+		any = newAny;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT__ANY, oldAny, any));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<UnitFactor> getFactors() {
+		if (factors == null) {
+			factors = new EObjectContainmentEList<UnitFactor>(UnitFactor.class, this, MscriptPackage.UNIT__FACTORS);
+		}
+		return factors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isWildcard() {
-		return getNumerator() == null;
+	public UnitFactor getFactor(String symbolName) {
+		for (UnitFactor factor : getFactors()) {
+			UnitSymbol symbol = factor.getSymbol();
+			if (symbol != null && symbolName.equals(symbol.getName())) {
+				return factor;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public UnitFactor getFactor(UnitSymbol symbol) {
+		for (UnitFactor factor : getFactors()) {
+			if (symbol == factor.getSymbol()) {
+				return factor;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -265,10 +236,8 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.UNIT__NUMERATOR:
-				return basicSetNumerator(null, msgs);
-			case MscriptPackage.UNIT__DENOMINATOR:
-				return basicSetDenominator(null, msgs);
+			case MscriptPackage.UNIT__FACTORS:
+				return ((InternalEList<?>)getFactors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -281,14 +250,12 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.UNIT__NUMERATOR:
-				return getNumerator();
-			case MscriptPackage.UNIT__DENOMINATOR:
-				return getDenominator();
 			case MscriptPackage.UNIT__SCALE:
 				return getScale();
-			case MscriptPackage.UNIT__WILDCARD:
-				return isWildcard();
+			case MscriptPackage.UNIT__ANY:
+				return isAny();
+			case MscriptPackage.UNIT__FACTORS:
+				return getFactors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,17 +265,19 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.UNIT__NUMERATOR:
-				setNumerator((UnitNumerator)newValue);
-				return;
-			case MscriptPackage.UNIT__DENOMINATOR:
-				setDenominator((UnitDenominator)newValue);
-				return;
 			case MscriptPackage.UNIT__SCALE:
 				setScale((Integer)newValue);
+				return;
+			case MscriptPackage.UNIT__ANY:
+				setAny((Boolean)newValue);
+				return;
+			case MscriptPackage.UNIT__FACTORS:
+				getFactors().clear();
+				getFactors().addAll((Collection<? extends UnitFactor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -322,14 +291,14 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.UNIT__NUMERATOR:
-				setNumerator((UnitNumerator)null);
-				return;
-			case MscriptPackage.UNIT__DENOMINATOR:
-				setDenominator((UnitDenominator)null);
-				return;
 			case MscriptPackage.UNIT__SCALE:
 				setScale(SCALE_EDEFAULT);
+				return;
+			case MscriptPackage.UNIT__ANY:
+				setAny(ANY_EDEFAULT);
+				return;
+			case MscriptPackage.UNIT__FACTORS:
+				getFactors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -343,14 +312,12 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.UNIT__NUMERATOR:
-				return numerator != null;
-			case MscriptPackage.UNIT__DENOMINATOR:
-				return denominator != null;
 			case MscriptPackage.UNIT__SCALE:
 				return scale != SCALE_EDEFAULT;
-			case MscriptPackage.UNIT__WILDCARD:
-				return isWildcard() != WILDCARD_EDEFAULT;
+			case MscriptPackage.UNIT__ANY:
+				return any != ANY_EDEFAULT;
+			case MscriptPackage.UNIT__FACTORS:
+				return factors != null && !factors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -367,6 +334,8 @@ public class UnitImpl extends MinimalEObjectImpl.Container implements Unit {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (scale: ");
 		result.append(scale);
+		result.append(", any: ");
+		result.append(any);
 		result.append(')');
 		return result.toString();
 	}

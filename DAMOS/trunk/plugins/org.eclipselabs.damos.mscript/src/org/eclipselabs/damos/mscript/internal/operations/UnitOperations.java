@@ -11,16 +11,15 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.BaseUnitDeclaration;
+import org.eclipselabs.damos.mscript.DerivedUnitDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitFactor;
+import org.eclipselabs.damos.mscript.UnitPrefix;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 
 /**
@@ -30,73 +29,52 @@ import org.eclipselabs.damos.mscript.UnitSymbol;
 public class UnitOperations {
 	
 	public static Unit getNormalized(Unit unit) {
-		Unit result = MscriptFactory.eINSTANCE.createUnit();
-		result.setNumerator(MscriptFactory.eINSTANCE.createUnitNumerator());
-		
+		Unit normalizedUnit = MscriptFactory.eINSTANCE.createUnit();
+		normalizedUnit.setScale(unit.getScale());
 		try {
-			if (unit.getNumerator() != null) {
-				for (UnitFactor factor : unit.getNumerator().getFactors()) {
-					evaluateFactor(factor, false, result);
-				}
-			}
-			if (unit.getDenominator() != null) {
-				for (UnitFactor factor : unit.getDenominator().getFactors()) {
-					evaluateFactor(factor, true, result);
-				}
-			}
+			expandUnit(normalizedUnit, unit, 1);
 		} catch (InvalidUnitExpressionOperandException e) {
 			return null;
 		}
-
-		return result;
-	}
-
-	private static void evaluateFactor(UnitFactor factor, boolean reciprocal, Unit result) throws InvalidUnitExpressionOperandException {
-		int scale = 0;
-		List<UnitFactor> factors = new ArrayList<UnitFactor>();
-
-		expandFactor(factor, factors);
-				
-		int exponent = factor.getExponent();
-		
-		if (reciprocal) {
-			exponent = -exponent;
-		}
-		
-		if (result != null) {
-			result.setScale(result.getScale() + scale * exponent);
-			addFactorsToUnit(result, factors, exponent);
-		}
+		return normalizedUnit;
 	}
 	
-	private static void expandFactor(UnitFactor factor, List<UnitFactor> factors) throws InvalidUnitExpressionOperandException {
-		if (factor.getSymbol() == null) {
-			throw new InvalidUnitExpressionOperandException(factor);
+	private static void expandUnit(Unit normalizedUnit, Unit unit, int exponent) throws InvalidUnitExpressionOperandException {
+		for (UnitFactor factor : unit.getFactors()) {
+			if (factor.getSymbol() == null) {
+				throw new InvalidUnitExpressionOperandException(factor);
+			}
+
+			int newExponent = exponent * factor.getExponent();
+			normalizedUnit.setScale(normalizedUnit.getScale() + newExponent * factor.getSymbol().getScale());
+
+			if (factor.getSymbol().getOwner() instanceof BaseUnitDeclaration) {
+				UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
+				newFactor.setSymbol(factor.getSymbol().getOwner().getSymbol(UnitPrefix.NONE));
+				newFactor.setExponent(newExponent);
+				addFactor(normalizedUnit, newFactor);
+			} else if (factor.getSymbol().getOwner() instanceof DerivedUnitDeclaration) {
+				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration) factor.getSymbol().getOwner();
+				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent);
+			}
 		}
-		if (factor.getSymbol().getOwner() instanceof BaseUnitDeclaration) {
+	}
+
+	private static void addFactor(Unit unit, UnitFactor factor) {
+		UnitFactor existingFactor = unit.getFactor(factor.getSymbol());
+		int newExponent = factor.getExponent();
+		if (existingFactor != null) {
+			newExponent += existingFactor.getExponent();
+			if (newExponent != 0) {
+				existingFactor.setExponent(newExponent);
+			} else {
+				unit.getFactors().remove(existingFactor);
+			}
+		} else if (newExponent != 0){
 			UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
 			newFactor.setSymbol(factor.getSymbol());
-			factors.add(newFactor);
-		}
-	}
-	
-	private static void addFactorsToUnit(Unit unit, List<UnitFactor> factors, int exponent) {
-		for (UnitFactor factor : factors) {
-			UnitFactor existingFactor = unit.getNumerator().getFactor(factor.getSymbol());
-			int newExponent = exponent * factor.getExponent();
-			if (existingFactor != null) {
-				newExponent += existingFactor.getExponent();
-				if (newExponent != 0) {
-					existingFactor.setExponent(newExponent);
-				} else {
-					unit.getNumerator().getFactors().remove(existingFactor);
-				}
-			} else if (newExponent != 0){
-				UnitFactor newFactor = MscriptFactory.eINSTANCE.createUnitFactor();
-				newFactor.setSymbol(factor.getSymbol());
-				newFactor.setExponent(newExponent);
-				unit.getNumerator().getFactors().add(newFactor);
-			}
+			newFactor.setExponent(newExponent);
+			unit.getFactors().add(newFactor);
 		}
 	}
 
@@ -120,13 +98,13 @@ public class UnitOperations {
 			unit = unit.getNormalized();
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() + other.getScale());
-			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
+			for (UnitFactor otherFactor : other.getFactors()) {
+				UnitFactor factor = unit.getFactor(otherFactor.getSymbol());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() + otherFactor.getExponent());
 				} else {
 					factor = createUnitFactor(otherFactor.getSymbol(), otherFactor.getExponent());
-					unit.getNumerator().getFactors().add(factor);
+					unit.getFactors().add(factor);
 				}
 			}
 			return unit;
@@ -135,13 +113,13 @@ public class UnitOperations {
 			unit = unit.getNormalized();
 			other = other.getNormalized();
 			unit.setScale(unit.getScale() - other.getScale());
-			for (UnitFactor otherFactor : other.getNumerator().getFactors()) {
-				UnitFactor factor = unit.getNumerator().getFactor(otherFactor.getSymbol());
+			for (UnitFactor otherFactor : other.getFactors()) {
+				UnitFactor factor = unit.getFactor(otherFactor.getSymbol());
 				if (factor != null) {
 					factor.setExponent(factor.getExponent() - otherFactor.getExponent());
 				} else {
 					factor = createUnitFactor(otherFactor.getSymbol(), -otherFactor.getExponent());
-					unit.getNumerator().getFactors().add(factor);
+					unit.getFactors().add(factor);
 				}
 			}
 			return unit;
@@ -160,7 +138,7 @@ public class UnitOperations {
 			unit = unit.getNormalized();
 			
 			unit.setScale(unit.getScale() * n);
-			for (UnitFactor factor : unit.getNumerator().getFactors()) {
+			for (UnitFactor factor : unit.getFactors()) {
 				factor.setExponent(factor.getExponent() * n);
 			}
 			
@@ -172,7 +150,7 @@ public class UnitOperations {
 				return null;
 			}
 			unit.setScale(unit.getScale() / n);
-			for (UnitFactor factor : unit.getNumerator().getFactors()) {
+			for (UnitFactor factor : unit.getFactors()) {
 				int exponent = factor.getExponent();
 				if (exponent % n != 0) {
 					return null;
@@ -196,13 +174,13 @@ public class UnitOperations {
 		if (!ignoreScale && unit.getScale() != other.getScale()) {
 			return false;
 		}
-		EList<UnitFactor> factors = unit.getNumerator().getFactors();
-		EList<UnitFactor> otherFactors = other.getNumerator().getFactors();
+		EList<UnitFactor> factors = unit.getFactors();
+		EList<UnitFactor> otherFactors = other.getFactors();
 		if (factors.size() != otherFactors.size()) {
 			return false;
 		}
 		for (UnitFactor factor : factors) {
-			UnitFactor otherFactor = other.getNumerator().getFactor(factor.getSymbol());
+			UnitFactor otherFactor = other.getFactor(factor.getSymbol());
 			if (otherFactor == null || otherFactor.getExponent() != factor.getExponent()) {
 				return false;
 			}
@@ -211,27 +189,7 @@ public class UnitOperations {
 	}
 
 	private static boolean isLongerThan(Unit unit, Unit other) {
-		int numeratorSize = unit.getNumerator().getFactors().size();
-		int denominatorSize = unit.getDenominator() != null ? unit.getDenominator().getFactors().size() : 0;
-		int size = numeratorSize + denominatorSize;
-		
-		int otherNumeratorSize = other.getNumerator().getFactors().size();
-		int otherDenominatorSize = other.getDenominator() != null ? other.getDenominator().getFactors().size() : 0;
-		int otherSize = otherNumeratorSize + otherDenominatorSize;
-		
-		if (size < otherSize) {
-			return false;
-		}
-		
-		if (size > otherSize) {
-			return true;
-		}
-		
-		if (numeratorSize >= otherNumeratorSize) {
-			return false;
-		}
-		
-		return true;
+		return unit.getFactors().size() > other.getFactors().size();
 	}
 
 	private static UnitFactor createUnitFactor(UnitSymbol symbol, int exponent) {

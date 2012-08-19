@@ -3907,40 +3907,31 @@ public interface MscriptPackage extends EPackage {
 	int UNIT = 109;
 
 	/**
-	 * The feature id for the '<em><b>Numerator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT__NUMERATOR = 0;
-
-	/**
-	 * The feature id for the '<em><b>Denominator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT__DENOMINATOR = 1;
-
-	/**
 	 * The feature id for the '<em><b>Scale</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT__SCALE = 2;
+	int UNIT__SCALE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Wildcard</b></em>' attribute.
+	 * The feature id for the '<em><b>Any</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT__WILDCARD = 3;
+	int UNIT__ANY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT__FACTORS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Unit</em>' class.
@@ -3949,91 +3940,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT_FEATURE_COUNT = 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitProductImpl <em>Unit Product</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.UnitProductImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitProduct()
-	 * @generated
-	 */
-	int UNIT_PRODUCT = 110;
-
-	/**
-	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_PRODUCT__FACTORS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Unit Product</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_PRODUCT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitNumeratorImpl <em>Unit Numerator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.UnitNumeratorImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitNumerator()
-	 * @generated
-	 */
-	int UNIT_NUMERATOR = 111;
-
-	/**
-	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_NUMERATOR__FACTORS = UNIT_PRODUCT__FACTORS;
-
-	/**
-	 * The number of structural features of the '<em>Unit Numerator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_NUMERATOR_FEATURE_COUNT = UNIT_PRODUCT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitDenominatorImpl <em>Unit Denominator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.UnitDenominatorImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominator()
-	 * @generated
-	 */
-	int UNIT_DENOMINATOR = 112;
-
-	/**
-	 * The feature id for the '<em><b>Factors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_DENOMINATOR__FACTORS = UNIT_PRODUCT__FACTORS;
-
-	/**
-	 * The number of structural features of the '<em>Unit Denominator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIT_DENOMINATOR_FEATURE_COUNT = UNIT_PRODUCT_FEATURE_COUNT + 0;
+	int UNIT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl <em>Unit Factor</em>}' class.
@@ -4043,7 +3950,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitFactor()
 	 * @generated
 	 */
-	int UNIT_FACTOR = 113;
+	int UNIT_FACTOR = 110;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' reference.
@@ -4073,6 +3980,43 @@ public interface MscriptPackage extends EPackage {
 	int UNIT_FACTOR_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitDenominatorFactorImpl <em>Unit Denominator Factor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.UnitDenominatorFactorImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominatorFactor()
+	 * @generated
+	 */
+	int UNIT_DENOMINATOR_FACTOR = 111;
+
+	/**
+	 * The feature id for the '<em><b>Symbol</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT_DENOMINATOR_FACTOR__SYMBOL = UNIT_FACTOR__SYMBOL;
+
+	/**
+	 * The feature id for the '<em><b>Exponent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT_DENOMINATOR_FACTOR__EXPONENT = UNIT_FACTOR__EXPONENT;
+
+	/**
+	 * The number of structural features of the '<em>Unit Denominator Factor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT_DENOMINATOR_FACTOR_FEATURE_COUNT = UNIT_FACTOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.UnitDeclarationImpl <em>Unit Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4080,7 +4024,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDeclaration()
 	 * @generated
 	 */
-	int UNIT_DECLARATION = 114;
+	int UNIT_DECLARATION = 112;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4117,7 +4061,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitSymbol()
 	 * @generated
 	 */
-	int UNIT_SYMBOL = 115;
+	int UNIT_SYMBOL = 113;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -4172,7 +4116,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBaseUnitDeclaration()
 	 * @generated
 	 */
-	int BASE_UNIT_DECLARATION = 116;
+	int BASE_UNIT_DECLARATION = 114;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4209,7 +4153,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDerivedUnitDeclaration()
 	 * @generated
 	 */
-	int DERIVED_UNIT_DECLARATION = 117;
+	int DERIVED_UNIT_DECLARATION = 115;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4255,7 +4199,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLiteral()
 	 * @generated
 	 */
-	int LITERAL = 118;
+	int LITERAL = 116;
 
 	/**
 	 * The number of structural features of the '<em>Literal</em>' class.
@@ -4274,7 +4218,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getNumericLiteral()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL = 119;
+	int NUMERIC_LITERAL = 117;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4302,7 +4246,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealLiteral()
 	 * @generated
 	 */
-	int REAL_LITERAL = 120;
+	int REAL_LITERAL = 118;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4348,7 +4292,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerLiteral()
 	 * @generated
 	 */
-	int INTEGER_LITERAL = 121;
+	int INTEGER_LITERAL = 119;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' containment reference.
@@ -4394,7 +4338,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getBooleanLiteral()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL = 122;
+	int BOOLEAN_LITERAL = 120;
 
 	/**
 	 * The feature id for the '<em><b>True</b></em>' attribute.
@@ -4422,7 +4366,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getStringLiteral()
 	 * @generated
 	 */
-	int STRING_LITERAL = 123;
+	int STRING_LITERAL = 121;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -4450,7 +4394,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateExpression()
 	 * @generated
 	 */
-	int TEMPLATE_EXPRESSION = 124;
+	int TEMPLATE_EXPRESSION = 122;
 
 	/**
 	 * The feature id for the '<em><b>Segments</b></em>' containment reference list.
@@ -4478,7 +4422,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getTemplateSegment()
 	 * @generated
 	 */
-	int TEMPLATE_SEGMENT = 125;
+	int TEMPLATE_SEGMENT = 123;
 
 	/**
 	 * The number of structural features of the '<em>Template Segment</em>' class.
@@ -4497,7 +4441,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantTemplateSegment()
 	 * @generated
 	 */
-	int CONSTANT_TEMPLATE_SEGMENT = 126;
+	int CONSTANT_TEMPLATE_SEGMENT = 124;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -4534,7 +4478,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getExpressionTemplateSegment()
 	 * @generated
 	 */
-	int EXPRESSION_TEMPLATE_SEGMENT = 127;
+	int EXPRESSION_TEMPLATE_SEGMENT = 125;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -4571,7 +4515,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionKind()
 	 * @generated
 	 */
-	int FUNCTION_KIND = 128;
+	int FUNCTION_KIND = 126;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.AssertionStatusKind <em>Assertion Status Kind</em>}' enum.
@@ -4581,7 +4525,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getAssertionStatusKind()
 	 * @generated
 	 */
-	int ASSERTION_STATUS_KIND = 129;
+	int ASSERTION_STATUS_KIND = 127;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.OperatorKind <em>Operator Kind</em>}' enum.
@@ -4591,7 +4535,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 130;
+	int OPERATOR_KIND = 128;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.UnitPrefix <em>Unit Prefix</em>}' enum.
@@ -4601,7 +4545,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitPrefix()
 	 * @generated
 	 */
-	int UNIT_PREFIX = 131;
+	int UNIT_PREFIX = 129;
 
 	/**
 	 * The meta object id for the '<em>Real Data</em>' data type.
@@ -4611,7 +4555,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getRealData()
 	 * @generated
 	 */
-	int REAL_DATA = 132;
+	int REAL_DATA = 130;
 
 	/**
 	 * The meta object id for the '<em>Integer Data</em>' data type.
@@ -4621,7 +4565,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIntegerData()
 	 * @generated
 	 */
-	int INTEGER_DATA = 133;
+	int INTEGER_DATA = 131;
 
 
 	/**
@@ -7155,28 +7099,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getUnit();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.Unit#getNumerator <em>Numerator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Numerator</em>'.
-	 * @see org.eclipselabs.damos.mscript.Unit#getNumerator()
-	 * @see #getUnit()
-	 * @generated
-	 */
-	EReference getUnit_Numerator();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.Unit#getDenominator <em>Denominator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Denominator</em>'.
-	 * @see org.eclipselabs.damos.mscript.Unit#getDenominator()
-	 * @see #getUnit()
-	 * @generated
-	 */
-	EReference getUnit_Denominator();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.Unit#getScale <em>Scale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7188,56 +7110,26 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getUnit_Scale();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.Unit#isWildcard <em>Wildcard</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.Unit#isAny <em>Any</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Wildcard</em>'.
-	 * @see org.eclipselabs.damos.mscript.Unit#isWildcard()
+	 * @return the meta object for the attribute '<em>Any</em>'.
+	 * @see org.eclipselabs.damos.mscript.Unit#isAny()
 	 * @see #getUnit()
 	 * @generated
 	 */
-	EAttribute getUnit_Wildcard();
+	EAttribute getUnit_Any();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitProduct <em>Unit Product</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unit Product</em>'.
-	 * @see org.eclipselabs.damos.mscript.UnitProduct
-	 * @generated
-	 */
-	EClass getUnitProduct();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.UnitProduct#getFactors <em>Factors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.Unit#getFactors <em>Factors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Factors</em>'.
-	 * @see org.eclipselabs.damos.mscript.UnitProduct#getFactors()
-	 * @see #getUnitProduct()
+	 * @see org.eclipselabs.damos.mscript.Unit#getFactors()
+	 * @see #getUnit()
 	 * @generated
 	 */
-	EReference getUnitProduct_Factors();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitNumerator <em>Unit Numerator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unit Numerator</em>'.
-	 * @see org.eclipselabs.damos.mscript.UnitNumerator
-	 * @generated
-	 */
-	EClass getUnitNumerator();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitDenominator <em>Unit Denominator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unit Denominator</em>'.
-	 * @see org.eclipselabs.damos.mscript.UnitDenominator
-	 * @generated
-	 */
-	EClass getUnitDenominator();
+	EReference getUnit_Factors();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitFactor <em>Unit Factor</em>}'.
@@ -7270,6 +7162,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUnitFactor_Exponent();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitDenominatorFactor <em>Unit Denominator Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unit Denominator Factor</em>'.
+	 * @see org.eclipselabs.damos.mscript.UnitDenominatorFactor
+	 * @generated
+	 */
+	EClass getUnitDenominatorFactor();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.UnitDeclaration <em>Unit Declaration</em>}'.
@@ -9834,22 +9736,6 @@ public interface MscriptPackage extends EPackage {
 		EClass UNIT = eINSTANCE.getUnit();
 
 		/**
-		 * The meta object literal for the '<em><b>Numerator</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNIT__NUMERATOR = eINSTANCE.getUnit_Numerator();
-
-		/**
-		 * The meta object literal for the '<em><b>Denominator</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNIT__DENOMINATOR = eINSTANCE.getUnit_Denominator();
-
-		/**
 		 * The meta object literal for the '<em><b>Scale</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9858,22 +9744,12 @@ public interface MscriptPackage extends EPackage {
 		EAttribute UNIT__SCALE = eINSTANCE.getUnit_Scale();
 
 		/**
-		 * The meta object literal for the '<em><b>Wildcard</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Any</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UNIT__WILDCARD = eINSTANCE.getUnit_Wildcard();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitProductImpl <em>Unit Product</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.UnitProductImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitProduct()
-		 * @generated
-		 */
-		EClass UNIT_PRODUCT = eINSTANCE.getUnitProduct();
+		EAttribute UNIT__ANY = eINSTANCE.getUnit_Any();
 
 		/**
 		 * The meta object literal for the '<em><b>Factors</b></em>' containment reference list feature.
@@ -9881,27 +9757,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UNIT_PRODUCT__FACTORS = eINSTANCE.getUnitProduct_Factors();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitNumeratorImpl <em>Unit Numerator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.UnitNumeratorImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitNumerator()
-		 * @generated
-		 */
-		EClass UNIT_NUMERATOR = eINSTANCE.getUnitNumerator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitDenominatorImpl <em>Unit Denominator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.UnitDenominatorImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominator()
-		 * @generated
-		 */
-		EClass UNIT_DENOMINATOR = eINSTANCE.getUnitDenominator();
+		EReference UNIT__FACTORS = eINSTANCE.getUnit_Factors();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitFactorImpl <em>Unit Factor</em>}' class.
@@ -9928,6 +9784,16 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute UNIT_FACTOR__EXPONENT = eINSTANCE.getUnitFactor_Exponent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitDenominatorFactorImpl <em>Unit Denominator Factor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.UnitDenominatorFactorImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getUnitDenominatorFactor()
+		 * @generated
+		 */
+		EClass UNIT_DENOMINATOR_FACTOR = eINSTANCE.getUnitDenominatorFactor();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.UnitDeclarationImpl <em>Unit Declaration</em>}' class.

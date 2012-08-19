@@ -509,20 +509,12 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createUnitAdapter();
 			}
 			@Override
-			public Adapter caseUnitProduct(UnitProduct object) {
-				return createUnitProductAdapter();
-			}
-			@Override
-			public Adapter caseUnitNumerator(UnitNumerator object) {
-				return createUnitNumeratorAdapter();
-			}
-			@Override
-			public Adapter caseUnitDenominator(UnitDenominator object) {
-				return createUnitDenominatorAdapter();
-			}
-			@Override
 			public Adapter caseUnitFactor(UnitFactor object) {
 				return createUnitFactorAdapter();
+			}
+			@Override
+			public Adapter caseUnitDenominatorFactor(UnitDenominatorFactor object) {
+				return createUnitDenominatorFactorAdapter();
 			}
 			@Override
 			public Adapter caseUnitDeclaration(UnitDeclaration object) {
@@ -2141,48 +2133,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitProduct <em>Unit Product</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.UnitProduct
-	 * @generated
-	 */
-	public Adapter createUnitProductAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitNumerator <em>Unit Numerator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.UnitNumerator
-	 * @generated
-	 */
-	public Adapter createUnitNumeratorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitDenominator <em>Unit Denominator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.UnitDenominator
-	 * @generated
-	 */
-	public Adapter createUnitDenominatorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitFactor <em>Unit Factor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2193,6 +2143,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnitFactorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.UnitDenominatorFactor <em>Unit Denominator Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.UnitDenominatorFactor
+	 * @generated
+	 */
+	public Adapter createUnitDenominatorFactorAdapter() {
 		return null;
 	}
 

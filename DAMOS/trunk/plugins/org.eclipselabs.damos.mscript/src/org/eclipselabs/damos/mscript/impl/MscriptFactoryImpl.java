@@ -153,9 +153,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.UNION_TYPE: return createUnionType();
 			case MscriptPackage.EXPRESSION: return createExpression();
 			case MscriptPackage.UNIT: return createUnit();
-			case MscriptPackage.UNIT_NUMERATOR: return createUnitNumerator();
-			case MscriptPackage.UNIT_DENOMINATOR: return createUnitDenominator();
 			case MscriptPackage.UNIT_FACTOR: return createUnitFactor();
+			case MscriptPackage.UNIT_DENOMINATOR_FACTOR: return createUnitDenominatorFactor();
 			case MscriptPackage.UNIT_SYMBOL: return createUnitSymbol();
 			case MscriptPackage.BASE_UNIT_DECLARATION: return createBaseUnitDeclaration();
 			case MscriptPackage.DERIVED_UNIT_DECLARATION: return createDerivedUnitDeclaration();
@@ -1178,29 +1177,19 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnitNumerator createUnitNumerator() {
-		UnitNumeratorImpl unitNumerator = new UnitNumeratorImpl();
-		return unitNumerator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnitDenominator createUnitDenominator() {
-		UnitDenominatorImpl unitDenominator = new UnitDenominatorImpl();
-		return unitDenominator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public UnitFactor createUnitFactor() {
 		UnitFactorImpl unitFactor = new UnitFactorImpl();
 		return unitFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnitDenominatorFactor createUnitDenominatorFactor() {
+		UnitDenominatorFactorImpl unitDenominatorFactor = new UnitDenominatorFactorImpl();
+		return unitDenominatorFactor;
 	}
 
 	/**

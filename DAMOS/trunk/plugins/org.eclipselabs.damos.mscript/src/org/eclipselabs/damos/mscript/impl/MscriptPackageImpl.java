@@ -56,6 +56,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass iPackageMemberEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass typeDeclarationEClass = null;
 
 	/**
@@ -1087,6 +1094,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EReference getDeclarationContainer_Declarations() {
 		return (EReference)declarationContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIPackageMember() {
+		return iPackageMemberEClass;
 	}
 
 	/**
@@ -3614,6 +3630,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		declarationContainerEClass = createEClass(DECLARATION_CONTAINER);
 		createEReference(declarationContainerEClass, DECLARATION_CONTAINER__DECLARATIONS);
 
+		iPackageMemberEClass = createEClass(IPACKAGE_MEMBER);
+
 		typeDeclarationEClass = createEClass(TYPE_DECLARATION);
 		createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_SPECIFIER);
 
@@ -4046,6 +4064,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		// Add supertypes to classes
 		moduleEClass.getESuperTypes().add(this.getDeclarationContainer());
+		moduleEClass.getESuperTypes().add(this.getIPackageMember());
 		typeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		enumerationDeclarationEClass.getESuperTypes().add(this.getDeclaration());
 		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
@@ -4164,6 +4183,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(declarationContainerEClass, DeclarationContainer.class, "DeclarationContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclarationContainer_Declarations(), this.getDeclaration(), null, "declarations", null, 0, -1, DeclarationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iPackageMemberEClass, IPackageMember.class, "IPackageMember", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(iPackageMemberEClass, ecorePackage.getEString(), "getPackageName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeDeclaration_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

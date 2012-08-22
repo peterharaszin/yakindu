@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
     nsPrefix="mscript">
-  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//DeclarationContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//DeclarationContainer #//IPackageMember">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="#//ImportDeclaration" containment="true"/>
@@ -16,6 +16,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="DeclarationContainer" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
         eType="#//Declaration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IPackageMember" abstract="true" interface="true">
+    <eOperations name="getPackageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDeclaration" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//TypeSpecifier"

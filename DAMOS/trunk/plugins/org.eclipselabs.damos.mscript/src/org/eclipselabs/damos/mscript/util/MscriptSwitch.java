@@ -72,6 +72,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				Module module = (Module)theEObject;
 				T result = caseModule(module);
 				if (result == null) result = caseDeclarationContainer(module);
+				if (result == null) result = caseIPackageMember(module);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -90,6 +91,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.DECLARATION_CONTAINER: {
 				DeclarationContainer declarationContainer = (DeclarationContainer)theEObject;
 				T result = caseDeclarationContainer(declarationContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.IPACKAGE_MEMBER: {
+				IPackageMember iPackageMember = (IPackageMember)theEObject;
+				T result = caseIPackageMember(iPackageMember);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1111,6 +1118,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeclarationContainer(DeclarationContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPackageMember(IPackageMember object) {
 		return null;
 	}
 

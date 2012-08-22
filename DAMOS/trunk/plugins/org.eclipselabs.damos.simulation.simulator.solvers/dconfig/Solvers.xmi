@@ -6,7 +6,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -20,7 +20,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -31,7 +31,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -42,7 +42,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -72,7 +72,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -83,7 +83,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -94,7 +94,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>
@@ -124,7 +124,7 @@
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/Standard.xmi#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>

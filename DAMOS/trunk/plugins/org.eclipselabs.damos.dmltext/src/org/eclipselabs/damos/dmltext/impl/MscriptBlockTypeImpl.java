@@ -19,6 +19,7 @@ import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.DeclarationContainer;
+import org.eclipselabs.damos.mscript.IPackageMember;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -200,6 +201,11 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				default: return -1;
 			}
 		}
+		if (baseClass == IPackageMember.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -213,6 +219,11 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 		if (baseClass == DeclarationContainer.class) {
 			switch (baseFeatureID) {
 				case MscriptPackage.DECLARATION_CONTAINER__DECLARATIONS: return DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS;
+				default: return -1;
+			}
+		}
+		if (baseClass == IPackageMember.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

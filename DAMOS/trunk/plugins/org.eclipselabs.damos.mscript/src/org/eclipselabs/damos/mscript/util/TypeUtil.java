@@ -14,7 +14,6 @@ package org.eclipselabs.damos.mscript.util;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -179,7 +178,7 @@ public class TypeUtil {
 	}
 	
 	public static Unit createUnit(ResourceSet resourceSet, int scale, String... symbolNames) {
-		Resource resource = resourceSet.getResource(URI.createURI(MscriptGlobalScopeProvider.LIBRARY_URI), true);
+		Resource resource = resourceSet.getResource(MscriptGlobalScopeProvider.MSCRIPT_LANG_UNITS_URI, true);
 		Module module = (Module) EcoreUtil.getObjectByType(resource.getContents(), MscriptPackage.eINSTANCE.getModule());
 		if (module == null) {
 			return null;

@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.5.0",
  org.eclipselabs.damos.dml,
+ org.eclipselabs.damos.mscript;bundle-version="0.4.0",
  org.eclipselabs.damos.codegen.c,
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
  org.eclipselabs.damos.codegen;bundle-version="0.3.0"

@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Module extends DeclarationContainer {
+public interface Module extends DeclarationContainer, IPackageMember {
 	/**
 	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

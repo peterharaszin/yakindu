@@ -41,6 +41,7 @@ import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
+import org.eclipselabs.damos.mscript.IPackageMember;
 
 /**
  * <!-- begin-user-doc -->
@@ -217,6 +218,10 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseComponentConfigurationBody(ComponentConfigurationBody object) {
 				return createComponentConfigurationBodyAdapter();
+			}
+			@Override
+			public Adapter caseIPackageMember(IPackageMember object) {
+				return createIPackageMemberAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -655,6 +660,20 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComponentConfigurationBodyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IPackageMember <em>IPackage Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.IPackageMember
+	 * @generated
+	 */
+	public Adapter createIPackageMemberAdapter() {
 		return null;
 	}
 

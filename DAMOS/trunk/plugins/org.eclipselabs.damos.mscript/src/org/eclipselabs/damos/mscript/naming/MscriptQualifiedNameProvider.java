@@ -16,6 +16,8 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.UnitSymbol;
 
 import com.google.inject.Inject;
 
@@ -33,13 +35,37 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 	 */
 	public QualifiedName getFullyQualifiedName(EObject obj) {
 		if (obj instanceof Declaration) {
-			final String qualifiedName = ((Declaration) obj).getName();
-			if (qualifiedName == null) {
-				return null;
+			Declaration declaration = (Declaration) obj;
+
+			QualifiedName packageName = getPackageName(declaration);
+			if (packageName != null) {
+				return packageName.append(declaration.getName());
 			}
-			return qualifiedNameConverter.toQualifiedName(qualifiedName);
+		} else if (obj instanceof UnitSymbol) {
+			UnitSymbol unitSymbol = (UnitSymbol) obj;
+			QualifiedName packageName = getPackageName(unitSymbol.getOwner());
+			if (packageName != null) {
+				return packageName.append(unitSymbol.getName());
+			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param declaration
+	 * @return
+	 */
+	private QualifiedName getPackageName(Declaration declaration) {
+		if (declaration.getName() == null) {
+			return null;
+		}
+		QualifiedName packageName;
+		if (declaration.eContainer() instanceof IPackageMember) {
+			packageName = qualifiedNameConverter.toQualifiedName(((IPackageMember) declaration.eContainer()).getPackageName()); 
+		} else {
+			packageName = QualifiedName.EMPTY;
+		}
+		return packageName;
 	}
 
 }

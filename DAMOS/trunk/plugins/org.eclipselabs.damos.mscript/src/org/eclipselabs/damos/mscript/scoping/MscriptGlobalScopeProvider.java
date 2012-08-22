@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -37,14 +38,25 @@ import com.google.inject.Inject;
  */
 public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
+	public static final URI MSCRIPT_LANG_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang.xmi");
+	public static final URI MSCRIPT_LANG_MATH_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_math.xmi");
+	public static final URI MSCRIPT_LANG_UNITS_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript");
+	
 	/**
 	 * 
 	 */
-	public static final String LIBRARY_URI = "http://www.eclipselabs.org/damos/mscript/library/Standard.xmi";
+	private static final URI[] LIBRARY_URIS = {
+		MSCRIPT_LANG_URI,
+		MSCRIPT_LANG_MATH_URI,
+		MSCRIPT_LANG_UNITS_URI
+	};
 
 	@Inject
 	private ResourceSet resourceSet;
 	
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
+
 	private static volatile List<IEObjectDescription> eObjectDescriptions;
 
 	/* (non-Javadoc)
@@ -69,21 +81,22 @@ public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		synchronized (MscriptGlobalScopeProvider.class) {
 			if (eObjectDescriptions == null) {
 				eObjectDescriptions = new ArrayList<IEObjectDescription>();
-				URI uri = URI.createURI(LIBRARY_URI, true);
-				Resource resource = resourceSet.getResource(uri, true);
-				for (EObject eObject : resource.getContents().get(0).eContents()) {
-					if (eObject instanceof Declaration) {
-						Declaration declaration = (Declaration) eObject;
-						eObjectDescriptions.add(EObjectDescription.create(declaration.getName(), eObject));
-						if (declaration instanceof UnitDeclaration) {
-							UnitDeclaration unitDeclaration = (UnitDeclaration) declaration;
-							for (UnitSymbol unitSymbol : unitDeclaration.getSymbols()) {
-								eObjectDescriptions.add(EObjectDescription.create(unitSymbol.getName(), unitSymbol));
+				for (URI uri : LIBRARY_URIS) {
+					Resource resource = resourceSet.getResource(uri, true);
+					for (EObject eObject : resource.getContents().get(0).eContents()) {
+						if (eObject instanceof Declaration) {
+							Declaration declaration = (Declaration) eObject;
+							eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(eObject), eObject));
+							if (declaration instanceof UnitDeclaration) {
+								UnitDeclaration unitDeclaration = (UnitDeclaration) declaration;
+								for (UnitSymbol unitSymbol : unitDeclaration.getSymbols()) {
+									eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(unitSymbol), unitSymbol));
+								}
 							}
 						}
 					}
+					resource.unload();
 				}
-				resource.unload();
 			}
 		}
 		return eObjectDescriptions;

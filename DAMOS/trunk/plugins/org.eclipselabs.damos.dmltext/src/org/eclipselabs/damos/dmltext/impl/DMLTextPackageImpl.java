@@ -310,6 +310,7 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		// Add supertypes to classes
 		mscriptBlockTypeEClass.getESuperTypes().add(theDMLPackage.getBlockType());
 		mscriptBlockTypeEClass.getESuperTypes().add(theMscriptPackage.getDeclarationContainer());
+		mscriptBlockTypeEClass.getESuperTypes().add(theMscriptPackage.getIPackageMember());
 		mscriptSystemInterfaceEClass.getESuperTypes().add(theDMLPackage.getSystemInterface());
 		mscriptDataTypeSpecificationEClass.getESuperTypes().add(theDMLPackage.getDataTypeSpecification());
 		mscriptValueSpecificationEClass.getESuperTypes().add(theDMLPackage.getValueSpecification());

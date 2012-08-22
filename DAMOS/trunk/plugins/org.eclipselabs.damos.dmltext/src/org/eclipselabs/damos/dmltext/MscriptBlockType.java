@@ -9,6 +9,7 @@ package org.eclipselabs.damos.dmltext;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.mscript.DeclarationContainer;
+import org.eclipselabs.damos.mscript.IPackageMember;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
 
 /**
@@ -27,7 +28,7 @@ import org.eclipselabs.damos.mscript.ImportDeclaration;
  * @model
  * @generated
  */
-public interface MscriptBlockType extends BlockType, DeclarationContainer {
+public interface MscriptBlockType extends BlockType, DeclarationContainer, IPackageMember {
 	/**
 	 * Returns the value of the '<em><b>Import Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ImportDeclaration}.

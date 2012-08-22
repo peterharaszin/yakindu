@@ -12,17 +12,23 @@
 package org.eclipselabs.damos.dconfig.naming;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.ConfigurationDefinitionMember;
+import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
-public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
+public class DconfigQualifiedNameProvider extends MscriptQualifiedNameProvider {
 
+	@Inject
+	private IQualifiedNameConverter qualifiedNameConverter;
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.xtext.naming.IQualifiedNameProvider#getFullyQualifiedName(org.eclipse.emf.ecore.EObject)
 	 */
@@ -40,7 +46,7 @@ public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNam
 				return null;
 			}
 			
-			return getConverter().toQualifiedName(packageName).append(name);
+			return qualifiedNameConverter.toQualifiedName(packageName).append(name);
 		}
 		if (obj instanceof Configuration) {
 			Configuration configuration = (Configuration) obj;
@@ -48,7 +54,7 @@ public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNam
 			if (packageName == null) {
 				return null;
 			}
-			return getConverter().toQualifiedName(packageName).append(configuration.getName());
+			return qualifiedNameConverter.toQualifiedName(packageName).append(configuration.getName());
 		}
 		return super.getFullyQualifiedName(obj);
 	}

@@ -13,6 +13,8 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
@@ -22,6 +24,7 @@ import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptLexer;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
+import org.eclipselabs.damos.mscript.scoping.MscriptImportedNamespaceScopeProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -72,6 +75,11 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 	@Override
 	public Class<? extends IAstFactory> bindIAstFactory() {
 		return MscriptEcoreElementFactory.class;
+	}
+
+	@Override
+	public void configureIScopeProviderDelegate(Binder binder) {
+		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(MscriptImportedNamespaceScopeProvider.class);
 	}
 
 }

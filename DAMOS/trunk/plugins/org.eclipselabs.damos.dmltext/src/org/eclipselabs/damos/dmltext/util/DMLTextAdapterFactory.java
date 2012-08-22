@@ -26,6 +26,7 @@ import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
 import org.eclipselabs.damos.mscript.DeclarationContainer;
+import org.eclipselabs.damos.mscript.IPackageMember;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,6 +131,10 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDeclarationContainer(DeclarationContainer object) {
 				return createDeclarationContainerAdapter();
+			}
+			@Override
+			public Adapter caseIPackageMember(IPackageMember object) {
+				return createIPackageMemberAdapter();
 			}
 			@Override
 			public Adapter caseSystemInterface(SystemInterface object) {
@@ -328,6 +333,20 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeclarationContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IPackageMember <em>IPackage Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.IPackageMember
+	 * @generated
+	 */
+	public Adapter createIPackageMemberAdapter() {
 		return null;
 	}
 

@@ -1,18 +1,8 @@
-/****************************************************************************
- * Copyright (c) 2008, 2012 Andreas Unger and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Andreas Unger - initial API and implementation 
- ****************************************************************************/
-
-package org.eclipselabs.damos.dconfig.scoping;
+package org.eclipselabs.damos.mscript.scoping;
 
 import static java.util.Collections.singletonList;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,24 +15,32 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.util.Strings;
-import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.mscript.IPackageMember;
 
 import com.google.inject.Inject;
 
-public class DconfigImportedNamespaceScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
+public class MscriptImportedNamespaceScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
+
+	private static final  List<ImportNormalizer> IMPLICIT_IMPORTS = new ArrayList<ImportNormalizer>();
+
+	{
+		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang"), true, false));
+		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang", "math"), true, false));
+		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang", "units"), true, false));
+	}
 
 	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;
-
+	
 	@Override
 	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
-		if (!(context instanceof Configuration)) {
+		if (!(context instanceof IPackageMember)) {
 			return Collections.emptyList();
 		}
-		Configuration configuration = (Configuration) context;
+		IPackageMember packagedElement = (IPackageMember) context;
 		List<ImportNormalizer> resolvers = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
-		if (!Strings.isEmpty(configuration.getPackageName())) {
-			resolvers.add(new ImportNormalizer(qualifiedNameConverter.toQualifiedName(configuration.getPackageName()), true,
+		if (!Strings.isEmpty(packagedElement.getPackageName())) {
+			resolvers.add(new ImportNormalizer(qualifiedNameConverter.toQualifiedName(packagedElement.getPackageName()), true,
 					ignoreCase));
 		}
 		return resolvers;
@@ -94,6 +92,14 @@ public class DconfigImportedNamespaceScopeProvider extends ImportedNamespaceAwar
 	@Override
 	protected boolean isRelativeImport() {
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider#getImplicitImports(boolean)
+	 */
+	@Override
+	protected List<ImportNormalizer> getImplicitImports(boolean ignoreCase) {
+		return IMPLICIT_IMPORTS;
 	}
 
 	private ImportNormalizer createImportNormalizer(QualifiedName importedNamespace, boolean wildCard, boolean ignoreCase) {

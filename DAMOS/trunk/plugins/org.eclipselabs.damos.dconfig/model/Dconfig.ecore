@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dconfig" nsURI="http://www.eclipselabs.org/damos/2011/Dconfig"
     nsPrefix="dconfig">
-  <eClassifiers xsi:type="ecore:EClass" name="Configuration" eSuperTypes="#//PropertyContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration" eSuperTypes="#//PropertyContainer ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//IPackageMember">
     <eOperations name="getContextFragment" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eOperations name="getPropertyValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression">
       <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>

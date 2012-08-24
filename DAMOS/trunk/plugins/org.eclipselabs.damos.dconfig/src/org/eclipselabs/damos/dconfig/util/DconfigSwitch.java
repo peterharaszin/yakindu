@@ -40,7 +40,6 @@ import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
-import org.eclipselabs.damos.mscript.PackageFragment;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,7 +102,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 				Configuration configuration = (Configuration)theEObject;
 				T result = caseConfiguration(configuration);
 				if (result == null) result = casePropertyContainer(configuration);
-				if (result == null) result = casePackageFragment(configuration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -753,21 +751,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComponentConfigurationBody(ComponentConfigurationBody object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePackageFragment(PackageFragment object) {
 		return null;
 	}
 

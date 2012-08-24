@@ -87,9 +87,6 @@
     <genClasses image="false" ecoreClass="Mscript.ecore#//TopLevelContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TopLevelContainer/declarations"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//PackageFragment">
-      <genOperations ecoreOperation="Mscript.ecore#//PackageFragment/getPackageName"/>
-    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//TypeDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//TypeDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeDeclaration/typeSpecifier"/>

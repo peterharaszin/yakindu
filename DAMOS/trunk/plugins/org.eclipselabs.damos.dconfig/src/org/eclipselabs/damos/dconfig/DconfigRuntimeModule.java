@@ -19,12 +19,12 @@ import org.eclipselabs.damos.dconfig.conversion.DconfigTerminalConverters;
 import org.eclipselabs.damos.dconfig.naming.DconfigQualifiedNameProvider;
 import org.eclipselabs.damos.dconfig.parser.antlr.DconfigLexer;
 import org.eclipselabs.damos.dconfig.scoping.DconfigGlobalScopeProvider;
+import org.eclipselabs.damos.dconfig.scoping.DconfigImportedNamespaceScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
-import org.eclipselabs.damos.mscript.scoping.MscriptImportedNamespaceScopeProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -63,7 +63,7 @@ public class DconfigRuntimeModule extends org.eclipselabs.damos.dconfig.Abstract
 
 	@Override
 	public void configureIScopeProviderDelegate(Binder binder) {
-		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(MscriptImportedNamespaceScopeProvider.class);
+		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(DconfigImportedNamespaceScopeProvider.class);
 	}
 
 	@Override

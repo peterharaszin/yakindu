@@ -25,7 +25,6 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
-import org.eclipselabs.damos.mscript.PackageFragment;
 import org.eclipselabs.damos.mscript.TopLevelContainer;
 
 /**
@@ -131,10 +130,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTopLevelContainer(TopLevelContainer object) {
 				return createTopLevelContainerAdapter();
-			}
-			@Override
-			public Adapter casePackageFragment(PackageFragment object) {
-				return createPackageFragmentAdapter();
 			}
 			@Override
 			public Adapter caseSystemInterface(SystemInterface object) {
@@ -333,20 +328,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopLevelContainerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.PackageFragment <em>Package Fragment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.PackageFragment
-	 * @generated
-	 */
-	public Adapter createPackageFragmentAdapter() {
 		return null;
 	}
 

@@ -18,13 +18,13 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
 import org.eclipselabs.damos.dmltext.naming.DMLTextQualifiedNameProvider;
 import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
+import org.eclipselabs.damos.dmltext.scoping.DMLTextImportedNamespaceScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
-import org.eclipselabs.damos.mscript.scoping.MscriptImportedNamespaceScopeProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -78,7 +78,7 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 
 	@Override
 	public void configureIScopeProviderDelegate(Binder binder) {
-		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(MscriptImportedNamespaceScopeProvider.class);
+		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(DMLTextImportedNamespaceScopeProvider.class);
 	}
 
 }

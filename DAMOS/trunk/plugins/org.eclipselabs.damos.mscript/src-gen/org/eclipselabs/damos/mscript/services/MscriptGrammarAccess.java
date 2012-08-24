@@ -27,13 +27,13 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cImportDeclarationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cImportDeclarationsImportDeclarationParserRuleCall_2_0 = (RuleCall)cImportDeclarationsAssignment_2.eContents().get(0);
 		private final Assignment cDeclarationsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDeclarationsDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationsAssignment_3.eContents().get(0);
+		private final RuleCall cDeclarationsTopLevelDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationsAssignment_3.eContents().get(0);
 		
 		//Module:
-		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
+		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*;
 		public ParserRule getRule() { return rule; }
 
-		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*
+		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -51,11 +51,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportDeclaration
 		public RuleCall getImportDeclarationsImportDeclarationParserRuleCall_2_0() { return cImportDeclarationsImportDeclarationParserRuleCall_2_0; }
 
-		//declarations+=Declaration*
+		//declarations+=TopLevelDeclaration*
 		public Assignment getDeclarationsAssignment_3() { return cDeclarationsAssignment_3; }
 
-		//Declaration
-		public RuleCall getDeclarationsDeclarationParserRuleCall_3_0() { return cDeclarationsDeclarationParserRuleCall_3_0; }
+		//TopLevelDeclaration
+		public RuleCall getDeclarationsTopLevelDeclarationParserRuleCall_3_0() { return cDeclarationsTopLevelDeclarationParserRuleCall_3_0; }
 	}
 
 	public class ImportDeclarationElements extends AbstractParserRuleElementFinder {
@@ -82,19 +82,20 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0() { return cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0; }
 	}
 
-	public class DeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Declaration");
+	public class TopLevelDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TopLevelDeclaration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cTypeDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cEnumerationDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cFunctionDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cUnitDeclarationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cConstantDeclarationParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
-		//Declaration:
-		//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
+		//TopLevelDeclaration:
+		//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
 		public ParserRule getRule() { return rule; }
 
-		//TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration
+		//TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//TypeDeclaration
@@ -108,6 +109,9 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//UnitDeclaration
 		public RuleCall getUnitDeclarationParserRuleCall_3() { return cUnitDeclarationParserRuleCall_3; }
+
+		//ConstantDeclaration
+		public RuleCall getConstantDeclarationParserRuleCall_4() { return cConstantDeclarationParserRuleCall_4; }
 	}
 
 	public class TypeDeclarationElements extends AbstractParserRuleElementFinder {
@@ -5763,7 +5767,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private ModuleElements pModule;
 	private ImportDeclarationElements pImportDeclaration;
-	private DeclarationElements pDeclaration;
+	private TopLevelDeclarationElements pTopLevelDeclaration;
 	private TypeDeclarationElements pTypeDeclaration;
 	private UnitDeclarationElements pUnitDeclaration;
 	private BaseUnitDeclarationElements pBaseUnitDeclaration;
@@ -5947,7 +5951,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
@@ -5966,14 +5970,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getImportDeclarationAccess().getRule();
 	}
 
-	//Declaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
-	public DeclarationElements getDeclarationAccess() {
-		return (pDeclaration != null) ? pDeclaration : (pDeclaration = new DeclarationElements());
+	//TopLevelDeclaration:
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
+	public TopLevelDeclarationElements getTopLevelDeclarationAccess() {
+		return (pTopLevelDeclaration != null) ? pTopLevelDeclaration : (pTopLevelDeclaration = new TopLevelDeclarationElements());
 	}
 	
-	public ParserRule getDeclarationRule() {
-		return getDeclarationAccess().getRule();
+	public ParserRule getTopLevelDeclarationRule() {
+		return getTopLevelDeclarationAccess().getRule();
 	}
 
 	/// *

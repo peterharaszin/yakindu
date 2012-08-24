@@ -131,7 +131,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.RETURN_STATEMENT: return createReturnStatement();
 			case MscriptPackage.BUILTIN_DECLARATION: return createBuiltinDeclaration();
 			case MscriptPackage.BUILTIN_FUNCTION_DECLARATION: return createBuiltinFunctionDeclaration();
-			case MscriptPackage.BUILTIN_VARIABLE_DECLARATION: return createBuiltinVariableDeclaration();
 			case MscriptPackage.INVALID_TYPE: return createInvalidType();
 			case MscriptPackage.ANY_TYPE: return createAnyType();
 			case MscriptPackage.UNIT_TYPE: return createUnitType();
@@ -950,16 +949,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public BuiltinFunctionDeclaration createBuiltinFunctionDeclaration() {
 		BuiltinFunctionDeclarationImpl builtinFunctionDeclaration = new BuiltinFunctionDeclarationImpl();
 		return builtinFunctionDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BuiltinVariableDeclaration createBuiltinVariableDeclaration() {
-		BuiltinVariableDeclarationImpl builtinVariableDeclaration = new BuiltinVariableDeclarationImpl();
-		return builtinVariableDeclaration;
 	}
 
 	/**

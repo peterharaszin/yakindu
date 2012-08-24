@@ -77,16 +77,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createImportDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseDeclaration(Declaration object) {
-				return createDeclarationAdapter();
+			public Adapter caseTopLevelDeclaration(TopLevelDeclaration object) {
+				return createTopLevelDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseDeclarationContainer(DeclarationContainer object) {
-				return createDeclarationContainerAdapter();
+			public Adapter caseTopLevelContainer(TopLevelContainer object) {
+				return createTopLevelContainerAdapter();
 			}
 			@Override
-			public Adapter caseIPackageMember(IPackageMember object) {
-				return createIPackageMemberAdapter();
+			public Adapter casePackageFragment(PackageFragment object) {
+				return createPackageFragmentAdapter();
 			}
 			@Override
 			public Adapter caseTypeDeclaration(TypeDeclaration object) {
@@ -409,10 +409,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createBuiltinFunctionDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseBuiltinVariableDeclaration(BuiltinVariableDeclaration object) {
-				return createBuiltinVariableDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseType(Type object) {
 				return createTypeAdapter();
 			}
@@ -625,44 +621,44 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Declaration <em>Declaration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TopLevelDeclaration <em>Top Level Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.Declaration
+	 * @see org.eclipselabs.damos.mscript.TopLevelDeclaration
 	 * @generated
 	 */
-	public Adapter createDeclarationAdapter() {
+	public Adapter createTopLevelDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DeclarationContainer <em>Declaration Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TopLevelContainer <em>Top Level Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.DeclarationContainer
+	 * @see org.eclipselabs.damos.mscript.TopLevelContainer
 	 * @generated
 	 */
-	public Adapter createDeclarationContainerAdapter() {
+	public Adapter createTopLevelContainerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IPackageMember <em>IPackage Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.PackageFragment <em>Package Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.IPackageMember
+	 * @see org.eclipselabs.damos.mscript.PackageFragment
 	 * @generated
 	 */
-	public Adapter createIPackageMemberAdapter() {
+	public Adapter createPackageFragmentAdapter() {
 		return null;
 	}
 
@@ -1783,20 +1779,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBuiltinFunctionDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinVariableDeclaration <em>Builtin Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.BuiltinVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createBuiltinVariableDeclarationAdapter() {
 		return null;
 	}
 

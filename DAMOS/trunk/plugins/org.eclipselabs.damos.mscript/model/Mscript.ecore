@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
     nsPrefix="mscript">
-  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//DeclarationContainer #//IPackageMember">
+  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//TopLevelContainer #//PackageFragment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="#//ImportDeclaration" containment="true"/>
@@ -10,28 +10,31 @@
   <eClassifiers xsi:type="ecore:EClass" name="ImportDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Declaration" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelDeclaration" abstract="true">
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeclarationContainer" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelContainer" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
-        eType="#//Declaration" containment="true"/>
+        eType="#//TopLevelDeclaration" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IPackageMember" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PackageFragment" abstract="true">
     <eOperations name="getPackageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDeclaration" eSuperTypes="#//Declaration">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDeclaration" eSuperTypes="#//TopLevelDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//TypeSpecifier"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumerationDeclaration" eSuperTypes="#//Declaration">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumerationDeclaration" eSuperTypes="#//TopLevelDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="literalDeclarations" upperBound="-1"
         eType="#//EnumerationLiteralDeclaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteralDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//Declaration #//CallableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//TopLevelDeclaration #//CallableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//FunctionKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="staticParameterDeclarations"
         upperBound="-1" eType="#//StaticParameterDeclaration" containment="true"/>
@@ -96,7 +99,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//VariableDeclaration #//TopLevelDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -361,9 +364,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BuiltinDeclaration" eSuperTypes="#//Declaration #//CallableElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BuiltinFunctionDeclaration" eSuperTypes="#//BuiltinDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BuiltinVariableDeclaration" eSuperTypes="#//BuiltinDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltinDeclaration" eSuperTypes="#//TopLevelDeclaration #//CallableElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltinFunctionDeclaration" eSuperTypes="#//BuiltinDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true">
     <eOperations name="evaluate" lowerBound="1" eType="#//Type">
       <eParameters name="operator" lowerBound="1" eType="#//OperatorKind"/>
@@ -517,10 +521,11 @@
         defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnitDenominatorFactor" eSuperTypes="#//UnitFactor"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnitDeclaration" abstract="true" eSuperTypes="#//Declaration">
+  <eClassifiers xsi:type="ecore:EClass" name="UnitDeclaration" abstract="true" eSuperTypes="#//TopLevelDeclaration">
     <eOperations name="getSymbol" eType="#//UnitSymbol">
       <eParameters name="prefix" lowerBound="1" eType="#//UnitPrefix"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="symbols" upperBound="-1"
         eType="#//UnitSymbol" containment="true" eOpposite="#//UnitSymbol/owner"/>
   </eClassifiers>

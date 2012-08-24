@@ -8,10 +8,12 @@ package org.eclipselabs.damos.mscript.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.EnumerationDeclaration;
@@ -25,13 +27,32 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.EnumerationDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.EnumerationDeclarationImpl#getLiteralDeclarations <em>Literal Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EnumerationDeclarationImpl extends DeclarationImpl implements EnumerationDeclaration {
+public class EnumerationDeclarationImpl extends TopLevelDeclarationImpl implements EnumerationDeclaration {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getLiteralDeclarations() <em>Literal Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -59,6 +80,27 @@ public class EnumerationDeclarationImpl extends DeclarationImpl implements Enume
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.ENUMERATION_DECLARATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ENUMERATION_DECLARATION__NAME, oldName, name));
 	}
 
 	/**
@@ -95,6 +137,8 @@ public class EnumerationDeclarationImpl extends DeclarationImpl implements Enume
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MscriptPackage.ENUMERATION_DECLARATION__NAME:
+				return getName();
 			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
 				return getLiteralDeclarations();
 		}
@@ -110,6 +154,9 @@ public class EnumerationDeclarationImpl extends DeclarationImpl implements Enume
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MscriptPackage.ENUMERATION_DECLARATION__NAME:
+				setName((String)newValue);
+				return;
 			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
 				getLiteralDeclarations().clear();
 				getLiteralDeclarations().addAll((Collection<? extends EnumerationLiteralDeclaration>)newValue);
@@ -126,6 +173,9 @@ public class EnumerationDeclarationImpl extends DeclarationImpl implements Enume
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.ENUMERATION_DECLARATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
 				getLiteralDeclarations().clear();
 				return;
@@ -141,10 +191,28 @@ public class EnumerationDeclarationImpl extends DeclarationImpl implements Enume
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.ENUMERATION_DECLARATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
 				return literalDeclarations != null && !literalDeclarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EnumerationDefinitionImpl

@@ -61,7 +61,7 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
 		boolean proceed = true;
 		if (eObject instanceof FunctionDeclaration) {
-			highlightFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
+			highlightFeature(eObject, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
 		} else if (eObject instanceof FeatureReference) {
 			FeatureReference featureReference = (FeatureReference) eObject;
 			if (featureReference.getFeature() instanceof StateVariableDeclaration) {

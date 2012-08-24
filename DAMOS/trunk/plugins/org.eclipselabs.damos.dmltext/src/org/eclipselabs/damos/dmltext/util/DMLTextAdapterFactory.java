@@ -25,8 +25,8 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
-import org.eclipselabs.damos.mscript.DeclarationContainer;
-import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.PackageFragment;
+import org.eclipselabs.damos.mscript.TopLevelContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,12 +129,12 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 				return createBlockTypeAdapter();
 			}
 			@Override
-			public Adapter caseDeclarationContainer(DeclarationContainer object) {
-				return createDeclarationContainerAdapter();
+			public Adapter caseTopLevelContainer(TopLevelContainer object) {
+				return createTopLevelContainerAdapter();
 			}
 			@Override
-			public Adapter caseIPackageMember(IPackageMember object) {
-				return createIPackageMemberAdapter();
+			public Adapter casePackageFragment(PackageFragment object) {
+				return createPackageFragmentAdapter();
 			}
 			@Override
 			public Adapter caseSystemInterface(SystemInterface object) {
@@ -323,30 +323,30 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DeclarationContainer <em>Declaration Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TopLevelContainer <em>Top Level Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.DeclarationContainer
+	 * @see org.eclipselabs.damos.mscript.TopLevelContainer
 	 * @generated
 	 */
-	public Adapter createDeclarationContainerAdapter() {
+	public Adapter createTopLevelContainerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IPackageMember <em>IPackage Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.PackageFragment <em>Package Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.IPackageMember
+	 * @see org.eclipselabs.damos.mscript.PackageFragment
 	 * @generated
 	 */
-	public Adapter createIPackageMemberAdapter() {
+	public Adapter createPackageFragmentAdapter() {
 		return null;
 	}
 

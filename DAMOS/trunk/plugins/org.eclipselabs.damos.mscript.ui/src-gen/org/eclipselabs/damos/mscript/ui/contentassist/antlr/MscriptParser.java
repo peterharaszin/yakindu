@@ -37,7 +37,7 @@ public class MscriptParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
+					put(grammarAccess.getTopLevelDeclarationAccess().getAlternatives(), "rule__TopLevelDeclaration__Alternatives");
 					put(grammarAccess.getUnitDeclarationAccess().getAlternatives(), "rule__UnitDeclaration__Alternatives");
 					put(grammarAccess.getUnitDefinitionAccess().getAlternatives_1(), "rule__UnitDefinition__Alternatives_1");
 					put(grammarAccess.getUnitDefinitionAccess().getAlternatives_2_1(), "rule__UnitDefinition__Alternatives_2_1");

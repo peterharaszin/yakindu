@@ -1873,7 +1873,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Module:
-	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*;
 	public MscriptGrammarAccess.ModuleElements getModuleAccess() {
 		return gaMscript.getModuleAccess();
 	}
@@ -1892,14 +1892,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getImportDeclarationAccess().getRule();
 	}
 
-	//Declaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
-	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
-		return gaMscript.getDeclarationAccess();
+	//TopLevelDeclaration:
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
+	public MscriptGrammarAccess.TopLevelDeclarationElements getTopLevelDeclarationAccess() {
+		return gaMscript.getTopLevelDeclarationAccess();
 	}
 	
-	public ParserRule getDeclarationRule() {
-		return getDeclarationAccess().getRule();
+	public ParserRule getTopLevelDeclarationRule() {
+		return getTopLevelDeclarationAccess().getRule();
 	}
 
 	/// *

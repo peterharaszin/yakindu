@@ -71,8 +71,8 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.MODULE: {
 				Module module = (Module)theEObject;
 				T result = caseModule(module);
-				if (result == null) result = caseDeclarationContainer(module);
-				if (result == null) result = caseIPackageMember(module);
+				if (result == null) result = caseTopLevelContainer(module);
+				if (result == null) result = casePackageFragment(module);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -82,35 +82,35 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DECLARATION: {
-				Declaration declaration = (Declaration)theEObject;
-				T result = caseDeclaration(declaration);
+			case MscriptPackage.TOP_LEVEL_DECLARATION: {
+				TopLevelDeclaration topLevelDeclaration = (TopLevelDeclaration)theEObject;
+				T result = caseTopLevelDeclaration(topLevelDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DECLARATION_CONTAINER: {
-				DeclarationContainer declarationContainer = (DeclarationContainer)theEObject;
-				T result = caseDeclarationContainer(declarationContainer);
+			case MscriptPackage.TOP_LEVEL_CONTAINER: {
+				TopLevelContainer topLevelContainer = (TopLevelContainer)theEObject;
+				T result = caseTopLevelContainer(topLevelContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.IPACKAGE_MEMBER: {
-				IPackageMember iPackageMember = (IPackageMember)theEObject;
-				T result = caseIPackageMember(iPackageMember);
+			case MscriptPackage.PACKAGE_FRAGMENT: {
+				PackageFragment packageFragment = (PackageFragment)theEObject;
+				T result = casePackageFragment(packageFragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.TYPE_DECLARATION: {
 				TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
 				T result = caseTypeDeclaration(typeDeclaration);
-				if (result == null) result = caseDeclaration(typeDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(typeDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.ENUMERATION_DECLARATION: {
 				EnumerationDeclaration enumerationDeclaration = (EnumerationDeclaration)theEObject;
 				T result = caseEnumerationDeclaration(enumerationDeclaration);
-				if (result == null) result = caseDeclaration(enumerationDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(enumerationDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,7 +123,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.FUNCTION_DECLARATION: {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration)theEObject;
 				T result = caseFunctionDeclaration(functionDeclaration);
-				if (result == null) result = caseDeclaration(functionDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(functionDeclaration);
 				if (result == null) result = caseCallableElement(functionDeclaration);
 				if (result == null) result = caseEvaluable(functionDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -214,6 +214,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ConstantDeclaration constantDeclaration = (ConstantDeclaration)theEObject;
 				T result = caseConstantDeclaration(constantDeclaration);
 				if (result == null) result = caseVariableDeclaration(constantDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(constantDeclaration);
 				if (result == null) result = caseCallableElement(constantDeclaration);
 				if (result == null) result = caseEvaluable(constantDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -707,7 +708,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.BUILTIN_DECLARATION: {
 				BuiltinDeclaration builtinDeclaration = (BuiltinDeclaration)theEObject;
 				T result = caseBuiltinDeclaration(builtinDeclaration);
-				if (result == null) result = caseDeclaration(builtinDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(builtinDeclaration);
 				if (result == null) result = caseCallableElement(builtinDeclaration);
 				if (result == null) result = caseEvaluable(builtinDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -717,19 +718,9 @@ public class MscriptSwitch<T> extends Switch<T> {
 				BuiltinFunctionDeclaration builtinFunctionDeclaration = (BuiltinFunctionDeclaration)theEObject;
 				T result = caseBuiltinFunctionDeclaration(builtinFunctionDeclaration);
 				if (result == null) result = caseBuiltinDeclaration(builtinFunctionDeclaration);
-				if (result == null) result = caseDeclaration(builtinFunctionDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(builtinFunctionDeclaration);
 				if (result == null) result = caseCallableElement(builtinFunctionDeclaration);
 				if (result == null) result = caseEvaluable(builtinFunctionDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.BUILTIN_VARIABLE_DECLARATION: {
-				BuiltinVariableDeclaration builtinVariableDeclaration = (BuiltinVariableDeclaration)theEObject;
-				T result = caseBuiltinVariableDeclaration(builtinVariableDeclaration);
-				if (result == null) result = caseBuiltinDeclaration(builtinVariableDeclaration);
-				if (result == null) result = caseDeclaration(builtinVariableDeclaration);
-				if (result == null) result = caseCallableElement(builtinVariableDeclaration);
-				if (result == null) result = caseEvaluable(builtinVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -948,7 +939,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.UNIT_DECLARATION: {
 				UnitDeclaration unitDeclaration = (UnitDeclaration)theEObject;
 				T result = caseUnitDeclaration(unitDeclaration);
-				if (result == null) result = caseDeclaration(unitDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(unitDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -962,7 +953,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				BaseUnitDeclaration baseUnitDeclaration = (BaseUnitDeclaration)theEObject;
 				T result = caseBaseUnitDeclaration(baseUnitDeclaration);
 				if (result == null) result = caseUnitDeclaration(baseUnitDeclaration);
-				if (result == null) result = caseDeclaration(baseUnitDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(baseUnitDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -970,7 +961,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration)theEObject;
 				T result = caseDerivedUnitDeclaration(derivedUnitDeclaration);
 				if (result == null) result = caseUnitDeclaration(derivedUnitDeclaration);
-				if (result == null) result = caseDeclaration(derivedUnitDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(derivedUnitDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1092,47 +1083,47 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Declaration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Declaration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeclaration(Declaration object) {
+	public T caseTopLevelDeclaration(TopLevelDeclaration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeclarationContainer(DeclarationContainer object) {
+	public T caseTopLevelContainer(TopLevelContainer object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPackageMember(IPackageMember object) {
+	public T casePackageFragment(PackageFragment object) {
 		return null;
 	}
 
@@ -2333,21 +2324,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBuiltinFunctionDeclaration(BuiltinFunctionDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Builtin Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Builtin Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBuiltinVariableDeclaration(BuiltinVariableDeclaration object) {
 		return null;
 	}
 

@@ -37,6 +37,7 @@ import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStaticParameterDeclarations <em>Static Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
@@ -52,7 +53,27 @@ import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
  *
  * @generated
  */
-public class FunctionDeclarationImpl extends DeclarationImpl implements FunctionDeclaration {
+public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements FunctionDeclaration {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -180,6 +201,27 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.FUNCTION_DECLARATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_DECLARATION__NAME, oldName, name));
 	}
 
 	/**
@@ -373,6 +415,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MscriptPackage.FUNCTION_DECLARATION__NAME:
+				return getName();
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return getKind();
 			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
@@ -406,6 +450,9 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MscriptPackage.FUNCTION_DECLARATION__NAME:
+				setName((String)newValue);
+				return;
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind((FunctionKind)newValue);
 				return;
@@ -457,6 +504,9 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.FUNCTION_DECLARATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
@@ -499,6 +549,8 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.FUNCTION_DECLARATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return kind != KIND_EDEFAULT;
 			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
@@ -533,7 +585,9 @@ public class FunctionDeclarationImpl extends DeclarationImpl implements Function
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", kind: ");
 		result.append(kind);
 		result.append(')');
 		return result.toString();

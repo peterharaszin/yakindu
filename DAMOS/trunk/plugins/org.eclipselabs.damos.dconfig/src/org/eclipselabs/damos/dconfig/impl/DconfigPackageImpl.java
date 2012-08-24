@@ -1322,7 +1322,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		// Add supertypes to classes
 		configurationEClass.getESuperTypes().add(this.getPropertyContainer());
-		configurationEClass.getESuperTypes().add(theMscriptPackage.getIPackageMember());
+		configurationEClass.getESuperTypes().add(theMscriptPackage.getPackageFragment());
 		declaredPropertyEClass.getESuperTypes().add(this.getProperty());
 		simplePropertyEClass.getESuperTypes().add(this.getDeclaredProperty());
 		simplePropertyDeclarationEClass.getESuperTypes().add(this.getPropertyDeclaration());

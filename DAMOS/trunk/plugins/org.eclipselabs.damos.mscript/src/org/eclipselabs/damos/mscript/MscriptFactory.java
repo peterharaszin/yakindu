@@ -683,15 +683,6 @@ public interface MscriptFactory extends EFactory {
 	BuiltinFunctionDeclaration createBuiltinFunctionDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Builtin Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Builtin Variable Declaration</em>'.
-	 * @generated
-	 */
-	BuiltinVariableDeclaration createBuiltinVariableDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Invalid Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

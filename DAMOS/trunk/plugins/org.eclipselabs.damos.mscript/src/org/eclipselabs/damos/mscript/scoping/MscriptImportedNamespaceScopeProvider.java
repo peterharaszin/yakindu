@@ -15,7 +15,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.util.Strings;
-import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.PackageFragment;
 
 import com.google.inject.Inject;
 
@@ -34,10 +34,10 @@ public class MscriptImportedNamespaceScopeProvider extends ImportedNamespaceAwar
 	
 	@Override
 	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
-		if (!(context instanceof IPackageMember)) {
+		if (!(context instanceof PackageFragment)) {
 			return Collections.emptyList();
 		}
-		IPackageMember packagedElement = (IPackageMember) context;
+		PackageFragment packagedElement = (PackageFragment) context;
 		List<ImportNormalizer> resolvers = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
 		if (!Strings.isEmpty(packagedElement.getPackageName())) {
 			resolvers.add(new ImportNormalizer(qualifiedNameConverter.toQualifiedName(packagedElement.getPackageName()), true,

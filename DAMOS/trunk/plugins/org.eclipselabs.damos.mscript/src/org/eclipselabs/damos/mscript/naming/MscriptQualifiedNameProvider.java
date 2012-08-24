@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipselabs.damos.mscript.Declaration;
-import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.TopLevelDeclaration;
+import org.eclipselabs.damos.mscript.PackageFragment;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 
 import com.google.inject.Inject;
@@ -34,12 +34,12 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 	 * @see org.eclipse.xtext.naming.IQualifiedNameProvider#getFullyQualifiedName(org.eclipse.emf.ecore.EObject)
 	 */
 	public QualifiedName getFullyQualifiedName(EObject obj) {
-		if (obj instanceof Declaration) {
-			Declaration declaration = (Declaration) obj;
+		if (obj instanceof TopLevelDeclaration) {
+			TopLevelDeclaration topLevelDeclaration = (TopLevelDeclaration) obj;
 
-			QualifiedName packageName = getPackageName(declaration);
+			QualifiedName packageName = getPackageName(topLevelDeclaration);
 			if (packageName != null) {
-				return packageName.append(declaration.getName());
+				return packageName.append(topLevelDeclaration.getName());
 			}
 		} else if (obj instanceof UnitSymbol) {
 			UnitSymbol unitSymbol = (UnitSymbol) obj;
@@ -52,16 +52,16 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 	}
 
 	/**
-	 * @param declaration
+	 * @param topLevelDeclaration
 	 * @return
 	 */
-	private QualifiedName getPackageName(Declaration declaration) {
-		if (declaration.getName() == null) {
+	private QualifiedName getPackageName(TopLevelDeclaration topLevelDeclaration) {
+		if (topLevelDeclaration.getName() == null) {
 			return null;
 		}
 		QualifiedName packageName;
-		if (declaration.eContainer() instanceof IPackageMember) {
-			packageName = qualifiedNameConverter.toQualifiedName(((IPackageMember) declaration.eContainer()).getPackageName()); 
+		if (topLevelDeclaration.eContainer() instanceof PackageFragment) {
+			packageName = qualifiedNameConverter.toQualifiedName(((PackageFragment) topLevelDeclaration.eContainer()).getPackageName()); 
 		} else {
 			packageName = QualifiedName.EMPTY;
 		}

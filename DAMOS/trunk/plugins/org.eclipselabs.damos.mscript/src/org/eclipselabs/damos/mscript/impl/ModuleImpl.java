@@ -34,7 +34,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class ModuleImpl extends DeclarationContainerImpl implements Module {
+public class ModuleImpl extends TopLevelContainerImpl implements Module {
 	/**
 	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

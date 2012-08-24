@@ -33,7 +33,7 @@ protected class ThisRootNode extends RootToken {
 		switch(index) {
 			case 0: return new Module_Group(this, this, 0, inst);
 			case 1: return new ImportDeclaration_Group(this, this, 1, inst);
-			case 2: return new Declaration_Alternatives(this, this, 2, inst);
+			case 2: return new TopLevelDeclaration_Alternatives(this, this, 2, inst);
 			case 3: return new TypeDeclaration_Group(this, this, 3, inst);
 			case 4: return new UnitDeclaration_Alternatives(this, this, 4, inst);
 			case 5: return new BaseUnitDeclaration_Group(this, this, 5, inst);
@@ -157,11 +157,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Module ****************
  *
  * Module:
- * 	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
+ * 	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*;
  *
  **/
 
-// "package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*
+// "package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*
 protected class Module_Group extends GroupToken {
 	
 	public Module_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -294,7 +294,7 @@ protected class Module_ImportDeclarationsAssignment_2 extends AssignmentToken  {
 	}	
 }
 
-// declarations+=Declaration*
+// declarations+=TopLevelDeclaration*
 protected class Module_DeclarationsAssignment_3 extends AssignmentToken  {
 	
 	public Module_DeclarationsAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -309,7 +309,7 @@ protected class Module_DeclarationsAssignment_3 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Declaration_Alternatives(this, this, 0, inst);
+			case 0: return new TopLevelDeclaration_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -320,9 +320,9 @@ protected class Module_DeclarationsAssignment_3 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("declarations");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDeclarationRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getTopLevelDeclarationRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getModuleAccess().getDeclarationsDeclarationParserRuleCall_3_0(); 
+				element = grammarAccess.getModuleAccess().getDeclarationsTopLevelDeclarationParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -441,32 +441,33 @@ protected class ImportDeclaration_ImportedNamespaceAssignment_1 extends Assignme
 /************ end Rule ImportDeclaration ****************/
 
 
-/************ begin Rule Declaration ****************
+/************ begin Rule TopLevelDeclaration ****************
  *
- * Declaration:
- * 	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
+ * TopLevelDeclaration:
+ * 	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
  *
  **/
 
-// TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration
-protected class Declaration_Alternatives extends AlternativesToken {
+// TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration
+protected class TopLevelDeclaration_Alternatives extends AlternativesToken {
 
-	public Declaration_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TopLevelDeclaration_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getAlternatives();
+		return grammarAccess.getTopLevelDeclarationAccess().getAlternatives();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Declaration_TypeDeclarationParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Declaration_EnumerationDeclarationParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Declaration_FunctionDeclarationParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new Declaration_UnitDeclarationParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
+			case 0: return new TopLevelDeclaration_TypeDeclarationParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TopLevelDeclaration_EnumerationDeclarationParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new TopLevelDeclaration_FunctionDeclarationParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new TopLevelDeclaration_UnitDeclarationParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new TopLevelDeclaration_ConstantDeclarationParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			default: return null;
 		}	
 	}
@@ -474,6 +475,7 @@ protected class Declaration_Alternatives extends AlternativesToken {
     @Override
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getBaseUnitDeclarationRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getConstantDeclarationRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getDerivedUnitDeclarationRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getEnumerationDeclarationRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getFunctionDeclarationRule().getType().getClassifier() && 
@@ -485,15 +487,15 @@ protected class Declaration_Alternatives extends AlternativesToken {
 }
 
 // TypeDeclaration
-protected class Declaration_TypeDeclarationParserRuleCall_0 extends RuleCallToken {
+protected class TopLevelDeclaration_TypeDeclarationParserRuleCall_0 extends RuleCallToken {
 	
-	public Declaration_TypeDeclarationParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TopLevelDeclaration_TypeDeclarationParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getTypeDeclarationParserRuleCall_0();
+		return grammarAccess.getTopLevelDeclarationAccess().getTypeDeclarationParserRuleCall_0();
 	}
 
     @Override
@@ -521,15 +523,15 @@ protected class Declaration_TypeDeclarationParserRuleCall_0 extends RuleCallToke
 }
 
 // EnumerationDeclaration
-protected class Declaration_EnumerationDeclarationParserRuleCall_1 extends RuleCallToken {
+protected class TopLevelDeclaration_EnumerationDeclarationParserRuleCall_1 extends RuleCallToken {
 	
-	public Declaration_EnumerationDeclarationParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TopLevelDeclaration_EnumerationDeclarationParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getEnumerationDeclarationParserRuleCall_1();
+		return grammarAccess.getTopLevelDeclarationAccess().getEnumerationDeclarationParserRuleCall_1();
 	}
 
     @Override
@@ -557,15 +559,15 @@ protected class Declaration_EnumerationDeclarationParserRuleCall_1 extends RuleC
 }
 
 // FunctionDeclaration
-protected class Declaration_FunctionDeclarationParserRuleCall_2 extends RuleCallToken {
+protected class TopLevelDeclaration_FunctionDeclarationParserRuleCall_2 extends RuleCallToken {
 	
-	public Declaration_FunctionDeclarationParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TopLevelDeclaration_FunctionDeclarationParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getFunctionDeclarationParserRuleCall_2();
+		return grammarAccess.getTopLevelDeclarationAccess().getFunctionDeclarationParserRuleCall_2();
 	}
 
     @Override
@@ -593,15 +595,15 @@ protected class Declaration_FunctionDeclarationParserRuleCall_2 extends RuleCall
 }
 
 // UnitDeclaration
-protected class Declaration_UnitDeclarationParserRuleCall_3 extends RuleCallToken {
+protected class TopLevelDeclaration_UnitDeclarationParserRuleCall_3 extends RuleCallToken {
 	
-	public Declaration_UnitDeclarationParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TopLevelDeclaration_UnitDeclarationParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getDeclarationAccess().getUnitDeclarationParserRuleCall_3();
+		return grammarAccess.getTopLevelDeclarationAccess().getUnitDeclarationParserRuleCall_3();
 	}
 
     @Override
@@ -629,8 +631,44 @@ protected class Declaration_UnitDeclarationParserRuleCall_3 extends RuleCallToke
 	}	
 }
 
+// ConstantDeclaration
+protected class TopLevelDeclaration_ConstantDeclarationParserRuleCall_4 extends RuleCallToken {
+	
+	public TopLevelDeclaration_ConstantDeclarationParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getTopLevelDeclarationAccess().getConstantDeclarationParserRuleCall_4();
+	}
 
-/************ end Rule Declaration ****************/
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ConstantDeclaration_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getConstantDeclarationRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(ConstantDeclaration_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule TopLevelDeclaration ****************/
 
 
 /************ begin Rule TypeDeclaration ****************

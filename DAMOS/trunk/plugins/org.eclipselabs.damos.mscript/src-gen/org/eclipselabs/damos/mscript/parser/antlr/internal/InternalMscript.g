@@ -121,9 +121,9 @@ ruleModule returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModuleAccess().getDeclarationsDeclarationParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getModuleAccess().getDeclarationsTopLevelDeclarationParserRuleCall_3_0()); 
 	    }
-		lv_declarations_3_0=ruleDeclaration		{
+		lv_declarations_3_0=ruleTopLevelDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModuleRule());
 	        }
@@ -131,7 +131,7 @@ ruleModule returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_3_0, 
-        		"Declaration");
+        		"TopLevelDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -186,23 +186,23 @@ ruleImportDeclaration returns [EObject current=null]
 
 
 
-// Entry rule entryRuleDeclaration
-entryRuleDeclaration returns [EObject current=null] 
+// Entry rule entryRuleTopLevelDeclaration
+entryRuleTopLevelDeclaration returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getDeclarationRule()); }
-	 iv_ruleDeclaration=ruleDeclaration 
-	 { $current=$iv_ruleDeclaration.current; } 
+	{ newCompositeNode(grammarAccess.getTopLevelDeclarationRule()); }
+	 iv_ruleTopLevelDeclaration=ruleTopLevelDeclaration 
+	 { $current=$iv_ruleTopLevelDeclaration.current; } 
 	 EOF 
 ;
 
-// Rule Declaration
-ruleDeclaration returns [EObject current=null] 
+// Rule TopLevelDeclaration
+ruleTopLevelDeclaration returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getDeclarationAccess().getTypeDeclarationParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTopLevelDeclarationAccess().getTypeDeclarationParserRuleCall_0()); 
     }
     this_TypeDeclaration_0=ruleTypeDeclaration
     { 
@@ -212,7 +212,7 @@ ruleDeclaration returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getDeclarationAccess().getEnumerationDeclarationParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getTopLevelDeclarationAccess().getEnumerationDeclarationParserRuleCall_1()); 
     }
     this_EnumerationDeclaration_1=ruleEnumerationDeclaration
     { 
@@ -222,7 +222,7 @@ ruleDeclaration returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getDeclarationAccess().getFunctionDeclarationParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getTopLevelDeclarationAccess().getFunctionDeclarationParserRuleCall_2()); 
     }
     this_FunctionDeclaration_2=ruleFunctionDeclaration
     { 
@@ -232,11 +232,21 @@ ruleDeclaration returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getDeclarationAccess().getUnitDeclarationParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getTopLevelDeclarationAccess().getUnitDeclarationParserRuleCall_3()); 
     }
     this_UnitDeclaration_3=ruleUnitDeclaration
     { 
         $current = $this_UnitDeclaration_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTopLevelDeclarationAccess().getConstantDeclarationParserRuleCall_4()); 
+    }
+    this_ConstantDeclaration_4=ruleConstantDeclaration
+    { 
+        $current = $this_ConstantDeclaration_4.current; 
         afterParserOrEnumRuleCall();
     }
 )

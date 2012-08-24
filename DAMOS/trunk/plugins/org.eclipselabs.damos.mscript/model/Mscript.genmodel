@@ -81,25 +81,28 @@
     <genClasses ecoreClass="Mscript.ecore#//ImportDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ImportDeclaration/importedNamespace"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//Declaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Declaration/name"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//TopLevelDeclaration">
+      <genOperations ecoreOperation="Mscript.ecore#//TopLevelDeclaration/getName"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//DeclarationContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//DeclarationContainer/declarations"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//TopLevelContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TopLevelContainer/declarations"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Mscript.ecore#//IPackageMember">
-      <genOperations ecoreOperation="Mscript.ecore#//IPackageMember/getPackageName"/>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//PackageFragment">
+      <genOperations ecoreOperation="Mscript.ecore#//PackageFragment/getPackageName"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//TypeDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//TypeDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeDeclaration/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//EnumerationDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//EnumerationDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//EnumerationDeclaration/literalDeclarations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//EnumerationLiteralDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//EnumerationLiteralDeclaration/name"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//FunctionDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/kind"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/staticParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/inputParameterDeclarations"/>
@@ -335,8 +338,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ReturnStatement/expression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//BuiltinDeclaration"/>
-    <genClasses ecoreClass="Mscript.ecore#//BuiltinFunctionDeclaration"/>
-    <genClasses ecoreClass="Mscript.ecore#//BuiltinVariableDeclaration"/>
+    <genClasses ecoreClass="Mscript.ecore#//BuiltinFunctionDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//BuiltinFunctionDeclaration/name"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//Type">
       <genOperations ecoreOperation="Mscript.ecore#//Type/evaluate">
         <genParameters ecoreParameter="Mscript.ecore#//Type/evaluate/operator"/>
@@ -441,6 +445,7 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//UnitDenominatorFactor"/>
     <genClasses image="false" ecoreClass="Mscript.ecore#//UnitDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//UnitDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//UnitDeclaration/symbols"/>
       <genOperations ecoreOperation="Mscript.ecore#//UnitDeclaration/getSymbol">
         <genParameters ecoreParameter="Mscript.ecore#//UnitDeclaration/getSymbol/prefix"/>

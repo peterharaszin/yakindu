@@ -18,16 +18,17 @@ import "http://www.eclipselabs.org/damos/mscript/2011/Mscript"
 Module:
 	'package' packageName=QualifiedName
 	(importDeclarations+=ImportDeclaration)*
-	(declarations+=Declaration)*;
+	(declarations+=TopLevelDeclaration)*;
 	
 ImportDeclaration:
 	'import' importedNamespace=QualifiedNameWithWildcard;
 
-Declaration:
+TopLevelDeclaration:
 	TypeDeclaration |
 	EnumerationDeclaration |
 	FunctionDeclaration |
-	UnitDeclaration;
+	UnitDeclaration |
+	ConstantDeclaration;
 
 /*
  * TypeDeclaration

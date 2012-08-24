@@ -126,7 +126,7 @@ public class StaticFunctionEvaluator {
 						if (severity > IStatus.WARNING) {
 							passed = false;
 						}
-						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							break;
 						}

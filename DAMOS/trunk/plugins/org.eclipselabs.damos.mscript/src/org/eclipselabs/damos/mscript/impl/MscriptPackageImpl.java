@@ -56,13 +56,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass packageFragmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass typeDeclarationEClass = null;
 
 	/**
@@ -1078,15 +1071,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EReference getTopLevelContainer_Declarations() {
 		return (EReference)topLevelContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPackageFragment() {
-		return packageFragmentEClass;
 	}
 
 	/**
@@ -3649,8 +3633,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		topLevelContainerEClass = createEClass(TOP_LEVEL_CONTAINER);
 		createEReference(topLevelContainerEClass, TOP_LEVEL_CONTAINER__DECLARATIONS);
 
-		packageFragmentEClass = createEClass(PACKAGE_FRAGMENT);
-
 		typeDeclarationEClass = createEClass(TYPE_DECLARATION);
 		createEAttribute(typeDeclarationEClass, TYPE_DECLARATION__NAME);
 		createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_SPECIFIER);
@@ -4086,7 +4068,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		// Add supertypes to classes
 		moduleEClass.getESuperTypes().add(this.getTopLevelContainer());
-		moduleEClass.getESuperTypes().add(this.getPackageFragment());
 		typeDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		enumerationDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		functionDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
@@ -4206,10 +4187,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(topLevelContainerEClass, TopLevelContainer.class, "TopLevelContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTopLevelContainer_Declarations(), this.getTopLevelDeclaration(), null, "declarations", null, 0, -1, TopLevelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(packageFragmentEClass, PackageFragment.class, "PackageFragment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		addEOperation(packageFragmentEClass, ecorePackage.getEString(), "getPackageName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTypeDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

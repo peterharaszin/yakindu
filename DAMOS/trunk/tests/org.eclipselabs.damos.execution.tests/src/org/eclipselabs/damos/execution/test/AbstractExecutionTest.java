@@ -416,7 +416,7 @@ public abstract class AbstractExecutionTest {
 
 	private void createSystem() {
 		resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(getTestPath() + ".blockdiagram", true));
+		Resource resource = resourceSet.createResource(URI.createURI(getTestPath() + ".blockdiagram", true));
 		system = DMLFactory.eINSTANCE.createSystem();
 		system.setQualifiedName(getTestQualifiedName());
 		resource.getContents().add(system);

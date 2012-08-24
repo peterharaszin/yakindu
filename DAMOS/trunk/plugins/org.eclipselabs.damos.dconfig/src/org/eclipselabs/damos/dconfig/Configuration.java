@@ -13,7 +13,6 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
-import org.eclipselabs.damos.mscript.PackageFragment;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -36,7 +35,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @model
  * @generated
  */
-public interface Configuration extends PropertyContainer, PackageFragment {
+public interface Configuration extends PropertyContainer {
 	/**
 	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

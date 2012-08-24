@@ -25,7 +25,7 @@ import org.junit.Test;
 public class RecordTest extends AbstractSimulationTest {
 
 	@Test
-	public void struct() {
+	public void record() {
 		Block in = createBlock(CONSTANT, "In");
 		setSynchronousTimingConstraint(in, 1);
 		setArgument(in, ConstantConstants.PARAMETER__VALUE, "{ x = 3, y = 7 }");

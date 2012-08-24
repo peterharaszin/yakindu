@@ -28,11 +28,11 @@ import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
-import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
+import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 
 import com.google.inject.Inject;
 
@@ -89,9 +89,9 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		if (blockType.getDeclarations().isEmpty()) {
 			return;
 		}
-		for (Declaration declaration : blockType.getDeclarations()) {
-			if (declaration instanceof FunctionDeclaration) {
-				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
+		for (TopLevelDeclaration topLevelDeclaration : blockType.getDeclarations()) {
+			if (topLevelDeclaration instanceof FunctionDeclaration) {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration) topLevelDeclaration;
 				if (MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
 					return;
 				}
@@ -113,12 +113,12 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		
 		int inputParameterCount = computeInoutputParameterCount(blockType.getInputDefinitions());
 		if (inputParameterCount != functionDeclaration.getInputParameterDeclarations().size()) {
-			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDeclaration_Name());
+			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name());
 		}
 
 		int outputParameterCount = computeInoutputParameterCount(blockType.getOutputDefinitions());
 		if (outputParameterCount != functionDeclaration.getOutputParameterDeclarations().size()) {
-			error("Expecting " + outputParameterCount + " output parameter" + (outputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDeclaration_Name());
+			error("Expecting " + outputParameterCount + " output parameter" + (outputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name());
 		}
 		
 		Map<String, Parameter> blockTypeParameters = getBlockTypeParameters(blockType);

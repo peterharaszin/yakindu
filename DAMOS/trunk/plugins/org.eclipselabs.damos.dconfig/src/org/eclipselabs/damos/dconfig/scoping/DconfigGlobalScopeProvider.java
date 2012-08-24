@@ -55,7 +55,8 @@ public class DconfigGlobalScopeProvider extends MscriptGlobalScopeProvider {
 	 */
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
-		return new AbstractScope(super.getScope(resource, ignoreCase, type, filter), ignoreCase) {
+		IScope parentScope = super.getScope(resource, ignoreCase, type, filter);
+		return new AbstractScope(parentScope, ignoreCase) {
 			
 			@Override
 			protected Iterable<IEObjectDescription> getAllLocalElements() {

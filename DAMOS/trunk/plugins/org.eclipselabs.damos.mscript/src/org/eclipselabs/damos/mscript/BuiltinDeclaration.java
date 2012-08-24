@@ -17,5 +17,5 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface BuiltinDeclaration extends Declaration, CallableElement {
+public interface BuiltinDeclaration extends TopLevelDeclaration, CallableElement {
 } // BuiltinDefinition

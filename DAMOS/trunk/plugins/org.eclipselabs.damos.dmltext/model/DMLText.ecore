@@ -10,7 +10,7 @@
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//SystemInterface"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MscriptBlockType" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//BlockType ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//DeclarationContainer ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//IPackageMember">
+  <eClassifiers xsi:type="ecore:EClass" name="MscriptBlockType" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//BlockType ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//TopLevelContainer ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//PackageFragment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//ImportDeclaration"
         containment="true"/>

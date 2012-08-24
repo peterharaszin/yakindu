@@ -75,7 +75,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	@Check
 	public void checkFunctionHasChecks(FunctionDeclaration functionDeclaration) {
 		if (functionDeclaration.getChecks().isEmpty()) {
-			warning("No static checking can be performed for function " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, MscriptPackage.eINSTANCE.getDeclaration_Name(), -1);
+			warning("No static checking can be performed for function " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), -1);
 		}
 	}
 	
@@ -280,7 +280,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 					checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<TypeDeclaration>(visitedTypeDeclarations));
 				} else {
 					String message = "Cyclic data type declaration of " + typeDeclaration.getName();
-					error(message, typeDeclaration, MscriptPackage.eINSTANCE.getDeclaration_Name(), -1);
+					error(message, typeDeclaration, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), -1);
 					error(message, typeSpecifier, null, -1);
 				}
 			}

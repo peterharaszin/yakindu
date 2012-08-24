@@ -42,21 +42,21 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass declarationEClass = null;
+	private EClass topLevelDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass declarationContainerEClass = null;
+	private EClass topLevelContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iPackageMemberEClass = null;
+	private EClass packageFragmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -623,13 +623,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass builtinVariableDeclarationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass typeEClass = null;
 
 	/**
@@ -1065,8 +1058,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeclaration() {
-		return declarationEClass;
+	public EClass getTopLevelDeclaration() {
+		return topLevelDeclarationEClass;
 	}
 
 	/**
@@ -1074,8 +1067,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDeclaration_Name() {
-		return (EAttribute)declarationEClass.getEStructuralFeatures().get(0);
+	public EClass getTopLevelContainer() {
+		return topLevelContainerEClass;
 	}
 
 	/**
@@ -1083,8 +1076,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeclarationContainer() {
-		return declarationContainerEClass;
+	public EReference getTopLevelContainer_Declarations() {
+		return (EReference)topLevelContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1092,17 +1085,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeclarationContainer_Declarations() {
-		return (EReference)declarationContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIPackageMember() {
-		return iPackageMemberEClass;
+	public EClass getPackageFragment() {
+		return packageFragmentEClass;
 	}
 
 	/**
@@ -1119,8 +1103,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTypeDeclaration_Name() {
+		return (EAttribute)typeDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getTypeDeclaration_TypeSpecifier() {
-		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
+		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1137,8 +1130,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEnumerationDeclaration_Name() {
+		return (EAttribute)enumerationDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getEnumerationDeclaration_LiteralDeclarations() {
-		return (EReference)enumerationDeclarationEClass.getEStructuralFeatures().get(0);
+		return (EReference)enumerationDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1173,7 +1175,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFunctionDeclaration_Kind() {
+	public EAttribute getFunctionDeclaration_Name() {
 		return (EAttribute)functionDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1182,8 +1184,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_StaticParameterDeclarations() {
-		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFunctionDeclaration_Kind() {
+		return (EAttribute)functionDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1191,7 +1193,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_InputParameterDeclarations() {
+	public EReference getFunctionDeclaration_StaticParameterDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1200,7 +1202,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_OutputParameterDeclarations() {
+	public EReference getFunctionDeclaration_InputParameterDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1209,7 +1211,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_Checks() {
+	public EReference getFunctionDeclaration_OutputParameterDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1218,7 +1220,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_Assertions() {
+	public EReference getFunctionDeclaration_Checks() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1227,7 +1229,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_FunctionAliasDeclarations() {
+	public EReference getFunctionDeclaration_Assertions() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -1236,7 +1238,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_StateVariableDeclarations() {
+	public EReference getFunctionDeclaration_FunctionAliasDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -1245,7 +1247,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_ConstantDeclarations() {
+	public EReference getFunctionDeclaration_StateVariableDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -1254,8 +1256,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDeclaration_Equations() {
+	public EReference getFunctionDeclaration_ConstantDeclarations() {
 		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionDeclaration_Equations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -2793,8 +2804,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBuiltinVariableDeclaration() {
-		return builtinVariableDeclarationEClass;
+	public EAttribute getBuiltinFunctionDeclaration_Name() {
+		return (EAttribute)builtinFunctionDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3261,8 +3272,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUnitDeclaration_Name() {
+		return (EAttribute)unitDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getUnitDeclaration_Symbols() {
-		return (EReference)unitDeclarationEClass.getEStructuralFeatures().get(0);
+		return (EReference)unitDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3624,24 +3644,26 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		importDeclarationEClass = createEClass(IMPORT_DECLARATION);
 		createEAttribute(importDeclarationEClass, IMPORT_DECLARATION__IMPORTED_NAMESPACE);
 
-		declarationEClass = createEClass(DECLARATION);
-		createEAttribute(declarationEClass, DECLARATION__NAME);
+		topLevelDeclarationEClass = createEClass(TOP_LEVEL_DECLARATION);
 
-		declarationContainerEClass = createEClass(DECLARATION_CONTAINER);
-		createEReference(declarationContainerEClass, DECLARATION_CONTAINER__DECLARATIONS);
+		topLevelContainerEClass = createEClass(TOP_LEVEL_CONTAINER);
+		createEReference(topLevelContainerEClass, TOP_LEVEL_CONTAINER__DECLARATIONS);
 
-		iPackageMemberEClass = createEClass(IPACKAGE_MEMBER);
+		packageFragmentEClass = createEClass(PACKAGE_FRAGMENT);
 
 		typeDeclarationEClass = createEClass(TYPE_DECLARATION);
+		createEAttribute(typeDeclarationEClass, TYPE_DECLARATION__NAME);
 		createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_SPECIFIER);
 
 		enumerationDeclarationEClass = createEClass(ENUMERATION_DECLARATION);
+		createEAttribute(enumerationDeclarationEClass, ENUMERATION_DECLARATION__NAME);
 		createEReference(enumerationDeclarationEClass, ENUMERATION_DECLARATION__LITERAL_DECLARATIONS);
 
 		enumerationLiteralDeclarationEClass = createEClass(ENUMERATION_LITERAL_DECLARATION);
 		createEAttribute(enumerationLiteralDeclarationEClass, ENUMERATION_LITERAL_DECLARATION__NAME);
 
 		functionDeclarationEClass = createEClass(FUNCTION_DECLARATION);
+		createEAttribute(functionDeclarationEClass, FUNCTION_DECLARATION__NAME);
 		createEAttribute(functionDeclarationEClass, FUNCTION_DECLARATION__KIND);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS);
 		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
@@ -3898,8 +3920,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		builtinDeclarationEClass = createEClass(BUILTIN_DECLARATION);
 
 		builtinFunctionDeclarationEClass = createEClass(BUILTIN_FUNCTION_DECLARATION);
-
-		builtinVariableDeclarationEClass = createEClass(BUILTIN_VARIABLE_DECLARATION);
+		createEAttribute(builtinFunctionDeclarationEClass, BUILTIN_FUNCTION_DECLARATION__NAME);
 
 		typeEClass = createEClass(TYPE);
 
@@ -3979,6 +4000,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		unitDenominatorFactorEClass = createEClass(UNIT_DENOMINATOR_FACTOR);
 
 		unitDeclarationEClass = createEClass(UNIT_DECLARATION);
+		createEAttribute(unitDeclarationEClass, UNIT_DECLARATION__NAME);
 		createEReference(unitDeclarationEClass, UNIT_DECLARATION__SYMBOLS);
 
 		unitSymbolEClass = createEClass(UNIT_SYMBOL);
@@ -4063,11 +4085,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		moduleEClass.getESuperTypes().add(this.getDeclarationContainer());
-		moduleEClass.getESuperTypes().add(this.getIPackageMember());
-		typeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
-		enumerationDeclarationEClass.getESuperTypes().add(this.getDeclaration());
-		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		moduleEClass.getESuperTypes().add(this.getTopLevelContainer());
+		moduleEClass.getESuperTypes().add(this.getPackageFragment());
+		typeDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
+		enumerationDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
+		functionDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		functionDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		callableElementEClass.getESuperTypes().add(this.getEvaluable());
 		variableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
@@ -4077,6 +4099,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		constantDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
+		constantDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		functionAliasDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		anonymousTypeSpecifierEClass.getESuperTypes().add(this.getTypeSpecifier());
 		declaredTypeSpecifierEClass.getESuperTypes().add(this.getTypeSpecifier());
@@ -4132,10 +4155,9 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		continueStatementEClass.getESuperTypes().add(this.getStatement());
 		breakStatementEClass.getESuperTypes().add(this.getStatement());
 		returnStatementEClass.getESuperTypes().add(this.getStatement());
-		builtinDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		builtinDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		builtinDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		builtinFunctionDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
-		builtinVariableDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
 		invalidTypeEClass.getESuperTypes().add(this.getType());
 		anyTypeEClass.getESuperTypes().add(this.getType());
 		dataTypeEClass.getESuperTypes().add(this.getType());
@@ -4157,7 +4179,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		unionTypeEClass.getESuperTypes().add(this.getCompositeType());
 		expressionEClass.getESuperTypes().add(this.getEvaluable());
 		unitDenominatorFactorEClass.getESuperTypes().add(this.getUnitFactor());
-		unitDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		unitDeclarationEClass.getESuperTypes().add(this.getTopLevelDeclaration());
 		baseUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
 		derivedUnitDeclarationEClass.getESuperTypes().add(this.getUnitDeclaration());
 		literalEClass.getESuperTypes().add(this.getExpression());
@@ -4178,26 +4200,30 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(importDeclarationEClass, ImportDeclaration.class, "ImportDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImportDeclaration_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, ImportDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(declarationEClass, Declaration.class, "Declaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(topLevelDeclarationEClass, TopLevelDeclaration.class, "TopLevelDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(declarationContainerEClass, DeclarationContainer.class, "DeclarationContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclarationContainer_Declarations(), this.getDeclaration(), null, "declarations", null, 0, -1, DeclarationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		addEOperation(topLevelDeclarationEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(iPackageMemberEClass, IPackageMember.class, "IPackageMember", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(topLevelContainerEClass, TopLevelContainer.class, "TopLevelContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTopLevelContainer_Declarations(), this.getTopLevelDeclaration(), null, "declarations", null, 0, -1, TopLevelContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(iPackageMemberEClass, ecorePackage.getEString(), "getPackageName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(packageFragmentEClass, PackageFragment.class, "PackageFragment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(packageFragmentEClass, ecorePackage.getEString(), "getPackageName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTypeDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypeDeclaration_TypeSpecifier(), this.getTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationDeclarationEClass, EnumerationDeclaration.class, "EnumerationDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEnumerationDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumerationDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnumerationDeclaration_LiteralDeclarations(), this.getEnumerationLiteralDeclaration(), null, "literalDeclarations", null, 0, -1, EnumerationDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationLiteralDeclarationEClass, EnumerationLiteralDeclaration.class, "EnumerationLiteralDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEnumerationLiteralDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumerationLiteralDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionDeclarationEClass, FunctionDeclaration.class, "FunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionDeclaration_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_StaticParameterDeclarations(), this.getStaticParameterDeclaration(), null, "staticParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDeclaration_InputParameterDeclarations(), this.getInputParameterDeclaration(), null, "inputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4466,8 +4492,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(builtinDeclarationEClass, BuiltinDeclaration.class, "BuiltinDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(builtinFunctionDeclarationEClass, BuiltinFunctionDeclaration.class, "BuiltinFunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(builtinVariableDeclarationEClass, BuiltinVariableDeclaration.class, "BuiltinVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBuiltinFunctionDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, BuiltinFunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4593,6 +4618,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(unitDenominatorFactorEClass, UnitDenominatorFactor.class, "UnitDenominatorFactor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unitDeclarationEClass, UnitDeclaration.class, "UnitDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnitDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUnitDeclaration_Symbols(), this.getUnitSymbol(), this.getUnitSymbol_Owner(), "symbols", null, 0, -1, UnitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(unitDeclarationEClass, this.getUnitSymbol(), "getSymbol", 0, 1, IS_UNIQUE, IS_ORDERED);

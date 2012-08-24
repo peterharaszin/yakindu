@@ -4,10 +4,12 @@ package org.eclipselabs.damos.mscript.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -22,13 +24,32 @@ import org.eclipselabs.damos.mscript.UnitSymbol;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.UnitDeclarationImpl#getSymbols <em>Symbols</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class UnitDeclarationImpl extends DeclarationImpl implements UnitDeclaration {
+public abstract class UnitDeclarationImpl extends TopLevelDeclarationImpl implements UnitDeclaration {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getSymbols() <em>Symbols</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -56,6 +77,27 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.UNIT_DECLARATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.UNIT_DECLARATION__NAME, oldName, name));
 	}
 
 	/**
@@ -121,6 +163,8 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MscriptPackage.UNIT_DECLARATION__NAME:
+				return getName();
 			case MscriptPackage.UNIT_DECLARATION__SYMBOLS:
 				return getSymbols();
 		}
@@ -136,6 +180,9 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MscriptPackage.UNIT_DECLARATION__NAME:
+				setName((String)newValue);
+				return;
 			case MscriptPackage.UNIT_DECLARATION__SYMBOLS:
 				getSymbols().clear();
 				getSymbols().addAll((Collection<? extends UnitSymbol>)newValue);
@@ -152,6 +199,9 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.UNIT_DECLARATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case MscriptPackage.UNIT_DECLARATION__SYMBOLS:
 				getSymbols().clear();
 				return;
@@ -167,10 +217,28 @@ public abstract class UnitDeclarationImpl extends DeclarationImpl implements Uni
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MscriptPackage.UNIT_DECLARATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MscriptPackage.UNIT_DECLARATION__SYMBOLS:
 				return symbols != null && !symbols.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //UnitDeclarationImpl

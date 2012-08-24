@@ -15,7 +15,7 @@ MscriptBlockType:
 		(inputDefinitions+=InputDefinition)*
 		(outputDefinitions+=OutputDefinition)*
 		(parameters+=Parameter)*
-		(declarations+=Declaration)*
+		(declarations+=TopLevelDeclaration)*
 	'}';
 
 enum TimingKind:

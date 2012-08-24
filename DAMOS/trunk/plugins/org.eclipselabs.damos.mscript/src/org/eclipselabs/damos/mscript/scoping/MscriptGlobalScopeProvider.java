@@ -25,7 +25,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
-import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.UnitDeclaration;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 
@@ -64,7 +64,8 @@ public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	 */
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
-		return new AbstractScope(super.getScope(resource, ignoreCase, type, filter), ignoreCase) {
+		IScope parentScope = super.getScope(resource, ignoreCase, type, filter);
+		return new AbstractScope(parentScope, ignoreCase) {
 			
 			@Override
 			protected Iterable<IEObjectDescription> getAllLocalElements() {
@@ -84,11 +85,11 @@ public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 				for (URI uri : LIBRARY_URIS) {
 					Resource resource = resourceSet.getResource(uri, true);
 					for (EObject eObject : resource.getContents().get(0).eContents()) {
-						if (eObject instanceof Declaration) {
-							Declaration declaration = (Declaration) eObject;
+						if (eObject instanceof TopLevelDeclaration) {
+							TopLevelDeclaration topLevelDeclaration = (TopLevelDeclaration) eObject;
 							eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(eObject), eObject));
-							if (declaration instanceof UnitDeclaration) {
-								UnitDeclaration unitDeclaration = (UnitDeclaration) declaration;
+							if (topLevelDeclaration instanceof UnitDeclaration) {
+								UnitDeclaration unitDeclaration = (UnitDeclaration) topLevelDeclaration;
 								for (UnitSymbol unitSymbol : unitDeclaration.getSymbols()) {
 									eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(unitSymbol), unitSymbol));
 								}

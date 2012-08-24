@@ -24,8 +24,8 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
-import org.eclipselabs.damos.mscript.DeclarationContainer;
-import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.PackageFragment;
+import org.eclipselabs.damos.mscript.TopLevelContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,8 +94,8 @@ public class DMLTextSwitch<T> extends Switch<T> {
 				MscriptBlockType mscriptBlockType = (MscriptBlockType)theEObject;
 				T result = caseMscriptBlockType(mscriptBlockType);
 				if (result == null) result = caseBlockType(mscriptBlockType);
-				if (result == null) result = caseDeclarationContainer(mscriptBlockType);
-				if (result == null) result = caseIPackageMember(mscriptBlockType);
+				if (result == null) result = caseTopLevelContainer(mscriptBlockType);
+				if (result == null) result = casePackageFragment(mscriptBlockType);
 				if (result == null) result = caseEModelElement(mscriptBlockType);
 				if (result == null) result = caseQualifiedElement(mscriptBlockType);
 				if (result == null) result = caseCategorizedElement(mscriptBlockType);
@@ -297,32 +297,32 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Declaration Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeclarationContainer(DeclarationContainer object) {
+	public T caseTopLevelContainer(TopLevelContainer object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IPackage Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Package Fragment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIPackageMember(IPackageMember object) {
+	public T casePackageFragment(PackageFragment object) {
 		return null;
 	}
 

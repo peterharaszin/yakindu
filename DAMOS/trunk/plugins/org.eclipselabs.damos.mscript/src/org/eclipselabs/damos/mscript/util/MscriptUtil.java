@@ -18,7 +18,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.CompoundStatement;
-import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -94,10 +94,10 @@ public class MscriptUtil {
 		return getFunctionDefinition(module.getDeclarations(), qualifiedName);
 	}
 	
-	public static FunctionDeclaration getFunctionDefinition(Collection<Declaration> declarations, String qualifiedName) {
-		for (Declaration declaration : declarations) {
-			if (declaration instanceof FunctionDeclaration) {
-				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
+	public static FunctionDeclaration getFunctionDefinition(Collection<TopLevelDeclaration> topLevelDeclarations, String qualifiedName) {
+		for (TopLevelDeclaration topLevelDeclaration : topLevelDeclarations) {
+			if (topLevelDeclaration instanceof FunctionDeclaration) {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration) topLevelDeclaration;
 				if (qualifiedName.equals(functionDeclaration.getName())) {
 					return functionDeclaration;
 				}

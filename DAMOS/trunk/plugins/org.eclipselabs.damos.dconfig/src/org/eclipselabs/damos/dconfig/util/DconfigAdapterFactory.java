@@ -41,7 +41,7 @@ import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
 import org.eclipselabs.damos.dconfig.SubsystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfiguration;
 import org.eclipselabs.damos.dconfig.SystemConfigurationBody;
-import org.eclipselabs.damos.mscript.IPackageMember;
+import org.eclipselabs.damos.mscript.PackageFragment;
 
 /**
  * <!-- begin-user-doc -->
@@ -220,8 +220,8 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 				return createComponentConfigurationBodyAdapter();
 			}
 			@Override
-			public Adapter caseIPackageMember(IPackageMember object) {
-				return createIPackageMemberAdapter();
+			public Adapter casePackageFragment(PackageFragment object) {
+				return createPackageFragmentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -664,16 +664,16 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IPackageMember <em>IPackage Member</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.PackageFragment <em>Package Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.IPackageMember
+	 * @see org.eclipselabs.damos.mscript.PackageFragment
 	 * @generated
 	 */
-	public Adapter createIPackageMemberAdapter() {
+	public Adapter createPackageFragmentAdapter() {
 		return null;
 	}
 

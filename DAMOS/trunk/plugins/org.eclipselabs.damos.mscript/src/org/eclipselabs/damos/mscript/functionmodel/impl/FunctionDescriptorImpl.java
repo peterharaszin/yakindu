@@ -377,7 +377,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 					FunctionModelValidator.DIAGNOSTIC_SOURCE,
 					FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 					message,
-					new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name() }));
+					new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name() }));
 		}
 		return ok;
 	}
@@ -411,7 +411,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 							FunctionModelValidator.DIAGNOSTIC_SOURCE,
 							FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 							message,
-							new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name() }));
+							new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name() }));
 				}
 				result = false;
 			}

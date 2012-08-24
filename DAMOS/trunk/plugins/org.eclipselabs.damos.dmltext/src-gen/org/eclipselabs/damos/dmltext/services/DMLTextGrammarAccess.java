@@ -71,18 +71,18 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParametersAssignment_9 = (Assignment)cGroup.eContents().get(9);
 		private final RuleCall cParametersParameterParserRuleCall_9_0 = (RuleCall)cParametersAssignment_9.eContents().get(0);
 		private final Assignment cDeclarationsAssignment_10 = (Assignment)cGroup.eContents().get(10);
-		private final RuleCall cDeclarationsDeclarationParserRuleCall_10_0 = (RuleCall)cDeclarationsAssignment_10.eContents().get(0);
+		private final RuleCall cDeclarationsTopLevelDeclarationParserRuleCall_10_0 = (RuleCall)cDeclarationsAssignment_10.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//MscriptBlockType:
 		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
 		//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
-		//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=Declaration* "}";
+		//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration* "}";
 		public ParserRule getRule() { return rule; }
 
 		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? & boundary?="boundary"?)
 		//"blockType" name=ValidID "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition*
-		//parameters+=Parameter* declarations+=Declaration* "}"
+		//parameters+=Parameter* declarations+=TopLevelDeclaration* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -145,11 +145,11 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//Parameter
 		public RuleCall getParametersParameterParserRuleCall_9_0() { return cParametersParameterParserRuleCall_9_0; }
 
-		//declarations+=Declaration*
+		//declarations+=TopLevelDeclaration*
 		public Assignment getDeclarationsAssignment_10() { return cDeclarationsAssignment_10; }
 
-		//Declaration
-		public RuleCall getDeclarationsDeclarationParserRuleCall_10_0() { return cDeclarationsDeclarationParserRuleCall_10_0; }
+		//TopLevelDeclaration
+		public RuleCall getDeclarationsTopLevelDeclarationParserRuleCall_10_0() { return cDeclarationsTopLevelDeclarationParserRuleCall_10_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
@@ -1145,7 +1145,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	//MscriptBlockType:
 	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
 	//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
-	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=Declaration* "}";
+	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration* "}";
 	public MscriptBlockTypeElements getMscriptBlockTypeAccess() {
 		return (pMscriptBlockType != null) ? pMscriptBlockType : (pMscriptBlockType = new MscriptBlockTypeElements());
 	}
@@ -1373,7 +1373,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Module:
-	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=TopLevelDeclaration*;
 	public MscriptGrammarAccess.ModuleElements getModuleAccess() {
 		return gaMscript.getModuleAccess();
 	}
@@ -1392,14 +1392,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getImportDeclarationAccess().getRule();
 	}
 
-	//Declaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration;
-	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
-		return gaMscript.getDeclarationAccess();
+	//TopLevelDeclaration:
+	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
+	public MscriptGrammarAccess.TopLevelDeclarationElements getTopLevelDeclarationAccess() {
+		return gaMscript.getTopLevelDeclarationAccess();
 	}
 	
-	public ParserRule getDeclarationRule() {
-		return getDeclarationAccess().getRule();
+	public ParserRule getTopLevelDeclarationRule() {
+		return getTopLevelDeclarationAccess().getRule();
 	}
 
 	/// *

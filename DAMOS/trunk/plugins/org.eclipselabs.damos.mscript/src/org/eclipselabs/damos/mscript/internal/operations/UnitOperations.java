@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.mscript.internal.operations;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.BaseUnitDeclaration;
@@ -32,14 +35,18 @@ public class UnitOperations {
 		Unit normalizedUnit = MscriptFactory.eINSTANCE.createUnit();
 		normalizedUnit.setScale(unit.getScale());
 		try {
-			expandUnit(normalizedUnit, unit, 1);
+			expandUnit(normalizedUnit, unit, 1, new HashSet<Unit>());
 		} catch (InvalidUnitExpressionOperandException e) {
 			return null;
 		}
 		return normalizedUnit;
 	}
 	
-	private static void expandUnit(Unit normalizedUnit, Unit unit, int exponent) throws InvalidUnitExpressionOperandException {
+	private static void expandUnit(Unit normalizedUnit, Unit unit, int exponent, Set<Unit> visitedUnits) throws InvalidUnitExpressionOperandException {
+		if (!visitedUnits.add(unit)) {
+			// Break cycle
+			throw new InvalidUnitExpressionOperandException(null);
+		}
 		for (UnitFactor factor : unit.getFactors()) {
 			if (factor.getSymbol() == null) {
 				throw new InvalidUnitExpressionOperandException(factor);
@@ -53,7 +60,7 @@ public class UnitOperations {
 				addFactor(normalizedUnit, symbol, newExponent);
 			} else if (factor.getSymbol().getOwner() instanceof DerivedUnitDeclaration) {
 				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration) factor.getSymbol().getOwner();
-				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent);
+				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent, visitedUnits);
 			}
 		}
 	}

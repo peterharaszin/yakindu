@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="ASCII"?>
-<mscript:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript" xsi:schemaLocation="http://www.eclipselabs.org/damos/mscript/2011/Mscript Mscript.ecore" packageName="mscript.lang.math">
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="round"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="lb"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="ln"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="lg"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="exp"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="sin"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="cos"/>
-  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="tan"/>
+<mscript:Module
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+    packageName="mscript.lang.math">
+  <declarations
+      xsi:type="mscript:ConstantDeclaration"
+      name="e">
+    <initializer
+        xsi:type="mscript:RealLiteral"
+        data="2.718281828459045">
+      <unit/>
+    </initializer>
+  </declarations>
+  <declarations
+      xsi:type="mscript:ConstantDeclaration"
+      name="pi">
+    <initializer
+        xsi:type="mscript:RealLiteral"
+        data="3.141592653589793">
+      <unit/>
+    </initializer>
+  </declarations>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="round"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="lb"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="ln"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="lg"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="exp"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="sin"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="cos"/>
+  <declarations
+      xsi:type="mscript:BuiltinFunctionDeclaration"
+      name="tan"/>
 </mscript:Module>

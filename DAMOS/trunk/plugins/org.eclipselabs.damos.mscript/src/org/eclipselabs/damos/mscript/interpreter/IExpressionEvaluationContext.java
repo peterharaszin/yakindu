@@ -36,4 +36,7 @@ public interface IExpressionEvaluationContext {
 	
 	IStatusCollector getStatusCollector();
 	
+	boolean addVisitedEvaluable(Evaluable evaluable);
+	void removeVisitedEvaluable(Evaluable evaluable);
+	
 }

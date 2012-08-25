@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.CheckType;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
@@ -16,7 +17,9 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
+import org.eclipselabs.damos.mscript.DerivedUnitDeclaration;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
@@ -42,6 +45,8 @@ import org.eclipselabs.damos.mscript.SwitchExpression;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeDeclaration;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
+import org.eclipselabs.damos.mscript.UnitDeclaration;
+import org.eclipselabs.damos.mscript.UnitFactor;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
@@ -257,7 +262,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		return result;
 	}
 	
-	@Check
+	@Check(CheckType.NORMAL)
 	public void checkCyclicDataTypeDeclaration(TypeDeclaration typeDeclaration) {
 		checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<TypeDeclaration>(Collections.singleton(typeDeclaration)));
 	}
@@ -287,4 +292,47 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		}
 	}
 	
+	@Check(CheckType.NORMAL)
+	public void checkCyclicUnitDeclaration(UnitDeclaration unitDeclaration) {
+		checkCyclicUnitDeclaration(unitDeclaration, new HashSet<UnitDeclaration>());
+	}
+	
+	private void checkCyclicUnitDeclaration(UnitDeclaration unitDeclaration, Set<UnitDeclaration> visitedUnitDeclarations) {
+		if (visitedUnitDeclarations.add(unitDeclaration)) {
+			if (unitDeclaration instanceof DerivedUnitDeclaration) {
+				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration) unitDeclaration;
+				if (derivedUnitDeclaration.getDefinition() != null) {
+					for (UnitFactor factor : derivedUnitDeclaration.getDefinition().getFactors()) {
+						if (factor.getSymbol() != null && !factor.getSymbol().eIsProxy()) {
+							checkCyclicUnitDeclaration(factor.getSymbol().getOwner(), new HashSet<UnitDeclaration>(visitedUnitDeclarations));
+						}
+					}
+				}
+			}
+		} else {
+			error("Cyclic unit declaration of " + unitDeclaration.getName(), unitDeclaration, MscriptPackage.eINSTANCE.getUnitDeclaration_Name(), -1);
+		}
+	}
+
+	@Check(CheckType.NORMAL)
+	public void checkCyclicConstantDeclaration(ConstantDeclaration constantDeclaration) {
+		checkCyclicConstantDeclaration(constantDeclaration, new HashSet<ConstantDeclaration>());
+	}
+	
+	private void checkCyclicConstantDeclaration(ConstantDeclaration constantDeclaration, Set<ConstantDeclaration> visitedConstantDeclarations) {
+		if (visitedConstantDeclarations.add(constantDeclaration)) {
+			for (TreeIterator<EObject> it = constantDeclaration.eAllContents(); it.hasNext();) {
+				EObject next = it.next();
+				if (next instanceof FeatureReference) {
+					FeatureReference featureReference = (FeatureReference) next;
+					if (featureReference.getFeature() instanceof ConstantDeclaration) {
+						checkCyclicConstantDeclaration((ConstantDeclaration) featureReference.getFeature(), new HashSet<ConstantDeclaration>(visitedConstantDeclarations));
+					}
+				}
+			}
+		} else {
+			error("Cyclic constant declaration of " + constantDeclaration.getName(), constantDeclaration, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), -1);
+		}
+	}
+
 }

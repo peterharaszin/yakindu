@@ -60,7 +60,7 @@ public class UnitOperations {
 				addFactor(normalizedUnit, symbol, newExponent);
 			} else if (factor.getSymbol().getOwner() instanceof DerivedUnitDeclaration) {
 				DerivedUnitDeclaration derivedUnitDeclaration = (DerivedUnitDeclaration) factor.getSymbol().getOwner();
-				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent, visitedUnits);
+				expandUnit(normalizedUnit, derivedUnitDeclaration.getDefinition(), newExponent, new HashSet<Unit>(visitedUnits));
 			}
 		}
 	}

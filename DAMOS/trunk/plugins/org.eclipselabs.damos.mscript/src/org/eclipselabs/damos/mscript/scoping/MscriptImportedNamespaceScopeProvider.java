@@ -24,9 +24,9 @@ public class MscriptImportedNamespaceScopeProvider extends ImportedNamespaceAwar
 	private static final  List<ImportNormalizer> IMPLICIT_IMPORTS = new ArrayList<ImportNormalizer>();
 
 	{
-		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang"), true, false));
 		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang", "math"), true, false));
 		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang", "units"), true, false));
+		IMPLICIT_IMPORTS.add(new ImportNormalizer(QualifiedName.create("mscript", "lang"), true, false));
 	}
 
 	@Inject

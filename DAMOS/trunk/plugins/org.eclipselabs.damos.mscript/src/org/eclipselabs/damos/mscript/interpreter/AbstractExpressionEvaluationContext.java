@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -21,6 +24,8 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public abstract class AbstractExpressionEvaluationContext implements IExpressionEvaluationContext {
 
 	private int staticScopeCounter;
+	
+	private Set<Evaluable> visitedEvaluables = new HashSet<Evaluable>(); 
 
 	/**
 	 * 
@@ -46,6 +51,14 @@ public abstract class AbstractExpressionEvaluationContext implements IExpression
 	
 	public IStatusCollector getStatusCollector() {
 		return null;
+	}
+	
+	public boolean addVisitedEvaluable(Evaluable evaluable) {
+		return visitedEvaluables.add(evaluable);
+	}
+	
+	public void removeVisitedEvaluable(Evaluable evaluable) {
+		visitedEvaluables.remove(evaluable);
 	}
 
 }

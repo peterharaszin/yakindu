@@ -34,6 +34,7 @@ import org.eclipselabs.damos.mscript.BooleanType;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -1298,14 +1299,26 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		}
 
 		@Override
-		public IValue caseFeatureReference(FeatureReference variableReference) {
-			if (!isResolved(variableReference.getFeature())) {
+		public IValue caseFeatureReference(FeatureReference featureReference) {
+			if (!isResolved(featureReference.getFeature())) {
 				return InvalidValue.SINGLETON;
 			}
-			IValue value = context.getValue(variableReference);
+			IValue value = context.getValue(featureReference);
+			if (value == null && featureReference.getFeature() instanceof ConstantDeclaration) {
+				ConstantDeclaration constantDeclaration = (ConstantDeclaration) featureReference.getFeature();
+				if (context.addVisitedEvaluable(constantDeclaration)) {
+					context.enterStaticScope();
+					value = evaluate(constantDeclaration.getInitializer());
+					context.leaveStaticScope();
+					context.processValue(constantDeclaration, value);
+					context.removeVisitedEvaluable(constantDeclaration);
+				} else {
+					value = InvalidValue.SINGLETON;
+				}
+			}
 			if (value == null) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for " + variableReference.getFeature().getName(), variableReference));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for " + featureReference.getFeature().getName(), featureReference));
 				}
 				value = InvalidValue.SINGLETON;
 			}

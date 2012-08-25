@@ -19,6 +19,8 @@ import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
+import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 
@@ -60,7 +62,9 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 			if (notification.isTouch()) {
 				return;
 			}
-			if (notification.getNewValue() instanceof MscriptValueSpecification) {
+			if (notification.getNotifier() instanceof Fragment && notification.getFeature() == DMLPackage.eINSTANCE.getQualifiedElement_PackageName()) {
+				linker.linkModel(getHost().resolveSemanticElement(), new ListBasedDiagnosticConsumer());
+			} else if (notification.getNewValue() instanceof MscriptValueSpecification) {
 				MscriptValueSpecification valueSpecification = (MscriptValueSpecification) notification.getNewValue();
 				linker.linkModel(valueSpecification.getExpression(), new ListBasedDiagnosticConsumer());
 			} else if (notification.getNewValue() instanceof MscriptDataTypeSpecification) {

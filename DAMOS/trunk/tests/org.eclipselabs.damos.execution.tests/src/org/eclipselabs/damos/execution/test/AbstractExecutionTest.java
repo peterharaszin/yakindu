@@ -71,10 +71,10 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationFactory;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
 import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.junit.Before;
@@ -435,14 +435,14 @@ public abstract class AbstractExecutionTest {
 	}
 	
 	protected ComputationModel createSystemComputationModel(int integerLength, int fractionLength) {
-		ComputationModel computationModel = ComputationModelFactory.eINSTANCE.createComputationModel();
+		ComputationModel computationModel = ComputationFactory.eINSTANCE.createComputationModel();
 		
-		NumberFormatMapping realTypeMapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
+		NumberFormatMapping realTypeMapping = ComputationFactory.eINSTANCE.createNumberFormatMapping();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createRealType(MscriptFactory.eINSTANCE.createUnit()));
 		realTypeMapping.setTypeSpecifier(dataTypeSpecifier);
 		
-		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
+		FixedPointFormat fixedPointFormat = ComputationFactory.eINSTANCE.createFixedPointFormat();
 		fixedPointFormat.setIntegerLength(integerLength);
 		fixedPointFormat.setFractionLength(fractionLength);
 		realTypeMapping.setNumberFormat(fixedPointFormat);

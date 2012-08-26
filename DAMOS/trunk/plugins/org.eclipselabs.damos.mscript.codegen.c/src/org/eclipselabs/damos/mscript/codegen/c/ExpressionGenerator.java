@@ -64,10 +64,10 @@ import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionG
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;

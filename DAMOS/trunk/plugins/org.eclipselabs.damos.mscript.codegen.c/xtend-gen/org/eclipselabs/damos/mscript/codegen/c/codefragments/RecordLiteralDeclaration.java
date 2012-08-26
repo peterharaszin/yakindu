@@ -17,7 +17,7 @@ import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordTypeDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineRecordType;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.value.RecordValue;
 
 /**

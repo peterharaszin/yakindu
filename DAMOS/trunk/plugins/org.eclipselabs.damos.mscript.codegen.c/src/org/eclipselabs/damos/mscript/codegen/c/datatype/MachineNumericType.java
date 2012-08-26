@@ -15,9 +15,9 @@ import java.util.Formatter;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
 
 /**
  * @author Andreas Unger

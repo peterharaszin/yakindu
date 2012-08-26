@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.codegen.c.IOperationGeneratorProvider;
 import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;

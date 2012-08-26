@@ -12,9 +12,9 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
 
 public class CastToFloatingPointHelper {
 	

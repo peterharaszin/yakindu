@@ -23,10 +23,10 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionF
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordLiteralDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.util.StringTableUtil;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;

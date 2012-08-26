@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * @author Andreas Unger

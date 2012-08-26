@@ -51,7 +51,7 @@ import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
 
 /**
  * <!-- begin-user-doc -->

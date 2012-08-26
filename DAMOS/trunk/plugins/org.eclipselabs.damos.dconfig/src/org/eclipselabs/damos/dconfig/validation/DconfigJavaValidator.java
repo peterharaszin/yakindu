@@ -29,11 +29,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
@@ -174,14 +174,14 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 		if (numberFormatMapping.getTypeSpecifier().getType() instanceof IntegerType) {
 			NumberFormat numberFormat = numberFormatMapping.getNumberFormat();
 			if (numberFormat instanceof FloatingPointFormat) {
-				warning("Floating point format specified for integers", ComputationModelPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
+				warning("Floating point format specified for integers", ComputationPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
 			} else if (numberFormat instanceof FixedPointFormat) {
 				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 				if (fixedPointFormat.getFractionLength() != 0) {
-					warning("Fixed point format with fractional part specified for integers", ComputationModelPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
+					warning("Fixed point format with fractional part specified for integers", ComputationPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
 				}
 				if (fixedPointFormat.getSlope() < 1) {
-					warning("Fixed point format with slope less than 1 specified for integers", ComputationModelPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
+					warning("Fixed point format with slope less than 1 specified for integers", ComputationPackage.eINSTANCE.getNumberFormatMapping_NumberFormat(), -1);
 				}
 			}
 		}
@@ -194,7 +194,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 		case BINARY64:
 			break;
 		default:
-			error("Floating point format must be binary32 or binary64", ComputationModelPackage.eINSTANCE.getFloatingPointFormat_Kind(), -1);
+			error("Floating point format must be binary32 or binary64", ComputationPackage.eINSTANCE.getFloatingPointFormat_Kind(), -1);
 			break;
 		}
 	}
@@ -202,7 +202,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 	@Check
 	public void checkFixedPointFormat(FixedPointFormat fixedPointFormat) {
 		if (fixedPointFormat.getIntegerLength() < 1) {
-			error("Integer length must be greater than or equal to 1", ComputationModelPackage.eINSTANCE.getFixedPointFormat_IntegerLength(), -1);
+			error("Integer length must be greater than or equal to 1", ComputationPackage.eINSTANCE.getFixedPointFormat_IntegerLength(), -1);
 		} else {
 			switch (fixedPointFormat.getWordSize()) {
 			case 8:
@@ -220,7 +220,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 	@Check
 	public void checkFixedPointFormatSlope(FixedPointFormat fixedPointFormat) {
 		if (fixedPointFormat.getSlope() <= 0) {
-			error("Slope must be greater than 0", ComputationModelPackage.eINSTANCE.getFixedPointFormat_Slope(), -1);
+			error("Slope must be greater than 0", ComputationPackage.eINSTANCE.getFixedPointFormat_Slope(), -1);
 		}
 	}
 	

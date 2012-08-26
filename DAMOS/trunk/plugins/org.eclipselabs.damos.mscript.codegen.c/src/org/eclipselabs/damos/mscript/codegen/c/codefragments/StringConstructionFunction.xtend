@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipselabs.damos.mscript.codegen.c.Include
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineNumericType
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineStringType
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 

@@ -15,9 +15,9 @@ import org.eclipselabs.damos.mscript.codegen.c.IMultiplicativeExpressionGenerato
 import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.PredefinedFixedPointFormatKind;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger

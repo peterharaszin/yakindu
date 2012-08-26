@@ -16,7 +16,7 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 
 /**
  * @author Andreas Unger

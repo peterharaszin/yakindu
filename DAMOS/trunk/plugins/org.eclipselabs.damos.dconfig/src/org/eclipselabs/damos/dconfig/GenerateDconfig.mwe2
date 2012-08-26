@@ -15,7 +15,7 @@ Workflow {
 		platformUri = "${runtimeProject}/.."
 		registerGeneratedEPackage = "org.eclipselabs.damos.dml.DMLPackage"
 		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.MscriptPackage"
-		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage"
+		registerGeneratedEPackage = "org.eclipselabs.damos.mscript.computation.ComputationModelPackage"
 		registerGeneratedEPackage = "org.eclipselabs.damos.dconfig.DconfigPackage"
 	}
 

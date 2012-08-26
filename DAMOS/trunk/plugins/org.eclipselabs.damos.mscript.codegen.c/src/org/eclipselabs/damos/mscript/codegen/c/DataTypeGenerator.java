@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * @author Andreas Unger

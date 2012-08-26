@@ -36,7 +36,7 @@ import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * @author Andreas Unger

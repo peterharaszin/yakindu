@@ -16,11 +16,11 @@ import org.eclipselabs.damos.mscript.codegen.c.INumericExpressionOperand;
 import org.eclipselabs.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipselabs.damos.mscript.codegen.c.TextualNumericExpressionOperand;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.ComputationFactory;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.PredefinedFixedPointFormatKind;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -70,7 +70,7 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 		if (inputDataType instanceof BooleanType) {
 			sb.append("digitalWrite(").append(Integer.toString(pin)).append(", ").append(inputVariable).append(");\n");
 		} else {
-			FixedPointFormat targetNumberFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
+			FixedPointFormat targetNumberFormat = ComputationFactory.eINSTANCE.createFixedPointFormat();
 			targetNumberFormat.setPredefinedKind(PredefinedFixedPointFormatKind.UINT16);
 			final NumberFormat inputNumberFormat = getComputationModel().getNumberFormat(inputDataType);
 			sb.append("analogWrite(").append(Integer.toString(pin)).append(", ");

@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
 
 /**
  * @author Andreas Unger

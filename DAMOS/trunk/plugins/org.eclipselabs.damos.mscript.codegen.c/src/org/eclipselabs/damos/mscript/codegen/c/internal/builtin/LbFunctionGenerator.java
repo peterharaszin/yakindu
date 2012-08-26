@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 
 /**
  * @author Andreas Unger
@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 public class LbFunctionGenerator extends AbstractSingleParameterFunctionGenerator {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.internal.AbstractSingleParameterFunctionGenerator#getFixedPointFunctionName(org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.internal.AbstractSingleParameterFunctionGenerator#getFixedPointFunctionName(org.eclipselabs.damos.mscript.computation.FixedPointFormat)
 	 */
 	@Override
 	protected String getFixedPointFunctionName(FixedPointFormat fixedPointFormat) {
@@ -29,7 +29,7 @@ public class LbFunctionGenerator extends AbstractSingleParameterFunctionGenerato
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.internal.AbstractSingleParameterFunctionGenerator#getFloatingPointFunctionName(org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.internal.AbstractSingleParameterFunctionGenerator#getFloatingPointFunctionName(org.eclipselabs.damos.mscript.computation.FloatingPointFormat)
 	 */
 	@Override
 	protected String getFloatingPointFunctionName(FloatingPointFormat floatingPointFormat) {

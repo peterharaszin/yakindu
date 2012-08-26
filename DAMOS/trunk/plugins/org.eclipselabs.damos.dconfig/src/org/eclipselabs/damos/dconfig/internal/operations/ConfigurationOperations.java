@@ -37,7 +37,7 @@ import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * @author Andreas Unger

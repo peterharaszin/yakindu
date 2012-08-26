@@ -35,7 +35,7 @@
       <eParameters name="propertyPath" lowerBound="1" eType="#//PropertyPath"/>
       <eParameters name="sourcePath" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>
-    <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel">
+    <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Computation.ecore#//ComputationModel">
       <eParameters name="systemPath" lowerBound="1" eType="#//SystemPath"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -144,7 +144,7 @@
         defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputationProperty" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Computation.ecore#//ComputationModel"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemConfiguration" abstract="true">

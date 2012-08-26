@@ -13,7 +13,7 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * <!-- begin-user-doc -->

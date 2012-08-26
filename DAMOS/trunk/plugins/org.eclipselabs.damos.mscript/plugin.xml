@@ -23,8 +23,8 @@
             class="org.eclipselabs.damos.mscript.MscriptPackage"
             genModel="model/Mscript.genmodel"/>
       <package
-            class="org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage"
-            genModel="model/ComputationModel.genmodel"
+            class="org.eclipselabs.damos.mscript.computation.ComputationPackage"
+            genModel="model/Computation.genmodel"
             uri="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel">
       </package>
    </extension>

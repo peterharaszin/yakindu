@@ -171,7 +171,7 @@ public class MainMscriptTab extends AbstractLaunchConfigurationTab {
 						false,
 						ResourcesPlugin.getWorkspace().getRoot(),
 						IResource.FILE);
-				d.setInitialPattern("*.computationmodel");
+				d.setInitialPattern("*.computation");
 				d.open();
 				Object firstResult = d.getFirstResult();
 				if (firstResult instanceof IFile) {

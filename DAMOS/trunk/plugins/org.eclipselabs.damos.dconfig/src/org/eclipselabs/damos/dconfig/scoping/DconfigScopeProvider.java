@@ -36,7 +36,7 @@ import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.scoping.MscriptScopeProvider;
 
 import com.google.common.base.Predicate;
@@ -179,7 +179,7 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 	
 	public IScope scope_ComputationProperty_computationModel(ComputationProperty context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
-				ComputationModelPackage.eINSTANCE.getComputationModel()));
+				ComputationPackage.eINSTANCE.getComputationModel()));
 	}
 	
 	public IScope scope_BindingResourceReference_resourceDeclaration(SelectionProperty context, EReference reference) {

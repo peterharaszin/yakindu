@@ -29,8 +29,8 @@ import org.eclipselabs.damos.execution.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.StringLiteral;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 

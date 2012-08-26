@@ -6,7 +6,7 @@
  */
 package org.eclipselabs.damos.dconfig;
 
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * <!-- begin-user-doc -->

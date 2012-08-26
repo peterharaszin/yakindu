@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.codegen.c.gtests;
 
 import org.eclipselabs.damos.codegen.c.test.GTest;
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 
 /**
  * @author Andreas Unger

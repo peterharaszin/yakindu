@@ -20,8 +20,8 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Unit;
-import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.NumberFormat;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 

@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
+import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger

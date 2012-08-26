@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionDescription;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -103,7 +103,7 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.function.FunctionDescriptor)
 	 */
 	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription) {
 		functionDescriptions.put(functionDeclaration, functionDescription);

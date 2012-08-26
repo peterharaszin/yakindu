@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
+import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**

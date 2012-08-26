@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
+import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.ICompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
@@ -108,7 +108,7 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#initializeComputationCompound(org.eclipselabs.damos.mscript.functionmodel.ComputationCompound)
+	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#initializeComputationCompound(org.eclipselabs.damos.mscript.function.ComputationCompound)
 	 */
 	@Override
 	protected void initializeComputationCompound(ComputationCompound compound) {

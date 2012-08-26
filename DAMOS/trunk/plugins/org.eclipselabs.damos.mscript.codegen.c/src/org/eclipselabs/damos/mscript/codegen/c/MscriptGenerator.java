@@ -23,9 +23,9 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
-import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelUtil;
+import org.eclipselabs.damos.mscript.function.ComputationCompound;
+import org.eclipselabs.damos.mscript.function.FunctionInstance;
+import org.eclipselabs.damos.mscript.function.util.FunctionModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.internal.function.util;
 
-public class VariableDescriptorWrapper {
+public class VariableDescriptionWrapper {
 	
 	private String name;
 	private int step;
@@ -21,14 +21,14 @@ public class VariableDescriptorWrapper {
 	/**
 	 * 
 	 */
-	public VariableDescriptorWrapper(String name, int step) {
+	public VariableDescriptionWrapper(String name, int step) {
 		this(name, step, false, false);
 	}
 	
 	/**
 	 * 
 	 */
-	public VariableDescriptorWrapper(String name, int step, boolean initial, boolean derivative) {
+	public VariableDescriptionWrapper(String name, int step, boolean initial, boolean derivative) {
 		this.name = name;
 		this.step = step;
 		this.initial = initial;
@@ -51,8 +51,8 @@ public class VariableDescriptorWrapper {
 		if (obj == this) {
 			return true;
 		}
-		if (obj instanceof VariableDescriptorWrapper) {
-			VariableDescriptorWrapper other = (VariableDescriptorWrapper) obj;
+		if (obj instanceof VariableDescriptionWrapper) {
+			VariableDescriptionWrapper other = (VariableDescriptionWrapper) obj;
 			return other.name.equals(name) && other.step == step && other.initial == initial && other.derivative == derivative;
 		}
 		return false;

@@ -152,4 +152,4 @@ public interface EquationDescription extends EObject {
 	 */
 	boolean isRightHandSideValid(DiagnosticChain diagnostics, Map<Object, Object> context);
 
-} // EquationDescriptor
+} // EquationDescription

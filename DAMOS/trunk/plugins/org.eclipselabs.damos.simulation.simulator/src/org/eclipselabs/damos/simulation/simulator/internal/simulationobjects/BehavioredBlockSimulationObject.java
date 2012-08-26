@@ -148,7 +148,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(status);
 		}
 		
-		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescriptor(functionDeclaration);
+		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescription(functionDeclaration);
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
 				.transform(staticEvaluationResult, functionDescription, staticArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {

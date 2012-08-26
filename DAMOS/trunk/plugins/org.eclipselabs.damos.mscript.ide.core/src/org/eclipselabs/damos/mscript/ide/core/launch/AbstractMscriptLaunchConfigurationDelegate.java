@@ -220,7 +220,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 			throw new CoreException(staticEvaluationResult.getStatus());
 		}
 		
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionDescriptor(functionDeclaration), staticArguments, inputParameterDataTypes);
+		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionDescription(functionDeclaration), staticArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			throw new CoreException(functionDefinitionTransformerResult.getStatus());
 		}

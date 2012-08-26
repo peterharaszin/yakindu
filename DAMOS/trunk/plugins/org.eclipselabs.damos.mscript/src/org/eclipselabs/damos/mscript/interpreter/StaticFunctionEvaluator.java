@@ -66,7 +66,7 @@ public class StaticFunctionEvaluator {
 		staticStepExpressionEvaluator.evaluate(result, functionDeclaration);
 
 		FunctionDescription functionDescription = functionDescriptionBuilder.build(result, functionDeclaration);
-		result.setFunctionDescriptor(functionDeclaration, functionDescription);
+		result.setFunctionDescription(functionDeclaration, functionDescription);
 
 		BasicDiagnostic diagnostics = new BasicDiagnostic();
 		for (EObjectTreeIterator it = new EObjectTreeIterator(functionDescription, true); it.hasNext();) {

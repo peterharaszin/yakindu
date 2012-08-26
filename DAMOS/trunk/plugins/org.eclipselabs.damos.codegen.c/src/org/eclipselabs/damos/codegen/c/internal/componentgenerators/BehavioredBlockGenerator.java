@@ -107,7 +107,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		staticEvaluationResult = new StaticEvaluationResult();
 		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
-		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescriptor(functionDeclaration);
+		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescription(functionDeclaration);
 		if (!staticEvaluationResult.getStatus().isOK()) {
 			status.add(staticEvaluationResult.getStatus());
 		}

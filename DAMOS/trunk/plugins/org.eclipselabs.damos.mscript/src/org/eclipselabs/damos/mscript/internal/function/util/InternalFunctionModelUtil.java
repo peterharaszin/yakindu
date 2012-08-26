@@ -45,20 +45,20 @@ public class InternalFunctionModelUtil {
 		return null;
 	}
 	
-	public static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescriptor) {
-		return isDefinedBy(equationDescription, otherEquationDescriptor, new HashSet<EquationDescription>());
+	public static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescription) {
+		return isDefinedBy(equationDescription, otherEquationDescription, new HashSet<EquationDescription>());
 	}
 
-	private static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescriptor, Set<EquationDescription> visitedEquationDescriptors) {
-		if (!visitedEquationDescriptors.add(equationDescription)) {
+	private static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescription, Set<EquationDescription> visitedEquationDescriptions) {
+		if (!visitedEquationDescriptions.add(equationDescription)) {
 			return false;
 		}
 		for (EquationPart equationPart : equationDescription.getRightHandSide().getParts()) {
-			EquationDescription definingEquationDescriptor = getDefiningEquation(equationPart.getVariableStep());
-			if (definingEquationDescriptor == otherEquationDescriptor) {
+			EquationDescription definingEquationDescription = getDefiningEquation(equationPart.getVariableStep());
+			if (definingEquationDescription == otherEquationDescription) {
 				return true;
 			}
-			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor, new HashSet<EquationDescription>(visitedEquationDescriptors))) {
+			if (definingEquationDescription != null && isDefinedBy(definingEquationDescription, otherEquationDescription, new HashSet<EquationDescription>(visitedEquationDescriptions))) {
 				return true;
 			}
 		}

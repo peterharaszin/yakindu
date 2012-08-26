@@ -96,16 +96,16 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getFunctionDescription(org.eclipselabs.mscript.language.ast.FunctionDefinition)
 	 */
-	public FunctionDescription getFunctionDescriptor(FunctionDeclaration functionDeclaration) {
+	public FunctionDescription getFunctionDescription(FunctionDeclaration functionDeclaration) {
 		return functionDescriptions.get(functionDeclaration);
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.function.FunctionDescriptor)
+	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescription(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.function.FunctionDescription)
 	 */
-	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription) {
+	public void setFunctionDescription(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription) {
 		functionDescriptions.put(functionDeclaration, functionDescription);
 	}
 	

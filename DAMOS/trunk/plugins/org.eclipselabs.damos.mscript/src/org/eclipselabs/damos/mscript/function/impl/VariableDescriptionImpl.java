@@ -406,4 +406,4 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 		return result.toString();
 	}
 
-} //VariableDescriptorImpl
+} //VariableDescriptionImpl

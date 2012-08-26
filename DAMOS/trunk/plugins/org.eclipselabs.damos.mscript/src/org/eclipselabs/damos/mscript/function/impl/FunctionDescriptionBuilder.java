@@ -141,7 +141,7 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 				EquationPart part = FunctionModelFactory.eINSTANCE.createEquationPart();
 				part.setSide(equationSide);
 				part.setVariableReference(variableReference);
-				VariableDescription variableDescription = getVariableDescriptor(functionDescription, name, variableKind);
+				VariableDescription variableDescription = getVariableDescription(functionDescription, name, variableKind);
 				
 				VariableStep variableStep = variableDescription.getStep(stepIndex, initial, derivative);
 				if (variableStep == null) {
@@ -196,7 +196,7 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 		 * @param variableKind
 		 * @return
 		 */
-		private VariableDescription getVariableDescriptor(FunctionDescription functionDescription, String name,
+		private VariableDescription getVariableDescription(FunctionDescription functionDescription, String name,
 				VariableKind variableKind) {
 			VariableDescription variableDescription = functionDescription.getVariableDescription(name);
 			if (variableDescription == null) {

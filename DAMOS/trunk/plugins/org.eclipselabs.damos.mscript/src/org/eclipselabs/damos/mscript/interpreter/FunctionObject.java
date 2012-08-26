@@ -45,23 +45,23 @@ public class FunctionObject implements IFunctionObject {
 		FunctionObject functionObject = new FunctionObject();
 		functionObject.functionInstance = functionInstance;
 		
-		for (StaticParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getStaticParameterDeclarations()) {
+		for (StaticParameterDeclaration declaration : functionInstance.getDeclaration().getStaticParameterDeclarations()) {
 			createStaticVariable(context, functionObject, declaration);
 		}
 		
-		for (ConstantDeclaration declaration : functionInstance.getFunctionDeclaration().getConstantDeclarations()) {
+		for (ConstantDeclaration declaration : functionInstance.getDeclaration().getConstantDeclarations()) {
 			createStaticVariable(context, functionObject, declaration);
 		}
 
-		for (InputParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration declaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
 			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		
-		for (OutputParameterDeclaration declaration : functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration declaration : functionInstance.getDeclaration().getOutputParameterDeclarations()) {
 			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		
-		for (StateVariableDeclaration declaration : functionInstance.getFunctionDeclaration().getStateVariableDeclarations()) {
+		for (StateVariableDeclaration declaration : functionInstance.getDeclaration().getStateVariableDeclarations()) {
 			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		

@@ -25,13 +25,13 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
-import org.eclipselabs.damos.mscript.functionmodel.IFunctionDescriptorBuilder;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.IFunctionDescriptionBuilder;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
@@ -45,35 +45,35 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
  * @author Andreas Unger
  *
  */
-public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
+public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 
-	public FunctionDescriptor build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
+	public FunctionDescription build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function descriptor construction", null);
 
-		FunctionDescriptor functionDescriptor = FunctionModelFactory.eINSTANCE.createFunctionDescriptor();
-		functionDescriptor.setDeclaration(functionDeclaration);
+		FunctionDescription functionDescription = FunctionModelFactory.eINSTANCE.createFunctionDescription();
+		functionDescription.setDeclaration(functionDeclaration);
 
 		for (Equation equation : functionDeclaration.getEquations()) {
-			EquationDescriptor equationDescriptor = FunctionModelFactory.eINSTANCE.createEquationDescriptor();
-			equationDescriptor.setFunctionDescriptor(functionDescriptor);
-			equationDescriptor.setEquation(equation);
+			EquationDescription equationDescription = FunctionModelFactory.eINSTANCE.createEquationDescription();
+			equationDescription.setFunctionDescription(functionDescription);
+			equationDescription.setEquation(equation);
 			
 			Expression lhsExpression = equation.getLeftHandSide();
 			EquationSide lhs = FunctionModelFactory.eINSTANCE.createEquationSide();
-			lhs.setDescriptor(equationDescriptor);
+			lhs.setEquationDescription(equationDescription);
 			lhs.setExpression(lhsExpression);
 			StatusUtil.merge(status, new EquationSideInitializer(result, lhs).initialize());
 			
 			Expression rhsExpression = equation.getRightHandSide();
 			EquationSide rhs = FunctionModelFactory.eINSTANCE.createEquationSide();
-			rhs.setDescriptor(equationDescriptor);
+			rhs.setEquationDescription(equationDescription);
 			rhs.setExpression(rhsExpression);
 			StatusUtil.merge(status, new EquationSideInitializer(result, rhs).initialize());
 		}
 		
 		result.collectStatus(status);
 
-		return functionDescriptor;
+		return functionDescription;
 	}
 			
 	private static class EquationSideInitializer extends MscriptSwitch<Boolean> {
@@ -115,7 +115,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			}
 			String name = variableReference.getFeature().getName();
 			
-			FunctionDescriptor functionDescriptor = equationSide.getDescriptor().getFunctionDescriptor();
+			FunctionDescription functionDescription = equationSide.getEquationDescription().getFunctionDescription();
 			VariableKind variableKind = getVariableKind(variableReference.getFeature());
 			
 			checkFeatureCall(variableReference, variableKind);
@@ -140,13 +140,13 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 
 				EquationPart part = FunctionModelFactory.eINSTANCE.createEquationPart();
 				part.setSide(equationSide);
-				part.setVariableAccess(variableReference);
-				VariableDescriptor variableDescriptor = getVariableDescriptor(functionDescriptor, name, variableKind);
+				part.setVariableReference(variableReference);
+				VariableDescription variableDescription = getVariableDescriptor(functionDescription, name, variableKind);
 				
-				VariableStep variableStep = variableDescriptor.getStep(stepIndex, initial, derivative);
+				VariableStep variableStep = variableDescription.getStep(stepIndex, initial, derivative);
 				if (variableStep == null) {
 					variableStep = FunctionModelFactory.eINSTANCE.createVariableStep();
-					variableStep.setDescriptor(variableDescriptor);
+					variableStep.setVariableDescription(variableDescription);
 					variableStep.setIndex(stepIndex);
 					variableStep.setInitial(initial);
 					variableStep.setDerivative(derivative);
@@ -167,7 +167,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			case OUTPUT_PARAMETER:
 			case STATE_VARIABLE:
 				if (variableReference.getStepExpression() != null) {
-					switch (equationSide.getDescriptor().getFunctionDescriptor().getDeclaration().getKind()) {
+					switch (equationSide.getEquationDescription().getFunctionDescription().getDeclaration().getKind()) {
 					case STATELESS:
 						message = "Variable references of stateless functions must not specify step expressions";
 						break;
@@ -191,21 +191,21 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		}
 
 		/**
-		 * @param functionDescriptor
+		 * @param functionDescription
 		 * @param name
 		 * @param variableKind
 		 * @return
 		 */
-		private VariableDescriptor getVariableDescriptor(FunctionDescriptor functionDescriptor, String name,
+		private VariableDescription getVariableDescriptor(FunctionDescription functionDescription, String name,
 				VariableKind variableKind) {
-			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(name);
-			if (variableDescriptor == null) {
-				variableDescriptor = FunctionModelFactory.eINSTANCE.createVariableDescriptor();
-				variableDescriptor.setFunctionDescriptor(functionDescriptor);
-				variableDescriptor.setName(name);
-				variableDescriptor.setKind(variableKind);
+			VariableDescription variableDescription = functionDescription.getVariableDescription(name);
+			if (variableDescription == null) {
+				variableDescription = FunctionModelFactory.eINSTANCE.createVariableDescription();
+				variableDescription.setFunctionDescription(functionDescription);
+				variableDescription.setName(name);
+				variableDescription.setKind(variableKind);
 			}
-			return variableDescriptor;
+			return variableDescription;
 		}
 
 		private VariableKind getVariableKind(CallableElement feature) {

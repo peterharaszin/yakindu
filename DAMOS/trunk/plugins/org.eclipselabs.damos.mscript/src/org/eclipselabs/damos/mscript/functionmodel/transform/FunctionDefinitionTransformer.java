@@ -33,12 +33,12 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 import org.eclipselabs.damos.mscript.functionmodel.util.EquationCompoundHelper;
@@ -58,17 +58,17 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor, java.lang.String, java.util.List, java.util.List)
 	 */
-	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
+	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescription functionDescription, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
-		functionInstance.setFunctionDeclaration(functionDescriptor.getDeclaration());
+		functionInstance.setDeclaration(functionDescription.getDeclaration());
 		
-		Map<VariableDescriptor, VariableDeclaration> variableDeclarations = new HashMap<VariableDescriptor, VariableDeclaration>();
+		Map<VariableDescription, VariableDeclaration> variableDeclarations = new HashMap<VariableDescription, VariableDeclaration>();
 		
-		initializeVariableDeclarations(staticEvaluationResult, functionInstance, functionDescriptor, staticArguments, inputParameterDataTypes, variableDeclarations);
+		initializeVariableDeclarations(staticEvaluationResult, functionInstance, functionDescription, staticArguments, inputParameterDataTypes, variableDeclarations);
 
-		Collection<List<EquationDescriptor>> equationCompounds = new EquationCompoundHelper().getEquationCompounds(functionDescriptor);
+		Collection<List<EquationDescription>> equationCompounds = new EquationCompoundHelper().getEquationCompounds(functionDescription);
 		
 		IFunctionDefinitionTransformerContext context = new FunctionDefinitionTransformerContext(staticEvaluationResult, functionInstance);
 		StatusUtil.merge(status, constructInitializationCompound(context, equationCompounds, variableDeclarations));
@@ -85,89 +85,89 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		return new FunctionDefinitionTransformerResult(functionInstance);
 	}
 	
-	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> staticArguments, List<Type> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescription functionDescription, List<IValue> staticArguments, List<Type> inputParameterDataTypes, Map<VariableDescription, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> staticArgumentIterator = staticArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getStaticParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getStaticParameterDeclarations()) {
 			if (staticArgumentIterator.hasNext()) {
 				IValue value = staticArgumentIterator.next();
 				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
-			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
-			if (variableDescriptor != null) {
-				variableDeclarations.put(variableDescriptor, parameterDeclaration);
+			VariableDescription variableDescription = functionDescription.getVariableDescription(parameterDeclaration.getName());
+			if (variableDescription != null) {
+				variableDeclarations.put(variableDescription, parameterDeclaration);
 			}
 		}
 
 		Iterator<Type> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getInputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getInputParameterDeclarations()) {
 			if (inputParameterDataTypesIterator.hasNext()) {
 				Type type = EcoreUtil.copy(inputParameterDataTypesIterator.next());
 				IValue value = new AnyValue(staticEvaluationResult.getComputationContext(), type);
 				staticEvaluationResult.setValue(parameterDeclaration, value);
 			}
-			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
-			if (variableDescriptor != null) {
-				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
+			VariableDescription variableDescription = functionDescription.getVariableDescription(parameterDeclaration.getName());
+			if (variableDescription != null) {
+				int circularBufferSize = getInoutputCircularBufferSize(variableDescription);
 				staticEvaluationResult.setCircularBufferSize(parameterDeclaration, circularBufferSize);
-				variableDeclarations.put(variableDescriptor, parameterDeclaration);
+				variableDeclarations.put(variableDescription, parameterDeclaration);
 			}
 		}
 		
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getOutputParameterDeclarations()) {
-			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
-			if (variableDescriptor != null) {
-				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
+		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getOutputParameterDeclarations()) {
+			VariableDescription variableDescription = functionDescription.getVariableDescription(parameterDeclaration.getName());
+			if (variableDescription != null) {
+				int circularBufferSize = getInoutputCircularBufferSize(variableDescription);
 				staticEvaluationResult.setCircularBufferSize(parameterDeclaration, circularBufferSize);
 				IValue value = staticEvaluationResult.getValue(parameterDeclaration);
 				if (value != null) {
 					staticEvaluationResult.setValue(parameterDeclaration, value);
 				}
-				variableDeclarations.put(variableDescriptor, parameterDeclaration);
+				variableDeclarations.put(variableDescription, parameterDeclaration);
 			}
 		}
 
-		for (StateVariableDeclaration stateVariableDeclaration : functionDescriptor.getDeclaration().getStateVariableDeclarations()) {
-			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(stateVariableDeclaration.getName());
-			if (variableDescriptor != null) {
-				int circularBufferSize = variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1;
+		for (StateVariableDeclaration stateVariableDeclaration : functionDescription.getDeclaration().getStateVariableDeclarations()) {
+			VariableDescription variableDescription = functionDescription.getVariableDescription(stateVariableDeclaration.getName());
+			if (variableDescription != null) {
+				int circularBufferSize = variableDescription.getMaximumStep().getIndex() - variableDescription.getMinimumStep().getIndex() + 1;
 				staticEvaluationResult.setCircularBufferSize(stateVariableDeclaration, circularBufferSize);
 				IValue value = staticEvaluationResult.getValue(stateVariableDeclaration);
 				if (value != null) {
 					staticEvaluationResult.setValue(stateVariableDeclaration, value);
 				}
-				variableDeclarations.put(variableDescriptor, stateVariableDeclaration);
+				variableDeclarations.put(variableDescription, stateVariableDeclaration);
 			}
 		}
 	}
 	
-	private int getInoutputCircularBufferSize(VariableDescriptor variableDescriptor) {
-		int minimumStepIndex = variableDescriptor.getMinimumStep().getIndex();
+	private int getInoutputCircularBufferSize(VariableDescription variableDescription) {
+		int minimumStepIndex = variableDescription.getMinimumStep().getIndex();
 		if (minimumStepIndex > 0) {
 			minimumStepIndex = 0;
 		}
-		int maximumStepIndex = variableDescriptor.getMaximumStep().getIndex();
+		int maximumStepIndex = variableDescription.getMaximumStep().getIndex();
 		if (maximumStepIndex < 0) {
 			maximumStepIndex = 0;
 		}
 		return maximumStepIndex - minimumStepIndex + 1;
 	}
 	
-	private IStatus constructInitializationCompound(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescriptor>> equationCompounds, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private IStatus constructInitializationCompound(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescription>> equationCompounds, Map<VariableDescription, VariableDeclaration> variableDeclarations) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Initialization compound construction", null);
 		
 		CompoundStatement compoundStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
-		for (Iterator<List<EquationDescriptor>> it = equationCompounds.iterator(); it.hasNext();) {
-			List<EquationDescriptor> equationDescriptors = it.next();
+		for (Iterator<List<EquationDescription>> it = equationCompounds.iterator(); it.hasNext();) {
+			List<EquationDescription> equationDescriptions = it.next();
 			boolean processed = false;
-			for (EquationDescriptor equationDescriptor : equationDescriptors) {
-				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescriptor);
+			for (EquationDescription equationDescription : equationDescriptions) {
+				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescription);
 				if (lhsVariableStep != null && lhsVariableStep.isInitial()) {
 					context.enterScope();
 					context.setCompound(compoundStatement);
 
 					IExpressionTransformer transformer = new ExpressionTransformer(context);
-					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getDescriptor()), lhsVariableStep.getIndex());
-					StatusUtil.merge(status, transformer.transform(equationDescriptor.getRightHandSide().getExpression(), Collections.singletonList(target)));
+					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getVariableDescription()), lhsVariableStep.getIndex());
+					StatusUtil.merge(status, transformer.transform(equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target)));
 					
 					context.leaveScope();
 
@@ -183,39 +183,39 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		return status.isOK() ? Status.OK_STATUS : status;
 	}
 	
-	private IStatus constructComputationCompounds(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescriptor>> equationCompounds, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private IStatus constructComputationCompounds(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescription>> equationCompounds, Map<VariableDescription, VariableDeclaration> variableDeclarations) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Computation compound construction", null);
 
-		for (List<EquationDescriptor> equationDescriptors : equationCompounds) {
+		for (List<EquationDescription> equationDescriptions : equationCompounds) {
 			ComputationCompound compound = FunctionModelFactory.eINSTANCE.createComputationCompound();
 			Set<InputParameterDeclaration> inputs = new HashSet<InputParameterDeclaration>();
-			for (EquationDescriptor equationDescriptor : equationDescriptors) {
-				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescriptor);
+			for (EquationDescription equationDescription : equationDescriptions) {
+				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescription);
 				if (lhsVariableStep != null) {
 					context.enterScope();
 					context.setCompound(compound);
 					
 					IExpressionTransformer transformer = new ExpressionTransformer(context);
-					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getDescriptor()), lhsVariableStep.getIndex());
-					StatusUtil.merge(status, transformer.transform(equationDescriptor.getRightHandSide().getExpression(), Collections.singletonList(target)));
+					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getVariableDescription()), lhsVariableStep.getIndex());
+					StatusUtil.merge(status, transformer.transform(equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target)));
 
 					context.leaveScope();
 
-					for (EquationPart equationPart : equationDescriptor.getRightHandSide().getParts()) {
+					for (EquationPart equationPart : equationDescription.getRightHandSide().getParts()) {
 						VariableStep rhsVariableStep = equationPart.getVariableStep();
-						if (rhsVariableStep.getDescriptor().getKind() == VariableKind.INPUT_PARAMETER
+						if (rhsVariableStep.getVariableDescription().getKind() == VariableKind.INPUT_PARAMETER
 								&& rhsVariableStep.getIndex() == 0) {
-							inputs.add((InputParameterDeclaration) variableDeclarations.get(rhsVariableStep.getDescriptor()));
+							inputs.add((InputParameterDeclaration) variableDeclarations.get(rhsVariableStep.getVariableDescription()));
 						}
 					}
 
-					if (lhsVariableStep.getDescriptor().getKind() == VariableKind.OUTPUT_PARAMETER
+					if (lhsVariableStep.getVariableDescription().getKind() == VariableKind.OUTPUT_PARAMETER
 							&& lhsVariableStep.getIndex() == 0) {
-						compound.getOutputs().add((OutputParameterDeclaration) variableDeclarations.get(lhsVariableStep.getDescriptor()));
+						compound.getOutputs().add((OutputParameterDeclaration) variableDeclarations.get(lhsVariableStep.getVariableDescription()));
 					}
 					
 					if (lhsVariableStep.isDerivative()) {
-						compound.getDerivatives().add(variableDeclarations.get(lhsVariableStep.getDescriptor()));
+						compound.getDerivatives().add(variableDeclarations.get(lhsVariableStep.getVariableDescription()));
 					}
 				}
 			}

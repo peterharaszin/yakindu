@@ -18,7 +18,7 @@ import org.eclipselabs.damos.mscript.Expression;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription <em>Equation Description</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getParts <em>Parts</em>}</li>
  * </ul>
@@ -30,32 +30,32 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface EquationSide extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Descriptor</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getSides <em>Sides</em>}'.
+	 * Returns the value of the '<em><b>Equation Description</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getSides <em>Sides</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Descriptor</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor</em>' container reference.
-	 * @see #setDescriptor(EquationDescriptor)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationSide_Descriptor()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getSides
+	 * @return the value of the '<em>Equation Description</em>' container reference.
+	 * @see #setEquationDescription(EquationDescription)
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationSide_EquationDescription()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getSides
 	 * @model opposite="sides" required="true" transient="false"
 	 * @generated
 	 */
-	EquationDescriptor getDescriptor();
+	EquationDescription getEquationDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor <em>Descriptor</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription <em>Equation Description</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor</em>' container reference.
-	 * @see #getDescriptor()
+	 * @param value the new value of the '<em>Equation Description</em>' container reference.
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	void setDescriptor(EquationDescriptor value);
+	void setEquationDescription(EquationDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' reference.

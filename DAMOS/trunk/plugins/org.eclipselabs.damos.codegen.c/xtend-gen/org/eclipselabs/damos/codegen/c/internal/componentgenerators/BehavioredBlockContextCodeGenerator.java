@@ -47,8 +47,8 @@ public class BehavioredBlockContextCodeGenerator {
     _builder.newLine();
     {
       FunctionInstance _functionInstance = context.getFunctionInstance();
-      FunctionDeclaration _functionDeclaration = _functionInstance.getFunctionDeclaration();
-      EList<InputParameterDeclaration> _inputParameterDeclarations = _functionDeclaration.getInputParameterDeclarations();
+      FunctionDeclaration _declaration = _functionInstance.getDeclaration();
+      EList<InputParameterDeclaration> _inputParameterDeclarations = _declaration.getInputParameterDeclarations();
       for(final InputParameterDeclaration d : _inputParameterDeclarations) {
         {
           boolean _hasContext = this.hasContext(context, d);
@@ -63,8 +63,8 @@ public class BehavioredBlockContextCodeGenerator {
     }
     {
       FunctionInstance _functionInstance_1 = context.getFunctionInstance();
-      FunctionDeclaration _functionDeclaration_1 = _functionInstance_1.getFunctionDeclaration();
-      EList<OutputParameterDeclaration> _outputParameterDeclarations = _functionDeclaration_1.getOutputParameterDeclarations();
+      FunctionDeclaration _declaration_1 = _functionInstance_1.getDeclaration();
+      EList<OutputParameterDeclaration> _outputParameterDeclarations = _declaration_1.getOutputParameterDeclarations();
       for(final OutputParameterDeclaration d_1 : _outputParameterDeclarations) {
         {
           boolean _hasContext_1 = this.hasContext(context, d_1);
@@ -79,8 +79,8 @@ public class BehavioredBlockContextCodeGenerator {
     }
     {
       FunctionInstance _functionInstance_2 = context.getFunctionInstance();
-      FunctionDeclaration _functionDeclaration_2 = _functionInstance_2.getFunctionDeclaration();
-      EList<StateVariableDeclaration> _stateVariableDeclarations = _functionDeclaration_2.getStateVariableDeclarations();
+      FunctionDeclaration _declaration_2 = _functionInstance_2.getDeclaration();
+      EList<StateVariableDeclaration> _stateVariableDeclarations = _declaration_2.getStateVariableDeclarations();
       for(final StateVariableDeclaration d_2 : _stateVariableDeclarations) {
         _builder.append("\t");
         CharSequence _generateContextStructureMember_2 = this.generateContextStructureMember(context, monitor, d_2);

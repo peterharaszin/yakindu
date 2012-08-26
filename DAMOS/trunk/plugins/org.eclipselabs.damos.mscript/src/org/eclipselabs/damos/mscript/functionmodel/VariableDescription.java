@@ -17,45 +17,45 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription <em>Function Description</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getSteps <em>Steps</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescriptor()
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescription()
  * @model
  * @generated
  */
-public interface VariableDescriptor extends EObject {
+public interface VariableDescription extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Function Descriptor</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors <em>Variable Descriptors</em>}'.
+	 * Returns the value of the '<em><b>Function Description</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getVariableDescriptions <em>Variable Descriptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function Descriptor</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Descriptor</em>' container reference.
-	 * @see #setFunctionDescriptor(FunctionDescriptor)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescriptor_FunctionDescriptor()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors
-	 * @model opposite="variableDescriptors" required="true" transient="false"
+	 * @return the value of the '<em>Function Description</em>' container reference.
+	 * @see #setFunctionDescription(FunctionDescription)
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescription_FunctionDescription()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getVariableDescriptions
+	 * @model opposite="variableDescriptions" required="true" transient="false"
 	 * @generated
 	 */
-	FunctionDescriptor getFunctionDescriptor();
+	FunctionDescription getFunctionDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription <em>Function Description</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function Descriptor</em>' container reference.
-	 * @see #getFunctionDescriptor()
+	 * @param value the new value of the '<em>Function Description</em>' container reference.
+	 * @see #getFunctionDescription()
 	 * @generated
 	 */
-	void setFunctionDescriptor(FunctionDescriptor value);
+	void setFunctionDescription(FunctionDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -67,14 +67,14 @@ public interface VariableDescriptor extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescriptor_Name()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescription_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -95,14 +95,14 @@ public interface VariableDescriptor extends EObject {
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableKind
 	 * @see #setKind(VariableKind)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescriptor_Kind()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescription_Kind()
 	 * @model
 	 * @generated
 	 */
 	VariableKind getKind();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getKind <em>Kind</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Kind</em>' attribute.
@@ -115,7 +115,7 @@ public interface VariableDescriptor extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Steps</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.VariableStep}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor <em>Descriptor</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription <em>Variable Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Steps</em>' containment reference list isn't clear,
@@ -123,9 +123,9 @@ public interface VariableDescriptor extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescriptor_Steps()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor
-	 * @model opposite="descriptor" containment="true"
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableDescription_Steps()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription
+	 * @model opposite="variableDescription" containment="true"
 	 * @generated
 	 */
 	EList<VariableStep> getSteps();

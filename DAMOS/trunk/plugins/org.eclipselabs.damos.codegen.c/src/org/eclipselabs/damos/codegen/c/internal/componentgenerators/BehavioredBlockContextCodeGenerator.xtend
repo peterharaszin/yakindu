@@ -27,17 +27,17 @@ class BehavioredBlockContextCodeGenerator {
 
 	def generateContextCode(IBehavioredBlockGeneratorContext context, CharSequence typeName, IProgressMonitor monitor) '''
 		typedef struct {
-			«FOR d : context.functionInstance.functionDeclaration.inputParameterDeclarations»
+			«FOR d : context.functionInstance.getDeclaration.inputParameterDeclarations»
 				«IF hasContext(context, d)»
 					«generateContextStructureMember(context, monitor, d)»
 				«ENDIF»
 			«ENDFOR»
-			«FOR d : context.functionInstance.functionDeclaration.outputParameterDeclarations»
+			«FOR d : context.functionInstance.getDeclaration.outputParameterDeclarations»
 				«IF hasContext(context, d)»
 					«generateContextStructureMember(context, monitor, d)»
 				«ENDIF»
 			«ENDFOR»
-			«FOR d : context.functionInstance.functionDeclaration.stateVariableDeclarations»
+			«FOR d : context.functionInstance.getDeclaration.stateVariableDeclarations»
 				«generateContextStructureMember(context, monitor, d)»
 			«ENDFOR»
 		} «typeName»;

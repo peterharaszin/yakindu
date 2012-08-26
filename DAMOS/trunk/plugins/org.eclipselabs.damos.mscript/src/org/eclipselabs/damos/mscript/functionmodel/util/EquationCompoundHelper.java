@@ -17,8 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.internal.functionmodel.util.InternalFunctionModelUtil;
 
 /**
@@ -27,29 +27,29 @@ import org.eclipselabs.damos.mscript.internal.functionmodel.util.InternalFunctio
  */
 public class EquationCompoundHelper {
 
-	public Collection<List<EquationDescriptor>> getEquationCompounds(FunctionDescriptor functionDescriptor) {
-		List<EquationDescriptor> backlog = new LinkedList<EquationDescriptor>(functionDescriptor.getEquationDescriptors());
-		Collection<List<EquationDescriptor>> equationCompounds = new LinkedList<List<EquationDescriptor>>();
+	public Collection<List<EquationDescription>> getEquationCompounds(FunctionDescription functionDescription) {
+		List<EquationDescription> backlog = new LinkedList<EquationDescription>(functionDescription.getEquationDescriptions());
+		Collection<List<EquationDescription>> equationCompounds = new LinkedList<List<EquationDescription>>();
 		while (!backlog.isEmpty()) {
-			List<EquationDescriptor> equationDescriptors = getNextEquationCompound(backlog);
-			equationCompounds.add(equationDescriptors);
+			List<EquationDescription> equationDescriptions = getNextEquationCompound(backlog);
+			equationCompounds.add(equationDescriptions);
 		}
 		return equationCompounds;
 	}
 	
-	private List<EquationDescriptor> getNextEquationCompound(List<EquationDescriptor> backlog) {
-		List<EquationDescriptor> equationCompound = new LinkedList<EquationDescriptor>();
+	private List<EquationDescription> getNextEquationCompound(List<EquationDescription> backlog) {
+		List<EquationDescription> equationCompound = new LinkedList<EquationDescription>();
 		equationCompound.add(backlog.remove(0));
 		
 		boolean changed;
 		do {
 			changed = false;
-			for (Iterator<EquationDescriptor> backlogIt = backlog.iterator(); backlogIt.hasNext();) {
-				EquationDescriptor backlogEquationDescriptor = backlogIt.next();
+			for (Iterator<EquationDescription> backlogIt = backlog.iterator(); backlogIt.hasNext();) {
+				EquationDescription backlogEquationDescriptor = backlogIt.next();
 				boolean append = false;
 
-				for (ListIterator<EquationDescriptor> it = equationCompound.listIterator(); it.hasNext();) {
-					EquationDescriptor next = it.next();
+				for (ListIterator<EquationDescription> it = equationCompound.listIterator(); it.hasNext();) {
+					EquationDescription next = it.next();
 					if (InternalFunctionModelUtil.isDefinedBy(next, backlogEquationDescriptor)) {
 						it.previous();
 						it.add(backlogEquationDescriptor);

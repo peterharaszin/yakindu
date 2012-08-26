@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getFunctionDeclaration <em>Function Declaration</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getInitializationCompound <em>Initialization Compound</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getComputationCompounds <em>Computation Compounds</em>}</li>
  * </ul>
@@ -40,14 +40,14 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
  */
 public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstance {
 	/**
-	 * The cached value of the '{@link #getFunctionDeclaration() <em>Function Declaration</em>}' reference.
+	 * The cached value of the '{@link #getDeclaration() <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFunctionDeclaration()
+	 * @see #getDeclaration()
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionDeclaration functionDeclaration;
+	protected FunctionDeclaration declaration;
 
 	/**
 	 * The cached value of the '{@link #getInitializationCompound() <em>Initialization Compound</em>}' containment reference.
@@ -93,16 +93,16 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDeclaration getFunctionDeclaration() {
-		if (functionDeclaration != null && functionDeclaration.eIsProxy()) {
-			InternalEObject oldFunctionDeclaration = (InternalEObject)functionDeclaration;
-			functionDeclaration = (FunctionDeclaration)eResolveProxy(oldFunctionDeclaration);
-			if (functionDeclaration != oldFunctionDeclaration) {
+	public FunctionDeclaration getDeclaration() {
+		if (declaration != null && declaration.eIsProxy()) {
+			InternalEObject oldDeclaration = (InternalEObject)declaration;
+			declaration = (FunctionDeclaration)eResolveProxy(oldDeclaration);
+			if (declaration != oldDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION, oldFunctionDeclaration, functionDeclaration));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
 			}
 		}
-		return functionDeclaration;
+		return declaration;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDeclaration basicGetFunctionDeclaration() {
-		return functionDeclaration;
+	public FunctionDeclaration basicGetDeclaration() {
+		return declaration;
 	}
 
 	/**
@@ -119,11 +119,11 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFunctionDeclaration(FunctionDeclaration newFunctionDeclaration) {
-		FunctionDeclaration oldFunctionDeclaration = functionDeclaration;
-		functionDeclaration = newFunctionDeclaration;
+	public void setDeclaration(FunctionDeclaration newDeclaration) {
+		FunctionDeclaration oldDeclaration = declaration;
+		declaration = newDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION, oldFunctionDeclaration, functionDeclaration));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
 	}
 
 	/**
@@ -205,9 +205,9 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
-				if (resolve) return getFunctionDeclaration();
-				return basicGetFunctionDeclaration();
+			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+				if (resolve) return getDeclaration();
+				return basicGetDeclaration();
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return getInitializationCompound();
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
@@ -225,8 +225,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
-				setFunctionDeclaration((FunctionDeclaration)newValue);
+			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+				setDeclaration((FunctionDeclaration)newValue);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((CompoundStatement)newValue);
@@ -247,8 +247,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
-				setFunctionDeclaration((FunctionDeclaration)null);
+			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+				setDeclaration((FunctionDeclaration)null);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((CompoundStatement)null);
@@ -268,8 +268,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
-				return functionDeclaration != null;
+			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+				return declaration != null;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return initializationCompound != null;
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:

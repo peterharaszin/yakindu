@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
@@ -25,40 +25,40 @@ import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
  */
 public class InternalFunctionModelUtil {
 
-	public static EquationPart getFirstLeftHandSideEquationPart(EquationDescriptor equationDescriptor) {
-		List<EquationPart> lhsEquationParts = equationDescriptor.getLeftHandSide().getParts();
+	public static EquationPart getFirstLeftHandSideEquationPart(EquationDescription equationDescription) {
+		List<EquationPart> lhsEquationParts = equationDescription.getLeftHandSide().getParts();
 		return !lhsEquationParts.isEmpty() ? lhsEquationParts.get(0) : null;
 	}
 	
-	public static VariableStep getFirstLeftHandSideVariableStep(EquationDescriptor equationDescriptor) {
-		EquationPart lhsEquationPart = getFirstLeftHandSideEquationPart(equationDescriptor);
+	public static VariableStep getFirstLeftHandSideVariableStep(EquationDescription equationDescription) {
+		EquationPart lhsEquationPart = getFirstLeftHandSideEquationPart(equationDescription);
 		return lhsEquationPart != null ? lhsEquationPart.getVariableStep() : null;
 	}
 
-	public static EquationDescriptor getDefiningEquation(VariableStep variableStep) {
+	public static EquationDescription getDefiningEquation(VariableStep variableStep) {
 		for (EquationPart equationPart : variableStep.getUsingEquationParts()) {
-			EquationDescriptor equationDescriptor = equationPart.getSide().getDescriptor();
-			if (equationPart.getSide() == equationDescriptor.getLeftHandSide()) {
-				return equationDescriptor;
+			EquationDescription equationDescription = equationPart.getSide().getEquationDescription();
+			if (equationPart.getSide() == equationDescription.getLeftHandSide()) {
+				return equationDescription;
 			}
 		}
 		return null;
 	}
 	
-	public static boolean isDefinedBy(EquationDescriptor equationDescriptor, EquationDescriptor otherEquationDescriptor) {
-		return isDefinedBy(equationDescriptor, otherEquationDescriptor, new HashSet<EquationDescriptor>());
+	public static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescriptor) {
+		return isDefinedBy(equationDescription, otherEquationDescriptor, new HashSet<EquationDescription>());
 	}
 
-	private static boolean isDefinedBy(EquationDescriptor equationDescriptor, EquationDescriptor otherEquationDescriptor, Set<EquationDescriptor> visitedEquationDescriptors) {
-		if (!visitedEquationDescriptors.add(equationDescriptor)) {
+	private static boolean isDefinedBy(EquationDescription equationDescription, EquationDescription otherEquationDescriptor, Set<EquationDescription> visitedEquationDescriptors) {
+		if (!visitedEquationDescriptors.add(equationDescription)) {
 			return false;
 		}
-		for (EquationPart equationPart : equationDescriptor.getRightHandSide().getParts()) {
-			EquationDescriptor definingEquationDescriptor = getDefiningEquation(equationPart.getVariableStep());
+		for (EquationPart equationPart : equationDescription.getRightHandSide().getParts()) {
+			EquationDescription definingEquationDescriptor = getDefiningEquation(equationPart.getVariableStep());
 			if (definingEquationDescriptor == otherEquationDescriptor) {
 				return true;
 			}
-			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor, new HashSet<EquationDescriptor>(visitedEquationDescriptors))) {
+			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor, new HashSet<EquationDescription>(visitedEquationDescriptors))) {
 				return true;
 			}
 		}

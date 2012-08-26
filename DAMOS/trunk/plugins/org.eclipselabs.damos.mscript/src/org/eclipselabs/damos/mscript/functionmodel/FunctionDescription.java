@@ -21,17 +21,17 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors <em>Equation Descriptors</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors <em>Variable Descriptors</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getDeclaration <em>Declaration</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getEquationDescriptions <em>Equation Descriptions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getVariableDescriptions <em>Variable Descriptions</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor()
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescription()
  * @model
  * @generated
  */
-public interface FunctionDescriptor extends EObject {
+public interface FunctionDescription extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -42,14 +42,14 @@ public interface FunctionDescriptor extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declaration</em>' reference.
 	 * @see #setDeclaration(FunctionDeclaration)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor_Declaration()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescription_Declaration()
 	 * @model required="true"
 	 * @generated
 	 */
 	FunctionDeclaration getDeclaration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getDeclaration <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Declaration</em>' reference.
@@ -59,40 +59,40 @@ public interface FunctionDescriptor extends EObject {
 	void setDeclaration(FunctionDeclaration value);
 
 	/**
-	 * Returns the value of the '<em><b>Equation Descriptors</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Returns the value of the '<em><b>Equation Descriptions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription}.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Equation Descriptors</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Equation Descriptors</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor_EquationDescriptors()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor
-	 * @model opposite="functionDescriptor" containment="true"
+	 * @return the value of the '<em>Equation Descriptions</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescription_EquationDescriptions()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription
+	 * @model opposite="functionDescription" containment="true"
 	 * @generated
 	 */
-	EList<EquationDescriptor> getEquationDescriptors();
+	EList<EquationDescription> getEquationDescriptions();
 
 	/**
-	 * Returns the value of the '<em><b>Variable Descriptors</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Returns the value of the '<em><b>Variable Descriptions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription}.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable Descriptors</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable Descriptors</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor_VariableDescriptors()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor
-	 * @model opposite="functionDescriptor" containment="true"
+	 * @return the value of the '<em>Variable Descriptions</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescription_VariableDescriptions()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription
+	 * @model opposite="functionDescription" containment="true"
 	 * @generated
 	 */
-	EList<VariableDescriptor> getVariableDescriptors();
+	EList<VariableDescription> getVariableDescriptions();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,7 +100,7 @@ public interface FunctionDescriptor extends EObject {
 	 * @model nameRequired="true"
 	 * @generated
 	 */
-	VariableDescriptor getVariableDescriptor(String name);
+	VariableDescription getVariableDescription(String name);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -38,7 +38,7 @@ public interface IStaticEvaluationResult extends IStatusCollector {
 	int getCircularBufferSize(VariableDeclaration variableDeclaration);
 	void setCircularBufferSize(VariableDeclaration variableDeclaration, int size);
 	
-	FunctionDescriptor getFunctionDescriptor(FunctionDeclaration functionDeclaration);
-	void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescriptor functionDescriptor);
+	FunctionDescription getFunctionDescriptor(FunctionDeclaration functionDeclaration);
+	void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription);
 
 }

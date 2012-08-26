@@ -13,13 +13,13 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
@@ -50,52 +50,52 @@ public class FunctionModelValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipselabs.damos.mscript.functionmodel";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Duplicate Equations' of 'Function Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Duplicate Equations' of 'Function Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FUNCTION_DESCRIPTOR__HAS_NO_DUPLICATE_EQUATIONS = 1;
+	public static final int FUNCTION_DESCRIPTION__HAS_NO_DUPLICATE_EQUATIONS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Cyclic Equations' of 'Function Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Cyclic Equations' of 'Function Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FUNCTION_DESCRIPTOR__HAS_NO_CYCLIC_EQUATIONS = 2;
+	public static final int FUNCTION_DESCRIPTION__HAS_NO_CYCLIC_EQUATIONS = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Output' of 'Function Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Output' of 'Function Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_OUTPUT = 3;
+	public static final int FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_OUTPUT = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Variable Step' of 'Function Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Variable Step' of 'Function Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP = 4;
+	public static final int FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP = 4;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Left Hand Side Valid' of 'Equation Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Left Hand Side Valid' of 'Equation Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EQUATION_DESCRIPTOR__IS_LEFT_HAND_SIDE_VALID = 5;
+	public static final int EQUATION_DESCRIPTION__IS_LEFT_HAND_SIDE_VALID = 5;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Right Hand Side Valid' of 'Equation Descriptor'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Right Hand Side Valid' of 'Equation Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EQUATION_DESCRIPTOR__IS_RIGHT_HAND_SIDE_VALID = 6;
+	public static final int EQUATION_DESCRIPTION__IS_RIGHT_HAND_SIDE_VALID = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -143,16 +143,16 @@ public class FunctionModelValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR:
-				return validateFunctionDescriptor((FunctionDescriptor)value, diagnostics, context);
-			case FunctionModelPackage.EQUATION_DESCRIPTOR:
-				return validateEquationDescriptor((EquationDescriptor)value, diagnostics, context);
+			case FunctionModelPackage.FUNCTION_DESCRIPTION:
+				return validateFunctionDescription((FunctionDescription)value, diagnostics, context);
+			case FunctionModelPackage.EQUATION_DESCRIPTION:
+				return validateEquationDescription((EquationDescription)value, diagnostics, context);
 			case FunctionModelPackage.EQUATION_SIDE:
 				return validateEquationSide((EquationSide)value, diagnostics, context);
 			case FunctionModelPackage.EQUATION_PART:
 				return validateEquationPart((EquationPart)value, diagnostics, context);
-			case FunctionModelPackage.VARIABLE_DESCRIPTOR:
-				return validateVariableDescriptor((VariableDescriptor)value, diagnostics, context);
+			case FunctionModelPackage.VARIABLE_DESCRIPTION:
+				return validateVariableDescription((VariableDescription)value, diagnostics, context);
 			case FunctionModelPackage.VARIABLE_STEP:
 				return validateVariableStep((VariableStep)value, diagnostics, context);
 			case FunctionModelPackage.FUNCTION_INSTANCE:
@@ -171,61 +171,61 @@ public class FunctionModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFunctionDescriptor(FunctionDescriptor functionDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(functionDescriptor, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFunctionDescriptor_hasNoDuplicateEquations(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFunctionDescriptor_hasNoCyclicEquations(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFunctionDescriptor_hasEquationsForEachOutput(functionDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFunctionDescriptor_hasEquationsForEachVariableStep(functionDescriptor, diagnostics, context);
+	public boolean validateFunctionDescription(FunctionDescription functionDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(functionDescription, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFunctionDescription_hasNoDuplicateEquations(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFunctionDescription_hasNoCyclicEquations(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFunctionDescription_hasEquationsForEachOutput(functionDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFunctionDescription_hasEquationsForEachVariableStep(functionDescription, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the hasNoDuplicateEquations constraint of '<em>Function Descriptor</em>'.
+	 * Validates the hasNoDuplicateEquations constraint of '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFunctionDescriptor_hasNoDuplicateEquations(FunctionDescriptor functionDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return functionDescriptor.hasNoDuplicateEquations(diagnostics, context);
+	public boolean validateFunctionDescription_hasNoDuplicateEquations(FunctionDescription functionDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return functionDescription.hasNoDuplicateEquations(diagnostics, context);
 	}
 
 	/**
-	 * Validates the hasNoCyclicEquations constraint of '<em>Function Descriptor</em>'.
+	 * Validates the hasNoCyclicEquations constraint of '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFunctionDescriptor_hasNoCyclicEquations(FunctionDescriptor functionDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return functionDescriptor.hasNoCyclicEquations(diagnostics, context);
+	public boolean validateFunctionDescription_hasNoCyclicEquations(FunctionDescription functionDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return functionDescription.hasNoCyclicEquations(diagnostics, context);
 	}
 
 	/**
-	 * Validates the hasEquationsForEachOutput constraint of '<em>Function Descriptor</em>'.
+	 * Validates the hasEquationsForEachOutput constraint of '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFunctionDescriptor_hasEquationsForEachOutput(FunctionDescriptor functionDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return functionDescriptor.hasEquationsForEachOutput(diagnostics, context);
+	public boolean validateFunctionDescription_hasEquationsForEachOutput(FunctionDescription functionDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return functionDescription.hasEquationsForEachOutput(diagnostics, context);
 	}
 
 	/**
-	 * Validates the hasEquationsForEachVariableStep constraint of '<em>Function Descriptor</em>'.
+	 * Validates the hasEquationsForEachVariableStep constraint of '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFunctionDescriptor_hasEquationsForEachVariableStep(FunctionDescriptor functionDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return functionDescriptor.hasEquationsForEachVariableStep(diagnostics, context);
+	public boolean validateFunctionDescription_hasEquationsForEachVariableStep(FunctionDescription functionDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return functionDescription.hasEquationsForEachVariableStep(diagnostics, context);
 	}
 
 	/**
@@ -233,39 +233,39 @@ public class FunctionModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEquationDescriptor(EquationDescriptor equationDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(equationDescriptor, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateEquationDescriptor_isLeftHandSideValid(equationDescriptor, diagnostics, context);
-		if (result || diagnostics != null) result &= validateEquationDescriptor_isRightHandSideValid(equationDescriptor, diagnostics, context);
+	public boolean validateEquationDescription(EquationDescription equationDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(equationDescription, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEquationDescription_isLeftHandSideValid(equationDescription, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEquationDescription_isRightHandSideValid(equationDescription, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the isLeftHandSideValid constraint of '<em>Equation Descriptor</em>'.
+	 * Validates the isLeftHandSideValid constraint of '<em>Equation Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEquationDescriptor_isLeftHandSideValid(EquationDescriptor equationDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return equationDescriptor.isLeftHandSideValid(diagnostics, context);
+	public boolean validateEquationDescription_isLeftHandSideValid(EquationDescription equationDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return equationDescription.isLeftHandSideValid(diagnostics, context);
 	}
 
 	/**
-	 * Validates the isRightHandSideValid constraint of '<em>Equation Descriptor</em>'.
+	 * Validates the isRightHandSideValid constraint of '<em>Equation Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEquationDescriptor_isRightHandSideValid(EquationDescriptor equationDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return equationDescriptor.isRightHandSideValid(diagnostics, context);
+	public boolean validateEquationDescription_isRightHandSideValid(EquationDescription equationDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return equationDescription.isRightHandSideValid(diagnostics, context);
 	}
 
 	/**
@@ -291,8 +291,8 @@ public class FunctionModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVariableDescriptor(VariableDescriptor variableDescriptor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(variableDescriptor, diagnostics, context);
+	public boolean validateVariableDescription(VariableDescription variableDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(variableDescription, diagnostics, context);
 	}
 
 	/**

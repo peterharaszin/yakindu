@@ -12,13 +12,13 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
 /**
@@ -78,15 +78,15 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR: {
-				FunctionDescriptor functionDescriptor = (FunctionDescriptor)theEObject;
-				T result = caseFunctionDescriptor(functionDescriptor);
+			case FunctionModelPackage.FUNCTION_DESCRIPTION: {
+				FunctionDescription functionDescription = (FunctionDescription)theEObject;
+				T result = caseFunctionDescription(functionDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.EQUATION_DESCRIPTOR: {
-				EquationDescriptor equationDescriptor = (EquationDescriptor)theEObject;
-				T result = caseEquationDescriptor(equationDescriptor);
+			case FunctionModelPackage.EQUATION_DESCRIPTION: {
+				EquationDescription equationDescription = (EquationDescription)theEObject;
+				T result = caseEquationDescription(equationDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,9 +102,9 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.VARIABLE_DESCRIPTOR: {
-				VariableDescriptor variableDescriptor = (VariableDescriptor)theEObject;
-				T result = caseVariableDescriptor(variableDescriptor);
+			case FunctionModelPackage.VARIABLE_DESCRIPTION: {
+				VariableDescription variableDescription = (VariableDescription)theEObject;
+				T result = caseVariableDescription(variableDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,32 +133,32 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Function Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Function Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Function Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFunctionDescriptor(FunctionDescriptor object) {
+	public T caseFunctionDescription(FunctionDescription object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Equation Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Equation Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Equation Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Equation Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEquationDescriptor(EquationDescriptor object) {
+	public T caseEquationDescription(EquationDescription object) {
 		return null;
 	}
 
@@ -193,17 +193,17 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariableDescriptor(VariableDescriptor object) {
+	public T caseVariableDescription(VariableDescription object) {
 		return null;
 	}
 

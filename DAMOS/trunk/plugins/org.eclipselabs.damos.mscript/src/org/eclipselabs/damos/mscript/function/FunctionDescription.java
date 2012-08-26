@@ -134,4 +134,4 @@ public interface FunctionDescription extends EObject {
 	 */
 	boolean hasEquationsForEachVariableStep(DiagnosticChain diagnostics, Map<Object, Object> context);
 
-} // FunctionDescriptor
+} // FunctionDescription

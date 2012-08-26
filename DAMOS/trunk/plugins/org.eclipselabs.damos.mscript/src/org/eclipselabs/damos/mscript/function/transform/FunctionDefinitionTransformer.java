@@ -56,7 +56,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public class FunctionDefinitionTransformer implements IFunctionDefinitionTransformer {
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.function.FunctionDescriptor, java.lang.String, java.util.List, java.util.List)
+	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformer#transform(org.eclipselabs.mscript.language.function.FunctionDescription, java.lang.String, java.util.List, java.util.List)
 	 */
 	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescription functionDescription, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);

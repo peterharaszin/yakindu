@@ -154,4 +154,4 @@ public interface VariableDescription extends EObject {
 	 */
 	VariableStep getMaximumStep();
 
-} // VariableDescriptor
+} // VariableDescription

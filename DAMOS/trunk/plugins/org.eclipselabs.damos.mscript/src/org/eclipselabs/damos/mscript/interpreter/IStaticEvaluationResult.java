@@ -38,7 +38,7 @@ public interface IStaticEvaluationResult extends IStatusCollector {
 	int getCircularBufferSize(VariableDeclaration variableDeclaration);
 	void setCircularBufferSize(VariableDeclaration variableDeclaration, int size);
 	
-	FunctionDescription getFunctionDescriptor(FunctionDeclaration functionDeclaration);
-	void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription);
+	FunctionDescription getFunctionDescription(FunctionDeclaration functionDeclaration);
+	void setFunctionDescription(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription);
 
 }

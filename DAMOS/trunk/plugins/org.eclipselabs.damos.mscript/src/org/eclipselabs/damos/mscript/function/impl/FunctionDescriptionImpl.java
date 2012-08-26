@@ -35,7 +35,7 @@ import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableStep;
 import org.eclipselabs.damos.mscript.function.util.FunctionModelValidator;
-import org.eclipselabs.damos.mscript.internal.function.util.VariableDescriptorWrapper;
+import org.eclipselabs.damos.mscript.internal.function.util.VariableDescriptionWrapper;
 
 /**
  * <!-- begin-user-doc -->
@@ -185,7 +185,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	 */
 	public boolean hasNoDuplicateEquations(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Set<EquationPart> invalidEquationParts = new HashSet<EquationPart>();
-		Map<VariableDescriptorWrapper, EquationPart> wrappers = new HashMap<VariableDescriptorWrapper, EquationPart>();
+		Map<VariableDescriptionWrapper, EquationPart> wrappers = new HashMap<VariableDescriptionWrapper, EquationPart>();
 		
 		for (EquationDescription equationDescription : getEquationDescriptions()) {
 			if (!equationDescription.getLeftHandSide().getParts().isEmpty()) {
@@ -193,7 +193,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 				VariableStep variableStep = equationPart.getVariableStep();
 				// If function is not continuous, we do not distinguish between initial and non-initial steps
 				boolean initial = getDeclaration().getKind() == FunctionKind.CONTINUOUS ? variableStep.isInitial() : false;
-				VariableDescriptorWrapper descriptor = new VariableDescriptorWrapper(variableStep.getVariableDescription().getName(), variableStep.getIndex(), initial, variableStep.isDerivative());
+				VariableDescriptionWrapper descriptor = new VariableDescriptionWrapper(variableStep.getVariableDescription().getName(), variableStep.getIndex(), initial, variableStep.isDerivative());
 				EquationPart previousEquationPart = wrappers.put(descriptor, equationPart);
 				if (previousEquationPart != null) {
 					invalidEquationParts.add(equationPart);

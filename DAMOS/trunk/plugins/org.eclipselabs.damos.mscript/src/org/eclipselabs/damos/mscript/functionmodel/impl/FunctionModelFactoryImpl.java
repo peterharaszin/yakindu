@@ -13,14 +13,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
@@ -68,11 +68,11 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR: return createFunctionDescriptor();
-			case FunctionModelPackage.EQUATION_DESCRIPTOR: return createEquationDescriptor();
+			case FunctionModelPackage.FUNCTION_DESCRIPTION: return createFunctionDescription();
+			case FunctionModelPackage.EQUATION_DESCRIPTION: return createEquationDescription();
 			case FunctionModelPackage.EQUATION_SIDE: return createEquationSide();
 			case FunctionModelPackage.EQUATION_PART: return createEquationPart();
-			case FunctionModelPackage.VARIABLE_DESCRIPTOR: return createVariableDescriptor();
+			case FunctionModelPackage.VARIABLE_DESCRIPTION: return createVariableDescription();
 			case FunctionModelPackage.VARIABLE_STEP: return createVariableStep();
 			case FunctionModelPackage.FUNCTION_INSTANCE: return createFunctionInstance();
 			case FunctionModelPackage.COMPUTATION_COMPOUND: return createComputationCompound();
@@ -116,9 +116,9 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDescriptor createFunctionDescriptor() {
-		FunctionDescriptorImpl functionDescriptor = new FunctionDescriptorImpl();
-		return functionDescriptor;
+	public FunctionDescription createFunctionDescription() {
+		FunctionDescriptionImpl functionDescription = new FunctionDescriptionImpl();
+		return functionDescription;
 	}
 
 	/**
@@ -126,9 +126,9 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EquationDescriptor createEquationDescriptor() {
-		EquationDescriptorImpl equationDescriptor = new EquationDescriptorImpl();
-		return equationDescriptor;
+	public EquationDescription createEquationDescription() {
+		EquationDescriptionImpl equationDescription = new EquationDescriptionImpl();
+		return equationDescription;
 	}
 
 	/**
@@ -156,9 +156,9 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableDescriptor createVariableDescriptor() {
-		VariableDescriptorImpl variableDescriptor = new VariableDescriptorImpl();
-		return variableDescriptor;
+	public VariableDescription createVariableDescription() {
+		VariableDescriptionImpl variableDescription = new VariableDescriptionImpl();
+		return variableDescription;
 	}
 
 	/**

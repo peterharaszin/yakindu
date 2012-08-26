@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationPartImpl#getSide <em>Side</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationPartImpl#getVariableAccess <em>Variable Access</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationPartImpl#getVariableReference <em>Variable Reference</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationPartImpl#getVariableStep <em>Variable Step</em>}</li>
  * </ul>
  * </p>
@@ -36,14 +36,14 @@ import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
  */
 public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	/**
-	 * The cached value of the '{@link #getVariableAccess() <em>Variable Access</em>}' reference.
+	 * The cached value of the '{@link #getVariableReference() <em>Variable Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariableAccess()
+	 * @see #getVariableReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression variableAccess;
+	protected FeatureReference variableReference;
 
 	/**
 	 * The cached value of the '{@link #getVariableStep() <em>Variable Step</em>}' reference.
@@ -120,16 +120,16 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getVariableAccess() {
-		if (variableAccess != null && variableAccess.eIsProxy()) {
-			InternalEObject oldVariableAccess = (InternalEObject)variableAccess;
-			variableAccess = (Expression)eResolveProxy(oldVariableAccess);
-			if (variableAccess != oldVariableAccess) {
+	public FeatureReference getVariableReference() {
+		if (variableReference != null && variableReference.eIsProxy()) {
+			InternalEObject oldVariableReference = (InternalEObject)variableReference;
+			variableReference = (FeatureReference)eResolveProxy(oldVariableReference);
+			if (variableReference != oldVariableReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS, oldVariableAccess, variableAccess));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
 			}
 		}
-		return variableAccess;
+		return variableReference;
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression basicGetVariableAccess() {
-		return variableAccess;
+	public FeatureReference basicGetVariableReference() {
+		return variableReference;
 	}
 
 	/**
@@ -146,11 +146,11 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVariableAccess(Expression newVariableAccess) {
-		Expression oldVariableAccess = variableAccess;
-		variableAccess = newVariableAccess;
+	public void setVariableReference(FeatureReference newVariableReference) {
+		FeatureReference oldVariableReference = variableReference;
+		variableReference = newVariableReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS, oldVariableAccess, variableAccess));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
 	}
 
 	/**
@@ -273,9 +273,9 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 		switch (featureID) {
 			case FunctionModelPackage.EQUATION_PART__SIDE:
 				return getSide();
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS:
-				if (resolve) return getVariableAccess();
-				return basicGetVariableAccess();
+			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+				if (resolve) return getVariableReference();
+				return basicGetVariableReference();
 			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
 				if (resolve) return getVariableStep();
 				return basicGetVariableStep();
@@ -294,8 +294,8 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 			case FunctionModelPackage.EQUATION_PART__SIDE:
 				setSide((EquationSide)newValue);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS:
-				setVariableAccess((Expression)newValue);
+			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+				setVariableReference((FeatureReference)newValue);
 				return;
 			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
 				setVariableStep((VariableStep)newValue);
@@ -315,8 +315,8 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 			case FunctionModelPackage.EQUATION_PART__SIDE:
 				setSide((EquationSide)null);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS:
-				setVariableAccess((Expression)null);
+			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+				setVariableReference((FeatureReference)null);
 				return;
 			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
 				setVariableStep((VariableStep)null);
@@ -335,8 +335,8 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 		switch (featureID) {
 			case FunctionModelPackage.EQUATION_PART__SIDE:
 				return getSide() != null;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_ACCESS:
-				return variableAccess != null;
+			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+				return variableReference != null;
 			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
 				return variableStep != null;
 		}

@@ -21,46 +21,46 @@ import org.eclipselabs.damos.mscript.Equation;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getEquation <em>Equation</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getSides <em>Sides</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getLeftHandSide <em>Left Hand Side</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getRightHandSide <em>Right Hand Side</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription <em>Function Description</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getEquation <em>Equation</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getSides <em>Sides</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getLeftHandSide <em>Left Hand Side</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getRightHandSide <em>Right Hand Side</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor()
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription()
  * @model
  * @generated
  */
-public interface EquationDescriptor extends EObject {
+public interface EquationDescription extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Function Descriptor</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors <em>Equation Descriptors</em>}'.
+	 * Returns the value of the '<em><b>Function Description</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getEquationDescriptions <em>Equation Descriptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function Descriptor</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Descriptor</em>' container reference.
-	 * @see #setFunctionDescriptor(FunctionDescriptor)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor_FunctionDescriptor()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors
-	 * @model opposite="equationDescriptors" required="true" transient="false"
+	 * @return the value of the '<em>Function Description</em>' container reference.
+	 * @see #setFunctionDescription(FunctionDescription)
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription_FunctionDescription()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getEquationDescriptions
+	 * @model opposite="equationDescriptions" required="true" transient="false"
 	 * @generated
 	 */
-	FunctionDescriptor getFunctionDescriptor();
+	FunctionDescription getFunctionDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription <em>Function Description</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function Descriptor</em>' container reference.
-	 * @see #getFunctionDescriptor()
+	 * @param value the new value of the '<em>Function Description</em>' container reference.
+	 * @see #getFunctionDescription()
 	 * @generated
 	 */
-	void setFunctionDescriptor(FunctionDescriptor value);
+	void setFunctionDescription(FunctionDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Equation</b></em>' reference.
@@ -72,14 +72,14 @@ public interface EquationDescriptor extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Equation</em>' reference.
 	 * @see #setEquation(Equation)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor_Equation()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription_Equation()
 	 * @model required="true"
 	 * @generated
 	 */
 	Equation getEquation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getEquation <em>Equation</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getEquation <em>Equation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Equation</em>' reference.
@@ -91,7 +91,7 @@ public interface EquationDescriptor extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Sides</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.EquationSide}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor <em>Descriptor</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription <em>Equation Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sides</em>' containment reference list isn't clear,
@@ -99,9 +99,9 @@ public interface EquationDescriptor extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sides</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor_Sides()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor
-	 * @model opposite="descriptor" containment="true" lower="2" upper="2"
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription_Sides()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription
+	 * @model opposite="equationDescription" containment="true" lower="2" upper="2"
 	 * @generated
 	 */
 	EList<EquationSide> getSides();
@@ -115,7 +115,7 @@ public interface EquationDescriptor extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Hand Side</em>' reference.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor_LeftHandSide()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription_LeftHandSide()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
@@ -130,7 +130,7 @@ public interface EquationDescriptor extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Hand Side</em>' reference.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescriptor_RightHandSide()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getEquationDescription_RightHandSide()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */

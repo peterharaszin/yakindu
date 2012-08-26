@@ -28,7 +28,7 @@ public class FunctionModelUtil {
 
 	public static List<InputParameterDeclaration> getDirectFeedthroughInputs(FunctionInstance functionInstance) {
 		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>();
-		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
 			if (isDirectFeedthrough(functionInstance, inputParameterDeclaration)) {
 				inputs.add((InputParameterDeclaration) inputParameterDeclaration);
 			}

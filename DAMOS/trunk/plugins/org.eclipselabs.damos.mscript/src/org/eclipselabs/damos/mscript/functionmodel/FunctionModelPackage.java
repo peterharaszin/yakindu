@@ -62,14 +62,14 @@ public interface FunctionModelPackage extends EPackage {
 	FunctionModelPackage eINSTANCE = org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl <em>Function Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptionImpl <em>Function Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptionImpl
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionDescription()
 	 * @generated
 	 */
-	int FUNCTION_DESCRIPTOR = 0;
+	int FUNCTION_DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Declaration</b></em>' reference.
@@ -78,53 +78,53 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTOR__DECLARATION = 0;
+	int FUNCTION_DESCRIPTION__DECLARATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Equation Descriptors</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Equation Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS = 1;
+	int FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Variable Descriptors</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Variable Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTOR__VARIABLE_DESCRIPTORS = 2;
+	int FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS = 2;
 
 	/**
-	 * The number of structural features of the '<em>Function Descriptor</em>' class.
+	 * The number of structural features of the '<em>Function Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTOR_FEATURE_COUNT = 3;
+	int FUNCTION_DESCRIPTION_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptorImpl <em>Equation Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptionImpl <em>Equation Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptorImpl
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getEquationDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptionImpl
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getEquationDescription()
 	 * @generated
 	 */
-	int EQUATION_DESCRIPTOR = 1;
+	int EQUATION_DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Function Descriptor</b></em>' container reference.
+	 * The feature id for the '<em><b>Function Description</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR__FUNCTION_DESCRIPTOR = 0;
+	int EQUATION_DESCRIPTION__FUNCTION_DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Equation</b></em>' reference.
@@ -133,7 +133,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR__EQUATION = 1;
+	int EQUATION_DESCRIPTION__EQUATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Sides</b></em>' containment reference list.
@@ -142,7 +142,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR__SIDES = 2;
+	int EQUATION_DESCRIPTION__SIDES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Left Hand Side</b></em>' reference.
@@ -151,7 +151,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR__LEFT_HAND_SIDE = 3;
+	int EQUATION_DESCRIPTION__LEFT_HAND_SIDE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Right Hand Side</b></em>' reference.
@@ -160,16 +160,16 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR__RIGHT_HAND_SIDE = 4;
+	int EQUATION_DESCRIPTION__RIGHT_HAND_SIDE = 4;
 
 	/**
-	 * The number of structural features of the '<em>Equation Descriptor</em>' class.
+	 * The number of structural features of the '<em>Equation Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_DESCRIPTOR_FEATURE_COUNT = 5;
+	int EQUATION_DESCRIPTION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationSideImpl <em>Equation Side</em>}' class.
@@ -182,13 +182,13 @@ public interface FunctionModelPackage extends EPackage {
 	int EQUATION_SIDE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' container reference.
+	 * The feature id for the '<em><b>Equation Description</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_SIDE__DESCRIPTOR = 0;
+	int EQUATION_SIDE__EQUATION_DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' reference.
@@ -237,13 +237,13 @@ public interface FunctionModelPackage extends EPackage {
 	int EQUATION_PART__SIDE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Variable Access</b></em>' reference.
+	 * The feature id for the '<em><b>Variable Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUATION_PART__VARIABLE_ACCESS = 1;
+	int EQUATION_PART__VARIABLE_REFERENCE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Variable Step</b></em>' reference.
@@ -264,23 +264,23 @@ public interface FunctionModelPackage extends EPackage {
 	int EQUATION_PART_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptorImpl <em>Variable Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptionImpl <em>Variable Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptorImpl
-	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getVariableDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptionImpl
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getVariableDescription()
 	 * @generated
 	 */
-	int VARIABLE_DESCRIPTOR = 4;
+	int VARIABLE_DESCRIPTION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Function Descriptor</b></em>' container reference.
+	 * The feature id for the '<em><b>Function Description</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DESCRIPTOR__FUNCTION_DESCRIPTOR = 0;
+	int VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -289,7 +289,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DESCRIPTOR__NAME = 1;
+	int VARIABLE_DESCRIPTION__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -298,7 +298,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DESCRIPTOR__KIND = 2;
+	int VARIABLE_DESCRIPTION__KIND = 2;
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
@@ -307,16 +307,16 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DESCRIPTOR__STEPS = 3;
+	int VARIABLE_DESCRIPTION__STEPS = 3;
 
 	/**
-	 * The number of structural features of the '<em>Variable Descriptor</em>' class.
+	 * The number of structural features of the '<em>Variable Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_DESCRIPTOR_FEATURE_COUNT = 4;
+	int VARIABLE_DESCRIPTION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableStepImpl <em>Variable Step</em>}' class.
@@ -329,13 +329,13 @@ public interface FunctionModelPackage extends EPackage {
 	int VARIABLE_STEP = 5;
 
 	/**
-	 * The feature id for the '<em><b>Descriptor</b></em>' container reference.
+	 * The feature id for the '<em><b>Variable Description</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_STEP__DESCRIPTOR = 0;
+	int VARIABLE_STEP__VARIABLE_DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -393,13 +393,13 @@ public interface FunctionModelPackage extends EPackage {
 	int FUNCTION_INSTANCE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Function Declaration</b></em>' reference.
+	 * The feature id for the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_INSTANCE__FUNCTION_DECLARATION = 0;
+	int FUNCTION_INSTANCE__DECLARATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Initialization Compound</b></em>' containment reference.
@@ -495,112 +495,112 @@ public interface FunctionModelPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Function Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor
+	 * @return the meta object for class '<em>Function Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription
 	 * @generated
 	 */
-	EClass getFunctionDescriptor();
+	EClass getFunctionDescription();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getDeclaration <em>Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration()
-	 * @see #getFunctionDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getDeclaration()
+	 * @see #getFunctionDescription()
 	 * @generated
 	 */
-	EReference getFunctionDescriptor_Declaration();
+	EReference getFunctionDescription_Declaration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors <em>Equation Descriptors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getEquationDescriptions <em>Equation Descriptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Equation Descriptors</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors()
-	 * @see #getFunctionDescriptor()
+	 * @return the meta object for the containment reference list '<em>Equation Descriptions</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getEquationDescriptions()
+	 * @see #getFunctionDescription()
 	 * @generated
 	 */
-	EReference getFunctionDescriptor_EquationDescriptors();
+	EReference getFunctionDescription_EquationDescriptions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors <em>Variable Descriptors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getVariableDescriptions <em>Variable Descriptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Variable Descriptors</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors()
-	 * @see #getFunctionDescriptor()
+	 * @return the meta object for the containment reference list '<em>Variable Descriptions</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription#getVariableDescriptions()
+	 * @see #getFunctionDescription()
 	 * @generated
 	 */
-	EReference getFunctionDescriptor_VariableDescriptors();
+	EReference getFunctionDescription_VariableDescriptions();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor <em>Equation Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription <em>Equation Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Equation Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor
+	 * @return the meta object for class '<em>Equation Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription
 	 * @generated
 	 */
-	EClass getEquationDescriptor();
+	EClass getEquationDescription();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Function Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getFunctionDescriptor()
-	 * @see #getEquationDescriptor()
+	 * @return the meta object for the container reference '<em>Function Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getFunctionDescription()
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	EReference getEquationDescriptor_FunctionDescriptor();
+	EReference getEquationDescription_FunctionDescription();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getEquation <em>Equation</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getEquation <em>Equation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Equation</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getEquation()
-	 * @see #getEquationDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getEquation()
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	EReference getEquationDescriptor_Equation();
+	EReference getEquationDescription_Equation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getSides <em>Sides</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getSides <em>Sides</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Sides</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getSides()
-	 * @see #getEquationDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getSides()
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	EReference getEquationDescriptor_Sides();
+	EReference getEquationDescription_Sides();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getLeftHandSide <em>Left Hand Side</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getLeftHandSide <em>Left Hand Side</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Left Hand Side</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getLeftHandSide()
-	 * @see #getEquationDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getLeftHandSide()
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	EReference getEquationDescriptor_LeftHandSide();
+	EReference getEquationDescription_LeftHandSide();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getRightHandSide <em>Right Hand Side</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getRightHandSide <em>Right Hand Side</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Right Hand Side</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor#getRightHandSide()
-	 * @see #getEquationDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription#getRightHandSide()
+	 * @see #getEquationDescription()
 	 * @generated
 	 */
-	EReference getEquationDescriptor_RightHandSide();
+	EReference getEquationDescription_RightHandSide();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide <em>Equation Side</em>}'.
@@ -613,15 +613,15 @@ public interface FunctionModelPackage extends EPackage {
 	EClass getEquationSide();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor <em>Descriptor</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription <em>Equation Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationSide#getDescriptor()
+	 * @return the meta object for the container reference '<em>Equation Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationSide#getEquationDescription()
 	 * @see #getEquationSide()
 	 * @generated
 	 */
-	EReference getEquationSide_Descriptor();
+	EReference getEquationSide_EquationDescription();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationSide#getExpression <em>Expression</em>}'.
@@ -667,15 +667,15 @@ public interface FunctionModelPackage extends EPackage {
 	EReference getEquationPart_Side();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationPart#getVariableAccess <em>Variable Access</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationPart#getVariableReference <em>Variable Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Variable Access</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationPart#getVariableAccess()
+	 * @return the meta object for the reference '<em>Variable Reference</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationPart#getVariableReference()
 	 * @see #getEquationPart()
 	 * @generated
 	 */
-	EReference getEquationPart_VariableAccess();
+	EReference getEquationPart_VariableReference();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.EquationPart#getVariableStep <em>Variable Step</em>}'.
@@ -689,58 +689,58 @@ public interface FunctionModelPackage extends EPackage {
 	EReference getEquationPart_VariableStep();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor <em>Variable Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription <em>Variable Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor
+	 * @return the meta object for class '<em>Variable Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription
 	 * @generated
 	 */
-	EClass getVariableDescriptor();
+	EClass getVariableDescription();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Function Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getFunctionDescriptor()
-	 * @see #getVariableDescriptor()
+	 * @return the meta object for the container reference '<em>Function Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getFunctionDescription()
+	 * @see #getVariableDescription()
 	 * @generated
 	 */
-	EReference getVariableDescriptor_FunctionDescriptor();
+	EReference getVariableDescription_FunctionDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getName()
-	 * @see #getVariableDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getName()
+	 * @see #getVariableDescription()
 	 * @generated
 	 */
-	EAttribute getVariableDescriptor_Name();
+	EAttribute getVariableDescription_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getKind <em>Kind</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getKind <em>Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getKind()
-	 * @see #getVariableDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getKind()
+	 * @see #getVariableDescription()
 	 * @generated
 	 */
-	EAttribute getVariableDescriptor_Kind();
+	EAttribute getVariableDescription_Kind();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getSteps <em>Steps</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getSteps <em>Steps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Steps</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getSteps()
-	 * @see #getVariableDescriptor()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getSteps()
+	 * @see #getVariableDescription()
 	 * @generated
 	 */
-	EReference getVariableDescriptor_Steps();
+	EReference getVariableDescription_Steps();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep <em>Variable Step</em>}'.
@@ -753,15 +753,15 @@ public interface FunctionModelPackage extends EPackage {
 	EClass getVariableStep();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor <em>Descriptor</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription <em>Variable Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Descriptor</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor()
+	 * @return the meta object for the container reference '<em>Variable Description</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription()
 	 * @see #getVariableStep()
 	 * @generated
 	 */
-	EReference getVariableStep_Descriptor();
+	EReference getVariableStep_VariableDescription();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getIndex <em>Index</em>}'.
@@ -818,15 +818,15 @@ public interface FunctionModelPackage extends EPackage {
 	EClass getFunctionInstance();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDeclaration <em>Function Declaration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getDeclaration <em>Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Function Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDeclaration()
+	 * @return the meta object for the reference '<em>Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getDeclaration()
 	 * @see #getFunctionInstance()
 	 * @generated
 	 */
-	EReference getFunctionInstance_FunctionDeclaration();
+	EReference getFunctionInstance_Declaration();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}'.
@@ -926,14 +926,14 @@ public interface FunctionModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl <em>Function Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptionImpl <em>Function Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionDescriptor()
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptionImpl
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionDescription()
 		 * @generated
 		 */
-		EClass FUNCTION_DESCRIPTOR = eINSTANCE.getFunctionDescriptor();
+		EClass FUNCTION_DESCRIPTION = eINSTANCE.getFunctionDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Declaration</b></em>' reference feature.
@@ -941,41 +941,41 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DESCRIPTOR__DECLARATION = eINSTANCE.getFunctionDescriptor_Declaration();
+		EReference FUNCTION_DESCRIPTION__DECLARATION = eINSTANCE.getFunctionDescription_Declaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Equation Descriptors</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Equation Descriptions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS = eINSTANCE.getFunctionDescriptor_EquationDescriptors();
+		EReference FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS = eINSTANCE.getFunctionDescription_EquationDescriptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Variable Descriptors</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Variable Descriptions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DESCRIPTOR__VARIABLE_DESCRIPTORS = eINSTANCE.getFunctionDescriptor_VariableDescriptors();
+		EReference FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS = eINSTANCE.getFunctionDescription_VariableDescriptions();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptorImpl <em>Equation Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptionImpl <em>Equation Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptorImpl
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getEquationDescriptor()
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.EquationDescriptionImpl
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getEquationDescription()
 		 * @generated
 		 */
-		EClass EQUATION_DESCRIPTOR = eINSTANCE.getEquationDescriptor();
+		EClass EQUATION_DESCRIPTION = eINSTANCE.getEquationDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Descriptor</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Function Description</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_DESCRIPTOR__FUNCTION_DESCRIPTOR = eINSTANCE.getEquationDescriptor_FunctionDescriptor();
+		EReference EQUATION_DESCRIPTION__FUNCTION_DESCRIPTION = eINSTANCE.getEquationDescription_FunctionDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Equation</b></em>' reference feature.
@@ -983,7 +983,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_DESCRIPTOR__EQUATION = eINSTANCE.getEquationDescriptor_Equation();
+		EReference EQUATION_DESCRIPTION__EQUATION = eINSTANCE.getEquationDescription_Equation();
 
 		/**
 		 * The meta object literal for the '<em><b>Sides</b></em>' containment reference list feature.
@@ -991,7 +991,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_DESCRIPTOR__SIDES = eINSTANCE.getEquationDescriptor_Sides();
+		EReference EQUATION_DESCRIPTION__SIDES = eINSTANCE.getEquationDescription_Sides();
 
 		/**
 		 * The meta object literal for the '<em><b>Left Hand Side</b></em>' reference feature.
@@ -999,7 +999,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_DESCRIPTOR__LEFT_HAND_SIDE = eINSTANCE.getEquationDescriptor_LeftHandSide();
+		EReference EQUATION_DESCRIPTION__LEFT_HAND_SIDE = eINSTANCE.getEquationDescription_LeftHandSide();
 
 		/**
 		 * The meta object literal for the '<em><b>Right Hand Side</b></em>' reference feature.
@@ -1007,7 +1007,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_DESCRIPTOR__RIGHT_HAND_SIDE = eINSTANCE.getEquationDescriptor_RightHandSide();
+		EReference EQUATION_DESCRIPTION__RIGHT_HAND_SIDE = eINSTANCE.getEquationDescription_RightHandSide();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.EquationSideImpl <em>Equation Side</em>}' class.
@@ -1020,12 +1020,12 @@ public interface FunctionModelPackage extends EPackage {
 		EClass EQUATION_SIDE = eINSTANCE.getEquationSide();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Equation Description</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_SIDE__DESCRIPTOR = eINSTANCE.getEquationSide_Descriptor();
+		EReference EQUATION_SIDE__EQUATION_DESCRIPTION = eINSTANCE.getEquationSide_EquationDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
@@ -1062,12 +1062,12 @@ public interface FunctionModelPackage extends EPackage {
 		EReference EQUATION_PART__SIDE = eINSTANCE.getEquationPart_Side();
 
 		/**
-		 * The meta object literal for the '<em><b>Variable Access</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Variable Reference</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EQUATION_PART__VARIABLE_ACCESS = eINSTANCE.getEquationPart_VariableAccess();
+		EReference EQUATION_PART__VARIABLE_REFERENCE = eINSTANCE.getEquationPart_VariableReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable Step</b></em>' reference feature.
@@ -1078,22 +1078,22 @@ public interface FunctionModelPackage extends EPackage {
 		EReference EQUATION_PART__VARIABLE_STEP = eINSTANCE.getEquationPart_VariableStep();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptorImpl <em>Variable Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptionImpl <em>Variable Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptorImpl
-		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getVariableDescriptor()
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.VariableDescriptionImpl
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getVariableDescription()
 		 * @generated
 		 */
-		EClass VARIABLE_DESCRIPTOR = eINSTANCE.getVariableDescriptor();
+		EClass VARIABLE_DESCRIPTION = eINSTANCE.getVariableDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Descriptor</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Function Description</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_DESCRIPTOR__FUNCTION_DESCRIPTOR = eINSTANCE.getVariableDescriptor_FunctionDescriptor();
+		EReference VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION = eINSTANCE.getVariableDescription_FunctionDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1101,7 +1101,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VARIABLE_DESCRIPTOR__NAME = eINSTANCE.getVariableDescriptor_Name();
+		EAttribute VARIABLE_DESCRIPTION__NAME = eINSTANCE.getVariableDescription_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
@@ -1109,7 +1109,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VARIABLE_DESCRIPTOR__KIND = eINSTANCE.getVariableDescriptor_Kind();
+		EAttribute VARIABLE_DESCRIPTION__KIND = eINSTANCE.getVariableDescription_Kind();
 
 		/**
 		 * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
@@ -1117,7 +1117,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_DESCRIPTOR__STEPS = eINSTANCE.getVariableDescriptor_Steps();
+		EReference VARIABLE_DESCRIPTION__STEPS = eINSTANCE.getVariableDescription_Steps();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.VariableStepImpl <em>Variable Step</em>}' class.
@@ -1130,12 +1130,12 @@ public interface FunctionModelPackage extends EPackage {
 		EClass VARIABLE_STEP = eINSTANCE.getVariableStep();
 
 		/**
-		 * The meta object literal for the '<em><b>Descriptor</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Variable Description</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_STEP__DESCRIPTOR = eINSTANCE.getVariableStep_Descriptor();
+		EReference VARIABLE_STEP__VARIABLE_DESCRIPTION = eINSTANCE.getVariableStep_VariableDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
@@ -1180,12 +1180,12 @@ public interface FunctionModelPackage extends EPackage {
 		EClass FUNCTION_INSTANCE = eINSTANCE.getFunctionInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Declaration</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Declaration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_INSTANCE__FUNCTION_DECLARATION = eINSTANCE.getFunctionInstance_FunctionDeclaration();
+		EReference FUNCTION_INSTANCE__DECLARATION = eINSTANCE.getFunctionInstance_Declaration();
 
 		/**
 		 * The meta object literal for the '<em><b>Initialization Compound</b></em>' containment reference feature.

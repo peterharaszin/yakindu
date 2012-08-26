@@ -20,7 +20,7 @@ import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -38,7 +38,7 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	private Map<FeatureReference, Integer> stepIndices = new HashMap<FeatureReference, Integer>();
 	private Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
 	
-	private Map<FunctionDeclaration, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDeclaration, FunctionDescriptor>();
+	private Map<FunctionDeclaration, FunctionDescription> functionDescriptions = new HashMap<FunctionDeclaration, FunctionDescription>();
 	
 	private MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Expression evaluation", null);
 
@@ -98,15 +98,15 @@ public class StaticEvaluationResult implements IStaticEvaluationResult {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#getFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition)
 	 */
-	public FunctionDescriptor getFunctionDescriptor(FunctionDeclaration functionDeclaration) {
-		return functionDescriptors.get(functionDeclaration);
+	public FunctionDescription getFunctionDescriptor(FunctionDeclaration functionDeclaration) {
+		return functionDescriptions.get(functionDeclaration);
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationResult#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor)
 	 */
-	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescriptor functionDescriptor) {
-		functionDescriptors.put(functionDeclaration, functionDescriptor);
+	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription) {
+		functionDescriptions.put(functionDeclaration, functionDescription);
 	}
 	
 }

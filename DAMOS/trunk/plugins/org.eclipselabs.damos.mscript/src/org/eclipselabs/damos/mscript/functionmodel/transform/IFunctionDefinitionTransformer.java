@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.functionmodel.transform;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public interface IFunctionDefinitionTransformer {
 
 	IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult,
-			FunctionDescriptor functionDescriptor, List<IValue> staticArguments,
+			FunctionDescription functionDescription, List<IValue> staticArguments,
 			List<Type> inputParameterDataTypes);
 
 }

@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
-import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.EquationDescription;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.VariableDescription;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
 /**
@@ -79,12 +79,12 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	protected FunctionModelSwitch<Adapter> modelSwitch =
 		new FunctionModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseFunctionDescriptor(FunctionDescriptor object) {
-				return createFunctionDescriptorAdapter();
+			public Adapter caseFunctionDescription(FunctionDescription object) {
+				return createFunctionDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseEquationDescriptor(EquationDescriptor object) {
-				return createEquationDescriptorAdapter();
+			public Adapter caseEquationDescription(EquationDescription object) {
+				return createEquationDescriptionAdapter();
 			}
 			@Override
 			public Adapter caseEquationSide(EquationSide object) {
@@ -95,8 +95,8 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 				return createEquationPartAdapter();
 			}
 			@Override
-			public Adapter caseVariableDescriptor(VariableDescriptor object) {
-				return createVariableDescriptorAdapter();
+			public Adapter caseVariableDescription(VariableDescription object) {
+				return createVariableDescriptionAdapter();
 			}
 			@Override
 			public Adapter caseVariableStep(VariableStep object) {
@@ -139,30 +139,30 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor <em>Function Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescription <em>Function Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescription
 	 * @generated
 	 */
-	public Adapter createFunctionDescriptorAdapter() {
+	public Adapter createFunctionDescriptionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor <em>Equation Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.EquationDescription <em>Equation Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor
+	 * @see org.eclipselabs.damos.mscript.functionmodel.EquationDescription
 	 * @generated
 	 */
-	public Adapter createEquationDescriptorAdapter() {
+	public Adapter createEquationDescriptionAdapter() {
 		return null;
 	}
 
@@ -195,16 +195,16 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor <em>Variable Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription <em>Variable Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription
 	 * @generated
 	 */
-	public Adapter createVariableDescriptorAdapter() {
+	public Adapter createVariableDescriptionAdapter() {
 		return null;
 	}
 

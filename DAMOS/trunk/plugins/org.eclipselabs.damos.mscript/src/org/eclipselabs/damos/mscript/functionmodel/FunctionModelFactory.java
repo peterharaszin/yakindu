@@ -26,22 +26,22 @@ public interface FunctionModelFactory extends EFactory {
 	FunctionModelFactory eINSTANCE = org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Function Descriptor</em>'.
+	 * Returns a new object of class '<em>Function Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Descriptor</em>'.
+	 * @return a new object of class '<em>Function Description</em>'.
 	 * @generated
 	 */
-	FunctionDescriptor createFunctionDescriptor();
+	FunctionDescription createFunctionDescription();
 
 	/**
-	 * Returns a new object of class '<em>Equation Descriptor</em>'.
+	 * Returns a new object of class '<em>Equation Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Equation Descriptor</em>'.
+	 * @return a new object of class '<em>Equation Description</em>'.
 	 * @generated
 	 */
-	EquationDescriptor createEquationDescriptor();
+	EquationDescription createEquationDescription();
 
 	/**
 	 * Returns a new object of class '<em>Equation Side</em>'.
@@ -62,13 +62,13 @@ public interface FunctionModelFactory extends EFactory {
 	EquationPart createEquationPart();
 
 	/**
-	 * Returns a new object of class '<em>Variable Descriptor</em>'.
+	 * Returns a new object of class '<em>Variable Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Descriptor</em>'.
+	 * @return a new object of class '<em>Variable Description</em>'.
 	 * @generated
 	 */
-	VariableDescriptor createVariableDescriptor();
+	VariableDescription createVariableDescription();
 
 	/**
 	 * Returns a new object of class '<em>Variable Step</em>'.

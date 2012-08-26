@@ -42,7 +42,7 @@ public class Interpreter implements IInterpreter {
 	 */
 	public List<IValue> execute(IInterpreterContext context, IFunctionObject functionObject, List<IValue> inputValues) {
 		Iterator<IValue> inputValueIterator = inputValues.iterator();
-		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getDeclaration().getInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			variable.setValue(0, inputValueIterator.next());
 		}
@@ -54,7 +54,7 @@ public class Interpreter implements IInterpreter {
 		}
 		
 		List<IValue> outputValues = new ArrayList<IValue>();
-		for (OutputParameterDeclaration outputVariableDeclaration : functionObject.getFunctionInstance().getFunctionDeclaration().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputVariableDeclaration : functionObject.getFunctionInstance().getDeclaration().getOutputParameterDeclarations()) {
 			outputValues.add(functionObject.getVariable(outputVariableDeclaration).getValue(0));
 		}
 		

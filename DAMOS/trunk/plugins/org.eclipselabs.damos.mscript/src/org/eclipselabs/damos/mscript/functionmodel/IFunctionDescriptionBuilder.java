@@ -18,8 +18,8 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
  * @author Andreas Unger
  *
  */
-public interface IFunctionDescriptorBuilder {
+public interface IFunctionDescriptionBuilder {
 
-	FunctionDescriptor build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration);
+	FunctionDescription build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration);
 
 }

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor <em>Descriptor</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription <em>Variable Description</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getIndex <em>Index</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#isInitial <em>Initial</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#isDerivative <em>Derivative</em>}</li>
@@ -31,32 +31,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface VariableStep extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Descriptor</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getSteps <em>Steps</em>}'.
+	 * Returns the value of the '<em><b>Variable Description</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getSteps <em>Steps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Descriptor</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Descriptor</em>' container reference.
-	 * @see #setDescriptor(VariableDescriptor)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableStep_Descriptor()
-	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor#getSteps
+	 * @return the value of the '<em>Variable Description</em>' container reference.
+	 * @see #setVariableDescription(VariableDescription)
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getVariableStep_VariableDescription()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.VariableDescription#getSteps
 	 * @model opposite="steps" transient="false"
 	 * @generated
 	 */
-	VariableDescriptor getDescriptor();
+	VariableDescription getVariableDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getDescriptor <em>Descriptor</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableStep#getVariableDescription <em>Variable Description</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Descriptor</em>' container reference.
-	 * @see #getDescriptor()
+	 * @param value the new value of the '<em>Variable Description</em>' container reference.
+	 * @see #getVariableDescription()
 	 * @generated
 	 */
-	void setDescriptor(VariableDescriptor value);
+	void setVariableDescription(VariableDescription value);
 
 	/**
 	 * Returns the value of the '<em><b>Index</b></em>' attribute.

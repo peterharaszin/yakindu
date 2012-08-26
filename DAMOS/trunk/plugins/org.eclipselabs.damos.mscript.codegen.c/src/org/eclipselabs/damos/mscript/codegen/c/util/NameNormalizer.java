@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c.util;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+import org.eclipselabs.damos.mscript.function.FunctionInstance;
 
 /**
  * @author Andreas Unger

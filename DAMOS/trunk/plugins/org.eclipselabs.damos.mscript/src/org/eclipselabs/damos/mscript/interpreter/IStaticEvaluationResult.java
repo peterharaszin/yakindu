@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionDescription;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**

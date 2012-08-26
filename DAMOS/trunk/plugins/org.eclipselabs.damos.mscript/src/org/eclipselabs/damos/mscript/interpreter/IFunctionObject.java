@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.Collection;
 
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+import org.eclipselabs.damos.mscript.function.FunctionInstance;
 
 /**
  * @author Andreas Unger

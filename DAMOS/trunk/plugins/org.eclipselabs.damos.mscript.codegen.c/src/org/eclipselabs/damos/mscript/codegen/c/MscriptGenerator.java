@@ -92,7 +92,7 @@ public class MscriptGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("typedef struct {\n");
-		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			if (context.getStaticEvaluationResult().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				out.print(generateContextStructureMember(inputParameterDeclaration));
 			}
@@ -206,7 +206,7 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(generateInitializeFunctionHeader());
 		out.println(" {");
-		out.print(generateInitializeIndexStatements(functionInstance.getDeclaration().getInputParameterDeclarations()));
+		out.print(generateInitializeIndexStatements(functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getDeclaration().getOutputParameterDeclarations()));
 		out.print(generateInitializeIndexStatements(functionInstance.getDeclaration().getStateVariableDeclarations()));
 		out.print(statementGenerator.generate(context, functionInstance.getInitializationCompound()));
@@ -306,7 +306,7 @@ public class MscriptGenerator {
 				out.print(generateUpdateInputContextStatement(inputParameterDeclaration));
 			}
 		}
-		out.print(generateUpdateIndexStatements(functionInstance.getDeclaration().getInputParameterDeclarations()));
+		out.print(generateUpdateIndexStatements(functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()));
 		out.print(generateUpdateIndexStatements(functionInstance.getDeclaration().getOutputParameterDeclarations()));
 		out.print(generateUpdateIndexStatements(functionInstance.getDeclaration().getStateVariableDeclarations()));
 		out.println("}");
@@ -314,7 +314,7 @@ public class MscriptGenerator {
 	}
 	
 	private List<InputParameterDeclaration> getUpdateCodeInputs() {
-		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>(functionInstance.getDeclaration().getInputParameterDeclarations());
+		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>(functionInstance.getDeclaration().getNonConstantInputParameterDeclarations());
 		inputs.removeAll(FunctionModelUtil.getDirectFeedthroughInputs(functionInstance));
 		return inputs;
 	}
@@ -350,7 +350,7 @@ public class MscriptGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.printf("void %s(", functionName, functionName);
 		boolean first = true;
-		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			if (first) {
 				first = false;
 			} else {

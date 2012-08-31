@@ -10,8 +10,8 @@ continuous blockType TransferFunction {
 	parameter numeratorCoefficients = { 1 }
 	parameter denominatorCoefficients = { 1, 1 }
 
-	continuous function main<numeratorCoefficients, denominatorCoefficients>(u) -> y {
-		check<{ 1 }, { 1, 1 }>(real) -> real
+	continuous function main(const numeratorCoefficients, const denominatorCoefficients, u) -> y {
+		check(real, <{ 1 }>, <{ 1, 1 }>) -> real
 		
 		static assert u is real :
 			error "Input value must be dimensionless numeric value"

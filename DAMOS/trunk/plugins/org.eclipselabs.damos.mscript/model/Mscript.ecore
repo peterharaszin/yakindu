@@ -31,10 +31,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDeclaration" eSuperTypes="#//TopLevelDeclaration #//CallableElement">
+    <eOperations name="getConstantInputParameterDeclarations" upperBound="-1" eType="#//InputParameterDeclaration"/>
+    <eOperations name="getNonConstantInputParameterDeclarations" upperBound="-1" eType="#//InputParameterDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//FunctionKind"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="staticParameterDeclarations"
-        upperBound="-1" eType="#//StaticParameterDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameterDeclarations"
         upperBound="-1" eType="#//InputParameterDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameterDeclarations"
@@ -58,14 +58,23 @@
     <eLiterals name="Continuous" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Check">
+    <eOperations name="getExpressionArguments" upperBound="-1" eType="#//Expression"/>
+    <eOperations name="getInputTypeSpecifiers" upperBound="-1" eType="#//TypeSpecifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
         eType="#//FunctionDeclaration" eOpposite="#//FunctionDeclaration/checks"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="staticArguments" upperBound="-1"
-        eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameterTypes" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputArguments" upperBound="-1"
+        eType="#//CheckArgument" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputTypeSpecifiers" upperBound="-1"
         eType="#//TypeSpecifier" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameterTypes" upperBound="-1"
-        eType="#//TypeSpecifier" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CheckArgument" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeCheckArgument" eSuperTypes="#//CheckArgument">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" eType="#//TypeSpecifier"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionCheckArgument" eSuperTypes="#//CheckArgument">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Evaluable" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="CallableElement" abstract="true" eSuperTypes="#//Evaluable">
@@ -78,8 +87,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterDeclaration" abstract="true"
       eSuperTypes="#//VariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StaticParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InputParameterDeclaration" eSuperTypes="#//ParameterDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AssertionStatusKind">
     <eLiterals name="Info" literal="info"/>

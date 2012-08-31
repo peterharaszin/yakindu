@@ -6,8 +6,8 @@ blockType Constant {
 	
 	parameter value = 1
 
-	function main<value>() -> y {
-		check<1>() -> int
+	function main(const value) -> y {
+		check(<1>) -> int
 		
 		eq y = value
 	}

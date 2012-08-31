@@ -18,9 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.Check#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Check#getStaticArguments <em>Static Arguments</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Check#getInputParameterTypes <em>Input Parameter Types</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.Check#getOutputParameterTypes <em>Output Parameter Types</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Check#getInputArguments <em>Input Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Check#getOutputTypeSpecifiers <em>Output Type Specifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,39 +57,47 @@ public interface Check extends EObject {
 	void setFunction(FunctionDeclaration value);
 
 	/**
-	 * Returns the value of the '<em><b>Static Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Expression}.
+	 * Returns the value of the '<em><b>Input Arguments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.CheckArgument}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Input Arguments</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Input Arguments</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_InputArguments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CheckArgument> getInputArguments();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Static Arguments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Static Arguments</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_StaticArguments()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<Expression> getStaticArguments();
+	EList<Expression> getExpressionArguments();
 
 	/**
-	 * Returns the value of the '<em><b>Input Parameter Types</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.TypeSpecifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input Parameter Types</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Input Parameter Types</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_InputParameterTypes()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<TypeSpecifier> getInputParameterTypes();
+	EList<TypeSpecifier> getInputTypeSpecifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Output Parameter Types</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Output Type Specifiers</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.TypeSpecifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -98,11 +105,11 @@ public interface Check extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Parameter Types</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_OutputParameterTypes()
+	 * @return the value of the '<em>Output Type Specifiers</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_OutputTypeSpecifiers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TypeSpecifier> getOutputParameterTypes();
+	EList<TypeSpecifier> getOutputTypeSpecifiers();
 
 } // Check

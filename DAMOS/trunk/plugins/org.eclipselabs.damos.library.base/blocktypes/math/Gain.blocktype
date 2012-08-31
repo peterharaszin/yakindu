@@ -7,8 +7,8 @@ blockType Gain {
 	
 	parameter gain = 1
 
-	function main<gain>(u) -> y {
-		check<1>(real) -> real
+	function main(const gain, u) -> y {
+		check(real, <1>) -> real
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

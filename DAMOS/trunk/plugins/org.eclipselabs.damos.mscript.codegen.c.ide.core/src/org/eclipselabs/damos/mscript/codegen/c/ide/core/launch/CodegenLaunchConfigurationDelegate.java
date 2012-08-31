@@ -66,7 +66,7 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Invalid input parameter data type specifiers"));
 		}
 
-		if (inputParameterDataTypes.size() != getFunctionDefinition().getInputParameterDeclarations().size()) {
+		if (inputParameterDataTypes.size() != getFunctionDefinition().getNonConstantInputParameterDeclarations().size()) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Number of input parameter data types does not correspond to the number of input parameter in function definition"));
 		}
 		

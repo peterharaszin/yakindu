@@ -38,7 +38,6 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.SwitchCase;
 import org.eclipselabs.damos.mscript.SwitchExpression;
@@ -217,14 +216,14 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				
 			IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
-			Iterator<StaticParameterDeclaration> staticParameterIt = functionDeclaration.getStaticParameterDeclarations().iterator();
-			for (Expression argument : check.getStaticArguments()) {
+			Iterator<InputParameterDeclaration> staticParameterIt = functionDeclaration.getConstantInputParameterDeclarations().iterator();
+			for (Expression argument : check.getExpressionArguments()) {
 				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), argument);
 				staticEvaluationResult.setValue(staticParameterIt.next(), staticEvaluationResult.getValue(argument));
 			}
 			
-			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getInputParameterDeclarations().iterator();
-			for (TypeSpecifier typeSpecifier : check.getInputParameterTypes()) {
+			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getNonConstantInputParameterDeclarations().iterator();
+			for (TypeSpecifier typeSpecifier : check.getInputTypeSpecifiers()) {
 				staticEvaluationResult.setValue(inputParameterIt.next(), new AnyValue(new ComputationContext(), typeSpecifier.getType()));
 			}
 
@@ -232,7 +231,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 			
 			if (staticEvaluationResult.getStatus().getSeverity() < IStatus.ERROR) {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
-				for (TypeSpecifier typeSpecifier : check.getOutputParameterTypes()) {
+				for (TypeSpecifier typeSpecifier : check.getOutputTypeSpecifiers()) {
 					IValue value = staticEvaluationResult.getValue(outputParameterIt.next());
 					if (value != null && !(value instanceof InvalidValue) && !typeSpecifier.getType().isEquivalentTo(value.getDataType())) {
 						error("Check does not return specified data type", typeSpecifier, null, -1);
@@ -247,15 +246,15 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 	private boolean checkFunctionCheckSignatures(org.eclipselabs.damos.mscript.Check check) {
 		boolean result = true;
-		if (check.getStaticArguments().size() != check.getFunction().getStaticParameterDeclarations().size()) {
+		if (check.getExpressionArguments().size() != check.getFunction().getConstantInputParameterDeclarations().size()) {
 			error("Number of template arguments do not correspond to number of template parameters of function " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
-		if (check.getInputParameterTypes().size() != check.getFunction().getInputParameterDeclarations().size()) {
+		if (check.getInputTypeSpecifiers().size() != check.getFunction().getNonConstantInputParameterDeclarations().size()) {
 			error("Number of input argument types do not correspond to number of input parameters of function " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
-		if (check.getOutputParameterTypes().size() != check.getFunction().getOutputParameterDeclarations().size()) {
+		if (check.getOutputTypeSpecifiers().size() != check.getFunction().getOutputParameterDeclarations().size()) {
 			error("Number of output argument types do not correspond to number of output parameters of function " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}

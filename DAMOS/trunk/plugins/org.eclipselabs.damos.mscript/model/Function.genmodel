@@ -8,12 +8,11 @@
       disposableProviderFactory="true" ecorePackage="Function.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Function.ecore#//VariableKind">
       <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/Unknown"/>
-      <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/StaticParameter"/>
+      <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/ConstantInputParameter"/>
       <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/InputParameter"/>
       <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/OutputParameter"/>
       <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/StateVariable"/>
       <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/Constant"/>
-      <genEnumLiterals ecoreEnumLiteral="Function.ecore#//VariableKind/FunctionObject"/>
     </genEnums>
     <genClasses ecoreClass="Function.ecore#//FunctionDescription">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Function.ecore#//FunctionDescription/declaration"/>

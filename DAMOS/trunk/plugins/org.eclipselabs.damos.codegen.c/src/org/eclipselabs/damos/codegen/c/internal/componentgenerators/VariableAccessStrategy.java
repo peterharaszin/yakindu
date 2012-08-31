@@ -20,6 +20,7 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.FeatureReference;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -59,7 +60,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 * @return
 	 */
 	static String getInputParameterAccessString(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
-		int index = DMLUtil.indexOf(inputParameterDeclaration);
+		int index = ((FunctionDeclaration) inputParameterDeclaration.eContainer()).getNonConstantInputParameterDeclarations().indexOf(inputParameterDeclaration);
 		
 		if (!block.getInputSockets().isEmpty()) {
 			if (index == 0) {

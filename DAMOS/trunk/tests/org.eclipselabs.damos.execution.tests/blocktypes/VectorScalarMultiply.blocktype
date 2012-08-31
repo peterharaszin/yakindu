@@ -8,8 +8,8 @@ blockType VectorScalarMultiply {
 	parameter gain1 = 7
 	parameter gain2 = 1.7
 
-	function main<gain1, gain2>(x) -> y {
-		check<1, 1>(real[3]) -> real[3]
+	function main(const gain1, const gain2, x) -> y {
+		check(real[3], <1>, <1>) -> real[3]
 
 		static assert gain1 is real(?) :
 			error "Gain must be real value"

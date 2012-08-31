@@ -105,6 +105,18 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createCheckAdapter();
 			}
 			@Override
+			public Adapter caseCheckArgument(CheckArgument object) {
+				return createCheckArgumentAdapter();
+			}
+			@Override
+			public Adapter caseTypeCheckArgument(TypeCheckArgument object) {
+				return createTypeCheckArgumentAdapter();
+			}
+			@Override
+			public Adapter caseExpressionCheckArgument(ExpressionCheckArgument object) {
+				return createExpressionCheckArgumentAdapter();
+			}
+			@Override
 			public Adapter caseEvaluable(Evaluable object) {
 				return createEvaluableAdapter();
 			}
@@ -119,10 +131,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseParameterDeclaration(ParameterDeclaration object) {
 				return createParameterDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseStaticParameterDeclaration(StaticParameterDeclaration object) {
-				return createStaticParameterDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseInputParameterDeclaration(InputParameterDeclaration object) {
@@ -715,6 +723,48 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.CheckArgument <em>Check Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.CheckArgument
+	 * @generated
+	 */
+	public Adapter createCheckArgumentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.TypeCheckArgument <em>Type Check Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.TypeCheckArgument
+	 * @generated
+	 */
+	public Adapter createTypeCheckArgumentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.ExpressionCheckArgument <em>Expression Check Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.ExpressionCheckArgument
+	 * @generated
+	 */
+	public Adapter createExpressionCheckArgumentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Evaluable <em>Evaluable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -767,20 +817,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StaticParameterDeclaration <em>Static Parameter Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StaticParameterDeclaration
-	 * @generated
-	 */
-	public Adapter createStaticParameterDeclarationAdapter() {
 		return null;
 	}
 

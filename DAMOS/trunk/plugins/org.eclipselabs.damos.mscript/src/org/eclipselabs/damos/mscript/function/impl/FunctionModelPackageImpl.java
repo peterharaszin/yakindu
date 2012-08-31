@@ -741,12 +741,11 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		// Initialize enums and add enum literals
 		initEEnum(variableKindEEnum, VariableKind.class, "VariableKind");
 		addEEnumLiteral(variableKindEEnum, VariableKind.UNKNOWN);
-		addEEnumLiteral(variableKindEEnum, VariableKind.STATIC_PARAMETER);
+		addEEnumLiteral(variableKindEEnum, VariableKind.CONSTANT_INPUT_PARAMETER);
 		addEEnumLiteral(variableKindEEnum, VariableKind.INPUT_PARAMETER);
 		addEEnumLiteral(variableKindEEnum, VariableKind.OUTPUT_PARAMETER);
 		addEEnumLiteral(variableKindEEnum, VariableKind.STATE_VARIABLE);
 		addEEnumLiteral(variableKindEEnum, VariableKind.CONSTANT);
-		addEEnumLiteral(variableKindEEnum, VariableKind.FUNCTION_OBJECT);
 
 		// Create resource
 		createResource(eNS_URI);

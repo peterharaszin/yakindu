@@ -23,7 +23,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
@@ -209,10 +208,10 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 		}
 
 		private VariableKind getVariableKind(CallableElement feature) {
-			if (feature instanceof StaticParameterDeclaration) {
-				return VariableKind.STATIC_PARAMETER;
-			}
 			if (feature instanceof InputParameterDeclaration) {
+				if (((InputParameterDeclaration) feature).isConstant()) {
+					return VariableKind.CONSTANT_INPUT_PARAMETER;
+				}
 				return VariableKind.INPUT_PARAMETER;
 			}
 			if (feature instanceof OutputParameterDeclaration) {

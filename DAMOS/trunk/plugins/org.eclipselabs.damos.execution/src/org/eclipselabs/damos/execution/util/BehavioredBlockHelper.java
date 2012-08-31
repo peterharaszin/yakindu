@@ -96,12 +96,12 @@ public class BehavioredBlockHelper {
 
 	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		Iterator<IValue> staticArgumentIt = staticArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
 			staticEvaluationResult.setValue(parameterDeclaration, staticArgumentIt.next());
 		}
 
 		Iterator<Type> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getNonConstantInputParameterDeclarations()) {
 			staticEvaluationResult.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
 		}
 
@@ -110,7 +110,7 @@ public class BehavioredBlockHelper {
 
 	public List<IValue> getStaticArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
 		List<IValue> staticArguments = new ArrayList<IValue>();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
 			String parameterName = parameterDeclaration.getName();
 			try {
 				IValue value = getParameterStaticArgumentValue(parameterName);
@@ -136,7 +136,7 @@ public class BehavioredBlockHelper {
 	public List<Type> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
 		List<Type> types = new ArrayList<Type>();
 
-		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
+		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getNonConstantInputParameterDeclarations().iterator();
 
 		if (!block.getInputSockets().isEmpty()) {
 			if (!parameterDeclarationIterator.hasNext()) {

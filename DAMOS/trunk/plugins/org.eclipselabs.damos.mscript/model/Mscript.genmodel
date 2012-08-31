@@ -101,7 +101,6 @@
     <genClasses ecoreClass="Mscript.ecore#//FunctionDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDeclaration/kind"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/staticParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/inputParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/outputParameterDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/checks"/>
@@ -110,12 +109,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/stateVariableDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/constantDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDeclaration/equations"/>
+      <genOperations ecoreOperation="Mscript.ecore#//FunctionDeclaration/getConstantInputParameterDeclarations"/>
+      <genOperations ecoreOperation="Mscript.ecore#//FunctionDeclaration/getNonConstantInputParameterDeclarations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Check">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Mscript.ecore#//Check/function"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/staticArguments"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/inputParameterTypes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/outputParameterTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/inputArguments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Check/outputTypeSpecifiers"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Check/getExpressionArguments"/>
+      <genOperations ecoreOperation="Mscript.ecore#//Check/getInputTypeSpecifiers"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Mscript.ecore#//CheckArgument"/>
+    <genClasses ecoreClass="Mscript.ecore#//TypeCheckArgument">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeCheckArgument/typeSpecifier"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//ExpressionCheckArgument">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ExpressionCheckArgument/expression"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//Evaluable"/>
     <genClasses ecoreClass="Mscript.ecore#//CallableElement">
@@ -126,8 +135,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//VariableDeclaration/name"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ParameterDeclaration"/>
-    <genClasses ecoreClass="Mscript.ecore#//StaticParameterDeclaration"/>
-    <genClasses ecoreClass="Mscript.ecore#//InputParameterDeclaration"/>
+    <genClasses ecoreClass="Mscript.ecore#//InputParameterDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//InputParameterDeclaration/constant"/>
+    </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//OutputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//Assertion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Assertion/static"/>

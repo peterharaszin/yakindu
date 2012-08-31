@@ -72,7 +72,6 @@ EnumerationLiteralDeclaration:
  
 FunctionDeclaration:
 	(kind=FunctionKind)? 'function' name=ValidID
-			('<' staticParameterDeclarations+=StaticParameterDeclaration (',' staticParameterDeclarations+=StaticParameterDeclaration)* '>')?
 			'(' (inputParameterDeclarations+=InputParameterDeclaration (',' inputParameterDeclarations+=InputParameterDeclaration)*)? ')'
 			'->' outputParameterDeclarations+=OutputParameterDeclaration (',' outputParameterDeclarations+=OutputParameterDeclaration)* '{'
 		(checks+=Check |
@@ -86,20 +85,24 @@ FunctionDeclaration:
 enum FunctionKind:
 	Stateful='stateful' | Continuous='continuous';
 	
-StaticParameterDeclaration:
-	name=ValidID;
-
 InputParameterDeclaration:
-	name=ValidID;
+	(constant?='const')? name=ValidID;
 
 OutputParameterDeclaration:
 	name=ValidID;
 
 Check:
-	'check'
-			('<' staticArguments+=Expression (',' staticArguments+=Expression)* '>')?
-			'(' (inputParameterTypes+=TypeSpecifier (',' inputParameterTypes+=TypeSpecifier)*)? ')'
-			'->' outputParameterTypes+=TypeSpecifier (',' outputParameterTypes+=TypeSpecifier)*;
+	'check' '(' (inputArguments+=CheckArgument (',' inputArguments+=CheckArgument)*)? ')'
+		'->' outputTypeSpecifiers+=TypeSpecifier (',' outputTypeSpecifiers+=TypeSpecifier)*;
+
+CheckArgument:
+	TypeCheckArgument | ExpressionCheckArgument;
+
+TypeCheckArgument: 
+	typeSpecifier=TypeSpecifier;
+
+ExpressionCheckArgument:
+	'<' expression=Expression '>';
 
 enum AssertionStatusKind:
 	Info='info' |

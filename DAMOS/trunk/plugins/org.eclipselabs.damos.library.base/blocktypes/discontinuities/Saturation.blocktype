@@ -8,8 +8,8 @@ blockType Saturation {
 	parameter upperLimit = 1
 	parameter lowerLimit = -1
 
-	function main<upperLimit, lowerLimit>(u) -> y {
-		check<1, -1>(real) -> real
+	function main(const upperLimit, const lowerLimit, u) -> y {
+		check(real, <1>, <-1>) -> real
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

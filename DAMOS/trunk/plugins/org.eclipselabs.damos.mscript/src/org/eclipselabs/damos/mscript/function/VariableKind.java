@@ -33,14 +33,14 @@ public enum VariableKind implements Enumerator {
 	UNKNOWN(-1, "Unknown", "Unknown"),
 
 	/**
-	 * The '<em><b>Static Parameter</b></em>' literal object.
+	 * The '<em><b>Constant Input Parameter</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATIC_PARAMETER_VALUE
+	 * @see #CONSTANT_INPUT_PARAMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STATIC_PARAMETER(0, "StaticParameter", "StaticParameter"), /**
+	CONSTANT_INPUT_PARAMETER(0, "ConstantInputParameter", "ConstantInputParameter"), /**
 	 * The '<em><b>Input Parameter</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,17 +78,7 @@ public enum VariableKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSTANT(4, "Constant", "Constant"),
-
-	/**
-	 * The '<em><b>Function Object</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUNCTION_OBJECT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUNCTION_OBJECT(5, "FunctionObject", "FunctionObject");
+	CONSTANT(4, "Constant", "Constant");
 
 	/**
 	 * The '<em><b>Unknown</b></em>' literal value.
@@ -106,19 +96,19 @@ public enum VariableKind implements Enumerator {
 	public static final int UNKNOWN_VALUE = -1;
 
 	/**
-	 * The '<em><b>Static Parameter</b></em>' literal value.
+	 * The '<em><b>Constant Input Parameter</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Static Parameter</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Constant Input Parameter</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STATIC_PARAMETER
-	 * @model name="StaticParameter"
+	 * @see #CONSTANT_INPUT_PARAMETER
+	 * @model name="ConstantInputParameter"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STATIC_PARAMETER_VALUE = 0;
+	public static final int CONSTANT_INPUT_PARAMETER_VALUE = 0;
 
 	/**
 	 * The '<em><b>Input Parameter</b></em>' literal value.
@@ -181,21 +171,6 @@ public enum VariableKind implements Enumerator {
 	public static final int CONSTANT_VALUE = 4;
 
 	/**
-	 * The '<em><b>Function Object</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Function Object</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #FUNCTION_OBJECT
-	 * @model name="FunctionObject"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int FUNCTION_OBJECT_VALUE = 5;
-
-	/**
 	 * An array of all the '<em><b>Variable Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,12 +179,11 @@ public enum VariableKind implements Enumerator {
 	private static final VariableKind[] VALUES_ARRAY =
 		new VariableKind[] {
 			UNKNOWN,
-			STATIC_PARAMETER,
+			CONSTANT_INPUT_PARAMETER,
 			INPUT_PARAMETER,
 			OUTPUT_PARAMETER,
 			STATE_VARIABLE,
 			CONSTANT,
-			FUNCTION_OBJECT,
 		};
 
 	/**
@@ -261,12 +235,11 @@ public enum VariableKind implements Enumerator {
 	public static VariableKind get(int value) {
 		switch (value) {
 			case UNKNOWN_VALUE: return UNKNOWN;
-			case STATIC_PARAMETER_VALUE: return STATIC_PARAMETER;
+			case CONSTANT_INPUT_PARAMETER_VALUE: return CONSTANT_INPUT_PARAMETER;
 			case INPUT_PARAMETER_VALUE: return INPUT_PARAMETER;
 			case OUTPUT_PARAMETER_VALUE: return OUTPUT_PARAMETER;
 			case STATE_VARIABLE_VALUE: return STATE_VARIABLE;
 			case CONSTANT_VALUE: return CONSTANT;
-			case FUNCTION_OBJECT_VALUE: return FUNCTION_OBJECT;
 		}
 		return null;
 	}

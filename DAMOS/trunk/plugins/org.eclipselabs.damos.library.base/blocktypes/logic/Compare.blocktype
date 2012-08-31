@@ -15,10 +15,10 @@ blockType Compare {
 		5 alias ">"
 	}
 
-	function main<operator>(a, b) -> y {
-		check<3>(real, real) -> boolean
-		check<1>(boolean, boolean) -> boolean
-		check<1>(string, string) -> boolean
+	function main(const operator, a, b) -> y {
+		check(real, real, <3>) -> boolean
+		check(boolean, boolean, <1>) -> boolean
+		check(string, string, <1>) -> boolean
 
 		static assert operator < 2 => a is real(?) || a is boolean || a is string :
 			error "Input value A must be numeric, boolean, or string"

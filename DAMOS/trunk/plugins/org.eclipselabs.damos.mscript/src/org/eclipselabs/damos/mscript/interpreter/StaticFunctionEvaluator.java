@@ -33,7 +33,6 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.function.EquationDescription;
@@ -223,7 +222,7 @@ public class StaticFunctionEvaluator {
 				boolean defined = true;
 				for (EquationPart part : equationDescription.getRightHandSide().getParts()) {
 					FeatureReference variableReference = part.getVariableReference();
-					if (variableReference.getFeature() instanceof StaticParameterDeclaration || variableReference.getFeature() instanceof InputParameterDeclaration) {
+					if (variableReference.getFeature() instanceof InputParameterDeclaration) {
 						continue;
 					}
 					if (!definedFeatures.contains(variableReference.getFeature())) {

@@ -87,7 +87,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	
 	private void initializeVariableDeclarations(IStaticEvaluationResult staticEvaluationResult, FunctionInstance functionInstance, FunctionDescription functionDescription, List<IValue> staticArguments, List<Type> inputParameterDataTypes, Map<VariableDescription, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> staticArgumentIterator = staticArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getStaticParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getConstantInputParameterDeclarations()) {
 			if (staticArgumentIterator.hasNext()) {
 				IValue value = staticArgumentIterator.next();
 				staticEvaluationResult.setValue(parameterDeclaration, value);
@@ -99,7 +99,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		}
 
 		Iterator<Type> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getInputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescription.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			if (inputParameterDataTypesIterator.hasNext()) {
 				Type type = EcoreUtil.copy(inputParameterDataTypesIterator.next());
 				IValue value = new AnyValue(staticEvaluationResult.getComputationContext(), type);

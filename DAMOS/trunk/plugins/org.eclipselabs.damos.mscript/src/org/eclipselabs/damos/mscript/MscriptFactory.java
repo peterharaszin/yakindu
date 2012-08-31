@@ -89,13 +89,22 @@ public interface MscriptFactory extends EFactory {
 	Check createCheck();
 
 	/**
-	 * Returns a new object of class '<em>Static Parameter Declaration</em>'.
+	 * Returns a new object of class '<em>Type Check Argument</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Static Parameter Declaration</em>'.
+	 * @return a new object of class '<em>Type Check Argument</em>'.
 	 * @generated
 	 */
-	StaticParameterDeclaration createStaticParameterDeclaration();
+	TypeCheckArgument createTypeCheckArgument();
+
+	/**
+	 * Returns a new object of class '<em>Expression Check Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression Check Argument</em>'.
+	 * @generated
+	 */
+	ExpressionCheckArgument createExpressionCheckArgument();
 
 	/**
 	 * Returns a new object of class '<em>Input Parameter Declaration</em>'.

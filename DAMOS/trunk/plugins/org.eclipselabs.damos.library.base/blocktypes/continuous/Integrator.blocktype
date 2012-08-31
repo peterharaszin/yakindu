@@ -10,9 +10,9 @@ continuous blockType Integrator {
 	parameter gain = 1(1/s) // normalize
 	parameter initialCondition = 0
 
-	continuous function main<gain, initialCondition>(u) -> y {
-		check<1(1/s), 0>(real) -> real
-		check<1(1/s), 0(m)>(real(m)) -> real(m)
+	continuous function main(const gain, const initialCondition, u) -> y {
+		check(real, <1(1/s)>, <0>) -> real
+		check(real(m), <1(1/s)>, <0(m)>) -> real(m)
 
 		static assert u is real(?) :
 			error "Input value must be numeric"

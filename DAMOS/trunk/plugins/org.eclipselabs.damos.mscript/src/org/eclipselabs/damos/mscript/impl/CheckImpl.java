@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -19,9 +20,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Check;
+import org.eclipselabs.damos.mscript.CheckArgument;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ExpressionCheckArgument;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.TypeCheckArgument;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
 
 /**
@@ -32,9 +36,8 @@ import org.eclipselabs.damos.mscript.TypeSpecifier;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getStaticArguments <em>Static Arguments</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getInputParameterTypes <em>Input Parameter Types</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getOutputParameterTypes <em>Output Parameter Types</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getInputArguments <em>Input Arguments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.CheckImpl#getOutputTypeSpecifiers <em>Output Type Specifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,34 +45,24 @@ import org.eclipselabs.damos.mscript.TypeSpecifier;
  */
 public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	/**
-	 * The cached value of the '{@link #getStaticArguments() <em>Static Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getInputArguments() <em>Input Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStaticArguments()
+	 * @see #getInputArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> staticArguments;
+	protected EList<CheckArgument> inputArguments;
 
 	/**
-	 * The cached value of the '{@link #getInputParameterTypes() <em>Input Parameter Types</em>}' containment reference list.
+	 * The cached value of the '{@link #getOutputTypeSpecifiers() <em>Output Type Specifiers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInputParameterTypes()
+	 * @see #getOutputTypeSpecifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeSpecifier> inputParameterTypes;
-
-	/**
-	 * The cached value of the '{@link #getOutputParameterTypes() <em>Output Parameter Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOutputParameterTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeSpecifier> outputParameterTypes;
+	protected EList<TypeSpecifier> outputTypeSpecifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,11 +129,41 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Expression> getStaticArguments() {
-		if (staticArguments == null) {
-			staticArguments = new EObjectContainmentEList<Expression>(Expression.class, this, MscriptPackage.CHECK__STATIC_ARGUMENTS);
+	public EList<CheckArgument> getInputArguments() {
+		if (inputArguments == null) {
+			inputArguments = new EObjectContainmentEList<CheckArgument>(CheckArgument.class, this, MscriptPackage.CHECK__INPUT_ARGUMENTS);
 		}
-		return staticArguments;
+		return inputArguments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Expression> getExpressionArguments() {
+		EList<Expression> result = new BasicEList<Expression>();
+		for (CheckArgument argument : getInputArguments()) {
+			if (argument instanceof ExpressionCheckArgument) {
+				result.add(((ExpressionCheckArgument) argument).getExpression());
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<TypeSpecifier> getInputTypeSpecifiers() {
+		EList<TypeSpecifier> result = new BasicEList<TypeSpecifier>();
+		for (CheckArgument argument : getInputArguments()) {
+			if (argument instanceof TypeCheckArgument) {
+				result.add(((TypeCheckArgument) argument).getTypeSpecifier());
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -148,23 +171,11 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeSpecifier> getInputParameterTypes() {
-		if (inputParameterTypes == null) {
-			inputParameterTypes = new EObjectContainmentEList<TypeSpecifier>(TypeSpecifier.class, this, MscriptPackage.CHECK__INPUT_PARAMETER_TYPES);
+	public EList<TypeSpecifier> getOutputTypeSpecifiers() {
+		if (outputTypeSpecifiers == null) {
+			outputTypeSpecifiers = new EObjectContainmentEList<TypeSpecifier>(TypeSpecifier.class, this, MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS);
 		}
-		return inputParameterTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TypeSpecifier> getOutputParameterTypes() {
-		if (outputParameterTypes == null) {
-			outputParameterTypes = new EObjectContainmentEList<TypeSpecifier>(TypeSpecifier.class, this, MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES);
-		}
-		return outputParameterTypes;
+		return outputTypeSpecifiers;
 	}
 
 	/**
@@ -193,12 +204,10 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return basicSetFunction(null, msgs);
-			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
-				return ((InternalEList<?>)getStaticArguments()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
-				return ((InternalEList<?>)getInputParameterTypes()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
-				return ((InternalEList<?>)getOutputParameterTypes()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.CHECK__INPUT_ARGUMENTS:
+				return ((InternalEList<?>)getInputArguments()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS:
+				return ((InternalEList<?>)getOutputTypeSpecifiers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -227,12 +236,10 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return getFunction();
-			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
-				return getStaticArguments();
-			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
-				return getInputParameterTypes();
-			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
-				return getOutputParameterTypes();
+			case MscriptPackage.CHECK__INPUT_ARGUMENTS:
+				return getInputArguments();
+			case MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS:
+				return getOutputTypeSpecifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,17 +256,13 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			case MscriptPackage.CHECK__FUNCTION:
 				setFunction((FunctionDeclaration)newValue);
 				return;
-			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
-				getStaticArguments().clear();
-				getStaticArguments().addAll((Collection<? extends Expression>)newValue);
+			case MscriptPackage.CHECK__INPUT_ARGUMENTS:
+				getInputArguments().clear();
+				getInputArguments().addAll((Collection<? extends CheckArgument>)newValue);
 				return;
-			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
-				getInputParameterTypes().clear();
-				getInputParameterTypes().addAll((Collection<? extends TypeSpecifier>)newValue);
-				return;
-			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
-				getOutputParameterTypes().clear();
-				getOutputParameterTypes().addAll((Collection<? extends TypeSpecifier>)newValue);
+			case MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS:
+				getOutputTypeSpecifiers().clear();
+				getOutputTypeSpecifiers().addAll((Collection<? extends TypeSpecifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,14 +279,11 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			case MscriptPackage.CHECK__FUNCTION:
 				setFunction((FunctionDeclaration)null);
 				return;
-			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
-				getStaticArguments().clear();
+			case MscriptPackage.CHECK__INPUT_ARGUMENTS:
+				getInputArguments().clear();
 				return;
-			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
-				getInputParameterTypes().clear();
-				return;
-			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
-				getOutputParameterTypes().clear();
+			case MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS:
+				getOutputTypeSpecifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -299,12 +299,10 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
 				return getFunction() != null;
-			case MscriptPackage.CHECK__STATIC_ARGUMENTS:
-				return staticArguments != null && !staticArguments.isEmpty();
-			case MscriptPackage.CHECK__INPUT_PARAMETER_TYPES:
-				return inputParameterTypes != null && !inputParameterTypes.isEmpty();
-			case MscriptPackage.CHECK__OUTPUT_PARAMETER_TYPES:
-				return outputParameterTypes != null && !outputParameterTypes.isEmpty();
+			case MscriptPackage.CHECK__INPUT_ARGUMENTS:
+				return inputArguments != null && !inputArguments.isEmpty();
+			case MscriptPackage.CHECK__OUTPUT_TYPE_SPECIFIERS:
+				return outputTypeSpecifiers != null && !outputTypeSpecifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

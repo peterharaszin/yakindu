@@ -2,10 +2,10 @@ package org.eclipselabs.damos.mscript.codegen.c.internal;
 
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.FeatureReference;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
@@ -44,9 +44,13 @@ public class VariableReferenceGenerator {
 		}
 		
 		@Override
-		public CharSequence caseStaticParameterDeclaration(StaticParameterDeclaration staticParameterDeclaration) {
-			IValue staticArgument = context.getStaticEvaluationResult().getValue(staticParameterDeclaration);
-			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), staticArgument);
+		public CharSequence caseInputParameterDeclaration(InputParameterDeclaration staticParameterDeclaration) {
+			if (staticParameterDeclaration.isConstant()) {
+				IValue staticArgument = context.getStaticEvaluationResult().getValue(staticParameterDeclaration);
+				return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), staticArgument);
+			}
+			// Fall-through to caseParameterDeclaration()
+			return null;
 		}
 			
 		@Override

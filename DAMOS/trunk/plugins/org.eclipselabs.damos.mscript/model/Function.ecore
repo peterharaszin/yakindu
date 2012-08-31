@@ -124,12 +124,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VariableKind">
     <eLiterals name="Unknown" value="-1"/>
-    <eLiterals name="StaticParameter"/>
+    <eLiterals name="ConstantInputParameter"/>
     <eLiterals name="InputParameter" value="1"/>
     <eLiterals name="OutputParameter" value="2"/>
     <eLiterals name="StateVariable" value="3"/>
     <eLiterals name="Constant" value="4"/>
-    <eLiterals name="FunctionObject" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" lowerBound="1"

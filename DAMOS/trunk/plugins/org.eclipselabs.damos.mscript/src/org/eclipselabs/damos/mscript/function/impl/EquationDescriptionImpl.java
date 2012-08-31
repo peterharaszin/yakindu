@@ -234,19 +234,16 @@ public class EquationDescriptionImpl extends EObjectImpl implements EquationDesc
 		if (getLeftHandSide().getParts().size() == 1 && MscriptUtil.isVariableReference(lhsExpression)) {
 			EquationPart part = getLeftHandSide().getParts().get(0);
 			switch (part.getVariableStep().getVariableDescription().getKind()) {
-			case STATIC_PARAMETER:
-				message = "Left-hand side must not be template parameter reference";
+			case CONSTANT_INPUT_PARAMETER:
+				message = "Left-hand side must not reference a constant input parameter";
 				break;
 			case INPUT_PARAMETER:
 				if (!part.getVariableStep().isInitial() || part.getVariableStep().getIndex() >= 0) {
 					message = "Left-hand side input reference must be negative initial step";
 				}
 				break;
-			case FUNCTION_OBJECT:
-				message = "Left-hand side must not be function object reference";
-				break;
 			case CONSTANT:
-				message = "Left-hand side must not be constant reference";
+				message = "Left-hand side must not reference a constant";
 				break;
 			default:
 				if (part.getVariableStep().getIndex() < 0 && !part.getVariableStep().isInitial()) {

@@ -30,8 +30,8 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 
 import com.google.inject.Inject;
@@ -112,7 +112,7 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		}
 		
 		int inputParameterCount = computeInoutputParameterCount(blockType.getInputDefinitions());
-		if (inputParameterCount != functionDeclaration.getInputParameterDeclarations().size()) {
+		if (inputParameterCount != functionDeclaration.getNonConstantInputParameterDeclarations().size()) {
 			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name());
 		}
 
@@ -123,7 +123,7 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		
 		Map<String, Parameter> blockTypeParameters = getBlockTypeParameters(blockType);
 		Set<String> staticParameterNames = new HashSet<String>();
-		for (StaticParameterDeclaration staticParameterDeclaration : functionDeclaration.getStaticParameterDeclarations()) {
+		for (InputParameterDeclaration staticParameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
 			String name = staticParameterDeclaration.getName();
 			if (!blockTypeParameters.containsKey(name) && !GLOBAL_STATIC_PARAMETERS.contains(name)) {
 				error("No block type parameter found for template parameter " + name, staticParameterDeclaration, null, -1);

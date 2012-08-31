@@ -9,8 +9,8 @@ blockType SchmittTrigger {
 	parameter lowerThreshold = -1
 	parameter initialOutput = false predefined { true, false }
 
-	stateful function main<upperThreshold, lowerThreshold, initialOutput>(u) -> y {
-		check<1, -1, true>(real) -> boolean
+	stateful function main(const upperThreshold, const lowerThreshold, const initialOutput, u) -> y {
+		check(real, <1>, <-1>, <true>) -> boolean
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

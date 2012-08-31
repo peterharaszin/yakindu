@@ -25,7 +25,6 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 
 	public static final String TEMPLATE_DELIMITER_ID = "templateDelimiter";
 	public static final String TEMPLATE_TEXT_ID = "templateText";
-	public static final String STATIC_PARAMETER_ID = "staticParameter";
 	public static final String CONSTANT_ID = "constant";
 	public static final String STATE_VARIABLE_ID = "stateVariable";
 	public static final String FUNCTION_ID = "function";
@@ -37,7 +36,6 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(TEMPLATE_DELIMITER_ID, "Template delimiter", templateDelimiterTextStyle());
 		acceptor.acceptDefaultHighlighting(TEMPLATE_TEXT_ID, "Template expression", templateTextTextStyle());
-		acceptor.acceptDefaultHighlighting(STATIC_PARAMETER_ID, "Static parameter", staticParameterTextStyle());
 		acceptor.acceptDefaultHighlighting(CONSTANT_ID, "Constant", constantTextStyle());
 		acceptor.acceptDefaultHighlighting(STATE_VARIABLE_ID, "State variable", stateVariableTextStyle());
 		acceptor.acceptDefaultHighlighting(FUNCTION_ID, "Function", functionTextStyle());
@@ -58,7 +56,7 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		return textStyle;
 	}
 
-	public TextStyle staticParameterTextStyle() {
+	public TextStyle constantParameterTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(0, 0, 0));
 		textStyle.setStyle(SWT.ITALIC);

@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,7 +29,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,6 @@ import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStaticParameterDeclarations <em>Static Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getChecks <em>Checks</em>}</li>
@@ -93,16 +92,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	 * @ordered
 	 */
 	protected FunctionKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getStaticParameterDeclarations() <em>Static Parameter Declarations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStaticParameterDeclarations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<StaticParameterDeclaration> staticParameterDeclarations;
 
 	/**
 	 * The cached value of the '{@link #getInputParameterDeclarations() <em>Input Parameter Declarations</em>}' containment reference list.
@@ -250,23 +239,41 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<StaticParameterDeclaration> getStaticParameterDeclarations() {
-		if (staticParameterDeclarations == null) {
-			staticParameterDeclarations = new EObjectContainmentEList<StaticParameterDeclaration>(StaticParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS);
-		}
-		return staticParameterDeclarations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<InputParameterDeclaration> getInputParameterDeclarations() {
 		if (inputParameterDeclarations == null) {
 			inputParameterDeclarations = new EObjectContainmentEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
 		}
 		return inputParameterDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<InputParameterDeclaration> getConstantInputParameterDeclarations() {
+		EList<InputParameterDeclaration> result = new BasicEList<InputParameterDeclaration>();
+		for (InputParameterDeclaration inputParameterDeclaration : getInputParameterDeclarations()) {
+			if (inputParameterDeclaration.isConstant()) {
+				result.add(inputParameterDeclaration);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<InputParameterDeclaration> getNonConstantInputParameterDeclarations() {
+		EList<InputParameterDeclaration> result = new BasicEList<InputParameterDeclaration>();
+		for (InputParameterDeclaration inputParameterDeclaration : getInputParameterDeclarations()) {
+			if (!inputParameterDeclaration.isConstant()) {
+				result.add(inputParameterDeclaration);
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -385,8 +392,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
-				return ((InternalEList<?>)getStaticParameterDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return ((InternalEList<?>)getInputParameterDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
@@ -419,8 +424,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return getName();
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return getKind();
-			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
-				return getStaticParameterDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return getInputParameterDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
@@ -455,10 +458,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind((FunctionKind)newValue);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
-				getStaticParameterDeclarations().clear();
-				getStaticParameterDeclarations().addAll((Collection<? extends StaticParameterDeclaration>)newValue);
 				return;
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
@@ -510,9 +509,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
-				getStaticParameterDeclarations().clear();
-				return;
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
 				return;
@@ -553,8 +549,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return kind != KIND_EDEFAULT;
-			case MscriptPackage.FUNCTION_DECLARATION__STATIC_PARAMETER_DECLARATIONS:
-				return staticParameterDeclarations != null && !staticParameterDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return inputParameterDeclarations != null && !inputParameterDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:

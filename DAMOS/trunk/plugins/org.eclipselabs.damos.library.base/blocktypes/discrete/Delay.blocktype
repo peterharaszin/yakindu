@@ -10,8 +10,8 @@ blockType Delay {
 	parameter initialCondition = 0
 	parameter delay = 1
 
-	stateful function main<initialCondition, delay>(u) -> y {
-		check<0, 1>(real) -> real
+	stateful function main(const initialCondition, const delay, u) -> y {
+		check(real, <0>, <1>) -> real
 		
 		static assert delay == 1 :
 			error "Only delay value '1' is supported currently"

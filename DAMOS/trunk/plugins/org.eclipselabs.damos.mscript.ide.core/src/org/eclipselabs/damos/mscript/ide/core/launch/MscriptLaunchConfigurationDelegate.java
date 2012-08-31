@@ -85,7 +85,7 @@ public class MscriptLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	@Override
 	protected List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode,
 			IProgressMonitor monitor) throws CoreException {
-		int n = getFunctionDefinition().getInputParameterDeclarations().size();
+		int n = getFunctionDefinition().getNonConstantInputParameterDeclarations().size();
 		Type[] dataTypes = new Type[n];
 		
 		IInterpreterContext interpreterContext = new InterpreterContext(getStaticEvaluationResult(), new ComputationContext(getComputationModel()));

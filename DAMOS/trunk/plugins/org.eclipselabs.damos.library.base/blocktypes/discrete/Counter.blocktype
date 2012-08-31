@@ -27,10 +27,10 @@ asynchronous blockType Counter {
 	
 	type Message = union { boolean up, down }
 
-	stateful function main<initialValue, step, upperLimit, lowerLimit, upTrigger, downTrigger>(message) -> y {
-		check<0, 1, 10, 0, 0, 0>(Message) -> int
-		check<0, 1, 10, 0, 1, 1>(Message) -> int
-		check<0, 1, 10, 0, 2, 2>(Message) -> int
+	stateful function main(const initialValue, const step, const upperLimit, const lowerLimit, const upTrigger, const downTrigger, message) -> y {
+		check(Message, <0>, <1>, <10>, <0>, <0>, <0>) -> int
+		check(Message, <0>, <1>, <10>, <0>, <1>, <1>) -> int
+		check(Message, <0>, <1>, <10>, <0>, <2>, <2>) -> int
 		
 		static assert initialValue is real(?) :
 			error "Initial value must be numeric"

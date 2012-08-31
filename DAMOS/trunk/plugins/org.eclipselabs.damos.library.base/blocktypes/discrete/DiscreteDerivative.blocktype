@@ -8,8 +8,8 @@ synchronous blockType DiscreteDerivative {
 	parameter gain = 1(s) // normalize
 	parameter initialCondition = 0
 
-	stateful function main<initialCondition, gain, fs>(u) -> y {
-		check<0, 1(s), 1(1/s)>(real) -> real
+	stateful function main(const initialCondition, const gain, const fs, u) -> y {
+		check(real, <0>, <1(s)>, <1(1/s)>) -> real
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

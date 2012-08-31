@@ -20,7 +20,6 @@ import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
-import org.eclipselabs.damos.mscript.StaticParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -45,7 +44,7 @@ public class FunctionObject implements IFunctionObject {
 		FunctionObject functionObject = new FunctionObject();
 		functionObject.functionInstance = functionInstance;
 		
-		for (StaticParameterDeclaration declaration : functionInstance.getDeclaration().getStaticParameterDeclarations()) {
+		for (InputParameterDeclaration declaration : functionInstance.getDeclaration().getConstantInputParameterDeclarations()) {
 			createStaticVariable(context, functionObject, declaration);
 		}
 		
@@ -53,7 +52,7 @@ public class FunctionObject implements IFunctionObject {
 			createStaticVariable(context, functionObject, declaration);
 		}
 
-		for (InputParameterDeclaration declaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration declaration : functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
 		}
 		

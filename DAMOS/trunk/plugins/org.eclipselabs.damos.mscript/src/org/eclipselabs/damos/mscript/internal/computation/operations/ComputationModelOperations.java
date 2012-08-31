@@ -2,8 +2,8 @@ package org.eclipselabs.damos.mscript.internal.computation.operations;
 
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.computation.ComputationFactory;
+import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormatKind;

@@ -27,7 +27,7 @@ class BehavioredBlockContextCodeGenerator {
 
 	def generateContextCode(IBehavioredBlockGeneratorContext context, CharSequence typeName, IProgressMonitor monitor) '''
 		typedef struct {
-			«FOR d : context.functionInstance.getDeclaration.inputParameterDeclarations»
+			«FOR d : context.functionInstance.getDeclaration.getNonConstantInputParameterDeclarations»
 				«IF hasContext(context, d)»
 					«generateContextStructureMember(context, monitor, d)»
 				«ENDIF»

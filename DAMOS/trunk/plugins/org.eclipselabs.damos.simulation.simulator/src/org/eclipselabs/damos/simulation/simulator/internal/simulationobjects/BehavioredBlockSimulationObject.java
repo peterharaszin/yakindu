@@ -179,11 +179,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeInputVariables() throws CoreException {
-		inputVariables = new IVariable[functionObject.getFunctionInstance().getDeclaration().getInputParameterDeclarations().size()];
+		inputVariables = new IVariable[functionObject.getFunctionInstance().getDeclaration().getNonConstantInputParameterDeclarations().size()];
 		multiPortInput = new boolean[inputVariables.length];
 		
 		int i = 0;
-		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getDeclaration().getNonConstantInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			
 			// TODO: Check if this code works for combination of sockets and non-sockets (probably not)

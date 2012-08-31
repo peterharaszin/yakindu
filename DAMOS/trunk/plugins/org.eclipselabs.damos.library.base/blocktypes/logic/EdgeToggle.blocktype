@@ -11,9 +11,9 @@ blockType EdgeToggle {
 		1 alias "Falling"
 	}
 
-	stateful function main<initialValue, trigger>(u) -> y {
-		check<false, 0>(boolean) -> boolean
-		check<false, 1>(boolean) -> boolean
+	stateful function main(const initialValue, const trigger, u) -> y {
+		check(boolean, <false>, <0>) -> boolean
+		check(boolean, <false>, <1>) -> boolean
 		
 		static assert initialValue is boolean :
 			error "Initial value must be boolean"

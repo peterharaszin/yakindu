@@ -9,9 +9,9 @@ continuous blockType Derivative {
 	parameter initialCondition = 0
 	parameter timeConstant = 0.01(s)
 
-	continuous function main<gain, initialCondition, timeConstant>(u) -> y {
-		check<1(s), 0, 0.01(s)>(real) -> real
-		check<1(s), 0(m), 0.01(s)>(real(m)) -> real(m)
+	continuous function main(const gain, const initialCondition, const timeConstant, u) -> y {
+		check(real, <1(s)>, <0>, <0.01(s)>) -> real
+		check(real(m), <1(s)>, <0(m)>, <0.01(s)>) -> real(m)
 
 		static assert u is real(?) :
 			error "Input value must be numeric"

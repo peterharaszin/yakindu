@@ -48,8 +48,8 @@ public class BehavioredBlockContextCodeGenerator {
     {
       FunctionInstance _functionInstance = context.getFunctionInstance();
       FunctionDeclaration _declaration = _functionInstance.getDeclaration();
-      EList<InputParameterDeclaration> _inputParameterDeclarations = _declaration.getInputParameterDeclarations();
-      for(final InputParameterDeclaration d : _inputParameterDeclarations) {
+      EList<InputParameterDeclaration> _nonConstantInputParameterDeclarations = _declaration.getNonConstantInputParameterDeclarations();
+      for(final InputParameterDeclaration d : _nonConstantInputParameterDeclarations) {
         {
           boolean _hasContext = this.hasContext(context, d);
           if (_hasContext) {

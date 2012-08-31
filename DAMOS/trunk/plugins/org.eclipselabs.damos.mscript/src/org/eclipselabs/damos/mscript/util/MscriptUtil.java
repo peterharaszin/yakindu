@@ -18,7 +18,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.CompoundStatement;
-import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -27,6 +26,7 @@ import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StepLiteral;
+import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 

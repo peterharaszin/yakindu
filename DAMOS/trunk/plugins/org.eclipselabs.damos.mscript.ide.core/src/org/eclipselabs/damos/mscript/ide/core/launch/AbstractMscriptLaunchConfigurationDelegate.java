@@ -234,7 +234,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Invalid template arguments specified"));
 		}
 		
-		if (staticArguments.size() != functionDeclaration.getStaticParameterDeclarations().size()) {
+		if (staticArguments.size() != functionDeclaration.getConstantInputParameterDeclarations().size()) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Number of template parameter data types does not correspond to the number of template parameter in function definition"));
 		}
 		

@@ -128,6 +128,26 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.CHECK_ARGUMENT: {
+				CheckArgument checkArgument = (CheckArgument)theEObject;
+				T result = caseCheckArgument(checkArgument);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.TYPE_CHECK_ARGUMENT: {
+				TypeCheckArgument typeCheckArgument = (TypeCheckArgument)theEObject;
+				T result = caseTypeCheckArgument(typeCheckArgument);
+				if (result == null) result = caseCheckArgument(typeCheckArgument);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.EXPRESSION_CHECK_ARGUMENT: {
+				ExpressionCheckArgument expressionCheckArgument = (ExpressionCheckArgument)theEObject;
+				T result = caseExpressionCheckArgument(expressionCheckArgument);
+				if (result == null) result = caseCheckArgument(expressionCheckArgument);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.EVALUABLE: {
 				Evaluable evaluable = (Evaluable)theEObject;
 				T result = caseEvaluable(evaluable);
@@ -155,16 +175,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseVariableDeclaration(parameterDeclaration);
 				if (result == null) result = caseCallableElement(parameterDeclaration);
 				if (result == null) result = caseEvaluable(parameterDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.STATIC_PARAMETER_DECLARATION: {
-				StaticParameterDeclaration staticParameterDeclaration = (StaticParameterDeclaration)theEObject;
-				T result = caseStaticParameterDeclaration(staticParameterDeclaration);
-				if (result == null) result = caseParameterDeclaration(staticParameterDeclaration);
-				if (result == null) result = caseVariableDeclaration(staticParameterDeclaration);
-				if (result == null) result = caseCallableElement(staticParameterDeclaration);
-				if (result == null) result = caseEvaluable(staticParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1181,6 +1191,51 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Check Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Check Argument</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckArgument(CheckArgument object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Check Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Check Argument</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeCheckArgument(TypeCheckArgument object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Check Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Check Argument</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpressionCheckArgument(ExpressionCheckArgument object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Evaluable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1237,21 +1292,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameterDeclaration(ParameterDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Static Parameter Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Static Parameter Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStaticParameterDeclaration(StaticParameterDeclaration object) {
 		return null;
 	}
 

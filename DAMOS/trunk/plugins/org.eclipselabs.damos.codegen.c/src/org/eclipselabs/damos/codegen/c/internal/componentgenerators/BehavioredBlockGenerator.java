@@ -153,7 +153,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getInputParameterDeclarations());
+		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getNonConstantInputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getOutputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getStateVariableDeclarations());
 
@@ -237,13 +237,13 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 		
 		List<InputParameterDeclaration> computeOutputsCodeInputs = FunctionModelUtil.getDirectFeedthroughInputs(functionInstance);
-		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			if (staticEvaluationResult.getCircularBufferSize(inputVariableDeclaration) > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
 				writeUpdateInputContextStatement(out, inputVariableDeclaration);
 			}
 		}
 		
-		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getInputParameterDeclarations());
+		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getNonConstantInputParameterDeclarations());
 		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getOutputParameterDeclarations());
 		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getStateVariableDeclarations());
 		
@@ -268,7 +268,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		boolean skip = !getComponent().getInputSockets().isEmpty();
 		
-		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getDeclaration().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
 			if (skip) {
 				skip = false;
 				continue;

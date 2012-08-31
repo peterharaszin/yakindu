@@ -65,7 +65,8 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
 			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
-			case MscriptPackage.STATIC_PARAMETER_DECLARATION: return createStaticParameterDeclaration();
+			case MscriptPackage.TYPE_CHECK_ARGUMENT: return createTypeCheckArgument();
+			case MscriptPackage.EXPRESSION_CHECK_ARGUMENT: return createExpressionCheckArgument();
 			case MscriptPackage.INPUT_PARAMETER_DECLARATION: return createInputParameterDeclaration();
 			case MscriptPackage.OUTPUT_PARAMETER_DECLARATION: return createOutputParameterDeclaration();
 			case MscriptPackage.ASSERTION: return createAssertion();
@@ -296,9 +297,19 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StaticParameterDeclaration createStaticParameterDeclaration() {
-		StaticParameterDeclarationImpl staticParameterDeclaration = new StaticParameterDeclarationImpl();
-		return staticParameterDeclaration;
+	public TypeCheckArgument createTypeCheckArgument() {
+		TypeCheckArgumentImpl typeCheckArgument = new TypeCheckArgumentImpl();
+		return typeCheckArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionCheckArgument createExpressionCheckArgument() {
+		ExpressionCheckArgumentImpl expressionCheckArgument = new ExpressionCheckArgumentImpl();
+		return expressionCheckArgument;
 	}
 
 	/**

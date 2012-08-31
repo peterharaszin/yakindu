@@ -72,7 +72,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ASSERTION: return createAssertion();
 			case MscriptPackage.STATE_VARIABLE_DECLARATION: return createStateVariableDeclaration();
 			case MscriptPackage.CONSTANT_DECLARATION: return createConstantDeclaration();
-			case MscriptPackage.FUNCTION_ALIAS_DECLARATION: return createFunctionAliasDeclaration();
 			case MscriptPackage.EQUATION: return createEquation();
 			case MscriptPackage.ANONYMOUS_TYPE_SPECIFIER: return createAnonymousTypeSpecifier();
 			case MscriptPackage.DECLARED_TYPE_SPECIFIER: return createDeclaredTypeSpecifier();
@@ -360,16 +359,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ConstantDeclaration createConstantDeclaration() {
 		ConstantDeclarationImpl constantDeclaration = new ConstantDeclarationImpl();
 		return constantDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FunctionAliasDeclaration createFunctionAliasDeclaration() {
-		FunctionAliasDeclarationImpl functionAliasDeclaration = new FunctionAliasDeclarationImpl();
-		return functionAliasDeclaration;
 	}
 
 	/**

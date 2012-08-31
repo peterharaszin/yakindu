@@ -23,7 +23,6 @@ import org.eclipselabs.damos.mscript.DerivedUnitDeclaration;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
-import org.eclipselabs.damos.mscript.FunctionAliasDeclaration;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
@@ -118,7 +117,6 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		}
 		CallableElement ce = functionCall.getFeature();
 		if (!(ce instanceof FunctionDeclaration
-				|| ce instanceof FunctionAliasDeclaration
 				|| ce instanceof BuiltinFunctionDeclaration)) {
 			error("Invalid function call " + functionCall.getFeature().getName(), null);
 		}

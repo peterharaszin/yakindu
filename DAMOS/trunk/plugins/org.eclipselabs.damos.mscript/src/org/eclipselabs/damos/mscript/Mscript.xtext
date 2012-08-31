@@ -76,7 +76,6 @@ FunctionDeclaration:
 			'->' outputParameterDeclarations+=OutputParameterDeclaration (',' outputParameterDeclarations+=OutputParameterDeclaration)* '{'
 		(checks+=Check |
 		assertions+=Assertion |
-		functionAliasDeclarations+=FunctionAliasDeclaration |
 		stateVariableDeclarations+=StateVariableDeclaration |
 		constantDeclarations+=ConstantDeclaration |
 		equations+=Equation)*
@@ -118,9 +117,6 @@ StateVariableDeclaration:
 
 ConstantDeclaration:
 	'const' name=ValidID '=' initializer=Expression;
-
-FunctionAliasDeclaration:
-	'function' name=ValidID '=' functionDeclaration=[FunctionDeclaration|QualifiedName] ('<' staticArguments+=Expression (',' staticArguments+=Expression)* '>')?;
 
 Equation:
 	(initial?='initial')? 'eq' leftHandSide=Expression '=' rightHandSide=Expression;

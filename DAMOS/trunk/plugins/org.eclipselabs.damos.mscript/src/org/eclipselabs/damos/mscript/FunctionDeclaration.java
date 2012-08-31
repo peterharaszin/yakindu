@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks <em>Checks</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getAssertions <em>Assertions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionAliasDeclarations <em>Function Alias Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getEquations <em>Equations</em>}</li>
@@ -178,22 +177,6 @@ public interface FunctionDeclaration extends TopLevelDeclaration, CallableElemen
 	 * @generated
 	 */
 	EList<Assertion> getAssertions();
-
-	/**
-	 * Returns the value of the '<em><b>Function Alias Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.FunctionAliasDeclaration}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Function Alias Declarations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Alias Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_FunctionAliasDeclarations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<FunctionAliasDeclaration> getFunctionAliasDeclarations();
 
 	/**
 	 * Returns the value of the '<em><b>State Variable Declarations</b></em>' containment reference list.

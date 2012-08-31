@@ -2656,35 +2656,16 @@ ruleFunctionDeclaration returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getFunctionAliasDeclarationsFunctionAliasDeclarationParserRuleCall_10_2_0()); 
+	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_10_2_0()); 
 	    }
-		lv_functionAliasDeclarations_15_0=ruleFunctionAliasDeclaration		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
-	        }
-       		add(
-       			$current, 
-       			"functionAliasDeclarations",
-        		lv_functionAliasDeclarations_15_0, 
-        		"FunctionAliasDeclaration");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_10_3_0()); 
-	    }
-		lv_stateVariableDeclarations_16_0=ruleStateVariableDeclaration		{
+		lv_stateVariableDeclarations_15_0=ruleStateVariableDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
 	        }
        		add(
        			$current, 
        			"stateVariableDeclarations",
-        		lv_stateVariableDeclarations_16_0, 
+        		lv_stateVariableDeclarations_15_0, 
         		"StateVariableDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2694,16 +2675,16 @@ ruleFunctionDeclaration returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_10_4_0()); 
+	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_10_3_0()); 
 	    }
-		lv_constantDeclarations_17_0=ruleConstantDeclaration		{
+		lv_constantDeclarations_16_0=ruleConstantDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
 	        }
        		add(
        			$current, 
        			"constantDeclarations",
-        		lv_constantDeclarations_17_0, 
+        		lv_constantDeclarations_16_0, 
         		"ConstantDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2713,24 +2694,24 @@ ruleFunctionDeclaration returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_10_5_0()); 
+	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_10_4_0()); 
 	    }
-		lv_equations_18_0=ruleEquation		{
+		lv_equations_17_0=ruleEquation		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
 	        }
        		add(
        			$current, 
        			"equations",
-        		lv_equations_18_0, 
+        		lv_equations_17_0, 
         		"Equation");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*	otherlv_19='}' 
+))*	otherlv_18='}' 
     {
-    	newLeafNode(otherlv_19, grammarAccess.getFunctionDeclarationAccess().getRightCurlyBracketKeyword_11());
+    	newLeafNode(otherlv_18, grammarAccess.getFunctionDeclarationAccess().getRightCurlyBracketKeyword_11());
     }
 )
 ;
@@ -3275,116 +3256,6 @@ ruleConstantDeclaration returns [EObject current=null]
 
 )
 ))
-;
-
-
-
-
-
-// Entry rule entryRuleFunctionAliasDeclaration
-entryRuleFunctionAliasDeclaration returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getFunctionAliasDeclarationRule()); }
-	 iv_ruleFunctionAliasDeclaration=ruleFunctionAliasDeclaration 
-	 { $current=$iv_ruleFunctionAliasDeclaration.current; } 
-	 EOF 
-;
-
-// Rule FunctionAliasDeclaration
-ruleFunctionAliasDeclaration returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='function' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getFunctionAliasDeclarationAccess().getFunctionKeyword_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getFunctionAliasDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
-	    }
-		lv_name_1_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getFunctionAliasDeclarationRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_1_0, 
-        		"ValidID");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_2='=' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getFunctionAliasDeclarationAccess().getEqualsSignKeyword_2());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFunctionAliasDeclarationRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getFunctionAliasDeclarationAccess().getFunctionDeclarationFunctionDeclarationCrossReference_3_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_4='<' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getFunctionAliasDeclarationAccess().getLessThanSignKeyword_4_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getFunctionAliasDeclarationAccess().getStaticArgumentsExpressionParserRuleCall_4_1_0()); 
-	    }
-		lv_staticArguments_5_0=ruleExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getFunctionAliasDeclarationRule());
-	        }
-       		add(
-       			$current, 
-       			"staticArguments",
-        		lv_staticArguments_5_0, 
-        		"Expression");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_6=',' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getFunctionAliasDeclarationAccess().getCommaKeyword_4_2_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getFunctionAliasDeclarationAccess().getStaticArgumentsExpressionParserRuleCall_4_2_1_0()); 
-	    }
-		lv_staticArguments_7_0=ruleExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getFunctionAliasDeclarationRule());
-	        }
-       		add(
-       			$current, 
-       			"staticArguments",
-        		lv_staticArguments_7_0, 
-        		"Expression");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_8='>' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getFunctionAliasDeclarationAccess().getGreaterThanSignKeyword_4_3());
-    }
-)?)
 ;
 
 

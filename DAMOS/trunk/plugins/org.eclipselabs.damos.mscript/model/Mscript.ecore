@@ -43,8 +43,6 @@
         eType="#//Check" containment="true" eOpposite="#//Check/function"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assertions" upperBound="-1"
         eType="#//Assertion" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionAliasDeclarations"
-        upperBound="-1" eType="#//FunctionAliasDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariableDeclarations"
         upperBound="-1" eType="#//StateVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constantDeclarations" upperBound="-1"
@@ -109,12 +107,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//VariableDeclaration #//TopLevelDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionAliasDeclaration" eSuperTypes="#//CallableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDeclaration" eType="#//FunctionDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="staticArguments" upperBound="-1"
-        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Equation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initial" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

@@ -1986,9 +1986,8 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	//	kind=FunctionKind? "function" name=ValidID "(" (inputParameterDeclarations+=InputParameterDeclaration (","
 	//	inputParameterDeclarations+=InputParameterDeclaration)*)? ")" "->"
 	//	outputParameterDeclarations+=OutputParameterDeclaration ("," outputParameterDeclarations+=OutputParameterDeclaration)*
-	//	"{" (checks+=Check | assertions+=Assertion | functionAliasDeclarations+=FunctionAliasDeclaration |
-	//	stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration |
-	//	equations+=Equation)* "}";
+	//	"{" (checks+=Check | assertions+=Assertion | stateVariableDeclarations+=StateVariableDeclaration |
+	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
 	public MscriptGrammarAccess.FunctionDeclarationElements getFunctionDeclarationAccess() {
 		return gaMscript.getFunctionDeclarationAccess();
 	}
@@ -2106,17 +2105,6 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getConstantDeclarationRule() {
 		return getConstantDeclarationAccess().getRule();
-	}
-
-	//FunctionAliasDeclaration:
-	//	"function" name=ValidID "=" functionDeclaration=[FunctionDeclaration|QualifiedName] ("<" staticArguments+=Expression
-	//	("," staticArguments+=Expression)* ">")?;
-	public MscriptGrammarAccess.FunctionAliasDeclarationElements getFunctionAliasDeclarationAccess() {
-		return gaMscript.getFunctionAliasDeclarationAccess();
-	}
-	
-	public ParserRule getFunctionAliasDeclarationRule() {
-		return getFunctionAliasDeclarationAccess().getRule();
 	}
 
 	//Equation:

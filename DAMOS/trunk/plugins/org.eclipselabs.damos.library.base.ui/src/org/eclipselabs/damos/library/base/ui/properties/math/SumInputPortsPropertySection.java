@@ -56,7 +56,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.dscript.util.DscriptUtil;
 import org.eclipselabs.damos.library.base.ui.figures.shapes.math.SumShapeType;
 import org.eclipselabs.damos.library.base.ui.view.styles.math.SumStyles;
 import org.eclipselabs.damos.library.base.util.math.SumConstants;
@@ -293,7 +293,7 @@ public class SumInputPortsPropertySection extends AbstractModelerPropertySection
 									editPart.getEditingDomain(),
 									signArgument,
 									DMLPackage.Literals.ARGUMENT__VALUE,
-									DMLTextUtil.createValueSpecification(sign >= 0 ? -1 : 1));
+									DscriptUtil.createValueSpecification(sign >= 0 ? -1 : 1));
 					        ICommand command = ElementTypes.ARGUMENT.getEditCommand(setRequest);
 					        executeAsCompositeCommand("Change Input Port Sign", Collections.singletonList(command));
 						}

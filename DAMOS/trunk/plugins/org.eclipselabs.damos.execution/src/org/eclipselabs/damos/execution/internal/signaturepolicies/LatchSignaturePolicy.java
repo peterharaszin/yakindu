@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Latch;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
@@ -63,8 +63,8 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	protected Type getDataType(MultiStatus status, Latch latch) {
 		try {
-			if (latch.getInitialValue() instanceof MscriptValueSpecification) {
-				return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();
+			if (latch.getInitialValue() instanceof DscriptValueSpecification) {
+				return ExpressionUtil.evaluateExpression(((DscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();
 			} else {
 				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid model"));
 			}

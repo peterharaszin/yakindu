@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
@@ -62,8 +62,8 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 	 * @param inoutport
 	 */
 	protected Type getDataType(MultiStatus status, Inoutport inoutport) {
-		if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
-			return ((MscriptDataTypeSpecification) inoutport.getDataType()).getType();
+		if (inoutport.getDataType() instanceof DscriptDataTypeSpecification) {
+			return ((DscriptDataTypeSpecification) inoutport.getDataType()).getType();
 		} else {
 			status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid model"));
 		}

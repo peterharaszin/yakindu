@@ -21,7 +21,7 @@ import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
@@ -55,8 +55,8 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 				continue;
 			}
 			try {
-				if (actionLink.getCondition() instanceof MscriptValueSpecification) {
-					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
+				if (actionLink.getCondition() instanceof DscriptValueSpecification) {
+					DscriptValueSpecification condition = (DscriptValueSpecification) actionLink.getCondition();
 					IValue value = ExpressionUtil.evaluateExpression(condition.getExpression());
 					if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidType) {
 						status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Action link condition '" + condition.stringValue() + "' is incompatible with choice input value"));

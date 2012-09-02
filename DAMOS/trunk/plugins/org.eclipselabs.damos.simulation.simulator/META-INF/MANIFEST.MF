@@ -8,7 +8,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexport,
  org.eclipse.emf.transaction;bundle-version="1.3.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0";visibility:=reexport,
- org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
+ org.eclipselabs.damos.dscript;bundle-version="0.3.0",
  org.eclipselabs.damos.common;bundle-version="0.3.0",
  org.eclipselabs.damos.common.math;bundle-version="0.3.0",
  org.eclipselabs.damos.execution;bundle-version="0.3.0",

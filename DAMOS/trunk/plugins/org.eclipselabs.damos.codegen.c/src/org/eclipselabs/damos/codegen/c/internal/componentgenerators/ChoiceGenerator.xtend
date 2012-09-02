@@ -18,12 +18,12 @@ import org.eclipselabs.damos.codegen.c.util.GeneratorUtil
 import org.eclipselabs.damos.dml.Choice
 import org.eclipselabs.damos.dml.ValueSpecification
 import org.eclipselabs.damos.dml.util.DMLUtil
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult
 import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration
+import org.eclipselabs.damos.dscript.DscriptValueSpecification
 
 /**
  * @author Andreas Unger
@@ -60,10 +60,10 @@ class ChoiceGenerator extends AbstractComponentGenerator {
 	}
 	
 	def private generateValueSpecification(ValueSpecification valueSpecification) {
-		if (valueSpecification instanceof MscriptValueSpecification) {
-			val condition = valueSpecification as MscriptValueSpecification
+		if (valueSpecification instanceof DscriptValueSpecification) {
+			val condition = valueSpecification as DscriptValueSpecification
 			val mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(computationModel, configuration), new StaticEvaluationResult(), [v | ""], context.codeFragmentCollector)
-			return expressionGenerator.generate(mscriptGeneratorContext, condition.expression)
+			return expressionGenerator.generate(mscriptGeneratorContext, condition.getExpression)
 		}
 		return "INVALID_EXPRESSION"
 	}

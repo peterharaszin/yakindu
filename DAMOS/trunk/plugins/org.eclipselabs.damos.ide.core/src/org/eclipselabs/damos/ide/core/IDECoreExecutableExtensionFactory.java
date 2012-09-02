@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.ide.core;
 
 import org.eclipselabs.damos.common.inject.AbstractGuiceAwareExecutableExtensionFactory;
-import org.eclipselabs.damos.dmltext.DMLTextRuntimeModule;
+import org.eclipselabs.damos.dscript.DscriptRuntimeModule;
 import org.osgi.framework.Bundle;
 
 import com.google.inject.Guice;
@@ -38,7 +38,7 @@ public class IDECoreExecutableExtensionFactory extends AbstractGuiceAwareExecuta
 	 */
 	@Override
 	protected Injector getInjector() {
-		return Guice.createInjector(Modules.override(new DMLTextRuntimeModule()).with(new IDEModule()));
+		return Guice.createInjector(Modules.override(new DscriptRuntimeModule()).with(new IDEModule()));
 	}
 
 }

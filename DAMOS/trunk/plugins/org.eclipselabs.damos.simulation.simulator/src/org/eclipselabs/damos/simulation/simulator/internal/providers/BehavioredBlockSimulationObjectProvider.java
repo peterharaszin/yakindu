@@ -13,7 +13,7 @@ package org.eclipselabs.damos.simulation.simulator.internal.providers;
 
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.TimingKind;
-import org.eclipselabs.damos.dmltext.MscriptBlockType;
+import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
@@ -29,8 +29,8 @@ public class BehavioredBlockSimulationObjectProvider implements ISimulationObjec
 	public ISimulationObject createSimulationObject(ComponentNode node) {
 		if (node.getComponent() instanceof Block) {
 			Block block = (Block) node.getComponent();
-			if (block.getType() instanceof MscriptBlockType) {
-				MscriptBlockType blockType = (MscriptBlockType) block.getType();
+			if (block.getType() instanceof DscriptBlockType) {
+				DscriptBlockType blockType = (DscriptBlockType) block.getType();
 				if (blockType.getBehavior() != null) {
 					if (blockType.getTiming() == TimingKind.CONTINUOUS) {
 						return new ContinuousBlockSimulationObject();

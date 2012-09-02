@@ -169,9 +169,9 @@
 		<module>../org.eclipselabs.damos.dml</module>
 		<module>../org.eclipselabs.damos.dml.edit</module>
 		<module>../org.eclipselabs.damos.dml.ui</module>
-		<module>../org.eclipselabs.damos.dmltext</module>
-		<module>../org.eclipselabs.damos.dmltext.tests</module>
-		<module>../org.eclipselabs.damos.dmltext.ui</module>
+		<module>../org.eclipselabs.damos.dscript</module>
+		<module>../org.eclipselabs.damos.dscript.tests</module>
+		<module>../org.eclipselabs.damos.dscript.ui</module>
 		<module>../org.eclipselabs.damos.doc</module>
 		<module>../org.eclipselabs.damos.execution</module>
 		<module>../org.eclipselabs.damos.execution.tests</module>

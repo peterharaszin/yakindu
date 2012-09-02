@@ -19,7 +19,7 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.dmltext.MscriptBlockType;
+import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.FeatureReference;
@@ -99,7 +99,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 */
 	static String getInputParameterAccessString(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
 		// TODO: Casting should be reworked, we need to pass a DscriptInputDefinition
-		int index = ((MscriptBlockType) block.getType()).getBehavior().getNonConstantInputParameterDeclarations().indexOf(inputParameterDeclaration);
+		int index = ((DscriptBlockType) block.getType()).getBehavior().getNonConstantInputParameterDeclarations().indexOf(inputParameterDeclaration);
 		
 		if (!block.getInputSockets().isEmpty()) {
 			if (index == 0) {

@@ -1,0 +1,106 @@
+grammar org.eclipselabs.damos.dscript.Dscript with org.eclipselabs.damos.mscript.Mscript
+
+import "http://www.eclipselabs.org/damos/2011/DML"
+import "http://www.eclipselabs.org/damos/2011/Dscript"
+import "http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Root:
+	(blockTypes+=DscriptBlockType | systemInterfaces+=DscriptSystemInterface)*;
+	
+DscriptBlockType:
+	'package' packageName=QualifiedName
+	(importDeclarations+=ImportDeclaration)*
+	((timing=TimingKind)? & (boundary?='boundary')?) 'blockType' name=ValidID '{'
+		(inputDefinitions+=DscriptInputDefinition)*
+		(outputDefinitions+=DscriptOutputDefinition)*
+		(parameters+=Parameter)*
+		(declarations+=TopLevelDeclaration)* (behavior=BehaviorDeclaration (declarations+=TopLevelDeclaration)*)?
+	'}';
+
+enum TimingKind:
+	Continuous='continuous' |
+	Synchronous='synchronous' |
+	Asynchronous='asynchronous' |
+	Discrete='discrete';
+
+DscriptInputDefinition:
+	((socket?='socket')? & (testPoint?='testPoint')?) 'input' name=ValidID ('[' minimumPortCount=ValidInt '..'  maximumPortCount=UpperBoundLiteral ('|' defaultPortCount=ValidInt)? ']')? ('{'
+		(('directFeedthrough' directFeedthroughPolicy=DirectFeedthroughPolicy)? &
+		(parameters+=Parameter)*)
+	'}')?;
+	
+DirectFeedthroughPolicy:
+	BooleanDirectFeedthroughPolicy;
+
+BooleanDirectFeedthroughPolicy:
+	{BooleanDirectFeedthroughPolicy} (directFeedthrough?='always' | 'never');
+
+DscriptOutputDefinition:
+	((socket?='socket')? & (testPoint?='testPoint')?) 'output' name=ValidID ('[' minimumPortCount=ValidInt '..'  maximumPortCount=UpperBoundLiteral ('|' defaultPortCount=ValidInt)? ']')? ('{'
+		(parameters+=Parameter)*
+	'}')?;
+
+Parameter:
+	OpaqueParameter | DscriptParameter;
+	
+OpaqueParameter returns Parameter:
+	(visibility=ParameterVisibilityKind)? dataType=OpaqueTypeSpecification 'parameter' name=ValidID '=' ownedDefaultValue=StringValueSpecification
+		('predefined' '{' predefinedValues+=OpaqueParameterPredefinedValue (',' predefinedValues+=OpaqueParameterPredefinedValue)* '}')?;
+
+DscriptParameter:
+	(visibility=ParameterVisibilityKind)? 'parameter' name=ValidID '=' ownedDefaultValue=DscriptValueSpecification
+		('predefined' '{' predefinedValues+=DscriptParameterPredefinedValue (',' predefinedValues+=DscriptParameterPredefinedValue)* '}')?;
+
+OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
+	value=StringValueSpecification ('alias' alias=STRING)?;
+
+DscriptParameterPredefinedValue returns ParameterPredefinedValue:
+	value=DscriptValueSpecification ('alias' alias=STRING)?;
+
+enum ParameterVisibilityKind:
+	Public='public' | Private='private';
+
+BehaviorDeclaration:
+	{BehaviorDeclaration} 'behavior' '{'
+		(checks+=Check |
+		assertions+=Assertion |
+		stateVariableDeclarations+=StateVariableDeclaration |
+		constantDeclarations+=ConstantDeclaration |
+		equations+=Equation)*
+	'}';
+
+OpaqueTypeSpecification returns PrimitiveTypeSpecification:
+	kind=OpaqueTypeKind;
+
+enum OpaqueTypeKind returns PrimitiveTypeKind:
+	String='opaque'; 
+
+StringValueSpecification:
+	value=STRING;
+
+DscriptValueSpecification:
+	expression=Expression;
+
+DscriptSystemInterface:
+	'package' packageName=QualifiedName
+	(importDeclarations+=ImportDeclaration)*
+	'systemInterface' name=ValidID '{'
+		(inlets+=Inlet)* 
+		(outlets+=Outlet)*
+	'}';
+	
+Inlet:
+	'inlet' dataType=DscriptDataTypeSpecification name=ValidID;
+
+Outlet:
+	'outlet' dataType=DscriptDataTypeSpecification name=ValidID;
+
+DscriptDataTypeSpecification:
+	typeSpecifier=TypeSpecifier;
+	
+UpperBoundLiteral returns ecore::EInt:
+	ValidInt | '*';
+
+QualifiedNameWithWildcard:
+	QualifiedName ('.*' | '.' '*')?;

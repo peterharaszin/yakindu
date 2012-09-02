@@ -13,7 +13,7 @@ package org.eclipselabs.damos.ide.core.internal.providers;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipselabs.damos.dml.registry.IInjectorProvider;
-import org.eclipselabs.damos.dmltext.DMLTextRuntimeModule;
+import org.eclipselabs.damos.dscript.DscriptRuntimeModule;
 import org.eclipselabs.damos.ide.core.IDEModule;
 
 import com.google.inject.Guice;
@@ -30,7 +30,7 @@ public class InjectorProvider implements IInjectorProvider {
 	 * @see org.eclipselabs.damos.dml.registry.IInjectorProvider#getInjector(org.eclipse.emf.ecore.EObject)
 	 */
 	public Injector getInjector(EClass context) {
-		return Guice.createInjector(Modules.override(new DMLTextRuntimeModule()).with(new IDEModule()));
+		return Guice.createInjector(Modules.override(new DscriptRuntimeModule()).with(new IDEModule()));
 	}
 
 }

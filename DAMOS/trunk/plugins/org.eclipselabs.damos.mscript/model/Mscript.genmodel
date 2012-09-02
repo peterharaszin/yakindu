@@ -150,10 +150,12 @@
     <genClasses ecoreClass="Mscript.ecore#//StandardParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//InputParameterDeclaration">
       <genOperations ecoreOperation="Mscript.ecore#//InputParameterDeclaration/isConstant"/>
+      <genOperations ecoreOperation="Mscript.ecore#//InputParameterDeclaration/getDefaultExpression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//OutputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//StandardInputParameterDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StandardInputParameterDeclaration/constant"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StandardInputParameterDeclaration/defaultExpression"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StandardOutputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//Assertion">

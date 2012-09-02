@@ -116,6 +116,13 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	@Check
+	public void checkConstantInputParameterDeclarationDefaultExpression(InputParameterDeclaration inputParameterDeclaration) {
+		if (!inputParameterDeclaration.isConstant() && inputParameterDeclaration.getDefaultExpression() != null) {
+			error("Default expression can only be specified for constant input parameters", inputParameterDeclaration.getDefaultExpression(), null, -1);
+		}
+	}
+	
+	@Check
 	public void checkStatefulFunctionEnclosingExpression(FunctionCall functionCall) {
 //		if (functionCall.getFeature() instanceof FunctionDeclaration) {
 //			FunctionDeclaration functionDeclaration = (FunctionDeclaration) functionCall.getFeature();

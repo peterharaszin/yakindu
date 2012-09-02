@@ -30,4 +30,12 @@ public interface InputParameterDeclaration extends ParameterDeclaration {
 	 * @generated
 	 */
 	boolean isConstant();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Expression getDefaultExpression();
 } // InputParameterDeclaration

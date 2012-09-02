@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -45,5 +46,16 @@ public abstract class InputParameterDeclarationImpl extends ParameterDeclaration
 	 * @generated NOT
 	 */
 	public abstract boolean isConstant();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression getDefaultExpression() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
 } //InputParameterDeclarationImpl

@@ -16,12 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
-import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.Evaluable;
-import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;

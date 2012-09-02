@@ -19,7 +19,7 @@ package org.eclipselabs.damos.mscript.computation;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFloatingPointFormat()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFloatingPointFormat()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface FloatingPointFormat extends NumberFormat {
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipselabs.damos.mscript.computation.FloatingPointFormatKind
 	 * @see #setKind(FloatingPointFormatKind)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFloatingPointFormat_Kind()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFloatingPointFormat_Kind()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

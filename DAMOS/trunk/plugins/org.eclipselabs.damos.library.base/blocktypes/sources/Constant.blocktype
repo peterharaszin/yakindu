@@ -6,7 +6,7 @@ blockType Constant {
 	
 	parameter value = 1
 
-	function main(const value) -> y {
+	behavior {
 		check(<1>) -> int
 		
 		eq y = value

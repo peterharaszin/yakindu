@@ -9,6 +9,7 @@ package org.eclipselabs.damos.mscript.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.CallableElement;
@@ -16,6 +17,7 @@ import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.NamedVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 /**
@@ -42,7 +44,6 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,6 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getInitializer() <em>Initializer</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -153,6 +153,10 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 	 */
 	public String getQualifiedName() {
 		return getName();
+	}
+	
+	public EStructuralFeature getNameFeature() {
+		return MscriptPackage.eINSTANCE.getNamedVariableDeclaration_Name();
 	}
 
 	/**
@@ -256,7 +260,12 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 		}
 		if (baseClass == VariableDeclaration.class) {
 			switch (derivedFeatureID) {
-				case MscriptPackage.LOCAL_VARIABLE_DECLARATION__NAME: return MscriptPackage.VARIABLE_DECLARATION__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedVariableDeclaration.class) {
+			switch (derivedFeatureID) {
+				case MscriptPackage.LOCAL_VARIABLE_DECLARATION__NAME: return MscriptPackage.NAMED_VARIABLE_DECLARATION__NAME;
 				default: return -1;
 			}
 		}
@@ -282,7 +291,12 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 		}
 		if (baseClass == VariableDeclaration.class) {
 			switch (baseFeatureID) {
-				case MscriptPackage.VARIABLE_DECLARATION__NAME: return MscriptPackage.LOCAL_VARIABLE_DECLARATION__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedVariableDeclaration.class) {
+			switch (baseFeatureID) {
+				case MscriptPackage.NAMED_VARIABLE_DECLARATION__NAME: return MscriptPackage.LOCAL_VARIABLE_DECLARATION__NAME;
 				default: return -1;
 			}
 		}

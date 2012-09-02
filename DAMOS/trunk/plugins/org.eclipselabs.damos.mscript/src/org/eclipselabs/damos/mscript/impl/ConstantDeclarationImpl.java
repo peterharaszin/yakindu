@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class ConstantDeclarationImpl extends VariableDeclarationImpl implements ConstantDeclaration {
+public class ConstantDeclarationImpl extends NamedVariableDeclarationImpl implements ConstantDeclaration {
 	/**
 	 * The cached value of the '{@link #getInitializer() <em>Initializer</em>}' containment reference.
 	 * <!-- begin-user-doc -->

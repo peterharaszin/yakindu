@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.function.EquationPart;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableStep;
 
@@ -127,7 +127,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.VARIABLE_STEP;
+		return FunctionPackage.Literals.VARIABLE_STEP;
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	 * @generated
 	 */
 	public VariableDescription getVariableDescription() {
-		if (eContainerFeatureID() != FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION) return null;
+		if (eContainerFeatureID() != FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION) return null;
 		return (VariableDescription)eContainer();
 	}
 
@@ -146,7 +146,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	 * @generated
 	 */
 	public NotificationChain basicSetVariableDescription(VariableDescription newVariableDescription, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newVariableDescription, FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newVariableDescription, FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION, msgs);
 		return msgs;
 	}
 
@@ -156,19 +156,19 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	 * @generated
 	 */
 	public void setVariableDescription(VariableDescription newVariableDescription) {
-		if (newVariableDescription != eInternalContainer() || (eContainerFeatureID() != FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION && newVariableDescription != null)) {
+		if (newVariableDescription != eInternalContainer() || (eContainerFeatureID() != FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION && newVariableDescription != null)) {
 			if (EcoreUtil.isAncestor(this, newVariableDescription))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newVariableDescription != null)
-				msgs = ((InternalEObject)newVariableDescription).eInverseAdd(this, FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS, VariableDescription.class, msgs);
+				msgs = ((InternalEObject)newVariableDescription).eInverseAdd(this, FunctionPackage.VARIABLE_DESCRIPTION__STEPS, VariableDescription.class, msgs);
 			msgs = basicSetVariableDescription(newVariableDescription, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION, newVariableDescription, newVariableDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION, newVariableDescription, newVariableDescription));
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 		int oldIndex = index;
 		index = newIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_STEP__INDEX, oldIndex, index));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_STEP__INDEX, oldIndex, index));
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 		boolean oldInitial = initial;
 		initial = newInitial;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_STEP__INITIAL, oldInitial, initial));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_STEP__INITIAL, oldInitial, initial));
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 		boolean oldDerivative = derivative;
 		derivative = newDerivative;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_STEP__DERIVATIVE, oldDerivative, derivative));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_STEP__DERIVATIVE, oldDerivative, derivative));
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	 */
 	public EList<EquationPart> getUsingEquationParts() {
 		if (usingEquationParts == null) {
-			usingEquationParts = new EObjectWithInverseResolvingEList<EquationPart>(EquationPart.class, this, FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS, FunctionModelPackage.EQUATION_PART__VARIABLE_STEP);
+			usingEquationParts = new EObjectWithInverseResolvingEList<EquationPart>(EquationPart.class, this, FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS, FunctionPackage.EQUATION_PART__VARIABLE_STEP);
 		}
 		return usingEquationParts;
 	}
@@ -255,11 +255,11 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetVariableDescription((VariableDescription)otherEnd, msgs);
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsingEquationParts()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -273,9 +273,9 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				return basicSetVariableDescription(null, msgs);
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				return ((InternalEList<?>)getUsingEquationParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -289,8 +289,8 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
-				return eInternalContainer().eInverseRemove(this, FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS, VariableDescription.class, msgs);
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+				return eInternalContainer().eInverseRemove(this, FunctionPackage.VARIABLE_DESCRIPTION__STEPS, VariableDescription.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -303,15 +303,15 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				return getVariableDescription();
-			case FunctionModelPackage.VARIABLE_STEP__INDEX:
+			case FunctionPackage.VARIABLE_STEP__INDEX:
 				return getIndex();
-			case FunctionModelPackage.VARIABLE_STEP__INITIAL:
+			case FunctionPackage.VARIABLE_STEP__INITIAL:
 				return isInitial();
-			case FunctionModelPackage.VARIABLE_STEP__DERIVATIVE:
+			case FunctionPackage.VARIABLE_STEP__DERIVATIVE:
 				return isDerivative();
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				return getUsingEquationParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -326,19 +326,19 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				setVariableDescription((VariableDescription)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__INDEX:
+			case FunctionPackage.VARIABLE_STEP__INDEX:
 				setIndex((Integer)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__INITIAL:
+			case FunctionPackage.VARIABLE_STEP__INITIAL:
 				setInitial((Boolean)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__DERIVATIVE:
+			case FunctionPackage.VARIABLE_STEP__DERIVATIVE:
 				setDerivative((Boolean)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				getUsingEquationParts().clear();
 				getUsingEquationParts().addAll((Collection<? extends EquationPart>)newValue);
 				return;
@@ -354,19 +354,19 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				setVariableDescription((VariableDescription)null);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__INDEX:
+			case FunctionPackage.VARIABLE_STEP__INDEX:
 				setIndex(INDEX_EDEFAULT);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__INITIAL:
+			case FunctionPackage.VARIABLE_STEP__INITIAL:
 				setInitial(INITIAL_EDEFAULT);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__DERIVATIVE:
+			case FunctionPackage.VARIABLE_STEP__DERIVATIVE:
 				setDerivative(DERIVATIVE_EDEFAULT);
 				return;
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				getUsingEquationParts().clear();
 				return;
 		}
@@ -381,15 +381,15 @@ public class VariableStepImpl extends EObjectImpl implements VariableStep {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION:
 				return getVariableDescription() != null;
-			case FunctionModelPackage.VARIABLE_STEP__INDEX:
+			case FunctionPackage.VARIABLE_STEP__INDEX:
 				return index != INDEX_EDEFAULT;
-			case FunctionModelPackage.VARIABLE_STEP__INITIAL:
+			case FunctionPackage.VARIABLE_STEP__INITIAL:
 				return initial != INITIAL_EDEFAULT;
-			case FunctionModelPackage.VARIABLE_STEP__DERIVATIVE:
+			case FunctionPackage.VARIABLE_STEP__DERIVATIVE:
 				return derivative != DERIVATIVE_EDEFAULT;
-			case FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
+			case FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS:
 				return usingEquationParts != null && !usingEquationParts.isEmpty();
 		}
 		return super.eIsSet(featureID);

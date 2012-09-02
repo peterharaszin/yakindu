@@ -17,12 +17,12 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
 import org.eclipselabs.damos.dmltext.naming.DMLTextQualifiedNameProvider;
+import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextEcoreElementFactory;
 import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextLexer;
 import org.eclipselabs.damos.dmltext.scoping.DMLTextImportedNamespaceScopeProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
-import org.eclipselabs.damos.mscript.parser.antlr.MscriptEcoreElementFactory;
 import org.eclipselabs.damos.mscript.resource.MscriptLocationInFileProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
@@ -73,7 +73,7 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 
 	@Override
 	public Class<? extends IAstFactory> bindIAstFactory() {
-		return MscriptEcoreElementFactory.class;
+		return DMLTextEcoreElementFactory.class;
 	}
 
 	@Override

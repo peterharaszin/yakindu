@@ -37,7 +37,7 @@ import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelFactory;
+import org.eclipselabs.damos.mscript.function.FunctionFactory;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableKind;
 import org.eclipselabs.damos.mscript.function.VariableStep;
@@ -61,7 +61,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult, FunctionDescription functionDescription, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
-		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
+		FunctionInstance functionInstance = FunctionFactory.eINSTANCE.createFunctionInstance();
 		functionInstance.setDeclaration(functionDescription.getDeclaration());
 		
 		Map<VariableDescription, VariableDeclaration> variableDeclarations = new HashMap<VariableDescription, VariableDeclaration>();
@@ -187,7 +187,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Computation compound construction", null);
 
 		for (List<EquationDescription> equationDescriptions : equationCompounds) {
-			ComputationCompound compound = FunctionModelFactory.eINSTANCE.createComputationCompound();
+			ComputationCompound compound = FunctionFactory.eINSTANCE.createComputationCompound();
 			Set<InputParameterDeclaration> inputs = new HashSet<InputParameterDeclaration>();
 			for (EquationDescription equationDescription : equationDescriptions) {
 				VariableStep lhsVariableStep = InternalFunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescription);

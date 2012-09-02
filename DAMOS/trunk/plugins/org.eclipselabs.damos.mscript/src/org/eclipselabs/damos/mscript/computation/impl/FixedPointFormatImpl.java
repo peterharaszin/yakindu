@@ -9,7 +9,7 @@ package org.eclipselabs.damos.mscript.computation.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.computation.PredefinedFixedPointFormatKind;
@@ -192,7 +192,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComputationModelPackage.Literals.FIXED_POINT_FORMAT;
+		return ComputationPackage.Literals.FIXED_POINT_FORMAT;
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		boolean oldUnsigned = unsigned;
 		unsigned = newUnsigned;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED, oldUnsigned, unsigned));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__UNSIGNED, oldUnsigned, unsigned));
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		int oldIntegerLength = integerLength;
 		integerLength = newIntegerLength;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH, oldIntegerLength, integerLength));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH, oldIntegerLength, integerLength));
 	}
 
 	/**
@@ -273,7 +273,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		int oldFractionLength = fractionLength;
 		fractionLength = newFractionLength;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH, oldFractionLength, fractionLength));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH, oldFractionLength, fractionLength));
 	}
 
 	/**
@@ -303,7 +303,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		double oldSlope = slope;
 		slope = newSlope;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE, oldSlope, slope));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__SLOPE, oldSlope, slope));
 	}
 
 	/**
@@ -324,7 +324,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		double oldBias = bias;
 		bias = newBias;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__BIAS, oldBias, bias));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__BIAS, oldBias, bias));
 	}
 
 	/**
@@ -345,7 +345,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		boolean oldSaturate = saturate;
 		saturate = newSaturate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE, oldSaturate, saturate));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FIXED_POINT_FORMAT__SATURATE, oldSaturate, saturate));
 	}
 
 	/* (non-Javadoc)
@@ -364,21 +364,21 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+			case ComputationPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
 				return getPredefinedKind();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+			case ComputationPackage.FIXED_POINT_FORMAT__UNSIGNED:
 				return isUnsigned();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				return getIntegerLength();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				return getFractionLength();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__WORD_SIZE:
+			case ComputationPackage.FIXED_POINT_FORMAT__WORD_SIZE:
 				return getWordSize();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SLOPE:
 				return getSlope();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+			case ComputationPackage.FIXED_POINT_FORMAT__BIAS:
 				return getBias();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SATURATE:
 				return isSaturate();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -392,25 +392,25 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+			case ComputationPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
 				setPredefinedKind((PredefinedFixedPointFormatKind)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+			case ComputationPackage.FIXED_POINT_FORMAT__UNSIGNED:
 				setUnsigned((Boolean)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				setIntegerLength((Integer)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				setFractionLength((Integer)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SLOPE:
 				setSlope((Double)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+			case ComputationPackage.FIXED_POINT_FORMAT__BIAS:
 				setBias((Double)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SATURATE:
 				setSaturate((Boolean)newValue);
 				return;
 		}
@@ -425,25 +425,25 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+			case ComputationPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
 				setPredefinedKind(PREDEFINED_KIND_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+			case ComputationPackage.FIXED_POINT_FORMAT__UNSIGNED:
 				setUnsigned(UNSIGNED_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				setIntegerLength(INTEGER_LENGTH_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				setFractionLength(FRACTION_LENGTH_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SLOPE:
 				setSlope(SLOPE_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+			case ComputationPackage.FIXED_POINT_FORMAT__BIAS:
 				setBias(BIAS_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SATURATE:
 				setSaturate(SATURATE_EDEFAULT);
 				return;
 		}
@@ -458,21 +458,21 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+			case ComputationPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
 				return getPredefinedKind() != PREDEFINED_KIND_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+			case ComputationPackage.FIXED_POINT_FORMAT__UNSIGNED:
 				return unsigned != UNSIGNED_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				return integerLength != INTEGER_LENGTH_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
+			case ComputationPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				return fractionLength != FRACTION_LENGTH_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__WORD_SIZE:
+			case ComputationPackage.FIXED_POINT_FORMAT__WORD_SIZE:
 				return getWordSize() != WORD_SIZE_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SLOPE:
 				return slope != SLOPE_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+			case ComputationPackage.FIXED_POINT_FORMAT__BIAS:
 				return bias != BIAS_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+			case ComputationPackage.FIXED_POINT_FORMAT__SATURATE:
 				return saturate != SATURATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

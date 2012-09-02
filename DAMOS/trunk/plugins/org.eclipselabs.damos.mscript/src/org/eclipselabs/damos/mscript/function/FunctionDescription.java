@@ -24,10 +24,11 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
  *   <li>{@link org.eclipselabs.damos.mscript.function.FunctionDescription#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.function.FunctionDescription#getEquationDescriptions <em>Equation Descriptions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.function.FunctionDescription#getVariableDescriptions <em>Variable Descriptions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.function.FunctionDescription#isStateful <em>Stateful</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionDescription()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionDescription()
  * @model
  * @generated
  */
@@ -42,7 +43,7 @@ public interface FunctionDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declaration</em>' reference.
 	 * @see #setDeclaration(FunctionDeclaration)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionDescription_Declaration()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionDescription_Declaration()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -69,7 +70,7 @@ public interface FunctionDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Equation Descriptions</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionDescription_EquationDescriptions()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionDescription_EquationDescriptions()
 	 * @see org.eclipselabs.damos.mscript.function.EquationDescription#getFunctionDescription
 	 * @model opposite="functionDescription" containment="true"
 	 * @generated
@@ -87,12 +88,38 @@ public interface FunctionDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable Descriptions</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionDescription_VariableDescriptions()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionDescription_VariableDescriptions()
 	 * @see org.eclipselabs.damos.mscript.function.VariableDescription#getFunctionDescription
 	 * @model opposite="functionDescription" containment="true"
 	 * @generated
 	 */
 	EList<VariableDescription> getVariableDescriptions();
+
+	/**
+	 * Returns the value of the '<em><b>Stateful</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stateful</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stateful</em>' attribute.
+	 * @see #setStateful(boolean)
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionDescription_Stateful()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isStateful();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.function.FunctionDescription#isStateful <em>Stateful</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stateful</em>' attribute.
+	 * @see #isStateful()
+	 * @generated
+	 */
+	void setStateful(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -14,6 +14,8 @@ package org.eclipselabs.damos.mscript.parser.antlr;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.DefaultEcoreElementFactory;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.UnitDeclaration;
 import org.eclipselabs.damos.mscript.UnitPrefix;
@@ -38,8 +40,29 @@ public class MscriptEcoreElementFactory extends DefaultEcoreElementFactory {
 				unitSymbol.setPrefix(prefix);
 				unitDeclaration.getSymbols().add(unitSymbol);
 			}
+		} else if (element instanceof FunctionDeclaration) {
+			FunctionDeclaration functionDeclaration = (FunctionDeclaration) element;
+			addImplicitVariableDeclarations(functionDeclaration);
 		}
 		return element;
+	}
+
+	/**
+	 * @param functionDeclaration
+	 */
+	protected void addImplicitVariableDeclarations(FunctionDeclaration functionDeclaration) {
+		addImplicitVariableDeclaration(functionDeclaration, "Ts");
+		addImplicitVariableDeclaration(functionDeclaration, "fs");
+		addImplicitVariableDeclaration(functionDeclaration, "t");
+	}
+
+	/**
+	 * @param functionDeclaration
+	 */
+	protected void addImplicitVariableDeclaration(FunctionDeclaration functionDeclaration, String name) {
+		ImplicitVariableDeclaration variableDeclaration = MscriptFactory.eINSTANCE.createImplicitVariableDeclaration();
+		variableDeclaration.setName(name);
+		functionDeclaration.getAllImplicitVariableDeclarations().add(variableDeclaration);
 	}
 	
 }

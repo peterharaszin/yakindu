@@ -23,7 +23,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface LocalVariableDeclaration extends Statement, VariableDeclaration {
+public interface LocalVariableDeclaration extends Statement, NamedVariableDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Initializer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

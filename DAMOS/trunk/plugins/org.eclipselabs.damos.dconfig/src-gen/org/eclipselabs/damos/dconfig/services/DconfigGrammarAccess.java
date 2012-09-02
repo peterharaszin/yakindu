@@ -1893,7 +1893,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TopLevelDeclaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
+	//	TypeDeclaration | EnumerationDeclaration | StandardFunctionDeclaration | UnitDeclaration | ConstantDeclaration;
 	public MscriptGrammarAccess.TopLevelDeclarationElements getTopLevelDeclarationAccess() {
 		return gaMscript.getTopLevelDeclarationAccess();
 	}
@@ -1982,22 +1982,23 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Function
-	// * / FunctionDeclaration:
-	//	kind=FunctionKind? "function" name=ValidID "(" (inputParameterDeclarations+=InputParameterDeclaration (","
-	//	inputParameterDeclarations+=InputParameterDeclaration)*)? ")" "->"
-	//	outputParameterDeclarations+=OutputParameterDeclaration ("," outputParameterDeclarations+=OutputParameterDeclaration)*
-	//	"{" (checks+=Check | assertions+=Assertion | stateVariableDeclarations+=StateVariableDeclaration |
-	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
-	public MscriptGrammarAccess.FunctionDeclarationElements getFunctionDeclarationAccess() {
-		return gaMscript.getFunctionDeclarationAccess();
+	// * / StandardFunctionDeclaration:
+	//	kind=FunctionKind? "function" name=ValidID "(" (inputParameterDeclarations+=StandardInputParameterDeclaration (","
+	//	inputParameterDeclarations+=StandardInputParameterDeclaration)*)? ")" "->"
+	//	outputParameterDeclarations+=StandardOutputParameterDeclaration (","
+	//	outputParameterDeclarations+=StandardOutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
+	//	stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration |
+	//	equations+=Equation)* "}";
+	public MscriptGrammarAccess.StandardFunctionDeclarationElements getStandardFunctionDeclarationAccess() {
+		return gaMscript.getStandardFunctionDeclarationAccess();
 	}
 	
-	public ParserRule getFunctionDeclarationRule() {
-		return getFunctionDeclarationAccess().getRule();
+	public ParserRule getStandardFunctionDeclarationRule() {
+		return getStandardFunctionDeclarationAccess().getRule();
 	}
 
 	//enum FunctionKind:
-	//	Stateful="stateful" | Continuous="continuous";
+	//	Synchronous="synchronous" | Continuous="continuous";
 	public MscriptGrammarAccess.FunctionKindElements getFunctionKindAccess() {
 		return gaMscript.getFunctionKindAccess();
 	}
@@ -2006,24 +2007,24 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionKindAccess().getRule();
 	}
 
-	//InputParameterDeclaration:
+	//StandardInputParameterDeclaration:
 	//	constant?="const"? name=ValidID;
-	public MscriptGrammarAccess.InputParameterDeclarationElements getInputParameterDeclarationAccess() {
-		return gaMscript.getInputParameterDeclarationAccess();
+	public MscriptGrammarAccess.StandardInputParameterDeclarationElements getStandardInputParameterDeclarationAccess() {
+		return gaMscript.getStandardInputParameterDeclarationAccess();
 	}
 	
-	public ParserRule getInputParameterDeclarationRule() {
-		return getInputParameterDeclarationAccess().getRule();
+	public ParserRule getStandardInputParameterDeclarationRule() {
+		return getStandardInputParameterDeclarationAccess().getRule();
 	}
 
-	//OutputParameterDeclaration:
+	//StandardOutputParameterDeclaration:
 	//	name=ValidID;
-	public MscriptGrammarAccess.OutputParameterDeclarationElements getOutputParameterDeclarationAccess() {
-		return gaMscript.getOutputParameterDeclarationAccess();
+	public MscriptGrammarAccess.StandardOutputParameterDeclarationElements getStandardOutputParameterDeclarationAccess() {
+		return gaMscript.getStandardOutputParameterDeclarationAccess();
 	}
 	
-	public ParserRule getOutputParameterDeclarationRule() {
-		return getOutputParameterDeclarationAccess().getRule();
+	public ParserRule getStandardOutputParameterDeclarationRule() {
+		return getStandardOutputParameterDeclarationAccess().getRule();
 	}
 
 	//Check:

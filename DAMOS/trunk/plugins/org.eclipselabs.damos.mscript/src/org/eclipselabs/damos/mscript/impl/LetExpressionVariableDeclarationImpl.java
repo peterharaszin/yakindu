@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class LetExpressionVariableDeclarationImpl extends VariableDeclarationImpl implements LetExpressionVariableDeclaration {
+public class LetExpressionVariableDeclarationImpl extends NamedVariableDeclarationImpl implements LetExpressionVariableDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

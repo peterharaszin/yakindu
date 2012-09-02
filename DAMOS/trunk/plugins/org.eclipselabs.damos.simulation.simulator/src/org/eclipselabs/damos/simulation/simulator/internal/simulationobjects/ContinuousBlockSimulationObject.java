@@ -16,7 +16,11 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
@@ -25,12 +29,14 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
+import org.eclipselabs.damos.mscript.interpreter.Variable;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.MatrixValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
+import org.eclipselabs.damos.simulation.ISimulationMonitor;
 
 /**
  * @author Andreas Unger
@@ -39,6 +45,9 @@ import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationObject {
 
 	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
+
+	private IVariable timeVariable;
+	private RealType timeVariableType;
 
 	private double[] stateVector;
 	private int[] stateVectorIndices;
@@ -108,6 +117,24 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#initializeImplicitVariables()
+	 */
+	@Override
+	protected void initializeImplicitVariables() {
+		FunctionDeclaration functionDeclaration = getFunctionObject().getFunctionInstance().getDeclaration();
+		ImplicitVariableDeclaration variableDeclaration = functionDeclaration.getImplicitVariableDeclaration("t");
+		if (variableDeclaration != null) {
+			IValue value = getInterpreterContext().getStaticEvaluationResult().getValue(variableDeclaration);
+			if (value != null) {
+				timeVariableType = EcoreUtil.copy((RealType) value.getDataType());
+				timeVariable = new Variable(getInterpreterContext(), variableDeclaration);
+				timeVariable.setValue(0, Values.valueOf(getComputationContext(), timeVariableType, 0.0));
+				getInterpreterContext().addVariable(timeVariable);
+			}
+		}
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#initializeComputationCompound(org.eclipselabs.damos.mscript.function.ComputationCompound)
 	 */
 	@Override
@@ -119,6 +146,24 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 			derivatives.addAll(compound.getDerivatives());
 			initialComputeDerivatives = true;
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#computeOutputValues(double, org.eclipselabs.damos.simulation.ISimulationMonitor)
+	 */
+	@Override
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+		updateTimeVariable(t);
+		super.computeOutputValues(t, monitor);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject#update(double)
+	 */
+	@Override
+	public void update(double t) {
+		updateTimeVariable(t);
+		super.update(t);
 	}
 	
 	/* (non-Javadoc)
@@ -134,6 +179,7 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 	 */
 	@Override
 	public void computeDerivatives(double t, double[] y, double[] yDot) {
+		updateTimeVariable(t);
 		if (initialComputeDerivatives) {
 			initialComputeDerivatives = false;
 		} else {
@@ -166,6 +212,12 @@ public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationOb
 				}
 				variable.setValue(0, new MatrixValue(getComputationContext(), matrixValue.getDataType(), elements));
 			}
+		}
+	}
+	
+	private void updateTimeVariable(double t) {
+		if (timeVariable != null) {
+			timeVariable.setValue(0, Values.valueOf(getComputationContext(), timeVariableType, t));
 		}
 	}
 	

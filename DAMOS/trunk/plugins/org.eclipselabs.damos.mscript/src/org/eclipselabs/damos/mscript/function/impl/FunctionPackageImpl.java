@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.function.impl;
 
@@ -21,13 +17,13 @@ import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.EquationSide;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionFactory;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelFactory;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableKind;
 import org.eclipselabs.damos.mscript.function.VariableStep;
-import org.eclipselabs.damos.mscript.function.util.FunctionModelValidator;
+import org.eclipselabs.damos.mscript.function.util.FunctionValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +31,7 @@ import org.eclipselabs.damos.mscript.function.util.FunctionModelValidator;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FunctionModelPackageImpl extends EPackageImpl implements FunctionModelPackage {
+public class FunctionPackageImpl extends EPackageImpl implements FunctionPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,12 +106,12 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#eNS_URI
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private FunctionModelPackageImpl() {
-		super(eNS_URI, FunctionModelFactory.eINSTANCE);
+	private FunctionPackageImpl() {
+		super(eNS_URI, FunctionFactory.eINSTANCE);
 	}
 
 	/**
@@ -128,7 +124,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link FunctionModelPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link FunctionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,11 +133,11 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static FunctionModelPackage init() {
-		if (isInited) return (FunctionModelPackage)EPackage.Registry.INSTANCE.getEPackage(FunctionModelPackage.eNS_URI);
+	public static FunctionPackage init() {
+		if (isInited) return (FunctionPackage)EPackage.Registry.INSTANCE.getEPackage(FunctionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		FunctionModelPackageImpl theFunctionModelPackage = (FunctionModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FunctionModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FunctionModelPackageImpl());
+		FunctionPackageImpl theFunctionPackage = (FunctionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FunctionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FunctionPackageImpl());
 
 		isInited = true;
 
@@ -149,27 +145,27 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		MscriptPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theFunctionModelPackage.createPackageContents();
+		theFunctionPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theFunctionModelPackage.initializePackageContents();
+		theFunctionPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theFunctionModelPackage, 
+			(theFunctionPackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
-					 return FunctionModelValidator.INSTANCE;
+					 return FunctionValidator.INSTANCE;
 				 }
 			 });
 
 		// Mark meta-data to indicate it can't be changed
-		theFunctionModelPackage.freeze();
+		theFunctionPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(FunctionModelPackage.eNS_URI, theFunctionModelPackage);
-		return theFunctionModelPackage;
+		EPackage.Registry.INSTANCE.put(FunctionPackage.eNS_URI, theFunctionPackage);
+		return theFunctionPackage;
 	}
 
 	/**
@@ -206,6 +202,15 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 */
 	public EReference getFunctionDescription_VariableDescriptions() {
 		return (EReference)functionDescriptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunctionDescription_Stateful() {
+		return (EAttribute)functionDescriptionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -519,8 +524,8 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelFactory getFunctionModelFactory() {
-		return (FunctionModelFactory)getEFactoryInstance();
+	public FunctionFactory getFunctionFactory() {
+		return (FunctionFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -546,6 +551,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		createEReference(functionDescriptionEClass, FUNCTION_DESCRIPTION__DECLARATION);
 		createEReference(functionDescriptionEClass, FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS);
 		createEReference(functionDescriptionEClass, FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS);
+		createEAttribute(functionDescriptionEClass, FUNCTION_DESCRIPTION__STATEFUL);
 
 		equationDescriptionEClass = createEClass(EQUATION_DESCRIPTION);
 		createEReference(equationDescriptionEClass, EQUATION_DESCRIPTION__FUNCTION_DESCRIPTION);
@@ -629,6 +635,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		initEReference(getFunctionDescription_Declaration(), theMscriptPackage.getFunctionDeclaration(), null, "declaration", null, 1, 1, FunctionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDescription_EquationDescriptions(), this.getEquationDescription(), this.getEquationDescription_FunctionDescription(), "equationDescriptions", null, 0, -1, FunctionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDescription_VariableDescriptions(), this.getVariableDescription(), this.getVariableDescription_FunctionDescription(), "variableDescriptions", null, 0, -1, FunctionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionDescription_Stateful(), ecorePackage.getEBoolean(), "stateful", null, 1, 1, FunctionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(functionDescriptionEClass, this.getVariableDescription(), "getVariableDescription", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -751,4 +758,4 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		createResource(eNS_URI);
 	}
 
-} //FunctionModelPackageImpl
+} //FunctionPackageImpl

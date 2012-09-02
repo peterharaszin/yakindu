@@ -15,7 +15,7 @@ blockType Compare {
 		5 alias ">"
 	}
 
-	function main(const operator, a, b) -> y {
+	behavior {
 		check(real, real, <3>) -> boolean
 		check(boolean, boolean, <1>) -> boolean
 		check(string, string, <1>) -> boolean

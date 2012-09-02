@@ -71,13 +71,13 @@ public interface MscriptFactory extends EFactory {
 	EnumerationLiteralDeclaration createEnumerationLiteralDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Function Declaration</em>'.
+	 * Returns a new object of class '<em>Standard Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Declaration</em>'.
+	 * @return a new object of class '<em>Standard Function Declaration</em>'.
 	 * @generated
 	 */
-	FunctionDeclaration createFunctionDeclaration();
+	StandardFunctionDeclaration createStandardFunctionDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Check</em>'.
@@ -107,22 +107,31 @@ public interface MscriptFactory extends EFactory {
 	ExpressionCheckArgument createExpressionCheckArgument();
 
 	/**
-	 * Returns a new object of class '<em>Input Parameter Declaration</em>'.
+	 * Returns a new object of class '<em>Implicit Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Input Parameter Declaration</em>'.
+	 * @return a new object of class '<em>Implicit Variable Declaration</em>'.
 	 * @generated
 	 */
-	InputParameterDeclaration createInputParameterDeclaration();
+	ImplicitVariableDeclaration createImplicitVariableDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Output Parameter Declaration</em>'.
+	 * Returns a new object of class '<em>Standard Input Parameter Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Output Parameter Declaration</em>'.
+	 * @return a new object of class '<em>Standard Input Parameter Declaration</em>'.
 	 * @generated
 	 */
-	OutputParameterDeclaration createOutputParameterDeclaration();
+	StandardInputParameterDeclaration createStandardInputParameterDeclaration();
+
+	/**
+	 * Returns a new object of class '<em>Standard Output Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Standard Output Parameter Declaration</em>'.
+	 * @generated
+	 */
+	StandardOutputParameterDeclaration createStandardOutputParameterDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Assertion</em>'.
@@ -663,15 +672,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	ReturnStatement createReturnStatement();
-
-	/**
-	 * Returns a new object of class '<em>Builtin Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Builtin Declaration</em>'.
-	 * @generated
-	 */
-	BuiltinDeclaration createBuiltinDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Builtin Function Declaration</em>'.

@@ -6,7 +6,7 @@ blockType MatrixVectorMultiplyTest {
 	input b
 	output y
 	
-	function main(a, b) -> y {
+	behavior {
 		check(int, int) -> real[3]
 
 		static assert a is int :

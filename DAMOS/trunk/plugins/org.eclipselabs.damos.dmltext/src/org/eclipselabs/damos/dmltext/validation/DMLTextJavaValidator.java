@@ -1,11 +1,8 @@
 package org.eclipselabs.damos.dmltext.validation;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -27,12 +24,8 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
-import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 
 import com.google.inject.Inject;
 
@@ -47,18 +40,6 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
 
-	private static final Set<String> GLOBAL_STATIC_PARAMETERS = new HashSet<String>();
-	
-	static {
-		GLOBAL_STATIC_PARAMETERS.add("Ts");
-		GLOBAL_STATIC_PARAMETERS.add("fs");
-	}
-	
-	/**
-	 * 
-	 */
-	private static final String MAIN_FUNCTION_NAME = "main";
-	
 	@Override
 	protected boolean isResponsible(Map<Object, Object> context, EObject eObject) {
 		if (eObject instanceof Fragment) {
@@ -84,60 +65,6 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 		}
 	}
 
-	@Check
-	public void checkMainFunction(MscriptBlockType blockType) {
-		if (blockType.getDeclarations().isEmpty()) {
-			return;
-		}
-		for (TopLevelDeclaration topLevelDeclaration : blockType.getDeclarations()) {
-			if (topLevelDeclaration instanceof FunctionDeclaration) {
-				FunctionDeclaration functionDeclaration = (FunctionDeclaration) topLevelDeclaration;
-				if (MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
-					return;
-				}
-			}
-		}
-		error("No main function declared", blockType, DMLPackage.eINSTANCE.getQualifiedElement_Name(), -1);
-	}
-
-	@Check
-	public void checkMainFunctionParameters(FunctionDeclaration functionDeclaration) {
-		if (!MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
-			return;
-		}
-		
-		BlockType blockType = DMLUtil.getOwner(functionDeclaration, BlockType.class);
-		if (blockType == null) {
-			return;
-		}
-		
-		int inputParameterCount = computeInoutputParameterCount(blockType.getInputDefinitions());
-		if (inputParameterCount != functionDeclaration.getNonConstantInputParameterDeclarations().size()) {
-			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name());
-		}
-
-		int outputParameterCount = computeInoutputParameterCount(blockType.getOutputDefinitions());
-		if (outputParameterCount != functionDeclaration.getOutputParameterDeclarations().size()) {
-			error("Expecting " + outputParameterCount + " output parameter" + (outputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name());
-		}
-		
-		Map<String, Parameter> blockTypeParameters = getBlockTypeParameters(blockType);
-		Set<String> staticParameterNames = new HashSet<String>();
-		for (InputParameterDeclaration staticParameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
-			String name = staticParameterDeclaration.getName();
-			if (!blockTypeParameters.containsKey(name) && !GLOBAL_STATIC_PARAMETERS.contains(name)) {
-				error("No block type parameter found for template parameter " + name, staticParameterDeclaration, null, -1);
-			}
-			staticParameterNames.add(name);
-		}
-		
-		for (Entry<String, Parameter> entry : blockTypeParameters.entrySet()) {
-			if (!staticParameterNames.contains(entry.getKey())) {
-				warning("Unused parameter " + entry.getKey(), entry.getValue(), DMLPackage.eINSTANCE.getParameter_Name(), -1);
-			}
-		}
-	}
-	
 	@Check
 	public void checkContinuousFunctionDeclarationInContinuousBlockType(FunctionDeclaration functionDeclaration) {
 		if (functionDeclaration.getKind() == FunctionKind.CONTINUOUS) {

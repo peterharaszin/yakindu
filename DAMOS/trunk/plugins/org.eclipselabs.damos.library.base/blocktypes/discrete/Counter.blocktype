@@ -27,7 +27,7 @@ asynchronous blockType Counter {
 	
 	type Message = union { boolean up, down }
 
-	stateful function main(const initialValue, const step, const upperLimit, const lowerLimit, const upTrigger, const downTrigger, message) -> y {
+	behavior {
 		check(Message, <0>, <1>, <10>, <0>, <0>, <0>) -> int
 		check(Message, <0>, <1>, <10>, <0>, <1>, <1>) -> int
 		check(Message, <0>, <1>, <10>, <0>, <2>, <2>) -> int
@@ -53,7 +53,7 @@ asynchronous blockType Counter {
 		static assert initialValue is real(?) && lowerLimit is real(?) => unit(initialValue) == unit(lowerLimit) :
 			error "Initial value and lower limit value must have same unit"
 	
-		static assert message is Message:
+		static assert inputMessage is Message:
 			error "Up and down inputs must be boolean"
 	
 		static assert upTrigger is int:
@@ -67,7 +67,7 @@ asynchronous blockType Counter {
 	
 		eq y{-1} = initialValue
 		eq y{n} =
-			inspect message
+			inspect inputMessage
 			when up:
 				if static if upTrigger == 0 then up else static if upTrigger == 1 then !up else true then
 					let result = y{n-1} + step in

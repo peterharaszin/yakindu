@@ -36,7 +36,9 @@ public class NumFunction extends AbstractBuiltinFunction {
 			return InvalidValue.SINGLETON;
 		}
 		
+		context.enterStaticScope();
 		IValue argument2 = evaluate(context, functionCall.getArguments().get(1));
+		context.leaveStaticScope();
 		if (!(argument2 instanceof UnitValue)) {
 			return InvalidValue.SINGLETON;
 		}

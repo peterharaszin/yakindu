@@ -42,7 +42,7 @@ public interface ComputationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/ComputationModel";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/Computation";
 
 	/**
 	 * The package namespace name.
@@ -101,7 +101,7 @@ public interface ComputationPackage extends EPackage {
 	int FIXED_POINT_FORMAT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl <em>Computation Model</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl
@@ -129,7 +129,7 @@ public interface ComputationPackage extends EPackage {
 	int COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = 1;
 
 	/**
-	 * The number of structural features of the '<em>Computation Model</em>' class.
+	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -432,10 +432,10 @@ public interface ComputationPackage extends EPackage {
 	EAttribute getFixedPointFormat_Saturate();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computation.ComputationModel <em>Computation Model</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computation.ComputationModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Computation Model</em>'.
+	 * @return the meta object for class '<em>Model</em>'.
 	 * @see org.eclipselabs.damos.mscript.computation.ComputationModel
 	 * @generated
 	 */
@@ -512,7 +512,7 @@ public interface ComputationPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	ComputationFactory getComputationModelFactory();
+	ComputationFactory getComputationFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -640,7 +640,7 @@ public interface ComputationPackage extends EPackage {
 		EAttribute FIXED_POINT_FORMAT__SATURATE = eINSTANCE.getFixedPointFormat_Saturate();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl <em>Computation Model</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl <em>Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.computation.impl.ComputationModelImpl

@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionInstance()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionInstance()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface FunctionInstance extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declaration</em>' reference.
 	 * @see #setDeclaration(FunctionDeclaration)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionInstance_Declaration()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionInstance_Declaration()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface FunctionInstance extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initialization Compound</em>' containment reference.
 	 * @see #setInitializationCompound(CompoundStatement)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionInstance_InitializationCompound()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionInstance_InitializationCompound()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -92,7 +92,7 @@ public interface FunctionInstance extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Computation Compounds</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getFunctionInstance_ComputationCompounds()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getFunctionInstance_ComputationCompounds()
 	 * @model containment="true"
 	 * @generated
 	 */

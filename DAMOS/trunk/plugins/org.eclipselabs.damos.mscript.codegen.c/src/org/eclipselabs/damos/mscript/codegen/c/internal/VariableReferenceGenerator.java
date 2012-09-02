@@ -1,7 +1,9 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
+import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.FeatureReference;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.InspectWhenClause;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
@@ -11,7 +13,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 import com.google.inject.Inject;
 
@@ -27,58 +28,30 @@ public class VariableReferenceGenerator {
 	}
 
 	public CharSequence generate(IMscriptGeneratorContext context, FeatureReference variableReference) {
-		return new VariableAccessGeneratorSwitch(context, variableReference).doSwitch(variableReference.getFeature());
-	}
-	
-	private class VariableAccessGeneratorSwitch extends MscriptSwitch<CharSequence> {
-	
-		private final IMscriptGeneratorContext context;
-		private final FeatureReference variableReference;
-		
-		/**
-		 * 
-		 */
-		public VariableAccessGeneratorSwitch(IMscriptGeneratorContext context, FeatureReference variableReference) {
-			this.context = context;
-			this.variableReference = variableReference;
-		}
-		
-		@Override
-		public CharSequence caseInputParameterDeclaration(InputParameterDeclaration staticParameterDeclaration) {
-			if (staticParameterDeclaration.isConstant()) {
-				IValue staticArgument = context.getStaticEvaluationResult().getValue(staticParameterDeclaration);
+		CallableElement feature = variableReference.getFeature();
+		if (feature instanceof InputParameterDeclaration) {
+			InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration) feature;
+			if (inputParameterDeclaration.isConstant()) {
+				IValue staticArgument = context.getStaticEvaluationResult().getValue(inputParameterDeclaration);
 				return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), staticArgument);
 			}
-			// Fall-through to caseParameterDeclaration()
-			return null;
+			// Fall-through
 		}
-			
-		@Override
-		public CharSequence caseConstantDeclaration(ConstantDeclaration constantDeclaration) {
-			IValue constantValue = context.getStaticEvaluationResult().getValue(constantDeclaration);
+		if (feature instanceof ParameterDeclaration || feature instanceof StateVariableDeclaration || feature instanceof ImplicitVariableDeclaration) {
+			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
+		}
+		if (feature instanceof ConstantDeclaration) {
+			IValue constantValue = context.getStaticEvaluationResult().getValue(feature);
 			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), constantValue);
 		}
-
-		@Override
-		public CharSequence caseParameterDeclaration(ParameterDeclaration parameterDeclaration) {
-			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
-		}
-		
-		@Override
-		public CharSequence caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
-			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
-		}
-		
-		@Override
-		public CharSequence caseInspectWhenClause(InspectWhenClause inspectWhenClause) {
+		if (feature instanceof InspectWhenClause) {
+			InspectWhenClause inspectWhenClause = (InspectWhenClause) feature;
 			return expressionGenerator.generate(context, inspectWhenClause.getOwner().getUnionExpression()) + ".value." + inspectWhenClause.getName();
 		}
-		
-		@Override
-		public CharSequence caseVariableDeclaration(VariableDeclaration variableDeclaration) {
-			return variableDeclaration.getName();
+		if (feature instanceof VariableDeclaration) {
+			return feature.getName();
 		}
-	
+		throw new IllegalArgumentException("Unknown variable declaration " + feature.getClass().getCanonicalName());
 	}
-
+	
 }

@@ -1,25 +1,16 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.function.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.function.ComputationCompound;
-import org.eclipselabs.damos.mscript.function.EquationDescription;
-import org.eclipselabs.damos.mscript.function.EquationPart;
-import org.eclipselabs.damos.mscript.function.EquationSide;
-import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.function.VariableDescription;
-import org.eclipselabs.damos.mscript.function.VariableStep;
+
+import org.eclipselabs.damos.mscript.function.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,17 +22,17 @@ import org.eclipselabs.damos.mscript.function.VariableStep;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage
  * @generated
  */
-public class FunctionModelSwitch<T> extends Switch<T> {
+public class FunctionSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static FunctionModelPackage modelPackage;
+	protected static FunctionPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -49,9 +40,9 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelSwitch() {
+	public FunctionSwitch() {
 		if (modelPackage == null) {
-			modelPackage = FunctionModelPackage.eINSTANCE;
+			modelPackage = FunctionPackage.eINSTANCE;
 		}
 	}
 
@@ -78,49 +69,49 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION: {
+			case FunctionPackage.FUNCTION_DESCRIPTION: {
 				FunctionDescription functionDescription = (FunctionDescription)theEObject;
 				T result = caseFunctionDescription(functionDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.EQUATION_DESCRIPTION: {
+			case FunctionPackage.EQUATION_DESCRIPTION: {
 				EquationDescription equationDescription = (EquationDescription)theEObject;
 				T result = caseEquationDescription(equationDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.EQUATION_SIDE: {
+			case FunctionPackage.EQUATION_SIDE: {
 				EquationSide equationSide = (EquationSide)theEObject;
 				T result = caseEquationSide(equationSide);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.EQUATION_PART: {
+			case FunctionPackage.EQUATION_PART: {
 				EquationPart equationPart = (EquationPart)theEObject;
 				T result = caseEquationPart(equationPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.VARIABLE_DESCRIPTION: {
+			case FunctionPackage.VARIABLE_DESCRIPTION: {
 				VariableDescription variableDescription = (VariableDescription)theEObject;
 				T result = caseVariableDescription(variableDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.VARIABLE_STEP: {
+			case FunctionPackage.VARIABLE_STEP: {
 				VariableStep variableStep = (VariableStep)theEObject;
 				T result = caseVariableStep(variableStep);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.FUNCTION_INSTANCE: {
+			case FunctionPackage.FUNCTION_INSTANCE: {
 				FunctionInstance functionInstance = (FunctionInstance)theEObject;
 				T result = caseFunctionInstance(functionInstance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FunctionModelPackage.COMPUTATION_COMPOUND: {
+			case FunctionPackage.COMPUTATION_COMPOUND: {
 				ComputationCompound computationCompound = (ComputationCompound)theEObject;
 				T result = caseComputationCompound(computationCompound);
 				if (result == null) result = caseCompoundStatement(computationCompound);
@@ -133,13 +124,13 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Function Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Function Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -223,13 +214,13 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Function Instance</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Function Instance</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -298,4 +289,4 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //FunctionModelSwitch
+} //FunctionSwitch

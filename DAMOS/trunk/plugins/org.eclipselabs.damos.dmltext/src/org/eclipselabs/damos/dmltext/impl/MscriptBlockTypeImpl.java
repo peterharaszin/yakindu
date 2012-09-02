@@ -8,13 +8,16 @@ package org.eclipselabs.damos.dmltext.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.impl.BlockTypeImpl;
+import org.eclipselabs.damos.dmltext.BehaviorDeclaration;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
@@ -31,6 +34,7 @@ import org.eclipselabs.damos.mscript.TopLevelDeclaration;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl#getDeclarations <em>Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl#getImportDeclarations <em>Import Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl#getBehavior <em>Behavior</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,6 +60,16 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 	 * @ordered
 	 */
 	protected EList<ImportDeclaration> importDeclarations;
+
+	/**
+	 * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehavior()
+	 * @generated
+	 * @ordered
+	 */
+	protected BehaviorDeclaration behavior;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,6 +107,65 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BehaviorDeclaration getBehavior() {
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBehavior(BehaviorDeclaration newBehavior, NotificationChain msgs) {
+		BehaviorDeclaration oldBehavior = behavior;
+		behavior = newBehavior;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR, oldBehavior, newBehavior);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBehavior(BehaviorDeclaration newBehavior) {
+		if (newBehavior != behavior) {
+			NotificationChain msgs = null;
+			if (behavior != null)
+				msgs = ((InternalEObject)behavior).eInverseRemove(this, DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE, BehaviorDeclaration.class, msgs);
+			if (newBehavior != null)
+				msgs = ((InternalEObject)newBehavior).eInverseAdd(this, DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE, BehaviorDeclaration.class, msgs);
+			msgs = basicSetBehavior(newBehavior, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR, newBehavior, newBehavior));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				if (behavior != null)
+					msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR, null, msgs);
+				return basicSetBehavior((BehaviorDeclaration)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<TopLevelDeclaration> getDeclarations() {
 		if (declarations == null) {
 			declarations = new EObjectContainmentEList<TopLevelDeclaration>(TopLevelDeclaration.class, this, DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS);
@@ -112,6 +185,8 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return ((InternalEList<?>)getImportDeclarations()).basicRemove(otherEnd, msgs);
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				return basicSetBehavior(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -128,6 +203,8 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				return getDeclarations();
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return getImportDeclarations();
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				return getBehavior();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,6 +226,9 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				getImportDeclarations().clear();
 				getImportDeclarations().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				setBehavior((BehaviorDeclaration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,6 +247,9 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				getImportDeclarations().clear();
 				return;
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				setBehavior((BehaviorDeclaration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -183,6 +266,8 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				return declarations != null && !declarations.isEmpty();
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return importDeclarations != null && !importDeclarations.isEmpty();
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR:
+				return behavior != null;
 		}
 		return super.eIsSet(featureID);
 	}

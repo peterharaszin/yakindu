@@ -17,5 +17,5 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface LetExpressionVariableDeclaration extends VariableDeclaration {
+public interface LetExpressionVariableDeclaration extends NamedVariableDeclaration {
 } // LetExpressionVariableDeclaration

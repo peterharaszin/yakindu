@@ -51,7 +51,7 @@ import org.eclipselabs.damos.dconfig.util.PropertyPath;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -338,7 +338,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ComputationModelPackage.eINSTANCE.eClass();
+		ComputationPackage.eINSTANCE.eClass();
 		DMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -1313,7 +1313,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		// Obtain other dependent packages
 		MscriptPackage theMscriptPackage = (MscriptPackage)EPackage.Registry.INSTANCE.getEPackage(MscriptPackage.eNS_URI);
 		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
-		ComputationModelPackage theComputationModelPackage = (ComputationModelPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationModelPackage.eNS_URI);
+		ComputationPackage theComputationPackage = (ComputationPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationPackage.eNS_URI);
 
 		// Create type parameters
 		addETypeParameter(numberedListEDataType, "V");
@@ -1383,7 +1383,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		addEParameter(op, this.getPropertyPath(), "propertyPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "sourcePath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(configurationEClass, theComputationPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "systemPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(configurationDefinitionEClass, ConfigurationDefinition.class, "ConfigurationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1465,7 +1465,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEAttribute(getResourceDeclaration_Count(), ecorePackage.getEInt(), "count", "1", 0, 1, ResourceDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computationPropertyEClass, ComputationProperty.class, "ComputationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputationProperty_ComputationModel(), theComputationModelPackage.getComputationModel(), null, "computationModel", null, 0, 1, ComputationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationProperty_ComputationModel(), theComputationPackage.getComputationModel(), null, "computationModel", null, 0, 1, ComputationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(systemConfigurationEClass, SystemConfiguration.class, "SystemConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSystemConfiguration_Body(), this.getSystemConfigurationBody(), this.getSystemConfigurationBody_Owner(), "body", null, 0, 1, SystemConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

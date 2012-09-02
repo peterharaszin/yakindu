@@ -9,7 +9,7 @@ blockType SchmittTrigger {
 	parameter lowerThreshold = -1
 	parameter initialOutput = false predefined { true, false }
 
-	stateful function main(const upperThreshold, const lowerThreshold, const initialOutput, u) -> y {
+	behavior {
 		check(real, <1>, <-1>, <true>) -> boolean
 		
 		static assert u is real(?) :

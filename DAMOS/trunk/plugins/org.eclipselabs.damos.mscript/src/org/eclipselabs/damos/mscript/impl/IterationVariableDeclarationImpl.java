@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class IterationVariableDeclarationImpl extends VariableDeclarationImpl implements IterationVariableDeclaration {
+public class IterationVariableDeclarationImpl extends NamedVariableDeclarationImpl implements IterationVariableDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

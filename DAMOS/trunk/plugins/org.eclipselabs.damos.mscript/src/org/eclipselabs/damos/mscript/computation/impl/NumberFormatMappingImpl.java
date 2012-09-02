@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
 
@@ -68,7 +68,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComputationModelPackage.Literals.NUMBER_FORMAT_MAPPING;
+		return ComputationPackage.Literals.NUMBER_FORMAT_MAPPING;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 		TypeSpecifier oldTypeSpecifier = typeSpecifier;
 		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -104,14 +104,14 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
 			if (typeSpecifier != null)
-				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
+				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
 			if (newTypeSpecifier != null)
-				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
+				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
 			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 		NumberFormat oldNumberFormat = numberFormat;
 		numberFormat = newNumberFormat;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, oldNumberFormat, newNumberFormat);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, oldNumberFormat, newNumberFormat);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -147,14 +147,14 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 		if (newNumberFormat != numberFormat) {
 			NotificationChain msgs = null;
 			if (numberFormat != null)
-				msgs = ((InternalEObject)numberFormat).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
+				msgs = ((InternalEObject)numberFormat).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
 			if (newNumberFormat != null)
-				msgs = ((InternalEObject)newNumberFormat).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
+				msgs = ((InternalEObject)newNumberFormat).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
 			msgs = basicSetNumberFormat(newNumberFormat, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, newNumberFormat, newNumberFormat));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, newNumberFormat, newNumberFormat));
 	}
 
 	/**
@@ -165,9 +165,9 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				return basicSetTypeSpecifier(null, msgs);
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				return basicSetNumberFormat(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -181,9 +181,9 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				return getTypeSpecifier();
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				return getNumberFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -197,10 +197,10 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				setTypeSpecifier((TypeSpecifier)newValue);
 				return;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)newValue);
 				return;
 		}
@@ -215,10 +215,10 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				setTypeSpecifier((TypeSpecifier)null);
 				return;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)null);
 				return;
 		}
@@ -233,9 +233,9 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				return typeSpecifier != null;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+			case ComputationPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				return numberFormat != null;
 		}
 		return super.eIsSet(featureID);

@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
 import org.eclipselabs.damos.mscript.internal.computation.operations.ComputationModelOperations;
@@ -85,7 +85,7 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComputationModelPackage.Literals.COMPUTATION_MODEL;
+		return ComputationPackage.Literals.COMPUTATION_MODEL;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 */
 	public EList<NumberFormatMapping> getNumberFormatMappings() {
 		if (numberFormatMappings == null) {
-			numberFormatMappings = new EObjectContainmentEList<NumberFormatMapping>(NumberFormatMapping.class, this, ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS);
+			numberFormatMappings = new EObjectContainmentEList<NumberFormatMapping>(NumberFormatMapping.class, this, ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS);
 		}
 		return numberFormatMappings;
 	}
@@ -127,7 +127,7 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 		String oldQualifiedName = qualifiedName;
 		qualifiedName = newQualifiedName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.COMPUTATION_MODEL__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
+			case ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return ((InternalEList<?>)getNumberFormatMappings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -161,9 +161,9 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
+			case ComputationPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				return getQualifiedName();
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
+			case ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return getNumberFormatMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -178,10 +178,10 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
+			case ComputationPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
 				return;
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
+			case ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				getNumberFormatMappings().clear();
 				getNumberFormatMappings().addAll((Collection<? extends NumberFormatMapping>)newValue);
 				return;
@@ -197,10 +197,10 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
+			case ComputationPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
 				return;
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
+			case ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				getNumberFormatMappings().clear();
 				return;
 		}
@@ -215,9 +215,9 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
+			case ComputationPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
+			case ComputationPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return numberFormatMappings != null && !numberFormatMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);

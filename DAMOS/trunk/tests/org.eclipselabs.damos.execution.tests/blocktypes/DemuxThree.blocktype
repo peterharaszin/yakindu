@@ -7,7 +7,7 @@ blockType DemuxThree {
 	output b
 	output c
 
-	function main(x) -> a, b, c {
+	behavior {
 		check(real[3]) -> real, real, real
 
 		static assert x is real(?)[] :

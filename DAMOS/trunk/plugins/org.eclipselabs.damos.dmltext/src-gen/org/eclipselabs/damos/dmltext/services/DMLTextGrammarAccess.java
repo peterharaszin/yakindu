@@ -65,24 +65,31 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cInputDefinitionsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cInputDefinitionsInputDefinitionParserRuleCall_7_0 = (RuleCall)cInputDefinitionsAssignment_7.eContents().get(0);
+		private final RuleCall cInputDefinitionsDscriptInputDefinitionParserRuleCall_7_0 = (RuleCall)cInputDefinitionsAssignment_7.eContents().get(0);
 		private final Assignment cOutputDefinitionsAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cOutputDefinitionsOutputDefinitionParserRuleCall_8_0 = (RuleCall)cOutputDefinitionsAssignment_8.eContents().get(0);
+		private final RuleCall cOutputDefinitionsDscriptOutputDefinitionParserRuleCall_8_0 = (RuleCall)cOutputDefinitionsAssignment_8.eContents().get(0);
 		private final Assignment cParametersAssignment_9 = (Assignment)cGroup.eContents().get(9);
 		private final RuleCall cParametersParameterParserRuleCall_9_0 = (RuleCall)cParametersAssignment_9.eContents().get(0);
 		private final Assignment cDeclarationsAssignment_10 = (Assignment)cGroup.eContents().get(10);
 		private final RuleCall cDeclarationsTopLevelDeclarationParserRuleCall_10_0 = (RuleCall)cDeclarationsAssignment_10.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
+		private final Assignment cBehaviorAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final RuleCall cBehaviorBehaviorDeclarationParserRuleCall_11_0_0 = (RuleCall)cBehaviorAssignment_11_0.eContents().get(0);
+		private final Assignment cDeclarationsAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
+		private final RuleCall cDeclarationsTopLevelDeclarationParserRuleCall_11_1_0 = (RuleCall)cDeclarationsAssignment_11_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//MscriptBlockType:
 		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
-		//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
-		//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration* "}";
+		//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=DscriptInputDefinition*
+		//	outputDefinitions+=DscriptOutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration*
+		//	(behavior=BehaviorDeclaration declarations+=TopLevelDeclaration*)? "}";
 		public ParserRule getRule() { return rule; }
 
 		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? & boundary?="boundary"?)
-		//"blockType" name=ValidID "{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition*
-		//parameters+=Parameter* declarations+=TopLevelDeclaration* "}"
+		//"blockType" name=ValidID "{" inputDefinitions+=DscriptInputDefinition* outputDefinitions+=DscriptOutputDefinition*
+		//parameters+=Parameter* declarations+=TopLevelDeclaration* (behavior=BehaviorDeclaration
+		//declarations+=TopLevelDeclaration*)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -127,17 +134,17 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
-		//inputDefinitions+=InputDefinition*
+		//inputDefinitions+=DscriptInputDefinition*
 		public Assignment getInputDefinitionsAssignment_7() { return cInputDefinitionsAssignment_7; }
 
-		//InputDefinition
-		public RuleCall getInputDefinitionsInputDefinitionParserRuleCall_7_0() { return cInputDefinitionsInputDefinitionParserRuleCall_7_0; }
+		//DscriptInputDefinition
+		public RuleCall getInputDefinitionsDscriptInputDefinitionParserRuleCall_7_0() { return cInputDefinitionsDscriptInputDefinitionParserRuleCall_7_0; }
 
-		//outputDefinitions+=OutputDefinition*
+		//outputDefinitions+=DscriptOutputDefinition*
 		public Assignment getOutputDefinitionsAssignment_8() { return cOutputDefinitionsAssignment_8; }
 
-		//OutputDefinition
-		public RuleCall getOutputDefinitionsOutputDefinitionParserRuleCall_8_0() { return cOutputDefinitionsOutputDefinitionParserRuleCall_8_0; }
+		//DscriptOutputDefinition
+		public RuleCall getOutputDefinitionsDscriptOutputDefinitionParserRuleCall_8_0() { return cOutputDefinitionsDscriptOutputDefinitionParserRuleCall_8_0; }
 
 		//parameters+=Parameter*
 		public Assignment getParametersAssignment_9() { return cParametersAssignment_9; }
@@ -151,12 +158,27 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//TopLevelDeclaration
 		public RuleCall getDeclarationsTopLevelDeclarationParserRuleCall_10_0() { return cDeclarationsTopLevelDeclarationParserRuleCall_10_0; }
 
+		//(behavior=BehaviorDeclaration declarations+=TopLevelDeclaration*)?
+		public Group getGroup_11() { return cGroup_11; }
+
+		//behavior=BehaviorDeclaration
+		public Assignment getBehaviorAssignment_11_0() { return cBehaviorAssignment_11_0; }
+
+		//BehaviorDeclaration
+		public RuleCall getBehaviorBehaviorDeclarationParserRuleCall_11_0_0() { return cBehaviorBehaviorDeclarationParserRuleCall_11_0_0; }
+
+		//declarations+=TopLevelDeclaration*
+		public Assignment getDeclarationsAssignment_11_1() { return cDeclarationsAssignment_11_1; }
+
+		//TopLevelDeclaration
+		public RuleCall getDeclarationsTopLevelDeclarationParserRuleCall_11_1_0() { return cDeclarationsTopLevelDeclarationParserRuleCall_11_1_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
+		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
 
-	public class InputDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InputDefinition");
+	public class DscriptInputDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DscriptInputDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final UnorderedGroup cUnorderedGroup_0 = (UnorderedGroup)cGroup.eContents().get(0);
 		private final Assignment cSocketAssignment_0_0 = (Assignment)cUnorderedGroup_0.eContents().get(0);
@@ -189,7 +211,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParametersParameterParserRuleCall_4_1_1_0 = (RuleCall)cParametersAssignment_4_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
-		//InputDefinition:
+		//DscriptInputDefinition:
 		//	(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
 		//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
 		//	directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?;
@@ -335,8 +357,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getNeverKeyword_1_1() { return cNeverKeyword_1_1; }
 	}
 
-	public class OutputDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OutputDefinition");
+	public class DscriptOutputDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DscriptOutputDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final UnorderedGroup cUnorderedGroup_0 = (UnorderedGroup)cGroup.eContents().get(0);
 		private final Assignment cSocketAssignment_0_0 = (Assignment)cUnorderedGroup_0.eContents().get(0);
@@ -364,7 +386,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParametersParameterParserRuleCall_4_1_0 = (RuleCall)cParametersAssignment_4_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
-		//OutputDefinition:
+		//DscriptOutputDefinition:
 		//	(socket?="socket"? & testPoint?="testPoint"?) "output" name=ValidID ("[" minimumPortCount=ValidInt ".."
 		//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" parameters+=Parameter* "}")?;
 		public ParserRule getRule() { return rule; }
@@ -453,20 +475,20 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Parameter");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cOpaqueParameterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cMscriptParameterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cDscriptParameterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Parameter:
-		//	OpaqueParameter | MscriptParameter;
+		//	OpaqueParameter | DscriptParameter;
 		public ParserRule getRule() { return rule; }
 
-		//OpaqueParameter | MscriptParameter
+		//OpaqueParameter | DscriptParameter
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//OpaqueParameter
 		public RuleCall getOpaqueParameterParserRuleCall_0() { return cOpaqueParameterParserRuleCall_0; }
 
-		//MscriptParameter
-		public RuleCall getMscriptParameterParserRuleCall_1() { return cMscriptParameterParserRuleCall_1; }
+		//DscriptParameter
+		public RuleCall getDscriptParameterParserRuleCall_1() { return cDscriptParameterParserRuleCall_1; }
 	}
 
 	public class OpaqueParameterElements extends AbstractParserRuleElementFinder {
@@ -566,8 +588,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_6_4() { return cRightCurlyBracketKeyword_6_4; }
 	}
 
-	public class MscriptParameterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptParameter");
+	public class DscriptParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DscriptParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityParameterVisibilityKindEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
@@ -588,7 +610,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_3_1_0 = (RuleCall)cPredefinedValuesAssignment_5_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
 		
-		//MscriptParameter returns Parameter:
+		//DscriptParameter:
 		//	visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
 		//	("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
 		//	predefinedValues+=MscriptParameterPredefinedValue)* "}")?;
@@ -725,6 +747,83 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getAliasSTRINGTerminalRuleCall_1_1_0() { return cAliasSTRINGTerminalRuleCall_1_1_0; }
+	}
+
+	public class BehaviorDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BehaviorDeclaration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBehaviorDeclarationAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBehaviorKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cChecksAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cChecksCheckParserRuleCall_3_0_0 = (RuleCall)cChecksAssignment_3_0.eContents().get(0);
+		private final Assignment cAssertionsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cAssertionsAssertionParserRuleCall_3_1_0 = (RuleCall)cAssertionsAssignment_3_1.eContents().get(0);
+		private final Assignment cStateVariableDeclarationsAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cStateVariableDeclarationsStateVariableDeclarationParserRuleCall_3_2_0 = (RuleCall)cStateVariableDeclarationsAssignment_3_2.eContents().get(0);
+		private final Assignment cConstantDeclarationsAssignment_3_3 = (Assignment)cAlternatives_3.eContents().get(3);
+		private final RuleCall cConstantDeclarationsConstantDeclarationParserRuleCall_3_3_0 = (RuleCall)cConstantDeclarationsAssignment_3_3.eContents().get(0);
+		private final Assignment cEquationsAssignment_3_4 = (Assignment)cAlternatives_3.eContents().get(4);
+		private final RuleCall cEquationsEquationParserRuleCall_3_4_0 = (RuleCall)cEquationsAssignment_3_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//BehaviorDeclaration:
+		//	{BehaviorDeclaration} "behavior" "{" (checks+=Check | assertions+=Assertion |
+		//	stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration |
+		//	equations+=Equation)* "}";
+		public ParserRule getRule() { return rule; }
+
+		//{BehaviorDeclaration} "behavior" "{" (checks+=Check | assertions+=Assertion |
+		//stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration | equations+=Equation)*
+		//"}"
+		public Group getGroup() { return cGroup; }
+
+		//{BehaviorDeclaration}
+		public Action getBehaviorDeclarationAction_0() { return cBehaviorDeclarationAction_0; }
+
+		//"behavior"
+		public Keyword getBehaviorKeyword_1() { return cBehaviorKeyword_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
+		//(checks+=Check | assertions+=Assertion | stateVariableDeclarations+=StateVariableDeclaration |
+		//constantDeclarations+=ConstantDeclaration | equations+=Equation)*
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+
+		//checks+=Check
+		public Assignment getChecksAssignment_3_0() { return cChecksAssignment_3_0; }
+
+		//Check
+		public RuleCall getChecksCheckParserRuleCall_3_0_0() { return cChecksCheckParserRuleCall_3_0_0; }
+
+		//assertions+=Assertion
+		public Assignment getAssertionsAssignment_3_1() { return cAssertionsAssignment_3_1; }
+
+		//Assertion
+		public RuleCall getAssertionsAssertionParserRuleCall_3_1_0() { return cAssertionsAssertionParserRuleCall_3_1_0; }
+
+		//stateVariableDeclarations+=StateVariableDeclaration
+		public Assignment getStateVariableDeclarationsAssignment_3_2() { return cStateVariableDeclarationsAssignment_3_2; }
+
+		//StateVariableDeclaration
+		public RuleCall getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_3_2_0() { return cStateVariableDeclarationsStateVariableDeclarationParserRuleCall_3_2_0; }
+
+		//constantDeclarations+=ConstantDeclaration
+		public Assignment getConstantDeclarationsAssignment_3_3() { return cConstantDeclarationsAssignment_3_3; }
+
+		//ConstantDeclaration
+		public RuleCall getConstantDeclarationsConstantDeclarationParserRuleCall_3_3_0() { return cConstantDeclarationsConstantDeclarationParserRuleCall_3_3_0; }
+
+		//equations+=Equation
+		public Assignment getEquationsAssignment_3_4() { return cEquationsAssignment_3_4; }
+
+		//Equation
+		public RuleCall getEquationsEquationParserRuleCall_3_4_0() { return cEquationsEquationParserRuleCall_3_4_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class OpaqueTypeSpecificationElements extends AbstractParserRuleElementFinder {
@@ -1073,16 +1172,17 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	private RootElements pRoot;
 	private MscriptBlockTypeElements pMscriptBlockType;
 	private TimingKindElements unknownRuleTimingKind;
-	private InputDefinitionElements pInputDefinition;
+	private DscriptInputDefinitionElements pDscriptInputDefinition;
 	private DirectFeedthroughPolicyElements pDirectFeedthroughPolicy;
 	private BooleanDirectFeedthroughPolicyElements pBooleanDirectFeedthroughPolicy;
-	private OutputDefinitionElements pOutputDefinition;
+	private DscriptOutputDefinitionElements pDscriptOutputDefinition;
 	private ParameterElements pParameter;
 	private OpaqueParameterElements pOpaqueParameter;
-	private MscriptParameterElements pMscriptParameter;
+	private DscriptParameterElements pDscriptParameter;
 	private OpaqueParameterPredefinedValueElements pOpaqueParameterPredefinedValue;
 	private MscriptParameterPredefinedValueElements pMscriptParameterPredefinedValue;
 	private ParameterVisibilityKindElements unknownRuleParameterVisibilityKind;
+	private BehaviorDeclarationElements pBehaviorDeclaration;
 	private OpaqueTypeSpecificationElements pOpaqueTypeSpecification;
 	private OpaqueTypeKindElements unknownRuleOpaqueTypeKind;
 	private StringValueSpecificationElements pStringValueSpecification;
@@ -1144,8 +1244,9 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MscriptBlockType:
 	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* (timing=TimingKind? &
-	//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=InputDefinition*
-	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration* "}";
+	//	boundary?="boundary"?) "blockType" name=ValidID "{" inputDefinitions+=DscriptInputDefinition*
+	//	outputDefinitions+=DscriptOutputDefinition* parameters+=Parameter* declarations+=TopLevelDeclaration*
+	//	(behavior=BehaviorDeclaration declarations+=TopLevelDeclaration*)? "}";
 	public MscriptBlockTypeElements getMscriptBlockTypeAccess() {
 		return (pMscriptBlockType != null) ? pMscriptBlockType : (pMscriptBlockType = new MscriptBlockTypeElements());
 	}
@@ -1164,16 +1265,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getTimingKindAccess().getRule();
 	}
 
-	//InputDefinition:
+	//DscriptInputDefinition:
 	//	(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
 	//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
 	//	directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?;
-	public InputDefinitionElements getInputDefinitionAccess() {
-		return (pInputDefinition != null) ? pInputDefinition : (pInputDefinition = new InputDefinitionElements());
+	public DscriptInputDefinitionElements getDscriptInputDefinitionAccess() {
+		return (pDscriptInputDefinition != null) ? pDscriptInputDefinition : (pDscriptInputDefinition = new DscriptInputDefinitionElements());
 	}
 	
-	public ParserRule getInputDefinitionRule() {
-		return getInputDefinitionAccess().getRule();
+	public ParserRule getDscriptInputDefinitionRule() {
+		return getDscriptInputDefinitionAccess().getRule();
 	}
 
 	//DirectFeedthroughPolicy:
@@ -1196,19 +1297,19 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getBooleanDirectFeedthroughPolicyAccess().getRule();
 	}
 
-	//OutputDefinition:
+	//DscriptOutputDefinition:
 	//	(socket?="socket"? & testPoint?="testPoint"?) "output" name=ValidID ("[" minimumPortCount=ValidInt ".."
 	//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" parameters+=Parameter* "}")?;
-	public OutputDefinitionElements getOutputDefinitionAccess() {
-		return (pOutputDefinition != null) ? pOutputDefinition : (pOutputDefinition = new OutputDefinitionElements());
+	public DscriptOutputDefinitionElements getDscriptOutputDefinitionAccess() {
+		return (pDscriptOutputDefinition != null) ? pDscriptOutputDefinition : (pDscriptOutputDefinition = new DscriptOutputDefinitionElements());
 	}
 	
-	public ParserRule getOutputDefinitionRule() {
-		return getOutputDefinitionAccess().getRule();
+	public ParserRule getDscriptOutputDefinitionRule() {
+		return getDscriptOutputDefinitionAccess().getRule();
 	}
 
 	//Parameter:
-	//	OpaqueParameter | MscriptParameter;
+	//	OpaqueParameter | DscriptParameter;
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
 	}
@@ -1229,16 +1330,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getOpaqueParameterAccess().getRule();
 	}
 
-	//MscriptParameter returns Parameter:
+	//DscriptParameter:
 	//	visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
 	//	("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
 	//	predefinedValues+=MscriptParameterPredefinedValue)* "}")?;
-	public MscriptParameterElements getMscriptParameterAccess() {
-		return (pMscriptParameter != null) ? pMscriptParameter : (pMscriptParameter = new MscriptParameterElements());
+	public DscriptParameterElements getDscriptParameterAccess() {
+		return (pDscriptParameter != null) ? pDscriptParameter : (pDscriptParameter = new DscriptParameterElements());
 	}
 	
-	public ParserRule getMscriptParameterRule() {
-		return getMscriptParameterAccess().getRule();
+	public ParserRule getDscriptParameterRule() {
+		return getDscriptParameterAccess().getRule();
 	}
 
 	//OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
@@ -1269,6 +1370,18 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getParameterVisibilityKindRule() {
 		return getParameterVisibilityKindAccess().getRule();
+	}
+
+	//BehaviorDeclaration:
+	//	{BehaviorDeclaration} "behavior" "{" (checks+=Check | assertions+=Assertion |
+	//	stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration |
+	//	equations+=Equation)* "}";
+	public BehaviorDeclarationElements getBehaviorDeclarationAccess() {
+		return (pBehaviorDeclaration != null) ? pBehaviorDeclaration : (pBehaviorDeclaration = new BehaviorDeclarationElements());
+	}
+	
+	public ParserRule getBehaviorDeclarationRule() {
+		return getBehaviorDeclarationAccess().getRule();
 	}
 
 	//OpaqueTypeSpecification returns PrimitiveTypeSpecification:
@@ -1393,7 +1506,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TopLevelDeclaration:
-	//	TypeDeclaration | EnumerationDeclaration | FunctionDeclaration | UnitDeclaration | ConstantDeclaration;
+	//	TypeDeclaration | EnumerationDeclaration | StandardFunctionDeclaration | UnitDeclaration | ConstantDeclaration;
 	public MscriptGrammarAccess.TopLevelDeclarationElements getTopLevelDeclarationAccess() {
 		return gaMscript.getTopLevelDeclarationAccess();
 	}
@@ -1482,22 +1595,23 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Function
-	// * / FunctionDeclaration:
-	//	kind=FunctionKind? "function" name=ValidID "(" (inputParameterDeclarations+=InputParameterDeclaration (","
-	//	inputParameterDeclarations+=InputParameterDeclaration)*)? ")" "->"
-	//	outputParameterDeclarations+=OutputParameterDeclaration ("," outputParameterDeclarations+=OutputParameterDeclaration)*
-	//	"{" (checks+=Check | assertions+=Assertion | stateVariableDeclarations+=StateVariableDeclaration |
-	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
-	public MscriptGrammarAccess.FunctionDeclarationElements getFunctionDeclarationAccess() {
-		return gaMscript.getFunctionDeclarationAccess();
+	// * / StandardFunctionDeclaration:
+	//	kind=FunctionKind? "function" name=ValidID "(" (inputParameterDeclarations+=StandardInputParameterDeclaration (","
+	//	inputParameterDeclarations+=StandardInputParameterDeclaration)*)? ")" "->"
+	//	outputParameterDeclarations+=StandardOutputParameterDeclaration (","
+	//	outputParameterDeclarations+=StandardOutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
+	//	stateVariableDeclarations+=StateVariableDeclaration | constantDeclarations+=ConstantDeclaration |
+	//	equations+=Equation)* "}";
+	public MscriptGrammarAccess.StandardFunctionDeclarationElements getStandardFunctionDeclarationAccess() {
+		return gaMscript.getStandardFunctionDeclarationAccess();
 	}
 	
-	public ParserRule getFunctionDeclarationRule() {
-		return getFunctionDeclarationAccess().getRule();
+	public ParserRule getStandardFunctionDeclarationRule() {
+		return getStandardFunctionDeclarationAccess().getRule();
 	}
 
 	//enum FunctionKind:
-	//	Stateful="stateful" | Continuous="continuous";
+	//	Synchronous="synchronous" | Continuous="continuous";
 	public MscriptGrammarAccess.FunctionKindElements getFunctionKindAccess() {
 		return gaMscript.getFunctionKindAccess();
 	}
@@ -1506,24 +1620,24 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionKindAccess().getRule();
 	}
 
-	//InputParameterDeclaration:
+	//StandardInputParameterDeclaration:
 	//	constant?="const"? name=ValidID;
-	public MscriptGrammarAccess.InputParameterDeclarationElements getInputParameterDeclarationAccess() {
-		return gaMscript.getInputParameterDeclarationAccess();
+	public MscriptGrammarAccess.StandardInputParameterDeclarationElements getStandardInputParameterDeclarationAccess() {
+		return gaMscript.getStandardInputParameterDeclarationAccess();
 	}
 	
-	public ParserRule getInputParameterDeclarationRule() {
-		return getInputParameterDeclarationAccess().getRule();
+	public ParserRule getStandardInputParameterDeclarationRule() {
+		return getStandardInputParameterDeclarationAccess().getRule();
 	}
 
-	//OutputParameterDeclaration:
+	//StandardOutputParameterDeclaration:
 	//	name=ValidID;
-	public MscriptGrammarAccess.OutputParameterDeclarationElements getOutputParameterDeclarationAccess() {
-		return gaMscript.getOutputParameterDeclarationAccess();
+	public MscriptGrammarAccess.StandardOutputParameterDeclarationElements getStandardOutputParameterDeclarationAccess() {
+		return gaMscript.getStandardOutputParameterDeclarationAccess();
 	}
 	
-	public ParserRule getOutputParameterDeclarationRule() {
-		return getOutputParameterDeclarationAccess().getRule();
+	public ParserRule getStandardOutputParameterDeclarationRule() {
+		return getStandardOutputParameterDeclarationAccess().getRule();
 	}
 
 	//Check:

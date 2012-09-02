@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class BuiltinDeclarationImpl extends TopLevelDeclarationImpl implements BuiltinDeclaration {
+public abstract class BuiltinDeclarationImpl extends TopLevelDeclarationImpl implements BuiltinDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

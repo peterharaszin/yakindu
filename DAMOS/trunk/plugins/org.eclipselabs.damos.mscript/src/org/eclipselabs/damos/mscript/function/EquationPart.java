@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.FeatureReference;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationPart()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationPart()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface EquationPart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Side</em>' container reference.
 	 * @see #setSide(EquationSide)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationPart_Side()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationPart_Side()
 	 * @see org.eclipselabs.damos.mscript.function.EquationSide#getParts
 	 * @model opposite="parts" transient="false"
 	 * @generated
@@ -66,7 +66,7 @@ public interface EquationPart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable Reference</em>' reference.
 	 * @see #setVariableReference(FeatureReference)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationPart_VariableReference()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationPart_VariableReference()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -93,7 +93,7 @@ public interface EquationPart extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable Step</em>' reference.
 	 * @see #setVariableStep(VariableStep)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationPart_VariableStep()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationPart_VariableStep()
 	 * @see org.eclipselabs.damos.mscript.function.VariableStep#getUsingEquationParts
 	 * @model opposite="usingEquationParts" required="true"
 	 * @generated

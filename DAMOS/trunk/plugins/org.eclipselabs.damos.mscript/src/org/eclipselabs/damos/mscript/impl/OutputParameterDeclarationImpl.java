@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
  *
  * @generated
  */
-public class OutputParameterDeclarationImpl extends ParameterDeclarationImpl implements OutputParameterDeclaration {
+public abstract class OutputParameterDeclarationImpl extends ParameterDeclarationImpl implements OutputParameterDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

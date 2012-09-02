@@ -32,13 +32,13 @@ import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionType;
-import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
@@ -46,7 +46,6 @@ import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.function.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.function.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
-import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.FunctionObject;
 import org.eclipselabs.damos.mscript.interpreter.ICompoundStatementInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
@@ -55,6 +54,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.Variable;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnionValue;
@@ -98,7 +98,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		Block block = getComponent();
 
-		Helper helper = new Helper(block);
+		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
 		
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
@@ -126,7 +126,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			}
 		}
 
-		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
+		FunctionDeclaration functionDeclaration = helper.getBehavior();
 		
 		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
 		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
@@ -165,6 +165,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			interpreterContext.addVariable(variable);
 		}
 		
+		initializeImplicitVariables();
 		initializeInputVariables();
 		initializeOutputVariables();
 
@@ -175,6 +176,37 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
 			initializeComputationCompound(compound);
+		}
+	}
+	
+	protected void initializeImplicitVariables() {
+		FunctionDeclaration functionDeclaration = functionObject.getFunctionInstance().getDeclaration();
+		double sampleTime = getNode().getSampleTime();
+
+		{
+			ImplicitVariableDeclaration variableDeclaration = functionDeclaration.getImplicitVariableDeclaration("Ts");
+			if (variableDeclaration != null) {
+				IValue value = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration);
+				if (value != null) {
+					RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
+					IVariable variable = new Variable(interpreterContext, variableDeclaration);
+					variable.setValue(0, Values.valueOf(getComputationContext(), dataType, sampleTime));
+					interpreterContext.addVariable(variable);
+				}
+			}
+		}
+
+		{
+			ImplicitVariableDeclaration variableDeclaration = functionDeclaration.getImplicitVariableDeclaration("fs");
+			if (variableDeclaration != null) {
+				IValue value = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration);
+				if (value != null) {
+					RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
+					IVariable variable = new Variable(interpreterContext, variableDeclaration);
+					variable.setValue(0, Values.valueOf(getComputationContext(), dataType, 1.0 / sampleTime));
+					interpreterContext.addVariable(variable);
+				}
+			}
 		}
 	}
 	
@@ -305,34 +337,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		return interpreterContext;
 	}
 	
-	private class Helper extends BehavioredBlockHelper {
-		
-		/**
-		 * @param block
-		 */
-		public Helper(Block block) {
-			super(block);
-		}
-
-		@Override
-		protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
-			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
-				double sampleTime = getNode().getSampleTime();
-				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
-				return Values.valueOf(new ComputationContext(), realType, sampleTime);
-			}
-			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
-				double sampleRate = 1 / getNode().getSampleTime();
-				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT);
-				herzUnit.getFactor(TypeUtil.SECOND_UNIT).setExponent(-1);
-				realType.setUnit(herzUnit);
-				return Values.valueOf(new ComputationContext(), realType, sampleRate);
-			}
-			return super.getGlobalStaticArgumentValue(name);
-		}
-		
+	/**
+	 * @return the functionObject
+	 */
+	public IFunctionObject getFunctionObject() {
+		return functionObject;
 	}
-
+	
 }

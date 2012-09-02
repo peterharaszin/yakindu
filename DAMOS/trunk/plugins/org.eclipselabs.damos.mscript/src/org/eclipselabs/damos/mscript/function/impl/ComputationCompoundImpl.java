@@ -15,7 +15,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.impl.CompoundStatementImpl;
 
 /**
@@ -80,7 +80,7 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.COMPUTATION_COMPOUND;
+		return FunctionPackage.Literals.COMPUTATION_COMPOUND;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	 */
 	public EList<InputParameterDeclaration> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectResolvingEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS);
+			inputs = new EObjectResolvingEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, FunctionPackage.COMPUTATION_COMPOUND__INPUTS);
 		}
 		return inputs;
 	}
@@ -102,7 +102,7 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	 */
 	public EList<OutputParameterDeclaration> getOutputs() {
 		if (outputs == null) {
-			outputs = new EObjectResolvingEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS);
+			outputs = new EObjectResolvingEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, FunctionPackage.COMPUTATION_COMPOUND__OUTPUTS);
 		}
 		return outputs;
 	}
@@ -114,7 +114,7 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	 */
 	public EList<VariableDeclaration> getDerivatives() {
 		if (derivatives == null) {
-			derivatives = new EObjectResolvingEList<VariableDeclaration>(VariableDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES);
+			derivatives = new EObjectResolvingEList<VariableDeclaration>(VariableDeclaration.class, this, FunctionPackage.COMPUTATION_COMPOUND__DERIVATIVES);
 		}
 		return derivatives;
 	}
@@ -127,11 +127,11 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__INPUTS:
 				return getInputs();
-			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return getOutputs();
-			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+			case FunctionPackage.COMPUTATION_COMPOUND__DERIVATIVES:
 				return getDerivatives();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -146,15 +146,15 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__INPUTS:
 				getInputs().clear();
 				getInputs().addAll((Collection<? extends InputParameterDeclaration>)newValue);
 				return;
-			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
 				getOutputs().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
 				return;
-			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+			case FunctionPackage.COMPUTATION_COMPOUND__DERIVATIVES:
 				getDerivatives().clear();
 				getDerivatives().addAll((Collection<? extends VariableDeclaration>)newValue);
 				return;
@@ -170,13 +170,13 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__INPUTS:
 				getInputs().clear();
 				return;
-			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
 				return;
-			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+			case FunctionPackage.COMPUTATION_COMPOUND__DERIVATIVES:
 				getDerivatives().clear();
 				return;
 		}
@@ -191,11 +191,11 @@ public class ComputationCompoundImpl extends CompoundStatementImpl implements Co
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__INPUTS:
 				return inputs != null && !inputs.isEmpty();
-			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return outputs != null && !outputs.isEmpty();
-			case FunctionModelPackage.COMPUTATION_COMPOUND__DERIVATIVES:
+			case FunctionPackage.COMPUTATION_COMPOUND__DERIVATIVES:
 				return derivatives != null && !derivatives.isEmpty();
 		}
 		return super.eIsSet(featureID);

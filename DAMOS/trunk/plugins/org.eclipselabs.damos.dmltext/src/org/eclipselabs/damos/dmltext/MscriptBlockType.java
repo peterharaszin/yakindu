@@ -20,6 +20,7 @@ import org.eclipselabs.damos.mscript.TopLevelContainer;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getImportDeclarations <em>Import Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getBehavior <em>Behavior</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,5 +44,33 @@ public interface MscriptBlockType extends BlockType, TopLevelContainer {
 	 * @generated
 	 */
 	EList<ImportDeclaration> getImportDeclarations();
+
+	/**
+	 * Returns the value of the '<em><b>Behavior</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dmltext.BehaviorDeclaration#getBlockType <em>Block Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Behavior</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Behavior</em>' containment reference.
+	 * @see #setBehavior(BehaviorDeclaration)
+	 * @see org.eclipselabs.damos.dmltext.DMLTextPackage#getMscriptBlockType_Behavior()
+	 * @see org.eclipselabs.damos.dmltext.BehaviorDeclaration#getBlockType
+	 * @model opposite="blockType" containment="true"
+	 * @generated
+	 */
+	BehaviorDeclaration getBehavior();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getBehavior <em>Behavior</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Behavior</em>' containment reference.
+	 * @see #getBehavior()
+	 * @generated
+	 */
+	void setBehavior(BehaviorDeclaration value);
 
 } // MscriptBlockType

@@ -25,12 +25,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.FunctionKind;
-import org.eclipselabs.damos.mscript.IfExpression;
-import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.LogicalAndExpression;
-import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OperatorKind;
@@ -38,8 +33,6 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
-import org.eclipselabs.damos.mscript.SwitchCase;
-import org.eclipselabs.damos.mscript.SwitchExpression;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.TypeDeclaration;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
@@ -68,17 +61,17 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	
 	@Check
 	public void checkStatelessFunction(FunctionDeclaration functionDeclaration) {
-		if (functionDeclaration.getKind() == FunctionKind.STATELESS) {
-			for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {
-				error("The state variable " + stateVariableDeclaration.getName() + " can only be declared in stateful or continuous functions", stateVariableDeclaration, null, -1);
-			}
-		}
+//		if (functionDeclaration.getKind() == FunctionKind.STATELESS) {
+//			for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {
+//				error("The state variable " + stateVariableDeclaration.getName() + " can only be declared in stateful or continuous functions", stateVariableDeclaration, null, -1);
+//			}
+//		}
 	}
 
 	@Check
 	public void checkFunctionHasChecks(FunctionDeclaration functionDeclaration) {
 		if (functionDeclaration.getChecks().isEmpty()) {
-			warning("No static checking can be performed for function " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), -1);
+			warning("No static checking can be performed for " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, functionDeclaration.getNameFeature(), -1);
 		}
 	}
 	
@@ -124,54 +117,54 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	
 	@Check
 	public void checkStatefulFunctionEnclosingExpression(FunctionCall functionCall) {
-		if (functionCall.getFeature() instanceof FunctionDeclaration) {
-			FunctionDeclaration functionDeclaration = (FunctionDeclaration) functionCall.getFeature();
-			if (functionDeclaration.getKind() == FunctionKind.STATEFUL) {
-				EObject element = functionCall;
-				EObject container = element.eContainer();
-				while (container instanceof Expression) {
-					if (container instanceof AlgorithmExpression) {
-						error("Stateful function calls must not be contained within algorithm expressions", null);
-						break;
-					}
-					if (container instanceof IfExpression) {
-						IfExpression ifExpression = (IfExpression) container;
-						if (!ifExpression.isStatic() && (ifExpression.getThenExpression() == element || ifExpression.getElseExpression() == element)) {
-							error("Stateful function calls must not be contained within non-static if-then or if-else expression", null);
-							break;
-						}
-					}
-					if (container instanceof SwitchExpression) {
-						SwitchExpression switchExpression = (SwitchExpression) container;
-						if (!switchExpression.isStatic() && switchExpression.getDefaultExpression() == element) {
-							error("Stateful function calls must not be contained within non-static switch default expression", null);
-							break;
-						}
-					}
-					if (container instanceof SwitchCase) {
-						SwitchCase switchCase = (SwitchCase) container;
-						if (!switchCase.getOwner().isStatic() && (switchCase.getCaseExpression() == element || switchCase.getResultExpression() == element)) {
-							error("Stateful function calls must not be contained within non-static switch case expression", null);
-							break;
-						}
-					}
-					if (container instanceof LogicalAndExpression) {
-						error("Stateful function calls must not be contained within AND expression", null);
-						break;
-					}
-					if (container instanceof LogicalOrExpression) {
-						error("Stateful function calls must not be contained within OR expression", null);
-						break;
-					}
-					if (container instanceof ImpliesExpression) {
-						error("Stateful function calls must not be contained within implies expression", null);
-						break;
-					}
-					element = container;
-					container = element.eContainer();
-				}
-			}
-		}
+//		if (functionCall.getFeature() instanceof FunctionDeclaration) {
+//			FunctionDeclaration functionDeclaration = (FunctionDeclaration) functionCall.getFeature();
+//			if (functionDeclaration.getKind() == FunctionKind.STATEFUL) {
+//				EObject element = functionCall;
+//				EObject container = element.eContainer();
+//				while (container instanceof Expression) {
+//					if (container instanceof AlgorithmExpression) {
+//						error("Stateful function calls must not be contained within algorithm expressions", null);
+//						break;
+//					}
+//					if (container instanceof IfExpression) {
+//						IfExpression ifExpression = (IfExpression) container;
+//						if (!ifExpression.isStatic() && (ifExpression.getThenExpression() == element || ifExpression.getElseExpression() == element)) {
+//							error("Stateful function calls must not be contained within non-static if-then or if-else expression", null);
+//							break;
+//						}
+//					}
+//					if (container instanceof SwitchExpression) {
+//						SwitchExpression switchExpression = (SwitchExpression) container;
+//						if (!switchExpression.isStatic() && switchExpression.getDefaultExpression() == element) {
+//							error("Stateful function calls must not be contained within non-static switch default expression", null);
+//							break;
+//						}
+//					}
+//					if (container instanceof SwitchCase) {
+//						SwitchCase switchCase = (SwitchCase) container;
+//						if (!switchCase.getOwner().isStatic() && (switchCase.getCaseExpression() == element || switchCase.getResultExpression() == element)) {
+//							error("Stateful function calls must not be contained within non-static switch case expression", null);
+//							break;
+//						}
+//					}
+//					if (container instanceof LogicalAndExpression) {
+//						error("Stateful function calls must not be contained within AND expression", null);
+//						break;
+//					}
+//					if (container instanceof LogicalOrExpression) {
+//						error("Stateful function calls must not be contained within OR expression", null);
+//						break;
+//					}
+//					if (container instanceof ImpliesExpression) {
+//						error("Stateful function calls must not be contained within implies expression", null);
+//						break;
+//					}
+//					element = container;
+//					container = element.eContainer();
+//				}
+//			}
+//		}
 	}
 
 	@Check
@@ -214,10 +207,10 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				
 			IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
-			Iterator<InputParameterDeclaration> staticParameterIt = functionDeclaration.getConstantInputParameterDeclarations().iterator();
+			Iterator<InputParameterDeclaration> constantParameterIt = functionDeclaration.getConstantInputParameterDeclarations().iterator();
 			for (Expression argument : check.getExpressionArguments()) {
 				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), argument);
-				staticEvaluationResult.setValue(staticParameterIt.next(), staticEvaluationResult.getValue(argument));
+				staticEvaluationResult.setValue(constantParameterIt.next(), staticEvaluationResult.getValue(argument));
 			}
 			
 			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getNonConstantInputParameterDeclarations().iterator();
@@ -245,15 +238,15 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	private boolean checkFunctionCheckSignatures(org.eclipselabs.damos.mscript.Check check) {
 		boolean result = true;
 		if (check.getExpressionArguments().size() != check.getFunction().getConstantInputParameterDeclarations().size()) {
-			error("Number of template arguments do not correspond to number of template parameters of function " + check.getFunction().getName(), check, null, -1);
+			error("Number of template arguments do not correspond to number of template parameters of " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
 		if (check.getInputTypeSpecifiers().size() != check.getFunction().getNonConstantInputParameterDeclarations().size()) {
-			error("Number of input argument types do not correspond to number of input parameters of function " + check.getFunction().getName(), check, null, -1);
+			error("Number of input argument types do not correspond to number of input parameters of " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
 		if (check.getOutputTypeSpecifiers().size() != check.getFunction().getOutputParameterDeclarations().size()) {
-			error("Number of output argument types do not correspond to number of output parameters of function " + check.getFunction().getName(), check, null, -1);
+			error("Number of output argument types do not correspond to number of output parameters of " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
 		return result;
@@ -282,7 +275,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 					checkCyclicDataTypeDeclaration(typeDeclaration.getTypeSpecifier(), new HashSet<TypeDeclaration>(visitedTypeDeclarations));
 				} else {
 					String message = "Cyclic data type declaration of " + typeDeclaration.getName();
-					error(message, typeDeclaration, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), -1);
+					error(message, typeDeclaration, MscriptPackage.eINSTANCE.getTypeDeclaration_Name(), -1);
 					error(message, typeSpecifier, null, -1);
 				}
 			}
@@ -328,7 +321,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				}
 			}
 		} else {
-			error("Cyclic constant declaration of " + constantDeclaration.getName(), constantDeclaration, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), -1);
+			error("Cyclic constant declaration of " + constantDeclaration.getName(), constantDeclaration, constantDeclaration.getNameFeature(), -1);
 		}
 	}
 

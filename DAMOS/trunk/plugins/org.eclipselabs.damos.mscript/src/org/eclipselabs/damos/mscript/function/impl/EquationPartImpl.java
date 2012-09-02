@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.EquationSide;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableStep;
 
 /**
@@ -71,7 +71,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.EQUATION_PART;
+		return FunctionPackage.Literals.EQUATION_PART;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * @generated
 	 */
 	public EquationSide getSide() {
-		if (eContainerFeatureID() != FunctionModelPackage.EQUATION_PART__SIDE) return null;
+		if (eContainerFeatureID() != FunctionPackage.EQUATION_PART__SIDE) return null;
 		return (EquationSide)eContainer();
 	}
 
@@ -90,7 +90,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * @generated
 	 */
 	public NotificationChain basicSetSide(EquationSide newSide, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSide, FunctionModelPackage.EQUATION_PART__SIDE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newSide, FunctionPackage.EQUATION_PART__SIDE, msgs);
 		return msgs;
 	}
 
@@ -100,19 +100,19 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	 * @generated
 	 */
 	public void setSide(EquationSide newSide) {
-		if (newSide != eInternalContainer() || (eContainerFeatureID() != FunctionModelPackage.EQUATION_PART__SIDE && newSide != null)) {
+		if (newSide != eInternalContainer() || (eContainerFeatureID() != FunctionPackage.EQUATION_PART__SIDE && newSide != null)) {
 			if (EcoreUtil.isAncestor(this, newSide))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSide != null)
-				msgs = ((InternalEObject)newSide).eInverseAdd(this, FunctionModelPackage.EQUATION_SIDE__PARTS, EquationSide.class, msgs);
+				msgs = ((InternalEObject)newSide).eInverseAdd(this, FunctionPackage.EQUATION_SIDE__PARTS, EquationSide.class, msgs);
 			msgs = basicSetSide(newSide, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__SIDE, newSide, newSide));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_PART__SIDE, newSide, newSide));
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 			variableReference = (FeatureReference)eResolveProxy(oldVariableReference);
 			if (variableReference != oldVariableReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
 			}
 		}
 		return variableReference;
@@ -150,7 +150,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 		FeatureReference oldVariableReference = variableReference;
 		variableReference = newVariableReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE, oldVariableReference, variableReference));
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 			variableStep = (VariableStep)eResolveProxy(oldVariableStep);
 			if (variableStep != oldVariableStep) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.EQUATION_PART__VARIABLE_STEP, oldVariableStep, variableStep));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.EQUATION_PART__VARIABLE_STEP, oldVariableStep, variableStep));
 			}
 		}
 		return variableStep;
@@ -188,7 +188,7 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 		VariableStep oldVariableStep = variableStep;
 		variableStep = newVariableStep;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__VARIABLE_STEP, oldVariableStep, newVariableStep);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_PART__VARIABLE_STEP, oldVariableStep, newVariableStep);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -203,14 +203,14 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 		if (newVariableStep != variableStep) {
 			NotificationChain msgs = null;
 			if (variableStep != null)
-				msgs = ((InternalEObject)variableStep).eInverseRemove(this, FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
+				msgs = ((InternalEObject)variableStep).eInverseRemove(this, FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
 			if (newVariableStep != null)
-				msgs = ((InternalEObject)newVariableStep).eInverseAdd(this, FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
+				msgs = ((InternalEObject)newVariableStep).eInverseAdd(this, FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
 			msgs = basicSetVariableStep(newVariableStep, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_PART__VARIABLE_STEP, newVariableStep, newVariableStep));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_PART__VARIABLE_STEP, newVariableStep, newVariableStep));
 	}
 
 	/**
@@ -221,13 +221,13 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetSide((EquationSide)otherEnd, msgs);
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				if (variableStep != null)
-					msgs = ((InternalEObject)variableStep).eInverseRemove(this, FunctionModelPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
+					msgs = ((InternalEObject)variableStep).eInverseRemove(this, FunctionPackage.VARIABLE_STEP__USING_EQUATION_PARTS, VariableStep.class, msgs);
 				return basicSetVariableStep((VariableStep)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -241,9 +241,9 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				return basicSetSide(null, msgs);
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				return basicSetVariableStep(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -257,8 +257,8 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
-				return eInternalContainer().eInverseRemove(this, FunctionModelPackage.EQUATION_SIDE__PARTS, EquationSide.class, msgs);
+			case FunctionPackage.EQUATION_PART__SIDE:
+				return eInternalContainer().eInverseRemove(this, FunctionPackage.EQUATION_SIDE__PARTS, EquationSide.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -271,12 +271,12 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				return getSide();
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+			case FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE:
 				if (resolve) return getVariableReference();
 				return basicGetVariableReference();
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				if (resolve) return getVariableStep();
 				return basicGetVariableStep();
 		}
@@ -291,13 +291,13 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				setSide((EquationSide)newValue);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+			case FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE:
 				setVariableReference((FeatureReference)newValue);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				setVariableStep((VariableStep)newValue);
 				return;
 		}
@@ -312,13 +312,13 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				setSide((EquationSide)null);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+			case FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE:
 				setVariableReference((FeatureReference)null);
 				return;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				setVariableStep((VariableStep)null);
 				return;
 		}
@@ -333,11 +333,11 @@ public class EquationPartImpl extends EObjectImpl implements EquationPart {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_PART__SIDE:
+			case FunctionPackage.EQUATION_PART__SIDE:
 				return getSide() != null;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_REFERENCE:
+			case FunctionPackage.EQUATION_PART__VARIABLE_REFERENCE:
 				return variableReference != null;
-			case FunctionModelPackage.EQUATION_PART__VARIABLE_STEP:
+			case FunctionPackage.EQUATION_PART__VARIABLE_STEP:
 				return variableStep != null;
 		}
 		return super.eIsSet(featureID);

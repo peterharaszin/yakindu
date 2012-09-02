@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface VariableStep extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable Description</em>' container reference.
 	 * @see #setVariableDescription(VariableDescription)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep_VariableDescription()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep_VariableDescription()
 	 * @see org.eclipselabs.damos.mscript.function.VariableDescription#getSteps
 	 * @model opposite="steps" transient="false"
 	 * @generated
@@ -68,7 +68,7 @@ public interface VariableStep extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Index</em>' attribute.
 	 * @see #setIndex(int)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep_Index()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep_Index()
 	 * @model
 	 * @generated
 	 */
@@ -94,7 +94,7 @@ public interface VariableStep extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial</em>' attribute.
 	 * @see #setInitial(boolean)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep_Initial()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep_Initial()
 	 * @model
 	 * @generated
 	 */
@@ -120,7 +120,7 @@ public interface VariableStep extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Derivative</em>' attribute.
 	 * @see #setDerivative(boolean)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep_Derivative()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep_Derivative()
 	 * @model
 	 * @generated
 	 */
@@ -147,7 +147,7 @@ public interface VariableStep extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Using Equation Parts</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableStep_UsingEquationParts()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableStep_UsingEquationParts()
 	 * @see org.eclipselabs.damos.mscript.function.EquationPart#getVariableStep
 	 * @model opposite="variableStep"
 	 * @generated

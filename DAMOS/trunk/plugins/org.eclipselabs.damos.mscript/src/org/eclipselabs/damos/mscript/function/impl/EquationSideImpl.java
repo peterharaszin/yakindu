@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.EquationSide;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.EQUATION_SIDE;
+		return FunctionPackage.Literals.EQUATION_SIDE;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	 * @generated
 	 */
 	public EquationDescription getEquationDescription() {
-		if (eContainerFeatureID() != FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION) return null;
+		if (eContainerFeatureID() != FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION) return null;
 		return (EquationDescription)eContainer();
 	}
 
@@ -93,7 +93,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	 * @generated
 	 */
 	public NotificationChain basicSetEquationDescription(EquationDescription newEquationDescription, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newEquationDescription, FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newEquationDescription, FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION, msgs);
 		return msgs;
 	}
 
@@ -103,19 +103,19 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	 * @generated
 	 */
 	public void setEquationDescription(EquationDescription newEquationDescription) {
-		if (newEquationDescription != eInternalContainer() || (eContainerFeatureID() != FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION && newEquationDescription != null)) {
+		if (newEquationDescription != eInternalContainer() || (eContainerFeatureID() != FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION && newEquationDescription != null)) {
 			if (EcoreUtil.isAncestor(this, newEquationDescription))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newEquationDescription != null)
-				msgs = ((InternalEObject)newEquationDescription).eInverseAdd(this, FunctionModelPackage.EQUATION_DESCRIPTION__SIDES, EquationDescription.class, msgs);
+				msgs = ((InternalEObject)newEquationDescription).eInverseAdd(this, FunctionPackage.EQUATION_DESCRIPTION__SIDES, EquationDescription.class, msgs);
 			msgs = basicSetEquationDescription(newEquationDescription, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION, newEquationDescription, newEquationDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION, newEquationDescription, newEquationDescription));
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 			expression = (Expression)eResolveProxy(oldExpression);
 			if (expression != oldExpression) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.EQUATION_SIDE__EXPRESSION, oldExpression, expression));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.EQUATION_SIDE__EXPRESSION, oldExpression, expression));
 			}
 		}
 		return expression;
@@ -153,7 +153,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 		Expression oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.EQUATION_SIDE__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.EQUATION_SIDE__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	 */
 	public EList<EquationPart> getParts() {
 		if (parts == null) {
-			parts = new EObjectContainmentWithInverseEList<EquationPart>(EquationPart.class, this, FunctionModelPackage.EQUATION_SIDE__PARTS, FunctionModelPackage.EQUATION_PART__SIDE);
+			parts = new EObjectContainmentWithInverseEList<EquationPart>(EquationPart.class, this, FunctionPackage.EQUATION_SIDE__PARTS, FunctionPackage.EQUATION_PART__SIDE);
 		}
 		return parts;
 	}
@@ -187,11 +187,11 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetEquationDescription((EquationDescription)otherEnd, msgs);
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParts()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -205,9 +205,9 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				return basicSetEquationDescription(null, msgs);
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -221,8 +221,8 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
-				return eInternalContainer().eInverseRemove(this, FunctionModelPackage.EQUATION_DESCRIPTION__SIDES, EquationDescription.class, msgs);
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+				return eInternalContainer().eInverseRemove(this, FunctionPackage.EQUATION_DESCRIPTION__SIDES, EquationDescription.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -235,12 +235,12 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				return getEquationDescription();
-			case FunctionModelPackage.EQUATION_SIDE__EXPRESSION:
+			case FunctionPackage.EQUATION_SIDE__EXPRESSION:
 				if (resolve) return getExpression();
 				return basicGetExpression();
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				return getParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -255,13 +255,13 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				setEquationDescription((EquationDescription)newValue);
 				return;
-			case FunctionModelPackage.EQUATION_SIDE__EXPRESSION:
+			case FunctionPackage.EQUATION_SIDE__EXPRESSION:
 				setExpression((Expression)newValue);
 				return;
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends EquationPart>)newValue);
 				return;
@@ -277,13 +277,13 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				setEquationDescription((EquationDescription)null);
 				return;
-			case FunctionModelPackage.EQUATION_SIDE__EXPRESSION:
+			case FunctionPackage.EQUATION_SIDE__EXPRESSION:
 				setExpression((Expression)null);
 				return;
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				getParts().clear();
 				return;
 		}
@@ -298,11 +298,11 @@ public class EquationSideImpl extends EObjectImpl implements EquationSide {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_SIDE__EQUATION_DESCRIPTION:
 				return getEquationDescription() != null;
-			case FunctionModelPackage.EQUATION_SIDE__EXPRESSION:
+			case FunctionPackage.EQUATION_SIDE__EXPRESSION:
 				return expression != null;
-			case FunctionModelPackage.EQUATION_SIDE__PARTS:
+			case FunctionPackage.EQUATION_SIDE__PARTS:
 				return parts != null && !parts.isEmpty();
 		}
 		return super.eIsSet(featureID);

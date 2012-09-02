@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.EquationSide;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionModelFactory;
+import org.eclipselabs.damos.mscript.function.FunctionFactory;
 import org.eclipselabs.damos.mscript.function.IFunctionDescriptionBuilder;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableKind;
@@ -49,22 +49,22 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 	public FunctionDescription build(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function descriptor construction", null);
 
-		FunctionDescription functionDescription = FunctionModelFactory.eINSTANCE.createFunctionDescription();
+		FunctionDescription functionDescription = FunctionFactory.eINSTANCE.createFunctionDescription();
 		functionDescription.setDeclaration(functionDeclaration);
 
 		for (Equation equation : functionDeclaration.getEquations()) {
-			EquationDescription equationDescription = FunctionModelFactory.eINSTANCE.createEquationDescription();
+			EquationDescription equationDescription = FunctionFactory.eINSTANCE.createEquationDescription();
 			equationDescription.setFunctionDescription(functionDescription);
 			equationDescription.setEquation(equation);
 			
 			Expression lhsExpression = equation.getLeftHandSide();
-			EquationSide lhs = FunctionModelFactory.eINSTANCE.createEquationSide();
+			EquationSide lhs = FunctionFactory.eINSTANCE.createEquationSide();
 			lhs.setEquationDescription(equationDescription);
 			lhs.setExpression(lhsExpression);
 			StatusUtil.merge(status, new EquationSideInitializer(result, lhs).initialize());
 			
 			Expression rhsExpression = equation.getRightHandSide();
-			EquationSide rhs = FunctionModelFactory.eINSTANCE.createEquationSide();
+			EquationSide rhs = FunctionFactory.eINSTANCE.createEquationSide();
 			rhs.setEquationDescription(equationDescription);
 			rhs.setExpression(rhsExpression);
 			StatusUtil.merge(status, new EquationSideInitializer(result, rhs).initialize());
@@ -137,20 +137,24 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 					}
 				}
 
-				EquationPart part = FunctionModelFactory.eINSTANCE.createEquationPart();
+				EquationPart part = FunctionFactory.eINSTANCE.createEquationPart();
 				part.setSide(equationSide);
 				part.setVariableReference(variableReference);
 				VariableDescription variableDescription = getVariableDescription(functionDescription, name, variableKind);
 				
 				VariableStep variableStep = variableDescription.getStep(stepIndex, initial, derivative);
 				if (variableStep == null) {
-					variableStep = FunctionModelFactory.eINSTANCE.createVariableStep();
+					variableStep = FunctionFactory.eINSTANCE.createVariableStep();
 					variableStep.setVariableDescription(variableDescription);
 					variableStep.setIndex(stepIndex);
 					variableStep.setInitial(initial);
 					variableStep.setDerivative(derivative);
 				}
 				part.setVariableStep(variableStep);
+				
+				if (initial || stepIndex != 0 || /* TODO: Remove this check: */ variableKind == VariableKind.STATE_VARIABLE) {
+					functionDescription.setStateful(true);
+				}
 			}
 			return true;
 		}
@@ -167,9 +171,6 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 			case STATE_VARIABLE:
 				if (variableReference.getStepExpression() != null) {
 					switch (equationSide.getEquationDescription().getFunctionDescription().getDeclaration().getKind()) {
-					case STATELESS:
-						message = "Variable references of stateless functions must not specify step expressions";
-						break;
 					case CONTINUOUS:
 						message = "Variable references of continuous functions must not specify step expressions";
 						break;
@@ -199,7 +200,7 @@ public class FunctionDescriptionBuilder implements IFunctionDescriptionBuilder {
 				VariableKind variableKind) {
 			VariableDescription variableDescription = functionDescription.getVariableDescription(name);
 			if (variableDescription == null) {
-				variableDescription = FunctionModelFactory.eINSTANCE.createVariableDescription();
+				variableDescription = FunctionFactory.eINSTANCE.createVariableDescription();
 				variableDescription.setFunctionDescription(functionDescription);
 				variableDescription.setName(name);
 				variableDescription.setKind(variableKind);

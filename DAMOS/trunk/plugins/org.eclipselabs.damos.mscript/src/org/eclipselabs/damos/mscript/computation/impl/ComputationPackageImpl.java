@@ -122,7 +122,7 @@ public class ComputationPackageImpl extends EPackageImpl implements ComputationP
 		if (isInited) return (ComputationPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ComputationPackageImpl theComputationModelPackage = (ComputationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ComputationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ComputationPackageImpl());
+		ComputationPackageImpl theComputationPackage = (ComputationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ComputationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ComputationPackageImpl());
 
 		isInited = true;
 
@@ -130,18 +130,18 @@ public class ComputationPackageImpl extends EPackageImpl implements ComputationP
 		MscriptPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theComputationModelPackage.createPackageContents();
+		theComputationPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theComputationModelPackage.initializePackageContents();
+		theComputationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theComputationModelPackage.freeze();
+		theComputationPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ComputationPackage.eNS_URI, theComputationModelPackage);
-		return theComputationModelPackage;
+		EPackage.Registry.INSTANCE.put(ComputationPackage.eNS_URI, theComputationPackage);
+		return theComputationPackage;
 	}
 
 	/**
@@ -329,7 +329,7 @@ public class ComputationPackageImpl extends EPackageImpl implements ComputationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputationFactory getComputationModelFactory() {
+	public ComputationFactory getComputationFactory() {
 		return (ComputationFactory)getEFactoryInstance();
 	}
 

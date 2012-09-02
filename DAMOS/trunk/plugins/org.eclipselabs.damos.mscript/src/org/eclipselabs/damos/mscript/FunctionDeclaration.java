@@ -7,6 +7,8 @@
 package org.eclipselabs.damos.mscript;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,90 +18,52 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks <em>Checks</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getAssertions <em>Assertions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getEquations <em>Equations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getAllImplicitVariableDeclarations <em>All Implicit Variable Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface FunctionDeclaration extends TopLevelDeclaration, CallableElement {
+public interface FunctionDeclaration extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Name()
-	 * @model
+	 * @model kind="operation"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.FunctionKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.FunctionKind
-	 * @see #setKind(FunctionKind)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Kind()
-	 * @model
+	 * @model kind="operation" required="true"
 	 * @generated
 	 */
 	FunctionKind getKind();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getKind <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.FunctionKind
-	 * @see #getKind()
-	 * @generated
-	 */
-	void setKind(FunctionKind value);
-
-	/**
-	 * Returns the value of the '<em><b>Input Parameter Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.InputParameterDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input Parameter Declarations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Input Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_InputParameterDeclarations()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<InputParameterDeclaration> getInputParameterDeclarations();
@@ -129,17 +93,29 @@ public interface FunctionDeclaration extends TopLevelDeclaration, CallableElemen
 	EList<InputParameterDeclaration> getNonConstantInputParameterDeclarations();
 
 	/**
-	 * Returns the value of the '<em><b>Output Parameter Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.OutputParameterDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<ImplicitVariableDeclaration> getImplicitVariableDeclarations();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	ImplicitVariableDeclaration getImplicitVariableDeclaration(String name);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Output Parameter Declarations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_OutputParameterDeclarations()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<OutputParameterDeclaration> getOutputParameterDeclarations();
@@ -226,4 +202,22 @@ public interface FunctionDeclaration extends TopLevelDeclaration, CallableElemen
 	 */
 	EList<Equation> getEquations();
 
-} // FunctionDefinition
+	/**
+	 * Returns the value of the '<em><b>All Implicit Variable Declarations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ImplicitVariableDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Implicit Variable Declarations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Implicit Variable Declarations</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_AllImplicitVariableDeclarations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ImplicitVariableDeclaration> getAllImplicitVariableDeclarations();
+
+	EStructuralFeature getNameFeature();
+
+} // FunctionDeclaration

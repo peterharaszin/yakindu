@@ -26,7 +26,7 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getComputationCompound()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getComputationCompound()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface ComputationCompound extends CompoundStatement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inputs</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getComputationCompound_Inputs()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getComputationCompound_Inputs()
 	 * @model
 	 * @generated
 	 */
@@ -57,7 +57,7 @@ public interface ComputationCompound extends CompoundStatement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outputs</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getComputationCompound_Outputs()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getComputationCompound_Outputs()
 	 * @model
 	 * @generated
 	 */
@@ -73,7 +73,7 @@ public interface ComputationCompound extends CompoundStatement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Derivatives</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getComputationCompound_Derivatives()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getComputationCompound_Derivatives()
 	 * @model
 	 * @generated
 	 */

@@ -19,7 +19,7 @@ blockType EdgeCounter {
 		1 alias "Falling"
 	}
 
-	stateful function main(const initialValue, const step, const upperLimit, const lowerLimit, const upTrigger, const downTrigger, up, down) -> y {
+	behavior {
 		check(boolean, boolean, <0>, <1>, <10>, <0>, <0>, <0>) -> int
 		check(boolean, boolean, <0>, <1>, <10>, <0>, <1>, <1>) -> int
 		

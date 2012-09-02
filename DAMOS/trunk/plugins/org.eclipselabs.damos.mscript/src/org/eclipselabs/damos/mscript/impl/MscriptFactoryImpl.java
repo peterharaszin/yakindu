@@ -63,12 +63,13 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.TYPE_DECLARATION: return createTypeDeclaration();
 			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
-			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
+			case MscriptPackage.STANDARD_FUNCTION_DECLARATION: return createStandardFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
 			case MscriptPackage.TYPE_CHECK_ARGUMENT: return createTypeCheckArgument();
 			case MscriptPackage.EXPRESSION_CHECK_ARGUMENT: return createExpressionCheckArgument();
-			case MscriptPackage.INPUT_PARAMETER_DECLARATION: return createInputParameterDeclaration();
-			case MscriptPackage.OUTPUT_PARAMETER_DECLARATION: return createOutputParameterDeclaration();
+			case MscriptPackage.IMPLICIT_VARIABLE_DECLARATION: return createImplicitVariableDeclaration();
+			case MscriptPackage.STANDARD_INPUT_PARAMETER_DECLARATION: return createStandardInputParameterDeclaration();
+			case MscriptPackage.STANDARD_OUTPUT_PARAMETER_DECLARATION: return createStandardOutputParameterDeclaration();
 			case MscriptPackage.ASSERTION: return createAssertion();
 			case MscriptPackage.STATE_VARIABLE_DECLARATION: return createStateVariableDeclaration();
 			case MscriptPackage.CONSTANT_DECLARATION: return createConstantDeclaration();
@@ -129,7 +130,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.CONTINUE_STATEMENT: return createContinueStatement();
 			case MscriptPackage.BREAK_STATEMENT: return createBreakStatement();
 			case MscriptPackage.RETURN_STATEMENT: return createReturnStatement();
-			case MscriptPackage.BUILTIN_DECLARATION: return createBuiltinDeclaration();
 			case MscriptPackage.BUILTIN_FUNCTION_DECLARATION: return createBuiltinFunctionDeclaration();
 			case MscriptPackage.INVALID_TYPE: return createInvalidType();
 			case MscriptPackage.ANY_TYPE: return createAnyType();
@@ -276,9 +276,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDeclaration createFunctionDeclaration() {
-		FunctionDeclarationImpl functionDeclaration = new FunctionDeclarationImpl();
-		return functionDeclaration;
+	public StandardFunctionDeclaration createStandardFunctionDeclaration() {
+		StandardFunctionDeclarationImpl standardFunctionDeclaration = new StandardFunctionDeclarationImpl();
+		return standardFunctionDeclaration;
 	}
 
 	/**
@@ -316,9 +316,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputParameterDeclaration createInputParameterDeclaration() {
-		InputParameterDeclarationImpl inputParameterDeclaration = new InputParameterDeclarationImpl();
-		return inputParameterDeclaration;
+	public ImplicitVariableDeclaration createImplicitVariableDeclaration() {
+		ImplicitVariableDeclarationImpl implicitVariableDeclaration = new ImplicitVariableDeclarationImpl();
+		return implicitVariableDeclaration;
 	}
 
 	/**
@@ -326,9 +326,19 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputParameterDeclaration createOutputParameterDeclaration() {
-		OutputParameterDeclarationImpl outputParameterDeclaration = new OutputParameterDeclarationImpl();
-		return outputParameterDeclaration;
+	public StandardInputParameterDeclaration createStandardInputParameterDeclaration() {
+		StandardInputParameterDeclarationImpl standardInputParameterDeclaration = new StandardInputParameterDeclarationImpl();
+		return standardInputParameterDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StandardOutputParameterDeclaration createStandardOutputParameterDeclaration() {
+		StandardOutputParameterDeclarationImpl standardOutputParameterDeclaration = new StandardOutputParameterDeclarationImpl();
+		return standardOutputParameterDeclaration;
 	}
 
 	/**
@@ -929,16 +939,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public ReturnStatement createReturnStatement() {
 		ReturnStatementImpl returnStatement = new ReturnStatementImpl();
 		return returnStatement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BuiltinDeclaration createBuiltinDeclaration() {
-		BuiltinDeclarationImpl builtinDeclaration = new BuiltinDeclarationImpl();
-		return builtinDeclaration;
 	}
 
 	/**

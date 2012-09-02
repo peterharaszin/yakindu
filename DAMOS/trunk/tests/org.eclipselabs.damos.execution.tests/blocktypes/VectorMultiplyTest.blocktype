@@ -6,7 +6,7 @@ blockType VectorMultiplyTest {
 	input b
 	output y
 	
-	function main(a, b) -> y {
+	behavior {
 		check(int, int) -> real
 
 		static assert a is int :

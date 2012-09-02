@@ -8,8 +8,8 @@ synchronous blockType Debounce {
 	parameter initialOutput = false predefined { true, false }
 	parameter delay = 0.05(s)
 
-	stateful function main(const initialOutput, const delay, const Ts, u) -> y {
-		check(boolean, <false>, <0.05(s)>, <1(s)>) -> boolean
+	behavior {
+		check(boolean, <false>, <0.05(s)>) -> boolean
 
 		static assert initialOutput is boolean :
 			error "Initial output must be boolean value"

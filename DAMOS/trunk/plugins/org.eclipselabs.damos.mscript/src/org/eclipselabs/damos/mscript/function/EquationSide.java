@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.Expression;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationSide()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationSide()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface EquationSide extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Equation Description</em>' container reference.
 	 * @see #setEquationDescription(EquationDescription)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationSide_EquationDescription()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationSide_EquationDescription()
 	 * @see org.eclipselabs.damos.mscript.function.EquationDescription#getSides
 	 * @model opposite="sides" required="true" transient="false"
 	 * @generated
@@ -67,7 +67,7 @@ public interface EquationSide extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' reference.
 	 * @see #setExpression(Expression)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationSide_Expression()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationSide_Expression()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -94,7 +94,7 @@ public interface EquationSide extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationSide_Parts()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationSide_Parts()
 	 * @see org.eclipselabs.damos.mscript.function.EquationPart#getSide
 	 * @model opposite="side" containment="true"
 	 * @generated

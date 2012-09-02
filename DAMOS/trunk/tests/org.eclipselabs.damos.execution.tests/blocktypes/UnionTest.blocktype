@@ -12,7 +12,7 @@ blockType UnionTest {
 		real y;
 	}
 	
-	function main(a, b) -> y1, y2 {
+	behavior {
 		check(int, real) -> Union, Union
 
 		static assert a is int :

@@ -26,7 +26,7 @@ package org.eclipselabs.damos.mscript.computation;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * @return the value of the '<em>Predefined Kind</em>' attribute.
 	 * @see org.eclipselabs.damos.mscript.computation.PredefinedFixedPointFormatKind
 	 * @see #setPredefinedKind(PredefinedFixedPointFormatKind)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_PredefinedKind()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_PredefinedKind()
 	 * @model transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
@@ -70,7 +70,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unsigned</em>' attribute.
 	 * @see #setUnsigned(boolean)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_Unsigned()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_Unsigned()
 	 * @model
 	 * @generated
 	 */
@@ -97,7 +97,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Integer Length</em>' attribute.
 	 * @see #setIntegerLength(int)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_IntegerLength()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_IntegerLength()
 	 * @model default="1" required="true" ordered="false"
 	 * @generated
 	 */
@@ -123,7 +123,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fraction Length</em>' attribute.
 	 * @see #setFractionLength(int)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_FractionLength()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_FractionLength()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -148,7 +148,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Word Size</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_WordSize()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_WordSize()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
@@ -165,7 +165,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Slope</em>' attribute.
 	 * @see #setSlope(double)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_Slope()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_Slope()
 	 * @model default="1.0" required="true" ordered="false"
 	 * @generated
 	 */
@@ -192,7 +192,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bias</em>' attribute.
 	 * @see #setBias(double)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_Bias()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_Bias()
 	 * @model default="0.0" required="true" ordered="false"
 	 * @generated
 	 */
@@ -218,7 +218,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Saturate</em>' attribute.
 	 * @see #setSaturate(boolean)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getFixedPointFormat_Saturate()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getFixedPointFormat_Saturate()
 	 * @model
 	 * @generated
 	 */

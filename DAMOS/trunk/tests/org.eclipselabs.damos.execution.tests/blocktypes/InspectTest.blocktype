@@ -10,7 +10,7 @@ blockType InspectTest {
 		real y;
 	}
 	
-	function main(a) -> y {
+	behavior {
 		check(Union) -> Union
 
 		static assert a is Union :

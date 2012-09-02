@@ -67,7 +67,7 @@ public class MscriptGenerator {
 		out.println("#endif /* __cplusplus */");
 		out.println();
 		
-		if (functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL) {
+		if (context.getStaticEvaluationResult().getFunctionDescription(functionInstance.getDeclaration()).isStateful()) {
 			out.print(generateContextStructure());
 		}
 
@@ -131,7 +131,7 @@ public class MscriptGenerator {
 	public CharSequence generateFunctionPrototypes() {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		if (functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL) {
+		if (context.getStaticEvaluationResult().getFunctionDescription(functionInstance.getDeclaration()).isStateful()) {
 			out.print(generateInitializeFunctionHeader());
 			out.println(";");
 			out.print(generateComputeOutputsFunctionHeader());
@@ -166,7 +166,7 @@ public class MscriptGenerator {
 	public CharSequence generateFunctionImplementations() {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
-		if (functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL) {
+		if (context.getStaticEvaluationResult().getFunctionDescription(functionInstance.getDeclaration()).isStateful()) {
 			out.print(generateInitializeFunctionImplementation());
 
 			out.println();

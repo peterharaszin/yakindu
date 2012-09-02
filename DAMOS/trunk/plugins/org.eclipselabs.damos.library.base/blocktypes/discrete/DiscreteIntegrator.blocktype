@@ -14,14 +14,14 @@ synchronous blockType DiscreteIntegrator {
 		false alias "no"
 	}
 
-	stateful function main(const gain, const initialCondition, const accumulate, const Ts, u) -> y {
-		check(real(kg), <1>, <0(kg*s)>, <false>, <1(s)>) -> real(kg*s)
-		check(real, <1>, <0(s)>, <false>, <1(s)>) -> real(s)
-		check(real, <1(1/s)>, <0>, <false>, <1(s)>) -> real
+	behavior {
+		check(real(kg), <1>, <0(kg*s)>, <false>) -> real(kg*s)
+		check(real, <1>, <0(s)>, <false>) -> real(s)
+		check(real, <1(1/s)>, <0>, <false>) -> real
 		// accumulate checks
-		check(real(kg), <1>, <0(kg)>, <true>, <1(s)>) -> real(kg)
-		check(real, <1>, <0>, <true>, <1(s)>) -> real
-		check(real, <1>, <0>, <true>, <1(s)>) -> real
+		check(real(kg), <1>, <0(kg)>, <true>) -> real(kg)
+		check(real, <1>, <0>, <true>) -> real
+		check(real, <1>, <0>, <true>) -> real
 	
 		static assert u is real(?) :
 			error "Input value must be numeric"

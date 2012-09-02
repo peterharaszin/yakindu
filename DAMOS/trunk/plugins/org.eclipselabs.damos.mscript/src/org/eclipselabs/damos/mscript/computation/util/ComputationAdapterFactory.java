@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.computation.util;
 
@@ -11,7 +7,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
@@ -22,17 +18,17 @@ import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage
  * @generated
  */
-public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
+public class ComputationAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ComputationModelPackage modelPackage;
+	protected static ComputationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -40,9 +36,9 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputationModelAdapterFactory() {
+	public ComputationAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ComputationModelPackage.eINSTANCE;
+			modelPackage = ComputationPackage.eINSTANCE;
 		}
 	}
 
@@ -71,8 +67,8 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComputationModelSwitch<Adapter> modelSwitch =
-		new ComputationModelSwitch<Adapter>() {
+	protected ComputationSwitch<Adapter> modelSwitch =
+		new ComputationSwitch<Adapter>() {
 			@Override
 			public Adapter caseComputationModel(ComputationModel object) {
 				return createComputationModelAdapter();
@@ -114,16 +110,30 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.FloatingPointFormat <em>Floating Point Format</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.ComputationModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.computation.FloatingPointFormat
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationModel
 	 * @generated
 	 */
-	public Adapter createFloatingPointFormatAdapter() {
+	public Adapter createComputationModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.NumberFormatMapping <em>Number Format Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.computation.NumberFormatMapping
+	 * @generated
+	 */
+	public Adapter createNumberFormatMappingAdapter() {
 		return null;
 	}
 
@@ -156,30 +166,16 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.ComputationModel <em>Computation Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.FloatingPointFormat <em>Floating Point Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModel
+	 * @see org.eclipselabs.damos.mscript.computation.FloatingPointFormat
 	 * @generated
 	 */
-	public Adapter createComputationModelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computation.NumberFormatMapping <em>Number Format Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.computation.NumberFormatMapping
-	 * @generated
-	 */
-	public Adapter createNumberFormatMappingAdapter() {
+	public Adapter createFloatingPointFormatAdapter() {
 		return null;
 	}
 
@@ -195,4 +191,4 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ComputationModelAdapterFactory
+} //ComputationAdapterFactory

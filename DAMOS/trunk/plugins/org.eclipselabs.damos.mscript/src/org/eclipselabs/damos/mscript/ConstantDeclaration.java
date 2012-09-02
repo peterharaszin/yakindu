@@ -23,7 +23,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface ConstantDeclaration extends VariableDeclaration, TopLevelDeclaration {
+public interface ConstantDeclaration extends NamedVariableDeclaration, TopLevelDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Initializer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

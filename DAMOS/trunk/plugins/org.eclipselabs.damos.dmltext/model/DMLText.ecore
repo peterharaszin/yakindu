@@ -14,7 +14,26 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//ImportDeclaration"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" eType="#//BehaviorDeclaration"
+        containment="true" eOpposite="#//BehaviorDeclaration/blockType"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DscriptInputDefinition" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//InputDefinition ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//InputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DscriptOutputDefinition" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//OutputDefinition ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//OutputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DscriptParameter" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//Parameter ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//InputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorDeclaration" eSuperTypes="../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//FunctionDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blockType" eType="#//MscriptBlockType"
+        eOpposite="#//MscriptBlockType/behavior"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allImplicitInputParameterDeclarations"
+        upperBound="-1" eType="#//ImplicitInputParameterDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allImplicitOutputParameterDeclarations"
+        upperBound="-1" eType="#//ImplicitOutputParameterDeclaration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitInputParameterDeclaration" abstract="true"
+      eSuperTypes="../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//InputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitOutputParameterDeclaration"
+      abstract="true" eSuperTypes="../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//OutputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InputMessageParameterDeclaration" eSuperTypes="#//ImplicitInputParameterDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputMessageParameterDeclaration" eSuperTypes="#//ImplicitOutputParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptSystemInterface" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//SystemInterface">
     <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
         eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//ImportDeclaration"

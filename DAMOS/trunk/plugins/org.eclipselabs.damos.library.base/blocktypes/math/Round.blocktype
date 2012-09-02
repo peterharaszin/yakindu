@@ -9,7 +9,7 @@ blockType Round {
 		0 alias "round"
 	}
 
-	function main(const kind, u) -> y {
+	behavior {
 		check(real, <0>) -> int
 		
 		static assert u is real(?) :

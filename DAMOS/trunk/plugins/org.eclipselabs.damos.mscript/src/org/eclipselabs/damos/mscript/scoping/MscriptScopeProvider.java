@@ -68,16 +68,16 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					elements.add(stateVariableDeclaration);
 				}
 
-				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
-					elements.add(parameterDeclaration);
-				}
-				
-				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getNonConstantInputParameterDeclarations()) {
+				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
 					elements.add(parameterDeclaration);
 				}
 				
 				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getOutputParameterDeclarations()) {
 					elements.add(parameterDeclaration);
+				}
+
+				for (VariableDeclaration variableDeclaration : functionDeclaration.getImplicitVariableDeclarations()) {
+					elements.add(variableDeclaration);
 				}
 
 				elements.add(functionDeclaration);

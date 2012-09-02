@@ -7,7 +7,7 @@ blockType Gain {
 	
 	parameter gain = 1
 
-	function main(const gain, u) -> y {
+	behavior {
 		check(real, <1>) -> real
 		
 		static assert u is real(?) :

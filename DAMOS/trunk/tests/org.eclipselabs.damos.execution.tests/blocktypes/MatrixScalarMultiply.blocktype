@@ -5,7 +5,7 @@ blockType MatrixScalarMultiply {
 	input x
 	output y
 
-	function main(x) -> y {
+	behavior {
 		check(real[3, 2]) -> real[3, 2]
 
 		static assert x is real(?)[,] :

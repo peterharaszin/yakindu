@@ -6,7 +6,7 @@ blockType RecordConstructionTest {
 	input b
 	output y
 	
-	function main(a, b) -> y {
+	behavior {
 		check(int, real) -> { int x; int y; int z }
 
 		static assert a is int :

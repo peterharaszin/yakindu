@@ -5,7 +5,7 @@ blockType And {
 	input _input[2..*]
 	output y
 
-	function main(_input) -> y {
+	behavior {
 		check(boolean[2]) -> boolean
 		
 		static assert _input is boolean[] :

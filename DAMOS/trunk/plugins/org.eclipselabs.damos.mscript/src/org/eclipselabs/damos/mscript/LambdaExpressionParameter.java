@@ -13,5 +13,5 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface LambdaExpressionParameter extends VariableDeclaration {
+public interface LambdaExpressionParameter extends NamedVariableDeclaration {
 } // LambdaExpressionParameter

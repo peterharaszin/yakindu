@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.function.impl;
 
@@ -17,9 +13,9 @@ import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.EquationSide;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionFactory;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelFactory;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableKind;
 import org.eclipselabs.damos.mscript.function.VariableStep;
@@ -30,24 +26,24 @@ import org.eclipselabs.damos.mscript.function.VariableStep;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionModelFactory {
+public class FunctionFactoryImpl extends EFactoryImpl implements FunctionFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FunctionModelFactory init() {
+	public static FunctionFactory init() {
 		try {
-			FunctionModelFactory theFunctionModelFactory = (FunctionModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/FunctionModel"); 
-			if (theFunctionModelFactory != null) {
-				return theFunctionModelFactory;
+			FunctionFactory theFunctionFactory = (FunctionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/Function"); 
+			if (theFunctionFactory != null) {
+				return theFunctionFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new FunctionModelFactoryImpl();
+		return new FunctionFactoryImpl();
 	}
 
 	/**
@@ -56,7 +52,7 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelFactoryImpl() {
+	public FunctionFactoryImpl() {
 		super();
 	}
 
@@ -68,14 +64,14 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION: return createFunctionDescription();
-			case FunctionModelPackage.EQUATION_DESCRIPTION: return createEquationDescription();
-			case FunctionModelPackage.EQUATION_SIDE: return createEquationSide();
-			case FunctionModelPackage.EQUATION_PART: return createEquationPart();
-			case FunctionModelPackage.VARIABLE_DESCRIPTION: return createVariableDescription();
-			case FunctionModelPackage.VARIABLE_STEP: return createVariableStep();
-			case FunctionModelPackage.FUNCTION_INSTANCE: return createFunctionInstance();
-			case FunctionModelPackage.COMPUTATION_COMPOUND: return createComputationCompound();
+			case FunctionPackage.FUNCTION_DESCRIPTION: return createFunctionDescription();
+			case FunctionPackage.EQUATION_DESCRIPTION: return createEquationDescription();
+			case FunctionPackage.EQUATION_SIDE: return createEquationSide();
+			case FunctionPackage.EQUATION_PART: return createEquationPart();
+			case FunctionPackage.VARIABLE_DESCRIPTION: return createVariableDescription();
+			case FunctionPackage.VARIABLE_STEP: return createVariableStep();
+			case FunctionPackage.FUNCTION_INSTANCE: return createFunctionInstance();
+			case FunctionPackage.COMPUTATION_COMPOUND: return createComputationCompound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,7 +85,7 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case FunctionModelPackage.VARIABLE_KIND:
+			case FunctionPackage.VARIABLE_KIND:
 				return createVariableKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -104,7 +100,7 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case FunctionModelPackage.VARIABLE_KIND:
+			case FunctionPackage.VARIABLE_KIND:
 				return convertVariableKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -216,8 +212,8 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelPackage getFunctionModelPackage() {
-		return (FunctionModelPackage)getEPackage();
+	public FunctionPackage getFunctionPackage() {
+		return (FunctionPackage)getEPackage();
 	}
 
 	/**
@@ -227,8 +223,8 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 * @generated
 	 */
 	@Deprecated
-	public static FunctionModelPackage getPackage() {
-		return FunctionModelPackage.eINSTANCE;
+	public static FunctionPackage getPackage() {
+		return FunctionPackage.eINSTANCE;
 	}
 
-} //FunctionModelFactoryImpl
+} //FunctionFactoryImpl

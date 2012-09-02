@@ -11,7 +11,7 @@ blockType RecordTest {
 
 	type MyNamedRecord = { int x, y }
 
-	function main(x) -> y1, y2 {
+	behavior {
 		check({ int x; int y }) -> MyNamedRecord, RecordB
 
 		static assert x is { int x; int y } :

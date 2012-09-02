@@ -16,6 +16,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipselabs.damos.mscript.Module;
+import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 
@@ -47,6 +48,8 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 				QualifiedName packageName = getPackageName(unitSymbol.getOwner());
 				return packageName.append(unitSymbol.getName());
 			}
+		} else if (obj instanceof ParameterDeclaration) {
+			return QualifiedName.create(((ParameterDeclaration) obj).getName());
 		}
 		return null;
 	}

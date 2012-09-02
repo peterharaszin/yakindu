@@ -10,7 +10,7 @@ continuous blockType TransferFunction {
 	parameter numeratorCoefficients = { 1 }
 	parameter denominatorCoefficients = { 1, 1 }
 
-	continuous function main(const numeratorCoefficients, const denominatorCoefficients, u) -> y {
+	behavior {
 		check(real, <{ 1 }>, <{ 1, 1 }>) -> real
 		
 		static assert u is real :

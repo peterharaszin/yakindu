@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getNumberFormat()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getNumberFormat()
  * @model abstract="true"
  * @generated
  */

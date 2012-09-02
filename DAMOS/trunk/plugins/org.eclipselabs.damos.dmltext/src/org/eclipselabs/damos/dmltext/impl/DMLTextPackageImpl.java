@@ -11,12 +11,20 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dmltext.BehaviorDeclaration;
 import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
+import org.eclipselabs.damos.dmltext.DscriptInputDefinition;
+import org.eclipselabs.damos.dmltext.DscriptOutputDefinition;
+import org.eclipselabs.damos.dmltext.DscriptParameter;
+import org.eclipselabs.damos.dmltext.ImplicitInputParameterDeclaration;
+import org.eclipselabs.damos.dmltext.ImplicitOutputParameterDeclaration;
+import org.eclipselabs.damos.dmltext.InputMessageParameterDeclaration;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dmltext.OutputMessageParameterDeclaration;
 import org.eclipselabs.damos.dmltext.Root;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -39,6 +47,54 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * @generated
 	 */
 	private EClass mscriptBlockTypeEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dscriptInputDefinitionEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dscriptOutputDefinitionEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dscriptParameterEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass behaviorDeclarationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass implicitInputParameterDeclarationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass implicitOutputParameterDeclarationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inputMessageParameterDeclarationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass outputMessageParameterDeclarationEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,6 +228,114 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMscriptBlockType_Behavior() {
+		return (EReference)mscriptBlockTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDscriptInputDefinition() {
+		return dscriptInputDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDscriptOutputDefinition() {
+		return dscriptOutputDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDscriptParameter() {
+		return dscriptParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBehaviorDeclaration() {
+		return behaviorDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorDeclaration_BlockType() {
+		return (EReference)behaviorDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorDeclaration_AllImplicitInputParameterDeclarations() {
+		return (EReference)behaviorDeclarationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorDeclaration_AllImplicitOutputParameterDeclarations() {
+		return (EReference)behaviorDeclarationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImplicitInputParameterDeclaration() {
+		return implicitInputParameterDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImplicitOutputParameterDeclaration() {
+		return implicitOutputParameterDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInputMessageParameterDeclaration() {
+		return inputMessageParameterDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOutputMessageParameterDeclaration() {
+		return outputMessageParameterDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMscriptSystemInterface() {
 		return mscriptSystemInterfaceEClass;
 	}
@@ -264,6 +428,26 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 
 		mscriptBlockTypeEClass = createEClass(MSCRIPT_BLOCK_TYPE);
 		createEReference(mscriptBlockTypeEClass, MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS);
+		createEReference(mscriptBlockTypeEClass, MSCRIPT_BLOCK_TYPE__BEHAVIOR);
+
+		dscriptInputDefinitionEClass = createEClass(DSCRIPT_INPUT_DEFINITION);
+
+		dscriptOutputDefinitionEClass = createEClass(DSCRIPT_OUTPUT_DEFINITION);
+
+		dscriptParameterEClass = createEClass(DSCRIPT_PARAMETER);
+
+		behaviorDeclarationEClass = createEClass(BEHAVIOR_DECLARATION);
+		createEReference(behaviorDeclarationEClass, BEHAVIOR_DECLARATION__BLOCK_TYPE);
+		createEReference(behaviorDeclarationEClass, BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS);
+		createEReference(behaviorDeclarationEClass, BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS);
+
+		implicitInputParameterDeclarationEClass = createEClass(IMPLICIT_INPUT_PARAMETER_DECLARATION);
+
+		implicitOutputParameterDeclarationEClass = createEClass(IMPLICIT_OUTPUT_PARAMETER_DECLARATION);
+
+		inputMessageParameterDeclarationEClass = createEClass(INPUT_MESSAGE_PARAMETER_DECLARATION);
+
+		outputMessageParameterDeclarationEClass = createEClass(OUTPUT_MESSAGE_PARAMETER_DECLARATION);
 
 		mscriptSystemInterfaceEClass = createEClass(MSCRIPT_SYSTEM_INTERFACE);
 		createEReference(mscriptSystemInterfaceEClass, MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS);
@@ -310,6 +494,17 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		// Add supertypes to classes
 		mscriptBlockTypeEClass.getESuperTypes().add(theDMLPackage.getBlockType());
 		mscriptBlockTypeEClass.getESuperTypes().add(theMscriptPackage.getTopLevelContainer());
+		dscriptInputDefinitionEClass.getESuperTypes().add(theDMLPackage.getInputDefinition());
+		dscriptInputDefinitionEClass.getESuperTypes().add(theMscriptPackage.getInputParameterDeclaration());
+		dscriptOutputDefinitionEClass.getESuperTypes().add(theDMLPackage.getOutputDefinition());
+		dscriptOutputDefinitionEClass.getESuperTypes().add(theMscriptPackage.getOutputParameterDeclaration());
+		dscriptParameterEClass.getESuperTypes().add(theDMLPackage.getParameter());
+		dscriptParameterEClass.getESuperTypes().add(theMscriptPackage.getInputParameterDeclaration());
+		behaviorDeclarationEClass.getESuperTypes().add(theMscriptPackage.getFunctionDeclaration());
+		implicitInputParameterDeclarationEClass.getESuperTypes().add(theMscriptPackage.getInputParameterDeclaration());
+		implicitOutputParameterDeclarationEClass.getESuperTypes().add(theMscriptPackage.getOutputParameterDeclaration());
+		inputMessageParameterDeclarationEClass.getESuperTypes().add(this.getImplicitInputParameterDeclaration());
+		outputMessageParameterDeclarationEClass.getESuperTypes().add(this.getImplicitOutputParameterDeclaration());
 		mscriptSystemInterfaceEClass.getESuperTypes().add(theDMLPackage.getSystemInterface());
 		mscriptDataTypeSpecificationEClass.getESuperTypes().add(theDMLPackage.getDataTypeSpecification());
 		mscriptValueSpecificationEClass.getESuperTypes().add(theDMLPackage.getValueSpecification());
@@ -321,6 +516,26 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 
 		initEClass(mscriptBlockTypeEClass, MscriptBlockType.class, "MscriptBlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptBlockType_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptBlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMscriptBlockType_Behavior(), this.getBehaviorDeclaration(), this.getBehaviorDeclaration_BlockType(), "behavior", null, 0, 1, MscriptBlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dscriptInputDefinitionEClass, DscriptInputDefinition.class, "DscriptInputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dscriptOutputDefinitionEClass, DscriptOutputDefinition.class, "DscriptOutputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dscriptParameterEClass, DscriptParameter.class, "DscriptParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(behaviorDeclarationEClass, BehaviorDeclaration.class, "BehaviorDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviorDeclaration_BlockType(), this.getMscriptBlockType(), this.getMscriptBlockType_Behavior(), "blockType", null, 0, 1, BehaviorDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorDeclaration_AllImplicitInputParameterDeclarations(), this.getImplicitInputParameterDeclaration(), null, "allImplicitInputParameterDeclarations", null, 0, -1, BehaviorDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorDeclaration_AllImplicitOutputParameterDeclarations(), this.getImplicitOutputParameterDeclaration(), null, "allImplicitOutputParameterDeclarations", null, 0, -1, BehaviorDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(implicitInputParameterDeclarationEClass, ImplicitInputParameterDeclaration.class, "ImplicitInputParameterDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(implicitOutputParameterDeclarationEClass, ImplicitOutputParameterDeclaration.class, "ImplicitOutputParameterDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(inputMessageParameterDeclarationEClass, InputMessageParameterDeclaration.class, "InputMessageParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(outputMessageParameterDeclarationEClass, OutputMessageParameterDeclaration.class, "OutputMessageParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mscriptSystemInterfaceEClass, MscriptSystemInterface.class, "MscriptSystemInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptSystemInterface_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptSystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

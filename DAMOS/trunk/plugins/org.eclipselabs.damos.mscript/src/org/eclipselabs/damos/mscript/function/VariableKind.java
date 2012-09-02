@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Variable Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableKind()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableKind()
  * @model
  * @generated
  */

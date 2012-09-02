@@ -11,7 +11,7 @@ blockType RecordExtractXY {
 		int y;
 	}
 
-	function main(x) -> outX, outY {
+	behavior {
 		check({ int x; int y }) -> int, int
 
 		static assert x is { int x; int y } :

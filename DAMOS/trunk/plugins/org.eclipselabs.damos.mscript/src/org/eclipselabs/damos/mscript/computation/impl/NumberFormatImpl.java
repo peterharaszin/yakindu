@@ -8,7 +8,7 @@ package org.eclipselabs.damos.mscript.computation.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
 
 /**
@@ -37,7 +37,7 @@ public abstract class NumberFormatImpl extends EObjectImpl implements NumberForm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComputationModelPackage.Literals.NUMBER_FORMAT;
+		return ComputationPackage.Literals.NUMBER_FORMAT;
 	}
 
 	/**

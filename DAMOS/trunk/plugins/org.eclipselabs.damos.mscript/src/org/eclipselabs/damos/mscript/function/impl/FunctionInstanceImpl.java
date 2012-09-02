@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.FUNCTION_INSTANCE;
+		return FunctionPackage.Literals.FUNCTION_INSTANCE;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 			declaration = (FunctionDeclaration)eResolveProxy(oldDeclaration);
 			if (declaration != oldDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
 			}
 		}
 		return declaration;
@@ -123,7 +123,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 		FunctionDeclaration oldDeclaration = declaration;
 		declaration = newDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.FUNCTION_INSTANCE__DECLARATION, oldDeclaration, declaration));
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 		CompoundStatement oldInitializationCompound = initializationCompound;
 		initializationCompound = newInitializationCompound;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, oldInitializationCompound, newInitializationCompound);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, oldInitializationCompound, newInitializationCompound);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -159,14 +159,14 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 		if (newInitializationCompound != initializationCompound) {
 			NotificationChain msgs = null;
 			if (initializationCompound != null)
-				msgs = ((InternalEObject)initializationCompound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, null, msgs);
+				msgs = ((InternalEObject)initializationCompound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, null, msgs);
 			if (newInitializationCompound != null)
-				msgs = ((InternalEObject)newInitializationCompound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, null, msgs);
+				msgs = ((InternalEObject)newInitializationCompound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, null, msgs);
 			msgs = basicSetInitializationCompound(newInitializationCompound, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, newInitializationCompound, newInitializationCompound));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND, newInitializationCompound, newInitializationCompound));
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 */
 	public EList<ComputationCompound> getComputationCompounds() {
 		if (computationCompounds == null) {
-			computationCompounds = new EObjectContainmentEList<ComputationCompound>(ComputationCompound.class, this, FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS);
+			computationCompounds = new EObjectContainmentEList<ComputationCompound>(ComputationCompound.class, this, FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS);
 		}
 		return computationCompounds;
 	}
@@ -189,9 +189,9 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
+			case FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return basicSetInitializationCompound(null, msgs);
-			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
+			case FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				return ((InternalEList<?>)getComputationCompounds()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -205,12 +205,12 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+			case FunctionPackage.FUNCTION_INSTANCE__DECLARATION:
 				if (resolve) return getDeclaration();
 				return basicGetDeclaration();
-			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
+			case FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return getInitializationCompound();
-			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
+			case FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				return getComputationCompounds();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -225,13 +225,13 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+			case FunctionPackage.FUNCTION_INSTANCE__DECLARATION:
 				setDeclaration((FunctionDeclaration)newValue);
 				return;
-			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
+			case FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((CompoundStatement)newValue);
 				return;
-			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
+			case FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				getComputationCompounds().clear();
 				getComputationCompounds().addAll((Collection<? extends ComputationCompound>)newValue);
 				return;
@@ -247,13 +247,13 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+			case FunctionPackage.FUNCTION_INSTANCE__DECLARATION:
 				setDeclaration((FunctionDeclaration)null);
 				return;
-			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
+			case FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((CompoundStatement)null);
 				return;
-			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
+			case FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				getComputationCompounds().clear();
 				return;
 		}
@@ -268,11 +268,11 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__DECLARATION:
+			case FunctionPackage.FUNCTION_INSTANCE__DECLARATION:
 				return declaration != null;
-			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
+			case FunctionPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return initializationCompound != null;
-			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
+			case FunctionPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
 				return computationCompounds != null && !computationCompounds.isEmpty();
 		}
 		return super.eIsSet(featureID);

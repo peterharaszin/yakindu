@@ -26,15 +26,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
-import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableStep;
-import org.eclipselabs.damos.mscript.function.util.FunctionModelValidator;
+import org.eclipselabs.damos.mscript.function.util.FunctionValidator;
 import org.eclipselabs.damos.mscript.internal.function.util.VariableDescriptionWrapper;
 
 /**
@@ -47,6 +46,7 @@ import org.eclipselabs.damos.mscript.internal.function.util.VariableDescriptionW
  *   <li>{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl#getEquationDescriptions <em>Equation Descriptions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl#getVariableDescriptions <em>Variable Descriptions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl#isStateful <em>Stateful</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +84,26 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	protected EList<VariableDescription> variableDescriptions;
 
 	/**
+	 * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStateful()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STATEFUL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStateful()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean stateful = STATEFUL_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -99,7 +119,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.FUNCTION_DESCRIPTION;
+		return FunctionPackage.Literals.FUNCTION_DESCRIPTION;
 	}
 
 	/**
@@ -113,7 +133,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 			declaration = (FunctionDeclaration)eResolveProxy(oldDeclaration);
 			if (declaration != oldDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION, oldDeclaration, declaration));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION, oldDeclaration, declaration));
 			}
 		}
 		return declaration;
@@ -137,7 +157,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 		FunctionDeclaration oldDeclaration = declaration;
 		declaration = newDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION, oldDeclaration, declaration));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION, oldDeclaration, declaration));
 	}
 
 	/**
@@ -147,7 +167,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	 */
 	public EList<EquationDescription> getEquationDescriptions() {
 		if (equationDescriptions == null) {
-			equationDescriptions = new EObjectContainmentWithInverseEList<EquationDescription>(EquationDescription.class, this, FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS, FunctionModelPackage.EQUATION_DESCRIPTION__FUNCTION_DESCRIPTION);
+			equationDescriptions = new EObjectContainmentWithInverseEList<EquationDescription>(EquationDescription.class, this, FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS, FunctionPackage.EQUATION_DESCRIPTION__FUNCTION_DESCRIPTION);
 		}
 		return equationDescriptions;
 	}
@@ -159,9 +179,30 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	 */
 	public EList<VariableDescription> getVariableDescriptions() {
 		if (variableDescriptions == null) {
-			variableDescriptions = new EObjectContainmentWithInverseEList<VariableDescription>(VariableDescription.class, this, FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION);
+			variableDescriptions = new EObjectContainmentWithInverseEList<VariableDescription>(VariableDescription.class, this, FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION);
 		}
 		return variableDescriptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStateful() {
+		return stateful;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStateful(boolean newStateful) {
+		boolean oldStateful = stateful;
+		stateful = newStateful;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.FUNCTION_DESCRIPTION__STATEFUL, oldStateful, stateful));
 	}
 
 	/**
@@ -211,7 +252,7 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 				message.append(variableStep.getVariableDescription().getName());
 				if (variableStep.isDerivative()) {
 					message.append("'");
-				} else if (getDeclaration().getKind() == FunctionKind.STATEFUL) {
+				} else if (isStateful()) {
 					message.append("{n");
 					if (variableStep.getIndex() != 0) { 
 						if (variableStep.getIndex() > 0) {
@@ -223,8 +264,8 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 				}
 				
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						FunctionModelValidator.DIAGNOSTIC_SOURCE,
-						FunctionModelValidator.FUNCTION_DESCRIPTION__HAS_NO_DUPLICATE_EQUATIONS,
+						FunctionValidator.DIAGNOSTIC_SOURCE,
+						FunctionValidator.FUNCTION_DESCRIPTION__HAS_NO_DUPLICATE_EQUATIONS,
 						message.toString(),
 						new Object[] { invalidEquationPart.getVariableReference() }));
 			}
@@ -252,8 +293,8 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 						}
 						diagnostics.add(new BasicDiagnostic(
 								Diagnostic.ERROR,
-								FunctionModelValidator.DIAGNOSTIC_SOURCE,
-								FunctionModelValidator.FUNCTION_DESCRIPTION__HAS_NO_CYCLIC_EQUATIONS,
+								FunctionValidator.DIAGNOSTIC_SOURCE,
+								FunctionValidator.FUNCTION_DESCRIPTION__HAS_NO_CYCLIC_EQUATIONS,
 								message,
 								new Object[] { equationPart.getVariableReference() }));
 					}
@@ -297,8 +338,8 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 				if (diagnostics != null) {
 					diagnostics.add(new BasicDiagnostic(
 							Diagnostic.ERROR,
-							FunctionModelValidator.DIAGNOSTIC_SOURCE,
-							FunctionModelValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_OUTPUT,
+							FunctionValidator.DIAGNOSTIC_SOURCE,
+							FunctionValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_OUTPUT,
 							"No equation specified for output '" + parameterDeclaration.getName() + "'",
 							new Object[] { parameterDeclaration }));
 				}
@@ -374,10 +415,10 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 					index);
 			diagnostics.add(new BasicDiagnostic(
 					Diagnostic.ERROR,
-					FunctionModelValidator.DIAGNOSTIC_SOURCE,
-					FunctionModelValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
+					FunctionValidator.DIAGNOSTIC_SOURCE,
+					FunctionValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 					message,
-					new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name() }));
+					new Object[] { getDeclaration(), getDeclaration().getName() }));
 		}
 		return ok;
 	}
@@ -408,10 +449,10 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 					}
 					diagnostics.add(new BasicDiagnostic(
 							Diagnostic.ERROR,
-							FunctionModelValidator.DIAGNOSTIC_SOURCE,
-							FunctionModelValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
+							FunctionValidator.DIAGNOSTIC_SOURCE,
+							FunctionValidator.FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 							message,
-							new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name() }));
+							new Object[] { getDeclaration(), getDeclaration().getName() }));
 				}
 				result = false;
 			}
@@ -441,9 +482,9 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEquationDescriptions()).basicAdd(otherEnd, msgs);
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getVariableDescriptions()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -457,9 +498,9 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				return ((InternalEList<?>)getEquationDescriptions()).basicRemove(otherEnd, msgs);
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				return ((InternalEList<?>)getVariableDescriptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -473,13 +514,15 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION:
+			case FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION:
 				if (resolve) return getDeclaration();
 				return basicGetDeclaration();
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				return getEquationDescriptions();
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				return getVariableDescriptions();
+			case FunctionPackage.FUNCTION_DESCRIPTION__STATEFUL:
+				return isStateful();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -493,16 +536,19 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION:
+			case FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION:
 				setDeclaration((FunctionDeclaration)newValue);
 				return;
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				getEquationDescriptions().clear();
 				getEquationDescriptions().addAll((Collection<? extends EquationDescription>)newValue);
 				return;
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				getVariableDescriptions().clear();
 				getVariableDescriptions().addAll((Collection<? extends VariableDescription>)newValue);
+				return;
+			case FunctionPackage.FUNCTION_DESCRIPTION__STATEFUL:
+				setStateful((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -516,14 +562,17 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION:
+			case FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION:
 				setDeclaration((FunctionDeclaration)null);
 				return;
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				getEquationDescriptions().clear();
 				return;
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				getVariableDescriptions().clear();
+				return;
+			case FunctionPackage.FUNCTION_DESCRIPTION__STATEFUL:
+				setStateful(STATEFUL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -537,14 +586,32 @@ public class FunctionDescriptionImpl extends EObjectImpl implements FunctionDesc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__DECLARATION:
+			case FunctionPackage.FUNCTION_DESCRIPTION__DECLARATION:
 				return declaration != null;
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__EQUATION_DESCRIPTIONS:
 				return equationDescriptions != null && !equationDescriptions.isEmpty();
-			case FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
+			case FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS:
 				return variableDescriptions != null && !variableDescriptions.isEmpty();
+			case FunctionPackage.FUNCTION_DESCRIPTION__STATEFUL:
+				return stateful != STATEFUL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (stateful: ");
+		result.append(stateful);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FunctionImpl

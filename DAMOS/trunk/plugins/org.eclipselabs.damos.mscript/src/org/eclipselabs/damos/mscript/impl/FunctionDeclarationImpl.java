@@ -8,13 +8,13 @@ package org.eclipselabs.damos.mscript.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -24,6 +24,7 @@ import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -36,81 +37,18 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getChecks <em>Checks</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getAssertions <em>Assertions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getEquations <em>Equations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getAllImplicitVariableDeclarations <em>All Implicit Variable Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements FunctionDeclaration {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final FunctionKind KIND_EDEFAULT = FunctionKind.STATELESS;
-
-	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected FunctionKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getInputParameterDeclarations() <em>Input Parameter Declarations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInputParameterDeclarations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<InputParameterDeclaration> inputParameterDeclarations;
-
-	/**
-	 * The cached value of the '{@link #getOutputParameterDeclarations() <em>Output Parameter Declarations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOutputParameterDeclarations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OutputParameterDeclaration> outputParameterDeclarations;
-
+public abstract class FunctionDeclarationImpl extends MinimalEObjectImpl.Container implements FunctionDeclaration {
 	/**
 	 * The cached value of the '{@link #getChecks() <em>Checks</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -162,6 +100,16 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	protected EList<Equation> equations;
 
 	/**
+	 * The cached value of the '{@link #getAllImplicitVariableDeclarations() <em>All Implicit Variable Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllImplicitVariableDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ImplicitVariableDeclaration> allImplicitVariableDeclarations;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -183,56 +131,16 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public String getName() {
-		return name;
-	}
+	public abstract FunctionKind getKind();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_DECLARATION__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FunctionKind getKind() {
-		return kind;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setKind(FunctionKind newKind) {
-		FunctionKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_DECLARATION__KIND, oldKind, kind));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<InputParameterDeclaration> getInputParameterDeclarations() {
-		if (inputParameterDeclarations == null) {
-			inputParameterDeclarations = new EObjectContainmentEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
-		}
-		return inputParameterDeclarations;
-	}
+	public abstract EList<InputParameterDeclaration> getInputParameterDeclarations();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,14 +175,55 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<OutputParameterDeclaration> getOutputParameterDeclarations() {
-		if (outputParameterDeclarations == null) {
-			outputParameterDeclarations = new EObjectContainmentEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS);
+	public EList<ImplicitVariableDeclaration> getImplicitVariableDeclarations() {
+		EList<ImplicitVariableDeclaration> result = ECollections.emptyEList();
+		switch (getKind()) {
+		case SYNCHRONOUS:
+			result = new BasicEList<ImplicitVariableDeclaration>();
+			for (ImplicitVariableDeclaration variableDeclaration : getAllImplicitVariableDeclarations()) {
+				String name = variableDeclaration.getName();
+				if ("Ts".equals(name) || "fs".equals(name)) {
+					result.add(variableDeclaration);
+				}
+			}
+			break;
+		case CONTINUOUS:
+			result = new BasicEList<ImplicitVariableDeclaration>();
+			for (ImplicitVariableDeclaration variableDeclaration : getAllImplicitVariableDeclarations()) {
+				String name = variableDeclaration.getName();
+				if ("t".equals(name)) {
+					result.add(variableDeclaration);
+				}
+			}
+			break;
+		default:
+			break;
 		}
-		return outputParameterDeclarations;
+		return result;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ImplicitVariableDeclaration getImplicitVariableDeclaration(String name) {
+		for (ImplicitVariableDeclaration variableDeclaration : getImplicitVariableDeclarations()) {
+			if (name.equals(variableDeclaration.getName())) {
+				return variableDeclaration;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract EList<OutputParameterDeclaration> getOutputParameterDeclarations();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -339,6 +288,25 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ImplicitVariableDeclaration> getAllImplicitVariableDeclarations() {
+		if (allImplicitVariableDeclarations == null) {
+			allImplicitVariableDeclarations = new EObjectContainmentEList<ImplicitVariableDeclaration>(ImplicitVariableDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS);
+		}
+		return allImplicitVariableDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract String getName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getQualifiedName() {
@@ -368,10 +336,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
-				return ((InternalEList<?>)getInputParameterDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
-				return ((InternalEList<?>)getOutputParameterDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return ((InternalEList<?>)getChecks()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
@@ -382,6 +346,8 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return ((InternalEList<?>)getConstantDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return ((InternalEList<?>)getEquations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS:
+				return ((InternalEList<?>)getAllImplicitVariableDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -394,14 +360,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__NAME:
-				return getName();
-			case MscriptPackage.FUNCTION_DECLARATION__KIND:
-				return getKind();
-			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
-				return getInputParameterDeclarations();
-			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
-				return getOutputParameterDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return getChecks();
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
@@ -412,6 +370,8 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return getConstantDeclarations();
 			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return getEquations();
+			case MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS:
+				return getAllImplicitVariableDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -425,20 +385,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__NAME:
-				setName((String)newValue);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__KIND:
-				setKind((FunctionKind)newValue);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
-				getInputParameterDeclarations().clear();
-				getInputParameterDeclarations().addAll((Collection<? extends InputParameterDeclaration>)newValue);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
-				getOutputParameterDeclarations().clear();
-				getOutputParameterDeclarations().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
-				return;
 			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				getChecks().clear();
 				getChecks().addAll((Collection<? extends Check>)newValue);
@@ -459,6 +405,10 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				getEquations().clear();
 				getEquations().addAll((Collection<? extends Equation>)newValue);
 				return;
+			case MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS:
+				getAllImplicitVariableDeclarations().clear();
+				getAllImplicitVariableDeclarations().addAll((Collection<? extends ImplicitVariableDeclaration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -471,18 +421,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
-				getInputParameterDeclarations().clear();
-				return;
-			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
-				getOutputParameterDeclarations().clear();
-				return;
 			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				getChecks().clear();
 				return;
@@ -498,6 +436,9 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				getEquations().clear();
 				return;
+			case MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS:
+				getAllImplicitVariableDeclarations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -510,14 +451,6 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DECLARATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MscriptPackage.FUNCTION_DECLARATION__KIND:
-				return kind != KIND_EDEFAULT;
-			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
-				return inputParameterDeclarations != null && !inputParameterDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
-				return outputParameterDeclarations != null && !outputParameterDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return checks != null && !checks.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
@@ -528,26 +461,10 @@ public class FunctionDeclarationImpl extends TopLevelDeclarationImpl implements 
 				return constantDeclarations != null && !constantDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return equations != null && !equations.isEmpty();
+			case MscriptPackage.FUNCTION_DECLARATION__ALL_IMPLICIT_VARIABLE_DECLARATIONS:
+				return allImplicitVariableDeclarations != null && !allImplicitVariableDeclarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", kind: ");
-		result.append(kind);
-		result.append(')');
-		return result.toString();
 	}
 
 } //FunctionDefinitionImpl

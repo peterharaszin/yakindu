@@ -296,7 +296,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					}
 				} else {
 					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, whenClause.getName() + " is not member of union", whenClause, MscriptPackage.eINSTANCE.getVariableDeclaration_Name()));
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, whenClause.getName() + " is not member of union", whenClause, whenClause.getNameFeature()));
 					}
 					invalidValue = true;
 				}
@@ -1304,16 +1304,18 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			IValue value = context.getValue(featureReference);
-			if (value == null && featureReference.getFeature() instanceof ConstantDeclaration) {
-				ConstantDeclaration constantDeclaration = (ConstantDeclaration) featureReference.getFeature();
-				if (context.addVisitedEvaluable(constantDeclaration)) {
-					context.enterStaticScope();
-					value = evaluate(constantDeclaration.getInitializer());
-					context.leaveStaticScope();
-					context.processValue(constantDeclaration, value);
-					context.removeVisitedEvaluable(constantDeclaration);
-				} else {
-					value = InvalidValue.SINGLETON;
+			if (value == null) {
+				if (featureReference.getFeature() instanceof ConstantDeclaration) {
+					ConstantDeclaration constantDeclaration = (ConstantDeclaration) featureReference.getFeature();
+					if (context.addVisitedEvaluable(constantDeclaration)) {
+						context.enterStaticScope();
+						value = evaluate(constantDeclaration.getInitializer());
+						context.leaveStaticScope();
+						context.processValue(constantDeclaration, value);
+						context.removeVisitedEvaluable(constantDeclaration);
+					} else {
+						value = InvalidValue.SINGLETON;
+					}
 				}
 			}
 			if (value == null) {

@@ -20,7 +20,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface InspectWhenClause extends VariableDeclaration {
+public interface InspectWhenClause extends NamedVariableDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.InspectExpression#getWhenClauses <em>When Clauses</em>}'.

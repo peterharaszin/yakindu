@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript;
  *
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getOutputParameterDeclaration()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OutputParameterDeclaration extends ParameterDeclaration {

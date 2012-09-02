@@ -7,7 +7,7 @@ blockType StringTest2 {
 	output y1
 	output y2
 	
-	function main(a, b) -> y1, y2 {
+	behavior {
 		check(string, string) -> string, string
 
 		static assert a is string :

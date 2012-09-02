@@ -1,43 +1,35 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.function.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.function.ComputationCompound;
-import org.eclipselabs.damos.mscript.function.EquationDescription;
-import org.eclipselabs.damos.mscript.function.EquationPart;
-import org.eclipselabs.damos.mscript.function.EquationSide;
-import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.function.VariableDescription;
-import org.eclipselabs.damos.mscript.function.VariableStep;
+
+import org.eclipselabs.damos.mscript.function.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage
  * @generated
  */
-public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
+public class FunctionAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static FunctionModelPackage modelPackage;
+	protected static FunctionPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -45,9 +37,9 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelAdapterFactory() {
+	public FunctionAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = FunctionModelPackage.eINSTANCE;
+			modelPackage = FunctionPackage.eINSTANCE;
 		}
 	}
 
@@ -76,8 +68,8 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FunctionModelSwitch<Adapter> modelSwitch =
-		new FunctionModelSwitch<Adapter>() {
+	protected FunctionSwitch<Adapter> modelSwitch =
+		new FunctionSwitch<Adapter>() {
 			@Override
 			public Adapter caseFunctionDescription(FunctionDescription object) {
 				return createFunctionDescriptionAdapter();
@@ -139,7 +131,7 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.function.FunctionDescription <em>Function Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.function.FunctionDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -223,7 +215,7 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.function.FunctionInstance <em>Function Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.function.FunctionInstance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -290,4 +282,4 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //FunctionModelAdapterFactory
+} //FunctionAdapterFactory

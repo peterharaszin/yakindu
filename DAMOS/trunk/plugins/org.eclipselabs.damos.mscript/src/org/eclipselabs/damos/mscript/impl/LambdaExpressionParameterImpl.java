@@ -15,7 +15,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class LambdaExpressionParameterImpl extends VariableDeclarationImpl implements LambdaExpressionParameter {
+public class LambdaExpressionParameterImpl extends NamedVariableDeclarationImpl implements LambdaExpressionParameter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

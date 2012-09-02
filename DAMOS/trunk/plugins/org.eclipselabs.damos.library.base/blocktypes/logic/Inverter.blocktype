@@ -5,7 +5,7 @@ blockType Inverter {
 	input u
 	output y
 
-	function main(u) -> y {
+	behavior {
 		check(boolean) -> boolean
 		
 		static assert u is boolean :

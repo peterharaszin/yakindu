@@ -8,7 +8,7 @@
       <ePackage href="http://www.eclipselabs.org/damos/2011/Dconfig#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
-      <ePackage href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#/"/>
+      <ePackage href="http://www.eclipselabs.org/damos/mscript/2011/Computation#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
@@ -444,12 +444,12 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ComputationModel">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//ComputationModel"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//ComputationModel"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Action">
           <type metamodel="/0/@metamodelDeclarations.2">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//ComputationModel"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//ComputationModel"/>
           </type>
         </elements>
         <elements xsi:type="xtext:Assignment" cardinality="*" feature="numberFormatMappings" operator="+=">
@@ -459,7 +459,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="NumberFormat">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//NumberFormat"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//NumberFormat"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
@@ -468,7 +468,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FloatingPointFormat">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormat"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//FloatingPointFormat"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="kind" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
@@ -476,89 +476,89 @@
     </rules>
     <rules xsi:type="xtext:EnumRule" name="PredefinedFloatingPointFormatKind">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//FloatingPointFormatKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind/Binary32"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//FloatingPointFormatKind/Binary32"/>
           <literal value="float32"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind/Binary64"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//FloatingPointFormatKind/Binary64"/>
           <literal value="float64"/>
         </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="PredefinedFixedPointFormatKind">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind"/>
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int8"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Int8"/>
           <literal value="int8"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Int16"/>
           <literal value="int16"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int32"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Int32"/>
           <literal value="int32"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int64"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Int64"/>
           <literal value="int64"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int128"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Int128"/>
           <literal value="int128"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt8"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/UInt8"/>
           <literal value="uint8"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/UInt16"/>
           <literal value="uint16"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt32"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/UInt32"/>
           <literal value="uint32"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt64"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/UInt64"/>
           <literal value="uint64"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt128"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/UInt128"/>
           <literal value="uint128"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract8"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Fract8"/>
           <literal value="fract8"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Fract16"/>
           <literal value="fract16"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract32"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Fract32"/>
           <literal value="fract32"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract64"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Fract64"/>
           <literal value="fract64"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract128"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//PredefinedFixedPointFormatKind/Fract128"/>
           <literal value="fract128"/>
         </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FixedPointFormat">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FixedPointFormat"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//FixedPointFormat"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Alternatives">
@@ -606,7 +606,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="NumberFormatMapping">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//NumberFormatMapping"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Computation#//NumberFormatMapping"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="map"/>
@@ -872,9 +872,9 @@
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.139"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="FunctionDeclaration">
+    <rules xsi:type="xtext:ParserRule" name="StandardFunctionDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDeclaration"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StandardFunctionDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="kind" operator="=">
@@ -934,8 +934,8 @@
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind/Stateful"/>
-          <literal value="stateful"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind/Synchronous"/>
+          <literal value="synchronous"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
           <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionKind/Continuous"/>
@@ -943,9 +943,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="InputParameterDeclaration">
+    <rules xsi:type="xtext:ParserRule" name="StandardInputParameterDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//InputParameterDeclaration"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StandardInputParameterDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="constant" operator="?=">
@@ -956,9 +956,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="OutputParameterDeclaration">
+    <rules xsi:type="xtext:ParserRule" name="StandardOutputParameterDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//OutputParameterDeclaration"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StandardOutputParameterDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="name" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.139"/>

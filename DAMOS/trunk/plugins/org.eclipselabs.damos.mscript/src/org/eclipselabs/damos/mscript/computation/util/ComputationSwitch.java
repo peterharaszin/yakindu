@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.computation.util;
 
@@ -10,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
@@ -26,17 +22,17 @@ import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage
  * @generated
  */
-public class ComputationModelSwitch<T> extends Switch<T> {
+public class ComputationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ComputationModelPackage modelPackage;
+	protected static ComputationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -44,9 +40,9 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputationModelSwitch() {
+	public ComputationSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ComputationModelPackage.eINSTANCE;
+			modelPackage = ComputationPackage.eINSTANCE;
 		}
 	}
 
@@ -73,32 +69,32 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ComputationModelPackage.COMPUTATION_MODEL: {
+			case ComputationPackage.COMPUTATION_MODEL: {
 				ComputationModel computationModel = (ComputationModel)theEObject;
 				T result = caseComputationModel(computationModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING: {
+			case ComputationPackage.NUMBER_FORMAT_MAPPING: {
 				NumberFormatMapping numberFormatMapping = (NumberFormatMapping)theEObject;
 				T result = caseNumberFormatMapping(numberFormatMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputationModelPackage.NUMBER_FORMAT: {
+			case ComputationPackage.NUMBER_FORMAT: {
 				NumberFormat numberFormat = (NumberFormat)theEObject;
 				T result = caseNumberFormat(numberFormat);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputationModelPackage.FIXED_POINT_FORMAT: {
+			case ComputationPackage.FIXED_POINT_FORMAT: {
 				FixedPointFormat fixedPointFormat = (FixedPointFormat)theEObject;
 				T result = caseFixedPointFormat(fixedPointFormat);
 				if (result == null) result = caseNumberFormat(fixedPointFormat);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputationModelPackage.FLOATING_POINT_FORMAT: {
+			case ComputationPackage.FLOATING_POINT_FORMAT: {
 				FloatingPointFormat floatingPointFormat = (FloatingPointFormat)theEObject;
 				T result = caseFloatingPointFormat(floatingPointFormat);
 				if (result == null) result = caseNumberFormat(floatingPointFormat);
@@ -110,17 +106,32 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Floating Point Format</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Floating Point Format</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFloatingPointFormat(FloatingPointFormat object) {
+	public T caseComputationModel(ComputationModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Number Format Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Number Format Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNumberFormatMapping(NumberFormatMapping object) {
 		return null;
 	}
 
@@ -155,32 +166,17 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Computation Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Floating Point Format</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Computation Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Floating Point Format</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComputationModel(ComputationModel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Number Format Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Number Format Mapping</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNumberFormatMapping(NumberFormatMapping object) {
+	public T caseFloatingPointFormat(FloatingPointFormat object) {
 		return null;
 	}
 
@@ -200,4 +196,4 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //ComputationModelSwitch
+} //ComputationSwitch

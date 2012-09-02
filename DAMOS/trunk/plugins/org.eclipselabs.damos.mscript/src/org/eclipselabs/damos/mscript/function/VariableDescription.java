@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableDescription()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableDescription()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface VariableDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Description</em>' container reference.
 	 * @see #setFunctionDescription(FunctionDescription)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableDescription_FunctionDescription()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableDescription_FunctionDescription()
 	 * @see org.eclipselabs.damos.mscript.function.FunctionDescription#getVariableDescriptions
 	 * @model opposite="variableDescriptions" required="true" transient="false"
 	 * @generated
@@ -67,7 +67,7 @@ public interface VariableDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableDescription_Name()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableDescription_Name()
 	 * @model
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public interface VariableDescription extends EObject {
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipselabs.damos.mscript.function.VariableKind
 	 * @see #setKind(VariableKind)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableDescription_Kind()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableDescription_Kind()
 	 * @model
 	 * @generated
 	 */
@@ -123,7 +123,7 @@ public interface VariableDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Steps</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getVariableDescription_Steps()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getVariableDescription_Steps()
 	 * @see org.eclipselabs.damos.mscript.function.VariableStep#getVariableDescription
 	 * @model opposite="variableDescription" containment="true"
 	 * @generated

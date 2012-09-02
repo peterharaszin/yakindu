@@ -116,9 +116,16 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.FUNCTION_DECLARATION: {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration)theEObject;
 				T result = caseFunctionDeclaration(functionDeclaration);
-				if (result == null) result = caseTopLevelDeclaration(functionDeclaration);
-				if (result == null) result = caseCallableElement(functionDeclaration);
-				if (result == null) result = caseEvaluable(functionDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STANDARD_FUNCTION_DECLARATION: {
+				StandardFunctionDeclaration standardFunctionDeclaration = (StandardFunctionDeclaration)theEObject;
+				T result = caseStandardFunctionDeclaration(standardFunctionDeclaration);
+				if (result == null) result = caseFunctionDeclaration(standardFunctionDeclaration);
+				if (result == null) result = caseCallableElement(standardFunctionDeclaration);
+				if (result == null) result = caseTopLevelDeclaration(standardFunctionDeclaration);
+				if (result == null) result = caseEvaluable(standardFunctionDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,12 +176,41 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.NAMED_VARIABLE_DECLARATION: {
+				NamedVariableDeclaration namedVariableDeclaration = (NamedVariableDeclaration)theEObject;
+				T result = caseNamedVariableDeclaration(namedVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(namedVariableDeclaration);
+				if (result == null) result = caseCallableElement(namedVariableDeclaration);
+				if (result == null) result = caseEvaluable(namedVariableDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.IMPLICIT_VARIABLE_DECLARATION: {
+				ImplicitVariableDeclaration implicitVariableDeclaration = (ImplicitVariableDeclaration)theEObject;
+				T result = caseImplicitVariableDeclaration(implicitVariableDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(implicitVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(implicitVariableDeclaration);
+				if (result == null) result = caseCallableElement(implicitVariableDeclaration);
+				if (result == null) result = caseEvaluable(implicitVariableDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.PARAMETER_DECLARATION: {
 				ParameterDeclaration parameterDeclaration = (ParameterDeclaration)theEObject;
 				T result = caseParameterDeclaration(parameterDeclaration);
 				if (result == null) result = caseVariableDeclaration(parameterDeclaration);
 				if (result == null) result = caseCallableElement(parameterDeclaration);
 				if (result == null) result = caseEvaluable(parameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STANDARD_PARAMETER_DECLARATION: {
+				StandardParameterDeclaration standardParameterDeclaration = (StandardParameterDeclaration)theEObject;
+				T result = caseStandardParameterDeclaration(standardParameterDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(standardParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(standardParameterDeclaration);
+				if (result == null) result = caseCallableElement(standardParameterDeclaration);
+				if (result == null) result = caseEvaluable(standardParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -198,6 +234,32 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.STANDARD_INPUT_PARAMETER_DECLARATION: {
+				StandardInputParameterDeclaration standardInputParameterDeclaration = (StandardInputParameterDeclaration)theEObject;
+				T result = caseStandardInputParameterDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseStandardParameterDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseInputParameterDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(standardInputParameterDeclaration);
+				if (result == null) result = caseCallableElement(standardInputParameterDeclaration);
+				if (result == null) result = caseEvaluable(standardInputParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MscriptPackage.STANDARD_OUTPUT_PARAMETER_DECLARATION: {
+				StandardOutputParameterDeclaration standardOutputParameterDeclaration = (StandardOutputParameterDeclaration)theEObject;
+				T result = caseStandardOutputParameterDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseStandardParameterDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseOutputParameterDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(standardOutputParameterDeclaration);
+				if (result == null) result = caseCallableElement(standardOutputParameterDeclaration);
+				if (result == null) result = caseEvaluable(standardOutputParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.ASSERTION: {
 				Assertion assertion = (Assertion)theEObject;
 				T result = caseAssertion(assertion);
@@ -207,6 +269,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.STATE_VARIABLE_DECLARATION: {
 				StateVariableDeclaration stateVariableDeclaration = (StateVariableDeclaration)theEObject;
 				T result = caseStateVariableDeclaration(stateVariableDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(stateVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(stateVariableDeclaration);
 				if (result == null) result = caseCallableElement(stateVariableDeclaration);
 				if (result == null) result = caseEvaluable(stateVariableDeclaration);
@@ -216,8 +279,9 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.CONSTANT_DECLARATION: {
 				ConstantDeclaration constantDeclaration = (ConstantDeclaration)theEObject;
 				T result = caseConstantDeclaration(constantDeclaration);
-				if (result == null) result = caseVariableDeclaration(constantDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(constantDeclaration);
 				if (result == null) result = caseTopLevelDeclaration(constantDeclaration);
+				if (result == null) result = caseVariableDeclaration(constantDeclaration);
 				if (result == null) result = caseCallableElement(constantDeclaration);
 				if (result == null) result = caseEvaluable(constantDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -266,6 +330,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION: {
 				LetExpressionVariableDeclaration letExpressionVariableDeclaration = (LetExpressionVariableDeclaration)theEObject;
 				T result = caseLetExpressionVariableDeclaration(letExpressionVariableDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(letExpressionVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(letExpressionVariableDeclaration);
 				if (result == null) result = caseCallableElement(letExpressionVariableDeclaration);
 				if (result == null) result = caseEvaluable(letExpressionVariableDeclaration);
@@ -573,6 +638,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.LAMBDA_EXPRESSION_PARAMETER: {
 				LambdaExpressionParameter lambdaExpressionParameter = (LambdaExpressionParameter)theEObject;
 				T result = caseLambdaExpressionParameter(lambdaExpressionParameter);
+				if (result == null) result = caseNamedVariableDeclaration(lambdaExpressionParameter);
 				if (result == null) result = caseVariableDeclaration(lambdaExpressionParameter);
 				if (result == null) result = caseCallableElement(lambdaExpressionParameter);
 				if (result == null) result = caseEvaluable(lambdaExpressionParameter);
@@ -590,6 +656,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.INSPECT_WHEN_CLAUSE: {
 				InspectWhenClause inspectWhenClause = (InspectWhenClause)theEObject;
 				T result = caseInspectWhenClause(inspectWhenClause);
+				if (result == null) result = caseNamedVariableDeclaration(inspectWhenClause);
 				if (result == null) result = caseVariableDeclaration(inspectWhenClause);
 				if (result == null) result = caseCallableElement(inspectWhenClause);
 				if (result == null) result = caseEvaluable(inspectWhenClause);
@@ -636,6 +703,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				LocalVariableDeclaration localVariableDeclaration = (LocalVariableDeclaration)theEObject;
 				T result = caseLocalVariableDeclaration(localVariableDeclaration);
 				if (result == null) result = caseStatement(localVariableDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(localVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(localVariableDeclaration);
 				if (result == null) result = caseCallableElement(localVariableDeclaration);
 				if (result == null) result = caseEvaluable(localVariableDeclaration);
@@ -673,6 +741,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: {
 				IterationVariableDeclaration iterationVariableDeclaration = (IterationVariableDeclaration)theEObject;
 				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
+				if (result == null) result = caseNamedVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
 				if (result == null) result = caseEvaluable(iterationVariableDeclaration);
@@ -1168,6 +1237,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Standard Function Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Standard Function Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStandardFunctionDeclaration(StandardFunctionDeclaration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Check</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1273,6 +1357,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedVariableDeclaration(NamedVariableDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implicit Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implicit Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplicitVariableDeclaration(ImplicitVariableDeclaration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Parameter Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1284,6 +1398,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameterDeclaration(ParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Standard Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Standard Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStandardParameterDeclaration(StandardParameterDeclaration object) {
 		return null;
 	}
 
@@ -1314,6 +1443,36 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOutputParameterDeclaration(OutputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Standard Input Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Standard Input Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStandardInputParameterDeclaration(StandardInputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Standard Output Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Standard Output Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStandardOutputParameterDeclaration(StandardOutputParameterDeclaration object) {
 		return null;
 	}
 

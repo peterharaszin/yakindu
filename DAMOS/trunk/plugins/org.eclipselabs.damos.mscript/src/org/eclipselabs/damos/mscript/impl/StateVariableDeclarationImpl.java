@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
  *
  * @generated
  */
-public class StateVariableDeclarationImpl extends VariableDeclarationImpl implements StateVariableDeclaration {
+public class StateVariableDeclarationImpl extends NamedVariableDeclarationImpl implements StateVariableDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

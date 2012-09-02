@@ -14,10 +14,21 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.InoutputDefinition;
+import org.eclipselabs.damos.dml.InputDefinition;
+import org.eclipselabs.damos.dml.OutputDefinition;
+import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dmltext.*;
+import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
@@ -25,6 +36,7 @@ import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
 import org.eclipselabs.damos.mscript.TopLevelContainer;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,6 +114,102 @@ public class DMLTextSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLTextPackage.DSCRIPT_INPUT_DEFINITION: {
+				DscriptInputDefinition dscriptInputDefinition = (DscriptInputDefinition)theEObject;
+				T result = caseDscriptInputDefinition(dscriptInputDefinition);
+				if (result == null) result = caseInputDefinition(dscriptInputDefinition);
+				if (result == null) result = caseInputParameterDeclaration(dscriptInputDefinition);
+				if (result == null) result = caseInoutputDefinition(dscriptInputDefinition);
+				if (result == null) result = caseParameterDeclaration(dscriptInputDefinition);
+				if (result == null) result = caseParameterableElement(dscriptInputDefinition);
+				if (result == null) result = caseINamedElement(dscriptInputDefinition);
+				if (result == null) result = caseVariableDeclaration(dscriptInputDefinition);
+				if (result == null) result = caseCallableElement(dscriptInputDefinition);
+				if (result == null) result = caseEvaluable(dscriptInputDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.DSCRIPT_OUTPUT_DEFINITION: {
+				DscriptOutputDefinition dscriptOutputDefinition = (DscriptOutputDefinition)theEObject;
+				T result = caseDscriptOutputDefinition(dscriptOutputDefinition);
+				if (result == null) result = caseOutputDefinition(dscriptOutputDefinition);
+				if (result == null) result = caseOutputParameterDeclaration(dscriptOutputDefinition);
+				if (result == null) result = caseInoutputDefinition(dscriptOutputDefinition);
+				if (result == null) result = caseParameterDeclaration(dscriptOutputDefinition);
+				if (result == null) result = caseParameterableElement(dscriptOutputDefinition);
+				if (result == null) result = caseINamedElement(dscriptOutputDefinition);
+				if (result == null) result = caseVariableDeclaration(dscriptOutputDefinition);
+				if (result == null) result = caseCallableElement(dscriptOutputDefinition);
+				if (result == null) result = caseEvaluable(dscriptOutputDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.DSCRIPT_PARAMETER: {
+				DscriptParameter dscriptParameter = (DscriptParameter)theEObject;
+				T result = caseDscriptParameter(dscriptParameter);
+				if (result == null) result = caseParameter(dscriptParameter);
+				if (result == null) result = caseInputParameterDeclaration(dscriptParameter);
+				if (result == null) result = caseINamedElement(dscriptParameter);
+				if (result == null) result = caseParameterDeclaration(dscriptParameter);
+				if (result == null) result = caseVariableDeclaration(dscriptParameter);
+				if (result == null) result = caseCallableElement(dscriptParameter);
+				if (result == null) result = caseEvaluable(dscriptParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.BEHAVIOR_DECLARATION: {
+				BehaviorDeclaration behaviorDeclaration = (BehaviorDeclaration)theEObject;
+				T result = caseBehaviorDeclaration(behaviorDeclaration);
+				if (result == null) result = caseFunctionDeclaration(behaviorDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.IMPLICIT_INPUT_PARAMETER_DECLARATION: {
+				ImplicitInputParameterDeclaration implicitInputParameterDeclaration = (ImplicitInputParameterDeclaration)theEObject;
+				T result = caseImplicitInputParameterDeclaration(implicitInputParameterDeclaration);
+				if (result == null) result = caseInputParameterDeclaration(implicitInputParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(implicitInputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(implicitInputParameterDeclaration);
+				if (result == null) result = caseCallableElement(implicitInputParameterDeclaration);
+				if (result == null) result = caseEvaluable(implicitInputParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.IMPLICIT_OUTPUT_PARAMETER_DECLARATION: {
+				ImplicitOutputParameterDeclaration implicitOutputParameterDeclaration = (ImplicitOutputParameterDeclaration)theEObject;
+				T result = caseImplicitOutputParameterDeclaration(implicitOutputParameterDeclaration);
+				if (result == null) result = caseOutputParameterDeclaration(implicitOutputParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(implicitOutputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(implicitOutputParameterDeclaration);
+				if (result == null) result = caseCallableElement(implicitOutputParameterDeclaration);
+				if (result == null) result = caseEvaluable(implicitOutputParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.INPUT_MESSAGE_PARAMETER_DECLARATION: {
+				InputMessageParameterDeclaration inputMessageParameterDeclaration = (InputMessageParameterDeclaration)theEObject;
+				T result = caseInputMessageParameterDeclaration(inputMessageParameterDeclaration);
+				if (result == null) result = caseImplicitInputParameterDeclaration(inputMessageParameterDeclaration);
+				if (result == null) result = caseInputParameterDeclaration(inputMessageParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(inputMessageParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(inputMessageParameterDeclaration);
+				if (result == null) result = caseCallableElement(inputMessageParameterDeclaration);
+				if (result == null) result = caseEvaluable(inputMessageParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.OUTPUT_MESSAGE_PARAMETER_DECLARATION: {
+				OutputMessageParameterDeclaration outputMessageParameterDeclaration = (OutputMessageParameterDeclaration)theEObject;
+				T result = caseOutputMessageParameterDeclaration(outputMessageParameterDeclaration);
+				if (result == null) result = caseImplicitOutputParameterDeclaration(outputMessageParameterDeclaration);
+				if (result == null) result = caseOutputParameterDeclaration(outputMessageParameterDeclaration);
+				if (result == null) result = caseParameterDeclaration(outputMessageParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(outputMessageParameterDeclaration);
+				if (result == null) result = caseCallableElement(outputMessageParameterDeclaration);
+				if (result == null) result = caseEvaluable(outputMessageParameterDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE: {
 				MscriptSystemInterface mscriptSystemInterface = (MscriptSystemInterface)theEObject;
 				T result = caseMscriptSystemInterface(mscriptSystemInterface);
@@ -156,6 +264,126 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMscriptBlockType(MscriptBlockType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dscript Input Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dscript Input Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDscriptInputDefinition(DscriptInputDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dscript Output Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dscript Output Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDscriptOutputDefinition(DscriptOutputDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dscript Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dscript Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDscriptParameter(DscriptParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehaviorDeclaration(BehaviorDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implicit Input Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implicit Input Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplicitInputParameterDeclaration(ImplicitInputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implicit Output Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implicit Output Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplicitOutputParameterDeclaration(ImplicitOutputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Message Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Message Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInputMessageParameterDeclaration(InputMessageParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Output Message Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Output Message Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOutputMessageParameterDeclaration(OutputMessageParameterDeclaration object) {
 		return null;
 	}
 
@@ -306,6 +534,171 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTopLevelContainer(TopLevelContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inoutput Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inoutput Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInoutputDefinition(InoutputDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInputDefinition(InputDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Evaluable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Evaluable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEvaluable(Evaluable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Callable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Callable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCallableElement(CallableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableDeclaration(VariableDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterDeclaration(ParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInputParameterDeclaration(InputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Output Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Output Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOutputDefinition(OutputDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Output Parameter Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Output Parameter Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOutputParameterDeclaration(OutputParameterDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionDeclaration(FunctionDeclaration object) {
 		return null;
 	}
 

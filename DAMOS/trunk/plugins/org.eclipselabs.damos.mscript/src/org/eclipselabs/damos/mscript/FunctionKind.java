@@ -23,26 +23,22 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum FunctionKind implements Enumerator {
 	/**
-	 * The '<em><b>Stateless</b></em>' literal object.
+	 * The '<em><b>Standard</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATELESS_VALUE
+	 * @see #STANDARD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STATELESS(0, "Stateless", "Stateless"),
-
-	/**
-	 * The '<em><b>Stateful</b></em>' literal object.
+	STANDARD(0, "Standard", "Standard"), /**
+	 * The '<em><b>Synchronous</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATEFUL_VALUE
+	 * @see #SYNCHRONOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STATEFUL(1, "Stateful", "Stateful"),
-
-	/**
+	SYNCHRONOUS(1, "Synchronous", "Synchronous"), /**
 	 * The '<em><b>Continuous</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,34 +49,34 @@ public enum FunctionKind implements Enumerator {
 	CONTINUOUS(2, "Continuous", "Continuous");
 
 	/**
-	 * The '<em><b>Stateless</b></em>' literal value.
+	 * The '<em><b>Standard</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Stateless</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Standard</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STATELESS
-	 * @model name="Stateless"
+	 * @see #STANDARD
+	 * @model name="Standard"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STATELESS_VALUE = 0;
+	public static final int STANDARD_VALUE = 0;
 
 	/**
-	 * The '<em><b>Stateful</b></em>' literal value.
+	 * The '<em><b>Synchronous</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Stateful</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Synchronous</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STATEFUL
-	 * @model name="Stateful"
+	 * @see #SYNCHRONOUS
+	 * @model name="Synchronous"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STATEFUL_VALUE = 1;
+	public static final int SYNCHRONOUS_VALUE = 1;
 
 	/**
 	 * The '<em><b>Continuous</b></em>' literal value.
@@ -105,8 +101,8 @@ public enum FunctionKind implements Enumerator {
 	 */
 	private static final FunctionKind[] VALUES_ARRAY =
 		new FunctionKind[] {
-			STATELESS,
-			STATEFUL,
+			STANDARD,
+			SYNCHRONOUS,
 			CONTINUOUS,
 		};
 
@@ -158,8 +154,8 @@ public enum FunctionKind implements Enumerator {
 	 */
 	public static FunctionKind get(int value) {
 		switch (value) {
-			case STATELESS_VALUE: return STATELESS;
-			case STATEFUL_VALUE: return STATEFUL;
+			case STANDARD_VALUE: return STANDARD;
+			case SYNCHRONOUS_VALUE: return SYNCHRONOUS;
 			case CONTINUOUS_VALUE: return CONTINUOUS;
 		}
 		return null;

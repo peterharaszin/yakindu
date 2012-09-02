@@ -6,6 +6,8 @@
  */
 package org.eclipselabs.damos.mscript;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -33,5 +35,7 @@ public interface CallableElement extends Evaluable {
 	 * @generated
 	 */
 	String getQualifiedName();
+	
+	EStructuralFeature getNameFeature();
 
 } // CallableElement

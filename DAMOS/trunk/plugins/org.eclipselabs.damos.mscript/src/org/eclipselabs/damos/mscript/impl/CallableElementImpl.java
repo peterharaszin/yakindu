@@ -44,9 +44,7 @@ public abstract class CallableElementImpl extends EvaluableImpl implements Calla
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String getName() {
-		throw new UnsupportedOperationException();
-	}
+	public abstract String getName();
 
 	/**
 	 * <!-- begin-user-doc -->

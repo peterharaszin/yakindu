@@ -30,6 +30,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepExpression;
 import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 /**
  * @author Andreas Unger
@@ -61,7 +62,8 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
 		boolean proceed = true;
 		if (eObject instanceof FunctionDeclaration) {
-			highlightFeature(eObject, MscriptPackage.eINSTANCE.getFunctionDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
+			FunctionDeclaration functionDeclaration = (FunctionDeclaration) eObject;
+			highlightFeature(functionDeclaration, functionDeclaration.getNameFeature(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
 		} else if (eObject instanceof FeatureReference) {
 			FeatureReference featureReference = (FeatureReference) eObject;
 			if (featureReference.getFeature() instanceof StateVariableDeclaration) {
@@ -76,15 +78,18 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 			} else if (featureReference.getFeature() instanceof BuiltinDeclaration) {
 				highlightFeature(eObject, MscriptPackage.eINSTANCE.getFeatureReference_Feature(), MscriptHighlightingConfiguration.BUILTIN_ID, acceptor);
 			}
-		} else if (eObject instanceof ConstantDeclaration) {
-			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
-		} else if (eObject instanceof InputParameterDeclaration) {
-			InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration) eObject;
-			if (inputParameterDeclaration.isConstant()) {
-				highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+		} else if (eObject instanceof VariableDeclaration) {
+			VariableDeclaration variableDeclaration = (VariableDeclaration) eObject;
+			if (variableDeclaration instanceof ConstantDeclaration) {
+				highlightFeature(variableDeclaration, variableDeclaration.getNameFeature(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+			} else if (variableDeclaration instanceof InputParameterDeclaration) {
+				InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration) variableDeclaration;
+				if (inputParameterDeclaration.isConstant()) {
+					highlightFeature(variableDeclaration, variableDeclaration.getNameFeature(), MscriptHighlightingConfiguration.CONSTANT_ID, acceptor);
+				}
+			} else if (variableDeclaration instanceof StateVariableDeclaration) {
+				highlightFeature(variableDeclaration, variableDeclaration.getNameFeature(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
 			}
-		} else if (eObject instanceof StateVariableDeclaration) {
-			highlightFeature(eObject, MscriptPackage.eINSTANCE.getVariableDeclaration_Name(), MscriptHighlightingConfiguration.STATE_VARIABLE_ID, acceptor);
 		} else if (eObject instanceof Unit) {
 			INode node = NodeModelUtils.getNode(eObject);
 			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.UNIT_ID);

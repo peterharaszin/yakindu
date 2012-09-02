@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.eclipselabs.damos.mscript.function.util;
 
@@ -10,34 +6,28 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipselabs.damos.mscript.function.ComputationCompound;
-import org.eclipselabs.damos.mscript.function.EquationDescription;
-import org.eclipselabs.damos.mscript.function.EquationPart;
-import org.eclipselabs.damos.mscript.function.EquationSide;
-import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
-import org.eclipselabs.damos.mscript.function.VariableDescription;
-import org.eclipselabs.damos.mscript.function.VariableKind;
-import org.eclipselabs.damos.mscript.function.VariableStep;
+
+import org.eclipselabs.damos.mscript.function.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage
  * @generated
  */
-public class FunctionModelValidator extends EObjectValidator {
+public class FunctionValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final FunctionModelValidator INSTANCE = new FunctionModelValidator();
+	public static final FunctionValidator INSTANCE = new FunctionValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
@@ -50,7 +40,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipselabs.damos.mscript.function";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Duplicate Equations' of 'Function Description'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Duplicate Equations' of 'Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -58,7 +48,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	public static final int FUNCTION_DESCRIPTION__HAS_NO_DUPLICATE_EQUATIONS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Cyclic Equations' of 'Function Description'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Cyclic Equations' of 'Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -66,7 +56,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	public static final int FUNCTION_DESCRIPTION__HAS_NO_CYCLIC_EQUATIONS = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Output' of 'Function Description'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Output' of 'Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -74,7 +64,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	public static final int FUNCTION_DESCRIPTION__HAS_EQUATIONS_FOR_EACH_OUTPUT = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Variable Step' of 'Function Description'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Equations For Each Variable Step' of 'Description'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,7 +109,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionModelValidator() {
+	public FunctionValidator() {
 		super();
 	}
 
@@ -131,7 +121,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return FunctionModelPackage.eINSTANCE;
+	  return FunctionPackage.eINSTANCE;
 	}
 
 	/**
@@ -143,23 +133,23 @@ public class FunctionModelValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTION:
+			case FunctionPackage.FUNCTION_DESCRIPTION:
 				return validateFunctionDescription((FunctionDescription)value, diagnostics, context);
-			case FunctionModelPackage.EQUATION_DESCRIPTION:
+			case FunctionPackage.EQUATION_DESCRIPTION:
 				return validateEquationDescription((EquationDescription)value, diagnostics, context);
-			case FunctionModelPackage.EQUATION_SIDE:
+			case FunctionPackage.EQUATION_SIDE:
 				return validateEquationSide((EquationSide)value, diagnostics, context);
-			case FunctionModelPackage.EQUATION_PART:
+			case FunctionPackage.EQUATION_PART:
 				return validateEquationPart((EquationPart)value, diagnostics, context);
-			case FunctionModelPackage.VARIABLE_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION:
 				return validateVariableDescription((VariableDescription)value, diagnostics, context);
-			case FunctionModelPackage.VARIABLE_STEP:
+			case FunctionPackage.VARIABLE_STEP:
 				return validateVariableStep((VariableStep)value, diagnostics, context);
-			case FunctionModelPackage.FUNCTION_INSTANCE:
+			case FunctionPackage.FUNCTION_INSTANCE:
 				return validateFunctionInstance((FunctionInstance)value, diagnostics, context);
-			case FunctionModelPackage.COMPUTATION_COMPOUND:
+			case FunctionPackage.COMPUTATION_COMPOUND:
 				return validateComputationCompound((ComputationCompound)value, diagnostics, context);
-			case FunctionModelPackage.VARIABLE_KIND:
+			case FunctionPackage.VARIABLE_KIND:
 				return validateVariableKind((VariableKind)value, diagnostics, context);
 			default:
 				return true;
@@ -189,7 +179,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the hasNoDuplicateEquations constraint of '<em>Function Description</em>'.
+	 * Validates the hasNoDuplicateEquations constraint of '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -199,7 +189,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the hasNoCyclicEquations constraint of '<em>Function Description</em>'.
+	 * Validates the hasNoCyclicEquations constraint of '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -209,7 +199,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the hasEquationsForEachOutput constraint of '<em>Function Description</em>'.
+	 * Validates the hasEquationsForEachOutput constraint of '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -219,7 +209,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the hasEquationsForEachVariableStep constraint of '<em>Function Description</em>'.
+	 * Validates the hasEquationsForEachVariableStep constraint of '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -345,4 +335,4 @@ public class FunctionModelValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //FunctionModelValidator
+} //FunctionValidator

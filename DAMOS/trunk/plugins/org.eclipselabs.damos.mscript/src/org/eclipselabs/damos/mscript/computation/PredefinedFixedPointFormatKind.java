@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Predefined Fixed Point Format Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getPredefinedFixedPointFormatKind()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getPredefinedFixedPointFormatKind()
  * @model
  * @generated
  */

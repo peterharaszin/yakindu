@@ -24,11 +24,11 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelFactory
+ * @see org.eclipselabs.damos.mscript.function.FunctionFactory
  * @model kind="package"
  * @generated
  */
-public interface FunctionModelPackage extends EPackage {
+public interface FunctionPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/FunctionModel";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/Function";
 
 	/**
 	 * The package namespace name.
@@ -59,14 +59,14 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FunctionModelPackage eINSTANCE = org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl.init();
+	FunctionPackage eINSTANCE = org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl <em>Function Description</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl <em>Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getFunctionDescription()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getFunctionDescription()
 	 * @generated
 	 */
 	int FUNCTION_DESCRIPTION = 0;
@@ -99,20 +99,29 @@ public interface FunctionModelPackage extends EPackage {
 	int FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS = 2;
 
 	/**
-	 * The number of structural features of the '<em>Function Description</em>' class.
+	 * The feature id for the '<em><b>Stateful</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTION_FEATURE_COUNT = 3;
+	int FUNCTION_DESCRIPTION__STATEFUL = 3;
+
+	/**
+	 * The number of structural features of the '<em>Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_DESCRIPTION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.function.impl.EquationDescriptionImpl <em>Equation Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.EquationDescriptionImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationDescription()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationDescription()
 	 * @generated
 	 */
 	int EQUATION_DESCRIPTION = 1;
@@ -176,7 +185,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.EquationSideImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationSide()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationSide()
 	 * @generated
 	 */
 	int EQUATION_SIDE = 2;
@@ -222,7 +231,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.EquationPartImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationPart()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationPart()
 	 * @generated
 	 */
 	int EQUATION_PART = 3;
@@ -268,7 +277,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.VariableDescriptionImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableDescription()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableDescription()
 	 * @generated
 	 */
 	int VARIABLE_DESCRIPTION = 4;
@@ -323,7 +332,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.VariableStepImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableStep()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableStep()
 	 * @generated
 	 */
 	int VARIABLE_STEP = 5;
@@ -383,11 +392,11 @@ public interface FunctionModelPackage extends EPackage {
 	int VARIABLE_STEP_FEATURE_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl <em>Function Instance</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl <em>Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getFunctionInstance()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getFunctionInstance()
 	 * @generated
 	 */
 	int FUNCTION_INSTANCE = 6;
@@ -420,7 +429,7 @@ public interface FunctionModelPackage extends EPackage {
 	int FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS = 2;
 
 	/**
-	 * The number of structural features of the '<em>Function Instance</em>' class.
+	 * The number of structural features of the '<em>Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -433,7 +442,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.impl.ComputationCompoundImpl
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getComputationCompound()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getComputationCompound()
 	 * @generated
 	 */
 	int COMPUTATION_COMPOUND = 7;
@@ -488,17 +497,17 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipselabs.damos.mscript.function.VariableKind
-	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableKind()
+	 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableKind()
 	 * @generated
 	 */
 	int VARIABLE_KIND = 8;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.function.FunctionDescription <em>Function Description</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.function.FunctionDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Function Description</em>'.
+	 * @return the meta object for class '<em>Description</em>'.
 	 * @see org.eclipselabs.damos.mscript.function.FunctionDescription
 	 * @generated
 	 */
@@ -536,6 +545,17 @@ public interface FunctionModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionDescription_VariableDescriptions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.function.FunctionDescription#isStateful <em>Stateful</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stateful</em>'.
+	 * @see org.eclipselabs.damos.mscript.function.FunctionDescription#isStateful()
+	 * @see #getFunctionDescription()
+	 * @generated
+	 */
+	EAttribute getFunctionDescription_Stateful();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.function.EquationDescription <em>Equation Description</em>}'.
@@ -808,10 +828,10 @@ public interface FunctionModelPackage extends EPackage {
 	EReference getVariableStep_UsingEquationParts();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.function.FunctionInstance <em>Function Instance</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.function.FunctionInstance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Function Instance</em>'.
+	 * @return the meta object for class '<em>Instance</em>'.
 	 * @see org.eclipselabs.damos.mscript.function.FunctionInstance
 	 * @generated
 	 */
@@ -910,7 +930,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	FunctionModelFactory getFunctionModelFactory();
+	FunctionFactory getFunctionFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -926,11 +946,11 @@ public interface FunctionModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl <em>Function Description</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl <em>Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getFunctionDescription()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getFunctionDescription()
 		 * @generated
 		 */
 		EClass FUNCTION_DESCRIPTION = eINSTANCE.getFunctionDescription();
@@ -960,11 +980,19 @@ public interface FunctionModelPackage extends EPackage {
 		EReference FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS = eINSTANCE.getFunctionDescription_VariableDescriptions();
 
 		/**
+		 * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION_DESCRIPTION__STATEFUL = eINSTANCE.getFunctionDescription_Stateful();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.function.impl.EquationDescriptionImpl <em>Equation Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.EquationDescriptionImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationDescription()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationDescription()
 		 * @generated
 		 */
 		EClass EQUATION_DESCRIPTION = eINSTANCE.getEquationDescription();
@@ -1014,7 +1042,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.EquationSideImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationSide()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationSide()
 		 * @generated
 		 */
 		EClass EQUATION_SIDE = eINSTANCE.getEquationSide();
@@ -1048,7 +1076,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.EquationPartImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getEquationPart()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getEquationPart()
 		 * @generated
 		 */
 		EClass EQUATION_PART = eINSTANCE.getEquationPart();
@@ -1082,7 +1110,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.VariableDescriptionImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableDescription()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableDescription()
 		 * @generated
 		 */
 		EClass VARIABLE_DESCRIPTION = eINSTANCE.getVariableDescription();
@@ -1124,7 +1152,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.VariableStepImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableStep()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableStep()
 		 * @generated
 		 */
 		EClass VARIABLE_STEP = eINSTANCE.getVariableStep();
@@ -1170,11 +1198,11 @@ public interface FunctionModelPackage extends EPackage {
 		EReference VARIABLE_STEP__USING_EQUATION_PARTS = eINSTANCE.getVariableStep_UsingEquationParts();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl <em>Function Instance</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl <em>Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionInstanceImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getFunctionInstance()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getFunctionInstance()
 		 * @generated
 		 */
 		EClass FUNCTION_INSTANCE = eINSTANCE.getFunctionInstance();
@@ -1208,7 +1236,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.impl.ComputationCompoundImpl
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getComputationCompound()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getComputationCompound()
 		 * @generated
 		 */
 		EClass COMPUTATION_COMPOUND = eINSTANCE.getComputationCompound();
@@ -1242,7 +1270,7 @@ public interface FunctionModelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipselabs.damos.mscript.function.VariableKind
-		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionModelPackageImpl#getVariableKind()
+		 * @see org.eclipselabs.damos.mscript.function.impl.FunctionPackageImpl#getVariableKind()
 		 * @generated
 		 */
 		EEnum VARIABLE_KIND = eINSTANCE.getVariableKind();

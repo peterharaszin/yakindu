@@ -1,0 +1,388 @@
+/**
+ */
+package org.eclipselabs.damos.dmltext.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.InoutputDefinition;
+import org.eclipselabs.damos.dml.InputDefinition;
+import org.eclipselabs.damos.dml.OutputDefinition;
+import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dmltext.BehaviorDeclaration;
+import org.eclipselabs.damos.dmltext.DMLTextPackage;
+import org.eclipselabs.damos.dmltext.DscriptInputDefinition;
+import org.eclipselabs.damos.dmltext.DscriptOutputDefinition;
+import org.eclipselabs.damos.dmltext.DscriptParameter;
+import org.eclipselabs.damos.dmltext.ImplicitInputParameterDeclaration;
+import org.eclipselabs.damos.dmltext.ImplicitOutputParameterDeclaration;
+import org.eclipselabs.damos.dmltext.InputMessageParameterDeclaration;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
+import org.eclipselabs.damos.dmltext.OutputMessageParameterDeclaration;
+import org.eclipselabs.damos.mscript.FunctionKind;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Behavior Declaration</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.BehaviorDeclarationImpl#getBlockType <em>Block Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.BehaviorDeclarationImpl#getAllImplicitInputParameterDeclarations <em>All Implicit Input Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.BehaviorDeclarationImpl#getAllImplicitOutputParameterDeclarations <em>All Implicit Output Parameter Declarations</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class BehaviorDeclarationImpl extends FunctionDeclarationImpl implements BehaviorDeclaration {
+	/**
+	 * The cached value of the '{@link #getAllImplicitInputParameterDeclarations() <em>All Implicit Input Parameter Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllImplicitInputParameterDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ImplicitInputParameterDeclaration> allImplicitInputParameterDeclarations;
+	/**
+	 * The cached value of the '{@link #getAllImplicitOutputParameterDeclarations() <em>All Implicit Output Parameter Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllImplicitOutputParameterDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ImplicitOutputParameterDeclaration> allImplicitOutputParameterDeclarations;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BehaviorDeclarationImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DMLTextPackage.Literals.BEHAVIOR_DECLARATION;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MscriptBlockType getBlockType() {
+		if (eContainerFeatureID() != DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE) return null;
+		return (MscriptBlockType)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBlockType(MscriptBlockType newBlockType, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newBlockType, DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlockType(MscriptBlockType newBlockType) {
+		if (newBlockType != eInternalContainer() || (eContainerFeatureID() != DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE && newBlockType != null)) {
+			if (EcoreUtil.isAncestor(this, newBlockType))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newBlockType != null)
+				msgs = ((InternalEObject)newBlockType).eInverseAdd(this, DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR, MscriptBlockType.class, msgs);
+			msgs = basicSetBlockType(newBlockType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE, newBlockType, newBlockType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ImplicitInputParameterDeclaration> getAllImplicitInputParameterDeclarations() {
+		if (allImplicitInputParameterDeclarations == null) {
+			allImplicitInputParameterDeclarations = new EObjectContainmentEList<ImplicitInputParameterDeclaration>(ImplicitInputParameterDeclaration.class, this, DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS);
+		}
+		return allImplicitInputParameterDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ImplicitOutputParameterDeclaration> getAllImplicitOutputParameterDeclarations() {
+		if (allImplicitOutputParameterDeclarations == null) {
+			allImplicitOutputParameterDeclarations = new EObjectContainmentEList<ImplicitOutputParameterDeclaration>(ImplicitOutputParameterDeclaration.class, this, DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS);
+		}
+		return allImplicitOutputParameterDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetBlockType((MscriptBlockType)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				return basicSetBlockType(null, msgs);
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS:
+				return ((InternalEList<?>)getAllImplicitInputParameterDeclarations()).basicRemove(otherEnd, msgs);
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS:
+				return ((InternalEList<?>)getAllImplicitOutputParameterDeclarations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				return eInternalContainer().eInverseRemove(this, DMLTextPackage.MSCRIPT_BLOCK_TYPE__BEHAVIOR, MscriptBlockType.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				return getBlockType();
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS:
+				return getAllImplicitInputParameterDeclarations();
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS:
+				return getAllImplicitOutputParameterDeclarations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				setBlockType((MscriptBlockType)newValue);
+				return;
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS:
+				getAllImplicitInputParameterDeclarations().clear();
+				getAllImplicitInputParameterDeclarations().addAll((Collection<? extends ImplicitInputParameterDeclaration>)newValue);
+				return;
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS:
+				getAllImplicitOutputParameterDeclarations().clear();
+				getAllImplicitOutputParameterDeclarations().addAll((Collection<? extends ImplicitOutputParameterDeclaration>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				setBlockType((MscriptBlockType)null);
+				return;
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS:
+				getAllImplicitInputParameterDeclarations().clear();
+				return;
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS:
+				getAllImplicitOutputParameterDeclarations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DMLTextPackage.BEHAVIOR_DECLARATION__BLOCK_TYPE:
+				return getBlockType() != null;
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_INPUT_PARAMETER_DECLARATIONS:
+				return allImplicitInputParameterDeclarations != null && !allImplicitInputParameterDeclarations.isEmpty();
+			case DMLTextPackage.BEHAVIOR_DECLARATION__ALL_IMPLICIT_OUTPUT_PARAMETER_DECLARATIONS:
+				return allImplicitOutputParameterDeclarations != null && !allImplicitOutputParameterDeclarations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		return getBlockType().getName();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind()
+	 */
+	@Override
+	public FunctionKind getKind() {
+		switch (getBlockType().getTiming()) {
+		case SYNCHRONOUS:
+			return FunctionKind.SYNCHRONOUS;
+		case CONTINUOUS:
+			return FunctionKind.CONTINUOUS;
+		default:
+			return FunctionKind.STANDARD;
+		}
+	}
+	
+	@Override
+	public EList<InputParameterDeclaration> getInputParameterDeclarations() {
+		MscriptBlockType blockType = getBlockType();
+		EList<InputParameterDeclaration> result = new BasicEList<InputParameterDeclaration>();
+		
+		if (containsSockets(blockType.getInputDefinitions())) {
+			for (ImplicitInputParameterDeclaration parameterDeclaration : getAllImplicitInputParameterDeclarations()) {
+				if (parameterDeclaration instanceof InputMessageParameterDeclaration) {
+					result.add(parameterDeclaration);
+				}
+			}
+		}
+		
+		for (InputDefinition inputDefinition : blockType.getInputDefinitions()) {
+			if (inputDefinition instanceof DscriptInputDefinition && !inputDefinition.isSocket()) {
+				result.add((DscriptInputDefinition) inputDefinition);
+			}
+		}
+
+		for (InputDefinition inputDefinition : blockType.getInputDefinitions()) {
+			for (Parameter parameter : inputDefinition.getParameters()) {
+				if (parameter instanceof DscriptParameter) {
+					result.add((DscriptParameter) parameter);
+				}
+			}
+		}
+
+		for (OutputDefinition outputDefinition : blockType.getOutputDefinitions()) {
+			for (Parameter parameter : outputDefinition.getParameters()) {
+				if (parameter instanceof DscriptParameter) {
+					result.add((DscriptParameter) parameter);
+				}
+			}
+		}
+
+		for (Parameter parameter : blockType.getParameters()) {
+			if (parameter instanceof DscriptParameter) {
+				result.add((DscriptParameter) parameter);
+			}
+		}
+
+		return result;
+	}
+	
+	@Override
+	public EList<OutputParameterDeclaration> getOutputParameterDeclarations() {
+		MscriptBlockType blockType = getBlockType();
+		EList<OutputParameterDeclaration> result = new BasicEList<OutputParameterDeclaration>();
+		
+		if (containsSockets(blockType.getOutputDefinitions())) {
+			for (ImplicitOutputParameterDeclaration parameterDeclaration : getAllImplicitOutputParameterDeclarations()) {
+				if (parameterDeclaration instanceof OutputMessageParameterDeclaration) {
+					result.add(parameterDeclaration);
+				}
+			}
+		}
+
+		for (OutputDefinition outputDefinition : blockType.getOutputDefinitions()) {
+			if (outputDefinition instanceof DscriptOutputDefinition && !outputDefinition.isSocket()) {
+				result.add((DscriptOutputDefinition) outputDefinition);
+			}
+		}
+
+		return result;
+	}
+	
+	private boolean containsSockets(EList<? extends InoutputDefinition> inoutputDefinitions) {
+		for (InoutputDefinition inoutputDefinition : inoutputDefinitions) {
+			if (inoutputDefinition.isSocket()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public EStructuralFeature getNameFeature() {
+		return DMLPackage.eINSTANCE.getQualifiedElement_Name();
+	}
+	
+} //BehaviorDeclarationImpl

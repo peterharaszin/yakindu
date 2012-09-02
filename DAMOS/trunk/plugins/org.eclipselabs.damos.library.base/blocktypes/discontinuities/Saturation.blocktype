@@ -8,7 +8,7 @@ blockType Saturation {
 	parameter upperLimit = 1
 	parameter lowerLimit = -1
 
-	function main(const upperLimit, const lowerLimit, u) -> y {
+	behavior {
 		check(real, <1>, <-1>) -> real
 		
 		static assert u is real(?) :

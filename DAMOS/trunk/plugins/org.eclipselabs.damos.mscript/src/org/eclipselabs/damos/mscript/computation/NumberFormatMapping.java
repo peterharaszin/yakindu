@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.TypeSpecifier;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getNumberFormatMapping()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getNumberFormatMapping()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface NumberFormatMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Specifier</em>' containment reference.
 	 * @see #setTypeSpecifier(TypeSpecifier)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getNumberFormatMapping_TypeSpecifier()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getNumberFormatMapping_TypeSpecifier()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface NumberFormatMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Format</em>' containment reference.
 	 * @see #setNumberFormat(NumberFormat)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getNumberFormatMapping_NumberFormat()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getNumberFormatMapping_NumberFormat()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

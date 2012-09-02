@@ -38,8 +38,8 @@ public class BehavioredBlockGeneratorProvider implements IComponentGeneratorProv
 		if (node.getComponent() instanceof Block) {
 			Block block = (Block) node.getComponent();
 			if (block.getType() instanceof MscriptBlockType) {
-				MscriptBlockType mscriptBlockType = (MscriptBlockType) block.getType();
-				if (!mscriptBlockType.getDeclarations().isEmpty()) {
+				MscriptBlockType blockType = (MscriptBlockType) block.getType();
+				if (blockType.getBehavior() != null) {
 					return behavioredBlockGeneratorProvider.get();
 				}
 			}

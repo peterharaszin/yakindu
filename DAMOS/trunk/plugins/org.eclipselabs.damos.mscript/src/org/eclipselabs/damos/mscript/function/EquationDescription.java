@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.Equation;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription()
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription()
  * @model
  * @generated
  */
@@ -45,7 +45,7 @@ public interface EquationDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Description</em>' container reference.
 	 * @see #setFunctionDescription(FunctionDescription)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription_FunctionDescription()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription_FunctionDescription()
 	 * @see org.eclipselabs.damos.mscript.function.FunctionDescription#getEquationDescriptions
 	 * @model opposite="equationDescriptions" required="true" transient="false"
 	 * @generated
@@ -72,7 +72,7 @@ public interface EquationDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Equation</em>' reference.
 	 * @see #setEquation(Equation)
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription_Equation()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription_Equation()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public interface EquationDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sides</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription_Sides()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription_Sides()
 	 * @see org.eclipselabs.damos.mscript.function.EquationSide#getEquationDescription
 	 * @model opposite="equationDescription" containment="true" lower="2" upper="2"
 	 * @generated
@@ -115,7 +115,7 @@ public interface EquationDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Hand Side</em>' reference.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription_LeftHandSide()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription_LeftHandSide()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
@@ -130,7 +130,7 @@ public interface EquationDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Hand Side</em>' reference.
-	 * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage#getEquationDescription_RightHandSide()
+	 * @see org.eclipselabs.damos.mscript.function.FunctionPackage#getEquationDescription_RightHandSide()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */

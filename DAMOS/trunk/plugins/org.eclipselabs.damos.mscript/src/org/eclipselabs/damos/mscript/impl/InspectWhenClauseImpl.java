@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class InspectWhenClauseImpl extends VariableDeclarationImpl implements InspectWhenClause {
+public class InspectWhenClauseImpl extends NamedVariableDeclarationImpl implements InspectWhenClause {
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->

@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.Type;
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getComputationModel()
+ * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getComputationModel()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ComputationModel extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Number Format Mappings</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getComputationModel_NumberFormatMappings()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getComputationModel_NumberFormatMappings()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -62,7 +62,7 @@ public interface ComputationModel extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
-	 * @see org.eclipselabs.damos.mscript.computation.ComputationModelPackage#getComputationModel_QualifiedName()
+	 * @see org.eclipselabs.damos.mscript.computation.ComputationPackage#getComputationModel_QualifiedName()
 	 * @model
 	 * @generated
 	 */

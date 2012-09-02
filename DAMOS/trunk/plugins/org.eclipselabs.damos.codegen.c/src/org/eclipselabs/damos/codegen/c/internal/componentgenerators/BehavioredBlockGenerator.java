@@ -32,13 +32,9 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
@@ -54,12 +50,9 @@ import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.function.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.function.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.function.util.FunctionModelUtil;
-import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.interpreter.value.Values;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 import com.google.inject.Inject;
 
@@ -73,6 +66,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private final IStatementGenerator statementGenerator;
 
+	private FunctionDescription functionDescription;
+	
 	private FunctionInstance functionInstance;
 	
 	private IStaticEvaluationResult staticEvaluationResult;
@@ -90,9 +85,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 		Block block = getComponent();
 
-		Helper helper = new Helper(block);
+		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
 		
-		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
+		FunctionDeclaration functionDeclaration = helper.getBehavior();
 		
 		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
 		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
@@ -107,7 +102,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		staticEvaluationResult = new StaticEvaluationResult();
 		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
-		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescription(functionDeclaration);
+		functionDescription = staticEvaluationResult.getFunctionDescription(functionDeclaration);
 		if (!staticEvaluationResult.getStatus().isOK()) {
 			status.add(staticEvaluationResult.getStatus());
 		}
@@ -133,7 +128,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesContextCode() {
-		return functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL;
+		return functionDescription.isStateful();
 	}
 	
 	@Override
@@ -146,7 +141,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		return functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL;
+		return functionDescription.isStateful();
 	}
 		
 	@Override
@@ -219,7 +214,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesUpdateCode() {
-		return functionInstance.getDeclaration().getKind() == FunctionKind.STATEFUL;
+		return functionDescription.isStateful();
 	}
 	
 	@Override
@@ -317,41 +312,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	private IVariableAccessStrategy getVariableAccessStrategy() {
 		if (cachedVariableAccessStrategy == null) {
-			cachedVariableAccessStrategy = new VariableAccessStrategy(staticEvaluationResult, getComponent(), getComponentSignature(), getVariableAccessor());
+			cachedVariableAccessStrategy = new VariableAccessStrategy(getContext(), getComputationModel(), staticEvaluationResult);
 		}
 		return cachedVariableAccessStrategy;
 	}
 
-	private class Helper extends BehavioredBlockHelper {
-		
-		/**
-		 * @param block
-		 */
-		public Helper(Block block) {
-			super(block);
-		}
-
-		@Override
-		protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
-			if (SAMPLE_TIME_STATIC_PARAMETER_NAME.equals(name)) {
-				double sampleTime = getNode().getSampleTime();
-				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT));
-				return Values.valueOf(new ComputationContext(), realType, sampleTime);
-			}
-			if (SAMPLE_RATE_STATIC_PARAMETER_NAME.equals(name)) {
-				double sampleRate = 1 / getNode().getSampleTime();
-				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeUtil.createUnit(getBlock().eResource().getResourceSet(), TypeUtil.SECOND_UNIT);
-				herzUnit.getFactor(TypeUtil.SECOND_UNIT).setExponent(-1);
-				realType.setUnit(herzUnit);
-				return Values.valueOf(new ComputationContext(), realType, sampleRate);
-			}
-			return super.getGlobalStaticArgumentValue(name);
-		}
-		
-	}
-	
 	private class BehavioredBlockGeneratorContext implements IBehavioredBlockGeneratorContext {
 
 		public IComponentGeneratorContext getContext() {

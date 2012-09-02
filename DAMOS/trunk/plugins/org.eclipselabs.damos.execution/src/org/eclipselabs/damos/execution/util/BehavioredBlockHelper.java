@@ -27,6 +27,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dmltext.BehaviorDeclaration;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
@@ -53,7 +54,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
-import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
@@ -62,9 +62,6 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class BehavioredBlockHelper {
 
-	protected static final String SAMPLE_TIME_STATIC_PARAMETER_NAME = "Ts";
-	protected static final String SAMPLE_RATE_STATIC_PARAMETER_NAME = "fs";
-	
 	private final Block block;
 	
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
@@ -84,14 +81,14 @@ public class BehavioredBlockHelper {
 		return block;
 	}
 	
-	public FunctionDeclaration createFunctionDefinition() throws CoreException {
+	public BehaviorDeclaration getBehavior() throws CoreException {
 		MscriptBlockType blockType = (MscriptBlockType) block.getType();
-		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(blockType.getDeclarations(), "main");
-		if (functionDeclaration == null) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Mscript function 'main' not found"));
+		BehaviorDeclaration behavior = blockType.getBehavior();
+		if (behavior == null) {
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No behavior specified"));
 		}
 		
-		return functionDeclaration;
+		return behavior;
 	}
 
 	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
@@ -116,9 +113,6 @@ public class BehavioredBlockHelper {
 				IValue value = getParameterStaticArgumentValue(parameterName);
 				if (value == null) {
 					value = getInputStaticArgumentValue(parameterName);
-				}
-				if (value == null) {
-					value = getGlobalStaticArgumentValue(parameterName);
 				}
 				if (value != null) {
 					staticArguments.add(value);
@@ -263,10 +257,6 @@ public class BehavioredBlockHelper {
 				return new VectorValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
 			}
 		}
-		return null;
-	}
-	
-	protected IValue getGlobalStaticArgumentValue(String name) throws CoreException {
 		return null;
 	}
 	

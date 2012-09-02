@@ -17,5 +17,5 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface IterationVariableDeclaration extends VariableDeclaration {
+public interface IterationVariableDeclaration extends NamedVariableDeclaration {
 } // IterationVariableDeclaration

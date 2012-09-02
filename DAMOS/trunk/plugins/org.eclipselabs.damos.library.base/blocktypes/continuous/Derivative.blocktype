@@ -9,7 +9,7 @@ continuous blockType Derivative {
 	parameter initialCondition = 0
 	parameter timeConstant = 0.01(s)
 
-	continuous function main(const gain, const initialCondition, const timeConstant, u) -> y {
+	behavior {
 		check(real, <1(s)>, <0>, <0.01(s)>) -> real
 		check(real(m), <1(s)>, <0(m)>, <0.01(s)>) -> real(m)
 

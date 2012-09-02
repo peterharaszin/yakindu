@@ -7,7 +7,7 @@ blockType Vector3Extract {
 	output y2
 	output y3
 	
-	function main(x) -> y1, y2, y3 {
+	behavior {
 		check(real[3]) -> real, real, real
 
 		static assert x is real[3]:

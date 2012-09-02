@@ -9,7 +9,7 @@ package org.eclipselabs.damos.mscript.computation.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.computation.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computation.ComputationPackage;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
@@ -65,7 +65,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ComputationModelPackage.Literals.FLOATING_POINT_FORMAT;
+		return ComputationPackage.Literals.FLOATING_POINT_FORMAT;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 		FloatingPointFormatKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FLOATING_POINT_FORMAT__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationPackage.FLOATING_POINT_FORMAT__KIND, oldKind, kind));
 	}
 	
 	/* (non-Javadoc)
@@ -105,7 +105,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT__KIND:
+			case ComputationPackage.FLOATING_POINT_FORMAT__KIND:
 				return getKind();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,7 +119,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT__KIND:
+			case ComputationPackage.FLOATING_POINT_FORMAT__KIND:
 				setKind((FloatingPointFormatKind)newValue);
 				return;
 		}
@@ -134,7 +134,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT__KIND:
+			case ComputationPackage.FLOATING_POINT_FORMAT__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
 		}
@@ -149,7 +149,7 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT__KIND:
+			case ComputationPackage.FLOATING_POINT_FORMAT__KIND:
 				return kind != KIND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

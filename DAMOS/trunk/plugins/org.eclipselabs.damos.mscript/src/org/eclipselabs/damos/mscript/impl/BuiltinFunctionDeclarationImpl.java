@@ -8,6 +8,7 @@ package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -83,6 +84,10 @@ public class BuiltinFunctionDeclarationImpl extends BuiltinDeclarationImpl imple
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.BUILTIN_FUNCTION_DECLARATION__NAME, oldName, name));
+	}
+	
+	public EStructuralFeature getNameFeature() {
+		return MscriptPackage.eINSTANCE.getBuiltinFunctionDeclaration_Name();
 	}
 
 	/**

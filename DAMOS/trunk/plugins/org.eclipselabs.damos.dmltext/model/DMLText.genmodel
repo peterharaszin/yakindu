@@ -12,7 +12,20 @@
     </genClasses>
     <genClasses ecoreClass="DMLText.ecore#//MscriptBlockType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptBlockType/importDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptBlockType/behavior"/>
     </genClasses>
+    <genClasses ecoreClass="DMLText.ecore#//DscriptInputDefinition"/>
+    <genClasses ecoreClass="DMLText.ecore#//DscriptOutputDefinition"/>
+    <genClasses ecoreClass="DMLText.ecore#//DscriptParameter"/>
+    <genClasses ecoreClass="DMLText.ecore#//BehaviorDeclaration">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DMLText.ecore#//BehaviorDeclaration/blockType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//BehaviorDeclaration/allImplicitInputParameterDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//BehaviorDeclaration/allImplicitOutputParameterDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="DMLText.ecore#//ImplicitInputParameterDeclaration"/>
+    <genClasses ecoreClass="DMLText.ecore#//ImplicitOutputParameterDeclaration"/>
+    <genClasses ecoreClass="DMLText.ecore#//InputMessageParameterDeclaration"/>
+    <genClasses ecoreClass="DMLText.ecore#//OutputMessageParameterDeclaration"/>
     <genClasses ecoreClass="DMLText.ecore#//MscriptSystemInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptSystemInterface/importDeclarations"/>
     </genClasses>

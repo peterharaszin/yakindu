@@ -12,10 +12,10 @@ MscriptBlockType:
 	'package' packageName=QualifiedName
 	(importDeclarations+=ImportDeclaration)*
 	((timing=TimingKind)? & (boundary?='boundary')?) 'blockType' name=ValidID '{'
-		(inputDefinitions+=InputDefinition)*
-		(outputDefinitions+=OutputDefinition)*
+		(inputDefinitions+=DscriptInputDefinition)*
+		(outputDefinitions+=DscriptOutputDefinition)*
 		(parameters+=Parameter)*
-		(declarations+=TopLevelDeclaration)*
+		(declarations+=TopLevelDeclaration)* (behavior=BehaviorDeclaration (declarations+=TopLevelDeclaration)*)?
 	'}';
 
 enum TimingKind:
@@ -24,7 +24,7 @@ enum TimingKind:
 	Asynchronous='asynchronous' |
 	Discrete='discrete';
 
-InputDefinition:
+DscriptInputDefinition:
 	((socket?='socket')? & (testPoint?='testPoint')?) 'input' name=ValidID ('[' minimumPortCount=ValidInt '..'  maximumPortCount=UpperBoundLiteral ('|' defaultPortCount=ValidInt)? ']')? ('{'
 		(('directFeedthrough' directFeedthroughPolicy=DirectFeedthroughPolicy)? &
 		(parameters+=Parameter)*)
@@ -36,19 +36,19 @@ DirectFeedthroughPolicy:
 BooleanDirectFeedthroughPolicy:
 	{BooleanDirectFeedthroughPolicy} (directFeedthrough?='always' | 'never');
 
-OutputDefinition:
+DscriptOutputDefinition:
 	((socket?='socket')? & (testPoint?='testPoint')?) 'output' name=ValidID ('[' minimumPortCount=ValidInt '..'  maximumPortCount=UpperBoundLiteral ('|' defaultPortCount=ValidInt)? ']')? ('{'
 		(parameters+=Parameter)*
 	'}')?;
 
 Parameter:
-	OpaqueParameter | MscriptParameter;
+	OpaqueParameter | DscriptParameter;
 	
 OpaqueParameter returns Parameter:
 	(visibility=ParameterVisibilityKind)? dataType=OpaqueTypeSpecification 'parameter' name=ValidID '=' ownedDefaultValue=StringValueSpecification
 		('predefined' '{' predefinedValues+=OpaqueParameterPredefinedValue (',' predefinedValues+=OpaqueParameterPredefinedValue)* '}')?;
 
-MscriptParameter returns Parameter:
+DscriptParameter:
 	(visibility=ParameterVisibilityKind)? 'parameter' name=ValidID '=' ownedDefaultValue=MscriptValueSpecification
 		('predefined' '{' predefinedValues+=MscriptParameterPredefinedValue (',' predefinedValues+=MscriptParameterPredefinedValue)* '}')?;
 
@@ -60,6 +60,15 @@ MscriptParameterPredefinedValue returns ParameterPredefinedValue:
 
 enum ParameterVisibilityKind:
 	Public='public' | Private='private';
+
+BehaviorDeclaration:
+	{BehaviorDeclaration} 'behavior' '{'
+		(checks+=Check |
+		assertions+=Assertion |
+		stateVariableDeclarations+=StateVariableDeclaration |
+		constantDeclarations+=ConstantDeclaration |
+		equations+=Equation)*
+	'}';
 
 OpaqueTypeSpecification returns PrimitiveTypeSpecification:
 	kind=OpaqueTypeKind;

@@ -36,9 +36,9 @@ public class ComputationFactoryImpl extends EFactoryImpl implements ComputationF
 	 */
 	public static ComputationFactory init() {
 		try {
-			ComputationFactory theComputationModelFactory = (ComputationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/ComputationModel"); 
-			if (theComputationModelFactory != null) {
-				return theComputationModelFactory;
+			ComputationFactory theComputationFactory = (ComputationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/Computation"); 
+			if (theComputationFactory != null) {
+				return theComputationFactory;
 			}
 		}
 		catch (Exception exception) {
@@ -193,7 +193,7 @@ public class ComputationFactoryImpl extends EFactoryImpl implements ComputationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputationPackage getComputationModelPackage() {
+	public ComputationPackage getComputationPackage() {
 		return (ComputationPackage)getEPackage();
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionModelPackage;
+import org.eclipselabs.damos.mscript.function.FunctionPackage;
 import org.eclipselabs.damos.mscript.function.VariableDescription;
 import org.eclipselabs.damos.mscript.function.VariableKind;
 import org.eclipselabs.damos.mscript.function.VariableStep;
@@ -107,7 +107,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FunctionModelPackage.Literals.VARIABLE_DESCRIPTION;
+		return FunctionPackage.Literals.VARIABLE_DESCRIPTION;
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	 * @generated
 	 */
 	public FunctionDescription getFunctionDescription() {
-		if (eContainerFeatureID() != FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION) return null;
+		if (eContainerFeatureID() != FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION) return null;
 		return (FunctionDescription)eContainer();
 	}
 
@@ -126,7 +126,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	 * @generated
 	 */
 	public NotificationChain basicSetFunctionDescription(FunctionDescription newFunctionDescription, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newFunctionDescription, FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newFunctionDescription, FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION, msgs);
 		return msgs;
 	}
 
@@ -136,19 +136,19 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	 * @generated
 	 */
 	public void setFunctionDescription(FunctionDescription newFunctionDescription) {
-		if (newFunctionDescription != eInternalContainer() || (eContainerFeatureID() != FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION && newFunctionDescription != null)) {
+		if (newFunctionDescription != eInternalContainer() || (eContainerFeatureID() != FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION && newFunctionDescription != null)) {
 			if (EcoreUtil.isAncestor(this, newFunctionDescription))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newFunctionDescription != null)
-				msgs = ((InternalEObject)newFunctionDescription).eInverseAdd(this, FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionDescription.class, msgs);
+				msgs = ((InternalEObject)newFunctionDescription).eInverseAdd(this, FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionDescription.class, msgs);
 			msgs = basicSetFunctionDescription(newFunctionDescription, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION, newFunctionDescription, newFunctionDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION, newFunctionDescription, newFunctionDescription));
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_DESCRIPTION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_DESCRIPTION__NAME, oldName, name));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 		VariableKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.VARIABLE_DESCRIPTION__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionPackage.VARIABLE_DESCRIPTION__KIND, oldKind, kind));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	 */
 	public EList<VariableStep> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentWithInverseEList<VariableStep>(VariableStep.class, this, FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS, FunctionModelPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION);
+			steps = new EObjectContainmentWithInverseEList<VariableStep>(VariableStep.class, this, FunctionPackage.VARIABLE_DESCRIPTION__STEPS, FunctionPackage.VARIABLE_STEP__VARIABLE_DESCRIPTION);
 		}
 		return steps;
 	}
@@ -258,11 +258,11 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetFunctionDescription((FunctionDescription)otherEnd, msgs);
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSteps()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -276,9 +276,9 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				return basicSetFunctionDescription(null, msgs);
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -292,8 +292,8 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
-				return eInternalContainer().eInverseRemove(this, FunctionModelPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionDescription.class, msgs);
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+				return eInternalContainer().eInverseRemove(this, FunctionPackage.FUNCTION_DESCRIPTION__VARIABLE_DESCRIPTIONS, FunctionDescription.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -306,13 +306,13 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				return getFunctionDescription();
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__NAME:
+			case FunctionPackage.VARIABLE_DESCRIPTION__NAME:
 				return getName();
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__KIND:
+			case FunctionPackage.VARIABLE_DESCRIPTION__KIND:
 				return getKind();
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				return getSteps();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -327,16 +327,16 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				setFunctionDescription((FunctionDescription)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__NAME:
+			case FunctionPackage.VARIABLE_DESCRIPTION__NAME:
 				setName((String)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__KIND:
+			case FunctionPackage.VARIABLE_DESCRIPTION__KIND:
 				setKind((VariableKind)newValue);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				getSteps().clear();
 				getSteps().addAll((Collection<? extends VariableStep>)newValue);
 				return;
@@ -352,16 +352,16 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				setFunctionDescription((FunctionDescription)null);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__NAME:
+			case FunctionPackage.VARIABLE_DESCRIPTION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__KIND:
+			case FunctionPackage.VARIABLE_DESCRIPTION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				getSteps().clear();
 				return;
 		}
@@ -376,13 +376,13 @@ public class VariableDescriptionImpl extends EObjectImpl implements VariableDesc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
+			case FunctionPackage.VARIABLE_DESCRIPTION__FUNCTION_DESCRIPTION:
 				return getFunctionDescription() != null;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__NAME:
+			case FunctionPackage.VARIABLE_DESCRIPTION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__KIND:
+			case FunctionPackage.VARIABLE_DESCRIPTION__KIND:
 				return kind != KIND_EDEFAULT;
-			case FunctionModelPackage.VARIABLE_DESCRIPTION__STEPS:
+			case FunctionPackage.VARIABLE_DESCRIPTION__STEPS:
 				return steps != null && !steps.isEmpty();
 		}
 		return super.eIsSet(featureID);

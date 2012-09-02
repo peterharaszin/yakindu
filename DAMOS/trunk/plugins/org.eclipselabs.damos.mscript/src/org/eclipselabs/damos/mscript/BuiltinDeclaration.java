@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript;
  *
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getBuiltinDeclaration()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface BuiltinDeclaration extends TopLevelDeclaration, CallableElement {

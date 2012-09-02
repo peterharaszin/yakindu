@@ -13,23 +13,23 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.damos.mscript.function.FunctionModelPackage
+ * @see org.eclipselabs.damos.mscript.function.FunctionPackage
  * @generated
  */
-public interface FunctionModelFactory extends EFactory {
+public interface FunctionFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	FunctionModelFactory eINSTANCE = org.eclipselabs.damos.mscript.function.impl.FunctionModelFactoryImpl.init();
+	FunctionFactory eINSTANCE = org.eclipselabs.damos.mscript.function.impl.FunctionFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Function Description</em>'.
+	 * Returns a new object of class '<em>Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Description</em>'.
+	 * @return a new object of class '<em>Description</em>'.
 	 * @generated
 	 */
 	FunctionDescription createFunctionDescription();
@@ -80,10 +80,10 @@ public interface FunctionModelFactory extends EFactory {
 	VariableStep createVariableStep();
 
 	/**
-	 * Returns a new object of class '<em>Function Instance</em>'.
+	 * Returns a new object of class '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Instance</em>'.
+	 * @return a new object of class '<em>Instance</em>'.
 	 * @generated
 	 */
 	FunctionInstance createFunctionInstance();
@@ -104,6 +104,6 @@ public interface FunctionModelFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	FunctionModelPackage getFunctionModelPackage();
+	FunctionPackage getFunctionPackage();
 
 } //FunctionModelFactory

@@ -17,6 +17,6 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface StateVariableDeclaration extends VariableDeclaration {
+public interface StateVariableDeclaration extends NamedVariableDeclaration {
 
 } // StateVariableDeclaration

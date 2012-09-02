@@ -7,7 +7,7 @@ blockType Sum {
 	}
 	output y
 
-	function main(const sign, _input) -> y {
+	behavior {
 		check(real[2], <{ 1, -1 }>) -> real
 		
 		static assert _input is real(?)[] :

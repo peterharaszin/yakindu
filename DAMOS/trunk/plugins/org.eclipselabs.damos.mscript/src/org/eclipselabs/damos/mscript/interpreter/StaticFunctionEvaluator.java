@@ -30,16 +30,17 @@ import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.function.EquationDescription;
 import org.eclipselabs.damos.mscript.function.EquationPart;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
 import org.eclipselabs.damos.mscript.function.impl.FunctionDescriptionBuilder;
-import org.eclipselabs.damos.mscript.function.util.FunctionModelValidator;
+import org.eclipselabs.damos.mscript.function.util.FunctionValidator;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.EObjectTreeIterator;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
@@ -58,7 +59,7 @@ public class StaticFunctionEvaluator {
 	
 	private final StaticStepExpressionEvaluator staticStepExpressionEvaluator = new StaticStepExpressionEvaluator();
 	private final FunctionDescriptionBuilder functionDescriptionBuilder = new FunctionDescriptionBuilder();
-	private final EValidator functionModelValidator = new FunctionModelValidator();
+	private final EValidator functionModelValidator = new FunctionValidator();
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	
 	public void evaluate(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
@@ -74,6 +75,16 @@ public class StaticFunctionEvaluator {
 		
 		if (diagnostics.getSeverity() != Diagnostic.OK) {
 			result.collectStatus(SyntaxStatus.toStatus(diagnostics));
+		}
+		
+		for (ImplicitVariableDeclaration variableDeclaration : functionDeclaration.getImplicitVariableDeclarations()) {
+			RealType realType = TypeUtil.createRealType(variableDeclaration.eResource().getResourceSet(), "s");
+			if ("Ts".equals(variableDeclaration.getName()) || "t".equals(variableDeclaration.getName())) {
+				result.setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
+			} else if ("fs".equals(variableDeclaration.getName())) {
+				realType.getUnit().getFactor("s").setExponent(-1);
+				result.setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
+			}
 		}
 
 		if (!evaluateStaticAssertions(result, functionDescription)) {
@@ -121,7 +132,7 @@ public class StaticFunctionEvaluator {
 						if (severity > IStatus.WARNING) {
 							passed = false;
 						}
-						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescription.getDeclaration(), MscriptPackage.eINSTANCE.getFunctionDeclaration_Name()));
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescription.getDeclaration(), functionDescription.getDeclaration().getNameFeature()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							break;
 						}

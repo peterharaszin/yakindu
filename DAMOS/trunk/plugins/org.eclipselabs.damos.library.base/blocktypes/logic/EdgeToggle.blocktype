@@ -11,7 +11,7 @@ blockType EdgeToggle {
 		1 alias "Falling"
 	}
 
-	stateful function main(const initialValue, const trigger, u) -> y {
+	behavior {
 		check(boolean, <false>, <0>) -> boolean
 		check(boolean, <false>, <1>) -> boolean
 		

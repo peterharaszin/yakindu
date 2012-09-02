@@ -10,7 +10,7 @@ blockType Delay {
 	parameter initialCondition = 0
 	parameter delay = 1
 
-	stateful function main(const initialCondition, const delay, u) -> y {
+	behavior {
 		check(real, <0>, <1>) -> real
 		
 		static assert delay == 1 :

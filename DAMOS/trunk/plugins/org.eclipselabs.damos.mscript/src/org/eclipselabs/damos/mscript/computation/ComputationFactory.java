@@ -35,6 +35,15 @@ public interface ComputationFactory extends EFactory {
 	FloatingPointFormat createFloatingPointFormat();
 
 	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	ComputationPackage getComputationPackage();
+
+	/**
 	 * Returns a new object of class '<em>Fixed Point Format</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,10 +53,10 @@ public interface ComputationFactory extends EFactory {
 	FixedPointFormat createFixedPointFormat();
 
 	/**
-	 * Returns a new object of class '<em>Computation Model</em>'.
+	 * Returns a new object of class '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Computation Model</em>'.
+	 * @return a new object of class '<em>Model</em>'.
 	 * @generated
 	 */
 	ComputationModel createComputationModel();
@@ -60,14 +69,5 @@ public interface ComputationFactory extends EFactory {
 	 * @generated
 	 */
 	NumberFormatMapping createNumberFormatMapping();
-
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	ComputationPackage getComputationModelPackage();
 
 } //ComputationModelFactory

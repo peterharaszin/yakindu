@@ -31,7 +31,7 @@ public class BehavioredBlockSimulationObjectProvider implements ISimulationObjec
 			Block block = (Block) node.getComponent();
 			if (block.getType() instanceof MscriptBlockType) {
 				MscriptBlockType blockType = (MscriptBlockType) block.getType();
-				if (!blockType.getDeclarations().isEmpty()) {
+				if (blockType.getBehavior() != null) {
 					if (blockType.getTiming() == TimingKind.CONTINUOUS) {
 						return new ContinuousBlockSimulationObject();
 					}

@@ -17,7 +17,7 @@ import org.eclipselabs.damos.codegen.c.test.GTest;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
 import org.junit.Before;
 
 /**
@@ -32,7 +32,7 @@ public class RecordTest extends AbstractGeneratorGTest {
 	public void setUp() {
 		super.setUp();
 		
-		MscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("{ int x; int y }");
+		DscriptDataTypeSpecification structTypeSpecification = createDataTypeSpecification("{ int x; int y }");
 
 		Inport inport = createInport("In", structTypeSpecification, 1);
 		Block recordTest = createTestBlock("RecordTest", "RecordTest");

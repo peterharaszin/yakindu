@@ -27,9 +27,9 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.BehaviorDeclaration;
-import org.eclipselabs.damos.dmltext.MscriptBlockType;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.BehaviorDeclaration;
+import org.eclipselabs.damos.dscript.DscriptBlockType;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
@@ -82,7 +82,7 @@ public class BehavioredBlockHelper {
 	}
 	
 	public BehaviorDeclaration getBehavior() throws CoreException {
-		MscriptBlockType blockType = (MscriptBlockType) block.getType();
+		DscriptBlockType blockType = (DscriptBlockType) block.getType();
 		BehaviorDeclaration behavior = blockType.getBehavior();
 		if (behavior == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No behavior specified"));
@@ -261,8 +261,8 @@ public class BehavioredBlockHelper {
 	}
 	
 	private IValue evaluateParameterValue(Parameter parameter, ValueSpecification valueSpecification) throws CoreException {
-		if (valueSpecification instanceof MscriptValueSpecification) {
-			Expression expression = ((MscriptValueSpecification) valueSpecification).getExpression();
+		if (valueSpecification instanceof DscriptValueSpecification) {
+			Expression expression = ((DscriptValueSpecification) valueSpecification).getExpression();
 			IStaticEvaluationResult context = new StaticEvaluationResult();
 			IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(context), expression);
 			if (context.getStatus().getSeverity() > IStatus.WARNING) {

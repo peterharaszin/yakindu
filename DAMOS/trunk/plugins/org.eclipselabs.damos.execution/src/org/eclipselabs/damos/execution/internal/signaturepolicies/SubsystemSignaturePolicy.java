@@ -27,7 +27,7 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.datatype.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
@@ -90,8 +90,8 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 	}
 	
 	private Type getDataType(MultiStatus status, Inoutlet inoutlet) {
-		if (inoutlet != null && inoutlet.getDataType() instanceof MscriptDataTypeSpecification) {
-			return ((MscriptDataTypeSpecification) inoutlet.getDataType()).getType();
+		if (inoutlet != null && inoutlet.getDataType() instanceof DscriptDataTypeSpecification) {
+			return ((DscriptDataTypeSpecification) inoutlet.getDataType()).getType();
 		} else {
 			status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Invalid model"));
 		}

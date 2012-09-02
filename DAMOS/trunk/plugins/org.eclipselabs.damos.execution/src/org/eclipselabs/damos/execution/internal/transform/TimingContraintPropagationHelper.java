@@ -28,7 +28,7 @@ import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.DataFlowEnd;
 import org.eclipselabs.damos.execution.ExecutionFlow;
@@ -154,9 +154,9 @@ public class TimingContraintPropagationHelper {
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
 			ValueSpecification sampleTimeSpecification = synchronousTimingConstraint.getSampleTime();
-			if (sampleTimeSpecification instanceof MscriptValueSpecification) {
+			if (sampleTimeSpecification instanceof DscriptValueSpecification) {
 				IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-				Expression sampleTimeExpression = ((MscriptValueSpecification) sampleTimeSpecification).getExpression();
+				Expression sampleTimeExpression = ((DscriptValueSpecification) sampleTimeSpecification).getExpression();
 				IValue sampleTime = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), sampleTimeExpression);
 				if (sampleTime instanceof ISimpleNumericValue) {
 					return ((ISimpleNumericValue) sampleTime).doubleValue();

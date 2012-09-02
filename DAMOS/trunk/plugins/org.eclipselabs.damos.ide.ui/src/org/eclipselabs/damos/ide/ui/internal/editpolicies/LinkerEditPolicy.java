@@ -21,8 +21,8 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 
 import com.google.inject.Inject;
 
@@ -64,11 +64,11 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 			}
 			if (notification.getNotifier() instanceof Fragment && notification.getFeature() == DMLPackage.eINSTANCE.getQualifiedElement_PackageName()) {
 				linker.linkModel(getHost().resolveSemanticElement(), new ListBasedDiagnosticConsumer());
-			} else if (notification.getNewValue() instanceof MscriptValueSpecification) {
-				MscriptValueSpecification valueSpecification = (MscriptValueSpecification) notification.getNewValue();
+			} else if (notification.getNewValue() instanceof DscriptValueSpecification) {
+				DscriptValueSpecification valueSpecification = (DscriptValueSpecification) notification.getNewValue();
 				linker.linkModel(valueSpecification.getExpression(), new ListBasedDiagnosticConsumer());
-			} else if (notification.getNewValue() instanceof MscriptDataTypeSpecification) {
-				MscriptDataTypeSpecification dataTypeSpecification = (MscriptDataTypeSpecification) notification.getNewValue();
+			} else if (notification.getNewValue() instanceof DscriptDataTypeSpecification) {
+				DscriptDataTypeSpecification dataTypeSpecification = (DscriptDataTypeSpecification) notification.getNewValue();
 				linker.linkModel(dataTypeSpecification.getTypeSpecifier(), new ListBasedDiagnosticConsumer());
 			}
 		}

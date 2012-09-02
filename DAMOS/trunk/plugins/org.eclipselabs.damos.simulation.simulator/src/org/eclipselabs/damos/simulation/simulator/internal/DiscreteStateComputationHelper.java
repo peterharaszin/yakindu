@@ -20,7 +20,7 @@ import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.WhileLoop;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.ActionNode;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.CompoundNode;
@@ -214,10 +214,10 @@ public class DiscreteStateComputationHelper {
 		for (ActionLink actionLink : choice.getActionLinks()) {
 			Action action = actionLink.getAction();
 			if (actionLink.getCondition() != null) {
-				if (!(actionLink.getCondition() instanceof MscriptValueSpecification)) {
+				if (!(actionLink.getCondition() instanceof DscriptValueSpecification)) {
 					throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Invalid action link condition"));
 				}
-				IValue conditionValue = ExpressionUtil.evaluateExpression(((MscriptValueSpecification) actionLink.getCondition()).getExpression());
+				IValue conditionValue = ExpressionUtil.evaluateExpression(((DscriptValueSpecification) actionLink.getCondition()).getExpression());
 				IValue result = value.equalTo(conditionValue);
 				if (result instanceof IBooleanValue) {
 					IBooleanValue booleanResult = (IBooleanValue) result;

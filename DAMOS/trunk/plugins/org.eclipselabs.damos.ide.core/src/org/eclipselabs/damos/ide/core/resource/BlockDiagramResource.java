@@ -45,12 +45,12 @@ import org.eclipse.xtext.util.Triple;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.resource.DMLResource;
-import org.eclipselabs.damos.dmltext.DMLTextPackage;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.dmltext.parser.antlr.MscriptDataTypeSpecificationParser;
-import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
-import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptPackage;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
+import org.eclipselabs.damos.dscript.parser.antlr.DataTypeSpecificationParser;
+import org.eclipselabs.damos.dscript.parser.antlr.ValueSpecificationParser;
+import org.eclipselabs.damos.dscript.util.DscriptUtil;
 
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
@@ -63,10 +63,10 @@ import com.google.inject.Provider;
 public class BlockDiagramResource extends GMFResource {
 
 	@Inject
-	private MscriptValueSpecificationParser valueSpecificationParser;
+	private ValueSpecificationParser valueSpecificationParser;
 	
 	@Inject
-	private MscriptDataTypeSpecificationParser dataTypeSpecificationParser;
+	private DataTypeSpecificationParser dataTypeSpecificationParser;
 
 	@Inject
 	private LazyURIEncoder encoder;
@@ -107,12 +107,12 @@ public class BlockDiagramResource extends GMFResource {
 	}
 	
 	private void buildEObjectFromText(EObject eObject, String text) {
-		if (eObject instanceof MscriptValueSpecification) {
+		if (eObject instanceof DscriptValueSpecification) {
 			IParseResult result = valueSpecificationParser.parse(new StringReader((text.toString())));
 			if (!result.hasSyntaxErrors()) {
 				EcoreUtil.replace(eObject, result.getRootASTElement());
 			}
-		} else if (eObject instanceof MscriptDataTypeSpecification) {
+		} else if (eObject instanceof DscriptDataTypeSpecification) {
 			IParseResult result = dataTypeSpecificationParser.parse(new StringReader((text.toString())));
 			if (!result.hasSyntaxErrors()) {
 				EcoreUtil.replace(eObject, result.getRootASTElement());
@@ -122,7 +122,7 @@ public class BlockDiagramResource extends GMFResource {
 	
 	private String extractText(AnyType anyType) {
 		AnyType value = getMixedEntry(anyType, "Extension");
-		if (value != null && DMLTextPackage.eNS_URI.equals(getAttributeValue(value, "extender"))) {
+		if (isDamosExtender(value)) {
 			value = getMixedEntry(value, "text");
 			for (FeatureMap.Entry entry : value.getMixed()) {
 				if ("text".equals(entry.getEStructuralFeature().getName())) {
@@ -131,6 +131,19 @@ public class BlockDiagramResource extends GMFResource {
 			}
 		}
 		return null;
+	}
+	
+	private boolean isDamosExtender(AnyType value) {
+		if (value != null) {
+			Object attributeValue = getAttributeValue(value, "extender");
+			if (attributeValue != null) {
+				String a = attributeValue.toString();
+				return a.equals(DscriptPackage.eNS_URI)
+						/* Backwards-compatibility: */
+						|| a.equals("http://www.eclipselabs.org/damos/2011/DMLText");
+			}
+		}
+		return false;
 	}
 	
 	private AnyType getMixedEntry(AnyType anyType, String name) {
@@ -171,10 +184,10 @@ public class BlockDiagramResource extends GMFResource {
 			 */
 			@Override
 			protected boolean saveFeatures(EObject o, boolean attributesOnly) {
-				String text = DMLTextUtil.getText(o);
+				String text = DscriptUtil.getText(o);
 				if (text != null) {
 					doc.startElement("xmi:Extension");
-					doc.addAttribute("extender", DMLTextPackage.eNS_URI);
+					doc.addAttribute("extender", DscriptPackage.eNS_URI);
 					doc.startElement("text");
 					doc.endContentElement(escape.convertText(text));
 					doc.endElement();

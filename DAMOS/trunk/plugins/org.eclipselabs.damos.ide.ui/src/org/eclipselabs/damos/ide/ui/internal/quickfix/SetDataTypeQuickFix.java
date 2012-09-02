@@ -14,9 +14,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.graphics.Image;
 import org.eclipselabs.damos.dml.Inoutport;
-import org.eclipselabs.damos.dmltext.DMLTextFactory;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.dscript.DscriptFactory;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.util.DscriptUtil;
 import org.eclipselabs.damos.ide.core.validation.Problem;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 import org.eclipselabs.damos.ide.ui.quickfix.AbstractQuickFix;
@@ -57,11 +57,11 @@ public abstract class SetDataTypeQuickFix extends AbstractQuickFix {
 			
 			@Override
 			protected void doExecute() {
-				MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+				DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 				AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 				dataTypeSpecifier.setType(createDataType());
 				dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
-				DMLTextUtil.setText(dataTypeSpecification, getDataTypeName());
+				DscriptUtil.setText(dataTypeSpecification, getDataTypeName());
 
 				Inoutport inoutport = (Inoutport) editingDomain.getResourceSet().getEObject(problem.getElementURI(), true);
 				inoutport.setDataType(dataTypeSpecification);

@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
+import org.eclipselabs.damos.dscript.parser.antlr.ValueSpecificationParser;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 
 import com.google.inject.Inject;
@@ -30,7 +30,7 @@ import com.google.inject.Inject;
 public class ValueSpecificationUpdateValueStrategy extends UpdateValueStrategy {
 
 	@Inject
-	private MscriptValueSpecificationParser parser;
+	private ValueSpecificationParser parser;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.databinding.UpdateValueStrategy#convert(java.lang.Object)

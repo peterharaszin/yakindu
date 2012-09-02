@@ -10,14 +10,14 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.diagram.ui.editparts.ITextualContentEditPart;
-import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
+import org.eclipselabs.damos.dscript.parser.antlr.ValueSpecificationParser;
 
 import com.google.inject.Inject;
 
 public class ValueSpecificationDirectEditPolicy extends org.eclipse.gef.editpolicies.DirectEditPolicy {
 
 	@Inject
-	private MscriptValueSpecificationParser parser;
+	private ValueSpecificationParser parser;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.editpolicies.DirectEditPolicy#getDirectEditCommand(org.eclipse.gef.requests.DirectEditRequest)

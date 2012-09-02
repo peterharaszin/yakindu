@@ -60,10 +60,10 @@ import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
-import org.eclipselabs.damos.dmltext.DMLTextFactory;
-import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.dscript.DscriptFactory;
+import org.eclipselabs.damos.dscript.DscriptDataTypeSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
+import org.eclipselabs.damos.dscript.util.DscriptUtil;
 import org.eclipselabs.damos.execution.ExecutionTestsPlugin;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
@@ -149,7 +149,7 @@ public abstract class AbstractExecutionTest {
 		connection.setTarget(target);
 	}
 
-	protected Outport createOutport(String name, MscriptDataTypeSpecification dataTypeSpecification) {
+	protected Outport createOutport(String name, DscriptDataTypeSpecification dataTypeSpecification) {
 		Outport outport = DMLFactory.eINSTANCE.createOutport();
 		Input input = DMLFactory.eINSTANCE.createInput();
 		input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
@@ -160,11 +160,11 @@ public abstract class AbstractExecutionTest {
 		return outport;
 	}
 
-	protected Inport createInport(String name, MscriptDataTypeSpecification dataTypeSpecification) {
+	protected Inport createInport(String name, DscriptDataTypeSpecification dataTypeSpecification) {
 		return createInport(name, dataTypeSpecification, -1);
 	}
 	
-	protected Inport createInport(String name, MscriptDataTypeSpecification dataTypeSpecification, int sampleTime) {
+	protected Inport createInport(String name, DscriptDataTypeSpecification dataTypeSpecification, int sampleTime) {
 		Inport inport = DMLFactory.eINSTANCE.createInport();
 		Output output = DMLFactory.eINSTANCE.createOutput();
 		output.getPorts().add(DMLFactory.eINSTANCE.createOutputPort());
@@ -180,45 +180,45 @@ public abstract class AbstractExecutionTest {
 	
 	protected void setSynchronousTimingConstraint(Component component, double sampleTime) {
 		SynchronousTimingConstraint timingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
-		timingConstraint.setSampleTime(DMLTextUtil.createValueSpecification(sampleTime));
+		timingConstraint.setSampleTime(DscriptUtil.createValueSpecification(sampleTime));
 		component.setTimingConstraint(timingConstraint);
 	}
 	
-	protected MscriptDataTypeSpecification createDataTypeSpecification(String dataType) {
-		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+	protected DscriptDataTypeSpecification createDataTypeSpecification(String dataType) {
+		DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 		dataTypeSpecification.setTypeSpecifier(parseDataTypeSpecifier(dataType));
 		return dataTypeSpecification;
 	}
 
-	protected MscriptDataTypeSpecification createRealTypeSpecification() {
-		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+	protected DscriptDataTypeSpecification createRealTypeSpecification() {
+		DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createRealType());
 		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
-		DMLTextUtil.setText(dataTypeSpecification, "real");
+		DscriptUtil.setText(dataTypeSpecification, "real");
 		return dataTypeSpecification;
 	}
 
-	protected MscriptDataTypeSpecification createIntegerTypeSpecification() {
-		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+	protected DscriptDataTypeSpecification createIntegerTypeSpecification() {
+		DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createIntegerType());
 		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
-		DMLTextUtil.setText(dataTypeSpecification, "int");
+		DscriptUtil.setText(dataTypeSpecification, "int");
 		return dataTypeSpecification;
 	}
 
-	protected MscriptDataTypeSpecification createBooleanTypeSpecification() {
-		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+	protected DscriptDataTypeSpecification createBooleanTypeSpecification() {
+		DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(MscriptFactory.eINSTANCE.createBooleanType());
 		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
-		DMLTextUtil.setText(dataTypeSpecification, "boolean");
+		DscriptUtil.setText(dataTypeSpecification, "boolean");
 		return dataTypeSpecification;
 	}
 
-	protected MscriptDataTypeSpecification createArrayTypeSpecification(Type elementType, int... sizes) {
-		MscriptDataTypeSpecification dataTypeSpecification = DMLTextFactory.eINSTANCE.createMscriptDataTypeSpecification();
+	protected DscriptDataTypeSpecification createArrayTypeSpecification(Type elementType, int... sizes) {
+		DscriptDataTypeSpecification dataTypeSpecification = DscriptFactory.eINSTANCE.createDscriptDataTypeSpecification();
 		AnonymousTypeSpecifier dataTypeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
 		dataTypeSpecifier.setType(TypeUtil.createArrayType(elementType, sizes));
 		dataTypeSpecification.setTypeSpecifier(dataTypeSpecifier);
@@ -277,7 +277,7 @@ public abstract class AbstractExecutionTest {
 		ActionLink actionLink = DMLFactory.eINSTANCE.createActionLink();
 		actionLink.setChoice(choice);
 		actionLink.setAction(action);
-		actionLink.setCondition(DMLTextUtil.createValueSpecification(condition));
+		actionLink.setCondition(DscriptUtil.createValueSpecification(condition));
 		return actionLink;
 	}
 	
@@ -327,27 +327,27 @@ public abstract class AbstractExecutionTest {
 		output.createPort();
 		latch.getOutputs().add(output);
 		
-		latch.setInitialValue(DMLTextUtil.createValueSpecification(initialValue));
+		latch.setInitialValue(DscriptUtil.createValueSpecification(initialValue));
 		system.getComponents().add(latch);
 		return latch;
 	}
 
 	protected void setArgument(Block block, String parameterName, long value) {
-		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
+		block.getArgument(parameterName).setValue(DscriptUtil.createValueSpecification(value));
 	}
 
 	protected void setArgument(Block block, String parameterName, double value) {
-		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
+		block.getArgument(parameterName).setValue(DscriptUtil.createValueSpecification(value));
 	}
 
 	protected void setArgument(Block block, String parameterName, boolean value) {
-		block.getArgument(parameterName).setValue(DMLTextUtil.createValueSpecification(value));
+		block.getArgument(parameterName).setValue(DscriptUtil.createValueSpecification(value));
 	}
 
 	protected void setArgument(Block block, String parameterName, String expressionString) {
-		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
+		DscriptValueSpecification valueSpecification = DscriptFactory.eINSTANCE.createDscriptValueSpecification();
 		valueSpecification.setExpression(parseExpression(expressionString));
-		DMLTextUtil.setText(valueSpecification, expressionString);
+		DscriptUtil.setText(valueSpecification, expressionString);
 		block.getArgument(parameterName).setValue(valueSpecification);
 	}
 

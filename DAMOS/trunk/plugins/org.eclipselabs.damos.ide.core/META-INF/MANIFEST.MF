@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xtext.builder;bundle-version="2.0.1",
  org.eclipselabs.damos.common;bundle-version="0.3.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
- org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
+ org.eclipselabs.damos.dscript;bundle-version="0.3.0",
  org.eclipselabs.damos.diagram.core;bundle-version="0.3.0",
  org.eclipselabs.damos.execution;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0"

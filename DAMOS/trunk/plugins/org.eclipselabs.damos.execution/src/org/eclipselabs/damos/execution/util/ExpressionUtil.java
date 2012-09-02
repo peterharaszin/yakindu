@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ParameterizedElement;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -38,11 +38,11 @@ public class ExpressionUtil {
 	public static IValue evaluateArgumentExpression(ParameterizedElement element, String parameterName) throws CoreException {
 		Argument argument = element.getArgument(parameterName);
 		if (argument != null) {
-			if (!(argument.getValue() instanceof MscriptValueSpecification)) {
+			if (!(argument.getValue() instanceof DscriptValueSpecification)) {
 				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: Invalid value"));
 			}
 			try {
-				return evaluateExpression(((MscriptValueSpecification) argument.getValue()).getExpression());
+				return evaluateExpression(((DscriptValueSpecification) argument.getValue()).getExpression());
 			} catch (CoreException e) {
 				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: " + e.getStatus().getMessage()));
 			}

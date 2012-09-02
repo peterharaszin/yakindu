@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Latch;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
 import org.eclipselabs.damos.execution.LatchNode;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.util.ExpressionUtil;
@@ -43,10 +43,10 @@ public class LatchSimulationObject extends AbstractSimulationObject {
 		if (latch.getInitialValue() == null) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No initial value set"));
 		}
-		if (!(latch.getInitialValue() instanceof MscriptValueSpecification)) {
+		if (!(latch.getInitialValue() instanceof DscriptValueSpecification)) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Invalid initial value"));
 		}
-		value = ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression());
+		value = ExpressionUtil.evaluateExpression(((DscriptValueSpecification) latch.getInitialValue()).getExpression());
 	}
 	
 	@Override

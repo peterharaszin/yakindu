@@ -12,8 +12,8 @@ import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.util.IElementInitializer;
-import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
+import org.eclipselabs.damos.dscript.DscriptValueSpecification;
+import org.eclipselabs.damos.dscript.util.DscriptUtil;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ElementInitializer implements IElementInitializer {
@@ -22,7 +22,7 @@ public class ElementInitializer implements IElementInitializer {
 		if (element instanceof SynchronousTimingConstraint
 				&& feature == DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime()) {
 			SynchronousTimingConstraint stc = (SynchronousTimingConstraint) element;
-			MscriptValueSpecification valueSpecification = DMLTextUtil.createValueSpecification(1, TypeUtil.createUnit(resourceSet, "s"));
+			DscriptValueSpecification valueSpecification = DscriptUtil.createValueSpecification(1, TypeUtil.createUnit(resourceSet, "s"));
 			stc.setSampleTime(valueSpecification);
 			return true;
 		}
@@ -34,16 +34,16 @@ public class ElementInitializer implements IElementInitializer {
 			
 	    	switch (actionLinks.size()) {
 	    	case 0:
-	    		actionLink.setCondition(DMLTextUtil.createValueSpecification(true));
+	    		actionLink.setCondition(DscriptUtil.createValueSpecification(true));
 	    		break;
 	    	case 1:
 	    		ValueSpecification conditionSpecification = actionLinks.get(0).getCondition();
 	    		if (conditionSpecification != null) {
 					String condition = conditionSpecification.stringValue();
 					if (Boolean.TRUE.toString().equals(condition)) {
-						actionLink.setCondition(DMLTextUtil.createValueSpecification(false));
+						actionLink.setCondition(DscriptUtil.createValueSpecification(false));
 		    		} else if (Boolean.FALSE.toString().equals(condition)) {
-		    			actionLink.setCondition(DMLTextUtil.createValueSpecification(true));
+		    			actionLink.setCondition(DscriptUtil.createValueSpecification(true));
 		    		}
 	    		}
 	    		break;
@@ -54,7 +54,7 @@ public class ElementInitializer implements IElementInitializer {
 		
 		if (element instanceof Latch && feature == DMLPackage.eINSTANCE.getLatch_InitialValue()) {
 			Latch latch = (Latch) element;
-			latch.setInitialValue(DMLTextUtil.createValueSpecification(0));
+			latch.setInitialValue(DscriptUtil.createValueSpecification(0));
 			return true;
 		}
 		

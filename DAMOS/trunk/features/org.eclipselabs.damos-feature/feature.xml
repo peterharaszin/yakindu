@@ -34,14 +34,14 @@
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.dmltext"
+         id="org.eclipselabs.damos.dscript"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.dmltext.ui"
+         id="org.eclipselabs.damos.dscript.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

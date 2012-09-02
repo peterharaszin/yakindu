@@ -13,6 +13,8 @@ package org.eclipselabs.damos.dml.resource;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -68,6 +70,23 @@ public class DMLResource extends XMIResourceImpl {
 		 */
 		public XMIHelper(XMLResource resource) {
 			super(resource);
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl#getType(org.eclipse.emf.ecore.EFactory, java.lang.String)
+		 */
+		@Override
+		public EClassifier getType(EFactory eFactory, String typeName) {
+			if ("MscriptValueSpecification".equals(typeName)) {
+				typeName = "DscriptValueSpecification";
+			} else if ("MscriptDataTypeSpecification".equals(typeName)) {
+				typeName = "DscriptDataTypeSpecification";
+			} else if ("MscriptBlockType".equals(typeName)) {
+				typeName = "DscriptBlockType";
+			} else if ("MscriptSystemInterface".equals(typeName)) {
+				typeName = "DscriptSystemInterface";
+			}
+			return super.getType(eFactory, typeName);
 		}
 	
 		/* (non-Javadoc)

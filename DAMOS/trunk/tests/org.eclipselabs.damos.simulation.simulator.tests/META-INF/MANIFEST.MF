@@ -12,7 +12,7 @@ Require-Bundle: org.junit;bundle-version="4.8.0",
  org.eclipselabs.damos.dml;bundle-version="0.3.0",
  org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
  org.eclipselabs.damos.mscript;bundle-version="0.3.0",
- org.eclipselabs.damos.dmltext;bundle-version="0.3.0",
+ org.eclipselabs.damos.dscript;bundle-version="0.3.0",
  org.eclipselabs.damos.execution.tests;bundle-version="0.3.0",
  org.eclipselabs.damos.simulation.simulator;bundle-version="0.3.0"
 Export-Package: org.eclipselabs.damos.simulation.simulator

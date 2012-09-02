@@ -105,11 +105,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="InputParameterDeclaration" abstract="true"
       eSuperTypes="#//ParameterDeclaration">
     <eOperations name="isConstant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="getDefaultExpression" eType="#//Expression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputParameterDeclaration" abstract="true"
       eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="StandardInputParameterDeclaration" eSuperTypes="#//StandardParameterDeclaration #//InputParameterDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StandardOutputParameterDeclaration"
       eSuperTypes="#//StandardParameterDeclaration #//OutputParameterDeclaration"/>

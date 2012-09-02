@@ -814,13 +814,22 @@ public interface MscriptPackage extends EPackage {
 	int STANDARD_INPUT_PARAMETER_DECLARATION__CONSTANT = STANDARD_PARAMETER_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STANDARD_INPUT_PARAMETER_DECLARATION__DEFAULT_EXPRESSION = STANDARD_PARAMETER_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Standard Input Parameter Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STANDARD_INPUT_PARAMETER_DECLARATION_FEATURE_COUNT = STANDARD_PARAMETER_DECLARATION_FEATURE_COUNT + 1;
+	int STANDARD_INPUT_PARAMETER_DECLARATION_FEATURE_COUNT = STANDARD_PARAMETER_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StandardOutputParameterDeclarationImpl <em>Standard Output Parameter Declaration</em>}' class.
@@ -5208,6 +5217,17 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getStandardInputParameterDeclaration_Constant();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.StandardInputParameterDeclaration#getDefaultExpression <em>Default Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Default Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.StandardInputParameterDeclaration#getDefaultExpression()
+	 * @see #getStandardInputParameterDeclaration()
+	 * @generated
+	 */
+	EReference getStandardInputParameterDeclaration_DefaultExpression();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StandardOutputParameterDeclaration <em>Standard Output Parameter Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8237,6 +8257,14 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STANDARD_INPUT_PARAMETER_DECLARATION__CONSTANT = eINSTANCE.getStandardInputParameterDeclaration_Constant();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STANDARD_INPUT_PARAMETER_DECLARATION__DEFAULT_EXPRESSION = eINSTANCE.getStandardInputParameterDeclaration_DefaultExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StandardOutputParameterDeclarationImpl <em>Standard Output Parameter Declaration</em>}' class.

@@ -85,7 +85,7 @@ enum FunctionKind:
 	Synchronous='synchronous' | Continuous='continuous';
 	
 StandardInputParameterDeclaration:
-	(constant?='const')? name=ValidID;
+	(constant?='const')? name=ValidID ('=' defaultExpression=Expression)?;
 
 StandardOutputParameterDeclaration:
 	name=ValidID;

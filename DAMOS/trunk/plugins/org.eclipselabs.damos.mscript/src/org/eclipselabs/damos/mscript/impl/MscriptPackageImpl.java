@@ -1496,6 +1496,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStandardInputParameterDeclaration_DefaultExpression() {
+		return (EReference)standardInputParameterDeclarationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStandardOutputParameterDeclaration() {
 		return standardOutputParameterDeclarationEClass;
 	}
@@ -3786,6 +3795,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		standardInputParameterDeclarationEClass = createEClass(STANDARD_INPUT_PARAMETER_DECLARATION);
 		createEAttribute(standardInputParameterDeclarationEClass, STANDARD_INPUT_PARAMETER_DECLARATION__CONSTANT);
+		createEReference(standardInputParameterDeclarationEClass, STANDARD_INPUT_PARAMETER_DECLARATION__DEFAULT_EXPRESSION);
 
 		standardOutputParameterDeclarationEClass = createEClass(STANDARD_OUTPUT_PARAMETER_DECLARATION);
 
@@ -4384,10 +4394,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		addEOperation(inputParameterDeclarationEClass, ecorePackage.getEBoolean(), "isConstant", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(inputParameterDeclarationEClass, this.getExpression(), "getDefaultExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(outputParameterDeclarationEClass, OutputParameterDeclaration.class, "OutputParameterDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(standardInputParameterDeclarationEClass, StandardInputParameterDeclaration.class, "StandardInputParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStandardInputParameterDeclaration_Constant(), ecorePackage.getEBoolean(), "constant", null, 0, 1, StandardInputParameterDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStandardInputParameterDeclaration_DefaultExpression(), this.getExpression(), null, "defaultExpression", null, 0, 1, StandardInputParameterDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(standardOutputParameterDeclarationEClass, StandardOutputParameterDeclaration.class, "StandardOutputParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

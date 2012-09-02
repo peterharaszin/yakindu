@@ -116,6 +116,7 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStandardFunctionDeclarationAccess().getGroup_4_1(), "rule__StandardFunctionDeclaration__Group_4_1__0");
 					put(grammarAccess.getStandardFunctionDeclarationAccess().getGroup_8(), "rule__StandardFunctionDeclaration__Group_8__0");
 					put(grammarAccess.getStandardInputParameterDeclarationAccess().getGroup(), "rule__StandardInputParameterDeclaration__Group__0");
+					put(grammarAccess.getStandardInputParameterDeclarationAccess().getGroup_2(), "rule__StandardInputParameterDeclaration__Group_2__0");
 					put(grammarAccess.getCheckAccess().getGroup(), "rule__Check__Group__0");
 					put(grammarAccess.getCheckAccess().getGroup_2(), "rule__Check__Group_2__0");
 					put(grammarAccess.getCheckAccess().getGroup_2_1(), "rule__Check__Group_2_1__0");
@@ -312,6 +313,7 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStandardFunctionDeclarationAccess().getEquationsAssignment_10_4(), "rule__StandardFunctionDeclaration__EquationsAssignment_10_4");
 					put(grammarAccess.getStandardInputParameterDeclarationAccess().getConstantAssignment_0(), "rule__StandardInputParameterDeclaration__ConstantAssignment_0");
 					put(grammarAccess.getStandardInputParameterDeclarationAccess().getNameAssignment_1(), "rule__StandardInputParameterDeclaration__NameAssignment_1");
+					put(grammarAccess.getStandardInputParameterDeclarationAccess().getDefaultExpressionAssignment_2_1(), "rule__StandardInputParameterDeclaration__DefaultExpressionAssignment_2_1");
 					put(grammarAccess.getStandardOutputParameterDeclarationAccess().getNameAssignment(), "rule__StandardOutputParameterDeclaration__NameAssignment");
 					put(grammarAccess.getCheckAccess().getInputArgumentsAssignment_2_0(), "rule__Check__InputArgumentsAssignment_2_0");
 					put(grammarAccess.getCheckAccess().getInputArgumentsAssignment_2_1_1(), "rule__Check__InputArgumentsAssignment_2_1_1");

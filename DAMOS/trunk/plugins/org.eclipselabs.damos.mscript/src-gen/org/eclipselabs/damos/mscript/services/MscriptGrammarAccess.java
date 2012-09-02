@@ -597,12 +597,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConstantConstKeyword_0_0 = (Keyword)cConstantAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDefaultExpressionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDefaultExpressionExpressionParserRuleCall_2_1_0 = (RuleCall)cDefaultExpressionAssignment_2_1.eContents().get(0);
 		
 		//StandardInputParameterDeclaration:
-		//	constant?="const"? name=ValidID;
+		//	constant?="const"? name=ValidID ("=" defaultExpression=Expression)?;
 		public ParserRule getRule() { return rule; }
 
-		//constant?="const"? name=ValidID
+		//constant?="const"? name=ValidID ("=" defaultExpression=Expression)?
 		public Group getGroup() { return cGroup; }
 
 		//constant?="const"?
@@ -616,6 +620,18 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
+
+		//("=" defaultExpression=Expression)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_0() { return cEqualsSignKeyword_2_0; }
+
+		//defaultExpression=Expression
+		public Assignment getDefaultExpressionAssignment_2_1() { return cDefaultExpressionAssignment_2_1; }
+
+		//Expression
+		public RuleCall getDefaultExpressionExpressionParserRuleCall_2_1_0() { return cDefaultExpressionExpressionParserRuleCall_2_1_0; }
 	}
 
 	public class StandardOutputParameterDeclarationElements extends AbstractParserRuleElementFinder {
@@ -5985,7 +6001,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StandardInputParameterDeclaration:
-	//	constant?="const"? name=ValidID;
+	//	constant?="const"? name=ValidID ("=" defaultExpression=Expression)?;
 	public StandardInputParameterDeclarationElements getStandardInputParameterDeclarationAccess() {
 		return (pStandardInputParameterDeclaration != null) ? pStandardInputParameterDeclaration : (pStandardInputParameterDeclaration = new StandardInputParameterDeclarationElements());
 	}

@@ -12,6 +12,7 @@ package org.eclipselabs.damos.mscript;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.StandardInputParameterDeclaration#isConstant <em>Constant</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.StandardInputParameterDeclaration#getDefaultExpression <em>Default Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,5 +46,31 @@ public interface StandardInputParameterDeclaration extends StandardParameterDecl
 	 * @generated
 	 */
 	void setConstant(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Expression</em>' containment reference.
+	 * @see #setDefaultExpression(Expression)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStandardInputParameterDeclaration_DefaultExpression()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getDefaultExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.StandardInputParameterDeclaration#getDefaultExpression <em>Default Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Expression</em>' containment reference.
+	 * @see #getDefaultExpression()
+	 * @generated
+	 */
+	void setDefaultExpression(Expression value);
 
 } // StandardInputParameterDeclaration

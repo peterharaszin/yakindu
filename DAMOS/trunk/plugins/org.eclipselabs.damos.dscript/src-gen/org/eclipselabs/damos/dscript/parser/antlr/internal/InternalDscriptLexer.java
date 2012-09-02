@@ -2485,8 +2485,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11018:8: ( 'n' )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11018:10: 'n'
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:8: ( 'n' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:10: 'n'
             {
             match('n'); 
 
@@ -2505,8 +2505,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11020:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11020:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11042:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11042:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -2533,8 +2533,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11022:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11022:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11044:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11044:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2561,11 +2561,11 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_EXP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11024:10: ( RULE_E ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11024:12: RULE_E ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11046:10: ( RULE_E ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11046:12: RULE_E ( '0' .. '9' )+
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11024:19: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11046:19: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2579,7 +2579,7 @@ public class InternalDscriptLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11024:20: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11046:20: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2611,8 +2611,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11026:12: ( RULE_EXP RULE_IJ )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11026:14: RULE_EXP RULE_IJ
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11048:12: ( RULE_EXP RULE_IJ )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11048:14: RULE_EXP RULE_IJ
             {
             mRULE_EXP(); 
             mRULE_IJ(); 
@@ -2632,8 +2632,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11028:10: ( '1' )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11028:12: '1'
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11050:10: ( '1' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11050:12: '1'
             {
             match('1'); 
 
@@ -2652,10 +2652,10 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11030:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11030:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11052:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11052:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11030:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11052:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -2669,7 +2669,7 @@ public class InternalDscriptLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11030:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11052:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2701,10 +2701,10 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11032:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11032:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11054:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11054:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11032:11: ( '_' )?
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11054:11: ( '_' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -2713,7 +2713,7 @@ public class InternalDscriptLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11032:11: '_'
+                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11054:11: '_'
                     {
                     match('_'); 
 
@@ -2731,7 +2731,7 @@ public class InternalDscriptLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11032:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11054:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop4:
             do {
                 int alt4=2;
@@ -2780,11 +2780,11 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11034:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11034:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11056:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11056:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11034:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11056:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop5:
             do {
                 int alt5=3;
@@ -2800,7 +2800,7 @@ public class InternalDscriptLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11034:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11056:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2815,7 +2815,7 @@ public class InternalDscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11034:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11056:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2853,8 +2853,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_CONSTANT_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11036:22: ( '\\u00AD' )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11036:24: '\\u00AD'
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11058:22: ( '\\u00AD' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11058:24: '\\u00AD'
             {
             match('\u00AD'); 
 
@@ -2873,12 +2873,12 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11038:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11038:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11060:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11060:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11038:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11060:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -2903,7 +2903,7 @@ public class InternalDscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11038:52: .
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11060:52: .
             	    {
             	    matchAny(); 
 
@@ -2933,12 +2933,12 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -2951,7 +2951,7 @@ public class InternalDscriptLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2971,7 +2971,7 @@ public class InternalDscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2980,9 +2980,9 @@ public class InternalDscriptLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2991,7 +2991,7 @@ public class InternalDscriptLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11040:41: '\\r'
+                            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11062:41: '\\r'
                             {
                             match('\r'); 
 
@@ -3023,10 +3023,10 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11042:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11042:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11064:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11064:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11042:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11064:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -3080,8 +3080,8 @@ public class InternalDscriptLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11044:16: ( . )
-            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11044:18: .
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11066:16: ( . )
+            // ../org.eclipselabs.damos.dscript/src-gen/org/eclipselabs/damos/dscript/parser/antlr/internal/InternalDscript.g:11066:18: .
             {
             matchAny(); 
 

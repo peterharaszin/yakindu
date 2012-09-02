@@ -1621,7 +1621,7 @@ public class DscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StandardInputParameterDeclaration:
-	//	constant?="const"? name=ValidID;
+	//	constant?="const"? name=ValidID ("=" defaultExpression=Expression)?;
 	public MscriptGrammarAccess.StandardInputParameterDeclarationElements getStandardInputParameterDeclarationAccess() {
 		return gaMscript.getStandardInputParameterDeclarationAccess();
 	}

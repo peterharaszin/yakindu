@@ -8,6 +8,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.impl.InputDefinitionImpl;
 import org.eclipselabs.damos.dscript.DscriptPackage;
 import org.eclipselabs.damos.dscript.DscriptInputDefinition;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +46,13 @@ public class DscriptInputDefinitionImpl extends InputDefinitionImpl implements D
 	 */
 	public boolean isConstant() {
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.InputParameterDeclaration#getDefaultExpression()
+	 */
+	public Expression getDefaultExpression() {
+		return null;
 	}
 
 	/**

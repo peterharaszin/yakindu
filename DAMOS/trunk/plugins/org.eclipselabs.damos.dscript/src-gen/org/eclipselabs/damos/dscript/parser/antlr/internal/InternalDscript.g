@@ -2936,7 +2936,29 @@ ruleStandardInputParameterDeclaration returns [EObject current=null]
 	    }
 
 )
-))
+)(	otherlv_2='=' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getStandardInputParameterDeclarationAccess().getEqualsSignKeyword_2_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStandardInputParameterDeclarationAccess().getDefaultExpressionExpressionParserRuleCall_2_1_0()); 
+	    }
+		lv_defaultExpression_3_0=ruleExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStandardInputParameterDeclarationRule());
+	        }
+       		set(
+       			$current, 
+       			"defaultExpression",
+        		lv_defaultExpression_3_0, 
+        		"Expression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
 ;
 
 

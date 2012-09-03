@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipselabs.damos.dscript.DscriptPackage;
 import org.eclipselabs.damos.dscript.InputMessageParameterDeclaration;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +51,14 @@ public class InputMessageParameterDeclarationImpl extends ImplicitInputParameter
 	@Override
 	public boolean isConstant() {
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.impl.InputParameterDeclarationImpl#getDefaultExpression()
+	 */
+	@Override
+	public Expression getDefaultExpression() {
+		return null;
 	}
 	
 	/* (non-Javadoc)

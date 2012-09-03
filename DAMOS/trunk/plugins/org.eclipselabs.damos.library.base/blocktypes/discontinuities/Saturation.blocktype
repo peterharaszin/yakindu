@@ -9,7 +9,7 @@ blockType Saturation {
 	parameter lowerLimit = -1
 
 	behavior {
-		check(real, <1>, <-1>) -> real
+		check(real) -> real
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

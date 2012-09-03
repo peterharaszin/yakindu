@@ -10,7 +10,7 @@ blockType Round {
 	}
 
 	behavior {
-		check(real, <0>) -> int
+		check(real) -> int
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

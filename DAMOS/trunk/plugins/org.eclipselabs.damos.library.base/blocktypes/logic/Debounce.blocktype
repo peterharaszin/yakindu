@@ -9,7 +9,7 @@ synchronous blockType Debounce {
 	parameter delay = 0.05(s)
 
 	behavior {
-		check(boolean, <false>, <0.05(s)>) -> boolean
+		check(boolean) -> boolean
 
 		static assert initialOutput is boolean :
 			error "Initial output must be boolean value"

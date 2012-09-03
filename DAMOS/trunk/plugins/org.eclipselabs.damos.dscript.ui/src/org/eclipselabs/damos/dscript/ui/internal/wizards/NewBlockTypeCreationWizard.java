@@ -44,7 +44,7 @@ public class NewBlockTypeCreationWizard extends NewDscriptCreationWizard {
 		appendable.append("\toutput y\n\n");
 		appendable.append("\tparameter gain = 1\n\n");
 		appendable.append("\tbehavior {\n");
-		appendable.append("\t\tcheck(real, <1>) -> real\n\n");		
+		appendable.append("\t\tcheck(real) -> real\n\n");		
 		appendable.append("\t\tstatic assert gain is real(?) :\n");
 		appendable.append("\t\t\terror \"Gain must be real value\"\n\n");
 		appendable.append("\t\tstatic assert x is real(?) :\n");

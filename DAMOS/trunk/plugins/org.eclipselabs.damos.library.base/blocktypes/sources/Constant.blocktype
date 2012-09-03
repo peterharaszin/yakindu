@@ -7,7 +7,7 @@ blockType Constant {
 	parameter value = 1
 
 	behavior {
-		check(<1>) -> int
+		check() -> int
 		
 		eq y = value
 	}

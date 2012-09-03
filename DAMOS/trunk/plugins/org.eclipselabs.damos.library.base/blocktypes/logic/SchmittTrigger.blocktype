@@ -10,7 +10,7 @@ blockType SchmittTrigger {
 	parameter initialOutput = false predefined { true, false }
 
 	behavior {
-		check(real, <1>, <-1>, <true>) -> boolean
+		check(real) -> boolean
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

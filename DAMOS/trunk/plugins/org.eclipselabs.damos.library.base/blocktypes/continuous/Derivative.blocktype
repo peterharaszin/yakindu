@@ -10,8 +10,8 @@ continuous blockType Derivative {
 	parameter timeConstant = 0.01(s)
 
 	behavior {
-		check(real, <1(s)>, <0>, <0.01(s)>) -> real
-		check(real(m), <1(s)>, <0(m)>, <0.01(s)>) -> real(m)
+		check(real) -> real
+		check(real(m), <1(s)>, <0(m)>) -> real(m)
 
 		static assert u is real(?) :
 			error "Input value must be numeric"

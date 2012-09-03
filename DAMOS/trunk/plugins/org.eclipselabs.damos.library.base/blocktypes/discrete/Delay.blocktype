@@ -11,7 +11,7 @@ blockType Delay {
 	parameter delay = 1
 
 	behavior {
-		check(real, <0>, <1>) -> real
+		check(real) -> real
 		
 		static assert delay == 1 :
 			error "Only delay value '1' is supported currently"

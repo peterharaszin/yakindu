@@ -11,7 +11,7 @@ continuous blockType Integrator {
 	parameter initialCondition = 0
 
 	behavior {
-		check(real, <1(1/s)>, <0>) -> real
+		check(real) -> real
 		check(real(m), <1(1/s)>, <0(m)>) -> real(m)
 
 		static assert u is real(?) :

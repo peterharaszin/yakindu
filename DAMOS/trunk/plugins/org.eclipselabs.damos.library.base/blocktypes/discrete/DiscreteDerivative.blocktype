@@ -9,7 +9,7 @@ synchronous blockType DiscreteDerivative {
 	parameter initialCondition = 0
 
 	behavior {
-		check(real, <1(s)>, <0>) -> real
+		check(real) -> real
 		
 		static assert u is real(?) :
 			error "Input value must be numeric"

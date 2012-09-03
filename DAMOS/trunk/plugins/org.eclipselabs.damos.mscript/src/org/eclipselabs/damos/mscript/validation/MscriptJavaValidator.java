@@ -8,6 +8,8 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
@@ -17,11 +19,13 @@ import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.CheckArgument;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.DeclaredTypeSpecifier;
 import org.eclipselabs.damos.mscript.DerivedUnitDeclaration;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ExpressionCheckArgument;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -34,6 +38,7 @@ import org.eclipselabs.damos.mscript.PrimitiveType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.TypeCheckArgument;
 import org.eclipselabs.damos.mscript.TypeDeclaration;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.UnitDeclaration;
@@ -48,7 +53,10 @@ import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
+import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
+
+import com.google.common.collect.Lists;
 
 public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	
@@ -116,9 +124,21 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	@Check
-	public void checkConstantInputParameterDeclarationDefaultExpression(InputParameterDeclaration inputParameterDeclaration) {
+	public void checkInputParameterDeclarationDefaultExpression(InputParameterDeclaration inputParameterDeclaration) {
 		if (!inputParameterDeclaration.isConstant() && inputParameterDeclaration.getDefaultExpression() != null) {
 			error("Default expression can only be specified for constant input parameters", inputParameterDeclaration.getDefaultExpression(), null, -1);
+		}
+	}
+	
+	@Check
+	public void checkInputParameterDeclarationDefaultExpressionOrder(FunctionDeclaration functionDeclaration) {
+		boolean hasNonDefaultParameter = false;
+		for (InputParameterDeclaration inputParameterDeclaration : Lists.reverse(functionDeclaration.getInputParameterDeclarations())) {
+			if (inputParameterDeclaration.getDefaultExpression() == null) {
+				hasNonDefaultParameter = true;
+			} else if (inputParameterDeclaration.isConstant() && hasNonDefaultParameter) {
+				error("Input parameters with default expressions must be last parameters", inputParameterDeclaration, null, -1);
+			}
 		}
 	}
 	
@@ -211,20 +231,13 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 			if (!checkFunctionCheckSignatures(check)) {
 				continue;
 			}
-				
+			
 			IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-
-			Iterator<InputParameterDeclaration> constantParameterIt = functionDeclaration.getConstantInputParameterDeclarations().iterator();
-			for (Expression argument : check.getExpressionArguments()) {
-				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), argument);
-				staticEvaluationResult.setValue(constantParameterIt.next(), staticEvaluationResult.getValue(argument));
+			
+			if (!evaluateCheckInputArguments(check, staticEvaluationResult)) {
+				continue;
 			}
 			
-			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getNonConstantInputParameterDeclarations().iterator();
-			for (TypeSpecifier typeSpecifier : check.getInputTypeSpecifiers()) {
-				staticEvaluationResult.setValue(inputParameterIt.next(), new AnyValue(new ComputationContext(), typeSpecifier.getType()));
-			}
-
 			new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
 			
 			if (staticEvaluationResult.getStatus().getSeverity() < IStatus.ERROR) {
@@ -242,20 +255,91 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		
 	}
 
+	/**
+	 * @param check
+	 * @param staticEvaluationResult
+	 * @return
+	 */
+	private boolean evaluateCheckInputArguments(org.eclipselabs.damos.mscript.Check check,
+			IStaticEvaluationResult staticEvaluationResult) {
+		Iterator<CheckArgument> argumentIt = check.getInputArguments().iterator();
+		for (InputParameterDeclaration parameter : check.getFunction().getInputParameterDeclarations()) {
+			CheckArgument argument = argumentIt.hasNext() ? argumentIt.next() : null;
+			if (parameter.isConstant()) {
+				Expression expression = null;
+				if (argument == null) {
+					expression = parameter.getDefaultExpression();
+				} else if (argument instanceof ExpressionCheckArgument) {
+					expression = ((ExpressionCheckArgument) argument).getExpression();
+				}
+				if (expression == null) {
+					return false;
+				}
+				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+				staticEvaluationResult.setValue(parameter, value);
+			} else {
+				if (!(argument instanceof TypeCheckArgument)) {
+					return false;
+				}
+				TypeSpecifier typeSpecifier = ((TypeCheckArgument) argument).getTypeSpecifier();
+				staticEvaluationResult.setValue(parameter, new AnyValue(new ComputationContext(), typeSpecifier.getType()));
+			}
+		}
+		return true;
+	}
+
 	private boolean checkFunctionCheckSignatures(org.eclipselabs.damos.mscript.Check check) {
-		boolean result = true;
-		if (check.getExpressionArguments().size() != check.getFunction().getConstantInputParameterDeclarations().size()) {
-			error("Number of template arguments do not correspond to number of template parameters of " + check.getFunction().getName(), check, null, -1);
-			result = false;
-		}
-		if (check.getInputTypeSpecifiers().size() != check.getFunction().getNonConstantInputParameterDeclarations().size()) {
-			error("Number of input argument types do not correspond to number of input parameters of " + check.getFunction().getName(), check, null, -1);
-			result = false;
-		}
+		boolean result = checkCheckInputArguments(check);
+		
 		if (check.getOutputTypeSpecifiers().size() != check.getFunction().getOutputParameterDeclarations().size()) {
 			error("Number of output argument types do not correspond to number of output parameters of " + check.getFunction().getName(), check, null, -1);
 			result = false;
 		}
+
+		return result;
+	}
+	
+	private boolean checkCheckInputArguments(org.eclipselabs.damos.mscript.Check check) {
+		boolean result = true;
+		
+		Iterator<InputParameterDeclaration> parameterIt = check.getFunction().getInputParameterDeclarations().iterator();
+		for (CheckArgument argument : check.getInputArguments()) {
+			if (!parameterIt.hasNext()) {
+				error("Too many check input arguments specified", argument, null, -1);
+				return false;
+			}
+			InputParameterDeclaration parameter = parameterIt.next();
+			if (parameter.isConstant() && argument instanceof TypeCheckArgument) {
+				StringBuilder message = new StringBuilder("Check argument must be constant value expression");
+				Expression defaultExpression = parameter.getDefaultExpression();
+				if (defaultExpression != null) {
+					ICompositeNode node = NodeModelUtils.findActualNodeFor(defaultExpression);
+					if (node != null) {
+						String text = NodeModelUtils.getTokenText(node);
+						if (text != null) {
+							message.append(", e.g. '<");
+							message.append(text);
+							message.append(">'");
+						}
+					}
+				}
+				error(message.toString(), argument, null, -1);
+				result = false;
+			}
+			if (!parameter.isConstant() && argument instanceof ExpressionCheckArgument) {
+				error("Check argument must be type specifier", argument, null, -1);
+				result = false;
+			}
+		}
+		
+		if (parameterIt.hasNext()) {
+			InputParameterDeclaration parameter = parameterIt.next();
+			if (!parameter.isConstant() || parameter.getDefaultExpression() == null) {
+				error("At least " + MscriptUtil.getMandatoryInputParameterCount(check.getFunction()) + " input arguments required", check, null, -1);
+				return false;
+			}
+		}
+		
 		return result;
 	}
 	

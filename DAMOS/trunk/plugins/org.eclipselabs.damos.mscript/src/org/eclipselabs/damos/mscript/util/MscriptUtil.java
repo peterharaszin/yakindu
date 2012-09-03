@@ -21,6 +21,7 @@ import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -88,6 +89,17 @@ public class MscriptUtil {
 		RESERVED_WORDS.add("context");
 		RESERVED_WORDS.add("input");
 		RESERVED_WORDS.add("output");
+	}
+	
+	public static int getMandatoryInputParameterCount(FunctionDeclaration functionDeclaration) {
+		int i = 0;
+		for (InputParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
+			if (parameterDeclaration.isConstant() && parameterDeclaration.getDefaultExpression() != null) {
+				break;
+			}
+			++i;
+		}
+		return i;
 	}
 
 	public static FunctionDeclaration getFunctionDeclaration(Module module, String qualifiedName) {

@@ -9,7 +9,7 @@ blockType VectorScalarMultiply {
 	parameter gain2 = 1.7
 
 	behavior {
-		check(real[3], <1>, <1>) -> real[3]
+		check(real[3]) -> real[3]
 
 		static assert gain1 is real(?) :
 			error "Gain must be real value"

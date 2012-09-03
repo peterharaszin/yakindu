@@ -206,7 +206,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		}
 
 		Module module = (Module) parseResult.getRootASTElement();
-		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(module, functionName);
+		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDeclaration(module, functionName);
 		if (functionDeclaration == null) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Function '" + functionName + "' not found"));
 		}

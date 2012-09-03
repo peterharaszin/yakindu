@@ -90,11 +90,11 @@ public class MscriptUtil {
 		RESERVED_WORDS.add("output");
 	}
 
-	public static FunctionDeclaration getFunctionDefinition(Module module, String qualifiedName) {
-		return getFunctionDefinition(module.getDeclarations(), qualifiedName);
+	public static FunctionDeclaration getFunctionDeclaration(Module module, String qualifiedName) {
+		return getFunctionDeclaration(module.getDeclarations(), qualifiedName);
 	}
 	
-	public static FunctionDeclaration getFunctionDefinition(Collection<TopLevelDeclaration> topLevelDeclarations, String qualifiedName) {
+	public static FunctionDeclaration getFunctionDeclaration(Collection<TopLevelDeclaration> topLevelDeclarations, String qualifiedName) {
 		for (TopLevelDeclaration topLevelDeclaration : topLevelDeclarations) {
 			if (topLevelDeclaration instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) topLevelDeclaration;

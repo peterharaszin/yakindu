@@ -23,6 +23,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipselabs.damos.mscript.BuiltinDeclaration;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
+import org.eclipselabs.damos.mscript.ExpressionCheckArgument;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -98,6 +99,10 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 			INode node = NodeModelUtils.getNode(eObject);
 			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.STEP_EXPRESSION_ID);
 			proceed = false;
+		} else if (eObject instanceof ExpressionCheckArgument) {
+			INode node = NodeModelUtils.getNode(eObject);
+			acceptor.addPosition(node.getOffset(), 1, MscriptHighlightingConfiguration.CHECK_EXPRESSION_DELIMITER_ID);
+			acceptor.addPosition(node.getTotalEndOffset() - 1, 1, MscriptHighlightingConfiguration.CHECK_EXPRESSION_DELIMITER_ID);
 		}
 		return proceed;
 	}

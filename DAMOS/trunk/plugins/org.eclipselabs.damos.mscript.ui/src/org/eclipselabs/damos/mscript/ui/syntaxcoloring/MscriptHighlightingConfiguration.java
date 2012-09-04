@@ -31,6 +31,8 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 	public static final String BUILTIN_ID = "builtin";
 	public static final String UNIT_ID = "unit";
 	public static final String STEP_EXPRESSION_ID = "stepExpression";
+//	public static final String STEP_EXPRESSION_DELIMITER_ID = "stepExpressionDelimiter";
+	public static final String CHECK_EXPRESSION_DELIMITER_ID = "checkExpressionDelimiter";
 
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
@@ -42,6 +44,8 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 		acceptor.acceptDefaultHighlighting(BUILTIN_ID, "Built-in symbol", builtinTextStyle());
 		acceptor.acceptDefaultHighlighting(UNIT_ID, "Unit", unitTextStyle());
 		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_ID, "Step expression", stepExpressionTextStyle());
+//		acceptor.acceptDefaultHighlighting(STEP_EXPRESSION_DELIMITER_ID, "Step expression delimiter", stepExpressionDelimiterTextStyle());
+		acceptor.acceptDefaultHighlighting(CHECK_EXPRESSION_DELIMITER_ID, "Check expression delimiter", checkExpressionDelimiterTextStyle());
 	}
 
 	public TextStyle templateDelimiterTextStyle() {
@@ -105,6 +109,18 @@ public class MscriptHighlightingConfiguration extends DefaultHighlightingConfigu
 	public TextStyle stepExpressionTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(128, 76, 25));
+		return textStyle;
+	}
+
+	public TextStyle stepExpressionDelimiterTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(63, 95, 191));
+		return textStyle;
+	}
+
+	public TextStyle checkExpressionDelimiterTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(100, 70, 50));
 		return textStyle;
 	}
 

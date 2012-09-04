@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.impl.ParameterImpl;
+import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.dscript.DscriptPackage;
 import org.eclipselabs.damos.dscript.DscriptParameter;
 import org.eclipselabs.damos.dscript.DscriptValueSpecification;
@@ -53,7 +54,7 @@ public class DscriptParameterImpl extends ParameterImpl implements DscriptParame
 	 * @see org.eclipselabs.damos.mscript.InputParameterDeclaration#getDefaultExpression()
 	 */
 	public Expression getDefaultExpression() {
-		if (getDefaultValue() instanceof DscriptValueSpecification) {
+		if (eContainer() instanceof DscriptBlockType && getDefaultValue() instanceof DscriptValueSpecification) {
 			return ((DscriptValueSpecification) getDefaultValue()).getExpression();
 		}
 		return null;

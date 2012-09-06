@@ -49,7 +49,10 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 				return packageName.append(unitSymbol.getName());
 			}
 		} else if (obj instanceof ParameterDeclaration) {
-			return QualifiedName.create(((ParameterDeclaration) obj).getName());
+			String name = ((ParameterDeclaration) obj).getName();
+			if (name != null) {
+				return QualifiedName.create(name);
+			}
 		}
 		return null;
 	}

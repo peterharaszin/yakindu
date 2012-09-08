@@ -2831,6 +2831,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getParameterizedElement_Arguments(), this.getArgument(), null, "arguments", null, 0, -1, ParameterizedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(parameterizedElementEClass, this.getArgument(), "getArgument", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getParameter(), "parameter", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(parameterizedElementEClass, this.getArgument(), "getArgument", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "parameterName", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(parameterizedElementEClass, ecorePackage.getEString(), "getArgumentStringValue", 0, 1, IS_UNIQUE, !IS_ORDERED);

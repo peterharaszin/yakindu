@@ -196,7 +196,10 @@
     <genClasses image="false" ecoreClass="DML.ecore#//ParameterizedElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterizedElement/arguments"/>
       <genOperations ecoreOperation="DML.ecore#//ParameterizedElement/getArgument">
-        <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgument/parameterName"/>
+        <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgument/parameter"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//ParameterizedElement/getArgument.1">
+        <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgument.1/parameterName"/>
       </genOperations>
       <genOperations ecoreOperation="DML.ecore#//ParameterizedElement/getArgumentStringValue">
         <genParameters ecoreParameter="DML.ecore#//ParameterizedElement/getArgumentStringValue/parameterName"/>

@@ -45,6 +45,14 @@ public interface ParameterizedElement extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model ordered="false" parameterRequired="true" parameterOrdered="false"
+	 * @generated
+	 */
+	Argument getArgument(Parameter parameter);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model ordered="false" parameterNameRequired="true" parameterNameOrdered="false"
 	 * @generated
 	 */

@@ -233,6 +233,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterizedElement" abstract="true">
     <eOperations name="getArgument" ordered="false" eType="#//Argument">
+      <eParameters name="parameter" ordered="false" lowerBound="1" eType="#//Parameter"/>
+    </eOperations>
+    <eOperations name="getArgument" ordered="false" eType="#//Argument">
       <eParameters name="parameterName" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="getArgumentStringValue" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">

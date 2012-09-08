@@ -19,6 +19,7 @@ import org.eclipselabs.damos.dml.BlockOutputPort;
 import org.eclipselabs.damos.dml.BlockPort;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inoutput;
+import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.internal.operations.ParameterizedElementOperations;
 
@@ -75,6 +76,17 @@ public class BlockOutputPortImpl extends OutputPortImpl implements BlockOutputPo
 			arguments = new EObjectContainmentEList<Argument>(Argument.class, this, DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS);
 		}
 		return arguments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Argument getArgument(Parameter parameter) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

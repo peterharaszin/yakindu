@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.internal.operations.ParameterizedElementOperations;
 
@@ -73,6 +74,15 @@ public abstract class ParameterizedElementImpl extends EObjectImpl implements Pa
 			arguments = new EObjectContainmentEList<Argument>(Argument.class, this, DMLPackage.PARAMETERIZED_ELEMENT__ARGUMENTS);
 		}
 		return arguments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Argument getArgument(Parameter parameter) {
+		return ParameterizedElementOperations.getArgument(this, parameter);
 	}
 
 	/**

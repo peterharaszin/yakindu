@@ -55,4 +55,20 @@ public interface Block extends Component, ParameterizedElement {
 	 */
 	void setType(BlockType value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model definitionRequired="true"
+	 * @generated
+	 */
+	BlockInput getInput(InputDefinition definition);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model definitionRequired="true"
+	 * @generated
+	 */
+	BlockOutput getOutput(OutputDefinition definition);
+
 } // Block

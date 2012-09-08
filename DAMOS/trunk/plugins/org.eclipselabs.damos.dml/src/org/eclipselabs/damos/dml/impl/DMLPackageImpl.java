@@ -2868,6 +2868,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlock_Type(), this.getBlockType(), null, "type", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		op = addEOperation(blockEClass, this.getBlockInput(), "getInput", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getInputDefinition(), "definition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(blockEClass, this.getBlockOutput(), "getOutput", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOutputDefinition(), "definition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(systemEClass, org.eclipselabs.damos.dml.System.class, "System", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

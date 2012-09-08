@@ -22,6 +22,8 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.InputDefinition;
+import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.internal.operations.BlockOperations;
@@ -130,6 +132,24 @@ public class BlockImpl extends ComponentImpl implements Block {
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public BlockInput getInput(InputDefinition definition) {
+		return BlockOperations.getInput(this, definition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public BlockOutput getOutput(OutputDefinition definition) {
+		return BlockOperations.getOutput(this, definition);
 	}
 
 	/**

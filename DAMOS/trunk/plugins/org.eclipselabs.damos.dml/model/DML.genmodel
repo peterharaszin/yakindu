@@ -232,6 +232,12 @@
     <genClasses ecoreClass="DML.ecore#//Category"/>
     <genClasses ecoreClass="DML.ecore#//Block">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Block/type"/>
+      <genOperations ecoreOperation="DML.ecore#//Block/getInput">
+        <genParameters ecoreParameter="DML.ecore#//Block/getInput/definition"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Block/getOutput">
+        <genParameters ecoreParameter="DML.ecore#//Block/getOutput/definition"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Model"/>
     <genClasses ecoreClass="DML.ecore#//System"/>

@@ -15,11 +15,13 @@ import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.validation.IDiagnosticConverter;
 import org.eclipselabs.damos.dscript.conversion.DscriptTerminalConverters;
 import org.eclipselabs.damos.dscript.naming.DscriptQualifiedNameProvider;
 import org.eclipselabs.damos.dscript.parser.antlr.DscriptEcoreElementFactory;
 import org.eclipselabs.damos.dscript.parser.antlr.DscriptLexer;
 import org.eclipselabs.damos.dscript.scoping.DscriptImportedNamespaceScopeProvider;
+import org.eclipselabs.damos.dscript.validation.DscriptDiagnosticConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
@@ -79,6 +81,10 @@ public class DscriptRuntimeModule extends org.eclipselabs.damos.dscript.Abstract
 	@Override
 	public void configureIScopeProviderDelegate(Binder binder) {
 		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(DscriptImportedNamespaceScopeProvider.class);
+	}
+	
+	public Class<? extends IDiagnosticConverter> bindIDiagnosticConverter() {
+		return DscriptDiagnosticConverter.class;
 	}
 
 }

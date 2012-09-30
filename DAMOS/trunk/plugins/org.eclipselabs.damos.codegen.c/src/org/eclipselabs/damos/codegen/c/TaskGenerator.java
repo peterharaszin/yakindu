@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.codegen.c.codefragments.TaskContext;
 import org.eclipselabs.damos.codegen.c.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.internal.util.TaskGeneratorUtil;
@@ -28,6 +29,7 @@ import org.eclipselabs.damos.execution.DataFlowEnd;
 import org.eclipselabs.damos.execution.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.TaskGraph;
 import org.eclipselabs.damos.execution.TaskInputNode;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 
 /**
  * @author Andreas Unger
@@ -35,13 +37,13 @@ import org.eclipselabs.damos.execution.TaskInputNode;
  */
 public class TaskGenerator implements ITaskGenerator {
 	
-	public CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor) {
-		StringBuilder sb = new StringBuilder();
+	public void addTaskContexts(IGeneratorContext context, ContextStruct contextStruct, IProgressMonitor monitor) {
 		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 				String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
 				EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
+				StringBuilder sb = new StringBuilder();
 				sb.append("struct {\n");
 				if (!inputNodes.isEmpty()) {
 					if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
@@ -54,9 +56,9 @@ public class TaskGenerator implements ITaskGenerator {
 					}
 				}
 				sb.append("} ").append(taskName).append(";\n");
+				contextStruct.addPart(new TaskContext(sb));
 			}
 		}
-		return sb;
 	}
 
 	public CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor) {

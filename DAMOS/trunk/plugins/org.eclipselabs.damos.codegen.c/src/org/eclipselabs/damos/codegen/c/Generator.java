@@ -34,7 +34,6 @@ import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.InputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
-import org.eclipselabs.damos.codegen.c.codefragments.TaskContexts;
 import org.eclipselabs.damos.codegen.c.codefragments.TaskInfoArray;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextVariableFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IExecuteFunctionFactory;
@@ -205,9 +204,9 @@ public class Generator extends AbstractGenerator {
 			context.addCodeFragment(taskInfoArrayFactory.create(), monitor);
 		}
 		
-		context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
+		ContextStruct contextStruct = (ContextStruct) context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
 		ComponentContexts.initialize(context, monitor);
-		TaskContexts.initialize(taskGenerator, context, monitor);
+		taskGenerator.addTaskContexts(context, contextStruct, monitor);
 		
 		if (GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
 			context.addCodeFragment(contextVariableFactory.create(), monitor);

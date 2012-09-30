@@ -96,7 +96,7 @@ class ComputeFunction extends AbstractCodeFragment {
 			contextStruct = new ContextStruct(generatorContext.functionInfo, false)
 			contextStruct = codeFragmentCollector.addCodeFragment(contextStruct, new NullProgressMonitor())
 			val functionContextDeclaration = new org.eclipselabs.damos.mscript.codegen.c.codefragments.FunctionContext(generatorContext)
-			contextStruct.addPart(functionContextDeclaration)
+			contextStruct.addMember(functionContextDeclaration)
 			addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it == contextStruct])
 			
 			updateFunction = codeFragmentCollector.addCodeFragment(new UpdateFunction(generatorContext, this), new NullProgressMonitor())

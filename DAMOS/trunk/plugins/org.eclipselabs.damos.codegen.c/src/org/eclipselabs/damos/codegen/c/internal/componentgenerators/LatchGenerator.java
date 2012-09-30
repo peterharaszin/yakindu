@@ -13,10 +13,16 @@ package org.eclipselabs.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.AbstractComponentGenerator;
+import org.eclipselabs.damos.codegen.c.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
+import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.rte.IFastLockGenerator;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
 
 /**
  * @author Andreas Unger
@@ -26,24 +32,15 @@ public class LatchGenerator extends AbstractComponentGenerator {
 
 	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#contributesContextStructCode()
-	 */
 	@Override
-	public boolean contributesContextCode() {
-		return true;
-	}
-	
-	@Override
-	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
-		StringBuilder sb = new StringBuilder();
-		Type type = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		sb.append("typedef struct {\n");
-		sb.append(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), "data", getContext().getCodeFragmentCollector(), type, null));
-		sb.append(";\n");
-		sb.append(getFastLockGenerator().generateContextCode("lock"));
-		sb.append("} ").append(typeName).append(";\n");
-		return sb;
+	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
+		String prefix = GeneratorConfigurationExtensions.getPrefix(getConfiguration());
+		String typeName = prefix + getNode().getComponent().getName() + "_Context";
+
+		ICodeFragment declaration = new ContextStructDeclaration(typeName);
+		getContext().getCodeFragmentCollector().addCodeFragment(declaration, monitor);
+		
+		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, declaration));
 	}
 	
 	/* (non-Javadoc)
@@ -83,6 +80,33 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	
 	private IFastLockGenerator getFastLockGenerator() {
 		return getRuntimeEnvironmentAPI().getFastLockGenerator();
+	}
+
+	private class ContextStructDeclaration extends PrimaryCodeFragment {
+
+		private final String typeName;
+	
+		/**
+		 * @param typeName
+		 */
+		public ContextStructDeclaration(String typeName) {
+			this.typeName = typeName;
+		}
+	
+		@Override
+		protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
+		}
+	
+		public CharSequence generateForwardDeclaration(boolean internal) {
+			StringBuilder sb = new StringBuilder();
+			Type type = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
+			sb.append("typedef struct {\n");
+			sb.append(dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), "data", getContext().getCodeFragmentCollector(), type, null));
+			sb.append(";\n");
+			sb.append(getFastLockGenerator().generateContextCode("lock"));
+			sb.append("} ").append(typeName).append(";\n");
+			return sb;
+		}
 	}
 	
 }

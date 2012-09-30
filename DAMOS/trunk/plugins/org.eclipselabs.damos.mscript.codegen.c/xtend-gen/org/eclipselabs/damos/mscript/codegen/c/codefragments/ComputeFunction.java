@@ -165,7 +165,7 @@ public class ComputeFunction extends AbstractCodeFragment {
       this.contextStruct = _addCodeFragment;
       FunctionContext _functionContext = new FunctionContext(this.generatorContext);
       final FunctionContext functionContextDeclaration = _functionContext;
-      this.contextStruct.addPart(functionContextDeclaration);
+      this.contextStruct.addMember(functionContextDeclaration);
       final Function1<ICodeFragment,Boolean> _function = new Function1<ICodeFragment,Boolean>() {
           public Boolean apply(final ICodeFragment it) {
             boolean _equals = Objects.equal(it, ComputeFunction.this.contextStruct);

@@ -12,20 +12,35 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IContextStructPart {
+public class DeclaredContextStructMember extends AbstractContextStructMember {
 
-	Collection<ICodeFragment> getDeclarationCodeFragments();
+	private final String name;
+	private final String typeName;
+	private final ICodeFragment declarationCodeFragment;
 	
-	Collection<Include> getForwardDeclarationIncludes();
+	/**
+	 * 
+	 */
+	public DeclaredContextStructMember(String name, String typeName, ICodeFragment declarationCodeFragment) {
+		this.name = name;
+		this.typeName = typeName;
+		this.declarationCodeFragment = declarationCodeFragment;
+	}
 	
-	CharSequence generate();
+	public Collection<ICodeFragment> getDeclarationCodeFragments() {
+		return Collections.<ICodeFragment>singleton(declarationCodeFragment);
+	}
 	
+	public CharSequence generate() {
+		return typeName + " " + name + ";\n";
+	}
+
 }

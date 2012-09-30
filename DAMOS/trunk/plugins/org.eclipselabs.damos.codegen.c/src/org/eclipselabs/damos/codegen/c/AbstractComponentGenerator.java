@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.ComponentNode;
 import org.eclipselabs.damos.execution.datatype.IComponentSignature;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 
@@ -54,31 +55,34 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	public IComponentGeneratorContext getContext() {
 		return context;
 	}
+	
+	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
+	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#contributesContextCode()
-	 */
-	public boolean contributesContextCode() {
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextCodeIncludes()
-	 */
-	public Collection<Include> getContextCodeIncludes() {
-		return null;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextTypeName()
-	 */
-	public CharSequence getContextTypeName() {
-		return null;
-	}
-	
-	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
-		return "";
-	}
+//	/* (non-Javadoc)
+//	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#contributesContextCode()
+//	 */
+//	public boolean contributesContextCode() {
+//		return false;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextCodeIncludes()
+//	 */
+//	public Collection<Include> getContextCodeIncludes() {
+//		return null;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#getContextTypeName()
+//	 */
+//	public CharSequence getContextTypeName() {
+//		return null;
+//	}
+//	
+//	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
+//		return "";
+//	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.IComponentGenerator#contributesInitializationCode()

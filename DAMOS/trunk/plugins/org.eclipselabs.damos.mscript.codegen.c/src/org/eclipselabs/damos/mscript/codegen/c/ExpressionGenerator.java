@@ -57,7 +57,7 @@ import org.eclipselabs.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ExpressionStringSegment;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.FunctionContextMemberVariable;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.FunctionContextStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordConstructionFunction;
@@ -521,9 +521,9 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			MscriptGeneratorContext newGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getCodeFragmentCollector());
 			ComputeFunction functionDefinition = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(newGeneratorContext), new NullProgressMonitor());
 			
-			FunctionContextMemberVariable functionContextMemberVariable = FunctionContextMemberVariable.initialize(context, functionDefinition, newGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
+			FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, functionDefinition, newGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
 			
-			if (functionContextMemberVariable != null) {
+			if (functionContextStructMember != null) {
 				ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
 
 				{
@@ -531,8 +531,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 					StringBuilder sb = new StringBuilder();
 					sb.append(initializeFunction.getName());
 					sb.append("(");
-					if (functionContextMemberVariable != null) {
-						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+					if (functionContextStructMember != null) {
+						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
 					}
 					sb.append(");\n");
 	
@@ -546,8 +546,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 					sb.append(updateFunction.getName());
 					sb.append("(");
 					boolean first = true;
-					if (functionContextMemberVariable != null) {
-						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+					if (functionContextStructMember != null) {
+						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
 						first = false;
 					}
 					Iterator<InputParameterDeclaration> inputParameterDeclarationIt = callee.getFunctionDescription().getDeclaration().getInputParameterDeclarations().iterator();
@@ -574,8 +574,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			out.print(functionDefinition.getName());
 			out.print("(");
 			boolean first = true;
-			if (functionContextMemberVariable != null) {
-				out.print(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+			if (functionContextStructMember != null) {
+				out.print(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
 				first = false;
 			}
 			List<InputParameterDeclaration> directFeedthroughInputs = FunctionModelUtil.getDirectFeedthroughInputs(newGeneratorContext.getFunctionInfo().getFunctionInstance());

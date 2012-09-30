@@ -9,27 +9,26 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.codefragments;
+package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.AbstractContextStructMember;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.Include;
 
 /**
  * @author Andreas Unger
  *
  */
-public class TaskContext extends AbstractContextStructMember {
+public abstract class AbstractContextStructMember implements IContextStructMember {
 
-	private final CharSequence content;
-	
-	/**
-	 * 
-	 */
-	public TaskContext(CharSequence content) {
-		this.content = content;
+	public Collection<ICodeFragment> getDeclarationCodeFragments() {
+		return Collections.emptyList();
 	}
 
-	public CharSequence generate() {
-		return content;
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return Collections.emptyList();
 	}
-	
+
 }

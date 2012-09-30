@@ -24,6 +24,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipselabs.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.CodegenCPlugin;
 import org.eclipselabs.damos.codegen.c.MscriptGeneratorConfiguration;
+import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -37,13 +38,13 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.FunctionContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.function.ComputationCompound;
@@ -133,30 +134,21 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.AbstractComponentGenerator#contributesContextCode()
-	 */
 	@Override
-	public boolean contributesContextCode() {
-		return isStateful();
-	}
-
-	@Override
-	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
-		ContextStruct contextStruct = getContext().getCodeFragmentCollector().addCodeFragment(new ContextStruct(true), new NullProgressMonitor());
-		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment(new ContextStruct(topLevelFunctionInfo, typeName.toString(), true), new NullProgressMonitor());
-		contextStruct.addDependency(ICodeFragment.FORWARD_DECLARATION_DEPENDS_ON, new ICodeFragment.IDependencyRule() {
-			
-			public boolean applies(ICodeFragment other) {
-				return other == newContextStruct;
-			}
-			
-		});
+	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
+		if (!isStateful()) {
+			return;
+		}
+		
+		String prefix = GeneratorConfigurationExtensions.getPrefix(getConfiguration());
+		String typeName = prefix + getNode().getComponent().getName() + "_Context";
+		ContextStruct contextStructDeclaration = getContext().getCodeFragmentCollector().addCodeFragment(
+				new ContextStruct(topLevelFunctionInfo, typeName, true), new NullProgressMonitor());
 		
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		FunctionContext functionContext = new FunctionContext(mscriptGeneratorContext);
-		newContextStruct.addPart(functionContext);
-		return "";
+		contextStructDeclaration.addMember(functionContext);
+		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, contextStructDeclaration));
 	}
 	
 	/* (non-Javadoc)

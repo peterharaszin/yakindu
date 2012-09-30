@@ -15,12 +15,13 @@ import org.eclipselabs.damos.mscript.VariableDeclaration
 import org.eclipselabs.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.AbstractContextStructMember
 
 /**
  * @author Andreas Unger
  *
  */
-class FunctionContext extends AbstractContextStructPart {
+class FunctionContext extends AbstractContextStructMember {
 
 	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
 	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(dataTypeGenerator)

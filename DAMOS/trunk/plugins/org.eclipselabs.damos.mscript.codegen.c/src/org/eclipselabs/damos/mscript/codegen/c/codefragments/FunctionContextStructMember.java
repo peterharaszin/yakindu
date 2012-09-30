@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
  * @author Andreas Unger
  *
  */
-public class FunctionContextMemberVariable extends AbstractContextStructPart {
+public class FunctionContextStructMember extends AbstractContextStructMember {
 
 	private final String name;
 	private final ContextStruct contextStruct;
@@ -32,26 +32,23 @@ public class FunctionContextMemberVariable extends AbstractContextStructPart {
 	/**
 	 * 
 	 */
-	public FunctionContextMemberVariable(String name, ContextStruct contextStruct) {
+	public FunctionContextStructMember(String name, ContextStruct contextStruct) {
 		this.name = name;
 		this.contextStruct = contextStruct;
 	}
 	
-	public static FunctionContextMemberVariable initialize(IMscriptGeneratorContext context, ComputeFunction newFunctionDefinition, StaticFunctionInfo newStaticFunctionInfo, StaticFunctionInfo oldStaticFunctionInfo) {
+	public static FunctionContextStructMember initialize(IMscriptGeneratorContext context, ComputeFunction newFunctionDefinition, StaticFunctionInfo newStaticFunctionInfo, StaticFunctionInfo oldStaticFunctionInfo) {
 		if (!newStaticFunctionInfo.getFunctionDescription().isStateful()) {
 			return null;
 		}
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
 		ContextStruct contextStruct = codeFragmentCollector.addCodeFragment(new ContextStruct(oldStaticFunctionInfo, false /* TODO */), new NullProgressMonitor());
 		String name = contextStruct.newUniqueName(newStaticFunctionInfo.getFunctionDescription().getDeclaration().getName() + "_context");
-		FunctionContextMemberVariable part = new FunctionContextMemberVariable(name, newFunctionDefinition.getContextStruct());
-		contextStruct.addPart(part);
+		FunctionContextStructMember part = new FunctionContextStructMember(name, newFunctionDefinition.getContextStruct());
+		contextStruct.addMember(part);
 		return part;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.codefragments.AbstractContextStructPart#getDeclarationCodeFragments()
-	 */
 	@Override
 	public Collection<ICodeFragment> getDeclarationCodeFragments() {
 		return Collections.<ICodeFragment>singleton(contextStruct);

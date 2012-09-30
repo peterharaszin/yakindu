@@ -56,7 +56,7 @@ public class TaskGenerator implements ITaskGenerator {
 					}
 				}
 				sb.append("} ").append(taskName).append(";\n");
-				contextStruct.addPart(new TaskContext(sb));
+				contextStruct.addMember(new TaskContext(sb));
 			}
 		}
 	}

@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.codegen.c.codefragments;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
@@ -21,20 +20,12 @@ import org.eclipselabs.damos.mscript.codegen.c.Include;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractContextStructPart implements IContextStructPart {
+public interface IContextStructMember {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.codefragments.IContextStructPart#getDeclarationCodeFragments()
-	 */
-	public Collection<ICodeFragment> getDeclarationCodeFragments() {
-		return Collections.emptyList();
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.codegen.c.codefragments.IContextStructPart#getForwardDeclarationIncludes()
-	 */
-	public Collection<Include> getForwardDeclarationIncludes() {
-		return Collections.emptyList();
-	}
-
+	Collection<ICodeFragment> getDeclarationCodeFragments();
+	
+	Collection<Include> getForwardDeclarationIncludes();
+	
+	CharSequence generate();
+	
 }

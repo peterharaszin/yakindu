@@ -28,7 +28,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
-import org.eclipselabs.damos.codegen.c.codefragments.ComponentContexts;
 import org.eclipselabs.damos.codegen.c.codefragments.ExecuteFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
@@ -204,9 +203,7 @@ public class Generator extends AbstractGenerator {
 			context.addCodeFragment(taskInfoArrayFactory.create(), monitor);
 		}
 		
-		ContextStruct contextStruct = (ContextStruct) context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
-		ComponentContexts.initialize(context, monitor);
-		taskGenerator.addTaskContexts(context, contextStruct, monitor);
+		addContextStruct(context, monitor);
 		
 		if (GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
 			context.addCodeFragment(contextVariableFactory.create(), monitor);
@@ -216,6 +213,25 @@ public class Generator extends AbstractGenerator {
 		// get initialized by the ComputeFunction fragment, may we should change this.
 		context.addCodeFragment(executeFunctionFactory.create(), monitor);
 		context.addCodeFragment(initializeFunctionFactory.create(), monitor);
+	}
+
+	/**
+	 * @param context
+	 * @param monitor
+	 */
+	private void addContextStruct(IGeneratorContext context, IProgressMonitor monitor) {
+		ContextStruct contextStruct = (ContextStruct) context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
+		
+		for (Node node : context.getExecutionFlow().getAllNodes()) {
+			if (node instanceof ComponentNode) {
+				IComponentGenerator componentGenerator = GeneratorNodeExtensions.getComponentGenerator((ComponentNode) node);
+				if (componentGenerator != null) {
+					componentGenerator.addContextStructMembers(contextStruct, monitor);
+				}
+			}
+		}
+		
+		taskGenerator.addTaskContexts(context, contextStruct, monitor);
 	}
 
 	/**

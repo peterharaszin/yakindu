@@ -16,6 +16,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 
 /**
  * @author Andreas Unger
@@ -30,13 +31,13 @@ public interface IComponentGenerator {
 	
 	IComponentGeneratorContext getContext();
 	
-	boolean contributesContextCode();
+//	boolean contributesContextCode();
 	
-	Collection<Include> getContextCodeIncludes();
+//	Collection<Include> getContextCodeIncludes();
 	
-	CharSequence getContextTypeName();
+//	CharSequence getContextTypeName();
 	
-	CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor);
+	void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor);
 
 	boolean contributesInitializationCode();
 	

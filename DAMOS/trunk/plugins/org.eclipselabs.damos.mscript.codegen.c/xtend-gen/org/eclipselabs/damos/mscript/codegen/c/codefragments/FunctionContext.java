@@ -14,7 +14,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.VariableDeclarationGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.AbstractContextStructPart;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.AbstractContextStructMember;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  */
 @SuppressWarnings("all")
-public class FunctionContext extends AbstractContextStructPart {
+public class FunctionContext extends AbstractContextStructMember {
   private final DataTypeGenerator dataTypeGenerator = new Function0<DataTypeGenerator>() {
     public DataTypeGenerator apply() {
       DataTypeGenerator _dataTypeGenerator = new DataTypeGenerator();

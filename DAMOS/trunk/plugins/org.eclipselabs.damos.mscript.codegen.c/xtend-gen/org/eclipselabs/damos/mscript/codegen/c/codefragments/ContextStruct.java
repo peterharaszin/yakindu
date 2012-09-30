@@ -16,7 +16,7 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.IDependencyRule;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext;
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
-import org.eclipselabs.damos.mscript.codegen.c.codefragments.IContextStructPart;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.IContextStructMember;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
@@ -26,9 +26,9 @@ import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
  */
 @SuppressWarnings("all")
 public class ContextStruct extends AbstractCodeFragment {
-  private final Collection<IContextStructPart> parts = new Function0<Collection<IContextStructPart>>() {
-    public Collection<IContextStructPart> apply() {
-      ArrayList<IContextStructPart> _arrayList = new ArrayList<IContextStructPart>();
+  private final Collection<IContextStructMember> members = new Function0<Collection<IContextStructMember>>() {
+    public Collection<IContextStructMember> apply() {
+      ArrayList<IContextStructMember> _arrayList = new ArrayList<IContextStructMember>();
       return _arrayList;
     }
   }.apply();
@@ -136,7 +136,7 @@ public class ContextStruct extends AbstractCodeFragment {
     if (_not) {
       _or = true;
     } else {
-      boolean _isEmpty = this.parts.isEmpty();
+      boolean _isEmpty = this.members.isEmpty();
       boolean _not_1 = (!_isEmpty);
       _or = (_not || _not_1);
     }
@@ -152,14 +152,14 @@ public class ContextStruct extends AbstractCodeFragment {
     _builder.append("typedef struct {");
     _builder.newLine();
     {
-      boolean _isEmpty = this.parts.isEmpty();
+      boolean _isEmpty = this.members.isEmpty();
       if (_isEmpty) {
         _builder.append("\t");
         _builder.append("char dummy;");
         _builder.newLine();
       } else {
         {
-          for(final IContextStructPart part : this.parts) {
+          for(final IContextStructMember part : this.members) {
             _builder.append("\t");
             CharSequence _generate = part.generate();
             _builder.append(_generate, "	");
@@ -180,10 +180,10 @@ public class ContextStruct extends AbstractCodeFragment {
     return _newGlobalName;
   }
   
-  public boolean addPart(final IContextStructPart part) {
+  public boolean addMember(final IContextStructMember member) {
     boolean _xblockexpression = false;
     {
-      Collection<ICodeFragment> _declarationCodeFragments = part.getDeclarationCodeFragments();
+      Collection<ICodeFragment> _declarationCodeFragments = member.getDeclarationCodeFragments();
       for (final ICodeFragment declarationCodeFragment : _declarationCodeFragments) {
         final Function1<ICodeFragment,Boolean> _function = new Function1<ICodeFragment,Boolean>() {
             public Boolean apply(final ICodeFragment it) {
@@ -197,9 +197,9 @@ public class ContextStruct extends AbstractCodeFragment {
             }
         });
       }
-      Collection<Include> _forwardDeclarationIncludes = part.getForwardDeclarationIncludes();
+      Collection<Include> _forwardDeclarationIncludes = member.getForwardDeclarationIncludes();
       Iterables.<Include>addAll(this.forwardDeclarationIncludes, _forwardDeclarationIncludes);
-      boolean _add = this.parts.add(part);
+      boolean _add = this.members.add(member);
       _xblockexpression = (_add);
     }
     return _xblockexpression;

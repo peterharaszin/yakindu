@@ -19,9 +19,10 @@ import org.eclipselabs.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipselabs.damos.mscript.codegen.c.IGlobalNameProvider
 import org.eclipselabs.damos.mscript.codegen.c.Include
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo
+import java.util.List
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.IContextStructMember
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
-import java.util.List
 
 /**
  * @author Andreas Unger
@@ -29,7 +30,7 @@ import java.util.List
  */
 class ContextStruct extends AbstractCodeFragment {
 
-	val Collection<IContextStructPart> parts = new ArrayList<IContextStructPart>()
+	val Collection<IContextStructMember> members = new ArrayList<IContextStructMember>()
 	val Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>()
 	
 	val StaticFunctionInfo functionInfo
@@ -93,7 +94,7 @@ class ContextStruct extends AbstractCodeFragment {
 	}
 	
 	override contributesInternalForwardDeclaration() {
-		return !singleton || !parts.empty
+		return !singleton || !members.empty
 	}
 
 	override Collection<Include> getForwardDeclarationIncludes() {
@@ -102,10 +103,10 @@ class ContextStruct extends AbstractCodeFragment {
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
 		typedef struct {
-			«IF parts.empty»
+			«IF members.empty»
 				char dummy;
 			«ELSE»
-				«FOR part : parts»
+				«FOR part : members»
 					«part.generate()»
 				«ENDFOR»
 			«ENDIF»
@@ -116,12 +117,12 @@ class ContextStruct extends AbstractCodeFragment {
 		globalNameProvider.newGlobalName(preferredName)
 	}
 	
-	def addPart(IContextStructPart part) {
-		for (declarationCodeFragment : part.declarationCodeFragments) {
+	def addMember(IContextStructMember member) {
+		for (declarationCodeFragment : member.getDeclarationCodeFragments) {
 			addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it == declarationCodeFragment])
 		}
-		forwardDeclarationIncludes += part.forwardDeclarationIncludes
-		parts += part
+		forwardDeclarationIncludes += member.getForwardDeclarationIncludes
+		members += member
 	}
 
 	override hashCode() {

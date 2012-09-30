@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.PowerExpression;
 
@@ -37,6 +38,10 @@ public class PowerExpressionImpl extends BinaryExpressionImpl implements PowerEx
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.POWER_EXPRESSION;
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //PowerExpressionImpl

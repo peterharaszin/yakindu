@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript;
  *
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Literal extends Expression {

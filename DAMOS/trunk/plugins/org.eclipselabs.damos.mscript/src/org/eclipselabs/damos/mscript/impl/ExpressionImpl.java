@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  *
  * @generated
  */
-public class ExpressionImpl extends EvaluableImpl implements Expression {
+public abstract class ExpressionImpl extends EvaluableImpl implements Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

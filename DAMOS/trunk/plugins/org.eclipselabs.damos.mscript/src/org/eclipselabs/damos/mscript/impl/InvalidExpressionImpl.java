@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.InvalidExpression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -37,6 +38,10 @@ public class InvalidExpressionImpl extends ExpressionImpl implements InvalidExpr
 	@Override
 	protected EClass eStaticClass() {
 		return MscriptPackage.Literals.INVALID_EXPRESSION;
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //InvalidExpressionImpl

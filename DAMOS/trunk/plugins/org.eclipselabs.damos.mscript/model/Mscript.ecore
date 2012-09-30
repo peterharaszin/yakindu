@@ -516,7 +516,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RecordType" eSuperTypes="#//CompositeType"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//CompositeType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Evaluable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//Evaluable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit">
     <eOperations name="getFactor" eType="#//UnitFactor">
       <eParameters name="symbolName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -593,8 +593,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//Unit"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral" eSuperTypes="#//Literal">
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral" abstract="true" eSuperTypes="#//Literal">
     <eOperations name="isComplex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" lowerBound="1" eType="#//Unit"
         containment="true"/>

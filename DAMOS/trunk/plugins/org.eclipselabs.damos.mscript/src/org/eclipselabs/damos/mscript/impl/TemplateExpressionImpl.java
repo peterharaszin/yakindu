@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
@@ -151,6 +152,10 @@ public class TemplateExpressionImpl extends ExpressionImpl implements TemplateEx
 				return segments != null && !segments.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //TemplateExpressionImpl

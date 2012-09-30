@@ -150,15 +150,12 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.COMPOSITE_TYPE_MEMBER: return createCompositeTypeMember();
 			case MscriptPackage.RECORD_TYPE: return createRecordType();
 			case MscriptPackage.UNION_TYPE: return createUnionType();
-			case MscriptPackage.EXPRESSION: return createExpression();
 			case MscriptPackage.UNIT: return createUnit();
 			case MscriptPackage.UNIT_FACTOR: return createUnitFactor();
 			case MscriptPackage.UNIT_DENOMINATOR_FACTOR: return createUnitDenominatorFactor();
 			case MscriptPackage.UNIT_SYMBOL: return createUnitSymbol();
 			case MscriptPackage.BASE_UNIT_DECLARATION: return createBaseUnitDeclaration();
 			case MscriptPackage.DERIVED_UNIT_DECLARATION: return createDerivedUnitDeclaration();
-			case MscriptPackage.LITERAL: return createLiteral();
-			case MscriptPackage.NUMERIC_LITERAL: return createNumericLiteral();
 			case MscriptPackage.REAL_LITERAL: return createRealLiteral();
 			case MscriptPackage.INTEGER_LITERAL: return createIntegerLiteral();
 			case MscriptPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
@@ -1146,16 +1143,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression createExpression() {
-		ExpressionImpl expression = new ExpressionImpl();
-		return expression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Unit createUnit() {
 		UnitImpl unit = new UnitImpl();
 		return unit;
@@ -1209,26 +1196,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public DerivedUnitDeclaration createDerivedUnitDeclaration() {
 		DerivedUnitDeclarationImpl derivedUnitDeclaration = new DerivedUnitDeclarationImpl();
 		return derivedUnitDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Literal createLiteral() {
-		LiteralImpl literal = new LiteralImpl();
-		return literal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NumericLiteral createNumericLiteral() {
-		NumericLiteralImpl numericLiteral = new NumericLiteralImpl();
-		return numericLiteral;
 	}
 
 	/**

@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.UnionConstructionOperator;
@@ -295,6 +296,10 @@ public class UnionConstructionOperatorImpl extends ExpressionImpl implements Uni
 				return typeSpecifier != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //UnionConstructionOperatorImpl

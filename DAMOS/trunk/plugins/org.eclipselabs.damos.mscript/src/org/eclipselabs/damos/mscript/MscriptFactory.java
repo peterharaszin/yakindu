@@ -854,15 +854,6 @@ public interface MscriptFactory extends EFactory {
 	UnionType createUnionType();
 
 	/**
-	 * Returns a new object of class '<em>Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression</em>'.
-	 * @generated
-	 */
-	Expression createExpression();
-
-	/**
 	 * Returns a new object of class '<em>Unit</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -915,24 +906,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	DerivedUnitDeclaration createDerivedUnitDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal</em>'.
-	 * @generated
-	 */
-	Literal createLiteral();
-
-	/**
-	 * Returns a new object of class '<em>Numeric Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Numeric Literal</em>'.
-	 * @generated
-	 */
-	NumericLiteral createNumericLiteral();
 
 	/**
 	 * Returns a new object of class '<em>Real Literal</em>'.

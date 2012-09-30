@@ -18,7 +18,7 @@
             class="org.eclipselabs.damos.execution.internal.registry.BlockSignaturePolicyProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.execution.internal.providers.BehavioredBlockSignaturePolicyProvider">
+            class="org.eclipselabs.damos.execution.internal.providers.DscriptBlockSignaturePolicyProvider">
       </provider>
    </extension>
 

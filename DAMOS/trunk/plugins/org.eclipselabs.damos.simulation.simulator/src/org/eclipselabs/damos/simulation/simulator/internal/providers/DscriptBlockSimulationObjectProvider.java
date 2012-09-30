@@ -9,42 +9,37 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.internal.providers;
+package org.eclipselabs.damos.simulation.simulator.internal.providers;
 
-import org.eclipselabs.damos.codegen.c.IComponentGenerator;
-import org.eclipselabs.damos.codegen.c.IComponentGeneratorProvider;
-import org.eclipselabs.damos.codegen.c.internal.componentgenerators.BehavioredBlockGenerator;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.execution.ComponentNode;
-
-import com.google.inject.Inject;
-import com.google.inject.Provider;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
+import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.DscriptBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.ContinuousBlockSimulationObject;
 
 /**
  * @author Andreas Unger
  *
  */
-public class BehavioredBlockGeneratorProvider implements IComponentGeneratorProvider {
+public class DscriptBlockSimulationObjectProvider implements ISimulationObjectProvider {
 
-	private final Provider<BehavioredBlockGenerator> behavioredBlockGeneratorProvider;
-	
-	@Inject
-	BehavioredBlockGeneratorProvider(Provider<BehavioredBlockGenerator> behavioredBlockGeneratorProvider) {
-		this.behavioredBlockGeneratorProvider = behavioredBlockGeneratorProvider;
-	}
-	
-	public IComponentGenerator createGenerator(ComponentNode node) {
+	public ISimulationObject createSimulationObject(ComponentNode node) {
 		if (node.getComponent() instanceof Block) {
 			Block block = (Block) node.getComponent();
 			if (block.getType() instanceof DscriptBlockType) {
 				DscriptBlockType blockType = (DscriptBlockType) block.getType();
 				if (blockType.getBehavior() != null) {
-					return behavioredBlockGeneratorProvider.get();
+					if (blockType.getTiming() == TimingKind.CONTINUOUS) {
+						return new ContinuousBlockSimulationObject();
+					}
+					return new DscriptBlockSimulationObject();
 				}
 			}
 		}
 		return null;
 	}
-
+	
 }

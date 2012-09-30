@@ -5,9 +5,9 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.datatype.IComponentSignaturePolicyProvider;
-import org.eclipselabs.damos.execution.internal.signaturepolicies.BehavioredBlockSignaturePolicy;
+import org.eclipselabs.damos.execution.internal.signaturepolicies.DscriptBlockSignaturePolicy;
 
-public class BehavioredBlockSignaturePolicyProvider implements IComponentSignaturePolicyProvider {
+public class DscriptBlockSignaturePolicyProvider implements IComponentSignaturePolicyProvider {
 
 	public IComponentSignaturePolicy createPolicy(Component component) {
 		if (component instanceof Block) {
@@ -15,7 +15,7 @@ public class BehavioredBlockSignaturePolicyProvider implements IComponentSignatu
 			if (block.getType() instanceof DscriptBlockType) {
 				DscriptBlockType blockType = (DscriptBlockType) block.getType();
 				if (blockType.getBehavior() != null) {
-					return new BehavioredBlockSignaturePolicy();
+					return new DscriptBlockSignaturePolicy();
 				}
 			}
 		}

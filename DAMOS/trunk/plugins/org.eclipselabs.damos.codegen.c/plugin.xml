@@ -11,7 +11,7 @@
             class="org.eclipselabs.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipselabs.damos.codegen.c.internal.registry.BlockGeneratorProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipselabs.damos.codegen.c.internal.providers.BehavioredBlockGeneratorProvider">
+            class="org.eclipselabs.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipselabs.damos.codegen.c.internal.providers.DscriptBlockGeneratorProvider">
       </provider>
       <provider
             class="org.eclipselabs.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipselabs.damos.codegen.c.internal.providers.BuiltinComponentGeneratorProvider">

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.RecordConstructionMember;
 import org.eclipselabs.damos.mscript.RecordConstructionOperator;
@@ -213,6 +214,10 @@ public class RecordConstructionOperatorImpl extends ExpressionImpl implements Re
 		result.append(label);
 		result.append(')');
 		return result.toString();
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //RecordConstructionOperatorImpl

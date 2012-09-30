@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.Unit;
  *
  * @generated
  */
-public class NumericLiteralImpl extends LiteralImpl implements NumericLiteral {
+public abstract class NumericLiteralImpl extends LiteralImpl implements NumericLiteral {
 	/**
 	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' containment reference.
 	 * <!-- begin-user-doc -->

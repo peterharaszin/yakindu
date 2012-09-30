@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -158,6 +159,10 @@ public class BooleanLiteralImpl extends LiteralImpl implements BooleanLiteral {
 		result.append(true_);
 		result.append(')');
 		return result.toString();
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //BooleanLiteralImpl

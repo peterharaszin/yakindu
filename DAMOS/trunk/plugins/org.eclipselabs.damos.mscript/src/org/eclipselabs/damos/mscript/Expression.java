@@ -14,8 +14,11 @@ package org.eclipselabs.damos.mscript;
  *
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getExpression()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Expression extends Evaluable {
+	
+	<R, C> R accept(C context, IExpressionVisitor<R, C> visitor);
+	
 } // Expression

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LambdaExpressionParameter;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -210,6 +211,10 @@ public class LambdaExpressionImpl extends ExpressionImpl implements LambdaExpres
 				return expression != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //LambdaExpressionImpl

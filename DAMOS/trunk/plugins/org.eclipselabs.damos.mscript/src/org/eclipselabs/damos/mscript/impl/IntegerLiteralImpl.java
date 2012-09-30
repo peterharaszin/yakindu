@@ -9,6 +9,7 @@ package org.eclipselabs.damos.mscript.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.IntegerData;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -207,6 +208,10 @@ public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLit
 		result.append(data);
 		result.append(')');
 		return result.toString();
+	}
+
+	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+		return visitor.visit(context, this);
 	}
 
 } //IntegerLiteralImpl

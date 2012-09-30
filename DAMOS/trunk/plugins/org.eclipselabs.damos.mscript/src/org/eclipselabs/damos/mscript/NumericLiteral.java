@@ -20,7 +20,7 @@ package org.eclipselabs.damos.mscript;
  * </p>
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getNumericLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface NumericLiteral extends Literal {

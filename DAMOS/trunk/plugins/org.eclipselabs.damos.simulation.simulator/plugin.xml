@@ -10,7 +10,7 @@
             class="org.eclipselabs.damos.simulation.simulator.internal.registry.BlockSimulationObjectProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.simulation.simulator.internal.providers.BehavioredBlockSimulationObjectProvider">
+            class="org.eclipselabs.damos.simulation.simulator.internal.providers.DscriptBlockSimulationObjectProvider">
       </provider>
       <provider
             class="org.eclipselabs.damos.simulation.simulator.internal.providers.BuiltinSimulationObjectProvider">

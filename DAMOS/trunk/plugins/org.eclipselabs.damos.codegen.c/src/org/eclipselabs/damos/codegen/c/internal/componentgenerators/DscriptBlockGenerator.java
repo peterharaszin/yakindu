@@ -29,7 +29,7 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.execution.util.DscriptBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -63,7 +63,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class BehavioredBlockGenerator extends AbstractBlockGenerator {
+public class DscriptBlockGenerator extends AbstractBlockGenerator {
 
 	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
 	
@@ -79,7 +79,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private IVariableAccessStrategy cachedVariableAccessStrategy;
 	
 	@Inject
-	public BehavioredBlockGenerator(IStatementGenerator statementGenerator) {
+	public DscriptBlockGenerator(IStatementGenerator statementGenerator) {
 		this.statementGenerator = statementGenerator;
 	}
 	
@@ -89,7 +89,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 		Block block = getComponent();
 
-		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
+		DscriptBlockHelper helper = new DscriptBlockHelper(block);
 		
 		FunctionDeclaration functionDeclaration = helper.getBehavior();
 		

@@ -70,7 +70,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class BehavioredBlockHelper {
+public class DscriptBlockHelper {
 
 	private final Block block;
 	
@@ -80,7 +80,7 @@ public class BehavioredBlockHelper {
 	/**
 	 * 
 	 */
-	public BehavioredBlockHelper(Block block) {
+	public DscriptBlockHelper(Block block) {
 		this.block = block;
 	}
 	

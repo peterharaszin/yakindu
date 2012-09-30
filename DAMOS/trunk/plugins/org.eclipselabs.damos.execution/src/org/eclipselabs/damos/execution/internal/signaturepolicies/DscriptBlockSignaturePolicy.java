@@ -30,7 +30,7 @@ import org.eclipselabs.damos.execution.datatype.ComponentSignature;
 import org.eclipselabs.damos.execution.datatype.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.datatype.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.internal.ExecutionPlugin;
-import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.execution.util.DscriptBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -40,7 +40,7 @@ import org.eclipselabs.damos.mscript.interpreter.FunctionSignature;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 
-public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePolicy {
+public class DscriptBlockSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component,
@@ -49,7 +49,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		MultiStatus status = new MultiStatus(ExecutionPlugin.PLUGIN_ID, 0, "", null);
 
-		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
+		DscriptBlockHelper helper = new DscriptBlockHelper(block);
 
 		ComponentSignature componentSignature = new ComponentSignature(incomingDataTypes);
 		

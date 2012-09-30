@@ -22,7 +22,7 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Input;
-import org.eclipselabs.damos.execution.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.execution.util.DscriptBlockHelper;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
@@ -56,7 +56,7 @@ import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
  * @author Andreas Unger
  *
  */
-public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
+public class DscriptBlockSimulationObject extends AbstractBlockSimulationObject {
 
 	private boolean hasInputSockets;
 	private UnionType messageType;
@@ -79,7 +79,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		MultiStatus status = new MultiStatus(SimulatorPlugin.PLUGIN_ID, 0, "Simulation object initialization", null);
 
-		BehavioredBlockHelper helper = new BehavioredBlockHelper(getComponent());
+		DscriptBlockHelper helper = new DscriptBlockHelper(getComponent());
 		
 		FunctionDeclaration functionDeclaration = helper.getBehavior();
 		FunctionSignature functionSignature = helper.getFunctionSignature(functionDeclaration, getComponentSignature(), status);

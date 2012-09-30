@@ -38,7 +38,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
  * @author Andreas Unger
  *
  */
-public class ContinuousBlockSimulationObject extends BehavioredBlockSimulationObject {
+public class ContinuousBlockSimulationObject extends DscriptBlockSimulationObject {
 
 	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 

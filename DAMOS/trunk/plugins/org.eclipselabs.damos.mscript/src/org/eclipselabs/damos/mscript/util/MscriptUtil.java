@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.StepLiteral;
 import org.eclipselabs.damos.mscript.TopLevelDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -118,7 +118,7 @@ public class MscriptUtil {
 		return null;
 	}
 
-	public static FeatureReference createVariableReference(IStaticEvaluationResult staticEvaluationResult, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
+	public static FeatureReference createVariableReference(StaticFunctionInfo functionInfo, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
 		FeatureReference variableReference = MscriptFactory.eINSTANCE.createFeatureReference();
 		variableReference.setFeature(variableDeclaration);
 		if (initial) {
@@ -138,7 +138,7 @@ public class MscriptUtil {
 			stepExpression.setRightOperand(stepLiteral);
 			variableReference.setStepExpression(stepLiteral);
 		}
-		staticEvaluationResult.setStepIndex(variableReference, stepIndex);
+		functionInfo.setStepIndex(variableReference, stepIndex);
 		return variableReference;
 	}
 	

@@ -29,13 +29,14 @@ import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.function.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.damos.mscript.function.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.mscript.ide.core.internal.launch.util.ParseUtil;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.FunctionCallPath;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -142,7 +143,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 
 		inputParameterDataTypes = computeInputParameterDataTypes(configuration, mode, monitor);
 
-		functionInstance = createFunctionInstance(functionDeclaration, staticArguments, inputParameterDataTypes, monitor);
+		functionInstance = createFunctionInstance(functionDeclaration, monitor);
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
@@ -150,7 +151,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	protected abstract List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException;
 	
 	protected IInterpreterContext createStaticArgumentsInterpreterContext() {
-		return new InterpreterContext(getStaticEvaluationResult(), new ComputationContext());
+		return new InterpreterContext(getStaticEvaluationResult(), new ComputationContext(), null);
 	}
 
 	protected String getTargetFunctionName() throws CoreException {
@@ -213,19 +214,14 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDeclaration;
 	}
 
-	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationResult = new StaticEvaluationResult();
-		new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
+		new StaticFunctionEvaluator().evaluate(new StaticEvaluationContext(staticEvaluationResult), functionDeclaration);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(staticEvaluationResult.getStatus());
 		}
 		
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionDescription(functionDeclaration), staticArguments, inputParameterDataTypes);
-		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
-			throw new CoreException(functionDefinitionTransformerResult.getStatus());
-		}
-
-		return functionDefinitionTransformerResult.getFunctionInstance();
+		return new FunctionDefinitionTransformer().transform(staticEvaluationResult, staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY));
 	}
 	
 	private List<IValue> computeStaticArguments(IInterpreterContext interpreterContext, FunctionDeclaration functionDeclaration, String staticArgumentsString) throws CoreException {

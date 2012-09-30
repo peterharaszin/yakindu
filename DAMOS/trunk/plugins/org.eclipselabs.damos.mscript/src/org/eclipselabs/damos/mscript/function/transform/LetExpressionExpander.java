@@ -48,8 +48,8 @@ public class LetExpressionExpander implements IExpressionTransformStrategy {
 			
 			context.addVariableDeclarationMapping(variable, localVariable);
 			
-			IValue partValue = context.getStaticEvaluationResult().getValue(variable);
-			context.getStaticEvaluationResult().setValue(localVariable, partValue);
+			IValue partValue = context.getFunctionInfo().getValue(variable);
+			context.getFunctionInfo().setValue(localVariable, partValue);
 			localVariable.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), variable.getName()));
 			
 			InlineExpressionTarget target = new InlineExpressionTarget(context);

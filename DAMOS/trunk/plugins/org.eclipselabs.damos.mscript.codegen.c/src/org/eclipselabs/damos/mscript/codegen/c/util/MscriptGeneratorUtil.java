@@ -50,7 +50,7 @@ public class MscriptGeneratorUtil {
 	}
 
 	public static CharSequence castNumericType(IMscriptGeneratorContext context, Expression expression, NumberFormat targetNumberFormat) {
-		IValue value = context.getStaticEvaluationResult().getValue(expression);
+		IValue value = context.getFunctionInfo().getValue(expression);
 		if (value instanceof ISimpleNumericValue) {
 			ISimpleNumericValue numericValue = (ISimpleNumericValue) value;
 			if (value.getDataType() instanceof RealType) {
@@ -61,7 +61,7 @@ public class MscriptGeneratorUtil {
 			}
 		}
 		
-		Type expressionDataType = context.getStaticEvaluationResult().getValue(expression).getDataType();
+		Type expressionDataType = context.getFunctionInfo().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(expressionDataType);
 		
 		return NumericExpressionCaster.INSTANCE.cast(new ExpressionGenerator().generate(context, expression), expressionNumberFormat, targetNumberFormat);

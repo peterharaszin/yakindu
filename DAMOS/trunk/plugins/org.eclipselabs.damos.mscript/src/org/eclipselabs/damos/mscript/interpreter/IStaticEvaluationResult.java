@@ -40,5 +40,11 @@ public interface IStaticEvaluationResult extends IStatusCollector {
 	
 	FunctionDescription getFunctionDescription(FunctionDeclaration functionDeclaration);
 	void setFunctionDescription(FunctionDeclaration functionDeclaration, FunctionDescription functionDescription);
-
+	
+	StaticFunctionInfo getFunctionInfo(FunctionCallPath functionCallPath);
+	void setFunctionInfo(FunctionCallPath functionCallPath, StaticFunctionInfo functionInfo);
+	
+	Iterable<StaticFunctionInfo> getFunctionInfos();
+	Iterable<FunctionCallPath> getFunctionCallPaths();
+	
 }

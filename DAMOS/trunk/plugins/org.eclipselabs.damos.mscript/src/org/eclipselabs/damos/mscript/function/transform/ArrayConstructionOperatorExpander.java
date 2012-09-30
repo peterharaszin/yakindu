@@ -49,7 +49,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 	public void transform(ITransformerContext context, Expression expression,
 			List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		ArrayConstructionOperator arrayExpression = (ArrayConstructionOperator) expression;
-		IValue expressionValue = context.getStaticEvaluationResult().getValue(arrayExpression);
+		IValue expressionValue = context.getFunctionInfo().getValue(arrayExpression);
 		ArrayType arrayType = (ArrayType) expressionValue.getDataType();
 
 		List<Integer> indices = new ArrayList<Integer>();
@@ -71,7 +71,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 				
 				ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 				arrayElementAccess.setArray(variableReference);
-				staticEvaluationResult.setValue(arrayElementAccess, new AnyValue(computationContext, arrayType.getElementType()));
+				context.getFunctionInfo().setValue(arrayElementAccess, new AnyValue(computationContext, arrayType.getElementType()));
 	
 				for (Integer i : currentIndices) {
 					arrayElementAccess.getSubscripts().add(createArraySubscript(context, i));
@@ -89,7 +89,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 				LocalVariableDeclaration elementVariableDeclaration = null;
 				IValue elementValue = null;
 				
-				Type elementExpressionType = staticEvaluationResult.getValue(elementExpression).getDataType();
+				Type elementExpressionType = context.getFunctionInfo().getValue(elementExpression).getDataType();
 				
 				int[] rightIndices = EMPTY_INT_ARRAY;
 				int[] rightSizes = EMPTY_INT_ARRAY;
@@ -113,8 +113,8 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					context.enterScope();
 					context.setCompound(compoundStatement);
 	
-					elementValue = staticEvaluationResult.getValue(elementExpression);
-					staticEvaluationResult.setValue(elementVariableDeclaration, elementValue);
+					elementValue = context.getFunctionInfo().getValue(elementExpression);
+					context.getFunctionInfo().setValue(elementVariableDeclaration, elementValue);
 					
 					VariableExpressionTarget elementExpressionTarget = new VariableExpressionTarget(context, elementVariableDeclaration);
 					transformer.transform(elementExpression, elementExpressionTarget.asList());
@@ -127,7 +127,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					
 					ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 					arrayElementAccess.setArray(variableReference);
-					staticEvaluationResult.setValue(arrayElementAccess, new AnyValue(computationContext, arrayType.getElementType()));
+					context.getFunctionInfo().setValue(arrayElementAccess, new AnyValue(computationContext, arrayType.getElementType()));
 	
 					for (Integer i : currentIndices) {
 						arrayElementAccess.getSubscripts().add(createArraySubscript(context, i));
@@ -141,12 +141,12 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					if (elementExpressionType instanceof ArrayType) {
 						ArrayType elementExpressionArrayType = (ArrayType) elementExpressionType;
 
-						FeatureReference elementVariableReference = MscriptUtil.createVariableReference(staticEvaluationResult, elementVariableDeclaration, 0, false);
-						staticEvaluationResult.setValue(elementVariableReference, new AnyValue(computationContext, elementExpressionArrayType.getElementType()));
+						FeatureReference elementVariableReference = MscriptUtil.createVariableReference(context.getFunctionInfo(), elementVariableDeclaration, 0, false);
+						context.getFunctionInfo().setValue(elementVariableReference, new AnyValue(computationContext, elementExpressionArrayType.getElementType()));
 
 						ArrayElementAccess rightArrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
 						rightArrayElementAccess.setArray(elementVariableReference);
-						staticEvaluationResult.setValue(rightArrayElementAccess, new AnyValue(computationContext, elementExpressionArrayType.getElementType()));
+						context.getFunctionInfo().setValue(rightArrayElementAccess, new AnyValue(computationContext, elementExpressionArrayType.getElementType()));
 						for (int i = 0; i < rightIndices.length; ++i) {
 							rightArrayElementAccess.getSubscripts().add(createArraySubscript(context, rightIndices[i]));
 						}
@@ -170,7 +170,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 		integerLiteral.setUnit(TypeUtil.createUnit());
 		integerLiteral.setValue(index);
 		subscript.setExpression(integerLiteral);
-		context.getStaticEvaluationResult().setValue(integerLiteral, Values.valueOf(context.getStaticEvaluationResult().getComputationContext(), TypeUtil.createIntegerType(), index));
+		context.getFunctionInfo().setValue(integerLiteral, Values.valueOf(context.getStaticEvaluationResult().getComputationContext(), TypeUtil.createIntegerType(), index));
 		return subscript;
 	}
 	

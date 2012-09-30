@@ -11,12 +11,9 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
-
-import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.function.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -24,8 +21,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public interface IFunctionDefinitionTransformer {
 
-	IFunctionDefinitionTransformerResult transform(IStaticEvaluationResult staticEvaluationResult,
-			FunctionDescription functionDescription, List<IValue> staticArguments,
-			List<Type> inputParameterDataTypes);
+	FunctionInstance transform(IStaticEvaluationResult staticEvaluationResult, StaticFunctionInfo functionInfo);
 
 }

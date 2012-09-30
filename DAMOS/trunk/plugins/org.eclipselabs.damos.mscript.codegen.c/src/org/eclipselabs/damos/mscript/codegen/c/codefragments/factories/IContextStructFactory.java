@@ -1,0 +1,37 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.mscript.codegen.c.codefragments.factories;
+
+import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory.Default;
+
+import com.google.inject.ImplementedBy;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+@ImplementedBy(Default.class)
+public interface IContextStructFactory {
+
+	ICodeFragment create(boolean singleton);
+	
+	class Default implements IContextStructFactory {
+		
+		public ICodeFragment create(boolean singleton) {
+			return new ContextStruct(singleton);
+		}
+		
+	}
+
+}

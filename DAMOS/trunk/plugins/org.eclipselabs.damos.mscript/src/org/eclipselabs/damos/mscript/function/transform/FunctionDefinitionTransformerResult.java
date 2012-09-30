@@ -11,9 +11,13 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -21,30 +25,29 @@ import org.eclipselabs.damos.mscript.function.FunctionInstance;
  */
 public class FunctionDefinitionTransformerResult implements IFunctionDefinitionTransformerResult {
 
-	private FunctionInstance functionInstance;
-	private IStatus status;
+	private final Map<StaticFunctionInfo, FunctionInstance> functionInstances = new HashMap<StaticFunctionInfo, FunctionInstance>();
+	private IStatus status = Status.OK_STATUS;
 	
-	public FunctionDefinitionTransformerResult(FunctionInstance functionInstance) {
-		this(functionInstance, Status.OK_STATUS);
+	public FunctionInstance getFunctionInstance(StaticFunctionInfo functionInfo) {
+		return functionInstances.get(functionInfo);
 	}
 	
-	/**
-	 * 
-	 */
-	public FunctionDefinitionTransformerResult(FunctionInstance functionInstance, IStatus status) {
-		this.functionInstance = functionInstance;
-		this.status = status;
+	public void setFunctionInstance(StaticFunctionInfo functionInfo, FunctionInstance functionInstance) {
+		functionInstances.put(functionInfo, functionInstance);
 	}
-	
-	public FunctionInstance getFunctionInstance() {
-		return functionInstance;
-	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult#getStatus()
 	 */
 	public IStatus getStatus() {
 		return status;
+	}
+	
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(IStatus status) {
+		this.status = status;
 	}
 	
 }

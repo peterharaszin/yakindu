@@ -13,6 +13,7 @@ package org.eclipselabs.damos.mscript.internal.builtin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NumericType;
@@ -30,7 +31,7 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 public class UnitFunction extends AbstractSingleParameterFunction {
 
 	@Override
-	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument, boolean staticOnly) {
 		if (!context.isStaticScope()) {
 			if (context.getStatusCollector() != null) {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Unit function can only be used in static scope", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
@@ -38,12 +39,23 @@ public class UnitFunction extends AbstractSingleParameterFunction {
 			return InvalidValue.SINGLETON;
 		}
 		
-		if (!(argument.getDataType() instanceof NumericType)) {
-			return InvalidValue.SINGLETON;
+		if (argument.getDataType() instanceof NumericType) {
+			NumericType numericType = (NumericType) argument.getDataType();
+			return new UnitValue(context.getComputationContext(), EcoreUtil.copy(numericType.getUnit()));
+		}
+		
+		if (argument.getDataType() instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) argument.getDataType();
+			if (arrayType.getElementType() instanceof NumericType) {
+				NumericType numericType = (NumericType) arrayType.getElementType();
+				return new UnitValue(context.getComputationContext(), EcoreUtil.copy(numericType.getUnit()));
+			}
 		}
 
-		NumericType numericType = (NumericType) argument.getDataType();
-		return new UnitValue(context.getComputationContext(), EcoreUtil.copy(numericType.getUnit()));
+		if (context.getStatusCollector() != null) {
+			context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Unit function argument must be numeric scalar or array value", functionCall.getArguments().get(0)));
+		}
+		return InvalidValue.SINGLETON;
 	}
 
 }

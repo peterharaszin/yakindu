@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
  */
 public class NumFunction extends AbstractBuiltinFunction {
 
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().size() != 2) {
 			return InvalidValue.SINGLETON;
 		}

@@ -47,30 +47,30 @@ class ArrayScalarMultiplyGenerator implements IOperationGenerator {
 			return false
 		}
 		return TypeUtil::isNumericArray(resultDataType)
-				&& (context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType instanceof NumericType
-				&& TypeUtil::isNumericArray(context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType)
-				|| TypeUtil::isNumericArray(context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType)
-				&& context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType instanceof NumericType)
+				&& (context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType instanceof NumericType
+				&& TypeUtil::isNumericArray(context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType)
+				|| TypeUtil::isNumericArray(context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType)
+				&& context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType instanceof NumericType)
 	}
 	
 	override generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression) {
 		val binaryExpression = expression as BinaryExpression
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val scalarOperand = if (context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType instanceof NumericType) {
+		val scalarOperand = if (context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType instanceof NumericType) {
 			binaryExpression.leftOperand
 		} else {
 			binaryExpression.rightOperand
 		}
 		
-		val arrayOperand = if (context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType instanceof NumericType) {
+		val arrayOperand = if (context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType instanceof NumericType) {
 			binaryExpression.rightOperand
 		} else {
 			binaryExpression.leftOperand
 		}
 		
-		val scalarType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(scalarOperand).dataType as NumericType)
-		val arrayType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(arrayOperand).dataType as ArrayType)
+		val scalarType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(scalarOperand).dataType as NumericType)
+		val arrayType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(arrayOperand).dataType as ArrayType)
 
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
 

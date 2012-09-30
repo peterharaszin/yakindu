@@ -11,25 +11,15 @@
 
 package org.eclipselabs.damos.mscript.ide.core.launch;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
-import org.eclipselabs.damos.mscript.ide.core.internal.launch.util.ParseUtil;
 import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
-import org.eclipselabs.damos.mscript.interpreter.IInterpreter;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
-import org.eclipselabs.damos.mscript.interpreter.Interpreter;
-import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -38,9 +28,9 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public class MscriptThread extends Thread {
 
 	private IInterpreterContext interpreterContext;
-	private IFunctionObject functionObject;
-	private IFile inputFile;
-	private IFile outputFile;
+//	private IFunctionObject functionObject;
+//	private IFile inputFile;
+//	private IFile outputFile;
 	
 	private List<IMscriptExecutionListener> listeners = new ArrayList<IMscriptExecutionListener>();
 
@@ -50,9 +40,9 @@ public class MscriptThread extends Thread {
 	public MscriptThread(IInterpreterContext interpreterContext, IFunctionObject functionObject, IFile inputFile, IFile outputFile) {
 		super("Mscript Application");
 		this.interpreterContext = interpreterContext;
-		this.functionObject = functionObject;
-		this.inputFile = inputFile;
-		this.outputFile = outputFile;
+//		this.functionObject = functionObject;
+//		this.inputFile = inputFile;
+//		this.outputFile = outputFile;
 	}
 	
 	/**
@@ -68,32 +58,32 @@ public class MscriptThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			IInterpreter interpreter = new Interpreter();
-			interpreter.initialize(interpreterContext, functionObject);
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(inputFile.getContents()));
-			while (!interpreterContext.isCanceled() && reader.ready()) {
-				List<IValue> inputValues = ParseUtil.parseValues(interpreterContext, reader.readLine());
-				StringBuilder sb = new StringBuilder();
-				List<IValue> outputValues = interpreter.execute(interpreterContext, functionObject, inputValues);
-				for (IValue outputValue : outputValues) {
-					if (sb.length() > 0) {
-						sb.append(",");
-					}
-					if (outputValue instanceof ISimpleNumericValue) {
-						ISimpleNumericValue numericValue = (ISimpleNumericValue) outputValue;
-						sb.append(numericValue.doubleValue());
-					} else if (outputValue instanceof IBooleanValue) {
-						IBooleanValue booleanValue = (IBooleanValue) outputValue;
-						sb.append(booleanValue.booleanValue());
-					} else {
-						sb.append("INVALID");
-					}
-				}
-				sb.append("\n");
-				outputFile.appendContents(new StringInputStream(sb.toString()), false, false, new NullProgressMonitor());
-				functionObject.incrementStepIndex();
-			}
+//			IInterpreter interpreter = new Interpreter();
+//			interpreter.initialize(interpreterContext, functionObject);
+//			
+//			BufferedReader reader = new BufferedReader(new InputStreamReader(inputFile.getContents()));
+//			while (!interpreterContext.isCanceled() && reader.ready()) {
+//				List<IValue> inputValues = ParseUtil.parseValues(interpreterContext, reader.readLine());
+//				StringBuilder sb = new StringBuilder();
+//				List<IValue> outputValues = interpreter.execute(interpreterContext, functionObject, inputValues);
+//				for (IValue outputValue : outputValues) {
+//					if (sb.length() > 0) {
+//						sb.append(",");
+//					}
+//					if (outputValue instanceof ISimpleNumericValue) {
+//						ISimpleNumericValue numericValue = (ISimpleNumericValue) outputValue;
+//						sb.append(numericValue.doubleValue());
+//					} else if (outputValue instanceof IBooleanValue) {
+//						IBooleanValue booleanValue = (IBooleanValue) outputValue;
+//						sb.append(booleanValue.booleanValue());
+//					} else {
+//						sb.append("INVALID");
+//					}
+//				}
+//				sb.append("\n");
+//				outputFile.appendContents(new StringInputStream(sb.toString()), false, false, new NullProgressMonitor());
+//				functionObject.incrementStepIndex();
+//			}
 		} catch (Exception e) {
 			fireMscriptExecutionListener(new MscriptExecutionEvent(this, new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, e.getMessage(), e)));
 		}

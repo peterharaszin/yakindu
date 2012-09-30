@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
@@ -81,9 +82,6 @@ import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
-import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookup;
-import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
-import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookup;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -117,8 +115,6 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 		
 		private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
 		
-		private final IBuiltinFunctionLookup builtinFunctionLookup = new BuiltinFunctionLookup();
-
 		private final IExpressionEvaluationContext context;
 		
 		public ExpressionEvaluatorSwitch(IExpressionEvaluationContext context) {
@@ -186,7 +182,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 
-			if (ifExpression.isStatic() || context.isStaticScope()) {
+			if (ifExpression.isStatic()) {
 				if (conditionValue instanceof IBooleanValue) {
 					boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
 					if (booleanValue) {
@@ -216,6 +212,14 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Resulting data type is incompatible with then expression data type", ifExpression.getElseExpression()));
 				}
 				return InvalidValue.SINGLETON;
+			}
+			
+			if (conditionValue instanceof IBooleanValue) {
+				boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
+				if (booleanValue) {
+					return thenValue;
+				}
+				return elseValue;
 			}
 
 			return new AnyValue(context.getComputationContext(), type);
@@ -367,21 +371,21 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 
 			if (startValue instanceof AnyValue) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Start expression must be static", startExpression));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Start expression must be constant", startExpression));
 				}
 				nonStatic = true;
 			}
 
 			if (incrementValue instanceof AnyValue) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Increment expression must be static", incrementExpression));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Increment expression must be constant", incrementExpression));
 				}
 				nonStatic = true;
 			}
 
 			if (endValue instanceof AnyValue) {
 				if (context.getStatusCollector() != null) {
-					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "End expression must be static", endExpression));
+					context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "End expression must be constant", endExpression));
 				}
 				nonStatic = true;
 			}
@@ -1211,7 +1215,7 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				
 				if (subsciptValue.getDataType() instanceof ArrayType && !(subsciptValue instanceof VectorValue)) {
 					if (context.getStatusCollector() != null) {
-						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript array must be static", subscript));
+						context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript array must be constant", subscript));
 					}
 					return InvalidValue.SINGLETON;
 				}
@@ -1308,11 +1312,18 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				if (featureReference.getFeature() instanceof ConstantDeclaration) {
 					ConstantDeclaration constantDeclaration = (ConstantDeclaration) featureReference.getFeature();
 					if (context.addVisitedEvaluable(constantDeclaration)) {
-						context.enterStaticScope();
 						value = evaluate(constantDeclaration.getInitializer());
-						context.leaveStaticScope();
 						context.processValue(constantDeclaration, value);
 						context.removeVisitedEvaluable(constantDeclaration);
+						if (value instanceof AnyType) {
+							if (context.getStatusCollector() != null) {
+								context.getStatusCollector().collectStatus(
+										new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+												"Value of constant " + featureReference.getFeature().getName()
+														+ " could not be evaluated statically", featureReference));
+							}
+							value = InvalidValue.SINGLETON;
+						}
 					} else {
 						value = InvalidValue.SINGLETON;
 					}
@@ -1382,9 +1393,9 @@ public class ExpressionEvaluator implements IExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
-			IBuiltinFunction function = builtinFunctionLookup.getFunction(functionCall);
-			if (function != null) {
-				return function.call(context, functionCall);
+			IFunctionInvocationHandler functionInvocationHandler = context.getFunctionInvocationHandler();
+			if (functionInvocationHandler != null) {
+				return functionInvocationHandler.invokeFunction(context, functionCall).get(0);
 			}
 			
 			if (context.getStatusCollector() != null) {

@@ -23,6 +23,8 @@ public interface IInterpreterContext {
 	
 	IStaticEvaluationResult getStaticEvaluationResult();
 	IComputationContext getComputationContext();
+	
+	FunctionCallPath getFunctionCallPath();
 
 	void enterVariableScope();
 	void leaveVariableScope();
@@ -30,7 +32,6 @@ public interface IInterpreterContext {
 	IVariable getVariable(VariableDeclaration variableDeclaration);
 	void addVariable(IVariable variable);
 	
-	void setCanceled(boolean canceled);
-	boolean isCanceled();
-
+	IFunctionInvocationHandler getFunctionInvocationHandler();
+	
 }

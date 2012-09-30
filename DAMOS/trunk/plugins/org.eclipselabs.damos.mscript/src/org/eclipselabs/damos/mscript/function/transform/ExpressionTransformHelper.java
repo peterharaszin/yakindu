@@ -28,15 +28,15 @@ public class ExpressionTransformHelper {
 	public FeatureReference transformToVariableReference(ITransformerContext context, Expression expression, String name, IExpressionTransformer transformer) {
 		if (expression instanceof FeatureReference) {
 			FeatureReference newVariableReference = EcoreUtil.copy((FeatureReference) expression);
-			context.getStaticEvaluationResult().setValue(newVariableReference, context.getStaticEvaluationResult().getValue(expression));
+			context.getFunctionInfo().setValue(newVariableReference, context.getFunctionInfo().getValue(expression));
 			return newVariableReference;
 		}
 		
-		IValue operandValue = context.getStaticEvaluationResult().getValue(expression);
+		IValue operandValue = context.getFunctionInfo().getValue(expression);
 		
 		LocalVariableDeclaration variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), name));
-		context.getStaticEvaluationResult().setValue(variableDeclaration, operandValue);
+		context.getFunctionInfo().setValue(variableDeclaration, operandValue);
 		context.getCompound().getStatements().add(variableDeclaration);
 		
 		VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclaration);

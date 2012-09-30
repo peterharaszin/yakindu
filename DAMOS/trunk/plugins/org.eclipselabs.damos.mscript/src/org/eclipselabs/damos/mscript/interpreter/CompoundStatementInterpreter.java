@@ -75,7 +75,7 @@ public class CompoundStatementInterpreter implements ICompoundStatementInterpret
 				
 				IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assignment.getAssignedExpression());
 				IVariable variable = context.getVariable(variableDeclaration);
-				variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), value);
+				variable.setValue(context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getStepIndex(variableReference), value);
 			} else if (assignment.getTarget() instanceof ArrayElementAccess) {
 				ArrayElementAccess arrayElementAccess = (ArrayElementAccess) assignment.getTarget();
 				if (arrayElementAccess.getArray() instanceof FeatureReference) {
@@ -87,13 +87,13 @@ public class CompoundStatementInterpreter implements ICompoundStatementInterpret
 					
 					IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assignment.getAssignedExpression());
 					IVariable variable = context.getVariable(variableDeclaration);
-					IValue variableValue = variable.getValue(context.getStaticEvaluationResult().getStepIndex(variableReference));
+					IValue variableValue = variable.getValue(context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getStepIndex(variableReference));
 					IArrayValue arrayValue;
 					if (variableValue instanceof IArrayValue) {
 						arrayValue = (IArrayValue) variableValue;
 					} else if (variableValue instanceof UninitializedValue) {
-						arrayValue = Values.newArrayValue(context.getComputationContext(), (ArrayType) context.getStaticEvaluationResult().getValue(variableDeclaration).getDataType());
-						variable.setValue(context.getStaticEvaluationResult().getStepIndex(variableReference), arrayValue);
+						arrayValue = Values.newArrayValue(context.getComputationContext(), (ArrayType) context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getValue(variableDeclaration).getDataType());
+						variable.setValue(context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getStepIndex(variableReference), arrayValue);
 					} else {
 						throw new IllegalArgumentException();
 					}

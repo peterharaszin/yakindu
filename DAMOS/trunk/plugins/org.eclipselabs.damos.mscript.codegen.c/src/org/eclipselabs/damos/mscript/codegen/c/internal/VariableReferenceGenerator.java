@@ -32,7 +32,7 @@ public class VariableReferenceGenerator {
 		if (feature instanceof InputParameterDeclaration) {
 			InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration) feature;
 			if (inputParameterDeclaration.isConstant()) {
-				IValue staticArgument = context.getStaticEvaluationResult().getValue(inputParameterDeclaration);
+				IValue staticArgument = context.getFunctionInfo().getValue(inputParameterDeclaration);
 				return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), staticArgument);
 			}
 			// Fall-through
@@ -41,7 +41,7 @@ public class VariableReferenceGenerator {
 			return context.getVariableAccessStrategy().generateVariableReference(variableReference);
 		}
 		if (feature instanceof ConstantDeclaration) {
-			IValue constantValue = context.getStaticEvaluationResult().getValue(feature);
+			IValue constantValue = context.getFunctionInfo().getValue(feature);
 			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), constantValue);
 		}
 		if (feature instanceof InspectWhenClause) {

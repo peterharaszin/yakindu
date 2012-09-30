@@ -18,6 +18,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -30,7 +31,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
  */
 public class SizeFunction extends AbstractBuiltinFunction {
 
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().isEmpty()) {
 			return InvalidValue.SINGLETON;
 		}
@@ -60,7 +61,7 @@ public class SizeFunction extends AbstractBuiltinFunction {
 		}
 
 		Expression sizeExpression = dimensions.get(dimension).getSize();
-		return evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationResult()), sizeExpression);
+		return evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(new StaticEvaluationResult())), sizeExpression);
 	}
 
 }

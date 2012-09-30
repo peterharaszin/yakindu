@@ -2639,7 +2639,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PostfixUnaryExpression returns Expression:
-	//	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	//	(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 	public MscriptGrammarAccess.PostfixUnaryExpressionElements getPostfixUnaryExpressionAccess() {
 		return gaMscript.getPostfixUnaryExpressionAccess();
 	}
@@ -2853,6 +2853,17 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFeatureReferenceRule() {
 		return getFeatureReferenceAccess().getRule();
+	}
+
+	//QualifiedMemberAccess returns Expression:
+	//	QualifiedFunctionCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]")*;
+	public MscriptGrammarAccess.QualifiedMemberAccessElements getQualifiedMemberAccessAccess() {
+		return gaMscript.getQualifiedMemberAccessAccess();
+	}
+	
+	public ParserRule getQualifiedMemberAccessRule() {
+		return getQualifiedMemberAccessAccess().getRule();
 	}
 
 	//QualifiedFunctionCall returns Expression:

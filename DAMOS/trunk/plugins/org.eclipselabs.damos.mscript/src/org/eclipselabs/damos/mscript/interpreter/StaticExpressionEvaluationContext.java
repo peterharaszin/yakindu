@@ -23,16 +23,27 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class StaticExpressionEvaluationContext extends AbstractExpressionEvaluationContext {
 
-	private final IStaticEvaluationResult staticEvaluationResult;
+	private final IStaticEvaluationContext context;
+	
+	private final IFunctionInvocationHandler functionInvocationHandler;
 	
 	private VariableScope scope = new VariableScope(null);
 	
-	public StaticExpressionEvaluationContext(IStaticEvaluationResult staticEvaluationResult) {
-		this.staticEvaluationResult = staticEvaluationResult;
+	public StaticExpressionEvaluationContext(IStaticEvaluationContext context) {
+		this(context, null);
+	}
+
+	public StaticExpressionEvaluationContext(IStaticEvaluationContext context, IFunctionInvocationHandler functionInvocationHandler) {
+		this.context = context;
+		this.functionInvocationHandler = functionInvocationHandler;
 	}
 	
 	public IComputationContext getComputationContext() {
-		return staticEvaluationResult.getComputationContext();
+		return context.getResult().getComputationContext();
+	}
+	
+	public FunctionCallPath getFunctionCallPath() {
+		return context.getFunctionCallPath();
 	}
 	
 	public void enterVariableScope() {
@@ -56,17 +67,28 @@ public class StaticExpressionEvaluationContext extends AbstractExpressionEvaluat
 					return variable.getValue(0);
 				}
 			}
-			return staticEvaluationResult.getValue(feature);
+			return getFunctionInfo().getValue(feature);
 		}
-		return staticEvaluationResult.getValue(evaluable);
+		return getFunctionInfo().getValue(evaluable);
 	}
-	
+
 	public void processValue(Evaluable evaluable, IValue value) {
-		staticEvaluationResult.setValue(evaluable, value);
+		getFunctionInfo().setValue(evaluable, value);
 	}
 
 	public IStatusCollector getStatusCollector() {
-		return staticEvaluationResult;
+		return context.getResult();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext#getFunctionInvocationHandler()
+	 */
+	public IFunctionInvocationHandler getFunctionInvocationHandler() {
+		return functionInvocationHandler;
 	}
 
+	private StaticFunctionInfo getFunctionInfo() {
+		return context.getResult().getFunctionInfo(context.getFunctionCallPath());
+	}
+	
 }

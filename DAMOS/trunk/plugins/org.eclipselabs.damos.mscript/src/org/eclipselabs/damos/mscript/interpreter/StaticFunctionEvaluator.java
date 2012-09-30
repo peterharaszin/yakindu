@@ -62,11 +62,12 @@ public class StaticFunctionEvaluator {
 	private final EValidator functionModelValidator = new FunctionValidator();
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	
-	public void evaluate(IStaticEvaluationResult result, FunctionDeclaration functionDeclaration) {
-		staticStepExpressionEvaluator.evaluate(result, functionDeclaration);
+	public void evaluate(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
+		IStaticEvaluationResult result = context.getResult();
+		staticStepExpressionEvaluator.evaluate(context, functionDeclaration);
 
-		FunctionDescription functionDescription = functionDescriptionBuilder.build(result, functionDeclaration);
-		result.setFunctionDescription(functionDeclaration, functionDescription);
+		FunctionDescription functionDescription = functionDescriptionBuilder.build(context, functionDeclaration);
+		getFunctionInfo(context).setFunctionDescription(functionDescription);
 
 		BasicDiagnostic diagnostics = new BasicDiagnostic();
 		for (EObjectTreeIterator it = new EObjectTreeIterator(functionDescription, true); it.hasNext();) {
@@ -80,27 +81,28 @@ public class StaticFunctionEvaluator {
 		for (ImplicitVariableDeclaration variableDeclaration : functionDeclaration.getImplicitVariableDeclarations()) {
 			RealType realType = TypeUtil.createRealType(variableDeclaration.eResource().getResourceSet(), "s");
 			if ("Ts".equals(variableDeclaration.getName()) || "t".equals(variableDeclaration.getName())) {
-				result.setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
+				getFunctionInfo(context).setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
 			} else if ("fs".equals(variableDeclaration.getName())) {
 				realType.getUnit().getFactor("s").setExponent(-1);
-				result.setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
+				getFunctionInfo(context).setValue(variableDeclaration, new AnyValue(result.getComputationContext(), realType));
 			}
 		}
 
-		if (!evaluateStaticAssertions(result, functionDescription)) {
+		if (!evaluateStaticAssertions(context, functionDescription)) {
 			return;
 		}
-		evaluateAssertions(result, functionDescription);
+		evaluateAssertions(context, functionDescription);
 		
-		evaluateEquations(result, functionDescription);
+		evaluateEquations(context, functionDescription);
 	}
 
-	private boolean evaluateStaticAssertions(IStaticEvaluationResult result, FunctionDescription functionDescription) {
+	private boolean evaluateStaticAssertions(IStaticEvaluationContext context, FunctionDescription functionDescription) {
+		IStaticEvaluationResult result = context.getResult();
 		boolean passed = true;
 		
 		for (Assertion assertion : functionDescription.getDeclaration().getAssertions()) {
 			if (assertion.isStatic()) {
-				IExpressionEvaluationContext expressionEvaluationContext = new StaticExpressionEvaluationContext(result);
+				IExpressionEvaluationContext expressionEvaluationContext = new StaticExpressionEvaluationContext(context, context);
 				expressionEvaluationContext.enterStaticScope();
 				IValue value = expressionEvaluator.evaluate(expressionEvaluationContext, assertion.getCondition());
 				if (value instanceof InvalidValue) {
@@ -132,7 +134,7 @@ public class StaticFunctionEvaluator {
 						if (severity > IStatus.WARNING) {
 							passed = false;
 						}
-						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescription.getDeclaration(), functionDescription.getDeclaration().getNameFeature()));
+						result.collectStatus(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, messageText, functionDescription.getDeclaration(), null));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							break;
 						}
@@ -150,10 +152,10 @@ public class StaticFunctionEvaluator {
 	 * @param result
 	 * @param functionDescription
 	 */
-	private void evaluateAssertions(IStaticEvaluationResult result, FunctionDescription functionDescription) {
+	private void evaluateAssertions(IStaticEvaluationContext context, FunctionDescription functionDescription) {
 		for (Assertion assertion : functionDescription.getDeclaration().getAssertions()) {
 			if (!assertion.isStatic()) {
-				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), assertion.getCondition());
+				expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(context, context), assertion.getCondition());
 			}
 		}
 	}
@@ -162,14 +164,15 @@ public class StaticFunctionEvaluator {
 	 * @param result
 	 * @param functionDescription
 	 */
-	private void evaluateEquations(IStaticEvaluationResult result, FunctionDescription functionDescription) {
-		Collection<EquationDescription> sortedEquations = getSortedEquations(result, functionDescription);
+	private void evaluateEquations(IStaticEvaluationContext context, FunctionDescription functionDescription) {
+		IStaticEvaluationResult result = context.getResult();
+		Collection<EquationDescription> sortedEquations = getSortedEquations(context, functionDescription);
 		
 		boolean changed;
 		do {
 			changed = false;
 			for (EquationDescription equationDescription : sortedEquations) {
-				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(result), equationDescription.getRightHandSide().getExpression());
+				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(context, context), equationDescription.getRightHandSide().getExpression());
 				if (value instanceof InvalidValue) {
 					continue;
 				}
@@ -182,8 +185,8 @@ public class StaticFunctionEvaluator {
 				}
 				FeatureReference variableReference = (FeatureReference) leftHandSideExpression;
 				
-				IValue leftHandSideValue = result.getValue(variableReference.getFeature());
-				IValue rightHandSideValue = result.getValue(equationDescription.getRightHandSide().getExpression());
+				IValue leftHandSideValue = getFunctionInfo(context).getValue(variableReference.getFeature());
+				IValue rightHandSideValue = getFunctionInfo(context).getValue(equationDescription.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
 					Type type;
 					
@@ -199,7 +202,7 @@ public class StaticFunctionEvaluator {
 					
 					if (type != null) {
 						Type previousDataType = null;
-						IValue previousValue = result.getValue(variableReference.getFeature());
+						IValue previousValue = getFunctionInfo(context).getValue(variableReference.getFeature());
 						if (previousValue != null) {
 							previousDataType = previousValue.getDataType();
 						}
@@ -207,8 +210,8 @@ public class StaticFunctionEvaluator {
 							changed = true;
 						}
 						AnyValue anyValue = new AnyValue(result.getComputationContext(), type);
-						result.setValue(variableReference, anyValue);
-						result.setValue(variableReference.getFeature(), anyValue);
+						getFunctionInfo(context).setValue(variableReference, anyValue);
+						getFunctionInfo(context).setValue(variableReference.getFeature(), anyValue);
 					} else {
 						result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 								"The data type of the variable " + variableReference.getFeature().getName()
@@ -220,7 +223,7 @@ public class StaticFunctionEvaluator {
 		} while (changed);
 	}
 	
-	private Collection<EquationDescription> getSortedEquations(IStaticEvaluationResult result, FunctionDescription functionDescription) {
+	private Collection<EquationDescription> getSortedEquations(IStaticEvaluationContext context, FunctionDescription functionDescription) {
 		Set<CallableElement> definedFeatures = new HashSet<CallableElement>();
 		List<EquationDescription> sortedEquations = new ArrayList<EquationDescription>();
 		List<EquationDescription> backlog = new LinkedList<EquationDescription>(functionDescription.getEquationDescriptions());
@@ -264,7 +267,7 @@ public class StaticFunctionEvaluator {
 			for (EquationPart part : equationDescription.getRightHandSide().getParts()) {
 				FeatureReference variableReference = part.getVariableReference();
 				if (!definedFeatures.contains(variableReference.getFeature())) {
-					result.collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+					context.getResult().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
 							"The data type of the variable " + variableReference.getFeature().getName()
 									+ " could not be determined",
 							variableReference));
@@ -275,4 +278,8 @@ public class StaticFunctionEvaluator {
 		return sortedEquations;
 	}
 		
+	private StaticFunctionInfo getFunctionInfo(IStaticEvaluationContext context) {
+		return context.getResult().getFunctionInfo(context.getFunctionCallPath());
+	}
+
 }

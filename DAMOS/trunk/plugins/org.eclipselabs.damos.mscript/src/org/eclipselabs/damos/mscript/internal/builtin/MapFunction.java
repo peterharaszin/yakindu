@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
+import java.util.Arrays;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.ArrayType;
@@ -39,10 +41,7 @@ public class MapFunction extends AbstractBuiltinFunction {
 
 	private final ExpressionEvaluatorHelper expressionEvaluatorHelper = new ExpressionEvaluatorHelper();
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction#call(org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext, org.eclipselabs.damos.mscript.FunctionCall)
-	 */
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().size() != 2) {
 			if (context.getStatusCollector() != null) {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Map function expects 2 arguments", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
@@ -104,7 +103,7 @@ public class MapFunction extends AbstractBuiltinFunction {
 		boolean anyValue = false;
 		IValue[] elements = null;
 
-		if (targetValue instanceof VectorValue) {
+		if (!staticOnly && targetValue instanceof VectorValue) {
 			// Try to evaluate concrete value
 			VectorValue vectorValue = (VectorValue) targetValue;
 			elements = new IValue[vectorValue.getSize()];
@@ -121,19 +120,18 @@ public class MapFunction extends AbstractBuiltinFunction {
 				}
 			}
 		} else {
-			elements = new IValue[TypeUtil.getArraySize(arrayType)];
-			for (int i = 0; i < elements.length; ++i) {
-				context.enterVariableScope();
-				context.addVariable(new IteratorVariable(lambdaExpression.getParameters().get(0), new AnyValue(context.getComputationContext(), EcoreUtil.copy(arrayType.getElementType()))));
-				elements[i] = evaluate(context, lambdaExpression.getExpression());
-				context.leaveVariableScope();
-				if (elements[i] instanceof InvalidValue) {
-					return InvalidValue.SINGLETON;
-				}
-				if (elements[i] instanceof AnyValue) {
-					anyValue = true;
-				}
+			context.enterVariableScope();
+			context.addVariable(new IteratorVariable(lambdaExpression.getParameters().get(0), new AnyValue(context.getComputationContext(), EcoreUtil.copy(arrayType.getElementType()))));
+			IValue element = evaluate(context, lambdaExpression.getExpression());
+			context.leaveVariableScope();
+			if (element instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
 			}
+			if (element instanceof AnyValue) {
+				anyValue = true;
+			}
+			elements = new IValue[TypeUtil.getArraySize(arrayType)];
+			Arrays.fill(elements, element);
 		}
 
 		return expressionEvaluatorHelper.createArrayValue(context, elements, anyValue, lambdaExpression.getExpression());

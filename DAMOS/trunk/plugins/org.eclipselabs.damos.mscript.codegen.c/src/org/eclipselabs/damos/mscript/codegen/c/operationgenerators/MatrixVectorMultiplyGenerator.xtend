@@ -44,16 +44,16 @@ class MatrixVectorMultiplyGenerator implements IOperationGenerator {
 			return false
 		}
 		return TypeUtil::isNumericArray(resultDataType)
-				&& TypeUtil::isNumericMatrix(context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType)
-				&& TypeUtil::isNumericVector(context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType)
+				&& TypeUtil::isNumericMatrix(context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType)
+				&& TypeUtil::isNumericVector(context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType)
 	}
 	
 	override generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression) {
 		val binaryExpression = expression as BinaryExpression
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val matrixType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType as ArrayType);
-		val vectorType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType as ArrayType);
+		val matrixType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType as ArrayType);
+		val vectorType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
 
 		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + "[i][j]", matrixType.numericElementType.numberFormat);

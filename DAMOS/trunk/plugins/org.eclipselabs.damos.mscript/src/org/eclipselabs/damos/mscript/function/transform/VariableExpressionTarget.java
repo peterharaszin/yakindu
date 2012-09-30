@@ -49,8 +49,8 @@ public class VariableExpressionTarget extends AbstractExpressionTarget {
 	}
 
 	public FeatureReference createVariableReference(Type targetDataType) {
-		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, stepIndex, false);
-		context.getStaticEvaluationResult().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), getDataType()));
+		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getFunctionInfo(), variableDeclaration, stepIndex, false);
+		context.getFunctionInfo().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), getDataType()));
 		return variableReference;
 	}
 	
@@ -59,7 +59,7 @@ public class VariableExpressionTarget extends AbstractExpressionTarget {
 	}
 	
 	private Type getDataType() {
-		IValue value = context.getStaticEvaluationResult().getValue(variableDeclaration);
+		IValue value = context.getFunctionInfo().getValue(variableDeclaration);
 		return value.getDataType();
 	}
 

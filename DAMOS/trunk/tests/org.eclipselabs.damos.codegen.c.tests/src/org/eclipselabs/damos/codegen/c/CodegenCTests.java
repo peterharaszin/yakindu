@@ -16,6 +16,7 @@ import org.eclipselabs.damos.codegen.c.gtests.AndTest;
 import org.eclipselabs.damos.codegen.c.gtests.ArrayElementWiseOperationTest;
 import org.eclipselabs.damos.codegen.c.gtests.ArrayTest;
 import org.eclipselabs.damos.codegen.c.gtests.DoWhileLoopTest;
+import org.eclipselabs.damos.codegen.c.gtests.FunctionTest2;
 import org.eclipselabs.damos.codegen.c.gtests.GainFixedPointTest;
 import org.eclipselabs.damos.codegen.c.gtests.GainTest;
 import org.eclipselabs.damos.codegen.c.gtests.InportOnlyTest;
@@ -70,7 +71,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	RecordTest.class,
 	RecordConstructionTest.class,
 	UnionTest.class,
-	MapFunctionTest.class
+	MapFunctionTest.class,
+	FunctionTest2.class
 })
 public class CodegenCTests {
 

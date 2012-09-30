@@ -177,8 +177,8 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		if (variableReference.getFeature() instanceof VariableDeclaration) {
 			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 			if (variableDeclaration != null) {
-				int stepIndex = context.getStaticEvaluationResult().getStepIndex(variableReference);
-				assignExpression(context, variableReference, MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false), targets);
+				int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
+				assignExpression(context, variableReference, MscriptUtil.createVariableReference(context.getFunctionInfo(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false), targets);
 			}
 		} else {
 			assignExpression(context, variableReference, EcoreUtil.copy(variableReference), targets);
@@ -187,6 +187,7 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 
 	protected void transformFunctionCall(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, FunctionCall functionCall) {
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
+		transformedFunctionCall.eAdapters().add(new TransformAdapter<FunctionCall>(functionCall));
 		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
 		featureReference.setFeature(functionCall.getFeature());
 		transformedFunctionCall.setTarget(featureReference);
@@ -374,20 +375,20 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 		InlineExpressionTarget target = new InlineExpressionTarget(context);
 		transformer.transform(expression, target.asList());
 		Expression transformedExpression = target.getAssignedExpression();
-		IValue value = context.getStaticEvaluationResult().getValue(expression);
+		IValue value = context.getFunctionInfo().getValue(expression);
 		if (value == null) {
 			throw new IllegalStateException("No value set for expression");
 		}
-		context.getStaticEvaluationResult().setValue(transformedExpression, value);
+		context.getFunctionInfo().setValue(transformedExpression, value);
 		return transformedExpression;
 	}
 	
 	protected void assignExpression(ITransformerContext context, Expression expression, Expression transformedExpression, List<? extends IExpressionTarget> targets) {
-		IValue value = context.getStaticEvaluationResult().getValue(expression);
+		IValue value = context.getFunctionInfo().getValue(expression);
 		if (value == null) {
 			throw new IllegalStateException("No value set for expression");
 		}
-		context.getStaticEvaluationResult().setValue(transformedExpression, value);
+		context.getFunctionInfo().setValue(transformedExpression, value);
 		targets.get(0).assignExpression(transformedExpression);
 	}
 	

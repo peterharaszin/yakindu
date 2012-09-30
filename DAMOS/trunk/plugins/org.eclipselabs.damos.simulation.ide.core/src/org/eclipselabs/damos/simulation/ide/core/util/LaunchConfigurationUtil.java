@@ -45,6 +45,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -200,7 +201,7 @@ public class LaunchConfigurationUtil {
 		SimulationIDECorePlugin.getDefault().getLinker().linkModel(expression, diagnosticsConsumer);
 		
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
 		}

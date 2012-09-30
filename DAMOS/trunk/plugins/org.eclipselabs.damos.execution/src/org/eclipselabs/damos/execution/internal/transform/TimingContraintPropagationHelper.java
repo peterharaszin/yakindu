@@ -39,6 +39,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -157,7 +158,7 @@ public class TimingContraintPropagationHelper {
 			if (sampleTimeSpecification instanceof DscriptValueSpecification) {
 				IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 				Expression sampleTimeExpression = ((DscriptValueSpecification) sampleTimeSpecification).getExpression();
-				IValue sampleTime = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), sampleTimeExpression);
+				IValue sampleTime = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), sampleTimeExpression);
 				if (sampleTime instanceof ISimpleNumericValue) {
 					return ((ISimpleNumericValue) sampleTime).doubleValue();
 				}

@@ -17,7 +17,7 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 /**
@@ -26,13 +26,24 @@ import org.eclipselabs.damos.mscript.util.MscriptSwitch;
  */
 public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 
-	private IStaticEvaluationResult staticEvaluationResult;
+	private StaticFunctionInfo functionInfo;
 	
 	/**
 	 * 
 	 */
-	public DefaultVariableAccessStrategy(IStaticEvaluationResult staticEvaluationResult) {
-		this.staticEvaluationResult = staticEvaluationResult;
+	public DefaultVariableAccessStrategy(StaticFunctionInfo functionInfo) {
+		this.functionInfo = functionInfo;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy#generateContextMemberAccess(boolean, java.lang.String)
+	 */
+	public CharSequence generateContextMemberAccess(boolean pointer, String memberName) {
+		StringBuilder sb = new StringBuilder();
+		if (pointer) {
+			sb.append("&");
+		}
+		return sb.append("context->").append(memberName);
 	}
 	
 	public String generateVariableReference(FeatureReference variableReference) {
@@ -49,7 +60,7 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 
 		@Override
 		public String caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
-			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return inputParameterDeclaration.getName();
 			}
@@ -58,9 +69,9 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		
 		@Override
 		public String caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
-			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 			if (stepIndex == 0) {
-				return String.format("*%s", outputParameterDeclaration.getName());
+				return outputParameterDeclaration.getName();
 			}
 			return getContextAccess();
 		}
@@ -72,10 +83,10 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		
 		private String getContextAccess() {
 			VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
-			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 
 			String name = target.getName();
-			int circularBufferSize = staticEvaluationResult.getCircularBufferSize(target);
+			int circularBufferSize = functionInfo.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

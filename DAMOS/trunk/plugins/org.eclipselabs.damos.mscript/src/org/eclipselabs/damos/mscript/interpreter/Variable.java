@@ -39,7 +39,7 @@ public class Variable implements IVariable {
 	 */
 	public Variable(IInterpreterContext interpreterContext, VariableDeclaration declaration, int circularBufferSize) {
 		this.declaration = declaration;
-		IValue value = interpreterContext.getStaticEvaluationResult().getValue(declaration);
+		IValue value = interpreterContext.getStaticEvaluationResult().getFunctionInfo(interpreterContext.getFunctionCallPath()).getValue(declaration);
 		if (value != null) {
 			this.type = value.getDataType();
 		}

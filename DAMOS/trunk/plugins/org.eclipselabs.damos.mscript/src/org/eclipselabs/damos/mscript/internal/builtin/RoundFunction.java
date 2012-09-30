@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 public class RoundFunction extends AbstractSingleParameterFunction {
 
 	@Override
-	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+	protected IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument, boolean staticOnly) {
 		if (!(argument.getDataType() instanceof RealType || argument.getDataType() instanceof IntegerType)) {
 			return InvalidValue.SINGLETON;
 		}

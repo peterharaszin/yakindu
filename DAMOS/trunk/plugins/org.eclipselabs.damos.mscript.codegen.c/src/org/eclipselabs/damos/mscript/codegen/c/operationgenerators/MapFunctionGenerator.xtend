@@ -51,7 +51,7 @@ class MapFunctionGenerator implements IOperationGenerator {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val vectorType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
+		val vectorType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
 		val elementType = MachineDataTypes::create(context.configuration, (resultDataType as ArrayType).elementType);
 		val subType = if ((resultDataType as ArrayType).dimensionality > 1) {
 			TypeUtil::createArrayType((resultDataType as ArrayType).elementType, (resultDataType as ArrayType).dimensions.map([TypeUtil::getArrayDimensionSize(it)]))

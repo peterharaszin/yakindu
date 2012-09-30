@@ -23,8 +23,10 @@ import org.eclipselabs.damos.mscript.MscriptRuntimeModule;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.FunctionCallPath;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
@@ -162,9 +164,9 @@ public class ExpressionGeneratorTest {
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 		Expression expression = parseExpression(expressionString);
-		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult, new CodeFragmentCollector());
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), new CodeFragmentCollector());
 		return expressionGenerator.generate(context, expression).toString();
 	}
 	
@@ -184,6 +186,10 @@ public class ExpressionGeneratorTest {
 		
 		public int getStringBufferSize() {
 			return 32;
+		}
+		
+		public boolean isSingleton() {
+			return false;
 		}
 		
 	}

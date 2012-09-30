@@ -2590,7 +2590,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PostfixUnaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cQualifiedFunctionCallParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cQualifiedMemberAccessParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cMemberAccessParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cUnaryExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
@@ -2598,17 +2598,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperatorPostfixUnaryOperatorEnumRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		
 		//PostfixUnaryExpression returns Expression:
-		//	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+		//	(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 		public ParserRule getRule() { return rule; }
 
-		//(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?
+		//(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?
 		public Group getGroup() { return cGroup; }
 
-		//QualifiedFunctionCall | MemberAccess
+		//QualifiedMemberAccess | MemberAccess
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//QualifiedFunctionCall
-		public RuleCall getQualifiedFunctionCallParserRuleCall_0_0() { return cQualifiedFunctionCallParserRuleCall_0_0; }
+		//QualifiedMemberAccess
+		public RuleCall getQualifiedMemberAccessParserRuleCall_0_0() { return cQualifiedMemberAccessParserRuleCall_0_0; }
 
 		//MemberAccess
 		public RuleCall getMemberAccessParserRuleCall_0_1() { return cMemberAccessParserRuleCall_0_1; }
@@ -3412,6 +3412,64 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_1_1_3() { return cRightCurlyBracketKeyword_1_1_3; }
+	}
+
+	public class QualifiedMemberAccessElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedMemberAccess");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQualifiedFunctionCallParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cArrayElementAccessArrayAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cSubscriptsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cSubscriptsArraySubscriptParserRuleCall_1_2_0 = (RuleCall)cSubscriptsAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Assignment cSubscriptsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final RuleCall cSubscriptsArraySubscriptParserRuleCall_1_3_1_0 = (RuleCall)cSubscriptsAssignment_1_3_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		
+		//QualifiedMemberAccess returns Expression:
+		//	QualifiedFunctionCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+		//	subscripts+=ArraySubscript)* "]")*;
+		public ParserRule getRule() { return rule; }
+
+		//QualifiedFunctionCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+		//subscripts+=ArraySubscript)* "]")*
+		public Group getGroup() { return cGroup; }
+
+		//QualifiedFunctionCall
+		public RuleCall getQualifiedFunctionCallParserRuleCall_0() { return cQualifiedFunctionCallParserRuleCall_0; }
+
+		//({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)* "]")*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{ArrayElementAccess.array=current}
+		public Action getArrayElementAccessArrayAction_1_0() { return cArrayElementAccessArrayAction_1_0; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1_1() { return cLeftSquareBracketKeyword_1_1; }
+
+		//subscripts+=ArraySubscript
+		public Assignment getSubscriptsAssignment_1_2() { return cSubscriptsAssignment_1_2; }
+
+		//ArraySubscript
+		public RuleCall getSubscriptsArraySubscriptParserRuleCall_1_2_0() { return cSubscriptsArraySubscriptParserRuleCall_1_2_0; }
+
+		//("," subscripts+=ArraySubscript)*
+		public Group getGroup_1_3() { return cGroup_1_3; }
+
+		//","
+		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
+
+		//subscripts+=ArraySubscript
+		public Assignment getSubscriptsAssignment_1_3_1() { return cSubscriptsAssignment_1_3_1; }
+
+		//ArraySubscript
+		public RuleCall getSubscriptsArraySubscriptParserRuleCall_1_3_1_0() { return cSubscriptsArraySubscriptParserRuleCall_1_3_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_1_4() { return cRightSquareBracketKeyword_1_4; }
 	}
 
 	public class QualifiedFunctionCallElements extends AbstractParserRuleElementFinder {
@@ -5773,6 +5831,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private ConstantStringElements pConstantString;
 	private ExpressionTemplateSegmentElements pExpressionTemplateSegment;
 	private FeatureReferenceElements pFeatureReference;
+	private QualifiedMemberAccessElements pQualifiedMemberAccess;
 	private QualifiedFunctionCallElements pQualifiedFunctionCall;
 	private QualifiedFeatureReferenceElements pQualifiedFeatureReference;
 	private StepExpressionElements pStepExpression;
@@ -6632,7 +6691,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PostfixUnaryExpression returns Expression:
-	//	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	//	(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 	public PostfixUnaryExpressionElements getPostfixUnaryExpressionAccess() {
 		return (pPostfixUnaryExpression != null) ? pPostfixUnaryExpression : (pPostfixUnaryExpression = new PostfixUnaryExpressionElements());
 	}
@@ -6846,6 +6905,17 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFeatureReferenceRule() {
 		return getFeatureReferenceAccess().getRule();
+	}
+
+	//QualifiedMemberAccess returns Expression:
+	//	QualifiedFunctionCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]")*;
+	public QualifiedMemberAccessElements getQualifiedMemberAccessAccess() {
+		return (pQualifiedMemberAccess != null) ? pQualifiedMemberAccess : (pQualifiedMemberAccess = new QualifiedMemberAccessElements());
+	}
+	
+	public ParserRule getQualifiedMemberAccessRule() {
+		return getQualifiedMemberAccessAccess().getRule();
 	}
 
 	//QualifiedFunctionCall returns Expression:

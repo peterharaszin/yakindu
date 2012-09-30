@@ -16,11 +16,11 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.PrimaryCodeFragment;
 import org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipselabs.damos.mscript.codegen.c.Include;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 
 /**
  * @author Andreas Unger

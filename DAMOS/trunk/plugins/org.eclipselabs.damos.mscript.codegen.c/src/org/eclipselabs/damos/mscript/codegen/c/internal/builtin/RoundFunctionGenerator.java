@@ -40,7 +40,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final Expression argument = functionCall.getArguments().get(0);
 		
-		final Type argumentDataType = context.getStaticEvaluationResult().getValue(argument).getDataType();
+		final Type argumentDataType = context.getFunctionInfo().getValue(argument).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

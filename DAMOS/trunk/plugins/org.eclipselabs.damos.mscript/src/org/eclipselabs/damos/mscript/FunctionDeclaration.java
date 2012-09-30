@@ -8,7 +8,6 @@ package org.eclipselabs.damos.mscript;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -217,7 +216,5 @@ public interface FunctionDeclaration extends EObject {
 	 * @generated
 	 */
 	EList<ImplicitVariableDeclaration> getAllImplicitVariableDeclarations();
-
-	EStructuralFeature getNameFeature();
 
 } // FunctionDeclaration

@@ -28,14 +28,14 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipselabs.damos.codegen.AbstractGenerator;
-import org.eclipselabs.damos.codegen.c.codefragments.ContextStruct;
+import org.eclipselabs.damos.codegen.c.codefragments.ComponentContexts;
 import org.eclipselabs.damos.codegen.c.codefragments.ExecuteFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.ITaskInfoStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.codegen.c.codefragments.InputStruct;
 import org.eclipselabs.damos.codegen.c.codefragments.OutputStruct;
+import org.eclipselabs.damos.codegen.c.codefragments.TaskContexts;
 import org.eclipselabs.damos.codegen.c.codefragments.TaskInfoArray;
-import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextStructFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextVariableFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IExecuteFunctionFactory;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IInitializeFunctionFactory;
@@ -66,8 +66,10 @@ import org.eclipselabs.damos.mscript.codegen.c.CModuleSet;
 import org.eclipselabs.damos.mscript.codegen.c.CSource;
 import org.eclipselabs.damos.mscript.codegen.c.ICModuleGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringIteratorInitializeFunction;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 
 import com.google.inject.Inject;
 
@@ -86,6 +88,7 @@ public class Generator extends AbstractGenerator {
 	private final IOutputStructFactory outputStructFactory;
 	private final IContextStructFactory contextStructFactory;
 	private final IContextVariableFactory contextVariableFactory;
+	private final ITaskGenerator taskGenerator;
 	private final ITaskInfoArrayFactory taskInfoArrayFactory;
 	private final IInitializeFunctionFactory initializeFunctionFactory;
 	private final IExecuteFunctionFactory executeFunctionFactory;
@@ -93,7 +96,7 @@ public class Generator extends AbstractGenerator {
 	@Inject
 	Generator(@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
 			IInputStructFactory inputStructFactory, IOutputStructFactory outputStructFactory,
-			IContextStructFactory contextStructFactory, IContextVariableFactory contextVariableFactory,
+			IContextStructFactory contextStructFactory, IContextVariableFactory contextVariableFactory, ITaskGenerator taskGenerator,
 			ITaskInfoArrayFactory taskInfoArrayFactory, IInitializeFunctionFactory initializeFunctionFactory,
 			IExecuteFunctionFactory executeFunctionFactory) {
 		this.headerGenerator = headerGenerator;
@@ -102,6 +105,7 @@ public class Generator extends AbstractGenerator {
 		this.outputStructFactory = outputStructFactory;
 		this.contextStructFactory = contextStructFactory;
 		this.contextVariableFactory = contextVariableFactory;
+		this.taskGenerator = taskGenerator;
 		this.taskInfoArrayFactory = taskInfoArrayFactory;
 		this.initializeFunctionFactory = initializeFunctionFactory;
 		this.executeFunctionFactory = executeFunctionFactory;
@@ -201,14 +205,18 @@ public class Generator extends AbstractGenerator {
 			context.addCodeFragment(taskInfoArrayFactory.create(), monitor);
 		}
 		
-		context.addCodeFragment(contextStructFactory.create(), monitor);
+		context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
+		ComponentContexts.initialize(context, monitor);
+		TaskContexts.initialize(taskGenerator, context, monitor);
 		
 		if (GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())) {
 			context.addCodeFragment(contextVariableFactory.create(), monitor);
 		}
-		
-		context.addCodeFragment(initializeFunctionFactory.create(), monitor);
+
+		// TODO: Right now, we need to added the execute function first, so that all sub-initialize functions
+		// get initialized by the ComputeFunction fragment, may we should change this.
 		context.addCodeFragment(executeFunctionFactory.create(), monitor);
+		context.addCodeFragment(initializeFunctionFactory.create(), monitor);
 	}
 
 	/**

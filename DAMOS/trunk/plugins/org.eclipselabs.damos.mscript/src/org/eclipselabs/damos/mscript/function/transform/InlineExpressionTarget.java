@@ -50,7 +50,7 @@ public class InlineExpressionTarget extends AbstractExpressionTarget {
 		if (variableDeclaration == null) {
 			variableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 			variableDeclaration.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), getVariableName(targetDataType)));
-			context.getStaticEvaluationResult().setValue(variableDeclaration, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), targetDataType));
+			context.getFunctionInfo().setValue(variableDeclaration, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), targetDataType));
 			context.getCompound().getStatements().add(variableDeclaration);
 			this.targetDataType = targetDataType;
 		}
@@ -76,8 +76,8 @@ public class InlineExpressionTarget extends AbstractExpressionTarget {
 		if (variableDeclaration == null || targetDataType == null) {
 			throw new IllegalStateException();
 		}
-		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
-		context.getStaticEvaluationResult().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), targetDataType));
+		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getFunctionInfo(), variableDeclaration, 0, false);
+		context.getFunctionInfo().setValue(variableReference, new AnyValue(context.getStaticEvaluationResult().getComputationContext(), targetDataType));
 		return variableReference;
 	}
 	

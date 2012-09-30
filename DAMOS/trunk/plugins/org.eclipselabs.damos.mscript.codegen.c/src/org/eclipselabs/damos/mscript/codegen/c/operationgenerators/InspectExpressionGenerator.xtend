@@ -38,7 +38,7 @@ class InspectExpressionGenerator implements IOperationGenerator {
 	override generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression) {
 		val inspectExpression = expression as InspectExpression
 		
-		val unionType = context.staticEvaluationResult.getValue(inspectExpression.unionExpression).dataType as UnionType
+		val unionType = context.getFunctionInfo.getValue(inspectExpression.unionExpression).dataType as UnionType
 		val whenClauses = inspectExpression.whenClauses.sortBy([unionType.getMemberIndex(it.name)])
 		
 		if (whenClauses.empty) {

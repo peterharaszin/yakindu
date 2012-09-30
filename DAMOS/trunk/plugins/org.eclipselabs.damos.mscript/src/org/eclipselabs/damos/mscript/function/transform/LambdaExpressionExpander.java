@@ -43,14 +43,14 @@ public class LambdaExpressionExpander implements IExpressionTransformStrategy {
 		LambdaExpression lambdaExpression = (LambdaExpression) expression;
 		
 		AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
-		context.getStaticEvaluationResult().setValue(algorithmExpression, context.getStaticEvaluationResult().getValue(lambdaExpression.getExpression()));
+		context.getFunctionInfo().setValue(algorithmExpression, context.getFunctionInfo().getValue(lambdaExpression.getExpression()));
 		
 		CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 		algorithmExpression.setBody(body);
 		
 		LambdaExpression transformedLambdaExpression = MscriptFactory.eINSTANCE.createLambdaExpression();
 		transformedLambdaExpression.setExpression(algorithmExpression);
-		context.getStaticEvaluationResult().setValue(transformedLambdaExpression, context.getStaticEvaluationResult().getValue(lambdaExpression));
+		context.getFunctionInfo().setValue(transformedLambdaExpression, context.getFunctionInfo().getValue(lambdaExpression));
 		
 		for (LambdaExpressionParameter parameter : lambdaExpression.getParameters()) {
 			LambdaExpressionParameter transformedParameter = MscriptFactory.eINSTANCE.createLambdaExpressionParameter();

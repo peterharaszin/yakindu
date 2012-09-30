@@ -38,10 +38,10 @@ continuous blockType TransferFunction {
 		const d = size(Q) - size(P)
 
 		// Indices vector
-		const I = 0 : size(Q) - 1
+		const I = indices(Q)
 		
 		// Zero vector
-		const Z = I.map(i -> 0)
+		const Z = zeros(size(I))
 
 		// State matrix
 		const A = I.map(i -> I.map(j -> if i == 0 then -Q[j] else if i == j + 1 then 1 else 0))

@@ -36,10 +36,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class FoldFunction extends AbstractBuiltinFunction {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction#call(org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext, org.eclipselabs.damos.mscript.FunctionCall)
-	 */
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().size() != 3) {
 			if (context.getStatusCollector() != null) {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Fold function expects 3 arguments", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
@@ -104,7 +101,7 @@ public class FoldFunction extends AbstractBuiltinFunction {
 		context.processValue(lambdaExpression.getParameters().get(0), new AnyValue(context.getComputationContext(), resultValue.getDataType()));
 		context.processValue(lambdaExpression.getParameters().get(1), new AnyValue(context.getComputationContext(), arrayType.getElementType()));
 		
-		if (targetValue instanceof VectorValue && !(resultValue instanceof AnyValue)) {
+		if (!staticOnly && targetValue instanceof VectorValue && !(resultValue instanceof AnyValue)) {
 			// Try to evaluate concrete value
 			VectorValue vectorValue = (VectorValue) targetValue;
 			for (int i = 0; i < vectorValue.getSize(); ++i) {

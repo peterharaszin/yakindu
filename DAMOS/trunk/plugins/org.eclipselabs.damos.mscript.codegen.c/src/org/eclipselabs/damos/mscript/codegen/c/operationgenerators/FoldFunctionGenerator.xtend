@@ -50,7 +50,7 @@ class FoldFunctionGenerator implements IOperationGenerator {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val vectorType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
+		val vectorType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType);
 
 		val indexName = MscriptUtil::findAvailableLocalVariableName(lambdaExpression.expression, "i")

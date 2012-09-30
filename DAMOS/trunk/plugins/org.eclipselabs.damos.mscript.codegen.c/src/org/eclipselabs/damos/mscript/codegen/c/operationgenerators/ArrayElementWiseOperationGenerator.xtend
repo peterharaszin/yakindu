@@ -48,16 +48,16 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 			return false
 		}
 		return TypeUtil::isNumericArray(resultDataType)
-				&& TypeUtil::isNumericArray(context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType)
-				&& TypeUtil::isNumericArray(context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType)
+				&& TypeUtil::isNumericArray(context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType)
+				&& TypeUtil::isNumericArray(context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType)
 	}
 	
 	override generate(IMscriptGeneratorContext context, Type resultDataType, CharSequence target, Expression expression) {
 		val binaryExpression = expression as BinaryExpression
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val leftArrayType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.leftOperand).dataType as ArrayType);
-		val rightArrayType = MachineDataTypes::create(context.configuration, context.staticEvaluationResult.getValue(binaryExpression.rightOperand).dataType as ArrayType);
+		val leftArrayType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType as ArrayType);
+		val rightArrayType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
 		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
 
 		var CharSequence multiplyExpression = getMultiplicativeExpression(context, codeFragmentCollector, binaryExpression, leftArrayType, rightArrayType, resultType)

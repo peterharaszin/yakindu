@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.ComponentNode;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 
 /**
  * @author Andreas Unger
@@ -20,7 +21,7 @@ import org.eclipselabs.damos.execution.ComponentNode;
  */
 public interface ITaskGenerator {
 
-	CharSequence generateTaskContexts(IGeneratorContext context, IProgressMonitor monitor);
+	void addTaskContexts(IGeneratorContext context, ContextStruct contextStruct, IProgressMonitor monitor);
 
 	CharSequence generateInitializeTasks(IGeneratorContext context, IProgressMonitor monitor);
 	

@@ -13,7 +13,6 @@ package org.eclipselabs.damos.mscript.function.transform;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.mscript.Expression;
 
 /**
@@ -22,6 +21,6 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IExpressionTransformer {
 
-	IStatus transform(Expression expression, List<? extends IExpressionTarget> targets);
+	void transform(Expression expression, List<? extends IExpressionTarget> targets);
 	
 }

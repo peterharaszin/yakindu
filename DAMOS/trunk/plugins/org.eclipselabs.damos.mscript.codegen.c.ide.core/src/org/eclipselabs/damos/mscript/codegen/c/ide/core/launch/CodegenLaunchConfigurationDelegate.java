@@ -61,7 +61,7 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	protected List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {
 		String inputParameterDataTypesString = configuration.getAttribute(ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, "");
 		
-		List<Type> inputParameterDataTypes = getDataTypes(new InterpreterContext(getStaticEvaluationResult(), new ComputationContext()), inputParameterDataTypesString);
+		List<Type> inputParameterDataTypes = getDataTypes(new InterpreterContext(getStaticEvaluationResult(), new ComputationContext(), null), inputParameterDataTypesString);
 		if (inputParameterDataTypes == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Invalid input parameter data type specifiers"));
 		}

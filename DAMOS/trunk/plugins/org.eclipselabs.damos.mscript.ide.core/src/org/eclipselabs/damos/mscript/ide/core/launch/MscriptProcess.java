@@ -76,7 +76,7 @@ public class MscriptProcess implements IProcess {
 	}
 
 	public void terminate() throws DebugException {
-		executionThread.getInterpreterContext().setCanceled(true);
+//		executionThread.getInterpreterContext().setCanceled(true);
 		executionThread.interrupt();
 	}
 

@@ -45,11 +45,11 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 		
 		InspectExpression transformedInspectExpression = MscriptFactory.eINSTANCE.createInspectExpression();
 		transformedInspectExpression.setUnionExpression(helper.transformToVariableReference(context, inspectExpression.getUnionExpression(), "unionval", transformer));
-		context.getStaticEvaluationResult().setValue(transformedInspectExpression, context.getStaticEvaluationResult().getValue(inspectExpression));
+		context.getFunctionInfo().setValue(transformedInspectExpression, context.getFunctionInfo().getValue(inspectExpression));
 
 		for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
 			AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
-			context.getStaticEvaluationResult().setValue(algorithmExpression, context.getStaticEvaluationResult().getValue(whenClause.getExpression()));
+			context.getFunctionInfo().setValue(algorithmExpression, context.getFunctionInfo().getValue(whenClause.getExpression()));
 			
 			CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 			algorithmExpression.setBody(body);
@@ -60,7 +60,7 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
 			transformedWhenClause.setName(whenClause.getName());
 			transformedWhenClause.setExpression(algorithmExpression);
-			context.getStaticEvaluationResult().setValue(transformedWhenClause, context.getStaticEvaluationResult().getValue(whenClause));
+			context.getFunctionInfo().setValue(transformedWhenClause, context.getFunctionInfo().getValue(whenClause));
 			
 			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
 			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);

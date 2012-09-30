@@ -13,8 +13,6 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 
-
-
 /**
  * @author Andreas Unger
  *
@@ -24,16 +22,20 @@ public class InterpreterContext implements IInterpreterContext {
 	private IStaticEvaluationResult staticEvaluationResult;
 	private IComputationContext computationContext;
 
+	private FunctionCallPath functionCallPath;
 	private VariableScope scope = new VariableScope(null);
 
-	private volatile boolean canceled;
+	private final IFunctionInvocationHandler functionInvocationHandler;
 		
-	/**
-	 * 
-	 */
-	public InterpreterContext(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext) {
+	public InterpreterContext(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext, IFunctionInvocationHandler functionInvocationHandler) {
+		this(staticEvaluationResult, computationContext, functionInvocationHandler, FunctionCallPath.EMPTY);
+	}
+
+	public InterpreterContext(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext, IFunctionInvocationHandler functionInvocationHandler, FunctionCallPath functionCallPath) {
 		this.staticEvaluationResult = staticEvaluationResult;
 		this.computationContext = computationContext;
+		this.functionInvocationHandler = functionInvocationHandler;
+		this.functionCallPath = functionCallPath;
 	}
 
 	/**
@@ -50,12 +52,11 @@ public class InterpreterContext implements IInterpreterContext {
 		return computationContext;
 	}
 	
-	public boolean isCanceled() {
-		return canceled;
-	}
-	
-	public void setCanceled(boolean canceled) {
-		this.canceled = canceled;
+	/**
+	 * @return the functionCallPath
+	 */
+	public FunctionCallPath getFunctionCallPath() {
+		return functionCallPath;
 	}
 	
 	public void enterVariableScope() {
@@ -72,6 +73,10 @@ public class InterpreterContext implements IInterpreterContext {
 	
 	public void addVariable(IVariable variable) {
 		scope.add(variable);
+	}
+	
+	public IFunctionInvocationHandler getFunctionInvocationHandler() {
+		return functionInvocationHandler;
 	}
 	
 }

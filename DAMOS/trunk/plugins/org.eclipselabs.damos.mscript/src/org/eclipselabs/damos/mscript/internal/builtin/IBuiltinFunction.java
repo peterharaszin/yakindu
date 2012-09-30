@@ -23,6 +23,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public interface IBuiltinFunction {
 
-	IValue call(IExpressionEvaluationContext context, FunctionCall functionCall);
+	IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly);
 	
 }

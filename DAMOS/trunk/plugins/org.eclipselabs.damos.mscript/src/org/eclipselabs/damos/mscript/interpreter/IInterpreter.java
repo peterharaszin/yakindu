@@ -11,18 +11,11 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import java.util.List;
-
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-
 /**
+ * Stateful interpreter
+ * 
  * @author Andreas Unger
- *
  */
 public interface IInterpreter {
-
-	void initialize(IInterpreterContext context, IFunctionObject functionObject);
-
-	List<IValue> execute(IInterpreterContext context, IFunctionObject functionObject, List<IValue> inputValues);
 
 }

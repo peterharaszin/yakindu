@@ -36,6 +36,7 @@ import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormatMapping;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -147,7 +148,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 		}
 
 		IStaticEvaluationResult result = new StaticEvaluationResult();
-		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(result), property.getValue());
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(result)), property.getValue());
 		if (result.getStatus().getSeverity() > IStatus.WARNING) {
 			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(result.getStatus(), getChain());
 			return;

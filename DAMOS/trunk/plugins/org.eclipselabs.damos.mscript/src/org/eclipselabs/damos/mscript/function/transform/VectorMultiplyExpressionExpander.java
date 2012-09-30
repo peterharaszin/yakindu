@@ -124,7 +124,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 	 * @return
 	 */
 	private Expression createArrayElementAccess(ITransformerContext context, FeatureReference operand, ArrayType arrayType, int index) {
-		IValue value = context.getStaticEvaluationResult().getValue(operand);
+		IValue value = context.getFunctionInfo().getValue(operand);
 		if (value instanceof IArrayValue) {
 			IValue elementValue = ((IArrayValue) value).get(index);
 			if (elementValue instanceof ISimpleNumericValue) {
@@ -134,13 +134,13 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 					RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
 					realLiteral.setUnit(EcoreUtil.copy(((RealType) elementType).getUnit()));
 					realLiteral.setValue(numericValue.doubleValue());
-					context.getStaticEvaluationResult().setValue(realLiteral, numericValue);
+					context.getFunctionInfo().setValue(realLiteral, numericValue);
 					return realLiteral;
 				} else if (elementType instanceof IntegerType) {
 					IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 					integerLiteral.setUnit(EcoreUtil.copy(((IntegerType) elementType).getUnit()));
 					integerLiteral.setValue(numericValue.longValue());
-					context.getStaticEvaluationResult().setValue(integerLiteral, numericValue);
+					context.getFunctionInfo().setValue(integerLiteral, numericValue);
 					return integerLiteral;
 				}
 			}
@@ -174,25 +174,25 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		context.enterScope();
 		context.setCompound(compoundStatement);
 
-		IValue value = context.getStaticEvaluationResult().getValue(operand);
-		context.getStaticEvaluationResult().setValue(variableDeclaration, value);
+		IValue value = context.getFunctionInfo().getValue(operand);
+		context.getFunctionInfo().setValue(variableDeclaration, value);
 		transformer.transform(
 				operand,
 				Collections.singletonList(new VariableExpressionTarget(context, variableDeclaration, 0)));
 		
 		context.leaveScope();
 
-		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getStaticEvaluationResult(), variableDeclaration, 0, false);
-		context.getStaticEvaluationResult().setValue(variableReference, value);
+		FeatureReference variableReference = MscriptUtil.createVariableReference(context.getFunctionInfo(), variableDeclaration, 0, false);
+		context.getFunctionInfo().setValue(variableReference, value);
 		return variableReference;
 	}
 
 	private Type getDataType(ITransformerContext context, Expression expression) {
-		return context.getStaticEvaluationResult().getValue(expression).getDataType();
+		return context.getFunctionInfo().getValue(expression).getDataType();
 	}
 	
 	private void setDataType(ITransformerContext context, Expression expression, Type type) {
-		context.getStaticEvaluationResult().setValue(expression, new AnyValue(new ComputationContext(), type));
+		context.getFunctionInfo().setValue(expression, new AnyValue(new ComputationContext(), type));
 	}
 
 }

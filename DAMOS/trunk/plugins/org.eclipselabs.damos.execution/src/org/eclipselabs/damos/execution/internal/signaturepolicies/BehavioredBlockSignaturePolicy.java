@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.execution.internal.signaturepolicies;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -36,9 +35,10 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
+import org.eclipselabs.damos.mscript.interpreter.FunctionCallPath;
+import org.eclipselabs.damos.mscript.interpreter.FunctionSignature;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePolicy {
 
@@ -51,7 +51,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
 
-		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
+		ComponentSignature componentSignature = new ComponentSignature(incomingDataTypes);
 		
 		FunctionDeclaration functionDeclaration;
 		try {
@@ -61,20 +61,18 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
-		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(
-				functionDeclaration, signature, status);
+		FunctionSignature functionSignature = helper.getFunctionSignature(functionDeclaration, componentSignature, status);
 		
 		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (inputParameterDataTypes == null) {
+		if (functionSignature == null) {
 			return new ComponentSignatureEvaluationResult();
 		}
 
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
+		helper.evaluateFunctionDeclaration(staticEvaluationResult, functionDeclaration, functionSignature);
 		if (!staticEvaluationResult.getStatus().isOK()) {
 			status.merge(staticEvaluationResult.getStatus());
 		}
@@ -92,7 +90,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			}
 			
 			OutputParameterDeclaration outputParameterDeclaration = outputParameterDeclarationIt.next();
-			Type type = staticEvaluationResult.getValue(outputParameterDeclaration).getDataType();
+			Type type = staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY).getValue(outputParameterDeclaration).getDataType();
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(type instanceof ArrayType)) {
@@ -103,7 +101,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 				ArrayType arrayType = (ArrayType) type;
 
 				for (OutputPort outputPort : output.getPorts()) {
-					signature.getOutputDataTypes().put(outputPort, EcoreUtil.copy(arrayType.getElementType()));
+					componentSignature.getOutputDataTypes().put(outputPort, EcoreUtil.copy(arrayType.getElementType()));
 				}
 			} else {
 				if (output.getPorts().isEmpty()) {
@@ -111,7 +109,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 							+ outputParameterDeclaration.getName() + "'"));
 					continue;
 				}
-				signature.getOutputDataTypes().put(output.getPorts().get(0), type);
+				componentSignature.getOutputDataTypes().put(output.getPorts().get(0), type);
 			}
 		}
 
@@ -119,7 +117,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		return new ComponentSignatureEvaluationResult(signature, status);
+		return new ComponentSignatureEvaluationResult(componentSignature, status);
 	}
 
 }

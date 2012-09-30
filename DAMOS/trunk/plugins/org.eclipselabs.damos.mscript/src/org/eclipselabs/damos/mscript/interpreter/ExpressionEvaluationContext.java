@@ -40,6 +40,10 @@ public class ExpressionEvaluationContext extends AbstractExpressionEvaluationCon
 		return interpreterContext.getComputationContext();
 	}
 	
+	public FunctionCallPath getFunctionCallPath() {
+		return interpreterContext.getFunctionCallPath();
+	}
+	
 	public void enterVariableScope() {
 		interpreterContext.enterVariableScope();
 	}
@@ -60,14 +64,23 @@ public class ExpressionEvaluationContext extends AbstractExpressionEvaluationCon
 			}
 			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 			IVariable variable = interpreterContext.getVariable(variableDeclaration);
-			int stepIndex = interpreterContext.getStaticEvaluationResult().getStepIndex(variableReference);
-			IValue result = variable.getValue(stepIndex);
-			if (result == null) {
-				return InvalidValue.SINGLETON;
+			if (variable != null) {
+				int stepIndex = interpreterContext.getStaticEvaluationResult().getFunctionInfo(interpreterContext.getFunctionCallPath()).getStepIndex(variableReference);
+				IValue result = variable.getValue(stepIndex);
+				if (result == null) {
+					return InvalidValue.SINGLETON;
+				}
+				return result;
 			}
-			return result;
 		}
-		return interpreterContext.getStaticEvaluationResult().getValue(evaluable);
+		return interpreterContext.getStaticEvaluationResult().getFunctionInfo(interpreterContext.getFunctionCallPath()).getValue(evaluable);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluationContext#getFunctionInvocationHandler()
+	 */
+	public IFunctionInvocationHandler getFunctionInvocationHandler() {
+		return interpreterContext.getFunctionInvocationHandler();
 	}
 	
 }

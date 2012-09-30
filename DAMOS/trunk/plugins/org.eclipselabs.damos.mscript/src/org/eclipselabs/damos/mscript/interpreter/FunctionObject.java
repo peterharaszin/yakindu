@@ -53,15 +53,15 @@ public class FunctionObject implements IFunctionObject {
 		}
 
 		for (InputParameterDeclaration declaration : functionInstance.getDeclaration().getNonConstantInputParameterDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getCircularBufferSize(declaration)));
 		}
 		
 		for (OutputParameterDeclaration declaration : functionInstance.getDeclaration().getOutputParameterDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getCircularBufferSize(declaration)));
 		}
 		
 		for (StateVariableDeclaration declaration : functionInstance.getDeclaration().getStateVariableDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getCircularBufferSize(declaration)));
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getCircularBufferSize(declaration)));
 		}
 		
 		return functionObject;
@@ -75,7 +75,7 @@ public class FunctionObject implements IFunctionObject {
 	private static void createStaticVariable(IInterpreterContext context, FunctionObject functionObject,
 			VariableDeclaration variableDeclaration) {
 		IVariable variable = new Variable(context, variableDeclaration);
-		IValue value = context.getStaticEvaluationResult().getValue(variableDeclaration);
+		IValue value = context.getStaticEvaluationResult().getFunctionInfo(context.getFunctionCallPath()).getValue(variableDeclaration);
 		variable.setValue(0, Values.transform(context.getComputationContext(), value));
 		functionObject.variables.put(variableDeclaration, variable);
 	}
@@ -96,6 +96,13 @@ public class FunctionObject implements IFunctionObject {
 	 */
 	public IVariable getVariable(VariableDeclaration declaration) {
 		return variables.get(declaration);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IFunctionObject#addVariable(org.eclipselabs.damos.mscript.interpreter.IVariable)
+	 */
+	public void addVariable(IVariable variable) {
+		variables.put(variable.getDeclaration(), variable);
 	}
 	
 	/* (non-Javadoc)

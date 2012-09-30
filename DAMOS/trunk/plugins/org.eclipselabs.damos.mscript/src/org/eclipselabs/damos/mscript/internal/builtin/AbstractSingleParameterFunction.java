@@ -22,14 +22,14 @@ import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
  */
 public abstract class AbstractSingleParameterFunction extends AbstractBuiltinFunction {
 
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().size() != 1) {
 			return InvalidValue.SINGLETON;
 		}
 		IValue value = evaluate(context, functionCall.getArguments().get(0));
-		return call(context, functionCall, value);
+		return call(context, functionCall, value, staticOnly);
 	}
 	
-	protected abstract IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument);
+	protected abstract IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument, boolean staticOnly);
 
 }

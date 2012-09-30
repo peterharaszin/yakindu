@@ -34,7 +34,7 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		// First check if we can statically evaluate the condition
 		IfExpression ifExpression = (IfExpression) expression;
-		IValue ifConditionValue = context.getStaticEvaluationResult().getValue(ifExpression.getCondition());
+		IValue ifConditionValue = context.getFunctionInfo().getValue(ifExpression.getCondition());
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression resultExpression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
@@ -42,7 +42,7 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 			return;
 		}
 		
-		IValue ifExpressionValue = context.getStaticEvaluationResult().getValue(ifExpression);
+		IValue ifExpressionValue = context.getFunctionInfo().getValue(ifExpression);
 		targets = targets.get(0).toVariableExpressionTarget(ifExpressionValue.getDataType()).asList();
 
 		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(context);

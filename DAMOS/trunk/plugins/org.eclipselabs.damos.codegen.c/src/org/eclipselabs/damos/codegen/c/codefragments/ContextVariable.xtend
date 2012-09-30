@@ -13,11 +13,12 @@ package org.eclipselabs.damos.codegen.c.codefragments
 
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipselabs.damos.codegen.c.IGeneratorContext
-import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextStructFactory
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct
 
 import static org.eclipselabs.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipselabs.damos.codegen.c.util.GeneratorConfigurationExtensions.*
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory
 
 /**
  * @author Andreas Unger
@@ -27,7 +28,7 @@ class ContextVariable extends PrimaryCodeFragment {
 	
 	val IContextStructFactory contextStructFactory
 	
-	boolean unused
+	ContextStruct contextStruct
 	
 	String prefix
 	
@@ -38,9 +39,8 @@ class ContextVariable extends PrimaryCodeFragment {
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ContextStruct])
 		
-		val contextStruct = context.addCodeFragment(contextStructFactory.create(), monitor) as ContextStruct
+		contextStruct = context.addCodeFragment(contextStructFactory.create(context.configuration.singleton), monitor) as ContextStruct
 		
-		unused = contextStruct.unused
 		prefix = context.configuration.prefix
 	}
 	
@@ -53,7 +53,7 @@ class ContextVariable extends PrimaryCodeFragment {
 	'''
 
 	override boolean contributesImplementation() {
-		return !unused
+		return contextStruct.contributesInternalForwardDeclaration
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''

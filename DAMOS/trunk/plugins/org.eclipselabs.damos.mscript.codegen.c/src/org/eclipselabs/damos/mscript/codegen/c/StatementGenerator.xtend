@@ -134,7 +134,7 @@ class StatementGenerator implements IStatementGenerator {
 	}
 		
 	def private getDataType(IMscriptGeneratorContext context, Evaluable evaluable) {
-		return context.getStaticEvaluationResult.getValue(evaluable)?.dataType
+		return context.getFunctionInfo.getValue(evaluable)?.dataType
 	}
 	
 }

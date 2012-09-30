@@ -63,9 +63,11 @@ public abstract class AbstractExpressionEvaluatorTest {
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 		Expression expression = parseExpression(expressionString, link);
-		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
-		
-		return staticEvaluationResult.getValue(expression);
+		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
+
+		Interpreter interpreter = new Interpreter(staticEvaluationResult, staticEvaluationResult.getComputationContext());
+		IInterpreterContext interpreterContext = new InterpreterContext(staticEvaluationResult, staticEvaluationResult.getComputationContext(), interpreter, FunctionCallPath.EMPTY);
+		return expressionEvaluator.evaluate(new ExpressionEvaluationContext(interpreterContext), expression);
 	}
 
 	protected Expression parseExpression(String expressionString, boolean link) {

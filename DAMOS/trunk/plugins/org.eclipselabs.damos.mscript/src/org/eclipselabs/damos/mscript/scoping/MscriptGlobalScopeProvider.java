@@ -38,16 +38,16 @@ import com.google.inject.Inject;
  */
 public class MscriptGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
-	public static final URI MSCRIPT_LANG_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang.xmi");
-	public static final URI MSCRIPT_LANG_MATH_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_math.xmi");
 	public static final URI MSCRIPT_LANG_UNITS_URI = URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript");
 	
 	/**
 	 * 
 	 */
 	private static final URI[] LIBRARY_URIS = {
-		MSCRIPT_LANG_URI,
-		MSCRIPT_LANG_MATH_URI,
+		URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang.xmi"),
+		URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang.mscript"),
+		URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_math.xmi"),
+		URI.createURI("http://www.eclipselabs.org/damos/mscript/library/mscript_lang_math.mscript"),
 		MSCRIPT_LANG_UNITS_URI
 	};
 

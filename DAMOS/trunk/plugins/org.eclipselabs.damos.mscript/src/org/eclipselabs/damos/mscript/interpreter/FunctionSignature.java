@@ -15,24 +15,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
+
 /**
  * @author Andreas Unger
  *
  */
-public class FunctionSignature {
+public class FunctionSignature { // TODO
 
+	private final FunctionDeclaration functionDeclaration;
 	private final List<FunctionParameter> parameters;
 	private int cachedHashCode;
 	
-	/**
-	 * 
-	 */
-	private FunctionSignature(List<FunctionParameter> parameters) {
-		this.parameters = new ArrayList<FunctionParameter>(parameters);
+	private FunctionSignature(FunctionDeclaration functionDeclaration, List<FunctionParameter> parameters) {
+		this.functionDeclaration = functionDeclaration;
+		this.parameters = parameters;
 	}
 	
-	public static FunctionSignature create(List<FunctionParameter> parameters) {
-		return new FunctionSignature(Collections.unmodifiableList(new ArrayList<FunctionParameter>(parameters)));
+	/**
+	 * @return the parameters
+	 */
+	public List<FunctionParameter> getParameters() {
+		return parameters;
+	}
+	
+	public static FunctionSignature create(FunctionDeclaration functionDeclaration, List<FunctionParameter> parameters) {
+		if (functionDeclaration == null || parameters == null) {
+			throw new NullPointerException();
+		}
+		return new FunctionSignature(functionDeclaration, Collections.unmodifiableList(new ArrayList<FunctionParameter>(parameters)));
 	}
 	
 	/* (non-Javadoc)
@@ -41,7 +52,7 @@ public class FunctionSignature {
 	@Override
 	public int hashCode() {
 		if (cachedHashCode == 0) {
-			cachedHashCode = 17 + parameters.hashCode();
+			cachedHashCode = 17 + parameters.hashCode() + functionDeclaration.hashCode();
 			if (cachedHashCode == 0) { 
 				cachedHashCode = 1;
 			}
@@ -54,9 +65,12 @@ public class FunctionSignature {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
 		if (obj instanceof FunctionSignature) {
 			FunctionSignature other = (FunctionSignature) obj;
-			return other.parameters.equals(parameters);
+			return other.functionDeclaration == functionDeclaration && other.parameters.equals(parameters);
 		}
 		return false;
 	}

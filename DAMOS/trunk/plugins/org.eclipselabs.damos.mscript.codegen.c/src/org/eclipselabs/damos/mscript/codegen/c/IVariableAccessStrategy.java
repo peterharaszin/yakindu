@@ -19,6 +19,7 @@ import org.eclipselabs.damos.mscript.FeatureReference;
  */
 public interface IVariableAccessStrategy {
 
+	CharSequence generateContextMemberAccess(boolean pointer, String memberName);
 	CharSequence generateVariableReference(FeatureReference variableReference);
 	
 }

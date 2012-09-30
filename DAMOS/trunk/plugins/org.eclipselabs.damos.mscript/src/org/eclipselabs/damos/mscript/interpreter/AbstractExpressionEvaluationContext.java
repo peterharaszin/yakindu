@@ -45,7 +45,7 @@ public abstract class AbstractExpressionEvaluationContext implements IExpression
 	public boolean isStaticScope() {
 		return staticScopeCounter > 0;
 	}
-
+	
 	public void processValue(Evaluable evaluable, IValue value) {
 	}
 	

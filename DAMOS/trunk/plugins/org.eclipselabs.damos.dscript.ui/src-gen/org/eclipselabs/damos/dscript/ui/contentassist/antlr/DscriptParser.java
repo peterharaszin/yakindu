@@ -243,6 +243,9 @@ public class DscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpressionTemplateSegmentAccess().getGroup(), "rule__ExpressionTemplateSegment__Group__0");
 					put(grammarAccess.getFeatureReferenceAccess().getGroup(), "rule__FeatureReference__Group__0");
 					put(grammarAccess.getFeatureReferenceAccess().getGroup_1_1(), "rule__FeatureReference__Group_1_1__0");
+					put(grammarAccess.getQualifiedMemberAccessAccess().getGroup(), "rule__QualifiedMemberAccess__Group__0");
+					put(grammarAccess.getQualifiedMemberAccessAccess().getGroup_1(), "rule__QualifiedMemberAccess__Group_1__0");
+					put(grammarAccess.getQualifiedMemberAccessAccess().getGroup_1_3(), "rule__QualifiedMemberAccess__Group_1_3__0");
 					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup(), "rule__QualifiedFunctionCall__Group__0");
 					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup_1(), "rule__QualifiedFunctionCall__Group_1__0");
 					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup_1_2(), "rule__QualifiedFunctionCall__Group_1_2__0");
@@ -525,6 +528,8 @@ public class DscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFeatureReferenceAccess().getFeatureAssignment_1_0(), "rule__FeatureReference__FeatureAssignment_1_0");
 					put(grammarAccess.getFeatureReferenceAccess().getFeatureAssignment_1_1_0(), "rule__FeatureReference__FeatureAssignment_1_1_0");
 					put(grammarAccess.getFeatureReferenceAccess().getStepExpressionAssignment_1_1_2(), "rule__FeatureReference__StepExpressionAssignment_1_1_2");
+					put(grammarAccess.getQualifiedMemberAccessAccess().getSubscriptsAssignment_1_2(), "rule__QualifiedMemberAccess__SubscriptsAssignment_1_2");
+					put(grammarAccess.getQualifiedMemberAccessAccess().getSubscriptsAssignment_1_3_1(), "rule__QualifiedMemberAccess__SubscriptsAssignment_1_3_1");
 					put(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsAssignment_1_2_0(), "rule__QualifiedFunctionCall__ArgumentsAssignment_1_2_0");
 					put(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsAssignment_1_2_1_1(), "rule__QualifiedFunctionCall__ArgumentsAssignment_1_2_1_1");
 					put(grammarAccess.getQualifiedFeatureReferenceAccess().getFeatureAssignment_2(), "rule__QualifiedFeatureReference__FeatureAssignment_2");

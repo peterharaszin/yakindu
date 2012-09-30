@@ -22,10 +22,16 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
-import org.eclipselabs.damos.dml.BlockInputPort;
+import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.BlockPort;
+import org.eclipselabs.damos.dml.BlockType;
+import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dscript.BehaviorDeclaration;
 import org.eclipselabs.damos.dscript.DscriptBlockType;
@@ -40,16 +46,20 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.FunctionParameter;
+import org.eclipselabs.damos.mscript.interpreter.FunctionSignature;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.TypeFunctionParameter;
+import org.eclipselabs.damos.mscript.interpreter.ValueFunctionParameter;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
@@ -91,40 +101,86 @@ public class BehavioredBlockHelper {
 		return behavior;
 	}
 
-	public void evaluateFunctionDefinition(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, List<IValue> staticArguments, List<Type> inputParameterDataTypes) {
-		Iterator<IValue> staticArgumentIt = staticArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
-			staticEvaluationResult.setValue(parameterDeclaration, staticArgumentIt.next());
-		}
-
-		Iterator<Type> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getNonConstantInputParameterDeclarations()) {
-			staticEvaluationResult.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
-		}
-
-		staticFunctionEvaluator.evaluate(staticEvaluationResult, functionDeclaration);
-	}
-
-	public List<IValue> getStaticArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
-		List<IValue> staticArguments = new ArrayList<IValue>();
-		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getConstantInputParameterDeclarations()) {
-			String parameterName = parameterDeclaration.getName();
-			try {
-				IValue value = getParameterStaticArgumentValue(parameterName);
-				if (value == null) {
-					value = getInputStaticArgumentValue(parameterName);
-				}
-				if (value != null) {
-					staticArguments.add(value);
-				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Block parameter '"
-							+ parameterName + "' not found"));
-				}
-			} catch (CoreException e) {
-				status.add(e.getStatus());
+	public void evaluateFunctionDeclaration(IStaticEvaluationResult staticEvaluationResult, FunctionDeclaration functionDeclaration, FunctionSignature functionSignature) {
+		Iterator<InputParameterDeclaration> it = functionDeclaration.getInputParameterDeclarations().iterator();
+		for (FunctionParameter parameter : functionSignature.getParameters()) {
+			if (parameter instanceof TypeFunctionParameter) {
+				staticEvaluationResult.setValue(it.next(), new AnyValue(new ComputationContext(), ((TypeFunctionParameter) parameter).getType()));
+			} else if (parameter instanceof ValueFunctionParameter) {
+				staticEvaluationResult.setValue(it.next(), ((ValueFunctionParameter) parameter).getValue());
+			} else {
+				throw new IllegalStateException();
 			}
 		}
-		return staticArguments;
+		staticFunctionEvaluator.evaluate(new StaticEvaluationContext(staticEvaluationResult), functionDeclaration);
+	}
+
+	public FunctionSignature getFunctionSignature(FunctionDeclaration functionDeclaration, IComponentSignature componentSignature, MultiStatus status) {
+		List<FunctionParameter> parameters = new ArrayList<FunctionParameter>();
+		if (!getInputParameterDataTypes(componentSignature, parameters, status)) {
+			return null;
+		}
+		if (!getFunctionParameters(parameters, status)) {
+			return null;
+		}
+		return FunctionSignature.create(functionDeclaration, parameters);
+	}
+
+	private boolean getInputParameterDataTypes(IComponentSignature signature, List<FunctionParameter> functionParameters, MultiStatus status) {
+		Iterator<InputDefinition> parameterDeclarationIterator = getBlock().getType().getInputDefinitions().iterator();
+
+		if (!block.getInputSockets().isEmpty()) {
+			if (!parameterDeclarationIterator.hasNext()) {
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for socket inputs"));
+				return false;
+			}
+
+			parameterDeclarationIterator.next();
+			
+			UnionType messageType = MscriptFactory.eINSTANCE.createUnionType();
+			for (Input input : block.getInputSockets()) {
+				BlockInput blockInput = (BlockInput) input;
+
+				Type type = getInputParameterDataType(blockInput, signature, status);
+				if (type == null) {
+					return false;
+				}
+				
+				CompositeTypeMember member = MscriptFactory.eINSTANCE.createCompositeTypeMember();
+				member.setName(input.getName());
+				
+				CompositeTypeMemberList memberList = MscriptFactory.eINSTANCE.createCompositeTypeMemberList();
+				AnonymousTypeSpecifier typeSpecifier = MscriptFactory.eINSTANCE.createAnonymousTypeSpecifier();
+				typeSpecifier.setType(type);
+				memberList.setTypeSpecifier(typeSpecifier);
+				memberList.getMembers().add(member);
+				
+				messageType.getMemberLists().add(memberList);
+			}
+			functionParameters.add(FunctionParameter.create(messageType));
+		}
+		
+		for (Input input : block.getInputs()) {
+			if (input.isSocket()) {
+				continue;
+			}
+			
+			BlockInput blockInput = (BlockInput) input;
+
+			if (!parameterDeclarationIterator.hasNext()) {
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No input parameter found for input '" + blockInput.getDefinition().getName() + "'"));
+				return false;
+			}
+
+			parameterDeclarationIterator.next();
+
+			Type type = getInputParameterDataType(blockInput, signature, status);
+			if (type == null) {
+				return false;
+			}
+			functionParameters.add(FunctionParameter.create(type));
+		}
+		return true;
 	}
 
 	public List<Type> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
@@ -216,31 +272,56 @@ public class BehavioredBlockHelper {
 		return signature.getInputDataType(blockInput.getPorts().get(0));
 	}
 	
-	private IValue getParameterStaticArgumentValue(String parameterName) throws CoreException {
-		Argument argument = block.getArgument(parameterName);
-		if (argument != null) {
-			return evaluateParameterValue(argument.getParameter(), argument.getValue());
-		}
-		if (block.getType() != null) {
-			Parameter parameter = block.getType().getParameter(parameterName);
-			if (parameter != null) {
-				return evaluateParameterValue(parameter, parameter.getDefaultValue());
+	private boolean getFunctionParameters(List<FunctionParameter> functionParameters, MultiStatus status) {
+		boolean result = true;
+		BlockType blockType = getBlock().getType();
+		for (InputDefinition inputDefinition : blockType.getInputDefinitions()) {
+			BlockInput input = getBlock().getInput(inputDefinition);
+			if (input != null) {
+				try {
+					getArgumentValues(inputDefinition, input.getPorts(), functionParameters);
+				} catch (CoreException e) {
+					result = false;
+					status.add(e.getStatus());
+				}
+			} else {
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Input '" + inputDefinition.getName() + "' not found"));
 			}
 		}
-		return null;
+		for (OutputDefinition outputDefinition : blockType.getOutputDefinitions()) {
+			BlockOutput output = getBlock().getOutput(outputDefinition);
+			if (output != null) {
+				try {
+					getArgumentValues(outputDefinition, output.getPorts(), functionParameters);
+				} catch (CoreException e) {
+					result = false;
+					status.add(e.getStatus());
+				}
+			} else {
+				status.add(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Output '" + outputDefinition.getName() + "' not found"));
+			}
+		}
+		for (Parameter parameter : blockType.getParameters()) {
+			try {
+				functionParameters.add(FunctionParameter.create(getArgumentValue(parameter)));
+			} catch (CoreException e) {
+				result = false;
+				status.add(e.getStatus());
+			}
+		}
+		return result;
 	}
-
-	private IValue getInputStaticArgumentValue(String name) throws CoreException {
-		for (Input input : block.getInputs()) {
-			BlockInput blockInput = (BlockInput) input;
-			if (blockInput.getDefinition().isManyPorts() && blockInput.getDefinition().getParameter(name) != null) {
+	
+	private void getArgumentValues(InoutputDefinition inoutputDefinition, List<? extends Port> ports, List<FunctionParameter> functionParameters) throws CoreException {
+		for (Parameter parameter : inoutputDefinition.getParameters()) {
+			if (inoutputDefinition.isManyPorts()) {
 				Type elementType = null;
-				List<IValue> values = new ArrayList<IValue>(blockInput.getPorts().size());
-				for (InputPort inputPort : blockInput.getPorts()) {
-					BlockInputPort blockInputPort = (BlockInputPort) inputPort;
-					Argument argument = blockInputPort.getArgument(name);
+				List<IValue> values = new ArrayList<IValue>(ports.size());
+				for (Port inputPort : ports) {
+					BlockPort blockInputPort = (BlockPort) inputPort;
+					Argument argument = blockInputPort.getArgument(parameter);
 					if (argument == null) {
-						throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No argument for input parameter '" + name + "' found"));
+						throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "No argument for parameter '" + parameter.getName() + "' found"));
 					}
 					IValue value = evaluateParameterValue(argument.getParameter(), argument.getValue());
 					if (elementType == null) {
@@ -248,14 +329,28 @@ public class BehavioredBlockHelper {
 					} else {
 						elementType = TypeUtil.getLeftHandDataType(elementType, value.getDataType());
 						if (elementType == null) {
-							throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument values of input parameter '" + name + "' have incompatible data types"));
+							throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument values of parameter '" + parameter.getName() + "' have incompatible data types"));
 						}
 					}
 					values.add(value);
 				}
 				ArrayType arrayType = TypeUtil.createArrayType(elementType, values.size());
-				return new VectorValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
+				VectorValue value = new VectorValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
+				functionParameters.add(FunctionParameter.create(value));
+			} else {
+				// TODO
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Single port parameters not supported"));
 			}
+		}
+	}
+	
+	private IValue getArgumentValue(Parameter parameter) throws CoreException {
+		Argument argument = block.getArgument(parameter);
+		if (argument != null) {
+			return evaluateParameterValue(parameter, argument.getValue());
+		}
+		if (block.getType() != null) {
+			return evaluateParameterValue(parameter, parameter.getDefaultValue());
 		}
 		return null;
 	}
@@ -263,10 +358,10 @@ public class BehavioredBlockHelper {
 	private IValue evaluateParameterValue(Parameter parameter, ValueSpecification valueSpecification) throws CoreException {
 		if (valueSpecification instanceof DscriptValueSpecification) {
 			Expression expression = ((DscriptValueSpecification) valueSpecification).getExpression();
-			IStaticEvaluationResult context = new StaticEvaluationResult();
-			IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(context), expression);
-			if (context.getStatus().getSeverity() > IStatus.WARNING) {
-				throw new CoreException(context.getStatus());
+			IStaticEvaluationResult result = new StaticEvaluationResult();
+			IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(result)), expression);
+			if (result.getStatus().getSeverity() > IStatus.WARNING) {
+				throw new CoreException(result.getStatus());
 			}
 			if (value instanceof InvalidValue) {
 				throw new CoreException(new Status(IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, "Argument value of parameter '" + parameter.getName() + "' is invalid"));

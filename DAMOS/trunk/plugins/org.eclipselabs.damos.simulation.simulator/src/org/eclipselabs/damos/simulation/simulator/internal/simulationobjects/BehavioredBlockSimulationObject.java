@@ -11,9 +11,6 @@
 
 package org.eclipselabs.damos.simulation.simulator.internal.simulationobjects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -30,35 +27,25 @@ import org.eclipselabs.damos.mscript.AnonymousTypeSpecifier;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.CompositeTypeMember;
 import org.eclipselabs.damos.mscript.CompositeTypeMemberList;
-import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnionType;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.function.ComputationCompound;
-import org.eclipselabs.damos.mscript.function.FunctionDescription;
-import org.eclipselabs.damos.mscript.function.FunctionInstance;
-import org.eclipselabs.damos.mscript.function.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.damos.mscript.function.transform.IFunctionDefinitionTransformerResult;
-import org.eclipselabs.damos.mscript.interpreter.CompoundStatementInterpreter;
-import org.eclipselabs.damos.mscript.interpreter.FunctionObject;
-import org.eclipselabs.damos.mscript.interpreter.ICompoundStatementInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.FunctionCallPath;
+import org.eclipselabs.damos.mscript.interpreter.FunctionSignature;
 import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
 import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
+import org.eclipselabs.damos.mscript.interpreter.Interpreter;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
-import org.eclipselabs.damos.mscript.interpreter.Variable;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UnionValue;
-import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.damos.simulation.ISimulationMonitor;
@@ -71,12 +58,11 @@ import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
  */
 public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
 
-	private final ICompoundStatementInterpreter compoundStatementInterpreter = new CompoundStatementInterpreter();
-
 	private boolean hasInputSockets;
 	private UnionType messageType;
 	private int[] messageKinds;
 	
+	private Interpreter interpreter;
 	private IInterpreterContext interpreterContext;
 	private IFunctionObject functionObject;
 	
@@ -86,9 +72,6 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private boolean[] multiPortInput;
 	private boolean[] multiPortOutput;
 	
-	private List<ComputationCompound> computeOutputsCompounds = new ArrayList<ComputationCompound>();
-	private List<ComputationCompound> updateCompounds = new ArrayList<ComputationCompound>();
-	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#initialize()
 	 */
@@ -96,10 +79,39 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		MultiStatus status = new MultiStatus(SimulatorPlugin.PLUGIN_ID, 0, "Simulation object initialization", null);
 
-		Block block = getComponent();
-
-		BehavioredBlockHelper helper = new BehavioredBlockHelper(block);
+		BehavioredBlockHelper helper = new BehavioredBlockHelper(getComponent());
 		
+		FunctionDeclaration functionDeclaration = helper.getBehavior();
+		FunctionSignature functionSignature = helper.getFunctionSignature(functionDeclaration, getComponentSignature(), status);
+		
+		if (status.getSeverity() > IStatus.WARNING) {
+			throw new CoreException(status);
+		}
+		
+		if (functionSignature == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Missing input data types"));
+		}
+		
+		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
+		helper.evaluateFunctionDeclaration(staticEvaluationResult, functionDeclaration, functionSignature);
+		if (!staticEvaluationResult.getStatus().isOK()) {
+			status.add(staticEvaluationResult.getStatus());
+		}
+		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
+			throw new CoreException(status);
+		}
+		
+		interpreter = new Interpreter(staticEvaluationResult, getComputationContext(), getNode().getSampleTime());
+		interpreterContext = new InterpreterContext(staticEvaluationResult, getComputationContext(), interpreter);
+		functionObject = interpreter.createFunctionObject(interpreterContext);
+				
+		initializeSockets();
+		initializeInputVariables();
+		initializeOutputVariables();
+	}
+
+	private void initializeSockets() {
+		Block block = getComponent();
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
 			EList<Input> inputs = block.getInputs();
@@ -123,89 +135,6 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			messageKinds = new int[inputs.size()];
 			for (int i = 0; i < messageKinds.length; ++i) {
 				messageKinds[i] = socketInputs.indexOf(inputs.get(i));
-			}
-		}
-
-		FunctionDeclaration functionDeclaration = helper.getBehavior();
-		
-		List<IValue> staticArguments = helper.getStaticArguments(functionDeclaration, status);
-		List<Type> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
-
-		if (status.getSeverity() > IStatus.WARNING) {
-			throw new CoreException(status);
-		}
-		
-		if (inputParameterDataTypes == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Missing input data types"));
-		}
-		
-		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		helper.evaluateFunctionDefinition(staticEvaluationResult, functionDeclaration, staticArguments, inputParameterDataTypes);
-		if (!staticEvaluationResult.getStatus().isOK()) {
-			status.add(staticEvaluationResult.getStatus());
-		}
-		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
-			throw new CoreException(status);
-		}
-		
-		FunctionDescription functionDescription = staticEvaluationResult.getFunctionDescription(functionDeclaration);
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(staticEvaluationResult, functionDescription, staticArguments, inputParameterDataTypes);
-		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
-			status.add(functionDefinitionTransformerResult.getStatus());
-			throw new CoreException(status);
-		}
-		
-		FunctionInstance functionInstance = functionDefinitionTransformerResult.getFunctionInstance();
-		
-		interpreterContext = new InterpreterContext(staticEvaluationResult, getComputationContext());
-		functionObject = FunctionObject.create(interpreterContext, functionInstance);
-
-		for (IVariable variable : functionObject.getVariables()) {
-			interpreterContext.addVariable(variable);
-		}
-		
-		initializeImplicitVariables();
-		initializeInputVariables();
-		initializeOutputVariables();
-
-		CompoundStatement initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
-		if (initializationCompound != null) {
-			compoundStatementInterpreter.execute(interpreterContext, initializationCompound);
-		}
-		
-		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
-			initializeComputationCompound(compound);
-		}
-	}
-	
-	protected void initializeImplicitVariables() {
-		FunctionDeclaration functionDeclaration = functionObject.getFunctionInstance().getDeclaration();
-		double sampleTime = getNode().getSampleTime();
-
-		{
-			ImplicitVariableDeclaration variableDeclaration = functionDeclaration.getImplicitVariableDeclaration("Ts");
-			if (variableDeclaration != null) {
-				IValue value = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration);
-				if (value != null) {
-					RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
-					IVariable variable = new Variable(interpreterContext, variableDeclaration);
-					variable.setValue(0, Values.valueOf(getComputationContext(), dataType, sampleTime));
-					interpreterContext.addVariable(variable);
-				}
-			}
-		}
-
-		{
-			ImplicitVariableDeclaration variableDeclaration = functionDeclaration.getImplicitVariableDeclaration("fs");
-			if (variableDeclaration != null) {
-				IValue value = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration);
-				if (value != null) {
-					RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
-					IVariable variable = new Variable(interpreterContext, variableDeclaration);
-					variable.setValue(0, Values.valueOf(getComputationContext(), dataType, 1.0 / sampleTime));
-					interpreterContext.addVariable(variable);
-				}
 			}
 		}
 	}
@@ -255,7 +184,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
-		Type type = interpreterContext.getStaticEvaluationResult().getValue(variableDeclaration).getDataType();
+		Type type = interpreterContext.getStaticEvaluationResult().getFunctionInfo(FunctionCallPath.EMPTY).getValue(variableDeclaration).getDataType();
 		if (type instanceof ArrayType) {
 			ArrayType arrayType = (ArrayType) type;
 			variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
@@ -265,14 +194,6 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 	}
 	
-	protected void initializeComputationCompound(ComputationCompound compound) {
-		if (!compound.getOutputs().isEmpty()) {
-			computeOutputsCompounds.add(compound);
-		} else {
-			updateCompounds.add(compound);
-		}
-	}
-
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
@@ -301,9 +222,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
-		for (ComputationCompound compound : computeOutputsCompounds) {
-			compoundStatementInterpreter.execute(interpreterContext, compound);
-		}
+		updateTime(t);
+		interpreter.compute(interpreterContext);
 	}
 	
 	/* (non-Javadoc)
@@ -324,10 +244,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void update(double t) {
-		for (ComputationCompound compound : updateCompounds) {
-			compoundStatementInterpreter.execute(interpreterContext, compound);
-		}
-		functionObject.incrementStepIndex();
+		updateTime(t);
+		interpreter.update();
 	}
 	
 	/**
@@ -344,4 +262,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		return functionObject;
 	}
 	
+	protected void updateTime(double t) {
+		interpreter.updateTime(t);
+	}
+
 }

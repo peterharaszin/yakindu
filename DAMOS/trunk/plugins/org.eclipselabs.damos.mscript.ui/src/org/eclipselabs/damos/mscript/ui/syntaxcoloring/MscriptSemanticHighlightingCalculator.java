@@ -28,6 +28,7 @@ import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.StandardFunctionDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepExpression;
 import org.eclipselabs.damos.mscript.Unit;
@@ -62,9 +63,9 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 	
 	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
 		boolean proceed = true;
-		if (eObject instanceof FunctionDeclaration) {
+		if (eObject instanceof StandardFunctionDeclaration) {
 			FunctionDeclaration functionDeclaration = (FunctionDeclaration) eObject;
-			highlightFeature(functionDeclaration, functionDeclaration.getNameFeature(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
+			highlightFeature(functionDeclaration, MscriptPackage.eINSTANCE.getStandardFunctionDeclaration_Name(), MscriptHighlightingConfiguration.FUNCTION_ID, acceptor);
 		} else if (eObject instanceof FeatureReference) {
 			FeatureReference featureReference = (FeatureReference) eObject;
 			if (featureReference.getFeature() instanceof StateVariableDeclaration) {

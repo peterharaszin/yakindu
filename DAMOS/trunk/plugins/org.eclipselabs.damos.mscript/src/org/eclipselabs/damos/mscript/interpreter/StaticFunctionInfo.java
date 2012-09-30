@@ -14,10 +14,14 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FeatureReference;
+import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.function.FunctionDescription;
+import org.eclipselabs.damos.mscript.function.FunctionInstance;
+import org.eclipselabs.damos.mscript.function.transform.TransformAdapter;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -26,13 +30,17 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  */
 public class StaticFunctionInfo {
 
-	private final FunctionDescription functionDescription;
+	private FunctionDescription functionDescription;
 
 	private final Map<Evaluable, IValue> values = new HashMap<Evaluable, IValue>();
 	
 	private final Map<FeatureReference, Integer> stepIndices = new HashMap<FeatureReference, Integer>();
 	
 	private final Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
+	
+	private final Map<FunctionCall, StaticFunctionInfo> callees = new HashMap<FunctionCall, StaticFunctionInfo>();
+	
+	private FunctionInstance functionInstance;
 
 	/**
 	 * 
@@ -77,4 +85,42 @@ public class StaticFunctionInfo {
 		return functionDescription;
 	}
 	
+	/**
+	 * @param functionDescription the functionDescription to set
+	 */
+	public void setFunctionDescription(FunctionDescription functionDescription) {
+		this.functionDescription = functionDescription;
+	}
+	
+	public void addCallee(FunctionCall functionCall, StaticFunctionInfo callee) {
+		callees.put(functionCall, callee);
+	}
+	
+	public StaticFunctionInfo getCallee(FunctionCall functionCall) {
+		return callees.get(getActualFunctionCall(functionCall));
+	}
+	
+	private FunctionCall getActualFunctionCall(FunctionCall functionCall) {
+		@SuppressWarnings("unchecked")
+		TransformAdapter<FunctionCall> adapter = (TransformAdapter<FunctionCall>) EcoreUtil.getAdapter(functionCall.eAdapters(), TransformAdapter.class);
+		if (adapter != null) {
+			return adapter.getOriginalElement();
+		}
+		return functionCall;
+	}
+
+	/**
+	 * @return the functionInstance
+	 */
+	public FunctionInstance getFunctionInstance() {
+		return functionInstance;
+	}
+	
+	/**
+	 * @param functionInstance the functionInstance to set
+	 */
+	public void setFunctionInstance(FunctionInstance functionInstance) {
+		this.functionInstance = functionInstance;
+	}
+
 }

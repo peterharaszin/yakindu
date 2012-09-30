@@ -1,0 +1,45 @@
+package mscript.lang.math
+
+function abs(x) -> y {
+	check(real) -> real
+	check(real(kg)) -> real(kg)
+	
+	static assert x is real(?) :
+		error "x must be real value"
+	
+	const zero = num(0, unit(x))
+	
+	eq y = if x <= zero then zero - x else x
+}
+
+function min(a, b) -> y {
+	check(real, real) -> real
+	check(real(kg), real(kg)) -> real(kg)
+	
+	static assert a is real(?) :
+		error "a must be real value"
+	
+	static assert b is real(?) :
+		error "b must be real value"
+		
+	static assert a is real(?) && b is real(?) => unit(a) == unit(b) :
+		error "a and b must have same unit"
+
+	eq y = if a <= b then a else b
+}
+
+function max(a, b) -> y {
+	check(real, real) -> real
+	check(real(kg), real(kg)) -> real(kg)
+	
+	static assert a is real(?) :
+		error "a must be real value"
+	
+	static assert b is real(?) :
+		error "b must be real value"
+		
+	static assert a is real(?) && b is real(?) => unit(a) == unit(b) :
+		error "a and b must have same unit"
+
+	eq y = if a >= b then a else b
+}

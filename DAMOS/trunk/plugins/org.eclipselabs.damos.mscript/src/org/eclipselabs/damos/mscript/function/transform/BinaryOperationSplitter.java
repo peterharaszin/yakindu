@@ -63,7 +63,7 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 		Expression leftOperand = binaryExpression.getLeftOperand();
 		Expression rightOperand = binaryExpression.getRightOperand();
 
-		IValue binaryExpressionValue = context.getStaticEvaluationResult().getValue(binaryExpression);
+		IValue binaryExpressionValue = context.getFunctionInfo().getValue(binaryExpression);
 
 		FeatureReference leftVariableReference = helper.transformToVariableReference(context, leftOperand, "left", transformer);
 		FeatureReference rightVariableReference = helper.transformToVariableReference(context, rightOperand, "right", transformer);
@@ -72,7 +72,7 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 		transformedBinaryExpression.setLeftOperand(leftVariableReference);
 		transformedBinaryExpression.setRightOperand(rightVariableReference);
 		transformedBinaryExpression.setOperator(binaryExpression.getOperator());
-		context.getStaticEvaluationResult().setValue(transformedBinaryExpression, binaryExpressionValue);
+		context.getFunctionInfo().setValue(transformedBinaryExpression, binaryExpressionValue);
 
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 		assignment.setTarget(targets.get(0).createVariableReference(binaryExpressionValue.getDataType()));
@@ -82,7 +82,7 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 	}
 	
 	private Type getDataType(ITransformerContext context, Expression expression) {
-		return context.getStaticEvaluationResult().getValue(expression).getDataType();
+		return context.getFunctionInfo().getValue(expression).getDataType();
 	}
 
 }

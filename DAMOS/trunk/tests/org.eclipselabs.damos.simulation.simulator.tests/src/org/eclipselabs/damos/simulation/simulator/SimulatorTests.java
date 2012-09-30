@@ -27,7 +27,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	RecordTest.class,
 	VectorScalarMultiplyTest.class,
 	VectorTest.class,
-	TransferFunctionTest.class
+	TransferFunctionTest.class,
+	FunctionTest.class
 })
 public class SimulatorTests {
 

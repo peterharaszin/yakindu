@@ -23,6 +23,7 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -76,7 +77,7 @@ public class ExpressionUtil {
 
 	public static IValue evaluateExpression(Expression expression) throws CoreException {
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
-		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
+		IValue value = new ExpressionEvaluator().evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
 		if (staticEvaluationResult.getStatus().getSeverity() > IStatus.WARNING) {
 			throw new CoreException(staticEvaluationResult.getStatus());
 		}

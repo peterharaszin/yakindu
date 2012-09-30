@@ -14,6 +14,7 @@ package org.eclipselabs.damos.codegen.c.codefragments.factories;
 import org.eclipselabs.damos.codegen.c.codefragments.ContextVariable;
 import org.eclipselabs.damos.codegen.c.codefragments.factories.IContextVariableFactory.Default;
 import org.eclipselabs.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;

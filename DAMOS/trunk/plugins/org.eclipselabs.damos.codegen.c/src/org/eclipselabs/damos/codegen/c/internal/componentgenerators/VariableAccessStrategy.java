@@ -57,6 +57,15 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		this.staticEvaluationResult = staticEvaluationResult;
 	}
 	
+	public CharSequence generateContextMemberAccess(boolean pointer, String memberName) {
+		StringBuilder sb = new StringBuilder();
+		if (pointer) {
+			sb.append("&");
+		}
+		sb.append(context.getVariableAccessor().generateContextVariableReference(false));
+		return sb.append(".").append(memberName);
+	}
+	
 	public CharSequence generateVariableReference(FeatureReference variableReference) {
 		CallableElement feature = variableReference.getFeature();
 		if (feature instanceof ImplicitVariableDeclaration) {

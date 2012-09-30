@@ -40,5 +40,9 @@ public class MscriptGeneratorConfiguration implements IMscriptGeneratorConfigura
 	public int getStringBufferSize() {
 		return GeneratorConfigurationExtensions.getStringBufferSize(configuration);
 	}
+	
+	public boolean isSingleton() {
+		return GeneratorConfigurationExtensions.isSingleton(configuration);
+	}
 
 }

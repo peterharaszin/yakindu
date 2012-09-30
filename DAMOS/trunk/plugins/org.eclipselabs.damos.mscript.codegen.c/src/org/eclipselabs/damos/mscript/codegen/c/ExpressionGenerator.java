@@ -13,6 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -30,6 +31,7 @@ import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
@@ -51,13 +53,18 @@ import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.Type;
 import org.eclipselabs.damos.mscript.UnaryExpression;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.ExpressionStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.FunctionContextMemberVariable;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.IStringSegment;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.InitializeFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.RecordConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipselabs.damos.mscript.codegen.c.codefragments.StringTable;
+import org.eclipselabs.damos.mscript.codegen.c.codefragments.UpdateFunction;
 import org.eclipselabs.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
@@ -68,6 +75,8 @@ import org.eclipselabs.damos.mscript.computation.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computation.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computation.NumberFormat;
 import org.eclipselabs.damos.mscript.computation.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.function.util.FunctionModelUtil;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
@@ -211,7 +220,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			Type rightDataType = getDataType(additiveExpression.getRightOperand());
 			
 			if (leftDataType instanceof StringType || rightDataType instanceof StringType) {
-				IValue leftValue = context.getStaticEvaluationResult().getValue(additiveExpression.getLeftOperand());
+				IValue leftValue = context.getFunctionInfo().getValue(additiveExpression.getLeftOperand());
 				if (leftValue == null || leftValue instanceof InvalidValue) {
 					return true;
 				}
@@ -221,7 +230,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				}
 				IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), leftValue.getDataType()));
 
-				IValue rightValue = context.getStaticEvaluationResult().getValue(additiveExpression.getRightOperand());
+				IValue rightValue = context.getFunctionInfo().getValue(additiveExpression.getRightOperand());
 				if (rightValue == null || rightValue instanceof InvalidValue) {
 					return true;
 				}
@@ -412,7 +421,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				} else if (templateSegment instanceof ExpressionTemplateSegment) {
 					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
 					Expression expression = expressionTemplateSegment.getExpression();
-					IValue value = context.getStaticEvaluationResult().getValue(expression);
+					IValue value = context.getFunctionInfo().getValue(expression);
 					if (value == null || value instanceof InvalidValue) {
 						continue;
 					}
@@ -450,7 +459,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				} else if (templateSegment instanceof ExpressionTemplateSegment) {
 					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
 					Expression expression = expressionTemplateSegment.getExpression();
-					IValue value = context.getStaticEvaluationResult().getValue(expression);
+					IValue value = context.getFunctionInfo().getValue(expression);
 					if (value == null || value instanceof InvalidValue) {
 						continue;
 					}
@@ -492,7 +501,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				return true;
 			}
 			
-			IValue value = context.getStaticEvaluationResult().getValue(functionCall);
+			StaticFunctionInfo functionInfo = context.getFunctionInfo();
+			IValue value = functionInfo.getValue(functionCall);
 			if (value == null) {
 				throw new IllegalStateException("No static value found for " + functionCall.getFeature().getName());
 			}
@@ -504,7 +514,84 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			IBuiltinFunctionGenerator generator = builtinFunctionGeneratorLookup.getFunctionGenerator(functionCall);
 			if (generator != null) {
 				out.print(generator.generate(context, functionCall));
+				return true;
 			}
+			
+			StaticFunctionInfo callee = functionInfo.getCallee(functionCall);
+			MscriptGeneratorContext newGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getCodeFragmentCollector());
+			ComputeFunction functionDefinition = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(newGeneratorContext), new NullProgressMonitor());
+			
+			FunctionContextMemberVariable functionContextMemberVariable = FunctionContextMemberVariable.initialize(context, functionDefinition, newGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
+			
+			if (functionContextMemberVariable != null) {
+				ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+
+				{
+					InitializeFunction initializeFunction = functionDefinition.getInitializeFunction();
+					StringBuilder sb = new StringBuilder();
+					sb.append(initializeFunction.getName());
+					sb.append("(");
+					if (functionContextMemberVariable != null) {
+						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+					}
+					sb.append(");\n");
+	
+					contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+					contextStruct.addInitializeCall(sb);
+				}
+				
+				{
+					UpdateFunction updateFunction = functionDefinition.getUpdateFunction();
+					StringBuilder sb = new StringBuilder();
+					sb.append(updateFunction.getName());
+					sb.append("(");
+					boolean first = true;
+					if (functionContextMemberVariable != null) {
+						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+						first = false;
+					}
+					Iterator<InputParameterDeclaration> inputParameterDeclarationIt = callee.getFunctionDescription().getDeclaration().getInputParameterDeclarations().iterator();
+					for (Expression argument : functionCall.getArguments()) {
+						if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
+							continue;
+						}
+						if (first) {
+							first = false;
+						} else {
+							sb.append(", ");
+						}
+						PrintAppendable oldOut = out;
+						out = new PrintAppendable(sb);
+						doSwitch(argument);
+						out = oldOut;
+					}
+					sb.append(");\n");
+	
+					contextStruct.addUpdateCall(sb);
+				}
+			}
+			
+			out.print(functionDefinition.getName());
+			out.print("(");
+			boolean first = true;
+			if (functionContextMemberVariable != null) {
+				out.print(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextMemberVariable.getName()));
+				first = false;
+			}
+			List<InputParameterDeclaration> directFeedthroughInputs = FunctionModelUtil.getDirectFeedthroughInputs(newGeneratorContext.getFunctionInfo().getFunctionInstance());
+			Iterator<InputParameterDeclaration> inputParameterDeclarationIt = directFeedthroughInputs.iterator();
+			for (Expression argument : functionCall.getArguments()) {
+				if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
+					continue;
+				}
+				if (first) {
+					first = false;
+				} else {
+					out.print(", ");
+				}
+				doSwitch(argument);
+			}
+			out.print(")");
 
 			return true;
 		}
@@ -528,7 +615,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
-			IValue value = context.getStaticEvaluationResult().getValue(arrayConstructionOperator);
+			IValue value = context.getFunctionInfo().getValue(arrayConstructionOperator);
 			if (value instanceof IArrayValue) {
 				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 			}
@@ -537,7 +624,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		
 		@Override
 		public Boolean caseRecordConstructionOperator(RecordConstructionOperator recordConstructionOperator) {
-			IValue value = context.getStaticEvaluationResult().getValue(recordConstructionOperator);
+			IValue value = context.getFunctionInfo().getValue(recordConstructionOperator);
 			if (value instanceof RecordValue) {
 				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 			} else {
@@ -575,7 +662,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 
 		private Type getDataType(Expression expression) {
-			return context.getStaticEvaluationResult().getValue(expression).getDataType();
+			return context.getFunctionInfo().getValue(expression).getDataType();
 		}
 	
 	}

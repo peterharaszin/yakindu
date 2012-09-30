@@ -37,7 +37,7 @@ class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	'''
 
 	def private getDataType(IMscriptGeneratorContext context, Evaluable evaluable) {
-		return context.getStaticEvaluationResult.getValue(evaluable)?.dataType
+		return context.getFunctionInfo.getValue(evaluable)?.dataType
 	}
 	
 }

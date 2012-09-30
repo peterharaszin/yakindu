@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.codegen.c;
 
 import org.eclipselabs.damos.mscript.codegen.c.internal.DefaultVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -20,24 +20,24 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
  */
 public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
-	private IMscriptGeneratorConfiguration configuration;
-	private IStaticEvaluationResult staticEvaluationResult;
-	private IVariableAccessStrategy variableAccessStrategy;
-	private ICodeFragmentCollector codeFragmentCollector;
+	private final IMscriptGeneratorConfiguration configuration;
+	private final StaticFunctionInfo functionInfo;
+	private final IVariableAccessStrategy variableAccessStrategy;
+	private final ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, IStaticEvaluationResult staticEvaluationResult, ICodeFragmentCollector codeFragmentCollector) {
-		this(configuration, staticEvaluationResult, new DefaultVariableAccessStrategy(staticEvaluationResult), codeFragmentCollector);
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ICodeFragmentCollector codeFragmentCollector) {
+		this(configuration, functionInfo, new DefaultVariableAccessStrategy(functionInfo), codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, IStaticEvaluationResult staticEvaluationResult, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.configuration = configuration;
-		this.staticEvaluationResult = staticEvaluationResult;
+		this.functionInfo = functionInfo;
 		this.variableAccessStrategy = variableAccessStrategy;
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
@@ -46,11 +46,8 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 		return configuration;
 	}
 
-	/**
-	 * @return the staticEvaluationResult
-	 */
-	public IStaticEvaluationResult getStaticEvaluationResult() {
-		return staticEvaluationResult;
+	public StaticFunctionInfo getFunctionInfo() {
+		return functionInfo;
 	}
 
 	/**
@@ -62,6 +59,13 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	
 	public ICodeFragmentCollector getCodeFragmentCollector() {
 		return codeFragmentCollector;
+	}
+	
+	/**
+	 * @return the staticFunctionInfo
+	 */
+	public StaticFunctionInfo getStaticFunctionInfo() {
+		return functionInfo;
 	}
 
 }

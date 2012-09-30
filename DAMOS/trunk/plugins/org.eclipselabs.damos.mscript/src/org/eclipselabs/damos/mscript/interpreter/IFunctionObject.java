@@ -30,6 +30,8 @@ public interface IFunctionObject {
 	
 	IVariable getVariable(VariableDeclaration declaration);
 	
+	void addVariable(IVariable variable);
+	
 	void incrementStepIndex();
 
 }

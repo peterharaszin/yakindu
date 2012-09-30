@@ -11,11 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Type;
-import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
-import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
-import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 public abstract class FunctionParameter {
@@ -23,7 +19,7 @@ public abstract class FunctionParameter {
 	/**
 	 * 
 	 */
-	private FunctionParameter() {
+	FunctionParameter() {
 		// Make private
 	}
 	
@@ -33,72 +29,6 @@ public abstract class FunctionParameter {
 
 	public static FunctionParameter create(IValue value) {
 		return new ValueFunctionParameter(value);
-	}
-
-	private static class TypeFunctionParameter extends FunctionParameter {
-	
-		private final Type dataType;
-
-		/**
-		 * @param dataType
-		 */
-		public TypeFunctionParameter(Type dataType) {
-			this.dataType = dataType;
-		}
-		
-		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			return TypeFunctionParameter.class.hashCode();
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof DataType) {
-				DataType other = (DataType) obj;
-				return other.isEquivalentTo(dataType);
-			}
-			return false;
-		}
-		
-	}
-
-	private static class ValueFunctionParameter extends FunctionParameter {
-		
-		private final IValue value;
-		
-		public ValueFunctionParameter(IValue value) {
-			this.value = value;
-		}
-		
-		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			int hashCode = ValueFunctionParameter.class.hashCode();
-			if (value instanceof INumericValue) {
-				hashCode += Double.toString(((ISimpleNumericValue) value).doubleValue()).hashCode();
-			}
-			return hashCode;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof ValueFunctionParameter) {
-				ValueFunctionParameter other = (ValueFunctionParameter) obj;
-				IValue otherValue = other.value;
-				if (!otherValue.getDataType().isEquivalentTo(value.getDataType())) {
-					return false;
-				}
-				IValue result = otherValue.equalTo(value);
-				return result instanceof IBooleanValue && ((IBooleanValue) result).booleanValue();
-			}
-			return false;
-		}
-		
 	}
 
 }

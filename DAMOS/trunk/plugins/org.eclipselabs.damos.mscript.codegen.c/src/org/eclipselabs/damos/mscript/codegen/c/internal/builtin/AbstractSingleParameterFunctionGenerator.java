@@ -35,7 +35,7 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IBuilt
 		
 		Expression argument = functionCall.getArguments().get(0);
 		
-		Type argumentDataType = context.getStaticEvaluationResult().getValue(functionCall).getDataType();
+		Type argumentDataType = context.getFunctionInfo().getValue(functionCall).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {
 			throw new IllegalArgumentException();
 		}

@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public abstract class AbstractMathFunction extends AbstractSingleParameterFunction {
 
-	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument) {
+	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, IValue argument, boolean staticOnly) {
 		if (!(argument.getDataType() instanceof RealType || argument.getDataType() instanceof IntegerType)) {
 			return InvalidValue.SINGLETON;
 		}

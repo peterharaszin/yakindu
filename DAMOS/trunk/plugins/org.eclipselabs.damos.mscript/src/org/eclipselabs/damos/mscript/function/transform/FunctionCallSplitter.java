@@ -52,13 +52,13 @@ public class FunctionCallSplitter implements IExpressionTransformStrategy {
 	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
 		FunctionCall functionCall = (FunctionCall) expression;
 
-		IValue functionCallValue = context.getStaticEvaluationResult().getValue(functionCall);
+		IValue functionCallValue = context.getFunctionInfo().getValue(functionCall);
 
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
 		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
 		featureReference.setFeature(functionCall.getFeature());
 		transformedFunctionCall.setTarget(featureReference);
-		context.getStaticEvaluationResult().setValue(transformedFunctionCall, functionCallValue);
+		context.getFunctionInfo().setValue(transformedFunctionCall, functionCallValue);
 
 		for (Expression argument : functionCall.getArguments()) {
 			// TODO: Find a generic way to handle function types
@@ -79,7 +79,7 @@ public class FunctionCallSplitter implements IExpressionTransformStrategy {
 	}
 
 	private Type getDataType(ITransformerContext context, Expression expression) {
-		return context.getStaticEvaluationResult().getValue(expression).getDataType();
+		return context.getFunctionInfo().getValue(expression).getDataType();
 	}
 
 }

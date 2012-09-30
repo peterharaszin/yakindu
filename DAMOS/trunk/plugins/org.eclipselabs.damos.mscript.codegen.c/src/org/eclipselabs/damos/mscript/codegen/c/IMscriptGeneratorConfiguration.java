@@ -23,4 +23,6 @@ public interface IMscriptGeneratorConfiguration {
 	
 	int getStringBufferSize();
 	
+	boolean isSingleton();
+	
 }

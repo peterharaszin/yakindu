@@ -13,9 +13,9 @@ package org.eclipselabs.damos.dscript.validation;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.xtext.validation.DiagnosticConverterImpl;
 import org.eclipselabs.damos.dscript.BehaviorDeclaration;
 import org.eclipselabs.damos.dscript.services.DscriptGrammarAccess;
+import org.eclipselabs.damos.mscript.validation.MscriptDiagnosticConverter;
 
 import com.google.inject.Inject;
 
@@ -23,7 +23,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class DscriptDiagnosticConverter extends DiagnosticConverterImpl {
+public class DscriptDiagnosticConverter extends MscriptDiagnosticConverter {
 
 	private final DscriptGrammarAccess grammarAccess;
 	

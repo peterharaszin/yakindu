@@ -158,6 +158,7 @@ BooleanType:
 StringType:
 	{StringType} 'string';
 	
+// TODO: We need a way to specify any array types, e.g. '?[]'
 AnonymousArrayType returns DataType:
 	(PrimitiveType | CompositeType) ({AnonymousArrayType.elementType=current} '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']')?;
 
@@ -296,7 +297,7 @@ UnitConversionExpression returns Expression:
 	PostfixUnaryExpression ({UnitConversionExpression.operand=current} 'as' unit=ExplicitUnit)?;
 	
 PostfixUnaryExpression returns Expression:
-	(QualifiedFunctionCall | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+	(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
 
 enum PostfixUnaryOperator returns OperatorKind:
 	Derivative="'";
@@ -367,6 +368,9 @@ ExpressionTemplateSegment hidden(WS, ML_COMMENT):
 
 FeatureReference returns Expression:
 	{FeatureReference} (feature=[CallableElement|ValidIDWithUnit] | feature=[CallableElement|ValidID] '{' stepExpression=StepExpression '}');
+
+QualifiedMemberAccess returns Expression:
+	QualifiedFunctionCall ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
 
 QualifiedFunctionCall returns Expression:
 	QualifiedFeatureReference ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;

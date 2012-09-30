@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 public interface IMscriptGeneratorContext {
 
 	IMscriptGeneratorConfiguration getConfiguration();
-	IStaticEvaluationResult getStaticEvaluationResult();
+	StaticFunctionInfo getFunctionInfo();
 	IVariableAccessStrategy getVariableAccessStrategy();
 	ICodeFragmentCollector getCodeFragmentCollector();
 	

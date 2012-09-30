@@ -13,6 +13,7 @@ package org.eclipselabs.damos.mscript.function.transform;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -20,10 +21,13 @@ import org.eclipselabs.damos.mscript.function.FunctionInstance;
  * @noextend
  * @noimplement
  */
+// TODO: Rename this class
 public interface IFunctionDefinitionTransformerResult {
 
-	FunctionInstance getFunctionInstance();
-
+	FunctionInstance getFunctionInstance(StaticFunctionInfo functionInfo);
+	void setFunctionInstance(StaticFunctionInfo functionInfo, FunctionInstance functionInstance);
+	
 	IStatus getStatus();
-
+	void setStatus(IStatus status);
+	
 }

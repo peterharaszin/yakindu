@@ -21,7 +21,9 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 public interface IExpressionEvaluationContext {
 
 	IComputationContext getComputationContext();
-
+	
+	FunctionCallPath getFunctionCallPath();
+	
 	void enterStaticScope();
 	void leaveStaticScope();
 	boolean isStaticScope();
@@ -38,5 +40,7 @@ public interface IExpressionEvaluationContext {
 	
 	boolean addVisitedEvaluable(Evaluable evaluable);
 	void removeVisitedEvaluable(Evaluable evaluable);
+	
+	IFunctionInvocationHandler getFunctionInvocationHandler();
 	
 }

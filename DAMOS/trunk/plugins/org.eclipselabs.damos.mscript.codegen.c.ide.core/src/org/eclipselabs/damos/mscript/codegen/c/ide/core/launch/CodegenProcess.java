@@ -34,7 +34,6 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
-import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.damos.mscript.computation.ComputationModel;
 import org.eclipselabs.damos.mscript.function.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -50,7 +49,7 @@ public class CodegenProcess implements IProcess {
 	
 	private IFolder targetFolder;
 	private String functionName;
-	private FunctionInstance functionInstance;
+//	private FunctionInstance functionInstance;
 //	private IStaticEvaluationResult staticEvaluationResult;
 //	private ComputationModel computationModel;
 
@@ -64,7 +63,7 @@ public class CodegenProcess implements IProcess {
 		this.name = name;
 		this.targetFolder = targetFolder;
 		this.functionName = functionName;
-		this.functionInstance = functionInstance;
+//		this.functionInstance = functionInstance;
 //		this.staticEvaluationResult = staticEvaluationResult;
 //		this.computationModel = computationModel;
 		launch.addProcess(this);
@@ -84,8 +83,6 @@ public class CodegenProcess implements IProcess {
 			
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-				new NameNormalizer().normalize(functionInstance);
-				
 				GeneratorThread thread = new HeaderGeneratorThread();
 				executeGenerator(thread, functionName + ".h", monitor);
 				

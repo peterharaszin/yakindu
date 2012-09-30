@@ -45,8 +45,10 @@ import org.eclipselabs.damos.mscript.UnitDeclaration;
 import org.eclipselabs.damos.mscript.UnitFactor;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.ExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.FunctionCallPath;
 import org.eclipselabs.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
@@ -79,7 +81,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	@Check
 	public void checkFunctionHasChecks(FunctionDeclaration functionDeclaration) {
 		if (functionDeclaration.getChecks().isEmpty()) {
-			warning("No static checking can be performed for " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, functionDeclaration.getNameFeature(), -1);
+			warning("No static checking can be performed for " + functionDeclaration.getName() + " since no checks have been defined", null);
 		}
 	}
 	
@@ -238,12 +240,12 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				continue;
 			}
 			
-			new StaticFunctionEvaluator().evaluate(staticEvaluationResult, functionDeclaration);
+			new StaticFunctionEvaluator().evaluate(new StaticEvaluationContext(staticEvaluationResult), functionDeclaration);
 			
 			if (staticEvaluationResult.getStatus().getSeverity() < IStatus.ERROR) {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (TypeSpecifier typeSpecifier : check.getOutputTypeSpecifiers()) {
-					IValue value = staticEvaluationResult.getValue(outputParameterIt.next());
+					IValue value = staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY).getValue(outputParameterIt.next());
 					if (value != null && !(value instanceof InvalidValue) && !typeSpecifier.getType().isEquivalentTo(value.getDataType())) {
 						error("Check does not return specified data type", typeSpecifier, null, -1);
 					}
@@ -252,7 +254,6 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 			
 			SyntaxStatus.addAllSyntaxStatusesToDiagnostics(staticEvaluationResult.getStatus(), getChain());
 		}
-		
 	}
 
 	/**
@@ -275,14 +276,14 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				if (expression == null) {
 					return false;
 				}
-				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(staticEvaluationResult), expression);
-				staticEvaluationResult.setValue(parameter, value);
+				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
+				staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY).setValue(parameter, value);
 			} else {
 				if (!(argument instanceof TypeCheckArgument)) {
 					return false;
 				}
 				TypeSpecifier typeSpecifier = ((TypeCheckArgument) argument).getTypeSpecifier();
-				staticEvaluationResult.setValue(parameter, new AnyValue(new ComputationContext(), typeSpecifier.getType()));
+				staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY).setValue(parameter, new AnyValue(new ComputationContext(), typeSpecifier.getType()));
 			}
 		}
 		return true;

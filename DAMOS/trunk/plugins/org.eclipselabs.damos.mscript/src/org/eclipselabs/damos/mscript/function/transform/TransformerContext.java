@@ -18,6 +18,7 @@ import org.eclipselabs.damos.mscript.CompoundStatement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.util.Scope;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
  * @author Andreas Unger
@@ -26,6 +27,7 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationResult;
 public class TransformerContext implements ITransformerContext {
 
 	private IStaticEvaluationResult staticEvaluationResult;
+	private StaticFunctionInfo functionInfo;
 	
 	private TransformerScope scope = new TransformerScope(null);
 	
@@ -34,12 +36,17 @@ public class TransformerContext implements ITransformerContext {
 	/**
 	 * 
 	 */
-	public TransformerContext(IStaticEvaluationResult staticEvaluationResult) {
+	public TransformerContext(IStaticEvaluationResult staticEvaluationResult, StaticFunctionInfo functionInfo) {
 		this.staticEvaluationResult = staticEvaluationResult;
+		this.functionInfo = functionInfo;
 	}
 	
 	public IStaticEvaluationResult getStaticEvaluationResult() {
 		return staticEvaluationResult;
+	}
+	
+	public StaticFunctionInfo getFunctionInfo() {
+		return functionInfo;
 	}
 	
 	public void enterScope() {

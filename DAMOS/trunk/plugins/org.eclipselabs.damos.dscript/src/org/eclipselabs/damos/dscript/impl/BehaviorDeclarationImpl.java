@@ -9,26 +9,24 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dscript.BehaviorDeclaration;
-import org.eclipselabs.damos.dscript.DscriptPackage;
+import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.dscript.DscriptInputDefinition;
 import org.eclipselabs.damos.dscript.DscriptOutputDefinition;
+import org.eclipselabs.damos.dscript.DscriptPackage;
 import org.eclipselabs.damos.dscript.DscriptParameter;
 import org.eclipselabs.damos.dscript.ImplicitInputParameterDeclaration;
 import org.eclipselabs.damos.dscript.ImplicitOutputParameterDeclaration;
 import org.eclipselabs.damos.dscript.InputMessageParameterDeclaration;
-import org.eclipselabs.damos.dscript.DscriptBlockType;
 import org.eclipselabs.damos.dscript.OutputMessageParameterDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -379,10 +377,6 @@ public class BehaviorDeclarationImpl extends FunctionDeclarationImpl implements 
 			}
 		}
 		return false;
-	}
-	
-	public EStructuralFeature getNameFeature() {
-		return DMLPackage.eINSTANCE.getQualifiedElement_Name();
 	}
 	
 } //BehaviorDeclarationImpl

@@ -154,8 +154,8 @@ public class TemplateExpressionImpl extends ExpressionImpl implements TemplateEx
 		return super.eIsSet(featureID);
 	}
 
-	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
-		return visitor.visit(context, this);
+	public <R, P> R accept(P p, IExpressionVisitor<R, P> visitor) {
+		return visitor.visit(p, this);
 	}
 
 } //TemplateExpressionImpl

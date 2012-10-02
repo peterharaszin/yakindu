@@ -40,8 +40,8 @@ public class EndExpressionImpl extends ExpressionImpl implements EndExpression {
 		return MscriptPackage.Literals.END_EXPRESSION;
 	}
 
-	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
-		return visitor.visit(context, this);
+	public <R, P> R accept(P p, IExpressionVisitor<R, P> visitor) {
+		return visitor.visit(p, this);
 	}
 
 } //EndExpressionImpl

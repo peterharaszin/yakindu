@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.mscript.function.transform;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
@@ -44,9 +43,9 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class VectorMultiplyExpressionExpander implements IExpressionTransformStrategy {
+public class VectorMultiplyExpressionExpander extends AbstractExpressionTransformStrategy {
 
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		if (expression instanceof MultiplicativeExpression) {
 			MultiplicativeExpression multiplicativeExpression = (MultiplicativeExpression) expression;
 			if (multiplicativeExpression.getOperator() == OperatorKind.MULTIPLY) {
@@ -60,14 +59,14 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		return false;
 	}
 
-	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		Expression leftOperand = ((MultiplicativeExpression) expression).getLeftOperand();
 		Expression rightOperand = ((MultiplicativeExpression) expression).getRightOperand();
 
 		ParenthesizedExpression parenthesizedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 
-		ArrayType leftArrayType = (ArrayType) getDataType(context, leftOperand);
-		ArrayType rightArrayType = (ArrayType) getDataType(context, rightOperand);
+		ArrayType leftArrayType = (ArrayType) getDataType(result.getContext(), leftOperand);
+		ArrayType rightArrayType = (ArrayType) getDataType(result.getContext(), rightOperand);
 		
 		Type resultDataType = leftArrayType.getElementType().evaluate(OperatorKind.MULTIPLY, rightArrayType.getElementType());
 		
@@ -77,22 +76,22 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 		if (leftOperand instanceof FeatureReference) {
 			leftVariableReference = (FeatureReference) leftOperand;
 		} else {
-			leftVariableReference = createVariableReference(context, leftOperand, "left", transformer);
+			leftVariableReference = createVariableReference(result.getContext(), leftOperand, "left", result.getTransformer());
 		}
 
 		if (rightOperand instanceof FeatureReference) {
 			rightVariableReference = (FeatureReference) rightOperand;
 		} else {
-			rightVariableReference = createVariableReference(context, rightOperand, "right", transformer);
+			rightVariableReference = createVariableReference(result.getContext(), rightOperand, "right", result.getTransformer());
 		}
 
 		Expression rootExpression = null;
 		for (int i = 0; i < TypeUtil.getArraySize(leftArrayType); ++i) {
 			MultiplicativeExpression multiplicativeExpression = MscriptFactory.eINSTANCE.createMultiplicativeExpression();
-			setDataType(context, multiplicativeExpression, EcoreUtil.copy(resultDataType));
+			setDataType(result.getContext(), multiplicativeExpression, EcoreUtil.copy(resultDataType));
 			
-			Expression leftMultiplicationOperand = createArrayElementAccess(context, leftVariableReference, leftArrayType, i);
-			Expression rightMultiplicationOperand = createArrayElementAccess(context, rightVariableReference, rightArrayType, i);
+			Expression leftMultiplicationOperand = createArrayElementAccess(result.getContext(), leftVariableReference, leftArrayType, i);
+			Expression rightMultiplicationOperand = createArrayElementAccess(result.getContext(), rightVariableReference, rightArrayType, i);
 
 			multiplicativeExpression.setOperator(OperatorKind.MULTIPLY);
 			multiplicativeExpression.setLeftOperand(leftMultiplicationOperand);
@@ -104,17 +103,17 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 				AdditiveExpression additiveExpression = MscriptFactory.eINSTANCE.createAdditiveExpression();
 				additiveExpression.setLeftOperand(rootExpression);
 				additiveExpression.setRightOperand(multiplicativeExpression);
-				setDataType(context, additiveExpression, EcoreUtil.copy(resultDataType));
+				setDataType(result.getContext(), additiveExpression, EcoreUtil.copy(resultDataType));
 				rootExpression = additiveExpression;
 			}
 		}
 		
 		parenthesizedExpression.getExpressions().add(rootExpression);
 
-		setDataType(context, rootExpression, EcoreUtil.copy(resultDataType));
-		setDataType(context, parenthesizedExpression, EcoreUtil.copy(resultDataType));
+		setDataType(result.getContext(), rootExpression, EcoreUtil.copy(resultDataType));
+		setDataType(result.getContext(), parenthesizedExpression, EcoreUtil.copy(resultDataType));
 		
-		targets.get(0).assignExpression(parenthesizedExpression);
+		result.getTargets().get(0).assignExpression(parenthesizedExpression);
 	}
 
 	/**

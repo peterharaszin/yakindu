@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
 
 import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BinaryExpression;
@@ -26,11 +25,11 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class BinaryOperationSplitter implements IExpressionTransformStrategy {
+public class BinaryOperationSplitter extends AbstractExpressionTransformStrategy {
 
 	private final ExpressionTransformHelper helper = new ExpressionTransformHelper();
 
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		if (expression instanceof BinaryExpression) {
 			BinaryExpression binaryExpression = (BinaryExpression) expression;
 			switch (binaryExpression.getOperator()) {
@@ -58,27 +57,27 @@ public class BinaryOperationSplitter implements IExpressionTransformStrategy {
 		return false;
 	}
 	
-	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		BinaryExpression binaryExpression = (BinaryExpression) expression;
 		Expression leftOperand = binaryExpression.getLeftOperand();
 		Expression rightOperand = binaryExpression.getRightOperand();
 
-		IValue binaryExpressionValue = context.getFunctionInfo().getValue(binaryExpression);
+		IValue binaryExpressionValue = result.getContext().getFunctionInfo().getValue(binaryExpression);
 
-		FeatureReference leftVariableReference = helper.transformToVariableReference(context, leftOperand, "left", transformer);
-		FeatureReference rightVariableReference = helper.transformToVariableReference(context, rightOperand, "right", transformer);
+		FeatureReference leftVariableReference = helper.transformToVariableReference(result.getContext(), leftOperand, "left", result.getTransformer());
+		FeatureReference rightVariableReference = helper.transformToVariableReference(result.getContext(), rightOperand, "right", result.getTransformer());
 		
 		BinaryExpression transformedBinaryExpression = (BinaryExpression) MscriptFactory.eINSTANCE.create(binaryExpression.eClass());
 		transformedBinaryExpression.setLeftOperand(leftVariableReference);
 		transformedBinaryExpression.setRightOperand(rightVariableReference);
 		transformedBinaryExpression.setOperator(binaryExpression.getOperator());
-		context.getFunctionInfo().setValue(transformedBinaryExpression, binaryExpressionValue);
+		result.getContext().getFunctionInfo().setValue(transformedBinaryExpression, binaryExpressionValue);
 
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
-		assignment.setTarget(targets.get(0).createVariableReference(binaryExpressionValue.getDataType()));
+		assignment.setTarget(result.getTargets().get(0).createVariableReference(binaryExpressionValue.getDataType()));
 		assignment.setAssignedExpression(transformedBinaryExpression);
 		
-		context.getCompound().getStatements().add(assignment);
+		result.getContext().getCompound().getStatements().add(assignment);
 	}
 	
 	private Type getDataType(ITransformerContext context, Expression expression) {

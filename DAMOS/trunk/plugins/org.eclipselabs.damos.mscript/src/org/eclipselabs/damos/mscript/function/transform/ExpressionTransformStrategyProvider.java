@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public class ExpressionTransformStrategyProvider implements IExpressionTransformStrategyProvider {
 
-	private final Collection<IExpressionTransformStrategy> expressionTransformStrategies = new ArrayList<IExpressionTransformStrategy>();
+	private final Collection<AbstractExpressionTransformStrategy> expressionTransformStrategies = new ArrayList<AbstractExpressionTransformStrategy>();
 	
 	{
 		expressionTransformStrategies.add(new IfExpressionExpander());
@@ -33,12 +33,11 @@ public class ExpressionTransformStrategyProvider implements IExpressionTransform
 		expressionTransformStrategies.add(new FunctionCallSplitter());
 		expressionTransformStrategies.add(new InspectExpressionExpander());
 		expressionTransformStrategies.add(new LambdaExpressionExpander());
-		expressionTransformStrategies.add(new DefaultExpressionTransformStrategy());
 	}
 	
 	public IExpressionTransformStrategy getExpressionTransformStrategy(ITransformerContext context, Expression expression) {
-		for (IExpressionTransformStrategy transformStrategy : expressionTransformStrategies) {
-			if (transformStrategy.canHandle(context, expression)) {
+		for (AbstractExpressionTransformStrategy transformStrategy : expressionTransformStrategies) {
+			if (transformStrategy.canTransform(context, expression)) {
 				return transformStrategy;
 			}
 		}

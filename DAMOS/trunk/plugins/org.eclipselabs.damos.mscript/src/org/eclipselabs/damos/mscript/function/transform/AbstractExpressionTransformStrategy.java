@@ -11,15 +11,14 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-
 import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IExpressionTransformStrategy {
+public abstract class AbstractExpressionTransformStrategy implements IExpressionTransformStrategy {
 
-	void transform(ExpressionTransformResult result, Expression expression);
-	
+	public abstract boolean canTransform(ITransformerContext context, Expression expression);
+
 }

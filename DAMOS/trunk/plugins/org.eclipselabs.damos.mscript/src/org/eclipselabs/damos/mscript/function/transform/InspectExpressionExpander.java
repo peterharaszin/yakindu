@@ -66,7 +66,7 @@ public class InspectExpressionExpander implements IExpressionTransformStrategy {
 			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
 
 			InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);
-			transformer.transform(whenClause.getExpression(), bodyTarget.asList());
+			transformer.transform(context, whenClause.getExpression(), bodyTarget.asList());
 			
 			ReturnStatement returnStatement = MscriptFactory.eINSTANCE.createReturnStatement();
 			returnStatement.setExpression(bodyTarget.getAssignedExpression());

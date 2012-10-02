@@ -64,7 +64,7 @@ public class FunctionCallSplitter implements IExpressionTransformStrategy {
 			// TODO: Find a generic way to handle function types
 			if (argument instanceof LambdaExpression) {
 				InlineExpressionTarget lambdaExpressionTarget = new InlineExpressionTarget(context);
-				transformer.transform(argument, lambdaExpressionTarget.asList());
+				transformer.transform(context, argument, lambdaExpressionTarget.asList());
 				transformedFunctionCall.getArguments().add(lambdaExpressionTarget.getAssignedExpression());
 			} else {
 				transformedFunctionCall.getArguments().add(helper.transformToVariableReference(context, argument, "arg", transformer));

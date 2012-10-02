@@ -14,6 +14,8 @@ package org.eclipselabs.damos.mscript.function.transform;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipselabs.damos.mscript.Expression;
+
 /**
  * @author Andreas Unger
  *
@@ -34,11 +36,13 @@ public class ExpressionTransformStrategyProvider implements IExpressionTransform
 		expressionTransformStrategies.add(new DefaultExpressionTransformStrategy());
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.function.transform.IExpressionTransformStrategyProvider#getExpressionTransformStrategies()
-	 */
-	public Collection<IExpressionTransformStrategy> getExpressionTransformStrategies() {
-		return expressionTransformStrategies;
+	public IExpressionTransformStrategy getExpressionTransformStrategy(ITransformerContext context, Expression expression) {
+		for (IExpressionTransformStrategy transformStrategy : expressionTransformStrategies) {
+			if (transformStrategy.canHandle(context, expression)) {
+				return transformStrategy;
+			}
+		}
+		return null;
 	}
 
 }

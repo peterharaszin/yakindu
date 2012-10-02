@@ -38,7 +38,7 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression resultExpression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
-			transformer.transform(resultExpression, targets);
+			transformer.transform(context, resultExpression, targets);
 			return;
 		}
 		
@@ -46,7 +46,7 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		targets = targets.get(0).toVariableExpressionTarget(ifExpressionValue.getDataType()).asList();
 
 		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(context);
-		transformer.transform(ifExpression.getCondition(), conditionTarget.asList());
+		transformer.transform(context, ifExpression.getCondition(), conditionTarget.asList());
 		Expression conditionExpression = conditionTarget.getAssignedExpression();
 
 		IfStatement ifStatement = MscriptFactory.eINSTANCE.createIfStatement();
@@ -57,14 +57,14 @@ public class IfExpressionExpander implements IExpressionTransformStrategy {
 		ifStatement.setThenStatement(thenStatement);
 		context.enterScope();
 		context.setCompound(thenStatement);
-		transformer.transform(ifExpression.getThenExpression(), targets);
+		transformer.transform(context, ifExpression.getThenExpression(), targets);
 		context.leaveScope();
 		
 		CompoundStatement elseStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		ifStatement.setElseStatement(elseStatement);
 		context.enterScope();
 		context.setCompound(elseStatement);
-		transformer.transform(ifExpression.getElseExpression(), targets);
+		transformer.transform(context, ifExpression.getElseExpression(), targets);
 		context.leaveScope();
 	}
 

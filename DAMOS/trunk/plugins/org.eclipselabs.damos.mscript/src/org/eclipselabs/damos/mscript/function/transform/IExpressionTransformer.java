@@ -21,6 +21,6 @@ import org.eclipselabs.damos.mscript.Expression;
  */
 public interface IExpressionTransformer {
 
-	void transform(Expression expression, List<? extends IExpressionTarget> targets);
+	void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets);
 	
 }

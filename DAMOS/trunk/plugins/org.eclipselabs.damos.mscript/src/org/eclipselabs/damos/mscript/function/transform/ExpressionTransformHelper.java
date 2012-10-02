@@ -40,7 +40,7 @@ public class ExpressionTransformHelper {
 		context.getCompound().getStatements().add(variableDeclaration);
 		
 		VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclaration);
-		transformer.transform(expression, target.asList());
+		transformer.transform(context, expression, target.asList());
 		
 		return target.createVariableReference(operandValue.getDataType());
 	}

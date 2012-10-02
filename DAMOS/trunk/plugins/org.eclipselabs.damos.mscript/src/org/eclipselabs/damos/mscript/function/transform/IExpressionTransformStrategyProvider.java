@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.Collection;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import java.util.Collection;
  */
 public interface IExpressionTransformStrategyProvider {
 
-	Collection<IExpressionTransformStrategy> getExpressionTransformStrategies();
+	IExpressionTransformStrategy getExpressionTransformStrategy(ITransformerContext context, Expression expression);
 	
 }

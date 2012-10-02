@@ -373,7 +373,7 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 	
 	protected Expression transformNext(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
 		InlineExpressionTarget target = new InlineExpressionTarget(context);
-		transformer.transform(expression, target.asList());
+		transformer.transform(context, expression, target.asList());
 		Expression transformedExpression = target.getAssignedExpression();
 		IValue value = context.getFunctionInfo().getValue(expression);
 		if (value == null) {

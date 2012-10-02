@@ -176,8 +176,7 @@ public class VectorMultiplyExpressionExpander implements IExpressionTransformStr
 
 		IValue value = context.getFunctionInfo().getValue(operand);
 		context.getFunctionInfo().setValue(variableDeclaration, value);
-		transformer.transform(
-				operand,
+		transformer.transform(context, operand,
 				Collections.singletonList(new VariableExpressionTarget(context, variableDeclaration, 0)));
 		
 		context.leaveScope();

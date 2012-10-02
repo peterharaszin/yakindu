@@ -63,7 +63,7 @@ public class LambdaExpressionExpander implements IExpressionTransformStrategy {
 		context.setCompound(body);
 		
 		InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);
-		transformer.transform(lambdaExpression.getExpression(), bodyTarget.asList());
+		transformer.transform(context, lambdaExpression.getExpression(), bodyTarget.asList());
 		
 		ReturnStatement returnStatement = MscriptFactory.eINSTANCE.createReturnStatement();
 		returnStatement.setExpression(bodyTarget.getAssignedExpression());

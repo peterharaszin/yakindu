@@ -127,9 +127,9 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 					context.enterScope();
 					context.setCompound(compoundStatement);
 
-					IExpressionTransformer transformer = new ExpressionTransformer(context);
+					IExpressionTransformer transformer = new ExpressionTransformer();
 					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getVariableDescription()), lhsVariableStep.getIndex());
-					transformer.transform(equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target));
+					transformer.transform(context, equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target));
 					
 					context.leaveScope();
 
@@ -153,9 +153,9 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 					context.enterScope();
 					context.setCompound(compound);
 					
-					IExpressionTransformer transformer = new ExpressionTransformer(context);
+					IExpressionTransformer transformer = new ExpressionTransformer();
 					VariableExpressionTarget target = new VariableExpressionTarget(context, variableDeclarations.get(lhsVariableStep.getVariableDescription()), lhsVariableStep.getIndex());
-					transformer.transform(equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target));
+					transformer.transform(context, equationDescription.getRightHandSide().getExpression(), Collections.singletonList(target));
 
 					context.leaveScope();
 

@@ -81,7 +81,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 				assignment.setTarget(arrayElementAccess);
 				
 				InlineExpressionTarget elementExpressionTarget = new InlineExpressionTarget(context);
-				transformer.transform(elementExpression, elementExpressionTarget.asList());
+				transformer.transform(context, elementExpression, elementExpressionTarget.asList());
 				assignment.setAssignedExpression(elementExpressionTarget.getAssignedExpression());
 				
 				context.getCompound().getStatements().add(assignment);
@@ -117,7 +117,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 					context.getFunctionInfo().setValue(elementVariableDeclaration, elementValue);
 					
 					VariableExpressionTarget elementExpressionTarget = new VariableExpressionTarget(context, elementVariableDeclaration);
-					transformer.transform(elementExpression, elementExpressionTarget.asList());
+					transformer.transform(context, elementExpression, elementExpressionTarget.asList());
 					
 					context.leaveScope();
 				}
@@ -153,7 +153,7 @@ public class ArrayConstructionOperatorExpander implements IExpressionTransformSt
 						assignment.setAssignedExpression(rightArrayElementAccess);
 					} else {
 						InlineExpressionTarget elementExpressionTarget = new InlineExpressionTarget(context);
-						transformer.transform(elementExpression, elementExpressionTarget.asList());
+						transformer.transform(context, elementExpression, elementExpressionTarget.asList());
 						assignment.setAssignedExpression(elementExpressionTarget.getAssignedExpression());
 					}
 					

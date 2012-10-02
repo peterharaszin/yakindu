@@ -53,14 +53,14 @@ public class LetExpressionExpander implements IExpressionTransformStrategy {
 			localVariable.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), variable.getName()));
 			
 			InlineExpressionTarget target = new InlineExpressionTarget(context);
-			transformer.transform(assignment.getAssignedExpression(), target.asList());
+			transformer.transform(context, assignment.getAssignedExpression(), target.asList());
 			Expression assignedExpression = target.getAssignedExpression();
 			
 			localVariable.setInitializer(assignedExpression);
 			compoundStatement.getStatements().add(localVariable);
 		}
 
-		transformer.transform(letExpression.getTarget(), targets);
+		transformer.transform(context, letExpression.getTarget(), targets);
 		
 		context.leaveScope();
 	}

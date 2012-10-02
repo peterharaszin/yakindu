@@ -23,21 +23,10 @@ public class ExpressionTransformer implements IExpressionTransformer {
 
 	private final IExpressionTransformStrategyProvider expressionTransformStrategyProvider = new ExpressionTransformStrategyProvider();
 	
-	private ITransformerContext context;
-
-	/**
-	 * 
-	 */
-	public ExpressionTransformer(ITransformerContext context) {
-		this.context = context;
-	}
-	
-	public void transform(Expression expression, List<? extends IExpressionTarget> targets) {
-		for (IExpressionTransformStrategy transformStrategy : expressionTransformStrategyProvider.getExpressionTransformStrategies()) {
-			if (transformStrategy.canHandle(context, expression)) {
-				transformStrategy.transform(context, expression, targets, this);
-				break;
-			}
+	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets) {
+		IExpressionTransformStrategy transformStrategy = expressionTransformStrategyProvider.getExpressionTransformStrategy(context, expression);
+		if (transformStrategy != null) {
+			transformStrategy.transform(context, expression, targets, this);
 		}
 	}
 	

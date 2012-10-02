@@ -19,6 +19,6 @@ package org.eclipselabs.damos.mscript;
  */
 public interface Expression extends Evaluable {
 	
-	<R, C> R accept(C context, IExpressionVisitor<R, C> visitor);
+	<R, P> R accept(P p, IExpressionVisitor<R, P> visitor);
 	
 } // Expression

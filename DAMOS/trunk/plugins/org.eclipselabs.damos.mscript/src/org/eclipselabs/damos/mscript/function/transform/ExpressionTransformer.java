@@ -22,11 +22,16 @@ import org.eclipselabs.damos.mscript.Expression;
 public class ExpressionTransformer implements IExpressionTransformer {
 
 	private final IExpressionTransformStrategyProvider expressionTransformStrategyProvider = new ExpressionTransformStrategyProvider();
+
+	private final IExpressionTransformStrategy defaultExpressionTransformStrategy = new DefaultExpressionTransformStrategy();
 	
 	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets) {
+		ExpressionTransformResult result = new ExpressionTransformResult(context, this, targets);
 		IExpressionTransformStrategy transformStrategy = expressionTransformStrategyProvider.getExpressionTransformStrategy(context, expression);
 		if (transformStrategy != null) {
-			transformStrategy.transform(context, expression, targets, this);
+			transformStrategy.transform(result, expression);
+		} else {
+			defaultExpressionTransformStrategy.transform(result, expression);
 		}
 	}
 	

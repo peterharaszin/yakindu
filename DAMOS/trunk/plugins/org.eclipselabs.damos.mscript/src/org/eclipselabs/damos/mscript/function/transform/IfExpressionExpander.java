@@ -25,47 +25,48 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  *
  */
-public class IfExpressionExpander implements IExpressionTransformStrategy {
+public class IfExpressionExpander extends AbstractExpressionTransformStrategy {
 
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		return expression instanceof IfExpression;
 	}
 
-	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
+		List<? extends IExpressionTarget> targets = result.getTargets();
 		// First check if we can statically evaluate the condition
 		IfExpression ifExpression = (IfExpression) expression;
-		IValue ifConditionValue = context.getFunctionInfo().getValue(ifExpression.getCondition());
+		IValue ifConditionValue = result.getContext().getFunctionInfo().getValue(ifExpression.getCondition());
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression resultExpression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
-			transformer.transform(context, resultExpression, targets);
+			result.getTransformer().transform(result.getContext(), resultExpression, targets);
 			return;
 		}
 		
-		IValue ifExpressionValue = context.getFunctionInfo().getValue(ifExpression);
+		IValue ifExpressionValue = result.getContext().getFunctionInfo().getValue(ifExpression);
 		targets = targets.get(0).toVariableExpressionTarget(ifExpressionValue.getDataType()).asList();
 
-		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(context);
-		transformer.transform(context, ifExpression.getCondition(), conditionTarget.asList());
+		InlineExpressionTarget conditionTarget = new InlineExpressionTarget(result.getContext());
+		result.getTransformer().transform(result.getContext(), ifExpression.getCondition(), conditionTarget.asList());
 		Expression conditionExpression = conditionTarget.getAssignedExpression();
 
 		IfStatement ifStatement = MscriptFactory.eINSTANCE.createIfStatement();
 		ifStatement.setCondition(conditionExpression);
-		context.getCompound().getStatements().add(ifStatement);
+		result.getContext().getCompound().getStatements().add(ifStatement);
 		
 		CompoundStatement thenStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		ifStatement.setThenStatement(thenStatement);
-		context.enterScope();
-		context.setCompound(thenStatement);
-		transformer.transform(context, ifExpression.getThenExpression(), targets);
-		context.leaveScope();
+		result.getContext().enterScope();
+		result.getContext().setCompound(thenStatement);
+		result.getTransformer().transform(result.getContext(), ifExpression.getThenExpression(), targets);
+		result.getContext().leaveScope();
 		
 		CompoundStatement elseStatement = MscriptFactory.eINSTANCE.createCompoundStatement();
 		ifStatement.setElseStatement(elseStatement);
-		context.enterScope();
-		context.setCompound(elseStatement);
-		transformer.transform(context, ifExpression.getElseExpression(), targets);
-		context.leaveScope();
+		result.getContext().enterScope();
+		result.getContext().setCompound(elseStatement);
+		result.getTransformer().transform(result.getContext(), ifExpression.getElseExpression(), targets);
+		result.getContext().leaveScope();
 	}
 
 }

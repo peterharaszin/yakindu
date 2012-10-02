@@ -237,7 +237,7 @@ public class UnitConversionExpressionImpl extends ExpressionImpl implements Unit
 		return super.eIsSet(featureID);
 	}
 
-	public <R, C> R accept(C context, IExpressionVisitor<R, C> visitor) {
+	public <R, P> R accept(P p, IExpressionVisitor<R, P> visitor) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
 
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Assignment;
@@ -28,11 +27,11 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  *
  */
-public class FunctionCallSplitter implements IExpressionTransformStrategy {
+public class FunctionCallSplitter extends AbstractExpressionTransformStrategy {
 
 	private final ExpressionTransformHelper helper = new ExpressionTransformHelper();
 	
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		if (expression instanceof FunctionCall) {
 			FunctionCall functionCall = (FunctionCall) expression;
 			if (functionCall.getFeature() instanceof BuiltinFunctionDeclaration) {
@@ -49,33 +48,33 @@ public class FunctionCallSplitter implements IExpressionTransformStrategy {
 		return false;
 	}
 	
-	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		FunctionCall functionCall = (FunctionCall) expression;
 
-		IValue functionCallValue = context.getFunctionInfo().getValue(functionCall);
+		IValue functionCallValue = result.getContext().getFunctionInfo().getValue(functionCall);
 
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
 		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
 		featureReference.setFeature(functionCall.getFeature());
 		transformedFunctionCall.setTarget(featureReference);
-		context.getFunctionInfo().setValue(transformedFunctionCall, functionCallValue);
+		result.getContext().getFunctionInfo().setValue(transformedFunctionCall, functionCallValue);
 
 		for (Expression argument : functionCall.getArguments()) {
 			// TODO: Find a generic way to handle function types
 			if (argument instanceof LambdaExpression) {
-				InlineExpressionTarget lambdaExpressionTarget = new InlineExpressionTarget(context);
-				transformer.transform(context, argument, lambdaExpressionTarget.asList());
+				InlineExpressionTarget lambdaExpressionTarget = new InlineExpressionTarget(result.getContext());
+				result.getTransformer().transform(result.getContext(), argument, lambdaExpressionTarget.asList());
 				transformedFunctionCall.getArguments().add(lambdaExpressionTarget.getAssignedExpression());
 			} else {
-				transformedFunctionCall.getArguments().add(helper.transformToVariableReference(context, argument, "arg", transformer));
+				transformedFunctionCall.getArguments().add(helper.transformToVariableReference(result.getContext(), argument, "arg", result.getTransformer()));
 			}
 		}
 		
 		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
-		assignment.setTarget(targets.get(0).createVariableReference(functionCallValue.getDataType()));
+		assignment.setTarget(result.getTargets().get(0).createVariableReference(functionCallValue.getDataType()));
 		assignment.setAssignedExpression(transformedFunctionCall);
 		
-		context.getCompound().getStatements().add(assignment);
+		result.getContext().getCompound().getStatements().add(assignment);
 	}
 
 	private Type getDataType(ITransformerContext context, Expression expression) {

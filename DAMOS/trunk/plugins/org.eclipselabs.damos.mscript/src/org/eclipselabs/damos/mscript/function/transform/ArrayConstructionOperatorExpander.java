@@ -38,22 +38,21 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class ArrayConstructionOperatorExpander implements IExpressionTransformStrategy {
+public class ArrayConstructionOperatorExpander extends AbstractExpressionTransformStrategy {
 
 	private final static int[] EMPTY_INT_ARRAY = new int[0];
 	
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		return expression instanceof ArrayConstructionOperator;
 	}
 	
-	public void transform(ITransformerContext context, Expression expression,
-			List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		ArrayConstructionOperator arrayExpression = (ArrayConstructionOperator) expression;
-		IValue expressionValue = context.getFunctionInfo().getValue(arrayExpression);
+		IValue expressionValue = result.getContext().getFunctionInfo().getValue(arrayExpression);
 		ArrayType arrayType = (ArrayType) expressionValue.getDataType();
 
 		List<Integer> indices = new ArrayList<Integer>();
-		transformArrayExpression(context, transformer, arrayExpression, arrayType, targets, indices);
+		transformArrayExpression(result.getContext(), result.getTransformer(), arrayExpression, arrayType, result.getTargets(), indices);
 	}
 	
 	private void transformArrayExpression(ITransformerContext context, IExpressionTransformer transformer, ArrayConstructionOperator arrayExpression, ArrayType arrayType, List<? extends IExpressionTarget> targets, List<Integer> indices) {

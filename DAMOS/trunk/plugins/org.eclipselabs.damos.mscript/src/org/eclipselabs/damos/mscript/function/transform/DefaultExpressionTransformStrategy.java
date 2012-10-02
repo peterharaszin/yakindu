@@ -11,24 +11,29 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.AlgorithmExpression;
+import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
+import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.ConstantTemplateSegment;
+import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ExpressionTemplateSegment;
 import org.eclipselabs.damos.mscript.FeatureReference;
 import org.eclipselabs.damos.mscript.FunctionCall;
+import org.eclipselabs.damos.mscript.IExpressionVisitor;
 import org.eclipselabs.damos.mscript.IfExpression;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.InspectExpression;
 import org.eclipselabs.damos.mscript.InspectWhenClause;
+import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.InvalidExpression;
+import org.eclipselabs.damos.mscript.LambdaExpression;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
@@ -40,9 +45,12 @@ import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RangeExpression;
+import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RecordConstructionMember;
 import org.eclipselabs.damos.mscript.RecordConstructionOperator;
 import org.eclipselabs.damos.mscript.RelationalExpression;
+import org.eclipselabs.damos.mscript.StringLiteral;
+import org.eclipselabs.damos.mscript.SwitchExpression;
 import org.eclipselabs.damos.mscript.TemplateExpression;
 import org.eclipselabs.damos.mscript.TemplateSegment;
 import org.eclipselabs.damos.mscript.TypeSpecifier;
@@ -50,6 +58,7 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnionConstructionOperator;
 import org.eclipselabs.damos.mscript.UnionType;
+import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
@@ -58,69 +67,13 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  * @author Andreas Unger
  *
  */
-public class DefaultExpressionTransformStrategy implements IExpressionTransformStrategy {
+public class DefaultExpressionTransformStrategy implements IExpressionTransformStrategy, IExpressionVisitor<Void, ExpressionTransformResult> {
 
-	public boolean canHandle(ITransformerContext context, Expression expression) {
-		return true;
-	}
-
-	public void transform(ITransformerContext context, Expression expression, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
-		dispatch(context, targets, transformer, expression);
+	public void transform(ExpressionTransformResult result, Expression expression) {
+		expression.accept(result, this);
 	}
 	
-	protected void dispatch(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, Expression expression) {
-		if (expression instanceof LetExpression) {
-			transformLetExpression(context, targets, transformer, (LetExpression) expression);
-		} else if (expression instanceof IfExpression) {
-			transformIfExpression(context, targets, transformer, (IfExpression) expression);
-		} else if (expression instanceof InspectExpression) {
-			transformInspectExpression(context, targets, transformer, (InspectExpression) expression);
-		} else if (expression instanceof RangeExpression) {
-			transformRangeExpression(context, targets, transformer, (RangeExpression) expression);
-		} else if (expression instanceof FeatureReference) {
-			transformVariableReference(context, targets, transformer, (FeatureReference) expression);
-		} else if (expression instanceof FunctionCall) {
-			transformFunctionCall(context, targets, transformer, (FunctionCall) expression);
-		} else if (expression instanceof ImpliesExpression) {
-			transformImpliesExpression(context, targets, transformer, (ImpliesExpression) expression);
-		} else if (expression instanceof LogicalOrExpression) {
-			transformLogicalOrExpression(context, targets, transformer, (LogicalOrExpression) expression);
-		} else if (expression instanceof LogicalAndExpression) {
-			transformLogicalAndExpression(context, targets, transformer, (LogicalAndExpression) expression);
-		} else if (expression instanceof EqualityExpression) {
-			transformEqualityExpression(context, targets, transformer, (EqualityExpression) expression);
-		} else if (expression instanceof RelationalExpression) {
-			transformRelationalExpression(context, targets, transformer, (RelationalExpression) expression);
-		} else if (expression instanceof AdditiveExpression) {
-			transformAdditiveExpression(context, targets, transformer, (AdditiveExpression) expression);
-		} else if (expression instanceof MultiplicativeExpression) {
-			transformMultiplicativeExpression(context, targets, transformer, (MultiplicativeExpression) expression);
-		} else if (expression instanceof TypeTestExpression) {
-			transformTypeTestExpression(context, targets, transformer, (TypeTestExpression) expression);
-		} else if (expression instanceof UnaryExpression) {
-			transformUnaryExpression(context, targets, transformer, (UnaryExpression) expression);
-		} else if (expression instanceof PowerExpression) {
-			transformPowerExpression(context, targets, transformer, (PowerExpression) expression);
-		} else if (expression instanceof ArrayConstructionOperator) {
-			transformArrayConstructionOperator(context, targets, transformer, (ArrayConstructionOperator) expression);
-		} else if (expression instanceof UnionConstructionOperator) {
-			transformUnionConstructionOperator(context, targets, transformer, (UnionConstructionOperator) expression);
-		} else if (expression instanceof ArrayElementAccess) {
-			transformArrayElementAccess(context, targets, transformer, (ArrayElementAccess) expression);
-		} else if (expression instanceof RecordConstructionOperator) {
-			transformRecordConstructionOperator(context, targets, transformer, (RecordConstructionOperator) expression);
-		} else if (expression instanceof MemberVariableAccess) {
-			transformMemberVariableAccess(context, targets, transformer, (MemberVariableAccess) expression);
-		} else if (expression instanceof ParenthesizedExpression) {
-			transformParenthesizedExpression(context, targets, transformer, (ParenthesizedExpression) expression);
-		} else if (expression instanceof TemplateExpression) {
-			transformTemplateExpression(context, targets, transformer, (TemplateExpression) expression);
-		} else {
-			assignExpression(context, expression, EcoreUtil.copy(expression), targets);
-		}
-	}
-
-	protected void transformLetExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, LetExpression letExpression) {
+	public Void visit(ExpressionTransformResult result, LetExpression letExpression) {
 		LetExpression transformedLetExpression = MscriptFactory.eINSTANCE.createLetExpression();
 		
 		for (LetExpressionAssignment assignment : letExpression.getAssignments()) {
@@ -128,179 +81,196 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			for (LetExpressionVariableDeclaration variable : assignment.getVariables()) {
 				LetExpressionVariableDeclaration transformedVariable = EcoreUtil.copy(variable);
 				transformedAssignment.getVariables().add(transformedVariable);
-				context.addVariableDeclarationMapping(variable, transformedVariable);
+				result.getContext().addVariableDeclarationMapping(variable, transformedVariable);
 			}
-			transformedAssignment.setAssignedExpression(transformNext(context, assignment.getAssignedExpression(), transformer));
+			transformedAssignment.setAssignedExpression(transformNext(result, assignment.getAssignedExpression()));
 		}
 		
-		transformedLetExpression.setTarget(transformNext(context, letExpression.getTarget(), transformer));
+		transformedLetExpression.setTarget(transformNext(result, letExpression.getTarget()));
 
-		assignExpression(context, letExpression, transformedLetExpression, targets);
+		assignExpression(result, letExpression, transformedLetExpression);
+		return null;
 	}
 	
-	protected void transformIfExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, IfExpression ifExpression) {
+	public Void visit(ExpressionTransformResult result, IfExpression ifExpression) {
 		IfExpression transformedIfExpression = MscriptFactory.eINSTANCE.createIfExpression();
 		transformedIfExpression.setStatic(ifExpression.isStatic());
 		
-		transformedIfExpression.setCondition(transformNext(context, ifExpression.getCondition(), transformer));
-		transformedIfExpression.setThenExpression(transformNext(context, ifExpression.getThenExpression(), transformer));
-		transformedIfExpression.setElseExpression(transformNext(context, ifExpression.getElseExpression(), transformer));
+		transformedIfExpression.setCondition(transformNext(result, ifExpression.getCondition()));
+		transformedIfExpression.setThenExpression(transformNext(result, ifExpression.getThenExpression()));
+		transformedIfExpression.setElseExpression(transformNext(result, ifExpression.getElseExpression()));
 		
-		assignExpression(context, ifExpression, transformedIfExpression, targets);
+		assignExpression(result, ifExpression, transformedIfExpression);
+		return null;
 	}
 	
-	protected void transformInspectExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, InspectExpression inspectExpression) {
+	public Void visit(ExpressionTransformResult result, InspectExpression inspectExpression) {
 		InspectExpression transformedInspectExpression = MscriptFactory.eINSTANCE.createInspectExpression();
 		
-		transformedInspectExpression.setUnionExpression(transformNext(context, inspectExpression.getUnionExpression(), transformer));
+		transformedInspectExpression.setUnionExpression(transformNext(result, inspectExpression.getUnionExpression()));
 		
 		for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
 			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
-			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
+			result.getContext().addVariableDeclarationMapping(whenClause, transformedWhenClause);
 			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
 			transformedWhenClause.setName(whenClause.getName());
-			transformedWhenClause.setExpression(transformNext(context, whenClause.getExpression(), transformer));
+			transformedWhenClause.setExpression(transformNext(result, whenClause.getExpression()));
 		}
 		
-		assignExpression(context, inspectExpression, transformedInspectExpression, targets);
+		assignExpression(result, inspectExpression, transformedInspectExpression);
+		return null;
 	}
 
-	protected void transformRangeExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, RangeExpression rangeExpression) {
+	public Void visit(ExpressionTransformResult result, RangeExpression rangeExpression) {
 		RangeExpression transformedRangeExpression = MscriptFactory.eINSTANCE.createRangeExpression();
 		for (Expression operand : rangeExpression.getOperands()) {
-			transformedRangeExpression.getOperands().add(transformNext(context, operand, transformer));
+			transformedRangeExpression.getOperands().add(transformNext(result, operand));
 		}
-		assignExpression(context, rangeExpression, transformedRangeExpression, targets);
+		assignExpression(result, rangeExpression, transformedRangeExpression);
+		return null;
 	}
 	
-	protected void transformVariableReference(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, FeatureReference variableReference) {
+	public Void visit(ExpressionTransformResult result, FeatureReference variableReference) {
 		if (variableReference.getFeature() instanceof VariableDeclaration) {
 			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 			if (variableDeclaration != null) {
-				int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
-				assignExpression(context, variableReference, MscriptUtil.createVariableReference(context.getFunctionInfo(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false), targets);
+				int stepIndex = result.getContext().getFunctionInfo().getStepIndex(variableReference);
+				assignExpression(result, variableReference, MscriptUtil.createVariableReference(result.getContext().getFunctionInfo(), result.getContext().mapVariableDeclaration(variableDeclaration), stepIndex, false));
 			}
 		} else {
-			assignExpression(context, variableReference, EcoreUtil.copy(variableReference), targets);
+			assignExpression(result, variableReference, EcoreUtil.copy(variableReference));
 		}
+		return null;
 	}
 
-	protected void transformFunctionCall(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, FunctionCall functionCall) {
+	public Void visit(ExpressionTransformResult result, FunctionCall functionCall) {
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
 		transformedFunctionCall.eAdapters().add(new TransformAdapter<FunctionCall>(functionCall));
 		FeatureReference featureReference = MscriptFactory.eINSTANCE.createFeatureReference();
 		featureReference.setFeature(functionCall.getFeature());
 		transformedFunctionCall.setTarget(featureReference);
 		for (Expression expression : functionCall.getArguments()) {
-			Expression transformedExpression = transformNext(context, expression, transformer);
+			Expression transformedExpression = transformNext(result, expression);
 			if (transformedExpression instanceof InvalidExpression) {
-				targets.get(0).assignExpression(transformedExpression);
-				return;
+				result.getTargets().get(0).assignExpression(transformedExpression);
+				return null;
 			}
 			transformedFunctionCall.getArguments().add(transformedExpression);
 		}
-		assignExpression(context, functionCall, transformedFunctionCall, targets);
+		assignExpression(result, functionCall, transformedFunctionCall);
+		return null;
 	}
 	
-	protected void transformImpliesExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ImpliesExpression impliesExpression) {
+	public Void visit(ExpressionTransformResult result, ImpliesExpression impliesExpression) {
 		ImpliesExpression transformedImpliesExpression = MscriptFactory.eINSTANCE.createImpliesExpression();
 		
-		Expression leftTransformedExpression = transformNext(context, impliesExpression.getLeftOperand(), transformer);
-		Expression rightTransformedExpression = transformNext(context, impliesExpression.getRightOperand(), transformer);
+		Expression leftTransformedExpression = transformNext(result, impliesExpression.getLeftOperand());
+		Expression rightTransformedExpression = transformNext(result, impliesExpression.getRightOperand());
 		
 		transformedImpliesExpression.setLeftOperand(leftTransformedExpression);
 		transformedImpliesExpression.setRightOperand(rightTransformedExpression);
 		
-		assignExpression(context, impliesExpression, transformedImpliesExpression, targets);
+		assignExpression(result, impliesExpression, transformedImpliesExpression);
+		return null;
 	}
 	
-	protected void transformLogicalOrExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, LogicalOrExpression logicalOrExpression) {
+	public Void visit(ExpressionTransformResult result, LogicalOrExpression logicalOrExpression) {
 		LogicalOrExpression transformedExpression = MscriptFactory.eINSTANCE.createLogicalOrExpression();
-		transformedExpression.setLeftOperand(transformNext(context, logicalOrExpression.getLeftOperand(), transformer));
-		transformedExpression.setRightOperand(transformNext(context, logicalOrExpression.getRightOperand(), transformer));
-		assignExpression(context, logicalOrExpression, transformedExpression, targets);
+		transformedExpression.setLeftOperand(transformNext(result, logicalOrExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(transformNext(result, logicalOrExpression.getRightOperand()));
+		assignExpression(result, logicalOrExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformLogicalAndExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, LogicalAndExpression logicalAndExpression) {
+	public Void visit(ExpressionTransformResult result, LogicalAndExpression logicalAndExpression) {
 		LogicalAndExpression transformedExpression = MscriptFactory.eINSTANCE.createLogicalAndExpression();
-		transformedExpression.setLeftOperand(transformNext(context, logicalAndExpression.getLeftOperand(), transformer));
-		transformedExpression.setRightOperand(transformNext(context, logicalAndExpression.getRightOperand(), transformer));
-		assignExpression(context, logicalAndExpression, transformedExpression, targets);
+		transformedExpression.setLeftOperand(transformNext(result, logicalAndExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(transformNext(result, logicalAndExpression.getRightOperand()));
+		assignExpression(result, logicalAndExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformEqualityExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, EqualityExpression equalityExpression) {
+	public Void visit(ExpressionTransformResult result, EqualityExpression equalityExpression) {
 		EqualityExpression transformedExpression = MscriptFactory.eINSTANCE.createEqualityExpression();
 		transformedExpression.setOperator(equalityExpression.getOperator());
 		
-		Expression leftExpression = transformNext(context, equalityExpression.getLeftOperand(), transformer);
+		Expression leftExpression = transformNext(result, equalityExpression.getLeftOperand());
 		transformedExpression.setLeftOperand(leftExpression);
-		Expression rightExpression = transformNext(context, equalityExpression.getRightOperand(), transformer);
+		Expression rightExpression = transformNext(result, equalityExpression.getRightOperand());
 		transformedExpression.setRightOperand(rightExpression);
 
-		assignExpression(context, equalityExpression, transformedExpression, targets);
+		assignExpression(result, equalityExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformRelationalExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, RelationalExpression relationalExpression) {
+	public Void visit(ExpressionTransformResult result, RelationalExpression relationalExpression) {
 		RelationalExpression transformedExpression = MscriptFactory.eINSTANCE.createRelationalExpression();
 		transformedExpression.setOperator(relationalExpression.getOperator());
 		
-		Expression leftExpression = transformNext(context, relationalExpression.getLeftOperand(), transformer);
+		Expression leftExpression = transformNext(result, relationalExpression.getLeftOperand());
 		transformedExpression.setLeftOperand(leftExpression);
-		Expression rightExpression = transformNext(context, relationalExpression.getRightOperand(), transformer);
+		Expression rightExpression = transformNext(result, relationalExpression.getRightOperand());
 		transformedExpression.setRightOperand(rightExpression);
 
-		assignExpression(context, relationalExpression, transformedExpression, targets);
+		assignExpression(result, relationalExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformAdditiveExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, AdditiveExpression additiveExpression) {
+	public Void visit(ExpressionTransformResult result, AdditiveExpression additiveExpression) {
 		AdditiveExpression transformedExpression = MscriptFactory.eINSTANCE.createAdditiveExpression();
 		transformedExpression.setOperator(additiveExpression.getOperator());
-		transformedExpression.setLeftOperand(transformNext(context, additiveExpression.getLeftOperand(), transformer));
-		transformedExpression.setRightOperand(transformNext(context, additiveExpression.getRightOperand(), transformer));
-		assignExpression(context, additiveExpression, transformedExpression, targets);
+		transformedExpression.setLeftOperand(transformNext(result, additiveExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(transformNext(result, additiveExpression.getRightOperand()));
+		assignExpression(result, additiveExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformMultiplicativeExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, MultiplicativeExpression multiplicativeExpression) {
+	public Void visit(ExpressionTransformResult result, MultiplicativeExpression multiplicativeExpression) {
 		MultiplicativeExpression transformedExpression = MscriptFactory.eINSTANCE.createMultiplicativeExpression();
 		transformedExpression.setOperator(multiplicativeExpression.getOperator());
-		transformedExpression.setLeftOperand(transformNext(context, multiplicativeExpression.getLeftOperand(), transformer));
-		transformedExpression.setRightOperand(transformNext(context, multiplicativeExpression.getRightOperand(), transformer));
-		assignExpression(context, multiplicativeExpression, transformedExpression, targets);
+		transformedExpression.setLeftOperand(transformNext(result, multiplicativeExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(transformNext(result, multiplicativeExpression.getRightOperand()));
+		assignExpression(result, multiplicativeExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformTypeTestExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, TypeTestExpression typeTestExpression) {
+	public Void visit(ExpressionTransformResult result, TypeTestExpression typeTestExpression) {
 		TypeTestExpression transformedTypeTestExpression = MscriptFactory.eINSTANCE.createTypeTestExpression();
-		Expression expression = transformNext(context, typeTestExpression.getExpression(), transformer);
+		Expression expression = transformNext(result, typeTestExpression.getExpression());
 		transformedTypeTestExpression.setExpression(expression);
 		transformedTypeTestExpression.setTypeSpecifier(EcoreUtil.copy(typeTestExpression.getTypeSpecifier()));
-		assignExpression(context, expression, transformedTypeTestExpression, targets);
+		assignExpression(result, expression, transformedTypeTestExpression);
+		return null;
 	}
 	
-	protected void transformUnaryExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, UnaryExpression unaryExpression) {
+	public Void visit(ExpressionTransformResult result, UnaryExpression unaryExpression) {
 		UnaryExpression transformedExpression = MscriptFactory.eINSTANCE.createUnaryExpression();
 		transformedExpression.setOperator(unaryExpression.getOperator());
-		Expression expression = transformNext(context, unaryExpression.getOperand(), transformer);
+		Expression expression = transformNext(result, unaryExpression.getOperand());
 		transformedExpression.setOperand(expression);
-		assignExpression(context, expression, transformedExpression, targets);
+		assignExpression(result, expression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformPowerExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, PowerExpression powerExpression) {
+	public Void visit(ExpressionTransformResult result, PowerExpression powerExpression) {
 		PowerExpression transformedExpression = MscriptFactory.eINSTANCE.createPowerExpression();
-		transformedExpression.setLeftOperand(transformNext(context, powerExpression.getLeftOperand(), transformer));
-		transformedExpression.setRightOperand(transformNext(context, powerExpression.getRightOperand(), transformer));
+		transformedExpression.setLeftOperand(transformNext(result, powerExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(transformNext(result, powerExpression.getRightOperand()));
 		transformedExpression.setOperator(powerExpression.getOperator());
-		assignExpression(context, powerExpression, transformedExpression, targets);
+		assignExpression(result, powerExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformArrayConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ArrayConstructionOperator arrayConstructionOperator) {
+	public Void visit(ExpressionTransformResult result, ArrayConstructionOperator arrayConstructionOperator) {
 		ArrayConstructionOperator transformedExpression = MscriptFactory.eINSTANCE.createArrayConstructionOperator();
 		for (Expression expression : arrayConstructionOperator.getExpressions()) {
-			transformedExpression.getExpressions().add(transformNext(context, expression, transformer));
+			transformedExpression.getExpressions().add(transformNext(result, expression));
 		}
-		assignExpression(context, arrayConstructionOperator, transformedExpression, targets);
+		assignExpression(result, arrayConstructionOperator, transformedExpression);
+		return null;
 	}
 	
-	protected void transformUnionConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, UnionConstructionOperator unionConstructionOperator) {
+	public Void visit(ExpressionTransformResult result, UnionConstructionOperator unionConstructionOperator) {
 		UnionConstructionOperator transformedExpression = MscriptFactory.eINSTANCE.createUnionConstructionOperator();
 		TypeSpecifier typeSpecifier = unionConstructionOperator.getTypeSpecifier();
 		if (typeSpecifier != null && typeSpecifier.getType() instanceof UnionType) {
@@ -312,49 +282,54 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 				transformedExpression.setMember(((UnionType) transformedTypeSpecifier.getType()).getMembers().get(memberIndex));
 			}
 		}
-		transformedExpression.setValue(transformNext(context, unionConstructionOperator.getValue(), transformer));
-		assignExpression(context, unionConstructionOperator, transformedExpression, targets);
+		transformedExpression.setValue(transformNext(result, unionConstructionOperator.getValue()));
+		assignExpression(result, unionConstructionOperator, transformedExpression);
+		return null;
 	}
 
-	protected void transformArrayElementAccess(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ArrayElementAccess arrayElementAccess) {
+	public Void visit(ExpressionTransformResult result, ArrayElementAccess arrayElementAccess) {
 		ArrayElementAccess transformedAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
-		transformedAccess.setArray(transformNext(context, arrayElementAccess.getArray(), transformer));
+		transformedAccess.setArray(transformNext(result, arrayElementAccess.getArray()));
 		for (ArraySubscript arraySubscript : arrayElementAccess.getSubscripts()) {
-			Expression transformedExpression = transformNext(context, arraySubscript.getExpression(), transformer);
+			Expression transformedExpression = transformNext(result, arraySubscript.getExpression());
 			ArraySubscript subscript = MscriptFactory.eINSTANCE.createArraySubscript();
 			subscript.setExpression(transformedExpression);
 			transformedAccess.getSubscripts().add(subscript);
 		}
-		assignExpression(context, arrayElementAccess, transformedAccess, targets);
+		assignExpression(result, arrayElementAccess, transformedAccess);
+		return null;
 	}
 	
-	protected void transformRecordConstructionOperator(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, RecordConstructionOperator recordConstructionOperator) {
+	public Void visit(ExpressionTransformResult result, RecordConstructionOperator recordConstructionOperator) {
 		RecordConstructionOperator transformedStructConstructionOperator = MscriptFactory.eINSTANCE.createRecordConstructionOperator();
 		for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
 			RecordConstructionMember transformedMember = MscriptFactory.eINSTANCE.createRecordConstructionMember();
 			transformedMember.setName(member.getName());
-			transformedMember.setValue(transformNext(context, member.getValue(), transformer));
+			transformedMember.setValue(transformNext(result, member.getValue()));
 			transformedStructConstructionOperator.getMembers().add(transformedMember);
 		}
-		assignExpression(context, recordConstructionOperator, transformedStructConstructionOperator, targets);
+		assignExpression(result, recordConstructionOperator, transformedStructConstructionOperator);
+		return null;
 	}
 	
-	protected void transformMemberVariableAccess(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, MemberVariableAccess memberVariableAccess) {
+	public Void visit(ExpressionTransformResult result, MemberVariableAccess memberVariableAccess) {
 		MemberVariableAccess transformedMemberVariableAccess = MscriptFactory.eINSTANCE.createMemberVariableAccess();
-		transformedMemberVariableAccess.setTarget(transformNext(context, memberVariableAccess.getTarget(), transformer));
+		transformedMemberVariableAccess.setTarget(transformNext(result, memberVariableAccess.getTarget()));
 		transformedMemberVariableAccess.setMemberVariable(memberVariableAccess.getMemberVariable());
-		assignExpression(context, memberVariableAccess, transformedMemberVariableAccess, targets);
+		assignExpression(result, memberVariableAccess, transformedMemberVariableAccess);
+		return null;
 	}
 	
-	protected void transformParenthesizedExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, ParenthesizedExpression parenthesizedExpression) {
+	public Void visit(ExpressionTransformResult result, ParenthesizedExpression parenthesizedExpression) {
 		ParenthesizedExpression transformedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 		Expression firstParenthesizedExpression = parenthesizedExpression.getExpressions().get(0);
-		Expression transformedFirstParenthesizedExpression = transformNext(context, firstParenthesizedExpression, transformer);
+		Expression transformedFirstParenthesizedExpression = transformNext(result, firstParenthesizedExpression);
 		transformedExpression.getExpressions().add(transformedFirstParenthesizedExpression);
-		assignExpression(context, parenthesizedExpression, transformedExpression, targets);
+		assignExpression(result, parenthesizedExpression, transformedExpression);
+		return null;
 	}
 	
-	protected void transformTemplateExpression(ITransformerContext context, List<? extends IExpressionTarget> targets, IExpressionTransformer transformer, TemplateExpression templateExpression) {
+	public Void visit(ExpressionTransformResult result, TemplateExpression templateExpression) {
 		TemplateExpression transformedTemplateExpression = MscriptFactory.eINSTANCE.createTemplateExpression();
 		for (TemplateSegment segment : templateExpression.getSegments()) {
 			if (segment instanceof ConstantTemplateSegment) {
@@ -362,34 +337,90 @@ public class DefaultExpressionTransformStrategy implements IExpressionTransformS
 			} else if (segment instanceof ExpressionTemplateSegment) {
 				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) segment;
 				ExpressionTemplateSegment transformedTemplateSegment = MscriptFactory.eINSTANCE.createExpressionTemplateSegment();
-				transformedTemplateSegment.setExpression(transformNext(context, expressionTemplateSegment.getExpression(), transformer));
+				transformedTemplateSegment.setExpression(transformNext(result, expressionTemplateSegment.getExpression()));
 				transformedTemplateExpression.getSegments().add(transformedTemplateSegment);
 			} else {
 				throw new IllegalArgumentException("Unknown template segment " + segment.getClass().getCanonicalName());
 			}
 		}
-		assignExpression(context, templateExpression, transformedTemplateExpression, targets);
+		assignExpression(result, templateExpression, transformedTemplateExpression);
+		return null;
 	}
 	
-	protected Expression transformNext(ITransformerContext context, Expression expression, IExpressionTransformer transformer) {
-		InlineExpressionTarget target = new InlineExpressionTarget(context);
-		transformer.transform(context, expression, target.asList());
+	protected Expression transformNext(ExpressionTransformResult result, Expression expression) {
+		InlineExpressionTarget target = new InlineExpressionTarget(result.getContext());
+		result.getTransformer().transform(result.getContext(), expression, target.asList());
 		Expression transformedExpression = target.getAssignedExpression();
-		IValue value = context.getFunctionInfo().getValue(expression);
+		IValue value = result.getContext().getFunctionInfo().getValue(expression);
 		if (value == null) {
 			throw new IllegalStateException("No value set for expression");
 		}
-		context.getFunctionInfo().setValue(transformedExpression, value);
+		result.getContext().getFunctionInfo().setValue(transformedExpression, value);
 		return transformedExpression;
 	}
 	
-	protected void assignExpression(ITransformerContext context, Expression expression, Expression transformedExpression, List<? extends IExpressionTarget> targets) {
-		IValue value = context.getFunctionInfo().getValue(expression);
+	protected void assignExpression(ExpressionTransformResult result, Expression expression, Expression transformedExpression) {
+		IValue value = result.getContext().getFunctionInfo().getValue(expression);
 		if (value == null) {
 			throw new IllegalStateException("No value set for expression");
 		}
-		context.getFunctionInfo().setValue(transformedExpression, value);
-		targets.get(0).assignExpression(transformedExpression);
+		result.getContext().getFunctionInfo().setValue(transformedExpression, value);
+		result.getTargets().get(0).assignExpression(transformedExpression);
+	}
+
+	public Void visit(ExpressionTransformResult result, ArrayConcatenationOperator arrayConcatenationOperator) {
+		assignExpression(result, arrayConcatenationOperator, EcoreUtil.copy(arrayConcatenationOperator));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, UnitConstructionOperator unitConstructionOperator) {
+		assignExpression(result, unitConstructionOperator, EcoreUtil.copy(unitConstructionOperator));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, EndExpression endExpression) {
+		assignExpression(result, endExpression, EcoreUtil.copy(endExpression));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, RealLiteral realLiteral) {
+		assignExpression(result, realLiteral, EcoreUtil.copy(realLiteral));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, IntegerLiteral integerLiteral) {
+		assignExpression(result, integerLiteral, EcoreUtil.copy(integerLiteral));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, BooleanLiteral booleanLiteral) {
+		assignExpression(result, booleanLiteral, EcoreUtil.copy(booleanLiteral));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, StringLiteral stringLiteral) {
+		assignExpression(result, stringLiteral, EcoreUtil.copy(stringLiteral));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, LambdaExpression lambdaExpression) {
+		assignExpression(result, lambdaExpression, EcoreUtil.copy(lambdaExpression));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, AlgorithmExpression algorithmExpression) {
+		assignExpression(result, algorithmExpression, EcoreUtil.copy(algorithmExpression));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, SwitchExpression switchExpression) {
+		assignExpression(result, switchExpression, EcoreUtil.copy(switchExpression));
+		return null;
+	}
+
+	public Void visit(ExpressionTransformResult result, InvalidExpression invalidExpression) {
+		assignExpression(result, invalidExpression, EcoreUtil.copy(invalidExpression));
+		return null;
 	}
 	
 }

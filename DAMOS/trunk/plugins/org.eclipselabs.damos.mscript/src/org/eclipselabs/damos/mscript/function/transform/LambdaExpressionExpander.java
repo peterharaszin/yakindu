@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
 
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.CompoundStatement;
@@ -26,52 +25,51 @@ import org.eclipselabs.damos.mscript.util.MscriptUtil;
  * @author Andreas Unger
  *
  */
-public class LambdaExpressionExpander implements IExpressionTransformStrategy {
+public class LambdaExpressionExpander extends AbstractExpressionTransformStrategy {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.function.transform.IExpressionTransformStrategy#canHandle(org.eclipselabs.damos.mscript.function.transform.ITransformerContext, org.eclipselabs.damos.mscript.Expression)
 	 */
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		return expression instanceof LambdaExpression;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.function.transform.IExpressionTransformStrategy#transform(org.eclipselabs.damos.mscript.function.transform.ITransformerContext, org.eclipselabs.damos.mscript.Expression, java.util.List, org.eclipselabs.damos.mscript.function.transform.IExpressionTransformer)
 	 */
-	public void transform(ITransformerContext context, Expression expression,
-			List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		LambdaExpression lambdaExpression = (LambdaExpression) expression;
 		
 		AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
-		context.getFunctionInfo().setValue(algorithmExpression, context.getFunctionInfo().getValue(lambdaExpression.getExpression()));
+		result.getContext().getFunctionInfo().setValue(algorithmExpression, result.getContext().getFunctionInfo().getValue(lambdaExpression.getExpression()));
 		
 		CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 		algorithmExpression.setBody(body);
 		
 		LambdaExpression transformedLambdaExpression = MscriptFactory.eINSTANCE.createLambdaExpression();
 		transformedLambdaExpression.setExpression(algorithmExpression);
-		context.getFunctionInfo().setValue(transformedLambdaExpression, context.getFunctionInfo().getValue(lambdaExpression));
+		result.getContext().getFunctionInfo().setValue(transformedLambdaExpression, result.getContext().getFunctionInfo().getValue(lambdaExpression));
 		
 		for (LambdaExpressionParameter parameter : lambdaExpression.getParameters()) {
 			LambdaExpressionParameter transformedParameter = MscriptFactory.eINSTANCE.createLambdaExpressionParameter();
-			transformedParameter.setName(MscriptUtil.findAvailableLocalVariableName(context.getCompound(), parameter.getName()));
-			context.addVariableDeclarationMapping(parameter, transformedParameter);
+			transformedParameter.setName(MscriptUtil.findAvailableLocalVariableName(result.getContext().getCompound(), parameter.getName()));
+			result.getContext().addVariableDeclarationMapping(parameter, transformedParameter);
 			transformedLambdaExpression.getParameters().add(transformedParameter);
 		}
 		
-		context.enterScope();
-		context.setCompound(body);
+		result.getContext().enterScope();
+		result.getContext().setCompound(body);
 		
-		InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);
-		transformer.transform(context, lambdaExpression.getExpression(), bodyTarget.asList());
+		InlineExpressionTarget bodyTarget = new InlineExpressionTarget(result.getContext());
+		result.getTransformer().transform(result.getContext(), lambdaExpression.getExpression(), bodyTarget.asList());
 		
 		ReturnStatement returnStatement = MscriptFactory.eINSTANCE.createReturnStatement();
 		returnStatement.setExpression(bodyTarget.getAssignedExpression());
-		context.getCompound().getStatements().add(returnStatement);
+		result.getContext().getCompound().getStatements().add(returnStatement);
 		
-		context.leaveScope();
+		result.getContext().leaveScope();
 
-		targets.get(0).assignExpression(transformedLambdaExpression);
+		result.getTargets().get(0).assignExpression(transformedLambdaExpression);
 	}
 
 }

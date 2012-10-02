@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.mscript.function.transform;
 
-import java.util.List;
 
 import org.eclipselabs.damos.mscript.AlgorithmExpression;
 import org.eclipselabs.damos.mscript.CompoundStatement;
@@ -25,57 +24,56 @@ import org.eclipselabs.damos.mscript.ReturnStatement;
  * @author Andreas Unger
  *
  */
-public class InspectExpressionExpander implements IExpressionTransformStrategy {
+public class InspectExpressionExpander extends AbstractExpressionTransformStrategy {
 
 	private final ExpressionTransformHelper helper = new ExpressionTransformHelper();
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.function.transform.IExpressionTransformStrategy#canHandle(org.eclipselabs.damos.mscript.function.transform.ITransformerContext, org.eclipselabs.damos.mscript.Expression)
 	 */
-	public boolean canHandle(ITransformerContext context, Expression expression) {
+	public boolean canTransform(ITransformerContext context, Expression expression) {
 		return expression instanceof InspectExpression;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.function.transform.IExpressionTransformStrategy#transform(org.eclipselabs.damos.mscript.function.transform.ITransformerContext, org.eclipselabs.damos.mscript.Expression, java.util.List, org.eclipselabs.damos.mscript.function.transform.IExpressionTransformer)
 	 */
-	public void transform(ITransformerContext context, Expression expression,
-			List<? extends IExpressionTarget> targets, IExpressionTransformer transformer) {
+	public void transform(ExpressionTransformResult result, Expression expression) {
 		InspectExpression inspectExpression = (InspectExpression) expression;
 		
 		InspectExpression transformedInspectExpression = MscriptFactory.eINSTANCE.createInspectExpression();
-		transformedInspectExpression.setUnionExpression(helper.transformToVariableReference(context, inspectExpression.getUnionExpression(), "unionval", transformer));
-		context.getFunctionInfo().setValue(transformedInspectExpression, context.getFunctionInfo().getValue(inspectExpression));
+		transformedInspectExpression.setUnionExpression(helper.transformToVariableReference(result.getContext(), inspectExpression.getUnionExpression(), "unionval", result.getTransformer()));
+		result.getContext().getFunctionInfo().setValue(transformedInspectExpression, result.getContext().getFunctionInfo().getValue(inspectExpression));
 
 		for (InspectWhenClause whenClause : inspectExpression.getWhenClauses()) {
 			AlgorithmExpression algorithmExpression = MscriptFactory.eINSTANCE.createAlgorithmExpression();
-			context.getFunctionInfo().setValue(algorithmExpression, context.getFunctionInfo().getValue(whenClause.getExpression()));
+			result.getContext().getFunctionInfo().setValue(algorithmExpression, result.getContext().getFunctionInfo().getValue(whenClause.getExpression()));
 			
 			CompoundStatement body = MscriptFactory.eINSTANCE.createCompoundStatement();
 			algorithmExpression.setBody(body);
 			
-			context.enterScope();
-			context.setCompound(body);
+			result.getContext().enterScope();
+			result.getContext().setCompound(body);
 			
 			InspectWhenClause transformedWhenClause = MscriptFactory.eINSTANCE.createInspectWhenClause();
 			transformedWhenClause.setName(whenClause.getName());
 			transformedWhenClause.setExpression(algorithmExpression);
-			context.getFunctionInfo().setValue(transformedWhenClause, context.getFunctionInfo().getValue(whenClause));
+			result.getContext().getFunctionInfo().setValue(transformedWhenClause, result.getContext().getFunctionInfo().getValue(whenClause));
 			
-			context.addVariableDeclarationMapping(whenClause, transformedWhenClause);
+			result.getContext().addVariableDeclarationMapping(whenClause, transformedWhenClause);
 			transformedInspectExpression.getWhenClauses().add(transformedWhenClause);
 
-			InlineExpressionTarget bodyTarget = new InlineExpressionTarget(context);
-			transformer.transform(context, whenClause.getExpression(), bodyTarget.asList());
+			InlineExpressionTarget bodyTarget = new InlineExpressionTarget(result.getContext());
+			result.getTransformer().transform(result.getContext(), whenClause.getExpression(), bodyTarget.asList());
 			
 			ReturnStatement returnStatement = MscriptFactory.eINSTANCE.createReturnStatement();
 			returnStatement.setExpression(bodyTarget.getAssignedExpression());
-			context.getCompound().getStatements().add(returnStatement);
+			result.getContext().getCompound().getStatements().add(returnStatement);
 			
-			context.leaveScope();
+			result.getContext().leaveScope();
 		}
 		
-		targets.get(0).assignExpression(transformedInspectExpression);
+		result.getTargets().get(0).assignExpression(transformedInspectExpression);
 	}
 
 }

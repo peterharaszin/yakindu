@@ -5,43 +5,43 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="http://www.eclipse.org/damos/blocks/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/continuous/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/discontinuities/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/discrete/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/io/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/logic/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/math/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/signal/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/sinks/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/sources/"
-            target="platform:/plugin/org.eclipse.damos.library.base/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.base/blocks/">
       </mapping>
    </extension>
    <extension

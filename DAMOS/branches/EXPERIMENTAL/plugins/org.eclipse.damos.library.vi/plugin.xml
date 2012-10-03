@@ -5,15 +5,15 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="http://www.eclipselabs.org/damos/library/vi/communication/"
-            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/vi/controls/"
-            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocks/">
       </mapping>
       <mapping
             source="http://www.eclipselabs.org/damos/library/vi/indicators/"
-            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocks/">
       </mapping>
    </extension>
    <extension

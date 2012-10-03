@@ -18,7 +18,7 @@ import org.eclipse.damos.dml.DMLFactory;
 import org.eclipse.damos.dml.Inport;
 import org.eclipse.damos.dml.Latch;
 import org.eclipse.damos.dml.Outport;
-import org.eclipse.damos.library.base.util.math.GainConstants;
+import org.eclipse.damos.library.base.util.GainConstants;
 import org.junit.Before;
 
 /**

@@ -13,9 +13,9 @@ package org.eclipse.damos.library.base.ui.editparts;
 
 import org.eclipse.damos.diagram.ui.figures.OvalComponentLayout;
 import org.eclipse.damos.diagram.ui.view.util.PropertiesSetStyleUtil;
-import org.eclipse.damos.library.base.ui.figures.RectangularSumShape;
-import org.eclipse.damos.library.base.ui.figures.RoundSumShape;
-import org.eclipse.damos.library.base.ui.figures.SumShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.RectangularSumShape;
+import org.eclipse.damos.library.base.ui.figures.shapes.RoundSumShape;
+import org.eclipse.damos.library.base.ui.figures.shapes.SumShapeType;
 import org.eclipse.damos.library.base.ui.view.styles.SumStyles;
 import org.eclipse.damos.library.common.ui.editparts.MultiShapeBlockEditPart;
 import org.eclipse.damos.library.common.ui.figures.MultiShapeBlockFigure;

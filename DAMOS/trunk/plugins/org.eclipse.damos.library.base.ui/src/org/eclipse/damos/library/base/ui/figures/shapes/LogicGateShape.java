@@ -9,10 +9,9 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.library.base.ui.figures;
+package org.eclipse.damos.library.base.ui.figures.shapes;
 
 import org.eclipse.damos.diagram.ui.figures.ComponentFigure;
-import org.eclipse.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipse.damos.diagram.ui.figures.IFigureConstants;
 import org.eclipse.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipse.damos.diagram.ui.figures.StandardComponentLayoutData;
@@ -28,15 +27,15 @@ import org.eclipse.draw2d.geometry.Dimension;
  * @author Andreas Unger
  *
  */
-public class RectangularSumShape extends AbstractBlockShape implements IFigureConstants {
-	
+public class LogicGateShape extends AbstractBlockShape implements IFigureConstants {
+
 	/**
 	 * @param blockFigure
 	 */
-	public RectangularSumShape(ComponentFigure blockFigure) {
+	public LogicGateShape(ComponentFigure blockFigure) {
 		super(blockFigure);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.library.basicblocks.figures.AbstractBlockShape#createLayoutManager()
 	 */
@@ -66,19 +65,6 @@ public class RectangularSumShape extends AbstractBlockShape implements IFigureCo
 			size.width = size.height;
 		}
 		return size;
-	}
-
-	public void paintCanvas(ICanvasContext cc) {
-		Dimension size = blockFigure.getCanvasSize();
-		
-		int x = DEFAULT_LINE_WIDTH_HALF;
-		int y = DEFAULT_LINE_WIDTH_HALF;
-		int width = size.width - DEFAULT_LINE_WIDTH;
-		int height = size.height - DEFAULT_LINE_WIDTH;
-
-		cc.setLineWidth(DEFAULT_LINE_WIDTH);
-		cc.fillRectangle(x, y, width, height);
-		cc.drawRectangle(x, y, width, height);
 	}
 
 }

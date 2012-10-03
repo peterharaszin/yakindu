@@ -25,7 +25,7 @@ import org.eclipse.damos.dml.Input;
 import org.eclipse.damos.dml.InputPort;
 import org.eclipse.damos.dml.util.DMLUtil;
 import org.eclipse.damos.dscript.util.DscriptUtil;
-import org.eclipse.damos.library.base.ui.figures.SumShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.SumShapeType;
 import org.eclipse.damos.library.base.ui.view.styles.SumStyles;
 import org.eclipse.damos.library.base.util.SumConstants;
 import org.eclipse.damos.library.common.ui.view.styles.MultiShapeBlockStyles;

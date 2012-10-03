@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.library.base.ui.figures;
+package org.eclipse.damos.library.base.ui.figures.shapes;
 
 import org.eclipse.damos.diagram.ui.figures.ComponentFigure;
 import org.eclipse.damos.diagram.ui.figures.ICanvasContext;

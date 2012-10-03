@@ -11,8 +11,8 @@
 
 package org.eclipse.damos.library.base.ui.editparts;
 
-import org.eclipse.damos.library.base.ui.figures.LogicGateShapeType;
-import org.eclipse.damos.library.base.ui.figures.RectangularLogicGateShape;
+import org.eclipse.damos.library.base.ui.figures.shapes.LogicGateShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.RectangularLogicGateShape;
 import org.eclipse.damos.library.common.ui.editparts.MultiShapeBlockEditPart;
 import org.eclipse.damos.library.common.ui.figures.shapes.BlockShape;
 import org.eclipse.gmf.runtime.notation.View;

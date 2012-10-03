@@ -11,7 +11,7 @@
 
 package org.eclipse.damos.library.base.ui.editparts;
 
-import org.eclipse.damos.library.base.ui.figures.DistinctiveAndShape;
+import org.eclipse.damos.library.base.ui.figures.shapes.DistinctiveAndShape;
 import org.eclipse.damos.library.common.ui.figures.shapes.BlockShape;
 import org.eclipse.gmf.runtime.notation.View;
 

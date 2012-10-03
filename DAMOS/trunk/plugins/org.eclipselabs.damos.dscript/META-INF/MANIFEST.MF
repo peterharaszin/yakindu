@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Damos Dscript
 Bundle-Vendor: Damos Project
 Bundle-Version: 0.4.0.qualifier
-Bundle-SymbolicName: org.eclipselabs.damos.dscript;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.dscript;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
@@ -12,25 +12,25 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
- org.eclipselabs.damos.dml;bundle-version="0.3.0",
+ org.eclipse.damos.dml;bundle-version="0.3.0",
  org.eclipse.xtext.util;bundle-version="2.3.0",
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
- org.eclipselabs.damos.mscript;bundle-version="0.3.0"
+ org.eclipse.damos.mscript;bundle-version="0.3.0"
 Import-Package: org.apache.log4j,
  org.apache.commons.logging,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.dscript,
- org.eclipselabs.damos.dscript.formatting,
- org.eclipselabs.damos.dscript.parseTreeConstruction,
- org.eclipselabs.damos.dscript.parser.antlr,
- org.eclipselabs.damos.dscript.parser.antlr.internal,
- org.eclipselabs.damos.dscript.resource,
- org.eclipselabs.damos.dscript.scoping,
- org.eclipselabs.damos.dscript.services,
- org.eclipselabs.damos.dscript.util,
- org.eclipselabs.damos.dscript.validation
+Export-Package: org.eclipse.damos.dscript,
+ org.eclipse.damos.dscript.formatting,
+ org.eclipse.damos.dscript.parseTreeConstruction,
+ org.eclipse.damos.dscript.parser.antlr,
+ org.eclipse.damos.dscript.parser.antlr.internal,
+ org.eclipse.damos.dscript.resource,
+ org.eclipse.damos.dscript.scoping,
+ org.eclipse.damos.dscript.services,
+ org.eclipse.damos.dscript.util,
+ org.eclipse.damos.dscript.validation
 

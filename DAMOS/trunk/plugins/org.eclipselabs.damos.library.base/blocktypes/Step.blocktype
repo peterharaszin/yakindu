@@ -1,0 +1,11 @@
+package damos.blocks
+
+blockType Step {
+
+	output _output
+	
+	parameter initialValue = 0
+	parameter finalValue = 1
+	parameter stepTime = 1(s)
+
+}

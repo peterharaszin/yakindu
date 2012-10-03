@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Damos Dscript UI
 Bundle-Vendor: Damos Project
 Bundle-Version: 0.4.0.qualifier
-Bundle-SymbolicName: org.eclipselabs.damos.dscript.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.dscript.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipselabs.damos.dscript;visibility:=reexport,
+Require-Bundle: org.eclipse.damos.dscript;visibility:=reexport,
  org.eclipse.xtext.ui;bundle-version="2.3.0",
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -15,15 +15,15 @@ Require-Bundle: org.eclipselabs.damos.dscript;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
- org.eclipselabs.damos.mscript;bundle-version="0.3.0",
- org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0",
- org.eclipselabs.damos.dml;bundle-version="0.3.0",
- org.eclipselabs.damos.dml.ui;bundle-version="0.3.0"
+ org.eclipse.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.damos.mscript.ui;bundle-version="0.3.0",
+ org.eclipse.damos.dml;bundle-version="0.3.0",
+ org.eclipse.damos.dml.ui;bundle-version="0.3.0"
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.dscript.ui,
- org.eclipselabs.damos.dscript.ui.contentassist,
- org.eclipselabs.damos.dscript.ui.contentassist.antlr,
- org.eclipselabs.damos.dscript.ui.internal
-Bundle-Activator: org.eclipselabs.damos.dscript.ui.internal.DscriptActivator
+Export-Package: org.eclipse.damos.dscript.ui,
+ org.eclipse.damos.dscript.ui.contentassist,
+ org.eclipse.damos.dscript.ui.contentassist.antlr,
+ org.eclipse.damos.dscript.ui.internal
+Bundle-Activator: org.eclipse.damos.dscript.ui.internal.DscriptActivator

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipselabs.damos"
+      id="org.eclipse.damos"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName">
@@ -18,65 +18,65 @@
    </license>
 
    <url>
-      <discovery label="Project website" url="http://www.eclipselabs.org/p/yakindu"/>
+      <discovery label="Project website" url="http://www.eclipse.org/damos"/>
    </url>
 
    <includes
-         id="org.eclipselabs.damos.diagram"
+         id="org.eclipse.damos.diagram"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipselabs.damos.execution"
+         id="org.eclipse.damos.execution"
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipselabs.damos.mscript" version="0.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.damos.mscript" version="0.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.dscript"
+         id="org.eclipse.damos.dscript"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.dscript.ui"
+         id="org.eclipse.damos.dscript.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.dconfig"
+         id="org.eclipse.damos.dconfig"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.dconfig.ui"
+         id="org.eclipse.damos.dconfig.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.ide.core"
+         id="org.eclipse.damos.ide.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.ide.ui"
+         id="org.eclipse.damos.ide.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.doc.user"
+         id="org.eclipse.damos.doc.user"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript" nsURI="http://www.eclipse.org/damos/mscript/2011/Mscript"
     nsPrefix="mscript">
   <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//TopLevelContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -605,14 +605,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         volatile="true" transient="true" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="RealData" instanceClassName="org.eclipselabs.damos.mscript.RealData"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="RealData" instanceClassName="org.eclipse.damos.mscript.RealData"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumericLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="#//IntegerData"
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
         volatile="true" transient="true" derived="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IntegerData" instanceClassName="org.eclipselabs.damos.mscript.IntegerData"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IntegerData" instanceClassName="org.eclipse.damos.mscript.IntegerData"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="true" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
-<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" packageName="damos.codegen.targets.arduino">
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" packageName="damos.codegen.targets.arduino">
   <members xsi:type="dconfig:SelectionPropertyOption" name="ArduinoUno">
     <propertyDeclarations xsi:type="dconfig:SelectionPropertyDeclaration" name="shield" count="-1"/>
-    <target href="../../org.eclipselabs.damos.codegen/dconfig/Codegen.xmi#//@members.1"/>
+    <target href="../../org.eclipse.damos.codegen/dconfig/Codegen.xmi#//@members.1"/>
     <resourceDeclarations name="DIO" count="14"/>
     <resourceDeclarations name="AIN" count="6"/>
   </members>

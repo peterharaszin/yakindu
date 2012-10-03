@@ -12,8 +12,12 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://www.eclipse.org/damos/2011/DMLNotation"
+            class="org.eclipse.damos.diagram.dmlnotation.DMLNotationPackage"
+            genModel="model/DMLNotation.genmodel"/>
+      <package
             uri="http://www.eclipselabs.org/damos/2011/DMLNotation"
-            class="org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage"
+            class="org.eclipse.damos.diagram.dmlnotation.DMLNotationPackage"
             genModel="model/DMLNotation.genmodel"/>
    </extension>
 

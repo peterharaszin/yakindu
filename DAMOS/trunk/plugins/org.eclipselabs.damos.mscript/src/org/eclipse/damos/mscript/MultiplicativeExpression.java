@@ -1,0 +1,22 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.eclipse.damos.mscript;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Multiplicative Expression</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see org.eclipse.damos.mscript.MscriptPackage#getMultiplicativeExpression()
+ * @model
+ * @generated
+ */
+public interface MultiplicativeExpression extends BinaryExpression {
+
+} // MultiplicativeExpression

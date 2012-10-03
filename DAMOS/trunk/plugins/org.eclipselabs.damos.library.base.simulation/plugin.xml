@@ -2,55 +2,55 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
+         point="org.eclipse.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="damos.library.base.sources.Step"
-            class="org.eclipselabs.damos.library.base.simulation.sources.StepSimulationObject"
+            blockType="damos.blocks.Step"
+            class="org.eclipse.damos.library.base.simulation.sources.StepSimulationObject"
             name="Step">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sources.Ramp"
-            class="org.eclipselabs.damos.library.base.simulation.sources.RampSimulationObject"
+            blockType="damos.blocks.Ramp"
+            class="org.eclipse.damos.library.base.simulation.sources.RampSimulationObject"
             name="Ramp">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sources.SineWave"
-            class="org.eclipselabs.damos.library.base.simulation.sources.SineWaveSimulationObject"
+            blockType="damos.blocks.SineWave"
+            class="org.eclipse.damos.library.base.simulation.sources.SineWaveSimulationObject"
             name="Sine Wave">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sinks.Scope"
-            class="org.eclipselabs.damos.library.base.simulation.sinks.ScopeSimulationObject"
+            blockType="damos.blocks.Scope"
+            class="org.eclipse.damos.library.base.simulation.sinks.ScopeSimulationObject"
             name="Scope">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sinks.XYScope"
-            class="org.eclipselabs.damos.library.base.simulation.sinks.XYScopeSimulationObject"
+            blockType="damos.blocks.XYScope"
+            class="org.eclipse.damos.library.base.simulation.sinks.XYScopeSimulationObject"
             name="X-Y Scope">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sources.AudioFileSource"
-            class="org.eclipselabs.damos.library.base.simulation.sources.AudioFileSourceSimulationObject"
+            blockType="damos.blocks.AudioFileSource"
+            class="org.eclipse.damos.library.base.simulation.sources.AudioFileSourceSimulationObject"
             name="Audio File Source">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.sinks.AudioFileSink"
-            class="org.eclipselabs.damos.library.base.simulation.sinks.AudioFileSinkSimulationObject"
+            blockType="damos.blocks.AudioFileSink"
+            class="org.eclipse.damos.library.base.simulation.sinks.AudioFileSinkSimulationObject"
             name="Audio File Sink">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.io.Button"
-            class="org.eclipselabs.damos.library.base.simulation.io.ButtonSimulationObject"
+            blockType="damos.blocks.Button"
+            class="org.eclipse.damos.library.base.simulation.io.ButtonSimulationObject"
             name="Button">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.io.DataOut"
-            class="org.eclipselabs.damos.library.base.simulation.io.DataOutSimulationObject"
+            blockType="damos.blocks.DataOut"
+            class="org.eclipse.damos.library.base.simulation.io.DataOutSimulationObject"
             name="Data Out">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.base.io.NumericDataIn"
-            class="org.eclipselabs.damos.library.base.simulation.io.NumericDataInSimulationObject"
+            blockType="damos.blocks.NumericDataIn"
+            class="org.eclipse.damos.library.base.simulation.io.NumericDataInSimulationObject"
             name="Numeric Data In">
       </simulationObject>
    </extension>

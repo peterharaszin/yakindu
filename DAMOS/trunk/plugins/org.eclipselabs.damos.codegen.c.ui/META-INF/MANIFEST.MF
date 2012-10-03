@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Codegen C UI
-Bundle-SymbolicName: org.eclipselabs.damos.codegen.c.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.codegen.c.ui;singleton:=true
 Bundle-Version: 0.4.0.qualifier
 Bundle-Vendor: Damos Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.ui.ide;bundle-version="3.7.0",
- org.eclipselabs.damos.dml;bundle-version="0.3.0",
- org.eclipselabs.damos.dconfig.ui;bundle-version="0.3.0"
+ org.eclipse.damos.dml;bundle-version="0.3.0",
+ org.eclipse.damos.dconfig.ui;bundle-version="0.3.0"

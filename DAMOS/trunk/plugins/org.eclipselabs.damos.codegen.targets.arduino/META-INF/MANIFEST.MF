@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Codegen Targets Arduino
-Bundle-SymbolicName: org.eclipselabs.damos.codegen.targets.arduino;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.codegen.targets.arduino;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipselabs.damos.codegen.targets.arduino.Activator
+Bundle-Activator: org.eclipse.damos.codegen.targets.arduino.Activator
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.xtend2.lib;bundle-version="2.3.0",
- org.eclipselabs.damos.dml;bundle-version="0.3.0",
- org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
- org.eclipselabs.damos.execution;bundle-version="0.3.0",
- org.eclipselabs.damos.codegen.c;bundle-version="0.3.0",
- org.eclipselabs.damos.common;bundle-version="0.3.0",
- org.eclipselabs.damos.mscript;bundle-version="0.3.0",
- org.eclipselabs.damos.mscript.codegen.c;bundle-version="0.3.0"
+ org.eclipse.damos.dml;bundle-version="0.3.0",
+ org.eclipse.damos.dconfig;bundle-version="0.3.0",
+ org.eclipse.damos.execution;bundle-version="0.3.0",
+ org.eclipse.damos.codegen.c;bundle-version="0.3.0",
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.damos.mscript.codegen.c;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.codegen.targets.arduino
+Export-Package: org.eclipse.damos.codegen.targets.arduino

@@ -4,25 +4,25 @@
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
       <launchConfigurationTypeImage
-            configTypeID="org.eclipselabs.damos.simulation.ide.core.simulation"
+            configTypeID="org.eclipse.damos.simulation.ide.core.simulation"
             icon="icons/Simulation.gif"
-            id="org.eclipselabs.damos.simulation.ide.ui.launchConfigurationTypeImages.simulation">
+            id="org.eclipse.damos.simulation.ide.ui.launchConfigurationTypeImages.simulation">
       </launchConfigurationTypeImage>
    </extension>
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.SimulationTabGroup"
-            id="org.eclipselabs.damos.simulation.ide.ui.launchConfigurationTabGroups.simulation"
-            type="org.eclipselabs.damos.simulation.ide.core.simulation">
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.SimulationTabGroup"
+            id="org.eclipse.damos.simulation.ide.ui.launchConfigurationTabGroups.simulation"
+            type="org.eclipse.damos.simulation.ide.core.simulation">
       </launchConfigurationTabGroup>
    </extension>
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.ConfigurationLaunchShortcut"
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.ConfigurationLaunchShortcut"
             icon="icons/Simulation.gif"
-            id="org.eclipselabs.damos.simulation.ide.ui.configurationLaunchShortcut"
+            id="org.eclipse.damos.simulation.ide.ui.configurationLaunchShortcut"
             label="Damos Simulation"
             modes="run, debug">
          <contextualLaunch>
@@ -39,7 +39,7 @@
                              value="*.dconfig">
                        </test>
                        <instanceof
-                             value="org.eclipselabs.damos.dconfig.Configuration">
+                             value="org.eclipse.damos.dconfig.Configuration">
                        </instanceof>
                     </or>
                   </iterate>
@@ -48,9 +48,9 @@
          </contextualLaunch>
       </shortcut>
       <shortcut
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.FragmentLaunchShortcut"
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.FragmentLaunchShortcut"
             icon="icons/Simulation.gif"
-            id="org.eclipselabs.damos.simulation.ide.ui.fragmentLaunchShortcut"
+            id="org.eclipse.damos.simulation.ide.ui.fragmentLaunchShortcut"
             label="Damos Simulation"
             modes="run, debug">
          <contextualLaunch>
@@ -67,7 +67,7 @@
                              value="*.blockdiagram">
                        </test>
                        <instanceof
-                             value="org.eclipselabs.damos.dml.Fragment">
+                             value="org.eclipse.damos.dml.Fragment">
                        </instanceof>
                     </or>
                   </iterate>
@@ -79,10 +79,10 @@
    <extension
          point="org.eclipse.debug.core.statusHandlers">
       <statusHandler
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.statushandlers.GenericStatusHandler"
+            class="org.eclipse.damos.simulation.ide.ui.internal.statushandlers.GenericStatusHandler"
             code="200"
-            id="org.eclipselabs.damos.simulation.ide.ui.messageStatusHandler"
-            plugin="org.eclipselabs.damos.simulation.ide.core">
+            id="org.eclipse.damos.simulation.ide.ui.messageStatusHandler"
+            plugin="org.eclipse.damos.simulation.ide.core">
       </statusHandler>
    </extension>
 

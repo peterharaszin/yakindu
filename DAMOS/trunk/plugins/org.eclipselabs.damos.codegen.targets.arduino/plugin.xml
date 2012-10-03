@@ -3,15 +3,15 @@
 <plugin>
    <extension-point id="shieldGenerators" name="Shield Generators" schema="schema/shieldGenerators.exsd"/>
    <extension
-         point="org.eclipselabs.damos.dconfig.definitions">
+         point="org.eclipse.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.codegen.targets.arduino/dconfig/Arduino.xmi">
+            uri="platform:/plugin/org.eclipse.damos.codegen.targets.arduino/dconfig/Arduino.xmi">
       </resource>
    </extension>
    <extension
-         point="org.eclipselabs.damos.codegen.c.targetGenerators">
+         point="org.eclipse.damos.codegen.c.targetGenerators">
       <generator
-            class="org.eclipselabs.damos.codegen.targets.arduino.ArduinoUnoTargetGenerator"
+            class="org.eclipse.damos.codegen.targets.arduino.ArduinoUnoTargetGenerator"
             target="damos.codegen.targets.arduino.ArduinoUno">
       </generator>
    </extension>

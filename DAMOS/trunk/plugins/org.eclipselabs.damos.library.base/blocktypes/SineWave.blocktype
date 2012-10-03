@@ -1,0 +1,12 @@
+package damos.blocks
+
+blockType SineWave {
+
+	output _output
+	
+	parameter amplitude = 1.0
+	parameter bias = 0.0
+	parameter frequency = 1(1/s)
+	parameter phase = 0
+
+}

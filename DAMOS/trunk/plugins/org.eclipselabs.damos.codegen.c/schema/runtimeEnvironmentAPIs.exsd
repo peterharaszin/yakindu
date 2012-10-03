@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipselabs.damos.simulation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.damos.simulation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipselabs.damos.simulation" id="runtimeEnvironmentAPIs" name="Runtime Environment APIs"/>
+         <meta.schema plugin="org.eclipse.damos.simulation" id="runtimeEnvironmentAPIs" name="Runtime Environment APIs"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -62,7 +62,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.codegen.c.IRuntimeEnvironmentAPI"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.damos.codegen.c.IRuntimeEnvironmentAPI"/>
                </appinfo>
             </annotation>
          </attribute>

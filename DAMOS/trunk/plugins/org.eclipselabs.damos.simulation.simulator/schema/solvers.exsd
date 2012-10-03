@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipselabs.damos.simulation.simulator" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.damos.simulation.simulator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipselabs.damos.simulation.simulator" id="solvers" name="Solvers"/>
+         <meta.schema plugin="org.eclipse.damos.simulation.simulator" id="solvers" name="Solvers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -69,7 +69,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.simulation.simulator.solver.ISolver"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.damos.simulation.simulator.solver.ISolver"/>
                </appinfo>
             </annotation>
          </attribute>

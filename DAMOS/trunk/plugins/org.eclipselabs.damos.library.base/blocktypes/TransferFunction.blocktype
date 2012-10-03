@@ -1,0 +1,60 @@
+package damos.blocks
+
+continuous blockType TransferFunction {
+
+	input u {
+		directFeedthrough never
+	}
+	output y
+	
+	parameter numeratorCoefficients = { 1 }
+	parameter denominatorCoefficients = { 1, 1 }
+
+	behavior {
+		check(real) -> real
+		
+		static assert u is real :
+			error "Input value must be dimensionless numeric value"
+		
+		static assert numeratorCoefficients is real[] :
+			error "Numerator coefficients must be dimensionless numeric vector"
+
+		static assert denominatorCoefficients is real[] :
+			error "Denominator coefficients must be dimensionless numeric vector"
+			
+		static assert numeratorCoefficients is real[] && denominatorCoefficients is real[] => size(numeratorCoefficients) < size(denominatorCoefficients) :
+			error "Transfer function must be strictly proper (degree of numerator < degree of denominator)"
+
+		// State vector
+		var x
+		
+		// Normalized numerator coefficients vector
+		const P = numeratorCoefficients / denominatorCoefficients[0]
+		
+		// Normalized denominator coefficients vector
+		const Q = (denominatorCoefficients / denominatorCoefficients[0])[1 : end]
+		
+		// Vector size difference between P and Q
+		const d = size(Q) - size(P)
+
+		// Indices vector
+		const I = indices(Q)
+		
+		// Zero vector
+		const Z = zeros(size(I))
+
+		// State matrix
+		const A = I.map(i -> I.map(j -> if i == 0 then -Q[j] else if i == j + 1 then 1 else 0))
+		
+		// Input vector
+		const B = I.map(i -> if i == 0 then 1 else 0)
+		
+		// Output vector
+		const C = I.map(i -> if i < d then 0 else P[i - d])
+		
+		initial eq x = Z
+		eq x' = (A * x + B * u) * 1(1/s)
+		eq y = C * x
+	}
+
+}

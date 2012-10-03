@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.dscript/src" modelPluginID="org.eclipselabs.damos.dscript"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.dscript/src" modelPluginID="org.eclipse.damos.dscript"
     modelName="Dscript" importerID="org.eclipse.emf.importer.ecore" bundleManifest="false"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.damos.dml/model/DML.genmodel#//dml ../../org.eclipse.damos.mscript/model/Mscript.genmodel#//mscript platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>Dscript.ecore</foreignModel>
-  <genPackages prefix="Dscript" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+  <genPackages prefix="Dscript" basePackage="org.eclipse.damos" disposableProviderFactory="true"
       ecorePackage="Dscript.ecore#/">
     <genClasses image="false" ecoreClass="Dscript.ecore#//Root">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//Root/blockTypes"/>

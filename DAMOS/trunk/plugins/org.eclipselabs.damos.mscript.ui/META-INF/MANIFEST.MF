@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Mscript UI
 Bundle-Vendor: Damos Project
 Bundle-Version: 0.4.0.qualifier
-Bundle-SymbolicName: org.eclipselabs.damos.mscript.ui; singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.mscript.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipselabs.damos.mscript;visibility:=reexport,
+Require-Bundle: org.eclipse.damos.mscript;visibility:=reexport,
  org.eclipse.xtext.ui;bundle-version="2.3.0",
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -17,11 +17,11 @@ Require-Bundle: org.eclipselabs.damos.mscript;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.mscript.ui,
- org.eclipselabs.damos.mscript.ui.autoedit,
- org.eclipselabs.damos.mscript.ui.contentassist,
- org.eclipselabs.damos.mscript.ui.contentassist.antlr,
- org.eclipselabs.damos.mscript.ui.handlers,
- org.eclipselabs.damos.mscript.ui.internal;x-friends:="org.eclipselabs.damos.mscript.tests",
- org.eclipselabs.damos.mscript.ui.syntaxcoloring
-Bundle-Activator: org.eclipselabs.damos.mscript.ui.internal.MscriptActivator
+Export-Package: org.eclipse.damos.mscript.ui,
+ org.eclipse.damos.mscript.ui.autoedit,
+ org.eclipse.damos.mscript.ui.contentassist,
+ org.eclipse.damos.mscript.ui.contentassist.antlr,
+ org.eclipse.damos.mscript.ui.handlers,
+ org.eclipse.damos.mscript.ui.internal;x-friends:="org.eclipse.damos.mscript.tests",
+ org.eclipse.damos.mscript.ui.syntaxcoloring
+Bundle-Activator: org.eclipse.damos.mscript.ui.internal.MscriptActivator

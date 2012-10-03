@@ -7,7 +7,7 @@
          point="org.eclipse.core.resources.builders">
       <builder>
          <run
-               class="org.eclipselabs.damos.ide.core.builders.DamosProjectBuilder">
+               class="org.eclipse.damos.ide.core.builders.DamosProjectBuilder">
             <parameter
                   name="optimize"
                   value="true">
@@ -21,22 +21,22 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.eclipselabs.damos.ide.core.builders.DamosBuilderParticipant">
+            class="org.eclipse.damos.ide.core.builders.DamosBuilderParticipant">
       </participant>
    </extension>
    <extension
-         point="org.eclipselabs.damos.dml.languages">
+         point="org.eclipse.damos.dml.languages">
       <language
             extension="blockdiagram"
-            id="org.eclipselabs.damos"
+            id="org.eclipse.damos"
             name="Damos">
       </language>
    </extension>
    <extension
-         point="org.eclipselabs.damos.dml.injectorProviders">
+         point="org.eclipse.damos.dml.injectorProviders">
       <provider
-            class="org.eclipselabs.damos.ide.core.internal.providers.InjectorProvider"
-            language="org.eclipselabs.damos">
+            class="org.eclipse.damos.ide.core.internal.providers.InjectorProvider"
+            language="org.eclipse.damos">
       </provider>
    </extension>
 

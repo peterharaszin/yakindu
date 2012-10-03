@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipselabs.damos.library.simulation"
+      id="org.eclipse.damos.library.simulation"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName">
@@ -18,18 +18,18 @@
    </license>
 
    <requires>
-      <import feature="org.eclipselabs.damos.simulation" version="0.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.damos.simulation" version="0.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.library.base.simulation"
+         id="org.eclipse.damos.library.base.simulation"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.library.base.simulation.ui"
+         id="org.eclipse.damos.library.base.simulation.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

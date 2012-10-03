@@ -12,11 +12,16 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipselabs.org/damos/2011/Dscript"
-            class="org.eclipselabs.damos.dscript.DscriptPackage"
+            uri="http://www.eclipse.org/damos/2011/Dscript"
+            class="org.eclipse.damos.dscript.DscriptPackage"
             genModel="model/Dscript.genmodel"/>
       <package
-            class="org.eclipselabs.damos.dscript.DscriptPackage"
+            class="org.eclipse.damos.dscript.DscriptPackage"
+            genModel="model/Dscript.genmodel"
+            uri="http://www.eclipselabs.org/damos/2011/Dscript">
+      </package>
+      <package
+            class="org.eclipse.damos.dscript.DscriptPackage"
             genModel="model/Dscript.genmodel"
             uri="http://www.eclipselabs.org/damos/2011/DMLText">
       </package>

@@ -18,7 +18,7 @@
    version="1.0"
    sodipodi:docname="FragmentExplorer.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/andreas/Projects/yakindu/workspaces/damos/org.eclipselabs.damos.ide.ui/icons/FragmentExplorer.png"
+   inkscape:export-filename="/home/andreas/Projects/yakindu/workspaces/damos/org.eclipse.damos.ide.ui/icons/FragmentExplorer.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -114,7 +114,7 @@
        style="fill:#729fcf;stroke:#204a87;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 6.5,15.5 0,-2 2,0 0,-4 4,0 0,-4 3,0 0,10 -9,0 z"
        id="path2825"
-       inkscape:export-filename="/home/andreas/Projects/yakindu/workspaces/damos/org.eclipselabs.damos.ide.ui/icons/path2825.png"
+       inkscape:export-filename="/home/andreas/Projects/yakindu/workspaces/damos/org.eclipse.damos.ide.ui/icons/path2825.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>

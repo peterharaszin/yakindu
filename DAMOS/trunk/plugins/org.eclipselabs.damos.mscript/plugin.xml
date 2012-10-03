@@ -12,20 +12,20 @@
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
-            source="http://www.eclipselabs.org/damos/mscript/library/"
-            target="platform:/plugin/org.eclipselabs.damos.mscript/library/">
+            source="http://www.eclipse.org/damos/mscript/library/"
+            target="platform:/plugin/org.eclipse.damos.mscript/library/">
       </mapping>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
-            class="org.eclipselabs.damos.mscript.MscriptPackage"
+            uri="http://www.eclipse.org/damos/mscript/2011/Mscript"
+            class="org.eclipse.damos.mscript.MscriptPackage"
             genModel="model/Mscript.genmodel"/>
       <package
-            class="org.eclipselabs.damos.mscript.computation.ComputationPackage"
+            class="org.eclipse.damos.mscript.computation.ComputationPackage"
             genModel="model/Computation.genmodel"
-            uri="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel">
+            uri="http://www.eclipse.org/damos/mscript/2011/ComputationModel">
       </package>
    </extension>
 

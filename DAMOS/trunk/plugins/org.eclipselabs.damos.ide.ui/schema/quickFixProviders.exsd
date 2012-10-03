@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipselabs.damos.ide.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.damos.ide.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipselabs.damos.ide.ui" id="quickFixProviders" name="Quick Fix Providers"/>
+         <meta.schema plugin="org.eclipse.damos.ide.ui" id="quickFixProviders" name="Quick Fix Providers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.ide.core.quickfix.IQuickFixProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.damos.ide.core.quickfix.IQuickFixProvider"/>
                </appinfo>
             </annotation>
          </attribute>

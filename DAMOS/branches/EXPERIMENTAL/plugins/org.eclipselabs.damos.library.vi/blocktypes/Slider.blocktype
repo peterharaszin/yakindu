@@ -1,0 +1,10 @@
+package damos.blocks
+
+blockType Slider {
+
+	output _output
+	
+	parameter minimumValue = 0
+	parameter maximumValue = 1
+
+}

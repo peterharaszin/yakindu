@@ -8,11 +8,11 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipselabs.damos.dml.ui.internal.parts.DMLEditor"
-            contributorClass="org.eclipselabs.damos.dml.ui.internal.parts.DMLActionBarContributor"
+            class="org.eclipse.damos.dml.ui.internal.parts.DMLEditor"
+            contributorClass="org.eclipse.damos.dml.ui.internal.parts.DMLActionBarContributor"
             extensions="dml"
             icon="icons/full/obj16/DMLModelFile.gif"
-            id="org.eclipselabs.damos.dml.ui.dmlModelEditor"
+            id="org.eclipse.damos.dml.ui.dmlModelEditor"
             name="%_UI_DMLEditor_label">
       </editor>
    </extension>

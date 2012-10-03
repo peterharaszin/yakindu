@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
-<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" packageName="damos.codegen.targets.arduino.shields">
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" packageName="damos.codegen.targets.arduino.shields">
   <members xsi:type="dconfig:SelectionPropertyOption" name="SevenSegmentDisplayDemo">
-    <target href="../../org.eclipselabs.damos.codegen.targets.arduino/dconfig/Arduino.xmi#//@members.0/@propertyDeclarations.0"/>
+    <target href="../../org.eclipse.damos.codegen.targets.arduino/dconfig/Arduino.xmi#//@members.0/@propertyDeclarations.0"/>
     <resourceDeclarations name="Display"/>
     <resourceDeclarations name="DecimalPoint"/>
     <resourceDeclarations name="ButtonUp"/>
@@ -10,7 +10,7 @@
     <resourceDeclarations name="LED"/>
   </members>
   <members xsi:type="dconfig:SelectionPropertyOption" name="Motor">
-    <target href="../../org.eclipselabs.damos.codegen.targets.arduino/dconfig/Arduino.xmi#//@members.0/@propertyDeclarations.0"/>
+    <target href="../../org.eclipse.damos.codegen.targets.arduino/dconfig/Arduino.xmi#//@members.0/@propertyDeclarations.0"/>
     <resourceDeclarations name="Direction" count="2"/>
     <resourceDeclarations name="PWM" count="2"/>
     <resourceDeclarations name="Brake" count="2"/>

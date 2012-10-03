@@ -1,0 +1,35 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.dconfig.scoping;
+
+import org.eclipse.damos.dconfig.Configuration;
+import org.eclipse.damos.mscript.scoping.MscriptImportedNamespaceScopeProvider;
+import org.eclipse.emf.ecore.EObject;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public class DconfigImportedNamespaceScopeProvider extends MscriptImportedNamespaceScopeProvider {
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.mscript.scoping.MscriptImportedNamespaceScopeProvider#getPackageName(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected String getPackageName(EObject context) {
+		if (context instanceof Configuration) {
+			return ((Configuration) context).getPackageName();
+		}
+		return super.getPackageName(context);
+	}
+	
+}

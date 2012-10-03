@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" packageName="damos.codegen">
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" packageName="damos.codegen">
   <members xsi:type="dconfig:SelectionPropertyDeclaration" name="generator"/>
   <members xsi:type="dconfig:SelectionPropertyDeclaration" name="target"/>
 </dconfig:ConfigurationDefinition>

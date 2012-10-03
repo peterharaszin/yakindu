@@ -5,15 +5,15 @@
    <extension-point id="blockSimulationObjects" name="Block Simulation Objects" schema="schema/blockSimulationObjects.exsd"/>
    <extension-point id="solvers" name="Solvers" schema="schema/solvers.exsd"/>
    <extension
-         point="org.eclipselabs.damos.simulation.simulator.simulationObjectProviders">
+         point="org.eclipse.damos.simulation.simulator.simulationObjectProviders">
       <provider
-            class="org.eclipselabs.damos.simulation.simulator.internal.registry.BlockSimulationObjectProvider">
+            class="org.eclipse.damos.simulation.simulator.internal.registry.BlockSimulationObjectProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.simulation.simulator.internal.providers.DscriptBlockSimulationObjectProvider">
+            class="org.eclipse.damos.simulation.simulator.internal.providers.DscriptBlockSimulationObjectProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.simulation.simulator.internal.providers.BuiltinSimulationObjectProvider">
+            class="org.eclipse.damos.simulation.simulator.internal.providers.BuiltinSimulationObjectProvider">
       </provider>
    </extension>
 </plugin>

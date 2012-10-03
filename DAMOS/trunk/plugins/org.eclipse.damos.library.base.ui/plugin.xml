@@ -19,28 +19,28 @@
             contributorId="org.eclipse.damos.ide.ui.properties">
          <propertySection
                afterSection="org.eclipse.damos.diagram.ui.sections.showName"
-               class="org.eclipse.damos.library.base.ui.properties.logic.LogicGateShapePropertySection"
+               class="org.eclipse.damos.library.base.ui.properties.LogicGateShapePropertySection"
                id="org.eclipse.damos.library.base.ui.sections.logic.logicGateShape"
                tab="org.eclipse.damos.ide.ui.tabs.appearance">
             <input
-                  type="org.eclipse.damos.library.base.ui.editparts.logic.LogicGateEditPart">
+                  type="org.eclipse.damos.library.base.ui.editparts.LogicGateEditPart">
             </input>
          </propertySection>
          <propertySection
-               class="org.eclipse.damos.library.base.ui.properties.math.SumInputPortsPropertySection"
+               class="org.eclipse.damos.library.base.ui.properties.SumInputPortsPropertySection"
                id="org.eclipse.damos.library.base.ui.sections.math.inputPorts"
                tab="org.eclipse.damos.library.base.ui.tabs.math.ports">
             <input
-                  type="org.eclipse.damos.library.base.ui.editparts.math.SumEditPart">
+                  type="org.eclipse.damos.library.base.ui.editparts.SumEditPart">
             </input>
          </propertySection>
          <propertySection
                afterSection="org.eclipse.damos.diagram.ui.sections.showName"
-               class="org.eclipse.damos.library.base.ui.properties.math.SumShapePropertySection"
+               class="org.eclipse.damos.library.base.ui.properties.SumShapePropertySection"
                id="org.eclipse.damos.library.base.ui.sections.math.sumShape"
                tab="org.eclipse.damos.ide.ui.tabs.appearance">
             <input
-                  type="org.eclipse.damos.library.base.ui.editparts.math.SumEditPart">
+                  type="org.eclipse.damos.library.base.ui.editparts.SumEditPart">
             </input>
          </propertySection>
       </propertySections>
@@ -49,25 +49,25 @@
          point="org.eclipse.damos.diagram.ui.blockViewFactories">
       <viewFactory
             blockType="damos.blocks.And"
-            class="org.eclipse.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
+            class="org.eclipse.damos.library.base.ui.view.factories.LogicGateViewFactory"
             name="And">
       </viewFactory>
       <viewFactory
             blockType="damos.blocks.Or"
-            class="org.eclipse.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
+            class="org.eclipse.damos.library.base.ui.view.factories.LogicGateViewFactory"
             name="Or">
       </viewFactory>
       <viewFactory
             blockType="damos.blocks.Inverter"
-            class="org.eclipse.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
+            class="org.eclipse.damos.library.base.ui.view.factories.LogicGateViewFactory"
             name="Inverter">
       </viewFactory>
       <viewFactory
             blockType="damos.blocks.Sum"
-            class="org.eclipse.damos.library.base.ui.view.factories.math.SumViewFactory"
+            class="org.eclipse.damos.library.base.ui.view.factories.SumViewFactory"
             name="Sum">
          <input
-               class="org.eclipse.damos.library.base.ui.view.factories.math.SumInputPortViewFactory"
+               class="org.eclipse.damos.library.base.ui.view.factories.SumInputPortViewFactory"
                name="input">
          </input>
       </viewFactory>
@@ -76,164 +76,164 @@
          point="org.eclipse.damos.diagram.ui.blockEditParts">
       <editPart
             blockType="damos.blocks.Integrator"
-            class="org.eclipse.damos.library.base.ui.editparts.continuous.IntegratorEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.IntegratorEditPart"
             name="Integrator">
       </editPart>
       <editPart
             blockType="damos.blocks.Derivative"
-            class="org.eclipse.damos.library.base.ui.editparts.continuous.DerivativeEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DerivativeEditPart"
             name="Derivative">
       </editPart>
       <editPart
             blockType="damos.blocks.TransferFunction"
-            class="org.eclipse.damos.library.base.ui.editparts.continuous.TransferFunctionEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.TransferFunctionEditPart"
             name="Transfer Function">
       </editPart>
       <editPart
             blockType="damos.blocks.Saturation"
-            class="org.eclipse.damos.library.base.ui.editparts.discontinuities.SaturationEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.SaturationEditPart"
             name="Saturation">
       </editPart>
       <editPart
             blockType="damos.blocks.Delay"
-            class="org.eclipse.damos.library.base.ui.editparts.discrete.DelayEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DelayEditPart"
             name="Delay">
       </editPart>
       <editPart
             blockType="damos.blocks.DiscreteIntegrator"
-            class="org.eclipse.damos.library.base.ui.editparts.discrete.DiscreteIntegratorEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DiscreteIntegratorEditPart"
             name="Discrete Integrator">
       </editPart>
       <editPart
             blockType="damos.blocks.DiscreteDerivative"
-            class="org.eclipse.damos.library.base.ui.editparts.discrete.DiscreteDerivativeEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DiscreteDerivativeEditPart"
             name="Discrete Derivative">
       </editPart>
       <editPart
             blockType="damos.blocks.Counter"
-            class="org.eclipse.damos.library.base.ui.editparts.discrete.CounterEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.CounterEditPart"
             name="Counter">
       </editPart>
       <editPart
             blockType="damos.blocks.And"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.AndEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.AndEditPart"
             name="And">
       </editPart>
       <editPart
             blockType="damos.blocks.Or"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.OrEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.OrEditPart"
             name="Or">
       </editPart>
       <editPart
             blockType="damos.blocks.Inverter"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.InverterEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.InverterEditPart"
             name="Inverter">
       </editPart>
       <editPart
             blockType="damos.blocks.Compare"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.CompareEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.CompareEditPart"
             name="Compare">
       </editPart>
       <editPart
             blockType="damos.blocks.SchmittTrigger"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.SchmittTriggerEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.SchmittTriggerEditPart"
             name="SchmittTrigger">
       </editPart>
       <editPart
             blockType="damos.blocks.EdgeToggle"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.EdgeToggleEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.EdgeToggleEditPart"
             name="Edge Toggle">
       </editPart>
       <editPart
             blockType="damos.blocks.Debounce"
-            class="org.eclipse.damos.library.base.ui.editparts.logic.DebounceEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DebounceEditPart"
             name="Debounce">
          <input
-               class="org.eclipse.damos.library.base.ui.editparts.logic.DebounceInputPortEditPart"
+               class="org.eclipse.damos.library.base.ui.editparts.DebounceInputPortEditPart"
                name="u">
          </input>
          <output
-               class="org.eclipse.damos.library.base.ui.editparts.logic.DebounceOutputPortEditPart"
+               class="org.eclipse.damos.library.base.ui.editparts.DebounceOutputPortEditPart"
                name="y">
          </output>
       </editPart>
       <editPart
             blockType="damos.blocks.Gain"
-            class="org.eclipse.damos.library.base.ui.editparts.math.GainEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.GainEditPart"
             name="Gain">
       </editPart>
       <editPart
             blockType="damos.blocks.Sum"
-            class="org.eclipse.damos.library.base.ui.editparts.math.SumEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.SumEditPart"
             name="Sum">
          <input
-               class="org.eclipse.damos.library.base.ui.editparts.math.SumInputPortEditPart"
+               class="org.eclipse.damos.library.base.ui.editparts.SumInputPortEditPart"
                name="input">
          </input>
       </editPart>
       <editPart
             blockType="damos.blocks.Round"
-            class="org.eclipse.damos.library.base.ui.editparts.math.RoundEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.RoundEditPart"
             name="Round">
       </editPart>
       <editPart
             blockType="damos.blocks.Switch"
-            class="org.eclipse.damos.library.base.ui.editparts.signal.SwitchEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.SwitchEditPart"
             name="Switch">
       </editPart>
       <editPart
             blockType="damos.blocks.Scope"
-            class="org.eclipse.damos.library.base.ui.editparts.sinks.ScopeEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.ScopeEditPart"
             name="Scope">
       </editPart>
       <editPart
             blockType="damos.blocks.XYScope"
-            class="org.eclipse.damos.library.base.ui.editparts.sinks.XYScopeEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.XYScopeEditPart"
             name="X-Y Scope">
       </editPart>
       <editPart
             blockType="damos.blocks.AudioFileSink"
-            class="org.eclipse.damos.library.base.ui.editparts.sinks.AudioFileSinkEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.AudioFileSinkEditPart"
             name="Audio File Sink">
       </editPart>
       <editPart
             blockType="damos.blocks.Constant"
-            class="org.eclipse.damos.library.base.ui.editparts.sources.ConstantEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.ConstantEditPart"
             name="Constant">
       </editPart>
       <editPart
             blockType="damos.blocks.SineWave"
-            class="org.eclipse.damos.library.base.ui.editparts.sources.SineWaveEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.SineWaveEditPart"
             name="SineWave">
       </editPart>
       <editPart
             blockType="damos.blocks.Step"
-            class="org.eclipse.damos.library.base.ui.editparts.sources.StepEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.StepEditPart"
             name="Step">
       </editPart>
       <editPart
             blockType="damos.blocks.Ramp"
-            class="org.eclipse.damos.library.base.ui.editparts.sources.RampEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.RampEditPart"
             name="Ramp">
       </editPart>
       <editPart
             blockType="damos.blocks.AudioFileSource"
-            class="org.eclipse.damos.library.base.ui.editparts.sources.AudioFileSourceEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.AudioFileSourceEditPart"
             name="Audio File Source">
       </editPart>
       <editPart
             blockType="damos.blocks.DataOut"
-            class="org.eclipse.damos.library.base.ui.editparts.io.DataOutEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.DataOutEditPart"
             name="Data Out">
       </editPart>
       <editPart
             blockType="damos.blocks.EdgeCounter"
-            class="org.eclipse.damos.library.base.ui.editparts.discrete.EdgeCounterEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.EdgeCounterEditPart"
             name="Edge Counter">
       </editPart>
       <editPart
             blockType="damos.blocks.NumericDataIn"
-            class="org.eclipse.damos.library.base.ui.editparts.io.NumericDataInEditPart"
+            class="org.eclipse.damos.library.base.ui.editparts.NumericDataInEditPart"
             name="Numeric Data In">
       </editPart>
    </extension>
@@ -398,10 +398,10 @@
    <extension
          point="org.eclipse.damos.dml.ui.parameterEditPaneProviders">
       <provider
-            class="org.eclipse.damos.library.base.ui.providers.sinks.AudioFileSinkEditPaneProvider">
+            class="org.eclipse.damos.library.base.ui.providers.AudioFileSinkEditPaneProvider">
       </provider>
       <provider
-            class="org.eclipse.damos.library.base.ui.providers.sources.AudioFileSourceEditPaneProvider">
+            class="org.eclipse.damos.library.base.ui.providers.AudioFileSourceEditPaneProvider">
       </provider>
    </extension>
 

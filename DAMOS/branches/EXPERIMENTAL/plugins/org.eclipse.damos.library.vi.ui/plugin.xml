@@ -5,22 +5,22 @@
          point="org.eclipse.damos.diagram.ui.blockEditParts">
       <editPart
             blockType="damos.blocks.Slider"
-            class="org.eclipse.damos.library.vi.ui.editparts.controls.SliderEditPart"
+            class="org.eclipse.damos.library.vi.ui.editparts.SliderEditPart"
             name="Slider">
       </editPart>
       <editPart
             blockType="damos.blocks.Button"
-            class="org.eclipse.damos.library.vi.ui.editparts.controls.ButtonEditPart"
+            class="org.eclipse.damos.library.vi.ui.editparts.ButtonEditPart"
             name="Button">
       </editPart>
       <editPart
             blockType="damos.blocks.Gauge"
-            class="org.eclipse.damos.library.vi.ui.editparts.indicators.GaugeEditPart"
+            class="org.eclipse.damos.library.vi.ui.editparts.GaugeEditPart"
             name="Gauge">
       </editPart>
       <editPart
             blockType="damos.blocks.Display"
-            class="org.eclipse.damos.library.vi.ui.editparts.indicators.DisplayEditPart"
+            class="org.eclipse.damos.library.vi.ui.editparts.DisplayEditPart"
             name="Display">
       </editPart>
    </extension>

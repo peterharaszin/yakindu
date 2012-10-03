@@ -5,7 +5,7 @@
          point="org.eclipse.damos.diagram.ui.blockEditParts">
       <editPart
             blockType="damos.blocks.Button"
-            class="org.eclipse.damos.library.base.simulation.ui.editparts.io.ButtonEditPart"
+            class="org.eclipse.damos.library.base.simulation.ui.editparts.ButtonEditPart"
             name="Button">
       </editPart>
    </extension>

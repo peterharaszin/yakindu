@@ -19,7 +19,7 @@ import org.eclipse.damos.dml.Choice;
 import org.eclipse.damos.dml.Inport;
 import org.eclipse.damos.dml.Join;
 import org.eclipse.damos.dml.Outport;
-import org.eclipse.damos.library.base.util.math.GainConstants;
+import org.eclipse.damos.library.base.util.GainConstants;
 import org.junit.Before;
 
 /**

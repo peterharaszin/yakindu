@@ -16,7 +16,7 @@ import org.eclipse.damos.codegen.c.test.GTest;
 import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Inport;
 import org.eclipse.damos.dml.Outport;
-import org.eclipse.damos.library.base.util.math.GainConstants;
+import org.eclipse.damos.library.base.util.GainConstants;
 import org.junit.Before;
 
 /**

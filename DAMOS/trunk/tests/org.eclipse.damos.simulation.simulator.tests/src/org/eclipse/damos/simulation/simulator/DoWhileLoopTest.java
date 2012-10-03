@@ -16,8 +16,8 @@ import static junit.framework.Assert.assertEquals;
 import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Memory;
 import org.eclipse.damos.dml.WhileLoop;
-import org.eclipse.damos.library.base.util.logic.CompareConstants;
-import org.eclipse.damos.library.base.util.sources.ConstantConstants;
+import org.eclipse.damos.library.base.util.CompareConstants;
+import org.eclipse.damos.library.base.util.ConstantConstants;
 import org.eclipse.damos.simulation.ISimulation;
 import org.junit.Test;
 

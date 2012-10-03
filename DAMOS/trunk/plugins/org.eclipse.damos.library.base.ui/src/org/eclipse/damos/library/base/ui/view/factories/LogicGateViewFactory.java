@@ -14,7 +14,7 @@ package org.eclipse.damos.library.base.ui.view.factories;
 import java.util.List;
 
 import org.eclipse.damos.diagram.ui.view.factories.ComponentViewFactory;
-import org.eclipse.damos.library.base.ui.figures.LogicGateShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.LogicGateShapeType;
 import org.eclipse.damos.library.common.ui.view.styles.MultiShapeBlockStyles;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.notation.NotationFactory;

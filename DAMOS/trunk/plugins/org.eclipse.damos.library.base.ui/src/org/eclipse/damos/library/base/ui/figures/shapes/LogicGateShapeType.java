@@ -9,15 +9,15 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.library.base.ui.figures;
+package org.eclipse.damos.library.base.ui.figures.shapes;
 
 /**
  * @author Andreas Unger
  *
  */
-public enum SumShapeType {
+public enum LogicGateShapeType {
 
-	ROUND,
+	DISTINCTIVE,
 	RECTANGULAR
 	
 }

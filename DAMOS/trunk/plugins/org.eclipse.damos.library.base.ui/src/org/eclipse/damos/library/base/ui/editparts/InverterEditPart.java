@@ -11,7 +11,7 @@
 
 package org.eclipse.damos.library.base.ui.editparts;
 
-import org.eclipse.damos.library.base.ui.figures.DistinctiveInverterShape;
+import org.eclipse.damos.library.base.ui.figures.shapes.DistinctiveInverterShape;
 import org.eclipse.damos.library.common.ui.figures.shapes.BlockShape;
 import org.eclipse.gmf.runtime.notation.View;
 

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.damos.diagram.ui.view.util.PropertiesSetStyleUtil;
-import org.eclipse.damos.library.base.ui.figures.LogicGateShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.LogicGateShapeType;
 import org.eclipse.damos.library.common.ui.properties.ShapePropertySection;
 import org.eclipse.damos.library.common.ui.view.styles.MultiShapeBlockStyles;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;

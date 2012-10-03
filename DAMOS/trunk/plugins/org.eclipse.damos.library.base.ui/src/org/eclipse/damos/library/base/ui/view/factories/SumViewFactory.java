@@ -14,7 +14,7 @@ package org.eclipse.damos.library.base.ui.view.factories;
 import java.util.List;
 
 import org.eclipse.damos.diagram.ui.view.factories.ComponentViewFactory;
-import org.eclipse.damos.library.base.ui.figures.SumShapeType;
+import org.eclipse.damos.library.base.ui.figures.shapes.SumShapeType;
 import org.eclipse.damos.library.base.ui.view.styles.SumStyles;
 import org.eclipse.damos.library.common.ui.view.styles.MultiShapeBlockStyles;
 import org.eclipse.emf.ecore.EcorePackage;

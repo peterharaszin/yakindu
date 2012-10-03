@@ -1,4 +1,4 @@
-package org.eclipse.damos.library.vi.signatures;
+package org.eclipse.damos.library.vi.signaturepolicies;
 
 import java.util.Map;
 

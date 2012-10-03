@@ -15,7 +15,7 @@ import org.eclipse.damos.codegen.c.test.AbstractGeneratorGTest;
 import org.eclipse.damos.codegen.c.test.GTest;
 import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Outport;
-import org.eclipse.damos.library.base.util.sources.ConstantConstants;
+import org.eclipse.damos.library.base.util.ConstantConstants;
 import org.eclipse.damos.mscript.util.TypeUtil;
 import org.junit.Before;
 

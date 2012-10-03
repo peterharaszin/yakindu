@@ -297,52 +297,52 @@
          point="org.eclipse.damos.execution.blockSignaturePolicies">
       <policy
             blockType="damos.blocks.Scope"
-            class="org.eclipse.damos.library.base.signaturepolicies.sinks.ScopeSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.ScopeSignaturePolicy"
             name="Scope">
       </policy>
       <policy
             blockType="damos.blocks.XYScope"
-            class="org.eclipse.damos.library.base.signaturepolicies.sinks.XYScopeSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.XYScopeSignaturePolicy"
             name="X-Y Scope">
       </policy>
       <policy
             blockType="damos.blocks.AudioFileSink"
-            class="org.eclipse.damos.library.base.signaturepolicies.sinks.AudioFileSinkSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.AudioFileSinkSignaturePolicy"
             name="Audio File Sink">
       </policy>
       <policy
             blockType="damos.blocks.Step"
-            class="org.eclipse.damos.library.base.signaturepolicies.sources.StepSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.StepSignaturePolicy"
             name="Step">
       </policy>
       <policy
             blockType="damos.blocks.Ramp"
-            class="org.eclipse.damos.library.base.signaturepolicies.sources.RampSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.RampSignaturePolicy"
             name="Ramp">
       </policy>
       <policy
             blockType="damos.blocks.SineWave"
-            class="org.eclipse.damos.library.base.signaturepolicies.sources.SineWaveSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.SineWaveSignaturePolicy"
             name="Sine Wave">
       </policy>
       <policy
             blockType="damos.blocks.AudioFileSource"
-            class="org.eclipse.damos.library.base.signaturepolicies.sources.AudioFileSourceSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.AudioFileSourceSignaturePolicy"
             name="Audio File Source">
       </policy>
       <policy
             blockType="damos.blocks.Button"
-            class="org.eclipse.damos.library.base.signaturepolicies.io.ButtonSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.ButtonSignaturePolicy"
             name="Button">
       </policy>
       <policy
             blockType="damos.blocks.DataOut"
-            class="org.eclipse.damos.library.base.signaturepolicies.io.DataOutSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.DataOutSignaturePolicy"
             name="Data Out">
       </policy>
       <policy
             blockType="damos.blocks.NumericDataIn"
-            class="org.eclipse.damos.library.base.signaturepolicies.io.NumericDataInSignaturePolicy"
+            class="org.eclipse.damos.library.base.signaturepolicies.NumericDataInSignaturePolicy"
             name="Numeric Data In">
       </policy>
    </extension>

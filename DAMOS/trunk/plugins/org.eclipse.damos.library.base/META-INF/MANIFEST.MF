@@ -13,13 +13,4 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipse.damos.mscript;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.damos.library.base.util.audio,
- org.eclipse.damos.library.base.util.continuous,
- org.eclipse.damos.library.base.util.discontinuities,
- org.eclipse.damos.library.base.util.discrete,
- org.eclipse.damos.library.base.util.io,
- org.eclipse.damos.library.base.util.logic,
- org.eclipse.damos.library.base.util.math,
- org.eclipse.damos.library.base.util.signal,
- org.eclipse.damos.library.base.util.sinks,
- org.eclipse.damos.library.base.util.sources
+Export-Package: org.eclipse.damos.library.base.util

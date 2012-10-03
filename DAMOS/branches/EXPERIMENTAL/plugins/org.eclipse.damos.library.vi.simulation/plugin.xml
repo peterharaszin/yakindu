@@ -5,32 +5,32 @@
          point="org.eclipse.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
             blockType="damos.blocks.UDPSource"
-            class="org.eclipse.damos.library.vi.simulation.communication.UDPSourceSimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.UDPSourceSimulationObject"
             name="UDPSource">
       </simulationObject>
       <simulationObject
             blockType="damos.blocks.UDPSink"
-            class="org.eclipse.damos.library.vi.simulation.communication.UDPSinkSimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.UDPSinkSimulationObject"
             name="UDPSink">
       </simulationObject>
       <simulationObject
             blockType="damos.blocks.Slider"
-            class="org.eclipse.damos.library.vi.simulation.controls.SliderSimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.SliderSimulationObject"
             name="Slider">
       </simulationObject>
       <simulationObject
             blockType="damos.blocks.Button"
-            class="org.eclipse.damos.library.vi.simulation.controls.ButtonSimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.ButtonSimulationObject"
             name="Button">
       </simulationObject>
       <simulationObject
             blockType="damos.blocks.Gauge"
-            class="org.eclipse.damos.library.vi.simulation.indicators.GaugeSimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.GaugeSimulationObject"
             name="Gauge">
       </simulationObject>
       <simulationObject
             blockType="damos.blocks.Display"
-            class="org.eclipse.damos.library.vi.simulation.indicators.DisplaySimulationObject"
+            class="org.eclipse.damos.library.vi.simulation.DisplaySimulationObject"
             name="Display">
       </simulationObject>
    </extension>

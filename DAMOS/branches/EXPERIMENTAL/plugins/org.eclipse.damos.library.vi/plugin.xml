@@ -84,32 +84,32 @@
          point="org.eclipse.damos.execution.blockSignaturePolicies">
       <policy
             blockType="damos.blocks.UDPSource"
-            class="org.eclipse.damos.library.vi.signatures.communication.UDPSourceSignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.UDPSourceSignaturePolicy"
             name="UDPSource">
       </policy>
       <policy
             blockType="damos.blocks.UDPSink"
-            class="org.eclipse.damos.library.vi.signatures.communication.UDPSinkSignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.UDPSinkSignaturePolicy"
             name="UDPSink">
       </policy>
       <policy
             blockType="damos.blocks.Slider"
-            class="org.eclipse.damos.library.vi.signatures.controls.SliderSignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.SliderSignaturePolicy"
             name="Slider">
       </policy>
       <policy
             blockType="damos.blocks.Button"
-            class="org.eclipse.damos.library.vi.signatures.controls.ButtonSignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.ButtonSignaturePolicy"
             name="Button">
       </policy>
       <policy
             blockType="damos.blocks.Gauge"
-            class="org.eclipse.damos.library.vi.signatures.indicators.GaugeSignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.GaugeSignaturePolicy"
             name="Gauge">
       </policy>
       <policy
             blockType="damos.blocks.Display"
-            class="org.eclipse.damos.library.vi.signatures.indicators.DisplaySignaturePolicy"
+            class="org.eclipse.damos.library.vi.signatures.DisplaySignaturePolicy"
             name="Display">
       </policy>
    </extension>

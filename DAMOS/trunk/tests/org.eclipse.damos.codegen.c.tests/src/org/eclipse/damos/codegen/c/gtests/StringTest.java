@@ -16,8 +16,8 @@ import org.eclipse.damos.codegen.c.test.GTest;
 import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Inport;
 import org.eclipse.damos.dml.Outport;
-import org.eclipse.damos.library.base.util.logic.CompareConstants;
-import org.eclipse.damos.library.base.util.sources.ConstantConstants;
+import org.eclipse.damos.library.base.util.CompareConstants;
+import org.eclipse.damos.library.base.util.ConstantConstants;
 import org.junit.Before;
 
 /**

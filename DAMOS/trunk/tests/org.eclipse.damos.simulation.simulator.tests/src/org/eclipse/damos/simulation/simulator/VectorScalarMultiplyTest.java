@@ -14,7 +14,7 @@ package org.eclipse.damos.simulation.simulator;
 import static junit.framework.Assert.assertEquals;
 
 import org.eclipse.damos.dml.Block;
-import org.eclipse.damos.library.base.util.sources.ConstantConstants;
+import org.eclipse.damos.library.base.util.ConstantConstants;
 import org.eclipse.damos.simulation.ISimulation;
 import org.junit.Test;
 

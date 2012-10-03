@@ -18,7 +18,7 @@ import org.eclipse.damos.dml.Inport;
 import org.eclipse.damos.dml.Memory;
 import org.eclipse.damos.dml.Outport;
 import org.eclipse.damos.dml.WhileLoop;
-import org.eclipse.damos.library.base.util.logic.CompareConstants;
+import org.eclipse.damos.library.base.util.CompareConstants;
 import org.junit.Before;
 
 /**

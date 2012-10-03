@@ -12,8 +12,8 @@
 package org.eclipse.damos.simulation.simulator;
 
 import org.eclipse.damos.dml.Block;
-import org.eclipse.damos.library.base.util.continuous.TransferFunctionConstants;
-import org.eclipse.damos.library.base.util.sources.StepConstants;
+import org.eclipse.damos.library.base.util.StepConstants;
+import org.eclipse.damos.library.base.util.TransferFunctionConstants;
 import org.eclipse.damos.simulation.ISimulation;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;

@@ -4,10 +4,10 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.execution.ui.parts.ExecutionFlowView"
+            category="org.eclipse.damos.ide.ui.damos"
+            class="org.eclipse.damos.execution.ui.parts.ExecutionFlowView"
             icon="icons/FragmentExplorer.png"
-            id="org.eclipselabs.damos.execution.ui.executionFlowView"
+            id="org.eclipse.damos.execution.ui.executionFlowView"
             name="Execution Flow"
             restorable="true">
       </view>

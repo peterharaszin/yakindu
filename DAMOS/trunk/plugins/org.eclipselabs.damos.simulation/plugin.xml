@@ -3,9 +3,9 @@
 <plugin>
    <extension-point id="simulationListeners" name="Simulation Listeners" schema="schema/simulationListeners.exsd"/>
    <extension
-         point="org.eclipselabs.damos.dconfig.definitions">
+         point="org.eclipse.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation/dconfig/Simulation.xmi">
+            uri="platform:/plugin/org.eclipse.damos.simulation/dconfig/Simulation.xmi">
       </resource>
    </extension>
 </plugin>

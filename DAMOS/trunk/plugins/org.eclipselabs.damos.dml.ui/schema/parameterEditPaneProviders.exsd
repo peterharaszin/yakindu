@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipselabs.damos.dml.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.damos.dml.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipselabs.damos.dml.ui" id="parameterEditPaneProviders" name="Parameter Edit Pane Providers"/>
+         <meta.schema plugin="org.eclipse.damos.dml.ui" id="parameterEditPaneProviders" name="Parameter Edit Pane Providers"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.damos.dml.ui.editpane.IParameterEditPaneProvider"/>
                </appInfo>
             </annotation>
          </attribute>

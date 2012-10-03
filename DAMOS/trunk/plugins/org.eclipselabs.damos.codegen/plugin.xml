@@ -3,9 +3,9 @@
 <plugin>
    <extension-point id="generators" name="Generators" schema="schema/generators.exsd"/>
    <extension
-         point="org.eclipselabs.damos.dconfig.definitions">
+         point="org.eclipse.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.codegen/dconfig/Codegen.xmi">
+            uri="platform:/plugin/org.eclipse.damos.codegen/dconfig/Codegen.xmi">
       </resource>
    </extension>
 

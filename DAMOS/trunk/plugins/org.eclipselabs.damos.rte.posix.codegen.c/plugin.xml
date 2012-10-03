@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.codegen.c.runtimeEnvironmentAPIs">
+         point="org.eclipse.damos.codegen.c.runtimeEnvironmentAPIs">
       <runtimeEnvironmentAPI
-            class="org.eclipselabs.damos.rte.posix.codegen.c.RuntimeEnvironmentAPI"
+            class="org.eclipse.damos.rte.posix.codegen.c.RuntimeEnvironmentAPI"
             runtimeEnvironment="damos.rte.runtimes.Posix">
       </runtimeEnvironmentAPI>
    </extension>

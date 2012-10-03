@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.mscript/src" editDirectory="/org.eclipselabs.damos.mscript.edit/src"
-    editorDirectory="/org.eclipselabs.damos.mscript.ui/src" modelPluginID="org.eclipselabs.damos.mscript"
-    forceOverwrite="true" modelName="Mscript" editPluginClass="org.eclipselabs.damos.mscript.edit.MscriptEditPlugin"
-    editorPluginClass="org.eclipselabs.damos.mscript.ui.MscriptUIPlugin" updateClasspath="false"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.mscript/src" editDirectory="/org.eclipse.damos.mscript.edit/src"
+    editorDirectory="/org.eclipse.damos.mscript.ui/src" modelPluginID="org.eclipse.damos.mscript"
+    forceOverwrite="true" modelName="Mscript" editPluginClass="org.eclipse.damos.mscript.edit.MscriptEditPlugin"
+    editorPluginClass="org.eclipse.damos.mscript.ui.MscriptUIPlugin" updateClasspath="false"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipselabs.damos.mscript.edit"
-    editorPluginID="org.eclipselabs.damos.mscript.ui">
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.damos.mscript.edit"
+    editorPluginID="org.eclipse.damos.mscript.ui">
   <foreignModel>Mscript.ecore</foreignModel>
-  <genPackages prefix="Mscript" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+  <genPackages prefix="Mscript" basePackage="org.eclipse.damos" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       ecorePackage="Mscript.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//FunctionKind">

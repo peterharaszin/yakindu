@@ -1,0 +1,12 @@
+package damos.blocks
+
+discrete boundary blockType NumericDataIn {
+
+	testPoint input _input
+	output _output
+	
+	parameter minimumValue = 0
+	parameter maximumValue = 1
+	parameter integer = false predefined { true alias "yes", false alias "no" }
+
+}

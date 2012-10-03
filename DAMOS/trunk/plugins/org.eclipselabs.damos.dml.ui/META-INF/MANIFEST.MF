@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipselabs.damos.dml.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.dml.ui;singleton:=true
 Bundle-Version: 0.4.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipselabs.damos.dml.ui.DMLUIPlugin$Implementation
+Bundle-Activator: org.eclipse.damos.dml.ui.DMLUIPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -21,14 +21,14 @@ Require-Bundle: com.google.inject;bundle-version="2.0.0",
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipselabs.damos.dml.edit;visibility:=reexport,
- org.eclipselabs.damos.common;bundle-version="0.3.0",
- org.eclipselabs.damos.common.ui;bundle-version="0.3.0"
+ org.eclipse.damos.dml.edit;visibility:=reexport,
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.damos.common.ui;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.dml.ui,
- org.eclipselabs.damos.dml.ui.editpane,
- org.eclipselabs.damos.dml.ui.parts,
- org.eclipselabs.damos.dml.ui.properties,
- org.eclipselabs.damos.dml.ui.registry,
- org.eclipselabs.damos.dml.ui.viewers,
- org.eclipselabs.damos.dml.ui.wizards
+Export-Package: org.eclipse.damos.dml.ui,
+ org.eclipse.damos.dml.ui.editpane,
+ org.eclipse.damos.dml.ui.parts,
+ org.eclipse.damos.dml.ui.properties,
+ org.eclipse.damos.dml.ui.registry,
+ org.eclipse.damos.dml.ui.viewers,
+ org.eclipse.damos.dml.ui.wizards

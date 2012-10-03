@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="org.eclipselabs.damos.codegen.ui.commands.generateCode"
+            id="org.eclipse.damos.codegen.ui.commands.generateCode"
             name="Generate Code">
       </command>
    </extension>
@@ -14,7 +14,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
-               commandId="org.eclipselabs.damos.codegen.ui.commands.generateCode"
+               commandId="org.eclipse.damos.codegen.ui.commands.generateCode"
                label="Generate Code"
                style="push">
             <visibleWhen
@@ -26,7 +26,7 @@
                   <iterate>
                   	<or>
                      <instanceof
-                           value="org.eclipselabs.damos.dconfig.Configuration">
+                           value="org.eclipse.damos.dconfig.Configuration">
                      </instanceof>
                      <adapt type="org.eclipse.core.resources.IFile">
                        <test property="org.eclipse.core.resources.name" value="*.dconfig"/>
@@ -41,8 +41,8 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipselabs.damos.codegen.ui.internal.handlers.GenerateCodeHandler"
-            commandId="org.eclipselabs.damos.codegen.ui.commands.generateCode">
+            class="org.eclipse.damos.codegen.ui.internal.handlers.GenerateCodeHandler"
+            commandId="org.eclipse.damos.codegen.ui.commands.generateCode">
       </handler>
    </extension>
 </plugin>

@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Simulation Solvers
-Bundle-SymbolicName: org.eclipselabs.damos.simulation.simulator.solvers;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.simulation.simulator.solvers;singleton:=true
 Bundle-Version: 0.4.0.qualifier
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipselabs.damos.dconfig;bundle-version="0.3.0",
- org.eclipselabs.damos.execution;bundle-version="0.3.0",
- org.eclipselabs.damos.simulation.simulator;bundle-version="0.3.0"
+ org.eclipse.damos.dconfig;bundle-version="0.3.0",
+ org.eclipse.damos.execution;bundle-version="0.3.0",
+ org.eclipse.damos.simulation.simulator;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

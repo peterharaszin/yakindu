@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.dconfig.definitions">
+         point="org.eclipse.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.rte/dconfig/RTE.xmi">
+            uri="platform:/plugin/org.eclipse.damos.rte/dconfig/RTE.xmi">
       </resource>
    </extension>
 

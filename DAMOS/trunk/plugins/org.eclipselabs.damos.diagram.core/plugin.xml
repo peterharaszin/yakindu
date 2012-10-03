@@ -4,159 +4,159 @@
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipselabs.org/damos/2011/DML">
+            nsURI="http://www.eclipse.org/damos/2011/DML">
          <metamodelType
                eclass="Fragment"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.FragmentEditHelper"
-               id="org.eclipselabs.damos.diagram.fragment"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.FragmentEditHelper"
+               id="org.eclipse.damos.diagram.fragment"
                name="Fragment">
          </metamodelType>
          <metamodelType
                eclass="Connection"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConnectionEditHelper"
-               id="org.eclipselabs.damos.diagram.connection"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.ConnectionEditHelper"
+               id="org.eclipse.damos.diagram.connection"
                name="Connection">
          </metamodelType>
          <metamodelType
                eclass="Compound"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.CompoundEditHelper"
-               id="org.eclipselabs.damos.diagram.compound"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.CompoundEditHelper"
+               id="org.eclipse.damos.diagram.compound"
                name="Compound">
          </metamodelType>
          <metamodelType
                eclass="Action"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ActionEditHelper"
-               id="org.eclipselabs.damos.diagram.action"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.ActionEditHelper"
+               id="org.eclipse.damos.diagram.action"
                name="Action">
          </metamodelType>
          <metamodelType
                eclass="ActionLink"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ActionLinkEditHelper"
-               id="org.eclipselabs.damos.diagram.actionLink"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.ActionLinkEditHelper"
+               id="org.eclipse.damos.diagram.actionLink"
                name="Action Link">
          </metamodelType>
          <metamodelType
                eclass="WhileLoop"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.WhileLoopEditHelper"
-               id="org.eclipselabs.damos.diagram.whileLoop"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.WhileLoopEditHelper"
+               id="org.eclipse.damos.diagram.whileLoop"
                name="While Loop">
          </metamodelType>
          <metamodelType
                eclass="Memory"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.MemoryEditHelper"
-               id="org.eclipselabs.damos.diagram.memory"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.MemoryEditHelper"
+               id="org.eclipse.damos.diagram.memory"
                name="Memory">
          </metamodelType>
          <metamodelType
                eclass="Connector"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConnectorEditHelper"
-               id="org.eclipselabs.damos.diagram.connector"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.ConnectorEditHelper"
+               id="org.eclipse.damos.diagram.connector"
                name="Connector">
          </metamodelType>
          <metamodelType
                eclass="Port"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.PortEditHelper"
-               id="org.eclipselabs.damos.diagram.port"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.PortEditHelper"
+               id="org.eclipse.damos.diagram.port"
                name="Port">
          </metamodelType>
          <metamodelType
                eclass="Inport"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.InportEditHelper"
-               id="org.eclipselabs.damos.diagram.inport"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.InportEditHelper"
+               id="org.eclipse.damos.diagram.inport"
                name="Inport">
          </metamodelType>
          <metamodelType
                eclass="Outport"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.OutportEditHelper"
-               id="org.eclipselabs.damos.diagram.outport"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.OutportEditHelper"
+               id="org.eclipse.damos.diagram.outport"
                name="Outport">
          </metamodelType>
          <metamodelType
                eclass="Choice"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ChoiceEditHelper"
-               id="org.eclipselabs.damos.diagram.choice"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.ChoiceEditHelper"
+               id="org.eclipse.damos.diagram.choice"
                name="Choice">
          </metamodelType>
          <metamodelType
                eclass="Join"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.JoinEditHelper"
-               id="org.eclipselabs.damos.diagram.join"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.JoinEditHelper"
+               id="org.eclipse.damos.diagram.join"
                name="Join">
          </metamodelType>
          <metamodelType
                eclass="Latch"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.LatchEditHelper"
-               id="org.eclipselabs.damos.diagram.latch"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.LatchEditHelper"
+               id="org.eclipse.damos.diagram.latch"
                name="Latch">
          </metamodelType>
          <metamodelType
                eclass="Subsystem"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
-               id="org.eclipselabs.damos.diagram.subsystem"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
+               id="org.eclipse.damos.diagram.subsystem"
                name="Subsystem">
          </metamodelType>
          <metamodelType
                eclass="Block"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockEditHelper"
-               id="org.eclipselabs.damos.diagram.block"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.BlockEditHelper"
+               id="org.eclipse.damos.diagram.block"
                name="Block">
          </metamodelType>
          <metamodelType
                eclass="Input"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
-               id="org.eclipselabs.damos.diagram.input"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
+               id="org.eclipse.damos.diagram.input"
                name="Input">
          </metamodelType>
          <metamodelType
                eclass="Output"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
-               id="org.eclipselabs.damos.diagram.output"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
+               id="org.eclipse.damos.diagram.output"
                name="Output">
          </metamodelType>
          <metamodelType
                eclass="InputPort"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.PortEditHelper"
-               id="org.eclipselabs.damos.diagram.inputPort"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.PortEditHelper"
+               id="org.eclipse.damos.diagram.inputPort"
                name="Input Port">
          </metamodelType>
          <metamodelType
                eclass="OutputPort"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.PortEditHelper"
-               id="org.eclipselabs.damos.diagram.outputPort"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.PortEditHelper"
+               id="org.eclipse.damos.diagram.outputPort"
                name="Output Port">
          </metamodelType>
          <metamodelType
                eclass="BlockInput"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockInputEditHelper"
-               id="org.eclipselabs.damos.diagram.blockInput"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.BlockInputEditHelper"
+               id="org.eclipse.damos.diagram.blockInput"
                name="Block Input">
          </metamodelType>
          <metamodelType
                eclass="BlockOutput"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockOutputEditHelper"
-               id="org.eclipselabs.damos.diagram.blockOutput"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.BlockOutputEditHelper"
+               id="org.eclipse.damos.diagram.blockOutput"
                name="Block Output">
          </metamodelType>
          <metamodelType
                eclass="BlockInputPort"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockInputPortEditHelper"
-               id="org.eclipselabs.damos.diagram.blockInputPort"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.BlockInputPortEditHelper"
+               id="org.eclipse.damos.diagram.blockInputPort"
                name="Block Input Port">
          </metamodelType>
          <metamodelType
                eclass="BlockOutputPort"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockOutputPortEditHelper"
-               id="org.eclipselabs.damos.diagram.blockOutputPort"
+               edithelper="org.eclipse.damos.diagram.core.internal.edithelpers.BlockOutputPortEditHelper"
+               id="org.eclipse.damos.diagram.blockOutputPort"
                name="Block Output Port">
          </metamodelType>
          <metamodelType
                eclass="Parameter"
-               id="org.eclipselabs.damos.diagram.parameter"
+               id="org.eclipse.damos.diagram.parameter"
                name="Parameter">
          </metamodelType>
          <metamodelType
                eclass="Argument"
-               id="org.eclipselabs.damos.diagram.argument"
+               id="org.eclipse.damos.diagram.argument"
                name="Argument">
          </metamodelType>
       </metamodel>

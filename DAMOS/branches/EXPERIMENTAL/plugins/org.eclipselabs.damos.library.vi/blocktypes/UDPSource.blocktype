@@ -1,0 +1,10 @@
+package damos.blocks
+
+synchronous blockType UDPSource {
+
+	output _output[1..*]
+	
+	opaque parameter host = ""
+	opaque parameter port = ""
+
+}

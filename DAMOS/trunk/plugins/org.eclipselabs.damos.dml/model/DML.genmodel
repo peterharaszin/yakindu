@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.dml/src" editorDirectory="/org.eclipselabs.damos.dml.ui/src"
-    modelPluginID="org.eclipselabs.damos.dml" modelName="DML" modelPluginClass="DMLPlugin"
-    editPluginClass="org.eclipselabs.damos.dml.edit.DMLEditPlugin" editorPluginClass="org.eclipselabs.damos.dml.ui.DMLUIPlugin"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.dml/src" editorDirectory="/org.eclipse.damos.dml.ui/src"
+    modelPluginID="org.eclipse.damos.dml" modelName="DML" modelPluginClass="DMLPlugin"
+    editPluginClass="org.eclipse.damos.dml.edit.DMLEditPlugin" editorPluginClass="org.eclipse.damos.dml.ui.DMLUIPlugin"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     providerRootExtendsClass="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>DML.ecore</foreignModel>
-  <genPackages prefix="DML" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+  <genPackages prefix="DML" basePackage="org.eclipse.damos" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       ecorePackage="DML.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//ParameterVisibilityKind">

@@ -1,0 +1,21 @@
+package damos.blocks
+
+blockType Round {
+
+	input u
+	output y
+	
+	parameter kind = 0 predefined {
+		0 alias "round"
+	}
+
+	behavior {
+		check(real) -> int
+		
+		static assert u is real(?) :
+			error "Input value must be numeric"
+	
+		eq y = round(u)
+	}
+	
+}

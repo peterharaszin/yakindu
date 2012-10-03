@@ -13,8 +13,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipselabs.org/damos/2011/Dconfig"
-            class="org.eclipselabs.damos.dconfig.DconfigPackage"
+            uri="http://www.eclipse.org/damos/2011/Dconfig"
+            class="org.eclipse.damos.dconfig.DconfigPackage"
             genModel="model/Dconfig.genmodel"/>
    </extension>
 

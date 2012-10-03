@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipselabs.damos.simulation"
+      id="org.eclipse.damos.simulation"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName">
@@ -18,47 +18,47 @@
    </license>
 
    <requires>
-      <import feature="org.eclipselabs.damos" version="0.4.0" match="greaterOrEqual"/>
-      <import feature="org.eclipselabs.damos.execution" version="0.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.damos" version="0.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.damos.execution" version="0.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.simulation"
+         id="org.eclipse.damos.simulation"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.simulator"
+         id="org.eclipse.damos.simulation.simulator"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.simulator.solvers"
+         id="org.eclipse.damos.simulation.simulator.solvers"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.ide.core"
+         id="org.eclipse.damos.simulation.ide.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.ide.ui"
+         id="org.eclipse.damos.simulation.ide.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.ui"
+         id="org.eclipse.damos.simulation.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

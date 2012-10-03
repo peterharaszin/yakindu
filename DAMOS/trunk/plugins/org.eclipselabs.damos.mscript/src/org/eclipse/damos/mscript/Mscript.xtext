@@ -1,0 +1,578 @@
+/****************************************************************************
+ * Copyright (c) 2010 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+grammar org.eclipse.damos.mscript.Mscript
+hidden(WS, ML_COMMENT, SL_COMMENT)
+
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+import "http://www.eclipse.org/damos/mscript/2011/Mscript"
+
+Module:
+	'package' packageName=QualifiedName
+	(importDeclarations+=ImportDeclaration)*
+	(declarations+=TopLevelDeclaration)*;
+	
+ImportDeclaration:
+	'import' importedNamespace=QualifiedNameWithWildcard;
+
+TopLevelDeclaration:
+	TypeDeclaration |
+	EnumerationDeclaration |
+	StandardFunctionDeclaration |
+	UnitDeclaration |
+	ConstantDeclaration;
+
+/*
+ * TypeDeclaration
+ */
+ 
+TypeDeclaration:
+	'type' name=ValidID '=' typeSpecifier=TypeSpecifier;
+
+/*
+ * UnitDeclaration
+ */
+
+UnitDeclaration:
+	BaseUnitDeclaration | DerivedUnitDeclaration;
+
+BaseUnitDeclaration:
+	'unit' name=ValidID;
+
+DerivedUnitDeclaration:
+	'unit' name=ValidID '=' definition=UnitDefinition;
+
+UnitDefinition returns Unit:
+	{Unit} (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))?;
+	
+/*
+ * Enumeration
+ */
+ 	
+EnumerationDeclaration:
+	'enum' name=ValidID '{'
+		(literalDeclarations+=EnumerationLiteralDeclaration (',' literalDeclarations+=EnumerationLiteralDeclaration)* ','?)?
+	'}';
+	
+EnumerationLiteralDeclaration:
+	name=ValidID;
+	
+/*
+ * Function
+ */
+ 
+StandardFunctionDeclaration:
+	(kind=FunctionKind)? 'function' name=ValidID
+			'(' (inputParameterDeclarations+=StandardInputParameterDeclaration (',' inputParameterDeclarations+=StandardInputParameterDeclaration)*)? ')'
+			'->' outputParameterDeclarations+=StandardOutputParameterDeclaration (',' outputParameterDeclarations+=StandardOutputParameterDeclaration)* '{'
+		(checks+=Check |
+		assertions+=Assertion |
+		stateVariableDeclarations+=StateVariableDeclaration |
+		constantDeclarations+=ConstantDeclaration |
+		equations+=Equation)*
+	'}';
+
+enum FunctionKind:
+	Synchronous='synchronous' | Continuous='continuous';
+	
+StandardInputParameterDeclaration:
+	(constant?='const')? name=ValidID ('=' defaultExpression=Expression)?;
+
+StandardOutputParameterDeclaration:
+	name=ValidID;
+
+Check:
+	'check' '(' (inputArguments+=CheckArgument (',' inputArguments+=CheckArgument)*)? ')'
+		'->' outputTypeSpecifiers+=TypeSpecifier (',' outputTypeSpecifiers+=TypeSpecifier)*;
+
+CheckArgument:
+	TypeCheckArgument | ExpressionCheckArgument;
+
+TypeCheckArgument: 
+	typeSpecifier=TypeSpecifier;
+
+ExpressionCheckArgument:
+	'<' expression=Expression '>';
+
+enum AssertionStatusKind:
+	Info='info' |
+	Warning='warning' |
+	Error='error' |
+	Fatal='fatal';
+
+Assertion:
+	(static?='static')? 'assert' condition=Expression ':' statusKind=AssertionStatusKind message=Expression;
+
+StateVariableDeclaration:
+	'var' name=ValidID;
+
+ConstantDeclaration:
+	'const' name=ValidID '=' initializer=Expression;
+
+Equation:
+	(initial?='initial')? 'eq' leftHandSide=Expression '=' rightHandSide=Expression;
+
+/*
+ * Data type specifier
+ */
+
+TypeSpecifier:
+	AnonymousTypeSpecifier | DeclaredTypeSpecifier;
+
+AnonymousTypeSpecifier:
+	type=(AnonymousArrayType | DeclaredArrayType);
+	
+DeclaredTypeSpecifier:
+	typeDeclaration=[TypeDeclaration|QualifiedName];
+
+PrimitiveType:
+	NumericType | BooleanType | StringType;
+	
+NumericType:
+	RealType | IntegerType | ComplexType | GaussianType;
+	
+RealType:
+	{RealType} 'real' unit=ImplicitUnitWithAny;
+	
+IntegerType:
+	{IntegerType} 'int' unit=ImplicitUnitWithAny;
+	
+ComplexType:
+	{ComplexType} 'complex' unit=ImplicitUnitWithAny;
+
+GaussianType:
+	{GaussianType} 'gaussian' unit=ImplicitUnitWithAny;
+
+BooleanType:
+	{BooleanType} 'boolean';
+	
+StringType:
+	{StringType} 'string';
+	
+// TODO: We need a way to specify any array types, e.g. '?[]'
+AnonymousArrayType returns DataType:
+	(PrimitiveType | CompositeType) ({AnonymousArrayType.elementType=current} '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']')?;
+
+DeclaredArrayType:
+	elementTypeDeclaration=[TypeDeclaration|QualifiedName] '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	
+ArrayDimension:
+	{ArrayDimension} (size=Expression)?;
+
+CompositeType:
+	RecordType | UnionType;
+
+RecordType:
+	(label=ValidID | anyLabel?='?')? '{' memberLists+=CompositeTypeMemberList (';' memberLists+=CompositeTypeMemberList)* ';'? '}'; 
+
+UnionType:
+	'union' (label=ValidID | anyLabel?='?')? '{' memberLists+=CompositeTypeMemberList (';' memberLists+=CompositeTypeMemberList)* ';'? '}';
+
+CompositeTypeMemberList:
+	typeSpecifier=TypeSpecifier members+=CompositeTypeMember (',' members+=CompositeTypeMember)*;
+
+CompositeTypeMember:
+	name=ValidID;
+
+/*
+ * Expressions
+ */
+
+Expression:
+	LambdaExpression | LetExpression | IfExpression | SwitchExpression | InspectExpression | UnionConstructionOperator | RangeExpression;
+
+LambdaExpression:
+	(parameters+=LambdaExpressionParameter | '(' (parameters+=LambdaExpressionParameter (',' parameters+=LambdaExpressionParameter)*)? ')') '->' expression=Expression;
+
+LambdaExpressionParameter:
+	name=ValidID;
+
+LetExpression:
+	'let' assignments+=LetExpressionAssignment (',' assignments+=LetExpressionAssignment)* 'in' target=Expression;
+	
+LetExpressionAssignment:
+	(variables+=LetExpressionVariableDeclaration | '(' variables+=LetExpressionVariableDeclaration (',' variables+=LetExpressionVariableDeclaration)+ ')') '=' assignedExpression=Expression;
+
+LetExpressionVariableDeclaration:
+	name=ValidID;
+	
+IfExpression:
+	(static?='static')? 'if' condition=Expression 'then' thenExpression=Expression 'else' elseExpression=Expression;
+
+SwitchExpression:
+	(static?='static')? 'switch' controlExpression=Expression
+		(cases+=SwitchCase)*
+		'default' ':' defaultExpression=Expression;
+
+SwitchCase:
+	'case' caseExpression=ImpliesExpression ':' resultExpression=Expression;
+
+InspectExpression:
+	'inspect' unionExpression=Expression (whenClauses+=InspectWhenClause)*;
+
+InspectWhenClause:
+	=>'when' name=ValidID ':' expression=Expression;
+	
+RangeExpression returns Expression:
+	ImpliesExpression ({RangeExpression.operands+=current} ':' operands+=ImpliesExpression (':' operands+=ImpliesExpression)?)?;
+
+ImpliesExpression returns Expression:
+	LogicalOrExpression ({ImpliesExpression.leftOperand=current} operator=ImpliesOperator rightOperand=LogicalOrExpression)?;
+
+enum ImpliesOperator returns OperatorKind:
+	Implies='=>';
+
+LogicalOrExpression returns Expression:
+	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} operator=LogicalOrOperator rightOperand=LogicalAndExpression)*;
+	
+enum LogicalOrOperator returns OperatorKind:
+	LogicalOr='||';
+
+LogicalAndExpression returns Expression:
+	EqualityExpression ({LogicalAndExpression.leftOperand=current} operator=LogicalAndOperator rightOperand=EqualityExpression)*;
+
+enum LogicalAndOperator returns OperatorKind:
+	LogicalAnd='&&';
+
+EqualityExpression returns Expression:
+	RelationalExpression ({EqualityExpression.leftOperand=current} operator=EqualityOperator rightOperand=RelationalExpression)*;
+
+enum EqualityOperator returns OperatorKind:
+	EqualTo='==' |
+	NotEqualTo='!=';
+	
+RelationalExpression returns Expression:
+	AdditiveExpression =>({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} 'is' typeSpecifier=TypeSpecifier)?;
+
+enum RelationalOperator returns OperatorKind:
+	LessThan='<' |
+	LessThanOrEqualTo='<=' |
+	GreaterThan='>' |
+	GreaterThanOrEqualTo='>=';
+
+AdditiveExpression returns Expression:
+	MultiplicativeExpression ({AdditiveExpression.leftOperand=current} operator=AdditiveOperator rightOperand=MultiplicativeExpression)*;
+
+enum AdditiveOperator returns OperatorKind:
+	Add='+' |
+	Subtract='-' |
+	ElementWiseAdd='.+' |
+	ElementWiseSubtract='.-';
+
+MultiplicativeExpression returns Expression:
+	PowerExpression ({MultiplicativeExpression.leftOperand=current} operator=MultiplicativeOperator rightOperand=PowerExpression)*;
+
+enum MultiplicativeOperator returns OperatorKind:
+	Multiply='*' |
+	Divide='/' |
+	Modulo='%' |
+	ElementWiseMultiply='.*' |
+	ElementWiseDivide='./' |
+	ElementWiseModulo='.%';
+	
+PowerExpression returns Expression:
+	PrefixUnaryExpression ({PowerExpression.leftOperand=current} operator=PowerOperator rightOperand=PrefixUnaryExpression)?;
+
+enum PowerOperator returns OperatorKind:
+	Power='^' |
+	ElementWisePower='.^';
+	
+PrefixUnaryExpression returns Expression:
+	UnitConversionExpression | {UnaryExpression} operator=PrefixUnaryOperator operand=UnitConversionExpression;
+	
+enum PrefixUnaryOperator returns OperatorKind:
+	Negate='-' |
+	LogicalNot='!';
+	
+UnitConversionExpression returns Expression:
+	PostfixUnaryExpression ({UnitConversionExpression.operand=current} 'as' unit=ExplicitUnit)?;
+	
+PostfixUnaryExpression returns Expression:
+	(QualifiedMemberAccess | MemberAccess) ({UnaryExpression.operand=current} operator=PostfixUnaryOperator)?;
+
+enum PostfixUnaryOperator returns OperatorKind:
+	Derivative="'";
+
+MemberAccess returns Expression:
+	(FunctionCall | PrimaryExpression) (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID)
+		| ({FunctionCall.arguments+=current} '.' target=FeatureReference '(' (arguments+=Expression (',' arguments+=Expression)*)? ')'))*;
+
+FunctionCall returns Expression:
+	CallablePrimaryExpression ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
+	
+IterationVariableDeclaration:
+	name=ValidID;
+
+ArraySubscript:
+	slice?=':' | expression=Expression;
+
+CallablePrimaryExpression returns Expression:
+	FeatureReference |
+	ParenthesizedExpression;
+
+PrimaryExpression returns Expression:
+	Literal |
+	TemplateExpression |
+	UnitConstructionOperator |
+	ArrayConstructionOperator |
+	ArrayConcatenationOperator |
+	RecordConstructionOperator |
+	EndExpression |
+	AlgorithmExpression;
+
+Literal:
+	NumericLiteral | BooleanLiteral | StringLiteral;
+	
+NumericLiteral:
+	IntegerLiteral | RealLiteral;
+	
+RealLiteral:
+	data=RealData unit=ImplicitUnit;
+	
+RealData returns RealData hidden():
+	ValidInt (('.' ValidInt (IJ | EXPIJ | (E ('+' | '-') ValidInt IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt IJ?)));
+
+IntegerLiteral:
+	data=IntegerData unit=ImplicitUnit;
+
+IntegerData returns IntegerData hidden():
+	ValidInt IJ?;
+
+BooleanLiteral:
+	{BooleanLiteral} (true?='true' | 'false');
+
+StringLiteral:
+	text=STRING;
+	
+TemplateExpression hidden():
+	{TemplateExpression} '"""' segments+=ConstantTemplateSegment? (segments+=ExpressionTemplateSegment (segments+=ConstantTemplateSegment)?)* '"""';
+
+ConstantTemplateSegment:
+	text=ConstantString;
+
+ConstantString:
+	(CONSTANT_STRING | ID | ANY_OTHER)+;
+	
+ExpressionTemplateSegment hidden(WS, ML_COMMENT):
+	'\u00ab' expression=Expression '\u00bb';
+
+FeatureReference returns Expression:
+	{FeatureReference} (feature=[CallableElement|ValidIDWithUnit] | feature=[CallableElement|ValidID] '{' stepExpression=StepExpression '}');
+
+QualifiedMemberAccess returns Expression:
+	QualifiedFunctionCall ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
+
+QualifiedFunctionCall returns Expression:
+	QualifiedFeatureReference ({FunctionCall.target=current} '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')?;
+
+QualifiedFeatureReference returns Expression:
+	{FeatureReference} '.' feature=[CallableElement|QualifiedNameWithUnit];
+
+StepExpression:
+	RangeStepExpression;
+	
+RangeStepExpression returns StepExpression:
+	AdditiveStepExpression ({RangeStepExpression.start=current} ':' end=AdditiveStepExpression)?;
+
+AdditiveStepExpression returns StepExpression:
+	NegateStepExpression ({AdditiveStepExpression.leftOperand=current} operator=AdditiveOperator rightOperand=NegateStepExpression)*;
+
+NegateStepExpression returns StepExpression:
+	PrimitiveStepExpression | {NegateStepExpression} '-' operand=PrimitiveStepExpression;
+
+PrimitiveStepExpression returns StepExpression:
+	StepLiteral | StepN;
+
+StepLiteral:
+	value=ValidInt;
+	
+StepN:
+	{StepN} N;
+
+ArrayConstructionOperator:
+	'{' expressions+=Expression (',' expressions+=Expression)* '}';
+
+ArrayConcatenationOperator:
+	'[' rows+=ExpressionList (';' rows+=ExpressionList)* ']';
+	
+ExpressionList:
+	expressions+=Expression (',' expressions+=Expression)*;
+	
+RecordConstructionOperator:
+	(label=ValidID)? '{' members+=RecordConstructionMember (',' members+=RecordConstructionMember)* '}';
+	
+RecordConstructionMember:
+	name=ValidID '=' value=Expression;
+	
+UnionConstructionOperator:
+	'new' typeSpecifier=UnionTypeSpecifier 'with' member=[CompositeTypeMember|ValidID] '=' value=Expression;
+
+UnionTypeSpecifier returns TypeSpecifier:
+	AnonymousUnionTypeSpecifier | DeclaredTypeSpecifier;
+
+AnonymousUnionTypeSpecifier returns AnonymousTypeSpecifier:
+	type=UnionType;
+
+UnitConstructionOperator:
+	'unit' unit=ExplicitUnit;
+
+ParenthesizedExpression:
+	'(' expressions+=Expression (',' expressions+=Expression)* ')';
+
+EndExpression:
+	{EndExpression} 'end';
+
+AlgorithmExpression returns Expression:
+	{AlgorithmExpression} 'algorithm' body=CompoundStatement;
+
+CompoundStatement:
+	{CompoundStatement} '{' (statements+=Statement)* '}';
+
+Statement:
+	CompoundStatement |
+	Assignment |
+	LocalVariableDeclaration |
+	IfStatement |
+	WhileStatement |
+	DoWhileStatement |
+	ForStatement |
+	ContinueStatement |
+	BreakStatement |
+	ReturnStatement;
+	
+Assignment:
+	target=AssignableMemberFeatureReference '=' assignedExpression=Expression ';';
+	
+AssignableMemberFeatureReference returns Expression:
+	AssignablePrimaryExpression (({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')
+		| ({MemberVariableAccess.target=current} '.' memberVariable=ValidID))*;
+
+AssignablePrimaryExpression returns Expression:
+	FeatureReference |
+	ParenthesizedExpression;
+
+LocalVariableDeclaration:
+	'var' name=ValidID '=' initializer=Expression ';';
+
+IfStatement:
+	'if' '(' condition=Expression ')' thenStatement=Statement (=>'else' elseStatement=Statement)?;
+	
+WhileStatement:
+	'while' '(' condition=Expression ')' body=Statement;
+
+ForStatement:
+	'for' '(' iterationVariable=IterationVariableDeclaration 'in' collectionExpression=Expression ')' body=Statement;
+
+DoWhileStatement:
+	'do' body=Statement 'while' '(' condition=Expression ')' ';';
+
+ContinueStatement:
+	{ContinueStatement} 'continue' ';';
+
+BreakStatement:
+	{BreakStatement} 'break' ';';
+
+ReturnStatement:
+	'return' expression=Expression ';';
+
+/*
+ * Unit expressions
+ */
+
+ImplicitUnit returns Unit:
+	{Unit} ('(' (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))? ')')?;
+
+ImplicitUnitWithAny returns Unit:
+	{Unit} ('(' (any?='?' | (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))?) ')')?;
+
+ExplicitUnit returns Unit:
+	{Unit} '{' (ONE | factors+=UnitFactor ('*' factors+=UnitFactor)*)
+		('/' (factors+=UnitDenominatorFactor | '(' factors+=UnitDenominatorFactor ('*' factors+=UnitDenominatorFactor)* ')'))? '}';
+
+UnitFactor:
+	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitExponent)?;
+
+UnitDenominatorFactor:
+	symbol=[UnitSymbol|QualifiedName] ('^' exponent=UnitDenominatorExponent)?;
+
+UnitExponent returns ecore::EInt:
+	('-')? ValidInt;
+
+UnitDenominatorExponent returns ecore::EInt:
+	('-')? ValidInt;
+
+QualifiedName:
+	ValidID ('.' ValidID)*;
+
+QualifiedNameWithUnit:
+	ValidIDWithUnit ('.' ValidIDWithUnit)*;
+
+QualifiedNameWithWildcard:
+	QualifiedName ('.*' | '.' '*')?;
+
+ValidInt returns ecore::EInt:
+	ONE | INT;
+
+ValidID:
+	N | IJ | E | EXP | EXPIJ | ID;
+
+ValidIDWithUnit:
+	ValidID | 'unit';
+
+/*
+ * Terminals
+ */
+ 
+terminal N:
+	'n';
+
+terminal IJ:
+	'i' | 'j';
+	
+terminal E:
+	'e' | 'E';
+
+terminal EXP:
+	E ('0'..'9')+;
+
+terminal EXPIJ:
+	EXP IJ;
+	
+terminal ONE:
+	'1';
+
+terminal INT:
+	('0'..'9')+;
+
+terminal ID:
+	'_'? ('a'..'z' | 'A'..'Z') ('0'..'9' | '_' | 'a'..'z' | 'A'..'Z')*;
+
+terminal STRING: 
+	'"' (!('\\' | '"') | '\\' ("'" | '"' | '?' | '\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v'))* '"';
+
+terminal CONSTANT_STRING:
+	'\u00ad';
+
+terminal ML_COMMENT:
+	'/*' -> '*/';
+
+terminal SL_COMMENT:
+	'//' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
+
+terminal ANY_OTHER:
+	.;

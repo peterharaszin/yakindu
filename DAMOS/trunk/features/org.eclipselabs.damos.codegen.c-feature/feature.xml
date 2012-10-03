@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipselabs.damos.codegen.c"
+      id="org.eclipse.damos.codegen.c"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName">
@@ -18,46 +18,46 @@
    </license>
 
    <requires>
-      <import feature="org.eclipselabs.damos" version="0.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.damos" version="0.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.codegen"
+         id="org.eclipse.damos.codegen"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.ui"
+         id="org.eclipse.damos.codegen.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.c"
+         id="org.eclipse.damos.codegen.c"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.targets.arduino"
+         id="org.eclipse.damos.codegen.targets.arduino"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.targets.arduino.shields"
+         id="org.eclipse.damos.codegen.targets.arduino.shields"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.c.ui"
+         id="org.eclipse.damos.codegen.c.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

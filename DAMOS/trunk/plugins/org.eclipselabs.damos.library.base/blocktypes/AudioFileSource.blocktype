@@ -1,0 +1,9 @@
+package damos.blocks
+
+blockType AudioFileSource {
+
+	output _output[1..*]
+	
+	opaque parameter fileURI = ""
+
+}

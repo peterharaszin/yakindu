@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
-            delegate="org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate"
-            id="org.eclipselabs.damos.simulation.ide.core.simulation"
+            delegate="org.eclipse.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate"
+            id="org.eclipse.damos.simulation.ide.core.simulation"
             modes="run, debug"
             name="Damos Simulation">
       </launchConfigurationType>

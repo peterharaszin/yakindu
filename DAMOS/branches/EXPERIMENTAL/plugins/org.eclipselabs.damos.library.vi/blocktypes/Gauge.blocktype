@@ -1,0 +1,10 @@
+package damos.blocks
+
+blockType Gauge {
+
+	input _input
+	
+	parameter scaleMinimum = 0
+	parameter scaleMaximum = 1
+
+}

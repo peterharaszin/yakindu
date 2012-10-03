@@ -16,7 +16,12 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="org.eclipselabs.damos.dml.DMLPackage"
+            class="org.eclipse.damos.dml.DMLPackage"
+            genModel="model/DML.genmodel"
+            uri="http://www.eclipse.org/damos/2011/DML">
+      </package>
+      <package
+            class="org.eclipse.damos.dml.DMLPackage"
             genModel="model/DML.genmodel"
             uri="http://www.eclipselabs.org/damos/2011/DML">
       </package>
@@ -24,7 +29,7 @@
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
-            class="org.eclipselabs.damos.dml.resource.DMLResourceFactory"
+            class="org.eclipse.damos.dml.resource.DMLResourceFactory"
             type="dml">
       </parser>
    </extension>

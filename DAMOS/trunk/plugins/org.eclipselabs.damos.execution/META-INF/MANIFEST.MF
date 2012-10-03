@@ -1,21 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Execution
-Bundle-SymbolicName: org.eclipselabs.damos.execution;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.execution;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipselabs.damos.execution.internal.ExecutionPlugin
+Bundle-Activator: org.eclipse.damos.execution.internal.ExecutionPlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.xtext;bundle-version="1.0.0",
- org.eclipselabs.damos.common;bundle-version="0.3.0",
- org.eclipselabs.damos.dml;bundle-version="0.3.0";visibility:=reexport,
- org.eclipselabs.damos.dscript;bundle-version="0.3.0",
- org.eclipselabs.damos.mscript;bundle-version="0.3.0",
- org.eclipselabs.damos.common.math;bundle-version="0.3.0"
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.damos.dml;bundle-version="0.3.0";visibility:=reexport,
+ org.eclipse.damos.dscript;bundle-version="0.3.0",
+ org.eclipse.damos.mscript;bundle-version="0.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.execution,
- org.eclipselabs.damos.execution.datatype,
- org.eclipselabs.damos.execution.transform,
- org.eclipselabs.damos.execution.util
+Export-Package: org.eclipse.damos.execution,
+ org.eclipse.damos.execution.datatype,
+ org.eclipse.damos.execution.transform,
+ org.eclipse.damos.execution.util

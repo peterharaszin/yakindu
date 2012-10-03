@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipselabs.damos.dconfig/src" modelPluginID="org.eclipselabs.damos.dconfig"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.dconfig/src" modelPluginID="org.eclipse.damos.dconfig"
     modelName="Dconfig" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" usedGenPackages="../../org.eclipselabs.damos.mscript/model/Computation.genmodel#//computation ../../org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    copyrightFields="false" usedGenPackages="../../org.eclipse.damos.mscript/model/Computation.genmodel#//computation ../../org.eclipse.damos.dml/model/DML.genmodel#//dml ../../org.eclipse.damos.mscript/model/Mscript.genmodel#//mscript platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>Dconfig.ecore</foreignModel>
-  <genPackages prefix="Dconfig" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
+  <genPackages prefix="Dconfig" basePackage="org.eclipse.damos" disposableProviderFactory="true"
       ecorePackage="Dconfig.ecore#/">
     <genDataTypes ecoreDataType="Dconfig.ecore#//PropertyPath"/>
     <genDataTypes ecoreDataType="Dconfig.ecore#//SystemPath"/>

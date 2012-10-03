@@ -1,0 +1,10 @@
+package damos.blocks
+
+synchronous blockType UDPSink {
+
+	input _input[1..*]
+	
+	opaque parameter host = ""
+	opaque parameter port = ""
+
+}

@@ -1,9 +1,0 @@
-package damos.library.vi.indicators
-
-blockType Display {
-
-	input _input[1..*]
-	
-	opaque parameter formatString = "%s"
-
-}

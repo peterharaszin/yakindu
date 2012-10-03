@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
-<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipselabs.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript" packageName="damos.simulation">
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipse.org/damos/mscript/2011/Mscript" packageName="damos.simulation">
   <members xsi:type="dconfig:SimplePropertyDeclaration" name="simulationTime">
     <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
       <type xsi:type="mscript:RealType">
         <unit>
           <factors>
-            <symbol href="http://www.eclipselabs.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
           </factors>
         </unit>
       </type>

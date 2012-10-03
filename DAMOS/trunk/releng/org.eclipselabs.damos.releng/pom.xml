@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.eclipselabs.damos</groupId>
-	<artifactId>org.eclipselabs.damos.releng</artifactId>
+	<groupId>org.eclipse.damos</groupId>
+	<artifactId>org.eclipse.damos.releng</artifactId>
 	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -12,7 +12,7 @@
 	<properties>
 		<tycho-version>0.14.1</tycho-version>
 		<antrun-version>1.6</antrun-version>
-		<p2.target.repository>file:../org.eclipselabs.damos.target/target/repository</p2.target.repository>
+		<p2.target.repository>file:../org.eclipse.damos.target/target/repository</p2.target.repository>
 	</properties>
 	<repositories>
 		<repository>
@@ -153,67 +153,67 @@
 	</build>
 
 	<modules>
-		<module>../org.eclipselabs.damos.codegen</module>
-		<module>../org.eclipselabs.damos.codegen.c</module>
-		<module>../org.eclipselabs.damos.codegen.c.tests</module>
-		<module>../org.eclipselabs.damos.codegen.c.ui</module>
-		<module>../org.eclipselabs.damos.codegen.ui</module>
-		<module>../org.eclipselabs.damos.common</module>
-		<module>../org.eclipselabs.damos.common.math</module>
-		<module>../org.eclipselabs.damos.common.ui</module>
-		<module>../org.eclipselabs.damos.dconfig</module>
-		<module>../org.eclipselabs.damos.dconfig.ui</module>
-		<module>../org.eclipselabs.damos.diagram.core</module>
-		<module>../org.eclipselabs.damos.diagram.dmlnotation</module>
-		<module>../org.eclipselabs.damos.diagram.ui</module>
-		<module>../org.eclipselabs.damos.dml</module>
-		<module>../org.eclipselabs.damos.dml.edit</module>
-		<module>../org.eclipselabs.damos.dml.ui</module>
-		<module>../org.eclipselabs.damos.dscript</module>
-		<module>../org.eclipselabs.damos.dscript.tests</module>
-		<module>../org.eclipselabs.damos.dscript.ui</module>
-		<module>../org.eclipselabs.damos.doc</module>
-		<module>../org.eclipselabs.damos.execution</module>
-		<module>../org.eclipselabs.damos.execution.tests</module>
-		<module>../org.eclipselabs.damos.execution.ui</module>
-		<module>../org.eclipselabs.damos.ide.core</module>
-		<module>../org.eclipselabs.damos.ide.ui</module>
-		<module>../org.eclipselabs.damos.library.base</module>
-		<module>../org.eclipselabs.damos.library.base.simulation</module>
-		<module>../org.eclipselabs.damos.library.base.simulation.ui</module>
-		<module>../org.eclipselabs.damos.library.base.ui</module>
-		<module>../org.eclipselabs.damos.library.common</module>
-		<module>../org.eclipselabs.damos.library.common.ui</module>
-		<module>../org.eclipselabs.damos.mscript</module>
-		<module>../org.eclipselabs.damos.mscript.codegen.c</module>
-		<module>../org.eclipselabs.damos.mscript.codegen.c.ide.core</module>
-		<module>../org.eclipselabs.damos.mscript.codegen.c.ide.ui</module>
-		<module>../org.eclipselabs.damos.mscript.codegen.c.tests</module>
-		<module>../org.eclipselabs.damos.mscript.ide.core</module>
-		<module>../org.eclipselabs.damos.mscript.ide.ui</module>
-		<module>../org.eclipselabs.damos.mscript.tests</module>
-		<module>../org.eclipselabs.damos.mscript.ui</module>
-		<module>../org.eclipselabs.damos.rte</module>
-		<module>../org.eclipselabs.damos.rte.posix</module>
-		<module>../org.eclipselabs.damos.rte.posix.codegen.c</module>
-		<module>../org.eclipselabs.damos.rte.posix.codegen.c.tests</module>
-		<module>../org.eclipselabs.damos.simulation</module>
-		<module>../org.eclipselabs.damos.simulation.ide.core</module>
-		<module>../org.eclipselabs.damos.simulation.ide.ui</module>
-		<module>../org.eclipselabs.damos.simulation.simulator</module>
-		<module>../org.eclipselabs.damos.simulation.simulator.solvers</module>
-		<module>../org.eclipselabs.damos.simulation.simulator.tests</module>
-		<module>../org.eclipselabs.damos.simulation.ui</module>
-		<module>../org.eclipselabs.damos.tests</module>
+		<module>../org.eclipse.damos.codegen</module>
+		<module>../org.eclipse.damos.codegen.c</module>
+		<module>../org.eclipse.damos.codegen.c.tests</module>
+		<module>../org.eclipse.damos.codegen.c.ui</module>
+		<module>../org.eclipse.damos.codegen.ui</module>
+		<module>../org.eclipse.damos.common</module>
+		<module>../org.eclipse.damos.common.math</module>
+		<module>../org.eclipse.damos.common.ui</module>
+		<module>../org.eclipse.damos.dconfig</module>
+		<module>../org.eclipse.damos.dconfig.ui</module>
+		<module>../org.eclipse.damos.diagram.core</module>
+		<module>../org.eclipse.damos.diagram.dmlnotation</module>
+		<module>../org.eclipse.damos.diagram.ui</module>
+		<module>../org.eclipse.damos.dml</module>
+		<module>../org.eclipse.damos.dml.edit</module>
+		<module>../org.eclipse.damos.dml.ui</module>
+		<module>../org.eclipse.damos.dscript</module>
+		<module>../org.eclipse.damos.dscript.tests</module>
+		<module>../org.eclipse.damos.dscript.ui</module>
+		<module>../org.eclipse.damos.doc</module>
+		<module>../org.eclipse.damos.execution</module>
+		<module>../org.eclipse.damos.execution.tests</module>
+		<module>../org.eclipse.damos.execution.ui</module>
+		<module>../org.eclipse.damos.ide.core</module>
+		<module>../org.eclipse.damos.ide.ui</module>
+		<module>../org.eclipse.damos.library.base</module>
+		<module>../org.eclipse.damos.library.base.simulation</module>
+		<module>../org.eclipse.damos.library.base.simulation.ui</module>
+		<module>../org.eclipse.damos.library.base.ui</module>
+		<module>../org.eclipse.damos.library.common</module>
+		<module>../org.eclipse.damos.library.common.ui</module>
+		<module>../org.eclipse.damos.mscript</module>
+		<module>../org.eclipse.damos.mscript.codegen.c</module>
+		<module>../org.eclipse.damos.mscript.codegen.c.ide.core</module>
+		<module>../org.eclipse.damos.mscript.codegen.c.ide.ui</module>
+		<module>../org.eclipse.damos.mscript.codegen.c.tests</module>
+		<module>../org.eclipse.damos.mscript.ide.core</module>
+		<module>../org.eclipse.damos.mscript.ide.ui</module>
+		<module>../org.eclipse.damos.mscript.tests</module>
+		<module>../org.eclipse.damos.mscript.ui</module>
+		<module>../org.eclipse.damos.rte</module>
+		<module>../org.eclipse.damos.rte.posix</module>
+		<module>../org.eclipse.damos.rte.posix.codegen.c</module>
+		<module>../org.eclipse.damos.rte.posix.codegen.c.tests</module>
+		<module>../org.eclipse.damos.simulation</module>
+		<module>../org.eclipse.damos.simulation.ide.core</module>
+		<module>../org.eclipse.damos.simulation.ide.ui</module>
+		<module>../org.eclipse.damos.simulation.simulator</module>
+		<module>../org.eclipse.damos.simulation.simulator.solvers</module>
+		<module>../org.eclipse.damos.simulation.simulator.tests</module>
+		<module>../org.eclipse.damos.simulation.ui</module>
+		<module>../org.eclipse.damos.tests</module>
 		
-		<module>../org.eclipselabs.damos-feature</module>
-		<module>../org.eclipselabs.damos.codegen.c-feature</module>
-		<module>../org.eclipselabs.damos.diagram-feature</module>
-		<module>../org.eclipselabs.damos.execution-feature</module>
-		<module>../org.eclipselabs.damos.library-feature</module>
-		<module>../org.eclipselabs.damos.library.simulation-feature</module>
-		<module>../org.eclipselabs.damos.mscript-feature</module>
-		<module>../org.eclipselabs.damos.simulation-feature</module>
+		<module>../org.eclipse.damos-feature</module>
+		<module>../org.eclipse.damos.codegen.c-feature</module>
+		<module>../org.eclipse.damos.diagram-feature</module>
+		<module>../org.eclipse.damos.execution-feature</module>
+		<module>../org.eclipse.damos.library-feature</module>
+		<module>../org.eclipse.damos.library.simulation-feature</module>
+		<module>../org.eclipse.damos.mscript-feature</module>
+		<module>../org.eclipse.damos.simulation-feature</module>
 	</modules>
 
 </project>

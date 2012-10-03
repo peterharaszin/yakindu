@@ -2,35 +2,35 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
+         point="org.eclipse.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="damos.library.vi.communication.UDPSource"
-            class="org.eclipselabs.damos.library.vi.simulation.communication.UDPSourceSimulationObject"
+            blockType="damos.blocks.UDPSource"
+            class="org.eclipse.damos.library.vi.simulation.communication.UDPSourceSimulationObject"
             name="UDPSource">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.vi.communication.UDPSink"
-            class="org.eclipselabs.damos.library.vi.simulation.communication.UDPSinkSimulationObject"
+            blockType="damos.blocks.UDPSink"
+            class="org.eclipse.damos.library.vi.simulation.communication.UDPSinkSimulationObject"
             name="UDPSink">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.vi.controls.Slider"
-            class="org.eclipselabs.damos.library.vi.simulation.controls.SliderSimulationObject"
+            blockType="damos.blocks.Slider"
+            class="org.eclipse.damos.library.vi.simulation.controls.SliderSimulationObject"
             name="Slider">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.vi.controls.Button"
-            class="org.eclipselabs.damos.library.vi.simulation.controls.ButtonSimulationObject"
+            blockType="damos.blocks.Button"
+            class="org.eclipse.damos.library.vi.simulation.controls.ButtonSimulationObject"
             name="Button">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.vi.indicators.Gauge"
-            class="org.eclipselabs.damos.library.vi.simulation.indicators.GaugeSimulationObject"
+            blockType="damos.blocks.Gauge"
+            class="org.eclipse.damos.library.vi.simulation.indicators.GaugeSimulationObject"
             name="Gauge">
       </simulationObject>
       <simulationObject
-            blockType="damos.library.vi.indicators.Display"
-            class="org.eclipselabs.damos.library.vi.simulation.indicators.DisplaySimulationObject"
+            blockType="damos.blocks.Display"
+            class="org.eclipse.damos.library.vi.simulation.indicators.DisplaySimulationObject"
             name="Display">
       </simulationObject>
    </extension>

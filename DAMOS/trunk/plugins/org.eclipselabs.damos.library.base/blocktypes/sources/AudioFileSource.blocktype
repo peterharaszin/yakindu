@@ -1,9 +1,0 @@
-package damos.library.base.sources
-
-blockType AudioFileSource {
-
-	output _output[1..*]
-	
-	opaque parameter fileURI = ""
-
-}

@@ -4,104 +4,112 @@
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
-            source="http://www.eclipselabs.org/damos/library/vi/"
-            target="platform:/plugin/org.eclipselabs.damos.library.vi/blocktypes/">
+            source="http://www.eclipselabs.org/damos/library/vi/communication/"
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
+      </mapping>
+      <mapping
+            source="http://www.eclipselabs.org/damos/library/vi/controls/"
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
+      </mapping>
+      <mapping
+            source="http://www.eclipselabs.org/damos/library/vi/indicators/"
+            target="platform:/plugin/org.eclipse.damos.library.vi/blocktypes/">
       </mapping>
    </extension>
    <extension
-         point="org.eclipselabs.damos.dml.blockGroups">
+         point="org.eclipse.damos.dml.blockGroups">
       <group
-            id="org.eclipselabs.damos.library.vi.communication"
+            id="org.eclipse.damos.library.vi.communication"
             name="Communication"
-            supergroup="org.eclipselabs.damos.library.vi">
+            supergroup="org.eclipse.damos.library.vi">
       </group>
       <group
-            id="org.eclipselabs.damos.library.vi.controls"
+            id="org.eclipse.damos.library.vi.controls"
             name="Controls"
-            supergroup="org.eclipselabs.damos.library.vi">
+            supergroup="org.eclipse.damos.library.vi">
       </group>
       <group
-            id="org.eclipselabs.damos.library.vi.indicators"
+            id="org.eclipse.damos.library.vi.indicators"
             name="Indicators"
-            supergroup="org.eclipselabs.damos.library.vi">
+            supergroup="org.eclipse.damos.library.vi">
       </group>
       <group
-            id="org.eclipselabs.damos.library.vi"
+            id="org.eclipse.damos.library.vi"
             name="Damos Virtual Instruments">
          <language
-               id="org.eclipselabs.damos">
+               id="org.eclipse.damos">
          </language>
       </group>
    </extension>
    <extension
-         point="org.eclipselabs.damos.dml.blockTypes">
+         point="org.eclipse.damos.dml.blockTypes">
       <blockType
-            group="org.eclipselabs.damos.library.vi.communication"
-            qualifiedName="damos.library.vi.communication.UDPSource"
+            group="org.eclipse.damos.library.vi.communication"
+            qualifiedName="damos.blocks.UDPSource"
             name="UDPSource"
-            uri="http://www.eclipselabs.org/damos/library/vi/communication/UDPSource.blocktype#/">
+            uri="http://www.eclipse.org/damos/blocks/UDPSource.blocktype#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.vi.communication"
-            qualifiedName="damos.library.vi.communication.UDPSink"
+            group="org.eclipse.damos.library.vi.communication"
+            qualifiedName="damos.blocks.UDPSink"
             name="UDPSink"
-            uri="http://www.eclipselabs.org/damos/library/vi/communication/UDPSink.blocktype#/">
+            uri="http://www.eclipse.org/damos/blocks/UDPSink.blocktype#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.vi.controls"
-            qualifiedName="damos.library.vi.controls.Slider"
-            name="Slider"
-            uri="http://www.eclipselabs.org/damos/library/vi/controls/Slider.blocktype#/">
-      </blockType>
-      <blockType
-            group="org.eclipselabs.damos.library.vi.controls"
+            group="org.eclipse.damos.library.vi.controls"
+            qualifiedName="damos.blocks.Button"
             name="Button"
-            qualifiedName="damos.library.vi.controls.Button"
-            uri="http://www.eclipselabs.org/damos/library/vi/controls/Button.blocktype#/">
+            uri="http://www.eclipse.org/damos/blocks/Button.blocktype#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.vi.indicators"
-            qualifiedName="damos.library.vi.indicators.Gauge"
+            group="org.eclipse.damos.library.vi.controls"
+            qualifiedName="damos.blocks.Slider"
+            name="Slider"
+            uri="http://www.eclipse.org/damos/blocks/Slider.blocktype#/">
+      </blockType>
+      <blockType
+            group="org.eclipse.damos.library.vi.indicators"
+            qualifiedName="damos.blocks.Gauge"
             name="Gauge"
-            uri="http://www.eclipselabs.org/damos/library/vi/indicators/Gauge.blocktype#/">
+            uri="http://www.eclipse.org/damos/blocks/Gauge.blocktype#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.vi.indicators"
+            group="org.eclipse.damos.library.vi.indicators"
             name="Display"
-            qualifiedName="damos.library.vi.indicators.Display"
-            uri="http://www.eclipselabs.org/damos/library/vi/indicators/Display.blocktype#/">
+            qualifiedName="damos.blocks.Display"
+            uri="http://www.eclipse.org/damos/blocks/Display.blocktype#/">
       </blockType>
    </extension>
    <extension
-         point="org.eclipselabs.damos.execution.blockSignaturePolicies">
+         point="org.eclipse.damos.execution.blockSignaturePolicies">
       <policy
-            blockType="damos.library.vi.communication.UDPSource"
-            class="org.eclipselabs.damos.library.vi.signatures.communication.UDPSourceSignaturePolicy"
+            blockType="damos.blocks.UDPSource"
+            class="org.eclipse.damos.library.vi.signatures.communication.UDPSourceSignaturePolicy"
             name="UDPSource">
       </policy>
       <policy
-            blockType="damos.library.vi.communication.UDPSink"
-            class="org.eclipselabs.damos.library.vi.signatures.communication.UDPSinkSignaturePolicy"
+            blockType="damos.blocks.UDPSink"
+            class="org.eclipse.damos.library.vi.signatures.communication.UDPSinkSignaturePolicy"
             name="UDPSink">
       </policy>
       <policy
-            blockType="damos.library.vi.controls.Slider"
-            class="org.eclipselabs.damos.library.vi.signatures.controls.SliderSignaturePolicy"
+            blockType="damos.blocks.Slider"
+            class="org.eclipse.damos.library.vi.signatures.controls.SliderSignaturePolicy"
             name="Slider">
       </policy>
       <policy
-            blockType="damos.library.vi.controls.Button"
-            class="org.eclipselabs.damos.library.vi.signatures.controls.ButtonSignaturePolicy"
+            blockType="damos.blocks.Button"
+            class="org.eclipse.damos.library.vi.signatures.controls.ButtonSignaturePolicy"
             name="Button">
       </policy>
       <policy
-            blockType="damos.library.vi.indicators.Gauge"
-            class="org.eclipselabs.damos.library.vi.signatures.indicators.GaugeSignaturePolicy"
+            blockType="damos.blocks.Gauge"
+            class="org.eclipse.damos.library.vi.signatures.indicators.GaugeSignaturePolicy"
             name="Gauge">
       </policy>
       <policy
-            blockType="damos.library.vi.indicators.Display"
-            class="org.eclipselabs.damos.library.vi.signatures.indicators.DisplaySignaturePolicy"
+            blockType="damos.blocks.Display"
+            class="org.eclipse.damos.library.vi.signatures.indicators.DisplaySignaturePolicy"
             name="Display">
       </policy>
    </extension>

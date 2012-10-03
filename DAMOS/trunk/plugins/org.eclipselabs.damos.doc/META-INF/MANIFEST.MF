@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Documentation
-Bundle-SymbolicName: org.eclipselabs.damos.doc.user;singleton:=true
+Bundle-SymbolicName: org.eclipse.damos.doc.user;singleton:=true
 Bundle-Version: 0.4.0.qualifier
 Bundle-Vendor: Damos Project

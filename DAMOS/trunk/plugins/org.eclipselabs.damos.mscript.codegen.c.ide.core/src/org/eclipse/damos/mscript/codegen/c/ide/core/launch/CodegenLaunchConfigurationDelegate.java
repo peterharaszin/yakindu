@@ -1,0 +1,93 @@
+package org.eclipse.damos.mscript.codegen.c.ide.core.launch;
+
+import java.util.List;
+
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.damos.mscript.Type;
+import org.eclipse.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
+import org.eclipse.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate;
+import org.eclipse.damos.mscript.interpreter.ComputationContext;
+import org.eclipse.damos.mscript.interpreter.InterpreterContext;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchConfiguration;
+
+public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchConfigurationDelegate {
+
+	public static final String LAUNCH_CONFIGURATION_TYPE = "org.eclipse.damos.mscript.codegen.c.ide.core.codegen";
+	
+	public static final String ATTRIBUTE__TARGET_FUNCTION_NAME = "targetFunctionName";
+	public static final String ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES = "inputParameterDataTypes";
+	public static final String ATTRIBUTE__TARGET_FOLDER_PATH = "targetFolderPath";
+	
+	private String targetFunctionName;
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate#preLaunchCheck(org.eclipse.debug.core.ILaunchConfiguration, java.lang.String, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public boolean preLaunchCheck(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor)
+			throws CoreException {
+		targetFunctionName = configuration.getAttribute(ATTRIBUTE__TARGET_FUNCTION_NAME, "");
+		if (targetFunctionName.trim().length() == 0) {
+			targetFunctionName = null;
+		}
+		return super.preLaunchCheck(configuration, mode, monitor);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.mscript.ide.core.launch.MscriptLaunchConfigurationDelegate#doLaunch(java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipse.damos.mscript.language.il.FunctionInstance, org.eclipse.damos.mscript.computation.computation.ComputationModel, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
+		String targetFolderPathString = configuration.getAttribute(ATTRIBUTE__TARGET_FOLDER_PATH, "");
+		if (targetFolderPathString.length() == 0) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "No output file specified"));
+		}
+
+		IFolder targetFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(targetFolderPathString));
+		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getTargetFunctionName(), getFunctionInstance(), getStaticEvaluationResult(), getComputationModel());
+		process.run();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.mscript.ide.core.launch.MscriptLaunchConfigurationDelegate#getInputParameterDataTypes(org.eclipse.damos.mscript.language.interpreter.IInterpreterContext, org.eclipse.damos.mscript.language.ast.FunctionDefinition)
+	 */
+	@Override
+	protected List<Type> computeInputParameterDataTypes(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {
+		String inputParameterDataTypesString = configuration.getAttribute(ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, "");
+		
+		List<Type> inputParameterDataTypes = getDataTypes(new InterpreterContext(getStaticEvaluationResult(), new ComputationContext(), null), inputParameterDataTypesString);
+		if (inputParameterDataTypes == null) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Invalid input parameter data type specifiers"));
+		}
+
+		if (inputParameterDataTypes.size() != getFunctionDefinition().getNonConstantInputParameterDeclarations().size()) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Number of input parameter data types does not correspond to the number of input parameter in function definition"));
+		}
+		
+		return inputParameterDataTypes;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate#getTargetFunctionName()
+	 */
+	@Override
+	protected String getTargetFunctionName() throws CoreException {
+		return targetFunctionName != null ? targetFunctionName : getFunctionDefinition().getName();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.debug.core.model.LaunchConfigurationDelegate#buildForLaunch(org.eclipse.debug.core.ILaunchConfiguration, java.lang.String, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor)
+			throws CoreException {
+		return false;
+	}
+
+}

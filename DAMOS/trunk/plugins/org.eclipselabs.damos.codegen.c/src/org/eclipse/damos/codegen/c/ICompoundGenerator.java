@@ -1,0 +1,30 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.codegen.c;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.damos.execution.CompoundNode;
+import org.eclipse.damos.execution.Graph;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public interface ICompoundGenerator {
+
+	boolean contributesChoiceVariableDeclarations(IGeneratorContext context, Graph graph);
+	
+	CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor);
+
+	CharSequence generateCompoundCode(IGeneratorContext context, CompoundNode compoundNode, IProgressMonitor monitor);
+
+}

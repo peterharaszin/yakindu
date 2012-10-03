@@ -3,7 +3,7 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:mscript="http://www.eclipselabs.org/damos/mscript/2011/Mscript"
+    xmlns:mscript="http://www.eclipse.org/damos/mscript/2011/Mscript"
     packageName="mscript.lang.math">
   <declarations
       xsi:type="mscript:ConstantDeclaration"

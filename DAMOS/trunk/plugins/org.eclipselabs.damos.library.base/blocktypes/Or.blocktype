@@ -1,0 +1,17 @@
+package damos.blocks
+
+blockType Or {
+
+	input _input[2..*]
+	output y
+
+	behavior {
+		check(boolean[2]) -> boolean
+		
+		static assert _input is boolean[] :
+			error "Input values must be boolean"
+	
+		eq y = _input.fold(false, (result, e) -> result || e)
+	}
+	
+}

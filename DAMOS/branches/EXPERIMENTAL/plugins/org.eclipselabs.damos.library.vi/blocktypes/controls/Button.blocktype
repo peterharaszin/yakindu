@@ -1,7 +1,0 @@
-package damos.library.vi.controls
-
-asynchronous blockType Button {
-
-	output _output
-
-}

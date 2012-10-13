@@ -29,7 +29,7 @@ public abstract class AbstractSingleParameterFunction extends AbstractBuiltinFun
 	public IValue call(IExpressionEvaluationContext context, FunctionCall functionCall, boolean staticOnly) {
 		if (functionCall.getArguments().size() != 1) {
 			if (context.getStatusCollector() != null) {
-				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Missing input parameter", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
+				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "One input parameter expected", functionCall, MscriptPackage.eINSTANCE.getFeatureReference_Feature()));
 			}
 			return InvalidValue.SINGLETON;
 		}

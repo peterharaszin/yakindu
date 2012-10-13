@@ -62,14 +62,18 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 			if (notification.isTouch()) {
 				return;
 			}
+			EObject element = null;
 			if (notification.getNotifier() instanceof Fragment && notification.getFeature() == DMLPackage.eINSTANCE.getQualifiedElement_PackageName()) {
-				linker.linkModel(getHost().resolveSemanticElement(), new ListBasedDiagnosticConsumer());
+				element = getHost().resolveSemanticElement();
 			} else if (notification.getNewValue() instanceof DscriptValueSpecification) {
 				DscriptValueSpecification valueSpecification = (DscriptValueSpecification) notification.getNewValue();
-				linker.linkModel(valueSpecification.getExpression(), new ListBasedDiagnosticConsumer());
+				element = valueSpecification.getExpression();
 			} else if (notification.getNewValue() instanceof DscriptDataTypeSpecification) {
 				DscriptDataTypeSpecification dataTypeSpecification = (DscriptDataTypeSpecification) notification.getNewValue();
-				linker.linkModel(dataTypeSpecification.getTypeSpecifier(), new ListBasedDiagnosticConsumer());
+				element = dataTypeSpecification.getTypeSpecifier();
+			}
+			if (element != null) {
+				linker.linkModel(element, new ListBasedDiagnosticConsumer());
 			}
 		}
 		

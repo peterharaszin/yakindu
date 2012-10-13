@@ -76,12 +76,12 @@ public class Interpreter implements IInterpreter, IFunctionInvocationHandler {
 		IFunctionObject functionObject = FunctionObject.create(context, functionInstance);
 		functionObjects.put(FunctionCallPath.EMPTY, functionObject);
 
+		initializeImplicitVariables(context, functionObject);
+
 		for (IVariable variable : functionObject.getVariables()) {
 			context.addVariable(variable);
 		}
 		
-		initializeImplicitVariables(context, functionObject);
-
 		CompoundStatement initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
 		if (initializationCompound != null) {
 			compoundStatementInterpreter.execute(context, initializationCompound);

@@ -129,7 +129,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 			}
 			getContext().getCodeFragmentCollector().addCodeFragment(
 					new ComputeFunction(new MscriptGeneratorContext(new MscriptGeneratorConfiguration(
-							getComputationModel(), getConfiguration()), functionInfo, getContext()
+							getComputationModel(), getConfiguration()), functionInfo, getNode().getSampleTime(), getContext()
 							.getCodeFragmentCollector())), new NullProgressMonitor());
 		}
 	}
@@ -145,7 +145,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		ContextStruct contextStructDeclaration = getContext().getCodeFragmentCollector().addCodeFragment(
 				new ContextStruct(topLevelFunctionInfo, typeName, true), new NullProgressMonitor());
 		
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleTime(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		FunctionContext functionContext = new FunctionContext(mscriptGeneratorContext);
 		contextStructDeclaration.addMember(functionContext);
 		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, contextStructDeclaration));
@@ -167,7 +167,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getOutputParameterDeclarations());
 		writeInitializeIndexStatements(out, functionInstance.getDeclaration().getStateVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleTime(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		sb.append(statementGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound()));
 
 		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment(new ContextStruct(topLevelFunctionInfo, true), new NullProgressMonitor());
@@ -206,7 +206,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleTime(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
@@ -244,7 +244,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(sb);
 		out.print(writeInputVariables());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleTime(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
@@ -285,7 +285,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleTime(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
 		boolean skip = !getComponent().getInputSockets().isEmpty();
 		

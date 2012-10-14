@@ -23,6 +23,7 @@ public interface IMscriptGeneratorContext {
 
 	IMscriptGeneratorConfiguration getConfiguration();
 	StaticFunctionInfo getFunctionInfo();
+	double getSampleTime();
 	IVariableAccessStrategy getVariableAccessStrategy();
 	ICodeFragmentCollector getCodeFragmentCollector();
 	

@@ -172,7 +172,7 @@ public class ExpressionGeneratorTest {
 		Expression expression = parseExpression(expressionString);
 		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), new CodeFragmentCollector());
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), 1.0, new CodeFragmentCollector());
 		return expressionGenerator.generate(context, expression).toString();
 	}
 	

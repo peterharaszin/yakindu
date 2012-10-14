@@ -12,12 +12,16 @@
 package org.eclipse.damos.mscript.codegen.c.internal;
 
 import org.eclipse.damos.mscript.FeatureReference;
+import org.eclipse.damos.mscript.ImplicitVariableDeclaration;
 import org.eclipse.damos.mscript.InputParameterDeclaration;
 import org.eclipse.damos.mscript.OutputParameterDeclaration;
+import org.eclipse.damos.mscript.RealType;
 import org.eclipse.damos.mscript.StateVariableDeclaration;
 import org.eclipse.damos.mscript.VariableDeclaration;
+import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
+import org.eclipse.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipse.damos.mscript.util.MscriptSwitch;
 
 /**
@@ -26,13 +30,15 @@ import org.eclipse.damos.mscript.util.MscriptSwitch;
  */
 public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 
-	private StaticFunctionInfo functionInfo;
+	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+
+	private final IMscriptGeneratorContext context;
 	
 	/**
 	 * 
 	 */
-	public DefaultVariableAccessStrategy(StaticFunctionInfo functionInfo) {
-		this.functionInfo = functionInfo;
+	public DefaultVariableAccessStrategy(IMscriptGeneratorContext context) {
+		this.context = context;
 	}
 	
 	/* (non-Javadoc)
@@ -46,21 +52,35 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		return sb.append("context->").append(memberName);
 	}
 	
-	public String generateVariableReference(FeatureReference variableReference) {
+	public CharSequence generateVariableReference(FeatureReference variableReference) {
 		return new VariableAccessSwitch(variableReference).doSwitch(variableReference.getFeature());
 	}
 
-	public class VariableAccessSwitch extends MscriptSwitch<String> {
+	public class VariableAccessSwitch extends MscriptSwitch<CharSequence> {
 
 		private FeatureReference variableReference;
 		
 		public VariableAccessSwitch(FeatureReference variableReference) {
 			this.variableReference = variableReference;
 		}
+		
+		@Override
+		public CharSequence caseImplicitVariableDeclaration(ImplicitVariableDeclaration implicitVariableDeclaration) {
+			RealType dataType = (RealType) context.getFunctionInfo().getValue(implicitVariableDeclaration).getDataType();
+			double value;
+			if ("Ts".equals(implicitVariableDeclaration.getName())) {
+				value = context.getSampleTime();
+			} else if ("fs".equals(implicitVariableDeclaration.getName())) {
+				value = 1.0 / context.getSampleTime();
+			} else {
+				value = 0.0;
+			}
+			return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, value);
+		}
 
 		@Override
-		public String caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
-			int stepIndex = functionInfo.getStepIndex(variableReference);
+		public CharSequence caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
+			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return inputParameterDeclaration.getName();
 			}
@@ -68,8 +88,8 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		}
 		
 		@Override
-		public String caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
-			int stepIndex = functionInfo.getStepIndex(variableReference);
+		public CharSequence caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
+			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return outputParameterDeclaration.getName();
 			}
@@ -77,16 +97,16 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		}
 		
 		@Override
-		public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
+		public CharSequence caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
 			return getContextAccess();
 		}
 		
-		private String getContextAccess() {
+		private CharSequence getContextAccess() {
 			VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
-			int stepIndex = functionInfo.getStepIndex(variableReference);
+			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
 
 			String name = target.getName();
-			int circularBufferSize = functionInfo.getCircularBufferSize(target);
+			int circularBufferSize = context.getFunctionInfo().getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

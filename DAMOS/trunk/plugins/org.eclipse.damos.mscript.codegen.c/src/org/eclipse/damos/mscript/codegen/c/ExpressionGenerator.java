@@ -518,7 +518,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			}
 			
 			StaticFunctionInfo callee = functionInfo.getCallee(functionCall);
-			MscriptGeneratorContext newGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getCodeFragmentCollector());
+			MscriptGeneratorContext newGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleTime(), context.getCodeFragmentCollector());
 			ComputeFunction functionDefinition = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(newGeneratorContext), new NullProgressMonitor());
 			
 			FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, functionDefinition, newGeneratorContext.getFunctionInfo(), context.getFunctionInfo());

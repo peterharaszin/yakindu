@@ -22,23 +22,25 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
 	private final IMscriptGeneratorConfiguration configuration;
 	private final StaticFunctionInfo functionInfo;
+	private final double sampleTime;
 	private final IVariableAccessStrategy variableAccessStrategy;
 	private final ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ICodeFragmentCollector codeFragmentCollector) {
-		this(configuration, functionInfo, new DefaultVariableAccessStrategy(functionInfo), codeFragmentCollector);
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, double sampleTime, ICodeFragmentCollector codeFragmentCollector) {
+		this(configuration, functionInfo, sampleTime, null, codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, double sampleTime, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.configuration = configuration;
 		this.functionInfo = functionInfo;
-		this.variableAccessStrategy = variableAccessStrategy;
+		this.sampleTime = sampleTime;
+		this.variableAccessStrategy = variableAccessStrategy != null ? variableAccessStrategy : new DefaultVariableAccessStrategy(this);
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
 
@@ -48,6 +50,10 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
 	public StaticFunctionInfo getFunctionInfo() {
 		return functionInfo;
+	}
+	
+	public double getSampleTime() {
+		return sampleTime;
 	}
 
 	/**

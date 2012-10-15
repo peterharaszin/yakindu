@@ -18,12 +18,6 @@ import java.io.StringReader;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.mscript.Expression;
 import org.eclipse.damos.mscript.MscriptRuntimeModule;
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator;
-import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
-import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
-import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipse.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipse.damos.mscript.computation.ComputationModel;
 import org.eclipse.damos.mscript.computation.util.ComputationModelUtil;
 import org.eclipse.damos.mscript.interpreter.ExpressionEvaluator;
@@ -34,6 +28,7 @@ import org.eclipse.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipse.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipse.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipse.damos.mscript.services.MscriptGrammarAccess;
+import org.eclipse.damos.mscript.util.SampleTime;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 import org.junit.Before;
@@ -172,7 +167,7 @@ public class ExpressionGeneratorTest {
 		Expression expression = parseExpression(expressionString);
 		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), 1.0, new CodeFragmentCollector());
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), new SampleTime(1.0), new CodeFragmentCollector());
 		return expressionGenerator.generate(context, expression).toString();
 	}
 	

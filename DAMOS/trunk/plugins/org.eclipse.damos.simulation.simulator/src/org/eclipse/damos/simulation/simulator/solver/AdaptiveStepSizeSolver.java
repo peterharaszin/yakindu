@@ -240,8 +240,8 @@ public abstract class AdaptiveStepSizeSolver extends AbstractSolver {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				if (componentNode.getSampleTime() > 0) {
-					DiscreteStepTracker discreteStepTracker = new DiscreteStepTracker(componentNode.getSampleTime(), 0);
+				if (componentNode.getSampleInterval().sampleTime() > 0) {
+					DiscreteStepTracker discreteStepTracker = new DiscreteStepTracker(componentNode.getSampleInterval().sampleTime(), 0);
 					componentNode.eAdapters().add(discreteStepTracker);
 					discreteStepTrackers.add(discreteStepTracker);
 				}

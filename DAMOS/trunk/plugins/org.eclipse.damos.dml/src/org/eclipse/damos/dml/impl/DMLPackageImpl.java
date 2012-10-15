@@ -900,7 +900,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSynchronousTimingConstraint_SampleTime() {
+	public EReference getSynchronousTimingConstraint_SampleInterval() {
 		return (EReference)synchronousTimingConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2263,7 +2263,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		continuousTimingConstraintEClass = createEClass(CONTINUOUS_TIMING_CONSTRAINT);
 
 		synchronousTimingConstraintEClass = createEClass(SYNCHRONOUS_TIMING_CONSTRAINT);
-		createEReference(synchronousTimingConstraintEClass, SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME);
+		createEReference(synchronousTimingConstraintEClass, SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_INTERVAL);
 
 		asynchronousTimingConstraintEClass = createEClass(ASYNCHRONOUS_TIMING_CONSTRAINT);
 
@@ -2676,7 +2676,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(continuousTimingConstraintEClass, ContinuousTimingConstraint.class, "ContinuousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(synchronousTimingConstraintEClass, SynchronousTimingConstraint.class, "SynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSynchronousTimingConstraint_SampleTime(), this.getValueSpecification(), null, "sampleTime", null, 1, 1, SynchronousTimingConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSynchronousTimingConstraint_SampleInterval(), this.getValueSpecification(), null, "sampleInterval", null, 1, 1, SynchronousTimingConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asynchronousTimingConstraintEClass, AsynchronousTimingConstraint.class, "AsynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -68,7 +68,7 @@
     <genClasses image="false" ecoreClass="DML.ecore#//TimingConstraint"/>
     <genClasses ecoreClass="DML.ecore#//ContinuousTimingConstraint"/>
     <genClasses ecoreClass="DML.ecore#//SynchronousTimingConstraint">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SynchronousTimingConstraint/sampleTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SynchronousTimingConstraint/sampleInterval"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//AsynchronousTimingConstraint"/>
     <genClasses image="false" ecoreClass="DML.ecore#//FragmentElement">

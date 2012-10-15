@@ -105,7 +105,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		combo.setLayoutData(gridData);
 		timingConstraintViewer = new ComboViewer(combo);
 
-		sampleTimeLabel = getWidgetFactory().createLabel(client, "Sample Time (seconds):");
+		sampleTimeLabel = getWidgetFactory().createLabel(client, "Sample Interval (in s or Hz):");
 		gridData = new GridData();
 		sampleTimeLabel.setLayoutData(gridData);
 		
@@ -175,7 +175,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 
 		sampleTimeEditor.refresh(getEditingDomain(), getComponent(),
 				DMLPackage.eINSTANCE.getComponent_TimingConstraint(),
-				DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime());
+				DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleInterval());
 
 		IValueProperty timingConstraintProperty = EMFEditProperties.value(getEditingDomain(),
 				DMLPackage.eINSTANCE.getComponent_TimingConstraint());
@@ -276,7 +276,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 					synchronousTimingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
 					if (elementInitializer != null) {
 						elementInitializer.initialize(getComponent().eResource().getResourceSet(), synchronousTimingConstraint,
-								DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime(), null);
+								DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleInterval(), null);
 					}
 				}
 			}

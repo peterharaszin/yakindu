@@ -32,30 +32,30 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 public class DscriptUtil {
 
 	public static DscriptValueSpecification createValueSpecification(double value) {
-		return createValueSpecification(value, TypeUtil.createUnit());
+		return createValueSpecification(value, TypeUtil.createUnit(), Double.toString(value));
 	}
 	
-	public static DscriptValueSpecification createValueSpecification(double value, Unit unit) {
+	public static DscriptValueSpecification createValueSpecification(double value, Unit unit, String text) {
 		DscriptValueSpecification valueSpecification = DscriptFactory.eINSTANCE.createDscriptValueSpecification();
 		RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
 		realLiteral.setValue(value);
 		realLiteral.setUnit(unit);
 		valueSpecification.setExpression(realLiteral);
-		DscriptUtil.setText(valueSpecification, Double.toString(value));
+		DscriptUtil.setText(valueSpecification, text);
 		return valueSpecification;
 	}
 	
 	public static DscriptValueSpecification createValueSpecification(long value) {
-		return createValueSpecification(value, TypeUtil.createUnit());
+		return createValueSpecification(value, TypeUtil.createUnit(), Long.toString(value));
 	}
 	
-	public static DscriptValueSpecification createValueSpecification(long value, Unit unit) {
+	public static DscriptValueSpecification createValueSpecification(long value, Unit unit, String text) {
 		DscriptValueSpecification valueSpecification = DscriptFactory.eINSTANCE.createDscriptValueSpecification();
 		IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 		integerLiteral.setValue(value);
 		integerLiteral.setUnit(unit);
 		valueSpecification.setExpression(integerLiteral);
-		DscriptUtil.setText(valueSpecification, Long.toString(value));
+		DscriptUtil.setText(valueSpecification, text);
 		return valueSpecification;
 	}
 

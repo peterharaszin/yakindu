@@ -72,9 +72,9 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			RealType dataType = (RealType) staticEvaluationResult.getValue(feature).getDataType();
 			double value;
 			if ("Ts".equals(feature.getName())) {
-				value = context.getNode().getSampleTime();
+				value = context.getNode().getSampleInterval().sampleTime();
 			} else if ("fs".equals(feature.getName())) {
-				value = 1.0 / context.getNode().getSampleTime();
+				value = 1.0 / context.getNode().getSampleInterval().sampleTime();
 			} else {
 				value = 0.0;
 			}

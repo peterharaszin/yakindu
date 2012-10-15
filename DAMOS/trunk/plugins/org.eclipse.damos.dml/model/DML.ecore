@@ -60,7 +60,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TimingConstraint" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ContinuousTimingConstraint" eSuperTypes="#//TimingConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="SynchronousTimingConstraint" eSuperTypes="#//TimingConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sampleTime" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sampleInterval" lowerBound="1"
         eType="#//ValueSpecification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AsynchronousTimingConstraint" eSuperTypes="#//TimingConstraint"/>

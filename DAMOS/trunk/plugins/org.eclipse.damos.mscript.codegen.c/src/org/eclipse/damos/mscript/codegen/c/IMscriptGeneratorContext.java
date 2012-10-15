@@ -12,6 +12,7 @@
 package org.eclipse.damos.mscript.codegen.c;
 
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 
 /**
  * @author Andreas Unger
@@ -23,7 +24,7 @@ public interface IMscriptGeneratorContext {
 
 	IMscriptGeneratorConfiguration getConfiguration();
 	StaticFunctionInfo getFunctionInfo();
-	double getSampleTime();
+	ISampleInterval getSampleInterval();
 	IVariableAccessStrategy getVariableAccessStrategy();
 	ICodeFragmentCollector getCodeFragmentCollector();
 	

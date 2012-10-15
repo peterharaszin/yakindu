@@ -16,6 +16,7 @@ import org.eclipse.damos.execution.Graph;
 import org.eclipse.damos.execution.Node;
 import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.execution.internal.operations.ExecutionFlowOperations;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -39,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.damos.execution.impl.ExecutionFlowImpl#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.impl.ExecutionFlowImpl#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.impl.ExecutionFlowImpl#getTaskGraphs <em>Task Graphs</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.impl.ExecutionFlowImpl#getFundamentalSampleTime <em>Fundamental Sample Time</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.impl.ExecutionFlowImpl#getFundamentalSampleInterval <em>Fundamental Sample Interval</em>}</li>
  * </ul>
  * </p>
  *
@@ -107,24 +108,24 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	protected EList<TaskGraph> taskGraphs;
 
 	/**
-	 * The default value of the '{@link #getFundamentalSampleTime() <em>Fundamental Sample Time</em>}' attribute.
+	 * The default value of the '{@link #getFundamentalSampleInterval() <em>Fundamental Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFundamentalSampleTime()
+	 * @see #getFundamentalSampleInterval()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double FUNDAMENTAL_SAMPLE_TIME_EDEFAULT = 0.0;
+	protected static final ISampleInterval FUNDAMENTAL_SAMPLE_INTERVAL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFundamentalSampleTime() <em>Fundamental Sample Time</em>}' attribute.
+	 * The cached value of the '{@link #getFundamentalSampleInterval() <em>Fundamental Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFundamentalSampleTime()
+	 * @see #getFundamentalSampleInterval()
 	 * @generated
 	 * @ordered
 	 */
-	protected double fundamentalSampleTime = FUNDAMENTAL_SAMPLE_TIME_EDEFAULT;
+	protected ISampleInterval fundamentalSampleInterval = FUNDAMENTAL_SAMPLE_INTERVAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,8 +277,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getFundamentalSampleTime() {
-		return fundamentalSampleTime;
+	public ISampleInterval getFundamentalSampleInterval() {
+		return fundamentalSampleInterval;
 	}
 
 	/**
@@ -285,11 +286,11 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFundamentalSampleTime(double newFundamentalSampleTime) {
-		double oldFundamentalSampleTime = fundamentalSampleTime;
-		fundamentalSampleTime = newFundamentalSampleTime;
+	public void setFundamentalSampleInterval(ISampleInterval newFundamentalSampleInterval) {
+		ISampleInterval oldFundamentalSampleInterval = fundamentalSampleInterval;
+		fundamentalSampleInterval = newFundamentalSampleInterval;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME, oldFundamentalSampleTime, fundamentalSampleTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL, oldFundamentalSampleInterval, fundamentalSampleInterval));
 	}
 
 	/**
@@ -347,8 +348,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return getAsynchronousZoneCount();
 			case ExecutionPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				return getTaskGraphs();
-			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
-				return getFundamentalSampleTime();
+			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL:
+				return getFundamentalSampleInterval();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -379,8 +380,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				getTaskGraphs().clear();
 				getTaskGraphs().addAll((Collection<? extends TaskGraph>)newValue);
 				return;
-			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
-				setFundamentalSampleTime((Double)newValue);
+			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL:
+				setFundamentalSampleInterval((ISampleInterval)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -409,8 +410,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				getTaskGraphs().clear();
 				return;
-			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
-				setFundamentalSampleTime(FUNDAMENTAL_SAMPLE_TIME_EDEFAULT);
+			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL:
+				setFundamentalSampleInterval(FUNDAMENTAL_SAMPLE_INTERVAL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -434,8 +435,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return asynchronousZoneCount != ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
 			case ExecutionPackage.EXECUTION_FLOW__TASK_GRAPHS:
 				return taskGraphs != null && !taskGraphs.isEmpty();
-			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME:
-				return fundamentalSampleTime != FUNDAMENTAL_SAMPLE_TIME_EDEFAULT;
+			case ExecutionPackage.EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL:
+				return FUNDAMENTAL_SAMPLE_INTERVAL_EDEFAULT == null ? fundamentalSampleInterval != null : !FUNDAMENTAL_SAMPLE_INTERVAL_EDEFAULT.equals(fundamentalSampleInterval);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -452,8 +453,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (asynchronousZoneCount: ");
 		result.append(asynchronousZoneCount);
-		result.append(", fundamentalSampleTime: ");
-		result.append(fundamentalSampleTime);
+		result.append(", fundamentalSampleInterval: ");
+		result.append(fundamentalSampleInterval);
 		result.append(')');
 		return result.toString();
 	}

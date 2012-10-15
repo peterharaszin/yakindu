@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -37,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class BlockTypeItemProvider
-	extends ItemProviderAdapter
+	extends EModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -196,7 +195,6 @@ public class BlockTypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
 			childrenFeatures.add(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__INPUT_DEFINITIONS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__OUTPUT_DEFINITIONS);
@@ -261,7 +259,6 @@ public class BlockTypeItemProvider
 			case DMLPackage.BLOCK_TYPE__BOUNDARY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DMLPackage.BLOCK_TYPE__EANNOTATIONS:
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:

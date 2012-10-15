@@ -75,7 +75,7 @@ public class SynchronousTimingConstraintItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DMLPackage.Literals.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME);
+			childrenFeatures.add(DMLPackage.Literals.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_INTERVAL);
 		}
 		return childrenFeatures;
 	}
@@ -127,7 +127,7 @@ public class SynchronousTimingConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SynchronousTimingConstraint.class)) {
-			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME:
+			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_INTERVAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,7 +147,7 @@ public class SynchronousTimingConstraintItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DMLPackage.Literals.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME,
+				(DMLPackage.Literals.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_INTERVAL,
 				 DMLFactory.eINSTANCE.createStringValueSpecification()));
 	}
 

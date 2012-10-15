@@ -37,6 +37,8 @@ import org.eclipse.damos.mscript.internal.builtin.IBuiltinFunctionLookup;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipse.damos.mscript.interpreter.value.Values;
+import org.eclipse.damos.mscript.util.ISampleInterval;
+import org.eclipse.damos.mscript.util.SampleTime;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -55,19 +57,19 @@ public class Interpreter implements IInterpreter, IFunctionInvocationHandler {
 	private final IStaticEvaluationResult staticEvaluationResult;
 	private final IComputationContext computationContext;
 	
-	private final double sampleTime;
+	private final ISampleInterval sampleInterval;
 	private double time;
 	
 	private final Map<FunctionCallPath, IFunctionObject> functionObjects = new HashMap<FunctionCallPath, IFunctionObject>();
 
 	public Interpreter(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext) {
-		this(staticEvaluationResult, computationContext, 0.0);
+		this(staticEvaluationResult, computationContext, new SampleTime(0.0));
 	}
 	
-	public Interpreter(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext, double sampleTime) {
+	public Interpreter(IStaticEvaluationResult staticEvaluationResult, IComputationContext computationContext, ISampleInterval sampleInterval) {
 		this.staticEvaluationResult = staticEvaluationResult;
 		this.computationContext = computationContext;
-		this.sampleTime = sampleTime;
+		this.sampleInterval = sampleInterval;
 	}
 	
 	public IFunctionObject createFunctionObject(IInterpreterContext context) {
@@ -214,7 +216,7 @@ public class Interpreter implements IInterpreter, IFunctionInvocationHandler {
 					if (value != null) {
 						RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
 						IVariable variable = new Variable(context, variableDeclaration);
-						variable.setValue(0, Values.valueOf(computationContext, dataType, sampleTime));
+						variable.setValue(0, Values.valueOf(computationContext, dataType, sampleInterval.sampleTime()));
 						functionObject.addVariable(variable);
 					}
 				}
@@ -227,7 +229,7 @@ public class Interpreter implements IInterpreter, IFunctionInvocationHandler {
 					if (value != null) {
 						RealType dataType = EcoreUtil.copy((RealType) value.getDataType());
 						IVariable variable = new Variable(context, variableDeclaration);
-						variable.setValue(0, Values.valueOf(computationContext, dataType, 1.0 / sampleTime));
+						variable.setValue(0, Values.valueOf(computationContext, dataType, 1.0 / sampleInterval.sampleTime()));
 						functionObject.addVariable(variable);
 					}
 				}

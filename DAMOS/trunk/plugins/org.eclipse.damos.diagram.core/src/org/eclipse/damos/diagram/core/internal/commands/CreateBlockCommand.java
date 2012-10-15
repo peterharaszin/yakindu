@@ -79,7 +79,7 @@ public class CreateBlockCommand extends CreateElementCommand {
 			if (elementInitializer != null) {
 				SynchronousTimingConstraint synchronousTimingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
 				if (elementInitializer.initialize(getElementToEdit().eResource().getResourceSet(), synchronousTimingConstraint,
-						DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime(), null)) {
+						DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleInterval(), null)) {
 					block.setTimingConstraint(synchronousTimingConstraint);
 				}
 			}

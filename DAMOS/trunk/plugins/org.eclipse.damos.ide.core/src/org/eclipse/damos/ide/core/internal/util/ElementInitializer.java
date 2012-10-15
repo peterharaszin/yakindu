@@ -20,10 +20,10 @@ public class ElementInitializer implements IElementInitializer {
 
 	public boolean initialize(ResourceSet resourceSet, EObject element, EStructuralFeature feature, Object hint) {
 		if (element instanceof SynchronousTimingConstraint
-				&& feature == DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime()) {
+				&& feature == DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleInterval()) {
 			SynchronousTimingConstraint stc = (SynchronousTimingConstraint) element;
-			DscriptValueSpecification valueSpecification = DscriptUtil.createValueSpecification(1, TypeUtil.createUnit(resourceSet, "s"));
-			stc.setSampleTime(valueSpecification);
+			DscriptValueSpecification valueSpecification = DscriptUtil.createValueSpecification(1, TypeUtil.createUnit(resourceSet, "s"), "1(s)");
+			stc.setSampleInterval(valueSpecification);
 			return true;
 		}
 		

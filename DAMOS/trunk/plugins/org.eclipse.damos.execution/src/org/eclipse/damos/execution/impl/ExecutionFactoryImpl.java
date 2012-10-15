@@ -23,6 +23,7 @@ import org.eclipse.damos.execution.PortInfo;
 import org.eclipse.damos.execution.SubsystemNode;
 import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.execution.TaskInputNode;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -101,6 +102,8 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case ExecutionPackage.ISAMPLE_INTERVAL:
+				return createISampleIntervalFromString(eDataType, initialValue);
 			case ExecutionPackage.SYSTEM_PATH:
 				return createSystemPathFromString(eDataType, initialValue);
 			case ExecutionPackage.ITERABLE:
@@ -118,6 +121,8 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case ExecutionPackage.ISAMPLE_INTERVAL:
+				return convertISampleIntervalToString(eDataType, instanceValue);
 			case ExecutionPackage.SYSTEM_PATH:
 				return convertSystemPathToString(eDataType, instanceValue);
 			case ExecutionPackage.ITERABLE:
@@ -265,6 +270,24 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 	public PortInfo createPortInfo() {
 		PortInfoImpl portInfo = new PortInfoImpl();
 		return portInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ISampleInterval createISampleIntervalFromString(EDataType eDataType, String initialValue) {
+		return (ISampleInterval)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertISampleIntervalToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

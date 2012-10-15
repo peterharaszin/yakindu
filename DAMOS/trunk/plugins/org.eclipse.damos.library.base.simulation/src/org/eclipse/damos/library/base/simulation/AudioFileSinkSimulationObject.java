@@ -34,6 +34,7 @@ import org.eclipse.damos.library.base.simulation.audio.AudioFileWriter;
 import org.eclipse.damos.library.base.util.AudioFileSourceConstants;
 import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
+import org.eclipse.damos.mscript.util.SampleRate;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipse.damos.simulation.util.SimulationConfigurationUtil;
 import org.eclipse.emf.common.util.URI;
@@ -76,11 +77,16 @@ public class AudioFileSinkSimulationObject extends AbstractBlockSimulationObject
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Invalid simulation time"));
 		}
 		
-		if (getNode().getSampleTime() == 0 || getNode().getSampleTime() == Double.MAX_VALUE) {
+		if (getNode().getSampleInterval().sampleTime() == 0 || getNode().getSampleInterval().sampleTime() == Double.MAX_VALUE) {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Sample time of audio file sinks must be synchronous"));
 		}
 		
-		float sampleRate = (float) (1.0 / getNode().getSampleTime());
+		float sampleRate;
+		if (getNode().getSampleInterval() instanceof SampleRate) {
+			sampleRate = ((SampleRate) getNode().getSampleInterval()).longValue();
+		} else {
+			sampleRate = (float) (1.0 / getNode().getSampleInterval().sampleTime());
+		}
 		
 		length = Math.round(simulationTime * sampleRate);
 

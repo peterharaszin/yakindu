@@ -23,8 +23,8 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskGraphs" upperBound="-1"
         eType="#//TaskGraph" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fundamentalSampleTime"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fundamentalSampleInterval"
+        eType="#//ISampleInterval"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
     <eOperations name="getAllNodesIterator" lowerBound="1">
@@ -74,8 +74,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ComponentNode" eSuperTypes="#//Node">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Component"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleInterval" lowerBound="1"
+        eType="#//ISampleInterval"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronousZone" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="-1"/>
   </eClassifiers>
@@ -150,6 +150,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="portIndex" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ISampleInterval" instanceClassName="org.eclipse.damos.mscript.util.ISampleInterval"/>
   <eClassifiers xsi:type="ecore:EDataType" name="SystemPath" instanceClassName="org.eclipse.damos.dml.util.SystemPath"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Iterable" instanceClassName="java.lang.Iterable">
     <eTypeParameters name="E"/>

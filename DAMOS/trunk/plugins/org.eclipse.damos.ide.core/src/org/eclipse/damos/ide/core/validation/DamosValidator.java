@@ -1,7 +1,6 @@
 package org.eclipse.damos.ide.core.validation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +35,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class DamosValidator {
 
+	private TimingConstraintValidator timingConstraintValidator = new TimingConstraintValidator();
+	
 	public List<Problem> validate(Resource resource, IProgressMonitor monitor) throws CoreException {
 		List<Problem> markers = new ArrayList<Problem>();
 
@@ -89,20 +90,39 @@ public class DamosValidator {
 				}
 			}
 		}
-
+		
 		if (validationResult) {
-			DataTypeResolver dataTypeResolver = new DataTypeResolver();
-			Collection<Fragment> fragments = EcoreUtil.getObjectsByType(resource.getContents(),
-					DMLPackage.Literals.FRAGMENT);
-			for (Fragment fragment : fragments) {
-				DataTypeResolverResult result = dataTypeResolver.resolve(fragment, false);
-				if (!result.getStatus().isOK()) {
-					for (IStatus status : result.getStatus().getChildren()) {
-						addMarkers(markers, fragment, null, status);
+			for (EObject element : resource.getContents()) {
+				if (element instanceof Fragment) {
+					Fragment fragment = (Fragment) element;
+					for (Component fragmentElement : fragment.getAllComponents()) {
+						IStatus status = timingConstraintValidator.validateTimingConstraint((Component) fragmentElement);
+						if (!status.isOK()) {
+							addMarkers(markers, fragment, fragmentElement, status);
+							if (status.getSeverity() > IStatus.WARNING) {
+								validationResult = false;
+							}
+						}
 					}
 				}
 			}
 		}
+
+		if (validationResult) {
+			DataTypeResolver dataTypeResolver = new DataTypeResolver();
+			for (EObject element : resource.getContents()) {
+				if (element instanceof Fragment) {
+					Fragment fragment = (Fragment) element;
+					DataTypeResolverResult result = dataTypeResolver.resolve(fragment, false);
+					if (!result.getStatus().isOK()) {
+						for (IStatus status : result.getStatus().getChildren()) {
+							addMarkers(markers, fragment, null, status);
+						}
+					}
+				}
+			}
+		}
+		
 		return markers;
 	}
 

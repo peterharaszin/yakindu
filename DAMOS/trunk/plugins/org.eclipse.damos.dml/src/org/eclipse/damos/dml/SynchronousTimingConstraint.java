@@ -15,7 +15,7 @@ package org.eclipse.damos.dml;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.damos.dml.SynchronousTimingConstraint#getSampleTime <em>Sample Time</em>}</li>
+ *   <li>{@link org.eclipse.damos.dml.SynchronousTimingConstraint#getSampleInterval <em>Sample Interval</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,29 +25,29 @@ package org.eclipse.damos.dml;
  */
 public interface SynchronousTimingConstraint extends TimingConstraint {
 	/**
-	 * Returns the value of the '<em><b>Sample Time</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Sample Interval</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sample Time</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Sample Interval</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sample Time</em>' containment reference.
-	 * @see #setSampleTime(ValueSpecification)
-	 * @see org.eclipse.damos.dml.DMLPackage#getSynchronousTimingConstraint_SampleTime()
+	 * @return the value of the '<em>Sample Interval</em>' containment reference.
+	 * @see #setSampleInterval(ValueSpecification)
+	 * @see org.eclipse.damos.dml.DMLPackage#getSynchronousTimingConstraint_SampleInterval()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ValueSpecification getSampleTime();
+	ValueSpecification getSampleInterval();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.damos.dml.SynchronousTimingConstraint#getSampleTime <em>Sample Time</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.damos.dml.SynchronousTimingConstraint#getSampleInterval <em>Sample Interval</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sample Time</em>' containment reference.
-	 * @see #getSampleTime()
+	 * @param value the new value of the '<em>Sample Interval</em>' containment reference.
+	 * @see #getSampleInterval()
 	 * @generated
 	 */
-	void setSampleTime(ValueSpecification value);
+	void setSampleInterval(ValueSpecification value);
 
 } // SynchronousTimingConstraint

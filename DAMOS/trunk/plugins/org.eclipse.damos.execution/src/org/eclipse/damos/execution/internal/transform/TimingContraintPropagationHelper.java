@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.damos.common.util.MathUtil;
 import org.eclipse.damos.dml.AsynchronousTimingConstraint;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.dml.ContinuousTimingConstraint;
@@ -28,6 +27,7 @@ import org.eclipse.damos.dml.Latch;
 import org.eclipse.damos.dml.Port;
 import org.eclipse.damos.dml.SynchronousTimingConstraint;
 import org.eclipse.damos.dml.ValueSpecification;
+import org.eclipse.damos.dml.util.DMLUtil;
 import org.eclipse.damos.dscript.DscriptValueSpecification;
 import org.eclipse.damos.execution.ComponentNode;
 import org.eclipse.damos.execution.DataFlowEnd;
@@ -36,6 +36,9 @@ import org.eclipse.damos.execution.Graph;
 import org.eclipse.damos.execution.Node;
 import org.eclipse.damos.execution.internal.ExecutionPlugin;
 import org.eclipse.damos.mscript.Expression;
+import org.eclipse.damos.mscript.IntegerType;
+import org.eclipse.damos.mscript.Unit;
+import org.eclipse.damos.mscript.UnitFactor;
 import org.eclipse.damos.mscript.interpreter.ExpressionEvaluator;
 import org.eclipse.damos.mscript.interpreter.IExpressionEvaluator;
 import org.eclipse.damos.mscript.interpreter.IStaticEvaluationResult;
@@ -44,6 +47,10 @@ import org.eclipse.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipse.damos.mscript.interpreter.StaticExpressionEvaluationContext;
 import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
+import org.eclipse.damos.mscript.util.ISampleInterval;
+import org.eclipse.damos.mscript.util.SampleRate;
+import org.eclipse.damos.mscript.util.SampleTime;
+import org.eclipse.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -51,24 +58,26 @@ import org.eclipse.damos.mscript.interpreter.value.IValue;
  */
 public class TimingContraintPropagationHelper {
 	
-	private static final double INHERITED = -1;
-	private static final double CONTINUOUS = 0;
-	private static final double ASYNCHRONOUS = Double.POSITIVE_INFINITY;
+	private static final ISampleInterval INHERITED = new SampleTime(-1);
+	private static final ISampleInterval CONTINUOUS = new SampleTime(0);
+	private static final ISampleInterval ASYNCHRONOUS = new SampleTime(Double.POSITIVE_INFINITY);
 
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 	
 	private int asynchronousZone;
 
 	public void propagateTimingConstraints(ExecutionFlow executionFlow) throws CoreException {
+		executionFlow.setFundamentalSampleInterval(CONTINUOUS);
+		
 		Graph graph = executionFlow.getGraph();
 		List<ComponentNode> inheritingNodes = new LinkedList<ComponentNode>();
-		applySampleTimes(executionFlow, graph, inheritingNodes);
+		applySampleIntervals(executionFlow, graph, inheritingNodes);
 		
 		boolean changed;
 		do {
-			changed = inheritSampleTimes(inheritingNodes, false);
+			changed = inheritSampleIntervals(inheritingNodes, false);
 			if (!inheritingNodes.isEmpty()) {
-				changed |= inheritSampleTimes(inheritingNodes, true);
+				changed |= inheritSampleIntervals(inheritingNodes, true);
 			}
 		} while (changed);
 		
@@ -84,7 +93,7 @@ public class TimingContraintPropagationHelper {
 	private void checkFailedComponentNodes(List<ComponentNode> inheritingNodes) throws CoreException {
 		List<ComponentNode> failedComponentNodes = null;
 		for (ComponentNode inheritingNode : inheritingNodes) {
-			if (inheritingNode.getSampleTime() == INHERITED) {
+			if (inheritingNode.getSampleInterval() == INHERITED) {
 				if (failedComponentNodes == null) {
 					failedComponentNodes = new ArrayList<ComponentNode>();
 				}
@@ -111,41 +120,37 @@ public class TimingContraintPropagationHelper {
 		}
 	}
 	
-	private void applySampleTimes(ExecutionFlow executionFlow, Graph graph, List<ComponentNode> inheritingNodes) throws CoreException {
+	private void applySampleIntervals(ExecutionFlow executionFlow, Graph graph, List<ComponentNode> inheritingNodes) throws CoreException {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				try {
-					double sampleTime = getSampleTime(componentNode.getComponent());
-					componentNode.setSampleTime(sampleTime);
-					if (sampleTime == ASYNCHRONOUS) {
+					ISampleInterval sampleInterval = getSampleInterval(componentNode.getComponent());
+					componentNode.setSampleInterval(sampleInterval);
+					if (sampleInterval == ASYNCHRONOUS) {
 						componentNode.setAsynchronousZone(asynchronousZone++);
-					} else if (sampleTime == INHERITED) {
+					} else if (sampleInterval == INHERITED) {
 						inheritingNodes.add(componentNode);
-					} else if (sampleTime != CONTINUOUS) {
-						double fundamentalSampleTime = executionFlow.getFundamentalSampleTime();
-						if (fundamentalSampleTime == 0) {
-							fundamentalSampleTime = sampleTime;
+					} else if (sampleInterval != CONTINUOUS) {
+						ISampleInterval fundamentalSampleTime = executionFlow.getFundamentalSampleInterval();
+						if (fundamentalSampleTime == CONTINUOUS) {
+							fundamentalSampleTime = sampleInterval;
 						} else {
-							fundamentalSampleTime = MathUtil.gcd(sampleTime, fundamentalSampleTime);
+							fundamentalSampleTime = sampleInterval.getFundamental(fundamentalSampleTime);
 						}
-						executionFlow.setFundamentalSampleTime(fundamentalSampleTime);
+						executionFlow.setFundamentalSampleInterval(fundamentalSampleTime);
 					}
 				} catch (NumberFormatException e) {
 					throw new CoreException(new Status(
 							IStatus.ERROR, ExecutionPlugin.PLUGIN_ID, 0, "Invalid sample time specified", e));
 				}
 			} else if (node instanceof Graph) {
-				applySampleTimes(executionFlow, (Graph) node, inheritingNodes);
+				applySampleIntervals(executionFlow, (Graph) node, inheritingNodes);
 			}
 		}
 	}
 
-	/**
-	 * @param sampleTimeSpecification
-	 * @return
-	 */
-	private double getSampleTime(Component component) {
+	private ISampleInterval getSampleInterval(Component component) {
 		if (component.getTimingConstraint() instanceof ContinuousTimingConstraint) {
 			return CONTINUOUS;
 		}
@@ -154,20 +159,45 @@ public class TimingContraintPropagationHelper {
 		}
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
-			ValueSpecification sampleTimeSpecification = synchronousTimingConstraint.getSampleTime();
+			ValueSpecification sampleTimeSpecification = synchronousTimingConstraint.getSampleInterval();
 			if (sampleTimeSpecification instanceof DscriptValueSpecification) {
 				IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 				Expression sampleTimeExpression = ((DscriptValueSpecification) sampleTimeSpecification).getExpression();
-				IValue sampleTime = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), sampleTimeExpression);
-				if (sampleTime instanceof ISimpleNumericValue) {
-					return ((ISimpleNumericValue) sampleTime).doubleValue();
+				IValue value = expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), sampleTimeExpression);
+				if (value instanceof ISimpleNumericValue) {
+					ISimpleNumericValue sampleInterval = (ISimpleNumericValue) value;
+					Unit normalizedUnit = sampleInterval.getDataType().getUnit().getNormalized();
+					if (normalizedUnit.getFactors().size() == 1) {
+						UnitFactor secondFactor = normalizedUnit.getFactors().get(0);
+						if (DMLUtil.isResolved(secondFactor.getSymbol())
+								&& TypeUtil.SECOND_UNIT.equals(secondFactor.getSymbol().getName())
+								&& secondFactor.getExponent() == -1) {
+							if (sampleInterval.getDataType() instanceof IntegerType && normalizedUnit.getScale() == 0) {
+								return new SampleRate(sampleInterval.longValue());
+							}
+							BigDecimal sampleRate = BigDecimal.valueOf(sampleInterval.doubleValue());
+							sampleRate = sampleRate.scaleByPowerOfTen(normalizedUnit.getScale());
+							try {
+								return new SampleRate(sampleRate.longValueExact());
+							} catch (ArithmeticException e) {
+								// Fall-through and return SampleTime if sampleRate value
+								// cannot be represented by a long value 
+							}
+							return new SampleTime(1.0 / sampleInterval.doubleValue());
+						}
+					}
+					double sampleTime = sampleInterval.doubleValue();
+					if (normalizedUnit.getScale() != 0) {
+						sampleTime *= Math.pow(10.0, normalizedUnit.getScale());
+					}
+					return new SampleTime(sampleTime);
 				}
 			}
 		}
 		return INHERITED;
 	}
 
-	private boolean inheritSampleTimes(List<ComponentNode> inheritingNodes, boolean backwards) {
+	private boolean inheritSampleIntervals(List<ComponentNode> inheritingNodes, boolean backwards) {
 		boolean changedOnce = false;
 		
 		boolean changed;
@@ -181,7 +211,7 @@ public class TimingContraintPropagationHelper {
 					continue;
 				}
 
-				double sampleTime = next.getSampleTime();
+				ISampleInterval sampleInterval = next.getSampleInterval();
 				int asynchronousZone = next.getAsynchronousZone();
 				
 				List<? extends DataFlowEnd> nodes;
@@ -194,9 +224,9 @@ public class TimingContraintPropagationHelper {
 				for (DataFlowEnd end : nodes) {
 					if (end.getNode() instanceof ComponentNode) {
 						ComponentNode sourceComponentNode = (ComponentNode) end.getNode();
-						if (sourceComponentNode.getSampleTime() == ASYNCHRONOUS) {
-							if (sampleTime != ASYNCHRONOUS) {
-								sampleTime = ASYNCHRONOUS;
+						if (sourceComponentNode.getSampleInterval() == ASYNCHRONOUS) {
+							if (sampleInterval != ASYNCHRONOUS) {
+								sampleInterval = ASYNCHRONOUS;
 								if (isSocket(end)) {
 									asynchronousZone = this.asynchronousZone++;
 									break;
@@ -209,28 +239,28 @@ public class TimingContraintPropagationHelper {
 							}
 							continue;
 						}
-						if (sampleTime == CONTINUOUS || sampleTime == ASYNCHRONOUS) {
+						if (sampleInterval == CONTINUOUS || sampleInterval == ASYNCHRONOUS) {
 							continue;
 						}
-						if (sourceComponentNode.getSampleTime() == CONTINUOUS) {
-							sampleTime = CONTINUOUS;
+						if (sourceComponentNode.getSampleInterval() == CONTINUOUS) {
+							sampleInterval = CONTINUOUS;
 							continue;
 						}
-						if (sourceComponentNode.getSampleTime() > 0) {
-							if (sampleTime == INHERITED) {
-								sampleTime = sourceComponentNode.getSampleTime();
+						if (sourceComponentNode.getSampleInterval().sampleTime() > 0) {
+							if (sampleInterval == INHERITED) {
+								sampleInterval = sourceComponentNode.getSampleInterval();
 							} else {
-								sampleTime = gcd(sampleTime, sourceComponentNode.getSampleTime());
+								sampleInterval = sampleInterval.getFundamental(sourceComponentNode.getSampleInterval());
 							}
 						}
 					}
 				}
 				
-				if (sampleTime != next.getSampleTime() || asynchronousZone != next.getAsynchronousZone()) {
-					next.setSampleTime(sampleTime);
+				if (!sampleInterval.equals(next.getSampleInterval()) || asynchronousZone != next.getAsynchronousZone()) {
+					next.setSampleInterval(sampleInterval);
 					next.setAsynchronousZone(asynchronousZone);
 
-					if (sampleTime == ASYNCHRONOUS) {
+					if (sampleInterval == ASYNCHRONOUS) {
 						it.remove();
 					}
 					
@@ -242,7 +272,7 @@ public class TimingContraintPropagationHelper {
 		
 		if (changedOnce) {
 			for (Iterator<ComponentNode> it = inheritingNodes.iterator(); it.hasNext();) {
-				if (it.next().getSampleTime() != INHERITED) {
+				if (it.next().getSampleInterval() != INHERITED) {
 					it.remove();
 				}
 			}
@@ -259,15 +289,4 @@ public class TimingContraintPropagationHelper {
 		return false;
 	}
 	
-	private static double gcd(double a, double b) {
-		return gcd(BigDecimal.valueOf(a), BigDecimal.valueOf(b));
-	}
-
-	private static double gcd(BigDecimal a, BigDecimal b) {
-		if (BigDecimal.ZERO.compareTo(b) == 0) {
-			return a.doubleValue();
-		}
-		return gcd(b, a.remainder(b));
-	}
-
 }

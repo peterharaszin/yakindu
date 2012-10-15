@@ -103,7 +103,7 @@ public class UDPSourceSimulationObject extends UDPSimulationObject {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryVISimulationPlugin.PLUGIN_ID, "Socket error occurred", e));
 		}
 		
-		nanoSampleTime = Math.round(getNode().getSampleTime() * 1e9);
+		nanoSampleTime = Math.round(getNode().getSampleInterval().sampleTime() * 1e9);
 		
 		udpThread = new UDPThread();
 	}

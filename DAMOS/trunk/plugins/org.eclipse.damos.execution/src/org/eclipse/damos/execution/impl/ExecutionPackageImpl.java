@@ -28,6 +28,7 @@ import org.eclipse.damos.execution.Subgraph;
 import org.eclipse.damos.execution.SubsystemNode;
 import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.execution.TaskInputNode;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -175,6 +176,13 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType iSampleIntervalEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType systemPathEDataType = null;
 
 	/**
@@ -307,7 +315,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExecutionFlow_FundamentalSampleTime() {
+	public EAttribute getExecutionFlow_FundamentalSampleInterval() {
 		return (EAttribute)executionFlowEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -442,7 +450,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getComponentNode_SampleTime() {
+	public EAttribute getComponentNode_SampleInterval() {
 		return (EAttribute)componentNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -766,6 +774,15 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getISampleInterval() {
+		return iSampleIntervalEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getSystemPath() {
 		return systemPathEDataType;
 	}
@@ -813,7 +830,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		createEReference(executionFlowEClass, EXECUTION_FLOW__DATA_FLOWS);
 		createEAttribute(executionFlowEClass, EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__TASK_GRAPHS);
-		createEAttribute(executionFlowEClass, EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME);
+		createEAttribute(executionFlowEClass, EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL);
 
 		graphEClass = createEClass(GRAPH);
 		createEReference(graphEClass, GRAPH__NODES);
@@ -832,7 +849,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		componentNodeEClass = createEClass(COMPONENT_NODE);
 		createEReference(componentNodeEClass, COMPONENT_NODE__COMPONENT);
-		createEAttribute(componentNodeEClass, COMPONENT_NODE__SAMPLE_TIME);
+		createEAttribute(componentNodeEClass, COMPONENT_NODE__SAMPLE_INTERVAL);
 		createEAttribute(componentNodeEClass, COMPONENT_NODE__ASYNCHRONOUS_ZONE);
 
 		latchNodeEClass = createEClass(LATCH_NODE);
@@ -883,6 +900,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		createEAttribute(portInfoEClass, PORT_INFO__PORT_INDEX);
 
 		// Create data types
+		iSampleIntervalEDataType = createEDataType(ISAMPLE_INTERVAL);
 		systemPathEDataType = createEDataType(SYSTEM_PATH);
 		iterableEDataType = createEDataType(ITERABLE);
 	}
@@ -939,7 +957,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		initEReference(getExecutionFlow_DataFlows(), this.getDataFlow(), null, "dataFlows", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getExecutionFlow_AsynchronousZoneCount(), ecorePackage.getEInt(), "asynchronousZoneCount", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExecutionFlow_TaskGraphs(), this.getTaskGraph(), null, "taskGraphs", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExecutionFlow_FundamentalSampleTime(), ecorePackage.getEDouble(), "fundamentalSampleTime", null, 0, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionFlow_FundamentalSampleInterval(), this.getISampleInterval(), "fundamentalSampleInterval", null, 0, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(executionFlowEClass, null, "getAllNodesIterator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getETreeIterator());
@@ -999,7 +1017,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		initEClass(componentNodeEClass, ComponentNode.class, "ComponentNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentNode_Component(), theDMLPackage.getComponent(), null, "component", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getComponentNode_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponentNode_SampleInterval(), this.getISampleInterval(), "sampleInterval", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComponentNode_AsynchronousZone(), ecorePackage.getEInt(), "asynchronousZone", "-1", 0, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(latchNodeEClass, LatchNode.class, "LatchNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1060,6 +1078,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		initEAttribute(getPortInfo_PortIndex(), ecorePackage.getEInt(), "portIndex", null, 1, 1, PortInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
+		initEDataType(iSampleIntervalEDataType, ISampleInterval.class, "ISampleInterval", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(systemPathEDataType, SystemPath.class, "SystemPath", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(iterableEDataType, Iterable.class, "Iterable", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 

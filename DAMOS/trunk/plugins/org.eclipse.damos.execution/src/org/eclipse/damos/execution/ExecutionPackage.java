@@ -116,13 +116,13 @@ public interface ExecutionPackage extends EPackage {
 	int EXECUTION_FLOW__TASK_GRAPHS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Fundamental Sample Time</b></em>' attribute.
+	 * The feature id for the '<em><b>Fundamental Sample Interval</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME = 5;
+	int EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL = 5;
 
 	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
@@ -426,13 +426,13 @@ public interface ExecutionPackage extends EPackage {
 	int COMPONENT_NODE__COMPONENT = NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
+	 * The feature id for the '<em><b>Sample Interval</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_NODE__SAMPLE_TIME = NODE_FEATURE_COUNT + 1;
+	int COMPONENT_NODE__SAMPLE_INTERVAL = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Asynchronous Zone</b></em>' attribute.
@@ -526,13 +526,13 @@ public interface ExecutionPackage extends EPackage {
 	int LATCH_NODE__COMPONENT = COMPONENT_NODE__COMPONENT;
 
 	/**
-	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
+	 * The feature id for the '<em><b>Sample Interval</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LATCH_NODE__SAMPLE_TIME = COMPONENT_NODE__SAMPLE_TIME;
+	int LATCH_NODE__SAMPLE_INTERVAL = COMPONENT_NODE__SAMPLE_INTERVAL;
 
 	/**
 	 * The feature id for the '<em><b>Asynchronous Zone</b></em>' attribute.
@@ -1321,6 +1321,16 @@ public interface ExecutionPackage extends EPackage {
 	int PORT_INFO_FEATURE_COUNT = CONNECTOR_INFO_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '<em>ISample Interval</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.damos.mscript.util.ISampleInterval
+	 * @see org.eclipse.damos.execution.impl.ExecutionPackageImpl#getISampleInterval()
+	 * @generated
+	 */
+	int ISAMPLE_INTERVAL = 18;
+
+	/**
 	 * The meta object id for the '<em>System Path</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1328,7 +1338,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see org.eclipse.damos.execution.impl.ExecutionPackageImpl#getSystemPath()
 	 * @generated
 	 */
-	int SYSTEM_PATH = 18;
+	int SYSTEM_PATH = 19;
 
 	/**
 	 * The meta object id for the '<em>Iterable</em>' data type.
@@ -1338,7 +1348,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see org.eclipse.damos.execution.impl.ExecutionPackageImpl#getIterable()
 	 * @generated
 	 */
-	int ITERABLE = 19;
+	int ITERABLE = 20;
 
 
 	/**
@@ -1407,15 +1417,15 @@ public interface ExecutionPackage extends EPackage {
 	EReference getExecutionFlow_TaskGraphs();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleInterval <em>Fundamental Sample Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fundamental Sample Time</em>'.
-	 * @see org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleTime()
+	 * @return the meta object for the attribute '<em>Fundamental Sample Interval</em>'.
+	 * @see org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleInterval()
 	 * @see #getExecutionFlow()
 	 * @generated
 	 */
-	EAttribute getExecutionFlow_FundamentalSampleTime();
+	EAttribute getExecutionFlow_FundamentalSampleInterval();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.damos.execution.Graph <em>Graph</em>}'.
@@ -1568,15 +1578,15 @@ public interface ExecutionPackage extends EPackage {
 	EReference getComponentNode_Component();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.ComponentNode#getSampleTime <em>Sample Time</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.ComponentNode#getSampleInterval <em>Sample Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sample Time</em>'.
-	 * @see org.eclipse.damos.execution.ComponentNode#getSampleTime()
+	 * @return the meta object for the attribute '<em>Sample Interval</em>'.
+	 * @see org.eclipse.damos.execution.ComponentNode#getSampleInterval()
 	 * @see #getComponentNode()
 	 * @generated
 	 */
-	EAttribute getComponentNode_SampleTime();
+	EAttribute getComponentNode_SampleInterval();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.ComponentNode#getAsynchronousZone <em>Asynchronous Zone</em>}'.
@@ -1951,6 +1961,17 @@ public interface ExecutionPackage extends EPackage {
 	EAttribute getPortInfo_PortIndex();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.damos.mscript.util.ISampleInterval <em>ISample Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>ISample Interval</em>'.
+	 * @see org.eclipse.damos.mscript.util.ISampleInterval
+	 * @model instanceClass="org.eclipse.damos.mscript.util.ISampleInterval"
+	 * @generated
+	 */
+	EDataType getISampleInterval();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.damos.dml.util.SystemPath <em>System Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2045,12 +2066,12 @@ public interface ExecutionPackage extends EPackage {
 		EReference EXECUTION_FLOW__TASK_GRAPHS = eINSTANCE.getExecutionFlow_TaskGraphs();
 
 		/**
-		 * The meta object literal for the '<em><b>Fundamental Sample Time</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Fundamental Sample Interval</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_TIME = eINSTANCE.getExecutionFlow_FundamentalSampleTime();
+		EAttribute EXECUTION_FLOW__FUNDAMENTAL_SAMPLE_INTERVAL = eINSTANCE.getExecutionFlow_FundamentalSampleInterval();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.damos.execution.impl.GraphImpl <em>Graph</em>}' class.
@@ -2173,12 +2194,12 @@ public interface ExecutionPackage extends EPackage {
 		EReference COMPONENT_NODE__COMPONENT = eINSTANCE.getComponentNode_Component();
 
 		/**
-		 * The meta object literal for the '<em><b>Sample Time</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Sample Interval</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMPONENT_NODE__SAMPLE_TIME = eINSTANCE.getComponentNode_SampleTime();
+		EAttribute COMPONENT_NODE__SAMPLE_INTERVAL = eINSTANCE.getComponentNode_SampleInterval();
 
 		/**
 		 * The meta object literal for the '<em><b>Asynchronous Zone</b></em>' attribute feature.
@@ -2485,6 +2506,16 @@ public interface ExecutionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PORT_INFO__PORT_INDEX = eINSTANCE.getPortInfo_PortIndex();
+
+		/**
+		 * The meta object literal for the '<em>ISample Interval</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.damos.mscript.util.ISampleInterval
+		 * @see org.eclipse.damos.execution.impl.ExecutionPackageImpl#getISampleInterval()
+		 * @generated
+		 */
+		EDataType ISAMPLE_INTERVAL = eINSTANCE.getISampleInterval();
 
 		/**
 		 * The meta object literal for the '<em>System Path</em>' data type.

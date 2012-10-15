@@ -107,6 +107,10 @@ public class DMLResource extends XMIResourceImpl {
 				if ("providedInterface".equals(name)) {
 					name = "interface";
 				}
+			} else if (DMLPackage.eINSTANCE.getSynchronousTimingConstraint().isSuperTypeOf(eClass)) {
+				if ("sampleTime".equals(name)) {
+					name = "sampleInterval";
+				}
 			}
 			return super.getFeature(eClass, namespaceURI, name);
 		}

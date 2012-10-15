@@ -6,6 +6,7 @@
   <foreignModel>Execution.ecore</foreignModel>
   <genPackages prefix="Execution" basePackage="org.eclipse.damos" disposableProviderFactory="true"
       ecorePackage="Execution.ecore#/">
+    <genDataTypes ecoreDataType="Execution.ecore#//ISampleInterval"/>
     <genDataTypes ecoreDataType="Execution.ecore#//SystemPath"/>
     <genDataTypes ecoreDataType="Execution.ecore#//Iterable">
       <genTypeParameters ecoreTypeParameter="Execution.ecore#//Iterable/E"/>
@@ -16,7 +17,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/dataFlows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ExecutionFlow/asynchronousZoneCount"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/taskGraphs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ExecutionFlow/fundamentalSampleTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ExecutionFlow/fundamentalSampleInterval"/>
       <genOperations ecoreOperation="Execution.ecore#//ExecutionFlow/getAllNodesIterator"/>
       <genOperations ecoreOperation="Execution.ecore#//ExecutionFlow/getAllNodes"/>
     </genClasses>
@@ -51,7 +52,7 @@
     <genClasses image="false" ecoreClass="Execution.ecore#//Subgraph"/>
     <genClasses ecoreClass="Execution.ecore#//ComponentNode">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//ComponentNode/component"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ComponentNode/sampleTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ComponentNode/sampleInterval"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ComponentNode/asynchronousZone"/>
     </genClasses>
     <genClasses ecoreClass="Execution.ecore#//LatchNode">

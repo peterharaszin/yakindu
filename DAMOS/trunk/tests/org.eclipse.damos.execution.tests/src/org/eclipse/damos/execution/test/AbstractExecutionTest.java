@@ -180,7 +180,7 @@ public abstract class AbstractExecutionTest {
 	
 	protected void setSynchronousTimingConstraint(Component component, double sampleTime) {
 		SynchronousTimingConstraint timingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
-		timingConstraint.setSampleTime(DscriptUtil.createValueSpecification(sampleTime));
+		timingConstraint.setSampleInterval(DscriptUtil.createValueSpecification(sampleTime));
 		component.setTimingConstraint(timingConstraint);
 	}
 	

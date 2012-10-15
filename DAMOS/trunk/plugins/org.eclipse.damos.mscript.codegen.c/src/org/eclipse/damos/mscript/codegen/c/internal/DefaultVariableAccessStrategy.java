@@ -23,6 +23,7 @@ import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipse.damos.mscript.util.MscriptSwitch;
+import org.eclipse.damos.mscript.util.SampleRate;
 
 /**
  * @author Andreas Unger
@@ -69,9 +70,12 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 			RealType dataType = (RealType) context.getFunctionInfo().getValue(implicitVariableDeclaration).getDataType();
 			double value;
 			if ("Ts".equals(implicitVariableDeclaration.getName())) {
-				value = context.getSampleTime();
+				value = context.getSampleInterval().sampleTime();
 			} else if ("fs".equals(implicitVariableDeclaration.getName())) {
-				value = 1.0 / context.getSampleTime();
+				if (context.getSampleInterval() instanceof SampleRate) {
+					return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, ((SampleRate) context.getSampleInterval()).longValue());
+				}
+				value = 1.0 / context.getSampleInterval().sampleTime();
 			} else {
 				value = 0.0;
 			}

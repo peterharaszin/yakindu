@@ -7,6 +7,7 @@
 package org.eclipse.damos.execution;
 
 import org.eclipse.damos.dml.Component;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +18,7 @@ import org.eclipse.damos.dml.Component;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.damos.execution.ComponentNode#getComponent <em>Component</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.ComponentNode#getSampleTime <em>Sample Time</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.ComponentNode#getSampleInterval <em>Sample Interval</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.ComponentNode#getAsynchronousZone <em>Asynchronous Zone</em>}</li>
  * </ul>
  * </p>
@@ -54,30 +55,30 @@ public interface ComponentNode extends Node {
 	void setComponent(Component value);
 
 	/**
-	 * Returns the value of the '<em><b>Sample Time</b></em>' attribute.
+	 * Returns the value of the '<em><b>Sample Interval</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sample Time</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Sample Interval</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sample Time</em>' attribute.
-	 * @see #setSampleTime(double)
-	 * @see org.eclipse.damos.execution.ExecutionPackage#getComponentNode_SampleTime()
-	 * @model required="true"
+	 * @return the value of the '<em>Sample Interval</em>' attribute.
+	 * @see #setSampleInterval(ISampleInterval)
+	 * @see org.eclipse.damos.execution.ExecutionPackage#getComponentNode_SampleInterval()
+	 * @model dataType="org.eclipse.damos.execution.ISampleInterval" required="true"
 	 * @generated
 	 */
-	double getSampleTime();
+	ISampleInterval getSampleInterval();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.damos.execution.ComponentNode#getSampleTime <em>Sample Time</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.damos.execution.ComponentNode#getSampleInterval <em>Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sample Time</em>' attribute.
-	 * @see #getSampleTime()
+	 * @param value the new value of the '<em>Sample Interval</em>' attribute.
+	 * @see #getSampleInterval()
 	 * @generated
 	 */
-	void setSampleTime(double value);
+	void setSampleInterval(ISampleInterval value);
 
 	/**
 	 * Returns the value of the '<em><b>Asynchronous Zone</b></em>' attribute.

@@ -13,6 +13,7 @@ package org.eclipse.damos.mscript.codegen.c;
 
 import org.eclipse.damos.mscript.codegen.c.internal.DefaultVariableAccessStrategy;
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 
 /**
  * @author Andreas Unger
@@ -22,24 +23,24 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 
 	private final IMscriptGeneratorConfiguration configuration;
 	private final StaticFunctionInfo functionInfo;
-	private final double sampleTime;
+	private final ISampleInterval sampleInterval;
 	private final IVariableAccessStrategy variableAccessStrategy;
 	private final ICodeFragmentCollector codeFragmentCollector;
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, double sampleTime, ICodeFragmentCollector codeFragmentCollector) {
-		this(configuration, functionInfo, sampleTime, null, codeFragmentCollector);
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ISampleInterval sampleInterval, ICodeFragmentCollector codeFragmentCollector) {
+		this(configuration, functionInfo, sampleInterval, null, codeFragmentCollector);
 	}
 	
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, double sampleTime, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
+	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ISampleInterval sampleInterval, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.configuration = configuration;
 		this.functionInfo = functionInfo;
-		this.sampleTime = sampleTime;
+		this.sampleInterval = sampleInterval;
 		this.variableAccessStrategy = variableAccessStrategy != null ? variableAccessStrategy : new DefaultVariableAccessStrategy(this);
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
@@ -52,8 +53,8 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 		return functionInfo;
 	}
 	
-	public double getSampleTime() {
-		return sampleTime;
+	public ISampleInterval getSampleInterval() {
+		return sampleInterval;
 	}
 
 	/**

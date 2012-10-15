@@ -101,7 +101,7 @@ public class DscriptBlockSimulationObject extends AbstractBlockSimulationObject 
 			throw new CoreException(status);
 		}
 		
-		interpreter = new Interpreter(staticEvaluationResult, getComputationContext(), getNode().getSampleTime());
+		interpreter = new Interpreter(staticEvaluationResult, getComputationContext(), getNode().getSampleInterval());
 		interpreterContext = new InterpreterContext(staticEvaluationResult, getComputationContext(), interpreter);
 		functionObject = interpreter.createFunctionObject(interpreterContext);
 				

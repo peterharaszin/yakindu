@@ -11,7 +11,7 @@ class InoFileGenerator {
 		val systemHeaderFile = context.configuration.systemHeaderFile
 		val singleton = context.configuration.singleton
 		
-		val fundamentalSampleTime = context.executionFlow.fundamentalSampleTime
+		val fundamentalSampleTime = context.executionFlow.fundamentalSampleInterval.sampleTime
 		val micro = fundamentalSampleTime <= 0.01
 		val stepSize = Math::round(fundamentalSampleTime * (if (micro) 1000000 else 1000))
 		

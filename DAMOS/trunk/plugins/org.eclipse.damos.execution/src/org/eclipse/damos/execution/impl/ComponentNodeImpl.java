@@ -9,6 +9,7 @@ package org.eclipse.damos.execution.impl;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.execution.ComponentNode;
 import org.eclipse.damos.execution.ExecutionPackage;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,7 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.damos.execution.impl.ComponentNodeImpl#getComponent <em>Component</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.impl.ComponentNodeImpl#getSampleTime <em>Sample Time</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.impl.ComponentNodeImpl#getSampleInterval <em>Sample Interval</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.impl.ComponentNodeImpl#getAsynchronousZone <em>Asynchronous Zone</em>}</li>
  * </ul>
  * </p>
@@ -41,23 +42,24 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	protected Component component;
 
 	/**
-	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
+	 * The default value of the '{@link #getSampleInterval() <em>Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSampleTime()
+	 * @see #getSampleInterval()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double SAMPLE_TIME_EDEFAULT = 0.0;
+	protected static final ISampleInterval SAMPLE_INTERVAL_EDEFAULT = null;
+
 	/**
-	 * The cached value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
+	 * The cached value of the '{@link #getSampleInterval() <em>Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSampleTime()
+	 * @see #getSampleInterval()
 	 * @generated
 	 * @ordered
 	 */
-	protected double sampleTime = SAMPLE_TIME_EDEFAULT;
+	protected ISampleInterval sampleInterval = SAMPLE_INTERVAL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAsynchronousZone() <em>Asynchronous Zone</em>}' attribute.
@@ -141,8 +143,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getSampleTime() {
-		return sampleTime;
+	public ISampleInterval getSampleInterval() {
+		return sampleInterval;
 	}
 
 	/**
@@ -150,11 +152,11 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSampleTime(double newSampleTime) {
-		double oldSampleTime = sampleTime;
-		sampleTime = newSampleTime;
+	public void setSampleInterval(ISampleInterval newSampleInterval) {
+		ISampleInterval oldSampleInterval = sampleInterval;
+		sampleInterval = newSampleInterval;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.COMPONENT_NODE__SAMPLE_TIME, oldSampleTime, sampleTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.COMPONENT_NODE__SAMPLE_INTERVAL, oldSampleInterval, sampleInterval));
 	}
 
 	/**
@@ -189,8 +191,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 			case ExecutionPackage.COMPONENT_NODE__COMPONENT:
 				if (resolve) return getComponent();
 				return basicGetComponent();
-			case ExecutionPackage.COMPONENT_NODE__SAMPLE_TIME:
-				return getSampleTime();
+			case ExecutionPackage.COMPONENT_NODE__SAMPLE_INTERVAL:
+				return getSampleInterval();
 			case ExecutionPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
 				return getAsynchronousZone();
 		}
@@ -208,8 +210,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 			case ExecutionPackage.COMPONENT_NODE__COMPONENT:
 				setComponent((Component)newValue);
 				return;
-			case ExecutionPackage.COMPONENT_NODE__SAMPLE_TIME:
-				setSampleTime((Double)newValue);
+			case ExecutionPackage.COMPONENT_NODE__SAMPLE_INTERVAL:
+				setSampleInterval((ISampleInterval)newValue);
 				return;
 			case ExecutionPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
 				setAsynchronousZone((Integer)newValue);
@@ -229,8 +231,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 			case ExecutionPackage.COMPONENT_NODE__COMPONENT:
 				setComponent((Component)null);
 				return;
-			case ExecutionPackage.COMPONENT_NODE__SAMPLE_TIME:
-				setSampleTime(SAMPLE_TIME_EDEFAULT);
+			case ExecutionPackage.COMPONENT_NODE__SAMPLE_INTERVAL:
+				setSampleInterval(SAMPLE_INTERVAL_EDEFAULT);
 				return;
 			case ExecutionPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
 				setAsynchronousZone(ASYNCHRONOUS_ZONE_EDEFAULT);
@@ -249,8 +251,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		switch (featureID) {
 			case ExecutionPackage.COMPONENT_NODE__COMPONENT:
 				return component != null;
-			case ExecutionPackage.COMPONENT_NODE__SAMPLE_TIME:
-				return sampleTime != SAMPLE_TIME_EDEFAULT;
+			case ExecutionPackage.COMPONENT_NODE__SAMPLE_INTERVAL:
+				return SAMPLE_INTERVAL_EDEFAULT == null ? sampleInterval != null : !SAMPLE_INTERVAL_EDEFAULT.equals(sampleInterval);
 			case ExecutionPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
 				return asynchronousZone != ASYNCHRONOUS_ZONE_EDEFAULT;
 		}
@@ -267,8 +269,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sampleTime: ");
-		result.append(sampleTime);
+		result.append(" (sampleInterval: ");
+		result.append(sampleInterval);
 		result.append(", asynchronousZone: ");
 		result.append(asynchronousZone);
 		result.append(')');

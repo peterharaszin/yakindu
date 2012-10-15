@@ -9,6 +9,7 @@ package org.eclipse.damos.execution;
 import java.lang.Iterable;
 
 import org.eclipse.damos.dml.Fragment;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.damos.execution.ExecutionFlow#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.ExecutionFlow#getTaskGraphs <em>Task Graphs</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleInterval <em>Fundamental Sample Interval</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,30 +147,30 @@ public interface ExecutionFlow extends EObject {
 	EList<TaskGraph> getTaskGraphs();
 
 	/**
-	 * Returns the value of the '<em><b>Fundamental Sample Time</b></em>' attribute.
+	 * Returns the value of the '<em><b>Fundamental Sample Interval</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Fundamental Sample Time</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Fundamental Sample Interval</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fundamental Sample Time</em>' attribute.
-	 * @see #setFundamentalSampleTime(double)
-	 * @see org.eclipse.damos.execution.ExecutionPackage#getExecutionFlow_FundamentalSampleTime()
-	 * @model
+	 * @return the value of the '<em>Fundamental Sample Interval</em>' attribute.
+	 * @see #setFundamentalSampleInterval(ISampleInterval)
+	 * @see org.eclipse.damos.execution.ExecutionPackage#getExecutionFlow_FundamentalSampleInterval()
+	 * @model dataType="org.eclipse.damos.execution.ISampleInterval"
 	 * @generated
 	 */
-	double getFundamentalSampleTime();
+	ISampleInterval getFundamentalSampleInterval();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleTime <em>Fundamental Sample Time</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.damos.execution.ExecutionFlow#getFundamentalSampleInterval <em>Fundamental Sample Interval</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fundamental Sample Time</em>' attribute.
-	 * @see #getFundamentalSampleTime()
+	 * @param value the new value of the '<em>Fundamental Sample Interval</em>' attribute.
+	 * @see #getFundamentalSampleInterval()
 	 * @generated
 	 */
-	void setFundamentalSampleTime(double value);
+	void setFundamentalSampleInterval(ISampleInterval value);
 
 	/**
 	 * <!-- begin-user-doc -->

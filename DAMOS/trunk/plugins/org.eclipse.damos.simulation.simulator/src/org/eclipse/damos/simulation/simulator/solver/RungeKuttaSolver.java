@@ -86,7 +86,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
 		super.initialize(context, monitor);
-		stepSize = MathUtil.gcd(context.getExecutionFlow().getFundamentalSampleTime(), stepSize);
+		stepSize = MathUtil.gcd(context.getExecutionFlow().getFundamentalSampleInterval().sampleTime(), stepSize);
 		n = 0;
 	}
 
@@ -119,8 +119,8 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	 */
 	@Override
 	protected boolean canExecute(ComponentNode componentNode, double t) {
-		if (componentNode.getSampleTime() > 0) {
-			return n % (long) (componentNode.getSampleTime() / stepSize) == 0;
+		if (componentNode.getSampleInterval().sampleTime() > 0) {
+			return n % (long) (componentNode.getSampleInterval().sampleTime() / stepSize) == 0;
 		}
 		return super.canExecute(componentNode, t);
 	}
@@ -156,7 +156,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 			for (Node node : graph.getNodes()) {
 				if (node instanceof ComponentNode) {
 					ComponentNode componentNode = (ComponentNode) node;
-					if (componentNode.getSampleTime() == 0) {
+					if (componentNode.getSampleInterval().sampleTime() == 0) {
 						ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 						if (simulationObject != null) {
 							simulationObject.computeOutputValues(t + offset, monitor);

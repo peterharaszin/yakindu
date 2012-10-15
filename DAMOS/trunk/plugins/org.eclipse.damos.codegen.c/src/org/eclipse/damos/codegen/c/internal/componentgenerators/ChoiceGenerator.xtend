@@ -63,7 +63,7 @@ class ChoiceGenerator extends AbstractComponentGenerator {
 		if (valueSpecification instanceof DscriptValueSpecification) {
 			val condition = valueSpecification as DscriptValueSpecification
 			val staticFunctionInfo = new StaticFunctionInfo(null)
-			val mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(computationModel, configuration), staticFunctionInfo, context.node.sampleTime, new ChoiceVariableAccessStrategy(), context.codeFragmentCollector)
+			val mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(computationModel, configuration), staticFunctionInfo, context.node.sampleInterval, new ChoiceVariableAccessStrategy(), context.codeFragmentCollector)
 			return expressionGenerator.generate(mscriptGeneratorContext, condition.getExpression)
 		}
 		return "INVALID_EXPRESSION"

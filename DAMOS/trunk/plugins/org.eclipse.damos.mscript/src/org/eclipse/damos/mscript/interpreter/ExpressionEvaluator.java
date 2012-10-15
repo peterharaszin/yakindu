@@ -155,14 +155,16 @@ public class ExpressionEvaluator implements IExpressionEvaluator, IExpressionVis
 			return InvalidValue.SINGLETON;
 		}
 
-		if (ifExpression.isStatic()) {
-			if (conditionValue instanceof IBooleanValue) {
-				boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
-				if (booleanValue) {
-					return evaluate(context, ifExpression.getThenExpression());
-				}
-				return evaluate(context, ifExpression.getElseExpression());
+		// TODO: 'context instanceof ExpressionEvaluationContext' has to be replaced with a method in IExpressionEvaluationContext
+		if (conditionValue instanceof IBooleanValue && (ifExpression.isStatic() || context instanceof ExpressionEvaluationContext)) {
+			boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
+			if (booleanValue) {
+				return evaluate(context, ifExpression.getThenExpression());
 			}
+			return evaluate(context, ifExpression.getElseExpression());
+		}
+		
+		if (ifExpression.isStatic()) {
 			if (context.getStatusCollector() != null) {
 				context.getStatusCollector().collectStatus(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "If expression condition within static scope must evaluate to boolean", ifExpression.getCondition()));
 			}

@@ -155,7 +155,8 @@ public class ExpressionEvaluator implements IExpressionEvaluator, IExpressionVis
 			return InvalidValue.SINGLETON;
 		}
 
-		if (ifExpression.isStatic()) {
+		// TODO: 'context instanceof ExpressionEvaluationContext' should be replaced with a method in IExpressionEvaluationContext
+		if (ifExpression.isStatic() || context instanceof ExpressionEvaluationContext) {
 			if (conditionValue instanceof IBooleanValue) {
 				boolean booleanValue = ((IBooleanValue) conditionValue).booleanValue();
 				if (booleanValue) {

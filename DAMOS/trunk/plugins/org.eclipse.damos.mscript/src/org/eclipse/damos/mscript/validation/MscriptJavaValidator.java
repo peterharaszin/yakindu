@@ -247,7 +247,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (TypeSpecifier typeSpecifier : check.getOutputTypeSpecifiers()) {
 					IValue value = staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY).getValue(outputParameterIt.next());
-					if (value != null && !(value instanceof InvalidValue) && !typeSpecifier.getType().isEquivalentTo(value.getDataType())) {
+					if (value != null && !(value instanceof InvalidValue) && isResolved(typeSpecifier.getType()) && !typeSpecifier.getType().isEquivalentTo(value.getDataType())) {
 						error("Check does not return specified data type", typeSpecifier, null, -1);
 					}
 				}
@@ -416,6 +416,10 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		} else {
 			error("Cyclic constant declaration of " + constantDeclaration.getName(), constantDeclaration, constantDeclaration.getNameFeature(), -1);
 		}
+	}
+	
+	private boolean isResolved(EObject eObject) {
+		return eObject != null && !eObject.eIsProxy();
 	}
 
 }

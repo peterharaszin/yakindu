@@ -283,6 +283,9 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 		if (initialValue == null) {
 			return null;
 		}
+		
+		initialValue = initialValue.trim();
+		
 		if (initialValue.endsWith("s")) {
 			double value = 0.0;
 			if (initialValue.length() > 1) {
@@ -297,7 +300,7 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 			long value = 0;
 			if (initialValue.length() > 2) {
 				try {
-					value = Long.parseLong(initialValue.substring(0, initialValue.length() - 2));
+					value = Long.parseLong(initialValue.substring(0, initialValue.length() - 2).trim());
 				} catch (NumberFormatException e) {
 					// Ignore invalid number, use default
 				}

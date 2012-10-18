@@ -235,13 +235,13 @@ public interface ExecutionPackage extends EPackage {
 	int NODE__OUTGOING_DATA_FLOWS = 4;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__SYSTEM_PATH = 5;
+	int NODE__ENCLOSING_SUBSYSTEMS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -335,13 +335,13 @@ public interface ExecutionPackage extends EPackage {
 	int SUBGRAPH__OUTGOING_DATA_FLOWS = GRAPH_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBGRAPH__SYSTEM_PATH = GRAPH_FEATURE_COUNT + 5;
+	int SUBGRAPH__ENCLOSING_SUBSYSTEMS = GRAPH_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Subgraph</em>' class.
@@ -408,13 +408,13 @@ public interface ExecutionPackage extends EPackage {
 	int COMPONENT_NODE__OUTGOING_DATA_FLOWS = NODE__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_NODE__SYSTEM_PATH = NODE__SYSTEM_PATH;
+	int COMPONENT_NODE__ENCLOSING_SUBSYSTEMS = NODE__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -508,13 +508,13 @@ public interface ExecutionPackage extends EPackage {
 	int LATCH_NODE__OUTGOING_DATA_FLOWS = COMPONENT_NODE__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LATCH_NODE__SYSTEM_PATH = COMPONENT_NODE__SYSTEM_PATH;
+	int LATCH_NODE__ENCLOSING_SUBSYSTEMS = COMPONENT_NODE__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -644,13 +644,13 @@ public interface ExecutionPackage extends EPackage {
 	int COMPOUND_NODE__OUTGOING_DATA_FLOWS = SUBGRAPH__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_NODE__SYSTEM_PATH = SUBGRAPH__SYSTEM_PATH;
+	int COMPOUND_NODE__ENCLOSING_SUBSYSTEMS = SUBGRAPH__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -753,13 +753,13 @@ public interface ExecutionPackage extends EPackage {
 	int ACTION_NODE__OUTGOING_DATA_FLOWS = COMPOUND_NODE__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_NODE__SYSTEM_PATH = COMPOUND_NODE__SYSTEM_PATH;
+	int ACTION_NODE__ENCLOSING_SUBSYSTEMS = COMPOUND_NODE__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -871,13 +871,13 @@ public interface ExecutionPackage extends EPackage {
 	int SUBSYSTEM_NODE__OUTGOING_DATA_FLOWS = SUBGRAPH__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSYSTEM_NODE__SYSTEM_PATH = SUBGRAPH__SYSTEM_PATH;
+	int SUBSYSTEM_NODE__ENCLOSING_SUBSYSTEMS = SUBGRAPH__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Subsystem</b></em>' reference.
@@ -1017,13 +1017,13 @@ public interface ExecutionPackage extends EPackage {
 	int TASK_INPUT_NODE__OUTGOING_DATA_FLOWS = NODE__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>System Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_INPUT_NODE__SYSTEM_PATH = NODE__SYSTEM_PATH;
+	int TASK_INPUT_NODE__ENCLOSING_SUBSYSTEMS = NODE__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Task Graph</b></em>' container reference.
@@ -1536,15 +1536,15 @@ public interface ExecutionPackage extends EPackage {
 	EReference getNode_OutgoingDataFlows();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.damos.execution.Node#getSystemPath <em>System Path</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.damos.execution.Node#getEnclosingSubsystems <em>Enclosing Subsystems</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>System Path</em>'.
-	 * @see org.eclipse.damos.execution.Node#getSystemPath()
+	 * @return the meta object for the reference list '<em>Enclosing Subsystems</em>'.
+	 * @see org.eclipse.damos.execution.Node#getEnclosingSubsystems()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EAttribute getNode_SystemPath();
+	EReference getNode_EnclosingSubsystems();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.damos.execution.Subgraph <em>Subgraph</em>}'.
@@ -2158,12 +2158,12 @@ public interface ExecutionPackage extends EPackage {
 		EReference NODE__OUTGOING_DATA_FLOWS = eINSTANCE.getNode_OutgoingDataFlows();
 
 		/**
-		 * The meta object literal for the '<em><b>System Path</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Enclosing Subsystems</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NODE__SYSTEM_PATH = eINSTANCE.getNode_SystemPath();
+		EReference NODE__ENCLOSING_SUBSYSTEMS = eINSTANCE.getNode_EnclosingSubsystems();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.damos.execution.impl.SubgraphImpl <em>Subgraph</em>}' class.

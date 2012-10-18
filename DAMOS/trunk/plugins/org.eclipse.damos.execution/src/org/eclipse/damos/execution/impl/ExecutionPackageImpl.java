@@ -414,8 +414,8 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_SystemPath() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
+	public EReference getNode_EnclosingSubsystems() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -843,7 +843,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		createEReference(nodeEClass, NODE__OUTGOING_EDGES);
 		createEReference(nodeEClass, NODE__INCOMING_DATA_FLOWS);
 		createEReference(nodeEClass, NODE__OUTGOING_DATA_FLOWS);
-		createEAttribute(nodeEClass, NODE__SYSTEM_PATH);
+		createEReference(nodeEClass, NODE__ENCLOSING_SUBSYSTEMS);
 
 		subgraphEClass = createEClass(SUBGRAPH);
 
@@ -994,7 +994,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		initEReference(getNode_OutgoingEdges(), this.getEdge(), this.getEdge_Source(), "outgoingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_IncomingDataFlows(), this.getDataFlowTargetEnd(), this.getDataFlowTargetEnd_Node(), "incomingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_OutgoingDataFlows(), this.getDataFlowSourceEnd(), this.getDataFlowSourceEnd_Node(), "outgoingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_SystemPath(), this.getSystemPath(), "systemPath", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_EnclosingSubsystems(), theDMLPackage.getSubsystem(), null, "enclosingSubsystems", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(nodeEClass, this.getDataFlowTargetEnd(), "getIncomingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theDMLPackage.getInputConnector(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -1012,6 +1012,8 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "isEnclosedBy", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "graph", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(nodeEClass, this.getSystemPath(), "getSystemPath", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(subgraphEClass, Subgraph.class, "Subgraph", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -57,5 +57,19 @@ public class SampleTime implements ISampleInterval {
 		}
 		return gcd(b, a.remainder(b));
 	}
+	
+	@Override
+	public int hashCode() {
+		long v = Double.doubleToLongBits(value);
+		return (int) (v ^ (v >>> 32));
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof SampleTime) {
+			return ((SampleTime) obj).value == value;
+		}
+		return false;
+	}
 
 }

@@ -11,10 +11,14 @@
 
 package org.eclipse.damos.execution.internal.operations;
 
+import org.eclipse.damos.dml.Fragment;
 import org.eclipse.damos.dml.InputConnector;
 import org.eclipse.damos.dml.OutputConnector;
+import org.eclipse.damos.dml.util.DMLUtil;
+import org.eclipse.damos.dml.util.SystemPath;
 import org.eclipse.damos.execution.DataFlowSourceEnd;
 import org.eclipse.damos.execution.DataFlowTargetEnd;
+import org.eclipse.damos.execution.ExecutionFlow;
 import org.eclipse.damos.execution.Graph;
 import org.eclipse.damos.execution.Node;
 import org.eclipse.emf.common.util.BasicEList;
@@ -22,20 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 public class NodeOperations {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NodeOperations() {
-		super();
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public static  DataFlowTargetEnd getIncomingDataFlow(Node node, InputConnector source) {
 		for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
 			if (targetEnd.getConnector() == source) {
@@ -45,11 +36,6 @@ public class NodeOperations {
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public static  DataFlowSourceEnd getOutgoingDataFlow(Node node, OutputConnector target) {
 		for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
 			if (sourceEnd.getConnector() == target) {
@@ -102,5 +88,13 @@ public class NodeOperations {
 		}
 		return container != null;
 	}
+	
+	public static SystemPath getSystemPath(Node node) {
+		Fragment topLevelFragment = DMLUtil.getOwner(node, ExecutionFlow.class).getTopLevelFragment();
+		if (topLevelFragment == null) {
+			return null;
+		}
+		return SystemPath.create(topLevelFragment, node.getEnclosingSubsystems());
+	}
 
-} // NodeOperations
+}

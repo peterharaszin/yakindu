@@ -8,6 +8,7 @@ package org.eclipse.damos.execution;
 
 import org.eclipse.damos.dml.InputConnector;
 import org.eclipse.damos.dml.OutputConnector;
+import org.eclipse.damos.dml.Subsystem;
 import org.eclipse.damos.dml.util.SystemPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.damos.execution.Node#getOutgoingEdges <em>Outgoing Edges</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.Node#getIncomingDataFlows <em>Incoming Data Flows</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.Node#getOutgoingDataFlows <em>Outgoing Data Flows</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.Node#getSystemPath <em>System Path</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.Node#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,30 +136,32 @@ public interface Node extends EObject {
 	EList<DataFlowSourceEnd> getOutgoingDataFlows();
 
 	/**
-	 * Returns the value of the '<em><b>System Path</b></em>' attribute.
+	 * Returns the value of the '<em><b>Enclosing Subsystems</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.damos.dml.Subsystem}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enclosing Subsystems</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enclosing Subsystems</em>' reference list.
+	 * @see org.eclipse.damos.execution.ExecutionPackage#getNode_EnclosingSubsystems()
+	 * @model
+	 * @generated
+	 */
+	EList<Subsystem> getEnclosingSubsystems();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>System Path</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>System Path</em>' attribute.
-	 * @see #setSystemPath(SystemPath)
-	 * @see org.eclipse.damos.execution.ExecutionPackage#getNode_SystemPath()
-	 * @model dataType="org.eclipse.damos.execution.SystemPath"
+	 * @model kind="operation" dataType="org.eclipse.damos.execution.SystemPath"
 	 * @generated
 	 */
 	SystemPath getSystemPath();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.damos.execution.Node#getSystemPath <em>System Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>System Path</em>' attribute.
-	 * @see #getSystemPath()
-	 * @generated
-	 */
-	void setSystemPath(SystemPath value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -24,6 +24,8 @@ import org.eclipse.damos.execution.SubsystemNode;
 import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.execution.TaskInputNode;
 import org.eclipse.damos.mscript.util.ISampleInterval;
+import org.eclipse.damos.mscript.util.SampleRate;
+import org.eclipse.damos.mscript.util.SampleTime;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -275,19 +277,48 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ISampleInterval createISampleIntervalFromString(EDataType eDataType, String initialValue) {
-		return (ISampleInterval)super.createFromString(eDataType, initialValue);
+		if (initialValue == null) {
+			return null;
+		}
+		if (initialValue.endsWith("s")) {
+			double value = 0.0;
+			if (initialValue.length() > 1) {
+				try {
+					value = Double.parseDouble(initialValue.substring(0, initialValue.length() - 1));
+				} catch (NumberFormatException e) {
+					// Ignore invalid number, use default
+				}
+			}
+			return new SampleTime(value);
+		} else if (initialValue.endsWith("Hz")) {
+			long value = 0;
+			if (initialValue.length() > 2) {
+				try {
+					value = Long.parseLong(initialValue.substring(0, initialValue.length() - 2));
+				} catch (NumberFormatException e) {
+					// Ignore invalid number, use default
+				}
+			}
+			return new SampleRate(value);
+		}
+		return new SampleTime(0.0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String convertISampleIntervalToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
+		if (instanceValue instanceof SampleTime) {
+			return ((SampleTime) instanceValue).sampleTime() + "s";
+		} else if (instanceValue instanceof SampleRate) {
+			return ((SampleRate) instanceValue).longValue() + "Hz";
+		}
+		return "0.0s";
 	}
 
 	/**

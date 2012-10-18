@@ -11,8 +11,14 @@
 
 package org.eclipse.damos.execution.ui.parts;
 
+import java.io.IOException;
+import java.util.Collections;
+
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.damos.dml.Fragment;
 import org.eclipse.damos.dml.util.DMLUtil;
 import org.eclipse.damos.execution.ExecutionFlow;
@@ -36,11 +42,13 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.zest.core.viewers.GraphViewer;
@@ -113,6 +121,40 @@ public class ExecutionFlowView extends ViewPart {
 		
 	};
 
+	private final IAction saveAsAction = new Action("Save As...", PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ETOOL_SAVEAS_EDIT)) {
+		
+		public void run() {
+			EObject eObject = (EObject) viewer.getInput();
+			if (eObject == null) {
+				return;
+			}
+			
+			SaveAsDialog d = new SaveAsDialog(getSite().getShell());
+			Path fragmentPath = new Path(fragment.eResource().getURI().toPlatformString(true));
+			IPath defaultPath = fragmentPath.removeFileExtension().addFileExtension("xmi");
+			d.setOriginalFile(ResourcesPlugin.getWorkspace().getRoot().getFile(defaultPath));
+			if (d.open() == Window.OK) {
+				IPath path = d.getResult();
+				if (path != null) {
+					URI uri = URI.createPlatformResourceURI(path.toString(), true);
+					ResourceSet resourceSet = new ResourceSetImpl();
+					try {
+						Resource resource = resourceSet.createResource(uri);
+						resource.getContents().add(EcoreUtil.copy(eObject));
+						resource.save(Collections.emptyMap());
+					} catch (IOException e) {
+						MessageDialog.openError(getSite().getShell(), "Save &As", "Saving failed: " + e.getMessage());
+					} finally {
+						for (Resource resource : resourceSet.getResources()) {
+							resource.unload();
+						}
+					}
+				}
+			}
+		}
+		
+	};
+
 	private Fragment fragment;
 
 	private void unloadFragment() {
@@ -148,6 +190,7 @@ public class ExecutionFlowView extends ViewPart {
 		viewer.setInput(eObject);
 		backAction.setEnabled(eObject != null && (eObject.eContainer() instanceof ExecutionFlow || eObject.eContainer() instanceof Graph));
 		refreshAction.setEnabled(eObject != null);
+		saveAsAction.setEnabled(eObject != null);
 	}
 
 	/* (non-Javadoc)
@@ -196,6 +239,10 @@ public class ExecutionFlowView extends ViewPart {
 		refreshAction.setEnabled(false);
 		getViewSite().getActionBars().getMenuManager().add(refreshAction);
 		getViewSite().getActionBars().getToolBarManager().add(refreshAction);
+
+		saveAsAction.setEnabled(false);
+		getViewSite().getActionBars().getMenuManager().add(saveAsAction);
+		getViewSite().getActionBars().getToolBarManager().add(saveAsAction);
 	}
 
 	/* (non-Javadoc)

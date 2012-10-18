@@ -58,6 +58,7 @@
     <eOperations name="isEnclosedBy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="graph" lowerBound="1" eType="#//Graph"/>
     </eOperations>
+    <eOperations name="getSystemPath" eType="#//SystemPath"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
         eOpposite="#//Graph/nodes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingEdges" upperBound="-1"
@@ -68,7 +69,8 @@
         eType="#//DataFlowTargetEnd" eOpposite="#//DataFlowTargetEnd/node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDataFlows" upperBound="-1"
         eType="#//DataFlowSourceEnd" eOpposite="#//DataFlowSourceEnd/node"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemPath" eType="#//SystemPath"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingSubsystems" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subgraph" abstract="true" eSuperTypes="#//Graph #//Node"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentNode" eSuperTypes="#//Node">

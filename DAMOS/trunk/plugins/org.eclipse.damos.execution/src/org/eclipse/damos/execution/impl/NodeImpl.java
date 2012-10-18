@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.damos.dml.InputConnector;
 import org.eclipse.damos.dml.OutputConnector;
+import org.eclipse.damos.dml.Subsystem;
 import org.eclipse.damos.dml.util.SystemPath;
 import org.eclipse.damos.execution.DataFlowSourceEnd;
 import org.eclipse.damos.execution.DataFlowTargetEnd;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -41,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.damos.execution.impl.NodeImpl#getOutgoingEdges <em>Outgoing Edges</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.impl.NodeImpl#getIncomingDataFlows <em>Incoming Data Flows</em>}</li>
  *   <li>{@link org.eclipse.damos.execution.impl.NodeImpl#getOutgoingDataFlows <em>Outgoing Data Flows</em>}</li>
- *   <li>{@link org.eclipse.damos.execution.impl.NodeImpl#getSystemPath <em>System Path</em>}</li>
+ *   <li>{@link org.eclipse.damos.execution.impl.NodeImpl#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,24 +91,14 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	protected EList<DataFlowSourceEnd> outgoingDataFlows;
 
 	/**
-	 * The default value of the '{@link #getSystemPath() <em>System Path</em>}' attribute.
+	 * The cached value of the '{@link #getEnclosingSubsystems() <em>Enclosing Subsystems</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSystemPath()
+	 * @see #getEnclosingSubsystems()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SystemPath SYSTEM_PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSystemPath() <em>System Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSystemPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected SystemPath systemPath = SYSTEM_PATH_EDEFAULT;
+	protected EList<Subsystem> enclosingSubsystems;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,20 +213,20 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SystemPath getSystemPath() {
-		return systemPath;
+	public EList<Subsystem> getEnclosingSubsystems() {
+		if (enclosingSubsystems == null) {
+			enclosingSubsystems = new EObjectResolvingEList<Subsystem>(Subsystem.class, this, ExecutionPackage.NODE__ENCLOSING_SUBSYSTEMS);
+		}
+		return enclosingSubsystems;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setSystemPath(SystemPath newSystemPath) {
-		SystemPath oldSystemPath = systemPath;
-		systemPath = newSystemPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.NODE__SYSTEM_PATH, oldSystemPath, systemPath));
+	public SystemPath getSystemPath() {
+		return NodeOperations.getSystemPath(this);
 	}
 
 	/**
@@ -379,8 +371,8 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 				return getIncomingDataFlows();
 			case ExecutionPackage.NODE__OUTGOING_DATA_FLOWS:
 				return getOutgoingDataFlows();
-			case ExecutionPackage.NODE__SYSTEM_PATH:
-				return getSystemPath();
+			case ExecutionPackage.NODE__ENCLOSING_SUBSYSTEMS:
+				return getEnclosingSubsystems();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -413,8 +405,9 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 				getOutgoingDataFlows().clear();
 				getOutgoingDataFlows().addAll((Collection<? extends DataFlowSourceEnd>)newValue);
 				return;
-			case ExecutionPackage.NODE__SYSTEM_PATH:
-				setSystemPath((SystemPath)newValue);
+			case ExecutionPackage.NODE__ENCLOSING_SUBSYSTEMS:
+				getEnclosingSubsystems().clear();
+				getEnclosingSubsystems().addAll((Collection<? extends Subsystem>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -443,8 +436,8 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 			case ExecutionPackage.NODE__OUTGOING_DATA_FLOWS:
 				getOutgoingDataFlows().clear();
 				return;
-			case ExecutionPackage.NODE__SYSTEM_PATH:
-				setSystemPath(SYSTEM_PATH_EDEFAULT);
+			case ExecutionPackage.NODE__ENCLOSING_SUBSYSTEMS:
+				getEnclosingSubsystems().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -468,26 +461,10 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 				return incomingDataFlows != null && !incomingDataFlows.isEmpty();
 			case ExecutionPackage.NODE__OUTGOING_DATA_FLOWS:
 				return outgoingDataFlows != null && !outgoingDataFlows.isEmpty();
-			case ExecutionPackage.NODE__SYSTEM_PATH:
-				return SYSTEM_PATH_EDEFAULT == null ? systemPath != null : !SYSTEM_PATH_EDEFAULT.equals(systemPath);
+			case ExecutionPackage.NODE__ENCLOSING_SUBSYSTEMS:
+				return enclosingSubsystems != null && !enclosingSubsystems.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (systemPath: ");
-		result.append(systemPath);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NodeImpl

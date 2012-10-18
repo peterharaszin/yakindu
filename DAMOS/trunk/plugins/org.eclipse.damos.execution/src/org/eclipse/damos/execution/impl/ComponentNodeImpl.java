@@ -7,8 +7,10 @@
 package org.eclipse.damos.execution.impl;
 
 import org.eclipse.damos.dml.Component;
+import org.eclipse.damos.dml.util.SystemPath;
 import org.eclipse.damos.execution.ComponentNode;
 import org.eclipse.damos.execution.ExecutionPackage;
+import org.eclipse.damos.execution.internal.operations.ComponentNodeOperations;
 import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -178,6 +180,11 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		asynchronousZone = newAsynchronousZone;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE, oldAsynchronousZone, asynchronousZone));
+	}
+	
+	@Override
+	public SystemPath getSystemPath() {
+		return ComponentNodeOperations.getSystemPath(this);
 	}
 
 	/**

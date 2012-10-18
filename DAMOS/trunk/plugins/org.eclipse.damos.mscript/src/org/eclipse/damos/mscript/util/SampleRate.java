@@ -40,7 +40,7 @@ public class SampleRate implements ISampleInterval {
 			if (value == otherSampleRate.value) {
 				return this;
 			}
-			long fundamental = gcd(value, otherSampleRate.value);
+			long fundamental = value / gcd(value, otherSampleRate.value) * otherSampleRate.value;
 			if (fundamental == value) {
 				return this;
 			}
@@ -57,6 +57,19 @@ public class SampleRate implements ISampleInterval {
 			return a;
 		}
 		return gcd(b, a % b);
+	}
+	
+	@Override
+	public int hashCode() {
+		return (int) value;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof SampleRate) {
+			return ((SampleRate) obj).value == value;
+		}
+		return false;
 	}
 	
 }

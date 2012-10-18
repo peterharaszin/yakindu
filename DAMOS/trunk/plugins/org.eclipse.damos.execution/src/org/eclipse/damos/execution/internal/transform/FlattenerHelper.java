@@ -135,7 +135,7 @@ public class FlattenerHelper {
 				node = ExecutionFactory.eINSTANCE.createCompoundNode();
 			}
 			node.setCompound(compound);
-			node.setSystemPath(systemPath);
+			node.getEnclosingSubsystems().addAll(systemPath.getSubsystems());
 			addGraphNode(graph, node);
 			allNodes.put(new SubsystemBinding<FragmentElement>(systemPath, compound), node);
 			flattenCompound(fragment, systemPath, node, compound);
@@ -148,7 +148,7 @@ public class FlattenerHelper {
 				node = ExecutionFactory.eINSTANCE.createComponentNode();
 			}
 			node.setComponent(component);
-			node.setSystemPath(systemPath.append(node.getComponent()));
+			node.getEnclosingSubsystems().addAll(systemPath.getSubsystems());
 			addGraphNode(graph, node);
 			allNodes.put(new SubsystemBinding<FragmentElement>(systemPath, component), node);
 		}

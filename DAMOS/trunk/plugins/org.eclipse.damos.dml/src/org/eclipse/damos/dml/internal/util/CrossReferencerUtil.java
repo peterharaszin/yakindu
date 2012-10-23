@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class CrossReferencerUtil {
 
-	public static Collection<EStructuralFeature.Setting> getNonNavigableInverseReferences(EObject eObject) {
+	public static Collection<EStructuralFeature.Setting> getInverseReferences(EObject eObject) {
 		Notifier context = getContext(eObject);
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(context);
 		if (adapter == null) {
@@ -40,11 +40,11 @@ public class CrossReferencerUtil {
 		return adapter.getNonNavigableInverseReferences(eObject, true);
 	}
 
-	public static <T extends EObject> EList<T> getNonNavigableInverseReferences(EObject eObject, Class<? extends T> clazz, EReference reference) {
+	public static <T extends EObject> EList<T> getInverseReferences(EObject eObject, Class<? extends T> clazz, EReference reference) {
 		EList<T> references = new UniqueEList.FastCompare<T>();
-		for (EStructuralFeature.Setting nonNavigableInverseReference : getNonNavigableInverseReferences(eObject)) {
-			if (nonNavigableInverseReference.getEStructuralFeature() == reference) {
-				EObject referenceEObject = nonNavigableInverseReference.getEObject();
+		for (EStructuralFeature.Setting inverseReference : getInverseReferences(eObject)) {
+			if (inverseReference.getEStructuralFeature() == reference) {
+				EObject referenceEObject = inverseReference.getEObject();
 				if (clazz.isInstance(referenceEObject)) {
 					references.add(clazz.cast(referenceEObject));
 				}

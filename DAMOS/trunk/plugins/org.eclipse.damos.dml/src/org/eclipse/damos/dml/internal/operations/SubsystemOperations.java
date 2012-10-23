@@ -45,7 +45,7 @@ public class SubsystemOperations extends ComponentOperations {
 	 * @generated NOT
 	 */
 	public static  EList<SubsystemRealization> getRealizations(Subsystem subsystem) {
-		return CrossReferencerUtil.getNonNavigableInverseReferences(
+		return CrossReferencerUtil.getInverseReferences(
 				subsystem,
 				SubsystemRealization.class,
 				DMLPackage.Literals.SUBSYSTEM_REALIZATION__REALIZED_SUBSYSTEM);

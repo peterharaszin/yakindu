@@ -16,11 +16,13 @@ import org.eclipse.damos.dml.Fragment;
 import org.eclipse.damos.dscript.DscriptDataTypeSpecification;
 import org.eclipse.damos.dscript.DscriptValueSpecification;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
@@ -41,9 +43,9 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 	@Override
 	public void activate() {
 		super.activate();
-		EObject element = getHost().resolveSemanticElement();
-		if (EcoreUtil.getAdapter(element.eAdapters(), LinkerAdapter.class) == null) {
-			element.eAdapters().add(0, new LinkerAdapter());
+		Notifier notifier = getHost().resolveSemanticElement().eResource();
+		if (EcoreUtil.getAdapter(notifier.eAdapters(), LinkerAdapter.class) == null) {
+			notifier.eAdapters().add(0, new LinkerAdapter());
 		}
 	}
 	
@@ -57,6 +59,33 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 	
 	private class LinkerAdapter extends EContentAdapter {
 		
+		@Override
+		protected void selfAdapt(Notification notification) {
+			if (notification.getNotifier() instanceof Diagram) {
+				// Do not adapt to notation elements
+				return;
+			}
+			super.selfAdapt(notification);
+		}
+		
+		@Override
+		protected void addAdapter(Notifier notifier) {
+			if (notifier instanceof Diagram) {
+				// Do not adapt to notation elements
+				return;
+			}
+			super.addAdapter(notifier);
+		}
+		
+		@Override
+		protected void removeAdapter(Notifier notifier) {
+			if (notifier instanceof Diagram) {
+				// Do not adapt to notation elements
+				return;
+			}
+			super.removeAdapter(notifier);
+		}
+
 		public void notifyChanged(Notification notification) {
 			super.notifyChanged(notification);
 			if (notification.isTouch()) {
@@ -84,7 +113,7 @@ public class LinkerEditPolicy extends AbstractEditPolicy {
 		public boolean isAdapterForType(Object type) {
 			return type == LinkerAdapter.class;
 		}
-
+		
 	}
 	
 }

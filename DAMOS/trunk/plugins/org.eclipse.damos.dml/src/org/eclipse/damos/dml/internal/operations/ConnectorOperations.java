@@ -29,14 +29,17 @@ public class ConnectorOperations {
 
 	public static EList<Connection> getConnections(Connector connector) {
 		EList<Connection> connections = new UniqueEList.FastCompare<Connection>();
-		Collection<Setting> references = CrossReferencerUtil.getNonNavigableInverseReferences(connector);
+		Collection<Setting> references = CrossReferencerUtil.getInverseReferences(connector);
 		for (EStructuralFeature.Setting reference : references) {
 			EStructuralFeature feature = reference.getEStructuralFeature();
 			if (feature == DMLPackage.eINSTANCE.getConnection_Source()
 					|| feature == DMLPackage.eINSTANCE.getConnection_Target()) {
 				EObject referenceEObject = reference.getEObject();
 				if (referenceEObject instanceof Connection && referenceEObject.eContainer() != null) {
-					connections.add((Connection) referenceEObject);
+					Connection connection = (Connection) referenceEObject;
+					if (connection.getSource() == connector || connection.getTarget() == connector) {
+						connections.add(connection);
+					}
 				}
 			}
 		}

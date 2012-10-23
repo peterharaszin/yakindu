@@ -65,16 +65,19 @@ public class PortOperations {
 		return (Component) container;
 	}
 
-	protected static EList<Connection> getConnections(EObject eObject, EReference reference) {
+	protected static EList<Connection> getConnections(Port port, EReference reference) {
 		EList<Connection> connections = new UniqueEList.FastCompare<Connection>();
-		for (EStructuralFeature.Setting nonNavigableInverseReference : CrossReferencerUtil.getNonNavigableInverseReferences(eObject)) {
+		for (EStructuralFeature.Setting inverseReference : CrossReferencerUtil.getInverseReferences(port)) {
 			if ((reference == null && (
-					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Source() ||
-					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Target()))
-					|| nonNavigableInverseReference.getEStructuralFeature() == reference) {
-				EObject referenceEObject = nonNavigableInverseReference.getEObject();
+					inverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Source() ||
+					inverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Target()))
+					|| inverseReference.getEStructuralFeature() == reference) {
+				EObject referenceEObject = inverseReference.getEObject();
 				if (referenceEObject instanceof Connection && referenceEObject.eContainer() != null) {
-					connections.add((Connection) referenceEObject);
+					Connection connection = (Connection) referenceEObject;
+					if (connection.getSource() == port || connection.getTarget() == port) {
+						connections.add(connection);
+					}
 				}
 			}
 		}

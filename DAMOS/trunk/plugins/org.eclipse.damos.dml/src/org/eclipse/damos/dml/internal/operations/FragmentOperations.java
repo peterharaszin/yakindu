@@ -26,16 +26,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class FragmentOperations {
 
 	public static  EList<Fragment> getChildren(Fragment fragment) {
-		EList<Fragment> fragments = new UniqueEList.FastCompare<Fragment>();
-		for (EStructuralFeature.Setting nonNavigableInverseReference : CrossReferencerUtil.getNonNavigableInverseReferences(fragment)) {
+		EList<Fragment> children = new UniqueEList.FastCompare<Fragment>();
+		for (EStructuralFeature.Setting nonNavigableInverseReference : CrossReferencerUtil.getInverseReferences(fragment)) {
 			if (nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.Literals.FRAGMENT__PARENT) {
 				EObject referenceEObject = nonNavigableInverseReference.getEObject();
 				if (referenceEObject instanceof Fragment) {
-					fragments.add((Fragment) referenceEObject);
+					Fragment child = (Fragment) referenceEObject;
+					if (child.getParent() == fragment) {
+						children.add(child);
+					}
 				}
 			}
 		}
-		return fragments;
+		return children;
 	}
 
 	public static  EList<FragmentElement> getAllFragmentElements(Fragment fragment) {

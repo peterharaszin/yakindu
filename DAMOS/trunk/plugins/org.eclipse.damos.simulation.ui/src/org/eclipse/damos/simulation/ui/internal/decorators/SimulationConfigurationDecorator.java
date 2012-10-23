@@ -102,10 +102,13 @@ public class SimulationConfigurationDecorator extends BaseLabelProvider implemen
 		public void resourceChanged(IResourceChangeEvent event) {
 			try {
 				ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-				event.getDelta().accept(visitor);
-				IFile[] files = visitor.getFiles();
-				if (files != null) {
-					fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
+				IResourceDelta delta = event.getDelta();
+				if (delta != null) {
+					delta.accept(visitor);
+					IFile[] files = visitor.getFiles();
+					if (files != null) {
+						fireLabelProviderChanged(new LabelProviderChangedEvent(SimulationConfigurationDecorator.this, files));
+					}
 				}
 			} catch (CoreException e) {
 				DconfigActivator.getInstance().getLog().log(new Status(IStatus.ERROR, SimulationUIPlugin.PLUGIN_ID, "Simulation configuration decorator failed", e));

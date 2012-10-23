@@ -72,9 +72,7 @@ public class TimingConstraintValidator {
 			boolean validUnit = true;
 			
 			Unit normalizedUnit = sampleInterval.getDataType().getUnit().getNormalized();
-			if (normalizedUnit.getFactors().isEmpty()) {
-				validUnit = false;
-			} else if (normalizedUnit.getFactors().size() == 1) {
+			if (normalizedUnit != null && normalizedUnit.getFactors().size() == 1) {
 				UnitFactor secondFactor = normalizedUnit.getFactors().get(0);
 				if (!DMLUtil.isResolved(secondFactor.getSymbol())
 						|| !TypeUtil.SECOND_UNIT.equals(secondFactor.getSymbol().getName())

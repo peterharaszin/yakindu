@@ -38,7 +38,11 @@ public class DscriptQualifiedNameProvider extends MscriptQualifiedNameProvider {
 	@Override
 	public QualifiedName getFullyQualifiedName(EObject obj) {
 		if (obj instanceof QualifiedElement) {
-			return qualifiedNameConverter.toQualifiedName(((QualifiedElement) obj).getQualifiedName());
+			String qualifiedName = ((QualifiedElement) obj).getQualifiedName();
+			if (qualifiedName == null) {
+				return null;
+			}
+			return qualifiedNameConverter.toQualifiedName(qualifiedName);
 		}
 		if (obj instanceof InoutputDefinition || obj instanceof Parameter || obj instanceof Inoutlet) {
 			return getFullyQualifiedName((INamedElement) obj);

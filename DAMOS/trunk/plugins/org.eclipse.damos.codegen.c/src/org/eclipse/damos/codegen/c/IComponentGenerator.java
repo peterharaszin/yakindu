@@ -31,12 +31,6 @@ public interface IComponentGenerator {
 	
 	IComponentGeneratorContext getContext();
 	
-//	boolean contributesContextCode();
-	
-//	Collection<Include> getContextCodeIncludes();
-	
-//	CharSequence getContextTypeName();
-	
 	void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor);
 
 	boolean contributesInitializationCode();

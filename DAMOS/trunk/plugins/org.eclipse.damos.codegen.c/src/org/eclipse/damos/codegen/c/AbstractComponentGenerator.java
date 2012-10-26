@@ -59,31 +59,6 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
 	}
 
-//	/* (non-Javadoc)
-//	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#contributesContextCode()
-//	 */
-//	public boolean contributesContextCode() {
-//		return false;
-//	}
-//	
-//	/* (non-Javadoc)
-//	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#getContextCodeIncludes()
-//	 */
-//	public Collection<Include> getContextCodeIncludes() {
-//		return null;
-//	}
-//	
-//	/* (non-Javadoc)
-//	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#getContextTypeName()
-//	 */
-//	public CharSequence getContextTypeName() {
-//		return null;
-//	}
-//	
-//	public CharSequence generateContextCode(CharSequence typeName, IProgressMonitor monitor) {
-//		return "";
-//	}
-	
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#contributesInitializationCode()
 	 */

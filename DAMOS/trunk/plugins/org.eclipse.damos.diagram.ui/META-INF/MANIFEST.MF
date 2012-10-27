@@ -22,7 +22,7 @@ Require-Bundle: com.google.inject;bundle-version="2.0.0",
  org.eclipse.damos.diagram.dmlnotation,
  org.eclipse.damos.diagram.core;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.damos.diagram.ui,

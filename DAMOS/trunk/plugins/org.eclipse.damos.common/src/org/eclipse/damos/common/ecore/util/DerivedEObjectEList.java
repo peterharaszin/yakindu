@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2007 IBM Corporation, Embarcadero Technologies, and others.
+ * Copyright (c) 2005, 2012 IBM Corporation, Embarcadero Technologies, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *
  * $Id: DerivedEObjectEList.java,v 1.14 2007/10/22 13:27:56 khussey Exp $
  */
+
 package org.eclipse.damos.common.ecore.util;
 
 import java.util.Collection;

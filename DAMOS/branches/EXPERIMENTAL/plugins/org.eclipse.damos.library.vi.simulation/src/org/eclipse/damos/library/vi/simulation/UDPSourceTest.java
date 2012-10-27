@@ -30,7 +30,6 @@ class UDPSourceTest {
 	 */
 	public static void main(String[] args) {
 		try {
-			@SuppressWarnings("resource")
 			DatagramSocket socket = new DatagramSocket();
 			long nextTime = 0;
 			long timeOffset = System.nanoTime();

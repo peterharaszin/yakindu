@@ -1,0 +1,20 @@
+SMAP
+DefaultOperationGenerator.java
+Xtend
+*S Xtend
+*F
++ 0 DefaultOperationGenerator.xtend
+src/org/eclipse/damos/mscript/codegen/c/operationgenerators/DefaultOperationGenerator.xtend
+*L
+36:28
+40:32
+43:36
+44:37,6
+43:43
+47:47,2
+48:49,11
+47:60
+52:64
+47:68,2
+43:70,2
+*E

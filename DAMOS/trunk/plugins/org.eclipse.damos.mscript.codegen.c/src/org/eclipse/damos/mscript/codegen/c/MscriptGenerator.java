@@ -27,15 +27,22 @@ import org.eclipse.damos.mscript.function.FunctionInstance;
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class MscriptGenerator {
 	
-	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
-	private final VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator());
-	private final IStatementGenerator statementGenerator;
+	@Inject
+	private DataTypeGenerator dataTypeGenerator;
+	
+	@Inject
+	private VariableDeclarationGenerator variableDeclarationGenerator;
+	
+	@Inject
+	private IStatementGenerator statementGenerator;
 	
 	private FunctionInstance functionInstance;
 	
@@ -43,8 +50,7 @@ public class MscriptGenerator {
 	
 	private String functionName;
 	
-	public MscriptGenerator(IStatementGenerator statementGenerator, FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
-		this.statementGenerator = statementGenerator;
+	private MscriptGenerator(FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
 		this.functionInstance = functionInstance;
 		this.context = context;
 		this.functionName = functionName;

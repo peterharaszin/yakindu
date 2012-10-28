@@ -27,6 +27,7 @@ import org.eclipse.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipse.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipse.damos.mscript.interpreter.StaticEvaluationResult;
 import org.eclipse.damos.mscript.interpreter.StaticExpressionEvaluationContext;
+import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
 import org.eclipse.damos.mscript.services.MscriptGrammarAccess;
 import org.eclipse.damos.mscript.util.SampleTime;
 import org.eclipse.xtext.parser.IParseResult;
@@ -37,6 +38,7 @@ import org.junit.Test;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.util.Modules;
 
 /**
  * @author Andreas Unger
@@ -45,7 +47,9 @@ import com.google.inject.Injector;
 public class ExpressionGeneratorTest {
 
 	private final IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
-	private final ExpressionGenerator expressionGenerator = new ExpressionGenerator();
+	
+	@Inject
+	private ExpressionGenerator expressionGenerator;
 	
 	@Inject
 	private IParser parser;
@@ -53,9 +57,12 @@ public class ExpressionGeneratorTest {
 	@Inject
 	private MscriptGrammarAccess grammarAccess;
 	
+	@Inject
+	private IDefaultVariableAccessStrategyFactory defaultVariableAccessStrategyFactory;
+
 	@Before
 	public void setUp() {
-		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
+		Injector injector = Guice.createInjector(Modules.override(new MscriptRuntimeModule()).with(new MscriptCodegenCModule()));
 		injector.injectMembers(this);
 	}
 	
@@ -165,9 +172,19 @@ public class ExpressionGeneratorTest {
 		IStaticEvaluationResult staticEvaluationResult = new StaticEvaluationResult();
 
 		Expression expression = parseExpression(expressionString);
-		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(staticEvaluationResult)), expression);
+		expressionEvaluator.evaluate(new StaticExpressionEvaluationContext(new StaticEvaluationContext(
+				staticEvaluationResult)), expression);
+
+		MscriptGeneratorConfiguration configuration = new MscriptGeneratorConfiguration();
+		StaticFunctionInfo functionInfo = staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY);
+		SampleTime sampleInterval = new SampleTime(1.0);
 		
-		IMscriptGeneratorContext context = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), new SampleTime(1.0), new CodeFragmentCollector());
+		IVariableAccessStrategy variableAccessStrategy = defaultVariableAccessStrategyFactory.create(configuration,
+				functionInfo, sampleInterval);
+
+		IMscriptGeneratorContext context = new MscriptGeneratorContext(configuration, functionInfo, sampleInterval,
+				variableAccessStrategy, new CodeFragmentCollector());
+		
 		return expressionGenerator.generate(context, expression).toString();
 	}
 	

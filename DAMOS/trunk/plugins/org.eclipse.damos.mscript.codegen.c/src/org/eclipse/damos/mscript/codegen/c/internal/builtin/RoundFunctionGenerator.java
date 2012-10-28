@@ -19,7 +19,6 @@ import org.eclipse.damos.mscript.MscriptFactory;
 import org.eclipse.damos.mscript.NumericType;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster;
@@ -28,14 +27,19 @@ import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 
-	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
-	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
+	@Inject
+	private IExpressionGenerator expressionGenerator;
+
+	@Inject
+	private DataTypeGenerator dataTypeGenerator;
 	
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final Expression argument = functionCall.getArguments().get(0);

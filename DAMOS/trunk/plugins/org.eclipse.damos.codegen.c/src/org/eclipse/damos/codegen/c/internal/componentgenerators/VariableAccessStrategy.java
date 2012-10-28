@@ -29,12 +29,13 @@ import org.eclipse.damos.mscript.RealType;
 import org.eclipse.damos.mscript.StateVariableDeclaration;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.VariableDeclaration;
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator;
 import org.eclipse.damos.mscript.computation.ComputationModel;
 import org.eclipse.damos.mscript.interpreter.IStaticEvaluationResult;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -42,7 +43,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 public class VariableAccessStrategy implements IVariableAccessStrategy {
 
-	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	@Inject
+	private LiteralGenerator literalGenerator;
 	
 	private IComponentGeneratorContext context;
 	private ComputationModel computationModel;
@@ -51,7 +53,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	/**
 	 * 
 	 */
-	public VariableAccessStrategy(IComponentGeneratorContext context, ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult) {
+	VariableAccessStrategy(IComponentGeneratorContext context, ComputationModel computationModel, IStaticEvaluationResult staticEvaluationResult) {
 		this.context = context;
 		this.computationModel = computationModel;
 		this.staticEvaluationResult = staticEvaluationResult;

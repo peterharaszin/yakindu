@@ -12,7 +12,7 @@
 package org.eclipse.damos.mscript.codegen.c;
 
 import org.eclipse.damos.mscript.Expression;
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.computation.NumberFormat;
 
 /**
@@ -21,19 +21,21 @@ import org.eclipse.damos.mscript.computation.NumberFormat;
  */
 public class NumericExpressionOperand implements INumericExpressionOperand {
 	
+	private final CastHelper castHelper;
 	private final IMscriptGeneratorContext context;
 	private final Expression expression;
 	
 	/**
 	 * 
 	 */
-	public NumericExpressionOperand(IMscriptGeneratorContext context, Expression expression) {
+	public NumericExpressionOperand(CastHelper castHelper, IMscriptGeneratorContext context, Expression expression) {
+		this.castHelper = castHelper;
 		this.context = context;
 		this.expression = expression;
 	}
 
 	public CharSequence generate(NumberFormat targetNumberFormat) {
-		return MscriptGeneratorUtil.castNumericType(context, expression, targetNumberFormat);
+		return castHelper.castNumericType(context, expression, targetNumberFormat);
 	}
 
 }

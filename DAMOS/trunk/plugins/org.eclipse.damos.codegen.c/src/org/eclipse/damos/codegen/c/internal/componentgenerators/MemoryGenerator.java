@@ -13,16 +13,24 @@ package org.eclipse.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.AbstractComponentGenerator;
-import org.eclipse.damos.codegen.c.internal.VariableAccessor;
+import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.util.CompoundGeneratorUtil;
-import org.eclipse.damos.codegen.c.util.GeneratorUtil;
+import org.eclipse.damos.codegen.c.util.GeneratorHelper;
 import org.eclipse.damos.common.util.PrintAppendable;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  *
  */
 public class MemoryGenerator extends AbstractComponentGenerator {
+
+	@Inject
+	private IVariableAccessorFactory variableAccessorFactory;
+
+	@Inject
+	private GeneratorHelper generatorHelper;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.codegen.c.AbstractComponentGenerator#contributesComputeOutputsCode()
@@ -37,7 +45,7 @@ public class MemoryGenerator extends AbstractComponentGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		String previousValueVariableName = CompoundGeneratorUtil.getMemoryPreviousValueVariableName(getConfiguration(), getNode());
-		String outputVariableName = new VariableAccessor(getConfiguration(), getNode()).generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
+		String outputVariableName = variableAccessorFactory.create(getConfiguration(), getNode()).generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
 		out.printf("%s = %s;\n", outputVariableName, previousValueVariableName);
 		return sb;
 	}
@@ -55,7 +63,7 @@ public class MemoryGenerator extends AbstractComponentGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		String previousValueVariableName = CompoundGeneratorUtil.getMemoryPreviousValueVariableName(getConfiguration(), getNode());
-		String incomingVariableName = GeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getInputPorts().get(1));
+		String incomingVariableName = generatorHelper.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getInputPorts().get(1));
 		out.printf("%s = %s;\n", previousValueVariableName, incomingVariableName);
 		return sb;
 	}

@@ -24,14 +24,17 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipse.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class LatchGenerator extends AbstractComponentGenerator {
 
-	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
-	
+	@Inject
+	private DataTypeGenerator dataTypeGenerator;
+
 	@Override
 	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
 		String prefix = GeneratorConfigurationExtensions.getPrefix(getConfiguration());

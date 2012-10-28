@@ -1,0 +1,31 @@
+SMAP
+FoldFunctionGenerator.java
+Xtend
+*S Xtend
+*F
++ 0 FoldFunctionGenerator.xtend
+src/org/eclipse/damos/mscript/codegen/c/operationgenerators/FoldFunctionGenerator.xtend
+*L
+42:41
+43:42
+44:43,12
+42:55
+46:56
+49:60,2
+50:62
+51:63,3
+53:66
+55:67,7
+56:74,2
+58:76,2
+49:78
+60:79,3
+62:82,14
+63:96,5
+64:101,11
+65:112,15
+66:127,13
+68:140,10
+60:150
+49:151,2
+*E

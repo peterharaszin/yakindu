@@ -42,7 +42,7 @@ import org.eclipse.damos.codegen.c.codefragments.factories.ITaskInfoArrayFactory
 import org.eclipse.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipse.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipse.damos.codegen.c.internal.GeneratorContext;
-import org.eclipse.damos.codegen.c.internal.VariableAccessor;
+import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions;
@@ -77,37 +77,43 @@ import com.google.inject.Inject;
  */
 public class Generator extends AbstractGenerator {
 
-	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
+	@Inject
+	private DataTypeResolver dataTypeResolver;
 	
-	private final ICModuleGenerator headerGenerator;
-	private final ICModuleGenerator sourceGenerator;
+	@Inject
+	@CHeader
+	private ICModuleGenerator headerGenerator;
+
+	@Inject
+	@CSource
+	private ICModuleGenerator sourceGenerator;
 	
-	private final IInputStructFactory inputStructFactory;
-	private final IOutputStructFactory outputStructFactory;
-	private final IContextStructFactory contextStructFactory;
-	private final IContextVariableFactory contextVariableFactory;
-	private final ITaskGenerator taskGenerator;
-	private final ITaskInfoArrayFactory taskInfoArrayFactory;
-	private final IInitializeFunctionFactory initializeFunctionFactory;
-	private final IExecuteFunctionFactory executeFunctionFactory;
+	@Inject
+	private IInputStructFactory inputStructFactory;
+	
+	@Inject
+	private IOutputStructFactory outputStructFactory;
+	
+	@Inject
+	private IContextStructFactory contextStructFactory;
+	
+	@Inject
+	private IContextVariableFactory contextVariableFactory;
+	
+	@Inject
+	private ITaskGenerator taskGenerator;
+	
+	@Inject
+	private ITaskInfoArrayFactory taskInfoArrayFactory;
+	
+	@Inject
+	private IInitializeFunctionFactory initializeFunctionFactory;
+
+	@Inject
+	private IExecuteFunctionFactory executeFunctionFactory;
 		
 	@Inject
-	Generator(@CHeader ICModuleGenerator headerGenerator, @CSource ICModuleGenerator sourceGenerator,
-			IInputStructFactory inputStructFactory, IOutputStructFactory outputStructFactory,
-			IContextStructFactory contextStructFactory, IContextVariableFactory contextVariableFactory, ITaskGenerator taskGenerator,
-			ITaskInfoArrayFactory taskInfoArrayFactory, IInitializeFunctionFactory initializeFunctionFactory,
-			IExecuteFunctionFactory executeFunctionFactory) {
-		this.headerGenerator = headerGenerator;
-		this.sourceGenerator = sourceGenerator;
-		this.inputStructFactory = inputStructFactory;
-		this.outputStructFactory = outputStructFactory;
-		this.contextStructFactory = contextStructFactory;
-		this.contextVariableFactory = contextVariableFactory;
-		this.taskGenerator = taskGenerator;
-		this.taskInfoArrayFactory = taskInfoArrayFactory;
-		this.initializeFunctionFactory = initializeFunctionFactory;
-		this.executeFunctionFactory = executeFunctionFactory;
-	}
+	private IVariableAccessorFactory variableAccessorFactory;
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
@@ -308,7 +314,7 @@ public class Generator extends AbstractGenerator {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = GeneratorNodeExtensions.getComponentGenerator(componentNode);
-				IVariableAccessor variableAccessor = new VariableAccessor(configuration, componentNode);
+				IVariableAccessor variableAccessor = variableAccessorFactory.create(configuration, componentNode);
 				IComponentSignature componentSignature = signatures.get(componentNode.getComponent());
 				ComponentGeneratorContext componentGeneratorContext = new ComponentGeneratorContext(componentNode, componentSignature, variableAccessor, configuration, context);
 				generator.initialize(componentGeneratorContext, monitor);

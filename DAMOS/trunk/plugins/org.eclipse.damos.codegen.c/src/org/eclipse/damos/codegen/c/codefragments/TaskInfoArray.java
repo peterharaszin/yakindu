@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.IGeneratorContext;
 import org.eclipse.damos.codegen.c.codefragments.factories.ITaskFunctionFactory;
-import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorUtil;
+import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorHelper;
 import org.eclipse.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipse.damos.common.util.PrintAppendable;
@@ -24,23 +24,25 @@ import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.Include;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class TaskInfoArray extends PrimaryCodeFragment {
 
-	private final ITaskFunctionFactory taskFunctionFactory;
-	
+	@Inject
+	private ITaskFunctionFactory taskFunctionFactory;
+
+	@Inject
+	private TaskGeneratorHelper taskGeneratorHelper;
+
 	private Collection<Include> forwardDeclarationIncludes;
 	private Collection<Include> implementationIncludes;
 	
 	private String forwardDeclaration;
 	private String implementation;
-	
-	public TaskInfoArray(ITaskFunctionFactory taskFunctionFactory) {
-		this.taskFunctionFactory = taskFunctionFactory;
-	}
 	
 	@Override
 	protected void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
@@ -96,7 +98,7 @@ public class TaskInfoArray extends PrimaryCodeFragment {
 			} else {
 				out.print(",\n");
 			}
-			out.print("{ ").print(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph)).print(" }");
+			out.print("{ ").print(taskGeneratorHelper.getTaskName(context.getConfiguration(), taskGraph)).print(" }");
 		}
 		out.println("\n};");
 		

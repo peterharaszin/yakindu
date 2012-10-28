@@ -18,10 +18,12 @@ import org.eclipse.damos.mscript.NumericType;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -29,6 +31,9 @@ import org.eclipse.damos.mscript.computation.NumberFormat;
  */
 public abstract class AbstractSingleParameterFunctionGenerator implements IBuiltinFunctionGenerator {
 
+	@Inject
+	private CastHelper castHelper;
+	
 	public CharSequence generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
@@ -44,12 +49,12 @@ public abstract class AbstractSingleParameterFunctionGenerator implements IBuilt
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			out.printf("%s(", getFixedPointFunctionName(fixedPointFormat));
-			out.print(MscriptGeneratorUtil.castNumericType(context, argument, numberFormat));
+			out.print(castHelper.castNumericType(context, argument, numberFormat));
 			out.printf(", %d)", fixedPointFormat.getFractionLength());
 		} else if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			out.printf("%s(", getFloatingPointFunctionName(floatingPointFormat));
-			out.print(MscriptGeneratorUtil.castNumericType(context, argument, numberFormat));
+			out.print(castHelper.castNumericType(context, argument, numberFormat));
 			out.print(")");
 		} else {
 			throw new IllegalArgumentException();

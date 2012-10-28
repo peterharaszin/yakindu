@@ -11,13 +11,13 @@
 
 package org.eclipse.damos.codegen.c.codefragments.factories;
 
-import org.eclipse.damos.codegen.c.IGraphGenerator;
 import org.eclipse.damos.codegen.c.codefragments.TaskFunction;
 import org.eclipse.damos.codegen.c.codefragments.factories.ITaskFunctionFactory.Default;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
@@ -30,15 +30,13 @@ public interface ITaskFunctionFactory {
 	
 	static class Default implements ITaskFunctionFactory {
 
-		private final IGraphGenerator graphGenerator;
-
 		@Inject
-		Default(IGraphGenerator graphGenerator) {
-			this.graphGenerator = graphGenerator;
-		}
+		private Injector injector;
 
 		public ICodeFragment create() {
-			return new TaskFunction(graphGenerator);
+			TaskFunction taskFunction = new TaskFunction();
+			injector.injectMembers(taskFunction);
+			return taskFunction;
 		}
 		
 	}

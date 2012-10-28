@@ -15,7 +15,7 @@ import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
-import org.eclipse.damos.codegen.c.util.GeneratorUtil
+import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipse.damos.dml.Inoutport
 import org.eclipse.damos.execution.ComponentNode
 import org.eclipse.damos.execution.CompoundNode
@@ -23,10 +23,10 @@ import org.eclipse.damos.execution.Graph
 import org.eclipse.damos.execution.Node
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.Include
+import org.eclipse.damos.codegen.c.util.GeneratorHelper
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions.*
-import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil
 
 /**
  * @author Andreas Unger
@@ -34,17 +34,18 @@ import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil
  */
 class GraphGenerator implements IGraphGenerator {
 
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
-
-	val ICompoundGenerator compoundGenerator
-	val ITaskGenerator taskGenerator
+	@Inject
+	ICompoundGenerator compoundGenerator
 	
 	@Inject
-	new(ICompoundGenerator compoundGenerator, ITaskGenerator taskGenerator) {
-		this.compoundGenerator = compoundGenerator
-		this.taskGenerator = taskGenerator
-	}
+	ITaskGenerator taskGenerator
 	
+	@Inject
+	DataTypeGenerator dataTypeGenerator
+
+	@Inject
+	GeneratorHelper generatorHelper
+
 	override Collection<Include> getImplementationIncludes(IGeneratorContext context, Graph graph) {
 		val allIncludes = new ArrayList<Include>()
 		
@@ -159,7 +160,7 @@ class GraphGenerator implements IGraphGenerator {
 				«FOR outputPort : getOutputVariableDeclarationPorts(node)»
 					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
-					«dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), GeneratorUtil::getOutputVariableName(context.configuration, node, outputPort), context, outputDataType, null)»;
+					«dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), generatorHelper.getOutputVariableName(context.configuration, node, outputPort), context, outputDataType, null)»;
 				«ENDFOR»
 			«ENDFOR»
 		'''

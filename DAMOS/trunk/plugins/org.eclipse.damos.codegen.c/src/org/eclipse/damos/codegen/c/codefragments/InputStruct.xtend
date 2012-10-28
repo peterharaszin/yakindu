@@ -11,12 +11,12 @@
 
 package org.eclipse.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.IGeneratorContext
 import org.eclipse.damos.codegen.c.MscriptGeneratorConfiguration
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipse.damos.execution.ComponentNode
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
@@ -28,7 +28,8 @@ import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions
  */
 class InputStruct extends PrimaryCodeFragment {
 
-	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
 
 	CharSequence content;
 	

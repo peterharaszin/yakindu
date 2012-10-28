@@ -22,6 +22,8 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipse.damos.mscript.codegen.c.codefragments.RecordLiteralDeclaration;
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringConstructionFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringTable;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IArrayLiteralDeclarationFactory;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IRecordLiteralDeclarationFactory;
 import org.eclipse.damos.mscript.codegen.c.util.StringTableUtil;
 import org.eclipse.damos.mscript.computation.ComputationModel;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
@@ -46,9 +48,11 @@ import com.google.inject.Inject;
 public class LiteralGenerator {
 	
 	@Inject
-	public LiteralGenerator(DataTypeGenerator dataTypeGenerator) {
-	}
-
+	private IArrayLiteralDeclarationFactory arrayLiteralDeclarationFactory;
+	
+	@Inject
+	private IRecordLiteralDeclarationFactory recordLiteralDeclarationFactory;
+	
 	public CharSequence generateLiteral(ComputationModel computationModel, Type type, double value) {
 		NumberFormat numberFormat = computationModel.getNumberFormat(type);
 		return generateLiteral(computationModel, numberFormat, value);
@@ -100,12 +104,12 @@ public class LiteralGenerator {
 
 	public CharSequence generateLiteral(IMscriptGeneratorConfiguration configuration, ICodeFragmentCollector codeFragmentCollector, IValue value) {
 		if (value instanceof IArrayValue) {
-			ArrayLiteralDeclaration codeFragment = new ArrayLiteralDeclaration(configuration, (IArrayValue) value);
+			ArrayLiteralDeclaration codeFragment = (ArrayLiteralDeclaration) arrayLiteralDeclarationFactory.create(configuration, (IArrayValue) value);
 			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}
 		if (value instanceof RecordValue) {
-			RecordLiteralDeclaration codeFragment = new RecordLiteralDeclaration(configuration, (RecordValue) value);
+			RecordLiteralDeclaration codeFragment = (RecordLiteralDeclaration) recordLiteralDeclarationFactory.create(configuration, (RecordValue) value);
 			codeFragment = codeFragmentCollector.addCodeFragment(codeFragment, new NullProgressMonitor());
 			return codeFragment.getName();
 		}

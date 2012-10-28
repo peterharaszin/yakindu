@@ -16,8 +16,10 @@ import org.eclipse.damos.codegen.c.AbstractComponentGenerator;
 import org.eclipse.damos.common.util.PrintAppendable;
 import org.eclipse.damos.dml.InputPort;
 import org.eclipse.damos.dml.OutputPort;
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -25,6 +27,9 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 public class OutportGenerator extends AbstractComponentGenerator {
 
+	@Inject
+	private CastHelper castHelper;
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.codegen.c.AbstractComponentGenerator#contributesComputeOutputsCode()
 	 */
@@ -49,7 +54,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 
 		out.printf("output->%s = ", StringExtensions.toFirstLower(getComponent().getName()));
 		String inputVariableString = getVariableAccessor().generateInputVariableReference(inputPort, false);
-		out.print(MscriptGeneratorUtil.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
+		out.print(castHelper.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
 		out.println(";");
 		return sb;
 	}

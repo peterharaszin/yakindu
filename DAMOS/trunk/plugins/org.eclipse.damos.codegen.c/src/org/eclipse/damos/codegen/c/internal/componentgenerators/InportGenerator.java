@@ -18,5 +18,4 @@ import org.eclipse.damos.codegen.c.AbstractComponentGenerator;
  *
  */
 public class InportGenerator extends AbstractComponentGenerator {
-
 }

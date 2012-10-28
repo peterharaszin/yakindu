@@ -28,35 +28,76 @@ import org.eclipse.damos.mscript.codegen.c.operationgenerators.MatrixVectorMulti
 import org.eclipse.damos.mscript.codegen.c.operationgenerators.UnionConstructionOperatorGenerator;
 import org.eclipse.damos.mscript.codegen.c.operationgenerators.VectorMatrixMultiplyGenerator;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 /**
  * @author Andreas Unger
  *
  */
+@Singleton
 public class OperationGeneratorProvider implements IOperationGeneratorProvider {
 	
-	private static final List<IOperationGenerator> GENERATORS = new ArrayList<IOperationGenerator>();
+	@Inject
+	private ArrayElementWiseOperationGenerator arrayElementWiseOperationGenerator;
 	
-	static {
-		GENERATORS.add(new ArrayElementWiseOperationGenerator());
-		GENERATORS.add(new ArrayScalarMultiplyGenerator());
-		GENERATORS.add(new MatrixMultiplyGenerator());
-		GENERATORS.add(new MatrixVectorMultiplyGenerator());
-		GENERATORS.add(new VectorMatrixMultiplyGenerator());
-		GENERATORS.add(new FoldFunctionGenerator());
-		GENERATORS.add(new MapFunctionGenerator());
-		GENERATORS.add(new AlgorithmExpressionGenerator());
-		GENERATORS.add(new InspectExpressionGenerator());
-		GENERATORS.add(new UnionConstructionOperatorGenerator());
-		GENERATORS.add(new DefaultOperationGenerator());
-	}
-
+	@Inject
+	private ArrayScalarMultiplyGenerator arrayScalarMultiplyGenerator;
+	
+	@Inject
+	private MatrixMultiplyGenerator matrixMultiplyGenerator;
+	
+	@Inject
+	private MatrixVectorMultiplyGenerator matrixVectorMultiplyGenerator;
+	
+	@Inject
+	private VectorMatrixMultiplyGenerator vectorMatrixMultiplyGenerator;
+	
+	@Inject
+	private FoldFunctionGenerator foldFunctionGenerator;
+	
+	@Inject
+	private MapFunctionGenerator mapFunctionGenerator;
+	
+	@Inject
+	private AlgorithmExpressionGenerator algorithmExpressionGenerator;
+	
+	@Inject
+	private InspectExpressionGenerator inspectExpressionGenerator;
+	
+	@Inject
+	private UnionConstructionOperatorGenerator unionConstructionOperatorGenerator;
+	
+	@Inject
+	private DefaultOperationGenerator defaultOperationGenerator;
+	
+	private List<IOperationGenerator> generators;
+	
 	public IOperationGenerator getGenerator(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
-		for (IOperationGenerator generator : GENERATORS) {
+		if (generators == null) {
+			initializeGenerators();
+		}
+		for (IOperationGenerator generator : generators) {
 			if (generator.canHandle(context, resultDataType, expression)) {
 				return generator;
 			}
 		}
 		return null;
+	}
+	
+	private void initializeGenerators() {
+		generators = new ArrayList<IOperationGenerator>();
+		generators.add(arrayElementWiseOperationGenerator);
+		generators.add(arrayScalarMultiplyGenerator);
+		generators.add(matrixMultiplyGenerator);
+		generators.add(matrixVectorMultiplyGenerator);
+		generators.add(vectorMatrixMultiplyGenerator);
+		generators.add(foldFunctionGenerator);
+		generators.add(mapFunctionGenerator);
+		generators.add(algorithmExpressionGenerator);
+		generators.add(inspectExpressionGenerator);
+		generators.add(unionConstructionOperatorGenerator);
+		generators.add(defaultOperationGenerator);
 	}
 
 }

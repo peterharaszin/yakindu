@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.IGeneratorContext;
 import org.eclipse.damos.codegen.c.IGraphGenerator;
 import org.eclipse.damos.codegen.c.internal.rte.MessageQueueInfo;
-import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorUtil;
+import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorHelper;
 import org.eclipse.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
 import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipse.damos.execution.TaskGraph;
@@ -28,22 +28,24 @@ import org.eclipse.damos.mscript.codegen.c.Include;
 import org.eclipse.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
 import org.eclipse.emf.common.util.EList;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class TaskFunction extends PrimaryCodeFragment {
 
-	private final IGraphGenerator graphGenerator;
+	@Inject
+	private IGraphGenerator graphGenerator;
+	
+	@Inject
+	private TaskGeneratorHelper taskGeneratorHelper;
 	
 	private Collection<Include> implementationIncludes = new ArrayList<Include>();
 
 	private List<String> forwardDeclarations = new ArrayList<String>();
 	private List<String> implementations = new ArrayList<String>();
-	
-	public TaskFunction(IGraphGenerator graphGenerator) {
-		this.graphGenerator = graphGenerator;
-	}
 	
 	@Override
 	public Collection<Include> getImplementationIncludes() {
@@ -60,7 +62,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 		IRuntimeEnvironmentAPI rteAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration());
 		for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
 			StringBuilder sb = new StringBuilder();
-			sb.append(rteAPI.generateTaskSignature(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph)));
+			sb.append(rteAPI.generateTaskSignature(taskGeneratorHelper.getTaskName(context.getConfiguration(), taskGraph)));
 			sb.append(";\n");
 			forwardDeclarations.add(sb.toString());
 		}
@@ -77,7 +79,7 @@ public class TaskFunction extends PrimaryCodeFragment {
 			
 			StringBuilder sb = new StringBuilder();
 			
-			String taskName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph);
+			String taskName = taskGeneratorHelper.getTaskName(context.getConfiguration(), taskGraph);
 			sb.append(runtimeEnvironmentAPI.generateTaskSignature(taskName));
 			sb.append(" {\n");
 
@@ -94,15 +96,15 @@ public class TaskFunction extends PrimaryCodeFragment {
 			EList<TaskInputNode> inputNodes = taskGraph.getInputNodes();
 
 			if (!inputNodes.isEmpty()) {
-				if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
+				if (taskGeneratorHelper.getInputSockets(taskGraph).isEmpty()) {
 					TaskInputNode inputNode = taskGraph.getInputNodes().get(0);
-					String taskInputVariableName = TaskGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
-					sb.append(TaskGeneratorUtil.getCDataTypeFor(context, taskInputVariableName, inputNode)).append(";\n");
+					String taskInputVariableName = taskGeneratorHelper.getTaskInputVariableName(context.getConfiguration(), inputNode);
+					sb.append(taskGeneratorHelper.getCDataTypeFor(context, taskInputVariableName, inputNode)).append(";\n");
 				} else {
-					UnionTypeDeclaration messageUnionTypeDeclaration = TaskGeneratorUtil.createMessageUnionTypeDeclaration(context, taskGraph);
+					UnionTypeDeclaration messageUnionTypeDeclaration = taskGeneratorHelper.createMessageUnionTypeDeclaration(context, taskGraph);
 					sb.append(messageUnionTypeDeclaration.getName());
 					sb.append(" ");
-					sb.append(TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph));
+					sb.append(taskGeneratorHelper.getTaskName(context.getConfiguration(), taskGraph));
 					sb.append("_message;\n");
 				}
 			}
@@ -112,15 +114,15 @@ public class TaskFunction extends PrimaryCodeFragment {
 			sb.append("for (;;) {\n");
 			
 			if (!inputNodes.isEmpty()) {
-				String qualifier = TaskGeneratorUtil.getTaskContextVariable(context, taskName, false) + "." + "queue";
-				if (TaskGeneratorUtil.getInputSockets(taskGraph).isEmpty()) {
+				String qualifier = taskGeneratorHelper.getTaskContextVariable(context, taskName, false) + "." + "queue";
+				if (taskGeneratorHelper.getInputSockets(taskGraph).isEmpty()) {
 					TaskInputNode inputNode = inputNodes.get(0);
-					String taskInputVariableName = TaskGeneratorUtil.getTaskInputVariableName(context.getConfiguration(), inputNode);
-					MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, inputNode);
+					String taskInputVariableName = taskGeneratorHelper.getTaskInputVariableName(context.getConfiguration(), inputNode);
+					MessageQueueInfo messageQueueInfo = taskGeneratorHelper.createMessageQueueInfoFor(context, inputNode);
 					sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateReceiveCode(context, qualifier, "&" + taskInputVariableName, messageQueueInfo));
 				} else {
-					String taskInputVariableName = TaskGeneratorUtil.getTaskName(context.getConfiguration(), taskGraph) + "_message";
-					MessageQueueInfo messageQueueInfo = TaskGeneratorUtil.createMessageQueueInfoFor(context, taskGraph);
+					String taskInputVariableName = taskGeneratorHelper.getTaskName(context.getConfiguration(), taskGraph) + "_message";
+					MessageQueueInfo messageQueueInfo = taskGeneratorHelper.createMessageQueueInfoFor(context, taskGraph);
 					sb.append(runtimeEnvironmentAPI.getMessageQueueGenerator().generateReceiveCode(context, qualifier, "&" + taskInputVariableName, messageQueueInfo));
 				}
 			}

@@ -11,20 +11,19 @@
 
 package org.eclipse.damos.mscript.codegen.c.operationgenerators
 
+import com.google.inject.Inject
 import org.eclipse.damos.mscript.ArrayType
 import org.eclipse.damos.mscript.BinaryExpression
 import org.eclipse.damos.mscript.Expression
 import org.eclipse.damos.mscript.OperatorKind
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator
+import org.eclipse.damos.mscript.Type
 import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
-import org.eclipse.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.util.TypeUtil
-import org.eclipse.damos.mscript.Type
 
 /**
  * @author Andreas Unger
@@ -32,8 +31,11 @@ import org.eclipse.damos.mscript.Type
  */
 class MatrixMultiplyGenerator implements IOperationGenerator {
 	
-	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
-	val IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator()
+	@Inject
+	IExpressionGenerator expressionGenerator
+	
+	@Inject
+	IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {

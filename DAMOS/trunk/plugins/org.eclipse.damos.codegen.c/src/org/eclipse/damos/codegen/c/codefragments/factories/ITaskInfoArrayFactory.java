@@ -17,6 +17,7 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
@@ -29,15 +30,13 @@ public interface ITaskInfoArrayFactory {
 	
 	class Default implements ITaskInfoArrayFactory {
 
-		private final ITaskFunctionFactory taskFunctionFactory;
-
 		@Inject
-		Default(ITaskFunctionFactory taskFunctionFactory) {
-			this.taskFunctionFactory = taskFunctionFactory;
-		}
+		private Injector injector;
 
 		public ICodeFragment create() {
-			return new TaskInfoArray(taskFunctionFactory);
+			TaskInfoArray taskInfoArray = new TaskInfoArray();
+			injector.injectMembers(taskInfoArray);
+			return taskInfoArray;
 		}
 		
 	}

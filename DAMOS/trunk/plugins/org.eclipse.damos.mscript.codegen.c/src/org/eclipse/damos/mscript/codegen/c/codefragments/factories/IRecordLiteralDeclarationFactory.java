@@ -13,14 +13,35 @@ package org.eclipse.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
+import org.eclipse.damos.mscript.codegen.c.codefragments.RecordLiteralDeclaration;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IRecordLiteralDeclarationFactory.Default;
 import org.eclipse.damos.mscript.interpreter.value.RecordValue;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface IRecordLiteralDeclarationFactory {
 
 	ICodeFragment create(IMscriptGeneratorConfiguration configuration, RecordValue value);
 	
+	class Default implements IRecordLiteralDeclarationFactory {
+		
+		@Inject
+		private Injector injector;
+		
+		@Override
+		public ICodeFragment create(IMscriptGeneratorConfiguration configuration, RecordValue value) {
+			ICodeFragment codeFragment = new RecordLiteralDeclaration(configuration, value);
+			injector.injectMembers(codeFragment);
+			return codeFragment;
+		}
+		
+	}
+
 }

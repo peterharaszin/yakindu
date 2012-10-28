@@ -13,14 +13,35 @@ package org.eclipse.damos.mscript.codegen.c.codefragments.factories;
 
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
+import org.eclipse.damos.mscript.codegen.c.codefragments.ArrayLiteralDeclaration;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IArrayLiteralDeclarationFactory.Default;
 import org.eclipse.damos.mscript.interpreter.value.IArrayValue;
+
+import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
  *
  */
+@ImplementedBy(Default.class)
 public interface IArrayLiteralDeclarationFactory {
 
 	ICodeFragment create(IMscriptGeneratorConfiguration configuration, IArrayValue value);
 	
+	class Default implements IArrayLiteralDeclarationFactory {
+		
+		@Inject
+		private Injector injector;
+		
+		@Override
+		public ICodeFragment create(IMscriptGeneratorConfiguration configuration, IArrayValue value) {
+			ICodeFragment codeFragment = new ArrayLiteralDeclaration(configuration, value);
+			injector.injectMembers(codeFragment);
+			return codeFragment;
+		}
+		
+	}
+
 }

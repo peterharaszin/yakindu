@@ -11,9 +11,9 @@
 
 package org.eclipse.damos.mscript.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
@@ -28,7 +28,8 @@ import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
  */
 class RecordLiteralDeclaration extends AbstractCodeFragment {
 
-	val LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator())
+	@Inject
+	LiteralGenerator literalGenerator
 	
 	val IMscriptGeneratorConfiguration configuration
 	val RecordValue recordValue

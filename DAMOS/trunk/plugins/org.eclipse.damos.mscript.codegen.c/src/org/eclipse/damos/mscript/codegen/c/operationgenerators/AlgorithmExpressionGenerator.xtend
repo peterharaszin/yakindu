@@ -11,24 +11,15 @@
 
 package org.eclipse.damos.mscript.codegen.c.operationgenerators
 
+import com.google.inject.Inject
 import org.eclipse.damos.mscript.AlgorithmExpression
 import org.eclipse.damos.mscript.Expression
+import org.eclipse.damos.mscript.ReturnStatement
 import org.eclipse.damos.mscript.Type
-import org.eclipse.damos.mscript.codegen.c.CompoundStatementGenerator
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.ICompoundStatementGenerator
-import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
 import org.eclipse.damos.mscript.codegen.c.IOperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.IStatementGenerator
-import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
-import org.eclipse.damos.mscript.codegen.c.OperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.StatementGenerator
-import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
-import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator
-import org.eclipse.damos.mscript.ReturnStatement
 
 /**
  * @author Andreas Unger
@@ -36,12 +27,11 @@ import org.eclipse.damos.mscript.ReturnStatement
  */
 class AlgorithmExpressionGenerator implements IOperationGenerator {
 
-	val IOperationGeneratorProvider operationGeneratorProvider = new OperationGeneratorProvider()
-	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
-	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(dataTypeGenerator)
-	val IStatementGenerator statementGenerator = new StatementGenerator(expressionGenerator, dataTypeGenerator, variableDeclarationGenerator, new VariableReferenceGenerator(expressionGenerator, new LiteralGenerator(dataTypeGenerator)), new OperationGeneratorProvider())
-	val ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator(statementGenerator, variableDeclarationGenerator)
+	@Inject
+	IOperationGeneratorProvider operationGeneratorProvider
+	
+	@Inject
+	ICompoundStatementGenerator compoundStatementGenerator
 
 	override boolean canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		return expression instanceof AlgorithmExpression

@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.AbstractBlockGenerator;
 import org.eclipse.damos.codegen.c.IComponentGenerator;
 import org.eclipse.damos.codegen.c.IGeneratorContext;
-import org.eclipse.damos.codegen.c.util.GeneratorUtil;
+import org.eclipse.damos.codegen.c.util.GeneratorHelper;
 import org.eclipse.damos.codegen.targets.arduino.AbstractShieldGenerator;
 import org.eclipse.damos.codegen.targets.arduino.DataInComponentGenerator;
 import org.eclipse.damos.codegen.targets.arduino.DataOutComponentGenerator;
@@ -17,11 +17,16 @@ import org.eclipse.damos.dconfig.Binding;
 import org.eclipse.damos.dconfig.ResourceDeclaration;
 import org.eclipse.damos.execution.ComponentNode;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  * 
  */
 public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenerator {
+
+	@Inject
+	private GeneratorHelper generatorHelper;
 
 	private static final String DISPLAY_RESOURCE_NAME = "Display";
 	private static final String DECIMAL_POINT_RESOURCE_NAME = "DecimalPoint";
@@ -29,7 +34,7 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 	private static final String BUTTON_DOWN_RESOURCE_NAME = "ButtonDown";
 	private static final String KNOB_RESOURCE_NAME = "Knob";
 	private static final String LED_RESOURCE_NAME = "LED";
-
+	
 	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, ComponentNode node,
 			Binding binding) {
 		ResourceDeclaration resourceDeclaration = binding.getTarget().getResourceDeclaration();
@@ -51,7 +56,7 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 		return null;
 	}
 
-	private static class DisplayGenerator extends AbstractBlockGenerator {
+	private class DisplayGenerator extends AbstractBlockGenerator {
 
 		@Override
 		public boolean contributesInitializationCode() {
@@ -80,7 +85,7 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 		public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 			StringBuilder sb = new StringBuilder();
 			PrintAppendable out = new PrintAppendable(sb);
-			String v = GeneratorUtil.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getFirstInputPort());
+			String v = generatorHelper.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getFirstInputPort());
 			out.printf("digitalWrite(3, !(%s == 0 || %s == 2 || %s == 3 || %s == 5 || %s == 6 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
 			out.printf("digitalWrite(2, !(%s == 0 || %s == 1 || %s == 2 || %s == 3 || %s == 4 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
 			out.printf("digitalWrite(8, !(%s == 0 || %s == 1 || %s == 3 || %s == 4 || %s == 5 || %s == 6 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v, v);

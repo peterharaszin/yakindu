@@ -28,31 +28,54 @@ import org.eclipse.damos.dml.Memory;
 import org.eclipse.damos.dml.Outport;
 import org.eclipse.damos.execution.ComponentNode;
 
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.google.inject.Singleton;
+
 /**
  * @author Andreas Unger
  *
  */
+@Singleton
 public class BuiltinComponentGeneratorProvider implements IComponentGeneratorProvider {
+
+	@Inject
+	private Provider<InportGenerator> inportGeneratorProvider;
+	
+	@Inject
+	private Provider<OutportGenerator> outportGeneratorProvider;
+
+	@Inject
+	private Provider<ChoiceGenerator> choiceGeneratorProvider;
+
+	@Inject
+	private Provider<JoinGenerator> joinGeneratorProvider;
+
+	@Inject
+	private Provider<MemoryGenerator> memoryGeneratorGeneratorProvider;
+
+	@Inject
+	private Provider<LatchGenerator> latchGeneratorProvider;
 
 	public IComponentGenerator createGenerator(ComponentNode node) {
 		Component component = node.getComponent();
 		if (component instanceof Inport) {
-			return new InportGenerator();
+			return inportGeneratorProvider.get();
 		}
 		if (component instanceof Outport) {
-			return new OutportGenerator();
+			return outportGeneratorProvider.get();
 		}
 		if (component instanceof Choice) {
-			return new ChoiceGenerator();
+			return choiceGeneratorProvider.get();
 		}
 		if (component instanceof Join) {
-			return new JoinGenerator();
+			return joinGeneratorProvider.get();
 		}
 		if (component instanceof Memory) {
-			return new MemoryGenerator();
+			return memoryGeneratorGeneratorProvider.get();
 		}
 		if (component instanceof Latch) {
-			return new LatchGenerator();
+			return latchGeneratorProvider.get();
 		}
 		return null;
 	}

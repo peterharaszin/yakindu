@@ -11,7 +11,6 @@
 
 package org.eclipse.damos.mscript.codegen.c;
 
-import org.eclipse.damos.mscript.codegen.c.internal.DefaultVariableAccessStrategy;
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
 import org.eclipse.damos.mscript.util.ISampleInterval;
 
@@ -30,18 +29,11 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	/**
 	 * 
 	 */
-	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ISampleInterval sampleInterval, ICodeFragmentCollector codeFragmentCollector) {
-		this(configuration, functionInfo, sampleInterval, null, codeFragmentCollector);
-	}
-	
-	/**
-	 * 
-	 */
 	public MscriptGeneratorContext(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ISampleInterval sampleInterval, IVariableAccessStrategy variableAccessStrategy, ICodeFragmentCollector codeFragmentCollector) {
 		this.configuration = configuration;
 		this.functionInfo = functionInfo;
 		this.sampleInterval = sampleInterval;
-		this.variableAccessStrategy = variableAccessStrategy != null ? variableAccessStrategy : new DefaultVariableAccessStrategy(this);
+		this.variableAccessStrategy = variableAccessStrategy;
 		this.codeFragmentCollector = codeFragmentCollector;
 	}
 

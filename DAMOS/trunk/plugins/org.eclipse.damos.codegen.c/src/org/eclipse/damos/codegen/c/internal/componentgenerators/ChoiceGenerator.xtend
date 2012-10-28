@@ -11,19 +11,19 @@
 
 package org.eclipse.damos.codegen.c.internal.componentgenerators
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.AbstractComponentGenerator
 import org.eclipse.damos.codegen.c.MscriptGeneratorConfiguration
 import org.eclipse.damos.codegen.c.internal.util.CompoundGeneratorUtil
-import org.eclipse.damos.codegen.c.util.GeneratorUtil
 import org.eclipse.damos.dml.Choice
 import org.eclipse.damos.dml.ValueSpecification
 import org.eclipse.damos.dml.util.DMLUtil
 import org.eclipse.damos.dscript.DscriptValueSpecification
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.MscriptGeneratorContext
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
+import org.eclipse.damos.codegen.c.util.GeneratorHelper
 
 /**
  * @author Andreas Unger
@@ -31,7 +31,11 @@ import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
  */
 class ChoiceGenerator extends AbstractComponentGenerator {
 	
-	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
+	@Inject
+	IExpressionGenerator expressionGenerator
+
+	@Inject
+	GeneratorHelper generatorHelper
 
 	override boolean contributesComputeOutputsCode() {
 		return true
@@ -40,7 +44,7 @@ class ChoiceGenerator extends AbstractComponentGenerator {
 	override CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		val choice = component as Choice
 		
-		val incomingVariableName = GeneratorUtil::getIncomingVariableName(configuration, node, choice.firstInputPort)
+		val incomingVariableName = generatorHelper.getIncomingVariableName(configuration, node, choice.firstInputPort)
 		val choiceResult = CompoundGeneratorUtil::getChoiceVariableName(configuration, node)
 		
 		var actionLinks = choice.actionLinks.filter(l | l.condition != null)

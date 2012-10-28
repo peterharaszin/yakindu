@@ -1,0 +1,19 @@
+SMAP
+AlgorithmExpressionGenerator.java
+Xtend
+*S Xtend
+*F
++ 0 AlgorithmExpressionGenerator.xtend
+src/org/eclipse/damos/mscript/codegen/c/operationgenerators/AlgorithmExpressionGenerator.xtend
+*L
+37:31
+40:35,2
+41:37
+42:38,4
+40:42
+44:43,3
+46:46,13
+47:59,8
+44:67
+40:68,2
+*E

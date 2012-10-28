@@ -13,7 +13,7 @@ package org.eclipse.damos.codegen.c.internal;
 
 import org.eclipse.damos.codegen.c.IVariableAccessor;
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil;
-import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorUtil;
+import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorHelper;
 import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipse.damos.dconfig.Configuration;
 import org.eclipse.damos.dml.Component;
@@ -30,11 +30,16 @@ import org.eclipse.damos.execution.TaskGraph;
 import org.eclipse.damos.execution.TaskInputNode;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class VariableAccessor implements IVariableAccessor {
+
+	@Inject
+	private TaskGeneratorHelper taskGeneratorHelper;
 
 	private Configuration configuration;
 	private ComponentNode node;
@@ -42,7 +47,7 @@ public class VariableAccessor implements IVariableAccessor {
 	/**
 	 * 
 	 */
-	public VariableAccessor(Configuration configuration, ComponentNode node) {
+	VariableAccessor(Configuration configuration, ComponentNode node) {
 		this.node = node;
 		this.configuration = configuration;
 	}
@@ -82,9 +87,9 @@ public class VariableAccessor implements IVariableAccessor {
 			TaskInputNode inputNode = (TaskInputNode) sourceEnd.getNode();
 			Input input = inputPort.getInput();
 			if (input.isSocket()) {
-				return TaskGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message";
+				return taskGeneratorHelper.getTaskName(configuration, inputNode.getTaskGraph()) + "_message";
 			}
-			return TaskGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
+			return taskGeneratorHelper.getTaskInputVariableName(configuration, inputNode);
 		}
 		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
@@ -133,7 +138,7 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("&");
 		}
-		sb.append(TaskGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
+		sb.append(taskGeneratorHelper.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
 		sb.append("_message");
 		return sb.toString();
 	}

@@ -11,13 +11,14 @@
 
 package org.eclipse.damos.mscript.codegen.c.operationgenerators
 
+import com.google.inject.Inject
 import org.eclipse.damos.mscript.ArrayType
 import org.eclipse.damos.mscript.Expression
 import org.eclipse.damos.mscript.Type
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper
 
 /**
  * @author Andreas Unger
@@ -25,7 +26,11 @@ import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil
  */
 class DefaultOperationGenerator implements IOperationGenerator {
 
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
+	@Inject
+	CastHelper castHelper
+	
+	@Inject
+	DataTypeGenerator dataTypeGenerator
 
 	override boolean canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		return true
@@ -44,7 +49,7 @@ class DefaultOperationGenerator implements IOperationGenerator {
 	'''
 
 	def generateAssignedExpression(IMscriptGeneratorContext context, Type targetDataType, Expression expression) {
-		return MscriptGeneratorUtil::cast(context, expression, targetDataType);
+		return castHelper.cast(context, expression, targetDataType);
 	}
 
 }

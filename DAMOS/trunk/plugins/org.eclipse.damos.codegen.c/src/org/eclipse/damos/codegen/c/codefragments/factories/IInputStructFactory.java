@@ -17,6 +17,7 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
@@ -30,11 +31,12 @@ public interface IInputStructFactory {
 	class Default implements IInputStructFactory {
 
 		@Inject
-		Default() {
-		}
-
+		private Injector injector;
+		
 		public ICodeFragment create() {
-			return new InputStruct();
+			InputStruct inputStruct = new InputStruct();
+			injector.injectMembers(inputStruct);
+			return inputStruct;
 		}
 		
 	}

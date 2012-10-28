@@ -11,11 +11,12 @@
 
 package org.eclipse.damos.codegen.c.internal.componentgenerators
 
+import com.google.inject.Inject
 import java.util.TreeMap
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.AbstractComponentGenerator
+import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory
 import org.eclipse.damos.codegen.c.internal.util.CompoundGeneratorUtil
-import org.eclipse.damos.codegen.c.util.GeneratorUtil
 import org.eclipse.damos.dml.Action
 import org.eclipse.damos.dml.InputPort
 import org.eclipse.damos.dml.util.DMLUtil
@@ -24,13 +25,19 @@ import org.eclipse.damos.execution.ComponentNode
 import org.eclipse.damos.execution.CompoundNode
 import org.eclipse.damos.execution.Graph
 import org.eclipse.damos.execution.Node
-import org.eclipse.damos.codegen.c.internal.VariableAccessor
+import org.eclipse.damos.codegen.c.util.GeneratorHelper
 
 /**
  * @author Andreas Unger
  *
  */
 class JoinGenerator extends AbstractComponentGenerator {
+
+	@Inject
+	IVariableAccessorFactory variableAccessorFactory;
+
+	@Inject
+	GeneratorHelper generatorHelper
 
 	override boolean contributesComputeOutputsCode() {
 		return true
@@ -47,7 +54,7 @@ class JoinGenerator extends AbstractComponentGenerator {
 				val actionNode = enclosingCompoundNode as ActionNode
 				val action = actionNode.compound as Action
 				if (actionNode.choiceNode != null) {
-					val incomingVariableName = GeneratorUtil::getIncomingVariableName(configuration, node, inputPort)
+					val incomingVariableName = generatorHelper.getIncomingVariableName(configuration, node, inputPort)
 					variableNameMap.put(DMLUtil::indexOf(action.link), incomingVariableName)
 					choiceNode = actionNode.choiceNode
 				}
@@ -55,7 +62,7 @@ class JoinGenerator extends AbstractComponentGenerator {
 		}
 		
 		val choiceVariableName = CompoundGeneratorUtil::getChoiceVariableName(configuration, choiceNode)
-		val outputVariableName = new VariableAccessor(configuration, node).generateOutputVariableReference(component.firstOutputPort, false)
+		val outputVariableName = variableAccessorFactory.create(configuration, node).generateOutputVariableReference(component.firstOutputPort, false)
 
 		'''
 			switch («choiceVariableName») {

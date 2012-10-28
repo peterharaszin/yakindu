@@ -11,27 +11,21 @@
 
 package org.eclipse.damos.mscript.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.damos.mscript.InputParameterDeclaration
 import org.eclipse.damos.mscript.ParameterDeclaration
 import org.eclipse.damos.mscript.VariableDeclaration
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
-import org.eclipse.damos.mscript.codegen.c.CompoundStatementGenerator
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
-import org.eclipse.damos.mscript.codegen.c.ExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.ICompoundStatementGenerator
-import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
-import org.eclipse.damos.mscript.codegen.c.IOperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
-import org.eclipse.damos.mscript.codegen.c.OperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.StatementGenerator
-import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IInitializeFunctionFactory
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IUpdateFunctionFactory
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
-import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil
 import org.eclipse.damos.mscript.util.MscriptUtil
@@ -42,14 +36,20 @@ import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
  * @author Andreas Unger
  *
  */
-class ComputeFunction extends AbstractCodeFragment {
+class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 
-	val IExpressionGenerator expressionGenerator = new ExpressionGenerator()
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
-	val VariableReferenceGenerator variableAccessGenerator = new VariableReferenceGenerator(expressionGenerator, new LiteralGenerator(dataTypeGenerator))
-	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(new DataTypeGenerator())
-	val IOperationGeneratorProvider operationGeneratorProvider = new OperationGeneratorProvider()
-	val ICompoundStatementGenerator compoundStatementGenerator = new CompoundStatementGenerator(new StatementGenerator(expressionGenerator, dataTypeGenerator, variableDeclarationGenerator, variableAccessGenerator, operationGeneratorProvider), variableDeclarationGenerator)
+	@Inject
+	IInitializeFunctionFactory initializeFunctionFactory
+	
+	@Inject
+	IUpdateFunctionFactory updateFunctionFactory
+
+	@Inject
+	ICompoundStatementGenerator compoundStatementGenerator
+	
+	@Inject
+	IFunctionContextFactory functionContextFactory
+	
 	val IMscriptGeneratorContext generatorContext
 	
 	String name
@@ -69,19 +69,19 @@ class ComputeFunction extends AbstractCodeFragment {
 	/**
 	 * @return the name
 	 */
-	def String getName() {
+	override String getName() {
 		return name
 	}
 	
-	def ContextStruct getContextStruct() {
+	override ContextStruct getContextStruct() {
 		return contextStruct
 	}
 	
-	def InitializeFunction getInitializeFunction() {
+	override InitializeFunction getInitializeFunction() {
 		initializeFunction
 	}
 
-	def UpdateFunction getUpdateFunction() {
+	override UpdateFunction getUpdateFunction() {
 		updateFunction
 	}
 	
@@ -95,12 +95,12 @@ class ComputeFunction extends AbstractCodeFragment {
 		if (generatorContext.functionInfo.functionDescription.stateful) {
 			contextStruct = new ContextStruct(generatorContext.functionInfo, false)
 			contextStruct = codeFragmentCollector.addCodeFragment(contextStruct, new NullProgressMonitor())
-			val functionContextDeclaration = new org.eclipse.damos.mscript.codegen.c.codefragments.FunctionContext(generatorContext)
+			val functionContextDeclaration = functionContextFactory.create(generatorContext)
 			contextStruct.addMember(functionContextDeclaration)
 			addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it == contextStruct])
 			
-			updateFunction = codeFragmentCollector.addCodeFragment(new UpdateFunction(generatorContext, this), new NullProgressMonitor())
-			initializeFunction = codeFragmentCollector.addCodeFragment(new InitializeFunction(generatorContext, this), new NullProgressMonitor())
+			updateFunction = codeFragmentCollector.addCodeFragment(updateFunctionFactory.create(generatorContext, this), new NullProgressMonitor()) as UpdateFunction
+			initializeFunction = codeFragmentCollector.addCodeFragment(initializeFunctionFactory.create(generatorContext, this), new NullProgressMonitor()) as InitializeFunction
 		}
 
 		functionSignature = generateFunctionSignature(codeFragmentCollector)

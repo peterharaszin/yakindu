@@ -11,11 +11,11 @@
 
 package org.eclipse.damos.mscript.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.damos.mscript.VariableDeclaration
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
-import org.eclipse.damos.mscript.codegen.c.codefragments.AbstractContextStructMember
 
 /**
  * @author Andreas Unger
@@ -23,8 +23,11 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.AbstractContextStructMe
  */
 class FunctionContext extends AbstractContextStructMember {
 
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
-	val VariableDeclarationGenerator variableDeclarationGenerator = new VariableDeclarationGenerator(dataTypeGenerator)
+	@Inject
+	DataTypeGenerator dataTypeGenerator
+	
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
 
 	val IMscriptGeneratorContext generatorContext
 	

@@ -28,15 +28,12 @@ import com.google.inject.Inject;
 
 public class VariableReferenceGenerator {
 
-	private final LiteralGenerator literalGenerator;
-	private final IExpressionGenerator expressionGenerator;
+	@Inject
+	private LiteralGenerator literalGenerator;
 	
 	@Inject
-	public VariableReferenceGenerator(IExpressionGenerator expressionGenerator, LiteralGenerator literalGenerator) {
-		this.expressionGenerator = expressionGenerator;
-		this.literalGenerator = literalGenerator;
-	}
-
+	private IExpressionGenerator expressionGenerator;
+	
 	public CharSequence generate(IMscriptGeneratorContext context, FeatureReference variableReference) {
 		CallableElement feature = variableReference.getFeature();
 		if (feature instanceof InputParameterDeclaration) {

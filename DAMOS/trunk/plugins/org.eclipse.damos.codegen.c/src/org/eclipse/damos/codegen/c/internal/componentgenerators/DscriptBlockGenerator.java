@@ -37,15 +37,17 @@ import org.eclipse.damos.mscript.OutputParameterDeclaration;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.VariableDeclaration;
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
+import org.eclipse.damos.mscript.codegen.c.IDefaultVariableAccessStrategyFactory;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.MscriptGeneratorContext;
-import org.eclipse.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipse.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
-import org.eclipse.damos.mscript.codegen.c.codefragments.FunctionContext;
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipse.damos.mscript.codegen.c.codefragments.IContextStructMember;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory;
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.function.ComputationCompound;
 import org.eclipse.damos.mscript.function.FunctionInstance;
 import org.eclipse.damos.mscript.function.transform.FunctionDefinitionTransformer;
@@ -66,11 +68,28 @@ import com.google.inject.Inject;
  */
 public class DscriptBlockGenerator extends AbstractBlockGenerator {
 
-	private final DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
+	@Inject
+	private CastHelper castHelper;
 	
-	private final IFunctionDefinitionTransformer functionDefinitionTransformer = new FunctionDefinitionTransformer();
+	@Inject
+	private IComputeFunctionFactory computeFunctionFactory;
 
-	private final IStatementGenerator statementGenerator;
+	@Inject
+	private DataTypeGenerator dataTypeGenerator;
+	
+	@Inject
+	private IStatementGenerator statementGenerator;
+	
+	@Inject
+	private IFunctionContextFactory functionContextFactory;
+	
+	@Inject
+	private IVariableAccessStrategyFactory variableAccessStrategyFactory;
+
+	@Inject
+	private IDefaultVariableAccessStrategyFactory defaultVariableAccessStrategyFactory;
+
+	private final IFunctionDefinitionTransformer functionDefinitionTransformer = new FunctionDefinitionTransformer();
 
 	private StaticFunctionInfo topLevelFunctionInfo;
 	private FunctionInstance functionInstance;
@@ -78,11 +97,6 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	private IStaticEvaluationResult staticEvaluationResult;
 	
 	private IVariableAccessStrategy cachedVariableAccessStrategy;
-	
-	@Inject
-	public DscriptBlockGenerator(IStatementGenerator statementGenerator) {
-		this.statementGenerator = statementGenerator;
-	}
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
@@ -127,10 +141,14 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 			if (functionInfo == topLevelFunctionInfo) {
 				continue;
 			}
+			MscriptGeneratorConfiguration configuration = new MscriptGeneratorConfiguration(getComputationModel(),
+					getConfiguration());
+			IVariableAccessStrategy variableAccessStrategy = defaultVariableAccessStrategyFactory.create(configuration,
+					functionInfo, getNode().getSampleInterval());
+			MscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(configuration, functionInfo,
+					getNode().getSampleInterval(), variableAccessStrategy, getContext().getCodeFragmentCollector());
 			getContext().getCodeFragmentCollector().addCodeFragment(
-					new ComputeFunction(new MscriptGeneratorContext(new MscriptGeneratorConfiguration(
-							getComputationModel(), getConfiguration()), functionInfo, getNode().getSampleInterval(), getContext()
-							.getCodeFragmentCollector())), new NullProgressMonitor());
+					computeFunctionFactory.create(mscriptGeneratorContext), new NullProgressMonitor());
 		}
 	}
 	
@@ -146,7 +164,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 				new ContextStruct(topLevelFunctionInfo, typeName, true), new NullProgressMonitor());
 		
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleInterval(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
-		FunctionContext functionContext = new FunctionContext(mscriptGeneratorContext);
+		IContextStructMember functionContext = functionContextFactory.create(mscriptGeneratorContext);
 		contextStructDeclaration.addMember(functionContext);
 		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, contextStructDeclaration));
 	}
@@ -308,7 +326,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						out.print(", ");
 					}
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
+					sb.append(castHelper.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
 				}
 				out.println(" };");
 			} else {
@@ -319,7 +337,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 					String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
 					out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), targetDataType, null));
 					out.print(" = ");
-					sb.append(MscriptGeneratorUtil.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
+					sb.append(castHelper.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
 					out.println(";");
 				}
 			}
@@ -338,7 +356,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	 */
 	private IVariableAccessStrategy getVariableAccessStrategy() {
 		if (cachedVariableAccessStrategy == null) {
-			cachedVariableAccessStrategy = new VariableAccessStrategy(getContext(), getComputationModel(), staticEvaluationResult);
+			cachedVariableAccessStrategy = variableAccessStrategyFactory.create(getContext(), getComputationModel(), staticEvaluationResult);
 		}
 		return cachedVariableAccessStrategy;
 	}

@@ -11,9 +11,9 @@
 
 package org.eclipse.damos.mscript.codegen.c.codefragments
 
+import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
@@ -26,8 +26,8 @@ import org.eclipse.damos.mscript.interpreter.value.IArrayValue
  */
 class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator()
-	val LiteralGenerator literalGenerator = new LiteralGenerator(dataTypeGenerator)
+	@Inject
+	LiteralGenerator literalGenerator
 	
 	val IMscriptGeneratorConfiguration configuration
 	val IArrayValue arrayValue

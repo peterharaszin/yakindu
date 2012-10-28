@@ -18,12 +18,15 @@ import org.eclipse.damos.mscript.OutputParameterDeclaration;
 import org.eclipse.damos.mscript.RealType;
 import org.eclipse.damos.mscript.StateVariableDeclaration;
 import org.eclipse.damos.mscript.VariableDeclaration;
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
-import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator;
+import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
+import org.eclipse.damos.mscript.util.ISampleInterval;
 import org.eclipse.damos.mscript.util.MscriptSwitch;
 import org.eclipse.damos.mscript.util.SampleRate;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -31,15 +34,20 @@ import org.eclipse.damos.mscript.util.SampleRate;
  */
 public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 
-	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	@Inject
+	private LiteralGenerator literalGenerator;
 
-	private final IMscriptGeneratorContext context;
+	private final IMscriptGeneratorConfiguration configuration;
+	private final StaticFunctionInfo functionInfo;
+	private final ISampleInterval sampleInterval;
 	
 	/**
 	 * 
 	 */
-	public DefaultVariableAccessStrategy(IMscriptGeneratorContext context) {
-		this.context = context;
+	public DefaultVariableAccessStrategy(IMscriptGeneratorConfiguration configuration, StaticFunctionInfo functionInfo, ISampleInterval sampleInterval) {
+		this.configuration = configuration;
+		this.functionInfo = functionInfo;
+		this.sampleInterval = sampleInterval;
 	}
 	
 	/* (non-Javadoc)
@@ -67,24 +75,24 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		
 		@Override
 		public CharSequence caseImplicitVariableDeclaration(ImplicitVariableDeclaration implicitVariableDeclaration) {
-			RealType dataType = (RealType) context.getFunctionInfo().getValue(implicitVariableDeclaration).getDataType();
+			RealType dataType = (RealType) functionInfo.getValue(implicitVariableDeclaration).getDataType();
 			double value;
 			if ("Ts".equals(implicitVariableDeclaration.getName())) {
-				value = context.getSampleInterval().sampleTime();
+				value = sampleInterval.sampleTime();
 			} else if ("fs".equals(implicitVariableDeclaration.getName())) {
-				if (context.getSampleInterval() instanceof SampleRate) {
-					return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, ((SampleRate) context.getSampleInterval()).longValue());
+				if (sampleInterval instanceof SampleRate) {
+					return literalGenerator.generateLiteral(configuration.getComputationModel(), dataType, ((SampleRate) sampleInterval).longValue());
 				}
-				value = 1.0 / context.getSampleInterval().sampleTime();
+				value = 1.0 / sampleInterval.sampleTime();
 			} else {
 				value = 0.0;
 			}
-			return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), dataType, value);
+			return literalGenerator.generateLiteral(configuration.getComputationModel(), dataType, value);
 		}
 
 		@Override
 		public CharSequence caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
-			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return inputParameterDeclaration.getName();
 			}
@@ -93,7 +101,7 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		
 		@Override
 		public CharSequence caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
-			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 			if (stepIndex == 0) {
 				return outputParameterDeclaration.getName();
 			}
@@ -107,10 +115,10 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		
 		private CharSequence getContextAccess() {
 			VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
-			int stepIndex = context.getFunctionInfo().getStepIndex(variableReference);
+			int stepIndex = functionInfo.getStepIndex(variableReference);
 
 			String name = target.getName();
-			int circularBufferSize = context.getFunctionInfo().getCircularBufferSize(target);
+			int circularBufferSize = functionInfo.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

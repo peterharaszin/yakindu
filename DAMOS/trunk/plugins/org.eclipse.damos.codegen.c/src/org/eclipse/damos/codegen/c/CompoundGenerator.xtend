@@ -14,7 +14,6 @@ package org.eclipse.damos.codegen.c
 import com.google.inject.Inject
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.internal.util.CompoundGeneratorUtil
-import org.eclipse.damos.codegen.c.util.GeneratorUtil
 import org.eclipse.damos.dml.Action
 import org.eclipse.damos.dml.Choice
 import org.eclipse.damos.dml.Memory
@@ -24,6 +23,7 @@ import org.eclipse.damos.execution.ComponentNode
 import org.eclipse.damos.execution.CompoundNode
 import org.eclipse.damos.execution.Graph
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
+import org.eclipse.damos.codegen.c.util.GeneratorHelper
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions.*
@@ -34,14 +34,14 @@ import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions
  */
 class CompoundGenerator implements ICompoundGenerator {
 
-	val DataTypeGenerator dataTypeGenerator = new DataTypeGenerator();
-
-	val IGraphGenerator graphGenerator
+	@Inject
+	IGraphGenerator graphGenerator
 	
 	@Inject
-	new(IGraphGenerator graphGenerator) {
-		this.graphGenerator = graphGenerator
-	}
+	DataTypeGenerator dataTypeGenerator
+
+	@Inject
+	GeneratorHelper generatorHelper
 
 	override boolean contributesChoiceVariableDeclarations(IGeneratorContext context, Graph graph) {
 		graph.allNodes.filter(typeof(ComponentNode)).exists(n | n.component instanceof Choice)
@@ -83,7 +83,7 @@ class CompoundGenerator implements ICompoundGenerator {
 				«IF whileLoop != null»
 					do {
 						«graphGenerator.generateGraph(context, compoundNode, monitor)»
-					} while («GeneratorUtil::getIncomingVariableName(context.configuration, actionNode, whileLoop.condition) ?: "0"»);
+					} while («generatorHelper.getIncomingVariableName(context.configuration, actionNode, whileLoop.condition) ?: "0"»);
 				«ELSE»
 					«graphGenerator.generateGraph(context, compoundNode, monitor)»
 				«ENDIF»
@@ -97,7 +97,7 @@ class CompoundGenerator implements ICompoundGenerator {
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
 		val variableName = CompoundGeneratorUtil::getMemoryPreviousValueVariableName(context.configuration, node)
 		val dataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), variableName, generator.context.codeFragmentCollector, outputDataType, null)
-		val initializer = GeneratorUtil::getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
+		val initializer = generatorHelper.getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
 		
 		'''«dataType» = «initializer»;'''
 	}

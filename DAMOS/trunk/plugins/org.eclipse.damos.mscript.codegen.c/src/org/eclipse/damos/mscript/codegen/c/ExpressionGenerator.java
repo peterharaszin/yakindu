@@ -78,12 +78,12 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.StringConstructionFunct
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipse.damos.mscript.codegen.c.codefragments.UpdateFunction;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes;
 import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
-import org.eclipse.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
 import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
 import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
-import org.eclipse.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
@@ -97,12 +97,33 @@ import org.eclipse.damos.mscript.interpreter.value.RecordValue;
 import org.eclipse.damos.mscript.interpreter.value.StringValue;
 import org.eclipse.damos.mscript.util.TypeUtil;
 
+import com.google.inject.Inject;
+
 public class ExpressionGenerator implements IExpressionGenerator, IExpressionVisitor<CharSequence, IMscriptGeneratorContext> {
 	
-	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
-	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
-	private final VariableReferenceGenerator variableReferenceGenerator = new VariableReferenceGenerator(this, literalGenerator);
-	private final IBuiltinFunctionGeneratorLookup builtinFunctionGeneratorLookup = new BuiltinFunctionGeneratorLookup();
+	@Inject
+	private CastHelper castHelper;
+	
+	@Inject
+	private IComputeFunctionFactory computeFunctionFactory;
+	
+	@Inject
+	private INumericExpressionOperandFactory numericExpressionOperandFactory;
+	
+	@Inject
+	private LiteralGenerator literalGenerator;
+	
+	@Inject
+	private IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator;
+	
+	@Inject
+	private VariableReferenceGenerator variableReferenceGenerator;
+	
+	@Inject
+	private IBuiltinFunctionGeneratorLookup builtinFunctionGeneratorLookup;
+	
+	@Inject
+	private IDefaultVariableAccessStrategyFactory defaultVariableAccessStrategyFactory;
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		return expression.accept(context, this);
@@ -201,11 +222,11 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 			
 			NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
 
-			sb.append(MscriptGeneratorUtil.castNumericType(context, leftOperand, widestNumberFormat));
+			sb.append(castHelper.castNumericType(context, leftOperand, widestNumberFormat));
 			sb.append(" ");
 			sb.append(operator);
 			sb.append(" ");
-			sb.append(MscriptGeneratorUtil.castNumericType(context, rightOperand, widestNumberFormat));
+			sb.append(castHelper.castNumericType(context, rightOperand, widestNumberFormat));
 		} else {
 			sb.append(generate(context, leftOperand));
 			sb.append(" ");
@@ -294,11 +315,11 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 			
 			sb.append(")");
 		} else {
-			sb.append(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getLeftOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, additiveExpression.getLeftOperand(), numberFormat));
 			sb.append(" ");
 			sb.append(additiveExpression.getOperator().getLiteral());
 			sb.append(" ");
-			sb.append(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getRightOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, additiveExpression.getRightOperand(), numberFormat));
 		}
 		
 		return sb;
@@ -308,8 +329,8 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 	public CharSequence visit(IMscriptGeneratorContext context, MultiplicativeExpression multiplicativeExpression) {
 		NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(getDataType(context, multiplicativeExpression));
 
-		INumericExpressionOperand leftOperand = new NumericExpressionOperand(context, multiplicativeExpression.getLeftOperand());
-		INumericExpressionOperand rightOperand = new NumericExpressionOperand(context, multiplicativeExpression.getRightOperand());
+		INumericExpressionOperand leftOperand = numericExpressionOperandFactory.create(context, multiplicativeExpression.getLeftOperand());
+		INumericExpressionOperand rightOperand = numericExpressionOperandFactory.create(context, multiplicativeExpression.getRightOperand());
 		
 		return multiplicativeExpressionGenerator.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
 	}
@@ -387,17 +408,17 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 			} else {
 				sb.append("DamosMath_powfix64(");
 			}
-			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
 			sb.append(", ");
-			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
 			sb.append(", ");
 			sb.append(fixedPointFormat.getFractionLength());
 			sb.append(")");
 		} else if (numberFormat instanceof FloatingPointFormat) {
 			sb.append("pow(");
-			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
 			sb.append(", ");
-			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
+			sb.append(castHelper.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
 			sb.append(")");
 		}
 		return sb;
@@ -461,8 +482,9 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 		}
 		
 		StaticFunctionInfo callee = functionInfo.getCallee(functionCall);
-		MscriptGeneratorContext calleeGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleInterval(), context.getCodeFragmentCollector());
-		ComputeFunction computeFunction = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(calleeGeneratorContext), new NullProgressMonitor());
+		IVariableAccessStrategy variableAccessStrategy = defaultVariableAccessStrategyFactory.create(context.getConfiguration(), callee, context.getSampleInterval());
+		MscriptGeneratorContext calleeGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleInterval(), variableAccessStrategy, context.getCodeFragmentCollector());
+		ComputeFunction computeFunction = context.getCodeFragmentCollector().addCodeFragment((ComputeFunction) computeFunctionFactory.create(calleeGeneratorContext), new NullProgressMonitor());
 		
 		FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, computeFunction, calleeGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
 		

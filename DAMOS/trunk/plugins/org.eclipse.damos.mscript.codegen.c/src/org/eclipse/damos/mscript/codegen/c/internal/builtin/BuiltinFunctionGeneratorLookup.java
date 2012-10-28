@@ -17,25 +17,53 @@ import java.util.Map;
 import org.eclipse.damos.mscript.FunctionCall;
 import org.eclipse.damos.mscript.builtin.BuiltinFunctionKind;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 /**
  * @author Andreas Unger
  *
  */
+@Singleton
 public class BuiltinFunctionGeneratorLookup implements IBuiltinFunctionGeneratorLookup {
 	
 	private Map<String, IBuiltinFunctionGenerator> cachedFunctions;
 	
+	@Inject
+	private RoundFunctionGenerator roundFunctionGenerator;
+	
+	@Inject
+	private LnFunctionGenerator lnFunctionGenerator;
+	
+	@Inject
+	private LgFunctionGenerator lgFunctionGenerator;
+	
+	@Inject
+	private LbFunctionGenerator lbFunctionGenerator;
+	
+	@Inject
+	private ExpFunctionGenerator expFunctionGenerator;
+	
+	@Inject
+	private SinFunctionGenerator sinFunctionGenerator;
+	
+	@Inject
+	private CosFunctionGenerator cosFunctionGenerator;
+	
+	@Inject
+	private TanFunctionGenerator tanFunctionGenerator;
+	
 	public IBuiltinFunctionGenerator getFunctionGenerator(FunctionCall functionCall) {
 		if (cachedFunctions == null) {
 			cachedFunctions = new HashMap<String, IBuiltinFunctionGenerator>();
-			cachedFunctions.put(BuiltinFunctionKind.ROUND.getName(), new RoundFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.LN.getName(), new LnFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.LG.getName(), new LgFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.LB.getName(), new LbFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.EXP.getName(), new ExpFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.SIN.getName(), new SinFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.COS.getName(), new CosFunctionGenerator());
-			cachedFunctions.put(BuiltinFunctionKind.TAN.getName(), new TanFunctionGenerator());
+			cachedFunctions.put(BuiltinFunctionKind.ROUND.getName(), roundFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.LN.getName(), lnFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.LG.getName(), lgFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.LB.getName(), lbFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.EXP.getName(), expFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.SIN.getName(), sinFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.COS.getName(), cosFunctionGenerator);
+			cachedFunctions.put(BuiltinFunctionKind.TAN.getName(), tanFunctionGenerator);
 		}
 		return cachedFunctions.get(functionCall.getFeature().getName());
 	}

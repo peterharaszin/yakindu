@@ -11,6 +11,9 @@
 
 package org.eclipse.damos.mscript.codegen.c;
 
+import org.eclipse.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
+import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
+
 import com.google.inject.AbstractModule;
 
 /**
@@ -22,9 +25,12 @@ public class MscriptCodegenCModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bindICModuleGenerator();
+		bindIStatementGenerator();
 		bindICompoundStatementGenerator();
 		bindIExpressionGenerator();
 		bindIOperationGeneratorProvider();
+		bindIBuiltinFunctionGeneratorLookup();
+		bindIMultiplicativeExpressionGenerator();
 	}
 
 	protected void bindICModuleGenerator() {
@@ -32,8 +38,12 @@ public class MscriptCodegenCModule extends AbstractModule {
 		bind(ICModuleGenerator.class).annotatedWith(CSource.class).to(CSourceGenerator.class);
 	}
 
-	protected void bindICompoundStatementGenerator() {
+	protected void bindIStatementGenerator() {
 		bind(IStatementGenerator.class).to(StatementGenerator.class);
+	}
+
+	protected void bindICompoundStatementGenerator() {
+		bind(ICompoundStatementGenerator.class).to(CompoundStatementGenerator.class);
 	}
 
 	protected void bindIExpressionGenerator() {
@@ -44,4 +54,12 @@ public class MscriptCodegenCModule extends AbstractModule {
 		bind(IOperationGeneratorProvider.class).to(OperationGeneratorProvider.class);
 	}
 
+	protected void bindIBuiltinFunctionGeneratorLookup() {
+		bind(IBuiltinFunctionGeneratorLookup.class).to(BuiltinFunctionGeneratorLookup.class);
+	}
+	
+	protected void bindIMultiplicativeExpressionGenerator() {
+		bind(IMultiplicativeExpressionGenerator.class).to(InlineMultiplicativeExpressionGenerator.class);
+	}
+	
 }

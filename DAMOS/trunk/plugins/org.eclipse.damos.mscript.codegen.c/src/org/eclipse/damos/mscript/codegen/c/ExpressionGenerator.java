@@ -17,22 +17,30 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.damos.common.util.PrintAppendable;
 import org.eclipse.damos.mscript.AdditiveExpression;
+import org.eclipse.damos.mscript.AlgorithmExpression;
+import org.eclipse.damos.mscript.ArrayConcatenationOperator;
 import org.eclipse.damos.mscript.ArrayConstructionOperator;
 import org.eclipse.damos.mscript.ArrayElementAccess;
 import org.eclipse.damos.mscript.ArraySubscript;
 import org.eclipse.damos.mscript.BooleanLiteral;
 import org.eclipse.damos.mscript.CallableElement;
 import org.eclipse.damos.mscript.ConstantTemplateSegment;
+import org.eclipse.damos.mscript.EndExpression;
 import org.eclipse.damos.mscript.EqualityExpression;
 import org.eclipse.damos.mscript.Expression;
 import org.eclipse.damos.mscript.ExpressionTemplateSegment;
 import org.eclipse.damos.mscript.FeatureReference;
 import org.eclipse.damos.mscript.FunctionCall;
+import org.eclipse.damos.mscript.IExpressionVisitor;
+import org.eclipse.damos.mscript.IfExpression;
 import org.eclipse.damos.mscript.ImpliesExpression;
 import org.eclipse.damos.mscript.InputParameterDeclaration;
+import org.eclipse.damos.mscript.InspectExpression;
 import org.eclipse.damos.mscript.IntegerLiteral;
+import org.eclipse.damos.mscript.InvalidExpression;
+import org.eclipse.damos.mscript.LambdaExpression;
+import org.eclipse.damos.mscript.LetExpression;
 import org.eclipse.damos.mscript.LogicalAndExpression;
 import org.eclipse.damos.mscript.LogicalOrExpression;
 import org.eclipse.damos.mscript.MemberVariableAccess;
@@ -42,6 +50,7 @@ import org.eclipse.damos.mscript.NumericType;
 import org.eclipse.damos.mscript.OperatorKind;
 import org.eclipse.damos.mscript.ParenthesizedExpression;
 import org.eclipse.damos.mscript.PowerExpression;
+import org.eclipse.damos.mscript.RangeExpression;
 import org.eclipse.damos.mscript.RealLiteral;
 import org.eclipse.damos.mscript.RecordConstructionMember;
 import org.eclipse.damos.mscript.RecordConstructionOperator;
@@ -49,10 +58,14 @@ import org.eclipse.damos.mscript.RecordType;
 import org.eclipse.damos.mscript.RelationalExpression;
 import org.eclipse.damos.mscript.StringLiteral;
 import org.eclipse.damos.mscript.StringType;
+import org.eclipse.damos.mscript.SwitchExpression;
 import org.eclipse.damos.mscript.TemplateExpression;
 import org.eclipse.damos.mscript.TemplateSegment;
 import org.eclipse.damos.mscript.Type;
+import org.eclipse.damos.mscript.TypeTestExpression;
 import org.eclipse.damos.mscript.UnaryExpression;
+import org.eclipse.damos.mscript.UnionConstructionOperator;
+import org.eclipse.damos.mscript.UnitConstructionOperator;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
@@ -82,589 +95,591 @@ import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipse.damos.mscript.interpreter.value.RecordValue;
 import org.eclipse.damos.mscript.interpreter.value.StringValue;
-import org.eclipse.damos.mscript.util.MscriptSwitch;
 import org.eclipse.damos.mscript.util.TypeUtil;
 
-public class ExpressionGenerator implements IExpressionGenerator {
+public class ExpressionGenerator implements IExpressionGenerator, IExpressionVisitor<CharSequence, IMscriptGeneratorContext> {
 	
 	private final LiteralGenerator literalGenerator = new LiteralGenerator(new DataTypeGenerator());
+	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
 	private final VariableReferenceGenerator variableReferenceGenerator = new VariableReferenceGenerator(this, literalGenerator);
+	private final IBuiltinFunctionGeneratorLookup builtinFunctionGeneratorLookup = new BuiltinFunctionGeneratorLookup();
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
-		StringBuilder sb = new StringBuilder();
-		new ExpressionGeneratorSwitch(context, sb).doSwitch(expression);
-		return sb;
+		return expression.accept(context, this);
 	}
 	
-	private class ExpressionGeneratorSwitch extends MscriptSwitch<Boolean> {
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, LetExpression letExpression) {
+		return "";
+	}
 
-		private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
-		
-		private IMscriptGeneratorContext context;
-		private IBuiltinFunctionGeneratorLookup builtinFunctionGeneratorLookup = new BuiltinFunctionGeneratorLookup();
-		
-		private PrintAppendable out;
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, IfExpression ifExpression) {
+		return "";
+	}
 
-		public ExpressionGeneratorSwitch(IMscriptGeneratorContext context, StringBuilder sb) {
-			this.context = context;
-			out = new PrintAppendable(sb);
-		}
-	
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseImpliesExpression(org.eclipse.damos.mscript.language.ast.ImpliesExpression)
-		 */
-		@Override
-		public Boolean caseImpliesExpression(ImpliesExpression impliesExpression) {
-			out.print("(!(");
-			doSwitch(impliesExpression.getLeftOperand());
-			out.print(") || ");
-			doSwitch(impliesExpression.getRightOperand());
-			out.print(")");
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseLogicalOrExpression(org.eclipse.damos.mscript.language.ast.LogicalOrExpression)
-		 */
-		@Override
-		public Boolean caseLogicalOrExpression(LogicalOrExpression logicalOrExpression) {
-			doSwitch(logicalOrExpression.getLeftOperand());
-			out.print(" || ");
-			doSwitch(logicalOrExpression.getRightOperand());
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseLogicalAndExpression(org.eclipse.damos.mscript.language.ast.LogicalAndExpression)
-		 */
-		@Override
-		public Boolean caseLogicalAndExpression(LogicalAndExpression logicalAndExpression) {
-			doSwitch(logicalAndExpression.getLeftOperand());
-			out.print(" && ");
-			doSwitch(logicalAndExpression.getRightOperand());
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseEqualityExpression(org.eclipse.damos.mscript.language.ast.EqualityExpression)
-		 */
-		@Override
-		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
-			Type leftDataType = getDataType(equalityExpression.getLeftOperand());
-			Type rightDataType = getDataType(equalityExpression.getRightOperand());
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, InspectExpression inspectExpression) {
+		return "";
+	}
 
-			if (leftDataType instanceof StringType && rightDataType instanceof StringType) {
-				StringEqualToFunction stringEqualToFunction = context.getCodeFragmentCollector().addCodeFragment(new StringEqualToFunction(context.getConfiguration().getStringBufferSize()), new NullProgressMonitor());
-				if (equalityExpression.getOperator() == OperatorKind.NOT_EQUAL_TO) {
-					out.print("!");
-				}
-				out.print(stringEqualToFunction.getName());
-				out.print("(");
-				out.print("&(");
-				doSwitch(equalityExpression.getLeftOperand());
-				out.print(").data[0], &(");
-				doSwitch(equalityExpression.getRightOperand());
-				out.print(").data[0])");
-				return true;
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, RangeExpression rangeExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, ImpliesExpression impliesExpression) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("(!(");
+		sb.append(generate(context, impliesExpression.getLeftOperand()));
+		sb.append(") || ");
+		sb.append(generate(context, impliesExpression.getRightOperand()));
+		sb.append(")");
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, LogicalOrExpression logicalOrExpression) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generate(context, logicalOrExpression.getLeftOperand()));
+		sb.append(" || ");
+		sb.append(generate(context, logicalOrExpression.getRightOperand()));
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, LogicalAndExpression logicalAndExpression) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generate(context, logicalAndExpression.getLeftOperand()));
+		sb.append(" && ");
+		sb.append(generate(context, logicalAndExpression.getRightOperand()));
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, EqualityExpression equalityExpression) {
+		Type leftDataType = getDataType(context, equalityExpression.getLeftOperand());
+		Type rightDataType = getDataType(context, equalityExpression.getRightOperand());
+
+		if (leftDataType instanceof StringType && rightDataType instanceof StringType) {
+			StringBuilder sb = new StringBuilder();
+			StringEqualToFunction stringEqualToFunction = context.getCodeFragmentCollector().addCodeFragment(new StringEqualToFunction(context.getConfiguration().getStringBufferSize()), new NullProgressMonitor());
+			if (equalityExpression.getOperator() == OperatorKind.NOT_EQUAL_TO) {
+				sb.append("!");
 			}
-			
-			generateCompareExpression(equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
-			return true;
+			sb.append(stringEqualToFunction.getName());
+			sb.append("(");
+			sb.append("&(");
+			sb.append(generate(context, equalityExpression.getLeftOperand()));
+			sb.append(").data[0], &(");
+			sb.append(generate(context, equalityExpression.getRightOperand()));
+			sb.append(").data[0])");
+			return sb;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseRelationalExpression(org.eclipse.damos.mscript.language.ast.RelationalExpression)
-		 */
-		@Override
-		public Boolean caseRelationalExpression(RelationalExpression relationalExpression) {
-			generateCompareExpression(relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
-			return true;
+		return generateCompareExpression(context, equalityExpression.getLeftOperand(), equalityExpression.getRightOperand(), equalityExpression.getOperator().getLiteral());
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, RelationalExpression relationalExpression) {
+		return generateCompareExpression(context, relationalExpression.getLeftOperand(), relationalExpression.getRightOperand(), relationalExpression.getOperator().getLiteral());
+	}
+
+	private CharSequence generateCompareExpression(IMscriptGeneratorContext context, Expression leftOperand, Expression rightOperand, String operator) {
+		StringBuilder sb = new StringBuilder();
+		
+		Type leftDataType = getDataType(context, leftOperand);
+		Type rightDataType = getDataType(context, rightOperand);
+		
+		if (leftDataType instanceof NumericType && rightDataType instanceof NumericType) {
+			Type dataType1 = TypeUtil.getLeftHandDataType(leftDataType, rightDataType);
+			Type dataType2 = TypeUtil.getLeftHandDataType(rightDataType, leftDataType);
+			
+			NumberFormat numberFormat1 = context.getConfiguration().getComputationModel().getNumberFormat(dataType1);
+			NumberFormat numberFormat2 = context.getConfiguration().getComputationModel().getNumberFormat(dataType2);
+			
+			NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
+
+			sb.append(MscriptGeneratorUtil.castNumericType(context, leftOperand, widestNumberFormat));
+			sb.append(" ");
+			sb.append(operator);
+			sb.append(" ");
+			sb.append(MscriptGeneratorUtil.castNumericType(context, rightOperand, widestNumberFormat));
+		} else {
+			sb.append(generate(context, leftOperand));
+			sb.append(" ");
+			sb.append(operator);
+			sb.append(" ");
+			sb.append(generate(context, rightOperand));
 		}
 		
-		private void generateCompareExpression(Expression leftOperand, Expression rightOperand, String operator) {
-			Type leftDataType = getDataType(leftOperand);
-			Type rightDataType = getDataType(rightOperand);
-			
-			if (leftDataType instanceof NumericType && rightDataType instanceof NumericType) {
-				Type dataType1 = TypeUtil.getLeftHandDataType(leftDataType, rightDataType);
-				Type dataType2 = TypeUtil.getLeftHandDataType(rightDataType, leftDataType);
-				
-				NumberFormat numberFormat1 = context.getConfiguration().getComputationModel().getNumberFormat(dataType1);
-				NumberFormat numberFormat2 = context.getConfiguration().getComputationModel().getNumberFormat(dataType2);
-				
-				NumberFormat widestNumberFormat = ComputationModelUtil.getWidestNumberFormat(numberFormat1, numberFormat2);
-	
-				out.print(MscriptGeneratorUtil.castNumericType(context, leftOperand, widestNumberFormat));
-				out.print(" ");
-				out.print(operator);
-				out.print(" ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, rightOperand, widestNumberFormat));
-			} else {
-				doSwitch(leftOperand);
-				out.print(" ");
-				out.print(operator);
-				out.print(" ");
-				doSwitch(rightOperand);
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, TypeTestExpression typeTestExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, AdditiveExpression additiveExpression) {
+		StringBuilder sb = new StringBuilder();
+		
+		Type type = getDataType(context, additiveExpression);
+		NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
+		
+		Type leftDataType = getDataType(context, additiveExpression.getLeftOperand());
+		Type rightDataType = getDataType(context, additiveExpression.getRightOperand());
+		
+		if (leftDataType instanceof StringType || rightDataType instanceof StringType) {
+			IValue leftValue = context.getFunctionInfo().getValue(additiveExpression.getLeftOperand());
+			if (leftValue == null || leftValue instanceof InvalidValue) {
+				return sb;
 			}
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseAdditiveExpression(org.eclipse.damos.mscript.language.ast.AdditiveExpression)
-		 */
-		@Override
-		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
-			Type type = getDataType(additiveExpression);
-			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
-			
-			Type leftDataType = getDataType(additiveExpression.getLeftOperand());
-			Type rightDataType = getDataType(additiveExpression.getRightOperand());
-			
-			if (leftDataType instanceof StringType || rightDataType instanceof StringType) {
-				IValue leftValue = context.getFunctionInfo().getValue(additiveExpression.getLeftOperand());
-				if (leftValue == null || leftValue instanceof InvalidValue) {
-					return true;
-				}
-				IValue leftConvertedValue = leftValue.convert(MscriptFactory.eINSTANCE.createStringType());
-				if (leftConvertedValue instanceof InvalidValue) {
-					return true;
-				}
-				IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), leftValue.getDataType()));
-
-				IValue rightValue = context.getFunctionInfo().getValue(additiveExpression.getRightOperand());
-				if (rightValue == null || rightValue instanceof InvalidValue) {
-					return true;
-				}
-				IValue rightConvertedValue = rightValue.convert(MscriptFactory.eINSTANCE.createStringType());
-				if (rightConvertedValue instanceof InvalidValue) {
-					return true;
-				}
-				IStringSegment rightStringSegment = new ExpressionStringSegment(rightConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), rightValue.getDataType()));
-
-				if (leftStringSegment == null || rightStringSegment == null) {
-					return true;
-				}
-				
-				List<IStringSegment> stringSegments = new ArrayList<IStringSegment>();
-				stringSegments.add(leftStringSegment);
-				stringSegments.add(rightStringSegment);
-				StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, true), new NullProgressMonitor());
-				StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
-
-				out.print(codeFragment.getName());
-				out.print("(");
-
-				if (leftConvertedValue instanceof StringValue) {
-					out.print(Integer.toString(stringTable.addString(leftConvertedValue.toString())));
-				} else {
-					if (rightDataType instanceof StringType) {
-						out.print("&(");
-					}
-					doSwitch(additiveExpression.getLeftOperand());
-					if (rightDataType instanceof StringType) {
-						out.print(").data[0]");
-					}
-				}
-				
-				out.print(", ");
-
-				if (rightConvertedValue instanceof StringValue) {
-					out.print(Integer.toString(stringTable.addString(rightConvertedValue.toString())));
-				} else {
-					if (rightDataType instanceof StringType) {
-						out.print("&(");
-					}
-					doSwitch(additiveExpression.getRightOperand());
-					if (rightDataType instanceof StringType) {
-						out.print(").data[0]");
-					}
-				}
-				
-				out.print(")");
-				
-				return true;
+			IValue leftConvertedValue = leftValue.convert(MscriptFactory.eINSTANCE.createStringType());
+			if (leftConvertedValue instanceof InvalidValue) {
+				return sb;
 			}
+			IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), leftValue.getDataType()));
 
-			out.print(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getLeftOperand(), numberFormat));
-			out.print(" ");
-			out.print(additiveExpression.getOperator().getLiteral());
-			out.print(" ");
-			out.print(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getRightOperand(), numberFormat));
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipse.damos.mscript.language.ast.MultiplicativeExpression)
-		 */
-		@Override
-		public Boolean caseMultiplicativeExpression(final MultiplicativeExpression multiplicativeExpression) {
-			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(getDataType(multiplicativeExpression));
-
-			INumericExpressionOperand leftOperand = new NumericExpressionOperand(context, multiplicativeExpression.getLeftOperand());
-			INumericExpressionOperand rightOperand = new NumericExpressionOperand(context, multiplicativeExpression.getRightOperand());
-			out.print(multiplicativeExpressionGenerator.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand));
-
-			return true;
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseParenthesizedExpression(org.eclipse.damos.mscript.language.ast.ParenthesizedExpression)
-		 */
-		@Override
-		public Boolean caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
-			out.print("(");
-			doSwitch(parenthesizedExpression.getExpressions().get(0));
-			out.print(")");
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseUnaryExpression(org.eclipse.damos.mscript.language.ast.UnaryExpression)
-		 */
-		@Override
-		public Boolean caseUnaryExpression(UnaryExpression unaryExpression) {
-			if (unaryExpression.getOperator() == OperatorKind.NEGATE) {
-				out.print("-");
-			} else {
-				out.print(unaryExpression.getOperator().getLiteral());
+			IValue rightValue = context.getFunctionInfo().getValue(additiveExpression.getRightOperand());
+			if (rightValue == null || rightValue instanceof InvalidValue) {
+				return sb;
 			}
-			doSwitch(unaryExpression.getOperand());
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipse.damos.mscript.PowerExpression)
-		 */
-		@Override
-		public Boolean casePowerExpression(PowerExpression powerExpression) {
-			Type type = getDataType(powerExpression);
-			NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
-	
-			if (numberFormat instanceof FixedPointFormat) {
-				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-				if (fixedPointFormat.getWordSize() > 32) {
-					out.print("DamosMath_powfix32(");
-				} else {
-					out.print("DamosMath_powfix64(");
-				}
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
-				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
-				out.printf(", %d)", fixedPointFormat.getFractionLength());
-			} else if (numberFormat instanceof FloatingPointFormat) {
-				out.print("pow(");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
-				out.print(", ");
-				out.print(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
-				out.print(")");
+			IValue rightConvertedValue = rightValue.convert(MscriptFactory.eINSTANCE.createStringType());
+			if (rightConvertedValue instanceof InvalidValue) {
+				return sb;
 			}
+			IStringSegment rightStringSegment = new ExpressionStringSegment(rightConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), rightValue.getDataType()));
 
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipse.damos.mscript.language.ast.RealLiteral)
-		 */
-		@Override
-		public Boolean caseRealLiteral(RealLiteral realLiteral) {
-			Type type = getDataType(realLiteral);
-			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, realLiteral.getValue()));
-			return true;
-		}
-	
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipse.damos.mscript.language.ast.IntegerLiteral)
-		 */
-		@Override
-		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
-			Type type = getDataType(integerLiteral);
-			out.print(literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, integerLiteral.getValue()));
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipse.damos.mscript.language.ast.BooleanLiteral)
-		 */
-		@Override
-		public Boolean caseBooleanLiteral(BooleanLiteral booleanLiteral) {
-			out.print(booleanLiteral.isTrue() ? "1" : "0");
-			return true;
-		}
-		
-		@Override
-		public Boolean caseStringLiteral(StringLiteral stringLiteral) {
-			StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), Collections.singletonList(new ConstantStringSegment()), true), new NullProgressMonitor());
-			StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
-			
-			out.print(codeFragment.getName());
-			out.print("(");
-			out.print(Integer.toString(stringTable.addString(stringLiteral.getText())));
-			out.print(")");
-			
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.util.MscriptSwitch#caseTemplateExpression(org.eclipse.damos.mscript.TemplateExpression)
-		 */
-		@Override
-		public Boolean caseTemplateExpression(TemplateExpression templateExpression) {
-			templateExpression.normalizeSegments();
+			if (leftStringSegment == null || rightStringSegment == null) {
+				return sb;
+			}
 			
 			List<IStringSegment> stringSegments = new ArrayList<IStringSegment>();
-			for (TemplateSegment templateSegment : templateExpression.getSegments()) {
-				if (templateSegment instanceof ConstantTemplateSegment) {
-					ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
-					if (constantTemplateSegment.getNormalizedText().isEmpty()) {
-						continue;
-					}
-					stringSegments.add(new ConstantStringSegment());
-				} else if (templateSegment instanceof ExpressionTemplateSegment) {
-					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
-					Expression expression = expressionTemplateSegment.getExpression();
-					IValue value = context.getFunctionInfo().getValue(expression);
-					if (value == null || value instanceof InvalidValue) {
-						continue;
-					}
-					IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
-					if (convertedValue instanceof InvalidValue) {
-						continue;
-					}
-					stringSegments.add(new ExpressionStringSegment(convertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), value.getDataType())));
-				} else {
-					throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
-				}
-			}
-			
-			StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, false), new NullProgressMonitor());
+			stringSegments.add(leftStringSegment);
+			stringSegments.add(rightStringSegment);
+			StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, true), new NullProgressMonitor());
 			StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
 
-			out.print(codeFragment.getName());
-			out.print("(");
+			sb.append(codeFragment.getName());
+			sb.append("(");
 
-			boolean first = true;
-			for (TemplateSegment templateSegment : templateExpression.getSegments()) {
-				if (!first) {
-					out.print(", ");
+			if (leftConvertedValue instanceof StringValue) {
+				sb.append(Integer.toString(stringTable.addString(leftConvertedValue.toString())));
+			} else {
+				if (rightDataType instanceof StringType) {
+					sb.append("&(");
 				}
-				if (templateSegment instanceof ConstantTemplateSegment) {
-					ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
-					String text = constantTemplateSegment.getNormalizedText();
-					if (text.isEmpty()) {
-						continue;
-					}
-					if (text.charAt(0) == '\n') {
-						text = "\f" + text.substring(1);
-					}
-					out.print(Integer.toString(stringTable.addString(text)));
-				} else if (templateSegment instanceof ExpressionTemplateSegment) {
-					ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
-					Expression expression = expressionTemplateSegment.getExpression();
-					IValue value = context.getFunctionInfo().getValue(expression);
-					if (value == null || value instanceof InvalidValue) {
-						continue;
-					}
-					IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
-					if (convertedValue instanceof InvalidValue) {
-						continue;
-					}
-					out.print(Integer.toString(stringTable.addString(Character.toString((char) 0x02) + expressionTemplateSegment.getIndentation())));
-					out.print(", ");
-					if (convertedValue instanceof StringValue) {
-						out.print(Integer.toString(stringTable.addString(convertedValue.toString())));
-					} else {
-						if (value.getDataType() instanceof StringType) {
-							out.print("&(");
-						}
-						doSwitch(expression);
-						if (value.getDataType() instanceof StringType) {
-							out.print(").data[0]");
-						}
-					}
-				} else {
-					throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
+				sb.append(generate(context, additiveExpression.getLeftOperand()));
+				if (rightDataType instanceof StringType) {
+					sb.append(").data[0]");
 				}
-				first = false;
 			}
+			
+			sb.append(", ");
 
-			out.print(")");
-
-			return true;
+			if (rightConvertedValue instanceof StringValue) {
+				sb.append(Integer.toString(stringTable.addString(rightConvertedValue.toString())));
+			} else {
+				if (rightDataType instanceof StringType) {
+					sb.append("&(");
+				}
+				sb.append(generate(context, additiveExpression.getRightOperand()));
+				if (rightDataType instanceof StringType) {
+					sb.append(").data[0]");
+				}
+			}
+			
+			sb.append(")");
+		} else {
+			sb.append(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getLeftOperand(), numberFormat));
+			sb.append(" ");
+			sb.append(additiveExpression.getOperator().getLiteral());
+			sb.append(" ");
+			sb.append(MscriptGeneratorUtil.castNumericType(context, additiveExpression.getRightOperand(), numberFormat));
 		}
-				
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.language.il.util.FunctionModelSwitch#caseFunctionCall(org.eclipse.damos.mscript.language.il.FunctionCall)
-		 */
-		@Override
-		public Boolean caseFunctionCall(FunctionCall functionCall) {
-			CallableElement feature = functionCall.getFeature();
-			if (feature == null || feature.eIsProxy() || feature.getName() == null) {
-				return true;
-			}
-			
-			StaticFunctionInfo functionInfo = context.getFunctionInfo();
-			IValue value = functionInfo.getValue(functionCall);
-			if (value == null) {
-				throw new IllegalStateException("No static value found for " + functionCall.getFeature().getName());
-			}
-			
-			if (value instanceof InvalidValue) {
-				return true;
-			}
+		
+		return sb;
+	}
 
-			IBuiltinFunctionGenerator generator = builtinFunctionGeneratorLookup.getFunctionGenerator(functionCall);
-			if (generator != null) {
-				out.print(generator.generate(context, functionCall));
-				return true;
-			}
-			
-			StaticFunctionInfo callee = functionInfo.getCallee(functionCall);
-			MscriptGeneratorContext newGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleInterval(), context.getCodeFragmentCollector());
-			ComputeFunction functionDefinition = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(newGeneratorContext), new NullProgressMonitor());
-			
-			FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, functionDefinition, newGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
-			
-			if (functionContextStructMember != null) {
-				ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, MultiplicativeExpression multiplicativeExpression) {
+		NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(getDataType(context, multiplicativeExpression));
 
-				{
-					InitializeFunction initializeFunction = functionDefinition.getInitializeFunction();
-					StringBuilder sb = new StringBuilder();
-					sb.append(initializeFunction.getName());
-					sb.append("(");
-					if (functionContextStructMember != null) {
-						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
-					}
-					sb.append(");\n");
-	
-					contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
-					contextStruct.addInitializeCall(sb);
-				}
-				
-				{
-					UpdateFunction updateFunction = functionDefinition.getUpdateFunction();
-					StringBuilder sb = new StringBuilder();
-					sb.append(updateFunction.getName());
-					sb.append("(");
-					boolean first = true;
-					if (functionContextStructMember != null) {
-						sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
-						first = false;
-					}
-					Iterator<InputParameterDeclaration> inputParameterDeclarationIt = callee.getFunctionDescription().getDeclaration().getInputParameterDeclarations().iterator();
-					for (Expression argument : functionCall.getArguments()) {
-						if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
-							continue;
-						}
-						if (first) {
-							first = false;
-						} else {
-							sb.append(", ");
-						}
-						PrintAppendable oldOut = out;
-						out = new PrintAppendable(sb);
-						doSwitch(argument);
-						out = oldOut;
-					}
-					sb.append(");\n");
-	
-					contextStruct.addUpdateCall(sb);
-				}
-			}
-			
-			out.print(functionDefinition.getName());
-			out.print("(");
+		INumericExpressionOperand leftOperand = new NumericExpressionOperand(context, multiplicativeExpression.getLeftOperand());
+		INumericExpressionOperand rightOperand = new NumericExpressionOperand(context, multiplicativeExpression.getRightOperand());
+		
+		return multiplicativeExpressionGenerator.generate(context.getCodeFragmentCollector(), multiplicativeExpression.getOperator(), numberFormat, leftOperand, rightOperand);
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, UnaryExpression unaryExpression) {
+		StringBuilder sb = new StringBuilder();
+		if (unaryExpression.getOperator() == OperatorKind.NEGATE) {
+			sb.append("-");
+		} else {
+			sb.append(unaryExpression.getOperator().getLiteral());
+		}
+		sb.append(generate(context, unaryExpression.getOperand()));
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, ArrayConstructionOperator arrayConstructionOperator) {
+		IValue value = context.getFunctionInfo().getValue(arrayConstructionOperator);
+		if (value instanceof IArrayValue) {
+			return literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value);
+		}
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, ArrayConcatenationOperator arrayConcatenationOperator) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, RecordConstructionOperator recordConstructionOperator) {
+		StringBuilder sb = new StringBuilder();
+		IValue value = context.getFunctionInfo().getValue(recordConstructionOperator);
+		if (value instanceof RecordValue) {
+			sb.append(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
+		} else {
+			RecordConstructionFunction codeFragment = (RecordConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new RecordConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (RecordType) value.getDataType())), new NullProgressMonitor());
+			sb.append(codeFragment.getName());
+			sb.append("(");
 			boolean first = true;
-			if (functionContextStructMember != null) {
-				out.print(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
-				first = false;
-			}
-			List<InputParameterDeclaration> directFeedthroughInputs = FunctionModelUtil.getDirectFeedthroughInputs(newGeneratorContext.getFunctionInfo().getFunctionInstance());
-			Iterator<InputParameterDeclaration> inputParameterDeclarationIt = directFeedthroughInputs.iterator();
-			for (Expression argument : functionCall.getArguments()) {
-				if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
-					continue;
-				}
+			for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
 				if (first) {
 					first = false;
 				} else {
-					out.print(", ");
+					sb.append(", ");
 				}
-				doSwitch(argument);
+				sb.append(generate(context, member.getValue()));
 			}
-			out.print(")");
+			sb.append(")");
+		}
+		return sb;
+	}
 
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.util.MscriptSwitch#caseArrayElementAccess(org.eclipse.damos.mscript.ArrayElementAccess)
-		 */
-		@Override
-		public Boolean caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
-			doSwitch(arrayElementAccess.getArray());
-			for (ArraySubscript subscript : arrayElementAccess.getSubscripts()) {
-				out.print("[");
-				doSwitch(subscript.getExpression());
-				out.print("]");
-			}
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.util.MscriptSwitch#caseArrayConstructionOperator(org.eclipse.damos.mscript.ArrayConstructionOperator)
-		 */
-		@Override
-		public Boolean caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
-			IValue value = context.getFunctionInfo().getValue(arrayConstructionOperator);
-			if (value instanceof IArrayValue) {
-				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
-			}
-			return true;
-		}
-		
-		@Override
-		public Boolean caseRecordConstructionOperator(RecordConstructionOperator recordConstructionOperator) {
-			IValue value = context.getFunctionInfo().getValue(recordConstructionOperator);
-			if (value instanceof RecordValue) {
-				out.print(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, UnionConstructionOperator unionConstructionOperator) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, UnitConstructionOperator unitConstructionOperator) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, PowerExpression powerExpression) {
+		StringBuilder sb = new StringBuilder();
+		Type type = getDataType(context, powerExpression);
+		NumberFormat numberFormat = context.getConfiguration().getComputationModel().getNumberFormat(type);
+
+		if (numberFormat instanceof FixedPointFormat) {
+			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
+			if (fixedPointFormat.getWordSize() > 32) {
+				sb.append("DamosMath_powfix32(");
 			} else {
-				RecordConstructionFunction codeFragment = (RecordConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new RecordConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (RecordType) value.getDataType())), new NullProgressMonitor());
-				out.print(codeFragment.getName());
-				out.print("(");
+				sb.append("DamosMath_powfix64(");
+			}
+			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
+			sb.append(", ");
+			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
+			sb.append(", ");
+			sb.append(fixedPointFormat.getFractionLength());
+			sb.append(")");
+		} else if (numberFormat instanceof FloatingPointFormat) {
+			sb.append("pow(");
+			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getLeftOperand(), numberFormat));
+			sb.append(", ");
+			sb.append(MscriptGeneratorUtil.castNumericType(context, powerExpression.getRightOperand(), numberFormat));
+			sb.append(")");
+		}
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, ParenthesizedExpression parenthesizedExpression) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("(");
+		sb.append(generate(context, parenthesizedExpression.getExpressions().get(0)));
+		sb.append(")");
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, ArrayElementAccess arrayElementAccess) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generate(context, arrayElementAccess.getArray()));
+		for (ArraySubscript subscript : arrayElementAccess.getSubscripts()) {
+			sb.append("[");
+			sb.append(generate(context, subscript.getExpression()));
+			sb.append("]");
+		}
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, FeatureReference featureReference) {
+		return variableReferenceGenerator.generate(context, featureReference);
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, MemberVariableAccess memberVariableAccess) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(generate(context, memberVariableAccess.getTarget()));
+		sb.append(".");
+		sb.append(memberVariableAccess.getMemberVariable());
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, FunctionCall functionCall) {
+		CallableElement feature = functionCall.getFeature();
+		if (feature == null || feature.eIsProxy() || feature.getName() == null) {
+			return "";
+		}
+		
+		StaticFunctionInfo functionInfo = context.getFunctionInfo();
+		IValue value = functionInfo.getValue(functionCall);
+		if (value == null) {
+			throw new IllegalStateException("No static value found for " + functionCall.getFeature().getName());
+		}
+		
+		if (value instanceof InvalidValue) {
+			return "";
+		}
+
+		IBuiltinFunctionGenerator generator = builtinFunctionGeneratorLookup.getFunctionGenerator(functionCall);
+		if (generator != null) {
+			return generator.generate(context, functionCall);
+		}
+		
+		StaticFunctionInfo callee = functionInfo.getCallee(functionCall);
+		MscriptGeneratorContext calleeGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleInterval(), context.getCodeFragmentCollector());
+		ComputeFunction computeFunction = context.getCodeFragmentCollector().addCodeFragment(new ComputeFunction(calleeGeneratorContext), new NullProgressMonitor());
+		
+		FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, computeFunction, calleeGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
+		
+		if (functionContextStructMember != null) {
+			ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+
+			{
+				InitializeFunction initializeFunction = computeFunction.getInitializeFunction();
+				StringBuilder sb = new StringBuilder();
+				sb.append(initializeFunction.getName());
+				sb.append("(");
+				if (functionContextStructMember != null) {
+					sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
+				}
+				sb.append(");\n");
+
+				contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+				contextStruct.addInitializeCall(sb);
+			}
+			
+			{
+				UpdateFunction updateFunction = computeFunction.getUpdateFunction();
+				StringBuilder sb = new StringBuilder();
+				sb.append(updateFunction.getName());
+				sb.append("(");
 				boolean first = true;
-				for (RecordConstructionMember member : recordConstructionOperator.getMembers()) {
+				if (functionContextStructMember != null) {
+					sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
+					first = false;
+				}
+				Iterator<InputParameterDeclaration> inputParameterDeclarationIt = callee.getFunctionDescription().getDeclaration().getInputParameterDeclarations().iterator();
+				for (Expression argument : functionCall.getArguments()) {
+					if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
+						continue;
+					}
 					if (first) {
 						first = false;
 					} else {
-						out.print(", ");
+						sb.append(", ");
 					}
-					doSwitch(member.getValue());
+					sb.append(generate(context, argument));
 				}
-				out.print(")");
+				sb.append(");\n");
+
+				contextStruct.addUpdateCall(sb);
 			}
-			return true;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.mscript.util.MscriptSwitch#caseMemberVariableAccess(org.eclipse.damos.mscript.MemberVariableAccess)
-		 */
-		@Override
-		public Boolean caseMemberVariableAccess(MemberVariableAccess memberVariableAccess) {
-			doSwitch(memberVariableAccess.getTarget());
-			out.print(".");
-			out.print(memberVariableAccess.getMemberVariable());
-			return true;
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(computeFunction.getName());
+		sb.append("(");
+		boolean first = true;
+		if (functionContextStructMember != null) {
+			sb.append(context.getVariableAccessStrategy().generateContextMemberAccess(true, functionContextStructMember.getName()));
+			first = false;
+		}
+		List<InputParameterDeclaration> directFeedthroughInputs = FunctionModelUtil.getDirectFeedthroughInputs(calleeGeneratorContext.getFunctionInfo().getFunctionInstance());
+		Iterator<InputParameterDeclaration> inputParameterDeclarationIt = directFeedthroughInputs.iterator();
+		for (Expression argument : functionCall.getArguments()) {
+			if (!inputParameterDeclarationIt.hasNext() || inputParameterDeclarationIt.next().isConstant()) {
+				continue;
+			}
+			if (first) {
+				first = false;
+			} else {
+				sb.append(", ");
+			}
+			sb.append(generate(context, argument));
+		}
+		sb.append(")");
+		
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, EndExpression endExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, RealLiteral realLiteral) {
+		Type type = getDataType(context, realLiteral);
+		return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, realLiteral.getValue());
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, IntegerLiteral integerLiteral) {
+		Type type = getDataType(context, integerLiteral);
+		return literalGenerator.generateLiteral(context.getConfiguration().getComputationModel(), type, integerLiteral.getValue());
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, BooleanLiteral booleanLiteral) {
+		return booleanLiteral.isTrue() ? "1" : "0";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, StringLiteral stringLiteral) {
+		StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), Collections.singletonList(new ConstantStringSegment()), true), new NullProgressMonitor());
+		StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(codeFragment.getName());
+		sb.append("(");
+		sb.append(Integer.toString(stringTable.addString(stringLiteral.getText())));
+		sb.append(")");
+		return sb;
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, TemplateExpression templateExpression) {
+		templateExpression.normalizeSegments();
+		
+		List<IStringSegment> stringSegments = new ArrayList<IStringSegment>();
+		for (TemplateSegment templateSegment : templateExpression.getSegments()) {
+			if (templateSegment instanceof ConstantTemplateSegment) {
+				ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
+				if (constantTemplateSegment.getNormalizedText().isEmpty()) {
+					continue;
+				}
+				stringSegments.add(new ConstantStringSegment());
+			} else if (templateSegment instanceof ExpressionTemplateSegment) {
+				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
+				Expression expression = expressionTemplateSegment.getExpression();
+				IValue value = context.getFunctionInfo().getValue(expression);
+				if (value == null || value instanceof InvalidValue) {
+					continue;
+				}
+				IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
+				if (convertedValue instanceof InvalidValue) {
+					continue;
+				}
+				stringSegments.add(new ExpressionStringSegment(convertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), value.getDataType())));
+			} else {
+				throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
+			}
+		}
+		
+		StringConstructionFunction codeFragment = context.getCodeFragmentCollector().addCodeFragment(new StringConstructionFunction(context.getConfiguration(), stringSegments, false), new NullProgressMonitor());
+		StringTable stringTable = context.getCodeFragmentCollector().addCodeFragment(new StringTable(), new NullProgressMonitor());
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(codeFragment.getName());
+		sb.append("(");
+
+		boolean first = true;
+		for (TemplateSegment templateSegment : templateExpression.getSegments()) {
+			if (!first) {
+				sb.append(", ");
+			}
+			if (templateSegment instanceof ConstantTemplateSegment) {
+				ConstantTemplateSegment constantTemplateSegment = (ConstantTemplateSegment) templateSegment;
+				String text = constantTemplateSegment.getNormalizedText();
+				if (text.isEmpty()) {
+					continue;
+				}
+				if (text.charAt(0) == '\n') {
+					text = "\f" + text.substring(1);
+				}
+				sb.append(Integer.toString(stringTable.addString(text)));
+			} else if (templateSegment instanceof ExpressionTemplateSegment) {
+				ExpressionTemplateSegment expressionTemplateSegment = (ExpressionTemplateSegment) templateSegment;
+				Expression expression = expressionTemplateSegment.getExpression();
+				IValue value = context.getFunctionInfo().getValue(expression);
+				if (value == null || value instanceof InvalidValue) {
+					continue;
+				}
+				IValue convertedValue = value.convert(MscriptFactory.eINSTANCE.createStringType());
+				if (convertedValue instanceof InvalidValue) {
+					continue;
+				}
+				sb.append(Integer.toString(stringTable.addString(Character.toString((char) 0x02) + expressionTemplateSegment.getIndentation())));
+				sb.append(", ");
+				if (convertedValue instanceof StringValue) {
+					sb.append(Integer.toString(stringTable.addString(convertedValue.toString())));
+				} else {
+					if (value.getDataType() instanceof StringType) {
+						sb.append("&(");
+					}
+					sb.append(generate(context, expression));
+					if (value.getDataType() instanceof StringType) {
+						sb.append(").data[0]");
+					}
+				}
+			} else {
+				throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
+			}
+			first = false;
 		}
 
-		public Boolean caseFeatureReference(FeatureReference variableReference) {
-			out.print(variableReferenceGenerator.generate(context, variableReference));
-			return true;
-		}
+		sb.append(")");
+		return sb;
+	}
 
-		private Type getDataType(Expression expression) {
-			return context.getFunctionInfo().getValue(expression).getDataType();
-		}
-	
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, LambdaExpression lambdaExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, AlgorithmExpression algorithmExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, SwitchExpression switchExpression) {
+		return "";
+	}
+
+	@Override
+	public CharSequence visit(IMscriptGeneratorContext context, InvalidExpression invalidExpression) {
+		return "";
 	}
 	
+	private Type getDataType(IMscriptGeneratorContext context, Expression expression) {
+		return context.getFunctionInfo().getValue(expression).getDataType();
+	}
+
 }

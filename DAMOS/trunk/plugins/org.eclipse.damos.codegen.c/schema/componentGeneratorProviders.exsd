@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.damos.simulation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.damos.codegen.c" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.damos.simulation" id="componentGeneratorProviders" name="Component Generator Providers"/>
+         <meta.schema plugin="org.eclipse.damos.codegen.c" id="componentGeneratorProviders" name="Component Generator Providers"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]

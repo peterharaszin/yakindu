@@ -12,6 +12,7 @@
 package org.eclipse.damos.codegen.c;
 
 import org.eclipse.damos.codegen.IGenerator;
+import org.eclipse.damos.common.inject.PluginId;
 import org.eclipse.damos.mscript.codegen.c.MscriptCodegenCModule;
 
 /**
@@ -23,10 +24,19 @@ public class CodegenCModule extends MscriptCodegenCModule {
 	@Override
 	protected void configure() {
 		super.configure();
+		bindPluginId();
 		bindIGenerator();
 		bindIGraphGenerator();
 		bindICompoundGenerator();
 		bindITaskGenerator();
+	}
+
+	protected void bindPluginId() {
+		bind(String.class).annotatedWith(PluginId.class).toInstance(getPluginId());
+	}
+	
+	protected String getPluginId() {
+		return CodegenCPlugin.PLUGIN_ID;
 	}
 
 	protected void bindIGenerator() {
@@ -44,5 +54,5 @@ public class CodegenCModule extends MscriptCodegenCModule {
 	protected void bindITaskGenerator() {
 		bind(ITaskGenerator.class).to(TaskGenerator.class);
 	}
-
+	
 }

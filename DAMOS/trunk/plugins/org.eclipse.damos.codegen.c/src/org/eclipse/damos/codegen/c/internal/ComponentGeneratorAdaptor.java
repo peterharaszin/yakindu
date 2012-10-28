@@ -33,12 +33,19 @@ import org.eclipse.damos.execution.Graph;
 import org.eclipse.damos.execution.Node;
 import org.eclipse.damos.execution.TaskGraph;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 /**
  * @author Andreas Unger
  *
  */
+@Singleton
 public class ComponentGeneratorAdaptor {
 
+	@Inject
+	private ComponentGeneratorProviderRegistry componentGeneratorProviderRegistry;
+	
 	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	
 	public void adaptGenerators(IGeneratorContext context, IProgressMonitor monitor) throws CoreException {
@@ -84,7 +91,7 @@ public class ComponentGeneratorAdaptor {
 						generator = targetGenerator.createBoundaryComponentGenerator(context, componentNode);
 					}
 				} else {
-					generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(componentNode);
+					generator = componentGeneratorProviderRegistry.createGenerator(componentNode);
 				}
 				if (generator != null) {
 					node.eAdapters().add(new ComponentGeneratorAdapter(generator));

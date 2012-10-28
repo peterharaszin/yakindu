@@ -180,14 +180,33 @@ public class Generator extends AbstractGenerator {
 			}
 		}
 		
+		generateHeader(module, headerFile, monitor);
+		generateSource(module, sourceFile, monitor);
+	}
+
+	/**
+	 * @param module
+	 * @param headerFile
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	protected void generateHeader(CModule module, IFile headerFile, final IProgressMonitor monitor) throws CoreException {
 		InputStream is = new StringInputStream(headerGenerator.generate(module).toString());
 		if (headerFile.exists()) {
 			headerFile.setContents(is, true, true, monitor);
 		} else {
 			headerFile.create(is, true, monitor);
 		}
+	}
 
-		is = new StringInputStream(sourceGenerator.generate(module).toString());
+	/**
+	 * @param module
+	 * @param sourceFile
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	protected void generateSource(CModule module, IFile sourceFile, final IProgressMonitor monitor) throws CoreException {
+		InputStream is = new StringInputStream(sourceGenerator.generate(module).toString());
 		if (sourceFile.exists()) {
 			sourceFile.setContents(is, true, true, monitor);
 		} else {

@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.common.inject;
+package org.eclipse.damos.codegen.c.providers;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -26,6 +26,6 @@ import com.google.inject.BindingAnnotation;
 @Retention(RUNTIME)
 @Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
 @BindingAnnotation
-public @interface PluginId {
+public @interface ComponentGeneratorProvidersExtensionPointPluginId {
 
 }

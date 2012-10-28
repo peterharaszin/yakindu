@@ -15,8 +15,12 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.damos.codegen.c.CodegenCPlugin;
+import org.eclipse.damos.codegen.c.providers.BlockGeneratorProvider;
+import org.eclipse.damos.codegen.c.providers.BlockGeneratorsExtensionPointPluginId;
 import org.eclipse.damos.common.registry.AbstractRegistryReader;
 import org.eclipse.damos.common.registry.IRegistryConstants;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -28,6 +32,10 @@ public class BlockGeneratorRegistryReader extends AbstractRegistryReader {
 	
 	private static final String TAG = "generator";
 	private static final String ATT_BLOCK_TYPE = "blockType";
+
+	@Inject
+	@BlockGeneratorsExtensionPointPluginId
+	private String pluginId;
 
 	private BlockGeneratorProvider provider;
 	
@@ -41,7 +49,7 @@ public class BlockGeneratorRegistryReader extends AbstractRegistryReader {
 	 */
 	@Override
 	protected String getPluginId() {
-		return CodegenCPlugin.PLUGIN_ID;
+		return pluginId;
 	}
 
 	/* (non-Javadoc)

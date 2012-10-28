@@ -37,14 +37,6 @@ public class ComponentGeneratorProviderRegistryReader extends AbstractRegistryRe
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.damos.common.registry.AbstractRegistryReader#getPluginId()
-	 */
-	@Override
-	protected String getPluginId() {
-		return CodegenCPlugin.PLUGIN_ID;
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.damos.common.registry.AbstractRegistryReader#getLog()
 	 */
 	@Override

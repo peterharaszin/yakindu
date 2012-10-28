@@ -114,6 +114,9 @@ public class Generator extends AbstractGenerator {
 		
 	@Inject
 	private IVariableAccessorFactory variableAccessorFactory;
+	
+	@Inject
+	private ComponentGeneratorAdaptor componentGeneratorAdaptor;
 
 	public void generate(Configuration configuration, final IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
@@ -303,7 +306,7 @@ public class Generator extends AbstractGenerator {
 		
 		ExecutionFlow executionFlow = new ExecutionFlowBuilder().build(contextFragment, monitor);
 		IGeneratorContext context = new GeneratorContext(configuration, executionFlow);
-		new ComponentGeneratorAdaptor().adaptGenerators(context, monitor);
+		componentGeneratorAdaptor.adaptGenerators(context, monitor);
 
 		if (executionFlow.getAsynchronousZoneCount() > 0 && GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()) == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "A runtime must be specified in the configuration for systems containing asynchronous components"));

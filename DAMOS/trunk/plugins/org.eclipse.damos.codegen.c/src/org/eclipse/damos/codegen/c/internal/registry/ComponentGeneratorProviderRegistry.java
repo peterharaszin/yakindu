@@ -19,32 +19,23 @@ import org.eclipse.damos.codegen.c.IComponentGenerator;
 import org.eclipse.damos.codegen.c.IComponentGeneratorProvider;
 import org.eclipse.damos.execution.ComponentNode;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 /**
  * @author Andreas Unger
  *
  */
+@Singleton
 public class ComponentGeneratorProviderRegistry {
 
-	private static final ComponentGeneratorProviderRegistry INSTANCE = new ComponentGeneratorProviderRegistry();
-
-	private List<IComponentGeneratorProvider> providers = new ArrayList<IComponentGeneratorProvider>();
+	@Inject
+	private ComponentGeneratorProviderRegistryReader registryReader;
 	
-	/**
-	 * 
-	 */
-	private ComponentGeneratorProviderRegistry() {
-		initializeFromStorage();
-	}
-
-	/**
-	 * @return the instance
-	 */
-	public static ComponentGeneratorProviderRegistry getInstance() {
-		return INSTANCE;
-	}
+	private List<IComponentGeneratorProvider> providers;
 	
 	public IComponentGenerator createGenerator(ComponentNode node) {
-		for (IComponentGeneratorProvider provider : providers) {
+		for (IComponentGeneratorProvider provider : getProviders()) {
 			IComponentGenerator generator = provider.createGenerator(node);
 			if (generator != null) {
 				return generator;
@@ -54,20 +45,19 @@ public class ComponentGeneratorProviderRegistry {
 	}
 		
 	public Collection<IComponentGeneratorProvider> getProviders() {
+		if (providers == null) {
+			providers = new ArrayList<IComponentGeneratorProvider>();
+			registryReader.registerProviders(this);
+		}
 		return providers;
 	}
 
 	public void register(IComponentGeneratorProvider provider) {
-		providers.add(provider);
+		getProviders().add(provider);
 	}
 	
 	public void unregister(IComponentGeneratorProvider provider) {
-		providers.remove(provider);
-	}
-
-	private void initializeFromStorage() {
-		ComponentGeneratorProviderRegistryReader reader = new ComponentGeneratorProviderRegistryReader();
-		reader.registerProviders(this);
+		getProviders().remove(provider);
 	}
 	
 }

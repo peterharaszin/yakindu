@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.codegen.c.internal.providers;
+package org.eclipse.damos.codegen.c.providers;
 
 import org.eclipse.damos.codegen.c.IComponentGenerator;
 import org.eclipse.damos.codegen.c.IComponentGeneratorProvider;

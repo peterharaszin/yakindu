@@ -12,7 +12,8 @@
 package org.eclipse.damos.codegen.c;
 
 import org.eclipse.damos.codegen.IGenerator;
-import org.eclipse.damos.common.inject.PluginId;
+import org.eclipse.damos.codegen.c.providers.BlockGeneratorsExtensionPointPluginId;
+import org.eclipse.damos.codegen.c.providers.ComponentGeneratorProvidersExtensionPointPluginId;
 import org.eclipse.damos.mscript.codegen.c.MscriptCodegenCModule;
 
 /**
@@ -24,18 +25,27 @@ public class CodegenCModule extends MscriptCodegenCModule {
 	@Override
 	protected void configure() {
 		super.configure();
-		bindPluginId();
+		bindComponentGeneratorProvidersExtensionPointPluginId();
+		bindBlockGeneratorsExtensionPointPluginId();
 		bindIGenerator();
 		bindIGraphGenerator();
 		bindICompoundGenerator();
 		bindITaskGenerator();
 	}
-
-	protected void bindPluginId() {
-		bind(String.class).annotatedWith(PluginId.class).toInstance(getPluginId());
-	}
 	
-	protected String getPluginId() {
+	protected void bindComponentGeneratorProvidersExtensionPointPluginId() {
+		bind(String.class).annotatedWith(ComponentGeneratorProvidersExtensionPointPluginId.class).toInstance(getComponentGeneratorProvidersExtensionPointPluginId());
+	}
+
+	protected String getComponentGeneratorProvidersExtensionPointPluginId() {
+		return CodegenCPlugin.PLUGIN_ID;
+	}
+
+	protected void bindBlockGeneratorsExtensionPointPluginId() {
+		bind(String.class).annotatedWith(BlockGeneratorsExtensionPointPluginId.class).toInstance(getBlockGeneratorsExtensionPointPluginId());
+	}
+
+	protected String getBlockGeneratorsExtensionPointPluginId() {
 		return CodegenCPlugin.PLUGIN_ID;
 	}
 

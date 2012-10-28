@@ -16,8 +16,11 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.damos.codegen.c.CodegenCPlugin;
 import org.eclipse.damos.codegen.c.IComponentGeneratorProvider;
+import org.eclipse.damos.codegen.c.providers.ComponentGeneratorProvidersExtensionPointPluginId;
 import org.eclipse.damos.common.registry.AbstractRegistryReader;
 import org.eclipse.damos.common.registry.IRegistryConstants;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -28,12 +31,24 @@ public class ComponentGeneratorProviderRegistryReader extends AbstractRegistryRe
 	private static final String EXTENSION_POINT_NAME = "componentGeneratorProviders";
 
 	private static final String TAG_PROVIDER = "provider";
+	
+	@Inject
+	@ComponentGeneratorProvidersExtensionPointPluginId
+	private String pluginId;
 
 	private ComponentGeneratorProviderRegistry registry;
 	
 	public void registerProviders(ComponentGeneratorProviderRegistry registry) {
 		this.registry = registry;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.common.registry.AbstractRegistryReader#getPluginId()
+	 */
+	@Override
+	protected String getPluginId() {
+		return pluginId;
 	}
 
 	/* (non-Javadoc)

@@ -22,9 +22,6 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.damos.common.inject.PluginId;
-
-import com.google.inject.Inject;
 
 /**
  * Template implementation of a registry reader that creates objects
@@ -40,19 +37,13 @@ import com.google.inject.Inject;
  */
 public abstract class AbstractRegistryReader {
 
-	@Inject
-	@PluginId
-	private String pluginId;
-	
 	/**
 	 * The constructor.
 	 */
 	protected AbstractRegistryReader() {
 	}
 	
-	protected String getPluginId() {
-		return pluginId;
-	}
+	protected abstract String getPluginId();
 	
 	protected abstract ILog getLog();
 

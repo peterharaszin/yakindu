@@ -9,13 +9,15 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.damos.codegen.c.internal.registry;
+package org.eclipse.damos.codegen.c.providers;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.damos.codegen.c.IComponentGenerator;
 import org.eclipse.damos.codegen.c.IComponentGeneratorProvider;
+import org.eclipse.damos.codegen.c.internal.registry.BlockGeneratorDescriptor;
+import org.eclipse.damos.codegen.c.internal.registry.BlockGeneratorRegistryReader;
 import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.BlockType;
 import org.eclipse.damos.execution.ComponentNode;

@@ -8,13 +8,13 @@
    <extension
          point="org.eclipse.damos.codegen.c.componentGeneratorProviders">
       <provider
-            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.registry.BlockGeneratorProvider">
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.providers.BlockGeneratorProvider">
       </provider>
       <provider
-            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.providers.DscriptBlockGeneratorProvider">
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.providers.DscriptBlockGeneratorProvider">
       </provider>
       <provider
-            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.providers.BuiltinComponentGeneratorProvider">
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.providers.BuiltinComponentGeneratorProvider">
       </provider>
    </extension>
    <extension

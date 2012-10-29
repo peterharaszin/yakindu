@@ -24,7 +24,7 @@ public class CSourceGenerator implements ICModuleGenerator {
     return this.doGenerate(it, _includes);
   }
   
-  private CharSequence doGenerate(final CModule it, final Collection<Include> includes) {
+  protected CharSequence doGenerate(final CModule it, final Collection<Include> includes) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _sourceComment = it.getSourceComment();
@@ -35,6 +35,23 @@ public class CSourceGenerator implements ICModuleGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    CharSequence _generateIncludes = this.generateIncludes(it, includes);
+    _builder.append(_generateIncludes, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _generateInternalForwardDeclarations = this.generateInternalForwardDeclarations(it);
+    _builder.append(_generateInternalForwardDeclarations, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _generateImplementations = this.generateImplementations(it, false);
+    _builder.append(_generateImplementations, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _generateImplementations_1 = this.generateImplementations(it, true);
+    _builder.append(_generateImplementations_1, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected CharSequence generateIncludes(final CModule it, final Collection<Include> includes) {
+    StringConcatenation _builder = new StringConcatenation();
     {
       boolean _hasElements = false;
       for(final Include include : includes) {
@@ -85,19 +102,10 @@ public class CSourceGenerator implements ICModuleGenerator {
         _builder.append("\n", "");
       }
     }
-    CharSequence _generateInternalForwardDeclarations = this.generateInternalForwardDeclarations(it);
-    _builder.append(_generateInternalForwardDeclarations, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _generateImplementations = this.generateImplementations(it, false);
-    _builder.append(_generateImplementations, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _generateImplementations_1 = this.generateImplementations(it, true);
-    _builder.append(_generateImplementations_1, "");
-    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
-  private CharSequence generateInternalForwardDeclarations(final CModule it) {
+  protected CharSequence generateInternalForwardDeclarations(final CModule it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       Collection<CModuleEntry> _entries = it.getEntries();
@@ -133,7 +141,7 @@ public class CSourceGenerator implements ICModuleGenerator {
     return _builder;
   }
   
-  private CharSequence generateImplementations(final CModule it, final boolean contributesInternalForwardDeclaration) {
+  protected CharSequence generateImplementations(final CModule it, final boolean contributesInternalForwardDeclaration) {
     StringConcatenation _builder = new StringConcatenation();
     {
       Collection<CModuleEntry> _entries = it.getEntries();

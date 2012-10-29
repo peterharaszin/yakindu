@@ -25,12 +25,12 @@ import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IInitializeFunctionFactory
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IUpdateFunctionFactory
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil
 import org.eclipse.damos.mscript.util.MscriptUtil
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -49,6 +49,9 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 	
 	@Inject
 	IFunctionContextFactory functionContextFactory
+	
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 	
 	val IMscriptGeneratorContext generatorContext
 	
@@ -158,12 +161,12 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 	
 	def private CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ParameterDeclaration parameterDeclaration) {
 		val dataType = generatorContext.functionInfo.getValue(parameterDeclaration).dataType
-		MachineDataTypes::create(generatorContext.configuration, dataType).generateDataType(parameterDeclaration.name, codeFragmentCollector, this)
+		machineDataTypeFactory.create(generatorContext.configuration, dataType).generateDataType(parameterDeclaration.name, codeFragmentCollector, this)
 	}
 
 	def private CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ParameterDeclaration parameterDeclaration, String variableName) {
 		val dataType = generatorContext.functionInfo.getValue(parameterDeclaration).dataType
-		MachineDataTypes::create(generatorContext.configuration, dataType).generateDataType(variableName, codeFragmentCollector, this)
+		machineDataTypeFactory.create(generatorContext.configuration, dataType).generateDataType(variableName, codeFragmentCollector, this)
 	}
 	
 	def private CharSequence generateUpdateContextStatement(ParameterDeclaration inputParameterDeclaration) '''

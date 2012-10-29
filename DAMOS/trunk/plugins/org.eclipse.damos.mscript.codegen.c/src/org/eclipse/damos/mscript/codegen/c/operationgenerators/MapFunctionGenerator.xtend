@@ -23,9 +23,9 @@ import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
 import org.eclipse.damos.mscript.codegen.c.IOperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.util.MscriptUtil
 import org.eclipse.damos.mscript.util.TypeUtil
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -38,6 +38,9 @@ class MapFunctionGenerator implements IOperationGenerator {
 
 	@Inject
 	IOperationGeneratorProvider operationGeneratorProvider
+
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (expression instanceof FunctionCall) {
@@ -53,8 +56,8 @@ class MapFunctionGenerator implements IOperationGenerator {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val vectorType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
-		val elementType = MachineDataTypes::create(context.configuration, (resultDataType as ArrayType).elementType);
+		val vectorType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
+		val elementType = machineDataTypeFactory.create(context.configuration, (resultDataType as ArrayType).elementType);
 		val subType = if ((resultDataType as ArrayType).dimensionality > 1) {
 			TypeUtil::createArrayType((resultDataType as ArrayType).elementType, (resultDataType as ArrayType).dimensions.map([TypeUtil::getArrayDimensionSize(it)]))
 		} else {

@@ -17,10 +17,10 @@ import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.interpreter.value.RecordValue
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -30,6 +30,9 @@ class RecordLiteralDeclaration extends AbstractCodeFragment {
 
 	@Inject
 	LiteralGenerator literalGenerator
+	
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 	
 	val IMscriptGeneratorConfiguration configuration
 	val RecordValue recordValue
@@ -55,7 +58,7 @@ class RecordLiteralDeclaration extends AbstractCodeFragment {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof RecordTypeDeclaration])
 
 		val codeFragmentCollector = context.codeFragmentCollector
-		var recordTypeDeclaration = new org.eclipse.damos.mscript.codegen.c.codefragments.RecordTypeDeclaration(MachineDataTypes::create(configuration, recordValue.getDataType))
+		var recordTypeDeclaration = new org.eclipse.damos.mscript.codegen.c.codefragments.RecordTypeDeclaration(machineDataTypeFactory.create(configuration, recordValue.getDataType))
 		recordTypeDeclaration = codeFragmentCollector.addCodeFragment(recordTypeDeclaration, monitor)
 
 		typeName = recordTypeDeclaration.name

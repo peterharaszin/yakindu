@@ -35,7 +35,7 @@ import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.UnionType;
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipse.damos.mscript.codegen.c.codefragments.UnionTypeDeclaration;
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes;
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory;
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineUnionType;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -50,6 +50,9 @@ public class TaskGeneratorHelper {
 
 	@Inject
 	private DataTypeGenerator dataTypeGenerator;
+	
+	@Inject
+	private MachineDataTypeFactory machineDataTypeFactory;
 	
 	public EList<Input> getInputSockets(TaskGraph taskGraph) {
 		EList<Node> initialNodes = taskGraph.getInitialNodes();
@@ -125,7 +128,7 @@ public class TaskGeneratorHelper {
 				}
 			}
 			if (!messageType.getMemberLists().isEmpty()) {
-				MachineUnionType machineDataType = MachineDataTypes.create(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), messageType);
+				MachineUnionType machineDataType = machineDataTypeFactory.create(new MscriptGeneratorConfiguration(GeneratorConfigurationExtensions.getComputationModel(context.getConfiguration(), componentNode), context.getConfiguration()), messageType);
 				return context.addCodeFragment(new UnionTypeDeclaration(machineDataType), new NullProgressMonitor());
 			}
 		}

@@ -25,10 +25,17 @@ class CSourceGenerator implements ICModuleGenerator {
 		return doGenerate(it, includes);
 	}
 
-	def private doGenerate(CModule it, Collection<Include> includes) '''
+	def protected doGenerate(CModule it, Collection<Include> includes) '''
 		«IF sourceComment != null»
 			«sourceComment»
 		«ENDIF»
+		«generateIncludes(includes)»
+		«generateInternalForwardDeclarations()»
+		«generateImplementations(false)»
+		«generateImplementations(true)»
+	'''
+
+	def protected generateIncludes(CModule it, Collection<Include> includes) '''
 		«FOR include : includes AFTER "\n"»
 			«include»
 		«ENDFOR»
@@ -36,18 +43,15 @@ class CSourceGenerator implements ICModuleGenerator {
 		«FOR otherModule : moduleSet.modules.filter(e | e != it && it.dependsOn(e)) AFTER "\n"»
 			#include "«otherModule.name».h"
 		«ENDFOR»
-		«generateInternalForwardDeclarations()»
-		«generateImplementations(false)»
-		«generateImplementations(true)»
 	'''
-
-	def private generateInternalForwardDeclarations(CModule it) '''
+	
+	def protected generateInternalForwardDeclarations(CModule it) '''
 		«FOR entry : entries.filter(e | e.internal && e.codeFragment.contributesInternalForwardDeclaration) BEFORE "\n" SEPARATOR "\n"»
 			«entry.codeFragment.generateForwardDeclaration(true)»
 		«ENDFOR»
 	'''
 	
-	def private generateImplementations(CModule it, boolean contributesInternalForwardDeclaration) '''
+	def protected generateImplementations(CModule it, boolean contributesInternalForwardDeclaration) '''
 		«FOR entry : entries.filter(e | e.codeFragment.contributesImplementation && e.codeFragment.contributesInternalForwardDeclaration == contributesInternalForwardDeclaration) BEFORE "\n" SEPARATOR "\n"»
 			«entry.codeFragment.generateImplementation(entry.internal)»
 		«ENDFOR»

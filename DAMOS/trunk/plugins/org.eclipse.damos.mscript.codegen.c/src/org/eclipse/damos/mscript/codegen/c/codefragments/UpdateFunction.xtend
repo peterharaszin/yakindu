@@ -23,13 +23,13 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.ICompoundStatementGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
 import org.eclipse.damos.mscript.util.MscriptUtil
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -39,6 +39,9 @@ class UpdateFunction extends AbstractCodeFragment {
 
 	@Inject
 	ICompoundStatementGenerator compoundStatementGenerator
+	
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 
 	val IMscriptGeneratorContext generatorContext
 	val IComputeFunction computeFunction
@@ -142,7 +145,7 @@ class UpdateFunction extends AbstractCodeFragment {
 	
 	def private CharSequence generateDataType(ICodeFragmentCollector codeFragmentCollector, ParameterDeclaration parameterDeclaration, String variableName) {
 		val dataType = generatorContext.functionInfo.getValue(parameterDeclaration).dataType
-		MachineDataTypes::create(generatorContext.configuration, dataType).generateDataType(variableName, codeFragmentCollector, this)
+		machineDataTypeFactory.create(generatorContext.configuration, dataType).generateDataType(variableName, codeFragmentCollector, this)
 	}
 	
 	def private getInputParameterDeclarations() {

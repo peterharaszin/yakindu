@@ -26,8 +26,8 @@ import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
 import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster
 import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineArrayType
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.util.TypeUtil
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -40,6 +40,9 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 	
 	@Inject
 	IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator
+	
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
@@ -58,9 +61,9 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 		val binaryExpression = expression as BinaryExpression
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val leftArrayType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType as ArrayType);
-		val rightArrayType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
-		val resultType = MachineDataTypes::create(context.configuration, resultDataType as ArrayType);
+		val leftArrayType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.leftOperand).dataType as ArrayType);
+		val rightArrayType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
+		val resultType = machineDataTypeFactory.create(context.configuration, resultDataType as ArrayType);
 
 		var CharSequence multiplyExpression = getMultiplicativeExpression(context, codeFragmentCollector, binaryExpression, leftArrayType, rightArrayType, resultType)
 		

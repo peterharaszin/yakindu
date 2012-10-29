@@ -12,8 +12,10 @@
 package org.eclipse.damos.mscript.codegen.c;
 
 import org.eclipse.damos.mscript.Type;
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes;
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory;
 import org.eclipse.damos.mscript.computation.ComputationModel;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -21,8 +23,11 @@ import org.eclipse.damos.mscript.computation.ComputationModel;
  */
 public class DataTypeGenerator {
 
+	@Inject
+	private MachineDataTypeFactory machineDataTypeFactory;
+	
 	public CharSequence generateDataType(IMscriptGeneratorConfiguration configuration, CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, Type type, ICodeFragment dependentCodeFragment) {
-		return MachineDataTypes.create(configuration, type).generateDataType(variableName, codeFragmentCollector, dependentCodeFragment);
+		return machineDataTypeFactory.create(configuration, type).generateDataType(variableName, codeFragmentCollector, dependentCodeFragment);
 	}
 	
 	public CharSequence generateIndexDataType(ComputationModel computationModel, long maximumIndex) {

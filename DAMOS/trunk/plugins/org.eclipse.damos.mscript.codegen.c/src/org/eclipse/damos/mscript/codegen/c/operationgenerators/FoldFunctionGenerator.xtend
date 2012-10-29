@@ -23,8 +23,8 @@ import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
 import org.eclipse.damos.mscript.codegen.c.IOperationGeneratorProvider
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.util.MscriptUtil
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -37,6 +37,9 @@ class FoldFunctionGenerator implements IOperationGenerator {
 
 	@Inject
 	IOperationGeneratorProvider operationGeneratorProvider
+
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (expression instanceof FunctionCall) {
@@ -52,8 +55,8 @@ class FoldFunctionGenerator implements IOperationGenerator {
 		
 		val codeFragmentCollector = context.codeFragmentCollector
 
-		val vectorType = MachineDataTypes::create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
-		val resultType = MachineDataTypes::create(context.configuration, resultDataType);
+		val vectorType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(functionCall.arguments.get(0)).dataType as ArrayType);
+		val resultType = machineDataTypeFactory.create(context.configuration, resultDataType);
 
 		val indexName = MscriptUtil::findAvailableLocalVariableName(lambdaExpression.expression, "i")
 

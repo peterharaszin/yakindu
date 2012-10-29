@@ -79,7 +79,7 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipse.damos.mscript.codegen.c.codefragments.UpdateFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes;
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory;
 import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
 import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
 import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
@@ -124,6 +124,9 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 	
 	@Inject
 	private IDefaultVariableAccessStrategyFactory defaultVariableAccessStrategyFactory;
+	
+	@Inject
+	private MachineDataTypeFactory machineDataTypeFactory;
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		return expression.accept(context, this);
@@ -262,7 +265,7 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 			if (leftConvertedValue instanceof InvalidValue) {
 				return sb;
 			}
-			IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), leftValue.getDataType()));
+			IStringSegment leftStringSegment = new ExpressionStringSegment(leftConvertedValue instanceof StringValue, machineDataTypeFactory.create(context.getConfiguration(), leftValue.getDataType()));
 
 			IValue rightValue = context.getFunctionInfo().getValue(additiveExpression.getRightOperand());
 			if (rightValue == null || rightValue instanceof InvalidValue) {
@@ -272,7 +275,7 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 			if (rightConvertedValue instanceof InvalidValue) {
 				return sb;
 			}
-			IStringSegment rightStringSegment = new ExpressionStringSegment(rightConvertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), rightValue.getDataType()));
+			IStringSegment rightStringSegment = new ExpressionStringSegment(rightConvertedValue instanceof StringValue, machineDataTypeFactory.create(context.getConfiguration(), rightValue.getDataType()));
 
 			if (leftStringSegment == null || rightStringSegment == null) {
 				return sb;
@@ -368,7 +371,7 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 		if (value instanceof RecordValue) {
 			sb.append(literalGenerator.generateLiteral(context.getConfiguration(), context.getCodeFragmentCollector(), value));
 		} else {
-			RecordConstructionFunction codeFragment = (RecordConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new RecordConstructionFunction(MachineDataTypes.create(context.getConfiguration(), (RecordType) value.getDataType())), new NullProgressMonitor());
+			RecordConstructionFunction codeFragment = (RecordConstructionFunction) context.getCodeFragmentCollector().addCodeFragment(new RecordConstructionFunction(machineDataTypeFactory.create(context.getConfiguration(), (RecordType) value.getDataType())), new NullProgressMonitor());
 			sb.append(codeFragment.getName());
 			sb.append("(");
 			boolean first = true;
@@ -618,7 +621,7 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 				if (convertedValue instanceof InvalidValue) {
 					continue;
 				}
-				stringSegments.add(new ExpressionStringSegment(convertedValue instanceof StringValue, MachineDataTypes.create(context.getConfiguration(), value.getDataType())));
+				stringSegments.add(new ExpressionStringSegment(convertedValue instanceof StringValue, machineDataTypeFactory.create(context.getConfiguration(), value.getDataType())));
 			} else {
 				throw new IllegalArgumentException("Unknown template segment " + templateSegment.getClass().getCanonicalName());
 			}

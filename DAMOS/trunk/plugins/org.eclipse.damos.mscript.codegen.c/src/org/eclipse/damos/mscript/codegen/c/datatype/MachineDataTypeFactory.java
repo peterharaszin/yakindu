@@ -30,9 +30,9 @@ import org.eclipse.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  * 
  */
-public class MachineDataTypes {
+public class MachineDataTypeFactory {
 
-	public static MachineDataType create(IMscriptGeneratorConfiguration configuration, Type type) {
+	public MachineDataType create(IMscriptGeneratorConfiguration configuration, Type type) {
 		if (type instanceof BooleanType) {
 			return create(configuration, (BooleanType) type);
 		}
@@ -54,19 +54,19 @@ public class MachineDataTypes {
 		throw new IllegalArgumentException("Unknown data type class " + type.getClass().getCanonicalName());
 	}
 	
-	public static MachineBooleanType create(IMscriptGeneratorConfiguration configuration, BooleanType booleanType) {
+	public MachineBooleanType create(IMscriptGeneratorConfiguration configuration, BooleanType booleanType) {
 		return new MachineBooleanType();
 	}
 
-	public static MachineNumericType create(IMscriptGeneratorConfiguration configuration, NumericType numericType) {
+	public MachineNumericType create(IMscriptGeneratorConfiguration configuration, NumericType numericType) {
 		return new MachineNumericType(configuration.getComputationModel().getNumberFormat(numericType));
 	}
 
-	public static MachineStringType create(IMscriptGeneratorConfiguration configuration, StringType booleanType) {
+	public MachineStringType create(IMscriptGeneratorConfiguration configuration, StringType booleanType) {
 		return new MachineStringType(configuration.getStringBufferSize());
 	}
 
-	public static MachineArrayType create(IMscriptGeneratorConfiguration configuration, ArrayType arrayType) {
+	public MachineArrayType create(IMscriptGeneratorConfiguration configuration, ArrayType arrayType) {
 		int[] dimensionSizes = new int[arrayType.getDimensionality()];
 		for (int i = 0; i < dimensionSizes.length; ++i) {
 			dimensionSizes[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
@@ -74,7 +74,7 @@ public class MachineDataTypes {
 		return new MachineArrayType(create(configuration, arrayType.getElementType()), dimensionSizes);
 	}
 
-	public static MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {
+	public MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {
 		List<MachineCompositeTypeMember> machineCompositeTypeMembers = new ArrayList<MachineCompositeTypeMember>();
 		for (CompositeTypeMember compositeTypeMember : recordType.getMembers()) {
 			machineCompositeTypeMembers.add(new MachineCompositeTypeMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));
@@ -82,7 +82,7 @@ public class MachineDataTypes {
 		return new MachineRecordType(Collections.unmodifiableList(machineCompositeTypeMembers));
 	}
 
-	public static MachineUnionType create(IMscriptGeneratorConfiguration configuration, UnionType unionType) {
+	public MachineUnionType create(IMscriptGeneratorConfiguration configuration, UnionType unionType) {
 		List<MachineCompositeTypeMember> machineCompositeTypeMembers = new ArrayList<MachineCompositeTypeMember>();
 		for (CompositeTypeMember compositeTypeMember : unionType.getMembers()) {
 			machineCompositeTypeMembers.add(new MachineCompositeTypeMember(compositeTypeMember.getName(), create(configuration, compositeTypeMember.getType())));

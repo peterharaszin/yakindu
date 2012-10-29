@@ -17,8 +17,8 @@ import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration
 import org.eclipse.damos.mscript.codegen.c.LiteralGenerator
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypes
 import org.eclipse.damos.mscript.interpreter.value.IArrayValue
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -28,6 +28,9 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 
 	@Inject
 	LiteralGenerator literalGenerator
+	
+	@Inject
+	MachineDataTypeFactory machineDataTypeFactory
 	
 	val IMscriptGeneratorConfiguration configuration
 	val IArrayValue arrayValue
@@ -50,7 +53,7 @@ class ArrayLiteralDeclaration extends AbstractCodeFragment {
 	
 	override void initialize(ICodeFragmentContext context, IProgressMonitor monitor) {
 		val codeFragmentCollector = context.codeFragmentCollector
-		val arrayType = MachineDataTypes::create(configuration, arrayValue.dataType)
+		val arrayType = machineDataTypeFactory.create(configuration, arrayValue.dataType)
 		
 		val preferredName = switch (arrayType.dimensionality) {
 		case 1:

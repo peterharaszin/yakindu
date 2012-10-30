@@ -11,7 +11,7 @@
    <extension
          point="org.eclipse.damos.codegen.c.targetGenerators">
       <generator
-            class="org.eclipse.damos.codegen.targets.arduino.ArduinoUnoTargetGenerator"
+            class="org.eclipse.damos.codegen.targets.arduino.ArduinoExecutableExtensionFactory:org.eclipse.damos.codegen.targets.arduino.ArduinoUnoTargetGenerator"
             target="damos.codegen.targets.arduino.ArduinoUno">
       </generator>
    </extension>

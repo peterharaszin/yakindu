@@ -64,11 +64,9 @@ public class ShieldGeneratorRegistryReader extends AbstractRegistryReader implem
 		}
 
 		String id = getRequiredAttribute(element, ATT_TARGET_ID);
-		String className = getRequiredAttribute(element, ATT_CLASS);
 		
 		ShieldGeneratorDescriptor generator = new ShieldGeneratorDescriptor();
 		generator.setShieldId(id);
-		generator.setClassName(className);
 		generator.setConfigurationElement(element);
 		registry.register(generator);
 		

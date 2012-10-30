@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Damos Codegen Targets Arduino
 Bundle-SymbolicName: org.eclipse.damos.codegen.targets.arduino;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.damos.codegen.targets.arduino.Activator
+Bundle-Activator: org.eclipse.damos.codegen.targets.arduino.ArduinoPlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.100",

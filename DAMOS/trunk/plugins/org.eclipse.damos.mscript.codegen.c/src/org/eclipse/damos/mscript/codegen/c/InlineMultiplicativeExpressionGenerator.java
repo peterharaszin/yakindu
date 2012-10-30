@@ -11,8 +11,9 @@
 
 package org.eclipse.damos.mscript.codegen.c;
 
-import org.eclipse.damos.common.util.PrintAppendable;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -20,69 +21,77 @@ import org.eclipse.damos.mscript.computation.FixedPointFormat;
  */
 public class InlineMultiplicativeExpressionGenerator extends BaseMultiplicativeExpressionGenerator {
 	
+	@Inject
+	private PrimitiveTypeGenerator primitiveTypeGenerator;
+	
 	protected CharSequence generateFixedPointMultiplicationExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
-		StringBuilder appendable = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(appendable);
+		StringBuilder sb = new StringBuilder();
 		
 		FixedPointFormat intermediateNumberFormat = getIntermediateNumberFormat(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateNumberFormat != targetNumberFormat;
 		
 		if (hasIntermediateWordSize) {
-			out.printf("(int%d_t) ", targetNumberFormat.getWordSize());
+			sb.append("(");
+			sb.append(primitiveTypeGenerator.generateIntegerType(targetNumberFormat.getWordSize()));
+			sb.append(") ");
 		}
 		
 		if (hasIntermediateWordSize || targetNumberFormat.getFractionLength() > 0) {
-			out.print("(");
+			sb.append("(");
 		}
 		
-		out.print(leftOperand.generate(intermediateNumberFormat));
+		sb.append(leftOperand.generate(intermediateNumberFormat));
 		
-		out.print(" * ");
+		sb.append(" * ");
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
-			out.print("(");
+			sb.append("(");
 		}
 
-		out.print(rightOperand.generate(intermediateNumberFormat));
+		sb.append(rightOperand.generate(intermediateNumberFormat));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
-			out.printf(") >> %d", targetNumberFormat.getFractionLength());
+			sb.append(") >> ");
+			sb.append(targetNumberFormat.getFractionLength());
 		}
 
 		if (hasIntermediateWordSize || targetNumberFormat.getFractionLength() > 0) {
-			out.print(")");
+			sb.append(")");
 		}
 		
-		return appendable;
+		return sb;
 	}
 
 	protected CharSequence generateFixedPointDivisionExpression(ICodeFragmentCollector codeFragmentCollector, FixedPointFormat targetNumberFormat, INumericExpressionOperand leftOperand, INumericExpressionOperand rightOperand) {
 		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
 
 		FixedPointFormat intermediateNumberFormat = getIntermediateNumberFormat(targetNumberFormat);
 		boolean hasIntermediateWordSize = intermediateNumberFormat != targetNumberFormat;
 	
 		if (hasIntermediateWordSize) {
-			out.printf("(int%d_t) (", targetNumberFormat.getWordSize());
+			sb.append("(");
+			sb.append(primitiveTypeGenerator.generateIntegerType(targetNumberFormat.getWordSize()));
+			sb.append(") (");
 		}
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
-			out.print("((");
+			sb.append("((");
 		}
 
-		out.print(leftOperand.generate(intermediateNumberFormat));
+		sb.append(leftOperand.generate(intermediateNumberFormat));
 		
 		if (targetNumberFormat.getFractionLength() > 0) {
-			out.printf(") << %d)", targetNumberFormat.getFractionLength());
+			sb.append(") << ");
+			sb.append(targetNumberFormat.getFractionLength());
+			sb.append(")");
 		}
 
-		out.print(" / ");
+		sb.append(" / ");
 		
-		out.print(rightOperand.generate(intermediateNumberFormat));
+		sb.append(rightOperand.generate(intermediateNumberFormat));
 		
 		if (hasIntermediateWordSize) {
-			out.print(")");
+			sb.append(")");
 		}
 		
 		return sb;

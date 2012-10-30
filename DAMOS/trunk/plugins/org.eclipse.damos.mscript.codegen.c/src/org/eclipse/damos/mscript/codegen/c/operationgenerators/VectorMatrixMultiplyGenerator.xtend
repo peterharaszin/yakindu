@@ -21,9 +21,10 @@ import org.eclipse.damos.mscript.codegen.c.IExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator
 import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
+import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster
 import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand
-import org.eclipse.damos.mscript.util.TypeUtil
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
+import org.eclipse.damos.mscript.util.TypeUtil
 
 /**
  * @author Andreas Unger
@@ -39,6 +40,9 @@ class VectorMatrixMultiplyGenerator implements IOperationGenerator {
 
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
+
+	@Inject
+	NumericExpressionCaster numericExpressionCaster
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
@@ -61,8 +65,8 @@ class VectorMatrixMultiplyGenerator implements IOperationGenerator {
 		val matrixType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
 		val resultType = machineDataTypeFactory.create(context.configuration, resultDataType as ArrayType);
 
-		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + "[j]", vectorType.numericElementType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.rightOperand) + "[j][i]", matrixType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, binaryExpression.leftOperand) + "[j]", vectorType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, binaryExpression.rightOperand) + "[j][i]", matrixType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		'''

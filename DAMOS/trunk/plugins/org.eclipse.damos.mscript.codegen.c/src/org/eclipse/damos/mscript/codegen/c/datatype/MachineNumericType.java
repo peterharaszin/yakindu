@@ -11,10 +11,9 @@
 
 package org.eclipse.damos.mscript.codegen.c.datatype;
 
-import java.util.Formatter;
-
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
@@ -25,12 +24,15 @@ import org.eclipse.damos.mscript.computation.NumberFormat;
  */
 public class MachineNumericType extends MachineDataType {
 
+	private final PrimitiveTypeGenerator primitiveTypeGenerator;
+	
 	private final NumberFormat numberFormat;
 	
 	/**
 	 * @param dataType
 	 */
-	MachineNumericType(NumberFormat numberFormat) {
+	protected MachineNumericType(PrimitiveTypeGenerator primitiveTypeGenerator, NumberFormat numberFormat) {
+		this.primitiveTypeGenerator = primitiveTypeGenerator;
 		if (!(numberFormat instanceof FloatingPointFormat || numberFormat instanceof FixedPointFormat)) {
 			throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 		}
@@ -44,25 +46,15 @@ public class MachineNumericType extends MachineDataType {
 		return numberFormat;
 	}
 	
-	@SuppressWarnings("resource")
 	@Override
 	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		StringBuilder sb = new StringBuilder();
 		if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
-			switch (floatingPointFormat.getKind()) {
-			case BINARY32:
-				sb.append("float");
-				break;
-			case BINARY64:
-				sb.append("double");
-				break;
-			default:
-				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
-			}
+			sb.append(primitiveTypeGenerator.generateFloatingPointType(floatingPointFormat.getKind()));
 		} else if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			new Formatter(sb).format("int%d_t", fixedPointFormat.getWordSize());
+			sb.append(primitiveTypeGenerator.generateIntegerType(fixedPointFormat.getWordSize()));
 		} else {
 			// Should not happen since we check it in the constructor
 			throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
@@ -73,7 +65,7 @@ public class MachineNumericType extends MachineDataType {
 		}
 		return sb;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.mscript.codegen.c.datatypeinfo.DataTypeInfo#hashCode()
 	 */

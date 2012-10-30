@@ -24,6 +24,7 @@ import org.eclipse.damos.execution.CompoundNode
 import org.eclipse.damos.execution.Graph
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.codegen.c.util.GeneratorHelper
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions.*
@@ -42,16 +43,22 @@ class CompoundGenerator implements ICompoundGenerator {
 
 	@Inject
 	GeneratorHelper generatorHelper
+	
+	@Inject
+	PrimitiveTypeGenerator primitiveTypeGenerator
 
 	override boolean contributesChoiceVariableDeclarations(IGeneratorContext context, Graph graph) {
 		graph.allNodes.filter(typeof(ComponentNode)).exists(n | n.component instanceof Choice)
 	}
 
-	override CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) '''
-		«FOR node : graph.allNodes.filter(typeof(ComponentNode)).filter(n | n.component instanceof Choice)»
-			uint_fast8_t «CompoundGeneratorUtil::getChoiceVariableName(context.configuration, node)»;
-		«ENDFOR»
-	'''
+	override CharSequence generateChoiceVariableDeclarations(IGeneratorContext context, Graph graph, IProgressMonitor monitor) {
+		val nodes = graph.allNodes.filter(typeof(ComponentNode)).filter(n | n.component instanceof Choice)
+		'''
+			«FOR node : nodes»
+				«primitiveTypeGenerator.generateIndexType(nodes.size - 1)» «CompoundGeneratorUtil::getChoiceVariableName(context.configuration, node)»;
+			«ENDFOR»
+		'''
+	}
 
 	override CharSequence generateCompoundCode(IGeneratorContext context, CompoundNode compoundNode, IProgressMonitor monitor) {
 		if (!(compoundNode instanceof ActionNode)) {

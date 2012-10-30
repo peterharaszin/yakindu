@@ -27,6 +27,7 @@ import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineArrayType
 import org.eclipse.damos.mscript.util.TypeUtil
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
+import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster
 
 /**
  * @author Andreas Unger
@@ -42,6 +43,9 @@ class ArrayScalarMultiplyGenerator implements IOperationGenerator {
 
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
+
+	@Inject
+	NumericExpressionCaster numericExpressionCaster
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
@@ -79,8 +83,8 @@ class ArrayScalarMultiplyGenerator implements IOperationGenerator {
 
 		val resultType = machineDataTypeFactory.create(context.configuration, resultDataType as ArrayType);
 
-		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, scalarOperand), scalarType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, arrayOperand) + getIndexVariables(resultType).map(["[" + it + "]"]).join(), arrayType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, scalarOperand), scalarType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, arrayOperand) + getIndexVariables(resultType).map(["[" + it + "]"]).join(), arrayType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		'''

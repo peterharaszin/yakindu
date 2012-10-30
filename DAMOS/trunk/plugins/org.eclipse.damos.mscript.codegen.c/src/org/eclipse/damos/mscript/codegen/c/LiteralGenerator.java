@@ -61,18 +61,12 @@ public class LiteralGenerator {
 	public CharSequence generateLiteral(ComputationModel computationModel, NumberFormat numberFormat, double value) {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
-			return String.format("INT%d_C(%d)", fixedPointFormat.getWordSize(), Math.round(value * Math.pow(2, fixedPointFormat.getFractionLength())));
+			long rawValue = Math.round(value * Math.pow(2, fixedPointFormat.getFractionLength()));
+			return generateLiteral(fixedPointFormat, rawValue);
 		}
 		if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
-			switch (floatingPointFormat.getKind()) {
-			case BINARY32:
-				return Double.toString(value) + "f";
-			case BINARY64:
-				return Double.toString(value);
-			default:
-				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
-			}
+			return generateLiteral(floatingPointFormat, value);
 		}
 		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
@@ -86,18 +80,11 @@ public class LiteralGenerator {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			value <<= fixedPointFormat.getFractionLength();
-			return String.format("INT%d_C(%d)", fixedPointFormat.getWordSize(), value);
+			return generateLiteral(fixedPointFormat, value);
 		}
 		if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
-			switch (floatingPointFormat.getKind()) {
-			case BINARY32:
-				return Long.toString(value) + ".0f";
-			case BINARY64:
-				return Long.toString(value) + ".0";
-			default:
-				throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
-			}
+			return generateLiteral(floatingPointFormat, value);
 		}
 		throw new IllegalArgumentException("Unknown number format " + numberFormat.getClass().getCanonicalName());
 	}
@@ -151,7 +138,7 @@ public class LiteralGenerator {
 		}
 		throw new IllegalArgumentException();
 	}
-
+	
 	private CharSequence generateStringInitializer(ComputationModel computationModel, ICodeFragmentCollector codeFragmentCollector, StringValue value) {
 		StringTable stringTable = new StringTable();
 		stringTable = (StringTable) codeFragmentCollector.addCodeFragment(stringTable, new NullProgressMonitor());
@@ -220,6 +207,34 @@ public class LiteralGenerator {
 		}
 		sb.append(" }");
 		return sb;
+	}
+
+	protected CharSequence generateLiteral(FixedPointFormat fixedPointFormat, long rawValue) {
+		return String.format("INT%d_C(%d)", fixedPointFormat.getWordSize(), rawValue);
+	}
+
+	protected CharSequence generateLiteral(FloatingPointFormat floatingPointFormat, long value) {
+		switch (floatingPointFormat.getKind()) {
+		case BINARY32:
+			return Long.toString(value) + ".0f";
+		case BINARY64:
+			return Long.toString(value) + ".0";
+		default:
+			break;
+		}
+		throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
+	}
+
+	protected CharSequence generateLiteral(FloatingPointFormat floatingPointFormat, double value) {
+		switch (floatingPointFormat.getKind()) {
+		case BINARY32:
+			return Double.toString(value) + "f";
+		case BINARY64:
+			return Double.toString(value);
+		default:
+			break;
+		}
+		throw new IllegalArgumentException("Unknown number floating point kind " + floatingPointFormat.getKind().getName());
 	}
 
 }

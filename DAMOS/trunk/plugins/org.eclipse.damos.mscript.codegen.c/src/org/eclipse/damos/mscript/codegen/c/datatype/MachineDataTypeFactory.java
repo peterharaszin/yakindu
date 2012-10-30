@@ -24,13 +24,20 @@ import org.eclipse.damos.mscript.StringType;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.UnionType;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator;
+import org.eclipse.damos.mscript.computation.NumberFormat;
 import org.eclipse.damos.mscript.util.TypeUtil;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
  * 
  */
 public class MachineDataTypeFactory {
+	
+	@Inject
+	private PrimitiveTypeGenerator primitiveTypeGenerator;
 
 	public MachineDataType create(IMscriptGeneratorConfiguration configuration, Type type) {
 		if (type instanceof BooleanType) {
@@ -55,11 +62,12 @@ public class MachineDataTypeFactory {
 	}
 	
 	public MachineBooleanType create(IMscriptGeneratorConfiguration configuration, BooleanType booleanType) {
-		return new MachineBooleanType();
+		return new MachineBooleanType(primitiveTypeGenerator);
 	}
 
 	public MachineNumericType create(IMscriptGeneratorConfiguration configuration, NumericType numericType) {
-		return new MachineNumericType(configuration.getComputationModel().getNumberFormat(numericType));
+		NumberFormat numberFormat = configuration.getComputationModel().getNumberFormat(numericType);
+		return new MachineNumericType(primitiveTypeGenerator, numberFormat);
 	}
 
 	public MachineStringType create(IMscriptGeneratorConfiguration configuration, StringType booleanType) {

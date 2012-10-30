@@ -19,16 +19,18 @@ import org.eclipse.damos.mscript.computation.NumberFormat;
  */
 public class TextualNumericExpressionOperand implements INumericExpressionOperand {
 
+	private final NumericExpressionCaster numericExpressionCaster;
 	private final NumberFormat numberFormat;
 	private final CharSequence expression;
 	
-	public TextualNumericExpressionOperand(CharSequence expression, NumberFormat numberFormat) {
+	public TextualNumericExpressionOperand(NumericExpressionCaster numericExpressionCaster, CharSequence expression, NumberFormat numberFormat) {
+		this.numericExpressionCaster = numericExpressionCaster;
 		this.numberFormat = numberFormat;
 		this.expression = expression;
 	}
 	
 	public CharSequence generate(NumberFormat targetNumberFormat) {
-		return NumericExpressionCaster.INSTANCE.cast(expression, numberFormat, targetNumberFormat);
+		return numericExpressionCaster.cast(expression, numberFormat, targetNumberFormat);
 	}
 
 }

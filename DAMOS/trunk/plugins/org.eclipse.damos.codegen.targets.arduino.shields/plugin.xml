@@ -10,11 +10,11 @@
    <extension
          point="org.eclipse.damos.codegen.targets.arduino.shieldGenerators">
       <generator
-            class="org.eclipse.damos.codegen.targets.arduino.shields.SevenSegmentDisplayDemoShieldGenerator"
+            class="org.eclipse.damos.codegen.targets.arduino.shields.ArduinoShieldsExecutableExtensionFactory:org.eclipse.damos.codegen.targets.arduino.shields.SevenSegmentDisplayDemoShieldGenerator"
             shield="damos.codegen.targets.arduino.shields.SevenSegmentDisplayDemo">
       </generator>
       <generator
-            class="org.eclipse.damos.codegen.targets.arduino.shields.MotorShieldGenerator"
+            class="org.eclipse.damos.codegen.targets.arduino.shields.ArduinoShieldsExecutableExtensionFactory:org.eclipse.damos.codegen.targets.arduino.shields.MotorShieldGenerator"
             shield="damos.codegen.targets.arduino.shields.Motor">
       </generator>
    </extension>

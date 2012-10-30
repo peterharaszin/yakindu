@@ -21,7 +21,6 @@ import org.eclipse.damos.codegen.targets.arduino.internal.registry.ShieldGenerat
 import org.eclipse.damos.codegen.targets.arduino.internal.registry.ShieldGeneratorRegistry;
 import org.eclipse.damos.common.util.NumberedList;
 import org.eclipse.damos.dconfig.Binding;
-import org.eclipse.damos.dconfig.BindingResourceSubscript;
 import org.eclipse.damos.dconfig.Configuration;
 import org.eclipse.damos.dconfig.util.PropertyPath;
 import org.eclipse.damos.dml.Component;
@@ -32,19 +31,28 @@ import org.eclipse.damos.dml.OutputPort;
 import org.eclipse.damos.execution.ComponentNode;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.google.inject.Inject;
+import com.google.inject.Provider;
+
 public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 
-	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	private static final PropertyPath SHIELD_PROPERTY_PATH = PropertyPath.create("damos.codegen.target/shield");
 	
-	private final InoFileGenerator inoFileGenerator = new InoFileGenerator();
+	@Inject
+	private InoFileGenerator inoFileGenerator;
 	
+	@Inject
+	private Provider<DataInComponentGenerator> dataInComponentGeneratorProvider;
+	
+	@Inject
+	private Provider<DataOutComponentGenerator> dataOutComponentGeneratorProvider;
+
 	@Override
 	public Configuration createConfiguration(Configuration baseConfiguration, IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = baseConfiguration.getContextFragment();
 		if (contextFragment != null) {
 			if (EcoreUtil.getObjectByType(contextFragment.getAllComponents(), DMLPackage.eINSTANCE.getInoutport()) != null) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Top-level fragment must not contain inports or outports"));
+				throw new CoreException(new Status(IStatus.ERROR, ArduinoPlugin.PLUGIN_ID, "Top-level fragment must not contain inports or outports"));
 			}
 		}
 		return null;
@@ -65,10 +73,10 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 		}
 		
 		if (isDataIn(node.getComponent())) {
-			return new DataInComponentGenerator(getPinIndex(context.getConfiguration(), node));
+			return dataInComponentGeneratorProvider.get();
 		}
 		if (isDataOut(node.getComponent())) {
-			return new DataOutComponentGenerator(getPinIndex(context.getConfiguration(), node));
+			return dataOutComponentGeneratorProvider.get();
 		}
 		
 		return null;
@@ -136,18 +144,6 @@ public class ArduinoUnoTargetGenerator extends AbstractTargetGenerator {
 		return n == 1;
 	}
 	
-	private static int getPinIndex(Configuration configuration, ComponentNode node) {
-		Binding binding = configuration.getBinding(TARGET_PROPERTY_PATH, node.getSystemPath());
-		if (binding == null || binding.getTarget() == null) {
-			return -1;
-		}
-		BindingResourceSubscript subscript = binding.getTarget().getSubscript();
-		if (subscript == null) {
-			return 0;
-		}
-		return subscript.getIndex();
-	}
-
 	private IShieldGenerator getShieldGenerator(String name) {
 		ShieldGeneratorDescriptor generatorDescriptor = ShieldGeneratorRegistry.getInstance().getGenerator(name);
 		if (generatorDescriptor != null) {

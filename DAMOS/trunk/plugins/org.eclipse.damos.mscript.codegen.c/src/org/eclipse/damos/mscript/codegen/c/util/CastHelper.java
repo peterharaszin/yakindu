@@ -39,11 +39,14 @@ public class CastHelper {
 	@Inject
 	private LiteralGenerator literalGenerator;
 	
+	@Inject
+	private NumericExpressionCaster numericExpressionCaster;
+	
 	public CharSequence cast(ComputationModel computationModel, CharSequence expression, Type expressionDataType, Type targetDataType) {
 		if (targetDataType instanceof NumericType) {
 			NumberFormat targetNumberFormat = computationModel.getNumberFormat(targetDataType);
 			NumberFormat expressionNumberFormat = computationModel.getNumberFormat(expressionDataType);
-			return NumericExpressionCaster.INSTANCE.cast(expression, expressionNumberFormat, targetNumberFormat);
+			return numericExpressionCaster.cast(expression, expressionNumberFormat, targetNumberFormat);
 		}
 		return expression;
 	}
@@ -71,7 +74,7 @@ public class CastHelper {
 		Type expressionDataType = context.getFunctionInfo().getValue(expression).getDataType();
 		NumberFormat expressionNumberFormat = context.getConfiguration().getComputationModel().getNumberFormat(expressionDataType);
 		
-		return NumericExpressionCaster.INSTANCE.cast(expressionGenerator.generate(context, expression), expressionNumberFormat, targetNumberFormat);
+		return numericExpressionCaster.cast(expressionGenerator.generate(context, expression), expressionNumberFormat, targetNumberFormat);
 	}
 
 }

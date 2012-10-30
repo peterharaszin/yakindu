@@ -13,8 +13,8 @@ package org.eclipse.damos.mscript.codegen.c.codefragments
 
 import com.google.inject.Inject
 import org.eclipse.damos.mscript.VariableDeclaration
-import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator
 import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 /**
@@ -24,7 +24,7 @@ import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
 class FunctionContext extends AbstractContextStructMember {
 
 	@Inject
-	DataTypeGenerator dataTypeGenerator
+	PrimitiveTypeGenerator primitiveTypeGenerator
 	
 	@Inject
 	VariableDeclarationGenerator variableDeclarationGenerator
@@ -60,7 +60,7 @@ class FunctionContext extends AbstractContextStructMember {
 		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(generatorContext.configuration, generatorContext.codeFragmentCollector, dataType, name, false, null)
 		if (hasContext(variableDeclaration)) {
 			val bufferSize = generatorContext.functionInfo.getCircularBufferSize(variableDeclaration)
-			val indexCDataType = dataTypeGenerator.generateIndexDataType(generatorContext.configuration.computationModel, 2 * bufferSize)
+			val indexCDataType = primitiveTypeGenerator.generateIndexType(2 * bufferSize)
 			return '''
 				«cVariableDeclaration»[«bufferSize»];
 				«indexCDataType» «name»_index;

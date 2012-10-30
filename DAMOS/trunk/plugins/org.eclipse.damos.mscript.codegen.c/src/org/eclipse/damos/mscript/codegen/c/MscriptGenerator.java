@@ -36,7 +36,7 @@ import com.google.inject.Inject;
 public class MscriptGenerator {
 	
 	@Inject
-	private DataTypeGenerator dataTypeGenerator;
+	private PrimitiveTypeGenerator primitiveTypeGenerator;
 	
 	@Inject
 	private VariableDeclarationGenerator variableDeclarationGenerator;
@@ -125,7 +125,7 @@ public class MscriptGenerator {
 			out.printf("%s[%d];\n",
 					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), type, name, false, null),
 					bufferSize);
-			out.printf("%s %s_index;\n", dataTypeGenerator.generateIndexDataType(context.getConfiguration().getComputationModel(), 2 * bufferSize), name);
+			out.printf("%s %s_index;\n", primitiveTypeGenerator.generateIndexType(2 * bufferSize), name);
 		} else {
 			out.printf("%s;\n",
 					variableDeclarationGenerator.generateVariableDeclaration(context.getConfiguration(), context.getCodeFragmentCollector(), type, name, false, null));

@@ -12,24 +12,28 @@
 package org.eclipse.damos.mscript.codegen.c.internal.util;
 
 import org.eclipse.damos.common.util.PrintAppendable;
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
 
+import com.google.inject.Inject;
+
 public class CastToFixedPointHelper {
 
-	public static final CastToFixedPointHelper INSTANCE = new CastToFixedPointHelper();
+	@Inject
+	private PrimitiveTypeGenerator primitiveTypeGenerator;
 	
 	public CharSequence cast(CharSequence expression, NumberFormat numberFormat, int targetWordSize, int targetFractionLength) {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		if (numberFormat instanceof FloatingPointFormat) {
 			if (targetFractionLength > 0) {
-				out.printf("((%s) floor((", getCDataType(targetWordSize));
+				out.printf("((%s) floor((", primitiveTypeGenerator.generateIntegerType(targetWordSize));
 				out.print(expression);
 				out.printf(") * pow(2, %d) + 0.5))", targetFractionLength);
 			} else {
-				out.printf("((%s) (", getCDataType(targetWordSize));
+				out.printf("((%s) (", primitiveTypeGenerator.generateIntegerType(targetWordSize));
 				out.print(expression);
 				out.print("))");
 			}
@@ -37,9 +41,9 @@ public class CastToFixedPointHelper {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			if (targetWordSize != fixedPointFormat.getWordSize()) {
 				if (targetFractionLength < fixedPointFormat.getFractionLength()) {
-					out.printf("(%s) ((", getCDataType(targetWordSize));
+					out.printf("(%s) ((", primitiveTypeGenerator.generateIntegerType(targetWordSize));
 				} else {
-					out.printf("((%s) (", getCDataType(targetWordSize));
+					out.printf("((%s) (", primitiveTypeGenerator.generateIntegerType(targetWordSize));
 				}
 			}
 			if (targetFractionLength != fixedPointFormat.getFractionLength()) {
@@ -60,10 +64,6 @@ public class CastToFixedPointHelper {
 			}
 		}
 		return sb;
-	}
-	
-	private String getCDataType(int wordSize) {
-		return String.format("int%d_t", wordSize);
 	}
 	
 }

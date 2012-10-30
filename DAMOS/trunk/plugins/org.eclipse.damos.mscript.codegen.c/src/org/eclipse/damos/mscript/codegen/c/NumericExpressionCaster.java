@@ -17,22 +17,28 @@ import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class NumericExpressionCaster {
 	
-	public static final NumericExpressionCaster INSTANCE = new NumericExpressionCaster();
+	@Inject
+	private CastToFloatingPointHelper castToFloatingPointHelper;
 	
+	@Inject
+	private CastToFixedPointHelper castToFixedPointHelper;
+
 	public CharSequence cast(CharSequence expression, NumberFormat numberFormat, NumberFormat targetNumberFormat) {
 		if (targetNumberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) targetNumberFormat;
-			return CastToFloatingPointHelper.INSTANCE.cast(expression, numberFormat, floatingPointFormat);
+			return castToFloatingPointHelper.cast(expression, numberFormat, floatingPointFormat);
 		}
 		if (targetNumberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) targetNumberFormat;
-			return CastToFixedPointHelper.INSTANCE.cast(expression, numberFormat, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength());
+			return castToFixedPointHelper.cast(expression, numberFormat, fixedPointFormat.getWordSize(), fixedPointFormat.getFractionLength());
 		}
 		throw new IllegalArgumentException();
 	}

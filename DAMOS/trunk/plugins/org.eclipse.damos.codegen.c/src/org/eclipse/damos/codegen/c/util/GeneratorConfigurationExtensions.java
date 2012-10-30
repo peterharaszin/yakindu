@@ -40,21 +40,21 @@ import org.eclipse.damos.mscript.interpreter.value.IValue;
  */
 public class GeneratorConfigurationExtensions {
 
-	private static final PropertyPath PROJECT_NAME_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/projectName");
+	public static final PropertyPath PROJECT_NAME_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/projectName");
 
-	private static final PropertyPath SOURCE_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/sourceFolder");
-	private static final PropertyPath HEADER_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/headerFolder");
+	public static final PropertyPath SOURCE_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/sourceFolder");
+	public static final PropertyPath HEADER_FOLDER_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/headerFolder");
 
-	private static final PropertyPath SYSTEM_SOURCE_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemSourceFile");
-	private static final PropertyPath SYSTEM_HEADER_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
+	public static final PropertyPath SYSTEM_SOURCE_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemSourceFile");
+	public static final PropertyPath SYSTEM_HEADER_FILE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/systemHeaderFile");
 
-	private static final PropertyPath SINGLETON_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/singleton");
+	public static final PropertyPath SINGLETON_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/singleton");
 
-	private static final PropertyPath STRING_BUFFER_SIZE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/stringBufferSize");
+	public static final PropertyPath STRING_BUFFER_SIZE_PROPERTY_PATH = PropertyPath.create("damos.codegen.generator/stringBufferSize");
 
-	private static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
-	private static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
-	private static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
+	public static final PropertyPath RTE_RUNTIME_PROPERTY_PATH = PropertyPath.create("damos.rte.runtime");
+	public static final PropertyPath PREFIX_PROPERTY_PATH = PropertyPath.create("damos.codegen.c.prefix");
+	public static final PropertyPath TARGET_PROPERTY_PATH = PropertyPath.create("damos.codegen.target");
 	
 	public static String getProjectName(Configuration configuration) {
 		return getPropertyStringValue(configuration, PROJECT_NAME_PROPERTY_PATH, null);

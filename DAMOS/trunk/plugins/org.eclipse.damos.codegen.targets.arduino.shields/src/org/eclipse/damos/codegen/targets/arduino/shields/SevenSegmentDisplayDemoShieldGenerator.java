@@ -18,15 +18,13 @@ import org.eclipse.damos.dconfig.ResourceDeclaration;
 import org.eclipse.damos.execution.ComponentNode;
 
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
  * @author Andreas Unger
  * 
  */
 public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenerator {
-
-	@Inject
-	private GeneratorHelper generatorHelper;
 
 	private static final String DISPLAY_RESOURCE_NAME = "Display";
 	private static final String DECIMAL_POINT_RESOURCE_NAME = "DecimalPoint";
@@ -35,6 +33,15 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 	private static final String KNOB_RESOURCE_NAME = "Knob";
 	private static final String LED_RESOURCE_NAME = "LED";
 	
+	@Inject
+	private GeneratorHelper generatorHelper;
+
+	@Inject
+	private Provider<DataInComponentGenerator> dataInComponentGeneratorProvider;
+	
+	@Inject
+	private Provider<DataOutComponentGenerator> dataOutComponentGeneratorProvider;
+
 	public IComponentGenerator createBoundaryComponentGenerator(IGeneratorContext context, ComponentNode node,
 			Binding binding) {
 		ResourceDeclaration resourceDeclaration = binding.getTarget().getResourceDeclaration();
@@ -42,15 +49,15 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 			if (DISPLAY_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
 				return new DisplayGenerator();
 			} else if (DECIMAL_POINT_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
-				return new DataOutComponentGenerator(9);
+				return createDataOutComponentGenerator(9);
 			} else if (BUTTON_UP_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
-				return new DataInComponentGenerator(12);
+				return createDataInComponentGenerator(12);
 			} else if (BUTTON_DOWN_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
-				return new DataInComponentGenerator(11);
+				return createDataInComponentGenerator(11);
 			} else if (KNOB_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
-				return new DataInComponentGenerator(0);
+				return createDataInComponentGenerator(0);
 			} else if (LED_RESOURCE_NAME.equals(resourceDeclaration.getName())) {
-				return new DataOutComponentGenerator(10);
+				return createDataOutComponentGenerator(10);
 			}
 		}
 		return null;

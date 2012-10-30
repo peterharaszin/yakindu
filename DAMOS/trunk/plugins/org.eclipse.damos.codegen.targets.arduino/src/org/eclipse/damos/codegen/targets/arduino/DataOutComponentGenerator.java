@@ -13,7 +13,6 @@ import org.eclipse.damos.mscript.OperatorKind;
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.codegen.c.IMultiplicativeExpressionGenerator;
 import org.eclipse.damos.mscript.codegen.c.INumericExpressionOperand;
-import org.eclipse.damos.mscript.codegen.c.InlineMultiplicativeExpressionGenerator;
 import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster;
 import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand;
 import org.eclipse.damos.mscript.computation.ComputationFactory;
@@ -22,20 +21,19 @@ import org.eclipse.damos.mscript.computation.NumberFormat;
 import org.eclipse.damos.mscript.computation.PredefinedFixedPointFormatKind;
 import org.eclipse.damos.mscript.computation.util.ComputationModelUtil;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenerator {
 
-	private final IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator = new InlineMultiplicativeExpressionGenerator();
+	@Inject
+	private NumericExpressionCaster numericExpressionCaster;
 
-	/**
-	 * @param pinIndex
-	 */
-	public DataOutComponentGenerator(int pinIndex) {
-		super(pinIndex);
-	}
+	@Inject
+	private IMultiplicativeExpressionGenerator multiplicativeExpressionGenerator;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.codegen.c.AbstractComponentGenerator#initialize(org.eclipse.core.runtime.IProgressMonitor)
@@ -75,10 +73,10 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 			final NumberFormat inputNumberFormat = getComputationModel().getNumberFormat(inputDataType);
 			sb.append("analogWrite(").append(Integer.toString(pin)).append(", ");
 
-			INumericExpressionOperand leftOperand = new TextualNumericExpressionOperand(inputVariable, inputNumberFormat);
-			INumericExpressionOperand rightOperand = new TextualNumericExpressionOperand(Integer.toString(getAnalogRange()), ComputationModelUtil.createFixedPointFormat(PredefinedFixedPointFormatKind.UINT16));
+			INumericExpressionOperand leftOperand = new TextualNumericExpressionOperand(numericExpressionCaster, inputVariable, inputNumberFormat);
+			INumericExpressionOperand rightOperand = new TextualNumericExpressionOperand(numericExpressionCaster, Integer.toString(getAnalogRange()), ComputationModelUtil.createFixedPointFormat(PredefinedFixedPointFormatKind.UINT16));
 			CharSequence product = multiplicativeExpressionGenerator.generate(getContext().getCodeFragmentCollector(), OperatorKind.MULTIPLY, inputNumberFormat, leftOperand, rightOperand);
-			sb.append(NumericExpressionCaster.INSTANCE.cast(product, inputNumberFormat, targetNumberFormat));
+			sb.append(numericExpressionCaster.cast(product, inputNumberFormat, targetNumberFormat));
 
 			sb.append(");\n");
 		}

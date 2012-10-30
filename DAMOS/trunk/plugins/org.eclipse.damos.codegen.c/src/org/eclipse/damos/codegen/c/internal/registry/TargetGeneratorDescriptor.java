@@ -11,12 +11,11 @@
 
 package org.eclipse.damos.codegen.c.internal.registry;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.damos.codegen.c.CodegenCPlugin;
 import org.eclipse.damos.codegen.c.ITargetGenerator;
+import org.eclipse.damos.common.registry.IRegistryConstants;
 
 /**
  * @author Andreas Unger
@@ -25,9 +24,7 @@ import org.eclipse.damos.codegen.c.ITargetGenerator;
 public class TargetGeneratorDescriptor {
 
 	private String targetId;
-	private String className;
 	private IConfigurationElement configurationElement;
-	private Class<?> clazz;
 
 	/**
 	 * @return the id
@@ -41,20 +38,6 @@ public class TargetGeneratorDescriptor {
 	 */
 	public void setTargetId(String targetId) {
 		this.targetId = targetId;
-	}
-	
-	/**
-	 * @return the className
-	 */
-	public String getClassName() {
-		return className;
-	}
-	
-	/**
-	 * @param className the className to set
-	 */
-	public void setClassName(String className) {
-		this.className = className;
 	}
 	
 	/**
@@ -72,51 +55,12 @@ public class TargetGeneratorDescriptor {
 	}
 	
 	public ITargetGenerator createGenerator() {
-		if (clazz == null) {
-			loadClass();
-		}
 		try {
-			return (ITargetGenerator) clazz.newInstance();
-		} catch (InstantiationException e) {
-			log(e.getMessage());
-		} catch (IllegalAccessException e) {
-			log(e.getMessage());
+			return (ITargetGenerator) configurationElement.createExecutableExtension(IRegistryConstants.ATT_CLASS);
+		} catch (CoreException e) {
+			CodegenCPlugin.getDefault().getLog().log(e.getStatus());
 		}
 		return null;
 	}
 	
-	private void loadClass() {
-		if (className == null) {
-			return;
-		}
-		try {
-			String nsid = configurationElement.getDeclaringExtension().getNamespaceIdentifier();
-			Class<?> clazz = Platform.getBundle(nsid).loadClass(className);
-			if (!ITargetGenerator.class.isAssignableFrom(clazz)) {
-				log("Class must implement 'ITargetGenerator' interface");
-				return;
-			}
-			clazz.getConstructor();
-			this.clazz = clazz;
-		} catch (ClassNotFoundException e) {
-			log(e.getMessage());
-		} catch (NoSuchMethodException e) {
-			log(e.getMessage());
-		}
-	}
-	
-	private void log(String msg) {
-		CodegenCPlugin.getDefault().getLog().log(
-				new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID,
-						"Failed to load class '"
-						+ className
-						+ "' in plug-in '"
-						+ configurationElement.getDeclaringExtension().getNamespaceIdentifier()
-						+ "' in extension of '"
-						+ configurationElement.getDeclaringExtension().getExtensionPointUniqueIdentifier()
-						+ "' target generator '"
-						+ targetId
-						+ "': " + msg));
-	}
-
 }

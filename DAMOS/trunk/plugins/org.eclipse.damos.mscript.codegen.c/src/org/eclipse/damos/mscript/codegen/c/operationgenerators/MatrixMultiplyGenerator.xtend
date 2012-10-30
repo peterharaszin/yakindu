@@ -24,6 +24,7 @@ import org.eclipse.damos.mscript.codegen.c.IOperationGenerator
 import org.eclipse.damos.mscript.codegen.c.TextualNumericExpressionOperand
 import org.eclipse.damos.mscript.util.TypeUtil
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
+import org.eclipse.damos.mscript.codegen.c.NumericExpressionCaster
 
 /**
  * @author Andreas Unger
@@ -39,6 +40,9 @@ class MatrixMultiplyGenerator implements IOperationGenerator {
 
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
+
+	@Inject
+	NumericExpressionCaster numericExpressionCaster
 
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
@@ -61,8 +65,8 @@ class MatrixMultiplyGenerator implements IOperationGenerator {
 		val rightMatrixType = machineDataTypeFactory.create(context.configuration, context.getFunctionInfo.getValue(binaryExpression.rightOperand).dataType as ArrayType);
 		val resultType = machineDataTypeFactory.create(context.configuration, resultDataType as ArrayType);
 
-		val leftOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.leftOperand) + "[i][j]", leftMatrixType.numericElementType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(expressionGenerator.generate(context, binaryExpression.rightOperand) + "[j][k]", rightMatrixType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, binaryExpression.leftOperand) + "[i][j]", leftMatrixType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(numericExpressionCaster, expressionGenerator.generate(context, binaryExpression.rightOperand) + "[j][k]", rightMatrixType.numericElementType.numberFormat);
 		val multiplyExpression = multiplicativeExpressionGenerator.generate(codeFragmentCollector, OperatorKind::MULTIPLY, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 
 		'''

@@ -12,13 +12,17 @@
 package org.eclipse.damos.mscript.codegen.c.internal.util;
 
 import org.eclipse.damos.common.util.PrintAppendable;
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
 import org.eclipse.damos.mscript.computation.NumberFormat;
 
+import com.google.inject.Inject;
+
 public class CastToFloatingPointHelper {
-	
-	public static final CastToFloatingPointHelper INSTANCE = new CastToFloatingPointHelper();
+
+	@Inject
+	private PrimitiveTypeGenerator primitiveTypeGenerator;
 
 	public CharSequence cast(CharSequence expression, NumberFormat numberFormat, FloatingPointFormat targetFloatingPointFormat) {
 		StringBuilder sb = new StringBuilder();
@@ -28,34 +32,23 @@ public class CastToFloatingPointHelper {
 			if (floatingPointFormat.getKind() == targetFloatingPointFormat.getKind()) {
 				out.print(expression);
 			} else {
-				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
+				out.printf("((%s) (", primitiveTypeGenerator.generateFloatingPointType(targetFloatingPointFormat.getKind()));
 				out.print(expression);
 				out.print("))");
 			}
 		} else if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			if (fixedPointFormat.getFractionLength() > 0) {
-				out.printf("((%s) ((", getCDataType(targetFloatingPointFormat));
+				out.printf("((%s) ((", primitiveTypeGenerator.generateFloatingPointType(targetFloatingPointFormat.getKind()));
 				out.print(expression);
 				out.printf(") * pow(2, -%d)))", fixedPointFormat.getFractionLength());
 			} else {
-				out.printf("((%s) (", getCDataType(targetFloatingPointFormat));
+				out.printf("((%s) (", primitiveTypeGenerator.generateFloatingPointType(targetFloatingPointFormat.getKind()));
 				out.print(expression);
 				out.print("))");
 			}
 		}
 		return sb;
-	}
-	
-	private String getCDataType(FloatingPointFormat floatingPointFormat) {
-		switch (floatingPointFormat.getKind()) {
-		case BINARY32:
-			return "float";
-		case BINARY64:
-			return "double";
-		default:
-			throw new IllegalArgumentException();
-		}
 	}
 	
 }

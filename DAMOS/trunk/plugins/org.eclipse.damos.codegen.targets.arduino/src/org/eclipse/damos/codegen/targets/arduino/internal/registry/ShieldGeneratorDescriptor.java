@@ -12,12 +12,11 @@
 package org.eclipse.damos.codegen.targets.arduino.internal.registry;
 
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.damos.codegen.c.CodegenCPlugin;
+import org.eclipse.damos.codegen.targets.arduino.ArduinoPlugin;
 import org.eclipse.damos.codegen.targets.arduino.IShieldGenerator;
+import org.eclipse.damos.common.registry.IRegistryConstants;
 
 /**
  * @author Andreas Unger
@@ -26,9 +25,7 @@ import org.eclipse.damos.codegen.targets.arduino.IShieldGenerator;
 public class ShieldGeneratorDescriptor {
 
 	private String shieldId;
-	private String className;
 	private IConfigurationElement configurationElement;
-	private Class<?> clazz;
 
 	/**
 	 * @return the id
@@ -42,20 +39,6 @@ public class ShieldGeneratorDescriptor {
 	 */
 	public void setShieldId(String shieldId) {
 		this.shieldId = shieldId;
-	}
-	
-	/**
-	 * @return the className
-	 */
-	public String getClassName() {
-		return className;
-	}
-	
-	/**
-	 * @param className the className to set
-	 */
-	public void setClassName(String className) {
-		this.className = className;
 	}
 	
 	/**
@@ -73,51 +56,12 @@ public class ShieldGeneratorDescriptor {
 	}
 	
 	public IShieldGenerator createGenerator() {
-		if (clazz == null) {
-			loadClass();
-		}
 		try {
-			return (IShieldGenerator) clazz.newInstance();
-		} catch (InstantiationException e) {
-			log(e.getMessage());
-		} catch (IllegalAccessException e) {
-			log(e.getMessage());
+			return (IShieldGenerator) configurationElement.createExecutableExtension(IRegistryConstants.ATT_CLASS);
+		} catch (CoreException e) {
+			ArduinoPlugin.getDefault().getLog().log(e.getStatus());
 		}
 		return null;
-	}
-	
-	private void loadClass() {
-		if (className == null) {
-			return;
-		}
-		try {
-			String nsid = configurationElement.getDeclaringExtension().getNamespaceIdentifier();
-			Class<?> clazz = Platform.getBundle(nsid).loadClass(className);
-			if (!IShieldGenerator.class.isAssignableFrom(clazz)) {
-				log("Class must implement 'IShieldGenerator' interface");
-				return;
-			}
-			clazz.getConstructor();
-			this.clazz = clazz;
-		} catch (ClassNotFoundException e) {
-			log(e.getMessage());
-		} catch (NoSuchMethodException e) {
-			log(e.getMessage());
-		}
-	}
-	
-	private void log(String msg) {
-		CodegenCPlugin.getDefault().getLog().log(
-				new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID,
-						"Failed to load class '"
-						+ className
-						+ "' in plug-in '"
-						+ configurationElement.getDeclaringExtension().getNamespaceIdentifier()
-						+ "' in extension of '"
-						+ configurationElement.getDeclaringExtension().getExtensionPointUniqueIdentifier()
-						+ "' shield generator '"
-						+ shieldId
-						+ "': " + msg));
 	}
 
 }

@@ -13,6 +13,7 @@ package org.eclipse.damos.mscript.codegen.c.datatype;
 
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
+import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator;
 
 /**
  * @author Andreas Unger
@@ -20,23 +21,26 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
  */
 public class MachineBooleanType extends MachineDataType {
 	
+	private final PrimitiveTypeGenerator primitiveTypeGenerator;
+
 	/**
 	 * 
 	 */
-	MachineBooleanType() {
+	protected MachineBooleanType(PrimitiveTypeGenerator primitiveTypeGenerator) {
+		this.primitiveTypeGenerator = primitiveTypeGenerator;
 	}
 	
 	@Override
 	public CharSequence generateDataType(CharSequence variableName, ICodeFragmentCollector codeFragmentCollector, ICodeFragment dependentCodeFragment) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("uint_fast8_t");
+		sb.append(primitiveTypeGenerator.generateBooleanType());
 		if (variableName != null) {
 			sb.append(" ");
 			sb.append(variableName);
 		}
 		return sb;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

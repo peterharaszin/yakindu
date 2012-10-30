@@ -63,11 +63,9 @@ public class TargetGeneratorRegistryReader extends AbstractRegistryReader implem
 		}
 
 		String id = getRequiredAttribute(element, ATT_TARGET_ID);
-		String className = getRequiredAttribute(element, ATT_CLASS);
 		
 		TargetGeneratorDescriptor generator = new TargetGeneratorDescriptor();
 		generator.setTargetId(id);
-		generator.setClassName(className);
 		generator.setConfigurationElement(element);
 		registry.register(generator);
 		

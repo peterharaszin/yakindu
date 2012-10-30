@@ -41,6 +41,9 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 	@Inject
 	private DataTypeGenerator dataTypeGenerator;
 	
+	@Inject
+	private NumericExpressionCaster numericExpressionCaster;
+
 	public CharSequence generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final Expression argument = functionCall.getArguments().get(0);
 		
@@ -79,7 +82,7 @@ public class RoundFunctionGenerator implements IBuiltinFunctionGenerator {
 			throw new IllegalArgumentException();
 		}
 		
-		return NumericExpressionCaster.INSTANCE.cast(text, argumentNumberFormat, resultNumberFormat);
+		return numericExpressionCaster.cast(text, argumentNumberFormat, resultNumberFormat);
 	}
 	
 }

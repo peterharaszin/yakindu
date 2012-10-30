@@ -44,6 +44,9 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
 
+	@Inject
+	NumericExpressionCaster numericExpressionCaster
+
 	override canHandle(IMscriptGeneratorContext context, Type resultDataType, Expression expression) {
 		if (!(expression instanceof BinaryExpression)) {
 			return false
@@ -87,14 +90,14 @@ class ArrayElementWiseOperationGenerator implements IOperationGenerator {
 				"-"
 			}
 			
-			val leftOperand = NumericExpressionCaster::INSTANCE.cast(leftOperandText, leftArrayType.numericElementType.numberFormat, resultType.numericElementType.numberFormat)
-			val rightOperand = NumericExpressionCaster::INSTANCE.cast(rightOperandText, rightArrayType.numericElementType.numberFormat, resultType.numericElementType.numberFormat)
+			val leftOperand = numericExpressionCaster.cast(leftOperandText, leftArrayType.numericElementType.numberFormat, resultType.numericElementType.numberFormat)
+			val rightOperand = numericExpressionCaster.cast(rightOperandText, rightArrayType.numericElementType.numberFormat, resultType.numericElementType.numberFormat)
 			
 			return '''«leftOperand» «operatorSymbol» «rightOperand»'''
 		}
 
-		val leftOperand = new TextualNumericExpressionOperand(leftOperandText, leftArrayType.numericElementType.numberFormat);
-		val rightOperand = new TextualNumericExpressionOperand(rightOperandText, rightArrayType.numericElementType.numberFormat);
+		val leftOperand = new TextualNumericExpressionOperand(numericExpressionCaster, leftOperandText, leftArrayType.numericElementType.numberFormat);
+		val rightOperand = new TextualNumericExpressionOperand(numericExpressionCaster, rightOperandText, rightArrayType.numericElementType.numberFormat);
 		return multiplicativeExpressionGenerator.generate(codeFragmentCollector, binaryExpression.operator, resultType.numericElementType.numberFormat, leftOperand, rightOperand)
 	}
 	

@@ -13,7 +13,6 @@ package org.eclipse.damos.mscript.codegen.c;
 
 import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory;
-import org.eclipse.damos.mscript.computation.ComputationModel;
 
 import com.google.inject.Inject;
 
@@ -30,17 +29,4 @@ public class DataTypeGenerator {
 		return machineDataTypeFactory.create(configuration, type).generateDataType(variableName, codeFragmentCollector, dependentCodeFragment);
 	}
 	
-	public CharSequence generateIndexDataType(ComputationModel computationModel, long maximumIndex) {
-		if (maximumIndex <= 0xffL) {
-			return "uint_fast8_t";
-		}
-		if (maximumIndex <= 0xffffL) {
-			return "uint_fast16_t";
-		}
-		if (maximumIndex <= 0xffffffffL) {
-			return "uint_fast32_t";
-		}
-		return "uint_fast64_t";
-	}
-
 }

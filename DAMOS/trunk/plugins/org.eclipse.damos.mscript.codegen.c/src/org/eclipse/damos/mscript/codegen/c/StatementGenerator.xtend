@@ -23,9 +23,7 @@ import org.eclipse.damos.mscript.LocalVariableDeclaration
 import org.eclipse.damos.mscript.ReturnStatement
 import org.eclipse.damos.mscript.Statement
 import org.eclipse.damos.mscript.Type
-import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator
 import org.eclipse.damos.mscript.util.TypeUtil
-import org.eclipse.damos.mscript.codegen.c.IStatementGenerator
 
 /**
  * @author Andreas Unger
@@ -33,23 +31,20 @@ import org.eclipse.damos.mscript.codegen.c.IStatementGenerator
  */
 class StatementGenerator implements IStatementGenerator {
 	
-	val IExpressionGenerator expressionGenerator
+	@Inject
+	IExpressionGenerator expressionGenerator
 
-	val DataTypeGenerator dataTypeGenerator
-	val VariableDeclarationGenerator variableDeclarationGenerator
-	val VariableReferenceGenerator variableReferenceGenerator
-	val IOperationGeneratorProvider operationGeneratorProvider
-	val ICompoundStatementGenerator compoundStatementGenerator
+	@Inject
+	PrimitiveTypeGenerator primitiveTypeGenerator
 	
 	@Inject
-	new(IExpressionGenerator expressionGenerator, DataTypeGenerator dataTypeGenerator, VariableDeclarationGenerator variableDeclarationGenerator, VariableReferenceGenerator variableAccessGenerator, IOperationGeneratorProvider operationGeneratorProvider) {
-		this.expressionGenerator = expressionGenerator
-		this.dataTypeGenerator = dataTypeGenerator
-		this.variableDeclarationGenerator = variableDeclarationGenerator
-		this.variableReferenceGenerator = variableAccessGenerator
-		this.operationGeneratorProvider = operationGeneratorProvider
-		this.compoundStatementGenerator = new CompoundStatementGenerator(this, variableDeclarationGenerator)
-	}
+	VariableDeclarationGenerator variableDeclarationGenerator
+	
+	@Inject
+	IOperationGeneratorProvider operationGeneratorProvider
+
+	@Inject
+	ICompoundStatementGenerator compoundStatementGenerator
 	
 	override CharSequence generate(IMscriptGeneratorContext context, Statement statement) {
 		doGenerate(context, statement)
@@ -95,7 +90,7 @@ class StatementGenerator implements IStatementGenerator {
 		
 		'''
 			{
-				«dataTypeGenerator.generateIndexDataType(context.configuration.computationModel, size)» «itVarName»_i;
+				«primitiveTypeGenerator.generateIndexType(size)» «itVarName»_i;
 				for («itVarName»_i = 0; «itVarName»_i < «size»; ++«itVarName»_i) {
 					«itVarDecl» = («expressionGenerator.generate(context, forStatement.collectionExpression)»)[«itVarName»_i];
 					«doGenerate(context, forStatement.body)»

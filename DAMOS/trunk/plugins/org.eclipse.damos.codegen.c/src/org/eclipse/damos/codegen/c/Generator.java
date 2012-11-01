@@ -42,7 +42,6 @@ import org.eclipse.damos.codegen.c.codefragments.factories.ITaskInfoArrayFactory
 import org.eclipse.damos.codegen.c.internal.ComponentGeneratorAdaptor;
 import org.eclipse.damos.codegen.c.internal.ComponentGeneratorContext;
 import org.eclipse.damos.codegen.c.internal.GeneratorContext;
-import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
 import org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions;
@@ -248,7 +247,7 @@ public class Generator extends AbstractGenerator {
 	 * @param monitor
 	 */
 	private void addContextStruct(IGeneratorContext context, IProgressMonitor monitor) {
-		ContextStruct contextStruct = (ContextStruct) context.addCodeFragment(contextStructFactory.create(GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
+		ContextStruct contextStruct = (ContextStruct) context.addCodeFragment(contextStructFactory.create(null, null, GeneratorConfigurationExtensions.isSingleton(context.getConfiguration())), monitor);
 		
 		for (Node node : context.getExecutionFlow().getAllNodes()) {
 			if (node instanceof ComponentNode) {

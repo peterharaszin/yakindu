@@ -18,15 +18,11 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class CompoundStatementGenerator implements ICompoundStatementGenerator {
-  private final IStatementGenerator statementGenerator;
-  
-  private final VariableDeclarationGenerator variableDeclarationGenerator;
+  @Inject
+  private IStatementGenerator statementGenerator;
   
   @Inject
-  public CompoundStatementGenerator(final IStatementGenerator statementGenerator, final VariableDeclarationGenerator variableDeclarationGenerator) {
-    this.statementGenerator = statementGenerator;
-    this.variableDeclarationGenerator = variableDeclarationGenerator;
-  }
+  private VariableDeclarationGenerator variableDeclarationGenerator;
   
   public CharSequence generate(final IMscriptGeneratorContext context, final Iterable<Statement> statements) {
     StringConcatenation _builder = new StringConcatenation();

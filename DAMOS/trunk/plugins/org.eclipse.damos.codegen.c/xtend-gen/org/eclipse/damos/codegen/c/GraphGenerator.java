@@ -330,8 +330,8 @@ public class GraphGenerator implements IGraphGenerator {
               Configuration _configuration_1 = context.getConfiguration();
               MscriptGeneratorConfiguration _mscriptGeneratorConfiguration = new MscriptGeneratorConfiguration(computationModel, _configuration_1);
               Configuration _configuration_2 = context.getConfiguration();
-              String _outputVariableName = this.generatorHelper.getOutputVariableName(_configuration_2, node, outputPort);
-              CharSequence _generateDataType = this.dataTypeGenerator.generateDataType(_mscriptGeneratorConfiguration, _outputVariableName, context, outputDataType, null);
+              CharSequence _generateOutputVariableReference = this.generatorHelper.generateOutputVariableReference(_configuration_2, node, outputPort);
+              CharSequence _generateDataType = this.dataTypeGenerator.generateDataType(_mscriptGeneratorConfiguration, _generateOutputVariableReference, context, outputDataType, null);
               _builder.append(_generateDataType, "");
               _builder.append(";");
               _builder.newLineIfNotEmpty();

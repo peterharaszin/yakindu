@@ -44,7 +44,7 @@ class ChoiceGenerator extends AbstractComponentGenerator {
 	override CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		val choice = component as Choice
 		
-		val incomingVariableName = generatorHelper.getIncomingVariableName(configuration, node, choice.firstInputPort)
+		val incomingVariableName = generatorHelper.generateIncomingVariableReference(configuration, node, choice.firstInputPort)
 		val choiceResult = CompoundGeneratorUtil::getChoiceVariableName(configuration, node)
 		
 		var actionLinks = choice.actionLinks.filter(l | l.condition != null)

@@ -19,17 +19,20 @@ import org.eclipse.damos.mscript.MscriptPackage
 import org.eclipse.damos.mscript.ParameterDeclaration
 import org.eclipse.damos.mscript.VariableDeclaration
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
+import org.eclipse.damos.mscript.codegen.c.FunctionGenerator
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.ICompoundStatementGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
+import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
 import org.eclipse.damos.mscript.util.MscriptUtil
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -42,6 +45,15 @@ class UpdateFunction extends AbstractCodeFragment {
 	
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
+	
+	@Inject
+	IContextStructFactory contextStructFactory
+
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
+	
+	@Inject
+	FunctionGenerator functionGenerator
 
 	val IMscriptGeneratorContext generatorContext
 	val IComputeFunction computeFunction
@@ -50,7 +62,8 @@ class UpdateFunction extends AbstractCodeFragment {
 	
 	StaticFunctionInfo functionInfo
 	FunctionInstance functionInstance
-	CharSequence functionSignature
+
+	CharSequence parameters
 	ContextStruct contextStruct
 	
 	new(IMscriptGeneratorContext generatorContext, IComputeFunction computeFunction) {
@@ -76,16 +89,16 @@ class UpdateFunction extends AbstractCodeFragment {
 		name = context.globalNameProvider.newGlobalName(generatorContext.functionInfo.functionDescription.declaration.name + "_update")
 		
 		contextStruct = if (functionInfo.getFunctionDescription().getDeclaration().eClass() != MscriptPackage::eINSTANCE.getStandardFunctionDeclaration()) {
-			codeFragmentCollector.addCodeFragment(new ContextStruct(false /* TODO */), new NullProgressMonitor());
+			codeFragmentCollector.addCodeFragment(contextStructFactory.create(null, null, false /* TODO */) as ContextStruct, new NullProgressMonitor());
 		} else {
-			codeFragmentCollector.addCodeFragment(new ContextStruct(functionInfo, false /* TODO */), new NullProgressMonitor());
+			codeFragmentCollector.addCodeFragment(contextStructFactory.create(functionInfo, null, false /* TODO */) as ContextStruct, new NullProgressMonitor());
 		}
 
-		functionSignature = generateFunctionSignature(codeFragmentCollector)
+		parameters = generateParameters(codeFragmentCollector)
 	}
 
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature»;
+		«generateFunctionSignature(internal)»;
 	'''
 	
 	override boolean contributesImplementation() {
@@ -95,7 +108,7 @@ class UpdateFunction extends AbstractCodeFragment {
 	override CharSequence generateImplementation(boolean internal) {
 		val computeOutputsCodeInputs = FunctionModelUtil::getDirectFeedthroughInputs(functionInstance)
 		'''
-			«IF internal»static «ENDIF»«functionSignature» {
+			«generateFunctionSignature(internal)» {
 				«FOR compound : functionInstance.computationCompounds»
 					«IF compound.derivatives.empty && compound.outputs.empty»
 						«compoundStatementGenerator.generate(generatorContext, compound.statements)»
@@ -131,9 +144,9 @@ class UpdateFunction extends AbstractCodeFragment {
 		generatorContext.variableAccessStrategy.generateContextMemberAccess(false, variableDeclaration.name + "_index")
 	}
 	
-	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
+	def private CharSequence generateParameters(ICodeFragmentCollector codeFragmentCollector) {
 		val inputParameterDeclarations = inputParameterDeclarations
-		'''void «name»(«IF generatorContext.functionInfo.functionDescription.stateful»«computeFunction.contextStruct.name» *context«IF !inputParameterDeclarations.empty», «ENDIF»«ENDIF»«FOR inputParameter : inputParameterDeclarations SEPARATOR ", "»«generateParameterDeclaration(codeFragmentCollector, inputParameter)»«ENDFOR»)'''
+		'''«IF generatorContext.functionInfo.functionDescription.stateful»«variableDeclarationGenerator.generateVariableDeclaration(computeFunction.contextStruct.name, "context", false, true)»«IF !inputParameterDeclarations.empty», «ENDIF»«ENDIF»«FOR inputParameter : inputParameterDeclarations SEPARATOR ", "»«generateParameterDeclaration(codeFragmentCollector, inputParameter)»«ENDFOR»'''
 	}
 	
 	def private CharSequence generateParameterDeclaration(ICodeFragmentCollector codeFragmentCollector, ParameterDeclaration parameterDeclaration) {
@@ -150,6 +163,10 @@ class UpdateFunction extends AbstractCodeFragment {
 	
 	def private getInputParameterDeclarations() {
 		generatorContext.functionInfo.functionDescription.declaration.nonConstantInputParameterDeclarations//.filter([!FunctionModelUtil::isDirectFeedthrough(generatorContext.functionInfo.functionInstance, it)])
+	}
+
+	def protected CharSequence generateFunctionSignature(boolean internal) {
+		functionGenerator.generateFunctionSignature("void", name, parameters, internal)
 	}
 
 	override int hashCode() {

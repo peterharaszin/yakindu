@@ -11,7 +11,7 @@
 
 package org.eclipse.damos.codegen.c.util;
 
-import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
+import org.eclipse.damos.codegen.c.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil;
 import org.eclipse.damos.dconfig.Configuration;
 import org.eclipse.damos.dml.InputConnector;
@@ -32,7 +32,7 @@ public class GeneratorHelper {
 	@Inject
 	private IVariableAccessorFactory variableAccessorFactory;
 
-	public String getIncomingVariableName(Configuration configuration, Node node, InputConnector inputConnector) {
+	public CharSequence generateIncomingVariableReference(Configuration configuration, Node node, InputConnector inputConnector) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputConnector);
 		if (targetEnd != null) {
 			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
@@ -46,7 +46,7 @@ public class GeneratorHelper {
 		return null;
 	}
 
-	public String getOutputVariableName(Configuration configuration, ComponentNode componentNode, OutputPort outputPort) {
+	public CharSequence generateOutputVariableReference(Configuration configuration, ComponentNode componentNode, OutputPort outputPort) {
 		return String.format("%s%s_%s", GeneratorConfigurationExtensions.getPrefix(configuration, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
 	}
 

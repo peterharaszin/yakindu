@@ -18,19 +18,22 @@ import org.eclipse.damos.mscript.InputParameterDeclaration
 import org.eclipse.damos.mscript.ParameterDeclaration
 import org.eclipse.damos.mscript.VariableDeclaration
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
+import org.eclipse.damos.mscript.codegen.c.FunctionGenerator
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.ICompoundStatementGenerator
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
+import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IInitializeFunctionFactory
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IUpdateFunctionFactory
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.function.util.FunctionModelUtil
 import org.eclipse.damos.mscript.util.MscriptUtil
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
-import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -53,12 +56,23 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 	@Inject
 	MachineDataTypeFactory machineDataTypeFactory
 	
+	@Inject
+	IContextStructFactory contextStructFactory
+	
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
+
+	@Inject
+	FunctionGenerator functionGenerator
+
 	val IMscriptGeneratorContext generatorContext
 	
 	String name
 	
 	FunctionInstance functionInstance
-	CharSequence functionSignature
+
+	CharSequence returnType
+	CharSequence parameters
 	CharSequence functionBody
 
 	InitializeFunction initializeFunction	
@@ -96,7 +110,7 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 		name = context.globalNameProvider.newGlobalName(generatorContext.functionInfo.functionDescription.declaration.name)
 
 		if (generatorContext.functionInfo.functionDescription.stateful) {
-			contextStruct = new ContextStruct(generatorContext.functionInfo, false)
+			contextStruct = contextStructFactory.create(generatorContext.functionInfo, null, false) as ContextStruct
 			contextStruct = codeFragmentCollector.addCodeFragment(contextStruct, new NullProgressMonitor())
 			val functionContextDeclaration = functionContextFactory.create(generatorContext)
 			contextStruct.addMember(functionContextDeclaration)
@@ -106,7 +120,8 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 			initializeFunction = codeFragmentCollector.addCodeFragment(initializeFunctionFactory.create(generatorContext, this), new NullProgressMonitor()) as InitializeFunction
 		}
 
-		functionSignature = generateFunctionSignature(codeFragmentCollector)
+		returnType = generateParameterDeclaration(codeFragmentCollector, functionInstance.declaration.outputParameterDeclarations.head)
+		parameters = generateParameters(codeFragmentCollector)
 		functionBody = '''
 			{
 				«generateDataType(generatorContext.codeFragmentCollector, functionInstance.declaration.outputParameterDeclarations.head)»;
@@ -131,7 +146,7 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 	}
 
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature»;
+		«generateFunctionSignature(internal)»;
 	'''
 	
 	override boolean contributesImplementation() {
@@ -139,13 +154,11 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature» «functionBody»
+		«generateFunctionSignature(internal)» «functionBody»
 	'''
 	
-	def private CharSequence generateFunctionSignature(ICodeFragmentCollector codeFragmentCollector) {
-		val functionDeclaration = generatorContext.functionInfo.functionDescription.declaration
-		val inputParameterDeclarations = inputParameterDeclarations
-		'''«generateParameterDeclaration(codeFragmentCollector, functionDeclaration.outputParameterDeclarations.head)» «name»(«IF generatorContext.functionInfo.functionDescription.stateful»«contextStruct.name» *context«IF !inputParameterDeclarations.empty», «ENDIF»«ENDIF»«FOR inputParameter : inputParameterDeclarations SEPARATOR ", "»«generateParameterDeclaration(codeFragmentCollector, inputParameter)»«ENDFOR»)'''
+	def private CharSequence generateParameters(ICodeFragmentCollector codeFragmentCollector) {
+		'''«IF generatorContext.functionInfo.functionDescription.stateful»«variableDeclarationGenerator.generateVariableDeclaration(contextStruct.name, "context", false, true)»«IF !inputParameterDeclarations.empty», «ENDIF»«ENDIF»«FOR inputParameter : inputParameterDeclarations SEPARATOR ", "»«generateParameterDeclaration(codeFragmentCollector, inputParameter)»«ENDFOR»'''
 	}
 	
 	def private getInputParameterDeclarations() {
@@ -175,6 +188,10 @@ class ComputeFunction extends AbstractCodeFragment implements IComputeFunction {
 
 	def private CharSequence generateIndexVariable(VariableDeclaration variableDeclaration) {
 		generatorContext.variableAccessStrategy.generateContextMemberAccess(false, variableDeclaration.name + "_index")
+	}
+
+	def protected CharSequence generateFunctionSignature(boolean internal) {
+		functionGenerator.generateFunctionSignature(returnType, name, parameters, internal)
 	}
 
 	override int hashCode() {

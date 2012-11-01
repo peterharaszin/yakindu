@@ -11,13 +11,16 @@
 
 package org.eclipse.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import java.util.Collections
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.IGeneratorContext
 import org.eclipse.damos.codegen.c.IGraphGenerator
+import org.eclipse.damos.mscript.codegen.c.FunctionGenerator
 import org.eclipse.damos.mscript.codegen.c.Include
+import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 import static org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil.*
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
@@ -30,15 +33,22 @@ import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationE
  */
 class ExecuteFunction extends PrimaryCodeFragment {
 	
-	val IGraphGenerator graphGenerator
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
+	
+	@Inject
+	FunctionGenerator functionGenerator
+
+	@Inject
+	IGraphGenerator graphGenerator
 	
 	val Collection<Include> implementationIncludes = new ArrayList<Include>()
 	
-	CharSequence functionSignature
+	CharSequence prefix
+	CharSequence parameters
 	CharSequence functionBody
 
-	new(IGraphGenerator graphGenerator) {
-		this.graphGenerator = graphGenerator
+	new() {
 		implementationIncludes.add(new Include("math.h"))
 		implementationIncludes.add(new Include("string.h"))
 	}
@@ -50,7 +60,8 @@ class ExecuteFunction extends PrimaryCodeFragment {
 		val graph = context.executionFlow.graph
 		implementationIncludes.addAll(graphGenerator.getImplementationIncludes(context, graph))
 		
-		functionSignature = generateFunctionSignature(context)
+		prefix = context.configuration.prefix
+		parameters = generateParameters(context)
 		
 		functionBody = '''
 			{
@@ -68,7 +79,7 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature»;
+		«generateFunctionSignature(internal)»;
 	'''
 
 	override boolean contributesImplementation() {
@@ -80,30 +91,32 @@ class ExecuteFunction extends PrimaryCodeFragment {
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature» «functionBody»
+		«generateFunctionSignature(internal)» «functionBody»
 	'''
 
-	def private CharSequence generateFunctionSignature(IGeneratorContext context) {
-		val prefix = context.configuration.prefix
-		
+	def protected CharSequence generateFunctionSignature(boolean internal) {
+		functionGenerator.generateFunctionSignature("void", prefix + "execute", parameters, internal)
+	}
+
+	def protected CharSequence generateParameters(IGeneratorContext context) {
 		val hasContext = !context.configuration.singleton
 		val hasInput = !getInportNodes(context).isEmpty()
 		val hasOutput = !getOutportNodes(context).isEmpty()
-		
-		val parameters = if (hasInput || hasOutput) {
+		if (hasInput || hasOutput) {
 			val inputParameter = if (hasInput) {
-				'''const «prefix»Input *input«IF hasOutput», «ENDIF»'''
+				'''«variableDeclarationGenerator.generateVariableDeclaration(prefix + "Input", "input", true, true)»«IF hasOutput», «ENDIF»'''
 			}
 			val outputParameter = if (hasOutput) {
-				'''«prefix»Output *output'''
+				variableDeclarationGenerator.generateVariableDeclaration(prefix + "Output", "output", false, true)
 			}
-			'''«IF hasContext»«prefix»Context *context, «ENDIF»«inputParameter»«outputParameter»'''
+			'''«IF hasContext»«generateContextParameter()», «ENDIF»«inputParameter»«outputParameter»'''
 		} else if (hasContext) {
-			'''«prefix»Context *context'''
-		} else {
-			"void"
+			generateContextParameter()
 		}
-		return '''void «prefix»execute(«parameters»)'''
+	}
+	
+	def protected CharSequence generateContextParameter() {
+		variableDeclarationGenerator.generateVariableDeclaration(prefix + "Context", "context", false, true)
 	}
 	
 }

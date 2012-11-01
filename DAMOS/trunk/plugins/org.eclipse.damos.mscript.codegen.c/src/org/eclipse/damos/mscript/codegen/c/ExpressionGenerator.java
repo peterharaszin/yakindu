@@ -66,6 +66,8 @@ import org.eclipse.damos.mscript.TypeTestExpression;
 import org.eclipse.damos.mscript.UnaryExpression;
 import org.eclipse.damos.mscript.UnionConstructionOperator;
 import org.eclipse.damos.mscript.UnitConstructionOperator;
+import org.eclipse.damos.mscript.codegen.c.builtin.IBuiltinFunctionGenerator;
+import org.eclipse.damos.mscript.codegen.c.builtin.IBuiltinFunctionGeneratorLookup;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ComputeFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ConstantStringSegment;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
@@ -79,10 +81,9 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.StringEqualToFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.StringTable;
 import org.eclipse.damos.mscript.codegen.c.codefragments.UpdateFunction;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory;
 import org.eclipse.damos.mscript.codegen.c.internal.VariableReferenceGenerator;
-import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGenerator;
-import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
 import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.computation.FixedPointFormat;
 import org.eclipse.damos.mscript.computation.FloatingPointFormat;
@@ -127,6 +128,9 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 	
 	@Inject
 	private MachineDataTypeFactory machineDataTypeFactory;
+	
+	@Inject
+	private IContextStructFactory contextStructFactory;
 	
 	public CharSequence generate(IMscriptGeneratorContext context, Expression expression) {
 		return expression.accept(context, this);
@@ -489,10 +493,10 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 		MscriptGeneratorContext calleeGeneratorContext = new MscriptGeneratorContext(context.getConfiguration(), callee, context.getSampleInterval(), variableAccessStrategy, context.getCodeFragmentCollector());
 		ComputeFunction computeFunction = context.getCodeFragmentCollector().addCodeFragment((ComputeFunction) computeFunctionFactory.create(calleeGeneratorContext), new NullProgressMonitor());
 		
-		FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, computeFunction, calleeGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
+		FunctionContextStructMember functionContextStructMember = FunctionContextStructMember.initialize(context, contextStructFactory, computeFunction, calleeGeneratorContext.getFunctionInfo(), context.getFunctionInfo());
 		
 		if (functionContextStructMember != null) {
-			ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+			ContextStruct contextStruct = context.getCodeFragmentCollector().addCodeFragment((ContextStruct) contextStructFactory.create(context.getFunctionInfo(), null, false /* TODO */), new NullProgressMonitor());
 
 			{
 				InitializeFunction initializeFunction = computeFunction.getInitializeFunction();
@@ -504,7 +508,7 @@ public class ExpressionGenerator implements IExpressionGenerator, IExpressionVis
 				}
 				sb.append(");\n");
 
-				contextStruct = context.getCodeFragmentCollector().addCodeFragment(new ContextStruct(context.getFunctionInfo(), false /* TODO */), new NullProgressMonitor());
+				contextStruct = context.getCodeFragmentCollector().addCodeFragment((ContextStruct) contextStructFactory.create(context.getFunctionInfo(), null, false /* TODO */), new NullProgressMonitor());
 				contextStruct.addInitializeCall(sb);
 			}
 			

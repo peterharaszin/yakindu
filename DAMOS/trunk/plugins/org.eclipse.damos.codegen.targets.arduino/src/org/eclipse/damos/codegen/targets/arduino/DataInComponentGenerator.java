@@ -61,7 +61,7 @@ public class DataInComponentGenerator extends AbstractArduinoUnoComponentGenerat
 	@Override
 	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		String outputVariable = getContext().getVariableAccessor().generateOutputVariableReference(getContext().getNode().getComponent().getFirstOutputPort(), false);
+		CharSequence outputVariable = getContext().getVariableAccessor().generateOutputVariableReference(getContext().getNode().getComponent().getFirstOutputPort(), false);
 		Type outputDataType = getContext().getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		if (outputDataType instanceof BooleanType) {
 			sb.append(outputVariable).append(" = digitalRead(").append(Integer.toString(getPinIndex())).append(");\n");

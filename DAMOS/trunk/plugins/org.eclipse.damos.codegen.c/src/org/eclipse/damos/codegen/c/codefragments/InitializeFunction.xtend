@@ -11,13 +11,16 @@
 
 package org.eclipse.damos.codegen.c.codefragments
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.codegen.c.IGeneratorContext
 import org.eclipse.damos.codegen.c.ITaskGenerator
 import org.eclipse.damos.execution.ComponentNode
+import org.eclipse.damos.mscript.codegen.c.FunctionGenerator
 import org.eclipse.damos.mscript.codegen.c.Include
+import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -29,16 +32,23 @@ import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions
  *
  */
 class InitializeFunction extends PrimaryCodeFragment {
+
+	@Inject
+	VariableDeclarationGenerator variableDeclarationGenerator
 	
-	val ITaskGenerator taskGenerator
+	@Inject
+	FunctionGenerator functionGenerator
+
+	@Inject	
+	ITaskGenerator taskGenerator
 	
 	val Collection<Include> implementationIncludes = new ArrayList<Include>()
 	
-	CharSequence functionSignature
+	CharSequence prefix
+	CharSequence parameters
 	CharSequence functionBody
 
-	new(ITaskGenerator taskGenerator) {
-		this.taskGenerator = taskGenerator
+	new() {
 		implementationIncludes.add(new Include("math.h"))
 	}
 	
@@ -56,9 +66,8 @@ class InitializeFunction extends PrimaryCodeFragment {
 			}
 		}
 		
-		val prefix = context.configuration.prefix
-		val parameters = '''«IF context.configuration.singleton»void«ELSE»«prefix»Context *context«ENDIF»'''
-		functionSignature = '''void «prefix»initialize(«parameters»)'''
+		prefix = context.configuration.prefix
+		parameters = generateParameters(context)
 
 		functionBody = '''
 			{
@@ -72,9 +81,19 @@ class InitializeFunction extends PrimaryCodeFragment {
 			}
 		'''
 	}
-
+	
+	def protected CharSequence generateParameters(IGeneratorContext context) {
+		if (!context.configuration.singleton) {
+			variableDeclarationGenerator.generateVariableDeclaration(prefix + "Context", "context", false, true)
+		}
+	}
+	
+	def protected CharSequence generateFunctionSignature(boolean internal) {
+		functionGenerator.generateFunctionSignature("void", prefix + "initialize", parameters, internal)
+	}
+	
 	override CharSequence generateForwardDeclaration(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature»;
+		«generateFunctionSignature(internal)»;
 	'''
 
 	override boolean contributesImplementation() {
@@ -86,7 +105,7 @@ class InitializeFunction extends PrimaryCodeFragment {
 	}
 	
 	override CharSequence generateImplementation(boolean internal) '''
-		«IF internal»static «ENDIF»«functionSignature» «functionBody»
+		«generateFunctionSignature(internal)» «functionBody»
 	'''
 
 }

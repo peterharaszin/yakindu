@@ -92,7 +92,7 @@ public class SevenSegmentDisplayDemoShieldGenerator extends AbstractShieldGenera
 		public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 			StringBuilder sb = new StringBuilder();
 			PrintAppendable out = new PrintAppendable(sb);
-			String v = generatorHelper.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getFirstInputPort());
+			CharSequence v = generatorHelper.generateIncomingVariableReference(getConfiguration(), getNode(), getComponent().getFirstInputPort());
 			out.printf("digitalWrite(3, !(%s == 0 || %s == 2 || %s == 3 || %s == 5 || %s == 6 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
 			out.printf("digitalWrite(2, !(%s == 0 || %s == 1 || %s == 2 || %s == 3 || %s == 4 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v);
 			out.printf("digitalWrite(8, !(%s == 0 || %s == 1 || %s == 3 || %s == 4 || %s == 5 || %s == 6 || %s == 7 || %s == 8 || %s == 9));\n", v, v, v, v, v, v, v, v, v);

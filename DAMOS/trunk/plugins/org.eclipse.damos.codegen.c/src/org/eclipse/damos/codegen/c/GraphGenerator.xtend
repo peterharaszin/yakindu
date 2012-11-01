@@ -160,7 +160,7 @@ class GraphGenerator implements IGraphGenerator {
 				«FOR outputPort : getOutputVariableDeclarationPorts(node)»
 					«val computationModel = context.configuration.getComputationModel(node)»
 					«val outputDataType = generator.context.componentSignature.getOutputDataType(outputPort)»
-					«dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), generatorHelper.getOutputVariableName(context.configuration, node, outputPort), context, outputDataType, null)»;
+					«dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), generatorHelper.generateOutputVariableReference(context.configuration, node, outputPort), context, outputDataType, null)»;
 				«ENDFOR»
 			«ENDFOR»
 		'''

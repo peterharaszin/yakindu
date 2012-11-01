@@ -53,7 +53,7 @@ public class ChoiceGenerator extends AbstractComponentGenerator {
       Configuration _configuration = this.getConfiguration();
       ComponentNode _node = this.getNode();
       InputPort _firstInputPort = choice.getFirstInputPort();
-      final String incomingVariableName = this.generatorHelper.getIncomingVariableName(_configuration, _node, _firstInputPort);
+      final CharSequence incomingVariableName = this.generatorHelper.generateIncomingVariableReference(_configuration, _node, _firstInputPort);
       Configuration _configuration_1 = this.getConfiguration();
       ComponentNode _node_1 = this.getNode();
       final String choiceResult = CompoundGeneratorUtil.getChoiceVariableName(_configuration_1, _node_1);

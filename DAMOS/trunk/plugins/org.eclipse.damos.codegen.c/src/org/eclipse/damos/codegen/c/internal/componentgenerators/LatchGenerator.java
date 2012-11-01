@@ -56,7 +56,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	
 	@Override
 	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		return getFastLockGenerator().generateInitializationCode(contextVariable + "." + "lock");
 	}
 	
@@ -71,9 +71,9 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	@Override
 	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		String variableName = contextVariable + "." + "lock";
-		String outputVariable = getVariableAccessor().generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
+		CharSequence outputVariable = getVariableAccessor().generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
 
 		sb.append(getFastLockGenerator().generateLockCode(variableName));
 		sb.append(String.format("%s = %s.data;\n", outputVariable, contextVariable));

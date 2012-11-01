@@ -18,6 +18,7 @@ import org.eclipse.damos.codegen.c.MscriptGeneratorConfiguration
 import org.eclipse.damos.codegen.c.internal.util.InternalGeneratorUtil
 import org.eclipse.damos.execution.ComponentNode
 import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipse.damos.mscript.codegen.c.StructGenerator
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import static extension org.eclipse.damos.codegen.c.util.GeneratorNodeExtensions.*
@@ -31,17 +32,19 @@ class InputStruct extends PrimaryCodeFragment {
 	@Inject
 	VariableDeclarationGenerator variableDeclarationGenerator
 
-	CharSequence content;
+	@Inject
+	StructGenerator structGenerator
+
+	CharSequence declaration;
 	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		val prefix = context.configuration.prefix;
-		content = '''
-			typedef struct {
-				«FOR node : InternalGeneratorUtil::getInportNodes(context)»
-					«getVariableDeclaration(context, node)»;
-				«ENDFOR»
-			} «prefix»Input;
+		val content = '''
+			«FOR node : InternalGeneratorUtil::getInportNodes(context)»
+				«getVariableDeclaration(context, node)»;
+			«ENDFOR»
 		'''
+		declaration = structGenerator.generate(prefix + "Input", content, false)
 	}
 
 	/**
@@ -58,7 +61,7 @@ class InputStruct extends PrimaryCodeFragment {
 	}
 	
 	override CharSequence generateForwardDeclaration(boolean internal) {
-		content;
+		declaration;
 	}
 
 }

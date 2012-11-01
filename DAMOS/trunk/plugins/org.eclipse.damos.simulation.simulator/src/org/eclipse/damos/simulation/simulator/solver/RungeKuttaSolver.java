@@ -13,11 +13,13 @@ package org.eclipse.damos.simulation.simulator.solver;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.damos.common.util.MathUtil;
 import org.eclipse.damos.dconfig.Configuration;
 import org.eclipse.damos.execution.ComponentNode;
 import org.eclipse.damos.execution.Graph;
 import org.eclipse.damos.execution.Node;
+import org.eclipse.damos.mscript.util.ISampleInterval;
+import org.eclipse.damos.mscript.util.SampleRate;
+import org.eclipse.damos.mscript.util.SampleTime;
 import org.eclipse.damos.simulation.ISimulationMonitor;
 import org.eclipse.damos.simulation.simulator.ISimulationObject;
 import org.eclipse.damos.simulation.simulator.internal.ISimulationContext;
@@ -86,7 +88,12 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
 		super.initialize(context, monitor);
-		stepSize = MathUtil.gcd(context.getExecutionFlow().getFundamentalSampleInterval().sampleTime(), stepSize);
+		ISampleInterval fundamentalSampleInterval = context.getExecutionFlow().getFundamentalSampleInterval();
+		if (fundamentalSampleInterval instanceof SampleRate) {
+			stepSize = fundamentalSampleInterval.getFundamental(new SampleRate(Math.round(1.0 / stepSize))).sampleTime();
+		} else {
+			stepSize = fundamentalSampleInterval.getFundamental(new SampleTime(stepSize)).sampleTime();
+		}
 		n = 0;
 	}
 

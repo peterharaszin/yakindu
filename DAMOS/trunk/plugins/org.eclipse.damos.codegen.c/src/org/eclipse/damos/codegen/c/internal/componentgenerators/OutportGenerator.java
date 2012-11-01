@@ -13,9 +13,9 @@ package org.eclipse.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.AbstractComponentGenerator;
-import org.eclipse.damos.common.util.PrintAppendable;
 import org.eclipse.damos.dml.InputPort;
 import org.eclipse.damos.dml.OutputPort;
+import org.eclipse.damos.mscript.codegen.c.StructGenerator;
 import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -29,6 +29,9 @@ public class OutportGenerator extends AbstractComponentGenerator {
 
 	@Inject
 	private CastHelper castHelper;
+	
+	@Inject
+	private StructGenerator structGenerator;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.damos.codegen.c.AbstractComponentGenerator#contributesComputeOutputsCode()
@@ -47,15 +50,16 @@ public class OutportGenerator extends AbstractComponentGenerator {
 	@Override
 	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
 
 		InputPort inputPort = getComponent().getFirstInputPort();
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
-		out.printf("output->%s = ", StringExtensions.toFirstLower(getComponent().getName()));
-		String inputVariableString = getVariableAccessor().generateInputVariableReference(inputPort, false);
-		out.print(castHelper.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
-		out.println(";");
+		sb.append(structGenerator.generateMemberAccess("output", true));
+		sb.append(StringExtensions.toFirstLower(getComponent().getName()));
+		sb.append(" = ");
+		CharSequence inputVariableString = getVariableAccessor().generateInputVariableReference(inputPort, false);
+		sb.append(castHelper.cast(getComputationModel(), inputVariableString, getComponentSignature().getInputDataType(inputPort), getComponentSignature().getOutputDataType(outputPort)));
+		sb.append(";\n");
 		return sb;
 	}
 	

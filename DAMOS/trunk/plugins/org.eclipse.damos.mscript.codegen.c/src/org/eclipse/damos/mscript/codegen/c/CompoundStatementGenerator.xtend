@@ -18,14 +18,11 @@ import com.google.inject.Inject
 
 class CompoundStatementGenerator implements ICompoundStatementGenerator {
 	
-	val IStatementGenerator statementGenerator
-	val VariableDeclarationGenerator variableDeclarationGenerator
+	@Inject
+	IStatementGenerator statementGenerator
 	
 	@Inject
-	new(IStatementGenerator statementGenerator, VariableDeclarationGenerator variableDeclarationGenerator) {
-		this.statementGenerator = statementGenerator
-		this.variableDeclarationGenerator = variableDeclarationGenerator
-	}
+	VariableDeclarationGenerator variableDeclarationGenerator
 	
 	override generate(IMscriptGeneratorContext context, Iterable<Statement> statements) '''
 		«FOR localVariableDeclaration : statements.filter(typeof(LocalVariableDeclaration))»

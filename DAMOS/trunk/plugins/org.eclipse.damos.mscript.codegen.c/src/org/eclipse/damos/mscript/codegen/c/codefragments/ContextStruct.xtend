@@ -11,16 +11,17 @@
 
 package org.eclipse.damos.mscript.codegen.c.codefragments
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import java.util.Collection
+import java.util.List
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.damos.mscript.codegen.c.AbstractCodeFragment
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentContext
 import org.eclipse.damos.mscript.codegen.c.IGlobalNameProvider
 import org.eclipse.damos.mscript.codegen.c.Include
+import org.eclipse.damos.mscript.codegen.c.StructGenerator
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
-import java.util.List
-import org.eclipse.damos.mscript.codegen.c.codefragments.IContextStructMember
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
 
@@ -29,6 +30,9 @@ import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
  *
  */
 class ContextStruct extends AbstractCodeFragment {
+	
+	@Inject
+	StructGenerator structGenerator
 
 	val Collection<IContextStructMember> members = new ArrayList<IContextStructMember>()
 	val Collection<Include> forwardDeclarationIncludes = new ArrayList<Include>()
@@ -101,8 +105,8 @@ class ContextStruct extends AbstractCodeFragment {
 		return forwardDeclarationIncludes
 	}
 	
-	override CharSequence generateForwardDeclaration(boolean internal) '''
-		typedef struct {
+	override CharSequence generateForwardDeclaration(boolean internal) {
+		val content = '''
 			«IF members.empty»
 				char dummy;
 			«ELSE»
@@ -110,8 +114,9 @@ class ContextStruct extends AbstractCodeFragment {
 					«part.generate()»
 				«ENDFOR»
 			«ENDIF»
-		} «name»;
-	'''
+		'''
+		structGenerator.generate(name, content, internal)
+	}
 
 	def newUniqueName(String preferredName) {
 		globalNameProvider.newGlobalName(preferredName)

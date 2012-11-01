@@ -28,7 +28,7 @@ public class MachineArrayType extends MachineDataType {
 	/**
 	 * 
 	 */
-	MachineArrayType(MachineDataType elementType, int[] dimensionSizes) {
+	protected MachineArrayType(MachineDataType elementType, int[] dimensionSizes) {
 		this.elementType = elementType;
 		this.dimensionSizes = dimensionSizes;
 	}
@@ -82,10 +82,14 @@ public class MachineArrayType extends MachineDataType {
 		}
 		for (int i = 0; i < dimensionSizes.length; ++i) {
 			sb.append("[");
-			sb.append(dimensionSizes[i]);
+			sb.append(generateDimensionSize(i));
 			sb.append("]");
 		}
 		return sb;
+	}
+
+	protected CharSequence generateDimensionSize(int index) {
+		return Integer.toString(dimensionSizes[index]);
 	}
 	
 	/* (non-Javadoc)

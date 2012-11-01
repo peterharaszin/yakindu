@@ -62,7 +62,7 @@ public class DataOutComponentGenerator extends AbstractArduinoUnoComponentGenera
 	@Override
 	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
 		StringBuilder sb = new StringBuilder();
-		final String inputVariable = getContext().getVariableAccessor().generateInputVariableReference(getContext().getNode().getComponent().getFirstInputPort(), false);
+		CharSequence inputVariable = getContext().getVariableAccessor().generateInputVariableReference(getContext().getNode().getComponent().getFirstInputPort(), false);
 		int pin = getPinIndex();
 		Type inputDataType = getContext().getComponentSignature().getInputDataType(getComponent().getFirstInputPort());
 		if (inputDataType instanceof BooleanType) {

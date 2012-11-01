@@ -15,7 +15,7 @@ import com.google.inject.Inject
 import org.eclipse.damos.mscript.VariableDeclaration
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext
 import org.eclipse.damos.mscript.codegen.c.PrimitiveTypeGenerator
-import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator
+import org.eclipse.damos.mscript.codegen.c.datatype.MachineDataTypeFactory
 
 /**
  * @author Andreas Unger
@@ -27,7 +27,7 @@ class FunctionContext extends AbstractContextStructMember {
 	PrimitiveTypeGenerator primitiveTypeGenerator
 	
 	@Inject
-	VariableDeclarationGenerator variableDeclarationGenerator
+	MachineDataTypeFactory machineDataTypeFactory
 
 	val IMscriptGeneratorContext generatorContext
 	
@@ -54,20 +54,24 @@ class FunctionContext extends AbstractContextStructMember {
 		«ENDFOR»
 	'''
 	
-	def private generateContextStructureMember(VariableDeclaration variableDeclaration) {
-		val name = variableDeclaration.name
+	def private CharSequence generateContextStructureMember(VariableDeclaration variableDeclaration) {
+		val variableName = variableDeclaration.name
 		val dataType = generatorContext.functionInfo.getValue(variableDeclaration).dataType
-		val cVariableDeclaration = variableDeclarationGenerator.generateVariableDeclaration(generatorContext.configuration, generatorContext.codeFragmentCollector, dataType, name, false, null)
+		val typeName = machineDataTypeFactory.create(generatorContext.configuration, dataType).generateDataType(null, generatorContext.codeFragmentCollector, null)
 		if (hasContext(variableDeclaration)) {
 			val bufferSize = generatorContext.functionInfo.getCircularBufferSize(variableDeclaration)
 			val indexCDataType = primitiveTypeGenerator.generateIndexType(2 * bufferSize)
 			return '''
-				«cVariableDeclaration»[«bufferSize»];
-				«indexCDataType» «name»_index;
+				«generateBufferVariableDeclaration(typeName, variableName, bufferSize)»
+				«indexCDataType» «variableName»_index;
 			''';
 		}
-		return '''«cVariableDeclaration»;'''
+		return '''«typeName» «variableName»;'''
 	}
+	
+	def protected CharSequence generateBufferVariableDeclaration(CharSequence typeName, CharSequence variableName, int bufferSize) '''
+		«typeName» «variableName»[«bufferSize»];
+	'''
 
 	def private boolean hasContext(VariableDeclaration variableDeclaration) {
 		return generatorContext.functionInfo.getCircularBufferSize(variableDeclaration) > 1

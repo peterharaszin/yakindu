@@ -86,7 +86,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration) feature;
 			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 			if (stepIndex == 0) {
-				return getInputParameterAccessString(staticEvaluationResult, getBlock(), context.getComponentSignature(), context.getVariableAccessor(), inputParameterDeclaration);
+				return generateInputParameterAccess(staticEvaluationResult, getBlock(), context.getComponentSignature(), context.getVariableAccessor(), inputParameterDeclaration);
 			}
 			return getContextAccess(variableReference);
 		}
@@ -94,7 +94,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			OutputParameterDeclaration outputParameterDeclaration = (OutputParameterDeclaration) feature;
 			int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 			if (stepIndex == 0) {
-				return getOutputParameterAccessString(getBlock(), context.getComponentSignature(), context.getVariableAccessor(), outputParameterDeclaration);
+				return generateOutputParameterAccess(getBlock(), context.getComponentSignature(), context.getVariableAccessor(), outputParameterDeclaration);
 			}
 			return getContextAccess(variableReference);
 		}
@@ -104,11 +104,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		throw new IllegalArgumentException("Unknown variable declaration " + feature.getClass().getCanonicalName());
 	}
 
-	/**
-	 * @param inputVariableDeclaration
-	 * @return
-	 */
-	static String getInputParameterAccessString(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
+	static CharSequence generateInputParameterAccess(IStaticEvaluationResult staticEvaluationResult, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
 		// TODO: Casting should be reworked, we need to pass a DscriptInputDefinition
 		int index = ((DscriptBlockType) block.getType()).getBehavior().getNonConstantInputParameterDeclarations().indexOf(inputParameterDeclaration);
 		
@@ -133,11 +129,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		return variableAccessor.generateInputVariableReference(blockInput.getPorts().get(0), false);
 	}
 
-	/**
-	 * @param outputParameterDeclaration
-	 * @return
-	 */
-	static String getOutputParameterAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, OutputParameterDeclaration outputParameterDeclaration) {
+	static CharSequence generateOutputParameterAccess(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, OutputParameterDeclaration outputParameterDeclaration) {
 		int index = DMLUtil.indexOf(outputParameterDeclaration);
 		Output output = block.getOutputs().get(index);
 		return variableAccessor.generateOutputVariableReference(output.getPorts().get(0), false);
@@ -151,7 +143,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
 		int stepIndex = staticEvaluationResult.getStepIndex(variableReference);
 
-		String contextVariable = context.getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = context.getVariableAccessor().generateContextVariableReference(false);
 		String targetName = target.getName();
 		int circularBufferSize = staticEvaluationResult.getCircularBufferSize(target);
 		if (circularBufferSize > 1) {

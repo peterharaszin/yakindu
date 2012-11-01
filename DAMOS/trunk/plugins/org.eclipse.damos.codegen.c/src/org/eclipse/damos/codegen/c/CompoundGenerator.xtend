@@ -90,7 +90,7 @@ class CompoundGenerator implements ICompoundGenerator {
 				«IF whileLoop != null»
 					do {
 						«graphGenerator.generateGraph(context, compoundNode, monitor)»
-					} while («generatorHelper.getIncomingVariableName(context.configuration, actionNode, whileLoop.condition) ?: "0"»);
+					} while («generatorHelper.generateIncomingVariableReference(context.configuration, actionNode, whileLoop.condition) ?: "0"»);
 				«ELSE»
 					«graphGenerator.generateGraph(context, compoundNode, monitor)»
 				«ENDIF»
@@ -104,7 +104,7 @@ class CompoundGenerator implements ICompoundGenerator {
 		val outputDataType = generator.context.componentSignature.getOutputDataType(node.component.firstOutputPort)
 		val variableName = CompoundGeneratorUtil::getMemoryPreviousValueVariableName(context.configuration, node)
 		val dataType = dataTypeGenerator.generateDataType(new MscriptGeneratorConfiguration(computationModel, context.configuration), variableName, generator.context.codeFragmentCollector, outputDataType, null)
-		val initializer = generatorHelper.getIncomingVariableName(context.configuration, node, node.component.firstInputPort)
+		val initializer = generatorHelper.generateIncomingVariableReference(context.configuration, node, node.component.firstInputPort)
 		
 		'''«dataType» = «initializer»;'''
 	}

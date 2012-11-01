@@ -180,8 +180,8 @@ public class CompoundGenerator implements ICompoundGenerator {
           _builder.append("} while (");
           Configuration _configuration_1 = context.getConfiguration();
           WhileLoopCondition _condition = whileLoop.getCondition();
-          String _incomingVariableName = this.generatorHelper.getIncomingVariableName(_configuration_1, actionNode, _condition);
-          String _elvis = ObjectExtensions.<String>operator_elvis(_incomingVariableName, "0");
+          CharSequence _generateIncomingVariableReference = this.generatorHelper.generateIncomingVariableReference(_configuration_1, actionNode, _condition);
+          CharSequence _elvis = ObjectExtensions.<CharSequence>operator_elvis(_generateIncomingVariableReference, "0");
           _builder.append(_elvis, "	");
           _builder.append(");");
           _builder.newLineIfNotEmpty();
@@ -220,7 +220,7 @@ public class CompoundGenerator implements ICompoundGenerator {
       Configuration _configuration_3 = context.getConfiguration();
       Component _component_1 = node.getComponent();
       InputPort _firstInputPort = _component_1.getFirstInputPort();
-      final String initializer = this.generatorHelper.getIncomingVariableName(_configuration_3, node, _firstInputPort);
+      final CharSequence initializer = this.generatorHelper.generateIncomingVariableReference(_configuration_3, node, _firstInputPort);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(dataType, "");
       _builder.append(" = ");

@@ -25,6 +25,7 @@ import org.eclipse.damos.mscript.function.FunctionInstance
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo
 
 import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory
 
 /**
  * @author Andreas Unger
@@ -34,6 +35,9 @@ class InitializeFunction extends AbstractCodeFragment {
 
 	@Inject
 	ICompoundStatementGenerator compoundStatementGenerator
+	
+	@Inject
+	IContextStructFactory contextStructFactory
 
 	val IMscriptGeneratorContext generatorContext
 	val IComputeFunction computeFunction
@@ -68,9 +72,9 @@ class InitializeFunction extends AbstractCodeFragment {
 		name = context.globalNameProvider.newGlobalName(generatorContext.functionInfo.functionDescription.declaration.name + "_initialize")
 		
 		contextStruct = if (functionInfo.getFunctionDescription().getDeclaration().eClass() != MscriptPackage::eINSTANCE.getStandardFunctionDeclaration()) {
-			codeFragmentCollector.addCodeFragment(new ContextStruct(false /* TODO */), new NullProgressMonitor());
+			codeFragmentCollector.addCodeFragment(contextStructFactory.create(null, null, false /* TODO */) as ContextStruct, new NullProgressMonitor());
 		} else {
-			codeFragmentCollector.addCodeFragment(new ContextStruct(functionInfo, false /* TODO */), new NullProgressMonitor());
+			codeFragmentCollector.addCodeFragment(contextStructFactory.create(functionInfo, null, false /* TODO */) as ContextStruct, new NullProgressMonitor());
 		}
 
 		functionSignature = generateFunctionSignature(codeFragmentCollector)

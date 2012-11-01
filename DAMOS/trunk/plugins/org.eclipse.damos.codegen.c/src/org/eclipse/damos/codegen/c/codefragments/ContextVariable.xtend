@@ -19,6 +19,7 @@ import static org.eclipse.damos.mscript.codegen.c.ICodeFragment.*
 
 import static extension org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions.*
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory
+import com.google.inject.Inject
 
 /**
  * @author Andreas Unger
@@ -26,20 +27,17 @@ import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStruc
  */
 class ContextVariable extends PrimaryCodeFragment {
 	
-	val IContextStructFactory contextStructFactory
+	@Inject
+	IContextStructFactory contextStructFactory
 	
 	ContextStruct contextStruct
 	
 	String prefix
 	
-	new(IContextStructFactory contextStructFactory) {
-		this.contextStructFactory = contextStructFactory
-	}
-	
 	override void doInitialize(IGeneratorContext context, IProgressMonitor monitor) {
 		addDependency(FORWARD_DECLARATION_DEPENDS_ON, [it instanceof ContextStruct])
 		
-		contextStruct = context.addCodeFragment(contextStructFactory.create(context.configuration.singleton), monitor) as ContextStruct
+		contextStruct = context.addCodeFragment(contextStructFactory.create(null, null, context.configuration.singleton), monitor) as ContextStruct
 		
 		prefix = context.configuration.prefix
 	}

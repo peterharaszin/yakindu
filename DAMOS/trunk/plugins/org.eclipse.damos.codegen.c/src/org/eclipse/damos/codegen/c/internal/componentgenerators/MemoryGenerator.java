@@ -13,7 +13,7 @@ package org.eclipse.damos.codegen.c.internal.componentgenerators;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.AbstractComponentGenerator;
-import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
+import org.eclipse.damos.codegen.c.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.util.CompoundGeneratorUtil;
 import org.eclipse.damos.codegen.c.util.GeneratorHelper;
 import org.eclipse.damos.common.util.PrintAppendable;
@@ -45,7 +45,7 @@ public class MemoryGenerator extends AbstractComponentGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		String previousValueVariableName = CompoundGeneratorUtil.getMemoryPreviousValueVariableName(getConfiguration(), getNode());
-		String outputVariableName = variableAccessorFactory.create(getConfiguration(), getNode()).generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
+		CharSequence outputVariableName = variableAccessorFactory.create(getConfiguration(), getNode()).generateOutputVariableReference(getComponent().getFirstOutputPort(), false);
 		out.printf("%s = %s;\n", outputVariableName, previousValueVariableName);
 		return sb;
 	}
@@ -63,7 +63,7 @@ public class MemoryGenerator extends AbstractComponentGenerator {
 		StringBuilder sb = new StringBuilder();
 		PrintAppendable out = new PrintAppendable(sb);
 		String previousValueVariableName = CompoundGeneratorUtil.getMemoryPreviousValueVariableName(getConfiguration(), getNode());
-		String incomingVariableName = generatorHelper.getIncomingVariableName(getConfiguration(), getNode(), getComponent().getInputPorts().get(1));
+		CharSequence incomingVariableName = generatorHelper.generateIncomingVariableReference(getConfiguration(), getNode(), getComponent().getInputPorts().get(1));
 		out.printf("%s = %s;\n", previousValueVariableName, incomingVariableName);
 		return sb;
 	}

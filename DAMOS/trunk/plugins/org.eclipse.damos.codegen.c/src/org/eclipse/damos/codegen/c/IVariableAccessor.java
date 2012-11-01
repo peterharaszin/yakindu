@@ -20,12 +20,12 @@ import org.eclipse.damos.dml.OutputPort;
  */
 public interface IVariableAccessor {
 
-	String generateContextVariableReference(boolean pointer);
+	CharSequence generateContextVariableReference(boolean pointer);
 	
-	String generateInputVariableReference(InputPort inputPort, boolean pointer);
+	CharSequence generateInputVariableReference(InputPort inputPort, boolean pointer);
 	
-	String generateOutputVariableReference(OutputPort outputPort, boolean pointer);
+	CharSequence generateOutputVariableReference(OutputPort outputPort, boolean pointer);
 
-	String generateMessageKindVariableReference(boolean pointer);
+	CharSequence generateMessageKindVariableReference(boolean pointer);
 	
 }

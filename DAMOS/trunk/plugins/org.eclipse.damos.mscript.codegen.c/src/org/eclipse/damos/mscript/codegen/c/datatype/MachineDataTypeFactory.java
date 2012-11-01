@@ -79,7 +79,13 @@ public class MachineDataTypeFactory {
 		for (int i = 0; i < dimensionSizes.length; ++i) {
 			dimensionSizes[i] = TypeUtil.getArrayDimensionSize(arrayType.getDimensions().get(i));
 		}
-		return new MachineArrayType(create(configuration, arrayType.getElementType()), dimensionSizes);
+		MachineDataType elementType = create(configuration, arrayType.getElementType());
+		return doCreate(configuration, elementType, dimensionSizes);
+	}
+
+	protected MachineArrayType doCreate(IMscriptGeneratorConfiguration configuration, MachineDataType elementType,
+			int[] dimensionSizes) {
+		return new MachineArrayType(elementType, dimensionSizes);
 	}
 
 	public MachineRecordType create(IMscriptGeneratorConfiguration configuration, RecordType recordType) {

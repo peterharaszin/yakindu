@@ -13,7 +13,6 @@ package org.eclipse.damos.codegen.c;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.codegen.c.codefragments.TaskContext;
-import org.eclipse.damos.codegen.c.internal.IVariableAccessorFactory;
 import org.eclipse.damos.codegen.c.internal.rte.MessageQueueInfo;
 import org.eclipse.damos.codegen.c.internal.util.TaskGeneratorHelper;
 import org.eclipse.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
@@ -113,9 +112,9 @@ public class TaskGenerator implements ITaskGenerator {
 			if (end.getNode() instanceof ComponentNode) {
 				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
 				if (otherComponentNode.getComponent() instanceof Latch) {
-					String contextVariable = variableAccessorFactory.create(context.getConfiguration(), otherComponentNode).generateContextVariableReference(false);
+					CharSequence contextVariable = variableAccessorFactory.create(context.getConfiguration(), otherComponentNode).generateContextVariableReference(false);
 					String variableName = contextVariable + "." + "lock";
-					String outputVariable = variableAccessorFactory.create(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+					CharSequence outputVariable = variableAccessorFactory.create(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 					out.print(GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(context.getConfiguration()).getFastLockGenerator().generateLockCode(variableName));
 					out.printf("%s.data = %s;\n", contextVariable, outputVariable);
@@ -144,7 +143,7 @@ public class TaskGenerator implements ITaskGenerator {
 				
 				String taskName = taskGeneratorHelper.getTaskName(context.getConfiguration(), inputNode.getTaskGraph());
 				String qualifier = taskGeneratorHelper.getTaskContextVariable(context, taskName, false) + "." + "queue";
-				String outputVariable = variableAccessorFactory.create(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+				CharSequence outputVariable = variableAccessorFactory.create(context.getConfiguration(), componentNode).generateOutputVariableReference((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
 
 				DataFlowTargetEnd firstEnd = inputNode.getDrivenEnds().get(0);
 				if (firstEnd.getConnector() instanceof InputPort) {

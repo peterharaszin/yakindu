@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragmentCollector;
 import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 import org.eclipse.damos.mscript.interpreter.StaticFunctionInfo;
 
 /**
@@ -37,12 +38,12 @@ public class FunctionContextStructMember extends AbstractContextStructMember {
 		this.contextStruct = contextStruct;
 	}
 	
-	public static FunctionContextStructMember initialize(IMscriptGeneratorContext context, ComputeFunction newFunctionDefinition, StaticFunctionInfo newStaticFunctionInfo, StaticFunctionInfo oldStaticFunctionInfo) {
+	public static FunctionContextStructMember initialize(IMscriptGeneratorContext context, IContextStructFactory contextStructFactory, ComputeFunction newFunctionDefinition, StaticFunctionInfo newStaticFunctionInfo, StaticFunctionInfo oldStaticFunctionInfo) {
 		if (!newStaticFunctionInfo.getFunctionDescription().isStateful()) {
 			return null;
 		}
 		ICodeFragmentCollector codeFragmentCollector = context.getCodeFragmentCollector();
-		ContextStruct contextStruct = codeFragmentCollector.addCodeFragment(new ContextStruct(oldStaticFunctionInfo, false /* TODO */), new NullProgressMonitor());
+		ContextStruct contextStruct = codeFragmentCollector.addCodeFragment((ContextStruct) contextStructFactory.create(oldStaticFunctionInfo, null, false /* TODO */), new NullProgressMonitor());
 		String name = contextStruct.newUniqueName(newStaticFunctionInfo.getFunctionDescription().getDeclaration().getName() + "_context");
 		FunctionContextStructMember part = new FunctionContextStructMember(name, newFunctionDefinition.getContextStruct());
 		contextStruct.addMember(part);

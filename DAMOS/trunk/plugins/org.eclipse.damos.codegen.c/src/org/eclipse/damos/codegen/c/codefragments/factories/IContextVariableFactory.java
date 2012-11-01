@@ -14,10 +14,10 @@ package org.eclipse.damos.codegen.c.codefragments.factories;
 import org.eclipse.damos.codegen.c.codefragments.ContextVariable;
 import org.eclipse.damos.codegen.c.codefragments.factories.IContextVariableFactory.Default;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
-import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 
 import com.google.inject.ImplementedBy;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
@@ -30,15 +30,13 @@ public interface IContextVariableFactory {
 	
 	class Default implements IContextVariableFactory {
 
-		private final IContextStructFactory contextStructFactory;
-		
 		@Inject
-		Default(IContextStructFactory contextStructFactory) {
-			this.contextStructFactory = contextStructFactory;
-		}
+		private Injector injector;
 		
 		public ICodeFragment create() {
-			return new ContextVariable(contextStructFactory);
+			ContextVariable contextVariable = new ContextVariable();
+			injector.injectMembers(contextVariable);
+			return contextVariable;
 		}
 		
 	}

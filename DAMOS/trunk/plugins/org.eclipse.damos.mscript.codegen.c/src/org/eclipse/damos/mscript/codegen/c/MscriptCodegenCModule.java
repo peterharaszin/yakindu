@@ -11,8 +11,8 @@
 
 package org.eclipse.damos.mscript.codegen.c;
 
-import org.eclipse.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookup;
-import org.eclipse.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookup;
+import org.eclipse.damos.mscript.codegen.c.builtin.BuiltinFunctionGeneratorLookup;
+import org.eclipse.damos.mscript.codegen.c.builtin.IBuiltinFunctionGeneratorLookup;
 
 import com.google.inject.AbstractModule;
 

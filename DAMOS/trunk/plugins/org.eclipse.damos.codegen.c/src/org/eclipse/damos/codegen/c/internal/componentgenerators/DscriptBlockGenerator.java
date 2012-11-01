@@ -42,10 +42,12 @@ import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.IStatementGenerator;
 import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.MscriptGeneratorContext;
+import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
 import org.eclipse.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
 import org.eclipse.damos.mscript.codegen.c.codefragments.IContextStructMember;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory;
 import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.function.ComputationCompound;
@@ -88,6 +90,12 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 
 	@Inject
 	private IDefaultVariableAccessStrategyFactory defaultVariableAccessStrategyFactory;
+	
+	@Inject
+	private IContextStructFactory contextStructFactory;
+	
+	@Inject
+	private VariableDeclarationGenerator variableDeclarationGenerator;
 
 	private final IFunctionDefinitionTransformer functionDefinitionTransformer = new FunctionDefinitionTransformer();
 
@@ -161,7 +169,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		String prefix = GeneratorConfigurationExtensions.getPrefix(getConfiguration());
 		String typeName = prefix + getNode().getComponent().getName() + "_Context";
 		ContextStruct contextStructDeclaration = getContext().getCodeFragmentCollector().addCodeFragment(
-				new ContextStruct(topLevelFunctionInfo, typeName, true), new NullProgressMonitor());
+				(ContextStruct) contextStructFactory.create(topLevelFunctionInfo, typeName, true), new NullProgressMonitor());
 		
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleInterval(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		IContextStructMember functionContext = functionContextFactory.create(mscriptGeneratorContext);
@@ -188,7 +196,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleInterval(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		sb.append(statementGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound()));
 
-		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment(new ContextStruct(topLevelFunctionInfo, true), new NullProgressMonitor());
+		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment((ContextStruct) contextStructFactory.create(topLevelFunctionInfo, null, true), new NullProgressMonitor());
 		for (CharSequence s : newContextStruct.getInitializeCalls()) {
 			sb.append(s);
 		}
@@ -197,7 +205,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	}
 	
 	private void writeInitializeIndexStatements(PrintAppendable out, List<? extends VariableDeclaration> variableDeclarations) {
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		for (VariableDeclaration variableDeclaration : variableDeclarations) {
 			if (staticEvaluationResult.getCircularBufferSize(variableDeclaration) > 1) {
 				out.printf("%s.%s_index = 0;\n", contextVariable, variableDeclaration.getName());
@@ -238,11 +246,11 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 			}
 		}
 
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		for (OutputParameterDeclaration outputParameterDeclaration : functionInstance.getDeclaration().getOutputParameterDeclarations()) {
 			if (staticEvaluationResult.getCircularBufferSize(outputParameterDeclaration) > 1) {
 				String name = outputParameterDeclaration.getName();
-				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputParameterAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputParameterDeclaration));
+				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.generateOutputParameterAccess(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputParameterDeclaration));
 			}
 		}
 		return sb;
@@ -281,7 +289,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getOutputParameterDeclarations());
 		writeUpdateIndexStatements(out, functionInstance.getDeclaration().getStateVariableDeclarations());
 		
-		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment(new ContextStruct(topLevelFunctionInfo, true), new NullProgressMonitor());
+		final ContextStruct newContextStruct = getContext().getCodeFragmentCollector().addCodeFragment((ContextStruct) contextStructFactory.create(topLevelFunctionInfo, null, true), new NullProgressMonitor());
 		for (CharSequence s : newContextStruct.getUpdateCalls()) {
 			sb.append(s);
 		}
@@ -290,7 +298,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	}
 	
 	private void writeUpdateIndexStatements(PrintAppendable out, List<? extends VariableDeclaration> variableDeclarations) {
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		for (VariableDeclaration variableDeclaration : variableDeclarations) {
 			if (staticEvaluationResult.getCircularBufferSize(variableDeclaration) > 1) {
 				String name = variableDeclaration.getName();
@@ -301,7 +309,6 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	
 	private CharSequence writeInputVariables() {
 		StringBuilder sb = new StringBuilder();
-		PrintAppendable out = new PrintAppendable(sb);
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleInterval(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		
@@ -317,28 +324,28 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
 				String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
-				out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), arrayType, null));
-				out.print(" = { ");
-				boolean first = true;
+				sb.append(variableDeclarationGenerator.generateVariableDeclaration(mscriptGeneratorContext.getConfiguration(), getContext().getCodeFragmentCollector(), arrayType, variableName, false, null));
+				sb.append(";\n");
+				int index = 0;
 				for (InputPort inputPort : blockInput.getPorts()) {
-					if (first) {
-						first = false;
-					} else {
-						out.print(", ");
-					}
+					sb.append(variableName);
+					sb.append("[");
+					sb.append(index);
+					sb.append("] = ");
 					sb.append(castHelper.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType()));
+					sb.append(";\n");
+					++index;
 				}
-				out.println(" };");
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				Type inputDataType = getComponentSignature().getInputDataType(inputPort);
 				Type targetDataType = staticEvaluationResult.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					String variableName = StringExtensions.toFirstLower(getComponent().getName()) + "_" + blockInput.getDefinition().getName();
-					out.print(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), targetDataType, null));
-					out.print(" = ");
+					sb.append(dataTypeGenerator.generateDataType(mscriptGeneratorContext.getConfiguration(), variableName, getContext().getCodeFragmentCollector(), targetDataType, null));
+					sb.append(" = ");
 					sb.append(castHelper.cast(mscriptGeneratorContext.getConfiguration().getComputationModel(), getVariableAccessor().generateInputVariableReference(inputPort, false), inputDataType, targetDataType));
-					out.println(";");
+					sb.append(";\n");
 				}
 			}
 		}
@@ -346,9 +353,9 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	}
 
 	private void writeUpdateInputContextStatement(PrintAppendable out, InputParameterDeclaration inputParameterDeclaration) {
-		String contextVariable = getVariableAccessor().generateContextVariableReference(false);
+		CharSequence contextVariable = getVariableAccessor().generateContextVariableReference(false);
 		String name = inputParameterDeclaration.getName();
-		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputParameterAccessString(staticEvaluationResult, getComponent(), getComponentSignature(), getVariableAccessor(), inputParameterDeclaration));
+		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.generateInputParameterAccess(staticEvaluationResult, getComponent(), getComponentSignature(), getVariableAccessor(), inputParameterDeclaration));
 	}
 	
 	/**

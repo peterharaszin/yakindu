@@ -217,7 +217,7 @@ public class Generator extends AbstractGenerator {
 	 * @param context
 	 * @param monitor
 	 */
-	private void addCodeFragments(IGeneratorContext context, IProgressMonitor monitor) {
+	protected void addCodeFragments(IGeneratorContext context, IProgressMonitor monitor) {
 		if (!InternalGeneratorUtil.getInportNodes(context).isEmpty()) {
 			context.addCodeFragment(inputStructFactory.create(), monitor);
 		}
@@ -316,7 +316,7 @@ public class Generator extends AbstractGenerator {
 		return dataTypeResolverResult.getSignatures();
 	}
 	
-	private IGeneratorContext createContext(Configuration configuration, IProgressMonitor monitor) throws CoreException {
+	protected IGeneratorContext createContext(Configuration configuration, IProgressMonitor monitor) throws CoreException {
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCPlugin.PLUGIN_ID, "No root system specification found in configuration"));

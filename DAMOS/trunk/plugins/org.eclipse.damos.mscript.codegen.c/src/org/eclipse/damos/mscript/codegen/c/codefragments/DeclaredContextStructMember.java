@@ -22,15 +22,15 @@ import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
  */
 public class DeclaredContextStructMember extends AbstractContextStructMember {
 
-	private final String name;
+	private final String variableName;
 	private final String typeName;
 	private final ICodeFragment declarationCodeFragment;
 	
 	/**
 	 * 
 	 */
-	public DeclaredContextStructMember(String name, String typeName, ICodeFragment declarationCodeFragment) {
-		this.name = name;
+	public DeclaredContextStructMember(String variableName, String typeName, ICodeFragment declarationCodeFragment) {
+		this.variableName = variableName;
 		this.typeName = typeName;
 		this.declarationCodeFragment = declarationCodeFragment;
 	}
@@ -38,9 +38,23 @@ public class DeclaredContextStructMember extends AbstractContextStructMember {
 	public Collection<ICodeFragment> getDeclarationCodeFragments() {
 		return Collections.<ICodeFragment>singleton(declarationCodeFragment);
 	}
+
+	/**
+	 * @return the variableName
+	 */
+	public String getVariableName() {
+		return variableName;
+	}
+	
+	/**
+	 * @return the typeName
+	 */
+	public String getTypeName() {
+		return typeName;
+	}
 	
 	public CharSequence generate() {
-		return typeName + " " + name + ";\n";
+		return typeName + " " + variableName + ";\n";
 	}
-
+	
 }

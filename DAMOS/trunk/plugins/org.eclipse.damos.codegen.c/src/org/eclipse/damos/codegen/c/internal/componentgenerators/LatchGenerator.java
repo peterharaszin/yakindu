@@ -22,7 +22,7 @@ import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.codegen.c.DataTypeGenerator;
 import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
-import org.eclipse.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IDeclaredContextStructMemberFactory;
 
 import com.google.inject.Inject;
 
@@ -34,6 +34,9 @@ public class LatchGenerator extends AbstractComponentGenerator {
 
 	@Inject
 	private DataTypeGenerator dataTypeGenerator;
+	
+	@Inject
+	private IDeclaredContextStructMemberFactory declaredContextStructMemberFactory;
 
 	@Override
 	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
@@ -43,7 +46,7 @@ public class LatchGenerator extends AbstractComponentGenerator {
 		ICodeFragment declaration = new ContextStructDeclaration(typeName);
 		getContext().getCodeFragmentCollector().addCodeFragment(declaration, monitor);
 		
-		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, declaration));
+		contextStruct.addMember(declaredContextStructMemberFactory.create(prefix + getNode().getComponent().getName(), typeName, declaration));
 	}
 	
 	/* (non-Javadoc)

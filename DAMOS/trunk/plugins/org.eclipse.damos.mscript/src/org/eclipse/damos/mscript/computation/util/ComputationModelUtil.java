@@ -37,7 +37,7 @@ public class ComputationModelUtil {
 		floatingPointFormat.setKind(FloatingPointFormatKind.BINARY64);
 		
 		FixedPointFormat fixedPointFormat = ComputationFactory.eINSTANCE.createFixedPointFormat();
-		fixedPointFormat.setIntegerLength(64);
+		fixedPointFormat.setIntegerLength(32);
 		
 		NumberFormatMapping mapping = ComputationFactory.eINSTANCE.createNumberFormatMapping();
 		RealType realType = MscriptFactory.eINSTANCE.createRealType();

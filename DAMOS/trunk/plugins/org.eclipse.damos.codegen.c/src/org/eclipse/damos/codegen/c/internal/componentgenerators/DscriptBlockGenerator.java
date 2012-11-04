@@ -44,10 +44,10 @@ import org.eclipse.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipse.damos.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipse.damos.mscript.codegen.c.VariableDeclarationGenerator;
 import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
-import org.eclipse.damos.mscript.codegen.c.codefragments.DeclaredContextStructMember;
 import org.eclipse.damos.mscript.codegen.c.codefragments.IContextStructMember;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IComputeFunctionFactory;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IContextStructFactory;
+import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IDeclaredContextStructMemberFactory;
 import org.eclipse.damos.mscript.codegen.c.codefragments.factories.IFunctionContextFactory;
 import org.eclipse.damos.mscript.codegen.c.util.CastHelper;
 import org.eclipse.damos.mscript.function.ComputationCompound;
@@ -96,6 +96,9 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 	
 	@Inject
 	private VariableDeclarationGenerator variableDeclarationGenerator;
+	
+	@Inject
+	private IDeclaredContextStructMemberFactory declaredContextStructMemberFactory;
 
 	private final IFunctionDefinitionTransformer functionDefinitionTransformer = new FunctionDefinitionTransformer();
 
@@ -174,7 +177,7 @@ public class DscriptBlockGenerator extends AbstractBlockGenerator {
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(new MscriptGeneratorConfiguration(getComputationModel(), getConfiguration()), staticEvaluationResult.getFunctionInfo(FunctionCallPath.EMPTY), getNode().getSampleInterval(), getVariableAccessStrategy(), getContext().getCodeFragmentCollector());
 		IContextStructMember functionContext = functionContextFactory.create(mscriptGeneratorContext);
 		contextStructDeclaration.addMember(functionContext);
-		contextStruct.addMember(new DeclaredContextStructMember(prefix + getNode().getComponent().getName(), typeName, contextStructDeclaration));
+		contextStruct.addMember(declaredContextStructMemberFactory.create(prefix + getNode().getComponent().getName(), typeName, contextStructDeclaration));
 	}
 	
 	/* (non-Javadoc)

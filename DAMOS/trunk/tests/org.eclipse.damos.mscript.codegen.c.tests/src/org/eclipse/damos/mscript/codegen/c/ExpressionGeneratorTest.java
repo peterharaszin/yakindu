@@ -73,7 +73,7 @@ public class ExpressionGeneratorTest {
 
 	@Test
 	public void integerLiteral() {
-		assertEquals("INT64_C(100)", generate("100"));
+		assertEquals("INT32_C(100)", generate("100"));
 	}
 	
 	@Test

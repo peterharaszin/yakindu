@@ -18,7 +18,6 @@ import org.eclipse.damos.codegen.c.CodegenCPlugin;
 import org.eclipse.damos.codegen.c.providers.BlockGeneratorProvider;
 import org.eclipse.damos.codegen.c.providers.BlockGeneratorsExtensionPointPluginId;
 import org.eclipse.damos.common.registry.AbstractRegistryReader;
-import org.eclipse.damos.common.registry.IRegistryConstants;
 
 import com.google.inject.Inject;
 
@@ -70,11 +69,9 @@ public class BlockGeneratorRegistryReader extends AbstractRegistryReader {
 		}
 
 		String blockTypeQualifiedName = getRequiredAttribute(element, ATT_BLOCK_TYPE);
-		String className = getRequiredAttribute(element, IRegistryConstants.ATT_CLASS);
 		
 		BlockGeneratorDescriptor descriptor = new BlockGeneratorDescriptor();
 		descriptor.setBlockTypeQualifiedName(blockTypeQualifiedName);
-		descriptor.setClassName(className);
 		descriptor.setConfigurationElement(element);
 		provider.register(descriptor);
 

@@ -22,43 +22,44 @@ import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.BlockType;
 import org.eclipse.damos.execution.ComponentNode;
 
+import com.google.inject.Inject;
+
 /**
  * @author Andreas Unger
  *
  */
 public class BlockGeneratorProvider implements IComponentGeneratorProvider {
 
-	private Map<String, BlockGeneratorDescriptor> descriptors = new HashMap<String, BlockGeneratorDescriptor>();
-	
-	/**
-	 * 
-	 */
-	public BlockGeneratorProvider() {
-		initializeFromStorage();
-	}
+	@Inject
+	private BlockGeneratorRegistryReader registryReader;
 
+	private Map<String, BlockGeneratorDescriptor> descriptors;
+	
 	public IComponentGenerator createGenerator(ComponentNode node) {
 		if (node.getComponent() instanceof Block) {
 			BlockType blockType = ((Block) node.getComponent()).getType();
-			BlockGeneratorDescriptor descriptor = descriptors.get(blockType.getQualifiedName());
+			BlockGeneratorDescriptor descriptor = getDescriptors().get(blockType.getQualifiedName());
 			if (descriptor != null) {
-				return descriptor.createObject();
+				return descriptor.createGenerator();
 			}
 		}
 		return null;
 	}
 	
 	public void register(BlockGeneratorDescriptor descriptor) {
-		descriptors.put(descriptor.getBlockTypeQualifiedName(), descriptor);
+		getDescriptors().put(descriptor.getBlockTypeQualifiedName(), descriptor);
 	}
 	
 	public void unregister(BlockGeneratorDescriptor descriptor) {
-		descriptors.remove(descriptor.getBlockTypeQualifiedName());
+		getDescriptors().remove(descriptor.getBlockTypeQualifiedName());
 	}
-
-	private void initializeFromStorage() {
-		BlockGeneratorRegistryReader reader = new BlockGeneratorRegistryReader();
-		reader.registerDescriptors(this);
+	
+	private Map<String, BlockGeneratorDescriptor> getDescriptors() {
+		if (descriptors == null) {
+			descriptors = new HashMap<String, BlockGeneratorDescriptor>();
+			registryReader.registerDescriptors(this);
+		}
+		return descriptors;
 	}
 
 }

@@ -1,12 +1,12 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2002-2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Andreas Unger - initial API and implementation 
+ *    IBM - initial API and implementation 
  ****************************************************************************/
 
 package org.eclipse.damos.common.util;
@@ -25,28 +25,6 @@ public class NameUtil {
 		return format(capName(name), ' ');
 	}
 	
-	/* 
-	 * The methods capName(String), format(String, separator), and parseName(String, char)
-	 * have been copied from org.eclipse.emf.edit.provider.ReflectiveItemProvider
-	 */
-	
-	/*
-	 * <copyright> 
-	 *
-	 * Copyright (c) 2002-2007 IBM Corporation and others.
-	 * All rights reserved.   This program and the accompanying materials
-	 * are made available under the terms of the Eclipse Public License v1.0
-	 * which accompanies this distribution, and is available at
-	 * http://www.eclipse.org/legal/epl-v10.html
-	 * 
-	 * Contributors: 
-	 *   IBM - Initial API and implementation
-	 *
-	 * </copyright>
-	 *
-	 * $Id: ReflectiveItemProvider.java,v 1.22 2008/05/25 17:27:40 emerks Exp $
-	 */
-
 	private static String capName(String name) {
 		return name.length() == 0 ? name : name.substring(0, 1).toUpperCase() + name.substring(1);
 	}

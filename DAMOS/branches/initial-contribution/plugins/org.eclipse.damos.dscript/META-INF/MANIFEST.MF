@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Dscript
+Bundle-Vendor: Damos Project
+Bundle-Version: 0.4.0.qualifier
+Bundle-SymbolicName: org.eclipse.damos.dscript;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
+ org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.damos.dml;bundle-version="0.3.0",
+ org.eclipse.xtext.util;bundle-version="2.3.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.eclipse.damos.mscript;bundle-version="0.3.0"
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.damos.dscript,
+ org.eclipse.damos.dscript.formatting,
+ org.eclipse.damos.dscript.parseTreeConstruction,
+ org.eclipse.damos.dscript.parser.antlr,
+ org.eclipse.damos.dscript.parser.antlr.internal,
+ org.eclipse.damos.dscript.resource,
+ org.eclipse.damos.dscript.scoping,
+ org.eclipse.damos.dscript.services,
+ org.eclipse.damos.dscript.util,
+ org.eclipse.damos.dscript.validation
+

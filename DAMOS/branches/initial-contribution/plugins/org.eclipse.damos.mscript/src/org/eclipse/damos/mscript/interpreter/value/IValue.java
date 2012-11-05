@@ -1,0 +1,44 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.mscript.interpreter.value;
+
+import org.eclipse.damos.mscript.Type;
+
+/**
+ * @author Andreas Unger
+ *
+ * @noextend
+ * @noimplement
+ */
+public interface IValue {
+	
+	Type getDataType();
+	
+	IValue convert(Type type);
+
+	IValue add(IValue other);
+	IValue subtract(IValue other);
+	IValue multiply(IValue other);
+	IValue divide(IValue other);
+	IValue elementWiseMultiply(IValue other);
+	IValue elementWiseDivide(IValue other);
+	IValue modulo(IValue other);
+	IValue negate();
+	IValue power(IValue other);
+	IValue lessThan(IValue other);
+	IValue lessThanOrEqualTo(IValue other);
+	IValue greaterThan(IValue other);
+	IValue greaterThanOrEqualTo(IValue other);
+	IValue equalTo(IValue other);
+	IValue notEqualTo(IValue other);
+	
+}

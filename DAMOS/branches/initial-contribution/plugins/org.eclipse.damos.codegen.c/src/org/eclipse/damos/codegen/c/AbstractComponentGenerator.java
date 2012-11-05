@@ -1,0 +1,157 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.codegen.c;
+
+import java.util.Collection;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.damos.codegen.c.rte.IRuntimeEnvironmentAPI;
+import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
+import org.eclipse.damos.dconfig.Configuration;
+import org.eclipse.damos.dml.Component;
+import org.eclipse.damos.execution.ComponentNode;
+import org.eclipse.damos.execution.datatype.IComponentSignature;
+import org.eclipse.damos.mscript.codegen.c.Include;
+import org.eclipse.damos.mscript.codegen.c.codefragments.ContextStruct;
+import org.eclipse.damos.mscript.computation.ComputationModel;
+import org.eclipse.damos.mscript.computation.util.ComputationModelUtil;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public abstract class AbstractComponentGenerator implements IComponentGenerator {
+
+	private IComponentGeneratorContext context;
+	
+	private ComputationModel cachedComputationModel;
+	
+	private IRuntimeEnvironmentAPI cachedRuntimeEnvironmentAPI;
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#initialize()
+	 */
+	public void initialize(IComponentGeneratorContext context, IProgressMonitor monitor) throws CoreException {
+		this.context = context;
+		initialize(monitor);
+	}
+	
+	protected void initialize(IProgressMonitor monitor) throws CoreException {
+	}
+	
+	/**
+	 * @return the context
+	 */
+	public IComponentGeneratorContext getContext() {
+		return context;
+	}
+	
+	public void addContextStructMembers(ContextStruct contextStruct, IProgressMonitor monitor) {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#contributesInitializationCode()
+	 */
+	public boolean contributesInitializationCode() {
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#getInitializationCodeIncludes()
+	 */
+	public Collection<Include> getInitializationCodeIncludes() {
+		return getImplementationIncludes();
+	}
+	
+	public CharSequence generateInitializationCode(IProgressMonitor monitor) {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#contributesComputeOutputsCode()
+	 */
+	public boolean contributesComputeOutputsCode() {
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#getComputeOutputsCodeIncludes()
+	 */
+	public Collection<Include> getComputeOutputsCodeIncludes() {
+		return getImplementationIncludes();
+	}
+	
+	public CharSequence generateComputeOutputsCode(IProgressMonitor monitor) {
+		return "";
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#contributesUpdateCode()
+	 */
+	public boolean contributesUpdateCode() {
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.damos.codegen.c.IComponentGenerator#getUpdateCodeIncludes()
+	 */
+	public Collection<Include> getUpdateCodeIncludes() {
+		return getImplementationIncludes();
+	}
+	
+	public CharSequence generateUpdateCode(IProgressMonitor monitor) {
+		return "";
+	}
+	
+	protected Collection<Include> getImplementationIncludes() {
+		return null;
+	}
+	
+	protected final ComponentNode getNode() {
+		return context.getNode();
+	}
+
+	protected Component getComponent() {
+		return getNode().getComponent();
+	}
+
+	protected final IComponentSignature getComponentSignature() {
+		return context.getComponentSignature();
+	}
+	
+	protected final IVariableAccessor getVariableAccessor() {
+		return context.getVariableAccessor();
+	}
+
+	protected final Configuration getConfiguration() {
+		return context.getConfiguration();
+	}
+	
+	protected final ComputationModel getComputationModel() {
+		if (cachedComputationModel == null) {
+			cachedComputationModel = getConfiguration().getComputationModel(getNode().getSystemPath());
+			if (cachedComputationModel == null) {
+				cachedComputationModel = ComputationModelUtil.constructDefaultComputationModel();
+			}
+		}
+		return cachedComputationModel;
+	}
+	
+	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI() {
+		if (cachedRuntimeEnvironmentAPI == null) {
+			cachedRuntimeEnvironmentAPI = GeneratorConfigurationExtensions.getRuntimeEnvironmentAPI(getConfiguration());
+		}
+		return cachedRuntimeEnvironmentAPI;
+	}
+
+}

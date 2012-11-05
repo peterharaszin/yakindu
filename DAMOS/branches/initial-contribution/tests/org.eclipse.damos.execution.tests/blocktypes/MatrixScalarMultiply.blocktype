@@ -1,0 +1,20 @@
+package damos.tests
+
+blockType MatrixScalarMultiply {
+
+	input x
+	output y
+
+	behavior {
+		check(real[3, 2]) -> real[3, 2]
+
+		static assert x is real(?)[,] :
+			error "X must be real[,] value"
+			
+		const gain1 = 7
+		const gain2 = 1.7
+
+		eq y = gain1 * x * gain2
+	}
+
+}

@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Common
+Bundle-SymbolicName: org.eclipse.damos.common;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-Vendor: Damos Project
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.google.inject;bundle-version="3.0.0",
+ org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.eclipse.core.resources;bundle-version="3.5.2",
+ org.eclipse.emf.ecore;bundle-version="2.5.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0"
+Export-Package: org.eclipse.damos.common.ecore.util,
+ org.eclipse.damos.common.inject,
+ org.eclipse.damos.common.markers,
+ org.eclipse.damos.common.registry,
+ org.eclipse.damos.common.util
+Bundle-ClassPath: .

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.damos.ide.ui.damosCategory"
+            class="org.eclipse.damos.codegen.c.ui.internal.wizards.NewCodegenConfigurationCreationWizard"
+            icon="icons/NewCodegenConfiguration.png"
+            id="org.eclipse.damos.codegen.c.ui.newCodegenConfigurationCreationWizard"
+            name="C Code Generator Configuration">
+      </wizard>
+   </extension>
+
+</plugin>

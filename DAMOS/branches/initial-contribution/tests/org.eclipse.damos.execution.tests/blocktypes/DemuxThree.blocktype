@@ -1,0 +1,21 @@
+package damos.tests
+
+blockType DemuxThree {
+
+	input x
+	output a
+	output b
+	output c
+
+	behavior {
+		check(real[3]) -> real, real, real
+
+		static assert x is real(?)[] :
+			error "X must be real array"
+
+		eq a = x[0]
+		eq b = x[1]
+		eq c = x[2]
+	}
+
+}

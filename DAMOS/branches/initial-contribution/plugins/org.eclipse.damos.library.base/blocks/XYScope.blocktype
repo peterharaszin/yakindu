@@ -1,0 +1,10 @@
+package damos.blocks
+
+blockType XYScope {
+
+	input x
+	input y[1..*]
+	
+	parameter dataPointLimit = 20000
+
+}

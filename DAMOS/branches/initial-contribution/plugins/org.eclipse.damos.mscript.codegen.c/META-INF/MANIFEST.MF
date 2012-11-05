@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mscript Codegen C
+Bundle-SymbolicName: org.eclipse.damos.mscript.codegen.c
+Bundle-Version: 0.4.0.qualifier
+Bundle-Activator: org.eclipse.damos.mscript.codegen.c.CodegenCPlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ com.google.guava,
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.damos.mscript;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.damos.mscript.codegen.c,
+ org.eclipse.damos.mscript.codegen.c.codefragments,
+ org.eclipse.damos.mscript.codegen.c.codefragments.factories,
+ org.eclipse.damos.mscript.codegen.c.datatype,
+ org.eclipse.damos.mscript.codegen.c.util
+

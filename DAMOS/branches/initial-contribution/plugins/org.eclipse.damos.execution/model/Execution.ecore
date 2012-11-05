@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="execution" nsURI="http://www.eclipse.org/damos/2011/Execution"
+    nsPrefix="execution">
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionFlow">
+    <eOperations name="getAllNodesIterator" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="#//Iterable">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlows" ordered="false"
+        upperBound="-1" eType="#//DataFlow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronousZoneCount"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskGraphs" upperBound="-1"
+        eType="#//TaskGraph" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fundamentalSampleInterval"
+        eType="#//ISampleInterval"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Graph">
+    <eOperations name="getAllNodesIterator" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="#//Iterable">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//Node" containment="true" eOpposite="#//Node/graph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialNodes" upperBound="-1"
+        eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+        eType="#//Edge" containment="true" eOpposite="#//Edge/graph"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true">
+    <eOperations name="getIncomingDataFlow" ordered="false" lowerBound="1" eType="#//DataFlowTargetEnd">
+      <eParameters name="target" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//InputConnector"/>
+    </eOperations>
+    <eOperations name="getOutgoingDataFlow" ordered="false" lowerBound="1" eType="#//DataFlowSourceEnd">
+      <eParameters name="source" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//OutputConnector"/>
+    </eOperations>
+    <eOperations name="getDrivingNodes" upperBound="-1" eType="#//Node"/>
+    <eOperations name="getDrivenNodes" upperBound="-1" eType="#//Node"/>
+    <eOperations name="getDrivingEnds" upperBound="-1" eType="#//DataFlowSourceEnd"/>
+    <eOperations name="getDrivenEnds" upperBound="-1" eType="#//DataFlowTargetEnd"/>
+    <eOperations name="isEnclosedBy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="graph" lowerBound="1" eType="#//Graph"/>
+    </eOperations>
+    <eOperations name="getSystemPath" eType="#//SystemPath"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
+        eOpposite="#//Graph/nodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingEdges" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingEdges" upperBound="-1"
+        eType="#//Edge" eOpposite="#//Edge/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDataFlows" upperBound="-1"
+        eType="#//DataFlowTargetEnd" eOpposite="#//DataFlowTargetEnd/node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDataFlows" upperBound="-1"
+        eType="#//DataFlowSourceEnd" eOpposite="#//DataFlowSourceEnd/node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingSubsystems" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Subsystem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subgraph" abstract="true" eSuperTypes="#//Graph #//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentNode" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleInterval" lowerBound="1"
+        eType="#//ISampleInterval"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronousZone" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LatchNode" eSuperTypes="#//ComponentNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskNodes" upperBound="-1"
+        eType="#//TaskGraph" eOpposite="#//TaskGraph/latchNodes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundNode" eSuperTypes="#//Subgraph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Compound"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionNode" eSuperTypes="#//CompoundNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="choiceNode" eType="#//ComponentNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemNode" eSuperTypes="#//Subgraph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Subsystem"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskGraph" eSuperTypes="#//Graph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputNodes" upperBound="-1"
+        eType="#//TaskInputNode" containment="true" eOpposite="#//TaskInputNode/taskGraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="latchNodes" upperBound="-1"
+        eType="#//LatchNode" eOpposite="#//LatchNode/taskNodes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskInputNode" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskGraph" lowerBound="1"
+        eType="#//TaskGraph" eOpposite="#//TaskGraph/inputNodes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
+        eOpposite="#//Graph/edges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        lowerBound="1" eType="#//Node" eOpposite="#//Node/outgoingEdges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" eType="#//Node" eOpposite="#//Node/incomingEdges"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataFlow">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetEnds" lowerBound="1"
+        upperBound="-1" eType="#//DataFlowTargetEnd" containment="true" eOpposite="#//DataFlowTargetEnd/dataFlow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEnd" ordered="false"
+        lowerBound="1" eType="#//DataFlowSourceEnd" containment="true" eOpposite="#//DataFlowSourceEnd/dataFlow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataFlowEnd" abstract="true">
+    <eOperations name="getNode" lowerBound="1" eType="#//Node"/>
+    <eOperations name="getDataFlow" lowerBound="1" eType="#//DataFlow"/>
+    <eOperations name="getConnector" eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//Connector"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectorInfo" eType="#//ConnectorInfo"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataFlowSourceEnd" eSuperTypes="#//DataFlowEnd">
+    <eOperations name="getTargetEnds" lowerBound="1" upperBound="-1" eType="#//DataFlowTargetEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" ordered="false" lowerBound="1"
+        eType="#//Node" eOpposite="#//Node/outgoingDataFlows"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlow" ordered="false"
+        lowerBound="1" eType="#//DataFlow" eOpposite="#//DataFlow/sourceEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connector" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//OutputConnector"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataFlowTargetEnd" eSuperTypes="#//DataFlowEnd">
+    <eOperations name="getSourceEnd" lowerBound="1" eType="#//DataFlowSourceEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" ordered="false" lowerBound="1"
+        eType="#//Node" eOpposite="#//Node/incomingDataFlows"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlow" ordered="false"
+        lowerBound="1" eType="#//DataFlow" eOpposite="#//DataFlow/targetEnds"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connector" ordered="false"
+        eType="ecore:EClass ../../org.eclipse.damos.dml/model/DML.ecore#//InputConnector"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectorInfo" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PortInfo" eSuperTypes="#//ConnectorInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inoutputIndex" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="portIndex" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ISampleInterval" instanceClassName="org.eclipse.damos.mscript.util.ISampleInterval"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="SystemPath" instanceClassName="org.eclipse.damos.dml.util.SystemPath"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Iterable" instanceClassName="java.lang.Iterable">
+    <eTypeParameters name="E"/>
+  </eClassifiers>
+</ecore:EPackage>

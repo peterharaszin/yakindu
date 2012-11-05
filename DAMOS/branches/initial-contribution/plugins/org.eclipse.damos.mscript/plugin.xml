@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="http://www.eclipse.org/damos/mscript/library/"
+            target="platform:/plugin/org.eclipse.damos.mscript/library/">
+      </mapping>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/damos/mscript/2011/Mscript"
+            class="org.eclipse.damos.mscript.MscriptPackage"
+            genModel="model/Mscript.genmodel"/>
+      <package
+            class="org.eclipse.damos.mscript.computation.ComputationPackage"
+            genModel="model/Computation.genmodel"
+            uri="http://www.eclipse.org/damos/mscript/2011/ComputationModel">
+      </package>
+   </extension>
+
+</plugin>

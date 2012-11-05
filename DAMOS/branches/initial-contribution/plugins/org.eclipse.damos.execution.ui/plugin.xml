@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.damos.ide.ui.damos"
+            class="org.eclipse.damos.execution.ui.parts.ExecutionFlowView"
+            icon="icons/FragmentExplorer.png"
+            id="org.eclipse.damos.execution.ui.executionFlowView"
+            name="Execution Flow"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>

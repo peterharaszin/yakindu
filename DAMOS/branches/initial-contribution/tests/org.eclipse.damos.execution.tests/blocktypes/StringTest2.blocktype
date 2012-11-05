@@ -1,0 +1,32 @@
+package damos.tests
+
+blockType StringTest2 {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	behavior {
+		check(string, string) -> string, string
+
+		static assert a is string :
+			error "A must be string"
+
+		static assert b is string :
+			error "B must be string"
+
+		eq y1 = "BOF" + """
+			<code>
+				«a»
+				<code/>
+				«b»
+			</code>
+		"""
+		eq y2 = """
+			<code>
+				«a»«b»</code>
+		""" + "EOF"
+	}
+
+}

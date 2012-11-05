@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipse.damos.rte/dconfig/RTE.xmi">
+      </resource>
+   </extension>
+
+</plugin>

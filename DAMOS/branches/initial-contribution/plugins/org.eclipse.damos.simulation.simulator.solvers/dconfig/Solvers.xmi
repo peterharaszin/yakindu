@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" xmlns:mscript="http://www.eclipse.org/damos/mscript/2011/Mscript" packageName="damos.simulation.solvers">
+  <members xsi:type="dconfig:SelectionPropertyOption" name="ClassicalRungeKutta">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="stepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <target href="../../org.eclipse.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
+  </members>
+  <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince54">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="maximumStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="initialStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="absoluteTolerance">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="relativeTolerance">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <target href="../../org.eclipse.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
+  </members>
+  <members xsi:type="dconfig:SelectionPropertyOption" name="DormandPrince853">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="minimumStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="maximumStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="initialStepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="absoluteTolerance">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="relativeTolerance">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <target href="../../org.eclipse.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
+  </members>
+  <members xsi:type="dconfig:SelectionPropertyOption" name="Euler">
+  <propertyDeclarations xsi:type="dconfig:SimplePropertyDeclaration" name="stepSize">
+    <typeSpecifier xsi:type="mscript:AnonymousTypeSpecifier">
+      <type xsi:type="mscript:RealType">
+        <unit>
+          <factors>
+            <symbol href="http://www.eclipse.org/damos/mscript/library/mscript_lang_units.mscript#//@declarations.2/@symbols.0"/>
+          </factors>
+        </unit>
+      </type>
+    </typeSpecifier>
+  </propertyDeclarations>
+  <target href="../../org.eclipse.damos.simulation/dconfig/Simulation.xmi#//@members.1"/>
+  </members>
+</dconfig:ConfigurationDefinition>

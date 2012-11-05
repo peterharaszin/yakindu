@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="blockImages" name="Block Images" schema="schema/blockImages.exsd"/>
+   <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
+   <extension-point id="parameterEditPaneProviders" name="Parameter Edit Pane Providers" schema="schema/parameterEditPaneProviders.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.damos.dml.ui.internal.parts.DMLEditor"
+            contributorClass="org.eclipse.damos.dml.ui.internal.parts.DMLActionBarContributor"
+            extensions="dml"
+            icon="icons/full/obj16/DMLModelFile.gif"
+            id="org.eclipse.damos.dml.ui.dmlModelEditor"
+            name="%_UI_DMLEditor_label">
+      </editor>
+   </extension>
+
+</plugin>

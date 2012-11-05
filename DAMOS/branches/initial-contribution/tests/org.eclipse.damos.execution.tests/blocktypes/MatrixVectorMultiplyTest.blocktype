@@ -1,0 +1,21 @@
+package damos.tests
+
+blockType MatrixVectorMultiplyTest {
+
+	input a
+	input b
+	output y
+	
+	behavior {
+		check(int, int) -> real[3]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y = { { a, 5.1 }, { 7, 8 }, { 9, 10 } } * { 2, b }
+	}
+
+}

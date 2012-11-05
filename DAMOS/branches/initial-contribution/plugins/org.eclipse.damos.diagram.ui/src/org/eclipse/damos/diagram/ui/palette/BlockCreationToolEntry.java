@@ -1,0 +1,38 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.diagram.ui.palette;
+
+import org.eclipse.damos.diagram.ui.tools.BlockCreationTool;
+import org.eclipse.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipse.gef.Tool;
+import org.eclipse.ui.IEditorPart;
+
+/**
+ * @author Andreas Unger
+ * 
+ */
+public class BlockCreationToolEntry extends ComponentCreationToolEntry {
+
+	private IBlockTypeDescriptor blockTypeDescriptor;
+
+	public BlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockTypeDescriptor) {
+		super(editor, blockTypeDescriptor.getName(), "Create " + blockTypeDescriptor.getName() + " block");
+		this.blockTypeDescriptor = blockTypeDescriptor;
+	}
+
+	public Tool createTool() {
+		Tool tool = new BlockCreationTool(getEditingDomain(), blockTypeDescriptor);
+		tool.setProperties(getToolProperties());
+		return tool;
+	}
+
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Damos">
+      Damos Project update site.
+   </description>
+   <feature url="features/org.eclipse.damos_0.4.0.qualifier.jar" id="org.eclipse.damos" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <feature url="features/org.eclipse.damos.simulation_0.4.0.qualifier.jar" id="org.eclipse.damos.simulation" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <feature url="features/org.eclipse.damos.codegen.c_0.4.0.qualifier.jar" id="org.eclipse.damos.codegen.c" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <feature url="features/org.eclipse.damos.library_0.4.0.qualifier.jar" id="org.eclipse.damos.library" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <feature url="features/org.eclipse.damos.library.simulation_0.4.0.qualifier.jar" id="org.eclipse.damos.library.simulation" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <feature url="features/org.eclipse.damos.mscript_0.4.0.qualifier.jar" id="org.eclipse.damos.mscript" version="0.4.0.qualifier">
+      <category name="Damos"/>
+   </feature>
+   <category-def name="Damos" label="Damos"/>
+</site>

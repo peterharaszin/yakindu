@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dconfig:ConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dconfig="http://www.eclipse.org/damos/2011/Dconfig" packageName="damos.rte.runtimes">
+  <members xsi:type="dconfig:SelectionPropertyOption" name="Posix">
+    <target href="../../org.eclipse.damos.rte/dconfig/RTE.xmi#//@members.0"/>
+  </members>
+</dconfig:ConfigurationDefinition>

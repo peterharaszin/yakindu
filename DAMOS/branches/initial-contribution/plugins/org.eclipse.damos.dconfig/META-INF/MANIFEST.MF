@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Dconfig
+Bundle-SymbolicName: org.eclipse.damos.dconfig;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-Vendor: Damos Project
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.emf.mwe2.launch;bundle-version="2.0.0",
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.eclipse.xtext.util;bundle-version="2.3.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.damos.dml;bundle-version="0.3.0",
+ org.eclipse.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.xtext
+Export-Package: org.eclipse.damos.dconfig,
+ org.eclipse.damos.dconfig.formatting,
+ org.eclipse.damos.dconfig.parseTreeConstruction,
+ org.eclipse.damos.dconfig.parser.antlr,
+ org.eclipse.damos.dconfig.parser.antlr.internal,
+ org.eclipse.damos.dconfig.scoping,
+ org.eclipse.damos.dconfig.services,
+ org.eclipse.damos.dconfig.util,
+ org.eclipse.damos.dconfig.validation
+Import-Package: org.apache.log4j
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.damos.dconfig.internal.DconfigPlugin

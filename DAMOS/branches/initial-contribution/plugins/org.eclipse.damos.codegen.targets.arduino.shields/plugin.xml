@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipse.damos.codegen.targets.arduino.shields/dconfig/Shields.xmi">
+      </resource>
+   </extension>
+   <extension
+         point="org.eclipse.damos.codegen.targets.arduino.shieldGenerators">
+      <generator
+            class="org.eclipse.damos.codegen.targets.arduino.shields.SevenSegmentDisplayDemoShieldGenerator"
+            shield="damos.codegen.targets.arduino.shields.SevenSegmentDisplayDemo">
+      </generator>
+      <generator
+            class="org.eclipse.damos.codegen.targets.arduino.shields.MotorShieldGenerator"
+            shield="damos.codegen.targets.arduino.shields.Motor">
+      </generator>
+   </extension>
+
+</plugin>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dml" nsURI="http://www.eclipse.org/damos/2011/DML" nsPrefix="dml">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement #//QualifiedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="WellFormedName UniqueComponentNames"/>
+    </eAnnotations>
+    <eOperations name="getChildren" ordered="false" upperBound="-1" eType="#//Fragment"/>
+    <eOperations name="getAllFragmentElements" ordered="false" upperBound="-1" eType="#//FragmentElement"/>
+    <eOperations name="getAllComponents" ordered="false" upperBound="-1" eType="#//Component"/>
+    <eOperations name="getAllConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" ordered="false"
+        upperBound="-1" eType="#//Component" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentElements" ordered="false"
+        upperBound="-1" eType="#//FragmentElement" containment="true" eOpposite="#//FragmentElement/owningFragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" ordered="false"
+        upperBound="-1" eType="#//Connection" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
+        eType="#//Fragment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember #//INamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="WellFormedName"/>
+    </eAnnotations>
+    <eOperations name="getInput" ordered="false" eType="#//Input">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getOutput" ordered="false" eType="#//Output">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getInputPorts" upperBound="-1" eType="#//InputPort"/>
+    <eOperations name="getOutputPorts" upperBound="-1" eType="#//OutputPort"/>
+    <eOperations name="getFirstInputPort" ordered="false" lowerBound="1" eType="#//InputPort"/>
+    <eOperations name="getFirstInputPort" ordered="false" lowerBound="1" eType="#//InputPort">
+      <eParameters name="inputName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getFirstOutputPort" ordered="false" lowerBound="1" eType="#//OutputPort"/>
+    <eOperations name="getFirstOutputPort" ordered="false" lowerBound="1" eType="#//OutputPort">
+      <eParameters name="outputName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getPrimaryInputPorts" upperBound="-1" eType="#//InputPort"/>
+    <eOperations name="getPrimaryOutputPorts" upperBound="-1" eType="#//OutputPort"/>
+    <eOperations name="getInputSockets" upperBound="-1" eType="#//Input"/>
+    <eOperations name="getOutputSockets" upperBound="-1" eType="#//Output"/>
+    <eOperations name="isSource" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="isSink" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="isTimingConstraintApplicable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="eClass" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="isBoundary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="#//Input" containment="true" eOpposite="#//Input/component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
+        eType="#//Output" containment="true" eOpposite="#//Output/component"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timingConstraint" eType="#//TimingConstraint"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimingConstraint" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContinuousTimingConstraint" eSuperTypes="#//TimingConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SynchronousTimingConstraint" eSuperTypes="#//TimingConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sampleInterval" lowerBound="1"
+        eType="#//ValueSpecification" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsynchronousTimingConstraint" eSuperTypes="#//TimingConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eOperations name="getEnclosingFragment" lowerBound="1" eType="#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningFragment" ordered="false"
+        eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//FragmentElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidCompoundConnection"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        lowerBound="1" eType="#//OutputConnector"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" eType="#//InputConnector"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true">
+    <eOperations name="getConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
+    <eOperations name="getConnections" ordered="false" upperBound="-1" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+    <eOperations name="getFirstConnection" ordered="false" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputConnector" abstract="true" eSuperTypes="#//Connector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputConnector" abstract="true" eSuperTypes="#//Connector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true" eSuperTypes="#//INamedElement">
+    <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="canAddPort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="canRemovePort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="createPort" lowerBound="1" eType="#//Port"/>
+    <eOperations name="isTestPoint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="isSocket" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//Inoutput">
+    <eOperations name="isDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//InputPort" containment="true" eOpposite="#//InputPort/input"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
+        lowerBound="1" eType="#//Component" eOpposite="#//Component/inputs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//Inoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
+        lowerBound="1" eType="#//Component" eOpposite="#//Component/outputs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//OutputPort" containment="true" eOpposite="#//OutputPort/output"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true" eSuperTypes="#//Connector">
+    <eOperations name="getIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="getComponent" ordered="false" lowerBound="1" eType="#//Component"/>
+    <eOperations name="getInoutput" lowerBound="1" eType="#//Inoutput"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//Port #//InputConnector">
+    <eOperations name="getIncomingConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
+    <eOperations name="getIncomingConnection" ordered="false" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+        lowerBound="1" eType="#//Input" eOpposite="#//Input/ports"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputPort" eSuperTypes="#//Port #//OutputConnector">
+    <eOperations name="getOutgoingConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
+    <eOperations name="getOutgoingConnections" ordered="false" upperBound="-1" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+        lowerBound="1" eType="#//Output" eOpposite="#//Output/ports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
+        eType="#//SignalSpecification" unsettable="true" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SignalSpecification" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockInoutput" abstract="true" eSuperTypes="#//Inoutput">
+    <eOperations name="getDefinition" lowerBound="1" eType="#//InoutputDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockInput" eSuperTypes="#//Input #//BlockInoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+        lowerBound="1" eType="#//InputDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockOutput" eSuperTypes="#//Output #//BlockInoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+        lowerBound="1" eType="#//OutputDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InoutputDefinition" abstract="true"
+      eSuperTypes="#//ParameterableElement #//INamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumPortCount" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumPortCount" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultPortCount" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="manyPorts" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testPoint" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="socket" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
+        eType="#//DataTypeSpecification" unsettable="true" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputDefinition" eSuperTypes="#//InoutputDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directFeedthroughPolicy"
+        ordered="false" eType="#//DirectFeedthroughPolicy" containment="true" eOpposite="#//DirectFeedthroughPolicy/inputDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputDefinition" eSuperTypes="#//InoutputDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterableElement" abstract="true">
+    <eOperations name="getParameter" ordered="false" eType="#//Parameter">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//INamedElement">
+    <eOperations name="getDefaultValue" ordered="false" eType="#//ValueSpecification"/>
+    <eOperations name="getPredefinedValue" ordered="false" eType="#//ParameterPredefinedValue">
+      <eParameters name="stringValue" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getPredefinedValueByAlias" ordered="false" eType="#//ParameterPredefinedValue">
+      <eParameters name="alias" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="#//DataTypeSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//ParameterVisibilityKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefaultValue" eType="#//ValueSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predefinedValues" upperBound="-1"
+        eType="#//ParameterPredefinedValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterPredefinedValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ValueSpecification"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterVisibilityKind">
+    <eLiterals name="Public"/>
+    <eLiterals name="Private" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true">
+    <eOperations name="stringValue" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="copy" lowerBound="1" eType="#//ValueSpecification"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralValueSpecification" abstract="true"
+      eSuperTypes="#//ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringValueSpecification" eSuperTypes="#//LiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecification" abstract="true">
+    <eOperations name="copy" lowerBound="1" eType="#//DataTypeSpecification"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeSpecification" eSuperTypes="#//DataTypeSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//PrimitiveTypeKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveTypeKind">
+    <eLiterals name="String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DirectFeedthroughPolicy" abstract="true">
+    <eOperations name="computeDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputDefinition" ordered="false"
+        lowerBound="1" eType="#//InputDefinition" eOpposite="#//InputDefinition/directFeedthroughPolicy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterizedElement" abstract="true">
+    <eOperations name="getArgument" ordered="false" eType="#//Argument">
+      <eParameters name="parameter" ordered="false" lowerBound="1" eType="#//Parameter"/>
+    </eOperations>
+    <eOperations name="getArgument" ordered="false" eType="#//Argument">
+      <eParameters name="parameterName" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getArgumentStringValue" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="parameterName" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Argument" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Argument">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        eType="#//ValueSpecification" unsettable="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" ordered="false"
+        lowerBound="1" eType="#//Parameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement #//QualifiedElement #//CategorizedElement #//ParameterableElement">
+    <eOperations name="newInstance" ordered="false" lowerBound="1" eType="#//Block">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputDefinitions" upperBound="-1"
+        eType="#//InputDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputDefinitions" upperBound="-1"
+        eType="#//OutputDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timing" lowerBound="1"
+        eType="#//TimingKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boundary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimingKind">
+    <eLiterals name="Any"/>
+    <eLiterals name="Continuous" value="1"/>
+    <eLiterals name="Synchronous" value="2"/>
+    <eLiterals name="Asynchronous" value="3"/>
+    <eLiterals name="Discrete" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true" eSuperTypes="#//INamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CategorizedElement" abstract="true">
+    <eOperations name="belongsTo" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="categoryName" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="belongingCategories" ordered="false"
+        upperBound="-1" eType="#//Category"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Component #//ParameterizedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidInputDefinitionReferences ValidOutputDefinitionReferences ValidParameterReferences"/>
+    </eAnnotations>
+    <eOperations name="getInput" eType="#//BlockInput">
+      <eParameters name="definition" lowerBound="1" eType="#//InputDefinition"/>
+    </eOperations>
+    <eOperations name="getOutput" eType="#//BlockOutput">
+      <eParameters name="definition" lowerBound="1" eType="#//OutputDefinition"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//BlockType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//System"/>
+  <eClassifiers xsi:type="ecore:EClass" name="System" eSuperTypes="#//Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockPort" abstract="true" eSuperTypes="#//ParameterizedElement #//Port"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockInputPort" eSuperTypes="#//BlockPort #//InputPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockOutputPort" eSuperTypes="#//OutputPort #//BlockPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subsystem" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidInletReferences ValidOutletReferences"/>
+    </eAnnotations>
+    <eOperations name="getRealizations" ordered="false" upperBound="-1" eType="#//SubsystemRealization"/>
+    <eOperations name="getRealization" ordered="false" eType="#//SubsystemRealization">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
+        eType="#//SystemInterface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SystemInterface" eSuperTypes="#//QualifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inlets" upperBound="-1"
+        eType="#//Inlet" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlets" upperBound="-1"
+        eType="#//Outlet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inlet" eSuperTypes="#//Inoutlet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutlet" abstract="true" eSuperTypes="#//INamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
+        lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Outlet" eSuperTypes="#//Inoutlet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemRealization" eSuperTypes="#//FragmentElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MatchingFragment"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizedSubsystem" ordered="false"
+        lowerBound="1" eType="#//Subsystem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizingFragment" ordered="false"
+        lowerBound="1" eType="#//Fragment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inport" eSuperTypes="#//Inoutport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InportInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutport" abstract="true" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="OwnedByFragment"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
+        lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Outport" eSuperTypes="#//Inoutport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutportOutput" eSuperTypes="#//Output"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInoutput" abstract="true" eSuperTypes="#//Inoutput">
+    <eOperations name="getInoutlet" lowerBound="1" eType="#//Inoutlet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input #//SubsystemInoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inlet" ordered="false"
+        lowerBound="1" eType="#//Inlet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemOutput" eSuperTypes="#//Output #//SubsystemInoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlet" ordered="false"
+        lowerBound="1" eType="#//Outlet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanDirectFeedthroughPolicy" eSuperTypes="#//DirectFeedthroughPolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directFeedthrough" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Latch" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" lowerBound="1"
+        eType="#//ValueSpecification" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LatchInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Compound" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//CompoundMember" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundMember" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCompound" eType="#//Compound"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundConnector" abstract="true" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
+        eType="#//Compound" changeable="false" volatile="true" transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundInputConnector" abstract="true"
+      eSuperTypes="#//CompoundConnector #//InputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundOutputConnector" abstract="true"
+      eSuperTypes="#//CompoundConnector #//OutputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidActionLinkConditions"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionLinks" lowerBound="2"
+        upperBound="-1" eType="#//ActionLink" containment="true" eOpposite="#//ActionLink/choice"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInputPort" eSuperTypes="#//InputPort #//INamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//Compound">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="link" eType="#//ActionLink"
+        eOpposite="#//ActionLink/action"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionLink">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ChoiceAndActionHaveSameOwner"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="choice" lowerBound="1"
+        eType="#//Choice" eOpposite="#//Choice/actionLinks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
+        eType="#//Action" eOpposite="#//Action/link"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ValueSpecification"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidActions ValidChoice"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//Action">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ConditionSourceInWhileLoop"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//WhileLoopCondition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Memory" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="OwnedByCompound InitialConditionSourceOnEnclosingElement"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryInitialCondition" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryOutput" eSuperTypes="#//Output"/>
+  <eClassifiers xsi:type="ecore:EClass" name="INamedElement" abstract="true" interface="true">
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ITextualElement" abstract="true" interface="true">
+    <eOperations name="getText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="setText">
+      <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,44 @@
+package damos.blocks
+
+continuous blockType Derivative {
+
+	input u
+	output y
+
+	parameter gain = 1(s) // normalize
+	parameter initialCondition = 0
+	parameter timeConstant = 0.01(s)
+
+	behavior {
+		check(real) -> real
+		check(real(m), <1(s)>, <0(m)>) -> real(m)
+
+		static assert u is real(?) :
+			error "Input value must be numeric"
+
+		static assert gain is real(?) :
+			error "Gain must be numeric"
+
+		static assert initialCondition is real(?) :
+			error "Initial value must be numeric"
+
+		static assert initialCondition is real(?) && u is real(?) && gain is real(?) => unit(initialCondition) == unit(gain) * unit(u) * unit{1/s} :
+			error "Initial condition unit must be input value unit times gain unit times 1/second"
+
+		static assert timeConstant is real(?) :
+			error "Time constant must be numeric"
+
+		static assert timeConstant is real(?) => unit(timeConstant) == unit{s} :
+			error "Time constant unit must be seconds"
+			
+		static assert timeConstant is real(?) && unit(timeConstant) == unit{s} => timeConstant > 0(s) :
+			error "Time constant must be > 0(s)"
+
+		var x
+
+		initial eq x = initialCondition
+		eq x' = (u - x) / timeConstant
+		eq y = gain / timeConstant * (u - x)
+	}
+
+}

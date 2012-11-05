@@ -1,0 +1,48 @@
+package damos.tests
+
+blockType FunctionTest2 {
+
+	input a
+	input b
+	output y
+	
+	parameter gain = 1.5
+
+	behavior {
+		check(int, int) -> real
+
+		eq y = max(min(a, b), b) + f(a, 7) + gain * f(b, 7) + f2(a, 1) + f3(a)
+	}
+	
+	function f(u, const init) -> y {
+		check(int, <2>) -> int
+		
+		eq u{-1} = init
+		eq y = u{n} - u{n-1} + f2(u, 1)
+	}
+
+	function f2(u, const init) -> y {
+		check(int, <2>) -> int
+		
+		eq u{-1} = init
+		eq y = u{n} - u{n-1} + integrate(u, 10) + integrate(u, 2)
+	}
+
+	function integrate(u, const init) -> y {
+		check(real, <1>) -> real
+	
+		var sum
+	
+		eq sum{0} = init
+		eq sum{n+1} = sum{n} + u{n}
+		eq y{n} = sum{n}
+	}
+	
+	function f3(u) -> y {
+		check(int) -> int
+		
+		eq y{-1} = 0
+		eq y = y{n-1} + u
+	}
+
+}

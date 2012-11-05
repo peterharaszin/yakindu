@@ -1,0 +1,132 @@
+grammar org.eclipse.damos.dconfig.Dconfig with org.eclipse.damos.mscript.Mscript
+
+import "http://www.eclipse.org/damos/2011/DML"
+import "http://www.eclipse.org/damos/2011/Dconfig"
+import "http://www.eclipse.org/damos/mscript/2011/Computation"
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+Configuration:
+	'package' packageName=QualifiedName
+	(importDeclarations+=ImportDeclaration)*
+	'configuration' name=ValidID ('extends' baseConfiguration=[Configuration|QualifiedName])? '{'
+		(properties+=DeclaredProperty)*
+		(rootSystemConfiguration=RootSystemConfiguration)?
+	'}';
+	
+Property:
+	DeclaredProperty | ComputationProperty;
+	
+DeclaredProperty:
+	SimpleProperty | SelectionProperty;
+	
+SimpleProperty:
+	(propagate?='propagate')? (declaration=[SimplePropertyDeclaration|QualifiedNameWithoutIJ] '=' value=Expression | 'unset' declaration=[SimplePropertyDeclaration|QualifiedName]);
+
+SelectionProperty:
+	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] ('[' index=ValidInt ']')? selection=[SelectionPropertyOption|QualifiedName] (body=SelectionPropertyBody)?;
+	
+SelectionPropertyBody:
+	{SelectionPropertyBody} '{'
+		(properties+=DeclaredProperty | bindings+=Binding)*
+	'}';
+	
+RootSystemConfiguration:
+	'system' contextFragment=[Fragment|QualifiedName] (body=SystemConfigurationBody)?;
+
+SubsystemConfiguration:
+	'subsystem' subsystem=[Subsystem|ValidID] body=SystemConfigurationBody;
+
+SystemConfigurationBody:
+	{SystemConfigurationBody} '{'
+		(properties+=Property |
+		componentConfigurations+=ComponentConfiguration |
+		fragmentConfigurations+=FragmentConfiguration |
+		subsystemConfigurations+=SubsystemConfiguration)*
+	'}';
+
+FragmentConfiguration:
+	'fragment' (startFragment=[Fragment|QualifiedName] (range?='..' (endFragment=[Fragment|QualifiedName])?)? | range?='..' endFragment=[Fragment|QualifiedName]) body=FragmentConfigurationBody; 
+
+FragmentConfigurationBody:
+	{FragmentConfigurationBody} '{'
+		(properties+=Property)*
+	'}';
+
+ComponentConfiguration:
+	'component' component=[Component|ValidID] body=ComponentConfigurationBody;
+
+ComponentConfigurationBody:
+	{ComponentConfigurationBody} '{'
+		(properties+=Property)*
+	'}';
+
+ComputationProperty:
+	(propagate?='propagate')? 'computation' '{'
+		computationModel=ComputationModel
+	'}';
+
+ComponentPath:
+	references+=ComponentReference ('.' references+=ComponentReference)*;
+
+ComponentReference:
+	component=[Component|ValidID];
+
+Binding:
+	'bind' target=BindingResourceReference 'to' source=ComponentPath (body=BindingBody)?;
+
+BindingResourceReference:
+	resourceDeclaration=[ResourceDeclaration|ValidID] ('[' subscript=BindingResourceSubscript ']')?;
+
+BindingBody:
+	{BindingBody} '{' (properties+=DeclaredProperty)* '}';
+
+BindingResourceSubscript:
+	index=ValidInt;
+
+ComputationModel:
+	{ComputationModel} (numberFormatMappings+=NumberFormatMapping)*;
+
+NumberFormat:
+	FloatingPointFormat | FixedPointFormat;
+
+FloatingPointFormat:
+	kind=PredefinedFloatingPointFormatKind;
+
+enum PredefinedFloatingPointFormatKind returns FloatingPointFormatKind:
+	Binary32='float32' |
+	Binary64='float64';
+	
+enum PredefinedFixedPointFormatKind:
+	Int8='int8' |
+	Int16='int16' |
+	Int32='int32' |
+	Int64='int64' |
+	Int128='int128' |
+	UInt8='uint8' |
+	UInt16='uint16' |
+	UInt32='uint32' |
+	UInt64='uint64' |
+	UInt128='uint128' |
+	Fract8='fract8' |
+	Fract16='fract16' |
+	Fract32='fract32' |
+	Fract64='fract64' |
+	Fract128='fract128';
+
+FixedPointFormat:
+	((('fix' | unsigned?='ufix') integerLength=ValidInt (('.' fractionLength=ValidInt) | (('slope' slope=ValidDouble)? ('bias' bias=ValidDouble)?))) | (predefinedKind=PredefinedFixedPointFormatKind)) (saturate?='saturate')?;
+
+NumberFormatMapping:
+	'map' typeSpecifier=TypeSpecifier 'to' numberFormat=NumberFormat;
+
+QualifiedNameWithWildcard:
+	QualifiedName ('.*' | '.' '*')?;
+
+QualifiedNameWithoutIJ:
+	ValidIDWithoutIJ ('.' ValidIDWithoutIJ)*;
+
+ValidIDWithoutIJ:
+	N | E | EXP | ID;
+
+ValidDouble returns ecore::EDouble hidden():
+	('-')? ValidInt (('.' ValidInt (EXP | (E ('+' | '-') ValidInt))?) | (EXP | (E ('+' | '-') ValidInt)))?;

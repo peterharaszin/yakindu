@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="simulationObjectProviders" name="Simulation Object Providers" schema="schema/simulationObjectProviders.exsd"/>
+   <extension-point id="blockSimulationObjects" name="Block Simulation Objects" schema="schema/blockSimulationObjects.exsd"/>
+   <extension-point id="solvers" name="Solvers" schema="schema/solvers.exsd"/>
+   <extension
+         point="org.eclipse.damos.simulation.simulator.simulationObjectProviders">
+      <provider
+            class="org.eclipse.damos.simulation.simulator.internal.registry.BlockSimulationObjectProvider">
+      </provider>
+      <provider
+            class="org.eclipse.damos.simulation.simulator.internal.providers.DscriptBlockSimulationObjectProvider">
+      </provider>
+      <provider
+            class="org.eclipse.damos.simulation.simulator.internal.providers.BuiltinSimulationObjectProvider">
+      </provider>
+   </extension>
+</plugin>

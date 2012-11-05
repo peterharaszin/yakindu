@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.damos.codegen.ui.commands.generateCode"
+            name="Generate Code">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.damos.codegen.ui.commands.generateCode"
+               label="Generate Code"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                  	<or>
+                     <instanceof
+                           value="org.eclipse.damos.dconfig.Configuration">
+                     </instanceof>
+                     <adapt type="org.eclipse.core.resources.IFile">
+                       <test property="org.eclipse.core.resources.name" value="*.dconfig"/>
+                     </adapt>
+                    </or>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.damos.codegen.ui.internal.handlers.GenerateCodeHandler"
+            commandId="org.eclipse.damos.codegen.ui.commands.generateCode">
+      </handler>
+   </extension>
+</plugin>

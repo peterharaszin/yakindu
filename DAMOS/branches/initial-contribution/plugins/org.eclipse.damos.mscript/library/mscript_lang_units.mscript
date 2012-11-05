@@ -1,0 +1,35 @@
+package mscript.lang.units
+
+// Base units
+unit m
+unit g
+unit s
+unit A
+unit K
+unit cd
+unit mol
+
+// Derived units
+unit Hz = 1/s
+unit rad = m/m		// dimensionless
+unit sr = m^2/m^2	// dimensionless
+unit N = kg*m/s^2
+unit Pa = N/m^2
+unit J = N*m
+unit W = J/s
+unit C = A*s
+unit V = W/A
+unit F = C/V
+unit Ohm = V/A
+unit S = 1/Ohm
+unit Wb = J/A
+unit T = V*s/m^2
+unit H = V*s/A
+// unit degC =
+// unit degF =
+unit lm = cd*sr
+unit lx = lm/m^2
+unit Bq = 1/s
+unit Gy = J/kg
+unit Sv = J/kg
+unit kat = mol/s

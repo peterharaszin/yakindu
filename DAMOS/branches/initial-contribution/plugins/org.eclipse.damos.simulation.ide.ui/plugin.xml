@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.damos.simulation.ide.core.simulation"
+            icon="icons/Simulation.gif"
+            id="org.eclipse.damos.simulation.ide.ui.launchConfigurationTypeImages.simulation">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.SimulationTabGroup"
+            id="org.eclipse.damos.simulation.ide.ui.launchConfigurationTabGroups.simulation"
+            type="org.eclipse.damos.simulation.ide.core.simulation">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.ConfigurationLaunchShortcut"
+            icon="icons/Simulation.gif"
+            id="org.eclipse.damos.simulation.ide.ui.configurationLaunchShortcut"
+            label="Damos Simulation"
+            modes="run, debug">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                    <or>
+                       <test
+                             property="org.eclipse.debug.ui.matchesPattern"
+                             value="*.dconfig">
+                       </test>
+                       <instanceof
+                             value="org.eclipse.damos.dconfig.Configuration">
+                       </instanceof>
+                    </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="org.eclipse.damos.simulation.ide.ui.internal.launch.FragmentLaunchShortcut"
+            icon="icons/Simulation.gif"
+            id="org.eclipse.damos.simulation.ide.ui.fragmentLaunchShortcut"
+            label="Damos Simulation"
+            modes="run, debug">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                    <or>
+                       <test
+                             property="org.eclipse.debug.ui.matchesPattern"
+                             value="*.blockdiagram">
+                       </test>
+                       <instanceof
+                             value="org.eclipse.damos.dml.Fragment">
+                       </instanceof>
+                    </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.statusHandlers">
+      <statusHandler
+            class="org.eclipse.damos.simulation.ide.ui.internal.statushandlers.GenericStatusHandler"
+            code="200"
+            id="org.eclipse.damos.simulation.ide.ui.messageStatusHandler"
+            plugin="org.eclipse.damos.simulation.ide.core">
+      </statusHandler>
+   </extension>
+
+</plugin>

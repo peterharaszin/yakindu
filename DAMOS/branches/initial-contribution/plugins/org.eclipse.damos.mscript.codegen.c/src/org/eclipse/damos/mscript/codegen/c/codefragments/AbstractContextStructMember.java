@@ -1,0 +1,34 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.mscript.codegen.c.codefragments;
+
+import java.util.Collection;
+import java.util.Collections;
+
+import org.eclipse.damos.mscript.codegen.c.ICodeFragment;
+import org.eclipse.damos.mscript.codegen.c.Include;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public abstract class AbstractContextStructMember implements IContextStructMember {
+
+	public Collection<ICodeFragment> getDeclarationCodeFragments() {
+		return Collections.emptyList();
+	}
+
+	public Collection<Include> getForwardDeclarationIncludes() {
+		return Collections.emptyList();
+	}
+
+}

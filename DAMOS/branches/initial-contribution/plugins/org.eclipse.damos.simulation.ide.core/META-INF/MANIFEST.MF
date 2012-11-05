@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Simulation IDE Core
+Bundle-SymbolicName: org.eclipse.damos.simulation.ide.core;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-Activator: org.eclipse.damos.simulation.ide.core.SimulationIDECorePlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.core;bundle-version="3.5.0",
+ org.eclipse.damos.common;bundle-version="0.3.0",
+ org.eclipse.damos.simulation.simulator;bundle-version="0.3.0",
+ org.eclipse.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.damos.dconfig;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.damos.simulation.ide.core.internal.launch;x-friends:="org.eclipse.damos.simulation.ide.ui",
+ org.eclipse.damos.simulation.ide.core.util

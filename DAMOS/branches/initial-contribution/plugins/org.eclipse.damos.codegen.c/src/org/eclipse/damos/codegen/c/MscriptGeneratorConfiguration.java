@@ -1,0 +1,48 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2012 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.damos.codegen.c;
+
+import org.eclipse.damos.codegen.c.util.GeneratorConfigurationExtensions;
+import org.eclipse.damos.dconfig.Configuration;
+import org.eclipse.damos.mscript.codegen.c.IMscriptGeneratorConfiguration;
+import org.eclipse.damos.mscript.computation.ComputationModel;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public class MscriptGeneratorConfiguration implements IMscriptGeneratorConfiguration {
+
+	private final ComputationModel computationModel;
+	private final Configuration configuration;
+	
+	/**
+	 * 
+	 */
+	public MscriptGeneratorConfiguration(ComputationModel computationModel, Configuration configuration) {
+		this.computationModel = computationModel;
+		this.configuration = configuration;
+	}
+	
+	public ComputationModel getComputationModel() {
+		return computationModel;
+	}
+	
+	public int getStringBufferSize() {
+		return GeneratorConfigurationExtensions.getStringBufferSize(configuration);
+	}
+	
+	public boolean isSingleton() {
+		return GeneratorConfigurationExtensions.isSingleton(configuration);
+	}
+
+}

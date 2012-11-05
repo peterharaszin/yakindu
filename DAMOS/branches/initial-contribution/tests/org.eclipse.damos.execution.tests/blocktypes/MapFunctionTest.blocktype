@@ -1,0 +1,23 @@
+package damos.tests
+
+blockType MapFunctionTest {
+
+	input a
+	input b
+	output y1
+	output y2
+	
+	behavior {
+		check(int, int) -> real[3], real[2, 3]
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is int :
+			error "B must be integer"
+
+		eq y1 = { 1, 2.1, a }.map(i -> i * b * i)
+		eq y2 = { 1, a }.map(i -> { 3, b, 5 }.map(j -> i * j * b))
+	}
+
+}

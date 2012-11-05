@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.mscript/src" editDirectory="/org.eclipse.damos.mscript.computation.edit/src"
+    editorDirectory="/org.eclipse.damos.mscript.computation.ui/src" modelPluginID="org.eclipse.damos.mscript.computation"
+    templateDirectory="" modelName="Computation" editPluginClass="org.eclipse.damos.mscript.computation.edit.ComputationEditPlugin"
+    editorPluginClass="org.eclipse.damos.mscript.computation.ui.ComputationUIPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.damos.mscript.computation.edit" editorPluginID="org.eclipse.damos.mscript.computation.ui"
+    usedGenPackages="Mscript.genmodel#//mscript">
+  <foreignModel>Computation.ecore</foreignModel>
+  <genPackages prefix="Computation" basePackage="org.eclipse.damos.mscript" disposableProviderFactory="true"
+      providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
+      multipleEditorPages="false" generateModelWizard="false" contentTypeIdentifier=""
+      ecorePackage="Computation.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Computation.ecore#//PredefinedFixedPointFormatKind">
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/None"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Int8"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Int16"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Int32"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Int64"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Int128"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/UInt8"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/UInt16"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/UInt32"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/UInt64"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/UInt128"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Fract8"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Fract16"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Fract32"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Fract64"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//PredefinedFixedPointFormatKind/Fract128"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Computation.ecore#//FloatingPointFormatKind">
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Binary16"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Binary32"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Binary64"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Binary128"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Decimal32"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Decimal64"/>
+      <genEnumLiterals ecoreEnumLiteral="Computation.ecore#//FloatingPointFormatKind/Decimal128"/>
+    </genEnums>
+    <genClasses ecoreClass="Computation.ecore#//ComputationModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//ComputationModel/qualifiedName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Computation.ecore#//ComputationModel/numberFormatMappings"/>
+      <genOperations ecoreOperation="Computation.ecore#//ComputationModel/getNumberFormatMapping">
+        <genParameters ecoreParameter="Computation.ecore#//ComputationModel/getNumberFormatMapping/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Computation.ecore#//ComputationModel/getNumberFormat">
+        <genParameters ecoreParameter="Computation.ecore#//ComputationModel/getNumberFormat/type"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Computation.ecore#//NumberFormatMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Computation.ecore#//NumberFormatMapping/typeSpecifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Computation.ecore#//NumberFormatMapping/numberFormat"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Computation.ecore#//NumberFormat">
+      <genOperations ecoreOperation="Computation.ecore#//NumberFormat/isEquivalentTo">
+        <genParameters ecoreParameter="Computation.ecore#//NumberFormat/isEquivalentTo/other"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Computation.ecore#//FixedPointFormat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/predefinedKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/integerLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/fractionLength"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/wordSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/slope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/bias"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FixedPointFormat/saturate"/>
+    </genClasses>
+    <genClasses ecoreClass="Computation.ecore#//FloatingPointFormat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Computation.ecore#//FloatingPointFormat/kind"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

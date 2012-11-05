@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/damos/2011/Dscript"
+            class="org.eclipse.damos.dscript.DscriptPackage"
+            genModel="model/Dscript.genmodel"/>
+      <package
+            class="org.eclipse.damos.dscript.DscriptPackage"
+            genModel="model/Dscript.genmodel"
+            uri="http://www.eclipselabs.org/damos/2011/Dscript">
+      </package>
+      <package
+            class="org.eclipse.damos.dscript.DscriptPackage"
+            genModel="model/Dscript.genmodel"
+            uri="http://www.eclipselabs.org/damos/2011/DMLText">
+      </package>
+   </extension>
+
+</plugin>

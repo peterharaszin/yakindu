@@ -1,0 +1,11 @@
+
+h1. Overview
+
+The Damos project provides a modeling environment for modeling systems using a data flow-oriented approach. Such systems can be (but are not limited to) software systems, hardware systems (e.g. mechanical systems), or physical systems -- or a combination of those. Even though data flow-oriented design is not bound to a specific domain, it is most commonly used in control systems engineering and digital signal processing (DSP).
+
+Damos includes the following features:
+
+* a graphical block diagram editor (model editor)
+* a simulator utilizing fixed-step size and adaptive-step size solvers to simulate continuous-time and discrete-time systems
+* a C code generator to transform models into executable code
+* extension points to customize and extend the functionality of the modeling environment

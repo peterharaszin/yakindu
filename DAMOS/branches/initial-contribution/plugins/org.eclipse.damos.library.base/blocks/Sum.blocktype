@@ -1,0 +1,19 @@
+package damos.blocks
+
+blockType Sum {
+
+	input _input[2..*] {
+		parameter sign = 1
+	}
+	output y
+
+	behavior {
+		check(real[2], <{ 1, -1 }>) -> real
+		
+		static assert _input is real(?)[] :
+			error "Input values must be numeric"
+	
+		eq y = sign * _input
+	}
+	
+}

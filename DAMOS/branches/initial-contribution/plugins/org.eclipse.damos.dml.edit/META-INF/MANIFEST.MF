@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.damos.dml.edit;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.damos.dml.edit.DMLEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.damos.dml.edit,
+ org.eclipse.damos.dml.edit.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;bundle-version="2.6.0",
+ org.eclipse.damos.dml;visibility:=reexport
+Bundle-ActivationPolicy: lazy

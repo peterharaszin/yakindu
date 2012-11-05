@@ -1,0 +1,81 @@
+package mscript.lang
+
+function zeros(const n) -> y {
+	check(<10>) -> int[10]
+	
+	static assert n is int :
+		error "Parameter n must be integer"
+	
+	eq y = map(1 : n, x -> 0)
+}
+
+function ones(const n) -> y {
+	check(<10>) -> int[10]
+	
+	static assert n is int :
+		error "Parameter n must be integer"
+	
+	eq y = map(1 : n, x -> 1)
+}
+
+function indices(A) -> y {
+	check(real[3]) -> int[3]
+	
+	// TODO: We need a way to specify any array types, e.g. '?[]'
+	static assert A is real(?)[] :
+		error "Parameter A must be real array"
+	
+	eq y = 0 : size(A) - 1
+}
+
+function linspace(x1, x2, const n) -> y {
+	check(int, int, <10>) -> real[10]
+	check(int(kg), int(kg), <10>) -> real(kg)[10]
+
+	static assert x1 is real(?) :
+		error "x1 must be real value"
+
+	static assert x2 is real(?) :
+		error "x2 must be real value"
+
+	static assert x1 is real(?) && x2 is real(?) => unit(x1) == unit(x2) :
+		error "x1 and x2 must have same unit"
+
+	static assert n is int :
+		error "n must be dimensionless integer"
+	
+	static assert n >= 2 :
+		error "n must be >= 2"
+			
+	const m = n - 1
+	
+	eq y = map(0 : m, i -> x1 + (x2 - x1) * i / m)
+}
+
+function eye(const n) -> y {
+	check(<3>) -> int[3, 3]
+	
+	static assert n is int :
+		error "n must be dimensionless integer"
+	
+	static assert n >= 1 :
+		error "n must be >= 1"
+
+	const I = 1 : n
+	
+	eq y = I.map(i -> I.map(j -> if i == j then 1 else 0))
+}
+
+function diag(A) -> y {
+	check(int[3]) -> int[3, 3]
+	check(real[3]) -> real[3, 3]
+	check(real(kg)[3]) -> real(kg)[3, 3]
+	
+	static assert A is real(?)[] :
+		error "A must be real array"
+
+	const I = indices(A)
+	const zero = num(0, unit(A))
+	
+	eq y = I.map(i -> I.map(j -> if i == j then A[i] else zero))
+}

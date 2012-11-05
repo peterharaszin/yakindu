@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mscript:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mscript="http://www.eclipse.org/damos/mscript/2011/Mscript" xsi:schemaLocation="http://www.eclipse.org/damos/mscript/2011/Mscript Mscript.ecore" packageName="mscript.lang">
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="unit"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="size"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="num"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="fold"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="map"/>
+</mscript:Module>

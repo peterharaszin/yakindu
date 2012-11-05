@@ -1,0 +1,15 @@
+package damos.blocks
+
+blockType Constant {
+
+	output y
+	
+	parameter value = 1
+
+	behavior {
+		check() -> int
+		
+		eq y = value
+	}
+	
+}

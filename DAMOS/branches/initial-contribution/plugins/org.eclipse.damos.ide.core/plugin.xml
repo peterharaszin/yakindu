@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<!--   <extension
+         id="damosBuilder"
+         name="Damos Project Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="org.eclipse.damos.ide.core.builders.DamosProjectBuilder">
+            <parameter
+                  name="optimize"
+                  value="true">
+            </parameter>
+            <parameter
+                  name="comment"
+                  value="Damos Project Builder">
+            </parameter>
+         </run></builder>
+   </extension> -->
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="org.eclipse.damos.ide.core.builders.DamosBuilderParticipant">
+      </participant>
+   </extension>
+   <extension
+         point="org.eclipse.damos.dml.languages">
+      <language
+            extension="blockdiagram"
+            id="org.eclipse.damos"
+            name="Damos">
+      </language>
+   </extension>
+   <extension
+         point="org.eclipse.damos.dml.injectorProviders">
+      <provider
+            class="org.eclipse.damos.ide.core.internal.providers.InjectorProvider"
+            language="org.eclipse.damos">
+      </provider>
+   </extension>
+
+</plugin>

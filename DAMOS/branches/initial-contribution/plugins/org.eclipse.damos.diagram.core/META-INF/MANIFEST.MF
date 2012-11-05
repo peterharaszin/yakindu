@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Damos Diagram Core
+Bundle-SymbolicName: org.eclipse.damos.diagram.core;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-Activator: org.eclipse.damos.diagram.core.DiagramCorePlugin
+Bundle-Vendor: Damos Project
+Require-Bundle: com.google.inject;bundle-version="2.0.0",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.2.0",
+ org.eclipse.damos.dml,
+ org.eclipse.damos.diagram.dmlnotation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.damos.diagram.core.internal.commands;x-friends:="org.eclipse.damos.diagram.ui",
+ org.eclipse.damos.diagram.core.internal.provider;x-friends:="org.eclipse.damos.diagram.ui",
+ org.eclipse.damos.diagram.core.internal.util;x-friends:="org.eclipse.damos.diagram.ui",
+ org.eclipse.damos.diagram.core.resource,
+ org.eclipse.damos.diagram.core.type

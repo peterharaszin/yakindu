@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="componentGeneratorProviders" name="Component Generator Providers" schema="schema/componentGeneratorProviders.exsd"/>
+   <extension-point id="blockGenerators" name="Block Generators" schema="schema/blockGenerators.exsd"/>
+   <extension-point id="runtimeEnvironmentAPIs" name="Runtime Environment APIs" schema="schema/runtimeEnvironmentAPIs.exsd"/>
+   <extension-point id="targetGenerators" name="Target Generators" schema="schema/targetGenerators.exsd"/>
+   <extension
+         point="org.eclipse.damos.codegen.c.componentGeneratorProviders">
+      <provider
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.registry.BlockGeneratorProvider">
+      </provider>
+      <provider
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.providers.DscriptBlockGeneratorProvider">
+      </provider>
+      <provider
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.internal.providers.BuiltinComponentGeneratorProvider">
+      </provider>
+   </extension>
+   <extension
+         point="org.eclipse.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipse.damos.codegen.c/dconfig/CodegenC.xmi">
+      </resource>
+   </extension>
+   <extension
+         point="org.eclipse.damos.codegen.generators">
+      <generator
+            class="org.eclipse.damos.codegen.c.CodegenCExecutableExtensionFactory:org.eclipse.damos.codegen.c.Generator"
+            id="damos.codegen.c.DefaultGenerator"
+            name="Default Generator">
+      </generator>
+   </extension>
+
+</plugin>

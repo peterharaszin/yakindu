@@ -1,0 +1,30 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.eclipse.damos.mscript.computation;
+
+import org.eclipse.emf.ecore.EObject;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Number Format</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see org.eclipse.damos.mscript.computation.ComputationPackage#getNumberFormat()
+ * @model abstract="true"
+ * @generated
+ */
+public interface NumberFormat extends EObject {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" otherRequired="true"
+	 * @generated
+	 */
+	boolean isEquivalentTo(NumberFormat other);
+} // NumberFormat

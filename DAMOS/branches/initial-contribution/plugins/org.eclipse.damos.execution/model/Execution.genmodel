@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.execution/src" modelPluginID="org.eclipse.damos.execution"
+    modelName="Execution" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="../../org.eclipse.damos.dml/model/DML.genmodel#//dml platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Execution.ecore</foreignModel>
+  <genPackages prefix="Execution" basePackage="org.eclipse.damos" disposableProviderFactory="true"
+      ecorePackage="Execution.ecore#/">
+    <genDataTypes ecoreDataType="Execution.ecore#//ISampleInterval"/>
+    <genDataTypes ecoreDataType="Execution.ecore#//SystemPath"/>
+    <genDataTypes ecoreDataType="Execution.ecore#//Iterable">
+      <genTypeParameters ecoreTypeParameter="Execution.ecore#//Iterable/E"/>
+    </genDataTypes>
+    <genClasses ecoreClass="Execution.ecore#//ExecutionFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/topLevelFragment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/graph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/dataFlows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ExecutionFlow/asynchronousZoneCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//ExecutionFlow/taskGraphs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ExecutionFlow/fundamentalSampleInterval"/>
+      <genOperations ecoreOperation="Execution.ecore#//ExecutionFlow/getAllNodesIterator"/>
+      <genOperations ecoreOperation="Execution.ecore#//ExecutionFlow/getAllNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//Graph">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//Graph/nodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Graph/initialNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//Graph/edges"/>
+      <genOperations ecoreOperation="Execution.ecore#//Graph/getAllNodesIterator"/>
+      <genOperations ecoreOperation="Execution.ecore#//Graph/getAllNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//Node">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Execution.ecore#//Node/graph"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Node/incomingEdges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Node/outgoingEdges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Node/incomingDataFlows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Node/outgoingDataFlows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Node/enclosingSubsystems"/>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getIncomingDataFlow">
+        <genParameters ecoreParameter="Execution.ecore#//Node/getIncomingDataFlow/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getOutgoingDataFlow">
+        <genParameters ecoreParameter="Execution.ecore#//Node/getOutgoingDataFlow/source"/>
+      </genOperations>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getDrivingNodes"/>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getDrivenNodes"/>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getDrivingEnds"/>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getDrivenEnds"/>
+      <genOperations ecoreOperation="Execution.ecore#//Node/isEnclosedBy">
+        <genParameters ecoreParameter="Execution.ecore#//Node/isEnclosedBy/graph"/>
+      </genOperations>
+      <genOperations ecoreOperation="Execution.ecore#//Node/getSystemPath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Execution.ecore#//Subgraph"/>
+    <genClasses ecoreClass="Execution.ecore#//ComponentNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//ComponentNode/component"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ComponentNode/sampleInterval"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//ComponentNode/asynchronousZone"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//LatchNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//LatchNode/taskNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//CompoundNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//CompoundNode/compound"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//ActionNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//ActionNode/choiceNode"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//SubsystemNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//SubsystemNode/subsystem"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//TaskGraph">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//TaskGraph/inputNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//TaskGraph/latchNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//TaskInputNode">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Execution.ecore#//TaskInputNode/taskGraph"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//Edge">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Execution.ecore#//Edge/graph"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Edge/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//Edge/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//DataFlow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlow/targetEnds"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlow/sourceEnd"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Execution.ecore#//DataFlowEnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowEnd/connectorInfo"/>
+      <genOperations ecoreOperation="Execution.ecore#//DataFlowEnd/getNode"/>
+      <genOperations ecoreOperation="Execution.ecore#//DataFlowEnd/getDataFlow"/>
+      <genOperations ecoreOperation="Execution.ecore#//DataFlowEnd/getConnector"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//DataFlowSourceEnd">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowSourceEnd/node"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowSourceEnd/dataFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowSourceEnd/connector"/>
+      <genOperations ecoreOperation="Execution.ecore#//DataFlowSourceEnd/getTargetEnds"/>
+    </genClasses>
+    <genClasses ecoreClass="Execution.ecore#//DataFlowTargetEnd">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowTargetEnd/node"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowTargetEnd/dataFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Execution.ecore#//DataFlowTargetEnd/connector"/>
+      <genOperations ecoreOperation="Execution.ecore#//DataFlowTargetEnd/getSourceEnd"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Execution.ecore#//ConnectorInfo"/>
+    <genClasses ecoreClass="Execution.ecore#//PortInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//PortInfo/inoutputIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Execution.ecore#//PortInfo/portIndex"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

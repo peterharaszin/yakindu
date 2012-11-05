@@ -1,0 +1,21 @@
+package damos.tests
+
+blockType RecordConstructionTest {
+
+	input a
+	input b
+	output y
+	
+	behavior {
+		check(int, real) -> { int x; int y; int z }
+
+		static assert a is int :
+			error "A must be integer"
+
+		static assert b is real :
+			error "B must be real"
+
+		eq y = { x = a, y = round(b), z = 19 }
+	}
+
+}

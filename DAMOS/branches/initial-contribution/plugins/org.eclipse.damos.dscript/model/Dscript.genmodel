@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.damos.dscript/src" modelPluginID="org.eclipse.damos.dscript"
+    modelName="Dscript" importerID="org.eclipse.emf.importer.ecore" bundleManifest="false"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.damos.dml/model/DML.genmodel#//dml ../../org.eclipse.damos.mscript/model/Mscript.genmodel#//mscript platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Dscript.ecore</foreignModel>
+  <genPackages prefix="Dscript" basePackage="org.eclipse.damos" disposableProviderFactory="true"
+      ecorePackage="Dscript.ecore#/">
+    <genClasses image="false" ecoreClass="Dscript.ecore#//Root">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//Root/blockTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//Root/systemInterfaces"/>
+    </genClasses>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptBlockType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptBlockType/importDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptBlockType/behavior"/>
+    </genClasses>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptInputDefinition"/>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptOutputDefinition"/>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptParameter"/>
+    <genClasses ecoreClass="Dscript.ecore#//BehaviorDeclaration">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Dscript.ecore#//BehaviorDeclaration/blockType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//BehaviorDeclaration/allImplicitInputParameterDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//BehaviorDeclaration/allImplicitOutputParameterDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="Dscript.ecore#//ImplicitInputParameterDeclaration"/>
+    <genClasses ecoreClass="Dscript.ecore#//ImplicitOutputParameterDeclaration"/>
+    <genClasses ecoreClass="Dscript.ecore#//InputMessageParameterDeclaration"/>
+    <genClasses ecoreClass="Dscript.ecore#//OutputMessageParameterDeclaration"/>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptSystemInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptSystemInterface/importDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptDataTypeSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptDataTypeSpecification/typeSpecifier"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptDataTypeSpecification/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Dscript.ecore#//DscriptValueSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dscript.ecore#//DscriptValueSpecification/expression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

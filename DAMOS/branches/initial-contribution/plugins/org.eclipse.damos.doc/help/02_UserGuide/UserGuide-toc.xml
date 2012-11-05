@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="help/02_UserGuide/UserGuide.html" label="User Guide">
+	<topic label="Getting Started">
+    <link toc="help/02_UserGuide/01_GettingStarted/GettingStarted-toc.xml"/>
+	</topic>
+ <topic label="Concepts">
+    <link toc="help/02_UserGuide/02_Concepts/Concepts-toc.xml"/>
+ </topic>
+</toc>

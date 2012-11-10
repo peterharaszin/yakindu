@@ -13,8 +13,13 @@ package org.eclipse.damos.library.vi.simulation;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.damos.mscript.IntegerType;
+import org.eclipse.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
+import org.eclipse.damos.mscript.interpreter.value.StringValue;
 import org.eclipse.damos.simulation.AbstractSimulationAgent;
+import org.eclipse.damos.simulation.AbstractSimulationTracePoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
@@ -26,7 +31,7 @@ import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
 public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 	
 	private IValue[] inputValues;
-	private IValue[] values;
+	private Object[] values;
 	
 	private ISimulationTracePoint[] tracePoints;
 	
@@ -34,7 +39,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 		int portCount = getComponent().getPrimaryInputPorts().size();
 		
 		inputValues = new IValue[portCount];
-		values = new IValue[portCount];
+		values = new Object[portCount];
 		
 		tracePoints = new ISimulationTracePoint[portCount];
 		for (int i = 0; i < portCount; ++i) {
@@ -55,7 +60,24 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 	 */
 	@Override
 	public void update(double t) {
-		System.arraycopy(inputValues, 0, values, 0, inputValues.length);
+		int i = 0;
+		for (IValue inputValue : inputValues) {
+			if (inputValue instanceof ISimpleNumericValue) {
+				ISimpleNumericValue simpleNumericValue = (ISimpleNumericValue) inputValue;
+				if (inputValue.getDataType() instanceof IntegerType) {
+					values[i] = simpleNumericValue.longValue();
+				} else {
+					values[i] = simpleNumericValue.doubleValue();
+				}
+			} else if (inputValue instanceof IBooleanValue) {
+				values[i] = ((IBooleanValue) inputValue).booleanValue();
+			} else if (inputValue instanceof StringValue) {
+				values[i] = inputValue.toString();
+			} else {
+				values[i] = "INVALID";
+			}
+			++i;
+		}
 	}
 
 	/* (non-Javadoc)
@@ -76,7 +98,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 		};
 	}
 
-	private class SimulationTracePoint implements ISimulationTracePoint {
+	private class SimulationTracePoint extends AbstractSimulationTracePoint {
 		
 		private int index;
 
@@ -87,10 +109,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 			this.index = index;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipse.damos.simulation.ISimulationTracePoint#getValue()
-		 */
-		public IValue getValue() {
+		public Object getValue() {
 			return values[index];
 		}
 		

@@ -20,8 +20,6 @@ import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.library.vi.ui.figures.GaugeContentFigure;
 import org.eclipse.damos.library.vi.util.GaugeConstants;
-import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
-import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationListener;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
@@ -54,8 +52,8 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
 				if (agent != null) {
 					ISimulationTracePoint tracePoint = agent.getTracePoints()[0];
-					IValue value = tracePoint.getValue();
-					if (value != null && consumerThread != null) {
+					double value = tracePoint.getDoubleValue();
+					if (consumerThread != null) {
 						consumerThread.consume(value);
 					}
 				}
@@ -111,13 +109,12 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 		return figure;
 	}
 	
-	private void setValue(IValue value) {
+	private void setValue(double value) {
 		if (Double.isNaN(cachedScaleOffset)) {
 			updateScaleParameters();
 		}
 		if (contentFigure != null) {
-			ISimpleNumericValue numericValue = (ISimpleNumericValue) value;
-			final double newValue = (numericValue.doubleValue() - cachedScaleOffset) / (cachedScaleLength);
+			final double newValue = (value - cachedScaleOffset) / (cachedScaleLength);
 			contentFigure.setValue(newValue);
 		}
 	}
@@ -130,10 +127,10 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 	
 	private class ConsumerThread extends Thread {
 		
-		private final BlockingQueue<IValue> queue = new ArrayBlockingQueue<IValue>(1);
+		private final BlockingQueue<Double> queue = new ArrayBlockingQueue<Double>(1);
 		private volatile boolean canceled;
 		
-		public void consume(IValue value) {
+		public void consume(double value) {
 			if (!queue.offer(value)) {
 				queue.clear();
 				queue.offer(value);
@@ -152,7 +149,7 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 		public void run() {
 			try {
 				while (!canceled) {
-					final IValue value = queue.take();
+					final double value = queue.take();
 					Display.getDefault().syncExec(new Runnable() {
 						
 						public void run() {

@@ -21,11 +21,6 @@ import org.eclipse.damos.dml.Block;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.library.vi.ui.figures.DisplayContentFigure;
 import org.eclipse.damos.library.vi.util.DisplayConstants;
-import org.eclipse.damos.mscript.IntegerType;
-import org.eclipse.damos.mscript.interpreter.value.IBooleanValue;
-import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
-import org.eclipse.damos.mscript.interpreter.value.IValue;
-import org.eclipse.damos.mscript.interpreter.value.StringValue;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationListener;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
@@ -57,9 +52,9 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
 				if (agent != null) {
 					ISimulationTracePoint[] tracePoints = agent.getTracePoints();
-					IValue[] values = new IValue[tracePoints.length];
+					Object[] values = new Object[tracePoints.length];
 					for (int i = 0; i < tracePoints.length; ++i) {
-						IValue value = tracePoints[i].getValue();
+						Object value = tracePoints[i].getValue();
 						if (value == null) {
 							return;
 						}
@@ -122,32 +117,14 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 		return figure;
 	}
 	
-	private void setValues(IValue[] values) {
+	private void setValues(Object[] values) {
 		if (cachedFormatString == null) {
 			updateFormatString();
 		}
 		if (contentFigure != null) {
-			Object[] args = new Object[values.length];
-			for (int i = 0; i < values.length; ++i) {
-				IValue value = values[i];
-				if (value instanceof ISimpleNumericValue) {
-					ISimpleNumericValue simpleNumericValue = (ISimpleNumericValue) value;
-					if (value.getDataType() instanceof IntegerType) {
-						args[i] = simpleNumericValue.longValue();
-					} else {
-						args[i] = simpleNumericValue.doubleValue();
-					}
-				} else if (value instanceof IBooleanValue) {
-					args[i] = ((IBooleanValue) value).booleanValue();
-				} else if (value instanceof StringValue) {
-					args[i] = value.toString();
-				} else {
-					args[i] = "INVALID";
-				}
-			}
 			String text;
 			try {
-				text = String.format(cachedFormatString, args);
+				text = String.format(cachedFormatString, values);
 			} catch (IllegalFormatException e) {
 				text = "<FORMAT ERROR>";
 			}
@@ -162,10 +139,10 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 	
 	private class ConsumerThread extends Thread {
 		
-		private final BlockingQueue<IValue[]> queue = new ArrayBlockingQueue<IValue[]>(1);
+		private final BlockingQueue<Object[]> queue = new ArrayBlockingQueue<Object[]>(1);
 		private volatile boolean canceled;
 		
-		public void consume(IValue[] values) {
+		public void consume(Object[] values) {
 			if (!queue.offer(values)) {
 				queue.clear();
 				queue.offer(values);
@@ -184,7 +161,7 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 		public void run() {
 			try {
 				while (!canceled) {
-					final IValue[] values = queue.take();
+					final Object[] values = queue.take();
 					Display.getDefault().syncExec(new Runnable() {
 						
 						public void run() {

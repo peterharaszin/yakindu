@@ -11,13 +11,11 @@
 
 package org.eclipse.damos.library.vi.simulation;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.interpreter.IComputationContext;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.mscript.interpreter.value.Values;
 import org.eclipse.damos.simulation.AbstractSimulationAgent;
+import org.eclipse.damos.simulation.AbstractSimulationVariationPoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationVariationPoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
@@ -28,32 +26,25 @@ import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
  */
 public class ButtonSimulationObject extends AbstractBlockSimulationObject {
 
+	private boolean booleanOutputValue;
 	private IValue outputValue;
 
-	private Type outputDataType;
+	private final ISimulationVariationPoint[] variationPoints = { new AbstractSimulationVariationPoint() {
 
-	private ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new ISimulationVariationPoint() {
-
-		public Type getDataType() {
-			return outputDataType;
+		public boolean getBooleanValue() {
+			return booleanOutputValue;
 		}
 		
-		public IValue getValue() {
-			return outputValue;
-		}
-		
-		public void setValue(IValue value) {
-			outputValue = value;
+		public void setValue(boolean value) {
+			booleanOutputValue = value;
 		}
 
 	} };
-
-	@Override
-	public void initialize(IProgressMonitor monitor) throws CoreException {
-		outputDataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		outputValue = Values.valueOf(getComputationContext(), false);
-	}
 	
+	public void computeOutputValues(double t, org.eclipse.damos.simulation.ISimulationMonitor monitor) throws org.eclipse.core.runtime.CoreException {
+		outputValue = Values.valueOf(getComputationContext(), booleanOutputValue);
+	}
+
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;

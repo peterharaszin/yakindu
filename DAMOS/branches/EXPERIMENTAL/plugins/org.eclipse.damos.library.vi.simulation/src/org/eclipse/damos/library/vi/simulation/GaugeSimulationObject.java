@@ -11,8 +11,10 @@
 
 package org.eclipse.damos.library.vi.simulation;
 
+import org.eclipse.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.simulation.AbstractSimulationAgent;
+import org.eclipse.damos.simulation.AbstractSimulationTracePoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
@@ -24,11 +26,11 @@ import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
 public class GaugeSimulationObject extends AbstractBlockSimulationObject {
 	
 	private IValue inputValue;
-	private IValue value;
+	private double value;
 	
-	private ISimulationTracePoint[] tracePoints = new ISimulationTracePoint[] { new ISimulationTracePoint() {
+	private final ISimulationTracePoint[] tracePoints = new ISimulationTracePoint[] { new AbstractSimulationTracePoint() {
 
-		public IValue getValue() {
+		public double getDoubleValue() {
 			return value;
 		}
 
@@ -47,7 +49,9 @@ public class GaugeSimulationObject extends AbstractBlockSimulationObject {
 	 */
 	@Override
 	public void update(double t) {
-		value = inputValue;
+		if (inputValue instanceof ISimpleNumericValue) {
+			value = ((ISimpleNumericValue) inputValue).doubleValue();
+		}
 	}
 
 	/* (non-Javadoc)

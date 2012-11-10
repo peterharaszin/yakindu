@@ -18,8 +18,6 @@ import org.eclipse.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.library.vi.ui.figures.ButtonContentFigure;
 import org.eclipse.damos.library.vi.ui.figures.ButtonContentFigure.IButtonChangeListener;
-import org.eclipse.damos.mscript.interpreter.value.IValue;
-import org.eclipse.damos.mscript.interpreter.value.Values;
 import org.eclipse.damos.simulation.AbstractSimulationRunnable;
 import org.eclipse.damos.simulation.ISimulation;
 import org.eclipse.damos.simulation.ISimulationAgent;
@@ -91,8 +89,7 @@ public class ButtonEditPart extends RectangularBlockEditPart {
 			ISimulationAgent agent = getSimulation().getAgent(getComponent());
 			if (agent != null) {
 				ISimulationVariationPoint variationPoint = agent.getVariationPoints()[0];
-				IValue value = Values.valueOf(agent.getComputationContext(), pressed);
-				variationPoint.setValue(value);
+				variationPoint.setValue(pressed);
 			}
 		}
 

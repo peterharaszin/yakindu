@@ -18,9 +18,6 @@ import org.eclipse.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.library.vi.ui.figures.SliderContentFigure;
 import org.eclipse.damos.library.vi.ui.figures.SliderContentFigure.ISliderChangeListener;
-import org.eclipse.damos.mscript.NumericType;
-import org.eclipse.damos.mscript.interpreter.value.IValue;
-import org.eclipse.damos.mscript.interpreter.value.Values;
 import org.eclipse.damos.simulation.AbstractSimulationRunnable;
 import org.eclipse.damos.simulation.ISimulation;
 import org.eclipse.damos.simulation.ISimulationAgent;
@@ -93,8 +90,7 @@ public class SliderEditPart extends RectangularBlockEditPart {
 			ISimulationAgent agent = getSimulation().getAgent(getComponent());
 			if (agent != null) {
 				ISimulationVariationPoint variationPoint = agent.getVariationPoints()[0];
-				IValue value = Values.valueOf(agent.getComputationContext(), (NumericType) variationPoint.getDataType(), position);
-				variationPoint.setValue(value);
+				variationPoint.setValue(position);
 			}
 		}
 

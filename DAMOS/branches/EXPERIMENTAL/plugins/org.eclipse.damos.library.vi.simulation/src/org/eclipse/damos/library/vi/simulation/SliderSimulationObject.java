@@ -14,12 +14,13 @@ package org.eclipse.damos.library.vi.simulation;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.damos.mscript.NumericType;
-import org.eclipse.damos.mscript.Type;
 import org.eclipse.damos.mscript.interpreter.IComputationContext;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.mscript.interpreter.value.Values;
 import org.eclipse.damos.simulation.AbstractSimulationAgent;
+import org.eclipse.damos.simulation.AbstractSimulationVariationPoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
+import org.eclipse.damos.simulation.ISimulationMonitor;
 import org.eclipse.damos.simulation.ISimulationVariationPoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
 
@@ -29,30 +30,31 @@ import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
  */
 public class SliderSimulationObject extends AbstractBlockSimulationObject {
 
+	private double doubleOutputValue;
 	private IValue outputValue;
 
-	private Type outputDataType;
+	private NumericType outputDataType;
 
-	private ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new ISimulationVariationPoint() {
+	private final ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new AbstractSimulationVariationPoint() {
 
-		public Type getDataType() {
-			return outputDataType;
+		public double getDoubleValue() {
+			return doubleOutputValue;
 		}
 		
-		public IValue getValue() {
-			return outputValue;
-		}
-		
-		public void setValue(IValue value) {
-			outputValue = value;
+		public void setValue(double value) {
+			doubleOutputValue = value;
 		}
 
 	} };
 
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		outputDataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
-		outputValue = Values.valueOf(getComputationContext(), (NumericType) outputDataType, 0.0);
+		outputDataType = (NumericType) getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
+	}
+	
+	@Override
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+		outputValue = Values.valueOf(getComputationContext(), outputDataType, doubleOutputValue);
 	}
 	
 	@Override

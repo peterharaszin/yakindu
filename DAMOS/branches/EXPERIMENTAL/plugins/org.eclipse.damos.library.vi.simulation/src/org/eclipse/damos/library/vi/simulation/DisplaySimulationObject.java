@@ -23,6 +23,7 @@ import org.eclipse.damos.simulation.AbstractSimulationTracePoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Andreas Unger
@@ -85,7 +86,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 	 */
 	@Override
 	protected ISimulationAgent createAgent() {
-		return new AbstractSimulationAgent(getComponent()) {
+		return new AbstractSimulationAgent(EcoreUtil.getURI(getComponent()).toString()) {
 			
 			/* (non-Javadoc)
 			 * @see org.eclipse.damos.simulation.simulator.AbstractSimulationAgent#getTracePoints()

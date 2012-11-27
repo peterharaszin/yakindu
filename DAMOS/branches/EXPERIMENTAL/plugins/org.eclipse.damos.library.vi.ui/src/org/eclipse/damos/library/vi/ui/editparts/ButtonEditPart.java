@@ -12,6 +12,7 @@
 package org.eclipse.damos.library.vi.ui.editparts;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.damos.diagram.ui.editparts.RectangularBlockEditPart;
 import org.eclipse.damos.diagram.ui.figures.StandardComponentLayout;
@@ -86,9 +87,9 @@ public class ButtonEditPart extends RectangularBlockEditPart {
 		 * @see java.lang.Runnable#run()
 		 */
 		public void run() {
-			ISimulationAgent agent = getSimulation().getAgent(getComponent());
-			if (agent != null) {
-				ISimulationVariationPoint variationPoint = agent.getVariationPoints()[0];
+			Iterator<ISimulationAgent> it = getSimulation().getAgents(getComponentURIPath().lastSegment()).iterator();
+			if (it.hasNext()) {
+				ISimulationVariationPoint variationPoint = it.next().getVariationPoints()[0];
 				variationPoint.setValue(pressed);
 			}
 		}

@@ -11,7 +11,6 @@
 
 package org.eclipse.damos.library.vi.simulation;
 
-import org.eclipse.damos.mscript.interpreter.IComputationContext;
 import org.eclipse.damos.mscript.interpreter.value.IValue;
 import org.eclipse.damos.mscript.interpreter.value.Values;
 import org.eclipse.damos.simulation.AbstractSimulationAgent;
@@ -19,7 +18,6 @@ import org.eclipse.damos.simulation.AbstractSimulationVariationPoint;
 import org.eclipse.damos.simulation.ISimulationAgent;
 import org.eclipse.damos.simulation.ISimulationVariationPoint;
 import org.eclipse.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Andreas Unger
@@ -56,18 +54,8 @@ public class ButtonSimulationObject extends AbstractBlockSimulationObject {
 	 */
 	@Override
 	protected ISimulationAgent createAgent() {
-		return new AbstractSimulationAgent(EcoreUtil.getURI(getComponent()).toString()) {
+		return new AbstractSimulationAgent(getNode().getSystemPath().toURIPath()) {
 			
-			/* (non-Javadoc)
-			 * @see org.eclipse.damos.simulation.simulator.ISimulationAgent#getComputationContext()
-			 */
-			public IComputationContext getComputationContext() {
-				return ButtonSimulationObject.this.getComputationContext();
-			}
-			
-			/* (non-Javadoc)
-			 * @see org.eclipse.damos.simulation.simulator.AbstractSimulationAgent#getVariationPoints()
-			 */
 			@Override
 			public ISimulationVariationPoint[] getVariationPoints() {
 				return variationPoints;

@@ -12,13 +12,13 @@
 package org.eclipse.damos.library.vi.ui.editparts;
 
 import java.util.IllegalFormatException;
+import java.util.Iterator;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.eclipse.damos.diagram.ui.editparts.RectangularBlockEditPart;
 import org.eclipse.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipse.damos.dml.Block;
-import org.eclipse.damos.dml.Component;
 import org.eclipse.damos.library.vi.ui.figures.DisplayContentFigure;
 import org.eclipse.damos.library.vi.util.DisplayConstants;
 import org.eclipse.damos.simulation.ISimulationAgent;
@@ -26,6 +26,7 @@ import org.eclipse.damos.simulation.ISimulationListener;
 import org.eclipse.damos.simulation.ISimulationTracePoint;
 import org.eclipse.damos.simulation.SimulationEvent;
 import org.eclipse.damos.simulation.SimulationManager;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
@@ -49,9 +50,9 @@ public class DisplayEditPart extends RectangularBlockEditPart {
 			if (event.getKind() == SimulationEvent.START) {
 				updateFormatString();
 			} else if (event.getKind() == SimulationEvent.STEP || event.getKind() == SimulationEvent.ASYNCHRONOUS) {
-				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
-				if (agent != null) {
-					ISimulationTracePoint[] tracePoints = agent.getTracePoints();
+				Iterator<ISimulationAgent> it = event.getSimulation().getAgents(EcoreUtil.getURI(resolveSemanticElement())).iterator();
+				if (it.hasNext()) {
+					ISimulationTracePoint[] tracePoints = it.next().getTracePoints();
 					Object[] values = new Object[tracePoints.length];
 					for (int i = 0; i < tracePoints.length; ++i) {
 						Object value = tracePoints[i].getValue();

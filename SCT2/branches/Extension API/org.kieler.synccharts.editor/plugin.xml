@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://kieler.org/synccharts"
+            class="org.kieler.syncharts.model.synccharts.SyncchartsPackage"
+            genModel="model/Synccharts.genmodel"/>
+   </extension>
+  <!-- Editor -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.kieler.synccharts.editor.factory.KielerExecutableExtensionFactory:org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor"
+            contributorClass="org.yakindu.sct.ui.editor.editor.StatechartDiagramActionbarContributor"
+            default="true"
+            extensions="sync"
+            id="org.kieler.synccharts.editor.SyncChartsEditor"
+            matchingStrategy="org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditorMatchingStrategy"
+            name="Kieler SyncCharts Editor">
+      </editor>
+   </extension>
+   <!-- Wizard -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+     <category id="Kieler" name="Kieler"/>
+      <wizard
+            category="Kieler"
+            class="org.kieler.synccharts.editor.factory.KielerExecutableExtensionFactory:org.yakindu.sct.ui.editor.wizards.CreationWizard"
+            id="org.kieler.synccharts.editor.KielerWizard"
+            name="Kieler  Synccharts Model"
+            project="false">
+      </wizard>
+   </extension>
+   <!-- Palette Provider -->
+    <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+      <paletteProvider
+            class="org.kieler.synccharts.editor.factory.KielerExecutableExtensionFactory:org.yakindu.sct.ui.editor.providers.SCTPaletteProvider">
+             <Priority
+               name="Highest">
+         </Priority>
+         <editor
+               class="org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor">
+         </editor>
+      </paletteProvider>
+  </extension>
+</plugin>

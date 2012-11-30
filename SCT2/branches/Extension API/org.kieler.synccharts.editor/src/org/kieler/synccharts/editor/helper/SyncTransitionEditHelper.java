@@ -7,7 +7,6 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.kieler.synccharts.editor.factory.KielerMetaModelTypeFactory;
 import org.kieler.syncharts.model.synccharts.SyncchartsPackage;
@@ -17,15 +16,6 @@ import org.yakindu.sct.ui.editor.edithelper.TransitionEditHelper;
 
 public class SyncTransitionEditHelper extends TransitionEditHelper {
 
-	public SyncTransitionEditHelper() {
-		System.out.println("Created");
-	}
-
-	@Override
-	protected ICommand getCreateCommand(CreateElementRequest req) {
-		// TODO Auto-generated method stub
-		return super.getCreateCommand(req);
-	}
 
 	/**
 	 * Set the right {@link EntryKind} for the given {@link ElementType}

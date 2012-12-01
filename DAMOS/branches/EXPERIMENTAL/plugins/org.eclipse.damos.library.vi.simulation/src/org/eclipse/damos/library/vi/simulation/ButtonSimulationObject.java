@@ -28,7 +28,7 @@ public class ButtonSimulationObject extends AbstractBlockSimulationObject {
 	private boolean booleanOutputValue;
 	private IValue outputValue;
 
-	private final ISimulationVariationPoint[] variationPoints = { new AbstractSimulationVariationPoint() {
+	private final ISimulationVariationPoint[] variationPoints = { new AbstractSimulationVariationPoint("value", Boolean.TYPE) {
 
 		public boolean getBooleanValue() {
 			return booleanOutputValue;

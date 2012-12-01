@@ -34,7 +34,7 @@ public class SliderSimulationObject extends AbstractBlockSimulationObject {
 
 	private NumericType outputDataType;
 
-	private final ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new AbstractSimulationVariationPoint() {
+	private final ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new AbstractSimulationVariationPoint("value", Double.TYPE) {
 
 		public double getDoubleValue() {
 			return doubleOutputValue;

@@ -28,7 +28,7 @@ public class GaugeSimulationObject extends AbstractBlockSimulationObject {
 	private IValue inputValue;
 	private double value;
 	
-	private final ISimulationTracePoint[] tracePoints = new ISimulationTracePoint[] { new AbstractSimulationTracePoint() {
+	private final ISimulationTracePoint[] tracePoints = new ISimulationTracePoint[] { new AbstractSimulationTracePoint("value", Double.TYPE) {
 
 		public double getDoubleValue() {
 			return value;

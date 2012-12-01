@@ -103,6 +103,7 @@ public class DisplaySimulationObject extends AbstractBlockSimulationObject {
 		 * 
 		 */
 		public SimulationTracePoint(int index) {
+			super("value", null);
 			this.index = index;
 		}
 		

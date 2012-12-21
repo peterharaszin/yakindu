@@ -184,6 +184,10 @@ public abstract class AbstractEditorPropertySection extends
 
 			public ISelection getSelection() {
 				
+				if (styledText.isDisposed()) {
+					return new StructuredSelection();
+				}
+				
 				int offset = styledText.getCaretOffset()-1;
 				XtextResource fakeResource = xtextAdapter.getFakeResourceContext().getFakeResource();
 				if (fakeResource == null) {

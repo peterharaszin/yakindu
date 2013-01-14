@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.yakindu.sct.generator.core.generator">
+      <SCTGenerator
+            class="org.yakindu.sct.generator.java.JavaSCTGenerator"
+            description="YAKINDU Java Code Generator"
+            id="yakindu::java"
+            name="YAKINDU Java Code Generator">
+      </SCTGenerator>
+   </extension>
+   <extension
+         point="org.yakindu.sct.generator.core.featuretypes">
+      <FeatureLibrary
+            defaultProvider="org.yakindu.sct.generator.java.features.JavaFeatureValueProvider"
+            generatorId="yakindu::java"
+            uri="platform:/plugin/org.yakindu.sct.generator.java/library/FeatureTypeLibrary.xmi">
+      </FeatureLibrary>
+   </extension>
+   <extension
+         point="org.yakindu.sct.generator.core.extensions">
+      <ExtensionGeneratorMapping
+            fileExtension="sct"
+            generatorId="yakindu::java"></ExtensionGeneratorMapping>
+   </extension>
+
+</plugin>

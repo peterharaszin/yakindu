@@ -1,0 +1,207 @@
+/*
+  Copyright (c) 2011 committers of YAKINDU and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  Contributors:
+  	Joern Seger - Initial contribution and API
+  	Markus Muehlbrandt - Java adaptions and extensions
+ */
+import stext;
+import sexec;
+import sgraph;
+import sgen;
+
+extension org::yakindu::sct::generator::java::templates::Expression;
+extension org::yakindu::sct::generator::java::templates::ExecutionModelExtensions;
+extension org::yakindu::sct::generator::java::templates::GenmodelEntries;
+extension org::yakindu::sct::generator::java::templates::TypeModelExtensions;
+
+//TODO Workaround (WA) for error in Typesystem
+String getNameWA(Declaration this) : this.metaType.getProperty("name").toString();
+String getNameWA(Vertex this) : this.metaType.getProperty("name").toString();
+
+String getStatemachineName(String name) :
+	JAVA org.yakindu.sct.generator.java.features.JavaFeatureConstants.getValidStatemachineName(java.lang.String);
+
+String getStatemachineName(ExecutionFlow this) : 
+	 name.getStatemachineName();
+
+String getEventBasedStatemachineName(ExecutionFlow this) : name.toFirstUpper() + "EventBasedStatemachine";
+String getCycleBasedStatemachineName(ExecutionFlow this) : name.toFirstUpper() + "CycleBasedStatemachine";
+String getCycleBasedStatemachineName(InterfaceScope this) : ((ExecutionFlow)eContainer).getCycleBasedStatemachineName();
+String getStatemachineFactoryName(ExecutionFlow this) : name.getStatemachineName().toFirstUpper() + "StatemachineFactory";
+
+String getStatemachineInterfaceTypes(ExecutionFlow this, GeneratorEntry entry):
+	JAVA org.yakindu.sct.generator.java.extensions.JavaExtensions.getStatemachineInterfaceTypes(org.yakindu.sct.model.sexec.ExecutionFlow, org.yakindu.sct.model.sgen.GeneratorEntry);
+
+String getInterfaceName(InterfaceScope this) :  
+	if name!=null then
+		"Interface" + name.toFirstUpper()
+	else
+		"DefaultInterface";
+		 
+String getInterfaceImplName(InterfaceScope this) :  getInterfaceName() + "Impl";
+
+String getIInterfaceImplName(InterfaceScope this) : "I" + getInterfaceName() + "Impl";
+
+String getEventBasedInterfaceImplName(InterfaceScope this) : getInterfaceName() + "EventBasedImpl";
+
+String getInterfaceParameter(InterfaceScope this) :
+	if hasEvents() then
+		"this"
+	else
+		null;
+
+String getCreationSignature(EventDefinition this) :
+	if type.isVoid() then
+		"Events."+name.toFirstUpper()+", "+((Scope)eContainer).getOffset()
+	else
+		"Events."+name.toFirstUpper()+", "+((Scope)eContainer).getOffset()+", "+getInitialValue();
+
+String getEventType(EventDefinition this) :
+	if type.isVoid() then
+		"Event<Events>"
+	else
+		"ValuedEvent<Events, "+type.getJavaClassType()+">";
+
+	
+String getInitialValueAssignment(VariableDefinition this) : 
+	if initialValue != null then
+		" = " + initialValue.toCode()
+	else
+		null;
+
+String getValueName(VariableDefinition this) : "var" + name.toFirstUpper();
+
+String getter(VariableDefinition this) : "get" + getValueName().toFirstUpper() + "()";
+
+String getName(ExecutionState this) :
+	simpleName.replaceAll(" ","").toFirstUpper();
+	
+String getName(ExecutionNode this) :
+	simpleName.replaceAll(" ","").toFirstUpper();
+
+String getHistoryVectorName(ExecutionRegion this) :
+	getName()+"HistoryVector";
+	
+String getName(ExecutionRegion this) :
+	if (ExecutionState.isInstance(superScope)) 
+	then (
+		getName((ExecutionState)superScope)+getNullSafeRegionName()
+	) else 
+		"Region"+getNullSafeRegionName();
+
+private getNullSafeRegionName(ExecutionRegion this) :
+	if (name == null)
+	then (
+		if (ExecutionScope.isInstance(superScope))
+		then
+			superScope.subScopes.indexOf(this)
+		else "DefaultRegion"
+	)
+	else name.replaceAll(" ","").toFirstUpper();
+
+String getName(ExecutionFlow this) :
+	name.replaceAll(" ","").toFirstUpper();
+
+String getName(Event this) :
+	"Event"+getNameWA().toFirstUpper();
+
+String getName(Expression this) : "/* Event expected, but got Expression: "+this+" */";
+
+String getter(Event this) :
+	"get"+getName()+"()";
+
+String getName(TimeEvent this) :
+	name.replaceAll(" ","").toFirstUpper();
+				
+cached String functionName(Step step) : 
+	(step.isEffect()) ? step.actionFunctionName() : (
+	(step.isReactionCheck()) ? step.checkFunctionName() : (
+	(step.isEntryAction()) ? step.entryActionFunctionName() : ( 
+	(step.isExitAction()) ? step.exitActionFunctionName() :  (
+	(step.isEnterSequence()) ? step.enterSequenceName() : (
+	(step.isDeepEnterSequence()) ? step.deepEnterSequenceName() : (
+	(step.isShallowEnterSequence()) ? step.shallowEnterSequenceName() : (
+	(step.isExitSequence()) ? step.exitSequenceName() : (
+	(step.isReactSequence()) ? step.reactSequenceName() :
+	" // unknown function type "+step ))))))));
+ 
+String statemachineEntryFunctionName(EnterState this):
+	if (this.name != null) then
+		"entry"+name.toFirstUpper().replaceAll(" ","")+"()"
+	else
+		"entry()";
+
+String actionFunctionName(Step this) : "actions" + getName(reaction().state()) + this.reaction().name.toFirstUpper(); 
+String checkFunctionName(Step this) : "condition" + getName(reaction().state()) + this.reaction().name.toFirstUpper(); 
+String entryActionFunctionName(Step this) : "entryAction" + getName(state()); 
+String exitActionFunctionName(Step this) : "exitAction" + getName(state());
+String enterSequenceName(Step this) : "enterSequence"+getName(state()); 
+String enterSequenceName(ExecutionState this) : "enterSequence"+getName();
+String enterSequenceName(ExecutionRegion this) : "enterSequence"+getName();
+String deepEnterSequenceName(Step this) : ((ExecutionRegion)this.eContainer).deepEnterSequenceName();
+String deepEnterSequenceName(ExecutionRegion this) : "deepEnterSequence"+getName();
+String shallowEnterSequenceName(Step this) : ((ExecutionRegion)this.eContainer).shallowEnterSequenceName();
+String shallowEnterSequenceName(ExecutionRegion this) : "shallowEnterSequence"+getName();
+String enterSequenceName(ExecutionFlow this) : "enter";
+String exitSequenceName(Step this) : "exitSequence"+getName(state()); 
+String exitSequenceName(ExecutionState this) : "exitSequence"+getName();
+String exitSequenceName(ExecutionRegion this) : "exitSequence"+getName();
+String exitSequenceName(ExecutionFlow this) : "exit";
+String reactSequenceName(Step this) : "react"+getName(state()); 
+
+isEffect(Step step) : (! Check.isInstance(step)) && Reaction.isInstance(step.eContainer) ;
+isReactionCheck(Step step) : Reaction.isInstance(step.eContainer) && Check.isInstance(step);
+isEntryAction(Step step) : ExecutionState.isInstance(step.eContainer) && step.state().entryAction == step;
+isExitAction(Step step) : ExecutionState.isInstance(step.eContainer) && step.state().exitAction == step;
+isEnterSequence(Step step) : Sequence.isInstance(step) && step.name == "enterSequence";
+isDeepEnterSequence(Step step) : Sequence.isInstance(step) && step.name == "deepEnterSequence";
+isShallowEnterSequence(Step step) : Sequence.isInstance(step) && step.name == "shallowEnterSequence";
+isExitSequence(Step step) : Sequence.isInstance(step) && step.name == "exitSequence";
+isReactSequence(Step step) : Sequence.isInstance(step) && step.name == "react";
+
+Reaction reaction(Step this) : (Reaction) this.eContainer ;
+ExecutionState state(Reaction this) : (ExecutionState) eContainer;
+ExecutionState state(Step this) : (ExecutionState) eContainer;
+
+String getContext(Variable this) : 
+	if (InterfaceScope.isInstance(eContainer)) then  
+		"get"+getInterfaceImplName((InterfaceScope)eContainer)+"()."
+	else 
+		"";
+		
+String getContext(Expression this) : 
+	"/* getContext for unknown element: "+this+"*/";
+	
+String getContext(Event this) : 
+	if (InterfaceScope.isInstance(eContainer)) then  
+		"get"+getInterfaceImplName((InterfaceScope)eContainer)+"()."
+	else 
+		"";
+	
+String getInterfaceExtension(Scope this, GeneratorEntry entry):
+	JAVA org.yakindu.sct.generator.java.extensions.JavaExtensions.getInterfaceExtensions(org.yakindu.sct.model.sgraph.Scope, org.yakindu.sct.model.sgen.GeneratorEntry);
+		
+String getInterfaceImplExtension(Scope this, GeneratorEntry entry):
+	if ((hasVariables() || hasOutgoingEvents()) && entry.createInterfaceObserverSupport()) then
+		" extends NotificationSender"
+	else
+		null;
+		
+String getStatemachineExtension(ExecutionFlow this, GeneratorEntry entry):
+	if (!getDefaultInterface().isEmpty) then
+		getInterfaceImplExtension(getDefaultInterface().get(0),entry)
+	else
+		null;
+	
+String getComment(Step this) :
+	if comment!=null then
+		"//"+comment
+	else
+		null;
+		
+String getNullStateName() :
+	"$NullState$";

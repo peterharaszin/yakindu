@@ -1,0 +1,58 @@
+«REM»
+
+Contais the root templates that call the different file templates.
+
+@author andreas muelder
+@auther axel terfloth
+@author joern seger
+
+«ENDREM»
+
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+
+
+«IMPORT org::yakindu::sct::generator::c::templates»
+
+
+«DEFINE main(sgen::GeneratorEntry genEntry) FOR ExecutionFlow»
+ 
+	«REM» basis files «ENDREM»
+	«EXPAND EventH::file(genEntry) FOR this»
+	«EXPAND EventC::file(genEntry) FOR this»
+
+	«EXPAND TimerH::file(genEntry) FOR this»
+	«EXPAND TimerC::file(genEntry) FOR this»
+
+	«EXPAND EventSetH::file(genEntry) FOR this»
+	«EXPAND EventSetC::file(genEntry) FOR this»
+
+	«EXPAND StatemachineBaseH::file(genEntry) FOR this» 
+	«EXPAND StatemachineBaseC::file(genEntry) FOR this»
+
+	«EXPAND Statemachine_cyH::file(genEntry) FOR this»
+	«EXPAND Statemachine_cyC::file(genEntry) FOR this»
+
+	«EXPAND Interfaces::file(genEntry) FOR this»
+
+    «REM» code that is created by the model «ENDREM»
+	«EXPAND definitionH::file(genEntry) FOR this»
+
+	«EXPAND EventPoolH::file(genEntry) FOR this»
+	«EXPAND EventPoolC::file(genEntry) FOR this»
+
+	«EXPAND CustomStatemachineH::file(genEntry) FOR this»
+	«EXPAND CustomStatemachineC::file(genEntry) FOR this»
+	
+	«EXPAND CustomEventH::file(genEntry) FOR this»
+	«EXPAND CustomEventC::file(genEntry) FOR this»
+
+	«EXPAND CMakeLists::file(genEntry) FOR this»
+	
+	«EXPAND DummyTimer::file(genEntry) FOR this»
+
+«ENDDEFINE»
+
+
+

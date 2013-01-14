@@ -1,0 +1,176 @@
+/*
+  Copyright (c) 2011 committers of YAKINDU and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  Contributors:
+  	Joern Seger - Initial contribution and API
+  	Markus Muehlbrandt - Java adaptions
+ */
+import stext;
+import sexec;
+import sgraph;
+
+extension org::yakindu::sct::generator::java::templates::Naming;
+extension org::yakindu::sct::generator::java::templates::TypeModelExtensions;
+extension org::yakindu::sct::generator::core::extensions::TypeAnalyzerExtensions;
+
+String toCode(Void void) :
+	"/*toCode() called with NULL element. Polymorphic resolver could not match callable method!*/";
+String toCode(Void o, String statechartReference) : 
+	""; //polymorphic placeholder (abstract rule)
+
+//polymorphic placeholder (abstract rule)
+String toCode(Expression expression) : 
+	"/* Unknown expression: "+expression+" */"; 
+
+String toCode(TypedElementReferenceExpression ref) :
+	ref.reference.toCode();
+String toCode(base::NamedElement ref) :
+	"/* toCode not defined for: "+ref+" */";
+String toCode(types::Feature ref) :
+	"/* toCode not defined for: "+ref+" */";
+String toCode(FeatureCall ref) :
+	ref.feature.toCode();
+
+//polymorphic placeholder (abstract rule) 
+String toCode(Statement statement) : 
+	"/* Unknown statement: "+statement+" */";
+
+//polymorphic placeholder (abstract rule)
+String toCode(Literal literal) : 
+	"/* Unknown literal: "+literal+" */";
+
+String toCode(PrimitiveValueExpression primValue) :
+	primValue.value.toCode();
+	
+String getterCall(AssignmentExpression this) :
+	getContext(varRef).toFirstLower()+"get"+ varRef.getVarName().toFirstUpper()+ "()";
+	
+String setterCall(AssignmentExpression this, String expression) :
+	getContext(varRef).toFirstLower()+"set" + varRef.getVarName().toFirstUpper() + "(" + expression + ");";
+
+/* Assignment */
+String toCode(AssignmentExpression this) :
+  switch (operator) {
+  case AssignmentOperator::assign : setterCall(expression.toCode())
+  case AssignmentOperator::multAssign : setterCall(getterCall() + " * (" + expression.toCode() + ")")
+  case AssignmentOperator::divAssign : setterCall(getterCall() + " / (" + expression.toCode() + ")")
+  case AssignmentOperator::modAssign : setterCall(getterCall() + " % (" + expression.toCode() + ")")
+  case AssignmentOperator::addAssign : setterCall(getterCall() + " + (" + expression.toCode() + ")")
+  case AssignmentOperator::subAssign : setterCall(getterCall() + " - (" + expression.toCode() + ")")
+  case AssignmentOperator::andAssign : setterCall(getterCall() + " & (" + expression.toCode() + ")")
+  case AssignmentOperator::xorAssign : setterCall(getterCall() + " ^ (" + expression.toCode() + ")")
+  case AssignmentOperator::orAssign : setterCall(getterCall() + " ^ (" + expression.toCode() + ")")
+  case AssignmentOperator::leftShiftAssign : setterCall(getterCall() + " << ("+ expression.toCode() + ")")
+  case AssignmentOperator::rightShiftAssign : setterCall(getterCall() + " >> (" + expression.toCode() + ")")  
+  default : ""
+  };
+		
+/* Literals */
+String toCode(BoolLiteral expression) :
+	expression.value.toString();
+	
+String toCode(IntLiteral expression) :
+	expression.value.toString();
+	
+String toCode(RealLiteral expression) :
+	expression.value.toString();
+	
+String toCode(StringLiteral expression) :
+	"\"" + expression.value.toString() + "\"";
+
+String toCode(EventValueReferenceExpression expression):
+	expression.value.getContext().toFirstLower()+"getEvent"+expression.value.getEventName()+"().getValue()";
+
+/* Logical Expressions */
+String toCode(LogicalOrExpression expression) :
+  	"("+expression.leftOperand.toCode() + " || " + expression.rightOperand.toCode()+")";
+  	
+String toCode(LogicalAndExpression expression) :
+  	"("+expression.leftOperand.toCode() + " && " + expression.rightOperand.toCode()+")";
+
+String toCode(LogicalNotExpression expression) :
+  	" !" + expression.operand.toCode();
+
+String toCode(LogicalRelationExpression expression) :
+	if (expression.leftOperand.inferType().isString()) then
+		"("+expression.leftOperand.toCode()+"==null?"+expression.rightOperand.toCode()+"==null:"+expression.leftOperand.toCode()+".equals("+expression.rightOperand.toCode()+"))"
+	else
+		"("+expression.leftOperand.toCode() + getOperator(expression.operator) + expression.rightOperand.toCode()+")";
+    
+String toCode(BitwiseAndExpression expression) :
+  	"("+expression.leftOperand.toCode() + " & " + expression.rightOperand.toCode()+")";
+
+String toCode(BitwiseOrExpression expression) :
+  	"("+expression.leftOperand.toCode() + " | " + expression.rightOperand.toCode()+")";
+
+String toCode(BitwiseXorExpression expression) :
+  	"("+expression.leftOperand.toCode() + " ^ " + expression.rightOperand.toCode()+")";
+
+String toCode(NumericalAddSubtractExpression expression) :
+  	"("+expression.leftOperand.toCode() + getOperator(expression.operator) + expression.rightOperand.toCode()+")";
+  	
+String toCode(NumericalMultiplyDivideExpression expression) :
+  	"("+expression.leftOperand.toCode() + getOperator(expression.operator) + expression.rightOperand.toCode()+")";
+
+String toCode(NumericalUnaryExpression expression) :
+    getOperator(expression.operator) + " ( " + expression.operand.toCode() + " ) ";
+
+String toCode(TimeEvent exp) :
+	"occuredEvents.contains("+getEventName(exp)+")";
+String toCode(VariableDefinition exp) :
+	getContext(exp)+"get"+exp.getVarName()+"()";
+String toCode(EventDefinition exp) :
+	"occuredEvents.contains("+exp.getContext().toFirstLower()+exp.getter()+")";
+
+String toCode(ActiveStateReferenceExpression this):
+	"isStateActive(State."+this.value.getName()+")";
+
+String getOperator(AdditiveOperator operator) : 
+    switch(operator) {
+    	case AdditiveOperator::plus : " + "
+    	case AdditiveOperator::minus : " - "
+    	default : ""
+    };
+    
+String getOperator(UnaryOperator operator) :
+	switch (operator) {
+	  case (UnaryOperator::negative) : " -"
+	  case (UnaryOperator::positive) : " + "
+	  case (UnaryOperator::complement) : " ~ "
+	  default : ""
+	};
+
+String getOperator(MultiplicativeOperator operator) : 
+    switch(operator) {
+    	case MultiplicativeOperator::mul : " * "
+    	case MultiplicativeOperator::div : " / "
+    	case MultiplicativeOperator::mod : " % "
+    	default : ""
+    };
+
+String getOperator(RelationalOperator operator) :
+	switch (operator) {
+	  case RelationalOperator::greater : " > "
+	  case RelationalOperator::greaterEqual : " >= "
+	  case RelationalOperator::smaller : " < "
+	  case RelationalOperator::smallerEqual : " <= "
+	  case RelationalOperator::equals : " == "
+	  case RelationalOperator::notEquals : " != "
+	  default : ""
+	};
+	
+String toCode(EventRaisingExpression this) :
+	if this.value != null then
+		event.getContext().toFirstLower()+"raise"+event.getEventName()+"("+value.toCode()+");"
+	else
+		event.getContext().toFirstLower()+"raise"+event.getEventName()+"();";
+		
+String getInitialValue(EventDefinition this) :
+	if derivation != null then
+		derivation.condition.toCode()
+	else
+		//if no initial value expression is declared set default value to avoid npe exceptions
+		type.getInitialValue();

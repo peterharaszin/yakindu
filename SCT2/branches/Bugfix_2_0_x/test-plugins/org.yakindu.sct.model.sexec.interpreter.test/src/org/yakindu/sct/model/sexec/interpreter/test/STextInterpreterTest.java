@@ -534,16 +534,4 @@ public class STextInterpreterTest extends AbstractSTextTest {
 		context = null;
 	}
 
-	protected static final class TestExecutionContext extends
-			ExecutionContextImpl {
-
-		public String lastProcedureId;
-
-		@Override
-		public void call(String procedureId) {
-			super.call(procedureId);
-			lastProcedureId = procedureId;
-		}
-	}
-
 }

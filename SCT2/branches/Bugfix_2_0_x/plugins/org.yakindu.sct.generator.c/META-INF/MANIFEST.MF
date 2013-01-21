@@ -26,4 +26,3 @@ Export-Package: org.yakindu.sct.generator.c,
  org.yakindu.sct.generator.c.features,
  org.yakindu.sct.generator.c.templates
 Bundle-Vendor: yakindu.org
-Eclipse-BundleShape: dir

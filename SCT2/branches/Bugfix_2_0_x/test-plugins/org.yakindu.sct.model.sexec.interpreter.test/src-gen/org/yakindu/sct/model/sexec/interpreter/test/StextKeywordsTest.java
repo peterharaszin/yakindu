@@ -22,12 +22,12 @@ import org.yakindu.sct.model.sexec.ExecutionFlow;
 import util.TestModels;
 import static junit.framework.Assert.*;
 /**
- *  Unit TestCase for SimpleEvent
+ *  Unit TestCase for STextKeywordsInStatesAndRegions
  */
 @SuppressWarnings("all")
 @RunWith(XtextRunner.class)
 @InjectWith(SExecInjectionProvider.class)
-public class SimpleEventTest extends AbstractExecutionFlowTest {
+public class StextKeywordsTest extends AbstractExecutionFlowTest {
 
 	@Inject
 	private TestModels models;
@@ -35,16 +35,17 @@ public class SimpleEventTest extends AbstractExecutionFlowTest {
 	@Before
 	public void setup() throws Exception {
 		ExecutionFlow flow = models
-				.loadExecutionFlowFromResource("SimpleEvent.sct");
+				.loadExecutionFlowFromResource("STextKeywordsInStatesAndRegions.sct");
 		initInterpreter(flow);
 	}
 	@Test
-	public void simpleEventTest() throws Exception {
+	public void activeCheckWithSTextNamedStates() throws Exception {
 		interpreter.enter();
-		assertTrue("Expected A to be active", isActive("A"));
-		assertTrue(5 == 5);
-		raiseEvent("Event1");
+		assertTrue(isActive("var"));
+		assertTrue(isActive("interface"));
 		interpreter.runCycle();
-		assertTrue("Expected B to be active", isActive("B"));
+		assertTrue(isActive("var"));
+		assertTrue(isActive("active"));
+		interpreter.runCycle();
 	}
 }

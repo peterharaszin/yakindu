@@ -933,7 +933,23 @@ public class BehaviorMapping {
           return _mapped;
         }
       };
-    final List<ExecutionNode> targets = ListExtensions.<Transition, ExecutionNode>map(transitions, _function);
+    List<ExecutionNode> _map = ListExtensions.<Transition, ExecutionNode>map(transitions, _function);
+    ArrayList<ExecutionNode> _arrayList = new ArrayList<ExecutionNode>();
+    final Function2<ArrayList<ExecutionNode>,ExecutionNode,ArrayList<ExecutionNode>> _function_1 = new Function2<ArrayList<ExecutionNode>,ExecutionNode,ArrayList<ExecutionNode>>() {
+        public ArrayList<ExecutionNode> apply(final ArrayList<ExecutionNode> s, final ExecutionNode e) {
+          ArrayList<ExecutionNode> _xblockexpression = null;
+          {
+            boolean _contains = s.contains(e);
+            boolean _not = (!_contains);
+            if (_not) {
+              s.add(e);
+            }
+            _xblockexpression = (s);
+          }
+          return _xblockexpression;
+        }
+      };
+    final ArrayList<ExecutionNode> targets = IterableExtensions.<ExecutionNode, ArrayList<ExecutionNode>>fold(_map, _arrayList, _function_1);
     boolean _notEquals = (!Objects.equal(entryScope, null));
     if (_notEquals) {
       this.addEnterStepsForTargetsToSequence(entryScope, targets, sequence);

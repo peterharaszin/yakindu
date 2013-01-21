@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 committers of YAKINDU and others.
+ * Copyright (c) 2013 committers of YAKINDU and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -105,5 +105,17 @@ public class SyncJoinTest extends AbstractExecutionFlowTest {
 		interpreter.runCycle();
 		assertTrue(isActive("C2"));
 		assertTrue(isActive("D2"));
+	}
+	@Test
+	public void doubleEntryActionBug() throws Exception {
+		interpreter.enter();
+		raiseEvent("e");
+		raiseEvent("f");
+		interpreter.runCycle();
+		raiseEvent("jc");
+		raiseEvent("jd");
+		interpreter.runCycle();
+		assertTrue(isActive("A"));
+		assertTrue(getInteger("x") == 1);
 	}
 }

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
+import org.eclipse.xtext.validation.ComposedChecks;
 import org.yakindu.sct.model.sgraph.Choice;
 import org.yakindu.sct.model.sgraph.Entry;
 import org.yakindu.sct.model.sgraph.EntryKind;
@@ -37,6 +38,7 @@ import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
  * @author bohl - migrated to xtext infrastruture
  */
 
+@ComposedChecks(validators = { SCTResourceValidator.class })
 public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 
 	public static final String ISSUE_STATE_WITHOUT_NAME = "A state must have a name.";

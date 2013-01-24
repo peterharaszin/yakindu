@@ -60,9 +60,4 @@ public class SGraphRuntimeModule extends AbstractGenericModule {
 						Names.named(ResourceDescriptionsProvider.LIVE_SCOPE))
 				.to(ResourceSetBasedResourceDescriptions.class);
 	}
-
-	@SingletonBinding(eager = true)
-	public Class<? extends SGraphJavaValidator> bindSGraphJavaValidator() {
-		return SGraphJavaValidator.class;
-	}
 }

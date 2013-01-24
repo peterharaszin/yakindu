@@ -17,13 +17,18 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 import org.yakindu.sct.model.sgraph.SpecificationElement;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
+
+import com.google.inject.Inject;
 
 /**
  * 
@@ -61,21 +66,21 @@ public class SCTResourceValidator extends AbstractDeclarativeValidator {
 	}
 
 	@Override
-	protected List<EPackage> getEPackages() {
-		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE
-				.getEPackage("http://www.yakindu.org/sct/sgraph/2.0.0"));
-		return result;
+	@Inject
+	public void register(EValidatorRegistrar registrar) {
+		//Do not register because this validator is only a composite #398987
 	}
 
 	@Override
-	public boolean isLanguageSpecific() {
-		return false;
-	}
-
-	@Override
-	protected boolean isResponsible(Map<Object, Object> context, EObject eObject) {
-		return true;
+	protected String getCurrentLanguage(Map<Object, Object> context,
+			EObject eObject) {
+		Resource eResource = eObject.eResource();
+		if (eResource instanceof XtextResource) {
+			return super.getCurrentLanguage(context, eObject);
+		} else if (eResource instanceof AbstractSCTResource) {
+			return ((AbstractSCTResource) eResource).getLanguageName();
+		}
+		return "";
 	}
 
 }

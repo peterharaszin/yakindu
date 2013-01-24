@@ -79,6 +79,8 @@ import com.google.inject.name.Named;
  * @auhor muelder
  * 
  */
+@ComposedChecks(validators = { SGraphJavaValidator.class,
+		SCTResourceValidator.class })
 public class STextJavaValidator extends AbstractSTextJavaValidator {
 
 	public static final String CHOICE_ONE_OUTGOING_DEFAULT_TRANSITION = "A choice should have one outgoing default transition";

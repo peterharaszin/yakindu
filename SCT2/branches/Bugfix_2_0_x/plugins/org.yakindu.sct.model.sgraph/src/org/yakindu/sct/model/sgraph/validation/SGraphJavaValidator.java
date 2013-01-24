@@ -10,18 +10,17 @@
  */
 package org.yakindu.sct.model.sgraph.validation;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
-import org.eclipse.xtext.validation.ComposedChecks;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 import org.yakindu.sct.model.sgraph.Choice;
 import org.yakindu.sct.model.sgraph.Entry;
 import org.yakindu.sct.model.sgraph.EntryKind;
@@ -31,14 +30,14 @@ import org.yakindu.sct.model.sgraph.Transition;
 import org.yakindu.sct.model.sgraph.Vertex;
 import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
 
+import com.google.inject.Inject;
+
 /**
  * 
  * @author terfloth
  * @author muelder
  * @author bohl - migrated to xtext infrastruture
  */
-
-@ComposedChecks(validators = { SCTResourceValidator.class })
 public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 
 	public static final String ISSUE_STATE_WITHOUT_NAME = "A state must have a name.";
@@ -155,25 +154,25 @@ public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 		}
 	}
 
-	@Override
-	protected List<EPackage> getEPackages() {
-		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE
-				.getEPackage("http://www.yakindu.org/sct/sgraph/2.0.0"));
-		result.add(EPackage.Registry.INSTANCE
-				.getEPackage("http://www.yakindu.org/base/base/2.0.0"));
-		result.add(EPackage.Registry.INSTANCE
-				.getEPackage("http://www.yakindu.org/base/types/2.0.0"));
-		return result;
+	@Inject
+	public void register(EValidatorRegistrar registrar) {
+		//Do not register because this validator is only a composite #398987
 	}
 
 	@Override
 	public boolean isLanguageSpecific() {
-		return false;
+		return true;
 	}
 
 	@Override
-	protected boolean isResponsible(Map<Object, Object> context, EObject eObject) {
-		return true;
+	protected String getCurrentLanguage(Map<Object, Object> context,
+			EObject eObject) {
+		Resource eResource = eObject.eResource();
+		if (eResource instanceof XtextResource) {
+			return super.getCurrentLanguage(context, eObject);
+		} else if (eResource instanceof AbstractSCTResource) {
+			return ((AbstractSCTResource) eResource).getLanguageName();
+		}
+		return "";
 	}
 }

@@ -22,8 +22,10 @@ import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.yakindu.sct.model.sgraph.SGraphPackage;
+import org.yakindu.sct.ui.editor.factories.StateViewFactory;
 import org.yakindu.sct.ui.editor.policies.StateCompartmentCanonicalEditPolicy;
 import org.yakindu.sct.ui.editor.policies.StateCompartmentCreationEditPolicy;
+import org.yakindu.sct.ui.editor.utils.GMFNotationUtil;
 
 import de.itemis.gmf.runtime.commons.editpolicies.CompartmentLayoutEditPolicy;
 
@@ -97,10 +99,9 @@ public class StateFigureCompartmentEditPart extends
 	}
 
 	protected boolean getAlignment() {
-		// We use a BooleanValueStyle to carry the alignment value
-		BooleanValueStyle style = (BooleanValueStyle) getParent()
-				.getNotationView().getStyle(
-						NotationPackage.Literals.BOOLEAN_VALUE_STYLE);
+		BooleanValueStyle style = GMFNotationUtil.getBooleanValueStyle(
+				getParent().getNotationView(),
+				StateViewFactory.ALIGNMENT_ORIENTATION);
 		return (style != null) ? style.isBooleanValue() : true;
 	}
 
@@ -119,8 +120,8 @@ public class StateFigureCompartmentEditPart extends
 
 	private static final class StateFigureCompartmentLayout extends
 			ConstrainedToolbarLayout {
-		public StateFigureCompartmentLayout(boolean alignment) {
-			super(alignment);
+		public StateFigureCompartmentLayout(boolean isHorizontal) {
+			super(isHorizontal);
 			setSpacing(-1); // make lines overlap so it looks like a shared line
 		}
 	}

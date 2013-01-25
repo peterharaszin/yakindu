@@ -10,13 +10,9 @@
  */
 package org.yakindu.sct.model.sgraph.validation;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
@@ -33,10 +29,16 @@ import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
 import com.google.inject.Inject;
 
 /**
+ * This validator is intended to be used by a compositeValidator (See
+ * {@link org.eclipse.xtext.validation.ComposedChecks}) of another language
+ * specific validator. It does not register itself as an EValidator.
+ * 
+ * This validator checks for common graphical constraints for all kinds of state charts. 
  * 
  * @author terfloth
  * @author muelder
  * @author bohl - migrated to xtext infrastruture
+ * @author schwertfeger
  */
 public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 
@@ -57,7 +59,8 @@ public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 			int incomingTransitions = 0;
 			incomingTransitions += vertex.getIncomingTransitions().size();
 
-			// in context of a state it is sufficient if a sub state is targeted by
+			// in context of a state it is sufficient if a sub state is targeted
+			// by
 			// an external transition
 			if (vertex instanceof org.yakindu.sct.model.sgraph.State) {
 				TreeIterator<EObject> eAllContents = vertex.eAllContents();
@@ -154,25 +157,13 @@ public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 		}
 	}
 
-	@Inject
-	public void register(EValidatorRegistrar registrar) {
-		//Do not register because this validator is only a composite #398987
-	}
-
 	@Override
 	public boolean isLanguageSpecific() {
-		return true;
+		return false;
 	}
 
-	@Override
-	protected String getCurrentLanguage(Map<Object, Object> context,
-			EObject eObject) {
-		Resource eResource = eObject.eResource();
-		if (eResource instanceof XtextResource) {
-			return super.getCurrentLanguage(context, eObject);
-		} else if (eResource instanceof AbstractSCTResource) {
-			return ((AbstractSCTResource) eResource).getLanguageName();
-		}
-		return "";
+	@Inject
+	public void register(EValidatorRegistrar registrar) {
+		// Do not register because this validator is only a composite #398987
 	}
 }

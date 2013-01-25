@@ -31,8 +31,14 @@ import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
 import com.google.inject.Inject;
 
 /**
+ * This validator is intended to be used by a compositeValidator (See
+ * {@link org.eclipse.xtext.validation.ComposedChecks}) of another language
+ * specific validator. It does not register itself as an EValidator.
+ * 
+ * It checks for resource errors in {@link AbstractSCTResource}s.
  * 
  * @author andreas muelder - Initial contribution and API
+ * @author benjamin schwertfeger
  * 
  */
 public class SCTResourceValidator extends AbstractDeclarativeValidator {
@@ -66,21 +72,13 @@ public class SCTResourceValidator extends AbstractDeclarativeValidator {
 	}
 
 	@Override
+	public boolean isLanguageSpecific() {
+		return false;
+	}
+	
+	@Override
 	@Inject
 	public void register(EValidatorRegistrar registrar) {
 		//Do not register because this validator is only a composite #398987
 	}
-
-	@Override
-	protected String getCurrentLanguage(Map<Object, Object> context,
-			EObject eObject) {
-		Resource eResource = eObject.eResource();
-		if (eResource instanceof XtextResource) {
-			return super.getCurrentLanguage(context, eObject);
-		} else if (eResource instanceof AbstractSCTResource) {
-			return ((AbstractSCTResource) eResource).getLanguageName();
-		}
-		return "";
-	}
-
 }

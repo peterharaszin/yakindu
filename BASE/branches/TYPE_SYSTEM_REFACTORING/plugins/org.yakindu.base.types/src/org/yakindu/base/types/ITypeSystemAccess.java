@@ -11,48 +11,59 @@
  */
 package org.yakindu.base.types;
 
-import com.google.inject.ImplementedBy;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * @author andreas muelder - Initial contribution and API
+ * @author Andreas Mülder - Initial contribution and API
+ * @author Alexander Nyßen - Refactorings to support extensible type systems
  * 
  */
-@ImplementedBy(org.yakindu.base.types.impl.BaseTypeSystemAccessImpl.class)
 public interface ITypeSystemAccess {
 
-	/** true, if this type represents a boolean */
-	boolean isBoolean(Type type);
+	public List<EnumerationType> getEnumerationTypes();
+	
+	public List<PrimitiveType> getPrimitiveTypes();
 
-	/** true, if this type represents an integer */
-	boolean isInteger(Type type);
+	public List<DataType> getDataTypes();
 
-	/** true, if this type represents a real */
-	boolean isReal(Type type);
+	public List<Type> getTypes();
+	
+	
+	public Collection<Type> combine(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes);
+	
+	public Collection<Type> assign(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes);
 
-	/** true, if this type represents a string */
-	boolean isString(Type type);
+	
+	public boolean isVoid(Type type);
 
-	/** true, if this type represents void */
-	boolean isVoid(Type type);
+	public boolean isBoolean(Type type);
+
+	public boolean isInteger(Type type);
+
+	public boolean isReal(Type type);
+
+	public boolean isString(Type type);
+	
+	public List<PrimitiveType> getVoidTypes(Collection<? extends Type> types);
+
+	public List<PrimitiveType> getStringTypes(Collection<? extends Type> types);
+
+	public List<PrimitiveType> getIntegerTypes(Collection<? extends Type> types);
+
+	public List<PrimitiveType> getRealTypes(Collection<? extends Type> types);
+
+	public List<PrimitiveType> getBooleanTypes(Collection<? extends Type> types);
+	
 
 	/**
+	 * TODO: Refactor this
+	 * 
 	 * Returns the target language specific type name
 	 * 
 	 * @param type
 	 * @return
 	 */
-	String getTargetLanguageTypeName(Type type);
-
-	boolean isAssignable(Type varType, Type valType);
-
-	Type combine(Type typeOne, Type typeTwo);
-
-	public Type getString();
-
-	public Type getReal();
-
-	public Type getInteger();
-
-	public Type getBoolean();
-
+	public String getTargetLanguageTypeName(Type type);
+	
 }

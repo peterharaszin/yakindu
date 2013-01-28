@@ -74,7 +74,12 @@ class ActionCode {
 		'''#error unknown literal type «getClass().name» '''
 	
 	def dispatch code (StringLiteral it) 
-		'''"«value»"'''	
+		'''"«value.escaped»"'''	
+		
+	def String escaped(String it) {
+		return it.replace("\"", "\\\"");
+	}
+	
 
 	def dispatch code (BoolLiteral it) 
 		'''«IF value»bool_true«ELSE»bool_false«ENDIF»'''	

@@ -10,21 +10,22 @@
  */
 package org.yakindu.sct.generator.c.types
 
-import org.yakindu.base.types.impl.BaseTypeSystemAccessImpl
 import org.yakindu.base.types.Type
+import org.yakindu.sct.model.stext.types.DefaultTypeSystemAccess
 
 /**
  * @author andreas muelder
+ * @author Alexander Nyßen - Adopted to type system changes
  */
-class CTypeSystemAccess extends BaseTypeSystemAccessImpl {
+class CTypeSystemAccess extends DefaultTypeSystemAccess {
 	
-	override getTargetLanguageTypeName(Type it) {
-		switch (if (it == null) 'void' else name ) {
-			case 'void' 	: 'void'
-			case 'integer'	: 'sc_integer'
-			case 'real'		: 'sc_real'
-			case 'boolean'	: 'sc_boolean'
-			case 'string'	: 'sc_string'
+	override getTargetLanguageTypeName(Type type) {
+		switch (type) {
+			case type == null || isVoid(type): 'void'
+			case isInteger(type): 'sc_integer'
+			case isReal(type)	: 'sc_real'
+			case isBoolean(type): 'sc_boolean'
+			case isString(type)	: 'sc_string'
 		}
 	}
 	

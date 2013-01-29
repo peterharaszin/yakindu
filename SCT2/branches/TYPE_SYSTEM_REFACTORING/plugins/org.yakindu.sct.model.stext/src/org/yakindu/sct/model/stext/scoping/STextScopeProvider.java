@@ -30,6 +30,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.FilteringScope;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipse.xtext.util.PolymorphicDispatcher.ErrorHandler;
+import org.yakindu.base.types.DataType;
 import org.yakindu.base.types.Feature;
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.sgraph.SGraphPackage;
@@ -37,6 +38,7 @@ import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.stext.scoping.ContextPredicateProvider.EmptyPredicate;
 import org.yakindu.sct.model.stext.stext.ElementReferenceExpression;
+import org.yakindu.sct.model.stext.stext.EnumLiteral;
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.FeatureCall;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
@@ -53,6 +55,7 @@ import de.itemis.xtext.utils.jface.viewers.ContextElementAdapter;
  * 
  * @author andreas muelder
  * @author axel terfloth
+ * @author alexander nyssen Added support for scoping of enumeration literals
  * 
  */
 public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
@@ -108,6 +111,14 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 				unnamedScope.getAllElements()));
 	}
 
+	public IScope scope_EnumLiteral_value(final EnumLiteral context,
+			EReference reference) {
+//		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(
+//				context, reference);
+		return Scopes.scopeFor(context.getType().getEnumerator());
+//		return new FilteringScope(scope, predicate);
+	}
+
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
 			EReference reference) {
 
@@ -131,7 +142,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			scope = new FilteringScope(scope, predicate);
 		}
 
-		if (element instanceof Type) {
+		if (element instanceof DataType) {
 			scope = Scopes.scopeFor(allFeatures((Type) element), scope);
 			scope = new FilteringScope(scope, predicate);
 		}
@@ -241,10 +252,12 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			Set<Type> visited) {
 		if (type == null || visited.contains(type))
 			return;
-		for (Type superType : type.getSuperTypes()) {
-			collectFeatures(superType, features, visited);
+		if (type instanceof DataType) {
+			for (Type superType : ((DataType) type).getSuperTypes()) {
+				collectFeatures(superType, features, visited);
+			}
+			features.addAll(((DataType) type).getFeatures());
 		}
-		features.addAll(type.getFeatures());
 		visited.add(type);
 	}
 

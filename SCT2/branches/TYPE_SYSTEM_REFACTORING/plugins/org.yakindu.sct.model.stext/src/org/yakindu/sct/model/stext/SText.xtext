@@ -233,7 +233,7 @@ AlwaysEvent:
 //****************
 
 EventRaisingExpression returns Expression:
-	{EventRaisingExpression}'raise' event=FeatureCall  (':' value=Expression)?
+	{EventRaisingExpression} 'raise' event=FeatureCall  (':' value=Expression)?
 ;	
 
 StatementExpression returns sgraph::Statement:
@@ -337,7 +337,11 @@ ParenthesizedExpression returns Expression:
 ;
 
 Literal:
-	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
+	EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
+
+EnumLiteral:
+	{EnumLiteral} type=[types::EnumerationType|FQN] '::' value=[types::Enumerator|ID]
+;
 
 BoolLiteral:
 	{BoolLiteral} value=BOOL;

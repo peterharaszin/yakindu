@@ -11,6 +11,8 @@
  */
 package org.yakindu.sct.model.stext.validation;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -200,14 +202,21 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	public void checkGuardHasBooleanExpression(ReactionTrigger trigger) {
 		if (trigger.getGuardExpression() == null)
 			return;
+		boolean isBooleanExpression = false;
 		try {
-			Type type = inferrer.getType(trigger.getGuardExpression());
-			if (!tsAccess.isBoolean(type)) {
-				error(GUARD_EXPRESSION,
-						StextPackage.Literals.REACTION_TRIGGER__GUARD_EXPRESSION);
+			Collection<? extends Type> types = inferrer.getTypes(trigger
+					.getGuardExpression());
+			for (Type t : types) {
+				if (tsAccess.isBoolean(t)) {
+					isBooleanExpression = true;
+				}
 			}
 		} catch (TypeCheckException ex) {
 			// This is handled by checkExpression
+		}
+		if (!isBooleanExpression) {
+			error(GUARD_EXPRESSION,
+					StextPackage.Literals.REACTION_TRIGGER__GUARD_EXPRESSION);
 		}
 
 	}
@@ -369,10 +378,18 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 		if (definition.getInitialValue() == null)
 			return;
 		try {
-			Type valType = inferrer.getType(definition.getInitialValue());
-			Type combine = tsAccess.combine(valType, varType);
-			if (combine == null || !tsAccess.isAssignable(varType, valType)) {
-				error("Can not assign a value of type '" + valType.getName()
+			Collection<? extends Type> valTypes = inferrer.getTypes(definition
+					.getInitialValue());
+			if (tsAccess.assign(Collections.singletonList(varType), valTypes)
+					.isEmpty()) {
+				String valTypesNames = "";
+				for (Type t : valTypes) {
+					if (!valTypesNames.isEmpty()) {
+						valTypesNames += ", ";
+					}
+					valTypesNames += t.getName();
+				}
+				error("Can not assign a value of type '" + valTypesNames
 						+ "' to a variable of type '" + varType + "'",
 						StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE);
 			}
@@ -384,7 +401,8 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	@Check(CheckType.FAST)
 	public void checkExpression(final Statement statement) {
 		try {
-			inferrer.getType(statement);
+			// what happens here??
+			inferrer.getTypes(statement);
 		} catch (TypeCheckException e) {
 			error(e.getMessage(), null);
 		} catch (IllegalArgumentException e) {

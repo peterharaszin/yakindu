@@ -248,6 +248,15 @@ public interface StextFactory extends EFactory
   Literal createLiteral();
 
   /**
+   * Returns a new object of class '<em>Enum Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Literal</em>'.
+   * @generated
+   */
+  EnumLiteral createEnumLiteral();
+
+  /**
    * Returns a new object of class '<em>Bool Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -2307,33 +2307,81 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	public class LiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Literal");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cBoolLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIntLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cHexLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cRealLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cStringLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cEnumLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cBoolLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIntLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cHexLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRealLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cStringLiteralParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Literal:
-		//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
+		//	EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
+		//EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//EnumLiteral
+		public RuleCall getEnumLiteralParserRuleCall_0() { return cEnumLiteralParserRuleCall_0; }
+
 		//BoolLiteral
-		public RuleCall getBoolLiteralParserRuleCall_0() { return cBoolLiteralParserRuleCall_0; }
+		public RuleCall getBoolLiteralParserRuleCall_1() { return cBoolLiteralParserRuleCall_1; }
 
 		//IntLiteral
-		public RuleCall getIntLiteralParserRuleCall_1() { return cIntLiteralParserRuleCall_1; }
+		public RuleCall getIntLiteralParserRuleCall_2() { return cIntLiteralParserRuleCall_2; }
 
 		//HexLiteral
-		public RuleCall getHexLiteralParserRuleCall_2() { return cHexLiteralParserRuleCall_2; }
+		public RuleCall getHexLiteralParserRuleCall_3() { return cHexLiteralParserRuleCall_3; }
 
 		//RealLiteral
-		public RuleCall getRealLiteralParserRuleCall_3() { return cRealLiteralParserRuleCall_3; }
+		public RuleCall getRealLiteralParserRuleCall_4() { return cRealLiteralParserRuleCall_4; }
 
 		//StringLiteral
-		public RuleCall getStringLiteralParserRuleCall_4() { return cStringLiteralParserRuleCall_4; }
+		public RuleCall getStringLiteralParserRuleCall_5() { return cStringLiteralParserRuleCall_5; }
+	}
+
+	public class EnumLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cEnumLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeEnumerationTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeEnumerationTypeFQNParserRuleCall_1_0_1 = (RuleCall)cTypeEnumerationTypeCrossReference_1_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cValueEnumeratorCrossReference_3_0 = (CrossReference)cValueAssignment_3.eContents().get(0);
+		private final RuleCall cValueEnumeratorIDTerminalRuleCall_3_0_1 = (RuleCall)cValueEnumeratorCrossReference_3_0.eContents().get(1);
+		
+		//EnumLiteral:
+		//	{EnumLiteral} type=[types::EnumerationType|FQN] "::" value=[types::Enumerator];
+		public ParserRule getRule() { return rule; }
+
+		//{EnumLiteral} type=[types::EnumerationType|FQN] "::" value=[types::Enumerator]
+		public Group getGroup() { return cGroup; }
+
+		//{EnumLiteral}
+		public Action getEnumLiteralAction_0() { return cEnumLiteralAction_0; }
+
+		//type=[types::EnumerationType|FQN]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//[types::EnumerationType|FQN]
+		public CrossReference getTypeEnumerationTypeCrossReference_1_0() { return cTypeEnumerationTypeCrossReference_1_0; }
+
+		//FQN
+		public RuleCall getTypeEnumerationTypeFQNParserRuleCall_1_0_1() { return cTypeEnumerationTypeFQNParserRuleCall_1_0_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
+
+		//value=[types::Enumerator]
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//[types::Enumerator]
+		public CrossReference getValueEnumeratorCrossReference_3_0() { return cValueEnumeratorCrossReference_3_0; }
+
+		//ID
+		public RuleCall getValueEnumeratorIDTerminalRuleCall_3_0_1() { return cValueEnumeratorIDTerminalRuleCall_3_0_1; }
 	}
 
 	public class BoolLiteralElements extends AbstractParserRuleElementFinder {
@@ -2925,6 +2973,7 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	private ActiveStateReferenceExpressionElements pActiveStateReferenceExpression;
 	private ParenthesizedExpressionElements pParenthesizedExpression;
 	private LiteralElements pLiteral;
+	private EnumLiteralElements pEnumLiteral;
 	private BoolLiteralElements pBoolLiteral;
 	private IntLiteralElements pIntLiteral;
 	private RealLiteralElements pRealLiteral;
@@ -3713,13 +3762,23 @@ public class STextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Literal:
-	//	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
+	//	EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 	public LiteralElements getLiteralAccess() {
 		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
 	}
 	
 	public ParserRule getLiteralRule() {
 		return getLiteralAccess().getRule();
+	}
+
+	//EnumLiteral:
+	//	{EnumLiteral} type=[types::EnumerationType|FQN] "::" value=[types::Enumerator];
+	public EnumLiteralElements getEnumLiteralAccess() {
+		return (pEnumLiteral != null) ? pEnumLiteral : (pEnumLiteral = new EnumLiteralElements());
+	}
+	
+	public ParserRule getEnumLiteralRule() {
+		return getEnumLiteralAccess().getRule();
 	}
 
 	//BoolLiteral:

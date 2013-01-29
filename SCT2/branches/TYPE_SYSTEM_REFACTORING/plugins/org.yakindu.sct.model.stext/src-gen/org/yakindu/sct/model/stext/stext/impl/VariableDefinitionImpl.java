@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import org.yakindu.base.types.DataType;
 import org.yakindu.base.types.Feature;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.Type;
@@ -172,10 +173,10 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getOwningType()
+  public DataType getOwningType()
   {
     if (eContainerFeatureID() != StextPackage.VARIABLE_DEFINITION__OWNING_TYPE) return null;
-    return (Type)eContainer();
+    return (DataType)eContainer();
   }
 
   /**
@@ -183,7 +184,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs)
+  public NotificationChain basicSetOwningType(DataType newOwningType, NotificationChain msgs)
   {
     msgs = eBasicSetContainer((InternalEObject)newOwningType, StextPackage.VARIABLE_DEFINITION__OWNING_TYPE, msgs);
     return msgs;
@@ -194,7 +195,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setOwningType(Type newOwningType)
+  public void setOwningType(DataType newOwningType)
   {
     if (newOwningType != eInternalContainer() || (eContainerFeatureID() != StextPackage.VARIABLE_DEFINITION__OWNING_TYPE && newOwningType != null))
     {
@@ -204,7 +205,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newOwningType != null)
-        msgs = ((InternalEObject)newOwningType).eInverseAdd(this, TypesPackage.TYPE__FEATURES, Type.class, msgs);
+        msgs = ((InternalEObject)newOwningType).eInverseAdd(this, TypesPackage.DATA_TYPE__FEATURES, DataType.class, msgs);
       msgs = basicSetOwningType(newOwningType, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -319,7 +320,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
       case StextPackage.VARIABLE_DEFINITION__OWNING_TYPE:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetOwningType((Type)otherEnd, msgs);
+        return basicSetOwningType((DataType)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -353,7 +354,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
     switch (eContainerFeatureID())
     {
       case StextPackage.VARIABLE_DEFINITION__OWNING_TYPE:
-        return eInternalContainer().eInverseRemove(this, TypesPackage.TYPE__FEATURES, Type.class, msgs);
+        return eInternalContainer().eInverseRemove(this, TypesPackage.DATA_TYPE__FEATURES, DataType.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -397,7 +398,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
         setType((Type)newValue);
         return;
       case StextPackage.VARIABLE_DEFINITION__OWNING_TYPE:
-        setOwningType((Type)newValue);
+        setOwningType((DataType)newValue);
         return;
       case StextPackage.VARIABLE_DEFINITION__READONLY:
         setReadonly((Boolean)newValue);
@@ -426,7 +427,7 @@ public class VariableDefinitionImpl extends VariableImpl implements VariableDefi
         setType((Type)null);
         return;
       case StextPackage.VARIABLE_DEFINITION__OWNING_TYPE:
-        setOwningType((Type)null);
+        setOwningType((DataType)null);
         return;
       case StextPackage.VARIABLE_DEFINITION__READONLY:
         setReadonly(READONLY_EDEFAULT);

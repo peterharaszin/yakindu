@@ -88,7 +88,7 @@ class Statemachine {
 		«FOR event : flow.internalScopeEvents»
 		private boolean «event.name.asEscapedIdentifier»;
 		
-		«IF !event.type.isVoid()»
+		«IF event.type != null && !event.type.isVoid()»
 			private «event.type.targetLanguageTypeName» «event.valueIdentifier»;
 		«ENDIF»
 		«ENDFOR»
@@ -267,12 +267,12 @@ class Statemachine {
 			
 			private boolean «event.name.asEscapedIdentifier»;
 			
-			«IF !event.type.isVoid()»
+			«IF event.type != null && !event.type.isVoid()»
 				private «event.type.targetLanguageTypeName» «event.valueIdentifier»;
 			«ENDIF»
 			
 			«IF event.direction == Direction::IN»
-				«IF !event.type.void»
+				«IF event.type != null && !event.type.void»
 					public void raise«event.name.asName»(«event.type.targetLanguageTypeName» value) {
 						«event.name.asEscapedIdentifier» = true;
 						«event.valueIdentifier» = value;
@@ -297,7 +297,7 @@ class Statemachine {
 					return «event.name.asEscapedIdentifier»;
 				}
 				
-				«IF !event.type.isVoid()»
+				«IF event.type != null && !event.type.isVoid()»
 					private void raise«event.name.asName»(«event.type.targetLanguageTypeName» value) {
 						«event.name.asEscapedIdentifier» = true;
 						«event.valueIdentifier» = value;
@@ -370,7 +370,7 @@ class Statemachine {
 	
 	def private internalScopeFunctions (ExecutionFlow flow) '''
 		«FOR event : flow.internalScopeEvents»
-			«IF !event.type.void»
+			«IF event.type != null && !event.type.void»
 				private void raise«event.name.asEscapedName»(«event.type.targetLanguageTypeName» value) {
 					«event.valueIdentifier» = value;
 					«event.name.asEscapedIdentifier» = true;
@@ -413,7 +413,7 @@ class Statemachine {
 			«var InterfaceScope scope = flow.defaultScope»
 			«FOR event : scope.eventDefinitions»
 				«IF event.direction == Direction::IN»
-					«IF !event.type.void»
+					«IF event.type != null && !event.type.void»
 					public void raise«event.name.asName»(«event.type.targetLanguageTypeName» value) {
 						«scope.interfaceName.asEscapedIdentifier».raise«event.name.asName»(value);
 					}
@@ -427,7 +427,7 @@ class Statemachine {
 					public boolean isRaised«event.name.asName»() {
 						return «scope.interfaceName.asEscapedIdentifier».isRaised«event.name.asName»();
 					}
-					«IF !event.type.isVoid()»
+					«IF event.type != null && !event.type.isVoid()»
 						public «event.type.targetLanguageTypeName» get«event.name.asName»Value() {
 							return «scope.interfaceName.asEscapedIdentifier».get«event.name.asName»Value();
 						}

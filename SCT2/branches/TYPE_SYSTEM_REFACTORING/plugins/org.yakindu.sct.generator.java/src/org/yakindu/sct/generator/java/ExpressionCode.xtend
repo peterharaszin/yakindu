@@ -103,7 +103,7 @@ class ExpressionCode {
 	}
 	
 	def dispatch String code(LogicalRelationExpression expression) {
-		if (expression.leftOperand.type.isString) {
+		if (expression.leftOperand.getTypes.isString) {
 			expression.logicalString
 		}
 		else

@@ -15,12 +15,12 @@ import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.yakindu.base.types.ITypeSystemAccess;
-import org.yakindu.base.types.impl.BaseTypeSystemAccessImpl;
 import org.yakindu.sct.model.sgraph.resource.SCTLinker;
 import org.yakindu.sct.model.sgraph.resource.provider.SCTResourceDescriptionStrategy;
 import org.yakindu.sct.model.stext.conversion.StextValueConverterService;
 import org.yakindu.sct.model.stext.naming.StextNameProvider;
 import org.yakindu.sct.model.stext.scoping.STextGlobalScopeProvider;
+import org.yakindu.sct.model.stext.types.DefaultTypeSystemAccess;
 import org.yakindu.sct.model.stext.validation.ITypeInferrer;
 import org.yakindu.sct.model.stext.validation.TypeInferrer;
 
@@ -57,7 +57,7 @@ public class STextRuntimeModule extends
 	}
 
 	public Class<? extends ITypeSystemAccess> bindITypeSystemAccess() {
-		return BaseTypeSystemAccessImpl.class;
+		return DefaultTypeSystemAccess.class;
 	}
 
 	public Class<? extends ITypeInferrer> bindITypeInferrer() {

@@ -11,6 +11,8 @@
  */
 package org.yakindu.sct.model.stext.validation;
 
+import java.util.Collection;
+
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.sgraph.Statement;
 
@@ -19,16 +21,20 @@ import com.google.inject.ImplementedBy;
 /**
  * 
  * @author andreas muelder - Initial contribution and API
+ * @author Alexander Nyßen - Adopted to changes in type system
  * 
  */
 @ImplementedBy(TypeInferrer.class)
 public interface ITypeInferrer {
+	
 	/**
 	 * infers the type for a given {@link Statement}
 	 * 
 	 * @throws TypeCheckException
 	 *             if the Statement is invalid
 	 */
-	Type getType(Statement expr) throws TypeCheckException;
-
+	Collection<? extends Type> getTypes(Statement expr) throws TypeCheckException;
+	
+//	Collection<? extends Type> getTypes(Literal expr) throws TypeCheckException;
+	
 }

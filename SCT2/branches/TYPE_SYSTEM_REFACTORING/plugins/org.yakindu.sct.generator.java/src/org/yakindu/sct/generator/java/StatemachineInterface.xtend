@@ -20,6 +20,7 @@ import org.yakindu.sct.model.stext.stext.InterfaceScope
 import org.yakindu.sct.model.stext.stext.InternalScope
 import org.yakindu.sct.model.sgraph.Scope
 import org.yakindu.base.types.ITypeSystemAccess
+import org.yakindu.sct.model.stext.validation.TypeInferrer
 
 class StatemachineInterface {
 	
@@ -27,6 +28,7 @@ class StatemachineInterface {
 	@Inject extension GenmodelEntries
 	@Inject extension Navigation
 	@Inject extension ITypeSystemAccess
+	@Inject extension TypeInferrer
 	@Inject Beautifier beautifier
 	
 	def generateStatemachineInterface(ExecutionFlow flow, GeneratorEntry entry, IFileSystemAccess fsa) {
@@ -140,14 +142,16 @@ class StatemachineInterface {
 		'''
 		«FOR event : scope.eventDefinitions»
 			«IF  event.direction ==  Direction::IN»
-				«IF !event.type.void»
+				««« IMPORTANT: An event not specifying a type is regarded to have a void type		
+				«IF event.type != null && !event.type.void»
 					public void raise«event.name.asName»(«event.type.targetLanguageTypeName» value);
 				«ELSE»
 					public void raise«event.name.asName»();
 				«ENDIF»
 			«ELSEIF event.direction ==  Direction::OUT»
 				public boolean isRaised«event.name.asName»();
-				«IF !event.type.void»
+				««« IMPORTANT: An event not specifying a type is regarded to have a void type
+				«IF event.type != null && !event.type.void»
 					public «event.type.targetLanguageTypeName» get«event.name.asName»Value();
 				«ENDIF»	
 			«ENDIF»

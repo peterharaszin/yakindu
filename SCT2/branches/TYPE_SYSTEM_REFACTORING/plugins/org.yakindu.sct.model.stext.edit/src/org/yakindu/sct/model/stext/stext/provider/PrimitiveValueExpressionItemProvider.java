@@ -164,6 +164,11 @@ public class PrimitiveValueExpressionItemProvider
     newChildDescriptors.add
       (createChildParameter
         (StextPackage.Literals.PRIMITIVE_VALUE_EXPRESSION__VALUE,
+         StextFactory.eINSTANCE.createEnumLiteral()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (StextPackage.Literals.PRIMITIVE_VALUE_EXPRESSION__VALUE,
          StextFactory.eINSTANCE.createBoolLiteral()));
 
     newChildDescriptors.add

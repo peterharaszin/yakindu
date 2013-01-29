@@ -48,12 +48,15 @@ import org.yakindu.sct.model.stext.stext.RelationalOperator
 import org.yakindu.sct.model.stext.stext.ShiftExpression
 import org.yakindu.sct.model.stext.stext.StringLiteral
 import org.yakindu.sct.model.stext.stext.UnaryOperator
- 
+import java.util.Collection
+import org.yakindu.sct.model.stext.stext.EnumLiteral
+
 /**
  * 
  * The TypeInferrer checks an expression AST for type conformance
  * 
  * @author andreas muelder - Initial contribution and API
+ * @author Alexander Nyßen - Adopted to changes in type system
  *  
  */
 class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferrer, org.yakindu.sct.model.stext.validation.TypeInferrerCache$ICacheableTypeAnalyzer {
@@ -64,243 +67,331 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	@Inject 
 	org.yakindu.sct.model.stext.validation.TypeInferrerCache cache
 	
-	override getType(Statement stmt) {
+	override Collection<? extends Type>getTypes(Statement stmt) {
 		if (stmt == null) {
-			return null;
+			return <Type>newArrayList()
 		}
 		cache.get(stmt, this)
 	}
 	
-	def dispatch inferType(Statement statement){
-		null
+	def dispatch Collection<? extends Type> inferType(Expression expr) {
+		throw new RuntimeException("Unsupported expression type" + expr)
 	}
 	
-	def check(Statement stmt) {
-		stmt.getType
+	def dispatch Collection<? extends Type> inferType(Statement stmt){
+		throw new RuntimeException("Unsupported statement type" + stmt)
 	}
 	
-	/**
-	 * Check Variable assignments
-	 */
-	def dispatch inferType(AssignmentExpression assignment){
-		var valueType = assignment.expression.getType
-		var type = assignment.varRef.getType
-		
-		if(!type.isAssignable(valueType)){
-			error("Can not assign a value of type " + valueType?.name + " to a variable of type " + type?.name)
-			return null 
+	def dispatch Collection<? extends Type> inferType(AssignmentExpression assignment){
+		var valueTypes = assignment.expression.getTypes
+		var varTypes = assignment.varRef.getTypes
+		var types = assign(varTypes, valueTypes)
+		if(types.empty){
+			error("Can not assign a value of type " + valueTypes.map(t | t.name).join(",") + " to a variable of type " + varTypes.map(t | t.name).join(","))
+			return <Type>newArrayList() 
 		}
-		return type
+		return types
 	}
 	/**
 	 * Check Event value assignments
 	 */
-	def dispatch inferType(EventRaisingExpression eventRaising){
-		var valueType = eventRaising.value.getType
-		var type = eventRaising.event.getType
-		if(!type.isAssignable(valueType)){
-			error("Can not assign a value of type " + valueType?.name + " to a variable of type " + type?.name)
-			return null 
+	def dispatch Collection<? extends Type> inferType(EventRaisingExpression eventRaising){
+		var eventTypes = eventRaising.event.getTypes
+		if(eventRaising.value == null){
+			if(getVoidTypes(eventTypes).empty){
+				error("Need to assign a value to an event of type " + eventTypes.map(t | t.name).join(","));
+				return <Type>newArrayList() 
+			}
+			return voidTypes
 		}
-		return type
+		var valueTypes = eventRaising.value.getTypes
+		var types = assign(eventTypes, valueTypes)
+		if(types.empty){
+			error("Can not assign a value of type " + valueTypes.map(t | t.name).join(",") + " to an event of type " + eventTypes.map(t | t.name).join(","))
+			return <Type>newArrayList() 
+		}
+		return types
 	}
 	
-	def dispatch inferType(LogicalAndExpression expression){
-		return assertBooleanTypes(expression.leftOperand.getType,
-			expression.rightOperand.getType,'&&')
+	def dispatch Collection<? extends Type> inferType(LogicalAndExpression expression){
+		return assertBooleanTypes(expression.leftOperand.getTypes,
+			expression.rightOperand.getTypes,'&&')
 	}
-	def dispatch inferType(LogicalOrExpression expression){
-		return assertBooleanTypes(expression.leftOperand.getType,
-			expression.rightOperand.getType,'||')
+	def dispatch Collection<? extends Type> inferType(LogicalOrExpression expression){
+		return assertBooleanTypes(expression.leftOperand.getTypes,
+			expression.rightOperand.getTypes,'||')
 	}
-	def assertBooleanTypes(Type left, Type right, String literal) {
-		if (assertIsBoolean(left,literal) != null
-			&& assertIsBoolean(right, literal) != null) {
-				return left.combine(right)
-			}
-		return null;
+	
+	def assertBooleanTypes(Collection<? extends Type> left, Collection<? extends Type> right, String operator) {
+		return combine(assertBooleanTypes(left, operator), assertBooleanTypes(right, operator));
 	}
-	def dispatch inferType(LogicalNotExpression expression){
-		val type = expression.operand.getType
-		return assertIsBoolean(type,'!')
+	def dispatch Collection<? extends Type> inferType(LogicalNotExpression expression){
+		val types = expression.operand.getTypes;
+		return assertBooleanTypes(types, '!');
 	}
-	def dispatch inferType(BitwiseAndExpression expression){
-		assertIsInteger(expression.leftOperand.getType, '&');
-		assertIsInteger(expression.rightOperand.getType, '&');
-		return integer
+	
+	def dispatch Collection<? extends Type> inferType(BitwiseAndExpression expression){
+		return combine(assertIntegerTypes(expression.leftOperand.getTypes, '&'), assertIntegerTypes(expression.rightOperand.getTypes, '&'));
 	}
-	def dispatch inferType(BitwiseOrExpression expression){
-		assertIsInteger(expression.leftOperand.getType, '|');
-		assertIsInteger(expression.rightOperand.getType, '|');
-		return integer
+	
+	def dispatch Collection<? extends Type> inferType(BitwiseOrExpression expression){
+		return combine(assertIntegerTypes(expression.leftOperand.getTypes, '|'), assertIntegerTypes(expression.rightOperand.getTypes, '|'));
 	}
-	def dispatch inferType(BitwiseXorExpression expression){
-		assertIsInteger(expression.leftOperand.getType, '^');
-		assertIsInteger(expression.rightOperand.getType, '^');
-		return integer
+	
+	def dispatch Collection<? extends Type> inferType(BitwiseXorExpression expression){
+		return combine(assertIntegerTypes(expression.leftOperand.getTypes, '^'), assertIntegerTypes(expression.rightOperand.getTypes, '^'));
 	}
 	
 	def dispatch inferType(LogicalRelationExpression expression){ 
-		val leftType = expression.leftOperand.getType
-		val rightType = expression.rightOperand.getType
-		//If both types are boolean, only relational operators Equals and not_Equals are allowed
-		if(leftType.^boolean && rightType.^boolean){
+		val leftTypes = expression.leftOperand.getTypes
+		val rightTypes = expression.rightOperand.getTypes
+		val combined = combine(leftTypes, rightTypes)
+		if(!getBooleanTypes(combined).empty){
+			//If both types are boolean, only relational operators Equals and not_Equals are allowed
 			if(expression.operator != RelationalOperator::EQUALS && expression.operator != RelationalOperator::NOT_EQUALS){
 				error("operator '" + expression.operator?.literal + "' can not be applied to boolean values!")
-				return null
+				return <Type>newArrayList()
+			}
+			else{
+				return combined
 			}
 		} else {
-			val combined = leftType.combine(rightType)
-			if(combined == null){
-				error("Incompatible operands " +leftType?.name + " and " + rightType?.name + " for operator '" + expression.operator.literal+"'")
+			if(combined.empty){
+				error("Incompatible operands " + leftTypes.map(t | t.name).join(",") + " and " + rightTypes.map(t | t.name).join(",") + " for operator '" + expression.operator.literal+"'")
+				return <Type>newArrayList()
+			}
+			return booleanTypes
 		}
-		
-		}
-		return ts.^boolean
-		
 	}
 	
-	def assertNumericalTypes(Type left, Type right, String operator) {
-		if (assertIsNumber(left, operator) != null
-			&& assertIsNumber(right, operator) != null) {
-				return left.combine(right)
-		}
-		return null;
+	def assertNumericalTypes(Collection<? extends Type> left, Collection<? extends Type> right, String operator) {
+		return combine(assertNumericalTypes(left, operator), assertNumericalTypes(right, operator));
 	}
 	
-	def dispatch inferType(NumericalAddSubtractExpression expression){
-		return assertNumericalTypes(expression.leftOperand.getType, 
-			expression.rightOperand.getType, expression.operator.literal
+	def dispatch Collection<? extends Type> inferType(NumericalAddSubtractExpression expression){
+		return assertNumericalTypes(expression.leftOperand.getTypes, 
+			expression.rightOperand.getTypes, expression.operator.literal
 		)
 	}
-	def dispatch inferType(NumericalMultiplyDivideExpression expression){
-		return assertNumericalTypes(expression.leftOperand.getType, 
-			expression.rightOperand.getType, expression.operator.literal
+	def dispatch Collection<? extends Type> inferType(NumericalMultiplyDivideExpression expression){
+		return assertNumericalTypes(expression.leftOperand.getTypes, 
+			expression.rightOperand.getTypes, expression.operator.literal
 		)
 	}
-	def dispatch Type inferType(NumericalUnaryExpression expression){
-		val type = expression.operand.getType
+	def dispatch Collection<? extends Type> inferType(NumericalUnaryExpression expression){
+		val types = expression.operand.getTypes
 		if(expression.operator == UnaryOperator::COMPLEMENT){
-			return assertIsInteger(type, expression.operator.literal)
+			return assertIntegerTypes(types, expression.operator.literal)
 		}
-		return assertIsNumber(type, expression.operator.literal)
+		return assertNumericalTypes(types, expression.operator.literal)
 	}	
-	def dispatch inferType(PrimitiveValueExpression expression){
-		val Type t = expression.value.literalType
-		return t
+	
+	def dispatch Collection<? extends Type> inferType(PrimitiveValueExpression expression){
+		return expression.value.literalTypes;
 	}
 	
-	def dispatch inferType(ActiveStateReferenceExpression expression){
-		return ts.boolean	
+	def dispatch Collection<? extends Type> inferType(ActiveStateReferenceExpression expression){
+		return booleanTypes
 	}
 	
-	def dispatch inferType(ShiftExpression expression){
-		assertIsInteger(expression.leftOperand.type, expression.operator.literal)
-		assertIsInteger(expression.rightOperand.type, expression.operator.literal)
+	def dispatch Collection<? extends Type> inferType(ShiftExpression expression){
+		val leftTypes = assertIntegerTypes(expression.leftOperand.types, expression.operator.literal)
+		val rightTypes = assertIntegerTypes(expression.rightOperand.types, expression.operator.literal)
+		return combine(leftTypes, rightTypes)
 	}
+	
 	def dispatch inferType(ConditionalExpression expression){
-		val condType = expression.condition.getType
-		if (!condType.^boolean) {
-			error("Condition type have to be boolean")
-			return null;
+		assertBooleanTypes(expression.condition.types, '?');
+		val trueTypes = expression.trueCase.types
+		val falseTypes = expression.falseCase.types
+		val types = combine(trueTypes, falseTypes)
+		if(types.empty){
+			error("True and false case of a conditional have to be of compatible types!")
 		}
-		val trueType = expression.trueCase.getType
-		val falseType = expression.falseCase.getType
-		return trueType.combine(falseType)
+		return types;
 	} 
-	def dispatch inferType(FeatureCall featureCall){
+	
+	def dispatch Collection<? extends Type> inferType(FeatureCall featureCall){
 		if(featureCall.feature instanceof Event /*ntDefinition*/ 
 			&& !(featureCall.eContainer instanceof EventRaisingExpression) 
-			&&!(featureCall.eContainer instanceof EventValueReferenceExpression)
+			&& !(featureCall.eContainer instanceof EventValueReferenceExpression)
 		){
-			return ts.boolean
+			return getBooleanTypes()
 		}
 		if (featureCall.feature instanceof Feature) {
-			return (featureCall.feature as Feature)?.type
-		} else if (featureCall.feature !=null) {
-			error("Type of FeatureCall is unknown: "+featureCall)			
-			return null;
-		} else {
-			return null;
+			val type = (featureCall.feature as Feature).type
+			if(type != null){
+				return <Type>newArrayList(type)
+			}
+			return voidTypes
 		}
+		else if (featureCall.feature !=null) {
+			error("Type of FeatureCall is unknown: "+featureCall)			
+			return <Type>newArrayList()
+		} 
+		return voidTypes
 	}
 	 
-	def dispatch inferType(ElementReferenceExpression expression){
+	def dispatch Collection<? extends Type> inferType(ElementReferenceExpression expression){
 		return expression.reference.inferType(expression)
 	}
-	def dispatch inferType(EObject object, ElementReferenceExpression expression) {
-		//	
+	
+	def dispatch Collection<? extends Type> inferType(EObject object, ElementReferenceExpression expression) {
+		return voidTypes
 	}
-	def dispatch inferType(Property /*VariableDefinition*/ definition,ElementReferenceExpression expression) {
-		return definition.type
+	def dispatch Collection<? extends Type> inferType(Property /*VariableDefinition*/ definition, ElementReferenceExpression expression) {
+		if(definition.type != null){
+			return <Type>newArrayList(definition.type)
+		}
+		return voidTypes
 	}
 
-	def dispatch inferType(Event /*Definition*/ definition,ElementReferenceExpression expression) {
+	def dispatch Collection<? extends Type> inferType(Event /*Definition*/ definition, ElementReferenceExpression expression) {
 		if(expression.eContainer instanceof EventRaisingExpression
-				|| expression.eContainer instanceof EventValueReferenceExpression)
-			return definition.type
-		return ts.^boolean
+				|| expression.eContainer instanceof EventValueReferenceExpression){
+			if(definition.type != null){
+				return newArrayList(definition.type)
+			}
+			return voidTypes
+		}
+		return booleanTypes
 	}
 
-	def dispatch inferType(OperationDefinition definition,ElementReferenceExpression expression) {
-		return definition.type
-	}
-	
-	def dispatch inferType(EventValueReferenceExpression expression){
-		return getType(expression.value)
-	}
-	
-	def dispatch inferType(ParenthesizedExpression e){
-		return getType(e.expression)
-	}
-	
-	def dispatch getLiteralType(HexLiteral literal){
-		return ts.integer
-	}
-	
-	def dispatch getLiteralType(IntLiteral literal){
-		return ts.integer
-	}
-	
-	def dispatch getLiteralType(BoolLiteral bool){
-		return ts.^boolean
-	}
-	
-	def dispatch getLiteralType(RealLiteral literal){
-		return ts.real
-	}
-	def dispatch getLiteralType(StringLiteral literal){
-		return ts.string
-	}
-	
-	def Type assertIsInteger(Type object, String operator){
-		if(!object.integer){
-			error("operator '" +operator+"' can only be applied to integers!")
-			return null
+	def dispatch Collection<? extends Type> inferType(OperationDefinition definition, ElementReferenceExpression expression) {
+		if(definition.type != null){
+			return <Type>newArrayList(definition.type)
 		}
-		return object
+		return voidTypes
 	}
 	
-	def Type assertIsNumber(Type object, String operator){
-		if(!object.real && !object.integer) {
+	def dispatch Collection<? extends Type> inferType(EventValueReferenceExpression expression){
+		return getTypes(expression.value)
+	}
+	
+	def dispatch Collection<? extends Type> inferType(ParenthesizedExpression e){
+		return getTypes(e.expression)
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(HexLiteral literal){
+		return integerTypes
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(IntLiteral literal){
+		return integerTypes
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(BoolLiteral bool){
+		return booleanTypes
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(RealLiteral literal){
+		return realTypes
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(StringLiteral literal){
+		return stringTypes
+	}
+	
+	def dispatch Collection<? extends Type> getLiteralTypes(EnumLiteral literal){
+		return <Type>newArrayList(literal.type);
+	}
+	
+	def Collection<? extends Type> assertIntegerTypes(Collection<? extends Type> types, String operator){
+		var integerTypes = getIntegerTypes(types)
+		if(integerTypes.empty){
+			error("operator '" +operator+"' can only be applied to integer values!")
+		}
+		return integerTypes
+	}
+	
+	def Collection<? extends Type> assertRealTypes(Collection<? extends Type> types, String operator){
+		var realTypes = getRealTypes(types)
+		if(realTypes.empty){
+			error("operator '" +operator+"' can only be applied to real values!")
+		}
+		return types
+	}
+	
+	def Collection<? extends Type> assertNumericalTypes(Collection<? extends Type> types, String operator){
+		var numberTypes = <Type>newArrayList()
+		numberTypes.addAll(getIntegerTypes(types))
+		numberTypes.addAll(getRealTypes(types))
+		if(numberTypes.empty){
 			error("operator '" +operator+"' can only be applied to numbers!")
-			return null
 		}
-		return object
+		return numberTypes
 	}
-	def Type assertIsBoolean(Type object, String operator){
-		if(!object.^boolean) {
-			error("operator '" +operator+"' can only be applied to boolean values!")
+	
+	def Collection<? extends Type> assertBooleanTypes(Collection<? extends Type> types, String operator){
+		var booleanTypes = getBooleanTypes(types);
+		if(booleanTypes.empty){
+			error("operator '" + operator + "' can only be applied to boolean values!")
 		}
-		return object
+		return booleanTypes
+	}
+	
+	def Collection<? extends Type> getNumericalTypes(Collection<? extends Type> types){
+		var integerTypes = <Type>newArrayList()
+		for(Type t: types){
+			if(t.integer || t.real){
+				integerTypes.add(t)
+			}
+		}
+		return integerTypes;
+	}
+	
+	def Collection<? extends Type> getRealTypes(Collection<? extends Type> types){
+		var realTypes = <Type>newArrayList()
+		for(Type t: types){
+			if(t.real){
+				realTypes.add(t)
+			}
+		}
+		return realTypes;
+	}
+	
+	def Collection<? extends Type> getIntegerTypes(Collection<? extends Type> types){
+		var integerTypes = <Type>newArrayList()
+		for(Type t: types){
+			if(t.integer){
+				integerTypes.add(t)
+			}
+		}
+		return integerTypes;
+	}
+	
+	def Collection<? extends Type> getBooleanTypes(Collection<? extends Type> types){
+		var booleanTypes = <Type>newArrayList()
+		for(Type t: types){
+			if(t.boolean){
+				booleanTypes.add(t)
+			}
+		}
+		return booleanTypes;
 	}
 	 
 	def error(String msg){
 		throw new TypeCheckException(msg)
 	}
 	
-	def dispatch inferType(Expression expr) {
-		return null;
+	def Collection<? extends Type> getVoidTypes(){
+		ts.primitiveTypes.filter(t | ts.isVoid(t)).toList
+	}
+	
+	def Collection<? extends Type> getBooleanTypes(){
+		ts.primitiveTypes.filter(t | ts.isBoolean(t)).toList
+	}
+	
+	def Collection<? extends Type> getIntegerTypes(){
+		ts.primitiveTypes.filter(t | ts.isInteger(t)).toList
+	}
+	
+	def Collection<? extends Type> getRealTypes(){
+		ts.primitiveTypes.filter(t | ts.isReal(t)).toList
+	}
+	
+	def Collection<? extends Type> getStringTypes(){
+		ts.primitiveTypes.filter(t | ts.isString(t)).toList
 	}
 
 }

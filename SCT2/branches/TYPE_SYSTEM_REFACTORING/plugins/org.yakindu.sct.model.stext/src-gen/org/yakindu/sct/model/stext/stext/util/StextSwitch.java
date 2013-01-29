@@ -305,6 +305,14 @@ public class StextSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case StextPackage.ENUM_LITERAL:
+      {
+        EnumLiteral enumLiteral = (EnumLiteral)theEObject;
+        T result = caseEnumLiteral(enumLiteral);
+        if (result == null) result = caseLiteral(enumLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case StextPackage.BOOL_LITERAL:
       {
         BoolLiteral boolLiteral = (BoolLiteral)theEObject;
@@ -957,6 +965,22 @@ public class StextSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLiteral(Literal object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumLiteral(EnumLiteral object)
   {
     return null;
   }

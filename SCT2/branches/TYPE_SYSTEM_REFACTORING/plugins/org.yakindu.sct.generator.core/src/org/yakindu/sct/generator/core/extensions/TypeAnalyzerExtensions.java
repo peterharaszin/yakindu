@@ -12,6 +12,8 @@ package org.yakindu.sct.generator.core.extensions;
 
 import static org.yakindu.sct.generator.core.impl.AbstractXpandBasedCodeGenerator.CONTEXT_INJECTOR_PROPERTY_NAME;
 
+import java.util.Collection;
+
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.IExecutionContextAware;
 import org.yakindu.base.types.ITypeSystemAccess;
@@ -42,24 +44,44 @@ public class TypeAnalyzerExtensions implements IExecutionContextAware {
 		}
 	}
 
-	public boolean isBoolean(Type type) {
-		return access.isBoolean(type);
+	public boolean isBoolean(Collection<? extends Type> types) {
+		for(Type t : types){
+			if(access.isBoolean(t)){
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean isInteger(Type type) {
-		return access.isInteger(type);
+	public boolean isInteger(Collection<? extends Type> types) {
+		for(Type t : types){
+			if(access.isInteger(t)){
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean isReal(Type type) {
-		return access.isReal(type);
+	public boolean isReal(Collection<? extends Type> types) {
+		for(Type t : types){
+			if(access.isReal(t)){
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean isString(Type type) {
-		return access.isString(type);
+	public boolean isString(Collection<? extends Type> types) {
+		for(Type t : types){
+			if(access.isString(t)){
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public Type getType(Statement stmt) {
-		return typeInferrer.getType(stmt);
+	public Collection<? extends Type> getTypes(Statement stmt) {
+		return typeInferrer.getTypes(stmt);
 	}
 
 }

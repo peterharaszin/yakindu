@@ -90,6 +90,7 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
       case StextPackage.ALWAYS_EVENT: return createAlwaysEvent();
       case StextPackage.EXPRESSION: return createExpression();
       case StextPackage.LITERAL: return createLiteral();
+      case StextPackage.ENUM_LITERAL: return createEnumLiteral();
       case StextPackage.BOOL_LITERAL: return createBoolLiteral();
       case StextPackage.INT_LITERAL: return createIntLiteral();
       case StextPackage.REAL_LITERAL: return createRealLiteral();
@@ -463,6 +464,17 @@ public class StextFactoryImpl extends EFactoryImpl implements StextFactory
   {
     LiteralImpl literal = new LiteralImpl();
     return literal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumLiteral createEnumLiteral()
+  {
+    EnumLiteralImpl enumLiteral = new EnumLiteralImpl();
+    return enumLiteral;
   }
 
   /**

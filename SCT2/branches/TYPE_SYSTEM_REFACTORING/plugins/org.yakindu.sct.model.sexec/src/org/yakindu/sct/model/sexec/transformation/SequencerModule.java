@@ -2,8 +2,8 @@ package org.yakindu.sct.model.sexec.transformation;
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.yakindu.base.types.ITypeSystemAccess;
-import org.yakindu.base.types.impl.BaseTypeSystemAccessImpl;
 import org.yakindu.sct.model.sgraph.naming.SGraphNameProvider;
+import org.yakindu.sct.model.stext.types.DefaultTypeSystemAccess;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -20,7 +20,7 @@ public class SequencerModule implements Module {
 
 	public void configure(Binder binder) {
 		binder.bind(IQualifiedNameProvider.class).to(SGraphNameProvider.class);
-		binder.bind(ITypeSystemAccess.class).to(BaseTypeSystemAccessImpl.class);
+		binder.bind(ITypeSystemAccess.class).to(DefaultTypeSystemAccess.class);
 		binder.bind(Boolean.class).annotatedWith(Names.named(ADD_TRACES))
 				.toInstance(Boolean.FALSE);
 		

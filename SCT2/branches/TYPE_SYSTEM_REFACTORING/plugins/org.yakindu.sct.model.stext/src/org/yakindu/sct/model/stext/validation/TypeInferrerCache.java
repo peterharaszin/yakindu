@@ -11,6 +11,8 @@
  */
 package org.yakindu.sct.model.stext.validation;
 
+import java.util.Collection;
+
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.sgraph.Statement;
@@ -24,15 +26,15 @@ public class TypeInferrerCache {
 		 * calculate the type of the statement. This method is not directly
 		 * cached, but could delegate caches for subsequent elements
 		 */
-		public Type inferType(Statement stmt);
+		public Collection<? extends Type> inferType(Statement stmt);
 	}
 
 	@Inject
 	OnChangeEvictingCache cache;
 
-	public Type get(final Statement stmt, final ICacheableTypeAnalyzer analyzer) {
-		return cache.get(stmt, stmt.eResource(), new Provider<Type>() {
-			public Type get() {
+	public Collection<? extends Type> get(final Statement stmt, final ICacheableTypeAnalyzer analyzer) {
+		return cache.get(stmt, stmt.eResource(), new Provider<Collection<? extends Type>>() {
+			public Collection<? extends Type> get() {
 				return analyzer.inferType(stmt);
 			}
 		});

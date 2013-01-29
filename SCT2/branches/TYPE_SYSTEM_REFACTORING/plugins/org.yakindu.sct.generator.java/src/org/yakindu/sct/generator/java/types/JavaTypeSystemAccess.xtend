@@ -10,21 +10,22 @@
  */
 package org.yakindu.sct.generator.java.types
 
-import org.yakindu.base.types.impl.BaseTypeSystemAccessImpl
 import org.yakindu.base.types.Type
+import org.yakindu.sct.model.stext.types.DefaultTypeSystemAccess
 
 /**
  * @author andreas muelder
+ * @author Alexander Nyßen - Adopted to type system changes
  */
-class JavaTypeSystemAccess extends BaseTypeSystemAccessImpl {
+class JavaTypeSystemAccess extends DefaultTypeSystemAccess {
 	
 	override getTargetLanguageTypeName(Type type) {
-		switch (type.name) {
-			case "real" : "double"
-			case "integer" : "int"
-			case "boolean" : "boolean"
-			case "string" : "String"
-			case "void" : "void"
+		switch (type) {
+			case type == null || isVoid(type): "void"
+			case isReal(type) : "double"
+			case isInteger(type) : "int"
+			case isBoolean(type) : "boolean"
+			case isString(type) : "String"
 			default : "//"+this
 		};
 	}

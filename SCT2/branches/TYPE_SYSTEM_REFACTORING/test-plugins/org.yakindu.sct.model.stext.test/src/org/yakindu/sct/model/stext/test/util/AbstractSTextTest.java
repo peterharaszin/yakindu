@@ -78,6 +78,7 @@ public abstract class AbstractSTextTest {
 		return parseExpression(expression, null, ruleName);
 	}
 
+	// TODO: REMOVE
 	protected EObject parseExpression(String expression, Scope scope,
 			String ruleName) {
 		return parseExpression(expression, ruleName, scope);

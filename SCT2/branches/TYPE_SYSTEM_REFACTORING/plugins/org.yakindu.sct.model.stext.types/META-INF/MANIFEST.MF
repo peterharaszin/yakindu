@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SText Types
+Bundle-Name: Yakindu SText Types
 Bundle-SymbolicName: org.yakindu.sct.model.stext.types
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Vendor: Yakindu.org
 Require-Bundle: org.eclipse.core.runtime,
  org.yakindu.base.types;bundle-version="2.0.0"

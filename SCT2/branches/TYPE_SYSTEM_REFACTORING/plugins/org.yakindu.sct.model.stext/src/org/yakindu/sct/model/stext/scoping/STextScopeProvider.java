@@ -113,10 +113,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_EnumLiteral_value(final EnumLiteral context,
 			EReference reference) {
-//		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(
-//				context, reference);
 		return Scopes.scopeFor(context.getType().getEnumerator());
-//		return new FilteringScope(scope, predicate);
 	}
 
 	public IScope scope_FeatureCall_feature(final FeatureCall context,

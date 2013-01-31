@@ -44,44 +44,46 @@ public class DefaultDiagramInitializer implements IDiagramInitializer {
 
 	private static final int SPACING = 10;
 
-	public void initModel(Statechart statechart, Diagram diagram,
-			PreferencesHint preferencesHint) {
+	private SGraphFactory factory = SGraphFactory.eINSTANCE;
+
+	public void initModel(Statechart statechart, Diagram diagram, PreferencesHint preferencesHint) {
 		// Create a statechart
-		SGraphFactory factory = SGraphFactory.eINSTANCE;
 		// Create an initial region
 		Region region = factory.createRegion();
 		region.setName(INITIAL_REGION_NAME);
 		statechart.getRegions().add(region);
-		Node regionView = ViewService.createNode(diagram, region,
-				SemanticHints.REGION, preferencesHint);
+		Node regionView = ViewService.createNode(diagram, region, SemanticHints.REGION, preferencesHint);
 		setRegionViewLayoutConstraint(regionView);
 		// // Create an initial state
 		Entry initialState = factory.createEntry();
 		initialState.setKind(EntryKind.INITIAL);
 		region.getVertices().add(initialState);
-		Node initialStateView = ViewService.createNode(
-				getRegionCompartmentView(regionView), initialState,
+		Node initialStateView = ViewService.createNode(getRegionCompartmentView(regionView), initialState,
 				SemanticHints.ENTRY, preferencesHint);
 		setInitialStateViewLayoutConstraint(initialStateView);
 		// Create the first state
 		State state = factory.createState();
 		region.getVertices().add(state);
-		Node stateNode = ViewService.createNode(
-				getRegionCompartmentView(regionView), state,
-				SemanticHints.STATE, preferencesHint);
+		Node stateNode = ViewService.createNode(getRegionCompartmentView(regionView), state, SemanticHints.STATE,
+				preferencesHint);
 		setStateViewLayoutConstraint(stateNode);
 		// Create the transition from Initial State to State
 		Transition transition = factory.createTransition();
 		transition.setSource(initialState);
 		transition.setTarget(state);
 		initialState.getOutgoingTransitions().add(transition);
-		ViewService.createEdge(initialStateView, stateNode, transition,
-				SemanticHints.TRANSITION, preferencesHint);
-		// Create the textcompartment for events / variables
-		Node textCompartment = ViewService.createNode(diagram, statechart,
-				SemanticHints.STATECHART_TEXT, preferencesHint);
-		setTextCompartmentLayoutConstraint(textCompartment);
+		ViewService.createEdge(initialStateView, stateNode, transition, SemanticHints.TRANSITION, preferencesHint);
+		createTextCompartment(statechart, diagram, preferencesHint);
 
+	}
+
+	/**
+	 * Create the textcompartment for events / variables
+	 */
+	protected void createTextCompartment(Statechart statechart, Diagram diagram, PreferencesHint preferencesHint) {
+		Node textCompartment = ViewService.createNode(diagram, statechart, SemanticHints.STATECHART_TEXT,
+				preferencesHint);
+		setTextCompartmentLayoutConstraint(textCompartment);
 	}
 
 	private static void setStateViewLayoutConstraint(Node stateNode) {
@@ -91,8 +93,7 @@ public class DefaultDiagramInitializer implements IDiagramInitializer {
 		stateNode.setLayoutConstraint(bounds);
 	}
 
-	private static void setInitialStateViewLayoutConstraint(
-			Node initialStateView) {
+	private static void setInitialStateViewLayoutConstraint(Node initialStateView) {
 		Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 		bounds.setX(70);
 		bounds.setY(20);
@@ -114,8 +115,7 @@ public class DefaultDiagramInitializer implements IDiagramInitializer {
 
 	private static void setRegionViewLayoutConstraint(Node regionView) {
 		Bounds bounds = NotationFactory.eINSTANCE.createBounds();
-		bounds.setX(INITIAL_TEXT_COMPARTMENT_WIDTH + INITIAL_TEXT_COMPARTMENT_X
-				+ SPACING);
+		bounds.setX(INITIAL_TEXT_COMPARTMENT_WIDTH + INITIAL_TEXT_COMPARTMENT_X + SPACING);
 		bounds.setY(INITIAL_TEXT_COMPARTMENT_Y);
 		bounds.setHeight(INITIAL_REGION_HEIGHT);
 		bounds.setWidth(INITIAL_REGION_WIDTH);

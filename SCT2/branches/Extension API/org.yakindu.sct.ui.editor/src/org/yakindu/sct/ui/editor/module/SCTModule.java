@@ -30,6 +30,8 @@ import org.yakindu.sct.ui.editor.editparts.TransitionExpressionEditPart;
 import org.yakindu.sct.ui.editor.providers.DefaultSCTPaletteFactory;
 import org.yakindu.sct.ui.editor.providers.ISCTPaletteFactory;
 import org.yakindu.sct.ui.editor.providers.SemanticHints;
+import org.yakindu.sct.ui.editor.wizards.DefaultDiagramInitializer;
+import org.yakindu.sct.ui.editor.wizards.IDiagramInitializer;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -63,6 +65,16 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	}
 
 	/**
+	 * returns an implementation of {@link IDiagramInitializer} that initializes
+	 * new created diagrams.
+	 * 
+	 * @return
+	 */
+	protected Class<? extends IDiagramInitializer> getDiagramInitializer() {
+		return DefaultDiagramInitializer.class;
+	}
+
+	/**
 	 * Returns the default file extension for diagrams.
 	 */
 	protected String getFileExtension() {
@@ -75,8 +87,7 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 
 	@Override
 	protected void configure() {
-		bind(String.class).annotatedWith(Names.named(FILE_EXTENSION))
-				.toInstance(getFileExtension());
+		bind(String.class).annotatedWith(Names.named(FILE_EXTENSION)).toInstance(getFileExtension());
 		bind(IMetaModelTypeFactory.class).to(getMetaModelTypeFactory());
 		bind(EditPartFactory.class).to(InjectableEditPartFactory.class);
 		bind(ISCTPaletteFactory.class).to(getPaletteFactory());
@@ -84,62 +95,40 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	}
 
 	protected void configureEditParts() {
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(StatechartDiagramEditor.ID)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(StatechartDiagramEditor.ID)).to(
 				StatechartDiagramEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATECHART_TEXT)).to(StatechartTextEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATECHART_NAME)).to(StatechartNameEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_TEXT)).to(StatechartTextEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_NAME)).to(StatechartNameEditPart.class);
 
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATECHART_TEXT_EXPRESSION)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_TEXT_EXPRESSION)).to(
 				StatechartTextExpressionEditPart.class);
 
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION)).to(
-				RegionEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_NAME))
-				.to(RegionNameEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(REGION_COMPARTMENT)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION)).to(RegionEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_NAME)).to(RegionNameEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_COMPARTMENT)).to(
 				RegionCompartmentEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(TRANSITION))
-				.to(getTransitionEditPart());
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(TRANSITION_EXPRESSION)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(TRANSITION)).to(getTransitionEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(TRANSITION_EXPRESSION)).to(
 				TransitionExpressionEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_NAME))
-				.to(StateNameEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATE_TEXT_COMPARTMENT)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_NAME)).to(StateNameEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_TEXT_COMPARTMENT)).to(
 				StateTextCompartmentEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATE_TEXT_COMPARTMENT_EXPRESSION)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_TEXT_COMPARTMENT_EXPRESSION)).to(
 				StateTextCompartmentExpressionEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(STATE_FIGURE_COMPARTMENT)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_FIGURE_COMPARTMENT)).to(
 				StateFigureCompartmentEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE)).to(
-				StateEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(CHOICE)).to(
-				ChoiceEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(DEEPHISTORY))
-				.to(EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(SHALLOWHISTORY)).to(EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(ENTRY)).to(
-				EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(FINALSTATE))
-				.to(FinalStateEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(EXIT)).to(
-				ExitEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(BORDER_ITEM_LABEL_CONTAINER)).to(
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE)).to(StateEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(CHOICE)).to(ChoiceEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(DEEPHISTORY)).to(EntryEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SHALLOWHISTORY)).to(EntryEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(ENTRY)).to(EntryEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(FINALSTATE)).to(FinalStateEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(EXIT)).to(ExitEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL_CONTAINER)).to(
 				NamedElementLabelEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(BORDER_ITEM_LABEL)).to(BorderItemEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(
-				Names.named(SYNCHRONIZATION)).to(StateEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL)).to(BorderItemEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SYNCHRONIZATION)).to(StateEditPart.class);
+		bind(IDiagramInitializer.class).to(getDiagramInitializer());
 
 	}
 

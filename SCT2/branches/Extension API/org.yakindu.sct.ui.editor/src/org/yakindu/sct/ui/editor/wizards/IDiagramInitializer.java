@@ -14,14 +14,11 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.yakindu.sct.model.sgraph.Statechart;
 
-import com.google.inject.ImplementedBy;
-
 /**
  * 
  * @author andreas muelder - Initial contribution and API
  * 
  */
-@ImplementedBy(DefaultDiagramInitializer.class)
 public interface IDiagramInitializer {
 	/**
 	 * Called by the new model file wizard to initialize a new created diagram

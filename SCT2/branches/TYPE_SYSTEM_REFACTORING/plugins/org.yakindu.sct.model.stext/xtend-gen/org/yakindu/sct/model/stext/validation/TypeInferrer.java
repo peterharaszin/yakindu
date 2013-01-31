@@ -178,16 +178,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Expression _value = eventRaising.getValue();
     boolean _equals = Objects.equal(_value, null);
     if (_equals) {
-      List<PrimitiveType> _voidTypes = this.ts.getVoidTypes(eventTypes);
-      boolean _isEmpty = _voidTypes.isEmpty();
+      final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+          public Boolean apply(final Type t) {
+            boolean _isVoid = TypeInferrer.this.ts.isVoid(t);
+            return Boolean.valueOf(_isVoid);
+          }
+        };
+      Iterable<? extends Type> _filter = IterableExtensions.filter(eventTypes, _function);
+      boolean _isEmpty = IterableExtensions.isEmpty(_filter);
       if (_isEmpty) {
-        final Function1<Type,String> _function = new Function1<Type,String>() {
+        final Function1<Type,String> _function_1 = new Function1<Type,String>() {
             public String apply(final Type t) {
               String _name = t.getName();
               return _name;
             }
           };
-        Iterable<String> _map = IterableExtensions.map(eventTypes, _function);
+        Iterable<String> _map = IterableExtensions.map(eventTypes, _function_1);
         String _join = IterableExtensions.join(_map, ",");
         String _plus = ("Need to assign a value to an event of type " + _join);
         this.error(_plus);
@@ -200,23 +206,23 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Collection<Type> types = this.assign(eventTypes, valueTypes);
     boolean _isEmpty_1 = types.isEmpty();
     if (_isEmpty_1) {
-      final Function1<Type,String> _function_1 = new Function1<Type,String>() {
-          public String apply(final Type t) {
-            String _name = t.getName();
-            return _name;
-          }
-        };
-      Iterable<String> _map_1 = IterableExtensions.map(valueTypes, _function_1);
-      String _join_1 = IterableExtensions.join(_map_1, ",");
-      String _plus_1 = ("Can not assign a value of type " + _join_1);
-      String _plus_2 = (_plus_1 + " to an event of type ");
       final Function1<Type,String> _function_2 = new Function1<Type,String>() {
           public String apply(final Type t) {
             String _name = t.getName();
             return _name;
           }
         };
-      Iterable<String> _map_2 = IterableExtensions.map(eventTypes, _function_2);
+      Iterable<String> _map_1 = IterableExtensions.map(valueTypes, _function_2);
+      String _join_1 = IterableExtensions.join(_map_1, ",");
+      String _plus_1 = ("Can not assign a value of type " + _join_1);
+      String _plus_2 = (_plus_1 + " to an event of type ");
+      final Function1<Type,String> _function_3 = new Function1<Type,String>() {
+          public String apply(final Type t) {
+            String _name = t.getName();
+            return _name;
+          }
+        };
+      Iterable<String> _map_2 = IterableExtensions.map(eventTypes, _function_3);
       String _join_2 = IterableExtensions.join(_map_2, ",");
       String _plus_3 = (_plus_2 + _join_2);
       this.error(_plus_3);
@@ -289,8 +295,14 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Expression _rightOperand = expression.getRightOperand();
     final Collection<? extends Type> rightTypes = this.getTypes(_rightOperand);
     final Collection<Type> combined = this.combine(leftTypes, rightTypes);
-    List<PrimitiveType> _booleanTypes = this.ts.getBooleanTypes(combined);
-    boolean _isEmpty = _booleanTypes.isEmpty();
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isBoolean = TypeInferrer.this.ts.isBoolean(t);
+          return Boolean.valueOf(_isBoolean);
+        }
+      };
+    Iterable<Type> _filter = IterableExtensions.<Type>filter(combined, _function);
+    boolean _isEmpty = IterableExtensions.isEmpty(_filter);
     boolean _not = (!_isEmpty);
     if (_not) {
       boolean _and = false;
@@ -316,23 +328,23 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     } else {
       boolean _isEmpty_1 = combined.isEmpty();
       if (_isEmpty_1) {
-        final Function1<Type,String> _function = new Function1<Type,String>() {
-            public String apply(final Type t) {
-              String _name = t.getName();
-              return _name;
-            }
-          };
-        Iterable<String> _map = IterableExtensions.map(leftTypes, _function);
-        String _join = IterableExtensions.join(_map, ",");
-        String _plus_2 = ("Incompatible operands " + _join);
-        String _plus_3 = (_plus_2 + " and ");
         final Function1<Type,String> _function_1 = new Function1<Type,String>() {
             public String apply(final Type t) {
               String _name = t.getName();
               return _name;
             }
           };
-        Iterable<String> _map_1 = IterableExtensions.map(rightTypes, _function_1);
+        Iterable<String> _map = IterableExtensions.map(leftTypes, _function_1);
+        String _join = IterableExtensions.join(_map, ",");
+        String _plus_2 = ("Incompatible operands " + _join);
+        String _plus_3 = (_plus_2 + " and ");
+        final Function1<Type,String> _function_2 = new Function1<Type,String>() {
+            public String apply(final Type t) {
+              String _name = t.getName();
+              return _name;
+            }
+          };
+        Iterable<String> _map_1 = IterableExtensions.map(rightTypes, _function_2);
         String _join_1 = IterableExtensions.join(_map_1, ",");
         String _plus_4 = (_plus_3 + _join_1);
         String _plus_5 = (_plus_4 + " for operator \'");
@@ -555,51 +567,81 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   }
   
   public Collection<? extends Type> assertIntegerTypes(final Collection<? extends Type> types, final String operator) {
-    List<PrimitiveType> integerTypes = this.ts.getIntegerTypes(types);
-    boolean _isEmpty = integerTypes.isEmpty();
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isInteger = TypeInferrer.this.ts.isInteger(t);
+          return Boolean.valueOf(_isInteger);
+        }
+      };
+    Iterable<? extends Type> integerTypes = IterableExtensions.filter(types, _function);
+    boolean _isEmpty = IterableExtensions.isEmpty(integerTypes);
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
       String _plus_1 = (_plus + "\' can only be applied to integer values!");
       this.error(_plus_1);
     }
-    return integerTypes;
+    return IterableExtensions.toList(integerTypes);
   }
   
   public Collection<? extends Type> assertRealTypes(final Collection<? extends Type> types, final String operator) {
-    List<PrimitiveType> realTypes = this.ts.getRealTypes(types);
-    boolean _isEmpty = realTypes.isEmpty();
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isReal = TypeInferrer.this.ts.isReal(t);
+          return Boolean.valueOf(_isReal);
+        }
+      };
+    Iterable<? extends Type> realTypes = IterableExtensions.filter(types, _function);
+    boolean _isEmpty = IterableExtensions.isEmpty(realTypes);
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
       String _plus_1 = (_plus + "\' can only be applied to real values!");
       this.error(_plus_1);
     }
-    return types;
+    return IterableExtensions.toList(types);
   }
   
   public Collection<? extends Type> assertNumericalTypes(final Collection<? extends Type> types, final String operator) {
     ArrayList<Type> numberTypes = CollectionLiterals.<Type>newArrayList();
-    List<PrimitiveType> _integerTypes = this.ts.getIntegerTypes(types);
-    Iterables.<Type>addAll(numberTypes, _integerTypes);
-    List<PrimitiveType> _realTypes = this.ts.getRealTypes(types);
-    Iterables.<Type>addAll(numberTypes, _realTypes);
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isInteger = TypeInferrer.this.ts.isInteger(t);
+          return Boolean.valueOf(_isInteger);
+        }
+      };
+    Iterable<? extends Type> _filter = IterableExtensions.filter(types, _function);
+    Iterables.<Type>addAll(numberTypes, _filter);
+    final Function1<Type,Boolean> _function_1 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isReal = TypeInferrer.this.ts.isReal(t);
+          return Boolean.valueOf(_isReal);
+        }
+      };
+    Iterable<? extends Type> _filter_1 = IterableExtensions.filter(types, _function_1);
+    Iterables.<Type>addAll(numberTypes, _filter_1);
     boolean _isEmpty = numberTypes.isEmpty();
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
       String _plus_1 = (_plus + "\' can only be applied to numbers!");
       this.error(_plus_1);
     }
-    return numberTypes;
+    return IterableExtensions.<Type>toList(numberTypes);
   }
   
   public Collection<? extends Type> assertBooleanTypes(final Collection<? extends Type> types, final String operator) {
-    List<PrimitiveType> booleanTypes = this.ts.getBooleanTypes(types);
-    boolean _isEmpty = booleanTypes.isEmpty();
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isBoolean = TypeInferrer.this.ts.isBoolean(t);
+          return Boolean.valueOf(_isBoolean);
+        }
+      };
+    Iterable<? extends Type> booleanTypes = IterableExtensions.filter(types, _function);
+    boolean _isEmpty = IterableExtensions.isEmpty(booleanTypes);
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
       String _plus_1 = (_plus + "\' can only be applied to boolean values!");
       this.error(_plus_1);
     }
-    return booleanTypes;
+    return IterableExtensions.toList(booleanTypes);
   }
   
   public void error(final String msg) {
@@ -706,8 +748,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     final Set<Type> rightBacklog = _hashSet_2;
     rightBacklog.addAll(rightTypes);
     rightBacklog.removeAll(resultTypes);
-    final List<PrimitiveType> leftVoids = this.ts.getVoidTypes(leftBacklog);
-    final List<PrimitiveType> rightVoids = this.ts.getVoidTypes(rightBacklog);
+    final Function1<Type,Boolean> _function = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isVoid = TypeInferrer.this.ts.isVoid(t);
+          return Boolean.valueOf(_isVoid);
+        }
+      };
+    Iterable<Type> _filter = IterableExtensions.<Type>filter(leftBacklog, _function);
+    final List<Type> leftVoids = IterableExtensions.<Type>toList(_filter);
+    final Function1<Type,Boolean> _function_1 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isVoid = TypeInferrer.this.ts.isVoid(t);
+          return Boolean.valueOf(_isVoid);
+        }
+      };
+    Iterable<Type> _filter_1 = IterableExtensions.<Type>filter(rightBacklog, _function_1);
+    final List<Type> rightVoids = IterableExtensions.<Type>toList(_filter_1);
     boolean _and = false;
     boolean _isEmpty = leftVoids.isEmpty();
     boolean _not = (!_isEmpty);
@@ -724,8 +780,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
       leftBacklog.removeAll(leftVoids);
       rightBacklog.removeAll(rightVoids);
     }
-    final List<PrimitiveType> leftBooleans = this.ts.getBooleanTypes(leftBacklog);
-    final List<PrimitiveType> rightBooleans = this.ts.getBooleanTypes(rightBacklog);
+    final Function1<Type,Boolean> _function_2 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isBoolean = TypeInferrer.this.ts.isBoolean(t);
+          return Boolean.valueOf(_isBoolean);
+        }
+      };
+    Iterable<Type> _filter_2 = IterableExtensions.<Type>filter(leftBacklog, _function_2);
+    final List<Type> leftBooleans = IterableExtensions.<Type>toList(_filter_2);
+    final Function1<Type,Boolean> _function_3 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isBoolean = TypeInferrer.this.ts.isBoolean(t);
+          return Boolean.valueOf(_isBoolean);
+        }
+      };
+    Iterable<Type> _filter_3 = IterableExtensions.<Type>filter(rightBacklog, _function_3);
+    final List<Type> rightBooleans = IterableExtensions.<Type>toList(_filter_3);
     boolean _and_1 = false;
     boolean _isEmpty_2 = leftBooleans.isEmpty();
     boolean _not_2 = (!_isEmpty_2);
@@ -742,8 +812,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
       leftBacklog.removeAll(leftBooleans);
       rightBacklog.removeAll(rightBooleans);
     }
-    final List<PrimitiveType> leftStrings = this.ts.getStringTypes(leftBacklog);
-    final List<PrimitiveType> rightStrings = this.ts.getStringTypes(rightBacklog);
+    final Function1<Type,Boolean> _function_4 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isString = TypeInferrer.this.ts.isString(t);
+          return Boolean.valueOf(_isString);
+        }
+      };
+    Iterable<Type> _filter_4 = IterableExtensions.<Type>filter(leftBacklog, _function_4);
+    final List<Type> leftStrings = IterableExtensions.<Type>toList(_filter_4);
+    final Function1<Type,Boolean> _function_5 = new Function1<Type,Boolean>() {
+        public Boolean apply(final Type t) {
+          boolean _isString = TypeInferrer.this.ts.isString(t);
+          return Boolean.valueOf(_isString);
+        }
+      };
+    Iterable<Type> _filter_5 = IterableExtensions.<Type>filter(rightBacklog, _function_5);
+    final List<Type> rightStrings = IterableExtensions.<Type>toList(_filter_5);
     boolean _and_2 = false;
     boolean _isEmpty_4 = leftStrings.isEmpty();
     boolean _not_4 = (!_isEmpty_4);
@@ -773,8 +857,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
       _and_3 = (_not_6 && _not_7);
     }
     if (_and_3) {
-      final List<PrimitiveType> leftReals = this.ts.getRealTypes(leftNumericals);
-      final List<PrimitiveType> rightReals = this.ts.getRealTypes(rightNumericals);
+      final Function1<Type,Boolean> _function_6 = new Function1<Type,Boolean>() {
+          public Boolean apply(final Type t) {
+            boolean _isReal = TypeInferrer.this.ts.isReal(t);
+            return Boolean.valueOf(_isReal);
+          }
+        };
+      Iterable<Type> _filter_6 = IterableExtensions.<Type>filter(leftNumericals, _function_6);
+      final List<Type> leftReals = IterableExtensions.<Type>toList(_filter_6);
+      final Function1<Type,Boolean> _function_7 = new Function1<Type,Boolean>() {
+          public Boolean apply(final Type t) {
+            boolean _isReal = TypeInferrer.this.ts.isReal(t);
+            return Boolean.valueOf(_isReal);
+          }
+        };
+      Iterable<Type> _filter_7 = IterableExtensions.<Type>filter(rightNumericals, _function_7);
+      final List<Type> rightReals = IterableExtensions.<Type>toList(_filter_7);
       boolean _or = false;
       boolean _isEmpty_8 = leftReals.isEmpty();
       boolean _not_8 = (!_isEmpty_8);
@@ -789,8 +887,22 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
         resultTypes.addAll(leftReals);
         resultTypes.addAll(rightReals);
       } else {
-        final List<PrimitiveType> leftIntegers = this.ts.getIntegerTypes(leftNumericals);
-        final List<PrimitiveType> rightIntegers = this.ts.getIntegerTypes(rightNumericals);
+        final Function1<Type,Boolean> _function_8 = new Function1<Type,Boolean>() {
+            public Boolean apply(final Type t) {
+              boolean _isInteger = TypeInferrer.this.ts.isInteger(t);
+              return Boolean.valueOf(_isInteger);
+            }
+          };
+        Iterable<Type> _filter_8 = IterableExtensions.<Type>filter(leftNumericals, _function_8);
+        final List<Type> leftIntegers = IterableExtensions.<Type>toList(_filter_8);
+        final Function1<Type,Boolean> _function_9 = new Function1<Type,Boolean>() {
+            public Boolean apply(final Type t) {
+              boolean _isInteger = TypeInferrer.this.ts.isInteger(t);
+              return Boolean.valueOf(_isInteger);
+            }
+          };
+        Iterable<Type> _filter_9 = IterableExtensions.<Type>filter(leftNumericals, _function_9);
+        final List<Type> rightIntegers = IterableExtensions.<Type>toList(_filter_9);
         boolean _and_4 = false;
         boolean _isEmpty_10 = leftIntegers.isEmpty();
         boolean _not_10 = (!_isEmpty_10);

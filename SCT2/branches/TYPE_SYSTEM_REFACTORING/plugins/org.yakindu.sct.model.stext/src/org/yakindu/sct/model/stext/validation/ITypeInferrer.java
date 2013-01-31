@@ -38,4 +38,6 @@ public interface ITypeInferrer {
 	
 	Collection<? extends Type> getTypes(Declaration declaration) throws TypeCheckException;
 	
+	
+	
 }
